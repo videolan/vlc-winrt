@@ -10,14 +10,14 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.Web.Syndication;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Helpers
 {
 
     public static class AppViewHelper
     {
-        private static bool isFullscreen = false;
-        public static double TitleBarHeight = 32;
+        public static double TitleBarHeight;
 
         static AppViewHelper()
         {
@@ -32,6 +32,12 @@ namespace VLC_WinRT.Helpers
         public static bool IsFullScreen()
         {
             var v = ApplicationView.GetForCurrentView();
+            var isFullScreenModeProperty = v.GetType().GetRuntimeProperty("IsFullScreenMode"); // Available only in Windows 10
+            if (isFullScreenModeProperty != null)
+            {
+                object isFullScreenMode = isFullScreenModeProperty.GetValue(v);
+                return (bool)isFullScreenMode;
+            }
             return v.IsFullScreen;
         }
 
@@ -73,20 +79,22 @@ namespace VLC_WinRT.Helpers
                         bb.ButtonInactiveBackgroundColor = bb.BackgroundColor;
                 }
             }
-            catch { }
+            catch
+            {
+            }
 #elif WINDOWS_UAP
             var titleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
             Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 #endif
         }
-        
+
         public static async void SetFullscreen()
         {
 #if WINDOWS_APP
             var v = ApplicationView.GetForCurrentView();
             var runtimeMethods = v.GetType().GetRuntimeMethods();
             
-            if (!isFullscreen)
+            if (!IsFullScreen())
             {
                 var tryEnterFullScreenMode = runtimeMethods.FirstOrDefault(x => x.Name == "TryEnterFullScreenMode");
                 tryEnterFullScreenMode?.Invoke(v, null);
@@ -96,7 +104,6 @@ namespace VLC_WinRT.Helpers
                 var exitFullScreenMode = runtimeMethods.FirstOrDefault(x => x.Name == "ExitFullScreenMode");
                 exitFullScreenMode?.Invoke(v, null);
             }
-            isFullscreen = !isFullscreen;
 #endif
         }
 
@@ -176,6 +183,7 @@ namespace VLC_WinRT.Helpers
             if (titleBarInstance == null) return;
             if (titleBarInstance.Height == 0) return;
             TitleBarHeight = titleBarInstance.Height;
+            Locator.MainVM.TitleBarMargin = new Thickness(0, TitleBarHeight, 0,0);
             App.SplitShell.TitleBarHeight = TitleBarHeight;
         }
 
