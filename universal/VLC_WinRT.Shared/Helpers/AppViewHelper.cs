@@ -3,9 +3,13 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
+using Windows.Foundation;
 using Windows.Graphics.Display;
 using Windows.UI;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.Web.Syndication;
 
 namespace VLC_WinRT.Helpers
 {
