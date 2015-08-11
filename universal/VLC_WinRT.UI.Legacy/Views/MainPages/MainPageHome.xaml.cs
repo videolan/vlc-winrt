@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
 
@@ -22,6 +24,8 @@ namespace VLC_WinRT.Views.MainPages
         {
             base.OnNavigatedTo(e);
             Locator.Slideshow.GoDefaultPic();
+            await Task.Delay(600);
+            AppViewHelper.SetTitleBarHeight();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
