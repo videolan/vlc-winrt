@@ -18,6 +18,8 @@ namespace VLC_WinRT.Helpers
     public static class AppViewHelper
     {
         public static double TitleBarHeight;
+        public static double PreviousWindowHeight;
+        public static double PreviousWindowsWidth;
 
         static AppViewHelper()
         {
@@ -146,7 +148,7 @@ namespace VLC_WinRT.Helpers
 #endif
         }
 
-        public static void ResizeWindow(double width, double height)
+        public static async void ResizeWindow(bool restoPreviousSize, double width = 0, double height = 0)
         {
 #if WINDOWS_APP
             var appView = ApplicationView.GetForCurrentView();
@@ -154,18 +156,41 @@ namespace VLC_WinRT.Helpers
             var setPrefferedMinSize = allMethods.FirstOrDefault(x => x.Name == "SetPreferredMinSize");
             if (setPrefferedMinSize != null)
             {
-                setPrefferedMinSize.Invoke(appView, new object[1]
+                if (restoPreviousSize)
                 {
+                    setPrefferedMinSize.Invoke(appView, new object[1]
+                    {
+                        new Size(PreviousWindowsWidth, PreviousWindowHeight),
+                    });
+                }
+                else
+                {
+                    setPrefferedMinSize.Invoke(appView, new object[1]
+                    {
                         new Size(width, height),
-                });
+                    });
+                }
             }
+            await Task.Delay(100);
             var tryResizeView = allMethods.FirstOrDefault(x => x.Name == "TryResizeView");
             if (tryResizeView != null)
             {
-                tryResizeView.Invoke(appView, new object[1]
+                if (restoPreviousSize)
                 {
-                    new Size(width, height),
-                });
+                    tryResizeView.Invoke(appView, new object[1]
+                    {
+                        new Size(PreviousWindowsWidth, PreviousWindowHeight),
+                    });
+                }
+                else
+                {
+                    tryResizeView.Invoke(appView, new object[1]
+                    {
+                        new Size(width, height),
+                    });
+                    PreviousWindowHeight = Window.Current.Bounds.Height;
+                    PreviousWindowsWidth = Window.Current.Bounds.Width;
+                }
             }
 #endif
         }
