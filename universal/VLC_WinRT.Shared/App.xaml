@@ -6,7 +6,6 @@
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Dark">
                     <Color x:Key="ApplicationPageBackgroundThemeColor">Black</Color>
-                    <Color x:Key="ApplicationBarForegroundThemeColor">#151515</Color>
                     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                                      Color="{StaticResource ApplicationPageBackgroundThemeColor}" />
                     <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
@@ -15,8 +14,6 @@
                                      Color="LightGray" />
                     <SolidColorBrush x:Key="ApplicationThirdForegroundThemeBrush"
                                      Color="#252525" />
-                    <SolidColorBrush x:Key="ApplicationBarForegroundThemeBrush"
-                                     Color="{StaticResource ApplicationBarForegroundThemeColor}" />
                     <SolidColorBrush x:Key="ApplicationOverlayTranslucentThemeBrush"
                                      Color="#d4000000" />
                     <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
@@ -57,8 +54,6 @@
                                      Color="DimGray" />
                     <SolidColorBrush x:Key="ApplicationThirdForegroundThemeBrush"
                                      Color="WhiteSmoke" />
-                    <SolidColorBrush x:Key="ApplicationBarForegroundThemeBrush"
-                                     Color="#E5E5E5" />
                     <SolidColorBrush x:Key="ApplicationOverlayTranslucentThemeBrush"
                                      Color="#DDFFFFFF" />
                     <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"

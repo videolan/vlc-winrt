@@ -3,12 +3,9 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
-using Windows.Foundation;
 using Windows.Graphics.Display;
 using Windows.UI;
 using Windows.UI.ViewManagement;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace VLC_WinRT.Helpers
 {
@@ -16,18 +13,16 @@ namespace VLC_WinRT.Helpers
     public static class AppViewHelper
     {
         private static bool isFullscreen = false;
-        private static dynamic titleBar;
         public static double TitleBarHeight = 32;
+
         static AppViewHelper()
         {
             DisplayInformation.GetForCurrentView().DpiChanged += AppViewHelper_DpiChanged;
         }
 
-        private static async void AppViewHelper_DpiChanged(DisplayInformation sender, object args)
+        private static void AppViewHelper_DpiChanged(DisplayInformation sender, object args)
         {
-            SetTitleBar(false);
-            await Task.Delay(200);
-            SetTitleBar(true);
+            SetTitleBarHeight();
         }
 
         public static bool IsFullScreen()
@@ -53,19 +48,19 @@ namespace VLC_WinRT.Helpers
             {
                 var v = ApplicationView.GetForCurrentView();
                 var allProperties = v.GetType().GetRuntimeProperties();
-                titleBar = allProperties.FirstOrDefault(x => x.Name == "TitleBar");
+                var titleBar = allProperties.FirstOrDefault(x => x.Name == "TitleBar");
                 if (titleBar == null) return;
                 dynamic bb = titleBar.GetMethod.Invoke(v, null);
                 if (bb != null)
                 {
                     var appViewProperties = bb.GetType().DeclaredProperties;
-                    bb.BackgroundColor = (Color)App.Current.Resources["ApplicationBarForegroundThemeColor"];
+                    bb.BackgroundColor = Color.FromArgb(0, 0, 0, 0);
                     bb.ForegroundColor = fgColor;
                     bb.ButtonForegroundColor = fgColor;
-                    bb.ButtonBackgroundColor = (Color)App.Current.Resources["ApplicationBarForegroundThemeColor"];
-                    
+                    bb.ButtonBackgroundColor = Color.FromArgb(0,0,0,0);
+
                     if (DoesPropertyExist("InactiveBackgroundColor", appViewProperties))
-                        bb.InactiveBackgroundColor = bb.BackgroundColor;
+                        bb.InactiveBackgroundColor = Color.FromArgb(0, 0, 0, 0);
                     if (DoesPropertyExist("ButtonInactiveForegroundColor", appViewProperties))
                         bb.ButtonInactiveForegroundColor = bb.ButtonForegroundColor;
                     if (DoesPropertyExist("InactiveForegroundColor", appViewProperties))
@@ -166,35 +161,26 @@ namespace VLC_WinRT.Helpers
 
         public static void SetTitleBar(bool extend)
         {
+            var titleBarInstance = GetTitleBarInstanceOnW10();
+            if (titleBarInstance == null) return;
+            titleBarInstance.ExtendViewIntoTitleBar = extend;
+        }
+
+        public static void SetTitleBarHeight()
+        {
+            var titleBarInstance = GetTitleBarInstanceOnW10();
+            if (titleBarInstance.Height == 0) return;
+            TitleBarHeight = titleBarInstance.Height;
+            App.SplitShell.TitleBarHeight = TitleBarHeight;
+        }
+
+        public static dynamic GetTitleBarInstanceOnW10()
+        {
             var coreAppView = CoreApplication.GetCurrentView();
             var allProperties = coreAppView.GetType().GetRuntimeProperties();
             var titleBar = allProperties.FirstOrDefault(x => x.Name == "TitleBar");
-            if (titleBar == null)
-            {
-                App.SplitShell.TitleBarHeight = TitleBarHeight;
-                return;
-            }
-            dynamic titleBarInstance = titleBar.GetMethod.Invoke(coreAppView, null);
-            var titleBarInstanceProperties = titleBarInstance.GetType().DeclaredProperties;
-            if (titleBarInstanceProperties != null)
-            {
-                if (extend)
-                {
-                    var heightOriginal = Window.Current.Bounds.Height;
-                    WindowSizeChangedEventHandler resizeHandler = null;
-                    resizeHandler = (s, e) =>
-                     {
-                         Window.Current.SizeChanged -= resizeHandler;
-                         var heightNew = Window.Current.Bounds.Height;
-                         TitleBarHeight = heightNew - heightOriginal;
-                         if (TitleBarHeight < 0)
-                             TitleBarHeight = 32;
-                         App.SplitShell.TitleBarHeight = TitleBarHeight;
-                     };
-                    Window.Current.SizeChanged += resizeHandler;
-                }
-                titleBarInstance.ExtendViewIntoTitleBar = extend;
-            }
+            dynamic titleBarInstance = titleBar?.GetMethod.Invoke(coreAppView, null);
+            return titleBarInstance;
         }
     }
 }
