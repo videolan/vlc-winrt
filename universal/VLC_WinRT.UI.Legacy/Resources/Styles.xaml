@@ -94,7 +94,7 @@
     <Style x:Key="HorizontalScrollViewerStyle"
            TargetType="ScrollViewer">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
-                Value="Auto" />
+                Value="Hidden" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
                 Value="Disabled" />
         <Setter Property="ScrollViewer.HorizontalScrollMode"
