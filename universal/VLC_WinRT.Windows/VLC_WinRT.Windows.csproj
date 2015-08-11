@@ -899,7 +899,7 @@
       <HintPath>..\..\app\packages\Newtonsoft.Json.7.0.1-beta1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="ScrollWatchedSelector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\app\packages\ScrollWatchedSelector.dll.1.0.0\lib\netcore45\ScrollWatchedSelector.dll</HintPath>
+      <HintPath>..\..\app\packages\ScrollWatchedSelector.dll.1.0.2\lib\netcore45\ScrollWatchedSelector.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SQLitePCL.raw">
