@@ -169,6 +169,7 @@ namespace VLC_WinRT.Helpers
         public static void SetTitleBarHeight()
         {
             var titleBarInstance = GetTitleBarInstanceOnW10();
+            if (titleBarInstance == null) return;
             if (titleBarInstance.Height == 0) return;
             TitleBarHeight = titleBarInstance.Height;
             App.SplitShell.TitleBarHeight = TitleBarHeight;
