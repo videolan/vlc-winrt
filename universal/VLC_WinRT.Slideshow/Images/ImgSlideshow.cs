@@ -79,15 +79,6 @@ namespace Slide2D.Images
                 };
             }
 
-            if (currentImg.Width > MetroSlideshow.WindowWidth)
-            {
-                currentImg.Scale = (float)(MetroSlideshow.WindowHeight / currentImg.Height);
-            }
-            else
-            {
-                currentImg.Scale = (float)(MetroSlideshow.WindowWidth / currentImg.Width);
-            }
-
             if (frame <= OutroFrameThreshold)
             {
                 if (frame == 0)
@@ -104,6 +95,18 @@ namespace Slide2D.Images
                     zoom += 0.005f;
             }
 
+            float screenRatio = (float)MetroSlideshow.WindowWidth/(float)MetroSlideshow.WindowHeight;
+            float imgRatio = (float) currentImg.Width/(float) currentImg.Height;
+            if (imgRatio > screenRatio)
+            {
+                //img wider than screen, need to scale horizontally
+                currentImg.Scale = (float)(MetroSlideshow.WindowHeight / currentImg.Height);
+            }
+            else
+            {
+                currentImg.Scale = (float)(MetroSlideshow.WindowWidth / currentImg.Width);
+            }
+            
             var scaleEffect = new ScaleEffect()
             {
                 Source = currentImg.GaussianBlurCache,
