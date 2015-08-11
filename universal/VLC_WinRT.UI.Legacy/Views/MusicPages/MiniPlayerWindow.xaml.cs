@@ -51,7 +51,6 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
                 SetPlayPauseButtons();
                 SetTrackList();
                 await SetImgCover();
-                await SetArtistPicture();
             });
         }
         
@@ -102,7 +101,6 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
                         break;
                     case nameof(Locator.MusicPlayerVM.CurrentArtist):
                         SetArtistName();
-                        await SetArtistPicture();
                         break;
                 }
             });
@@ -132,32 +130,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
                 LogHelper.Log("Error getting album picture : " + Locator.MusicPlayerVM.CurrentAlbum.Name);
             }
         }
-
-        async Task SetArtistPicture()
-        {
-            bool fileExists = Locator.MusicPlayerVM.CurrentArtist.IsPictureLoaded;
-            try
-            {
-                if (fileExists)
-                {
-                    var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(Locator.MusicPlayerVM.CurrentArtist.Picture));
-                    using (var stream = await file.OpenAsync(FileAccessMode.Read))
-                    {
-                        await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                        {
-                            var image = new BitmapImage();
-                            image.SetSource(stream);
-                            ArtistPic.Source = image;
-                        });
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Log("Error getting artist picture : " + Locator.MusicPlayerVM.CurrentArtist.Name);
-            }
-        }
-
+        
         void SetAlbumName()
         {
             //AlbumName.Text = Locator.MusicPlayerVM.CurrentAlbum.Name;
