@@ -49,6 +49,7 @@ namespace VLC_WinRT.ViewModels
         private bool _preventAppExit = false;
         private string _informationText;
         private bool _isBackground = false;
+        private Thickness _titleBarMargin;
 
         // Navigation props
         private VLCPage currentPage;
@@ -92,6 +93,12 @@ namespace VLC_WinRT.ViewModels
                 InformationText = !value ? "No Internet connection" : "";
                 SetProperty(ref _isInternet, value);
             }
+        }
+
+        public Thickness TitleBarMargin
+        {
+            get { return _titleBarMargin; }
+            set { SetProperty(ref _titleBarMargin, value); }
         }
 
         public GoToPanelCommand GoToPanelCommand { get; } = new GoToPanelCommand();

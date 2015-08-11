@@ -20,7 +20,7 @@
     <SwapChainPanel x:Name="SwapChainPanel"
                     x:FieldModifier="public"
                     Loaded="SwapPanelLoaded"
-                    Margin="{Binding ElementName=SplitShell, Path=TitleBarHeight}"/>
+                    Margin="{Binding Source={StaticResource Locator}, Path=MainVM.TitleBarMargin}"/>
     <MediaElement x:Name="MfMediaElement"
                   x:FieldModifier="public"
                   AudioDeviceType="Multimedia"
