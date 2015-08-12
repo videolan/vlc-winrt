@@ -175,7 +175,7 @@ namespace VLC_WinRT.ViewModels
             {
                 if (value > 95 && value < 105)
                     value = 100;
-                _speedRate = value;
+                SetProperty(ref _speedRate, value);
                 float r = (float)value / 100;
                 SetRate(r);
             }
