@@ -451,7 +451,10 @@ namespace VLC_WinRT.ViewModels.Settings
         {
             get
             {
-                var hardwareAccelerationEnabled = ApplicationSettingsHelper.ReadSettingsValue("HardwareAccelerationEnabled");
+                var hardwareAccelerationEnabled = ApplicationSettingsHelper.ReadSettingsValue("HardwareAccelerationEnabled"); +
+#if DEBUG
+                return true;
+#endif
                 if (hardwareAccelerationEnabled == null)
                 {
                     _hardwareAcceleration = false;
@@ -464,6 +467,9 @@ namespace VLC_WinRT.ViewModels.Settings
             }
             set
             {
+#if DEBUG
+                value = true;
+#endif
                 ApplicationSettingsHelper.SaveSettingsValue("HardwareAccelerationEnabled", value);
                 SetProperty(ref _hardwareAcceleration, value);
             }
