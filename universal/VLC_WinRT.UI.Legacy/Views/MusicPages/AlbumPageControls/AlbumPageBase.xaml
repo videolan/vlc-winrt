@@ -26,8 +26,6 @@
         </ListView.HeaderTemplate>
         <ListView.ItemContainerTransitions>
             <TransitionCollection>
-                <EntranceThemeTransition FromHorizontalOffset="0"
-                                         FromVerticalOffset="50"/>
                 <AddDeleteThemeTransition />
             </TransitionCollection>
         </ListView.ItemContainerTransitions>
