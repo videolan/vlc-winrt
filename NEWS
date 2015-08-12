@@ -1,3 +1,25 @@
+Changes between 1.4.1 and 1.5.0
+-------------------------------
+Release: 7 August 2015
+
+Core:
+ * Video output : Now using D3D11 with hardware decoding (experimental, disabled by default)
+ * TagLib enabled again and able to get embedded album covers
+ * Added support for embedded SSA subtitles
+
+Interface:
+ * Updated UI to match Windows 10 style
+ * Faster on low-end devices
+ * Added animations (that save space on tiny screens)
+ * New background slideshow using Win2D
+ * MiniPlayer for Windows 10
+ * More settings
+ * Search code reworked, still WIP
+
+Features:
+ * "Add to current playlist" to add an album or a track
+
+
 Changes between 1.4.0 and 1.4.1
 -------------------------------
 Release: 19 May 2015
