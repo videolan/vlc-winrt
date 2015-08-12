@@ -9,7 +9,6 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.Web.Syndication;
 using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Helpers
