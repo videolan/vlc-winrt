@@ -24,8 +24,6 @@ namespace VLC_WinRT.Views.MainPages
         {
             base.OnNavigatedTo(e);
             Locator.Slideshow.GoDefaultPic();
-            await Task.Delay(600);
-            AppViewHelper.SetTitleBarHeight();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

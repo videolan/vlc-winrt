@@ -112,10 +112,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
             // re-mark the task as completed.
             Locator.MediaPlaybackViewModel.ContinueIndexing = new TaskCompletionSource<bool>();
             Locator.Slideshow.IsPaused = true;
-            if (AppViewHelper.IsFullScreen())
-            {
-                App.SplitShell.TitleBarHeight = 0;
-            }
+            App.SplitShell.TitleBarHeight = 0;
         }
 
         public void OnNavigatedFrom()

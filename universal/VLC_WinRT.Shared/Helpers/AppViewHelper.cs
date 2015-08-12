@@ -16,7 +16,17 @@ namespace VLC_WinRT.Helpers
 
     public static class AppViewHelper
     {
-        public static double TitleBarHeight;
+        private const double DefaultTitleBarHeight = 32;
+        public static double TitleBarHeight
+        {
+            get
+            {
+                var height = AppViewHelper.SetTitleBarHeight();
+                Locator.MainVM.TitleBarMargin = new Thickness(0, height, 0, 0);
+                return height;
+            }
+        }
+
         public static double PreviousWindowHeight;
         public static double PreviousWindowsWidth;
 
@@ -201,14 +211,12 @@ namespace VLC_WinRT.Helpers
             titleBarInstance.ExtendViewIntoTitleBar = extend;
         }
 
-        public static void SetTitleBarHeight()
+        public static double SetTitleBarHeight()
         {
             var titleBarInstance = GetTitleBarInstanceOnW10();
-            if (titleBarInstance == null) return;
-            if (titleBarInstance.Height == 0) return;
-            TitleBarHeight = titleBarInstance.Height;
-            Locator.MainVM.TitleBarMargin = new Thickness(0, TitleBarHeight, 0,0);
-            App.SplitShell.TitleBarHeight = TitleBarHeight;
+            if (titleBarInstance == null) return DefaultTitleBarHeight;
+            if (titleBarInstance.Height == 0) return DefaultTitleBarHeight;
+            return titleBarInstance.Height;
         }
 
         public static dynamic GetTitleBarInstanceOnW10()

@@ -124,15 +124,6 @@ namespace VLC_WinRT.Views.VideoPages
             if (e.PointerDeviceType != Windows.Devices.Input.PointerDeviceType.Touch)
             {
                 AppViewHelper.SetFullscreen();
-                if (AppViewHelper.IsFullScreen())
-                {
-                    Locator.MainVM.TitleBarMargin = new Thickness(0);
-                    App.SplitShell.TitleBarHeight = 0;
-                }
-                else
-                {
-                    AppViewHelper.SetTitleBarHeight();
-                }
             }
         }
 
