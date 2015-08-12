@@ -55,8 +55,6 @@ namespace VLC_WinRT.Views.UserControls
                 VisualStateUtilities.GoToState(this, "ExtraNarrow", false);
             else
                 VisualStateUtilities.GoToState(this, "Minimum", false);
-
-            RootGrid.Height = 60;
         }
     }
 }
