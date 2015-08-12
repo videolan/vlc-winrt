@@ -3,7 +3,7 @@
   <Identity Name="4639bdf0-410a-43a6-ae5b-29730068c920" Publisher="CN=716F2E5E-A03A-486B-BC67-9B18474B9D51" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="4639bdf0-410a-43a6-ae5b-29730068c920" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>VLC_WinRT.WindowsPhone</DisplayName>
+    <DisplayName>VLC for Windows Store</DisplayName>
     <PublisherDisplayName>VideoLAN</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
