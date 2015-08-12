@@ -294,10 +294,5 @@ namespace VLC_WinRT.ViewModels
             Locator.VideoLibraryVM.VideoRepository.Initialize();
             LogHelper.SignalUpdate();
         }
-        
-        public void UpdateRequestedTheme()
-        {
-            OnPropertyChanged("ApplicationTheme");
-        }
     }
 }

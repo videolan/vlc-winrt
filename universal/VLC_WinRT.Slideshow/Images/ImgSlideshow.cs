@@ -46,16 +46,6 @@ namespace Slide2D.Images
             }
         }
 
-        private Txt currentTxt
-        {
-            get
-            {
-                if (txtIndex >= Texts.Count)
-                    return null;
-                return Texts[txtIndex];
-            }
-        }
-
         private bool _richAnimations;
 
         public bool RichAnimations
@@ -63,9 +53,7 @@ namespace Slide2D.Images
             get { return _richAnimations; }
             set { _richAnimations = value; }
         }
-
-        GaussianBlurEffect bl;
-
+        
         public void Draw(CanvasAnimatedDrawEventArgs args)
         {
             if (currentImg == null) return;
@@ -107,7 +95,7 @@ namespace Slide2D.Images
             {
                 currentImg.Scale = (float)(MetroSlideshow.WindowWidth / currentImg.Width);
             }
-            
+
             var scaleEffect = new ScaleEffect()
             {
                 Source = currentImg.GaussianBlurCache,
@@ -144,7 +132,7 @@ namespace Slide2D.Images
                 Height = MetroSlideshow.WindowHeight,
                 Width = MetroSlideshow.WindowWidth
             }, currentImg.Opacity);
-            
+
             x = x + 2;
             y++;
 

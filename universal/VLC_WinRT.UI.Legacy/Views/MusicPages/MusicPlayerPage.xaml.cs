@@ -29,20 +29,13 @@ namespace VLC_WinRT.Views.MusicPages
             this.SizeChanged += OnSizeChanged;
             this.Unloaded += OnUnloaded;
         }
-        
+
         #region layout
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            try
-            {
-                Locator.MainVM.UpdateRequestedTheme();
-                
-
-                Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
-                Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
-            }
-            catch { }
+            Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
+            Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
         }
 
         private void MouseStateChanged()

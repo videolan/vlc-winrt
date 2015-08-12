@@ -21,7 +21,6 @@ namespace VLC_WinRT.Slideshow.Texts
         float posX;
         float posY;
         bool initialized = false;
-        private int frame;
         private bool needToRecomputePosY;
 
         public Txt(string content, Color col, CanvasTextFormat format)
@@ -48,8 +47,7 @@ namespace VLC_WinRT.Slideshow.Texts
                         WordWrapping = CanvasWordWrapping.NoWrap
                     };
                 }
-
-                frame = 0;
+                
                 switch (Format.Direction)
                 {
                     case CanvasTextDirection.LeftToRightThenTopToBottom:
@@ -84,7 +82,6 @@ namespace VLC_WinRT.Slideshow.Texts
                     if (posX > MetroSlideshow.WindowWidth || posY > MetroSlideshow.WindowHeight)
                     {
                         initialized = false;
-                        frame = 0;
                     }
                     break;
                 case CanvasTextDirection.RightToLeftThenTopToBottom:
@@ -100,7 +97,6 @@ namespace VLC_WinRT.Slideshow.Texts
                     if (posX < 0 || posY > MetroSlideshow.WindowHeight)
                     {
                         initialized = false;
-                        frame = 0;
                     }
                     break;
             }
@@ -110,8 +106,6 @@ namespace VLC_WinRT.Slideshow.Texts
                 X = posX,
                 Y = posY
             }, Color);
-
-            frame++;
         }
 
         float ComputePosY(ref List<Txt> txts)
