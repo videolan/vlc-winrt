@@ -20,14 +20,8 @@
                   SelectionMode="None">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <ItemsWrapGrid Orientation="Horizontal">
-                        <ItemsWrapGrid.ChildrenTransitions>
-                            <TransitionCollection>
-                                <EntranceThemeTransition FromHorizontalOffset="50"
-                                                         FromVerticalOffset="0" />
-                            </TransitionCollection>
-                        </ItemsWrapGrid.ChildrenTransitions>
-                    </ItemsWrapGrid>
+                    <ItemsStackPanel Orientation="Horizontal"
+                                     Margin="{StaticResource FrameMarginLeft}" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.Items>
@@ -43,10 +37,11 @@
                    Style="{StaticResource HeaderTextBlockStyle}"
                    LineStackingStrategy="MaxHeight"
                    TextWrapping="Wrap"
-                   FontSize="36" />
+                   FontSize="36"
+                   Margin="{StaticResource FrameMarginLeft}" />
         <TextBlock Grid.Row="2"
                    Style="{StaticResource SubheaderTextBlockStyle}"
-                   Margin="0,12,0,0"
+                   Margin="{StaticResource FrameMarginBothSides}"
                    FontSize="22">
             <Run x:Uid="NoFavoriteAlbumText1"
                  Text="When playing an album, press the" />

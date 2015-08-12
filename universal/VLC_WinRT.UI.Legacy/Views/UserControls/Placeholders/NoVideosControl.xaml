@@ -18,14 +18,8 @@
                   SelectionMode="None">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <ItemsWrapGrid Orientation="Horizontal">
-                        <ItemsWrapGrid.ChildrenTransitions>
-                            <TransitionCollection>
-                                <EntranceThemeTransition FromHorizontalOffset="50"
-                                                         FromVerticalOffset="0" />
-                            </TransitionCollection>
-                        </ItemsWrapGrid.ChildrenTransitions>
-                    </ItemsWrapGrid>
+                    <ItemsStackPanel Orientation="Horizontal"
+                                     Margin="{StaticResource FrameMarginLeft}"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.Items>
@@ -38,7 +32,8 @@
         </ListView>
         <TextBlock Grid.Row="1"
                    x:Uid="WeDidNotFindVideos"
-                   Text="We did not find videos in your Videos folder" 
+                   Text="We did not find videos in your Videos folder"
+                   Margin="{StaticResource FrameMarginLeft}"
                    Style="{StaticResource SubheaderTextBlockStyle}"/>
     </Grid>
 </UserControl>
