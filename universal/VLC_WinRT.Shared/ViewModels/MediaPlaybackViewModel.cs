@@ -458,6 +458,10 @@ namespace VLC_WinRT.ViewModels
                 {
                     CurrentAudioTrack = null;
                     CurrentSubtitle = null;
+                    OnPropertyChanged("AudioTracks");
+                    OnPropertyChanged("Subtitles");
+                    OnPropertyChanged("CurrentAudioTrack");
+                    OnPropertyChanged("CurrentSubtitle");
                 });
             }
             else if (mediaService is MFService)
@@ -483,6 +487,10 @@ namespace VLC_WinRT.ViewModels
                 {
                     PlayingType = PlayingType.Video;
                     IsStream = false;
+                    if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage)
+                    {
+                        Locator.NavigationService.GoBack_Default();
+                    }
                     Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
                 });
                 var video = (VideoItem)media;
