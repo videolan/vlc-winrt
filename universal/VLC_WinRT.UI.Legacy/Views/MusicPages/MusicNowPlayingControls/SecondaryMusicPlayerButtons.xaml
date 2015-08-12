@@ -16,7 +16,7 @@
         <ColumnDefinition Width="12" />
         <ColumnDefinition />
     </Grid.ColumnDefinitions>
-    <AppBarToggleButton Grid.Column="0"
+    <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}" Grid.Column="0"
                         Margin="0,6,0,0"
                         IsCompact="True"
                         DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
@@ -45,7 +45,7 @@
             </Grid>
         </Button.Content>
     </Button>
-    <AppBarToggleButton Grid.Column="4"
+    <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}" Grid.Column="4"
                         Margin="0,6,0,0"
                         IsCompact="True"
                         VerticalAlignment="Center"
@@ -60,7 +60,7 @@
                       x:Name="FavoriteFontIcon" />
         </AppBarToggleButton.Icon>
     </AppBarToggleButton>
-    <AppBarToggleButton Grid.Column="2"
+    <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}" Grid.Column="2"
                         Margin="0,6,0,0"
                         IsCompact="True"
                         VerticalAlignment="Center"
