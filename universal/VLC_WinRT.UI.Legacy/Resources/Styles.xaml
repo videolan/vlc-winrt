@@ -2605,8 +2605,7 @@
         <Setter Property="VerticalAlignment"
                 Value="Center" />
     </Style>
-
-
+    
     <!-- APPBARBUTTON STYLES -->
     <Style x:Key="AppBarButtonStyleHuge"
            TargetType="AppBarButton">
@@ -2805,6 +2804,7 @@
         </Setter>
     </Style>
     
+    <!-- APPBAR TOGGLE BUTTONS -->
     <Style TargetType="AppBarToggleButton"
            x:Key="VLCAppBarToggleButton">
         <Setter Property="Foreground"
