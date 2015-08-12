@@ -33,6 +33,17 @@
                                Foreground="{StaticResource MainColor}"
                                Margin="0,12" />
                 </StackPanel>
+                <TextBlock Text="Video playback"
+                           FontSize="22"
+                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                <ToggleSwitch Header="Hardware decoding when possible (experimental)"
+                              IsOn="{Binding HardwareAccelerationEnabled, Mode=TwoWay}"
+                              Margin="-6,0,0,0" />
+                <TextBlock Text="Hardware decoding may not work on your device. You need to restart the app to apply changes"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           Foreground="{StaticResource PivotHeaderForegroundUnselectedBrush}"
+                           Margin="0,-6,0,12" />
+                
                 <TextBlock Tag="WindowsOnly"
                            Text="Video folders"
                            FontSize="22"
@@ -109,13 +120,6 @@
                               Header="Video playback in background"
                               IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}"
                               Margin="-6,0,0,0" />
-                <ToggleSwitch Header="Hardware decoding when possible (experimental)"
-                              IsOn="{Binding HardwareAccelerationEnabled, Mode=TwoWay}"
-                              Margin="-6,0,0,0" />
-                <TextBlock Text="Hardware decoding may not work on your device. You need to restart the app to apply changes"
-                           Style="{StaticResource BodyTextBlockStyle}"
-                           Foreground="{StaticResource PivotHeaderForegroundUnselectedBrush}"
-                           Margin="0,0,0,12" />
             </StackPanel>
         </ScrollViewer>
     </Grid>
