@@ -33,6 +33,7 @@ namespace Slide2D.Images
         public List<Txt> Texts = new List<Txt>();
 
         private int ImgIndex = 0;
+        private int txtIndex = 0;
         private Img currentImg
         {
             get
@@ -45,6 +46,16 @@ namespace Slide2D.Images
             }
         }
 
+        private Txt currentTxt
+        {
+            get
+            {
+                if (txtIndex >= Texts.Count)
+                    return null;
+                return Texts[txtIndex];
+            }
+        }
+
         private bool _richAnimations;
 
         public bool RichAnimations
@@ -54,16 +65,6 @@ namespace Slide2D.Images
         }
 
         GaussianBlurEffect bl;
-        
-        public void CreateResources(ref CanvasAnimatedControl sender, List<Txt> txtQueue)
-        {
-            Texts.Clear();
-            foreach (var txt in txtQueue)
-            {
-                Texts.Add(txt);
-            }
-            txtQueue.Clear();
-        }
 
         public void Draw(CanvasAnimatedDrawEventArgs args)
         {
@@ -95,8 +96,8 @@ namespace Slide2D.Images
                     zoom += 0.005f;
             }
 
-            float screenRatio = (float)MetroSlideshow.WindowWidth/(float)MetroSlideshow.WindowHeight;
-            float imgRatio = (float) currentImg.Width/(float) currentImg.Height;
+            float screenRatio = (float)MetroSlideshow.WindowWidth / (float)MetroSlideshow.WindowHeight;
+            float imgRatio = (float)currentImg.Width / (float)currentImg.Height;
             if (imgRatio > screenRatio)
             {
                 //img wider than screen, need to scale horizontally
@@ -132,9 +133,10 @@ namespace Slide2D.Images
                 currentImg.Opacity -= 0.0027f;
             }
 
-            foreach (var text in Texts)
+            var txts = Texts.ToList();
+            foreach (var text in txts)
             {
-                text.Draw(ref args);
+                text.Draw(ref args, ref txts);
             }
 
             args.DrawingSession.DrawImage(scaleEffect, new Vector2(), new Rect()

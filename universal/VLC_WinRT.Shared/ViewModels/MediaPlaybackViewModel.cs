@@ -411,17 +411,23 @@ namespace VLC_WinRT.ViewModels
 
         private void OnPlaybackStarting()
         {
-            if (Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage) return;
-            privateDisplayCall(true);
-            // video playback only
-            _mouseService.HideMouse();
+            if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage ||
+                Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage)
+            {
+                privateDisplayCall(true);
+                // video playback only
+                _mouseService.HideMouse();
+            }
         }
 
         private void OnPlaybackStopped()
         {
-            if (Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage) return;
-            privateDisplayCall(false);
-            _mouseService.RestoreMouse();
+            if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage ||
+                Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage)
+            {
+                privateDisplayCall(false);
+                _mouseService.RestoreMouse();
+            }
         }
 
         public async void OnLengthChanged(Int64 length)

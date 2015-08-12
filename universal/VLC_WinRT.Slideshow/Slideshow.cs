@@ -21,7 +21,8 @@ namespace Slide2D
         public static CanvasAnimatedControl canvas;
         public static double WindowHeight;
         public static double WindowWidth;
-        
+        public delegate void WindowSizeChanged();
+        public static event WindowSizeChanged WindowSizeUpdated;
         private ImgSlideshow slideshow;
         
         public MetroSlideshow()
@@ -42,6 +43,7 @@ namespace Slide2D
         private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
             SetWindowSize();
+            WindowSizeUpdated?.Invoke();
         }
 
         void SetWindowSize()
@@ -94,9 +96,21 @@ namespace Slide2D
 
         public void AddText(List<Txt> texts)
         {
-            slideshow.CreateResources(ref canvas, texts);
+            slideshow.Texts.Clear();
+            var id = 0;
+            foreach (var txt in texts)
+            {
+                txt.Id = id;
+                id++;
+            }
+            slideshow.Texts.AddRange(texts);
         }
-        
+
+        public void ClearTextList()
+        {
+            slideshow.Texts.Clear();
+        }
+
         public bool IsPaused
         {
             get { return canvas.Paused; }

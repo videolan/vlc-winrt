@@ -81,7 +81,8 @@ namespace VLC_WinRT.Services.RunTime
 
         void LostInput()
         {
-            if (Locator.MediaPlaybackViewModel.PlayingType != PlayingType.Video) return;
+            if (Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage &&
+                Locator.NavigationService.CurrentPage != VLCPage.MusicPlayerPage) return;
             if (App.OpenFilePickerReason != OpenFilePickerReason.Null) return;
             isMouseVisible = false;
 #if WINDOWS_APP

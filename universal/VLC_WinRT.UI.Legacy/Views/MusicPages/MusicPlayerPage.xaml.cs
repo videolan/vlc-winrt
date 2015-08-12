@@ -1,7 +1,13 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using Windows.UI;
+using Windows.UI.Text;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Graphics.Canvas.Text;
 using Microsoft.Xaml.Interactivity;
+using VLC_WinRT.Slideshow.Texts;
 using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Views.MusicPages
@@ -31,8 +37,43 @@ namespace VLC_WinRT.Views.MusicPages
             try
             {
                 Locator.MainVM.UpdateRequestedTheme();
+                
+
+                Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
+                Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
             }
             catch { }
+        }
+
+        private void MouseStateChanged()
+        {
+            App.SplitShell.HideTopBar();
+            FadeOut.Begin();
+            var texts = new List<Txt>();
+            texts.Add(new Txt(Locator.MusicPlayerVM.CurrentTrack.ArtistName.ToUpper(), Color.FromArgb(80, 255, 255, 255), new CanvasTextFormat()
+            {
+                FontWeight = FontWeights.Bold,
+                FontSize = 120,
+            }));
+            texts.Add(new Txt(Locator.MusicPlayerVM.CurrentTrack.AlbumName.ToUpper(), Color.FromArgb(70, 255, 255, 255), new CanvasTextFormat()
+            {
+                FontWeight = FontWeights.Normal,
+                FontSize = 120,
+                Direction = CanvasTextDirection.RightToLeftThenTopToBottom
+            }));
+            texts.Add(new Txt(Locator.MusicPlayerVM.CurrentTrack.Name.ToUpper(), Color.FromArgb(50, 255, 255, 255), new CanvasTextFormat()
+            {
+                FontWeight = FontWeights.Light,
+                FontSize = 90,
+            }));
+            Locator.Slideshow.AddText(texts);
+        }
+
+        private void MouseMoved()
+        {
+            App.SplitShell.ShowTopBar();
+            FadeIn.Begin();
+            Locator.Slideshow.ClearTextList();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
