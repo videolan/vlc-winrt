@@ -72,7 +72,6 @@ namespace VLC_WinRT.Views.MusicPages
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            Locator.MainVM.UpdateRequestedTheme();
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
