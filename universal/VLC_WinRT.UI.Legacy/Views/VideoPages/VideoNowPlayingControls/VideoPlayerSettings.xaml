@@ -18,7 +18,7 @@
             RequestedTheme="Dark"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
-            Width="300"
+            Width="400"
             Padding="{StaticResource FrameMarginBothSides}">
         <Grid>
             <Grid.RowDefinitions>
@@ -54,7 +54,7 @@
                 <TextBlock Text="0.5x"
                            Style="{StaticResource TitleTextBlockStyle}" />
                 <TextBlock Text="1x"
-                           Margin="96,0,0,0"
+                           Margin="120,0,0,0"
                            Style="{StaticResource TitleTextBlockStyle}" />
                 <TextBlock Text="2x"
                            HorizontalAlignment="Right"
