@@ -437,9 +437,6 @@
     <Content Include="..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libcaf_plugin.dll">
       <Link>plugins\demux\libcaf_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libdash_plugin.dll">
-      <Link>plugins\demux\libdash_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libdemuxdump_plugin.dll">
       <Link>plugins\demux\libdemuxdump_plugin.dll</Link>
     </Content>
@@ -463,9 +460,6 @@
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libhevc_plugin.dll">
       <Link>plugins\demux\libhevc_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libhls_plugin.dll">
-      <Link>plugins\demux\libhls_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libimage_plugin.dll">
       <Link>plugins\demux\libimage_plugin.dll</Link>
