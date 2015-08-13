@@ -99,11 +99,6 @@ namespace VLC_WinRT.Controls
         public async void SetRightPaneContentPresenter(object content)
         {
             await TemplateApplied.Task;
-            if(IsRightFlyoutOpen)
-            {
-                HideFlyout();
-                await Task.Delay(400);
-            }
             _rightFlyoutContentPresenter.Content = content;
             ShowFlyout();
         }
