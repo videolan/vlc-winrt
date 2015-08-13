@@ -61,8 +61,10 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     ComPtr<ID2D1Factory2> d2dFactory;
 
     UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT | D3D11_CREATE_DEVICE_VIDEO_SUPPORT;
+#if WINAPI_FAMILY == WINAPI_FAMILY_PC_APP
 #ifndef NDEBUG
     creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
+#endif
 #endif
     const auto displayInfo = Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
 
