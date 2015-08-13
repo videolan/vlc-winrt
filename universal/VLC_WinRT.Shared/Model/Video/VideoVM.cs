@@ -51,6 +51,7 @@ namespace VLC_WinRT.Model.Video
 
         #region public props
         #region tvshows related
+        [Ignore]
         public bool IsTvShow => _season != -1 && !string.IsNullOrEmpty(_showTitle);
 
         public string ShowTitle
