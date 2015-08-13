@@ -713,7 +713,7 @@ namespace VLC_WinRT.ViewModels
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                     {
                         if (Locator.VideoVm.CurrentVideo != null)
-                            Locator.VideoVm.CurrentVideo.TimeWatched = TimeSpan.Zero;
+                            Locator.VideoVm.CurrentVideo.TimeWatchedSeconds = 0;
                     });
                     if (Locator.VideoVm.CurrentVideo != null)
                         await Locator.VideoLibraryVM.VideoRepository.Update(Locator.VideoVm.CurrentVideo).ConfigureAwait(false);
@@ -774,7 +774,7 @@ namespace VLC_WinRT.ViewModels
         {
             if (Locator.VideoVm.CurrentVideo != null)
             {
-                Locator.VideoVm.CurrentVideo.TimeWatched = TimeSpan.FromMilliseconds(Time);
+                Locator.VideoVm.CurrentVideo.TimeWatchedSeconds = (int)((double)Time/1000);;
                 await Locator.VideoLibraryVM.VideoRepository.Update(Locator.VideoVm.CurrentVideo).ConfigureAwait(false);
             }
         }

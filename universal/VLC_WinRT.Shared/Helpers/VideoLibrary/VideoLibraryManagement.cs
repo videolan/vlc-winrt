@@ -116,7 +116,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                         VideoItem searchVideo = Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.Name == mediaVM.Name);
                         if (searchVideo != null)
                         {
-                            mediaVM.TimeWatched = searchVideo.TimeWatched;
+                            mediaVM.TimeWatchedSeconds = searchVideo.TimeWatched.Seconds;
                         }
 
                         if (isTvShow)
