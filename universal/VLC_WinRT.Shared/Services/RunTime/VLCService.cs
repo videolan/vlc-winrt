@@ -62,8 +62,19 @@ namespace VLC_WinRT.Services.RunTime
             };
 
             // So far, this NEEDS to be called from the main thread
-            Instance = new Instance(param, swapchain);
-            PlayerInstanceReady.SetResult(true);
+            try
+            {
+                Instance = new Instance(param, swapchain);
+            }
+            catch (Exception e)
+            {
+                ExceptionHelper.CreateMemorizedException("VLC Service : Can't create VLC Instance", e);
+                ToastHelper.Basic("Can't start VLC Player");
+            }
+            if (Instance != null)
+            {
+                PlayerInstanceReady.SetResult(true);
+            }
         }
 
         private bool _isAudioMedia;
