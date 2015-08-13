@@ -199,7 +199,9 @@ namespace VLC_WinRT.Services.RunTime
 
         public void Play()
         {
-            throw new NotImplementedException();
+            var id = Locator.MusicPlayerVM.CurrentTrack?.Id;
+            if (id.HasValue)
+                Play(id.Value);
         }
 
         public async void Play(int trackId)
