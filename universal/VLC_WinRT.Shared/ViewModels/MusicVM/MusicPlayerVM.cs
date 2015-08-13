@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using VLC_WinRT.Slideshow.Texts;
 using Windows.UI;
 using Microsoft.Graphics.Canvas.Text;
+using VLC_WinRT.BackgroundHelpers;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 #endif
@@ -120,14 +121,16 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 }
             }
         }
-        
+
         public async Task UpdateTrackFromMF()
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
 #if WINDOWS_PHONE_APP
                 // TODO : this shouldn't be here
-                Locator.MediaPlaybackViewModel.OnLengthChanged((long)BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
+                var milliseconds = BackgroundAudioHelper.Instance?.NaturalDuration.TotalMilliseconds;
+                if (milliseconds != null && milliseconds.HasValue && double.IsNaN(milliseconds.Value))
+                    Locator.MediaPlaybackViewModel.OnLengthChanged((long)milliseconds);
 #endif          
                 if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack)) return;
                 int index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);

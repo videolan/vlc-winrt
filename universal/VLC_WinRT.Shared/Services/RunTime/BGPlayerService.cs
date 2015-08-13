@@ -15,16 +15,14 @@ using VLC_WinRT.Helpers;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
 using VLC_WinRT.ViewModels;
 using Windows.Foundation.Collections;
+using VLC_WinRT.BackgroundHelpers;
 using MediaPlayer = Windows.Media.Playback.MediaPlayer;
 
 namespace VLC_WinRT.Services.RunTime
 {
     public class BGPlayerService : IMediaService
     {
-        public MediaPlayer Instance
-        {
-            get { return BackgroundMediaPlayer.Current; }
-        }
+        public MediaPlayer Instance => BackgroundAudioHelper.Instance;
 
         public event EventHandler MediaFailed;
         public event Action<IMediaService> OnStopped;
@@ -66,7 +64,7 @@ namespace VLC_WinRT.Services.RunTime
                 dispatchTimer.Tick += dispatchTimer_Tick;
             });
 
-            if (Instance.CurrentState == MediaPlayerState.Playing)
+            if (Instance?.CurrentState == MediaPlayerState.Playing)
             {
                 if (!dispatchTimer.IsEnabled)
                 {
@@ -86,8 +84,11 @@ namespace VLC_WinRT.Services.RunTime
         /// </summary>
         public void AddMediaPlayerEventHandlers()
         {
-            Instance.CurrentStateChanged += MediaPlayer_CurrentStateChanged;
-            Instance.MediaOpened += CurrentOnMediaOpened;
+            if (Instance != null)
+            {
+                Instance.CurrentStateChanged += MediaPlayer_CurrentStateChanged;
+                Instance.MediaOpened += CurrentOnMediaOpened;
+            }
             BackgroundMediaPlayer.MessageReceivedFromBackground += BackgroundMediaPlayer_MessageReceivedFromBackground;
         }
 
@@ -140,13 +141,14 @@ namespace VLC_WinRT.Services.RunTime
         /// </summary>
         private void RemoveMediaPlayerEventHandlers()
         {
-            Instance.CurrentStateChanged -= this.MediaPlayer_CurrentStateChanged;
+            if (Instance != null)
+                Instance.CurrentStateChanged -= this.MediaPlayer_CurrentStateChanged;
             BackgroundMediaPlayer.MessageReceivedFromBackground -= this.BackgroundMediaPlayer_MessageReceivedFromBackground;
         }
 
         async void Instance_BufferingProgressChanged(object sender, RoutedEventArgs e)
         {
-            OnBuffering?.Invoke((int)(Instance.BufferingProgress * 100));
+            OnBuffering?.Invoke((int)(Instance?.BufferingProgress * 100));
             await Locator.MusicPlayerVM.UpdateTrackFromMF();
         }
 
@@ -178,6 +180,7 @@ namespace VLC_WinRT.Services.RunTime
 
         void Instance_CurrentStateChanged(object sender, RoutedEventArgs e)
         {
+            if (Instance == null) return;
             mediaState = Instance.CurrentState;
             switch (mediaState)
             {
@@ -232,10 +235,10 @@ namespace VLC_WinRT.Services.RunTime
                         await Locator.MediaPlaybackViewModel.SetMedia(Locator.MediaPlaybackViewModel.CurrentMedia, false);
                         break;
                     case MediaPlayerState.Playing:
-                        Instance.Pause();
+                        Instance?.Pause();
                         break;
                     case MediaPlayerState.Paused:
-                        Instance.Play();
+                        Instance?.Play();
                         break;
                 }
             });
@@ -248,7 +251,7 @@ namespace VLC_WinRT.Services.RunTime
                 if (Instance == null) return;
                 dispatchTimer?.Stop();
                 if (mediaState == MediaPlayerState.Playing)
-                    Instance.Pause();
+                    Instance?.Pause();
             });
         }
 
@@ -280,15 +283,17 @@ namespace VLC_WinRT.Services.RunTime
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (Instance == null) return;
-                Instance.Position = TimeSpan.FromSeconds(Instance.Position.TotalSeconds - 10);
+                var seconds = Instance?.Position.TotalSeconds - 10;
+                if (seconds != null && seconds.HasValue)
+                    Instance.Position = TimeSpan.FromSeconds(seconds.Value);
             });
         }
 
         public float GetLength()
         {
-            if (TimeSpan.Zero != Instance.NaturalDuration)
+            if (TimeSpan.Zero != Instance?.NaturalDuration)
             {
-                length = (float)Instance.NaturalDuration.TotalMilliseconds;
+                length = (float)Instance?.NaturalDuration.TotalMilliseconds;
                 return length;
             }
             return 0f;
@@ -298,6 +303,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             try
             {
+                if (Instance == null) return;
                 Instance.Position = TimeSpan.FromMilliseconds(desiredTime);
             }
             catch (Exception ex)
@@ -313,7 +319,7 @@ namespace VLC_WinRT.Services.RunTime
                 switch (mediaState)
                 {
                     case MediaPlayerState.Playing:
-                        time = (long)Instance.Position.TotalMilliseconds;
+                        time = (long)Instance?.Position.TotalMilliseconds;
                         return time;
                     case MediaPlayerState.Closed:
                         // TODO: Use saved time value to populate time field.
@@ -346,9 +352,11 @@ namespace VLC_WinRT.Services.RunTime
             {
                 case MediaPlayerState.Playing:
                 case MediaPlayerState.Closed:
-                    if (Instance.NaturalDuration.TotalMilliseconds != 0)
+                    if (Instance?.NaturalDuration.TotalMilliseconds != 0)
                     {
-                        Instance.Position = TimeSpan.FromMilliseconds(desiredPosition * Instance.NaturalDuration.TotalMilliseconds);
+                        var naturalMilliseconds = Instance?.NaturalDuration.TotalMilliseconds;
+                        if (Instance != null && naturalMilliseconds != null && naturalMilliseconds.HasValue)
+                            Instance.Position = TimeSpan.FromMilliseconds(desiredPosition * naturalMilliseconds.Value);
                     }
                     break;
             }
@@ -358,7 +366,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             if (Instance == null)
                 return 0;
-            return (int)(Instance.Volume * 100);
+            return (int)(Instance?.Volume * 100);
         }
 
         public void SetVolume(int volume)

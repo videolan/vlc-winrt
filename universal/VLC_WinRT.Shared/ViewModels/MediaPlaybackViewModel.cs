@@ -397,10 +397,9 @@ namespace VLC_WinRT.ViewModels
                 TimeTotal = TimeSpan.Zero;
 #if WINDOWS_PHONE_APP
                 // music clean
-                if (BackgroundMediaPlayer.Current != null &&
-                    BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped)
+                if (BackgroundAudioHelper.Instance?.CurrentState != MediaPlayerState.Stopped)
                 {
-                    BackgroundMediaPlayer.Current.Pause();
+                    BackgroundAudioHelper.Instance?.Pause();
                     await App.BackgroundAudioHelper.ResetCollection(ResetType.NormalReset);
                 }
 #endif
@@ -967,8 +966,7 @@ namespace VLC_WinRT.ViewModels
 #if WINDOWS_APP
             ForceMediaTransportControls(systemMediaTransportControls);
 #elif WINDOWS_PHONE_APP
-            if (BackgroundMediaPlayer.Current != null &&
-                BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
+            if (BackgroundAudioHelper.Instance?.CurrentState == MediaPlayerState.Playing)
             {
 
             }

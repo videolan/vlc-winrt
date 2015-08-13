@@ -14,6 +14,25 @@ namespace VLC_WinRT.BackgroundHelpers
 {
     public class BackgroundAudioHelper
     {
+
+#if WINDOWS_PHONE_APP
+        private static MediaPlayer _instance;
+        public static MediaPlayer Instance
+        {
+            get
+            {
+                try
+                {
+                    return _instance ?? (_instance = BackgroundMediaPlayer.Current);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+#endif
+
         public void RestorePlaylist()
         {
 #if WINDOWS_PHONE_APP
