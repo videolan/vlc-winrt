@@ -33,7 +33,7 @@ namespace VLC_WinRT.Model.Video
         private string _subtitle = string.Empty;
         private bool _favorite;
         private TimeSpan _duration;
-        private TimeSpan _timeWatched;
+        private int _timeWatchedSeconds;
         private String _thumbnailPath = "";
         private LoadingState _thumbnailLoadingState = LoadingState.NotLoaded;
         private StorageFile _file;
@@ -143,16 +143,23 @@ namespace VLC_WinRT.Model.Video
             set { SetProperty(ref _favorite, value); }
         }
 
+        [Ignore]
         public TimeSpan TimeWatched
         {
-            get { return _timeWatched; }
+            get { return TimeSpan.FromSeconds(_timeWatchedSeconds); }
+        }
+
+        public int TimeWatchedSeconds
+        {
+            get { return _timeWatchedSeconds; }
             set
             {
-                SetProperty(ref _timeWatched, value);
+                SetProperty(ref _timeWatchedSeconds, value);
+                OnPropertyChanged("TimeWatched");
                 OnPropertyChanged("HasBeenSeen");
             }
         }
-
+ 
         [Ignore]
         public bool HasBeenSeen
         {
