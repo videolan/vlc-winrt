@@ -249,6 +249,21 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="*" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SeparatorRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource FrameMarginGridLength}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PrimaryPlaybackButtonRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondPlaybackButtonNarrowRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HorizontalNowPlayingColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -264,11 +279,6 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="0" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SeparatorRowDefinition"
-                                                       Storyboard.TargetProperty="Height">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource FrameMarginGridLength}" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SeparatorColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -278,11 +288,6 @@
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="*" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlayingFlipView"
-                                                       Storyboard.TargetProperty="Height">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Auto" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondPlaybackButtonColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
@@ -298,16 +303,6 @@
                                                        Storyboard.TargetProperty="HorizontalAlignment">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Stretch" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PrimaryPlaybackButtonRowDefinition"
-                                                       Storyboard.TargetProperty="Height">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="*" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondPlaybackButtonNarrowRowDefinition"
-                                                       Storyboard.TargetProperty="Height">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="*" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
                                                        Storyboard.TargetProperty="Margin">
