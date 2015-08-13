@@ -300,12 +300,24 @@ namespace VLC_WinRT.Controls
             _footerContentPresenter = (ContentPresenter) GetTemplateChild(FooterContentPresenterName);
             _titleBarContentPresenter = (ContentPresenter) GetTemplateChild(TitleBarContentPresenterName);
 
+            Responsive();
+            Window.Current.SizeChanged += Current_SizeChanged;
             TemplateApplied.SetResult(true);
             
             _rightFlyoutGridContainer.Visibility = Visibility.Collapsed;
             _flyoutBackgroundGrid.Tapped += RightFlyoutGridContainerOnTapped;
         }
-        
+
+        private void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
+        {
+            Responsive();
+        }
+
+        void Responsive()
+        {
+            _rightFlyoutContentPresenter.Width = Window.Current.Bounds.Width < 450 ? Window.Current.Bounds.Width : 450;
+        }
+
         private void RightFlyoutGridContainerOnTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
         {
             if (FlyoutCloseRequested != null)
