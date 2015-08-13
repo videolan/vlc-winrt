@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
 
@@ -46,5 +47,17 @@ namespace VLC_WinRT.Utils
             return new string(a);
         }
 
+        public static void HideWindowsOnlyElements(Windows.UI.Xaml.Controls.Panel panel)
+        {
+            foreach (var element in panel.Children)
+            {
+#if WINDOWS_PHONE_APP
+                if ((string)((FrameworkElement)element).Tag == "WindowsOnly")
+                {
+                    element.Visibility = Visibility.Collapsed;
+                }
+#endif
+            }
+        }
     }
 }
