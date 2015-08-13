@@ -82,7 +82,7 @@
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RightFlyoutPlaneProjection"
                                                                Storyboard.TargetProperty="GlobalOffsetZ">
                                     <EasingDoubleKeyFrame KeyTime="0:0:0.0"
-                                                          Value="100">
+                                                          Value="40">
                                         <EasingDoubleKeyFrame.EasingFunction>
                                             <ExponentialEase Exponent="4"
                                                              EasingMode="EaseOut" />
@@ -108,7 +108,7 @@
                                         </EasingDoubleKeyFrame.EasingFunction>
                                     </EasingDoubleKeyFrame>
                                     <EasingDoubleKeyFrame KeyTime="0:0:0.4"
-                                                          Value="-50">
+                                                          Value="-40">
                                         <EasingDoubleKeyFrame.EasingFunction>
                                             <ExponentialEase Exponent="4"
                                                              EasingMode="EaseOut" />
