@@ -13,6 +13,7 @@ namespace Slide2D.Images
         
         public GaussianBlurEffect GaussianBlurCache { get; set; }
 
+        public ScaleEffect ScaleEffect { get; set; }
         public string Src { get; private set; }
         public double Height { get { return Bmp.SizeInPixels.Height; } }
         public double Width { get { return Bmp.SizeInPixels.Width; } }
