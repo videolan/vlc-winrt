@@ -53,11 +53,10 @@ namespace Slide2D.Images
             get { return _richAnimations; }
             set { _richAnimations = value; }
         }
-        
-        public void Draw(CanvasAnimatedDrawEventArgs args)
+
+        public void Update(CanvasAnimatedUpdateEventArgs args)
         {
             if (currentImg == null) return;
-
             if (currentImg.GaussianBlurCache == null)
             {
                 currentImg.GaussianBlurCache = new GaussianBlurEffect()
@@ -112,6 +111,8 @@ namespace Slide2D.Images
                 Y = 0
             };
 
+            currentImg.ScaleEffect = scaleEffect;
+
             if (frame < IntroFrameThreshold)
             {
                 currentImg.Opacity += 0.0016f;
@@ -120,14 +121,18 @@ namespace Slide2D.Images
             {
                 currentImg.Opacity -= 0.0027f;
             }
+        }
 
+        public void Draw(CanvasAnimatedDrawEventArgs args)
+        {
+            if (currentImg == null) return;
             var txts = Texts.ToList();
             foreach (var text in txts)
             {
                 text.Draw(ref args, ref txts);
             }
 
-            args.DrawingSession.DrawImage(scaleEffect, new Vector2(), new Rect()
+            args.DrawingSession.DrawImage(currentImg.ScaleEffect, new Vector2(), new Rect()
             {
                 Height = MetroSlideshow.WindowHeight,
                 Width = MetroSlideshow.WindowWidth

@@ -34,6 +34,7 @@ namespace Slide2D
         {
             canvas = cac;
             canvas.CreateResources += Canvas_CreateResources;
+            canvas.Update += Canvas_Update;
             canvas.Draw += Canvas_Draw;
             canvas.TargetElapsedTime = TimeSpan.FromMilliseconds(30);
             Window.Current.SizeChanged += Current_SizeChanged;
@@ -50,6 +51,11 @@ namespace Slide2D
         {
             WindowWidth = Window.Current.Bounds.Width;
             WindowHeight = Window.Current.Bounds.Height;
+        }
+
+        private void Canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
+        {
+            slideshow.Update(args);
         }
 
         private void Canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
