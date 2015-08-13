@@ -34,8 +34,10 @@ namespace VLC_WinRT.Views.MusicPages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+#if WINDOWS_APP
             Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
+#endif
         }
 
         private void MouseStateChanged()
