@@ -54,10 +54,10 @@ namespace VLC_WinRT.Database
             return connection.UpdateAsync(video);
         }
 
-        public Task<List<VideoItem>> GetLastViewed(int nbElements)
+        public Task<List<VideoItem>> GetLastViewed()
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            var req = connection.Table<VideoItem>().Where(x => x.TimeWatched.Seconds > 0).OrderByDescending(x => x.LastWatched).Take(nbElements);
+            var req = connection.Table<VideoItem>().Where(x => x.TimeWatchedSeconds > 0);
             return req.ToListAsync();
         }
     }
