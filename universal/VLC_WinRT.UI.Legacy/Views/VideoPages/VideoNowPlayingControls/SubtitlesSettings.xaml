@@ -31,6 +31,7 @@
             </Grid.RowDefinitions>
             <TextBlock Text="SUBTITLES"
                        Style="{StaticResource BaselineTextStyle}"
+                       Foreground="{ThemeResource BasicForeground}"
                        VerticalAlignment="Center"
                        Margin="0,-12,0,0" />
             <Button Style="{StaticResource TextBlockButtonStyle}"

@@ -27,8 +27,9 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Text="SETTINGS" 
+            <TextBlock Text="SETTINGS"
                        Style="{StaticResource BaselineTextStyle}"
+                       Foreground="{ThemeResource BasicForeground}"
                        VerticalAlignment="Center"
                        Margin="0,-12,0,0"/>
             <Button Style="{StaticResource TextBlockButtonStyle}"
@@ -41,6 +42,7 @@
             <TextBlock Grid.Row="1"
                        x:Uid="Speed"
                        Text="Speed"
+                       Foreground="{ThemeResource BasicForeground}"
                        Style="{StaticResource TitleTextBlockStyle}" />
             <Slider Grid.Row="2"
                     Margin="0,12,0,0"
