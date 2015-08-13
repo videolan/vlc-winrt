@@ -9,6 +9,7 @@ using VLC_WinRT.ViewModels;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
 using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Views.VariousPages
 {
@@ -22,15 +23,7 @@ namespace VLC_WinRT.Views.VariousPages
             string appVersion = string.Format("{0}.{1}.{2}.{3}",
                 version.Major, version.Minor, version.Build, version.Revision);
             AppVersion.Text = "v" + appVersion;
-            foreach(var element in RootPanel.Children)
-            {
-#if WINDOWS_PHONE_APP
-                if((string)((FrameworkElement)element).Tag == "WindowsOnly")
-                {
-                    element.Visibility = Visibility.Collapsed;
-                }
-#endif
-            }
+            Extensions.HideWindowsOnlyElements(RootPanel);
         }
     }
 }

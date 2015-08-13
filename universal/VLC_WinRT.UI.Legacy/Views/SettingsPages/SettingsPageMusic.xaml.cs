@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
+using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.UI.Legacy.Views.SettingsPages
@@ -24,6 +25,7 @@ namespace VLC_WinRT.UI.Legacy.Views.SettingsPages
         public SettingsPageMusic()
         {
             this.InitializeComponent();
+            Extensions.HideWindowsOnlyElements(RootPanel);
         }
 
         void FocusTextBox_LostFocus(object sender, RoutedEventArgs e)
