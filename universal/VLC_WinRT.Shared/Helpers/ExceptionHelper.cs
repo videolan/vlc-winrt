@@ -105,7 +105,7 @@ namespace VLC_WinRT.Helpers
         /// </summary>
         public static void CreateMemorizedException(string method, Exception exception)
         {
-            StringBuilder stringExceptionBuilder = new StringBuilder("Exception Log VLC for Modern Windows v");
+            StringBuilder stringExceptionBuilder = new StringBuilder("Exception Log VLC for Windows Store v");
             stringExceptionBuilder.AppendLine(AppVersion);
             stringExceptionBuilder.Append("Exception at: ").AppendLine(method);
             stringExceptionBuilder.Append("Date: ").AppendLine(DateTime.UtcNow.ToString("s"));
