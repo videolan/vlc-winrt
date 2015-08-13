@@ -37,6 +37,7 @@ using VLC_WinRT.BackgroundAudioPlayer.Model;
 using Windows.Media.Playback;
 #endif
 using libVLCX;
+using VLC_WinRT.BackgroundHelpers;
 using VLC_WinRT.Utils;
 using WinRTXamlToolkit.Controls.Extensions;
 using VLC_WinRT.Commands.VideoPlayer;
