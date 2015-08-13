@@ -320,10 +320,9 @@ namespace VLC_WinRT.Controls
 
         private void RightFlyoutGridContainerOnTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
         {
-            if (FlyoutCloseRequested != null)
-                FlyoutCloseRequested.Invoke(null, new EventArgs());
+            FlyoutCloseRequested?.Invoke(null, new EventArgs());
         }
-        
+
         void ShowFlyout()
         {
             _rightFlyoutFadeIn.Begin();
