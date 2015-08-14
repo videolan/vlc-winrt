@@ -29,18 +29,49 @@
     </DataTemplate>
 
     <DataTemplate x:Key="FolderDataTemplate">
-        <StackPanel Orientation="Horizontal">
-            <FontIcon Foreground="WhiteSmoke"
-                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" 
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <FontIcon Grid.RowSpan="2"
+                      Foreground="{StaticResource PivotHeaderForegroundUnselectedBrush}"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                       Glyph="{Binding Converter={StaticResource StorageTypeToIconConverter}}"
-                      FontSize="24"/>
-            <TextBlock Margin="12,0,0,0"
+                      FontSize="32" />
+            <TextBlock Grid.Column="2"
+                       Grid.ColumnSpan="2"
+                       Grid.Row="0"
                        Text="{Binding Name}"
-                       FontSize="16"
+                       FontSize="18"
+                       FontWeight="Light"
+                       VerticalAlignment="Center"
+                       TextTrimming="CharacterEllipsis" />
+            <TextBlock Grid.Column="2"
+                       Grid.Row="1"
+                       FontSize="15"
                        VerticalAlignment="Center"
                        TextTrimming="CharacterEllipsis"
-                       Width="300"/>
-        </StackPanel>
+                       Margin="{StaticResource FrameMarginRight}"
+                       Visibility="{Binding SizeAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Run Text="{Binding SizeHumanizedString}"
+                     Foreground="{StaticResource PivotHeaderForegroundUnselectedBrush}" />
+            </TextBlock>
+            <TextBlock Grid.Column="3"
+                       Grid.Row="1"
+                       FontSize="15"
+                       VerticalAlignment="Center"
+                       TextTrimming="CharacterEllipsis">
+                <Run Text="{Binding LastModified}"
+                     Foreground="{StaticResource PivotHeaderForegroundUnselectedBrush}" />
+            </TextBlock>
+        </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="SidebarMiniIconItemTemplate">
