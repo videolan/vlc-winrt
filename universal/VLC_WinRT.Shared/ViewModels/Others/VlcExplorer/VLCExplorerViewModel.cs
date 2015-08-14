@@ -67,9 +67,9 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 
         public VLCExplorerViewModel()
         {
-            var musicLibrary = new FileExplorerViewModel(KnownFolders.MusicLibrary);
+            var musicLibrary = new FileExplorerViewModel(KnownFolders.MusicLibrary, RootFolderType.Library);
             StorageVMs.Add(musicLibrary);
-            var videoLibrary = new FileExplorerViewModel(KnownFolders.VideosLibrary);
+            var videoLibrary = new FileExplorerViewModel(KnownFolders.VideosLibrary, RootFolderType.Library);
             StorageVMs.Add(videoLibrary);
             CurrentStorageVM = StorageVMs[0];
             Task.Run(() => CurrentStorageVM?.GetFiles());
