@@ -139,6 +139,23 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 }
             }
 
+            // Choosing 5 pics randomly
+            var r = new Random();
+            if (Locator.MusicLibraryVM.Artists.Any())
+            {
+                var count = Locator.MusicLibraryVM.Artists.Count;
+                var tries = (count < 5) ? count : 5;
+                for (int search = 0; search < tries; search++)
+                {
+                    var i = r.Next(0, count - 1);
+                    if (Locator.MusicLibraryVM.Artists[i].IsPictureLoaded)
+                    {
+                        Locator.Slideshow.AddImg(Locator.MusicLibraryVM.Artists[i].Picture);
+                    }
+                }
+            }
+
+
             // We use user top artists to search for similar artists in its collection, to recommend them
             if (Locator.MusicLibraryVM.TopArtists.Any())
             {
