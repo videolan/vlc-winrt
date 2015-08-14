@@ -13,6 +13,16 @@
     <Grid>
         <Grid.Resources>
             <Storyboard x:Name="FadeOut">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ShowPlaylistButtonTranslateTransform"
+                                               Storyboard.TargetProperty="Y">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                          Value="-50">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <ExponentialEase EasingMode="EaseInOut"
+                                             Exponent="3" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlayingTranslateTransform"
                                                Storyboard.TargetProperty="Y">
                     <EasingDoubleKeyFrame KeyTime="0:0:0.7"
@@ -43,8 +53,23 @@
                     <EasingDoubleKeyFrame KeyTime="0:0:0.8"
                                           Value="0" />
                 </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ShowPlaylistButton"
+                                               Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.8"
+                                          Value="0" />
+                </DoubleAnimationUsingKeyFrames>
             </Storyboard>
             <Storyboard x:Name="FadeIn">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ShowPlaylistButtonTranslateTransform"
+                                               Storyboard.TargetProperty="Y">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                          Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <ExponentialEase EasingMode="EaseInOut"
+                                             Exponent="3" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlayingTranslateTransform"
                                                Storyboard.TargetProperty="Y">
                     <EasingDoubleKeyFrame KeyTime="0:0:0.7"
@@ -75,6 +100,11 @@
                     <EasingDoubleKeyFrame KeyTime="0:0:0.7"
                                           Value="1" />
                 </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ShowPlaylistButton"
+                                               Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                          Value="1" />
+                </DoubleAnimationUsingKeyFrames>
             </Storyboard>
         </Grid.Resources>
         <Grid.RowDefinitions>
@@ -90,13 +120,17 @@
             </musicNowPlayingControls:MusicNowPlaying.RenderTransform>
         </musicNowPlayingControls:MusicNowPlaying>
 
-        <AppBarButton Grid.Row="1"
+        <AppBarButton x:Name="ShowPlaylistButton"
+                      Grid.Row="1"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
                       Label="Show playlist"
                       Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.GoToMusicPlaylistPageCommand}"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center"
                       FontSize="16">
+            <AppBarButton.RenderTransform>
+                <TranslateTransform x:Name="ShowPlaylistButtonTranslateTransform" />
+            </AppBarButton.RenderTransform>
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource MusicPlaylistSymbol}"
                           FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
