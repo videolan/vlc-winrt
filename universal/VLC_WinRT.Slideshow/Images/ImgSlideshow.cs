@@ -18,22 +18,25 @@ namespace Slide2D.Images
     {
         private const int IntroFrameThreshold = 200;
         private const int OutroFrameThreshold = 900;
-        private const int EndFrameThreshold = 1200;
+        private const int EndFrameThresholdDefaultPic = 1020;
+        private const int EndFrameThreshold = 1100;
+
         // Debug only, to slow down frames
         int threshold = 0;
 
         // ------
-        int x;
-        int y;
-        int frame = 0;
-        private float zoom = 0;
         public bool UseDefaultPic;
+        private bool nextIsDefaultPic;
+
+        private int frame = 0;
+        private bool fastChange;
+        private float zoom = 0;
         public Img DefaultImg;
         public List<Img> Imgs = new List<Img>();
         public List<Txt> Texts = new List<Txt>();
-
         private int ImgIndex = 0;
         private int txtIndex = 0;
+
         private Img currentImg
         {
             get
@@ -119,7 +122,15 @@ namespace Slide2D.Images
             }
             else if (frame > OutroFrameThreshold)
             {
-                currentImg.Opacity -= 0.0027f;
+                var decrease = 0.0027f;
+                if (fastChange)
+                {
+                    currentImg.Opacity -= decrease*4;
+                }
+                else
+                {
+                    currentImg.Opacity -= decrease;
+                }
             }
         }
 
@@ -138,36 +149,40 @@ namespace Slide2D.Images
                 Width = MetroSlideshow.WindowWidth
             }, currentImg.Opacity);
 
-            x = x + 2;
-            y++;
-
             threshold++;
 
             if (threshold == 1)
             {
                 threshold = 0;
-                frame++;
+                if (fastChange)
+                {
+                    frame += 4;
+                }
+                else frame++;
             }
-            if (frame == EndFrameThreshold)
+            if ((nextIsDefaultPic && frame < EndFrameThresholdDefaultPic) || (!nextIsDefaultPic && frame < EndFrameThreshold))
+                return;
+            // Resetting variables
+            if (ImgIndex < Imgs.Count - 1)
             {
-                // Resetting variables
-                if (ImgIndex < Imgs.Count - 1)
-                {
-                    ImgIndex++;
-                }
-                else
-                {
-                    ImgIndex = 0;
-                }
-                frame = 0;
-                zoom = 0;
+                ImgIndex++;
             }
+            else
+            {
+                ImgIndex = 0;
+            }
+            fastChange = false;
+            UseDefaultPic = nextIsDefaultPic;
+            frame = 0;
+            zoom = 0;
         }
 
-        public void ChangePicFast()
+        public void ChangePicFast(bool nextIsDefault)
         {
             // seek to outro
-            frame = 0;
+            fastChange = true;
+            frame = OutroFrameThreshold;
+            nextIsDefaultPic = nextIsDefault;
         }
     }
 }

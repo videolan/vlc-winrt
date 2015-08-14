@@ -38,7 +38,9 @@ namespace Slide2D
             canvas.CreateResources += Canvas_CreateResources;
             canvas.Update += Canvas_Update;
             canvas.Draw += Canvas_Draw;
-            canvas.TargetElapsedTime = TimeSpan.FromMilliseconds(30);
+            //canvas.TargetElapsedTime = TimeSpan.FromMilliseconds(30);
+            canvas.ForceSoftwareRenderer = false;
+            canvas.Paused = true;
             Window.Current.SizeChanged += Current_SizeChanged;
             slideshow = new ImgClassicSlideshow();
         }
@@ -49,7 +51,7 @@ namespace Slide2D
             WindowSizeUpdated?.Invoke();
         }
 
-        void SetWindowSize()
+        private void SetWindowSize()
         {
             WindowWidth = Window.Current.Bounds.Width;
             WindowHeight = Window.Current.Bounds.Height;
@@ -75,9 +77,16 @@ namespace Slide2D
         {
             await IsLoaded.Task;
             if (string.IsNullOrEmpty(file)) return;
-            var i = new Img(file);
-            await i.Initialize(canvas);
-            slideshow.Imgs.Add(i);
+            Img i = new Img(file);
+            try
+            {
+                await i.Initialize(canvas);
+            }
+            catch
+            {
+            }
+            if (i.Loaded)
+                slideshow.Imgs.Add(i);
         }
 
         public async void SetDefaultPic(string file)
@@ -92,15 +101,15 @@ namespace Slide2D
         public async void GoDefaultPic()
         {
             await IsLoaded.Task;
-            slideshow.UseDefaultPic = true;
-            slideshow.ChangePicFast();
+            canvas.Paused = false;
+            slideshow.ChangePicFast(true);
         }
 
         public async void RestoreSlideshow()
         {
             await IsLoaded.Task;
-            slideshow.UseDefaultPic = false;
-            slideshow.ChangePicFast();
+            canvas.Paused = false;
+            slideshow.ChangePicFast(false);
         }
 
         public void AddText(List<Txt> texts)
