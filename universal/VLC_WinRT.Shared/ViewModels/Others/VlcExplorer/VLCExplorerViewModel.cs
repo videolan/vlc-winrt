@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.Storage;
@@ -57,6 +58,11 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             get { return _storageVMs; }
             set { SetProperty(ref _storageVMs, value); }
         }
+
+        public IEnumerable<IGrouping<RootFolderType, FileExplorerViewModel>> StorageVMsGrouped
+        {
+            get { return _storageVMs.GroupBy(x => x.Type); }
+        } 
         #endregion
 
         public VLCExplorerViewModel()
