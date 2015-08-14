@@ -142,8 +142,18 @@ namespace VLC_WinRT.ViewModels.VideoVM
                 videoPath = CurrentVideo.Path;
             }
             else return false;
-            var folderPath = System.IO.Path.GetDirectoryName(videoPath);
-            var fileNameWithoutExtensions = System.IO.Path.GetFileNameWithoutExtension(videoPath);
+
+            var folderPath = "";
+            var fileNameWithoutExtensions = "";
+            try
+            {
+                folderPath = System.IO.Path.GetDirectoryName(videoPath);
+                fileNameWithoutExtensions = System.IO.Path.GetFileNameWithoutExtension(videoPath);
+            }
+            catch
+            {
+                return false;
+            }
             // Since we checked Video Libraries capability and SD Card compatibility, and DLNA discovery
             // I think WinRT will let us create a StorageFolder instance of the parent folder of the file we're playing
             // Unfortunately, if the video is opened via a filepicker AND that the video is in an unusual folder, like C:/randomfolder/
