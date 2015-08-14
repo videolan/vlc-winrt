@@ -19,6 +19,7 @@ namespace Slide2D.Images
         public double Width { get { return Bmp.SizeInPixels.Width; } }
         public float Scale { get; set; }
         public float Opacity { get; set; }
+        public bool Loaded { get; set; }
         public Img(string source)
         {
             Src = source;
@@ -28,6 +29,7 @@ namespace Slide2D.Images
         public async Task Initialize(CanvasAnimatedControl cac)
         {
             Bmp = await CanvasBitmap.LoadAsync(cac, new Uri(Src));
+            Loaded = true;
         }
     }
 }
