@@ -81,6 +81,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 #else
             Task.Run(() => InitializeSDCard());
 #endif
+            OnPropertyChanged(nameof(StorageVMsGrouped));
         }
 
         private async Task InitializeSDCard()
@@ -89,8 +90,12 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             var cards = await devices.GetFoldersAsync();
             if (cards.Any())
             {
-                var external = new FileExplorerViewModel(cards[0]);
-                await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => StorageVMs.Add(external));
+                var external = new FileExplorerViewModel(cards[0], RootFolderType.ExternalDevice);
+                await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                {
+                    StorageVMs.Add(external);
+                    OnPropertyChanged(nameof(StorageVMsGrouped));
+                });
             }
         }
 
@@ -101,8 +106,12 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
                 var dlnaFolders = await KnownFolders.MediaServerDevices.GetFoldersAsync();
                 foreach (var dlnaFolder in dlnaFolders)
                 {
-                    var folder = new FileExplorerViewModel(dlnaFolder);
-                    await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => StorageVMs.Add(folder));
+                    var folder = new FileExplorerViewModel(dlnaFolder, RootFolderType.Network);
+                    await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                    {
+                        StorageVMs.Add(folder);
+                        OnPropertyChanged(nameof(StorageVMsGrouped));
+                    });
                 }
             }
             catch
@@ -125,13 +134,14 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
                 {
                     if (StorageVMs.All(vm => vm.Id != newId))
                     {
-                        var external = new FileExplorerViewModel(StorageDevice.FromId(newId), newId);
+                        var external = new FileExplorerViewModel(StorageDevice.FromId(newId), RootFolderType.ExternalDevice, newId);
                         StorageVMs.Add(external);
                     }
                     if (StorageVMs.Any())
                     {
                         CurrentStorageVM = StorageVMs[0];
                     }
+                    OnPropertyChanged(nameof(StorageVMsGrouped));
                 }
                 catch { }
             });
@@ -152,6 +162,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
                     StorageVMs.Remove(removedViewModel);
                     GC.Collect();
                 }
+                OnPropertyChanged(nameof(StorageVMsGrouped));
             });
         }
 #endif
