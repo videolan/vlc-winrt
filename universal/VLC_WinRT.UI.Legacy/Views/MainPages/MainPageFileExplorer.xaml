@@ -10,14 +10,70 @@
       xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=FileExplorerVM}">
-
+    <Page.Resources>
+        <CollectionViewSource x:Key="StorageVMsGroupedByType"
+                              IsSourceGrouped="True"
+                              Source="{Binding StorageVMsGrouped}" />
+    </Page.Resources>
     <Grid x:Name="RootGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="60" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid x:Name="SidebarListView"
+              Grid.Column="0"
+              Grid.RowSpan="4"
+              Width="250">
+            <ListView ItemsSource="{Binding Source={StaticResource StorageVMsGroupedByType}}"
+                      SelectedItem="{Binding CurrentStorageVM}"
+                      ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="SelectionChanged">
+                        <triggers:InvokeCommandAction Command="{Binding RemovableDeviceClicked}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+                <ListView.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderContainerStyle>
+                            <Style TargetType="ListViewHeaderItem">
+                                <Setter Property="Margin"
+                                        Value="-3,0"/>
+                            </Style>
+                        </GroupStyle.HeaderContainerStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Key, Converter={StaticResource RootFolderTypeToNameConverter}}" 
+                                           Style="{StaticResource SubheaderTextBlockStyle}"
+                                           TextTrimming="CharacterEllipsis"
+                                           TextWrapping="NoWrap"/>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
+                </ListView.GroupStyle>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Margin="{StaticResource FrameMarginLeft}"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"
+                                   Margin="0,12,0,0" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Grid x:Name="ComboBoxSelector"
+              Grid.Row="0"
+              Grid.Column="1"
+              Height="50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition />
@@ -41,11 +97,25 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </Grid>
-        <Grid Grid.Row="1"
+
+
+        <TextBlock x:Name="CurrentFolderNameNarrowTextBlock"
+                   Grid.Column="1"
+                   Grid.Row="1"
+                   Text="{Binding CurrentStorageVM.CurrentFolderName}"
+                   Margin="16,-10,0,0"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   VerticalAlignment="Center" 
+                   Height="50"/>
+        
+        <Grid x:Name="FileExplorerButtonsGrid"  
+              Grid.Column="1"
+              Grid.Row="2"
               Margin="{StaticResource FrameMargin}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <AppBarButton Grid.Column="0"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
@@ -58,8 +128,15 @@
                               FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Grid.Column="1"
+            <TextBlock x:Name="CurrentFolderNameWideTextBlock" 
+                       Grid.Column="1"
+                       Text="{Binding CurrentStorageVM.CurrentFolderName}"
+                       Margin="0,-10,0,0"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       VerticalAlignment="Center"/>
+            <AppBarButton Grid.Column="2"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          HorizontalAlignment="Right"
                           Label="play folder"
                           Command="{Binding CurrentStorageVM.PlayFolderCommand}"
                           CommandParameter="{Binding CurrentStorageVM.StorageItems}">
@@ -69,7 +146,8 @@
                 </AppBarButton.Icon>
             </AppBarButton>
         </Grid>
-        <Grid Grid.Row="2"
+        <Grid Grid.Column="1"
+              Grid.Row="3"
               Margin="{StaticResource FrameMargin}">
             <placeholder:NothingToSeeHere Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <scrollWatchedSelector:ScrollWatchedListView x:Name="StorageItemsListView"
@@ -85,8 +163,8 @@
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding CurrentStorageVM.NavigateToCommand}"
                                                       PassEventArgsToCommand="True" />
-                    </triggers:EventTrigger>
-                    <triggers:EventTrigger EventName="GoingTopOrBottom">
+                    </triggers:EventTrigger>
+                    <triggers:EventTrigger EventName="GoingTopOrBottom">
                         <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoingTopOrBottomCommand}"
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
@@ -94,8 +172,71 @@
             </scrollWatchedSelector:ScrollWatchedListView>
         </Grid>
         <removableStorage:PlugARemovableStorage Grid.Row="1"
-                                                Grid.RowSpan="2"
+                                                Grid.RowSpan="3"
                                                 d:IsHidden="True"
                                                 Visibility="{Binding StorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Wide">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FileExplorerButtonsGrid"
+                                                       Storyboard.TargetProperty="(Grid.Row)">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ComboBoxSelector"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SidebarListView"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CurrentFolderNameWideTextBlock"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CurrentFolderNameNarrowTextBlock"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FileExplorerButtonsGrid"
+                                                       Storyboard.TargetProperty="(Grid.Row)">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="2" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ComboBoxSelector"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SidebarListView"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CurrentFolderNameWideTextBlock"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CurrentFolderNameNarrowTextBlock"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>
