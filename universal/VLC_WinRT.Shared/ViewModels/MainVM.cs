@@ -111,11 +111,11 @@ namespace VLC_WinRT.ViewModels
         public ActionCommand GotoSearchPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SearchPage));
 
         public ChangeMainPageMusicViewCommand ChangeMainPageMusicViewCommand { get; } = new ChangeMainPageMusicViewCommand();
-        
+
         public ChangeMainPageVideoViewCommand ChangeMainPageVideoViewCommand { get; } = new ChangeMainPageVideoViewCommand();
         public CreateMiniPlayerView CreateMiniPlayerView { get; } = new CreateMiniPlayerView();
 
-        public DisplayMenuBarControlToggleCommand DisplayMenuBarControlToggleCommand { get; }= new DisplayMenuBarControlToggleCommand();
+        public DisplayMenuBarControlToggleCommand DisplayMenuBarControlToggleCommand { get; } = new DisplayMenuBarControlToggleCommand();
 
         public GoingTopOrBottomCommand GoingTopOrBottomCommand { get; } = new GoingTopOrBottomCommand();
 

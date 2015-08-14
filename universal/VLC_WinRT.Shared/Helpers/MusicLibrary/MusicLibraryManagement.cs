@@ -268,7 +268,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 if (!VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower())) return;
                 var media = Locator.VLCService.GetMediaFromPath(item.Path);
                 MediaProperties mP = Locator.VLCService.GetMusicProperties(media);
-                if(mP == null)
+                if (mP == null)
                 {
                     var props = await item.Properties.GetMusicPropertiesAsync();
                     mP = new MediaProperties()
@@ -742,7 +742,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             if (Locator.MusicLibraryVM.CurrentTrackCollection == null)
             {
 #if WINDOWS_PHONE_APP
-                if(args is ContentDialogButtonClickEventArgs)
+                if (args is ContentDialogButtonClickEventArgs)
                     ((ContentDialogButtonClickEventArgs)args).Cancel = true;
 #endif
                 ToastHelper.Basic(Strings.HaveToSelectPlaylist, false, "selectplaylist");

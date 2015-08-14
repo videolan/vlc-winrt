@@ -17,11 +17,13 @@ namespace Slide2D
 {
     public class MetroSlideshow
     {
-        public TaskCompletionSource<bool> IsLoaded = new TaskCompletionSource<bool>(); 
+        public TaskCompletionSource<bool> IsLoaded = new TaskCompletionSource<bool>();
         public static CanvasAnimatedControl canvas;
         public static double WindowHeight;
         public static double WindowWidth;
+
         public delegate void WindowSizeChanged();
+
         public static event WindowSizeChanged WindowSizeUpdated;
         private ImgSlideshow slideshow;
         
@@ -63,7 +65,8 @@ namespace Slide2D
             slideshow.Draw(args);
         }
 
-        private async void Canvas_CreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
+        private async void Canvas_CreateResources(CanvasAnimatedControl sender,
+            Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
         {
             IsLoaded.TrySetResult(true);
         }
