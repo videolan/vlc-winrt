@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.Storage;
 using Windows.UI.Xaml.Data;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Converters
 {
@@ -8,7 +9,7 @@ namespace VLC_WinRT.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is StorageFolder)
+            if (value is VLCStorageFolder)
             {
                 return App.Current.Resources["FolderSymbol"];
             }

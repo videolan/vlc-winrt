@@ -18,6 +18,8 @@ using System.Threading.Tasks;
 using Autofac;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Helpers;
+using VLC_WinRT.Model.FileExplorer;
+
 #if WINDOWS_APP
 using Windows.Devices.Portable;
 #endif

@@ -9,6 +9,7 @@ using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using Windows.Storage.Search;
 using VLC_WinRT.Commands.VLCFileExplorer;
+using VLC_WinRT.Model.FileExplorer;
 using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.ViewModels.Others.VlcExplorer
@@ -17,18 +18,19 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
     {
         #region private props
         private bool _isFolderEmpty;
+        private RootFolderType type;
         #endregion
 
         #region private fields
         private ObservableCollection<StorageFolder> _backStack = new ObservableCollection<StorageFolder>();
-        private ObservableCollection<IStorageItem> _storageItems = new ObservableCollection<IStorageItem>();
+        private ObservableCollection<IVLCStorageItem> _storageItems = new ObservableCollection<IVLCStorageItem>();
         #endregion
 
         #region public props
         public string Id;
         public string Name { get; set; }
 
-        public IStorageItemClickedCommand NavigateToCommand { get; }=new IStorageItemClickedCommand();
+        public IStorageItemClickedCommand NavigateToCommand { get; } = new IStorageItemClickedCommand();
 
         public GoUpperFolderCommand GoBackCommand { get; } = new GoUpperFolderCommand();
 
@@ -49,10 +51,13 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
         {
             get { return BackStack.Last().Name; }
         }
+
+        public RootFolderType Type => type;
+
         #endregion
 
         #region public fields
-        public ObservableCollection<IStorageItem> StorageItems
+        public ObservableCollection<IVLCStorageItem> StorageItems
         {
             get { return _storageItems; }
             set { SetProperty(ref _storageItems, value); }
@@ -66,8 +71,9 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
 
         #endregion
 
-        public FileExplorerViewModel(StorageFolder root, string id = null)
+        public FileExplorerViewModel(StorageFolder root, RootFolderType ftype, string id = null)
         {
+            type = ftype;
             NavigateToCommand = new IStorageItemClickedCommand();
             GoBackCommand = new GoUpperFolderCommand();
             BackStack.Add(root);
@@ -93,9 +99,23 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
 #else
                 items = await BackStack.Last().GetItemsAsync();
 #endif
+                var vlcItems = new ObservableCollection<IVLCStorageItem>();
+                foreach (var storageItem in items)
+                {
+                    if (storageItem.IsOfType(StorageItemTypes.File))
+                    {
+                        var file = new VLCStorageFile(storageItem as StorageFile);
+                        vlcItems.Add(file);
+                    }
+                    else if (storageItem.IsOfType(StorageItemTypes.Folder))
+                    {
+                        var folder = new VLCStorageFolder(storageItem as StorageFolder);
+                        vlcItems.Add(folder);
+                    }
+                }
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                 {
-                    StorageItems = new ObservableCollection<IStorageItem>(items);
+                    StorageItems = new ObservableCollection<IVLCStorageItem>(vlcItems);
                     OnPropertyChanged("StorageItems");
                 });
             }
@@ -110,18 +130,19 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
             });
         }
 
-        public async Task NavigateTo(IStorageItem storageItem)
+        public async Task NavigateTo(IVLCStorageItem storageItem)
         {
-            var item = storageItem as StorageFolder;
+            var item = storageItem as VLCStorageFolder;
             if (item != null)
             {
-                BackStack.Add(item);
+                BackStack.Add(item.StorageItem as StorageFolder);
                 var _ = Task.Run(async () => await GetFiles());
             }
             else
             {
-                var file = storageItem as StorageFile;
-                if (file == null) return;
+                var vlcFile = storageItem as VLCStorageFile;
+                if (vlcFile == null) return;
+                var file = vlcFile.StorageItem as StorageFile;
                 if (VLCFileExtensions.AudioExtensions.Contains(file.FileType))
                 {
                     await Locator.MediaPlaybackViewModel.PlayAudioFile(file);

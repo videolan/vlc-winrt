@@ -143,6 +143,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoLibrary\TitleDecrapifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoLibrary\VideoLibraryManagement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Events\InteretConnectionChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\FileExplorer\IVLCStorageFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\FileExplorer\IVLCStorageItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\FileExplorer\RootFolderType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\FileExplorer\VLCStorageFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\KeyboardAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\LoadingState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\AlbumItem.cs" />
@@ -165,7 +169,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideTemplateSizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFileExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCItemType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\IVLCMedia.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCPage.cs" />
