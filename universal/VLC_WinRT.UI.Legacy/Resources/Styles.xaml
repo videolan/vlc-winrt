@@ -18,6 +18,9 @@
     <x:Double x:Key="FrameMarginSides">16</x:Double>
     <GridLength x:Key="FrameMarginGridLength">16</GridLength>
 
+    <GridLength x:Key="TitleBarMarginGridLength">32</GridLength>
+    <Thickness x:Key="FrameMarginBothSidesWithTitleMargin">16,32,16,16</Thickness>
+    <Thickness x:Key="TitleBarMarginTop">0,32,0,0</Thickness>
     <Thickness x:Key="FooterMarginBottom">0,0,0,60</Thickness>
     <Thickness x:Key="FrameMarginAtTopAndFooterMarginAtBottom">0,16,0,60</Thickness>
     
