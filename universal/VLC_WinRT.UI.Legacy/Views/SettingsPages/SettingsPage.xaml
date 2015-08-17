@@ -12,11 +12,30 @@
           DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
             <StackPanel x:Name="RootPanel"
-                        Margin="{StaticResource FrameMarginBothSides}"
+                        Margin="{StaticResource FrameMarginBothSidesWithTitleMargin}"
                         MaxWidth="550">
-                <TextBlock Text="Settings"
-                           Style="{StaticResource SubheaderTextBlockStyle}"
-                           Margin="{StaticResource FrameMarginVertical}" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <AppBarButton Grid.Column="0"
+                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Stretch"
+                                  DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                                  Command="{Binding GoBackCommand}"
+                                  Width="50">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                                      Margin="0,3,0,0"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <TextBlock Grid.Column="1"
+                               Text="Settings"
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                </Grid>
                 <AppBarButton Label="User interface"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Command="{Binding ChangeSettingsViewCommand}"
@@ -41,7 +60,8 @@
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource VideoSymbol}"
                                   FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-                    </AppBarButton.Icon></AppBarButton>
+                    </AppBarButton.Icon>
+                </AppBarButton>
                 <AppBarButton Label="Music"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Command="{Binding ChangeSettingsViewCommand}"
@@ -75,11 +95,11 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Button Content="License page"
-                            Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToLicensePageCommand}"/>
-                    <Button Grid.Column ="2"
-                                  Margin="12,0,0,0"
-                                  Content="Special thanks page"
-                                  Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToThanksPageCommand}"/>
+                            Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToLicensePageCommand}" />
+                    <Button Grid.Column="2"
+                            Margin="12,0,0,0"
+                            Content="Special thanks page"
+                            Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToThanksPageCommand}" />
                 </Grid>
             </StackPanel>
         </ScrollViewer>

@@ -13,7 +13,7 @@
           DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
             <StackPanel x:Name="RootPanel"
-                        Margin="{StaticResource FrameMarginBothSides}"
+                        Margin="{StaticResource FrameMarginBothSidesWithTitleMargin}"
                         MaxWidth="550">
                 <StackPanel Orientation="Horizontal">
                     <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
@@ -28,10 +28,7 @@
                         </AppBarButton.Icon>
                     </AppBarButton>
                     <TextBlock Text="Video"
-                               Style="{StaticResource SubheaderTextBlockStyle}"
-                               FontSize="32"
-                               Foreground="{StaticResource MainColor}"
-                               Margin="0,12" />
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
                 </StackPanel>
                 <TextBlock Text="Video playback"
                            FontSize="22"

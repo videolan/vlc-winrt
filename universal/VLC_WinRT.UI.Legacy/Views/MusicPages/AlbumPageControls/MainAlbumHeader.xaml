@@ -15,31 +15,47 @@
           RequestedTheme="Dark"
           Height="260">
         <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+            <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Image Grid.RowSpan="5"
-               Grid.ColumnSpan="2"
+               Grid.ColumnSpan="3"
                DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.CurrentArtist}"
                Source="{Binding ArtistImage}"
                Stretch="UniformToFill"
                Opacity="0.35" />
+        <AppBarButton Grid.Row="1"
+                      Grid.Column="0"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Margin="{StaticResource FrameMarginLeft}"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Stretch"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                      Command="{Binding GoBackCommand}"
+                      Width="50">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                          Margin="0,3,0,0"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </AppBarButton.Icon>
+        </AppBarButton>
         <TextBlock  Grid.Row="1"
-                    Grid.Column="0"
-                    Margin="{StaticResource FrameMargin}"
+                    Grid.Column="1"
+                    Margin="{StaticResource FrameMarginRight}"
                     TextTrimming="CharacterEllipsis"
                     TextWrapping="NoWrap"
                     VerticalAlignment="Top"
                     Text="{Binding Artist, Converter={StaticResource AlbumStringConverter}}"
                     Style="{StaticResource SubheaderTextBlockStyle}" />
         <AppBarButton Grid.Row="1"
-                      Grid.Column="1"
+                      Grid.Column="2"
                       Margin="{StaticResource FrameMargin}"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
                       Label="view artist"
@@ -53,7 +69,7 @@
 
         <Grid Grid.Row="3"
               Grid.Column="0"
-              Grid.ColumnSpan="2"
+              Grid.ColumnSpan="3"
               Margin="0,0,0,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />

@@ -11,7 +11,8 @@
     <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
         <ScrollViewer>
             <StackPanel Margin="{StaticResource FrameMargin}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal"
+                            Margin="{StaticResource TitleBarMarginTop}">
                     <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
                                   HorizontalAlignment="Right"
                                   Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.ChangeSettingsViewCommand}"

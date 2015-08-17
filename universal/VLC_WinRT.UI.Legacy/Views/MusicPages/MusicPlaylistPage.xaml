@@ -9,7 +9,7 @@
       RequestedTheme="Dark">
     <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+            <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition />
