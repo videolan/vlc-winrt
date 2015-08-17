@@ -2585,6 +2585,23 @@
                 Value="Normal" />
     </Style>
 
+    <Style x:Key="SemanticZoomViewOutTextBlockStyle"
+           TargetType="TextBlock">
+        <Setter Property="Margin"
+                Value="5,0,0,3"/>
+        <Setter Property="VerticalAlignment"
+                Value="Center"/>
+        <Setter Property="FontSize"
+                Value="38"/>
+        <Setter Property="TextTrimming"
+                Value="CharacterEllipsis"/>
+        <Setter Property="TextWrapping"
+                Value="NoWrap"/>
+        <Setter Property="FontWeight"
+                Value="Light"/>
+        <Setter Property="Foreground"
+                Value="{ThemeResource MainColor}"/>
+    </Style>
 
     <Style TargetType="MenuFlyoutPresenter">
         <Setter Property="BorderThickness"
