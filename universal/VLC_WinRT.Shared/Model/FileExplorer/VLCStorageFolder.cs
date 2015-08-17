@@ -56,7 +56,7 @@ namespace VLC_WinRT.Model
         public string SizeHumanizedString => sizeHumanizedString;
         public bool SizeAvailable => false;
 
-        public IStorageItem2 StorageItem => storageItem;
+        public IStorageItem StorageItem => storageItem;
 
         public StorageItemThumbnail Thumbnail
         {

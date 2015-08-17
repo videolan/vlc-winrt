@@ -9,7 +9,7 @@ namespace VLC_WinRT.Model.FileExplorer
 {
     public interface IVLCStorageItem
     {
-        IStorageItem2 StorageItem { get; }
+        IStorageItem StorageItem { get; }
         string Name { get; }
         string SizeHumanizedString { get; }
         bool SizeAvailable { get; }
