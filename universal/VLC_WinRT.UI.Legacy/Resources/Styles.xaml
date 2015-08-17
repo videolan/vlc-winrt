@@ -2617,7 +2617,7 @@
     <ItemsPanelTemplate x:Key="WrapPanelTemplate">
         <ItemsWrapGrid Margin="{StaticResource FrameMarginVertical}"
                        Orientation="Horizontal"
-                       ItemWidth="300" />
+                       ItemWidth="270" />
     </ItemsPanelTemplate>
 
     <ItemsPanelTemplate x:Key="StackPanelTemplate">
