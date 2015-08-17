@@ -165,11 +165,18 @@ namespace VLC_WinRT.BackgroundAudioPlayer
         /// </summary>
         private void UpdateUVCOnNewTrack()
         {
+            systemmediatransportcontrol.IsEnabled = true;
             systemmediatransportcontrol.PlaybackStatus = MediaPlaybackStatus.Playing;
             systemmediatransportcontrol.DisplayUpdater.Type = MediaPlaybackType.Music;
             systemmediatransportcontrol.DisplayUpdater.MusicProperties.Title = ((BackgroundTrackItem)Playlist.CurrentTrackItem).Name;
             systemmediatransportcontrol.DisplayUpdater.MusicProperties.Artist = ((BackgroundTrackItem)Playlist.CurrentTrackItem).ArtistName;
             systemmediatransportcontrol.DisplayUpdater.Update();
+        }
+
+        private void ClearUVC()
+        {
+            systemmediatransportcontrol.PlaybackStatus = MediaPlaybackStatus.Closed;
+            systemmediatransportcontrol.IsEnabled = false;
         }
 
         private async void UpdateLastFmOnNewTrack()
@@ -423,6 +430,9 @@ namespace VLC_WinRT.BackgroundAudioPlayer
                     case BackgroundAudioConstants.SkipPrevious: // User has chosen to skip track from app context.
                         Debug.WriteLine("Skipping to previous");
                         SkipToPrevious();
+                        break;
+                    case BackgroundAudioConstants.ClearUVC:
+                        ClearUVC();
                         break;
                 }
             }

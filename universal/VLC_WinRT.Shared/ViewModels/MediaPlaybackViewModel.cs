@@ -505,8 +505,13 @@ namespace VLC_WinRT.ViewModels
 
                 if (video.TimeWatched != TimeSpan.FromSeconds(0))
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.Time = (Int64)video.TimeWatched.TotalMilliseconds);
-
+#if WINDOWS_PHONE_APP
+                var messageDictionary = new ValueSet();
+                messageDictionary.Add(BackgroundAudioConstants.ClearUVC, "");
+                BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
+#else
                 await SetMediaTransportControlsInfo(string.IsNullOrEmpty(video.Name) ? "Video" : video.Name);
+#endif
                 UpdateTileHelper.UpdateMediumTileWithVideoInfo();
             }
             else if (media is TrackItem)

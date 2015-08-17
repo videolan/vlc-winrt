@@ -28,5 +28,7 @@
         public const string Time = "time";
         public const string ShuffleReset = "shufflereset";
         public const string UpdatePlaylist = "updateplaylist";
+
+        public const string ClearUVC = "clearuvc";
     }
 }
