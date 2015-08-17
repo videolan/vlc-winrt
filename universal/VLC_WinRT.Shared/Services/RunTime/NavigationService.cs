@@ -95,7 +95,7 @@ namespace VLC_WinRT.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.SearchPage:
-                    GoBack_HideFlyout();
+                    GoBack_Default();
                     break;
                 case VLCPage.MiniPlayerView:
                     AppViewHelper.SetAppView((Color)App.Current.Resources["MainColorBase"]);
@@ -209,7 +209,7 @@ namespace VLC_WinRT.Services.RunTime
                     App.SplitShell.RightFlyoutContent = new LicensePage();
                     break;
                 case VLCPage.SearchPage:
-                    App.SplitShell.RightFlyoutContent = new SearchPage();
+                    App.ApplicationFrame.Navigate(typeof(SearchPage));
                     break;
                 case VLCPage.MiniPlayerView:
                     Locator.Slideshow.IsPaused = true;
@@ -235,12 +235,12 @@ namespace VLC_WinRT.Services.RunTime
                 default:
                     break;
             }
-            if (isFlyout(desiredPage))
+            if (IsFlyout(desiredPage))
                 CurrentPage = desiredPage;
             ViewNavigated(null, CurrentPage);
         }
 
-        bool isFlyout(VLCPage page)
+        public bool IsFlyout(VLCPage page)
         {
             return page == VLCPage.AlbumPage ||
                    page == VLCPage.ArtistPage ||
@@ -251,7 +251,6 @@ namespace VLC_WinRT.Services.RunTime
                    page == VLCPage.LicensePage ||
                    page == VLCPage.SpecialThanksPage ||
                    page == VLCPage.CurrentPlaylistPage ||
-                   page == VLCPage.SearchPage ||
                    page == VLCPage.SettingsPageUI ||
                    page == VLCPage.SettingsPageMusic ||
                    page == VLCPage.SettingsPageVideo ||
@@ -286,6 +285,8 @@ namespace VLC_WinRT.Services.RunTime
                 return VLCPage.MusicPlayerPage;
             if (page == typeof(SettingsPage))
                 return VLCPage.SettingsPage;
+            if (page == typeof (SearchPage))
+                return VLCPage.SearchPage;
             return VLCPage.None;
         }
 

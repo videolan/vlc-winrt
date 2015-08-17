@@ -6,7 +6,7 @@ using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.UI.Legacy.Views.VariousPages
 {
-    public sealed partial class SearchPage : UserControl
+    public sealed partial class SearchPage : Page
     {
         public SearchPage()
         {
