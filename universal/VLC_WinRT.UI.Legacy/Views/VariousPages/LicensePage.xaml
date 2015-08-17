@@ -25,10 +25,7 @@
                         </AppBarButton.Icon>
                     </AppBarButton>
                     <TextBlock Text="VLC for Windows (Universal)"
-                               Style="{StaticResource SubheaderTextBlockStyle}"
-                               FontSize="32"
-                               Foreground="{StaticResource MainColor}"
-                               Margin="0,12" />
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
                 </StackPanel>
                 <TextBlock Margin="0,12,0,0"
                            TextWrapping="Wrap"
