@@ -10,6 +10,7 @@
     <Thickness x:Key="FrameMargin">16,0</Thickness>
     <Thickness x:Key="FrameMarginBothSides">16</Thickness>
     <Thickness x:Key="FrameMarginVertical">0,16</Thickness>
+    <Thickness x:Key="FrameMarginHorizontal">16,0</Thickness>
     <Thickness x:Key="FrameMarginTop">0,16,0,0</Thickness>
     <Thickness x:Key="FrameMarginBottom">0,0,0,16</Thickness>
     <Thickness x:Key="FrameMarginLeft">16,0,0,0</Thickness>
