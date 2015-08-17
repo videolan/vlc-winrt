@@ -349,7 +349,7 @@
                 Style="{StaticResource MiniPlayerButtons}"
                 DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                 Command="{Binding PlayPreviousCommand}"
-                Visibility="{Binding TrackCollection.CanGoPrevious, Converter={StaticResource BooleanToVisibilityConverter}}">
+                IsEnabled="{Binding TrackCollection.CanGoPrevious}">
             <FontIcon x:Name="PreviousIcon"
                       Glyph="{StaticResource PreviousSymbol}"
                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
@@ -385,7 +385,7 @@
                 Style="{StaticResource MiniPlayerButtons}"
                 DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                 Command="{Binding PlayNextCommand}"
-                Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}"
+                IsEnabled="{Binding TrackCollection.CanGoNext}"
                 Margin="0,0,6,0">
             <FontIcon x:Name="NextIcon"
                       Glyph="{StaticResource SkipNextSymbol}"
