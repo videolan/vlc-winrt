@@ -126,18 +126,25 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
+                try
+                {
 #if WINDOWS_PHONE_APP
-                // TODO : this shouldn't be here
-                var milliseconds = BackgroundAudioHelper.Instance?.NaturalDuration.TotalMilliseconds;
-                if (milliseconds != null && milliseconds.HasValue && double.IsNaN(milliseconds.Value))
-                    Locator.MediaPlaybackViewModel.OnLengthChanged((long)milliseconds);
-#endif          
-                if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack)) return;
-                int index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
-                Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = index;
-                await SetCurrentArtist();
-                await SetCurrentAlbum();
-                await UpdatePlayingUI();
+                    // TODO : this shouldn't be here
+                    var milliseconds = BackgroundAudioHelper.Instance?.NaturalDuration.TotalMilliseconds;
+                    if (milliseconds != null && milliseconds.HasValue && double.IsNaN(milliseconds.Value))
+                        Locator.MediaPlaybackViewModel.OnLengthChanged((long) milliseconds);
+#endif
+                    if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack)) return;
+                    int index = (int) ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+                    Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = index;
+                    await SetCurrentArtist();
+                    await SetCurrentAlbum();
+                    await UpdatePlayingUI();
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(nameof(MusicPlayerVM) + " " + nameof(UpdateTrackFromMF) + " Exception : " + e.ToString());
+                }
             });
         }
 
