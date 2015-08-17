@@ -41,11 +41,6 @@ namespace VLC_WinRT.Views.UserControls
                 VisualStateUtilities.GoToState(this, "Normal", false);
         }
 
-        private void GoBack_Click(object sender, RoutedEventArgs e)
-        {
-            Locator.NavigationService.GoBack_Specific();
-        }
-
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (string.IsNullOrEmpty(Locator.SearchVM.SearchTag) && !string.IsNullOrEmpty(MusicSearchBox.Text))

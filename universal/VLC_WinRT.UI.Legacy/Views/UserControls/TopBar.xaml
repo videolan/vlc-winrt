@@ -25,12 +25,12 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1"
-              Visibility="{Binding CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}"
+              Visibility="{Binding IsMainBackButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
               Margin="0,0,12,0">
             <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
                           HorizontalAlignment="Right"
-                          Click="GoBack_Click"
+                          Command="{Binding GoBackCommand}"
                           Width="50">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
