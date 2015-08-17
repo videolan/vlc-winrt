@@ -21,6 +21,7 @@ using VLC_WinRT.Services.Interface;
 using Windows.System.Display;
 using VLC_WinRT.Commands.MediaPlayback;
 using System.Threading.Tasks;
+using Windows.Foundation.Collections;
 using Windows.Storage.Streams;
 using Windows.UI.Notifications;
 using Windows.UI.Popups;
