@@ -44,6 +44,15 @@ namespace VLC_WinRT.Views.MusicPages.MusicNowPlayingControls
             {
                 VisualStateUtilities.GoToState(this, "Wide", false);
             }
+
+            if (Window.Current.Bounds.Height < 640)
+            {
+                VisualStateUtilities.GoToState(this, "Tiny", false);
+            }
+            else
+            {
+                VisualStateUtilities.GoToState(this, "Tall", false);
+            }
         }
 
         private async void PlayPauseHold(object sender, HoldingRoutedEventArgs e)
