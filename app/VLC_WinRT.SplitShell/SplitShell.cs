@@ -315,7 +315,7 @@ namespace VLC_WinRT.Controls
 
         void Responsive()
         {
-            _rightFlyoutContentPresenter.Width = Window.Current.Bounds.Width < 450 ? Window.Current.Bounds.Width : 450;
+            _rightFlyoutContentPresenter.Width = Window.Current.Bounds.Width < 500 ? Window.Current.Bounds.Width : 500;
         }
 
         private void RightFlyoutGridContainerOnTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
