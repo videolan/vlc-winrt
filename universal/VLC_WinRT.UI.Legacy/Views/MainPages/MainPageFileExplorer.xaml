@@ -49,8 +49,8 @@
                         </GroupStyle.HeaderContainerStyle>
                         <GroupStyle.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Key, Converter={StaticResource RootFolderTypeToNameConverter}}" 
-                                           Style="{StaticResource SubheaderTextBlockStyle}"
+                                <TextBlock Text="{Binding Key, Converter={StaticResource RootFolderTypeToNameConverter}}"
+                                           Style="{ThemeResource SubheaderTextBlockStyle}"
                                            TextTrimming="CharacterEllipsis"
                                            TextWrapping="NoWrap"/>
                             </DataTemplate>
@@ -65,6 +65,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"
+                                   Foreground="{ThemeResource BasicForeground}"
+                                   FontSize="16"
                                    Margin="0,12,0,0" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -104,7 +106,7 @@
                    Grid.Row="1"
                    Text="{Binding CurrentStorageVM.CurrentFolderName}"
                    Margin="16,-10,0,0"
-                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   Style="{ThemeResource SubheaderTextBlockStyle}"
                    VerticalAlignment="Center" 
                    Height="50"/>
         
@@ -163,8 +165,8 @@
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding CurrentStorageVM.NavigateToCommand}"
                                                       PassEventArgsToCommand="True" />
-                    </triggers:EventTrigger>
-                    <triggers:EventTrigger EventName="GoingTopOrBottom">
+                    </triggers:EventTrigger>
+                    <triggers:EventTrigger EventName="GoingTopOrBottom">
                         <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoingTopOrBottomCommand}"
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
