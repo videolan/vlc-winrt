@@ -136,7 +136,7 @@ namespace Slide2D.Images
 
         public void Draw(CanvasAnimatedDrawEventArgs args)
         {
-            if (currentImg == null) return;
+            if (currentImg?.ScaleEffect == null) return;
             var txts = Texts.ToList();
             foreach (var text in txts)
             {
