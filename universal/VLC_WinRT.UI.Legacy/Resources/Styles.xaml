@@ -2760,15 +2760,10 @@
                                 <VisualState x:Name="Normal" />
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="AppBarButtonPlaneProjection"
-                                                                       Storyboard.TargetProperty="GlobalOffsetZ">
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3"
-                                                                  Value="25">
-                                                <EasingDoubleKeyFrame.EasingFunction>
-                                                    <ExponentialEase Exponent="3"
-                                                                     EasingMode="EaseOut" />
-                                                </EasingDoubleKeyFrame.EasingFunction>
-                                            </EasingDoubleKeyFrame>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
+                                                                       Storyboard.TargetProperty="Opacity">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.2"
+                                                                  Value="0.7"/>
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
