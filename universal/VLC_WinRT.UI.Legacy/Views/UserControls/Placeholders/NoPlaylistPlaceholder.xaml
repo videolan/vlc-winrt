@@ -10,26 +10,23 @@
              VerticalAlignment="Center"
              HorizontalAlignment="Center">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <FontIcon Glyph="{StaticResource MusicPlaylistSymbol}"
                    FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                    Foreground="#7AE3E3E3"
-                   FontSize="80"
+                   FontSize="60"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center" />
-        <TextBlock Grid.Row="1"
+        <TextBlock Grid.Column="2"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    VerticalAlignment="Center"
                    TextAlignment="Center">
-            <Run x:Uid="EmptyText"
-                 Text="It's empty here"
-                 FontSize="20" />
-            <LineBreak />
             <Run x:Uid="NoPlaylists"
-            Text="You don't have playlists ... yet"
+                 Text="You don't have playlists ... yet"
                  FontSize="18" />
         </TextBlock>
     </Grid>
