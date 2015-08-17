@@ -81,8 +81,14 @@ namespace VLC_WinRT.ViewModels
             {
                 return canGoBack;
             }
-            set { SetProperty(ref canGoBack, value); }
+            set
+            {
+                SetProperty(ref canGoBack, value);
+                OnPropertyChanged(nameof(IsMainBackButtonVisible));
+            }
         }
+
+        public bool IsMainBackButtonVisible => CanGoBack && !Locator.NavigationService.IsFlyout(currentPage);
 
         public KeyboardListenerService KeyboardListenerService { get { return keyboardListenerService; } }
         public bool IsInternet
@@ -100,7 +106,7 @@ namespace VLC_WinRT.ViewModels
             get { return _titleBarMargin; }
             set { SetProperty(ref _titleBarMargin, value); }
         }
-
+        public GoBackCommand GoBackCommand { get; } = new GoBackCommand();
         public GoToPanelCommand GoToPanelCommand { get; } = new GoToPanelCommand();
 
         public ActionCommand GoToSettingsPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SettingsPage));
