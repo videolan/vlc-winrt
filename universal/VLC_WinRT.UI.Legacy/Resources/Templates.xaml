@@ -41,7 +41,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <FontIcon Grid.RowSpan="2"
-                      Foreground="{StaticResource PivotHeaderForegroundUnselectedBrush}"
+                      Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                       Glyph="{Binding Converter={StaticResource StorageTypeToIconConverter}}"
                       FontSize="32" />
@@ -61,7 +61,7 @@
                        Margin="{StaticResource FrameMarginRight}"
                        Visibility="{Binding SizeAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Run Text="{Binding SizeHumanizedString}"
-                     Foreground="{StaticResource PivotHeaderForegroundUnselectedBrush}" />
+                     Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
             </TextBlock>
             <TextBlock Grid.Column="3"
                        Grid.Row="1"
@@ -69,7 +69,7 @@
                        VerticalAlignment="Center"
                        TextTrimming="CharacterEllipsis">
                 <Run Text="{Binding LastModified}"
-                     Foreground="{StaticResource PivotHeaderForegroundUnselectedBrush}" />
+                     Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
             </TextBlock>
         </Grid>
     </DataTemplate>
