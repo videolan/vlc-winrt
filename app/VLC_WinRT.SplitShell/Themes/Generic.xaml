@@ -192,8 +192,7 @@
                             <ContentPresenter x:Name="RightFlyoutContentPresenter"
                                               Grid.Column="1"
                                               HorizontalAlignment="Right"
-                                              MaxWidth="500"
-                                              MinWidth="320"/>
+                                              MinWidth="300"/>
                         </Grid>
                     </Grid>
                 </ControlTemplate>
