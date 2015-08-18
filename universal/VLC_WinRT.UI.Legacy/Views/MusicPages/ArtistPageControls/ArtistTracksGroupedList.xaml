@@ -29,7 +29,8 @@
         </ListView.GroupStyle>
         <ListView.ItemsPanel>
             <ItemsPanelTemplate>
-                <VirtualizingStackPanel Margin="{StaticResource FrameMarginBothSides}" />
+                <VirtualizingStackPanel Margin="{StaticResource FrameMarginBothSides}" 
+                                        VirtualizationMode="Recycling"/>
             </ItemsPanelTemplate>
         </ListView.ItemsPanel>
         <triggers:Interactions.Triggers>
