@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:musicNowPlayingControls="using:VLC_WinRT.Views.MusicPages.MusicNowPlayingControls"
+      xmlns:triggers="using:WinRT.Triggers"
       mc:Ignorable="d"
       RequestedTheme="Dark">
     <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
@@ -18,6 +19,25 @@
                    Text="playlist"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    Margin="{StaticResource FrameMargin}" />
-        <musicNowPlayingControls:PlaylistControl Grid.Row="3" />
+        <ListView Grid.Row="3"
+                  Margin="{StaticResource FrameMargin}"
+                  DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                  ItemsSource="{Binding TrackCollection.Playlist}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  ItemTemplate="{StaticResource TrackTemplateDetailedNoFlyout}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+        </ListView>
     </Grid>
 </UserControl>
