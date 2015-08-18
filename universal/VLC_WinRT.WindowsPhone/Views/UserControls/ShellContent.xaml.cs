@@ -8,6 +8,7 @@ namespace VLC_WinRT.Views.UserControls
 {
     public sealed partial class ShellContent : UserControl
     {
+        public int CurrentViewIndex;
         public ShellContent()
         {
             this.InitializeComponent();
@@ -34,35 +35,39 @@ namespace VLC_WinRT.Views.UserControls
         private async void FlipViewFrameContainerOnSelectionChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
         {
             var index = FlipViewFrameContainer.SelectedIndex;
+            if (index == 1) return;
             await Task.Delay(200);
             FlipViewFrameContainer.SelectedIndex = 1;
             EntranceThemeTransition.FromVerticalOffset = 0;
+            var newCurrentIndex = 0;
             if (index == 0)
             {
                 SetPivotAnimation(false);
                 if (Locator.NavigationService.CurrentPage == VLCPage.MainPageHome)
-                    Locator.MainVM.GoToPanelCommand.Execute(3);
+                    newCurrentIndex = 3;
                 else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageVideo)
-                    Locator.MainVM.GoToPanelCommand.Execute(0);
+                    newCurrentIndex = 0;
                 else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic)
-                    Locator.MainVM.GoToPanelCommand.Execute(1);
+                    newCurrentIndex = 1;
                 else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageFileExplorer)
-                    Locator.MainVM.GoToPanelCommand.Execute(2);
+                    newCurrentIndex = 2;
             }
             else if (index == 2)
             {
                 SetPivotAnimation(true);
                 if (Locator.NavigationService.CurrentPage == VLCPage.MainPageHome)
-                    Locator.MainVM.GoToPanelCommand.Execute(1);
+                    newCurrentIndex = 1;
                 else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageVideo)
-                    Locator.MainVM.GoToPanelCommand.Execute(2);
+                    newCurrentIndex = 2;
                 else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic)
-                    Locator.MainVM.GoToPanelCommand.Execute(3);
+                    newCurrentIndex = 3;
                 else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageFileExplorer)
-                    Locator.MainVM.GoToPanelCommand.Execute(0);
+                    newCurrentIndex = 0;
                 // Told ya ¯\_(ツ)_/¯
             }
+            Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[newCurrentIndex];
             await Task.Delay(200);
+            CurrentViewIndex = newCurrentIndex;
         }
 
         public void SetPivotAnimation(bool isNextPivot)
