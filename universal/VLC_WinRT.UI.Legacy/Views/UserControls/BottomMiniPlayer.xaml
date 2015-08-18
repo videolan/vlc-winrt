@@ -31,7 +31,8 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition x:Name="MiniPlayerColumnDefinition"
+                              Width="Auto" />
         </Grid.ColumnDefinitions>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -294,12 +295,13 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <Button x:Name="NowPlayingArtistGrid"
-              Grid.Row="0"
-              VerticalAlignment="Center"
-              Background="Transparent"
-              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-              Tapped="RootMiniPlayer_Tapped"
-              Style="{StaticResource TextBlockButtonStyle}">
+                Grid.Row="0"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Stretch"
+                Background="Transparent"
+                DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+                Tapped="RootMiniPlayer_Tapped"
+                Style="{StaticResource TextBlockButtonStyle}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
