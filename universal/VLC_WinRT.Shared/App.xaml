@@ -15,7 +15,7 @@
                     <SolidColorBrush x:Key="ApplicationThirdForegroundThemeBrush"
                                      Color="#252525" />
                     <SolidColorBrush x:Key="ApplicationOverlayTranslucentThemeBrush"
-                                     Color="#d4000000" />
+                                     Color="#d9000000" />
                     <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
                                      Color="#AA101010" />
                     <SolidColorBrush x:Key="ApplicationBackgroundQuarterTranslucentThemeBrush"
