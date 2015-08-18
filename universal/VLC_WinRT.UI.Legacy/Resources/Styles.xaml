@@ -3385,13 +3385,13 @@
                                                 <Border x:Name="BackgroundElement"
                                                         Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}">
                                                     <FontIcon x:Name="GlyphElement"
-                                                               Foreground="{ThemeResource BasicForeground}"
-                                                               VerticalAlignment="Center"
-                                                               HorizontalAlignment="Center"
-                                                               FontStyle="Normal"
-                                                               FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
-                                                               Glyph="{StaticResource CloseSymbol}"
-                                                               AutomationProperties.AccessibilityView="Raw" />
+                                                              Foreground="{ThemeResource BasicForeground}"
+                                                              VerticalAlignment="Center"
+                                                              HorizontalAlignment="Center"
+                                                              FontStyle="Normal"
+                                                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                                              Glyph="{StaticResource CloseSymbol}"
+                                                              AutomationProperties.AccessibilityView="Raw" />
                                                 </Border>
                                             </Grid>
                                         </ControlTemplate>
@@ -3510,7 +3510,7 @@
                                       IsTabStop="False"
                                       AutomationProperties.AccessibilityView="Raw"
                                       ZoomMode="Disabled"
-                                      VerticalAlignment="Center"/>
+                                      VerticalAlignment="Center" />
                         <ContentControl x:Name="PlaceholderTextContentPresenter"
                                         Grid.Row="1"
                                         Margin="{TemplateBinding BorderThickness}"
@@ -3520,7 +3520,7 @@
                                         Grid.ColumnSpan="2"
                                         Content="{TemplateBinding PlaceholderText}"
                                         IsHitTestVisible="False"
-                                        VerticalAlignment="Center"  />
+                                        VerticalAlignment="Center" />
                         <Button x:Name="DeleteButton"
                                 Grid.Row="1"
                                 Style="{StaticResource DeleteButtonStyle}"
