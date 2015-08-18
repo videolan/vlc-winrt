@@ -180,7 +180,7 @@
                                         <LinearGradientBrush StartPoint="0,0"
                                                              EndPoint="1,0">
                                             <GradientStopCollection>
-                                                <GradientStop Color="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+                                                <GradientStop Color="#d4000000"
                                                               Offset="1" />
                                                 <GradientStop Color="#00000000"
                                                               Offset="0" />
