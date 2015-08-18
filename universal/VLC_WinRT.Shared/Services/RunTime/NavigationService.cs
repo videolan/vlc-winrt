@@ -154,24 +154,20 @@ namespace VLC_WinRT.Services.RunTime
 
         public void Go(VLCPage desiredPage)
         {
-            if (!isFlyout(desiredPage) && desiredPage == CurrentPage) return;
+            if (!IsFlyout(desiredPage) && desiredPage == CurrentPage) return;
             switch (desiredPage)
             {
                 case VLCPage.MainPageHome:
                     App.ApplicationFrame.Navigate(typeof(MainPageHome));
-                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[0];
                     break;
                 case VLCPage.MainPageVideo:
                     App.ApplicationFrame.Navigate(typeof(MainPageVideos));
-                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[1];
                     break;
                 case VLCPage.MainPageMusic:
                     App.ApplicationFrame.Navigate(typeof(MainPageMusic));
-                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[2];
                     break;
                 case VLCPage.MainPageFileExplorer:
                     App.ApplicationFrame.Navigate(typeof(MainPageFileExplorer));
-                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[3];
                     break;
                 case VLCPage.AlbumPage:
                     App.SplitShell.RightFlyoutContent = new AlbumPageBase();
@@ -285,17 +281,39 @@ namespace VLC_WinRT.Services.RunTime
                 return VLCPage.MusicPlayerPage;
             if (page == typeof(SettingsPage))
                 return VLCPage.SettingsPage;
-            if (page == typeof (SearchPage))
+            if (page == typeof(SearchPage))
                 return VLCPage.SearchPage;
             return VLCPage.None;
         }
 
+        public int VLCHomePageToPanelIndex(VLCPage p)
+        {
+            switch (p)
+            {
+                case VLCPage.MainPageHome:
+                    return 0;
+                case VLCPage.MainPageVideo:
+                    return 1;
+                case VLCPage.MainPageMusic:
+                    return 2;
+                case VLCPage.MainPageFileExplorer:
+                    return 3;
+                default:
+                    return 0;
+            }
+        }
+
         public bool IsCurrentPageAMainPage()
         {
-            return CurrentPage == VLCPage.MainPageHome
-                || CurrentPage == VLCPage.MainPageVideo
-                || CurrentPage == VLCPage.MainPageMusic
-                || CurrentPage == VLCPage.MainPageFileExplorer;
+            return IsPageAMainPage(CurrentPage);
+        }
+
+        public bool IsPageAMainPage(VLCPage p)
+        {
+            return p == VLCPage.MainPageHome
+                   || p == VLCPage.MainPageVideo
+                   || p == VLCPage.MainPageMusic
+                   || p == VLCPage.MainPageFileExplorer;
         }
     }
 }

@@ -99,8 +99,7 @@ namespace VLC_WinRT
             if (Window.Current.Content == null)
             {
                 await LaunchTheApp();
-
-                Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
+                Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[Locator.NavigationService.VLCHomePageToPanelIndex(Locator.SettingsVM.HomePage)];
                 try
                 {
                     await ExceptionHelper.ExceptionLogCheckup();

@@ -42,19 +42,13 @@
         <ListView Grid.Column="2"
                   x:Name="PanelsListView"
                   ItemsSource="{Binding Panels}"
-                  SelectedItem="{Binding CurrentPanel}"
+                  SelectedItem="{Binding CurrentPanel, Mode=TwoWay}"
                   IsSwipeEnabled="False"
                   IsItemClickEnabled="False"
                   SelectionMode="Single"
                   ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
                   ItemTemplate="{StaticResource PivotHeaderDataTemplate}"
                   ScrollViewer.VerticalScrollBarVisibility="Disabled">
-            <triggers:Interactions.Triggers>
-                <triggers:EventTrigger EventName="SelectionChanged">
-                    <triggers:InvokeCommandAction Command="{Binding GoToPanelCommand}"
-                                                  PassEventArgsToCommand="True" />
-                </triggers:EventTrigger>
-            </triggers:Interactions.Triggers>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsStackPanel Orientation="Horizontal"

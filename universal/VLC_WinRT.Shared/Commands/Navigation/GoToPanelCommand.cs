@@ -22,9 +22,9 @@ namespace VLC_WinRT.Commands.Navigation
         public override async void Execute(object parameter)
         {
             Model.Panel panel = null;
-            if (parameter is ItemClickEventArgs)
+            if (parameter is Model.Panel)
             {
-                panel = (parameter as ItemClickEventArgs).ClickedItem as Model.Panel;
+                panel = parameter as Model.Panel;
             }
             else if (parameter is SelectionChangedEventArgs)
             {
@@ -36,7 +36,7 @@ namespace VLC_WinRT.Commands.Navigation
             }
 
 #if WINDOWS_PHONE_APP
-            var iPreviousView = Locator.MainVM.CurrentPanel.Index;
+            var iPreviousView = App.RootPage.ShellContent.CurrentViewIndex;
             var iNewView = Locator.MainVM.Panels.IndexOf(panel);
             App.RootPage.ShellContent.SetPivotAnimation(iNewView > iPreviousView);
 #endif

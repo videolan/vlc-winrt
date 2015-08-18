@@ -72,7 +72,11 @@ namespace VLC_WinRT.ViewModels
         public Panel CurrentPanel
         {
             get { return _currentPanel; }
-            set { SetProperty(ref _currentPanel, value); }
+            set
+            {
+                SetProperty(ref _currentPanel, value);
+                Locator.MainVM.GoToPanelCommand.Execute(value);
+            }
         }
 
         public bool CanGoBack
