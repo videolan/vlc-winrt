@@ -398,11 +398,17 @@ namespace VLC_WinRT.ViewModels
                 IsPlaying = false;
                 TimeTotal = TimeSpan.Zero;
 #if WINDOWS_PHONE_APP
-                // music clean
-                if (BackgroundAudioHelper.Instance?.CurrentState != MediaPlayerState.Stopped)
+                try
                 {
-                    BackgroundAudioHelper.Instance?.Pause();
-                    await App.BackgroundAudioHelper.ResetCollection(ResetType.NormalReset);
+                    // music clean
+                    if (BackgroundAudioHelper.Instance?.CurrentState != MediaPlayerState.Stopped)
+                    {
+                        BackgroundAudioHelper.Instance?.Pause();
+                        await App.BackgroundAudioHelper.ResetCollection(ResetType.NormalReset);
+                    }
+                }
+                catch
+                {
                 }
 #endif
                 await TrackCollection.ResetCollection();
