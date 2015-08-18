@@ -177,7 +177,7 @@ namespace VLC_WinRT.MusicMetaFetcher
 
         public async Task<byte[]> GetArtistPicture(string artistName)
         {
-            var gotArt = await DownloadArtistPictureFromDeezer(artistName) ?? await DownloadArtistPictureFromLastFm(artistName);
+            var gotArt = await DownloadArtistPictureFromLastFm(artistName) ?? await DownloadArtistPictureFromDeezer(artistName);
             return gotArt;
         }
 
