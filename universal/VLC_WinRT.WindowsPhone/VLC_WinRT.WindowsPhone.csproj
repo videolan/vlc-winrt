@@ -764,9 +764,6 @@
     <Reference Include="ScrollWatchedSelector">
       <HintPath>..\..\app\packages\ScrollWatchedSelector.dll.1.0.0\lib\netcore45\ScrollWatchedSelector.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCL.raw">
-      <HintPath>..\..\app\packages\SQLitePCL.raw.0.8.1\lib\wpa81\SQLitePCL.raw.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\..\app\packages\Microsoft.Net.Http.2.2.29\lib\wpa81\System.Net.Http.Extensions.dll</HintPath>
       <Private>True</Private>
@@ -857,11 +854,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\app\packages\Win2D.win81.1.1.0\build\wpa\Win2D.win81.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\app\packages\Win2D.win81.1.1.0\build\wpa\Win2D.win81.targets'))" />
-    <Error Condition="!Exists('..\..\app\packages\SQLitePCL.raw.0.8.1\build\wpa81\SQLitePCL.raw.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\app\packages\SQLitePCL.raw.0.8.1\build\wpa81\SQLitePCL.raw.targets'))" />
     <Error Condition="!Exists('..\..\app\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\app\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
   </Target>
   <Import Project="..\..\app\packages\Win2D.win81.1.1.0\build\wpa\Win2D.win81.targets" Condition="Exists('..\..\app\packages\Win2D.win81.1.1.0\build\wpa\Win2D.win81.targets')" />
-  <Import Project="..\..\app\packages\SQLitePCL.raw.0.8.1\build\wpa81\SQLitePCL.raw.targets" Condition="Exists('..\..\app\packages\SQLitePCL.raw.0.8.1\build\wpa81\SQLitePCL.raw.targets')" />
   <Import Project="..\..\app\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\app\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
