@@ -1,0 +1,35 @@
+About LibVLC, LibVLCCore, libvlcx
+---------------------------------
+Most of the media code engine is licensed under LGPL, like libVLC.
+The application is dual-licensed under GPLv2/MPL and the license might change later,
+if need be.
+
+MIT
+---------------------------------
+Autofac.dll
+
+Newtonsoft.Json.dll
+
+ScrollWatcher.dll
+
+WinRTXamlToolkit.dll
+
+IF.Lastfm.Core.dll
+
+Microsoft.Graphics.Canvas.dll
+Microsoft.Graphics.Canvas.Numerics.dll
+
+WinRT.Triggers.dll
+
+SQLite.Net.Async.dll
+SQLite.Net.dll
+SQLite.Net.Platform.WinRT.dll
+
+Public Domain
+--------------------
+sqlite3.dll
+
+Windows 8.1 SDK Extensions
+--------------------
+Microsoft.Xaml.Interactions.dll
+Microsoft.Xaml.Interactivity.dll
