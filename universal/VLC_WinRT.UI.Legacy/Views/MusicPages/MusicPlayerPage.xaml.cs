@@ -43,6 +43,20 @@ namespace VLC_WinRT.Views.MusicPages
         {
             App.SplitShell.HideTopBar();
             FadeOut.Begin();
+            Locator.MusicPlayerVM.PropertyChanged += MusicPlayerVM_PropertyChanged;
+            PopulateSlideshowWithText();
+        }
+
+        private void MusicPlayerVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Locator.MusicPlayerVM.CurrentTrack))
+            {
+                PopulateSlideshowWithText();
+            }
+        }
+
+        void PopulateSlideshowWithText()
+        {
             var texts = new List<Txt>();
             texts.Add(new Txt(Locator.MusicPlayerVM.CurrentTrack.ArtistName.ToUpper(), Color.FromArgb(80, 255, 255, 255), new CanvasTextFormat()
             {
@@ -65,6 +79,7 @@ namespace VLC_WinRT.Views.MusicPages
 
         private void MouseMoved()
         {
+            Locator.MusicPlayerVM.PropertyChanged -= MusicPlayerVM_PropertyChanged;
             App.SplitShell.ShowTopBar();
             FadeIn.Begin();
             Locator.Slideshow.ClearTextList();
