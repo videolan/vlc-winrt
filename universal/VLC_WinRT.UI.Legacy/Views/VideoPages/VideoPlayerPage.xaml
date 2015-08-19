@@ -30,7 +30,7 @@
                                   Offset="1" />
                 </LinearGradientBrush>
             </Border.Background>
-            <Grid Margin="24">
+            <Grid Margin="24,60,24,24">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
