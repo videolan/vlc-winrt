@@ -75,8 +75,8 @@
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlayingTranslateTransform"
-                                               Storyboard.TargetProperty="Y">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                               Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
                     <EasingDoubleKeyFrame KeyTime="0:0:0.7"
                                           Value="0">
                         <EasingDoubleKeyFrame.EasingFunction>
