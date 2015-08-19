@@ -1,7 +1,7 @@
 ﻿This project is about the port of VLC to the WinRT platform.
 
-The goal is to target Windows 8/8.1 Modern environment, on x86 and ARM (Windows RT).
-But also Windows Phone 8/8.1 and other devices running the WinRT platform.
+The goal is to target Windows 8.1/10 Modern environment, on x86 and ARM (Windows RT).
+But also Windows Phone 8.1, Windows 10 Mobile and other devices running the WinRT platform.
 
 Most of the media code engine is licensed under LGPL, like libVLC.
 The application is dual-licensed under GPLv2/MPL and the license might change later,
@@ -11,7 +11,7 @@ How to compile VLC for WinRT:
 -----------------------------
 
 You need:
-* Visual Studio 2013 update 4
+* Visual Studio 2015
 * Windows 8.1
 
 If you are only on Windows, skip the step 0)
@@ -53,7 +53,7 @@ You can download it at https://dev.windows.com/en-us/develop/multilingual-app-to
 
 2) Build and package the front-end
 ----------------------------------
-Open the VLC_WinRT solution in app/VLC_WINRT.sln 
+Open the VLC_WinRT solution in app/VLC_WINRT.sln
 
 3a) Get a developer signature from your account
 --------------------------------------------------
@@ -84,8 +84,7 @@ Finish
 
 4) Install libvlcpp
 -------------------
-Clone libvlcpp from git://git.videolan.org/vlc-bindings/libvlcpp.git
-into the wrapper/ directory
+"git submodule update --init" in the winrt/ folder.
 
 4b) Alternately, if you wish to manually install:
 -------------------------------------------------
@@ -105,23 +104,30 @@ Enable debug mode for the app:
 Enable-AppxDebug  9519ba58-7ad6-4c4e-97ed-bfc2135a0d19_1.0.0.0_x86__2c7ztm58ext6g
 # Debugging has been enabled for 9519ba58-7ad6-4c4e-97ed-bfc2135a0d19_1.0.0.0_x86__2c7ztm58ext6g.
 
-5) Build
+5) Install Multilingual Toolkit for Visual Studio
+-------------------------------------------------
+Download link : https://dev.windows.com/en-us/develop/multilingual-app-toolkit
+
+6) Build
 --------
-Click on Build Solution. 
+Click on Build Solution.
 
 Click on Deploy Solution
 
 Profit. \o/
 
-6) Coding guidelines
+7) Coding guidelines
 --------------------
-TextBox and FocusTextBox
-FocusTextBox is a simple TextBox control. However, when the user writes something in the TextBox, it's also 
-listened by the KeyboardListenerService, which believes the user is entering a keyboard shortcut. 
-With FocusTextBox we prevent this behaviour. 
+TEXTBOX
+FocusTextBox is a simple TextBox control. However, when the user writes something in the TextBox, it's also
+listened by the KeyboardListenerService, which believes the user is entering a keyboard shortcut.
+With FocusTextBox we prevent this behaviour.
 Therefore ALL future patches should use FocusTextBox instead of TextBox.
 
-7) Extra: Helpful snippets and tools
+LICENSES
+Before sending a patch that adds a new nuget package or ships a DLL, please check its license, it has to be GPLv2-compliant.
+
+8) Extra: Helpful snippets and tools
 ------------------------------------
 Use http://technet.microsoft.com/en-us/sysinternals/bb896647 DebugView to view the debug logs
 And Procmon ( http://technet.microsoft.com/en-ca/sysinternals/bb896645.aspx ) helps to see and debug events (like loading DLLs/modules/etc)
@@ -129,5 +135,3 @@ And Procmon ( http://technet.microsoft.com/en-ca/sysinternals/bb896645.aspx ) he
 Quick one-liners to remove ugly mode changes and ugly CR-LF line endings.
 git status -s | grep "^ M " | awk '{ print $2; }' | xargs chmod 644
 git status -s | grep "^ M " | awk '{ print $2; }' | xargs dos2unix
-
-
