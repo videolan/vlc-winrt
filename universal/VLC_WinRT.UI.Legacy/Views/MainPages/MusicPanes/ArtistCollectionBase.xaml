@@ -9,7 +9,7 @@
              xmlns:artistPageControls="using:VLC_WinRT.Views.MusicPages.ArtistPageControls"
              xmlns:artistCollectionPanes="using:VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes"
              xmlns:musicPanesControls="using:VLC_WinRT.Views.MainPages.MusicPanes.MusicPanesControls"
-             xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
+             xmlns:ScrollWatcher="using:ScrollWatcher"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -35,7 +35,7 @@
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       ScrollViewer.HorizontalScrollMode="Disabled">
             <SemanticZoom.ZoomedInView>
-                <scrollWatchedSelector:ScrollWatchedListView x:Name="ArtistListView"
+                <ScrollWatcher:ListViewScrollWatcher x:Name="ArtistListView"
                                                              IsItemClickEnabled="True"
                                                              ItemsSource="{Binding Artists}"
                                                              SelectionMode="None"
@@ -48,8 +48,8 @@
                             <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
                                                           PassEventArgsToCommand="True" />
                         </triggers:EventTrigger>
-                        <triggers:EventTrigger EventName="GoingTopOrBottom">
-                            <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoingTopOrBottomCommand}"
+                        <triggers:EventTrigger EventName="ScrollDetected">
+                            <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.ScrollDetectedCommand}"
                                                           PassEventArgsToCommand="True" />
                         </triggers:EventTrigger>
                     </triggers:Interactions.Triggers>
@@ -68,7 +68,7 @@
                             </ItemsWrapGrid>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
-                </scrollWatchedSelector:ScrollWatchedListView>
+                </ScrollWatcher:ListViewScrollWatcher>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <ListView x:Name="ArtistsZoomedOutView"

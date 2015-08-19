@@ -4,7 +4,7 @@
       xmlns:local="using:VLC_WinRT.Views.MainPages.MainMusicControls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
+      xmlns:ScrollWatcher="using:ScrollWatcher"
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:userControls="using:VLC_WinRT.Views.UserControls"
       xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
@@ -47,7 +47,7 @@
       
         <SemanticZoom ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
             <SemanticZoom.ZoomedInView>
-                <scrollWatchedSelector:ScrollWatchedListView x:Name="TracksZoomedInView"
+                <ScrollWatcher:ListViewScrollWatcher x:Name="TracksZoomedInView"
                           ItemsSource="{Binding Source={StaticResource GroupTracks}}"
                           SelectionMode="None"
                           IsItemClickEnabled="True"
@@ -60,15 +60,15 @@
                             <triggers:InvokeCommandAction Command="{Binding PlayAllSongsCommand}"
                                                           PassEventArgsToCommand="True" />
                         </triggers:EventTrigger>
-                        <triggers:EventTrigger EventName="GoingTopOrBottom">
-                            <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoingTopOrBottomCommand}"
+                        <triggers:EventTrigger EventName="ScrollDetected">
+                            <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.ScrollDetectedCommand}"
                                                             PassEventArgsToCommand="True" />
                         </triggers:EventTrigger>
                     </triggers:Interactions.Triggers>
                     <ListView.GroupStyle>
                         <GroupStyle HeaderTemplate="{StaticResource ListviewGroupHeaderDataTemplate}"/>
                     </ListView.GroupStyle>
-                </scrollWatchedSelector:ScrollWatchedListView>
+                </ScrollWatcher:ListViewScrollWatcher>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <ListView x:Name="TracksZoomedOutView"

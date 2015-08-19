@@ -7,14 +7,14 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
       xmlns:musicPanesControls="using:VLC_WinRT.Views.MainPages.MusicPanes.MusicPanesControls"
-      xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
+      xmlns:ScrollWatcher="using:ScrollWatcher"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="400"
       d:DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
     <Grid x:Name="RootGrid">
-        <scrollWatchedSelector:ScrollWatchedListView x:Name="PlaylistListView"
+        <ScrollWatcher:ListViewScrollWatcher x:Name="PlaylistListView"
                   ItemsSource="{Binding TrackCollections}"
                   IsItemClickEnabled="True"
                   ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
@@ -27,12 +27,12 @@
                     <triggers:InvokeCommandAction Command="{Binding TrackCollectionClickedCommand}"
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
-                <triggers:EventTrigger EventName="GoingTopOrBottom">
-                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoingTopOrBottomCommand}"
+                <triggers:EventTrigger EventName="ScrollDetected">
+                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.ScrollDetectedCommand}"
                                                     PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
-        </scrollWatchedSelector:ScrollWatchedListView>
+        </ScrollWatcher:ListViewScrollWatcher>
         <placeholder:NoPlaylistPlaceholder Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>

@@ -7,11 +7,11 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
       xmlns:videoPanesControls="using:VLC_WinRT.Views.MainPages.MainVideoControls.VideoPanesControls"
-      xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
+      xmlns:ScrollWatcher="using:ScrollWatcher"
       mc:Ignorable="d">
 
     <Grid>
-        <scrollWatchedSelector:ScrollWatchedListView x:Name="CameraRollListView"
+        <ScrollWatcher:ListViewScrollWatcher x:Name="CameraRollListView"
                   ItemsSource="{Binding CameraRoll}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -21,8 +21,8 @@
                     <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
-                <triggers:EventTrigger EventName="GoingTopOrBottom">
-                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoingTopOrBottomCommand}"
+                <triggers:EventTrigger EventName="ScrollDetected">
+                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.ScrollDetectedCommand}"
                                                     PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
@@ -38,7 +38,7 @@
                     </ItemsWrapGrid>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-        </scrollWatchedSelector:ScrollWatchedListView>
+        </ScrollWatcher:ListViewScrollWatcher>
         <placeholder:NoCameraVideos Visibility="{Binding CameraRoll.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>

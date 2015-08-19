@@ -7,7 +7,7 @@
       xmlns:removableStorage="using:VLC_WinRT.Controls.RemovableStorage"
       xmlns:controls="using:VLC_WINRT.Views.Controls"
       xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
-      xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
+      xmlns:ScrollWatcher="using:ScrollWatcher"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=FileExplorerVM}">
     <Page.Resources>
@@ -152,8 +152,8 @@
               Grid.Row="3"
               Margin="{StaticResource FrameMargin}">
             <placeholder:NothingToSeeHere Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <scrollWatchedSelector:ScrollWatchedListView x:Name="StorageItemsListView"
-                                                         ItemsSource="{Binding CurrentStorageVM.StorageItems}"
+            <ScrollWatcher:ListViewScrollWatcher x:Name="StorageItemsListView"
+                                                 ItemsSource="{Binding CurrentStorageVM.StorageItems}"
                                                          IsItemClickEnabled="True"
                                                          SelectionMode="None"
                                                          ItemTemplate="{StaticResource FolderDataTemplate}"
@@ -166,12 +166,12 @@
                         <triggers:InvokeCommandAction Command="{Binding CurrentStorageVM.NavigateToCommand}"
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
-                    <triggers:EventTrigger EventName="GoingTopOrBottom">
-                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoingTopOrBottomCommand}"
+                    <triggers:EventTrigger EventName="ScrollDetected">
+                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.ScrollDetectedCommand}"
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>
-            </scrollWatchedSelector:ScrollWatchedListView>
+            </ScrollWatcher:ListViewScrollWatcher>
         </Grid>
         <removableStorage:PlugARemovableStorage Grid.Row="1"
                                                 Grid.RowSpan="3"

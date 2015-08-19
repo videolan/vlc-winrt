@@ -897,8 +897,8 @@
       <HintPath>..\..\app\packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ScrollWatchedSelector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\app\packages\ScrollWatchedSelector.dll.1.0.2\lib\netcore45\ScrollWatchedSelector.dll</HintPath>
+    <Reference Include="ScrollWatcher, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\app\packages\ScrollWatcher.1.0.5\lib\netcore45\ScrollWatcher.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WinRT.Triggers">

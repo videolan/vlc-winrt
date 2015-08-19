@@ -127,7 +127,7 @@ namespace VLC_WinRT.ViewModels
 
         public DisplayMenuBarControlToggleCommand DisplayMenuBarControlToggleCommand { get; } = new DisplayMenuBarControlToggleCommand();
 
-        public GoingTopOrBottomCommand GoingTopOrBottomCommand { get; } = new GoingTopOrBottomCommand();
+        public ScrollDetectedCommand ScrollDetectedCommand { get; } = new ScrollDetectedCommand();
 
         public bool PreventAppExit
         {

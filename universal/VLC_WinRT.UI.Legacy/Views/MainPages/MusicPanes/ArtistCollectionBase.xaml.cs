@@ -5,7 +5,7 @@ using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Utils;
 using Windows.UI.Xaml.Data;
-using ScrollWatchedSelector;
+using ScrollWatcher;
 
 namespace VLC_WinRT.Views.MainPages.MusicPanes
 {

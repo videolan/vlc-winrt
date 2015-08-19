@@ -7,7 +7,7 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
       xmlns:videoPanesControls="using:VLC_WinRT.Views.MainPages.MainVideoControls.VideoPanesControls"
-      xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
+      xmlns:ScrollWatcher="using:ScrollWatcher"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
 
@@ -20,7 +20,7 @@
     </Page.Resources>
 
     <Grid>
-        <scrollWatchedSelector:ScrollWatchedListView x:Name="EpisodesListView"
+        <ScrollWatcher:ListViewScrollWatcher x:Name="EpisodesListView"
                   ItemsSource="{Binding Source={StaticResource ShowsGroupedByName}}"
                   ItemTemplate="{StaticResource PhoneShowTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -31,8 +31,8 @@
                     <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
-                <triggers:EventTrigger EventName="GoingTopOrBottom">
-                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoingTopOrBottomCommand}"
+                <triggers:EventTrigger EventName="ScrollDetected">
+                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.ScrollDetectedCommand}"
                                                     PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
@@ -62,7 +62,7 @@
                     </ItemsWrapGrid>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-        </scrollWatchedSelector:ScrollWatchedListView>
+        </ScrollWatcher:ListViewScrollWatcher>
         <placeholder:NoShowPlaceholder Visibility="{Binding Shows.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>
