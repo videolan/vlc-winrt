@@ -1,3 +1,45 @@
+Changes between 1.5.0 and 1.6.0
+-------------------------------
+Release: 19 August 2015
+
+First Windows Phone 8.1 release since v1.3.3.7
+
+Core:
+ * Subtitles should be display at the right position and size
+ * External SRT (using file picker) feature working again
+ * Subtitles with multiples lines may cause the app to crash
+ * Improved hardware decoding
+ * Some videos may cause the app to crash
+ * Volume control now working
+
+WinRT:
+User Interface
+ * Reworked Home page design
+ * Reworked File Explorer page design (sidebar showing different folders to explore)
+ * Prevent duplicated videos in ViewedVideos collection
+ * Minimize/Expand/Close buttons background color were'nt the same as the main part of the TitleBar => TitleBar is now fully transparent
+ * Add animations in the Music Now Playing view
+ * Bottom MiniPlayer Buttons width increased for touch devices
+ * Easier to access to Hardware Decoding settings
+
+Bugfixes
+ * Remove duplicate artist background picture in the MiniPlayer
+ * Accurately refreshing the list of audio tracks and subtitles
+ * Default speed rate value was wrong (0.5 instead of 1)
+ * Fix Background picture squaling issue in the Win2D Slideshow component
+ * Restore the previous window size when exiting MiniPlayer mode
+ * Don't resume a video when it was paused when leaving the app
+ * Fixed VideoPlayer controls appearing randomly
+ * Open Stream is no longer expanded off screen when a long link is pasted
+ * Prevent playing audio music file while a video is playing (WP only)
+ * Fix navigation bug between home pages
+ * Usual bug squashing
+
+Features
+ * (Temporary hack) Open subtitle file in the folder if it has the same name as the video
+ * Users can also set "File explorer" page as their home page
+
+
 Changes between 1.4.1 and 1.5.0
 -------------------------------
 Release: 7 August 2015
