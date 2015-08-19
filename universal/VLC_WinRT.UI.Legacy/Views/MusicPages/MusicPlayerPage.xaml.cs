@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using Windows.UI;
+using Windows.UI.Input;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Graphics.Canvas.Text;
 using Microsoft.Xaml.Interactivity;
@@ -70,6 +72,13 @@ namespace VLC_WinRT.Views.MusicPages
             FadeIn.Begin();
             Locator.Slideshow.ClearTextList();
         }
+
+        private void PlaceholderInteractionGrid_OnTapped(object sender, TappedRoutedEventArgs args)
+        {
+            if (args.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Touch)
+                Locator.MediaPlaybackViewModel.MouseService.Content_Tapped(sender, args);
+        }
+
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {

@@ -58,6 +58,11 @@
                     <EasingDoubleKeyFrame KeyTime="0:0:0.8"
                                           Value="0" />
                 </DoubleAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderInteractionGrid"
+                                               Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0"
+                                            Value="Visible"/>
+                </ObjectAnimationUsingKeyFrames>
             </Storyboard>
             <Storyboard x:Name="FadeIn">
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ShowPlaylistButtonTranslateTransform"
@@ -105,6 +110,11 @@
                     <EasingDoubleKeyFrame KeyTime="0:0:0.7"
                                           Value="1" />
                 </DoubleAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderInteractionGrid"
+                                               Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0"
+                                            Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
             </Storyboard>
         </Grid.Resources>
         <Grid.RowDefinitions>
@@ -160,6 +170,13 @@
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
         </ListView>
+        <Grid x:Name="PlaceholderInteractionGrid"
+              Grid.Row="0"
+              Grid.RowSpan="3"
+              Background="Transparent"
+              Visibility="Collapsed"
+              Tapped="PlaceholderInteractionGrid_OnTapped"/>
+
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
