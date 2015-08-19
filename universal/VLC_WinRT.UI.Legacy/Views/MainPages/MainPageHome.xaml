@@ -76,6 +76,7 @@
                       Margin="{StaticResource FrameMarginVertical}"
                       MaxHeight="210"
                       IsItemClickEnabled="True"
+                      IsSwipeEnabled="False"
                       ItemsSource="{Binding TopArtists}"
                       SelectionMode="None"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -120,6 +121,7 @@
                     </Grid.ColumnDefinitions>
                     <ListView x:Name="RecommendedArtistListView"
                               IsItemClickEnabled="True"
+                              IsSwipeEnabled="False"
                               DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                               ItemsSource="{Binding RecommendedArtists}"
                               SelectionMode="None"
