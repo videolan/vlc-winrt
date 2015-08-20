@@ -9,13 +9,13 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
         public ArtistAlbumsList()
         {
             this.InitializeComponent();
+            this.SizeChanged += ArtistAlbumsList_SizeChanged;
         }
 
-
-        private void ItemsWrapGrid_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        private void ArtistAlbumsList_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            var itemsWrapGrid = sender as ItemsWrapGrid;
-            TemplateSizer.ComputeAlbums(itemsWrapGrid, itemsWrapGrid.ActualWidth- itemsWrapGrid.Margin.Left- itemsWrapGrid.Margin.Right);
+            var itemsWrapGrid = AlbumsListView.ItemsPanelRoot as ItemsWrapGrid;
+            TemplateSizer.ComputeAlbums(itemsWrapGrid, AlbumsListView.ActualWidth - itemsWrapGrid.Margin.Left - itemsWrapGrid.Margin.Right);
         }
     }
 }
