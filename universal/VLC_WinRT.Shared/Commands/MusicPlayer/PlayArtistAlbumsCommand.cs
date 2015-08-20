@@ -10,6 +10,7 @@ namespace VLC_WinRT.Commands.MusicPlayer
     {
         public override async void Execute(object parameter)
         {
+            Locator.NavigationService.GoBack_HideFlyout();
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             if (parameter is ArtistItem)
             {
