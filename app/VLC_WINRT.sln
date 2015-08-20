@@ -44,22 +44,29 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WinRT.ShareBackground",
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC_WinRT.Slideshow", "..\universal\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.shproj", "{AD0C8B4F-7A03-42CC-B8DA-BF8D50DF822B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WinRT.Universal", "..\universal\VLC_WinRT.Universal\VLC_WinRT.Universal.csproj", "{7B5C5B10-85F4-491A-94FA-755D253FF609}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\universal\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems*{db1dea15-00b8-4707-8c70-53431c4fa754}*SharedItemsImports = 13
-		..\universal\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
-		..\universal\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
+		..\universal\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
+		..\universal\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
+		VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
+		..\universal\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
+		..\universal\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
+		..\universal\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
 		..\universal\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
 		VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
-		..\universal\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
+		..\universal\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
+		..\universal\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{544ebd72-c9e2-4c3f-9038-36683f843241}*SharedItemsImports = 4
 		..\wrapper\libVLCX.Shared\libVLCX.Shared.vcxitems*{22532381-be8b-40e0-a881-22ce24342d5a}*SharedItemsImports = 4
 		..\wrapper\libVLCX.Shared\libVLCX.Shared.vcxitems*{5d78f68e-c377-449e-a508-5b8e706d0039}*SharedItemsImports = 4
-		..\universal\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
-		..\universal\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
+		..\universal\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
 		..\universal\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
 		VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
-		..\universal\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
+		..\universal\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
+		..\universal\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
 		..\universal\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{c3f84118-8e3d-4b19-a300-9cb6f7ae0e87}*SharedItemsImports = 13
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{90a8a6a5-091d-4d4e-a8cd-4ec09ddb1047}*SharedItemsImports = 9
 		..\universal\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{d499d5a2-b899-4664-94e8-65c8114582de}*SharedItemsImports = 13
@@ -263,6 +270,38 @@ Global
 		{B1E774A5-87A6-4D23-BEC1-AD157333F69F}.Release|x64.Build.0 = Release|Any CPU
 		{B1E774A5-87A6-4D23-BEC1-AD157333F69F}.Release|x86.ActiveCfg = Release|Any CPU
 		{B1E774A5-87A6-4D23-BEC1-AD157333F69F}.Release|x86.Build.0 = Release|Any CPU
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|ARM.ActiveCfg = Debug|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|ARM.Build.0 = Debug|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|ARM.Deploy.0 = Debug|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Win32.ActiveCfg = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Win32.Build.0 = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Win32.Deploy.0 = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|x64.ActiveCfg = Debug|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|x64.Build.0 = Debug|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|x64.Deploy.0 = Debug|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|x86.ActiveCfg = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|x86.Build.0 = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|x86.Deploy.0 = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Any CPU.ActiveCfg = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|ARM.ActiveCfg = Release|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|ARM.Build.0 = Release|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|ARM.Deploy.0 = Release|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Mixed Platforms.Build.0 = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Mixed Platforms.Deploy.0 = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Win32.ActiveCfg = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Win32.Build.0 = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Win32.Deploy.0 = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|x64.ActiveCfg = Release|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|x64.Build.0 = Release|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|x64.Deploy.0 = Release|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|x86.ActiveCfg = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|x86.Build.0 = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -283,5 +322,6 @@ Global
 		{D499D5A2-B899-4664-94E8-65C8114582DE} = {492C16E2-63FB-49B4-843A-095DB095F15D}
 		{B1E774A5-87A6-4D23-BEC1-AD157333F69F} = {492C16E2-63FB-49B4-843A-095DB095F15D}
 		{AD0C8B4F-7A03-42CC-B8DA-BF8D50DF822B} = {492C16E2-63FB-49B4-843A-095DB095F15D}
+		{7B5C5B10-85F4-491A-94FA-755D253FF609} = {492C16E2-63FB-49B4-843A-095DB095F15D}
 	EndGlobalSection
 EndGlobal
