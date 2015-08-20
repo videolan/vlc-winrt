@@ -1,6 +1,19 @@
+Changes between 1.6.0 and 1.6.1
+-------------------------------
+Release: 21 August 2015
+
+Windows Phone only
+
+Bugfixes
+ * Repeat mode (music player) now works on Windows Phone (was not implemented)
+ * Track, album and artist names in the Slideshow were not updated when a new track is playing
+ * Prevent crash on Windows RT (music player)
+ * Several UI fixes
+
+
 Changes between 1.5.0 and 1.6.0
 -------------------------------
-Release: 19 August 2015
+Release: 20 August 2015
 
 First Windows Phone 8.1 release since v1.3.3.7
 
