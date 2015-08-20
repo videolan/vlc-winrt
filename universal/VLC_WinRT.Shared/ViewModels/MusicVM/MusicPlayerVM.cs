@@ -22,6 +22,7 @@ using VLC_WinRT.BackgroundAudioPlayer.Model;
 using VLC_WinRT.SharedBackground.Database;
 using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
 using System.Collections.Generic;
+using System.Diagnostics;
 using VLC_WinRT.Slideshow.Texts;
 using Windows.UI;
 using Microsoft.Graphics.Canvas.Text;

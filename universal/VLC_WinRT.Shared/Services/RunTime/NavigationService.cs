@@ -125,7 +125,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public bool CanGoBack()
         {
-            if (isFlyout(CurrentPage))
+            if (IsFlyout(CurrentPage))
                 return true;
             if (IsCurrentPageAMainPage())
                 return false;
