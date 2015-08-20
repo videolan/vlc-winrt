@@ -1,6 +1,15 @@
-Changes between 1.6.0 and 1.6.1
+Changes between 1.6.1 and 1.6.2
 -------------------------------
 Release: 21 August 2015
+
+Bugfixes
+ * Playing a video outside the sandbox (in Desktop, for example) crashed the app
+ * Music player was not visible when playing all albums from an artist (flyout not hiding)
+
+
+Changes between 1.6.0 and 1.6.1
+-------------------------------
+Release: 20 August 2015
 
 Windows Phone only
 
