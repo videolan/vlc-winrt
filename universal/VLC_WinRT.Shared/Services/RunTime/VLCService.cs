@@ -77,9 +77,6 @@ namespace VLC_WinRT.Services.RunTime
             }
         }
 
-        private bool _isAudioMedia;
-
-
         public async Task SetMediaFile(IVLCMedia media)
         {
             var mrl_fromType = media.GetMrlAndFromType();
@@ -100,8 +97,6 @@ namespace VLC_WinRT.Services.RunTime
             em.OnEndReached += EmOnOnEndReached;
             em.OnEncounteredError += em_OnEncounteredError;
             em.OnLengthChanged += em_OnLengthChanged;
-            // todo: is there another way? sure there is.
-            _isAudioMedia = media is TrackItem;
         }
 
         private void EmOnOnBuffering(float param0)
