@@ -15,7 +15,7 @@ Changes between 1.5.0 and 1.6.0
 -------------------------------
 Release: 20 August 2015
 
-First Windows Phone 8.1 release since v1.3.3.7
+Windows 8.1 only
 
 Core:
  * Subtitles should be display at the right position and size
