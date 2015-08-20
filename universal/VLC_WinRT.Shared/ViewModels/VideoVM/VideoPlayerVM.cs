@@ -154,26 +154,27 @@ namespace VLC_WinRT.ViewModels.VideoVM
             {
                 return false;
             }
-            // Since we checked Video Libraries capability and SD Card compatibility, and DLNA discovery
-            // I think WinRT will let us create a StorageFolder instance of the parent folder of the file we're playing
-            // Unfortunately, if the video is opened via a filepicker AND that the video is in an unusual folder, like C:/randomfolder/
-            // This might now work, hence the try catch
-            var storageFolderParent = await StorageFolder.GetFolderFromPathAsync(folderPath);
-            // Here we need to search for a file with the same name, but with .srt or .ssa (when supported) extension
-            StorageFile storageFolderParentSubtitle = null;
             try
             {
+                // Since we checked Video Libraries capability and SD Card compatibility, and DLNA discovery
+                // I think WinRT will let us create a StorageFolder instance of the parent folder of the file we're playing
+                // Unfortunately, if the video is opened via a filepicker AND that the video is in an unusual folder, like C:/randomfolder/
+                // This might now work, hence the try catch
+                var storageFolderParent = await StorageFolder.GetFolderFromPathAsync(folderPath);
+                // Here we need to search for a file with the same name, but with .srt or .ssa (when supported) extension
+                StorageFile storageFolderParentSubtitle = null;
                 storageFolderParentSubtitle = await storageFolderParent.GetFileAsync(fileNameWithoutExtensions + ".srt");
+                if (storageFolderParentSubtitle != null)
+                {
+                    Locator.MediaPlaybackViewModel.OpenSubtitleCommand.Execute(storageFolderParentSubtitle);
+                    return true;
+                }
             }
             catch
             {
+                // Folder is not accessible cause outside of the sandbox
+                // OR
                 // File doesn't exist
-                return false;
-            }
-            if (storageFolderParentSubtitle != null)
-            {
-                Locator.MediaPlaybackViewModel.OpenSubtitleCommand.Execute(storageFolderParentSubtitle);
-                return true;
             }
             return false;
         }
