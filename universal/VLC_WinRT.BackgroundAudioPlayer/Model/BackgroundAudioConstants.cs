@@ -31,5 +31,6 @@
         public const string UpdatePlaylist = "updateplaylist";
 
         public const string ClearUVC = "clearuvc";
+        public const string Repeat = "repeat";
     }
 }

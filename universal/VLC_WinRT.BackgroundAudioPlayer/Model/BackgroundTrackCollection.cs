@@ -45,6 +45,7 @@ namespace VLC_WinRT.BackgroundAudioPlayer
         public bool IsRunning { get; set; }
 
         public bool IsShuffled { get; set; }
+        public bool IsRepeatModeEnabled { get; set; } = false;
         #endregion
         #region public fields
 
@@ -97,6 +98,10 @@ namespace VLC_WinRT.BackgroundAudioPlayer
             {
                 SkipToNext();
             }
+            else if (IsRepeatModeEnabled)
+            {
+                StartAgain();
+            }
         }
 
         /// <summary>
@@ -135,6 +140,7 @@ namespace VLC_WinRT.BackgroundAudioPlayer
         {
             Debug.WriteLine("Background audio : Populating playlist");
             var playlist = _backgroundTrackRepository.LoadPlaylist();
+            Playlist.Clear();
             foreach (var item in playlist)
             {
                 Playlist.Add(new BackgroundTrackItem(item.Id, item.AlbumId, item.ArtistId, item.ArtistName,
@@ -154,6 +160,12 @@ namespace VLC_WinRT.BackgroundAudioPlayer
         {
             if (!CanGoNext) return;
             CurrentTrack++;
+            Play();
+        }
+
+        public void StartAgain()
+        {
+            CurrentTrack = 0;
             Play();
         }
 

@@ -384,6 +384,13 @@ namespace VLC_WinRT.Services.RunTime
             Instance.PlaybackRate = desiredRate;
         }
 
+        public void SetRepeat(bool value)
+        {
+            ValueSet messageDictionary = new ValueSet();
+            messageDictionary.Add(BackgroundAudioConstants.Repeat, value);
+            BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
+        }
+
         public void Trim()
         {
             throw new NotImplementedException();

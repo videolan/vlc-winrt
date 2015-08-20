@@ -333,6 +333,10 @@ namespace VLC_WinRT.BackgroundAudioPlayer
             Playlist.SkipToNext();
         }
 
+        private void SetRepeat(bool value)
+        {
+            Playlist.IsRepeatModeEnabled = value;
+        }
         #endregion
 
         #region Background Media Player Handlers
@@ -433,6 +437,13 @@ namespace VLC_WinRT.BackgroundAudioPlayer
                         break;
                     case BackgroundAudioConstants.ClearUVC:
                         ClearUVC();
+                        break;
+                    case BackgroundAudioConstants.Repeat:
+                        var repeatBool = new object();
+                        if (e.Data.TryGetValue(BackgroundAudioConstants.Repeat, out repeatBool))
+                        {
+                            SetRepeat((bool)repeatBool);
+                        }
                         break;
                 }
             }

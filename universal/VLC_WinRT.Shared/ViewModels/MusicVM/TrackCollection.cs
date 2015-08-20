@@ -59,7 +59,16 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public bool Repeat
         {
             get { return _repeat; }
-            set { SetProperty(ref _repeat, value); }
+            set
+            {
+                SetProperty(ref _repeat, value);
+#if WINDOWS_PHONE_APP
+                if (Locator.MediaPlaybackViewModel._mediaService is BGPlayerService)
+                {
+                    ((BGPlayerService) Locator.MediaPlaybackViewModel._mediaService).SetRepeat(value);
+                }
+#endif
+            }
         }
 
 
