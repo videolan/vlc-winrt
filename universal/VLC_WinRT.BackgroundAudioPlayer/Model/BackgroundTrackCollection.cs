@@ -81,10 +81,12 @@ namespace VLC_WinRT.BackgroundAudioPlayer
         {
             Debug.WriteLine("Failed to open the file with Background Media Player");
             if (CurrentTrackItem != null)
+            {
                 BackgroundMediaPlayer.SendMessageToForeground(new ValueSet()
                 {
                     new KeyValuePair<string, object>(BackgroundAudioConstants.MFFailed, ((BackgroundTrackItem)CurrentTrackItem).Id)
                 });
+            }
         }
 
         private void MediaPlayerOnCurrentStateChanged(MediaPlayer sender, object args)
