@@ -104,9 +104,13 @@ Enable debug mode for the app:
 Enable-AppxDebug  9519ba58-7ad6-4c4e-97ed-bfc2135a0d19_1.0.0.0_x86__2c7ztm58ext6g
 # Debugging has been enabled for 9519ba58-7ad6-4c4e-97ed-bfc2135a0d19_1.0.0.0_x86__2c7ztm58ext6g.
 
-5) Install Multilingual Toolkit for Visual Studio
+5) Visual Studios extensions and toolkits
 -------------------------------------------------
-Download link : https://dev.windows.com/en-us/develop/multilingual-app-toolkit
+ * Multilingual Toolkit for Visual Studio
+https://dev.windows.com/en-us/develop/multilingual-app-toolkit
+
+ * SQLite for Windows 8.1 + SQlite for Windows Phone 8.1 + SQLite for Windows Universal
+http://sqlite.org/download.html
 
 6) Build
 --------
