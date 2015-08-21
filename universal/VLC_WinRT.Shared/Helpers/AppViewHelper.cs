@@ -213,10 +213,14 @@ namespace VLC_WinRT.Helpers
 
         public static double SetTitleBarHeight()
         {
+#if WINDOWS_PHONE_APP
+            return 0;
+#else
             var titleBarInstance = GetTitleBarInstanceOnW10();
             if (titleBarInstance == null) return DefaultTitleBarHeight;
             if (titleBarInstance.Height == 0) return DefaultTitleBarHeight;
             return titleBarInstance.Height;
+#endif
         }
 
         public static dynamic GetTitleBarInstanceOnW10()
