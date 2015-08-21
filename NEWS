@@ -2,6 +2,9 @@ Changes between 1.6.1 and 1.6.2
 -------------------------------
 Release: 21 August 2015
 
+Windows 8.1
+Windows Phone Beta channel
+
 Bugfixes
  * Playing a video outside the sandbox (in Desktop, for example) crashed the app
  * Music player was not visible when playing all albums from an artist (flyout not hiding)
@@ -11,7 +14,7 @@ Changes between 1.6.0 and 1.6.1
 -------------------------------
 Release: 20 August 2015
 
-Windows Phone only
+Windows Phone Beta channel only
 
 Bugfixes
  * Repeat mode (music player) now works on Windows Phone (was not implemented)
