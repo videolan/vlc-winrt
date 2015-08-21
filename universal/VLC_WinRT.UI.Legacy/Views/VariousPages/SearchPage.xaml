@@ -26,9 +26,14 @@
                                    DataContext="{Binding Source={StaticResource Locator}, Path=SearchVM}"
                                    Text="{Binding SearchTag}" />
         <TextBlock Grid.Row="1"
-                   Text="Search"
                    Style="{StaticResource SubheaderTextBlockStyle}"
-                   Margin="{StaticResource FrameMargin}" />
+                   Margin="{StaticResource FrameMargin}">
+            <Run Text="Search"/>
+            <Run Text="{Binding ResultsCount}"
+                 FontSize="20"/>
+            <Run Text="results"
+                 FontSize="20"/>
+        </TextBlock>
         <Grid x:Name="MusicSearch"
               Grid.Row="3"
               Visibility="{Binding MusicSearchEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
