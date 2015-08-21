@@ -2,19 +2,21 @@ Changes between 1.6.1 and 1.6.2
 -------------------------------
 Release: 21 August 2015
 
-Windows 8.1
-Windows Phone Beta channel
+Core:
+ * Added libgnu_tls -> should read videos from OneDrive link now
 
 Bugfixes
  * Playing a video outside the sandbox (in Desktop, for example) crashed the app
  * Music player was not visible when playing all albums from an artist (flyout not hiding)
+ * Hardware acceleration is now enabled by default
+ * Fix crashes when calling Background audio agent
+ * Improved responsive design of the Music page : when window is wide enough, use an horizontal list for "artist, albums, songs, playlist", and a combobox if the window is in snap mode
+ * Improved design of Playlist page
 
 
 Changes between 1.6.0 and 1.6.1
 -------------------------------
 Release: 20 August 2015
-
-Windows Phone Beta channel only
 
 Bugfixes
  * Repeat mode (music player) now works on Windows Phone (was not implemented)
@@ -26,8 +28,6 @@ Bugfixes
 Changes between 1.5.0 and 1.6.0
 -------------------------------
 Release: 20 August 2015
-
-Windows 8.1 only
 
 Core:
  * Subtitles should be display at the right position and size
