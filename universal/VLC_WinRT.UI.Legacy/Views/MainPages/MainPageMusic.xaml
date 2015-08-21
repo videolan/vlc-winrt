@@ -33,7 +33,8 @@
                       DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                       ItemsSource="{Binding MusicViewCollection}"
                       SelectedItem="{Binding MusicView, Mode=TwoWay}"
-                      Style="{StaticResource VLCComboBox}">
+                      Style="{StaticResource VLCComboBox}"
+                      Visibility="Collapsed">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Margin="0,0,6,0"
@@ -41,43 +42,80 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
+            <ListView Grid.Column="1"
+                      x:Name="PanelsListView"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+                      ItemsSource="{Binding MusicViewCollection}"
+                      SelectedItem="{Binding MusicView, Mode=TwoWay}"
+                      IsSwipeEnabled="False"
+                      IsItemClickEnabled="False"
+                      SelectionMode="Single"
+                      ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                      Visibility="Collapsed">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Orientation="Horizontal"
+                                         Height="50"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <RepositionThemeTransition />
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="Title"
+                                   Text="{Binding}"
+                                   Foreground="{ThemeResource BasicForeground}"
+                                   VerticalAlignment="Center"
+                                   FontSize="19"
+                                   FontWeight="SemiLight" 
+                                   Width="90"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <musicPanesControls:AlbumsCollectionButtons Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='0'}" />
-                <AppBarButton Grid.Column="1"
-                			  Label="Play all"
-                              HorizontalAlignment="Right"
-				              Foreground="{StaticResource MainColor}"
+                <AppBarButton x:Name="PlayAllButton" 
+                              Grid.Column="1"
+                              Foreground="{StaticResource MainColor}"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Command="{Binding PlayAllSongsCommand}"
-                              Margin="0,0,12,0">
+                              MinWidth="50"
+                              HorizontalAlignment="Stretch"
+                              Margin="0,0,6,0">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource PlaySymbol}"
-                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                                  FontFamily="ms-appx:segmdl2.ttf#Segoe MDL2 Assets" />
                     </AppBarButton.Icon>
                 </AppBarButton>
                   <AppBarButton x:Name="ShuffleButton"
-			                    Grid.Column="2"
+			                    Grid.Column="3"
                   				Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='0,1,2'}"
-				                Label="Shuffle all"
 				                Style="{StaticResource AppBarButtonStyleHorizontal}"
-				                Margin="6,0"
 				                Foreground="{StaticResource MainColor}"
-				                Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}">
+                              Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}"
+                              MinWidth="50"
+                              HorizontalAlignment="Stretch">
 				      <AppBarButton.Icon>
 				          <FontIcon Glyph="{StaticResource ShuffleSymbol}"
-				                    FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+				                    FontFamily="ms-appx:segmdl2.ttf#Segoe MDL2 Assets" />
 				      </AppBarButton.Icon>
 				  </AppBarButton>
 
                 <AppBarButton x:Uid="NewPlaylist"
-                              Grid.Column="3"
+                              Grid.Column="5"
                               Label="new playlist"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Foreground="{StaticResource MainColor}"
@@ -87,10 +125,63 @@
                               Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='3'}">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource AddSymbol}"
-                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                                  FontFamily="ms-appx:segmdl2.ttf#Segoe MDL2 Assets" />
                     </AppBarButton.Icon>
                 </AppBarButton>
             </Grid>
         </Grid>
+        
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Wide">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PanelsListView"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicViewComboBox"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayAllButton"
+                                                       Storyboard.TargetProperty="Label">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="play all" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ShuffleButton"
+                                                       Storyboard.TargetProperty="Label">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="shuffle" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PanelsListView"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicViewComboBox"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayAllButton"
+                                                       Storyboard.TargetProperty="Label">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ShuffleButton"
+                                                       Storyboard.TargetProperty="Label">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>
