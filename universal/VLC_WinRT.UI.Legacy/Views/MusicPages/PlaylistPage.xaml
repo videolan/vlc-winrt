@@ -21,93 +21,103 @@
               MinWidth="320">
         <ListView.Header>
             <Grid x:Name="HeaderGrid"
-                  Height="Auto">
+                  Background="Black"
+                  Height="350">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                    <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Row="1"
-                      Grid.Column="0"
-                      Grid.ColumnSpan="2"
-                      VerticalAlignment="Center"
-                      Margin="0,0,0,30">
+
+                <Image Grid.RowSpan="4"
+                       Source="{Binding CurrentTrackCollection.Playlist[0].Thumbnail}"
+                       Stretch="UniformToFill"
+                       Opacity="0.4" />
+
+                <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                        <ColumnDefinition MinWidth="110"
-                                          MaxWidth="200"
-                                          Width="2*" />
-                        <ColumnDefinition Width="12" />
-                        <ColumnDefinition Width="3*" />
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="12" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="12" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Image Grid.Column="1"
-                           Grid.Row="0"
-                           Grid.RowSpan="3"
-                           x:Name="HeaderArtistImage"
-                           Source="{Binding CurrentTrackCollection.Playlist[0].Thumbnail}"
-                           Stretch="Uniform"
-                           Opacity="1"
-                           VerticalAlignment="Top" />
-                    <TextBlock Grid.Row="0"
-                               Grid.Column="3"
-                               Grid.ColumnSpan="3"
-                               VerticalAlignment="Top"
-                               TextWrapping="NoWrap"
-                               TextTrimming="CharacterEllipsis">
-                        <Run Text="{Binding CurrentTrackCollection.Name}"
-                             FontWeight="Light"
-                             FontSize="22" />
-                    </TextBlock>
-                    <!--<AppBarButton Grid.Row="2"
-                                  Grid.Column="4"
+                    <AppBarButton Grid.Column="0"
                                   Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                  Icon="{Binding CurrentAlbum.Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
+                                  Margin="{StaticResource FrameMarginLeft}"
                                   VerticalAlignment="Top"
-                                  Command="{Binding CurrentAlbum.FavoriteAlbum}"
-                                  CommandParameter="{Binding CurrentAlbum}" />-->
-                    <AppBarButton Grid.Row="1"
-                                  Grid.Column="4"
+                                  HorizontalAlignment="Stretch"
+                                  DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                                  Command="{Binding GoBackCommand}"
+                                  Width="50">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                                      Margin="0,3,0,0"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <TextBlock Grid.Column="1"
+                               Grid.Row="0"
+                               Margin="{StaticResource FrameMarginRight}"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="NoWrap"
+                               VerticalAlignment="Top"
+                               Style="{StaticResource SubheaderTextBlockStyle}">
+                        <Run Text="{Binding CurrentTrackCollection.Name, Converter={StaticResource AlbumStringConverter}}" />
+                    </TextBlock>
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="1"
+                               Margin="{StaticResource FrameMarginRight}"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="NoWrap"
+                               FontSize="16"
+                               FontWeight="Light"
+                               Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}">
+                <Run Text="{Binding CurrentTrackCollection.Playlist.Count}" />
+                <Run Text="tracks" />
+                    </TextBlock>
+                </Grid>
+
+                <Grid Grid.Row="3"
+                      Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+                      Height="50">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="36" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <AppBarButton Grid.Column="1"
+                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  Label="Play all"
+                                  Command="{Binding CurrentTrackCollection.PlayTrackCollCommand}"
+                                  CommandParameter="0">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource PlaySymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton Grid.Column="0"
                                   Label="delete selected"
                                   Style="{StaticResource AppBarButtonStyleHorizontal}"
                                   Visibility="{Binding CurrentTrackCollection.SelectedTracks.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
-                                  VerticalAlignment="Top"
                                   Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.DeletePlaylistTrackCommand}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource DeleteSymbol}"
                                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
                         </AppBarButton.Icon>
                     </AppBarButton>
-                    <AppBarButton Grid.Row="1"
-                                  Grid.Column="3"
+                    <AppBarButton Grid.Column="3"
                                   Style="{StaticResource AppBarButtonStyleHorizontal}"
                                   Label="delete playlist"
-                                  VerticalAlignment="Top"
                                   DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                                   Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.DeletePlaylistCommand}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource DeleteSymbol}"
-                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                    <AppBarButton Grid.Row="2"
-                                  Grid.Column="3"
-                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                  Label="Play all"
-                                  VerticalAlignment="Top"
-                                  Command="{Binding CurrentTrackCollection.PlayTrackCollCommand}"
-                                  CommandParameter="0">
-                        <AppBarButton.Icon>
-                            <FontIcon Glyph="{StaticResource PlaySymbol}"
                                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
                         </AppBarButton.Icon>
                     </AppBarButton>
