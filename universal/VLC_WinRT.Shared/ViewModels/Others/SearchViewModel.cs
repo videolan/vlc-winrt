@@ -22,13 +22,35 @@ namespace VLC_WinRT.ViewModels.Others
         public ObservableCollection<AlbumItem> SearchResultsAlbums
         {
             get { return _searchResultsAlbums; }
-            set { SetProperty(ref _searchResultsAlbums, value); }
+            set
+            {
+                SetProperty(ref _searchResultsAlbums, value);
+            }
         }
 
         public ObservableCollection<VideoItem> SearchResultsVideos
         {
             get { return _searchResultsVideos; }
-            set { SetProperty(ref _searchResultsVideos, value); }
+            set
+            {
+                SetProperty(ref _searchResultsVideos, value);
+            }
+        }
+
+        public int ResultsCount
+        {
+            get
+            {
+                if (_musicSearchEnabled)
+                {
+                    return SearchResultsAlbums.Count;
+                }
+                else if (_videoSearchEnabled)
+                {
+                    return SearchResultsVideos.Count;
+                }
+                return 0;
+            }
         }
 
         public string SearchTag
@@ -51,6 +73,7 @@ namespace VLC_WinRT.ViewModels.Others
             {
                 SetProperty(ref _musicSearchEnabled, value);
                 _videoSearchEnabled = !value;
+                _searchResultsVideos.Clear();
                 OnPropertyChanged("VideoSearchEnabled");
                 if (value && !string.IsNullOrEmpty(SearchTag))
                 {
@@ -66,12 +89,24 @@ namespace VLC_WinRT.ViewModels.Others
             {
                 SetProperty(ref _videoSearchEnabled, value);
                 _musicSearchEnabled = !value;
+                _searchResultsAlbums.Clear();
                 OnPropertyChanged("MusicSearchEnabled");
                 if (value && !string.IsNullOrEmpty(SearchTag))
                 {
                     SearchHelpers.SearchVideos(SearchTag, SearchResultsVideos);
                 }
             }
+        }
+
+        public SearchViewModel()
+        {
+            SearchResultsAlbums.CollectionChanged += SearchResults_CollectionChanged;
+            SearchResultsVideos.CollectionChanged += SearchResults_CollectionChanged;
+        }
+
+        private void SearchResults_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(ResultsCount));
         }
     }
 }
