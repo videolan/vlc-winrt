@@ -69,8 +69,9 @@
                       Command="{Binding DisplayMenuBarControlToggleCommand}"
                       Width="50">
             <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource VerticalDotsSymbol}"
-                          FontFamily="Segoe UI Symbol" />
+                <FontIcon Glyph="{StaticResource MenuOpenRight}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" 
+                          Margin="0,0,-6,0"/>
             </AppBarButton.Icon>
         </AppBarButton>
 
