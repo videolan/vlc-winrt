@@ -386,9 +386,15 @@ namespace VLC_WinRT.Services.RunTime
 
         public void SetRepeat(bool value)
         {
-            ValueSet messageDictionary = new ValueSet();
-            messageDictionary.Add(BackgroundAudioConstants.Repeat, value);
-            BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
+            try
+            {
+                ValueSet messageDictionary = new ValueSet();
+                messageDictionary.Add(BackgroundAudioConstants.Repeat, value);
+                BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
+            }
+            catch
+            {
+            }
         }
 
         public void Trim()

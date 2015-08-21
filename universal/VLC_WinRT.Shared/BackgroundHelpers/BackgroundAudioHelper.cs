@@ -36,9 +36,15 @@ namespace VLC_WinRT.BackgroundHelpers
         public void RestorePlaylist()
         {
 #if WINDOWS_PHONE_APP
-            var msgDictionanary = new ValueSet();
-            msgDictionanary.Add(BackgroundAudioConstants.RestorePlaylist, "");
-            BackgroundMediaPlayer.SendMessageToBackground(msgDictionanary);
+            try
+            {
+                var msgDictionanary = new ValueSet();
+                msgDictionanary.Add(BackgroundAudioConstants.RestorePlaylist, "");
+                BackgroundMediaPlayer.SendMessageToBackground(msgDictionanary);
+            }
+            catch
+            {
+            }
 #endif
         }
 
@@ -47,26 +53,44 @@ namespace VLC_WinRT.BackgroundHelpers
             var bgTracks = trackItems.Select(backgroundTrackItem => new BackgroundTrackItem(backgroundTrackItem.Id, backgroundTrackItem.AlbumId, backgroundTrackItem.ArtistId, backgroundTrackItem.ArtistName, backgroundTrackItem.AlbumName, backgroundTrackItem.Name, backgroundTrackItem.Path)).ToList();
             await Locator.MusicPlayerVM.BackgroundTrackRepository.AddBunchTracks(bgTracks);
 #if WINDOWS_PHONE_APP
-            var msgDictionary = new ValueSet();
-            msgDictionary.Add(BackgroundAudioConstants.UpdatePlaylist, "");
-            BackgroundMediaPlayer.SendMessageToBackground(msgDictionary);
+            try
+            {
+                var msgDictionary = new ValueSet();
+                msgDictionary.Add(BackgroundAudioConstants.UpdatePlaylist, "");
+                BackgroundMediaPlayer.SendMessageToBackground(msgDictionary);
+            }
+            catch
+            {
+            }
 #endif
         }
 
         public async Task AddToPlaylist(BackgroundTrackItem trackItem)
         {
-            var list = new List<BackgroundTrackItem> { trackItem };
-            await AddToPlaylist(list);
+            try
+            {
+                var list = new List<BackgroundTrackItem> { trackItem };
+                await AddToPlaylist(list);
+            }
+            catch
+            {
+            }
         }
 
         public async Task ResetCollection(ResetType resetType)
         {
             Locator.MusicPlayerVM.BackgroundTrackRepository.Clear();
 #if WINDOWS_PHONE_APP
-            ValueSet messageDictionary = new ValueSet();
-            messageDictionary.Add(BackgroundAudioConstants.ResetPlaylist, (int)resetType);
-            BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
-            await Task.Delay(500);
+            try
+            {
+                ValueSet messageDictionary = new ValueSet();
+                messageDictionary.Add(BackgroundAudioConstants.ResetPlaylist, (int)resetType);
+                BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
+                await Task.Delay(500);
+            }
+            catch
+            {
+            }
 #endif
         }
     }
