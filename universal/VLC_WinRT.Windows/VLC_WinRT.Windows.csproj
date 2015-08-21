@@ -574,6 +574,9 @@
     <Content Include="..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\misc\libfingerprinter_plugin.dll">
       <Link>plugins\misc\libfingerprinter_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\misc\libgnutls_plugin.dll">
+      <Link>plugins\misc\libgnutls_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\misc\liblogger_plugin.dll">
       <Link>plugins\misc\liblogger_plugin.dll</Link>
     </Content>
