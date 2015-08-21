@@ -358,9 +358,6 @@
     <Content Include="..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\liblpcm_plugin.dll">
       <Link>plugins\codec\liblpcm_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libmft_plugin.dll">
-      <Link>plugins\codec\libmft_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libmpeg_audio_plugin.dll">
       <Link>plugins\codec\libmpeg_audio_plugin.dll</Link>
     </Content>
