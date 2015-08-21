@@ -649,7 +649,8 @@ namespace VLC_WinRT.ViewModels
                     var em = vlcService.MediaPlayer.eventManager();
                     em.OnTrackAdded += Locator.MediaPlaybackViewModel.OnTrackAdded;
                     em.OnTrackDeleted += Locator.MediaPlaybackViewModel.OnTrackDeleted;
-
+                    var mem = vlcService.MediaPlayer.media().eventManager();
+                    mem.OnParsedChanged += Mem_OnParsedChanged;
                     if (!autoPlay) return;
                     vlcService.Play();
                     break;
@@ -976,6 +977,13 @@ namespace VLC_WinRT.ViewModels
             }
         }
 
+        private void Mem_OnParsedChanged(bool b)
+        {
+            if (!(_mediaService is VLCService)) return;
+            var vlcService = (VLCService)_mediaService;
+            var chapters = vlcService.MediaPlayer.chapterDescription(-1);
+            Debug.WriteLine(chapters.Count);
+        }
         #endregion
 
         #region MediaTransportControls
