@@ -457,7 +457,7 @@ namespace VLC_WinRT.ViewModels.Settings
 #endif
                 if (hardwareAccelerationEnabled == null)
                 {
-                    _hardwareAcceleration = false;
+                    _hardwareAcceleration = true;
                 }
                 else
                 {
