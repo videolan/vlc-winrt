@@ -3,7 +3,7 @@ Changes between 1.6.1 and 1.6.2
 Release: 21 August 2015
 
 Core:
- * Added libgnu_tls -> should read videos from OneDrive link now
+ * Added libgnutls -> should read videos from OneDrive link now
 
 Bugfixes
  * Playing a video outside the sandbox (in Desktop, for example) crashed the app
