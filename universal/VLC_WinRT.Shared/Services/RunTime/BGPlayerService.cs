@@ -64,19 +64,25 @@ namespace VLC_WinRT.Services.RunTime
                 dispatchTimer.Tick += dispatchTimer_Tick;
             });
 
-            if (Instance?.CurrentState == MediaPlayerState.Playing)
+            try
             {
-                if (!dispatchTimer.IsEnabled)
+                if (Instance?.CurrentState == MediaPlayerState.Playing)
                 {
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    if (!dispatchTimer.IsEnabled)
                     {
-                        Locator.MediaPlaybackViewModel.IsPlaying = true;
-                        Instance_CurrentStateChanged(null, new RoutedEventArgs());
-                    });
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        {
+                            Locator.MediaPlaybackViewModel.IsPlaying = true;
+                            Instance_CurrentStateChanged(null, new RoutedEventArgs());
+                        });
+                    }
                 }
+                if (Instance != null && PlayerInstanceReady.Task?.Status != TaskStatus.RanToCompletion)
+                    PlayerInstanceReady.SetResult(true);
             }
-            if (Instance != null && PlayerInstanceReady.Task?.Status != TaskStatus.RanToCompletion)
-                PlayerInstanceReady.SetResult(true);
+            catch
+            {
+            }
         }
 
         /// <summary>
