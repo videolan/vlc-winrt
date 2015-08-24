@@ -48,25 +48,14 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
 //    creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
 //#endif
 
-    // Feature sets supported
-    const D3D_FEATURE_LEVEL featureLevels[] =
-    {
-        D3D_FEATURE_LEVEL_11_1,
-        D3D_FEATURE_LEVEL_11_0,
-        D3D_FEATURE_LEVEL_10_1,
-        D3D_FEATURE_LEVEL_10_0,
-        D3D_FEATURE_LEVEL_9_3,
-        D3D_FEATURE_LEVEL_9_2,
-        D3D_FEATURE_LEVEL_9_1,
-    };
 
     hr = D3D11CreateDevice(
         nullptr,
         D3D_DRIVER_TYPE_HARDWARE,
         nullptr,
         creationFlags,
-        featureLevels,
-        ARRAYSIZE(featureLevels),
+        NULL,
+        0,
         D3D11_SDK_VERSION,
         &cp_d3dDevice,
         nullptr,
