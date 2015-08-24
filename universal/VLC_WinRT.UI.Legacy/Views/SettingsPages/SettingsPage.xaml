@@ -12,8 +12,7 @@
           DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
             <StackPanel x:Name="RootPanel"
-                        Margin="{StaticResource FrameMarginBothSidesWithTitleMargin}"
-                        MaxWidth="550">
+                        Margin="{StaticResource FrameMarginBothSidesWithTitleMargin}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
