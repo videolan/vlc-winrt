@@ -13,7 +13,10 @@ namespace VLC_WinRT.Commands.Navigation
             if (lv.ScrollDirection == ScrollDirection.Bottom)
             {
                 if (Locator.MediaPlaybackViewModel.TrackCollection.IsRunning && Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music)
+                {
+                    Locator.MainVM.MenuBarDisplayed = false;
                     App.SplitShell.HideTopBar();
+                }
             }
             else if (lv.ScrollDirection == ScrollDirection.Top)
             {
