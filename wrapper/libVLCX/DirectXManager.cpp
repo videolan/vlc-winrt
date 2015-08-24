@@ -43,28 +43,55 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     ComPtr<IDXGIAdapter> dxgiAdapter;
     ComPtr<IDXGIDevice1> dxgiDevice;
 
+    UINT i_factoryFlags = 0;
+#ifndef NDEBUG
+    i_factoryFlags |= DXGI_CREATE_FACTORY_DEBUG;
+#endif
+    hr = CreateDXGIFactory2( i_factoryFlags, __uuidof( IDXGIFactory2 ), &dxgiFactory );
+    CheckDXOperation( hr, "Could not create DXGI factory" );
+
     UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT | D3D11_CREATE_DEVICE_VIDEO_SUPPORT;
-//#ifndef NDEBUG
-//    creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
-//#endif
+#ifndef NDEBUG
+    creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
+#endif
 
+    cp_d3dDevice = nullptr;
+    while( cp_d3dDevice == nullptr )
+    {
+        UINT i_adapter = 0;
+        while( cp_d3dDevice == nullptr )
+        {
+            hr = dxgiFactory->EnumAdapters( i_adapter++, &dxgiAdapter );
+            if( FAILED( hr ) )
+            {
+                if( creationFlags & D3D11_CREATE_DEVICE_VIDEO_SUPPORT )
+                {
+                    /* try again without this flag */
+                    i_adapter = 0;
+                    creationFlags &= ~D3D11_CREATE_DEVICE_VIDEO_SUPPORT;
+                }
+                else
+                    break; /* no more flags to remove */
+            }
 
-    hr = D3D11CreateDevice(
-        nullptr,
-        D3D_DRIVER_TYPE_HARDWARE,
-        nullptr,
-        creationFlags,
-        NULL,
-        0,
-        D3D11_SDK_VERSION,
-        &cp_d3dDevice,
-        nullptr,
-        &cp_d3dContext
-        );
+            hr = D3D11CreateDevice(
+                dxgiAdapter.Get(),
+                D3D_DRIVER_TYPE_UNKNOWN,
+                nullptr,
+                creationFlags,
+                NULL,
+                0,
+                D3D11_SDK_VERSION,
+                &cp_d3dDevice,
+                nullptr,
+                &cp_d3dContext
+                );
+            if( FAILED( hr ) )
+                cp_d3dDevice = nullptr;
+        }
+    }
     CheckDXOperation(hr, "Could not D3D11CreateDevice");
     CheckDXOperation(cp_d3dDevice.As(&dxgiDevice), "Could not transform to DXGIDevice");
-    CheckDXOperation(dxgiDevice->GetAdapter(&dxgiAdapter), "Could not  get adapter");
-    CheckDXOperation(dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory)), "Could not get adapter parent");
 
     //Create the swapchain
     DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
