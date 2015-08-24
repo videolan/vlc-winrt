@@ -21,25 +21,11 @@
 #include <wrl.h>
 #include <wrl/client.h>
 
-#include <dxgi.h>
-#include <dxgi1_2.h>
-#include <dxgi1_3.h>
-#include <d3d11_1.h>
-#include <d2d1_2.h>
-
 #include "windows.ui.xaml.media.dxinterop.h"
 
 #include "DirectXManager.h"
 
 using namespace libVLCX;
-using namespace Platform;
-using namespace Windows::UI::Xaml::Media::Imaging;
-using namespace Windows::UI::Core;
-using namespace Windows::UI;
-using namespace Windows::Foundation;
-using namespace Windows::System::Threading;
-using namespace D2D1;
-using namespace Windows::Graphics::Display;
 
 DirectXManger::DirectXManger()
 {
@@ -56,22 +42,11 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     ComPtr<IDXGIFactory2> dxgiFactory;
     ComPtr<IDXGIAdapter> dxgiAdapter;
     ComPtr<IDXGIDevice1> dxgiDevice;
-    ComPtr<ID3D11Device> d3dDevice;
-    ComPtr<ID2D1Device1> d2dDevice;
-    ComPtr<ID2D1Factory2> d2dFactory;
 
     UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT | D3D11_CREATE_DEVICE_VIDEO_SUPPORT;
 //#ifndef NDEBUG
 //    creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
 //#endif
-    const auto displayInfo = Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
-
-    D2D1_BITMAP_PROPERTIES1 bitmapProperties =
-        BitmapProperties1(
-        D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
-        PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM, D2D1_ALPHA_MODE_PREMULTIPLIED),
-        displayInfo->RawDpiX,
-        displayInfo->RawDpiY);
 
     // Feature sets supported
     const D3D_FEATURE_LEVEL featureLevels[] =
@@ -101,15 +76,6 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     CheckDXOperation(cp_d3dDevice.As(&dxgiDevice), "Could not transform to DXGIDevice");
     CheckDXOperation(dxgiDevice->GetAdapter(&dxgiAdapter), "Could not  get adapter");
     CheckDXOperation(dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory)), "Could not get adapter parent");
-
-
-    D2D1_FACTORY_OPTIONS options;
-    ZeroMemory(&options, sizeof(D2D1_FACTORY_OPTIONS));
-
-#if defined(_DEBUG)
-    // If the project is in a debug build, enable Direct2D debugging via SDK Layers.
-    options.debugLevel = D2D1_DEBUG_LEVEL_INFORMATION;
-#endif
 
     //Create the swapchain
     DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
