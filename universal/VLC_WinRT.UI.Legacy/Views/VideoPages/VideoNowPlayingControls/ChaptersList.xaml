@@ -1,0 +1,60 @@
+﻿<UserControl
+    x:Class="VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls.ChaptersList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+             d:DesignWidth="400"
+             VerticalAlignment="Bottom">
+    <UserControl.Visibility>
+        <Binding Source="{Binding Source={StaticResource Locator}, Path=VideoVm}"
+                 Path="IsVideoPlayerChaptersListVisible"
+                 Converter="{StaticResource BooleanToVisibilityConverter}" />
+    </UserControl.Visibility>
+
+    <Border x:Name="RootGrid"
+            Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+            RequestedTheme="Dark"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Width="300"
+            Padding="{StaticResource FrameMarginBothSides}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*"
+                               MaxHeight="200" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="GO TO CHAPTER"
+                       Style="{StaticResource BaselineTextStyle}"
+                       Foreground="{ThemeResource BasicForeground}"
+                       VerticalAlignment="Center"
+                       Margin="0,-12,0,0" />
+            <Button Style="{StaticResource TextBlockButtonStyle}"
+                    Content="{StaticResource CloseSymbol}"
+                    FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                    FontSize="22"
+                    Margin="0,-3,0,0"
+                    HorizontalAlignment="Right"
+                    Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerChaptersListVisible}" />
+            <ListView Grid.Row="1"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                      ItemsSource="{Binding Chapters}"
+                      SelectedItem="{Binding CurrentChapter, Mode=TwoWay}"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"
+                                   Foreground="White"
+                                   VerticalAlignment="Center" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Border>
+</UserControl>
