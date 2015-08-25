@@ -37,13 +37,11 @@ namespace VLC_WinRT.Model.Video
             var splitScreen = (size == TemplateSize.Compact) ? 3 : 2;
             if (width > tileSize*splitScreen)
             {
-                wrapGrid.ItemWidth = tileSize;
-                wrapGrid.ItemHeight = tileSize + contentGridWindows;
+                wrapGrid.ItemHeight = wrapGrid.ItemWidth = tileSize;
             }
             else
             {
-                wrapGrid.ItemWidth = (width.Value / splitScreen);
-                wrapGrid.ItemHeight = wrapGrid.ItemWidth + contentGridWindows;
+                wrapGrid.ItemHeight  = wrapGrid.ItemWidth = (width.Value / splitScreen);
             }
         }
     }
