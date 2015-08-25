@@ -22,11 +22,16 @@
                 <RowDefinition Height="40" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Text="VOLUME"
-                       Style="{StaticResource BaselineTextStyle}"
+            <TextBlock Style="{StaticResource BaselineTextStyle}"
                        Foreground="{ThemeResource BasicForeground}"
                        VerticalAlignment="Center"
-                       Margin="0,-12,0,0" />
+                       Margin="0,-12,0,0">
+                <Run Text="VOLUME"/>
+                <Run Text="{Binding Volume}"
+                     Foreground="{StaticResource MainColor}"
+                     FontSize="26"
+                     FontWeight="Light"/>
+            </TextBlock>
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     Content="{StaticResource CloseSymbol}"
                     FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
