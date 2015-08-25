@@ -130,7 +130,8 @@
                                   Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   VerticalAlignment="Center"
-                                  Command="{Binding PlayOrPauseCommand}">
+                                  Command="{Binding PlayOrPauseCommand}"
+                                  Foreground="{StaticResource MainColor}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PlaySymbol}"
                                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
@@ -143,7 +144,8 @@
                                   Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   VerticalAlignment="Center"
-                                  Command="{Binding PlayOrPauseCommand}">
+                                  Command="{Binding PlayOrPauseCommand}"
+                                  Foreground="{StaticResource MainColor}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PauseSymbol}"
                                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"

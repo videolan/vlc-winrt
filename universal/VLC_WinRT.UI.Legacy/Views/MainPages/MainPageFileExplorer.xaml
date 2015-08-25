@@ -33,7 +33,7 @@
               Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}">
             <ListView ItemsSource="{Binding Source={StaticResource StorageVMsGroupedByType}}"
                       SelectedItem="{Binding CurrentStorageVM}"
-                      ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
+                      ItemContainerStyle="{StaticResource ListViewItemContainerStyleNoSelectCheck}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="SelectionChanged">
                         <triggers:InvokeCommandAction Command="{Binding RemovableDeviceClicked}"

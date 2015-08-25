@@ -366,7 +366,8 @@
                     HorizontalAlignment="Left"
                     Command="{Binding PlayOrPauseCommand}"
                     Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
-                    Holding="PlayPauseHold">
+                    Holding="PlayPauseHold"
+                    Foreground="{StaticResource MainColor}">
                 <FontIcon x:Name="PlayIcon"
                           Glyph="{StaticResource PlaySymbol}"
                           FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
@@ -375,7 +376,8 @@
                     HorizontalAlignment="Left"
                     Command="{Binding PlayOrPauseCommand}"
                     Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Holding="PlayPauseHold">
+                    Holding="PlayPauseHold"
+                    Foreground="{StaticResource MainColor}">
                 <FontIcon x:Name="PauseIcon"
                           Glyph="{StaticResource PauseSymbol}"
                           FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />

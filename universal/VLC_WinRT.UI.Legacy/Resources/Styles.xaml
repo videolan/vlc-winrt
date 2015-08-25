@@ -917,7 +917,7 @@
                                 <Setter Property="BorderThickness"
                                         Value="1" />
                                 <Setter Property="BorderBrush"
-                                        Value="{ThemeResource BasicForeground}" />
+                                        Value="{StaticResource MainColor}" />
                                 <Setter Property="Background"
                                         Value="Transparent" />
                                 <Setter Property="Template">
@@ -944,7 +944,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
                                                                        Storyboard.TargetName="HorizontalDecreaseRect">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderForegroundProgressTheneBrush}" />
+                                                                    Value="{StaticResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -1075,7 +1075,7 @@
                                            Height="2"
                                            Grid.Row="1" />
                                 <Rectangle x:Name="HorizontalDecreaseRect"
-                                           Fill="White"
+                                           Fill="{StaticResource MainColor}"
                                            Height="2"
                                            Grid.Row="1" />
                                 <TickBar x:Name="TopTickBar"
@@ -1355,6 +1355,10 @@
                                 </VisualState>
                                 <VisualState x:Name="Selected">
                                     <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectionBackground"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="0"
+                                                         To="1" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="SelectedSwiping">
@@ -1380,6 +1384,10 @@
                                 </VisualState>
                                 <VisualState x:Name="SelectedUnfocused">
                                     <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectionBackground"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="0"
+                                                         To="1" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
