@@ -1,11 +1,7 @@
-﻿using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using VLC_WinRT.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.ViewModels;
 
 
 namespace VLC_WinRT.Views.MainPages
@@ -23,13 +19,12 @@ namespace VLC_WinRT.Views.MainPages
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            Locator.Slideshow.GoDefaultPic();
+            Locator.Slideshow.RestoreSlideshow();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            Locator.Slideshow.RestoreSlideshow();
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
