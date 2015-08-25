@@ -14,6 +14,11 @@
       d:DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
     <Grid x:Name="RootGrid">
+        <Grid.Transitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.Transitions>
         <ScrollWatcher:ListViewScrollWatcher x:Name="PlaylistListView"
                   ItemsSource="{Binding TrackCollections}"
                   IsItemClickEnabled="True"

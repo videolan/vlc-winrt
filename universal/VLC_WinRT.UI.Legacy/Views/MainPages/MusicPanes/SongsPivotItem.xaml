@@ -21,6 +21,11 @@
     </Page.Resources>
     <Grid x:Name="RootGrid"
           Loaded="Collection_Loaded">
+        <Grid.Transitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.Transitions>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="Standard">
                 <VisualState x:Name="Narrow">
