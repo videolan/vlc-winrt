@@ -60,7 +60,7 @@
     <x:String x:Key="OpenFileSymbol"></x:String>
     <x:String x:Key="CheckSymbol"></x:String>
     <x:String x:Key="BuddySymbol"></x:String>
-    <x:String x:Key="ConversationSymbol"></x:String>
+    <x:String x:Key="ConversationSymbol"></x:String>
     <x:String x:Key="KeySymbol"></x:String>
     <x:String x:Key="VolumeSymbol"></x:String>
     <x:String x:Key="AlbumDiscSymbol"></x:String>
