@@ -22,6 +22,16 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NameTextBlock"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistTextBlock"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="MouseOver">
@@ -31,35 +41,56 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NameTextBlock"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistTextBlock"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="40" />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0"
-              Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+        <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
               PointerEntered="Cover_PointerEntered">
             <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                       FontSize="42"
                       Foreground="{ThemeResource MainColor}" />
         </Grid>
-        <Image Grid.Row="0"
-               Source="{Binding AlbumImage}"
-               Stretch="UniformToFill"
-               PointerEntered="Cover_PointerEntered"/>
-        <Grid x:Name="ButtonOverlay"
-              Grid.Row="0"
-              Visibility="Collapsed"
-              RequestedTheme="Dark"
-              Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
-              PointerExited="Cover_PointerExited">
-            <AppBarButton Style="{StaticResource AppBarButtonStyleHuge}"
+        <Image Source="{Binding AlbumImage}"
+               Stretch="UniformToFill"/>
+        <Grid PointerExited="Cover_PointerExited"
+              PointerEntered="Cover_PointerEntered">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1"
+                                     StartPoint="0.5,0">
+                    <GradientStop Color="#EE000000"
+                                  Offset="1" />
+                    <GradientStop Color="#00000000"
+                                  Offset="0.6" />
+                    <GradientStop Color="#00000000"
+                                  Offset="0" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <AppBarButton Grid.Row="1"
+                          Grid.RowSpan="2"
+                          x:Name="ButtonOverlay"
+                          Visibility="Collapsed"
+                          RequestedTheme="Dark"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Label="Play album"
                           VerticalAlignment="Center"
+                          Margin="6,0,0,0"
                           Command="{Binding PlayAlbum}"
                           CommandParameter="{Binding}">
                 <AppBarButton.Icon>
@@ -68,20 +99,17 @@
                               FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
                 </AppBarButton.Icon>
             </AppBarButton>
-        </Grid>
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <TextBlock Text="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
+            <TextBlock x:Name="NameTextBlock" 
+                       Grid.Row="1"
+                       Text="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
                        FontSize="15"
                        FontWeight="Normal"
                        VerticalAlignment="Center"
-                       Margin="0,3,7,0" />
-            <TextBlock Grid.Row="1"
+                       Margin="6,0,0,0" />
+            <TextBlock x:Name="ArtistTextBlock" 
+                       Grid.Row="2"
                        Text="{Binding Artist, Converter={StaticResource ArtistStringConverter}}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
@@ -89,7 +117,7 @@
                        FontWeight="Light"
                        Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                        VerticalAlignment="Center"
-                       Margin="0,0,7,0" />
+                       Margin="6,0,0,0" />
         </Grid>
     </Grid>
 </UserControl>
