@@ -68,6 +68,7 @@
             <videoControls:AudioTracksSettings />
             <videoControls:SubtitlesSettings />
             <videoControls:VolumeSliderSettings />
+            <videoControls:ChaptersList />
         </Grid>
 
         <Border x:Name="ControlsGrid"

@@ -264,6 +264,10 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoNowPlayingControls\AudioTracksSettings.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoNowPlayingControls\ChaptersList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoNowPlayingControls\SubtitlesSettings.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -493,6 +497,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoNowPlayingControls\AudioTracksSettings.xaml.cs">
       <DependentUpon>AudioTracksSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoNowPlayingControls\ChaptersList.xaml.cs">
+      <DependentUpon>ChaptersList.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoNowPlayingControls\SubtitlesSettings.xaml.cs">
       <DependentUpon>SubtitlesSettings.xaml</DependentUpon>

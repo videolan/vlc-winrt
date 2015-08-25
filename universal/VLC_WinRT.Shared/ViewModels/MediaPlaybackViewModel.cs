@@ -73,6 +73,7 @@ namespace VLC_WinRT.ViewModels
         #region private fields
         private List<DictionaryKeyValue> _subtitlesTracks = new List<DictionaryKeyValue>();
         private List<DictionaryKeyValue> _audioTracks = new List<DictionaryKeyValue>();
+        private List<VLCChapterDescription> _chapters = new List<VLCChapterDescription>();
         private bool _isBuffered;
         #endregion
 
@@ -286,6 +287,31 @@ namespace VLC_WinRT.ViewModels
                     SetAudioTrackCommand.Execute(value.Id);
             }
         }
+
+        public VLCChapterDescription CurrentChapter
+        {
+            get
+            {
+                if (!(_mediaService is VLCService)) return null;
+                var vlcService = (VLCService)_mediaService;
+                var currentChapter = vlcService.MediaPlayer?.chapter();
+                if (_chapters?.Count > 0 && currentChapter.HasValue)
+                {
+                    return _chapters[currentChapter.Value];
+                }
+                return null;
+            }
+            set
+            {
+                if (!(_mediaService is VLCService)) return;
+                var vlcService = (VLCService)_mediaService;
+                var index = _chapters.IndexOf(value);
+                if (index > -1)
+                {
+                    vlcService.MediaPlayer.setChapter(index);
+                }
+            }
+        }
         #endregion
 
         #region public fields
@@ -301,6 +327,11 @@ namespace VLC_WinRT.ViewModels
             set { _subtitlesTracks = value; }
         }
 
+        public List<VLCChapterDescription> Chapters
+        {
+            get { return _chapters; }
+            set { _chapters = value; }
+        }
 
         #endregion
 
@@ -977,12 +1008,29 @@ namespace VLC_WinRT.ViewModels
             }
         }
 
-        private void Mem_OnParsedChanged(bool b)
+        private async void Mem_OnParsedChanged(bool b)
         {
             if (!(_mediaService is VLCService)) return;
             var vlcService = (VLCService)_mediaService;
             var chapters = vlcService.MediaPlayer.chapterDescription(-1);
-            Debug.WriteLine(chapters.Count);
+            foreach (var c in chapters)
+            {
+                var vlcChapter = new VLCChapterDescription(c);
+                _chapters.Add(vlcChapter);
+            }
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged(nameof(Chapters));
+                OnPropertyChanged(nameof(CurrentChapter));
+            });
+        }
+
+        public async void UpdateCurrentChapter()
+        {
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged(nameof(CurrentChapter));
+            });
         }
         #endregion
 

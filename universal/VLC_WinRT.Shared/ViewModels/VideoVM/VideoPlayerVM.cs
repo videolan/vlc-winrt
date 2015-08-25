@@ -9,13 +9,17 @@
 
 using System;
 using System.Threading.Tasks;
+using System.Linq;
 using VLC_WinRT.Commands;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Video;
+using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.Utils;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.UI.Xaml;
+using libVLCX;
+using System.Diagnostics;
 
 namespace VLC_WinRT.ViewModels.VideoVM
 {
@@ -28,6 +32,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         private bool isVideoPlayerSubtitlesSettingsVisible;
         private bool isVideoPlayerAudioTracksSettingsVisible;
         private bool isVideoPlayerVolumeSettingsVisible;
+        private bool isVideoPlayerChaptersListVisible;
         #endregion
 
         #region private fields
@@ -64,12 +69,19 @@ namespace VLC_WinRT.ViewModels.VideoVM
             set { SetProperty(ref isVideoPlayerVolumeSettingsVisible, value); }
         }
 
+        public bool IsVideoPlayerChaptersListVisible
+        {
+            get { return isVideoPlayerChaptersListVisible; }
+            set { SetProperty(ref isVideoPlayerChaptersListVisible, value); }
+        }
+
         public ActionCommand ToggleIsVideoPlayerSettingsVisible { get; } = new ActionCommand(() =>
         {
             Locator.VideoVm.IsVideoPlayerSettingsVisible = !Locator.VideoVm.IsVideoPlayerSettingsVisible;
             Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerChaptersListVisible = false;
         });
 
 
@@ -78,6 +90,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerChaptersListVisible = false;
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = !Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible;
         });
 
@@ -86,16 +99,30 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerChaptersListVisible = false;
             Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = !Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible;
         });
 
 
         public ActionCommand ToggleIsVideoPlayerVolumeSettingsVisible { get; } = new ActionCommand(() =>
         {
+            Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerChaptersListVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = !Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible;
         });
+
+        public ActionCommand ToggleIsVideoPlayerChaptersListVisible { get; } = new ActionCommand(() =>
+        {
+            Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerChaptersListVisible = !Locator.VideoVm.IsVideoPlayerChaptersListVisible;
+            Locator.MediaPlaybackViewModel.UpdateCurrentChapter();
+        });
+        
         #endregion
 
         #region public fields
@@ -125,6 +152,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerChaptersListVisible = false;
             Locator.Slideshow.IsPaused = false;
             App.SplitShell.TitleBarHeight = AppViewHelper.TitleBarHeight;
         }

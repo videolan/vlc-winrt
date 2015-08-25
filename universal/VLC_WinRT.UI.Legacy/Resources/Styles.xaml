@@ -84,6 +84,7 @@
     <x:String x:Key="ExpandWindow"></x:String>
     <x:String x:Key="ReduceWindow"></x:String>
     <x:String x:Key="MenuOpenRight"></x:String>
+    <x:String x:Key="ChaptersListSymbol"></x:String>
     
     <!-- Segoe UI Symbol Font -->
     <x:String x:Key="VerticalDotsSymbol"></x:String>
