@@ -80,7 +80,7 @@
             <Grid>
                 <userControls:SliderControl x:Name="Slider" />
                 <Grid Margin="0,40,0,12" 
-                      MaxWidth="700">
+                      MaxWidth="600">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
