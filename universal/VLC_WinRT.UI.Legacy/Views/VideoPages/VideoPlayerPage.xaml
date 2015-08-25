@@ -78,12 +78,9 @@
                 Padding="24"
                 CornerRadius="6">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                </Grid.RowDefinitions>
                 <userControls:SliderControl x:Name="Slider" />
-                <Grid Grid.Row="1">
+                <Grid Margin="0,40,0,12" 
+                      MaxWidth="700">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
@@ -153,8 +150,16 @@
                                       FontSize="42" />
                         </AppBarButton.Icon>
                     </AppBarButton>
+                    <AppBarButton  Grid.Column="3"
+                                   Name="MenuButton"
+                                   Icon="More"
+                                   IsCompact="True"
+                                   IsTabStop="False"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource AppBarButtonStyleHuge}"
+                                   Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerSettingsVisible}" />
                     <AppBarButton x:Name="VolumeButton"
-                                  Grid.Column="3"
+                                  Grid.Column="4"
                                   IsCompact="True"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   VerticalAlignment="Center"
@@ -166,14 +171,6 @@
                                       FontSize="24" />
                         </AppBarButton.Icon>
                     </AppBarButton>
-                    <AppBarButton  Grid.Column="4"
-                                   Name="MenuButton"
-                                   Icon="More"
-                                   IsCompact="True"
-                                   IsTabStop="False"
-                                   VerticalAlignment="Center"
-                                   Style="{StaticResource AppBarButtonStyleHuge}"
-                                   Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerSettingsVisible}" />
                 </Grid>
             </Grid>
         </Border>
@@ -203,7 +200,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
                                                        Storyboard.TargetProperty="Margin">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="24" />
+                                                    Value="48,0" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
                                                        Storyboard.TargetProperty="Padding">
@@ -211,9 +208,9 @@
                                                     Value="24,12" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
-                                                       Storyboard.TargetProperty="Width">
+                                                       Storyboard.TargetProperty="MaxWidth">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="800" />
+                                                    Value="1500" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>

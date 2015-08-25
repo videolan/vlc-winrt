@@ -53,7 +53,7 @@ namespace VLC_WinRT.Views.VideoPages
             {
                 VisualStateManager.GoToState(this, "Narrow", false);
             }
-            else if (width < 848)
+            else if (width < 1050)
             {
                 VisualStateManager.GoToState(this, "Medium", false);
             }
