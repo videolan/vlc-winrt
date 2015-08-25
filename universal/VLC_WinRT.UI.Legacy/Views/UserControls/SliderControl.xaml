@@ -11,20 +11,20 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="22" />
             <RowDefinition Height="30" />
+            <RowDefinition Height="22" />
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}"
+        <TextBlock Grid.Row="1" Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}"
                    HorizontalAlignment="Left"
                    FontWeight="Light"
                    FontSize="18"
                    Foreground="{ThemeResource MainColor}" />
-        <Slider Grid.Row="1"
+        <Slider Grid.Row="0"
                 Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
                 Style="{StaticResource VLCSlider}"
                 Maximum="500"
                 ThumbToolTipValueConverter="{StaticResource PositionToTimeStampStringConverter}" />
-        <TextBlock Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
+        <TextBlock Grid.Row="1" Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
                    HorizontalAlignment="Right"
                    FontWeight="Light"
                    FontSize="18"
