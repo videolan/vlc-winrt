@@ -6,7 +6,7 @@
       xmlns:views="using:VLC_WINRT.Views"
       xmlns:controls="using:VLC_WinRT.Controls"
       xmlns:userControls="using:VLC_WinRT.Views.UserControls"
-      xmlns:videoControls="using:VLC_WinRT.Views.VideoPages.VideoNowPlayingControls"
+      xmlns:videoControls="using:VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls"
       xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
       mc:Ignorable="d"
       Background="Transparent"

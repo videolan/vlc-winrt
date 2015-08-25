@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace VLC_WinRT.Views.VideoPages.VideoNowPlayingControls
+namespace VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls
 {
     public sealed partial class VolumeSliderSettings : UserControl
     {
