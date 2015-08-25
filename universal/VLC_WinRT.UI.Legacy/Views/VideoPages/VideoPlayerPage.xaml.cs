@@ -108,7 +108,8 @@ namespace VLC_WinRT.Views.VideoPages
             if (Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible ||
                 Locator.VideoVm.IsVideoPlayerSettingsVisible ||
                 Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible ||
-                Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible)
+                Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible ||
+                Locator.VideoVm.IsVideoPlayerChaptersListVisible)
                 return;
             VisualStateManager.GoToState(this, !isVisible ? "ControlsCollapsed" : "ControlsVisible", false);
         }
