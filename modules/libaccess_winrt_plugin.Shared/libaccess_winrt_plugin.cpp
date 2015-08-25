@@ -260,9 +260,7 @@ ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
 
     auto readTask = create_task(p_sys->dataReader->LoadAsync(size)).then([&totalRead, buffer, p_sys](unsigned int numBytesLoaded)
     {
-        WriteOnlyArray<unsigned char, 1U>^ bufferArray = ref new Array<unsigned char, 1U>(numBytesLoaded);
-        p_sys->dataReader->ReadBytes(bufferArray);
-        memcpy(buffer, bufferArray->begin(), bufferArray->end() - bufferArray->begin());
+        p_sys->dataReader->ReadBytes( Platform::ArrayReference<uint8_t>( buffer, numBytesLoaded ) );
         totalRead = numBytesLoaded;
     });
 
