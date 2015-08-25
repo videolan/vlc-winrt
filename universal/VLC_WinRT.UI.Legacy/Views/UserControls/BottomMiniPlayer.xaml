@@ -322,7 +322,7 @@
                            Text="{Binding CurrentTrack.Name}"
                            TextWrapping="NoWrap"
                            TextTrimming="CharacterEllipsis"
-                           FontWeight="Light"
+                           FontWeight="SemiLight"
                            FontSize="19"
                            VerticalAlignment="Bottom"/>
                 <TextBlock Grid.Column="2"
