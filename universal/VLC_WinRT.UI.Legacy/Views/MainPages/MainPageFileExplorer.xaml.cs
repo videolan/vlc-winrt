@@ -14,16 +14,14 @@ namespace VLC_WinRT.Views.MainPages
             this.Loaded += MainPageFileExplorer_Loaded;
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            Locator.Slideshow.GoDefaultPic();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            Locator.Slideshow.RestoreSlideshow();
         }
 
 

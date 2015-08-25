@@ -29,7 +29,8 @@
         <Grid x:Name="SidebarListView"
               Grid.Column="0"
               Grid.RowSpan="4"
-              Width="250">
+              Width="250"
+              Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}">
             <ListView ItemsSource="{Binding Source={StaticResource StorageVMsGroupedByType}}"
                       SelectedItem="{Binding CurrentStorageVM}"
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
@@ -107,39 +108,43 @@
                    Text="{Binding CurrentStorageVM.CurrentFolderName}"
                    Margin="16,-10,0,0"
                    Style="{ThemeResource SubheaderTextBlockStyle}"
-                   VerticalAlignment="Center" 
-                   Height="50"/>
-        
-        <Grid x:Name="FileExplorerButtonsGrid"  
+                   VerticalAlignment="Center"
+                   Height="50" />
+
+        <Grid x:Name="FileExplorerButtonsGrid"
               Grid.Column="1"
               Grid.Row="2"
-              Margin="{StaticResource FrameMargin}">
+              Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
+              Height="50">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             </Grid.ColumnDefinitions>
-            <AppBarButton Grid.Column="0"
+            <AppBarButton Grid.Column="1"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Label="Back"
                           Command="{Binding CurrentStorageVM.GoBackCommand}"
-                          Visibility="{Binding CurrentStorageVM.CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          IsEnabled="{Binding CurrentStorageVM.CanGoBack}"
                           Margin="0,0,24,0">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
                               FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <TextBlock x:Name="CurrentFolderNameWideTextBlock" 
-                       Grid.Column="1"
+            <TextBlock x:Name="CurrentFolderNameWideTextBlock"
+                       Grid.Column="2"
                        Text="{Binding CurrentStorageVM.CurrentFolderName}"
                        Margin="0,-10,0,0"
                        Style="{StaticResource SubheaderTextBlockStyle}"
-                       VerticalAlignment="Center"/>
-            <AppBarButton Grid.Column="2"
+                       VerticalAlignment="Center" />
+            <AppBarButton Grid.Column="3"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           HorizontalAlignment="Right"
                           Label="play folder"
+                          Foreground="{StaticResource MainColor}"
                           Command="{Binding CurrentStorageVM.PlayFolderCommand}"
                           CommandParameter="{Binding CurrentStorageVM.StorageItems}">
                 <AppBarButton.Icon>
@@ -149,18 +154,18 @@
             </AppBarButton>
         </Grid>
         <Grid Grid.Column="1"
-              Grid.Row="3"
-              Margin="{StaticResource FrameMargin}">
+              Grid.Row="3">
             <placeholder:NothingToSeeHere Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <ScrollWatcher:ListViewScrollWatcher x:Name="StorageItemsListView"
                                                  ItemsSource="{Binding CurrentStorageVM.StorageItems}"
-                                                         IsItemClickEnabled="True"
-                                                         SelectionMode="None"
-                                                         ItemTemplate="{StaticResource FolderDataTemplate}"
-                                                         IsSwipeEnabled="False"
-                                                         ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                                                         ItemsPanel="{StaticResource WrapPanelTemplate}"
-                                                         Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+                                                 IsItemClickEnabled="True"
+                                                 SelectionMode="None"
+                                                 ItemTemplate="{StaticResource FolderDataTemplate}"
+                                                 IsSwipeEnabled="False"
+                                                 ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                                 ItemsPanel="{StaticResource WrapPanelTemplate}"
+                                                 Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
+                                                 Margin="{StaticResource FrameMargin}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding CurrentStorageVM.NavigateToCommand}"
