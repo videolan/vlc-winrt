@@ -12,7 +12,7 @@ namespace VLC_WinRT.Model.Video
     public static class TemplateSizer
     {
         private const int tileSize = 173;
-        private const double contentGridWindows = 40;
+        private const double titlesGridHeight = 40;
         public static void ComputeCompactVideo(ItemsWrapGrid wrapGrid, double? width = null)
         {
             if (width == null) width = Window.Current.Bounds.Width;
@@ -20,12 +20,12 @@ namespace VLC_WinRT.Model.Video
             if (width > 600)
             {
                 wrapGrid.ItemWidth = 307;
-                wrapGrid.ItemHeight = tileSize + contentGridWindows;
+                wrapGrid.ItemHeight = tileSize + titlesGridHeight;
             }
             else
             {
                 var itemWidth = width.Value / splitScreen;
-                var itemHeight = itemWidth * 0.5625 + contentGridWindows;
+                var itemHeight = itemWidth * 0.5625 + titlesGridHeight;
                 wrapGrid.ItemHeight = itemHeight;
                 wrapGrid.ItemWidth = itemWidth;
             }
