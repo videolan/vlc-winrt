@@ -95,10 +95,22 @@ void Debug(const wchar_t *fmt, ...)
     OutputDebugStringW(buf);
 }
 
+void replaceAll( std::string& str, const std::string& from, const std::string& to ) {
+    if( from.empty() )
+        return;
+    size_t start_pos = 0;
+    while( ( start_pos = str.find( from, start_pos ) ) != std::string::npos ) {
+        str.replace( start_pos, from.length(), to );
+        start_pos += to.length(); // In case 'to' contains 'from', like replacing 'x' with 'yx'
+    }
+}
+
 Platform::String^
 GetString(char* in)
 {
-    std::unique_ptr<wchar_t, void(*)(void*)> str( ToWide(in), free );
+    std::string sin( in );
+    replaceAll( sin, "\\\\", "\\" );
+    std::unique_ptr<wchar_t, void(*)(void*)> str( ToWide(sin.c_str()), free );
     return ref new Platform::String(str.get());
 }
 
