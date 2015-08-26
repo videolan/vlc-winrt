@@ -58,7 +58,7 @@
         <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
               PointerEntered="Cover_PointerEntered">
             <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
-                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                      FontFamily="ms-appx:VLC.ttf#W10"
                       FontSize="42"
                       Foreground="{ThemeResource MainColor}" />
         </Grid>

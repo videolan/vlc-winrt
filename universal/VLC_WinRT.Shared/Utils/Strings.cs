@@ -17,7 +17,7 @@ namespace VLC_WinRT.Utils
 
         public static readonly string FeedbackMailAdress = "modernvlc@outlook.com";
 
-        public static readonly string ModernFont = "ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets";
+        public static readonly string ModernFont = "ms-appx:VLC.ttf#W10";
         public static readonly string MusicDatabase = Path.Combine(ApplicationData.Current.LocalFolder.Path, "mediavlc.sqlite");
         public static readonly string VideoDatabase = Path.Combine(ApplicationData.Current.LocalFolder.Path, "mediavlcVideos.sqlite");
         public static readonly string SettingsDatabase = Path.Combine(ApplicationData.Current.LocalFolder.Path, "settings.sqlite");

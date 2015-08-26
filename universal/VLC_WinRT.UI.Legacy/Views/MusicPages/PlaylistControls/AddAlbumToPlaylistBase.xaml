@@ -45,7 +45,7 @@
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
                               Margin="0,3,0,0"
-                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                              FontFamily="ms-appx:VLC.ttf#W10" />
                 </AppBarButton.Icon>
             </AppBarButton>
             <TextBlock Grid.Column="1"
