@@ -24,7 +24,77 @@
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <videoPanesControls:VideoPaneComboBox Grid.Column="1" />
+            <videoPanesControls:VideoPaneComboBox x:Name="VideoViewComboBox" 
+                                                  Grid.Column="1" />
+
+            <ListView Grid.Column="1"
+                      x:Name="PanelsListView"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+                      ItemsSource="{Binding VideoViewCollection}"
+                      SelectedItem="{Binding VideoView, Mode=TwoWay}"
+                      IsSwipeEnabled="False"
+                      IsItemClickEnabled="False"
+                      SelectionMode="Single"
+                      ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                      Visibility="Collapsed">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Orientation="Horizontal"
+                                         Height="50" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <RepositionThemeTransition />
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="Title"
+                                   Text="{Binding Converter={StaticResource VideoViewStringifyConverter}}"
+                                   Foreground="{ThemeResource BasicForeground}"
+                                   VerticalAlignment="Center"
+                                   FontSize="19"
+                                   FontWeight="SemiLight"
+                                   Width="95" 
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="NoWrap"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Wide">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PanelsListView"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VideoViewComboBox"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PanelsListView"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VideoViewComboBox"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>
