@@ -15,7 +15,7 @@ namespace VLC_WinRT.Converters
             }
             else
             {
-                return App.Current.Resources["MultimediaFileSymbol"].ToString();
+                return App.Current.Resources["FileFilledSymbol"].ToString();
             }
         }
 
