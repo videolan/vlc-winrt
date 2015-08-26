@@ -33,7 +33,7 @@
                           Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.ChangeSettingsViewCommand}"
                           CommandParameter="-1"
                           Width="50"
-                          Margin="{StaticResource FrameMargin}">
+                          Margin="{StaticResource FrameMarginLeft}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
                               Margin="0,3,0,0"
