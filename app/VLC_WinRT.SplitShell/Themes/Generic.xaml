@@ -180,9 +180,9 @@
                                         <LinearGradientBrush StartPoint="0,0"
                                                              EndPoint="1,0">
                                             <GradientStopCollection>
-                                                <GradientStop Color="#d4000000"
+                                                <GradientStop Color="#aa404040"
                                                               Offset="1" />
-                                                <GradientStop Color="#00000000"
+                                                <GradientStop Color="#00404040"
                                                               Offset="0" />
                                             </GradientStopCollection>
                                         </LinearGradientBrush>
