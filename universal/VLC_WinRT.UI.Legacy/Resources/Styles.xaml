@@ -3946,6 +3946,11 @@
                             <VisualStateGroup x:Name="ContentStates">
                                 <VisualState x:Name="OffContent">
                                     <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnob"
+                                                                       Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
                                         <DoubleAnimation Storyboard.TargetName="OffContentPresenter"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="1"
