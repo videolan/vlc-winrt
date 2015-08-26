@@ -182,26 +182,31 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public async Task Scrobble()
         {
             if (!Locator.SettingsVM.LastFmIsConnected) return;
-            if (LastFMScrobbler == null)
+            try
             {
-                // try to instanciate it
-                LastFMScrobbler = new LastFMScrobbler("a8eba7d40559e6f3d15e7cca1bfeaa1c", "bd9ad107438d9107296ef799703d478e");
-            }
+                if (LastFMScrobbler == null)
+                {
+                    // try to instanciate it
+                    LastFMScrobbler = new LastFMScrobbler("a8eba7d40559e6f3d15e7cca1bfeaa1c", "bd9ad107438d9107296ef799703d478e");
+                }
 
-            if (!LastFMScrobbler.IsConnected)
-            {
-                var pseudo = Locator.SettingsVM.LastFmUserName;
-                var pd = Locator.SettingsVM.LastFmPassword;
-                var success = await LastFMScrobbler.ConnectOperation(pseudo, pd);
-                if (!success) return;
-            }
+                if (!LastFMScrobbler.IsConnected)
+                {
+                    var pseudo = Locator.SettingsVM.LastFmUserName;
+                    var pd = Locator.SettingsVM.LastFmPassword;
+                    var success = await LastFMScrobbler.ConnectOperation(pseudo, pd);
+                    if (!success) return;
+                }
 
-            if (LastFMScrobbler != null && LastFMScrobbler.IsConnected)
-            {
-                LastFMScrobbler.ScrobbleTrack(Locator.MusicPlayerVM.CurrentTrack.ArtistName,
-                                                    Locator.MusicPlayerVM.CurrentTrack.AlbumName,
-                                                    Locator.MusicPlayerVM.CurrentTrack.Name);
+                if (LastFMScrobbler != null && LastFMScrobbler.IsConnected)
+                {
+                    if (string.IsNullOrEmpty(Locator.MusicPlayerVM.CurrentTrack.ArtistName) || string.IsNullOrEmpty(Locator.MusicPlayerVM.CurrentTrack.AlbumName) || string.IsNullOrEmpty(Locator.MusicPlayerVM.CurrentTrack.Name)) return;
+                    LastFMScrobbler.ScrobbleTrack(Locator.MusicPlayerVM.CurrentTrack.ArtistName,
+                                                        Locator.MusicPlayerVM.CurrentTrack.AlbumName,
+                                                        Locator.MusicPlayerVM.CurrentTrack.Name);
+                }
             }
+            catch { }
         }
 
         public void SetUpSlideshow()
