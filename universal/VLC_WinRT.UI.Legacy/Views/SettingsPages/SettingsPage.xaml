@@ -80,7 +80,7 @@
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Margin="0,20" />
                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                           Foreground="{StaticResource PivotHeaderForegroundUnselectedBrush}"
+                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
                            VerticalAlignment="Center">
                     <Run Text="VLC"/>
                     <Run x:Name="AppVersion" />

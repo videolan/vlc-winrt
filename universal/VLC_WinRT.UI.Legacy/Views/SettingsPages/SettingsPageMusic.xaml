@@ -34,12 +34,13 @@
                 <TextBlock Tag="WindowsOnly"
                            Text="Music folders"
                            FontSize="22"
-                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight" />
                 <TextBlock Tag="WindowsOnly"
                            x:Uid="MusicSettings"
                            Text="VLC will only search songs that are in your music library. You can add folders to your library here:"
                            Style="{StaticResource BodyTextBlockStyle}"
-                           Foreground="{StaticResource PivotHeaderForegroundUnselectedBrush}" />
+                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
                 <ListView Tag="WindowsOnly"
                           ItemsSource="{Binding MusicFolders}"
                           ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -86,7 +87,7 @@
                                            VerticalAlignment="Center">
                                     <Run Text="{Binding Path}"
                                          FontSize="14"
-                                         Foreground="{StaticResource PivotHeaderForegroundUnselectedBrush}" />
+                                         Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
                                 </TextBlock>
                             </Grid>
                         </DataTemplate>
@@ -101,7 +102,8 @@
                            Text="Notifications"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
-                           Margin="0,20,0,0" />
+                           Margin="0,20,0,0"
+                           FontWeight="SemiLight" />
                 <ToggleSwitch  Tag="WindowsOnly"
                                x:Uid="NotificationSongStarts"
                                Header="Notification when a new song starts"
@@ -116,7 +118,8 @@
                 <TextBlock Text="Connect to Last.FM"
                            Margin="0,20,0,0"
                            FontSize="22"
-                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight" />
                 <userControls:FocusTextBox Height="30"
                                            Width="250"
                                            x:Uid="UsernameTextbox"
@@ -160,7 +163,8 @@
                 <TextBlock Text="Reset"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
-                           Margin="0,20,0,0" />
+                           Margin="0,20,0,0"
+                           FontWeight="SemiLight" />
                 <Button Content="Reset the music database"
                         DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                         Command="{Binding StartMusicIndexingCommand}"
@@ -168,7 +172,7 @@
                         Margin="0,6,0,0" />
                 <TextBlock Text="This will delete all the playlists made with VLC, and index the music library again."
                            Style="{StaticResource BodyTextBlockStyle}"
-                           Foreground="{StaticResource PivotHeaderForegroundUnselectedBrush}" />
+                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

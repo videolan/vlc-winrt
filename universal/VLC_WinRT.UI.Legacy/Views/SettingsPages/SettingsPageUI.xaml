@@ -68,7 +68,8 @@
                 <TextBlock Text="Animations"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
-                           Margin="0,12,0,0" />
+                           Margin="0,12,0,0"
+                           FontWeight="SemiLight" />
                 <ToggleSwitch  Header="Use rich animations in the slideshows"
                                IsOn="{Binding RichAnimations, Mode=TwoWay}"
                                Margin="-6,0,0,0" />

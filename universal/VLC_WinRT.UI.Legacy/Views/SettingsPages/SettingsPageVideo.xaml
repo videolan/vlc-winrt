@@ -32,24 +32,26 @@
                 </StackPanel>
                 <TextBlock Text="Video playback"
                            FontSize="22"
-                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight" />
                 <ToggleSwitch Header="Hardware decoding when possible (experimental)"
                               IsOn="{Binding HardwareAccelerationEnabled, Mode=TwoWay}"
                               Margin="-6,0,0,0" />
                 <TextBlock Text="Hardware decoding may not work on your device. You need to restart the app to apply changes"
                            Style="{StaticResource BodyTextBlockStyle}"
-                           Foreground="{StaticResource PivotHeaderForegroundUnselectedBrush}"
+                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
                            Margin="0,-6,0,12" />
                 
                 <TextBlock Tag="WindowsOnly"
                            Text="Video folders"
                            FontSize="22"
-                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight" />
                 <TextBlock Tag="WindowsOnly"
                            x:Uid="VideoSettings"
                            Text="VLC will only search videos that are in your video library. You can add folders to your library here:"
                            Style="{StaticResource BodyTextBlockStyle}"
-                           Foreground="{StaticResource PivotHeaderForegroundUnselectedBrush}" />
+                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
                 <ListView Tag="WindowsOnly"
                           ItemsSource="{Binding VideoFolders}"
                           ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -96,7 +98,7 @@
                                            VerticalAlignment="Center">
                                     <Run Text="{Binding Path}"
                                          FontSize="14"
-                                         Foreground="{StaticResource PivotHeaderForegroundUnselectedBrush}" />
+                                         Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
                                 </TextBlock>
                             </Grid>
                         </DataTemplate>
@@ -112,7 +114,8 @@
                            Text="Video Library"
                            FontSize="22"
                            Margin="0,20,0,0"
-                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight" />
                 <ToggleSwitch Tag="WindowsOnly"
                               Header="Video playback in background"
                               IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}"
