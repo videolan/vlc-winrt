@@ -33,7 +33,7 @@
                         Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}">
               <AppBarButton.Icon>
                   <FontIcon Glyph="{StaticResource OpenFileSymbol}"
-                            FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                            FontFamily="ms-appx:VLC.ttf#W10" />
               </AppBarButton.Icon>
           </AppBarButton>
           <AppBarButton Grid.Column="3"
@@ -43,7 +43,7 @@
                         Flyout="{StaticResource PhoneOpenStreamFlyout}">
               <AppBarButton.Icon>
                   <FontIcon Glyph="{StaticResource StreamSymbol}"
-                            FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                            FontFamily="ms-appx:VLC.ttf#W10" />
               </AppBarButton.Icon>
           </AppBarButton>
           <AppBarButton Grid.Column="5"
@@ -53,7 +53,7 @@
                         Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
               <AppBarButton.Icon>
                   <FontIcon Glyph="{StaticResource SettingsSymbol}"
-                            FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                            FontFamily="ms-appx:VLC.ttf#W10" />
               </AppBarButton.Icon>
           </AppBarButton>
 
@@ -76,7 +76,7 @@
                         IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource RefreshSymbol}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                          FontFamily="ms-appx:VLC.ttf#W10" />
             </AppBarButton.Icon>
           </AppBarButton>
 
@@ -90,7 +90,7 @@
                         IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}">
               <AppBarButton.Icon>
                   <FontIcon Glyph="{StaticResource RefreshSymbol}"
-                            FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                            FontFamily="ms-appx:VLC.ttf#W10" />
               </AppBarButton.Icon>
           </AppBarButton>
         </Grid>

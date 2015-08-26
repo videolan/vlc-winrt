@@ -43,7 +43,7 @@
                     <Viewbox Height="30"
                              Width="30">
                         <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
-                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                                  FontFamily="ms-appx:VLC.ttf#W10" />
                     </Viewbox>
                 </Button>
                 <TextBlock Grid.Column="2"
@@ -96,7 +96,7 @@
                         <AppBarToggleButton.Icon>
                             <FontIcon x:Name="LockToggleIcon"
                                       Glyph="{StaticResource UnlockedSymbol}"
-                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontFamily="ms-appx:VLC.ttf#W10"
                                       FontSize="22" />
                         </AppBarToggleButton.Icon>
                     </AppBarToggleButton>
@@ -108,7 +108,7 @@
                                   VerticalAlignment="Center">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource ConversationSymbol}"
-                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontFamily="ms-appx:VLC.ttf#W10"
                                       FontSize="22" />
                         </AppBarButton.Icon>
                         <AppBarButton.Flyout>
@@ -134,7 +134,7 @@
                                   Foreground="{StaticResource MainColor}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PlaySymbol}"
-                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontFamily="ms-appx:VLC.ttf#W10"
                                       FontSize="42" />
                         </AppBarButton.Icon>
                     </AppBarButton>
@@ -148,7 +148,7 @@
                                   Foreground="{StaticResource MainColor}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PauseSymbol}"
-                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontFamily="ms-appx:VLC.ttf#W10"
                                       FontSize="42" />
                         </AppBarButton.Icon>
                     </AppBarButton>
@@ -169,7 +169,7 @@
                                   Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerVolumeSettingsVisible}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource VolumeSymbol}"
-                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontFamily="ms-appx:VLC.ttf#W10"
                                       FontSize="24" />
                         </AppBarButton.Icon>
                     </AppBarButton>

@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <FontIcon Glyph="{StaticResource TelevisionSymbol}"
-                   FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                   FontFamily="ms-appx:VLC.ttf#W10"
                    Foreground="#7AE3E3E3"
                    FontSize="80"
                    HorizontalAlignment="Center"

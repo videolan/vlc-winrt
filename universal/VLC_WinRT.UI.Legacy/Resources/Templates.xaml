@@ -41,8 +41,8 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <FontIcon Grid.RowSpan="2"
-                      Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
-                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                      Foreground="{StaticResource SemiLightMainColor}"
+                      FontFamily="ms-appx:VLC.ttf#W10"
                       Glyph="{Binding Converter={StaticResource StorageTypeToIconConverter}}"
                       FontSize="32" />
             <TextBlock Grid.Column="2"

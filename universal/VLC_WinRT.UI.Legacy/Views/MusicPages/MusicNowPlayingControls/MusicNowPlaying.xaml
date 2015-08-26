@@ -103,7 +103,7 @@
                                   IsEnabled="{Binding TrackCollection.CanGoPrevious}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PreviousSymbol}"
-                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontFamily="ms-appx:VLC.ttf#W10"
                                       FontSize="30" />
                         </AppBarButton.Icon>
                     </AppBarButton>
@@ -118,7 +118,7 @@
                                   Foreground="{StaticResource MainColor}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PlaySymbol}"
-                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontFamily="ms-appx:VLC.ttf#W10"
                                       FontSize="30" />
                         </AppBarButton.Icon>
                     </AppBarButton>
@@ -133,7 +133,7 @@
                                   Foreground="{StaticResource MainColor}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PauseSymbol}"
-                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontFamily="ms-appx:VLC.ttf#W10"
                                       FontSize="30" />
                         </AppBarButton.Icon>
                     </AppBarButton>
@@ -146,7 +146,7 @@
                                   IsEnabled="{Binding TrackCollection.CanGoNext}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource SkipNextSymbol}"
-                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontFamily="ms-appx:VLC.ttf#W10"
                                       FontSize="30" />
                         </AppBarButton.Icon>
                     </AppBarButton>

@@ -16,7 +16,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <FontIcon Glyph="{StaticResource MusicPlaylistSymbol}"
-                   FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                   FontFamily="ms-appx:VLC.ttf#W10"
                    Foreground="#7AE3E3E3"
                    FontSize="60"
                    HorizontalAlignment="Center"

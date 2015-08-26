@@ -72,7 +72,7 @@
                               Click="ActionButton_Click">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource PlaySymbol}"
-                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                                  FontFamily="ms-appx:VLC.ttf#W10" />
                     </AppBarButton.Icon>
                 </AppBarButton>
                 <AppBarButton x:Uid="ViewAlbum"
@@ -114,7 +114,7 @@
                               Command="{Binding ShowCreateNewPlaylistPaneCommand}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource AddSymbol}"
-                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                              FontFamily="ms-appx:VLC.ttf#W10" />
                 </AppBarButton.Icon>
                 </AppBarButton>
             </Grid>
@@ -127,7 +127,7 @@
                           Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource MusicPlaylistSymbol}"
-                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                              FontFamily="ms-appx:VLC.ttf#W10" />
                 </AppBarButton.Icon>
             </AppBarButton>
             <Grid Grid.Row="4"

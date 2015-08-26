@@ -354,7 +354,7 @@
                 IsEnabled="{Binding TrackCollection.CanGoPrevious}">
             <FontIcon x:Name="PreviousIcon"
                       Glyph="{StaticResource PreviousSymbol}"
-                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                      FontFamily="ms-appx:VLC.ttf#W10" />
         </Button>
         <Grid x:Name="PlayPauseGrid"
               Grid.Row="0"
@@ -370,7 +370,7 @@
                     Foreground="{StaticResource MainColor}">
                 <FontIcon x:Name="PlayIcon"
                           Glyph="{StaticResource PlaySymbol}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                          FontFamily="ms-appx:VLC.ttf#W10" />
             </Button>
             <Button Style="{StaticResource MiniPlayerButtons}"
                     HorizontalAlignment="Left"
@@ -380,7 +380,7 @@
                     Foreground="{StaticResource MainColor}">
                 <FontIcon x:Name="PauseIcon"
                           Glyph="{StaticResource PauseSymbol}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                          FontFamily="ms-appx:VLC.ttf#W10" />
             </Button>
         </Grid>
         <Button x:Name="NextButton"
@@ -393,7 +393,7 @@
                 Margin="0,0,6,0">
             <FontIcon x:Name="NextIcon"
                       Glyph="{StaticResource SkipNextSymbol}"
-                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                      FontFamily="ms-appx:VLC.ttf#W10" />
         </Button>
         <AppBarToggleButton x:Name="ShuffleButton" 
                             Grid.Column="5"
@@ -407,7 +407,7 @@
                             Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.Shuffle}">
             <AppBarToggleButton.Icon>
                 <FontIcon Glyph="{StaticResource ShuffleSymbol}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                          FontFamily="ms-appx:VLC.ttf#W10"
                           x:Name="ShuffleFontIcon" />
             </AppBarToggleButton.Icon>
         </AppBarToggleButton>
@@ -422,7 +422,7 @@
                             IsChecked="{Binding Repeat, Mode=TwoWay}">
             <AppBarToggleButton.Icon>
                 <FontIcon Glyph="{StaticResource RefreshSymbol}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                          FontFamily="ms-appx:VLC.ttf#W10"
                           x:Name="RepeatFontIcon" />
             </AppBarToggleButton.Icon>
         </AppBarToggleButton>
@@ -433,7 +433,7 @@
                 Margin="12,0,6,0">
             <FontIcon Glyph="{StaticResource ReduceWindow}"
                       FontSize="22"
-                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                      FontFamily="ms-appx:VLC.ttf#W10" />
         </Button>
     </Grid>
 </UserControl>

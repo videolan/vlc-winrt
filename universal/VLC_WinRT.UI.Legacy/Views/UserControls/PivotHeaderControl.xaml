@@ -68,7 +68,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <FontIcon x:Name="Icon"
-                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                  FontFamily="ms-appx:VLC.ttf#W10"
                   Glyph="{Binding PathData}"
                   FontSize="26"
                   VerticalAlignment="Center"

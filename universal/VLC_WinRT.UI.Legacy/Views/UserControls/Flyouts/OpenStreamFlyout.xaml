@@ -41,7 +41,7 @@
                         Click="ButtonBase_OnClick">
                     <Button.Content>
                         <FontIcon Glyph="{StaticResource CheckSymbol}"
-                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                                  FontFamily="ms-appx:VLC.ttf#W10" />
                     </Button.Content>
                 </Button>
             </Grid>

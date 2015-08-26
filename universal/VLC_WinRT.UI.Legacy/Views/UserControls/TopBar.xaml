@@ -36,7 +36,7 @@
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
                               Margin="0,3,0,0"
-                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                              FontFamily="ms-appx:VLC.ttf#W10" />
                 </AppBarButton.Icon>
             </AppBarButton>
         </Grid>
@@ -71,7 +71,7 @@
                       Width="50">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource MenuOpenRight}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" 
+                          FontFamily="ms-appx:VLC.ttf#W10" 
                           Margin="0,0,-6,0"/>
             </AppBarButton.Icon>
         </AppBarButton>
@@ -94,7 +94,7 @@
                       Command="{Binding Source={StaticResource Locator}, Path=MainVM.GotoSearchPageCommand}">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource SearchSymbol}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                          FontFamily="ms-appx:VLC.ttf#W10" />
             </AppBarButton.Icon>
         </AppBarButton>
 

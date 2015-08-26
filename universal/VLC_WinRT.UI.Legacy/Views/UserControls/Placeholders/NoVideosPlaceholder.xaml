@@ -20,7 +20,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <FontIcon Glyph="{StaticResource MovieSymbol}"
-                   FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                   FontFamily="ms-appx:VLC.ttf#W10"
                    Foreground="#7AE3E3E3"
                    FontSize="80"
                    HorizontalAlignment="Center"
@@ -44,7 +44,7 @@
                      FontWeight="Light"
                      FontSize="25"/>
                 <Run Text="{StaticResource ChevronToRightSymbol}"
-                     FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                     FontFamily="ms-appx:VLC.ttf#W10" />
             </TextBlock>
         </Button>
         <Button Grid.Row="5"
@@ -56,7 +56,7 @@
                      FontWeight="Light"
                      FontSize="25"/>
                 <Run Text="{StaticResource ChevronToRightSymbol}"
-                     FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                     FontFamily="ms-appx:VLC.ttf#W10" />
             </TextBlock>
         </Button>
     </Grid>

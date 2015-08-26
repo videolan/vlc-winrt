@@ -187,7 +187,7 @@
                                           Grid.RowSpan="2"
                                           Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
                                         <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
-                                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                                  FontFamily="ms-appx:VLC.ttf#W10"
                                                   FontSize="26"
                                                   Foreground="{ThemeResource MainColor}" />
                                     </Grid>
@@ -213,7 +213,7 @@
                                                   CommandParameter="{Binding Id}">
                                         <AppBarButton.Icon>
                                             <FontIcon Glyph="{StaticResource PlaySymbol}"
-                                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                                                      FontFamily="ms-appx:VLC.ttf#W10" />
                                         </AppBarButton.Icon>
                                     </AppBarButton>
                                 </Grid>

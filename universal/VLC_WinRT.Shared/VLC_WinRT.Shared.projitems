@@ -228,6 +228,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="$(MSBuildThisFileDirectory)SEGMDL2.TTF" />
+    <Content Include="$(MSBuildThisFileDirectory)VLC.ttf" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">

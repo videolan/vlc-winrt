@@ -16,7 +16,7 @@
         <Grid Grid.Row="0"
               Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
             <FontIcon Glyph="{StaticResource VideoSymbol}"
-                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                      FontFamily="ms-appx:VLC.ttf#W10"
                       FontSize="42"
                       Foreground="{ThemeResource MainColor}" />
         </Grid>

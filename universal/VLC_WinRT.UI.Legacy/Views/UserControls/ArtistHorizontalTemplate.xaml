@@ -35,7 +35,7 @@
                      Height="80"
                      Width="80" />
             <FontIcon Glyph="{StaticResource BuddySymbol}"
-                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                      FontFamily="ms-appx:VLC.ttf#W10"
                       FontSize="29"
                       Foreground="{ThemeResource MainColor}" />
         </Grid>

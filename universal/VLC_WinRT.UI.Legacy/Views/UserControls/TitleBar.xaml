@@ -20,7 +20,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Path Data="{StaticResource VLCFlatPath}"
-              Fill="WhiteSmoke"
+              Fill="{ThemeResource BasicForeground}"
               Height="17"
               Width="17"
               Stretch="UniformToFill" />

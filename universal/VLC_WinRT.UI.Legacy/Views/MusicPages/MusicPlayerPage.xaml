@@ -143,7 +143,7 @@
             </AppBarButton.RenderTransform>
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource MusicPlaylistSymbol}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                          FontFamily="ms-appx:VLC.ttf#W10" />
             </AppBarButton.Icon>
         </AppBarButton>
 
