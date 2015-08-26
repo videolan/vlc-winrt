@@ -14,9 +14,9 @@
         <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
     <TextBlock Text=""
-               FontFamily="Segoe UI Symbol"
-               Foreground="#7AE3E3E3"
-               FontSize="80"
+                   FontFamily="Segoe UI Symbol"
+                   Foreground="{StaticResource SemiLightMainColor}"
+                   FontSize="80"
                HorizontalAlignment="Center"
                TextAlignment="Center"
                VerticalAlignment="Center" />

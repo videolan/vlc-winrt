@@ -45,8 +45,7 @@
                    FontSize="22">
             <Run x:Uid="NoFavoriteAlbumText1"
                  Text="When playing an album, press the" />
-            <Run Text=""
-                 FontFamily="Segoe UI Symbol"
+            <Run Text="{StaticResource FavoriteSymbol}"
                  Foreground="{StaticResource MainColor}" />
             <Run x:Uid="NoFavoriteAlbumText2"
                  Text="button and you'll find your favorite albums easier than ever!" />

@@ -17,9 +17,9 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <FontIcon Glyph="{StaticResource TelevisionSymbol}"
-                   FontFamily="ms-appx:VLC.ttf#W10"
-                   Foreground="#7AE3E3E3"
-                   FontSize="80"
+                  FontFamily="ms-appx:VLC.ttf#W10"
+                  Foreground="{StaticResource SemiLightMainColor}"
+                  FontSize="80"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center" />
         <TextBlock Grid.Row="1"

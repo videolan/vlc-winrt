@@ -90,7 +90,8 @@
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
                                 <FontIcon Glyph="{StaticResource FolderSymbol}"
-                                          FontFamily="ms-appx:VLC.ttf#W10" />
+                                          FontFamily="ms-appx:VLC.ttf#W10"
+                                          Foreground="{StaticResource SemiLightMainColor}" />
                                 <TextBlock Grid.Column="2"
                                            TextWrapping="Wrap"
                                            FlyoutBase.AttachedFlyout="{StaticResource RemoveFlyout}"

@@ -12,7 +12,7 @@
     <Grid>
         <TextBlock Text=""
                    FontFamily="Segoe UI Symbol"
-                   Foreground="#7AE3E3E3"
+                   Foreground="{StaticResource SemiLightMainColor}"
                    FontSize="120"
                    HorizontalAlignment="Center"
                    TextAlignment="Center"
