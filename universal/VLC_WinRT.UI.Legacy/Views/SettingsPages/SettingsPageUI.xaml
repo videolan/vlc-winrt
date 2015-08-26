@@ -23,15 +23,33 @@
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
                                       Margin="0,3,0,0"
-                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                                      FontFamily="ms-appx:VLC.ttf#W10" />
                         </AppBarButton.Icon>
                     </AppBarButton>
                     <TextBlock Text="User interface"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                 </StackPanel>
-                <TextBlock Text="Home page"
+                <TextBlock Text="Theme"
                            FontSize="22"
-                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight" />
+                <ToggleSwitch  Header="Application theme"
+                               OffContent="Light"
+                               OnContent="Dark"
+                               Margin="-6,0,0,0">
+                    <ToggleSwitch.IsOn>
+                        <Binding Source="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+                                 Path="ApplicationTheme"
+                                 Converter="{StaticResource ApplicationThemeBooleanConverter}"
+                                 Mode="TwoWay"/>
+                    </ToggleSwitch.IsOn>
+                </ToggleSwitch>
+
+                <TextBlock Text="Home page"
+                           Margin="0,12,0,0"
+                           FontSize="22"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight" />
                 <TextBlock Text="VLC will start on the selected page."
                            Style="{StaticResource BodyTextBlockStyle}" />
                 <ComboBox Margin="0,12,0,0"

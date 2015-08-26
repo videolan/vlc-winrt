@@ -26,6 +26,7 @@ using VLC_WinRT.BackgroundHelpers;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Controls;
 using VLC_WinRT.Views.UserControls;
+using VLC_WinRT.ViewModels.Settings;
 
 namespace VLC_WinRT
 {
@@ -242,6 +243,12 @@ namespace VLC_WinRT
             Locator.MainVM.DropTablesIfNeeded();
             ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
             Window.Current.Activate();
+            SetShellDecoration();
+        }
+
+        public static void SetShellDecoration()
+        {
+            RootPage.RequestedTheme = (SettingsViewModel.GetApplicationTheme() == ApplicationTheme.Light) ? ElementTheme.Light : ElementTheme.Dark;
         }
     }
 }

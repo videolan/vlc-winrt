@@ -16,7 +16,6 @@
   <Grid x:Name="ColumnGrid"
           Height="60"
           MinWidth="320"
-          RequestedTheme="Dark"
           Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />

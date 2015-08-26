@@ -38,6 +38,7 @@ namespace VLC_WinRT.ViewModels.Settings
         private bool _notificationOnNewSong;
         private bool _notificationOnNewSongForeground;
 #endif
+        private ApplicationTheme applicationTheme;
         private bool _continueVideoPlaybackInBackground;
         private OrderType _albumsOrderType;
         private OrderListing _albumsOrderListing;
@@ -50,6 +51,39 @@ namespace VLC_WinRT.ViewModels.Settings
         private bool _hardwareAcceleration;
         private bool _richAnimations;
         private KeyboardActionDatabase _keyboardActionDatabase;
+
+        public ApplicationTheme ApplicationTheme
+        {
+            get
+            {
+                return GetApplicationTheme();
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(ApplicationTheme), (int)value);
+                SetProperty(ref applicationTheme, value);
+                App.SetShellDecoration();
+            }
+        }
+
+        public static ApplicationTheme GetApplicationTheme()
+        {
+            var appTheme = ApplicationSettingsHelper.ReadSettingsValue(nameof(ApplicationTheme));
+            ApplicationTheme applicationTheme;
+            if (appTheme == null)
+            {
+#if WINDOWS_APP
+                applicationTheme = ApplicationTheme.Light;
+#else
+                    applicationTheme = App.Current.RequestedTheme;
+#endif
+            }
+            else
+            {
+                applicationTheme = (ApplicationTheme)appTheme;
+            }
+            return applicationTheme;
+        }
 
         public KeyboardActionDatabase KeyboardActionDatabase
         {

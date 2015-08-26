@@ -65,7 +65,8 @@
         <Image Source="{Binding AlbumImage}"
                Stretch="UniformToFill"/>
         <Grid PointerExited="Cover_PointerExited"
-              PointerEntered="Cover_PointerEntered">
+              PointerEntered="Cover_PointerEntered"
+              RequestedTheme="Dark">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1"
                                      StartPoint="0.5,0">
@@ -86,7 +87,6 @@
                           Grid.RowSpan="2"
                           x:Name="ButtonOverlay"
                           Visibility="Collapsed"
-                          RequestedTheme="Dark"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Label="Play album"
                           VerticalAlignment="Center"

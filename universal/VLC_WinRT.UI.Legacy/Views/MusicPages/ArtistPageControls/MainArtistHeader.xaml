@@ -10,8 +10,7 @@
              d:DesignWidth="400">
     <Grid x:Name="HeaderGrid"
           Height="350"
-          Background="Black"
-          RequestedTheme="Dark">
+          Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
             <RowDefinition Height="Auto" />
@@ -23,7 +22,8 @@
                Source="{Binding CurrentArtist.ArtistImage}"
                Stretch="UniformToFill"
                Opacity="0.3" />
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1"
+              RequestedTheme="Dark">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
@@ -52,6 +52,7 @@
         </Grid>
 
         <TextBlock Grid.Row="3"
+                   Foreground="White"
                    Text="{Binding CurrentArtist.Biography}"
                    Style="{StaticResource BodyTextBlockStyle}"
                    TextTrimming="CharacterEllipsis"

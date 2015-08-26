@@ -48,7 +48,7 @@ namespace VLC_WinRT.UI.Legacy.Views.SettingsPages
             if (string.IsNullOrEmpty(pseudo) || string.IsNullOrEmpty(pd)) return;
             ErrorConnectLastFmTextBox.Text = "Connecting";
             ErrorConnectLastFmTextBox.Visibility = Visibility.Visible;
-            ErrorConnectLastFmTextBox.Foreground = new SolidColorBrush(Colors.WhiteSmoke);
+            ErrorConnectLastFmTextBox.Foreground = new SolidColorBrush(Colors.Gray);
             var success = await lastFm.ConnectOperation(pseudo, pd);
             if (success)
             {

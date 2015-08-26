@@ -12,7 +12,6 @@
              d:DesignWidth="400">
     <Grid x:Name="HeaderGrid"
           Background="Black"
-          RequestedTheme="Dark"
           Height="350">
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
@@ -25,7 +24,8 @@
                Stretch="UniformToFill"
                Opacity="0.4" />
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1"
+              RequestedTheme="Dark">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
