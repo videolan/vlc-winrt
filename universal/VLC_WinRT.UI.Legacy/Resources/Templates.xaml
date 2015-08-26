@@ -50,7 +50,7 @@
                        Grid.Row="0"
                        Text="{Binding Name}"
                        FontSize="18"
-                       FontWeight="Light"
+                       FontWeight="SemiLight"
                        VerticalAlignment="Center"
                        TextTrimming="CharacterEllipsis" />
             <TextBlock Grid.Column="2"
