@@ -36,15 +36,19 @@ namespace VLC_WinRT.Views.MusicPages
 #if WINDOWS_APP
             Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
+            Locator.MusicPlayerVM.PropertyChanged += MusicPlayerVM_PropertyChanged;
 #endif
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            Locator.MusicPlayerVM.PropertyChanged -= MusicPlayerVM_PropertyChanged;
         }
 
         private void MouseStateChanged()
         {
             App.SplitShell.HideTopBar();
             FadeOut.Begin();
-            Locator.MusicPlayerVM.PropertyChanged += MusicPlayerVM_PropertyChanged;
-            PopulateSlideshowWithText();
         }
 
         private void MusicPlayerVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -89,12 +93,6 @@ namespace VLC_WinRT.Views.MusicPages
         {
             if (args.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Touch)
                 Locator.MediaPlaybackViewModel.MouseService.Content_Tapped(sender, args);
-        }
-
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
