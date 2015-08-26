@@ -14,12 +14,12 @@
             <Button x:Uid="TopVideos"
                     Margin="{StaticResource FrameMarginLeft}"
                     Content="top videos"
-                    FontSize="36"
+                    FontSize="40"
+                    FontWeight="Light"
                     Foreground="{StaticResource MainColor}"
                     Style="{StaticResource TextBlockButtonStyle}"
                     Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
-                    CommandParameter="1"
-                    FontWeight="SemiLight" />
+                    CommandParameter="1"/>
             <ListView x:Name="VideosListView"
                       Margin="{StaticResource FrameMarginVertical}"
                       Height="180"
@@ -61,8 +61,8 @@
 
             <Button Content="your music"
                     Margin="{StaticResource FrameMarginLeft}"
-                    FontSize="36"
-                    FontWeight="SemiLight"
+                    FontSize="40"
+                    FontWeight="Light"
                     Foreground="{StaticResource MainColor}"
                     Style="{StaticResource TextBlockButtonStyle}"
                     Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
