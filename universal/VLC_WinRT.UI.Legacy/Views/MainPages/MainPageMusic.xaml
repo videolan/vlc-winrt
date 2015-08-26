@@ -67,12 +67,14 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock x:Name="Title"
-                                   Text="{Binding}"
+                                   Text="{Binding Converter={StaticResource MusicViewStringifyConverter}}"
                                    Foreground="{ThemeResource BasicForeground}"
                                    VerticalAlignment="Center"
                                    FontSize="19"
-                                   FontWeight="SemiLight" 
-                                   Width="90"/>
+                                   FontWeight="SemiLight"
+                                   Width="90"
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="NoWrap" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
