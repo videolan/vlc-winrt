@@ -118,7 +118,7 @@ namespace Slide2D.Images
 
             if (frame < IntroFrameThreshold)
             {
-                currentImg.Opacity += 0.0016f;
+                currentImg.Opacity += 0.0013f;
             }
             else if (frame > OutroFrameThreshold)
             {
