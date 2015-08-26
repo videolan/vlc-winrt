@@ -42,7 +42,9 @@
                     <SolidColorBrush x:Key="ComboBoxItemPressedBackgroundThemeBrush"
                                      Color="#252525" />
                     <SolidColorBrush x:Key="ComboBoxItemPressedForegroundThemeBrush"
-                                     Color="WhiteSmoke" /> 
+                                     Color="WhiteSmoke" />
+                    <SolidColorBrush x:Key="ToggleSwitchThumbBackgroundThemeBrush"
+                                     Color="WhiteSmoke"/>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <Color x:Key="ApplicationPageBackgroundThemeColor">White</Color>
@@ -68,15 +70,18 @@
                                      Color="#FFF3F3F3" />
                     <SolidColorBrush x:Key="LightGray2ThemeBrush"
                                      Color="#FFF9F9F9" />
+
                     <!-- SDK Colors -->
                     <SolidColorBrush x:Key="TextBoxBorderThemeBrush"
                                      Color="#E5E5E5" />
                     <SolidColorBrush x:Key="TextSelectionHighlightColorThemeBrush"
                                      Color="{StaticResource MainColorBase}"/>
                     <SolidColorBrush x:Key="TextBoxBackgroundThemeBrush"
-                                     Color="#50FFFFFF" />
+                                     Color="#50CCCCCC" />
                     <SolidColorBrush x:Key="ToggleSwitchCurtainBackgroundThemeBrush"
                                      Color="{StaticResource MainColorBase}" />
+                    <SolidColorBrush x:Key="ToggleSwitchThumbBackgroundThemeBrush"
+                                     Color="WhiteSmoke"/>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <ResourceDictionary.MergedDictionaries>
