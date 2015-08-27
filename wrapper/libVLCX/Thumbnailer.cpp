@@ -24,7 +24,7 @@ using namespace libVLCX;
 
 //TODO: dynamic size
 #define SEEK_POSITION 0.5f
-#define PIXEL_SIZE 4 /* RGBA */
+#define PIXEL_SIZE 4 /* BGRA */
 
 enum thumbnail_state{
     THUMB_SEEKING,
@@ -100,13 +100,13 @@ static WriteableBitmap^ CopyToBitmap(thumbnailer_sys_t* sys)
     byte* modifyablePixels(nullptr);
     hr = pixelBytes->Buffer(&modifyablePixels);
 
-    for (unsigned int i = 0; i < sys->thumbSize; i += 4){
+    for (unsigned int i = 0; i < sys->thumbSize; i += 4) {
         //B
-        modifyablePixels[i] = sys->thumbData[i + 2];
+        modifyablePixels[i] = sys->thumbData[i];
         //G
         modifyablePixels[i + 1] = sys->thumbData[i + 1];
         //R
-        modifyablePixels[i + 2] = sys->thumbData[i];
+        modifyablePixels[i + 2] = sys->thumbData[i + 2];
         //Alpha
         modifyablePixels[i + 3] = sys->thumbData[i + 3];
     }
@@ -186,7 +186,7 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
             sys->mp = mp;
             SetEvent(sys->hLock);
 
-            libvlc_video_set_format(mp, "RGBA", sys->thumbWidth, sys->thumbHeight, pitch);
+            libvlc_video_set_format(mp, "BGRA", sys->thumbWidth, sys->thumbHeight, pitch);
             libvlc_video_set_callbacks(mp, Lock, Unlock, NULL, (void*) sys);
             sys->state = THUMB_SEEKING;
 
