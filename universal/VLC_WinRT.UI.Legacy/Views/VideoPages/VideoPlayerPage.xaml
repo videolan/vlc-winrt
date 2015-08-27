@@ -30,7 +30,8 @@
                                   Offset="1" />
                 </LinearGradientBrush>
             </Border.Background>
-            <Grid Margin="24,60,24,24">
+            <Grid Margin="24,60,24,24"
+                  Height="30">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
@@ -40,20 +41,18 @@
                         Grid.Column="0"
                         Style="{StaticResource TextBlockButtonStyle}"
                         Command="{Binding GoBack}">
-                    <Viewbox Height="30"
-                             Width="30">
-                        <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
-                                  FontFamily="ms-appx:VLC.ttf#W10" />
-                    </Viewbox>
+                    <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                              FontFamily="ms-appx:VLC.ttf#W10" 
+                              FontSize="30"/>
                 </Button>
                 <TextBlock Grid.Column="2"
-                           TextAlignment="Center"
+                           HorizontalAlignment="Left"
                            VerticalAlignment="Center"
                            FontSize="20"
                            DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
                            Text="{Binding CurrentVideo.Name}"
                            TextWrapping="NoWrap"
-                           TextTrimming="CharacterEllipsis"/>
+                           TextTrimming="CharacterEllipsis" />
             </Grid>
         </Border>
 
@@ -88,7 +87,8 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}" Grid.Column="0"
+                    <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}"
+                                        Grid.Column="0"
                                         Name="LockToggleButton"
                                         IsCompact="True"
                                         VerticalAlignment="Center"
