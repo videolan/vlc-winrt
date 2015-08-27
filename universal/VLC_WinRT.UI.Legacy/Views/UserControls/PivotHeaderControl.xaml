@@ -71,12 +71,10 @@
                   FontFamily="ms-appx:VLC.ttf#W10"
                   Glyph="{Binding PathData}"
                   FontSize="26"
-                  VerticalAlignment="Center"
-                  Foreground="{ThemeResource BasicForeground}" />
+                  VerticalAlignment="Center" />
         <TextBlock x:Name="Title"
                    Grid.Column="2"
                    Text="{Binding Title}"
-                   Foreground="{ThemeResource BasicForeground}"
                    VerticalAlignment="Center"
                    FontWeight="Light"/>
     </Grid>

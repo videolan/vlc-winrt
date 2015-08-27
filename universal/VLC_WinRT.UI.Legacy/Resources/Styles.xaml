@@ -1803,7 +1803,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource ListViewItemSelectedForegroundThemeBrush}" />
+                                                                    Value="{ThemeResource ListViewItemSelectedForegroundThemeBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -1871,7 +1871,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource ListViewItemSelectedForegroundThemeBrush}" />
+                                                                    Value="{ThemeResource SliderForegroundProgressTheneBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -2051,7 +2051,8 @@
                                                               Content="{TemplateBinding Content}"
                                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                              Margin="{TemplateBinding Padding}" />
+                                                              Margin="{TemplateBinding Padding}"
+                                                              Foreground="{ThemeResource BasicForeground}"/>
                                             <!-- The 'Xg' text simulates the amount of space one line of text will occupy.
                                              In the DataPlaceholder state, the Content is not loaded yet so we
                                              approximate the size of the item using placeholder text. -->
