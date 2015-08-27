@@ -21,6 +21,7 @@
 #include "Thumbnailer.h"
 
 using namespace libVLCX;
+#define FAST_COPY 1
 
 //TODO: dynamic size
 #define SEEK_POSITION 0.5f
@@ -89,6 +90,12 @@ static void *Lock(void *opaque, void **pixels)
 static WriteableBitmap^ CopyToBitmap(thumbnailer_sys_t* sys)
 {
     WriteableBitmap^ bmp = ref new WriteableBitmap(sys->thumbWidth, sys->thumbHeight);
+#if FAST_COPY
+    InMemoryRandomAccessStream^ stream = ref new InMemoryRandomAccessStream();
+    DataWriter^ dataWriter = ref new DataWriter( stream->GetOutputStreamAt( 0 ) );
+    dataWriter->WriteBytes( Platform::ArrayReference<unsigned char>( (unsigned char*) sys->thumbData, sys->thumbSize ) );
+    bmp->SetSource( stream );
+#else /* FAST_COPY */
     IBuffer^ pixelBuffer = bmp->PixelBuffer;
     ComPtr<IInspectable> pixelBufferInspectable(reinterpret_cast<IInspectable*>(pixelBuffer));
     ComPtr<IBufferByteAccess> pixelBytes;
@@ -106,7 +113,7 @@ static WriteableBitmap^ CopyToBitmap(thumbnailer_sys_t* sys)
         //Alpha
         modifyablePixels[i + 3] = sys->thumbData[i + 3];
     }
-
+#endif /* FAST_COPY */
     bmp->Invalidate();
     return bmp;
 }
