@@ -28,6 +28,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         #region private props
         private VideoItem _currentVideo;
 
+        private VLCSurfaceZoom currentSurfaceZoom = VLCSurfaceZoom.SURFACE_BEST_FIT;
         private bool isVideoPlayerSettingsVisible;
         private bool isVideoPlayerSubtitlesSettingsVisible;
         private bool isVideoPlayerAudioTracksSettingsVisible;
@@ -43,6 +44,19 @@ namespace VLC_WinRT.ViewModels.VideoVM
         {
             get { return _currentVideo; }
             set { SetProperty(ref _currentVideo, value); }
+        }
+
+        public VLCSurfaceZoom CurrentSurfaceZoom
+        {
+            get
+            {
+                return currentSurfaceZoom;
+            }
+            set
+            {
+                ChangeSurfaceZoom(value);
+                SetProperty(ref currentSurfaceZoom, value);
+            }
         }
 
         public bool IsVideoPlayerSettingsVisible
@@ -205,6 +219,60 @@ namespace VLC_WinRT.ViewModels.VideoVM
                 // File doesn't exist
             }
             return false;
+        }
+
+        private void ChangeSurfaceZoom(VLCSurfaceZoom desiredZoom)
+        {
+            var screenWidth = Window.Current.Bounds.Width;
+            var screenHeight = Window.Current.Bounds.Height;
+
+            var dw = screenWidth;
+
+            var vlcService = (VLCService)Locator.MediaPlaybackViewModel._mediaService;
+            var videoTrack = vlcService.MediaPlayer?.media()?.tracks()?.First(x => x.type() == TrackType.Video);
+            var videoHeight = videoTrack.height();
+            var videoWidth = videoTrack.width();
+
+            var sarDen = videoTrack.sarDen();
+            var sarNum = videoTrack.sarNum();
+
+            double var=0, displayedVideoWidth;
+            if(sarDen == sarNum)
+            {
+                // Assuming it's 1:1 pixel
+                var = (float)videoHeight / videoWidth;
+            }
+            else
+            {
+                
+            }
+
+            switch (desiredZoom)
+            {
+                case VLCSurfaceZoom.SURFACE_BEST_FIT:
+                    break;
+                case VLCSurfaceZoom.SURFACE_FIT_HORIZONTAL:
+
+                    break;
+                case VLCSurfaceZoom.SURFACE_FIT_VERTICAL:
+                    double displayedVideoHeight = screenWidth * var;
+                    double bandesNoires = screenHeight - displayedVideoHeight;
+                    var dar = screenWidth / displayedVideoHeight;
+                    //App.RootPage.SwapChainPanel.Height = App.RootPage.SwapChainPanel.ActualHeight * dar;
+                    //App.RootPage.SwapChainPanel.Width = App.RootPage.SwapChainPanel.ActualWidth * dar;
+                    Debug.WriteLine(displayedVideoHeight);
+                    break;
+                case VLCSurfaceZoom.SURFACE_FILL:
+                    break;
+                case VLCSurfaceZoom.SURFACE_16_9:
+                    break;
+                case VLCSurfaceZoom.SURFACE_4_3:
+                    break;
+                case VLCSurfaceZoom.SURFACE_ORIGINAL:
+                    break;
+                default:
+                    break;
+            }
         }
         #endregion
     }
