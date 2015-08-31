@@ -11,7 +11,7 @@
              d:DesignHeight="300"
              d:DesignWidth="400"
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-             Visibility="{Binding CurrentPage, Converter={StaticResource PageToVisibilityConverter},ConverterParameter='VideoPlayerPage'}">
+             Visibility="{Binding CurrentPage, Converter={StaticResource PageToVisibilityConverter},ConverterParameter='VideoPlayerPage,MusicPlayerPage'}">
 
   <Grid x:Name="ColumnGrid"
           Height="60"
