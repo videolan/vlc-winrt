@@ -105,7 +105,7 @@
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
                        FontSize="15"
-                       FontWeight="Normal"
+                       FontWeight="SemiLight"
                        VerticalAlignment="Center"
                        Margin="6,0,0,0" />
             <TextBlock x:Name="ArtistTextBlock" 

@@ -32,16 +32,16 @@
         <Grid Grid.Row="0"
               Grid.RowSpan="2">
             <Ellipse Fill="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
-                     Height="80"
-                     Width="80" />
+                     Height="120"
+                     Width="120" />
             <FontIcon Glyph="{StaticResource BuddySymbol}"
                       FontFamily="ms-appx:VLC.ttf#W10"
                       FontSize="29"
                       Foreground="{ThemeResource MainColor}" />
         </Grid>
         <Ellipse Grid.RowSpan="2"
-                 Height="80"
-                 Width="80">
+                 Height="120"
+                 Width="120">
             <Ellipse.Fill>
                 <ImageBrush Stretch="UniformToFill"
                             ImageSource="{Binding ArtistImage}" />
@@ -50,8 +50,8 @@
         <TextBlock Grid.Column="2"
                    Grid.Row="0"
                    Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
-                   FontSize="22"
-                   FontWeight="Light"
+                   FontSize="25"
+                   FontWeight="SemiLight"
                    VerticalAlignment="Bottom"
                    TextTrimming="CharacterEllipsis"/>
         <TextBlock Grid.Column="2"
@@ -59,7 +59,7 @@
                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                    VerticalAlignment="Top"
                    FontWeight="SemiLight"
-                   FontSize="16">
+                   FontSize="19">
             <Run Text="{Binding Albums.Count}" />
             <Run Text="albums" />
         </TextBlock>
