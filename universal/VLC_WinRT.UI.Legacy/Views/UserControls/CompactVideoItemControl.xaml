@@ -50,7 +50,7 @@
                            TextWrapping="NoWrap"
                            TextTrimming="CharacterEllipsis"
                            FontSize="15"
-                           FontWeight="Normal"
+                           FontWeight="SemiLight"
                            Margin="0,3,3,0" />
                 <TextBlock Grid.Row="1"
                          Grid.Column="0"
