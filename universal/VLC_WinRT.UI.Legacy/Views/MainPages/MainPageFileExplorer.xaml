@@ -77,7 +77,8 @@
         <Grid x:Name="ComboBoxSelector"
               Grid.Row="0"
               Grid.Column="1"
-              Height="50">
+              Height="50"
+              Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition />
@@ -102,15 +103,16 @@
             </ComboBox>
         </Grid>
 
-
-        <TextBlock x:Name="CurrentFolderNameNarrowTextBlock"
-                   Grid.Column="1"
-                   Grid.Row="1"
-                   Text="{Binding CurrentStorageVM.CurrentFolderName}"
-                   Margin="16,-10,0,0"
-                   Style="{ThemeResource SubheaderTextBlockStyle}"
-                   VerticalAlignment="Center"
-                   Height="50" />
+        <Grid Grid.Column="1"
+              Grid.Row="1"
+              Height="50"
+              Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
+            <TextBlock x:Name="CurrentFolderNameNarrowTextBlock"
+                       Text="{Binding CurrentStorageVM.CurrentFolderName}"
+                       Margin="16,-10,0,0"
+                       Style="{ThemeResource SubheaderTextBlockStyle}"
+                       VerticalAlignment="Center"/>
+        </Grid>
 
         <Grid x:Name="FileExplorerButtonsGrid"
               Grid.Column="1"
