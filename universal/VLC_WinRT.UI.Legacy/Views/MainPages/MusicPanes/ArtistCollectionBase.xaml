@@ -59,7 +59,7 @@
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid Orientation="Horizontal"
-                                           ItemWidth="300">
+                                           ItemWidth="400">
                                 <ItemsWrapGrid.ChildrenTransitions>
                                     <TransitionCollection>
                                         <RepositionThemeTransition />
