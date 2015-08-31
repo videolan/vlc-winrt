@@ -20,6 +20,7 @@ using Windows.Storage.AccessCache;
 using Windows.UI.Xaml;
 using libVLCX;
 using System.Diagnostics;
+using VLC_WinRT.Commands.VideoPlayer;
 
 namespace VLC_WinRT.ViewModels.VideoVM
 {
@@ -136,7 +137,8 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoVm.IsVideoPlayerChaptersListVisible = !Locator.VideoVm.IsVideoPlayerChaptersListVisible;
             Locator.MediaPlaybackViewModel.UpdateCurrentChapter();
         });
-        
+
+        public OpenVideoPlayerSettings OpenVideoPlayerSettings { get; } = new OpenVideoPlayerSettings();
         #endregion
 
         #region public fields

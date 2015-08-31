@@ -23,6 +23,7 @@
         MiniPlayerView,
         SettingsPageUI,
         SettingsPageMusic,
-        SettingsPageVideo
+        SettingsPageVideo,
+        VideoPlayerSettings
     }
 }

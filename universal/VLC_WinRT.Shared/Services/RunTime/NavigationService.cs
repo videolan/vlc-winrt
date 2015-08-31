@@ -16,6 +16,7 @@ using VLC_WinRT.Views.MusicPages.ArtistPages;
 using VLC_WinRT.Views.MusicPages.PlaylistControls;
 using VLC_WinRT.Views.VariousPages;
 using VLC_WinRT.Views.VideoPages;
+using VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 #endif
@@ -116,6 +117,9 @@ namespace VLC_WinRT.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.SettingsPageVideo:
+                    GoBack_HideFlyout();
+                    break;
+                case VLCPage.VideoPlayerSettings:
                     GoBack_HideFlyout();
                     break;
                 default:
@@ -228,6 +232,9 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.SettingsPageVideo:
                     App.SplitShell.RightFlyoutContent = new SettingsPageVideo();
                     break;
+                case VLCPage.VideoPlayerSettings:
+                    App.SplitShell.RightFlyoutContent = new VideoPlayerSettings();
+                    break;
                 default:
                     break;
             }
@@ -250,7 +257,8 @@ namespace VLC_WinRT.Services.RunTime
                    page == VLCPage.SettingsPageUI ||
                    page == VLCPage.SettingsPageMusic ||
                    page == VLCPage.SettingsPageVideo ||
-                   page == VLCPage.SettingsPage;
+                   page == VLCPage.SettingsPage ||
+                   page == VLCPage.VideoPlayerSettings;
         }
 
         /// <summary>

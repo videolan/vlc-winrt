@@ -5,48 +5,64 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             d:DesignHeight="300"
+             d:DesignHeight="400"
              d:DesignWidth="400"
-             VerticalAlignment="Bottom">
-    <UserControl.Visibility>
-        <Binding Source="{Binding Source={StaticResource Locator}, Path=VideoVm}"
-                 Path="IsVideoPlayerSettingsVisible"
-                 Converter="{StaticResource BooleanToVisibilityConverter}" />
-    </UserControl.Visibility>
+             DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
+
     <Border x:Name="RootGrid"
-            Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
-            RequestedTheme="Dark"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Width="400"
-            Padding="{StaticResource FrameMarginBothSides}">
+          Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+          RequestedTheme="Dark"
+          Padding="{StaticResource FrameMarginHorizontal}">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Text="SETTINGS"
-                       Style="{StaticResource BaselineTextStyle}"
-                       Foreground="{ThemeResource BasicForeground}"
-                       VerticalAlignment="Center"
-                       Margin="0,-12,0,0" />
-            <Button Style="{StaticResource TextBlockButtonStyle}"
-                    Content="{StaticResource CloseSymbol}"
-                    FontFamily="ms-appx:VLC.ttf#W10"
-                    FontSize="22"
-                    Margin="0,-3,0,0"
-                    HorizontalAlignment="Right"
-                    Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerSettingsVisible}" />
-            <TextBlock Grid.Row="1"
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <AppBarButton Grid.Column="0"
+                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Stretch"
+                              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                              Command="{Binding GoBackCommand}"
+                              Width="50">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                                  Margin="0,3,0,0"
+                                  FontFamily="ms-appx:VLC.ttf#W10" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <TextBlock Grid.Column="1"
+                           Margin="{StaticResource FrameMarginRight}"
+                           TextTrimming="CharacterEllipsis"
+                           TextWrapping="NoWrap"
+                           VerticalAlignment="Top"
+                           Text="Player settings"
+                           Style="{StaticResource SubheaderTextBlockStyle}" />
+            </Grid>
+            <TextBlock Grid.Row="2"
                        x:Uid="Speed"
                        Text="Speed"
                        Foreground="{ThemeResource BasicForeground}"
-                       Style="{StaticResource TitleTextBlockStyle}" />
-            <Slider Grid.Row="2"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       FontWeight="SemiLight" />
+            <Button Grid.Row="2" 
+                    Content="Reset"
+                    HorizontalAlignment="Right"/>
+            <Slider Grid.Row="3"
                     Margin="0,12,0,0"
                     Style="{StaticResource VLCSlider}"
                     Minimum="50"
@@ -54,18 +70,61 @@
                     Maximum="200"
                     IsThumbToolTipEnabled="True"
                     ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}" />
-            <Grid Grid.Row="3">
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Text="0.5x"
                            Style="{StaticResource TitleTextBlockStyle}" />
-                <TextBlock Text="1x"
-                           Margin="120,0,0,0"
+                <TextBlock Grid.Column="1" 
+                           Text="1x"
                            Style="{StaticResource TitleTextBlockStyle}" />
-                <TextBlock Text="2x"
+                <TextBlock Grid.Column="2" 
+                           Text="2x"
                            HorizontalAlignment="Right"
                            Style="{StaticResource TitleTextBlockStyle}" />
             </Grid>
 
-            <AppBarButton Grid.Row="5"
+            <TextBlock Grid.Row="6"
+                       Foreground="{ThemeResource BasicForeground}"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       FontWeight="SemiLight">
+                <Run Text="Audio delay" />
+                <Run Text="350ms"
+                     Foreground="{StaticResource MainColor}"
+                     FontSize="26"
+                     FontWeight="Light" />
+            </TextBlock>
+            <StackPanel Grid.Row="6"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                <Button Content="-"/>
+                <Button Content="+"
+                        Margin="12,0,0,0"/>
+            </StackPanel>
+            <Slider Grid.Row="7"
+                    Margin="0,12,0,0"
+                    Style="{StaticResource VLCSlider}"
+                    Minimum="-300"
+                    Value="-150"
+                    Maximum="300"
+                    IsThumbToolTipEnabled="True"
+                    ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}" />
+            <Grid Grid.Row="8">
+                <TextBlock Text="-3s"
+                           Style="{StaticResource TitleTextBlockStyle}" />
+                <TextBlock Text="0"
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource TitleTextBlockStyle}" />
+                <TextBlock Text="3s"
+                           HorizontalAlignment="Right"
+                           Style="{StaticResource TitleTextBlockStyle}" />
+            </Grid>
+
+
+            <AppBarButton Grid.Row="10"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Label="Chapters"
                           FontSize="22"

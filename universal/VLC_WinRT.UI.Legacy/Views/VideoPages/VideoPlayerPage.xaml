@@ -63,7 +63,6 @@
                   Background="Transparent"
                   Tapped="PlaceholderInteractionGrid_OnTapped" 
                   DoubleTapped="PlaceholderInteractionGrid_DoubleTapped"/>
-            <videoControls:VideoPlayerSettings x:Name="VideoPlayerSettings" />
             <videoControls:AudioTracksSettings />
             <videoControls:SubtitlesSettings />
             <videoControls:VolumeSliderSettings />
@@ -159,7 +158,7 @@
                                    IsTabStop="False"
                                    VerticalAlignment="Center"
                                    Style="{StaticResource AppBarButtonStyleHuge}"
-                                   Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerSettingsVisible}" />
+                                   Command="{Binding Source={StaticResource Locator}, Path=VideoVm.OpenVideoPlayerSettings}" />
                     <AppBarButton x:Name="VolumeButton"
                                   Grid.Column="4"
                                   IsCompact="True"
