@@ -103,7 +103,8 @@
             </ComboBox>
         </Grid>
 
-        <Grid Grid.Column="1"
+        <Grid x:Name="CurrentFolderNameNarrowGrid" 
+              Grid.Column="1"
               Grid.Row="1"
               Height="50"
               Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
@@ -210,7 +211,7 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CurrentFolderNameNarrowTextBlock"
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CurrentFolderNameNarrowGrid"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
@@ -239,7 +240,7 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CurrentFolderNameNarrowTextBlock"
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CurrentFolderNameNarrowGrid"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
