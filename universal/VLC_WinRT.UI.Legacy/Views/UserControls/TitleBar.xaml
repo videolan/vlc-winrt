@@ -8,7 +8,7 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Grid MinHeight="38"
+    <Grid MinHeight="40"
           Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="47" />

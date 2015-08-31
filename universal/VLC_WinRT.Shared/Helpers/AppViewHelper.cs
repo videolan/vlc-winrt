@@ -16,13 +16,13 @@ namespace VLC_WinRT.Helpers
 
     public static class AppViewHelper
     {
-        private const double DefaultTitleBarHeight = 32;
+        private const double DefaultTitleBarHeight = 40;
         public static double TitleBarHeight
         {
             get
             {
+                return DefaultTitleBarHeight;
                 var height = AppViewHelper.SetTitleBarHeight();
-                Locator.MainVM.TitleBarMargin = new Thickness(0, height, 0, 0);
                 return height;
             }
         }
