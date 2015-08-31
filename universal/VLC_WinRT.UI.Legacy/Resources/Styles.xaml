@@ -347,7 +347,9 @@
         <Setter Property="FontSize"
                 Value="{ThemeResource ControlContentThemeFontSize}" />
         <Setter Property="MinHeight"
-                Value="{ThemeResource TextControlThemeMinHeight}"/>
+                Value="{ThemeResource TextControlThemeMinHeight}" />
+        <Setter Property="MinWidth"
+                Value="{ThemeResource TextControlThemeMinHeight}" />
         <Setter Property="Height"
                 Value="{ThemeResource TextControlThemeMinHeight}" />
         <Setter Property="Template">
