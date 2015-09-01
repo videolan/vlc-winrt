@@ -38,7 +38,6 @@ namespace Slide2D
             canvas.CreateResources += Canvas_CreateResources;
             canvas.Update += Canvas_Update;
             canvas.Draw += Canvas_Draw;
-            //canvas.TargetElapsedTime = TimeSpan.FromMilliseconds(30);
             canvas.ForceSoftwareRenderer = false;
             canvas.Paused = true;
             Window.Current.SizeChanged += Current_SizeChanged;
