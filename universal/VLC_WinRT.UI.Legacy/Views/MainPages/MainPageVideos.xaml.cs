@@ -43,7 +43,7 @@ namespace VLC_WinRT.Views.MainPages
 
         void Responsive(double width)
         {
-            if (width <= 600)
+            if (width <= 350)
                 VisualStateUtilities.GoToState(this, "Narrow", false);
             else
                 VisualStateUtilities.GoToState(this, "Wide", false);
