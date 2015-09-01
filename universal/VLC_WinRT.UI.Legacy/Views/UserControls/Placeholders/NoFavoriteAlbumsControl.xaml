@@ -46,6 +46,7 @@
             <Run x:Uid="NoFavoriteAlbumText1"
                  Text="When playing an album, press the" />
             <Run Text="{StaticResource FavoriteSymbol}"
+                 FontFamily="ms-appx:VLC.ttf#W10"
                  Foreground="{StaticResource MainColor}" />
             <Run x:Uid="NoFavoriteAlbumText2"
                  Text="button and you'll find your favorite albums easier than ever!" />
