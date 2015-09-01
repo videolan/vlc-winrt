@@ -28,6 +28,7 @@
                                      Color="#FF252525" />
                     <SolidColorBrush x:Key="LightGray2ThemeBrush"
                                      Color="#FF101010" />
+
                     <!-- SDK Colors -->
                     <SolidColorBrush x:Key="TextBoxBorderThemeBrush"
                                      Color="#FFFFFFFF" />
