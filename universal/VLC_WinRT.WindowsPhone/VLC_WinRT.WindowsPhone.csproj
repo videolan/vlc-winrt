@@ -814,7 +814,7 @@
       <HintPath>..\..\app\packages\Inflatable.Lastfm.0.2.0.211\lib\portable-win8+net45+wp8+wpa81\IF.Lastfm.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Graphics.Canvas, Version=255.255.255.255, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\app\packages\Win2D.win81.1.2.0\lib\wpa\Microsoft.Graphics.Canvas.winmd</HintPath>
+      <HintPath>..\..\app\packages\Win2D.win81.1.3.0\lib\wpa\Microsoft.Graphics.Canvas.winmd</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
@@ -915,11 +915,11 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\app\packages\Win2D.win81.1.1.0\build\wpa\Win2D.win81.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\app\packages\Win2D.win81.1.1.0\build\wpa\Win2D.win81.targets'))" />
     <Error Condition="!Exists('..\..\app\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\app\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+    <Error Condition="!Exists('..\..\app\packages\Win2D.win81.1.3.0\build\wpa\Win2D.win81.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\app\packages\Win2D.win81.1.3.0\build\wpa\Win2D.win81.targets'))" />
   </Target>
-  <Import Project="..\..\app\packages\Win2D.win81.1.1.0\build\wpa\Win2D.win81.targets" Condition="Exists('..\..\app\packages\Win2D.win81.1.1.0\build\wpa\Win2D.win81.targets')" />
   <Import Project="..\..\app\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\app\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="..\..\app\packages\Win2D.win81.1.3.0\build\wpa\Win2D.win81.targets" Condition="Exists('..\..\app\packages\Win2D.win81.1.3.0\build\wpa\Win2D.win81.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
