@@ -19,7 +19,7 @@
                           Margin="{StaticResource FrameMargin}"
                           Grid.Row="1"
                           Loaded="MainPageVideoContentPresenter_OnLoaded" />
-        <Grid>
+        <Grid Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="*" />
