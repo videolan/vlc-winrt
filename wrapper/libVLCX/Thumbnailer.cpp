@@ -21,7 +21,7 @@
 #include "Thumbnailer.h"
 
 using namespace libVLCX;
-#define FAST_COPY 1
+#define FAST_COPY 0
 
 //TODO: dynamic size
 #define SEEK_POSITION 0.5f
