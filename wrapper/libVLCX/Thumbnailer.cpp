@@ -196,9 +196,8 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
             libvlc_video_set_callbacks(mp, Lock, Unlock, NULL, (void*) sys);
             sys->state = THUMB_SEEKING;
 
-            sys->cancellationTask = concurrency::create_task( [sys, timeoutMs, mrl] {
+            sys->cancellationTask = concurrency::create_task( [sys, timeoutMs] {
                 concurrency::wait( timeoutMs );
-                Debug( L"timed out sys %p for %s\n", sys, mrl->Data() );
                 if( concurrency::is_task_cancellation_requested() )
                     concurrency::cancel_current_task();
                 if( !sys->screenshotCompleteEvent._IsTriggered() )
