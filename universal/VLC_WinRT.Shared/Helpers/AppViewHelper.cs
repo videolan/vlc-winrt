@@ -78,7 +78,7 @@ namespace VLC_WinRT.Helpers
                     bb.BackgroundColor = Color.FromArgb(0, 0, 0, 0);
                     bb.ForegroundColor = fgColor;
                     bb.ButtonForegroundColor = fgColor;
-                    bb.ButtonBackgroundColor = Color.FromArgb(0,0,0,0);
+                    bb.ButtonBackgroundColor = Color.FromArgb(0, 0, 0, 0);
 
                     if (DoesPropertyExist("InactiveBackgroundColor", appViewProperties))
                         bb.InactiveBackgroundColor = Color.FromArgb(0, 0, 0, 0);
