@@ -17,13 +17,19 @@
                               Source="{Binding GroupedAlbums}" />
     </UserControl.Resources>
     <Grid>
+        <Grid.Transitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.Transitions>
         <controls:NothingToSeeHere Visibility="{Binding Albums.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         <SemanticZoom Padding="0"
                       ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       ScrollViewer.HorizontalScrollMode="Disabled">
             <SemanticZoom.ZoomedInView>
-                <ScrollWatcher:ListViewScrollWatcher ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
+                <ScrollWatcher:ListViewScrollWatcher x:Name="AlbumsZoomedInView"
+                                                     ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
                           ItemTemplate="{StaticResource AlbumItemTemplate}"
                           ItemContainerStyle="{StaticResource ListViewItemStyle}"
                           IsItemClickEnabled="True"
@@ -47,14 +53,7 @@
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid SizeChanged="AlbumsWrapGrid_SizeChanged"
-                                           Orientation="Horizontal">
-                                <ItemsWrapGrid.ChildrenTransitions>
-                                    <TransitionCollection>
-                                        <EntranceThemeTransition FromHorizontalOffset="50"
-                                                                 FromVerticalOffset="0" />
-                                    </TransitionCollection>
-                                </ItemsWrapGrid.ChildrenTransitions>
-                            </ItemsWrapGrid>
+                                           Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
                 </ScrollWatcher:ListViewScrollWatcher>

@@ -11,6 +11,11 @@
       mc:Ignorable="d">
 
     <Grid>
+        <Grid.Transitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.Transitions>
         <ScrollWatcher:ListViewScrollWatcher x:Name="CameraRollListView"
                   ItemsSource="{Binding CameraRoll}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"

@@ -13,6 +13,11 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
 
     <Grid>
+        <Grid.Transitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.Transitions>
         <ScrollWatcher:ListViewScrollWatcher ItemsSource="{Binding Videos}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -33,8 +38,6 @@
                 <TransitionCollection>
                     <AddDeleteThemeTransition />
                     <RepositionThemeTransition />
-                    <EntranceThemeTransition FromHorizontalOffset="50"
-                                             FromVerticalOffset="0" />
                 </TransitionCollection>
             </ListView.ItemContainerTransitions>
             <ListView.ItemsPanel>
