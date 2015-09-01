@@ -202,7 +202,6 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
                     concurrency::cancel_current_task();
                 if( !sys->screenshotCompleteEvent._IsTriggered() )
                 {
-                    libvlc_media_player_stop( sys->mp );
                     sys->screenshotCompleteEvent.set( nullptr );
                 }
             }, sys->timeoutCts.get_token() );
