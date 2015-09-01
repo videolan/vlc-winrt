@@ -118,7 +118,7 @@ namespace Slide2D
             slideshow.ChangePicFast(false);
         }
 
-        public void AddText(List<Txt> texts)
+        public void SetText(List<Txt> texts)
         {
             slideshow.Texts.Clear();
             var id = 0;
@@ -145,6 +145,12 @@ namespace Slide2D
         {
             get { return slideshow.RichAnimations; }
             set { slideshow.RichAnimations = value; }
+        }
+
+        public bool TextInSlideshowEnabled
+        {
+            get { return slideshow.TextInSlideshowEnabled; }
+            set { slideshow.TextInSlideshowEnabled = value; }
         }
     }
 }

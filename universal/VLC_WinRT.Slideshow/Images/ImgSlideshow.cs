@@ -25,6 +25,7 @@ namespace Slide2D.Images
         int threshold = 0;
 
         // ------
+        public bool TextInSlideshowEnabled;
         public bool UseDefaultPic;
         private bool nextIsDefaultPic;
 
@@ -137,10 +138,13 @@ namespace Slide2D.Images
         public void Draw(CanvasAnimatedDrawEventArgs args)
         {
             if (currentImg?.ScaleEffect == null) return;
-            var txts = Texts.ToList();
-            foreach (var text in txts)
+            if (TextInSlideshowEnabled)
             {
-                text.Draw(ref args, ref txts);
+                var txts = Texts.ToList();
+                foreach (var text in txts)
+                {
+                    text.Draw(ref args, ref txts);
+                }
             }
 
             args.DrawingSession.DrawImage(currentImg.ScaleEffect, new Vector2(), new Rect()

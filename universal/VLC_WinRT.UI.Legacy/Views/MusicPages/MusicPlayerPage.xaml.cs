@@ -42,13 +42,16 @@ namespace VLC_WinRT.Views.MusicPages
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            Locator.MusicPlayerVM.PropertyChanged -= MusicPlayerVM_PropertyChanged;
+            base.OnNavigatedFrom(e);
+            MouseMoved();
+            Locator.Slideshow.ClearTextList();
         }
 
         private void MouseStateChanged()
         {
             App.SplitShell.HideTopBar();
             FadeOut.Begin();
+            Locator.Slideshow.TextInSlideshowEnabled = true;
         }
 
         private void MusicPlayerVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -78,7 +81,7 @@ namespace VLC_WinRT.Views.MusicPages
                 FontWeight = FontWeights.Light,
                 FontSize = 90,
             }));
-            Locator.Slideshow.AddText(texts);
+            Locator.Slideshow.SetText(texts);
         }
 
         private void MouseMoved()
@@ -86,7 +89,7 @@ namespace VLC_WinRT.Views.MusicPages
             Locator.MusicPlayerVM.PropertyChanged -= MusicPlayerVM_PropertyChanged;
             App.SplitShell.ShowTopBar();
             FadeIn.Begin();
-            Locator.Slideshow.ClearTextList();
+            Locator.Slideshow.TextInSlideshowEnabled = false;
         }
 
         private void PlaceholderInteractionGrid_OnTapped(object sender, TappedRoutedEventArgs args)
