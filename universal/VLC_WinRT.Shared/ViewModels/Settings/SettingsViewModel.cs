@@ -336,7 +336,7 @@ namespace VLC_WinRT.ViewModels.Settings
                 var albumsOrderType = ApplicationSettingsHelper.ReadSettingsValue("AlbumsOrderType");
                 if (albumsOrderType == null)
                 {
-                    _albumsOrderType = OrderType.ByArtist;
+                    _albumsOrderType = OrderType.ByAlbum;
                 }
                 else
                 {
