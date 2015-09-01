@@ -258,7 +258,7 @@ namespace VLC_WinRT.ViewModels
         public void OpenStreamFlyout()
         {
             var streamFLyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout;
-            streamFLyout?.ShowAt(App.ApplicationFrame);
+            streamFLyout?.ShowAt(App.SplitShell);
         }
 
         public ObservableCollection<Panel> Panels
