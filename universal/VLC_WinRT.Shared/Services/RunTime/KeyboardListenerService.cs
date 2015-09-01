@@ -184,6 +184,12 @@ namespace VLC_WinRT.Services.RunTime
                 // this is a simple shortcut
                 switch (keyboardAction.Action)
                 {
+                    case VLCAction.FullscreenToggle:
+                        AppViewHelper.SetFullscreen();
+                        break;
+                    case VLCAction.LeaveFullscreen:
+                        AppViewHelper.SetFullscreen(true);
+                        break;
                     case VLCAction.PauseToggle:
                         if (Locator.MediaPlaybackViewModel.MediaState == MediaState.Paused
                             || Locator.MediaPlaybackViewModel.MediaState == MediaState.Playing)
@@ -212,6 +218,18 @@ namespace VLC_WinRT.Services.RunTime
                             await Locator.MediaPlaybackViewModel.PlayNext();
                         }
                         break;
+                    case VLCAction.Faster:
+                        Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("faster");
+                        break;
+                    case VLCAction.Slow:
+                        Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("slower");
+                        break;
+                    case VLCAction.NormalRate:
+                        Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("reset");
+                        break;
+                    case VLCAction.Mute:
+                        Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("mute");
+                        break;
                 }
             }
             else if (virtualKeys[2] == VirtualKey.None)
@@ -231,6 +249,12 @@ namespace VLC_WinRT.Services.RunTime
                             {
                                 Locator.MainVM.OpenStreamFlyout();
                             }
+                            break;
+                        case VLCAction.VolumeUp:
+                            Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("higher");
+                            break;
+                        case VLCAction.VolumeDown:
+                            Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("lower");
                             break;
                     }
                 }
