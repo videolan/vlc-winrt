@@ -73,7 +73,30 @@
                 <ToggleSwitch  Header="Use rich animations in the slideshows"
                                IsOn="{Binding RichAnimations, Mode=TwoWay}"
                                Margin="-6,0,0,0" />
-                </StackPanel>
-            </ScrollViewer>
+                
+                <TextBlock Text="Keyboard shortcuts"
+                           Margin="0,12,0,0"
+                           FontSize="22"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight" />
+
+                <ListView ItemsSource="{Binding KeyboardActions}"
+                          ItemContainerStyle="{StaticResource ListViewItemContainerStyleNoSelectCheck}"
+                          SelectionMode="None"
+                          Margin="-3,0,0,0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Foreground="{ThemeResource BasicForeground}">
+                                <Run Text="{Binding Action}"
+                                     FontSize="18" />
+                                <LineBreak />
+                                <Run Text="{Binding KeyDescription}"
+                                     FontWeight="Light"/>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel> 
+        </ScrollViewer>
         </Grid>
 </UserControl>
