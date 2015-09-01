@@ -53,6 +53,10 @@ Thumbnailer::Thumbnailer()
     const char *argv [] = {
         "-I", "dummy",            // Only use options needed for snapshots
         "--verbose=5",
+        "--no-audio",
+        "--no-spu",
+        "--no-osd",
+        "--aout=none",
         "--no-video-title-show",
         "--no-stats",
     };
@@ -172,6 +176,7 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
             libvlc_media_add_option(m, ":no-spu");
             libvlc_media_add_option(m, ":no-osd");
             libvlc_media_add_option(m, ":avcodec-hw=none");
+            libvlc_media_add_option( m, ":aout=none" );
 
             mp = libvlc_media_player_new_from_media(m);
             libvlc_media_release(m);
