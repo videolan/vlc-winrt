@@ -34,7 +34,6 @@ namespace VLC_WinRT.ViewModels.VideoVM
         private bool isVideoPlayerSubtitlesSettingsVisible;
         private bool isVideoPlayerAudioTracksSettingsVisible;
         private bool isVideoPlayerVolumeSettingsVisible;
-        private bool isVideoPlayerChaptersListVisible;
         #endregion
 
         #region private fields
@@ -83,20 +82,13 @@ namespace VLC_WinRT.ViewModels.VideoVM
             get { return isVideoPlayerVolumeSettingsVisible; }
             set { SetProperty(ref isVideoPlayerVolumeSettingsVisible, value); }
         }
-
-        public bool IsVideoPlayerChaptersListVisible
-        {
-            get { return isVideoPlayerChaptersListVisible; }
-            set { SetProperty(ref isVideoPlayerChaptersListVisible, value); }
-        }
-
+        
         public ActionCommand ToggleIsVideoPlayerSettingsVisible { get; } = new ActionCommand(() =>
         {
             Locator.VideoVm.IsVideoPlayerSettingsVisible = !Locator.VideoVm.IsVideoPlayerSettingsVisible;
             Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
-            Locator.VideoVm.IsVideoPlayerChaptersListVisible = false;
         });
 
 
@@ -105,7 +97,6 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
-            Locator.VideoVm.IsVideoPlayerChaptersListVisible = false;
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = !Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible;
         });
 
@@ -114,7 +105,6 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
-            Locator.VideoVm.IsVideoPlayerChaptersListVisible = false;
             Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = !Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible;
         });
 
@@ -124,20 +114,9 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
-            Locator.VideoVm.IsVideoPlayerChaptersListVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = !Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible;
         });
-
-        public ActionCommand ToggleIsVideoPlayerChaptersListVisible { get; } = new ActionCommand(() =>
-        {
-            Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = false;
-            Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
-            Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
-            Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
-            Locator.VideoVm.IsVideoPlayerChaptersListVisible = !Locator.VideoVm.IsVideoPlayerChaptersListVisible;
-            Locator.MediaPlaybackViewModel.UpdateCurrentChapter();
-        });
-
+        
         public OpenVideoPlayerSettings OpenVideoPlayerSettings { get; } = new OpenVideoPlayerSettings();
         #endregion
 
@@ -168,7 +147,6 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
-            Locator.VideoVm.IsVideoPlayerChaptersListVisible = false;
             Locator.Slideshow.IsPaused = false;
 
             Locator.MainVM.TitleBarMargin = new Thickness(0, 0, 0, 0);
