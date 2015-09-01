@@ -99,21 +99,21 @@ namespace VLC_WinRT.Helpers
 #endif
         }
 
-        public static async void SetFullscreen()
+        public static void SetFullscreen(bool forceExit = false)
         {
 #if WINDOWS_APP
             var v = ApplicationView.GetForCurrentView();
             var runtimeMethods = v.GetType().GetRuntimeMethods();
-            
-            if (!IsFullScreen())
-            {
-                var tryEnterFullScreenMode = runtimeMethods.FirstOrDefault(x => x.Name == "TryEnterFullScreenMode");
-                tryEnterFullScreenMode?.Invoke(v, null);
-            }
-            else
+
+            if (IsFullScreen() || forceExit)
             {
                 var exitFullScreenMode = runtimeMethods.FirstOrDefault(x => x.Name == "ExitFullScreenMode");
                 exitFullScreenMode?.Invoke(v, null);
+            }
+            else
+            {
+                var tryEnterFullScreenMode = runtimeMethods.FirstOrDefault(x => x.Name == "TryEnterFullScreenMode");
+                tryEnterFullScreenMode?.Invoke(v, null);
             }
 #endif
         }
