@@ -154,21 +154,11 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
         libvlc_media_player_t* mp;
         thumbnailer_sys_t *sys = new thumbnailer_sys_t();
         auto completionTask = concurrency::create_task(sys->screenshotCompleteEvent, ct);
-        sys->cancellationTask = concurrency::create_task([sys, timeoutMs] {
-            concurrency::wait(timeoutMs);
-            if (concurrency::is_task_cancellation_requested())
-                concurrency::cancel_current_task();
-            if (!sys->screenshotCompleteEvent._IsTriggered())
-            {
-                sys->screenshotCompleteEvent.set(nullptr);
-            }
-        }, sys->timeoutCts.get_token());
-
-        size_t len2 = WideCharToMultiByte(CP_UTF8, 0, mrl->Data(), -1, NULL, 0, NULL, NULL);
-        char* mrl_str = new char[len2];
-        WideCharToMultiByte(CP_UTF8, 0, mrl->Data(), -1, mrl_str, len2, NULL, NULL);
-
         if (p_instance){
+            size_t len2 = WideCharToMultiByte( CP_UTF8, 0, mrl->Data(), -1, NULL, 0, NULL, NULL );
+            char* mrl_str = new char[len2];
+            WideCharToMultiByte( CP_UTF8, 0, mrl->Data(), -1, mrl_str, len2, NULL, NULL );
+
             libvlc_media_t* m = libvlc_media_new_location(this->p_instance, mrl_str);
 
             /* Set media to fast with no options */
@@ -199,6 +189,17 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
             libvlc_video_set_callbacks(mp, Lock, Unlock, NULL, (void*) sys);
             sys->state = THUMB_SEEKING;
 
+            sys->cancellationTask = concurrency::create_task( [sys, timeoutMs, mrl] {
+                concurrency::wait( timeoutMs );
+                Debug( L"timed out sys %p for %s\n", sys, mrl->Data() );
+                if( concurrency::is_task_cancellation_requested() )
+                    concurrency::cancel_current_task();
+                if( !sys->screenshotCompleteEvent._IsTriggered() )
+                {
+                    sys->screenshotCompleteEvent.set( nullptr );
+                }
+            }, sys->timeoutCts.get_token() );
+
             if (mp)
             {
                 libvlc_media_player_play(mp);
@@ -217,9 +218,9 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
                 free(sys->thumbData);
                 delete sys;
             });
+            delete[]( mrl_str );
         }
 
-        delete [](mrl_str);
         return completionTask;
     });
 }
