@@ -20,7 +20,7 @@ namespace VLC_WinRT.Commands.Navigation
             }
             else if (lv.ScrollDirection == ScrollDirection.Top)
             {
-                App.SplitShell.ShowTopBar();
+                App.SplitShell?.ShowTopBar();
             }
         }
     }
