@@ -26,6 +26,11 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -124,20 +129,66 @@
                            HorizontalAlignment="Right"
                            Style="{StaticResource TitleTextBlockStyle}" />
             </Grid>
+            
+            <TextBlock Grid.Row="10"
+                       Foreground="{ThemeResource BasicForeground}"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       FontWeight="SemiLight">
+                <Run Text="Subtitle delay" />
+                <Run Text="350ms"
+                     Foreground="{StaticResource MainColor}"
+                     FontSize="26"
+                     FontWeight="Light" />
+            </TextBlock>
+            <StackPanel Grid.Row="10"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                <Button Content="-" />
+                <Button Content="+"
+                        Margin="12,0,0,0" />
+            </StackPanel>
+            <Slider Grid.Row="11"
+                    Margin="0,12,0,0"
+                    Style="{StaticResource VLCSlider}"
+                    Minimum="-300"
+                    Value="-150"
+                    Maximum="300"
+                    IsThumbToolTipEnabled="True"
+                    ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}" />
+            <Grid Grid.Row="12">
+                <TextBlock Text="-3s"
+                           Style="{StaticResource TitleTextBlockStyle}" />
+                <TextBlock Text="0"
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource TitleTextBlockStyle}" />
+                <TextBlock Text="3s"
+                           HorizontalAlignment="Right"
+                           Style="{StaticResource TitleTextBlockStyle}" />
+            </Grid>
 
-
-            <AppBarButton Grid.Row="10"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Label="Chapters"
-                          FontSize="22"
-                          Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerChaptersListVisible}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource ChaptersListSymbol}"
-                              FontFamily="ms-appx:VLC.ttf#W10"
-                              Margin="0,4,0,0"
-                              FontSize="24" />
-                </AppBarButton.Icon>
-            </AppBarButton>
+            <TextBlock Grid.Row="14"
+                       Foreground="{ThemeResource BasicForeground}"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       FontWeight="SemiLight">
+                <Run Text="Chapters" />
+                <Run Text="{Binding Chapters.Count}"
+                     Foreground="{StaticResource MainColor}"
+                     FontSize="26"
+                     FontWeight="Light" />
+            </TextBlock>
+            <ListView Grid.Row="15"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                      ItemsSource="{Binding Chapters}"
+                      SelectedItem="{Binding CurrentChapter, Mode=TwoWay}"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"
+                                   Foreground="White"
+                                   VerticalAlignment="Center" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
     </Border>
 </UserControl>
