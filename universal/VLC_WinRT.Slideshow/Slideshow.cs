@@ -40,6 +40,13 @@ namespace Slide2D
             canvas.Draw += Canvas_Draw;
             canvas.ForceSoftwareRenderer = false;
             canvas.Paused = true;
+
+            float dpiLimit = 96.0f;
+            if (canvas.Dpi > dpiLimit)
+            {
+                canvas.DpiScale = dpiLimit / canvas.Dpi;
+            }
+
             Window.Current.SizeChanged += Current_SizeChanged;
             slideshow = new ImgClassicSlideshow();
         }
