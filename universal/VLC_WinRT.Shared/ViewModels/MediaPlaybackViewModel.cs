@@ -215,6 +215,10 @@ namespace VLC_WinRT.ViewModels
 
         public StopVideoCommand GoBack { get; } = new StopVideoCommand();
 
+        public ChangePlaybackSpeedRateCommand ChangePlaybackSpeedRateCommand { get; } = new ChangePlaybackSpeedRateCommand();
+
+        public ChangeVolumeCommand ChangeVolumeCommand { get; } = new ChangeVolumeCommand();
+
         public TimeSpan TimeTotal
         {
             get { return _timeTotal; }
