@@ -28,6 +28,12 @@ namespace VLC_WinRT.Database
             }
         }
 
+        public bool IsEmpty()
+        {
+            using (var c = new SQLiteConnection(DbPath))
+                return !c.Table<KeyboardAction>().Any();
+        }
+
         public void AddKeyboardActions(IEnumerable<KeyboardAction> keyboardActions)
         {
             using (var connection = new SQLiteConnection(DbPath))
