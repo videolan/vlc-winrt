@@ -258,13 +258,13 @@ ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
     }
     catch( Exception^ ex )
     {
-        OutputDebugString(L"Failure while reading block");
+        OutputDebugString(L"Failure while reading block\n");
         if( ex->HResult == HRESULT_FROM_WIN32(ERROR_OPLOCK_HANDLE_CLOSED) ){
             if( OpenFileAsync(p_sys, GetString(access->psz_location)) == VLC_SUCCESS ){
                 p_sys->readStream->Seek(access->info.i_pos);
                 return Read(access, buffer, size);
             }
-            OutputDebugString(L"Failed to reopen file");
+            OutputDebugString(L"Failed to reopen file\n");
         }
         return -1;
     }
@@ -272,7 +272,7 @@ ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
     access->info.i_pos += totalRead;
     access->info.b_eof = p_sys->readStream->Position >= p_sys->readStream->Size;
     if( access->info.b_eof ){
-        OutputDebugString(L"End of file reached");
+        OutputDebugString(L"End of file reached\n");
     }
 
     return totalRead;
