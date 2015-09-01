@@ -75,6 +75,13 @@ static void onError(const libvlc_event_t*, void* data)
     sys->screenshotCompleteEvent.set(nullptr);
 }
 
+static void onSeekChanged( const libvlc_event_t*ev, void* data )
+{
+    auto sys = reinterpret_cast<thumbnailer_sys_t*>( data );
+    if ( ev->u.media_player_position_changed.new_position >= SEEK_POSITION )
+        sys->state = THUMB_SEEKED;
+}
+
 /**
 * Thumbnailer vout lock
 **/
@@ -84,10 +91,6 @@ static void *Lock(void *opaque, void **pixels)
 
     WaitForSingleObjectEx(sys->hLock, INFINITE, TRUE);
     *pixels = sys->thumbData;
-    if (sys->mp && sys->state == THUMB_SEEKING
-        && libvlc_media_player_get_position(sys->mp) >= SEEK_POSITION) {
-        sys->state = THUMB_SEEKED;
-    }
     return NULL;
 }
 
@@ -145,6 +148,8 @@ static void Unlock(void *opaque, void *picture, void *const *pixels){
         sys->state = THUMB_RENDERED;
         SetEvent(sys->hLock);
     }));
+    WaitForSingleObjectEx( sys->hLock, INFINITE, TRUE );
+    SetEvent( sys->hLock );
 }
 
 IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ mrl, int width, int height, int timeoutMs)
@@ -174,6 +179,8 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
             libvlc_event_attach(sys->eventMgr, libvlc_MediaPlayerEncounteredError, &onError, sys);
             // Workaround some short and weird samples can reach the end without getting a snapshot generated.
             libvlc_event_attach(sys->eventMgr, libvlc_MediaPlayerEndReached, &onError, sys);
+            // to know when seeking to the right position is done
+            libvlc_event_attach( sys->eventMgr, libvlc_MediaPlayerPositionChanged, &onSeekChanged, sys );
 
             /* Set the video format and the callbacks. */
             unsigned int pitch = width * PIXEL_SIZE;
@@ -211,6 +218,8 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
                 if ( res != nullptr )
                     res->length = libvlc_media_player_get_length(mp);
                 sys->timeoutCts.cancel();
+                // event attachment cleanup
+                libvlc_event_detach( sys->eventMgr, libvlc_MediaPlayerPositionChanged, &onSeekChanged, sys );
                 // We rendered at least one frame, no need to check for EOF anymore
                 libvlc_event_detach(sys->eventMgr, libvlc_MediaPlayerEndReached, &onError, sys);
                 libvlc_media_player_stop(mp);
