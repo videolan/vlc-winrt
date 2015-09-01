@@ -28,7 +28,7 @@
                     Orientation="Horizontal">
             <Button x:Name="GoBackButton"
                     Style="{StaticResource TextBlockButtonStyle}"
-                    Command="{Binding GoBack}">
+                    Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoBackCommand}">
                 <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
                           FontFamily="ms-appx:VLC.ttf#W10"
                           FontSize="30" />
