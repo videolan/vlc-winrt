@@ -1,15 +1,20 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Core;
 using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels;
 using libVLCX;
+using VLC_WinRT.Database;
+using VLC_WinRT.Helpers;
 
 namespace VLC_WinRT.Services.RunTime
 {
     public class KeyboardListenerService
     {
+        public KeyboardActionDatabase _keyboardActionDatabase = new KeyboardActionDatabase();
+
         private const uint MaxVirtualKeys = 3;
         private VirtualKey[] virtualKeys = new VirtualKey[MaxVirtualKeys];
         public bool CanListen { get; set; }
@@ -18,6 +23,107 @@ namespace VLC_WinRT.Services.RunTime
             CanListen = true;
             CoreWindow.GetForCurrentThread().KeyUp += KeyboardListenerService_KeyUp;
             CoreWindow.GetForCurrentThread().KeyDown += KeyboardListenerService_KeyDown;
+            InitializeDefault();
+        }
+
+        void InitializeDefault()
+        {
+            if (_keyboardActionDatabase.IsEmpty())
+            {
+                var actionsToSet = new List<KeyboardAction>()
+                {
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.FullscreenToggle,
+                        MainKey = VirtualKey.F
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.LeaveFullscreen,
+                        MainKey = VirtualKey.Escape,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.PauseToggle,
+                        MainKey = VirtualKey.Space
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.Faster,
+                        MainKey = VirtualKey.Add
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.Slow,
+                        MainKey = VirtualKey.Subtract,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.NormalRate,
+                        MainKey = VirtualKey.Execute,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.Next,
+                        MainKey = VirtualKey.N,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.Previous,
+                        MainKey = VirtualKey.P,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.Stop,
+                        MainKey = VirtualKey.S,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.Quit,
+                        MainKey = VirtualKey.Q,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.VolumeUp,
+                        MainKey = VirtualKey.Control,
+                        SecondKey = VirtualKey.Add,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.VolumeDown,
+                        MainKey = VirtualKey.Control,
+                        SecondKey = VirtualKey.Subtract,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.Mute,
+                        MainKey = VirtualKey.M,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.ChangeAudioTrack,
+                        MainKey = VirtualKey.B,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.ChangeSubtitle,
+                        MainKey = VirtualKey.V
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.OpenFile,
+                        MainKey = VirtualKey.Control,
+                        SecondKey = VirtualKey.O,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.OpenNetwork,
+                        MainKey = VirtualKey.Control,
+                        SecondKey = VirtualKey.N
+                    }
+                };
+                _keyboardActionDatabase.AddKeyboardActions(actionsToSet);
+            }
         }
 
         void KeyboardListenerService_KeyUp(CoreWindow sender, KeyEventArgs args)
@@ -59,7 +165,7 @@ namespace VLC_WinRT.Services.RunTime
                 default:
                     Debug.WriteLine("OneShot key was pressed");
                     // look in the db for a match
-                    var action = await Locator.SettingsVM.KeyboardActionDatabase.GetKeyboardAction(virtualKeys[0], virtualKeys[1]);
+                    var action = await _keyboardActionDatabase.GetKeyboardAction(virtualKeys[0], virtualKeys[1]);
                     if (action != null)
                     {
                         // if there's a match, get the ActionId
