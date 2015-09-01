@@ -74,7 +74,7 @@
                        Visibility="{Binding TopArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
             <ListView x:Name="ArtistListView"
                       Margin="{StaticResource FrameMarginVertical}"
-                      MaxHeight="210"
+                      MaxHeight="250"
                       IsItemClickEnabled="True"
                       IsSwipeEnabled="False"
                       ItemsSource="{Binding TopArtists}"
@@ -113,7 +113,7 @@
                        Visibility="{Binding RecommendedArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
 
             <ScrollViewer  Style="{StaticResource HorizontalScrollViewerStyle}">
-                <Grid MaxHeight="210"
+                <Grid MaxHeight="270"
                       Margin="{StaticResource FrameMarginVertical}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -138,7 +138,7 @@
                             <ItemsPanelTemplate>
                                 <ItemsWrapGrid Orientation="Vertical"
                                                Margin="{StaticResource FrameMarginLeft}"
-                                               ItemWidth="300">
+                                               ItemWidth="350">
                                     <ItemsWrapGrid.ChildrenTransitions>
                                         <TransitionCollection>
                                             <RepositionThemeTransition />
@@ -172,10 +172,10 @@
                         </ListView.ItemsPanel>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Height="80"
-                                      Width="300">
+                                <Grid Height="120"
+                                      Width="350">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="80" />
+                                        <ColumnDefinition Width="120" />
                                         <ColumnDefinition Width="12" />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
@@ -193,8 +193,8 @@
                                     </Grid>
                                     <Image Grid.Row="0"
                                            Grid.RowSpan="2"
-                                           Height="80"
-                                           Width="80"
+                                           Height="120"
+                                           Width="120"
                                            Stretch="UniformToFill"
                                            Source="{Binding AlbumImage}" />
                                     <TextBlock Grid.Row="0"
