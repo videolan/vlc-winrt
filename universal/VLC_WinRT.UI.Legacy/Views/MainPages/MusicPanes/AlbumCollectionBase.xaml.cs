@@ -13,7 +13,7 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
 
         private void AlbumsWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid, this.ActualWidth);
+            TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid, AlbumsZoomedInView.ItemsPanelRoot.ActualWidth - 6);
         }
 
         private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
