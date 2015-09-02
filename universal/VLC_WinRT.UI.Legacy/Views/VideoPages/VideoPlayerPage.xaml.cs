@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using VLC_WinRT.ViewModels;
 using Windows.UI.Xaml;
@@ -16,6 +17,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Helpers;
 using Windows.Graphics.Display;
+using Windows.UI.Input;
+using VLC_WinRT.Model.Video;
 
 namespace VLC_WinRT.Views.VideoPages
 {
@@ -23,6 +26,7 @@ namespace VLC_WinRT.Views.VideoPages
     {
         private bool isVisible = true;
         private bool isLocked = false;
+        private GestureActionType currentGestureActionType;
         public VideoPlayerPage()
         {
             InitializeComponent();
@@ -144,6 +148,84 @@ namespace VLC_WinRT.Views.VideoPages
             VolumeButton.IsEnabled = !isLocked;
             MenuButton.IsEnabled = !isLocked;
             DisplayProperties.AutoRotationPreferences = (isLocked) ? DisplayInformation.GetForCurrentView().CurrentOrientation : DisplayOrientations.None;
+
+        }
+
+        private void PlaceholderInteractionGrid_OnManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
+        {
+            Debug.WriteLine("VideoPlayerPage gesture started");
+            if (Math.Abs(e.Cumulative.Translation.Y) > Math.Abs(e.Cumulative.Translation.X))
+            {
+                if (e.Position.X < (Window.Current.Bounds.Width / 2))
+                {
+                    currentGestureActionType = GestureActionType.Brightness;
+                }
+                else if (e.Position.X > (Window.Current.Bounds.Width / 2))
+                {
+                    currentGestureActionType = GestureActionType.Volume;
+                }
+            }
+            else
+            {
+                currentGestureActionType = GestureActionType.Seek;
+            }
+            GestureBorder.Visibility = Visibility.Visible;
+        }
+
+        private void PlaceholderInteractionGrid_OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+            var cumulativeTranslationX = e.Cumulative.Translation.X;
+            switch (currentGestureActionType)
+            {
+                case GestureActionType.Null:
+                    break;
+                case GestureActionType.Volume:
+                    GestureTextBlockDescription.Text = "Volume " + computeVolumeFromGesture(e.Cumulative) + "%";
+                    break;
+                case GestureActionType.Brightness:
+                    break;
+                case GestureActionType.Seek:
+                    var seekInSeconds = Math.Floor(cumulativeTranslationX/10);
+                    GestureTextBlockDescription.Text = StringsHelper.SecondsToString(seekInSeconds) + " (" + StringsHelper.MillisecondsToString(Locator.MediaPlaybackViewModel.Time) + ")";
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void PlaceholderInteractionGrid_OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            switch (currentGestureActionType)
+            {
+                case GestureActionType.Null:
+                    break;
+                case GestureActionType.Volume:
+                    Locator.MediaPlaybackViewModel.Volume = computeVolumeFromGesture(e.Cumulative);
+                    break;
+                case GestureActionType.Brightness:
+                    break;
+                case GestureActionType.Seek:
+                    var timeInSeconds = e.Cumulative.Translation.X;
+                    Locator.MediaPlaybackViewModel.Time += (int)timeInSeconds * 100;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            Debug.WriteLine("VideoPlayerPage gesture completed");
+            GestureTextBlockDescription.Text = "";
+            GestureBorder.Visibility = Visibility.Collapsed;
+        }
+
+        int computeVolumeFromGesture(ManipulationDelta cumulative)
+        {
+            var currentVol = Locator.MediaPlaybackViewModel.Volume;
+            var volumeDelta = (int)Math.Floor(-cumulative.Translation.Y / 5);
+            var newVol = currentVol + volumeDelta;
+            if (newVol > 100)
+                newVol = 100;
+            else if (newVol < 0)
+                newVol = 0;
+            return newVol;
         }
     }
 }

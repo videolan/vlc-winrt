@@ -58,11 +58,28 @@
 
         <Grid Grid.Row="1">
             <userControls:BufferingControl />
+            <Border x:Name="GestureBorder"
+                    Visibility="Collapsed"
+                    Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+                    Width="300"
+                    Height="120"
+                    Padding="{StaticResource FrameMarginBothSides}">
+                <TextBlock x:Name="GestureTextBlockDescription"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+            </Border>
             <!-- We will put there the control for swype, tap, double tap, etc -->
             <Grid x:Name="PlaceholderInteractionGrid"
                   Background="Transparent"
-                  Tapped="PlaceholderInteractionGrid_OnTapped" 
-                  DoubleTapped="PlaceholderInteractionGrid_DoubleTapped"/>
+                  ManipulationMode="TranslateX,TranslateY"
+                  ManipulationStarted="PlaceholderInteractionGrid_OnManipulationStarted"
+                  ManipulationDelta="PlaceholderInteractionGrid_OnManipulationDelta"
+                  ManipulationCompleted="PlaceholderInteractionGrid_OnManipulationCompleted"
+                  Tapped="PlaceholderInteractionGrid_OnTapped"
+                  DoubleTapped="PlaceholderInteractionGrid_DoubleTapped">
+
+            </Grid>
             <videoControls:AudioTracksSettings />
             <videoControls:SubtitlesSettings />
             <videoControls:VolumeSliderSettings />

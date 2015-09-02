@@ -171,6 +171,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Search\SearchResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Stream\StreamMedia.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Subtitle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Video\GestureActionType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\TVShow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideoView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideoVM.cs" />
