@@ -257,6 +257,6 @@ namespace VLC_WinRT.ViewModels.VideoVM
                     break;
             }
         }
-        #endregion
+#endregion
     }
 }
