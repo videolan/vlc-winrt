@@ -280,7 +280,8 @@ namespace VLC_WinRT.Services.RunTime
         {
             if (Instance == null) return;
             var vol = (double)volume;
-            vol = vol / 100; Instance.Volume = vol;
+            vol = vol / 100;
+            Instance.Volume = vol;
         }
 
         public void SetSpeedRate(float desiredRate)
