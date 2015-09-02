@@ -125,6 +125,16 @@ namespace VLC_WinRT.Services.RunTime
             MediaFailed?.Invoke(this, new EventArgs());
         }
 
+        public void SetAudioDelay(long delay)
+        {
+            MediaPlayer.setAudioDelay(delay);
+        }
+
+        public void SetSpuDelay(long delay)
+        {
+            MediaPlayer.setSpuDelay(delay);
+        }
+
         public async Task<string> GetToken(string filePath)
         {
             if (string.IsNullOrEmpty(filePath)) return null;

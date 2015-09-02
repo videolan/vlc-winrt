@@ -66,6 +66,8 @@ namespace VLC_WinRT.ViewModels
         private int _volume = 100;
         private bool _isRunning;
         private int _speedRate;
+        private long _audioDelay;
+        private long _spuDelay;
         private bool _isStream;
         private int _bufferingProgress;
         #endregion
@@ -176,11 +178,38 @@ namespace VLC_WinRT.ViewModels
             }
             set
             {
-                if (value > 95 && value < 105)
-                    value = 100;
                 SetProperty(ref _speedRate, value);
                 float r = (float)value / 100;
                 SetRate(r);
+            }
+        }
+
+        public long AudioDelay
+        {
+            get
+            {
+                return _audioDelay;
+            }
+            set
+            {
+                if (_mediaService is VLCService)
+                {
+                    (_mediaService as VLCService).SetAudioDelay(value);
+                    SetProperty(ref _audioDelay, value);
+                }
+            }
+        }
+
+        public long SpuDelay
+        {
+            get { return _spuDelay; }
+            set
+            {
+                if(_mediaService is VLCService)
+                {
+                    (_mediaService as VLCService).SetSpuDelay(value);
+                    SetProperty(ref _spuDelay, value);
+                }
             }
         }
 
@@ -1028,6 +1057,10 @@ namespace VLC_WinRT.ViewModels
                 OnPropertyChanged(nameof(Chapters));
                 OnPropertyChanged(nameof(CurrentChapter));
             });
+
+            // Get subtitle delay etc
+            _audioDelay = mP.audioDelay();
+            _spuDelay = mP.spuDelay();
         }
 
         public async void UpdateCurrentChapter()

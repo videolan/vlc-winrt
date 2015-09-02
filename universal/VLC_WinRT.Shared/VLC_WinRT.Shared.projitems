@@ -17,7 +17,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)BackgroundHelpers\BackgroundTaskTools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ActionCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ClearHistoryCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\ChangeAudioDelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\ChangePlaybackSpeedRateCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\ChangeSpuDelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\ChangeVolumeCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\DeletePlaylistTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\ResetCurrentArtistAndAlbumCommand.cs" />
