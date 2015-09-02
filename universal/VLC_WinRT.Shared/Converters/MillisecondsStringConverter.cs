@@ -10,6 +10,7 @@
 using System;
 using System.Diagnostics;
 using Windows.UI.Xaml.Data;
+using VLC_WinRT.Helpers;
 
 namespace VLC_WinRT.Converters
 {
@@ -17,31 +18,7 @@ namespace VLC_WinRT.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is Int64)
-            {
-                var milliseconds = (Int64) value;
-                if (milliseconds >= TimeSpan.MaxValue.TotalMilliseconds)
-                {
-                    //TODO: figure out what could cause this value to exceed MaxValue and cause
-                    //an OverflowException in TimeSpan.FromMilliseconds
-                    if (Debugger.IsAttached)
-                    {
-                        Debugger.Break();
-                    }
-                    return null;
-                }
-
-                TimeSpan time = TimeSpan.FromMilliseconds(milliseconds);
-                if (time.Hours > 0)
-                {
-                    return String.Format("{0:hh\\:mm\\:ss}", time);
-                }
-                else
-                {
-                    return String.Format("{0:mm\\:ss}", time);
-                }
-            }
-            return null;
+            return StringsHelper.MillisecondsToString((long)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
