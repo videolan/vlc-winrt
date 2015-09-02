@@ -64,7 +64,6 @@ namespace VLC_WinRT.ViewModels
         private readonly DisplayRequest _displayAlwaysOnRequest = new DisplayRequest();
 
         private int _volume = 100;
-        private bool _isRunning;
         private int _speedRate;
         private long _audioDelay;
         private long _spuDelay;
