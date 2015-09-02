@@ -129,9 +129,7 @@
                         Style="{StaticResource VLCSlider}"
                         Minimum="-3000"
                         Value="{Binding AudioDelay, Mode=TwoWay}"
-                        Maximum="3000"
-                        IsThumbToolTipEnabled="True"
-                        ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}" />
+                        Maximum="3000"/>
                 <Grid Grid.Row="8">
                     <TextBlock Text="-3s"
                                Style="{StaticResource TitleTextBlockStyle}" />
@@ -177,9 +175,7 @@
                         Style="{StaticResource VLCSlider}"
                         Minimum="-3000"
                         Value="{Binding SpuDelay, Mode=TwoWay}"
-                        Maximum="3000"
-                        IsThumbToolTipEnabled="True"
-                        ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}" />
+                        Maximum="3000"/>
                 <Grid Grid.Row="12">
                     <TextBlock Text="-3s"
                                Style="{StaticResource TitleTextBlockStyle}" />
