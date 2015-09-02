@@ -134,7 +134,9 @@ namespace VLC_WinRT.ViewModels.VideoVM
             // re-mark the task as completed.
             Locator.MediaPlaybackViewModel.ContinueIndexing = new TaskCompletionSource<bool>();
             Locator.Slideshow.IsPaused = true;
+#if WINDOWS_APP
             Locator.MainVM.TitleBarMargin = new Thickness(0, 40, 0, 0);
+#endif
         }
 
         public void OnNavigatedFrom()
