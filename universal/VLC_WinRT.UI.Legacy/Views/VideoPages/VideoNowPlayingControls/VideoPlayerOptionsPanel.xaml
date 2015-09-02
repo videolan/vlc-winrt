@@ -13,91 +13,92 @@
           Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
           RequestedTheme="Dark"
           Padding="{StaticResource FrameMarginHorizontal}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <AppBarButton Grid.Column="0"
-                              Style="{StaticResource AppBarButtonStyleHorizontal}"
-                              VerticalAlignment="Center"
-                              HorizontalAlignment="Stretch"
-                              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-                              Command="{Binding GoBackCommand}"
-                              Width="50">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
-                                  Margin="0,3,0,0"
-                                  FontFamily="ms-appx:VLC.ttf#W10" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
-                <TextBlock Grid.Column="1"
-                           Margin="{StaticResource FrameMarginRight}"
-                           TextTrimming="CharacterEllipsis"
-                           TextWrapping="NoWrap"
-                           VerticalAlignment="Top"
-                           Text="Player settings"
-                           Style="{StaticResource SubheaderTextBlockStyle}" />
-            </Grid>
-            <TextBlock Grid.Row="2"
-                       x:Uid="Speed"
-                       Text="Speed"
-                       Foreground="{ThemeResource BasicForeground}"
-                       Style="{StaticResource SubheaderTextBlockStyle}"
-                       FontWeight="SemiLight" />
-            <Button Grid.Row="2" 
-                    Content="Reset"
-                    HorizontalAlignment="Right"
-                    Command="{Binding ChangePlaybackSpeedRateCommand}"
-                    CommandParameter="reset"/>
-            <Slider Grid.Row="3"
-                    Margin="0,12,0,0"
-                    Style="{StaticResource VLCSlider}"
-                    Minimum="50"
-                    Value="{Binding SpeedRate, Mode=TwoWay}"
-                    Maximum="200"
-                    IsThumbToolTipEnabled="True"
-                    ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}" />
-            <Grid Grid.Row="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="0.5x"
-                           Style="{StaticResource TitleTextBlockStyle}" />
-                <TextBlock Grid.Column="1" 
-                           Text="1x"
-                           Style="{StaticResource TitleTextBlockStyle}" />
-                <TextBlock Grid.Column="2" 
-                           Text="2x"
-                           HorizontalAlignment="Right"
-                           Style="{StaticResource TitleTextBlockStyle}" />
-            </Grid>
+        <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <AppBarButton Grid.Column="0"
+                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Stretch"
+                                  DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                                  Command="{Binding GoBackCommand}"
+                                  Width="50">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                                      Margin="0,3,0,0"
+                                      FontFamily="ms-appx:VLC.ttf#W10" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <TextBlock Grid.Column="1"
+                               Margin="{StaticResource FrameMarginRight}"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="NoWrap"
+                               VerticalAlignment="Top"
+                               Text="Player settings"
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                </Grid>
+                <TextBlock Grid.Row="2"
+                           x:Uid="Speed"
+                           Text="Speed"
+                           Foreground="{ThemeResource BasicForeground}"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight" />
+                <Button Grid.Row="2"
+                        Content="Reset"
+                        HorizontalAlignment="Right"
+                        Command="{Binding ChangePlaybackSpeedRateCommand}"
+                        CommandParameter="reset" />
+                <Slider Grid.Row="3"
+                        Margin="0,12,0,0"
+                        Style="{StaticResource VLCSlider}"
+                        Minimum="50"
+                        Value="{Binding SpeedRate, Mode=TwoWay}"
+                        Maximum="200"
+                        IsThumbToolTipEnabled="True"
+                        ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}" />
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="0.5x"
+                               Style="{StaticResource TitleTextBlockStyle}" />
+                    <TextBlock Grid.Column="1"
+                               Text="1x"
+                               Style="{StaticResource TitleTextBlockStyle}" />
+                    <TextBlock Grid.Column="2"
+                               Text="2x"
+                               HorizontalAlignment="Right"
+                               Style="{StaticResource TitleTextBlockStyle}" />
+                </Grid>
 
-            <TextBlock Grid.Row="6"
-                       Foreground="{ThemeResource BasicForeground}"
-                       Style="{StaticResource SubheaderTextBlockStyle}"
-                       FontWeight="SemiLight">
+                <TextBlock Grid.Row="6"
+                           Foreground="{ThemeResource BasicForeground}"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight">
                 <Run Text="Audio delay" />
                 <Run Text="{Binding AudioDelay}"
                      Foreground="{StaticResource MainColor}"
@@ -107,45 +108,45 @@
                      Foreground="{StaticResource MainColor}"
                      FontSize="26"
                      FontWeight="Light" />
-            </TextBlock>
-            <StackPanel Grid.Row="6"
-                        HorizontalAlignment="Right"
-                        Orientation="Horizontal">
-                <Button Content="Reset"
-                        Command="{Binding ChangeAudioDelayCommand}"
-                        CommandParameter="reset" />
-                <Button Content="-"
-                        Margin="12,0,0,0"
-                        Command="{Binding ChangeAudioDelayCommand}"
-                        CommandParameter="slower" />
-                <Button Content="+"
-                        Margin="12,0,0,0"
-                        Command="{Binding ChangeAudioDelayCommand}"
-                        CommandParameter="faster" />
-            </StackPanel>
-            <Slider Grid.Row="7"
-                    Margin="0,12,0,0"
-                    Style="{StaticResource VLCSlider}"
-                    Minimum="-3000"
-                    Value="{Binding AudioDelay, Mode=TwoWay}"
-                    Maximum="3000"
-                    IsThumbToolTipEnabled="True"
-                    ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}" />
-            <Grid Grid.Row="8">
-                <TextBlock Text="-3s"
-                           Style="{StaticResource TitleTextBlockStyle}" />
-                <TextBlock Text="0"
-                           HorizontalAlignment="Center"
-                           Style="{StaticResource TitleTextBlockStyle}" />
-                <TextBlock Text="3s"
-                           HorizontalAlignment="Right"
-                           Style="{StaticResource TitleTextBlockStyle}" />
-            </Grid>
-            
-            <TextBlock Grid.Row="10"
-                       Foreground="{ThemeResource BasicForeground}"
-                       Style="{StaticResource SubheaderTextBlockStyle}"
-                       FontWeight="SemiLight">
+                </TextBlock>
+                <StackPanel Grid.Row="6"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <Button Content="Reset"
+                            Command="{Binding ChangeAudioDelayCommand}"
+                            CommandParameter="reset" />
+                    <Button Content="-"
+                            Margin="12,0,0,0"
+                            Command="{Binding ChangeAudioDelayCommand}"
+                            CommandParameter="slower" />
+                    <Button Content="+"
+                            Margin="12,0,0,0"
+                            Command="{Binding ChangeAudioDelayCommand}"
+                            CommandParameter="faster" />
+                </StackPanel>
+                <Slider Grid.Row="7"
+                        Margin="0,12,0,0"
+                        Style="{StaticResource VLCSlider}"
+                        Minimum="-3000"
+                        Value="{Binding AudioDelay, Mode=TwoWay}"
+                        Maximum="3000"
+                        IsThumbToolTipEnabled="True"
+                        ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}" />
+                <Grid Grid.Row="8">
+                    <TextBlock Text="-3s"
+                               Style="{StaticResource TitleTextBlockStyle}" />
+                    <TextBlock Text="0"
+                               HorizontalAlignment="Center"
+                               Style="{StaticResource TitleTextBlockStyle}" />
+                    <TextBlock Text="3s"
+                               HorizontalAlignment="Right"
+                               Style="{StaticResource TitleTextBlockStyle}" />
+                </Grid>
+
+                <TextBlock Grid.Row="10"
+                           Foreground="{ThemeResource BasicForeground}"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight">
                 <Run Text="Subtitle delay" />
                 <Run Text="{Binding SpuDelay}"
                      Foreground="{StaticResource MainColor}"
@@ -155,64 +156,65 @@
                      Foreground="{StaticResource MainColor}"
                      FontSize="26"
                      FontWeight="Light" />
-            </TextBlock>
-            <StackPanel Grid.Row="10"
-                        HorizontalAlignment="Right"
-                        Orientation="Horizontal">
-                <Button Content="Reset"
-                        Command="{Binding ChangeSpuDelayCommand}"
-                        CommandParameter="reset" />
-                <Button Content="-"
-                        Margin="12,0,0,0"
-                        Command="{Binding ChangeSpuDelayCommand}"
-                        CommandParameter="slower" />
-                <Button Content="+"
-                        Margin="12,0,0,0"
-                        Command="{Binding ChangeSpuDelayCommand}"
-                        CommandParameter="faster" />
-            </StackPanel>
-            <Slider Grid.Row="11"
-                    Margin="0,12,0,0"
-                    Style="{StaticResource VLCSlider}"
-                    Minimum="-3000"
-                    Value="{Binding SpuDelay, Mode=TwoWay}"
-                    Maximum="3000"
-                    IsThumbToolTipEnabled="True"
-                    ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}" />
-            <Grid Grid.Row="12">
-                <TextBlock Text="-3s"
-                           Style="{StaticResource TitleTextBlockStyle}" />
-                <TextBlock Text="0"
-                           HorizontalAlignment="Center"
-                           Style="{StaticResource TitleTextBlockStyle}" />
-                <TextBlock Text="3s"
-                           HorizontalAlignment="Right"
-                           Style="{StaticResource TitleTextBlockStyle}" />
-            </Grid>
+                </TextBlock>
+                <StackPanel Grid.Row="10"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <Button Content="Reset"
+                            Command="{Binding ChangeSpuDelayCommand}"
+                            CommandParameter="reset" />
+                    <Button Content="-"
+                            Margin="12,0,0,0"
+                            Command="{Binding ChangeSpuDelayCommand}"
+                            CommandParameter="slower" />
+                    <Button Content="+"
+                            Margin="12,0,0,0"
+                            Command="{Binding ChangeSpuDelayCommand}"
+                            CommandParameter="faster" />
+                </StackPanel>
+                <Slider Grid.Row="11"
+                        Margin="0,12,0,0"
+                        Style="{StaticResource VLCSlider}"
+                        Minimum="-3000"
+                        Value="{Binding SpuDelay, Mode=TwoWay}"
+                        Maximum="3000"
+                        IsThumbToolTipEnabled="True"
+                        ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}" />
+                <Grid Grid.Row="12">
+                    <TextBlock Text="-3s"
+                               Style="{StaticResource TitleTextBlockStyle}" />
+                    <TextBlock Text="0"
+                               HorizontalAlignment="Center"
+                               Style="{StaticResource TitleTextBlockStyle}" />
+                    <TextBlock Text="3s"
+                               HorizontalAlignment="Right"
+                               Style="{StaticResource TitleTextBlockStyle}" />
+                </Grid>
 
-            <TextBlock Grid.Row="14"
-                       Foreground="{ThemeResource BasicForeground}"
-                       Style="{StaticResource SubheaderTextBlockStyle}"
-                       FontWeight="SemiLight">
+                <TextBlock Grid.Row="14"
+                           Foreground="{ThemeResource BasicForeground}"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight">
                 <Run Text="Chapters" />
                 <Run Text="{Binding Chapters.Count}"
                      Foreground="{StaticResource MainColor}"
                      FontSize="26"
                      FontWeight="Light" />
-            </TextBlock>
-            <ListView Grid.Row="15"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
-                      ItemsSource="{Binding Chapters}"
-                      SelectedItem="{Binding CurrentChapter, Mode=TwoWay}"
-                      ItemContainerStyle="{StaticResource ListViewItemStyle}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}"
-                                   Foreground="White"
-                                   VerticalAlignment="Center" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
+                </TextBlock>
+                <ListView Grid.Row="15"
+                          DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                          ItemsSource="{Binding Chapters}"
+                          SelectedItem="{Binding CurrentChapter, Mode=TwoWay}"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"
+                                       Foreground="White"
+                                       VerticalAlignment="Center" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </ScrollViewer>
     </Border>
 </UserControl>
