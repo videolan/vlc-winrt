@@ -247,6 +247,10 @@ namespace VLC_WinRT.ViewModels
 
         public ChangeVolumeCommand ChangeVolumeCommand { get; } = new ChangeVolumeCommand();
 
+        public ChangeAudioDelayCommand ChangeAudioDelayCommand { get; } = new ChangeAudioDelayCommand();
+
+        public ChangeSpuDelayCommand ChangeSpuDelayCommand { get; } = new ChangeSpuDelayCommand();
+
         public TimeSpan TimeTotal
         {
             get { return _timeTotal; }
