@@ -24,6 +24,6 @@
         SettingsPageUI,
         SettingsPageMusic,
         SettingsPageVideo,
-        VideoPlayerSettings
+        VideoPlayerOptionsPanel
     }
 }

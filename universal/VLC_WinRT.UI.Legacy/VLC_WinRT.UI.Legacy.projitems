@@ -267,7 +267,7 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoNowPlayingControls\SubtitlesSettings.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoNowPlayingControls\VideoPlayerSettings.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoNowPlayingControls\VideoPlayerOptionsPanel.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoNowPlayingControls\VolumeSliderSettings.xaml">
@@ -497,8 +497,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoNowPlayingControls\SubtitlesSettings.xaml.cs">
       <DependentUpon>SubtitlesSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoNowPlayingControls\VideoPlayerSettings.xaml.cs">
-      <DependentUpon>VideoPlayerSettings.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoNowPlayingControls\VideoPlayerOptionsPanel.xaml.cs">
+      <DependentUpon>VideoPlayerOptionsPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoNowPlayingControls\VolumeSliderSettings.xaml.cs">
       <DependentUpon>VolumeSliderSettings.xaml</DependentUpon>

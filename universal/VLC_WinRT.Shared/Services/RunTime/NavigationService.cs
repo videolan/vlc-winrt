@@ -119,7 +119,7 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.SettingsPageVideo:
                     GoBack_HideFlyout();
                     break;
-                case VLCPage.VideoPlayerSettings:
+                case VLCPage.VideoPlayerOptionsPanel:
                     GoBack_HideFlyout();
                     break;
                 default:
@@ -232,8 +232,8 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.SettingsPageVideo:
                     App.SplitShell.RightFlyoutContent = new SettingsPageVideo();
                     break;
-                case VLCPage.VideoPlayerSettings:
-                    App.SplitShell.RightFlyoutContent = new VideoPlayerSettings();
+                case VLCPage.VideoPlayerOptionsPanel:
+                    App.SplitShell.RightFlyoutContent = new VideoPlayerOptionsPanel();
                     break;
                 default:
                     break;
@@ -258,7 +258,7 @@ namespace VLC_WinRT.Services.RunTime
                    page == VLCPage.SettingsPageMusic ||
                    page == VLCPage.SettingsPageVideo ||
                    page == VLCPage.SettingsPage ||
-                   page == VLCPage.VideoPlayerSettings;
+                   page == VLCPage.VideoPlayerOptionsPanel;
         }
 
         /// <summary>

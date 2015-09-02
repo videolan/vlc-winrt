@@ -30,7 +30,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         private VideoItem _currentVideo;
 
         private VLCSurfaceZoom currentSurfaceZoom = VLCSurfaceZoom.SURFACE_BEST_FIT;
-        private bool isVideoPlayerSettingsVisible;
+        private bool isVideoPlayerOptionsPanelVisible;
         private bool isVideoPlayerSubtitlesSettingsVisible;
         private bool isVideoPlayerAudioTracksSettingsVisible;
         private bool isVideoPlayerVolumeSettingsVisible;
@@ -59,10 +59,10 @@ namespace VLC_WinRT.ViewModels.VideoVM
             }
         }
 
-        public bool IsVideoPlayerSettingsVisible
+        public bool IsVideoPlayerOptionsPanelVisible
         {
-            get { return isVideoPlayerSettingsVisible; }
-            set { SetProperty(ref isVideoPlayerSettingsVisible, value); }
+            get { return isVideoPlayerOptionsPanelVisible; }
+            set { SetProperty(ref isVideoPlayerOptionsPanelVisible, value); }
         }
 
         public bool IsVideoPlayerSubtitlesSettingsVisible
@@ -83,9 +83,9 @@ namespace VLC_WinRT.ViewModels.VideoVM
             set { SetProperty(ref isVideoPlayerVolumeSettingsVisible, value); }
         }
         
-        public ActionCommand ToggleIsVideoPlayerSettingsVisible { get; } = new ActionCommand(() =>
+        public ActionCommand ToggleIsVideoPlayerOptionsPanelVisible { get; } = new ActionCommand(() =>
         {
-            Locator.VideoVm.IsVideoPlayerSettingsVisible = !Locator.VideoVm.IsVideoPlayerSettingsVisible;
+            Locator.VideoVm.IsVideoPlayerOptionsPanelVisible = !Locator.VideoVm.IsVideoPlayerOptionsPanelVisible;
             Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
@@ -95,7 +95,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         public ActionCommand ToggleIsVideoPlayerSubtitlesSettingsVisible { get; } = new ActionCommand(() =>
         {
             Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = false;
-            Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerOptionsPanelVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = !Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible;
         });
@@ -103,7 +103,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         public ActionCommand ToggleIsVideoPlayerAudioTracksSettingsVisible { get; } = new ActionCommand(() =>
         {
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
-            Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerOptionsPanelVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = !Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible;
         });
@@ -113,11 +113,11 @@ namespace VLC_WinRT.ViewModels.VideoVM
         {
             Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
-            Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerOptionsPanelVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = !Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible;
         });
         
-        public OpenVideoPlayerSettings OpenVideoPlayerSettings { get; } = new OpenVideoPlayerSettings();
+        public OpenVideoPlayerOptionsPanel OpenVideoPlayerOptionsPanel { get; } = new OpenVideoPlayerOptionsPanel();
         #endregion
 
         #region public fields
@@ -144,7 +144,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
                 Locator.MediaPlaybackViewModel.ContinueIndexing.SetResult(true);
             }
             Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = false;
-            Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerOptionsPanelVisible = false;
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
             Locator.Slideshow.IsPaused = false;

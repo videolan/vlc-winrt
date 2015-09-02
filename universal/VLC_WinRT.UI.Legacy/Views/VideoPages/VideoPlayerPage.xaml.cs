@@ -106,7 +106,7 @@ namespace VLC_WinRT.Views.VideoPages
         void DisplayOrHide()
         {
             if (Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible ||
-                Locator.VideoVm.IsVideoPlayerSettingsVisible ||
+                Locator.VideoVm.IsVideoPlayerOptionsPanelVisible ||
                 Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible ||
                 Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible)
                 return;

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls.VideoPlayerSettings"
+﻿<UserControl x:Class="VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls.VideoPlayerOptionsPanel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:VLC_WinRT.Views.UserControls"
@@ -99,7 +99,11 @@
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        FontWeight="SemiLight">
                 <Run Text="Audio delay" />
-                <Run Text="350ms"
+                <Run Text="{Binding AudioDelay}"
+                     Foreground="{StaticResource MainColor}"
+                     FontSize="26"
+                     FontWeight="Light" />
+                <Run Text="ms"
                      Foreground="{StaticResource MainColor}"
                      FontSize="26"
                      FontWeight="Light" />
@@ -107,16 +111,24 @@
             <StackPanel Grid.Row="6"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
-                <Button Content="-"/>
+                <Button Content="Reset"
+                        Command="{Binding ChangeAudioDelayCommand}"
+                        CommandParameter="reset" />
+                <Button Content="-"
+                        Margin="12,0,0,0"
+                        Command="{Binding ChangeAudioDelayCommand}"
+                        CommandParameter="slower" />
                 <Button Content="+"
-                        Margin="12,0,0,0"/>
+                        Margin="12,0,0,0"
+                        Command="{Binding ChangeAudioDelayCommand}"
+                        CommandParameter="faster" />
             </StackPanel>
             <Slider Grid.Row="7"
                     Margin="0,12,0,0"
                     Style="{StaticResource VLCSlider}"
-                    Minimum="-300"
-                    Value="-150"
-                    Maximum="300"
+                    Minimum="-3000"
+                    Value="{Binding AudioDelay, Mode=TwoWay}"
+                    Maximum="3000"
                     IsThumbToolTipEnabled="True"
                     ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}" />
             <Grid Grid.Row="8">
@@ -135,7 +147,11 @@
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        FontWeight="SemiLight">
                 <Run Text="Subtitle delay" />
-                <Run Text="350ms"
+                <Run Text="{Binding SpuDelay}"
+                     Foreground="{StaticResource MainColor}"
+                     FontSize="26"
+                     FontWeight="Light" />
+                <Run Text="ms"
                      Foreground="{StaticResource MainColor}"
                      FontSize="26"
                      FontWeight="Light" />
@@ -143,16 +159,24 @@
             <StackPanel Grid.Row="10"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
-                <Button Content="-" />
+                <Button Content="Reset"
+                        Command="{Binding ChangeSpuDelayCommand}"
+                        CommandParameter="reset" />
+                <Button Content="-"
+                        Margin="12,0,0,0"
+                        Command="{Binding ChangeSpuDelayCommand}"
+                        CommandParameter="slower" />
                 <Button Content="+"
-                        Margin="12,0,0,0" />
+                        Margin="12,0,0,0"
+                        Command="{Binding ChangeSpuDelayCommand}"
+                        CommandParameter="faster" />
             </StackPanel>
             <Slider Grid.Row="11"
                     Margin="0,12,0,0"
                     Style="{StaticResource VLCSlider}"
-                    Minimum="-300"
-                    Value="-150"
-                    Maximum="300"
+                    Minimum="-3000"
+                    Value="{Binding SpuDelay, Mode=TwoWay}"
+                    Maximum="3000"
                     IsThumbToolTipEnabled="True"
                     ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}" />
             <Grid Grid.Row="12">
