@@ -1049,6 +1049,7 @@ namespace VLC_WinRT.ViewModels
             if (!(_mediaService is VLCService)) return;
             var vlcService = (VLCService)_mediaService;
             var mP = vlcService.MediaPlayer;
+            // Get chapters
             var chapters = mP.chapterDescription(-1);
             foreach (var c in chapters)
             {
