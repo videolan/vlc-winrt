@@ -16,7 +16,10 @@ namespace VLC_WinRT.Helpers
 
     public static class AppViewHelper
     {
+        public delegate void FullscreenToggle();
+        public static FullscreenToggle FullscreenStateChanged = delegate { };
         private const double DefaultTitleBarHeight = 40;
+
         public static double TitleBarHeight
         {
             get
@@ -115,6 +118,7 @@ namespace VLC_WinRT.Helpers
                 var tryEnterFullScreenMode = runtimeMethods.FirstOrDefault(x => x.Name == "TryEnterFullScreenMode");
                 tryEnterFullScreenMode?.Invoke(v, null);
             }
+            FullscreenStateChanged();
 #endif
         }
 
