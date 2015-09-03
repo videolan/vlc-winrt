@@ -194,7 +194,7 @@ namespace VLC_WinRT.ViewModels
             {
                 if (_mediaService is VLCService)
                 {
-                    (_mediaService as VLCService).SetAudioDelay(value);
+                    (_mediaService as VLCService).SetAudioDelay(value * 1000);
                     SetProperty(ref _audioDelay, value);
                 }
             }
@@ -207,7 +207,7 @@ namespace VLC_WinRT.ViewModels
             {
                 if(_mediaService is VLCService)
                 {
-                    (_mediaService as VLCService).SetSpuDelay(value);
+                    (_mediaService as VLCService).SetSpuDelay(value * 1000);
                     SetProperty(ref _spuDelay, value);
                 }
             }
