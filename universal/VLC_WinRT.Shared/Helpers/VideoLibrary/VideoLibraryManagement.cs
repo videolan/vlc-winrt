@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using Windows.Storage.Search;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
 using Autofac;
@@ -237,6 +238,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
 
         private static async Task<List<StorageFile>> GetMediaFromFolder(StorageFolder folder)
         {
+#if WINDOWS_PHONE_APP
             var videoFiles = new List<StorageFile>();
             try
             {
@@ -249,6 +251,14 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                 LogHelper.Log(ex.ToString());
             }
             return null;
+#else
+            var queryOptions = new QueryOptions { FolderDepth = FolderDepth.Deep };
+            foreach (var type in VLCFileExtensions.VideoExtensions)
+                queryOptions.FileTypeFilter.Add(type);
+            var fileQueryResult = KnownFolders.VideosLibrary.CreateFileQueryWithOptions(queryOptions);
+            var files = await fileQueryResult.GetFilesAsync();
+            return files.ToList();
+#endif
         }
 
 
