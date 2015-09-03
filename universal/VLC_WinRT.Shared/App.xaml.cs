@@ -244,6 +244,7 @@ namespace VLC_WinRT
             ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
             Window.Current.Activate();
             SetShellDecoration();
+            Locator.Slideshow.RestoreSlideshow();
         }
 
         public static void SetShellDecoration()
