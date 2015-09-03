@@ -104,14 +104,9 @@ namespace VLC_WinRT.ViewModels
                 SetProperty(ref _isInternet, value);
             }
         }
-
-        public Thickness TitleBarMargin
-        {
-            get { return _titleBarMargin; }
-            set { SetProperty(ref _titleBarMargin, value); }
-        }
-
+        
         public GoBackCommand GoBackCommand { get; } = new GoBackCommand();
+
         public GoToPanelCommand GoToPanelCommand { get; } = new GoToPanelCommand();
 
         public ActionCommand GoToSettingsPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SettingsPage));
