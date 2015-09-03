@@ -13,25 +13,25 @@
     <canvas:CanvasAnimatedControl x:Name="Slideshower"
                                   Loaded="Slideshower_Loaded_1"
                                   IsFixedTimeStep="False"
-                                  TargetElapsedTime="0:0:0.3" />
-
-    <SwapChainPanel x:Name="SwapChainPanel"
-                    x:FieldModifier="public"
-                    Loaded="SwapPanelLoaded"
-                    Margin="{Binding Source={StaticResource Locator}, Path=MainVM.TitleBarMargin}" />
-    <MediaElement x:Name="MfMediaElement"
-                  x:FieldModifier="public"
-                  AudioDeviceType="Multimedia"
-                  AudioCategory="BackgroundCapableMedia"
-                  Loaded="MfMediaElement_Loaded"
-                  Margin="{Binding ElementName=SplitShell, Path=TitleBarHeight}" />
+                                  TargetElapsedTime="0:0:0.3"/>
 
     <controls:SplitShell x:Name="SplitShell"
                          x:FieldModifier="public"
                          FlyoutCloseRequested="SplitShell_FlyoutCloseRequested">
         <controls:SplitShell.Content>
-            <userControls:ShellContent x:Name="ShellContent"
-                                       x:FieldModifier="public" />
+            <Grid>
+                <SwapChainPanel x:Name="SwapChainPanel"
+                                x:FieldModifier="public"
+                                Loaded="SwapPanelLoaded"/>
+                <MediaElement x:Name="MfMediaElement"
+                              x:FieldModifier="public"
+                              AudioDeviceType="Multimedia"
+                              AudioCategory="BackgroundCapableMedia"
+                              Loaded="MfMediaElement_Loaded"/>
+
+                <userControls:ShellContent x:Name="ShellContent"
+                                           x:FieldModifier="public" />
+            </Grid>
         </controls:SplitShell.Content>
     </controls:SplitShell>
 </Grid>
