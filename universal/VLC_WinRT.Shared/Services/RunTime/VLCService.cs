@@ -57,7 +57,6 @@ namespace VLC_WinRT.Services.RunTime
                 "--verbose=3",
                 "--no-stats",
                 "--avcodec-fast",
-                !Locator.SettingsVM.HardwareAccelerationEnabled ? "--avcodec-hw=none" : "--avcodec-hw=d3d11va",
                 string.Format("--freetype-font={0}\\segoeui.ttf",Windows.ApplicationModel.Package.Current.InstalledLocation.Path)
             };
 
@@ -84,6 +83,7 @@ namespace VLC_WinRT.Services.RunTime
             await PlayerInstanceReady.Task;
             if (Instance == null) return;
             var mediaVLC = new Media(Instance, mrl_fromType.Item2, mrl_fromType.Item1);
+            mediaVLC.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
 
             MediaPlayer = new MediaPlayer(mediaVLC);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
