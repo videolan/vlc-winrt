@@ -184,6 +184,10 @@ namespace VLC_WinRT.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets and Sets the AudioDelay in MilliSeconds
+        /// Warning : VLC API needs microseconds, hence the 1000 multiplication
+        /// </summary>
         public long AudioDelay
         {
             get
@@ -200,6 +204,11 @@ namespace VLC_WinRT.ViewModels
             }
         }
 
+
+        /// <summary>
+        /// Gets and Sets the SpuDelay in MilliSeconds
+        /// Warning : VLC API needs microseconds, hence the 1000 multiplication
+        /// </summary>
         public long SpuDelay
         {
             get { return _spuDelay; }
