@@ -342,6 +342,7 @@ namespace VLC_WinRT.ViewModels
             {
                 if (!(_mediaService is VLCService)) return;
                 var vlcService = (VLCService)_mediaService;
+                if (value == CurrentChapter) return;
                 var index = _chapters.IndexOf(value);
                 if (index > -1)
                 {
