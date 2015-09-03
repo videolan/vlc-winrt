@@ -41,6 +41,7 @@ namespace VLC_WinRT.Model
             ".m3u8",
             ".mkv",
             ".mov",
+            ".m4a",
             ".mp2",
             ".mp2v",
             ".mp4",
