@@ -47,10 +47,12 @@ namespace VLC_WinRT.ViewModels.Settings
         private VLCPage _homePage;
         private string _lastFmUserName;
         private string _lastFmPassword;
+        private string _subtitlesEncodingValue;
         private bool _lastFmIsConnected = false;
         private bool _hardwareAcceleration;
         private bool _richAnimations;
         private List<KeyboardAction> _keyboardActions;
+        private List<string> _subtitlesEncodingValues;
 
         public ApplicationTheme ApplicationTheme
         {
@@ -115,6 +117,63 @@ namespace VLC_WinRT.ViewModels.Settings
             get
             {
                 return _keyboardActions ?? (_keyboardActions = Locator.MainVM.KeyboardListenerService._keyboardActionDatabase.GetAllKeyboardActions());
+            }
+        }
+
+        public List<string> SubtitlesEncodingValues
+        {
+            get
+            {
+                if (_subtitlesEncodingValues != null && _subtitlesEncodingValues.Any())
+                {
+                    return _subtitlesEncodingValues;
+                }
+                _subtitlesEncodingValues = new List<string>
+                {
+                    "System",
+                    "UTF-8",
+                    "UTF-16",
+                    "UTF-16BE",
+                    "UTF-16LE",
+                    "GB18030",
+                    "ISO-8859-15",
+                    "Windows-1252",
+                    "IBM850",
+                    "ISO-8859-2",
+                    "Windows-1250",
+                    "ISO-8859-3",
+                    "ISO-8859-10",
+                    "Windows-1251",
+                    "KOI8-R",
+                    "KOI8-U",
+                    "ISO-8859-6",
+                    "Windows-1256",
+                    "ISO-8859-7",
+                    "Windows-1253",
+                    "ISO-8859-8",
+                    "Windows-1255",
+                    "ISO-8859-9",
+                    "Windows-1254",
+                    "ISO-8859-11",
+                    "Windows-874",
+                    "ISO-8859-13",
+                    "Windows-1257",
+                    "ISO-8859-14",
+                    "ISO-8859-16",
+                    "ISO-2022-CN-EXT",
+                    "EUC-CN",
+                    "ISO-2022-JP-2",
+                    "EUC-JP",
+                    "Shift_JIS",
+                    "CP949",
+                    "ISO-2022-KR",
+                    "Big5",
+                    "ISO-2022-TW",
+                    "Big5-HKSCS",
+                    "VISCII",
+                    "Windows-1258"
+                };
+                return _subtitlesEncodingValues;
             }
         }
 
@@ -437,6 +496,32 @@ namespace VLC_WinRT.ViewModels.Settings
             {
                 ApplicationSettingsHelper.SaveSettingsValue("Homepage", (int)value);
                 SetProperty(ref _homePage, value);
+            }
+        }
+
+        public string SubtitleEncodingValue
+        {
+            get
+            {
+                var subtitleEncodingValue = ApplicationSettingsHelper.ReadSettingsValue(nameof(SubtitleEncodingValue));
+                if (string.IsNullOrEmpty((string) subtitleEncodingValue))
+                {
+                    _subtitlesEncodingValue = "System";
+                }
+                else
+                {
+                    _subtitlesEncodingValue = subtitleEncodingValue.ToString();
+                    if (_subtitlesEncodingValue == "")
+                        _subtitlesEncodingValue = "System";
+                }
+                return _subtitlesEncodingValue;
+            }
+            set
+            {
+                if (value == "System")
+                    value = "";
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(SubtitleEncodingValue), value);
+                SetProperty(ref _subtitlesEncodingValue, value);
             }
         }
 
