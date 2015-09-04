@@ -85,14 +85,6 @@ namespace VLC_WinRT.ViewModels.Settings
             return applicationTheme;
         }
 
-        public List<KeyboardAction> KeyboardActions
-        {
-            get
-            {
-                return _keyboardActions ?? (_keyboardActions = Locator.MainVM.KeyboardListenerService._keyboardActionDatabase.GetAllKeyboardActions());
-            }
-        }
-
 #if WINDOWS_APP
         public bool ContinueVideoPlaybackInBackground
         {
@@ -118,6 +110,13 @@ namespace VLC_WinRT.ViewModels.Settings
 #else
         public bool ContinueVideoPlaybackInBackground { get; } = false;
 #endif
+        public List<KeyboardAction> KeyboardActions
+        {
+            get
+            {
+                return _keyboardActions ?? (_keyboardActions = Locator.MainVM.KeyboardListenerService._keyboardActionDatabase.GetAllKeyboardActions());
+            }
+        }
 
         public List<VLCPage> HomePageCollection { get; set; } = new List<VLCPage>()
         {
