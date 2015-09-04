@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\ChangeVolumeCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\DeletePlaylistTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\ResetCurrentArtistAndAlbumCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\StartTrackMetaEdit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\AddToPlayingPlaylist.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\GoToMusicPlayerPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\GoToMusicPlaylistPageCommand.cs" />

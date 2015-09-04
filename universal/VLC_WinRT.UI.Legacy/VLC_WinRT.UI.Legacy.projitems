@@ -130,6 +130,10 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\PlaylistPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\TagEditorPages\TrackEditorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -364,6 +368,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\PlaylistPage.xaml.cs">
       <DependentUpon>PlaylistPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\TagEditorPages\TrackEditorPage.xaml.cs">
+      <DependentUpon>TrackEditorPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>

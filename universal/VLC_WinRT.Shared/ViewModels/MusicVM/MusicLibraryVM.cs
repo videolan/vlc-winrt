@@ -60,6 +60,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         private LoadingState _loadingState = LoadingState.NotLoaded;
 
         private ArtistItem _focusOnAnArtist; // recommended with MusicFlow
+        private TrackItem _currentTrack;
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArtist;
         private TrackCollection _currentTrackCollection;
@@ -205,6 +206,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public DeleteSelectedTracksInPlaylistCommand DeleteSelectedTracksInPlaylistCommand { get; } = new DeleteSelectedTracksInPlaylistCommand();
 
+        public StartTrackMetaEdit StartTrackMetaEdit { get; } = new StartTrackMetaEdit();
+
         public ArtistItem FocusOnAnArtist // Music Flow recommandation
         {
             get { return _focusOnAnArtist; }
@@ -225,6 +228,12 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 SetProperty(ref _currentAlbum, value);
                 OnPropertyChanged("CurrentArtist");
             }
+        }
+
+        public TrackItem CurrentTrack
+        {
+            get { return _currentTrack; }
+            set { SetProperty(ref _currentTrack, value); }
         }
 
         public TrackCollection CurrentTrackCollection

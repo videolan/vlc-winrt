@@ -60,10 +60,20 @@
                                Foreground="DimGray" 
                            VerticalAlignment="Top"/>
             </Grid>
-            <StackPanel Grid.Row="1"
+            <Grid Grid.Row="1"
                         Margin="{StaticResource FrameMarginBothSides}"
                         VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
                 <AppBarButton x:Uid="PlayTrack"
+                              Grid.Row="0"
                               Label="play track"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Foreground="{StaticResource MainColor}"
@@ -76,6 +86,7 @@
                     </AppBarButton.Icon>
                 </AppBarButton>
                 <AppBarButton x:Uid="ViewAlbum"
+                              Grid.Row="1"
                               Label="view album"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.AlbumClickedCommand}"
@@ -86,6 +97,7 @@
                     </AppBarButton.Icon>
                 </AppBarButton>
                 <AppBarButton x:Uid="ViewArtistLabel"
+                              Grid.Row="2"
                               Label="view artist"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.ArtistClickedCommand}"
@@ -95,7 +107,19 @@
                         <PathIcon Data="{StaticResource UserPathNarrow}" />
                     </AppBarButton.Icon>
                 </AppBarButton>
-            </StackPanel>
+                <AppBarButton Grid.Column="1"
+                              Grid.Row="0"
+                              Label="edit metadata"
+                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.StartTrackMetaEdit}"
+                              CommandParameter="{Binding}"
+                              Click="ActionButton_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource MusicPlaylistSymbol}"
+                                  FontFamily="ms-appx:VLC.ttf#W10"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </Grid>
             <Grid Grid.Row="2"
                   Margin="{StaticResource FrameMargin}"
                   DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">

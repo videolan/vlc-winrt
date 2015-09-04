@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Documents;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using VLC_WinRT.UI.Legacy.Views.MusicPages;
+using VLC_WinRT.UI.Legacy.Views.MusicPages.TagEditorPages;
 using VLC_WinRT.UI.Legacy.Views.SettingsPages;
 using VLC_WinRT.UI.Legacy.Views.VariousPages;
 using VLC_WinRT.ViewModels;
@@ -122,6 +123,9 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.VideoPlayerOptionsPanel:
                     GoBack_HideFlyout();
                     break;
+                case VLCPage.TrackEditorPage:
+                    GoBack_Default();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -235,6 +239,9 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.VideoPlayerOptionsPanel:
                     App.SplitShell.RightFlyoutContent = new VideoPlayerOptionsPanel();
                     break;
+                case VLCPage.TrackEditorPage:
+                    App.ApplicationFrame.Navigate(typeof (TrackEditorPage));
+                    break;
                 default:
                     break;
             }
@@ -291,6 +298,8 @@ namespace VLC_WinRT.Services.RunTime
                 return VLCPage.SettingsPage;
             if (page == typeof(SearchPage))
                 return VLCPage.SearchPage;
+            if (page == typeof (TrackEditorPage))
+                return VLCPage.TrackEditorPage;
             return VLCPage.None;
         }
 
