@@ -234,6 +234,13 @@ namespace VLC_WinRT.Services.RunTime
             mP.Tracknumber = trackNbInt;
 
             var discNb = media.meta(MediaMeta.DiscNumber);
+            if (discNb.Contains("/"))
+            {
+                // if discNb = "1/2"
+                var discNumDen = discNb.Split('/');
+                if (discNumDen.Any())
+                    discNb = discNumDen[0];
+            }
             int discNbInt = 1;
             int.TryParse(discNb, out discNbInt);
             mP.DiscNumber = discNbInt;
