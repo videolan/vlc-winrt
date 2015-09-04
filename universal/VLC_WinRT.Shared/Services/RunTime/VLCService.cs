@@ -58,7 +58,9 @@ namespace VLC_WinRT.Services.RunTime
                 "--verbose=3",
                 "--no-stats",
                 "--avcodec-fast",
-                string.Format("--freetype-font={0}\\segoeui.ttf",Windows.ApplicationModel.Package.Current.InstalledLocation.Path)
+                string.Format("--freetype-font={0}\\segoeui.ttf",Windows.ApplicationModel.Package.Current.InstalledLocation.Path),
+                "--subsdec-encoding",
+                Locator.SettingsVM.SubtitleEncodingValue == "System" ? "" : Locator.SettingsVM.SubtitleEncodingValue
             };
 
             // So far, this NEEDS to be called from the main thread
