@@ -83,6 +83,7 @@ namespace VLC_WinRT.Services.RunTime
             await PlayerInstanceReady.Task;
             if (Instance == null) return;
             var mediaVLC = new Media(Instance, mrl_fromType.Item2, mrl_fromType.Item1);
+            // Hardware decoding
             mediaVLC.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
 
             MediaPlayer = new MediaPlayer(mediaVLC);
