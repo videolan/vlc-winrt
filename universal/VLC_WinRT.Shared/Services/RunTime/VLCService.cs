@@ -17,6 +17,7 @@ using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Model.Stream;
 using libVLCX;
