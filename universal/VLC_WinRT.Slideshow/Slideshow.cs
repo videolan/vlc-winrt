@@ -81,18 +81,24 @@ namespace Slide2D
 
         public async void AddImg(string file)
         {
-            await IsLoaded.Task;
-            if (string.IsNullOrEmpty(file)) return;
-            Img i = new Img(file);
             try
             {
-                await i.Initialize(canvas);
+                await IsLoaded.Task;
+                if (string.IsNullOrEmpty(file)) return;
+                Img i = new Img(file);
+                try
+                {
+                    await i.Initialize(canvas);
+                }
+                catch
+                {
+                }
+                if (i.Loaded)
+                    slideshow.Imgs.Add(i);
             }
             catch
             {
             }
-            if (i.Loaded)
-                slideshow.Imgs.Add(i);
         }
 
         public async void SetDefaultPic(string file)
