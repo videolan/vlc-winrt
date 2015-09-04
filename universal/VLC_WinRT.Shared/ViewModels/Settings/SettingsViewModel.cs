@@ -99,7 +99,7 @@ namespace VLC_WinRT.ViewModels.Settings
                 }
                 else
                 {
-                    _continueVideoPlaybackInBackground = (bool) continuePlaybackInBackground;
+                    _continueVideoPlaybackInBackground = (bool)continuePlaybackInBackground;
                 }
                 return _continueVideoPlaybackInBackground;
             }
@@ -229,7 +229,7 @@ namespace VLC_WinRT.ViewModels.Settings
                 if (!musicFoldersLoaded)
                 {
                     musicFoldersLoaded = true;
-                    Task.Run(()=>GetMusicLibraryFolders());
+                    Task.Run(() => GetMusicLibraryFolders());
                 }
                 return _musicFolders;
             }
@@ -531,7 +531,7 @@ namespace VLC_WinRT.ViewModels.Settings
         public async Task GetMusicLibraryFolders()
         {
             var musicLib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, ()=> MusicFolders = musicLib.Folders.ToList());
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => MusicFolders = musicLib.Folders.ToList());
         }
 
         public async Task GetVideoLibraryFolders()

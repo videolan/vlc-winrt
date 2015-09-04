@@ -179,7 +179,7 @@ namespace VLC_WinRT.Services.RunTime
             mP.Title = media.meta(MediaMeta.Title);
 
             var showName = media.meta(MediaMeta.ShowName);
-            if(string.IsNullOrEmpty(showName))
+            if (string.IsNullOrEmpty(showName))
             {
                 showName = media.meta(MediaMeta.Artist);
             }
@@ -189,19 +189,19 @@ namespace VLC_WinRT.Services.RunTime
             }
 
             var episodeString = media.meta(MediaMeta.Episode);
-            if(string.IsNullOrEmpty(episodeString))
+            if (string.IsNullOrEmpty(episodeString))
             {
                 episodeString = media.meta(MediaMeta.TrackNumber);
             }
             var episode = 0;
-            if(!string.IsNullOrEmpty(episodeString) && int.TryParse(episodeString, out episode))
+            if (!string.IsNullOrEmpty(episodeString) && int.TryParse(episodeString, out episode))
             {
                 mP.Episode = episode;
             }
 
             var episodesTotal = 0;
             var episodesTotalString = media.meta(MediaMeta.TrackTotal);
-            if(!string.IsNullOrEmpty(episodesTotalString) && int.TryParse(episodesTotalString, out episodesTotal))
+            if (!string.IsNullOrEmpty(episodesTotalString) && int.TryParse(episodesTotalString, out episodesTotal))
             {
                 mP.Episodes = episodesTotal;
             }
@@ -222,7 +222,7 @@ namespace VLC_WinRT.Services.RunTime
             mP.Title = media.meta(MediaMeta.Title);
             var yearString = media.meta(MediaMeta.Date);
             var year = 0;
-            if(int.TryParse(yearString, out year))
+            if (int.TryParse(yearString, out year))
             {
                 mP.Year = year;
             }
@@ -363,7 +363,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             StatusChanged(this, MediaState.Playing);
         }
-        
+
         public void SetSizeVideoPlayer(uint x, uint y)
         {
             Instance?.UpdateSize(x, y);
