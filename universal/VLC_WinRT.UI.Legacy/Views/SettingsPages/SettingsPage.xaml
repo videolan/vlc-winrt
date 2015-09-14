@@ -33,9 +33,11 @@
                     </AppBarButton>
                     <TextBlock Grid.Column="1"
                                Text="Settings"
+                               x:Uid="MenuAppSettings"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                 </Grid>
                 <AppBarButton Label="User interface"
+                              x:Uid="UserInterface"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Command="{Binding ChangeSettingsViewCommand}"
                               CommandParameter="0"
@@ -49,6 +51,7 @@
                     </AppBarButton.Icon>
                 </AppBarButton>
                 <AppBarButton Label="Video"
+                              x:Uid="VideoSettingMenu"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Command="{Binding ChangeSettingsViewCommand}"
                               CommandParameter="1"
@@ -62,6 +65,7 @@
                     </AppBarButton.Icon>
                 </AppBarButton>
                 <AppBarButton Label="Music"
+                              x:Uid="MusicSettingMenu"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Command="{Binding ChangeSettingsViewCommand}"
                               CommandParameter="2"
@@ -77,6 +81,7 @@
 
 
                 <TextBlock Text="About the app"
+                           x:Uid="MenuAboutApp"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Margin="0,20" />
                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"

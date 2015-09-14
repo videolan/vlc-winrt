@@ -634,6 +634,9 @@
   <data name="License" xml:space="preserve">
     <value>License</value>
   </data>
+  <data name="MusicSettingMenu.Label" xml:space="preserve">
+    <value>Music</value>
+  </data>
   <data name="Network" xml:space="preserve">
     <value>network</value>
   </data>
@@ -660,6 +663,12 @@
   </data>
   <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
     <value>This track is already in the playlist</value>
+  </data>
+  <data name="UserInterface.Label" xml:space="preserve">
+    <value>User interface</value>
+  </data>
+  <data name="VideoSettingMenu.Label" xml:space="preserve">
+    <value>Video</value>
   </data>
   <data name="VideosFound" xml:space="preserve">
     <value>New videos : {0}</value>
