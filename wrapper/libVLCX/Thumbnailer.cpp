@@ -188,9 +188,8 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
             sys->thumbWidth = width;
             sys->thumbSize = pitch * sys->thumbHeight;
             sys->thumbData = (char*) malloc(sys->thumbSize);
-            sys->hLock = CreateEventEx(NULL, NULL, NULL, EVENT_MODIFY_STATE);
+            sys->hLock = CreateEventEx(NULL, NULL, CREATE_EVENT_INITIAL_SET, EVENT_MODIFY_STATE);
             sys->mp = mp;
-            SetEvent(sys->hLock);
 
             libvlc_video_set_format(mp, "BGRA", sys->thumbWidth, sys->thumbHeight, pitch);
             libvlc_video_set_callbacks(mp, Lock, Unlock, NULL, (void*) sys);
