@@ -88,8 +88,6 @@ static void onSeekChanged( const libvlc_event_t*ev, void* data )
 static void *Lock(void *opaque, void **pixels)
 {
     thumbnailer_sys_t *sys = (thumbnailer_sys_t*)opaque;
-
-    WaitForSingleObjectEx(sys->hLock, INFINITE, TRUE);
     *pixels = sys->thumbData;
     return NULL;
 }
@@ -132,10 +130,7 @@ static void Unlock(void *opaque, void *picture, void *const *pixels){
     thumbnailer_sys_t* sys = (thumbnailer_sys_t*) opaque;
 
     if (sys->state != THUMB_SEEKED)
-    {
-        SetEvent(sys->hLock);
         return;
-    }
 
     CoreWindow^ window = CoreApplication::MainView->CoreWindow;
     auto dispatcher = window->Dispatcher;
@@ -148,8 +143,9 @@ static void Unlock(void *opaque, void *picture, void *const *pixels){
         sys->state = THUMB_RENDERED;
         SetEvent(sys->hLock);
     }));
-    WaitForSingleObjectEx( sys->hLock, INFINITE, TRUE );
-    SetEvent( sys->hLock );
+    // Wait for the signaling to be done before resuming. Otherwise we could have
+    // another call to lock/unlock while we're wrapping up
+    WaitForSingleObjectEx(sys->hLock, INFINITE, TRUE);
 }
 
 IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ mrl, int width, int height, int timeoutMs)
