@@ -21,6 +21,7 @@
 #include "Thumbnailer.h"
 
 #include <atomic>
+#include <memory>
 
 using namespace libVLCX;
 #define FAST_COPY 0
@@ -42,7 +43,7 @@ struct thumbnailer_sys_t
     task_completion_event<PreparseResult^>  screenshotCompleteEvent;
     concurrency::task<void>                 cancellationTask;
     concurrency::cancellation_token_source  timeoutCts;
-    char                                    *thumbData;
+    std::unique_ptr<char[]>                 thumbData;
     unsigned                                thumbHeight;
     unsigned                                thumbWidth;
     size_t                                  thumbSize;
@@ -92,7 +93,7 @@ static void onSeekChanged( const libvlc_event_t*ev, void* data )
 static void *Lock(void *opaque, void **pixels)
 {
     thumbnailer_sys_t *sys = (thumbnailer_sys_t*)opaque;
-    *pixels = sys->thumbData;
+    *pixels = sys->thumbData.get();
     return NULL;
 }
 
@@ -187,7 +188,7 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
             sys->thumbHeight = height;
             sys->thumbWidth = width;
             sys->thumbSize = pitch * sys->thumbHeight;
-            sys->thumbData = (char*) malloc(sys->thumbSize);
+            sys->thumbData.reset(new char[sys->thumbSize]);
             sys->hLock = CreateEventEx(NULL, NULL, CREATE_EVENT_INITIAL_SET, EVENT_MODIFY_STATE);
             sys->mp = mp;
 
@@ -226,7 +227,6 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
                 // If so, this will probably take a bit more time, but will not block, so we're safe stopping the media player.
                 libvlc_media_player_stop(mp);
                 libvlc_media_player_release(mp);
-                free(sys->thumbData);
                 CloseHandle(sys->hLock);
                 delete sys;
             });
