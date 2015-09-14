@@ -188,7 +188,7 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
             sys->thumbWidth = width;
             sys->thumbSize = pitch * sys->thumbHeight;
             sys->thumbData = (char*) malloc(sys->thumbSize);
-            sys->hLock = CreateEventEx(NULL, NULL, NULL, EVENT_ALL_ACCESS);
+            sys->hLock = CreateEventEx(NULL, NULL, NULL, EVENT_MODIFY_STATE);
             sys->mp = mp;
             SetEvent(sys->hLock);
 
