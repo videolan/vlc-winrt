@@ -77,6 +77,7 @@
 
         <userControls:FocusTextBox x:Name="MusicSearchBox"
                                    Grid.Column="3"
+                                   x:Uid="SearchField"
                                    PlaceholderText="search"
                                    Height="30"
                                    Width="270"
