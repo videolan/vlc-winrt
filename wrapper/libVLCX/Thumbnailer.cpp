@@ -20,6 +20,8 @@
 
 #include "Thumbnailer.h"
 
+#include <atomic>
+
 using namespace libVLCX;
 #define FAST_COPY 0
 
@@ -30,12 +32,13 @@ using namespace libVLCX;
 enum thumbnail_state{
     THUMB_SEEKING,
     THUMB_SEEKED,
-    THUMB_RENDERED
+    THUMB_RENDERED,
+    THUMB_CANCELLED
 };
 
 struct thumbnailer_sys_t
 {
-    thumbnail_state                         state;
+    std::atomic<int>                        state;
     task_completion_event<PreparseResult^>  screenshotCompleteEvent;
     concurrency::task<void>                 cancellationTask;
     concurrency::cancellation_token_source  timeoutCts;
@@ -72,6 +75,7 @@ Thumbnailer::Thumbnailer()
 static void CancelPreparse(const libvlc_event_t*, void* data)
 {
     auto sys = reinterpret_cast<thumbnailer_sys_t*>(data);
+    sys->state = THUMB_CANCELLED;
     sys->screenshotCompleteEvent.set(nullptr);
 }
 
@@ -217,6 +221,9 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
                 // We rendered at least one frame, no need to check for EOF anymore
                 libvlc_event_detach(sys->eventMgr, libvlc_MediaPlayerEndReached, &CancelPreparse, sys);
                 libvlc_event_detach(sys->eventMgr, libvlc_MediaPlayerEncounteredError, &CancelPreparse, sys);
+                // We only block the unlock function if state == THUMB_SEEKED. In the worst case, we are rendering
+                // a thumbnail now (even if we timed out but the rendering started just before the timeout task triggered)
+                // If so, this will probably take a bit more time, but will not block, so we're safe stopping the media player.
                 libvlc_media_player_stop(mp);
                 libvlc_media_player_release(mp);
                 free(sys->thumbData);
