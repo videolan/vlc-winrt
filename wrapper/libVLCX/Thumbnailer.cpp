@@ -221,6 +221,7 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
                 libvlc_event_detach( sys->eventMgr, libvlc_MediaPlayerPositionChanged, &onSeekChanged, sys );
                 // We rendered at least one frame, no need to check for EOF anymore
                 libvlc_event_detach(sys->eventMgr, libvlc_MediaPlayerEndReached, &CancelPreparse, sys);
+                libvlc_event_detach(sys->eventMgr, libvlc_MediaPlayerEncounteredError, &CancelPreparse, sys);
                 libvlc_media_player_stop(mp);
                 libvlc_media_player_release(mp);
                 free(sys->thumbData);
