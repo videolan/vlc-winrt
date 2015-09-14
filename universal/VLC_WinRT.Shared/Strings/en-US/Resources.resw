@@ -619,6 +619,9 @@
     <value>Albums found : {0}</value>
     <comment>{0} represents the number of albums found</comment>
   </data>
+  <data name="File.Label" xml:space="preserve">
+    <value>file</value>
+  </data>
   <data name="Files" xml:space="preserve">
     <value>files</value>
   </data>
@@ -639,6 +642,18 @@
   </data>
   <data name="PlaylistAlreadyExists" xml:space="preserve">
     <value>This playlist already exists</value>
+  </data>
+  <data name="RefreshMusicLibrary.Label" xml:space="preserve">
+    <value>refresh music library</value>
+  </data>
+  <data name="RefreshVideoLibrary.Label" xml:space="preserve">
+    <value>refresh video library</value>
+  </data>
+  <data name="SettingsLabel.Label" xml:space="preserve">
+    <value>settings</value>
+  </data>
+  <data name="Stream.Label" xml:space="preserve">
+    <value>stream</value>
   </data>
   <data name="TrackAddedToYourPlaylist" xml:space="preserve">
     <value>Track added to the playlist</value>

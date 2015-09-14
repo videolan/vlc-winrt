@@ -28,6 +28,7 @@
 
           <AppBarButton Grid.Column="1"
                         VerticalAlignment="Center"
+                        x:Uid="File"
                         Style="{StaticResource AppBarButtonStyleHorizontal}"
                         Label="file"
                         Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}">
@@ -38,6 +39,7 @@
           </AppBarButton>
           <AppBarButton Grid.Column="3"
                         VerticalAlignment="Center"
+                        x:Uid="Stream"
                         Style="{StaticResource AppBarButtonStyleHorizontal}"
                         Label="stream"
                         Flyout="{StaticResource PhoneOpenStreamFlyout}">
@@ -48,9 +50,10 @@
           </AppBarButton>
           <AppBarButton Grid.Column="5"
                         VerticalAlignment="Center"
+                        x:Uid="SettingsLabel"
                         Label="settings"
                         Style="{StaticResource AppBarButtonStyleHorizontal}"
-                        Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
+                        Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}" Margin="0,11,0,10">
               <AppBarButton.Icon>
                   <FontIcon Glyph="{StaticResource SettingsSymbol}"
                             FontFamily="ms-appx:VLC.ttf#W10" />
@@ -69,6 +72,7 @@
           </Grid.ColumnDefinitions>
           <AppBarButton Grid.Column="1"
                         VerticalAlignment="Center"
+                        x:Uid="RefreshVideoLibrary"
                         Label="refresh video library"
                         Style="{StaticResource AppBarButtonStyleHorizontal}"
                         DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
@@ -83,6 +87,7 @@
           <AppBarButton x:Name="RefreshButton"
                         Grid.Column="3"
                         VerticalAlignment="Center"
+                        x:Uid="RefreshMusicLibrary"
                         Label="refresh music library"
                         Style="{StaticResource AppBarButtonStyleHorizontal}"
                         DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
