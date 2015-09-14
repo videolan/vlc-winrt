@@ -56,39 +56,37 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
 #endif
 
     cp_d3dDevice = nullptr;
+    UINT i_adapter = 0;
     while( cp_d3dDevice == nullptr )
     {
-        UINT i_adapter = 0;
-        while( cp_d3dDevice == nullptr )
+        hr = dxgiFactory->EnumAdapters( i_adapter++, &dxgiAdapter );
+        if( FAILED( hr ) )
         {
-            hr = dxgiFactory->EnumAdapters( i_adapter++, &dxgiAdapter );
-            if( FAILED( hr ) )
+            if( creationFlags & D3D11_CREATE_DEVICE_VIDEO_SUPPORT )
             {
-                if( creationFlags & D3D11_CREATE_DEVICE_VIDEO_SUPPORT )
-                {
-                    /* try again without this flag */
-                    i_adapter = 0;
-                    creationFlags &= ~D3D11_CREATE_DEVICE_VIDEO_SUPPORT;
-                }
-                else
-                    break; /* no more flags to remove */
+                /* try again without this flag */
+                i_adapter = 0;
+                creationFlags &= ~D3D11_CREATE_DEVICE_VIDEO_SUPPORT;
+                continue; //Try again with the new flags
             }
-
-            hr = D3D11CreateDevice(
-                dxgiAdapter.Get(),
-                D3D_DRIVER_TYPE_UNKNOWN,
-                nullptr,
-                creationFlags,
-                NULL,
-                0,
-                D3D11_SDK_VERSION,
-                &cp_d3dDevice,
-                nullptr,
-                &cp_d3dContext
-                );
-            if( FAILED( hr ) )
-                cp_d3dDevice = nullptr;
+            else
+                break; /* no more flags to remove */
         }
+
+        hr = D3D11CreateDevice(
+            dxgiAdapter.Get(),
+            D3D_DRIVER_TYPE_UNKNOWN,
+            nullptr,
+            creationFlags,
+            NULL,
+            0,
+            D3D11_SDK_VERSION,
+            &cp_d3dDevice,
+            nullptr,
+            &cp_d3dContext
+            );
+        if( FAILED( hr ) )
+            cp_d3dDevice = nullptr;
     }
     CheckDXOperation(hr, "Could not D3D11CreateDevice");
     CheckDXOperation(cp_d3dDevice.As(&dxgiDevice), "Could not transform to DXGIDevice");
