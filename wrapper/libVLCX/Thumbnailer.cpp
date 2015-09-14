@@ -198,12 +198,8 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
 
             sys->cancellationTask = concurrency::create_task( [sys, timeoutMs] {
                 concurrency::wait( timeoutMs );
-                if( concurrency::is_task_cancellation_requested() )
-                    concurrency::cancel_current_task();
-                if( !sys->screenshotCompleteEvent._IsTriggered() )
-                {
+                if( !concurrency::is_task_cancellation_requested() )
                     sys->screenshotCompleteEvent.set( nullptr );
-                }
             }, sys->timeoutCts.get_token() );
 
             if (mp)
