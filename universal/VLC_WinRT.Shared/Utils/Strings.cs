@@ -27,14 +27,14 @@ namespace VLC_WinRT.Utils
         public static readonly char UnknownChar = '#';
         public static readonly string UnknownString = UnknownChar.ToString();
 
-        private static ResourceLoader _resourcesLoader = ResourceLoader.GetForViewIndependentUse();
+        private static readonly ResourceLoader _resourcesLoader = ResourceLoader.GetForViewIndependentUse();
 
         public static readonly string Home = _resourcesLoader.GetString("Home");
         public static readonly string Music = _resourcesLoader.GetString("Music");
         public static readonly string RemovableStorage = _resourcesLoader.GetString("RemovableStorage");
-        public static readonly string FileExplorer = "files";
-        public static readonly string Network = "network";
-        public static readonly string Library = "library";
+        public static readonly string FileExplorer = _resourcesLoader.GetString("Files");
+        public static readonly string Network = _resourcesLoader.GetString("network");
+        public static readonly string Library = _resourcesLoader.GetString("library");
 
         public static readonly string UnknownArtist = _resourcesLoader.GetString("UnknownArtist");
         public static readonly string UnknownAlbum = _resourcesLoader.GetString("UnknownAlbum");
@@ -53,13 +53,13 @@ namespace VLC_WinRT.Utils
 
         public static readonly string OrderByArtist = _resourcesLoader.GetString("OrderByArtist");
         public static readonly string OrderByDate = _resourcesLoader.GetString("OrderByDate");
-        public static readonly string OrderByAlbum = "by album";
+        public static readonly string OrderByAlbum = _resourcesLoader.GetString("OrderByAlbum");
 
         public static readonly string OrderAscending = _resourcesLoader.GetString("OrderAscending");
         public static readonly string OrderDescending = _resourcesLoader.GetString("OrderDescending");
 
-        public static readonly string AlbumsFound = "Albums found : {0}"/*_resourcesLoader.GetString("AlbumsFound")*/;
-        public static readonly string NewVideo = "New video : {0}";
+        public static readonly string AlbumsFound = _resourcesLoader.GetString("AlbumsFound");
+        public static readonly string NewVideo = _resourcesLoader.GetString("VideosFound");
         
         public static readonly string PlaylistAlreadyExists = _resourcesLoader.GetString("PlaylistAlreadyExists");
         public static readonly string TrackAlreadyExistsInPlaylist = _resourcesLoader.GetString("TrackAlreadyExistsInPlaylist");
@@ -77,14 +77,10 @@ namespace VLC_WinRT.Utils
         public static readonly string PrivacyStatement = _resourcesLoader.GetString("PrivacyStatement");
         public static readonly string SpecialThanks = _resourcesLoader.GetString("SpecialThanks");
         public static readonly string Settings = _resourcesLoader.GetString("Settings");
-        public static readonly string License = "License";
+        public static readonly string License = _resourcesLoader.GetString("License");
 
         static Strings()
         {
-            PlaylistAlreadyExists = "This playlist already exists";
-            TrackAddedToYourPlaylist = "Track added to the playlist";
-            TrackAlreadyExistsInPlaylist = "This track is already in the playlist";
-            HaveToSelectPlaylist = "You need to select a playlist";
         }
 
         public static string HumanizedArtistName(string artistName) { return string.IsNullOrEmpty(artistName) ? Strings.UnknownArtist : artistName; }

@@ -615,4 +615,39 @@
   <data name="ViewArtistLabel.Label" xml:space="preserve">
     <value>view artist</value>
   </data>
+  <data name="AlbumsFound" xml:space="preserve">
+    <value>Albums found : {0}</value>
+    <comment>{0} represents the number of albums found</comment>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>files</value>
+  </data>
+  <data name="HaveToSelectPlaylist" xml:space="preserve">
+    <value>You need to select a playlist</value>
+  </data>
+  <data name="Library" xml:space="preserve">
+    <value>library</value>
+  </data>
+  <data name="License" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="Network" xml:space="preserve">
+    <value>network</value>
+  </data>
+  <data name="OrderByAlbum" xml:space="preserve">
+    <value>by album</value>
+  </data>
+  <data name="PlaylistAlreadyExists" xml:space="preserve">
+    <value>This playlist already exists</value>
+  </data>
+  <data name="TrackAddedToYourPlaylist" xml:space="preserve">
+    <value>Track added to the playlist</value>
+  </data>
+  <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
+    <value>This track is already in the playlist</value>
+  </data>
+  <data name="VideosFound" xml:space="preserve">
+    <value>New videos : {0}</value>
+    <comment>{0} represents the number of videos found</comment>
+  </data>
 </root>
