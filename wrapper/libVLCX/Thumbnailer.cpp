@@ -165,6 +165,13 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
         libvlc_media_t* m = libvlc_media_new_location(this->p_instance, mrl_str);
         delete[] mrl_str;
 
+        if (m == nullptr)
+        {
+            sys->screenshotCompleteEvent.set(nullptr);
+            delete sys;
+            return completionTask;
+        }
+
         /* Set media to fast with no options */
         libvlc_media_add_option(m, ":no-audio");
         libvlc_media_add_option(m, ":no-spu");
@@ -174,6 +181,13 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
 
         libvlc_media_player_t* mp = libvlc_media_player_new_from_media(m);
         libvlc_media_release(m);
+
+        if (mp == nullptr)
+        {
+            sys->screenshotCompleteEvent.set(nullptr);
+            delete sys;
+            return completionTask;
+        }
         sys->eventMgr = libvlc_media_player_event_manager(mp);
         libvlc_event_attach(sys->eventMgr, libvlc_MediaPlayerEncounteredError, &CancelPreparse, sys);
         // Workaround some short and weird samples can reach the end without getting a snapshot generated.
@@ -203,12 +217,9 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
                 sce.set( nullptr );
         }, sys->timeoutCts.get_token() );
 
-        if (mp)
-        {
-            libvlc_media_player_play(mp);
-            //TODO: Specify position
-            libvlc_media_player_set_position(mp, SEEK_POSITION);
-        }
+        libvlc_media_player_play(mp);
+        //TODO: Specify position
+        libvlc_media_player_set_position(mp, SEEK_POSITION);
 
         completionTask.then([mp, sys](PreparseResult^ res) {
             if ( res != nullptr )
