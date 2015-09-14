@@ -101,11 +101,7 @@ namespace VLC_WinRT.Slideshow.Texts
                     break;
             }
 
-            drawArgs.DrawingSession.DrawTextLayout(TextLayout, new Microsoft.Graphics.Canvas.Numerics.Vector2()
-            {
-                X = posX,
-                Y = posY
-            }, Color);
+            drawArgs.DrawingSession.DrawTextLayout(TextLayout, posX, posY, Color);
         }
 
         float ComputePosY(ref List<Txt> txts)
