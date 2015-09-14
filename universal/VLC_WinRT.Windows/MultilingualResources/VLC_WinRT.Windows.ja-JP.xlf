@@ -6,9 +6,99 @@
     </header>
     <body>
       <group id="Resources">
+        <trans-unit id="Resources\YourMusic\Content" translate="yes" xml:space="preserve">
+          <source>your music</source>
+          <target state="translated">ミュジック</target>
+        </trans-unit>
+        <trans-unit id="Resources\VideosFound" translate="yes" xml:space="preserve">
+          <source>New videos : {0}</source>
+          <target state="translated">新しいビデオ: {0}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">{0} represents the number of videos found</note>
+          </trans-unit>
+        <trans-unit id="Resources\VideoSettingMenu\Label" translate="yes" xml:space="preserve">
+          <source>Video</source>
+          <target state="translated">ビデオ</target>
+        </trans-unit>
+        <trans-unit id="Resources\UserInterface\Label" translate="yes" xml:space="preserve">
+          <source>User interface</source>
+          <target state="translated">UI</target>
+        </trans-unit>
+        <trans-unit id="Resources\AlbumsFound" translate="yes" xml:space="preserve">
+          <source>Albums found : {0}</source>
+          <target state="translated">新しいアルバム: {0}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">{0} represents the number of albums found</note>
+          </trans-unit>
+        <trans-unit id="Resources\Files" translate="yes" xml:space="preserve">
+          <source>files</source>
+          <target state="translated">ファイル</target>
+        </trans-unit>
+        <trans-unit id="Resources\File\Label" translate="yes" xml:space="preserve">
+          <source>file</source>
+          <target state="translated">ファイル</target>
+        </trans-unit>
+        <trans-unit id="Resources\HaveToSelectPlaylist" translate="yes" xml:space="preserve">
+          <source>You need to select a playlist</source>
+          <target state="translated">プレイリストを選んでください。</target>
+        </trans-unit>
+        <trans-unit id="Resources\Library" translate="yes" xml:space="preserve">
+          <source>library</source>
+          <target state="translated">ライブラリ</target>
+        </trans-unit>
+        <trans-unit id="Resources\License" translate="yes" xml:space="preserve">
+          <source>License</source>
+          <target state="new">License</target>
+        </trans-unit>
+        <trans-unit id="Resources\Network" translate="yes" xml:space="preserve">
+          <source>network</source>
+          <target state="translated">ネットワーク</target>
+        </trans-unit>
+        <trans-unit id="Resources\MusicSettingMenu\Label" translate="yes" xml:space="preserve">
+          <source>Music</source>
+          <target state="translated">ミュージック</target>
+        </trans-unit>
+        <trans-unit id="Resources\MostPlayedArtists\Text" translate="yes" xml:space="preserve">
+          <source>most played artists</source>
+          <target state="new">most played artists</target>
+        </trans-unit>
+        <trans-unit id="Resources\OrderByAlbum" translate="yes" xml:space="preserve">
+          <source>by album</source>
+          <target state="translated">アルバム</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlaylistAlreadyExists" translate="yes" xml:space="preserve">
+          <source>This playlist already exists</source>
+          <target state="translated">このプレイリストがすでに存在しています。</target>
+        </trans-unit>
+        <trans-unit id="Resources\TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
+          <source>Track added to the playlist</source>
+          <target state="translated">プレイリストに追加されました。</target>
+        </trans-unit>
+        <trans-unit id="Resources\RefreshMusicLibrary\Label" translate="yes" xml:space="preserve">
+          <source>refresh music library</source>
+          <target state="translated">ミュージック・ライブラリを更新する</target>
+        </trans-unit>
+        <trans-unit id="Resources\RecommendedForYou\Text" translate="yes" xml:space="preserve">
+          <source>recommended for you</source>
+          <target state="translated">おすすめアーティスト</target>
+        </trans-unit>
+        <trans-unit id="Resources\RefreshVideoLibrary\Label" translate="yes" xml:space="preserve">
+          <source>refresh video library</source>
+          <target state="translated">ビデオ・ライブラリを更新する</target>
+        </trans-unit>
+        <trans-unit id="Resources\SettingsLabel\Label" translate="yes" xml:space="preserve">
+          <source>settings</source>
+          <target state="translated">設定</target>
+        </trans-unit>
+        <trans-unit id="Resources\Stream\Label" translate="yes" xml:space="preserve">
+          <source>stream</source>
+          <target state="translated">ストリーム</target>
+        </trans-unit>
+        <trans-unit id="Resources\TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
+          <source>This track is already in the playlist</source>
+          <target state="translated">この曲はプレーリストにすでに存在しています。</target>
+        </trans-unit>
         <trans-unit id="Resources\ViewArtistLabel\Label" translate="yes" xml:space="preserve">
           <source>view artist</source>
-          <target state="new">view artist</target>
+          <target state="translated">アテスト</target>
         </trans-unit>
         <trans-unit id="Resources\WeDidNotFindVideos\Text" translate="yes" xml:space="preserve">
           <source>We did not find videos in your Videos folder</source>
@@ -20,7 +110,7 @@
         </trans-unit>
         <trans-unit id="Resources\CameraRollButton\Content" translate="yes" xml:space="preserve">
           <source>camera roll</source>
-          <target state="new">camera roll</target>
+          <target state="translated">カメラロール</target>
         </trans-unit>
         <trans-unit id="Resources\HoweverSearch\Text" translate="yes" xml:space="preserve">
           <source>... however you may find what you want here</source>
@@ -84,7 +174,7 @@
         </trans-unit>
         <trans-unit id="Resources\AddToPlaylist\Text" translate="yes" xml:space="preserve">
           <source>Add to playlist</source>
-          <target state="translated">アルバム</target>
+          <target state="translated">プレーリストに追加</target>
         </trans-unit>
         <trans-unit id="Resources\AddToCollectionButton\Content" translate="yes" xml:space="preserve">
           <source>Add to Collection</source>
@@ -92,7 +182,7 @@
         </trans-unit>
         <trans-unit id="Resources\AddToPlaylistButton\Content" translate="yes" xml:space="preserve">
           <source>Add to Playlist</source>
-          <target state="new">Add to Playlist</target>
+          <target state="translated">プレーリストに追加</target>
         </trans-unit>
         <trans-unit id="Resources\BackButton\Text" translate="yes" xml:space="preserve">
           <source>Back</source>
@@ -156,7 +246,7 @@
         </trans-unit>
         <trans-unit id="Resources\TopVideos\Content" translate="yes" xml:space="preserve">
           <source>top videos</source>
-          <target state="translated">ベストビデ</target>
+          <target state="translated">ベストビデオ</target>
         </trans-unit>
         <trans-unit id="Resources\TopAlbums\Content" translate="yes" xml:space="preserve">
           <source>top albums</source>
@@ -288,8 +378,9 @@
         </trans-unit>
         <trans-unit id="Resources\NoFavoriteAlbumsHeader\Text" translate="yes" xml:space="preserve">
           <source>You don't have favorite albums</source>
-          <target state="needs-review-translation">お気に入りアルバムがありません。</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="needs-review-translation">お気に入りアルバムがありません。</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          </trans-unit>
         <trans-unit id="Resources\MusicSettings\Text" translate="yes" xml:space="preserve">
           <source>VLC will only search for songs that are in your music library. You can add folders to your library here:</source>
           <target state="new">VLC will only search for songs that are in your music library. You can add folders to your library here:</target>
@@ -560,7 +651,7 @@
         </trans-unit>
         <trans-unit id="Resources\ItsLonely\Text" translate="yes" xml:space="preserve">
           <source>It's lonely here.</source>
-          <target state="new">It's lonely here.</target>
+          <target state="translated">(･ω･)＞何もないなぁ。</target>
         </trans-unit>
         <trans-unit id="Resources\IndexingMusic2\Text" translate="yes" xml:space="preserve">
           <source>VLC may be unresponsive</source>
@@ -624,7 +715,7 @@
         </trans-unit>
         <trans-unit id="Resources\Clear\Text" translate="yes" xml:space="preserve">
           <source>Clear</source>
-          <target state="new">Clear</target>
+          <target state="translated">クリア</target>
         </trans-unit>
         <trans-unit id="Resources\ChangeVideoFolder\Content" translate="yes" xml:space="preserve">
           <source>Change default Video folder</source>

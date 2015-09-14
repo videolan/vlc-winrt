@@ -634,6 +634,9 @@
   <data name="License" xml:space="preserve">
     <value>License</value>
   </data>
+  <data name="MostPlayedArtists.Text" xml:space="preserve">
+    <value>most played artists</value>
+  </data>
   <data name="MusicSettingMenu.Label" xml:space="preserve">
     <value>Music</value>
   </data>
@@ -645,6 +648,9 @@
   </data>
   <data name="PlaylistAlreadyExists" xml:space="preserve">
     <value>This playlist already exists</value>
+  </data>
+  <data name="RecommendedForYou.Text" xml:space="preserve">
+    <value>recommended for you</value>
   </data>
   <data name="RefreshMusicLibrary.Label" xml:space="preserve">
     <value>refresh music library</value>
@@ -673,5 +679,8 @@
   <data name="VideosFound" xml:space="preserve">
     <value>New videos : {0}</value>
     <comment>{0} represents the number of videos found</comment>
+  </data>
+  <data name="YourMusic.Content" xml:space="preserve">
+    <value>your music</value>
   </data>
 </root>
