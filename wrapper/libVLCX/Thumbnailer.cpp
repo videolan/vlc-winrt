@@ -71,8 +71,6 @@ Thumbnailer::Thumbnailer()
     }
 }
 
-
-
 static void CancelPreparse(const libvlc_event_t*, void* data)
 {
     auto sys = reinterpret_cast<thumbnailer_sys_t*>(data);
@@ -94,7 +92,7 @@ static void *Lock(void *opaque, void **pixels)
 {
     thumbnailer_sys_t *sys = (thumbnailer_sys_t*)opaque;
     *pixels = sys->thumbData.get();
-    return NULL;
+    return nullptr;
 }
 
 static WriteableBitmap^ CopyToBitmap(thumbnailer_sys_t* sys)
@@ -156,16 +154,15 @@ static void Unlock(void *opaque, void *picture, void *const *pixels){
 IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ mrl, int width, int height, int timeoutMs)
 {
     return concurrency::create_async([&] (concurrency::cancellation_token ct) {
-
-        libvlc_media_player_t* mp;
         thumbnailer_sys_t *sys = new thumbnailer_sys_t();
         auto completionTask = concurrency::create_task(sys->screenshotCompleteEvent, ct);
         if (p_instance){
-            size_t len2 = WideCharToMultiByte( CP_UTF8, 0, mrl->Data(), -1, NULL, 0, NULL, NULL );
+            size_t len2 = WideCharToMultiByte( CP_UTF8, 0, mrl->Data(), -1, nullptr, 0, nullptr, nullptr );
             char* mrl_str = new char[len2];
-            WideCharToMultiByte( CP_UTF8, 0, mrl->Data(), -1, mrl_str, len2, NULL, NULL );
+            WideCharToMultiByte( CP_UTF8, 0, mrl->Data(), -1, mrl_str, len2, nullptr, nullptr );
 
             libvlc_media_t* m = libvlc_media_new_location(this->p_instance, mrl_str);
+            delete[] mrl_str;
 
             /* Set media to fast with no options */
             libvlc_media_add_option(m, ":no-audio");
@@ -174,7 +171,7 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
             libvlc_media_add_option(m, ":avcodec-hw=none");
             libvlc_media_add_option( m, ":aout=none" );
 
-            mp = libvlc_media_player_new_from_media(m);
+            libvlc_media_player_t* mp = libvlc_media_player_new_from_media(m);
             libvlc_media_release(m);
             sys->eventMgr = libvlc_media_player_event_manager(mp);
             libvlc_event_attach(sys->eventMgr, libvlc_MediaPlayerEncounteredError, &CancelPreparse, sys);
@@ -184,16 +181,17 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
             libvlc_event_attach( sys->eventMgr, libvlc_MediaPlayerPositionChanged, &onSeekChanged, sys );
 
             /* Set the video format and the callbacks. */
+
             unsigned int pitch = width * PIXEL_SIZE;
             sys->thumbHeight = height;
             sys->thumbWidth = width;
             sys->thumbSize = pitch * sys->thumbHeight;
             sys->thumbData.reset(new char[sys->thumbSize]);
-            sys->hLock = CreateEventEx(NULL, NULL, CREATE_EVENT_INITIAL_SET, EVENT_MODIFY_STATE);
+            sys->hLock = CreateEventEx(nullptr, nullptr, CREATE_EVENT_INITIAL_SET, EVENT_MODIFY_STATE);
             sys->mp = mp;
 
             libvlc_video_set_format(mp, "BGRA", sys->thumbWidth, sys->thumbHeight, pitch);
-            libvlc_video_set_callbacks(mp, Lock, Unlock, NULL, (void*) sys);
+            libvlc_video_set_callbacks(mp, Lock, Unlock, nullptr, (void*) sys);
             sys->state = THUMB_SEEKING;
 
             sys->cancellationTask = concurrency::create_task( [sys, timeoutMs] {
@@ -209,7 +207,7 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
                 libvlc_media_player_set_position(mp, SEEK_POSITION);
             }
 
-            completionTask.then([mp, sys](PreparseResult^ res){
+            completionTask.then([mp, sys](PreparseResult^ res) {
                 if ( res != nullptr )
                     res->length = libvlc_media_player_get_length(mp);
                 sys->timeoutCts.cancel();
@@ -226,9 +224,7 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
                 CloseHandle(sys->hLock);
                 delete sys;
             });
-            delete[]( mrl_str );
         }
-
         return completionTask;
     });
 }
