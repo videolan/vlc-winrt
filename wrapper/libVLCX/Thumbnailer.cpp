@@ -69,7 +69,7 @@ Thumbnailer::Thumbnailer()
 
 
 
-static void onError(const libvlc_event_t*, void* data)
+static void CancelPreparse(const libvlc_event_t*, void* data)
 {
     auto sys = reinterpret_cast<thumbnailer_sys_t*>(data);
     sys->screenshotCompleteEvent.set(nullptr);
@@ -176,9 +176,9 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
             mp = libvlc_media_player_new_from_media(m);
             libvlc_media_release(m);
             sys->eventMgr = libvlc_media_player_event_manager(mp);
-            libvlc_event_attach(sys->eventMgr, libvlc_MediaPlayerEncounteredError, &onError, sys);
+            libvlc_event_attach(sys->eventMgr, libvlc_MediaPlayerEncounteredError, &CancelPreparse, sys);
             // Workaround some short and weird samples can reach the end without getting a snapshot generated.
-            libvlc_event_attach(sys->eventMgr, libvlc_MediaPlayerEndReached, &onError, sys);
+            libvlc_event_attach(sys->eventMgr, libvlc_MediaPlayerEndReached, &CancelPreparse, sys);
             // to know when seeking to the right position is done
             libvlc_event_attach( sys->eventMgr, libvlc_MediaPlayerPositionChanged, &onSeekChanged, sys );
 
@@ -220,7 +220,7 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
                 // event attachment cleanup
                 libvlc_event_detach( sys->eventMgr, libvlc_MediaPlayerPositionChanged, &onSeekChanged, sys );
                 // We rendered at least one frame, no need to check for EOF anymore
-                libvlc_event_detach(sys->eventMgr, libvlc_MediaPlayerEndReached, &onError, sys);
+                libvlc_event_detach(sys->eventMgr, libvlc_MediaPlayerEndReached, &CancelPreparse, sys);
                 libvlc_media_player_stop(mp);
                 libvlc_media_player_release(mp);
                 free(sys->thumbData);
