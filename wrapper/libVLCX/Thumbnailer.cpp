@@ -101,7 +101,7 @@ static WriteableBitmap^ CopyToBitmap(thumbnailer_sys_t* sys)
 #if FAST_COPY
     InMemoryRandomAccessStream^ stream = ref new InMemoryRandomAccessStream();
     DataWriter^ dataWriter = ref new DataWriter( stream->GetOutputStreamAt( 0 ) );
-    dataWriter->WriteBytes( Platform::ArrayReference<unsigned char>( (unsigned char*) sys->thumbData, sys->thumbSize ) );
+    dataWriter->WriteBytes( Platform::ArrayReference<unsigned char>( (unsigned char*) sys->thumbData.get(), sys->thumbSize ) );
     bmp->SetSource( stream );
 #else /* FAST_COPY */
     IBuffer^ pixelBuffer = bmp->PixelBuffer;
