@@ -131,7 +131,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public void SetAudioDelay(long delay)
         {
-            MediaPlayer.setDelay(delay);
+            MediaPlayer.setAudioDelay(delay);
         }
 
         public void SetSpuDelay(long delay)

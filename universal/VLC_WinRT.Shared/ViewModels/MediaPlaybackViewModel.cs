@@ -1074,7 +1074,7 @@ namespace VLC_WinRT.ViewModels
             });
 
             // Get subtitle delay etc
-            _audioDelay = mP.delay();
+            _audioDelay = mP.audioDelay();
             _spuDelay = mP.spuDelay();
         }
 
