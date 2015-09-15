@@ -103,9 +103,8 @@ namespace VLC_WinRT.MusicMetaFetcher.Models.MusicEntities
                 // Remove leading and ending white spaces.
                 biography = biography.Trim();
                 // TODO: Replace string "remove" with something better. It may not work on all artists and in all languages.
-                var startIndex = biography.Length - "Read more about  on Last.fm".Length - artist.Name.Length - 6;
-                if (startIndex >= 0)
-                    biography = !string.IsNullOrEmpty(biography) ? biography.Remove(startIndex) : Strings.NoBiographyFound;
+                var startIndex = biography.Length - "Read more on Last.fm.".Length;
+                biography = startIndex > 0 ? biography.Remove(startIndex) : Strings.NoBiographyFound;
             }
             else
             {

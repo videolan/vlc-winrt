@@ -65,7 +65,7 @@ namespace VLC_WinRT.MusicMetaFetcher.Fetchers
                         regionCode = "en";
                         break;
                     case "ja":
-                        regionCode = "jp";
+                        regionCode = "ja";
                         break;
                 }
                 string url = string.Format("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={1}&api_key={0}&lang={2}&format=json", MusicMDFetcher.ApiKeyLastFm, artistName, regionCode);
