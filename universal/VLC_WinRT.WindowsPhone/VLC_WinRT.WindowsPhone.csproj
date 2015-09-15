@@ -578,9 +578,6 @@
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\services_discovery\libpodcast_plugin.dll">
       <Link>plugins\services_discovery\libpodcast_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\services_discovery\libsap_plugin.dll">
-      <Link>plugins\services_discovery\libsap_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\libhds_plugin.dll">
       <Link>plugins\stream_filter\libhds_plugin.dll</Link>
     </Content>
@@ -883,12 +880,6 @@
       <Project>{b1e774a5-87a6-4d23-bec1-ad157333f69f}</Project>
       <Name>VLC_WinRT.ShareBackground</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="MultilingualResources\VLC_WinRT.WindowsPhone.qps-ploc.xlf" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="MultilingualResources\VLC_WinRT.WindowsPhone.de.xlf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MultilingualResources\VLC_WinRT.WindowsPhone.en.xlf" />
