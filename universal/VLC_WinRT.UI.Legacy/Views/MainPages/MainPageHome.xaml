@@ -60,6 +60,7 @@
                                           Visibility="{Binding ViewedVideos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
 
             <Button Content="your music"
+                    x:Uid="YourMusic"
                     Margin="{StaticResource FrameMarginLeft}"
                     FontSize="40"
                     FontWeight="Light"
@@ -68,6 +69,7 @@
                     Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
                     CommandParameter="2" />
             <TextBlock Text="most played artists"
+                       x:Uid="MostPlayedArtists"
                        Margin="{StaticResource FrameMarginLeft}"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
@@ -107,6 +109,7 @@
                 </ListView.ItemsPanel>
             </ListView>
             <TextBlock Text="recommended for you"
+                       x:Uid="RecommendedForYou"
                        Margin="{StaticResource FrameMarginLeft}"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
@@ -207,6 +210,7 @@
 
                                     <AppBarButton Grid.Row="1"
                                                   Grid.Column="2"
+                                                  x:Uid="PlayAlbumButton"
                                                   Style="{StaticResource AppBarButtonStyleHorizontal}"
                                                   Label="Play album"
                                                   Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAlbumCommand}"

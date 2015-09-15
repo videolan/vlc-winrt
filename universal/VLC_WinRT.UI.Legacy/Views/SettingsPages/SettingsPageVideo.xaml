@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             d:DesignHeight="300"
+             d:DesignHeight="1000"
              d:DesignWidth="400">
 
     <Grid x:Name="RootGrid"
@@ -27,22 +27,22 @@
                                       FontFamily="ms-appx:VLC.ttf#W10" />
                         </AppBarButton.Icon>
                     </AppBarButton>
-                    <TextBlock Text="Video"
+                    <TextBlock Text="Video" x:Uid="VideosHeader"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                 </StackPanel>
-                <TextBlock Text="Video playback"
+                <TextBlock Text="Video playback" x:Uid="VideoPlayback"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight" />
-                <ToggleSwitch Header="Hardware decoding when possible (experimental)"
+                <ToggleSwitch x:Uid="VideoPlaybackExplain" Header="Hardware decoding when possible (experimental)"
                               IsOn="{Binding HardwareAccelerationEnabled, Mode=TwoWay}"
                               Margin="-6,0,0,0" />
-                <TextBlock Text="Hardware decoding may not work on your device. You need to restart the app to apply changes"
+                <TextBlock x:Uid="VideoPlaybackExplainTwo" Text="Hardware decoding may not work on your device. You need to restart the app to apply changes"
                            Style="{StaticResource BodyTextBlockStyle}"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
                            Margin="0,-6,0,12" />
                 
-                <TextBlock Text="Subtitles encoding"
+                <TextBlock x:Uid="SubtitlesEncoding" Text="Subtitles encoding"
                            Margin="0,12,0,0"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
@@ -61,6 +61,7 @@
                 </ComboBox>
 
                 <TextBlock Tag="WindowsOnly"
+                           x:Uid="VideoFolders"
                            Text="Video folders"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
@@ -91,7 +92,7 @@
                                                     <RowDefinition Height="12" />
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <TextBlock Text="If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC."
+                                                <TextBlock x:Uid="RemoveFolderExplain" Text="If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC."
                                                            Style="{StaticResource BodyTextBlockStyle}" />
                                                 <Button Grid.Row="2"
                                                         Content="Remove this folder"
@@ -131,11 +132,13 @@
 
                 <TextBlock Tag="WindowsOnly"
                            Text="Video Library"
+                           x:Uid="VideoLibrary"
                            FontSize="22"
                            Margin="0,20,0,0"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight" />
                 <ToggleSwitch Tag="WindowsOnly"
+                              x:Uid="VideoPlaybackBackground"
                               Header="Video playback in background"
                               IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}"
                               Margin="-6,0,0,0" />

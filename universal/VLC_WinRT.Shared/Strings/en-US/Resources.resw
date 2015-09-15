@@ -220,7 +220,7 @@
     <value>music</value>
   </data>
   <data name="MusicHeader.Text" xml:space="preserve">
-    <value>music</value>
+    <value>Music</value>
   </data>
   <data name="MusicSettingsHeader.Header" xml:space="preserve">
     <value>music settings</value>
@@ -313,7 +313,7 @@
     <value>Special Thanks</value>
   </data>
   <data name="Track.Text" xml:space="preserve">
-    <value>track</value>
+    <value>tracks</value>
   </data>
   <data name="Tracks" xml:space="preserve">
     <value>Tracks</value>
@@ -340,7 +340,7 @@
     <value>video settings</value>
   </data>
   <data name="VideosHeader.Text" xml:space="preserve">
-    <value>videos</value>
+    <value>Video</value>
   </data>
   <data name="VideosNotFound1.Text" xml:space="preserve">
     <value>It seems that we didn't find any elements in your Video library.</value>
@@ -391,7 +391,7 @@
     <value>albums+songs</value>
   </data>
   <data name="AlbumText.Text" xml:space="preserve">
-    <value>albums</value>
+    <value>albums: </value>
   </data>
   <data name="AudioTracks.Text" xml:space="preserve">
     <value>Audio tracks</value>
@@ -682,5 +682,83 @@
   </data>
   <data name="YourMusic.Content" xml:space="preserve">
     <value>your music</value>
+  </data>
+  <data name="Connect.Label" xml:space="preserve">
+    <value>connect</value>
+  </data>
+  <data name="ConnectedToLastFm.Text" xml:space="preserve">
+    <value>You are connected to Last.FM</value>
+  </data>
+  <data name="ConnectToLastFm.Text" xml:space="preserve">
+    <value>Connect to Last.FM</value>
+  </data>
+  <data name="MusicFolders.Text" xml:space="preserve">
+    <value>Music folders</value>
+  </data>
+  <data name="Notifications.Text" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="PasswordBoxLastFm.PlaceholderText" xml:space="preserve">
+    <value>password</value>
+  </data>
+  <data name="PlayAlbumButton.Label" xml:space="preserve">
+    <value>Play album</value>
+  </data>
+  <data name="Reset.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ResetMusicDb.Content" xml:space="preserve">
+    <value>Reset the music database</value>
+  </data>
+  <data name="ResetMusicDbHelp.Text" xml:space="preserve">
+    <value>This will delete all the playlists made with VLC, and index the music library again.</value>
+  </data>
+  <data name="UsernameTextbox.PlaceholderText" xml:space="preserve">
+    <value>username</value>
+  </data>
+  <data name="Animations.Text" xml:space="preserve">
+    <value>Animations</value>
+  </data>
+  <data name="AnimationsExplain.Header" xml:space="preserve">
+    <value>Use rich animations in the slideshows</value>
+  </data>
+  <data name="HomePage.Text" xml:space="preserve">
+    <value>Home page</value>
+  </data>
+  <data name="HomePageExplain.Text" xml:space="preserve">
+    <value>VLC will start on the selected page.</value>
+  </data>
+  <data name="KeyboardShortcuts.Text" xml:space="preserve">
+    <value>Keyboard shortcuts</value>
+  </data>
+  <data name="RemoveFolderExplain.Text" xml:space="preserve">
+    <value>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</value>
+  </data>
+  <data name="SubtitlesEncoding.Text" xml:space="preserve">
+    <value>Subtitle encoding</value>
+  </data>
+  <data name="ThemeSetting.Text" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="ThemeToggle.Header" xml:space="preserve">
+    <value>Application theme</value>
+  </data>
+  <data name="UserInterfaceHeader.Text" xml:space="preserve">
+    <value>User interface</value>
+  </data>
+  <data name="VideoLibrary.Text" xml:space="preserve">
+    <value>Video Library</value>
+  </data>
+  <data name="VideoPlayback.Text" xml:space="preserve">
+    <value>Video playback</value>
+  </data>
+  <data name="VideoPlaybackBackground.Header" xml:space="preserve">
+    <value>Video playback in background</value>
+  </data>
+  <data name="VideoPlaybackExplain.Header" xml:space="preserve">
+    <value>Hardware decoding when possible (experimental)</value>
+  </data>
+  <data name="VideoPlaybackExplainTwo.Text" xml:space="preserve">
+    <value>Hardware decoding may not work on your device. You need to restart the app to apply changes</value>
   </data>
 </root>

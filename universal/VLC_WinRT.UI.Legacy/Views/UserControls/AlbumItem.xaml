@@ -89,6 +89,7 @@
                           Visibility="Collapsed"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Label="Play album"
+                          x:Uid="PlayAlbumButton"
                           VerticalAlignment="Center"
                           Margin="6,0,0,0"
                           Command="{Binding PlayAlbum}"

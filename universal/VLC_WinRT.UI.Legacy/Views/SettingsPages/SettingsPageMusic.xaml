@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             d:DesignHeight="300"
+             d:DesignHeight="1000"
              d:DesignWidth="400"
              xmlns:userControls="using:VLC_WinRT.Views.UserControls">
     <Grid x:Name="RootGrid"
@@ -27,11 +27,12 @@
                                       FontFamily="ms-appx:VLC.ttf#W10" />
                         </AppBarButton.Icon>
                     </AppBarButton>
-                    <TextBlock Text="Music"
+                    <TextBlock x:Uid="MusicHeader" Text="Music"
                                Style="{StaticResource SubheaderTextBlockStyle}"/>
                 </StackPanel>
                 
                 <TextBlock Tag="WindowsOnly"
+                           x:Uid="MusicFolders"
                            Text="Music folders"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
@@ -100,6 +101,7 @@
                         Command="{Binding AddFolderToLibrary}"
                         CommandParameter="{Binding MusicLibraryId}" />
                 <TextBlock Tag="WindowsOnly"
+                           x:Uid="Notifications"
                            Text="Notifications"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
@@ -117,6 +119,7 @@
                                Visibility="{Binding NotificationOnNewSong, Converter={StaticResource BooleanToVisibilityConverter}}"
                                Margin="-6,0,0,0" />
                 <TextBlock Text="Connect to Last.FM"
+                           x:Uid="ConnectToLastFm"
                            Margin="0,20,0,0"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
@@ -151,6 +154,7 @@
                            Style="{StaticResource TitleTextBlockStyle}"
                            Visibility="Collapsed" />
                 <AppBarButton Label="connect"
+                              x:Uid="Connect"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Margin="0,6,0,0"
                               Click="ConnectToLastFM_Click">
@@ -162,16 +166,17 @@
 
 
                 <TextBlock Text="Reset"
+                           x:Uid="Reset"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Margin="0,20,0,0"
                            FontWeight="SemiLight" />
-                <Button Content="Reset the music database"
+                <Button Content="Reset the music database" x:Uid="ResetMusicDb"
                         DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                         Command="{Binding StartMusicIndexingCommand}"
                         CommandParameter="True"
                         Margin="0,6,0,0" />
-                <TextBlock Text="This will delete all the playlists made with VLC, and index the music library again."
+                <TextBlock x:Uid="ResetMusicDbHelp" Text="This will delete all the playlists made with VLC, and index the music library again."
                            Style="{StaticResource BodyTextBlockStyle}"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
             </StackPanel>

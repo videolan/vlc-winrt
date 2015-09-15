@@ -6,6 +6,110 @@
     </header>
     <body>
       <group id="Resources">
+        <trans-unit id="Resources\VideoPlaybackExplainTwo\Text" translate="yes" xml:space="preserve">
+          <source>Hardware decoding may not work on your device. You need to restart the app to apply changes</source>
+          <target state="new">Hardware decoding may not work on your device. You need to restart the app to apply changes</target>
+        </trans-unit>
+        <trans-unit id="Resources\Reset\Text" translate="yes" xml:space="preserve">
+          <source>Reset</source>
+          <target state="new">Reset</target>
+        </trans-unit>
+        <trans-unit id="Resources\ResetMusicDb\Content" translate="yes" xml:space="preserve">
+          <source>Reset the music database</source>
+          <target state="new">Reset the music database</target>
+        </trans-unit>
+        <trans-unit id="Resources\ResetMusicDbHelp\Text" translate="yes" xml:space="preserve">
+          <source>This will delete all the playlists made with VLC, and index the music library again.</source>
+          <target state="new">This will delete all the playlists made with VLC, and index the music library again.</target>
+        </trans-unit>
+        <trans-unit id="Resources\UsernameTextbox\PlaceholderText" translate="yes" xml:space="preserve">
+          <source>username</source>
+          <target state="new">username</target>
+        </trans-unit>
+        <trans-unit id="Resources\Animations\Text" translate="yes" xml:space="preserve">
+          <source>Animations</source>
+          <target state="new">Animations</target>
+        </trans-unit>
+        <trans-unit id="Resources\AnimationsExplain\Header" translate="yes" xml:space="preserve">
+          <source>Use rich animations in the slideshows</source>
+          <target state="new">Use rich animations in the slideshows</target>
+        </trans-unit>
+        <trans-unit id="Resources\HomePage\Text" translate="yes" xml:space="preserve">
+          <source>Home page</source>
+          <target state="new">Home page</target>
+        </trans-unit>
+        <trans-unit id="Resources\HomePageExplain\Text" translate="yes" xml:space="preserve">
+          <source>VLC will start on the selected page.</source>
+          <target state="new">VLC will start on the selected page.</target>
+        </trans-unit>
+        <trans-unit id="Resources\KeyboardShortcuts\Text" translate="yes" xml:space="preserve">
+          <source>Keyboard shortcuts</source>
+          <target state="new">Keyboard shortcuts</target>
+        </trans-unit>
+        <trans-unit id="Resources\RemoveFolderExplain\Text" translate="yes" xml:space="preserve">
+          <source>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</source>
+          <target state="new">If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</target>
+        </trans-unit>
+        <trans-unit id="Resources\SubtitlesEncoding\Text" translate="yes" xml:space="preserve">
+          <source>Subtitle encoding</source>
+          <target state="new">Subtitle encoding</target>
+        </trans-unit>
+        <trans-unit id="Resources\ThemeSetting\Text" translate="yes" xml:space="preserve">
+          <source>Theme</source>
+          <target state="new">Theme</target>
+        </trans-unit>
+        <trans-unit id="Resources\ThemeToggle\Header" translate="yes" xml:space="preserve">
+          <source>Application theme</source>
+          <target state="new">Application theme</target>
+        </trans-unit>
+        <trans-unit id="Resources\UserInterfaceHeader\Text" translate="yes" xml:space="preserve">
+          <source>User interface</source>
+          <target state="new">User interface</target>
+        </trans-unit>
+        <trans-unit id="Resources\VideoLibrary\Text" translate="yes" xml:space="preserve">
+          <source>Video Library</source>
+          <target state="new">Video Library</target>
+        </trans-unit>
+        <trans-unit id="Resources\VideoPlayback\Text" translate="yes" xml:space="preserve">
+          <source>Video playback</source>
+          <target state="new">Video playback</target>
+        </trans-unit>
+        <trans-unit id="Resources\VideoPlaybackBackground\Header" translate="yes" xml:space="preserve">
+          <source>Video playback in background</source>
+          <target state="new">Video playback in background</target>
+        </trans-unit>
+        <trans-unit id="Resources\VideoPlaybackExplain\Header" translate="yes" xml:space="preserve">
+          <source>Hardware decoding when possible (experimental)</source>
+          <target state="new">Hardware decoding when possible (experimental)</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlayAlbumButton\Label" translate="yes" xml:space="preserve">
+          <source>Play album</source>
+          <target state="translated">アルバムを再生</target>
+        </trans-unit>
+        <trans-unit id="Resources\Connect\Label" translate="yes" xml:space="preserve">
+          <source>connect</source>
+          <target state="new">connect</target>
+        </trans-unit>
+        <trans-unit id="Resources\ConnectedToLastFm\Text" translate="yes" xml:space="preserve">
+          <source>You are connected to Last.FM</source>
+          <target state="new">You are connected to Last.FM</target>
+        </trans-unit>
+        <trans-unit id="Resources\ConnectToLastFm\Text" translate="yes" xml:space="preserve">
+          <source>Connect to Last.FM</source>
+          <target state="new">Connect to Last.FM</target>
+        </trans-unit>
+        <trans-unit id="Resources\MusicFolders\Text" translate="yes" xml:space="preserve">
+          <source>Music folders</source>
+          <target state="new">Music folders</target>
+        </trans-unit>
+        <trans-unit id="Resources\Notifications\Text" translate="yes" xml:space="preserve">
+          <source>Notifications</source>
+          <target state="new">Notifications</target>
+        </trans-unit>
+        <trans-unit id="Resources\PasswordBoxLastFm\PlaceholderText" translate="yes" xml:space="preserve">
+          <source>password</source>
+          <target state="new">password</target>
+        </trans-unit>
         <trans-unit id="Resources\YourMusic\Content" translate="yes" xml:space="preserve">
           <source>your music</source>
           <target state="translated">ミュジック</target>
@@ -122,7 +226,7 @@
         </trans-unit>
         <trans-unit id="Resources\NowPlaying\Header" translate="yes" xml:space="preserve">
           <source>now playing</source>
-          <target state="new">now playing</target>
+          <target state="translated">再生中</target>
         </trans-unit>
         <trans-unit id="Resources\ShowsButton\Content" translate="yes" xml:space="preserve">
           <source>shows</source>
@@ -394,8 +498,8 @@
           <target state="translated">オーディオトラック</target>
         </trans-unit>
         <trans-unit id="Resources\AlbumText\Text" translate="yes" xml:space="preserve">
-          <source>albums</source>
-          <target state="translated">アルバム</target>
+          <source>albums: </source>
+          <target state="needs-review-translation">アルバム: </target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resources\AlbumsPlusSongs\Text" translate="yes" xml:space="preserve">
           <source>albums+songs</source>
@@ -462,8 +566,8 @@
           <target state="new">It seems that we didn't find any elements in your Video library.</target>
         </trans-unit>
         <trans-unit id="Resources\VideosHeader\Text" translate="yes" xml:space="preserve">
-          <source>videos</source>
-          <target state="translated">ビデオ</target>
+          <source>Video</source>
+          <target state="needs-review-translation">ビデオ</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resources\VideoSettingsHeader\Header" translate="yes" xml:space="preserve">
           <source>video settings</source>
@@ -498,8 +602,8 @@
           <target state="translated">楽曲</target>
         </trans-unit>
         <trans-unit id="Resources\Track\Text" translate="yes" xml:space="preserve">
-          <source>track</source>
-          <target state="translated">楽曲</target>
+          <source>tracks</source>
+          <target state="needs-review-translation">楽曲</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resources\SpecialThanks" translate="yes" xml:space="preserve">
           <source>Special Thanks</source>
@@ -622,8 +726,8 @@
           <target state="translated">ミュージック設定</target>
         </trans-unit>
         <trans-unit id="Resources\MusicHeader\Text" translate="yes" xml:space="preserve">
-          <source>music</source>
-          <target state="translated">ミュージック</target>
+          <source>Music</source>
+          <target state="needs-review-translation">ミュージック</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resources\Music" translate="yes" xml:space="preserve">
           <source>music</source>

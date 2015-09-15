@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Globalization;
+using Windows.ApplicationModel.Resources;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WinRTXamlToolkit.Controls.Extensions;
 namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
@@ -6,6 +8,9 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
     public sealed partial class MainArtistHeader : UserControl
     {
         ContentPresenter parent;
+
+        private static readonly ResourceLoader _resourcesLoader = ResourceLoader.GetForViewIndependentUse();
+
         public MainArtistHeader()
         {
             this.InitializeComponent();
@@ -23,13 +28,13 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
             parent = GetContentPresenter();
             if (IsArtistAlbumsList(parent))
             {
-                SwitchBetweenViewsButton.Label = "Tracks";
+                SwitchBetweenViewsButton.Label = _resourcesLoader.GetString("Track/Text");
                 SwitchBetweenViewsGlyph.Glyph = App.Current.Resources["DropdownSymbol"].ToString();
             }
             else
             {
                 SwitchBetweenViewsGlyph.Glyph = App.Current.Resources["AlbumDiscSymbol"].ToString();
-                SwitchBetweenViewsButton.Label = "Albums";
+                SwitchBetweenViewsButton.Label = _resourcesLoader.GetString("AlbumText/Text"); ;
             }
         }
 

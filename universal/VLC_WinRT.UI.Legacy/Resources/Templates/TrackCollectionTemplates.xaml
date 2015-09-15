@@ -17,7 +17,7 @@
                        FontSize="17"
                        Foreground="#B2B2B2">
                             <Run Text="{Binding Playlist.Count}" />
-                            <Run Text="tracks" />
+                            <Run x:Uid="Track" Text="tracks" />
             </TextBlock>
         </Grid>
     </DataTemplate>
