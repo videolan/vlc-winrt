@@ -123,7 +123,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;dxgi.lib;MMDevAPI.lib;MFuuid.lib;MFReadWrite.lib;MFplat.lib;uuid.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;dxgi.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;dxgi.lib;MMDevAPI.lib;MFuuid.lib;MFReadWrite.lib;MFplat.lib;uuid.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
@@ -142,7 +142,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;dxgi.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
@@ -162,7 +162,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;dxgi.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
@@ -181,7 +181,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;dxgi.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -199,7 +199,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;dxgi.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
@@ -217,7 +217,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;dxgi.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
