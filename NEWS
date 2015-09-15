@@ -1,3 +1,26 @@
+Changes between 1.6.2 and 1.7.0
+-------------------------------
+Release: 15 September 2015
+
+Core:
+ * Rewrite of the thumbnailer process
+ * Speed up of the video decoding and output, and removing deadlocks
+ * Support of acceleration activation per-file
+ * Faster input support
+
+Application:
+ * Support of m4a files
+ * New gestures and keyboard controls
+ * Control of audio/video/subtitle delay and synchronization
+ * Better hardware acceleration
+ * Support for chapters control
+ * Support of a light and black theme
+ * Important interface update to prepare for Windows 10
+ * Fix support for SRT and SSA
+ * New mini player design and widget
+ * Fix support for Windows RT
+
+
 Changes between 1.6.1 and 1.6.2
 -------------------------------
 Release: 21 August 2015
