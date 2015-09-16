@@ -106,7 +106,7 @@ void replaceAll( std::string& str, const std::string& from, const std::string& t
 }
 
 Platform::String^
-GetString(char* in)
+GetString(const char* in)
 {
     std::string sin( in );
     replaceAll( sin, "\\\\", "\\" );
