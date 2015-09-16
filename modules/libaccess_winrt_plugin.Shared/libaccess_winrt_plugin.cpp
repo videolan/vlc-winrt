@@ -242,6 +242,13 @@ void Close(vlc_object_t *object)
 /* */
 ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
 {
+    if( buffer == NULL )
+    {
+        if( Seek( access, size ) == VLC_SUCCESS )
+            return size;
+        return 0;
+    }
+
     access_sys_t *p_sys = access->p_sys;
 
     unsigned int totalRead = 0;
