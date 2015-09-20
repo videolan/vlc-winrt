@@ -93,7 +93,7 @@
                 CornerRadius="6">
             <Grid>
                 <userControls:SliderControl x:Name="Slider" />
-                <Grid Margin="0,40,0,12"
+                <Grid Margin="0,60,0,0"
                       MaxWidth="600">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
