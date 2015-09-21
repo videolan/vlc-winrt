@@ -82,5 +82,30 @@ namespace VLC_WinRT.Helpers
             if (!fileExists)
                 await MusicLibraryManagement.FetchArtistPicOrWaitAsync(item);
         }
+
+        public static async Task LoadImageToMemory(TrackItem item)
+        {
+            bool fileExists = !string.IsNullOrEmpty(item.Thumbnail);
+            try
+            {
+                if (fileExists)
+                {
+                    var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(item.Thumbnail));
+                    using (var stream = await file.OpenAsync(FileAccessMode.Read))
+                    {
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        {
+                            var image = new BitmapImage();
+                            image.SetSource(stream);
+                            item.AlbumImage = image;
+                        });
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                LogHelper.Log("Error getting album picture : " + item.Name);
+            }
+        }
     }
 }

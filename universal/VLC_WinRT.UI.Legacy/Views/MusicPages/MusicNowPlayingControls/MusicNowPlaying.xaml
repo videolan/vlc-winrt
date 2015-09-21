@@ -48,7 +48,7 @@
             <FlipView.ItemTemplate>
                 <DataTemplate>
                     <Image DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.CurrentTrack}"
-                           Source="{Binding Thumbnail}"
+                           Source="{Binding AlbumImage}"
                            Stretch="Uniform"
                            VerticalAlignment="Top"
                            MaxHeight="400"

@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.Storage;
 using SQLite;
 using VLC_WinRT.Commands.MusicLibrary;
 using VLC_WinRT.Commands.MusicPlayer;
 using VLC_WinRT.Utils;
 using Windows.Storage.AccessCache;
+using Windows.UI.Xaml.Media.Imaging;
 using libVLCX;
+using VLC_WinRT.Helpers;
 using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Model.Music
@@ -27,6 +30,8 @@ namespace VLC_WinRT.Model.Music
         private string _thumbnail;
         private string _genre;
         private StorageFile _file;
+        private BitmapImage _albumImage;
+        private LoadingState _albumImageLoadingState = LoadingState.NotLoaded;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -92,6 +97,26 @@ namespace VLC_WinRT.Model.Music
                 return _thumbnail;
             }
             set { SetProperty(ref _thumbnail, value); }
+        }
+        
+        [Ignore]
+        public BitmapImage AlbumImage
+        {
+            get
+            {
+                if (_albumImage == null && _albumImageLoadingState == LoadingState.NotLoaded)
+                {
+                    _albumImageLoadingState = LoadingState.Loading;
+                    Task.Run(() => ResetAlbumArt());
+                }
+                return _albumImage;
+            }
+            set { SetProperty(ref _albumImage, value); }
+        }
+
+        public Task ResetAlbumArt()
+        {
+            return LoadImageToMemoryHelper.LoadImageToMemory(this);
         }
 
         [Ignore]
