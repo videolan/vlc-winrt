@@ -11,6 +11,9 @@
     <Frame x:Name="NavigationFrame"
            x:FieldModifier="public"
            Background="Transparent"
+           AllowDrop="True"
+           DragOver="NavigationFrame_OnDragOver"
+           Drop="NavigationFrame_OnDrop"
            Navigated="MainFrame_OnNavigated">
         <Frame.ContentTransitions>
             <TransitionCollection>
