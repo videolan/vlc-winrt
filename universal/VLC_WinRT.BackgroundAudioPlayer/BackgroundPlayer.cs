@@ -166,6 +166,11 @@ namespace VLC_WinRT.BackgroundAudioPlayer
         private void UpdateUVCOnNewTrack()
         {
             systemmediatransportcontrol.IsEnabled = true;
+            // We need to reenable the play and pause buttons when we
+            // set up UVC, or else we can get into a state where 
+            // they can be disabled when UVC is disabled, then reenabled.
+            systemmediatransportcontrol.IsPlayEnabled = true;
+            systemmediatransportcontrol.IsPauseEnabled = true;
             systemmediatransportcontrol.PlaybackStatus = MediaPlaybackStatus.Playing;
             systemmediatransportcontrol.DisplayUpdater.Type = MediaPlaybackType.Music;
             systemmediatransportcontrol.DisplayUpdater.MusicProperties.Title = ((BackgroundTrackItem)Playlist.CurrentTrackItem).Name;
