@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:VLC_WINRT.Views.Controls"
              xmlns:userControls="using:VLC_WinRT.Views.UserControls"
+             xmlns:shell="using:VLC_WinRT.UI.UWP.Views.UserControls.Shell"
              xmlns:triggers="using:WinRT.Triggers"
              mc:Ignorable="d"
              d:DesignHeight="300"
@@ -62,19 +63,6 @@
             </ListView.ItemContainerTransitions>
         </ListView>
 
-        <AppBarButton Grid.Column="4"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-                      VerticalAlignment="Center"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Command="{Binding DisplayMenuBarControlToggleCommand}"
-                      Width="50">
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource MenuOpenRight}"
-                          FontFamily="ms-appx:VLC.ttf#W10"
-                          Margin="0,0,-6,0" />
-            </AppBarButton.Icon>
-        </AppBarButton>
-
         <userControls:FocusTextBox x:Name="MusicSearchBox"
                                    Grid.Column="3"
                                    x:Uid="SearchField"
@@ -97,6 +85,8 @@
                           FontFamily="ms-appx:VLC.ttf#W10" />
             </AppBarButton.Icon>
         </AppBarButton>
+
+        <shell:MenuDropdown Grid.Column="4" />
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
