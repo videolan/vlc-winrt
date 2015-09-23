@@ -9,7 +9,16 @@
     <Import_RootNamespace>VLC_WinRT.UI.UWP</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Resources\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Resources\PlatformFlyouts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Resources\PlatformStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

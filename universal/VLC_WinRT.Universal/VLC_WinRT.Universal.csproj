@@ -146,16 +146,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Resources\PlatformFlyouts.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
-    <Page Include="Resources\PlatformStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
     <Page Include="Views\UserControls\ShellContent.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
