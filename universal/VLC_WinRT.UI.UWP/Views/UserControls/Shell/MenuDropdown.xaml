@@ -17,5 +17,32 @@
                       FontFamily="ms-appx:VLC.ttf#W10"
                       Margin="0,0,-6,0" />
         </AppBarButton.Icon>
+        <AppBarButton.Flyout>
+            <MenuFlyout>
+                <MenuFlyoutItem x:Uid="FileText"
+                                Text="file"
+                                Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}"
+                                Tag="{StaticResource OpenFileSymbol}"
+                                Style="{StaticResource MenuFlyoutItemIconTemplate}" />
+                <MenuFlyoutItem x:Uid="SettingsText"
+                                Text="settings"
+                                Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}"
+                                Tag="{StaticResource SettingsSymbol}"
+                                Style="{StaticResource MenuFlyoutItemIconTemplate}" />
+                <MenuFlyoutSeparator />
+                <MenuFlyoutItem x:Uid="RefreshMusicLibraryText"
+                                Text="refresh music library"
+                                DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                                Command="{Binding StartMusicIndexingCommand}"
+                                Tag="{StaticResource RefreshSymbol}"
+                                Style="{StaticResource MenuFlyoutItemIconTemplate}" />
+                <MenuFlyoutItem x:Uid="RefreshVideoLibraryText"
+                                Text="refresh video library"
+                                DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
+                                Command="{Binding StartVideoIndexingCommand}"
+                                Tag="{StaticResource RefreshSymbol}"
+                                Style="{StaticResource MenuFlyoutItemIconTemplate}" />
+            </MenuFlyout>
+        </AppBarButton.Flyout>
     </AppBarButton>
 </UserControl>
