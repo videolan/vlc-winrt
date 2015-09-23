@@ -15,6 +15,10 @@
     <Page Include="$(MSBuildThisFileDirectory)Resources\Converters.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Resources\Definitions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Resources\Factory.xaml">
       <SubType>Designer</SubType>
     </Page>

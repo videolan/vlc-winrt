@@ -9,7 +9,17 @@
     <Import_RootNamespace>VLC_WinRT.UI.Win8</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Resources\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
+    <Page Include="$(MSBuildThisFileDirectory)Resources\Styles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\MenuDropdown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\MenuDropdown.xaml.cs">
+      <DependentUpon>MenuDropdown.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
