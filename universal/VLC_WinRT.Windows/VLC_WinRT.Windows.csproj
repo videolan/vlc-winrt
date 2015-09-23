@@ -935,6 +935,7 @@
   <Import Project="..\..\app\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems" Label="Shared" />
+  <Import Project="..\VLC_WinRT.UI.Win8\VLC_WinRT.UI.Win8.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets" Label="MultilingualAppToolkit" />
   <Import Project="..\..\app\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\app\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

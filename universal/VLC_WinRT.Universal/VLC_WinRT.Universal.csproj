@@ -166,6 +166,7 @@
   <Import Project="..\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems" Label="Shared" />
   <Import Project="..\..\app\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems" Label="Shared" />
+  <Import Project="..\VLC_WinRT.UI.UWP\VLC_WinRT.UI.UWP.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
