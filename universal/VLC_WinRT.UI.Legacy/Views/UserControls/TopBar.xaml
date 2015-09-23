@@ -13,7 +13,7 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
              Visibility="{Binding CurrentPage, Converter={StaticResource PageToVisibilityConverter},ConverterParameter='VideoPlayerPage,MusicPlayerPage,VideoPlayerOptionsPanel'}">
 
-  <Grid x:Name="ColumnGrid"
+    <Grid x:Name="ColumnGrid"
           Height="60"
           MinWidth="320"
           Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
@@ -70,8 +70,8 @@
                       Width="50">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource MenuOpenRight}"
-                          FontFamily="ms-appx:VLC.ttf#W10" 
-                          Margin="0,0,-6,0"/>
+                          FontFamily="ms-appx:VLC.ttf#W10"
+                          Margin="0,0,-6,0" />
             </AppBarButton.Icon>
         </AppBarButton>
 
@@ -85,7 +85,7 @@
                                    Margin="0,0,12,0"
                                    TextChanged="TextBox_TextChanged"
                                    DataContext="{Binding Source={StaticResource Locator}, Path=SearchVM}"
-                                   Text="{Binding SearchTag}"/>
+                                   Text="{Binding SearchTag}" />
 
         <AppBarButton x:Name="SearchButton"
                       Grid.Column="3"
