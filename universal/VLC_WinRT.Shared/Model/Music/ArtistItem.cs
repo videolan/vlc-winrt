@@ -146,7 +146,6 @@ namespace VLC_WinRT.Model.Music
             }
         }
 
-        [Ignore]
         public string Biography
         {
             get
