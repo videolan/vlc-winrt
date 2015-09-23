@@ -158,7 +158,11 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 OnPropertyChanged("TrackCollection");
                 OnPropertyChanged("PlayingType");
                 OnPropertyChanged("CurrentTrack");
+#if WINDOWS_UWP
+                UpdateTileHelper.UpdateMusicTile();
+#else
                 UpdateTileHelper.UpdateMediumTileWithMusicInfo();
+#endif
             });
         }
 

@@ -15,11 +15,179 @@ using Windows.UI.Xaml;
 using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Utils;
-
+#if WINDOWS_UWP
+using NotificationsExtensions.Tiles;
+#endif
 namespace VLC_WinRT.Helpers
 {
     public class UpdateTileHelper
     {
+        #region Windows UWP
+#if WINDOWS_UWP
+        public static void UpdateMusicTile()
+        {
+            var content = new TileContent()
+            {
+                Visual = new TileVisual()
+                {
+                    TileMedium = CreateMediumMusicTileBinding(),
+                    TileWide = CreateWideMusicTileBinding(),
+                    TileLarge = CreateLargeMusicTileBinding()
+                }
+            };
+            var tileXml = content.GetXml();
+            var tileNotification = new TileNotification(tileXml);
+            TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
+        }
+
+        private static TileBinding CreateMediumMusicTileBinding()
+        {
+            var bindingContent = new TileBindingContentAdaptive()
+            {
+                PeekImage = new TilePeekImage()
+                {
+                    Source = new TileImageSource(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri)
+                },
+                Children =
+                {
+                    new TileText()
+                    {
+                        Text = "Now Playing",
+                        Style = TileTextStyle.Body,
+                    },
+                    new TileText()
+                    {
+                        Text = Locator.MusicPlayerVM.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.CurrentTrack.ArtistName,
+                        Wrap = true,
+                        Style = TileTextStyle.CaptionSubtle
+                    }
+                }
+            };
+
+            return new TileBinding()
+            {
+                Branding = TileBranding.Logo,
+                Content = bindingContent
+            };
+        }
+
+        private static TileBinding CreateWideMusicTileBinding()
+        {
+            var bindingContent = new TileBindingContentAdaptive()
+            {
+                PeekImage = new TilePeekImage()
+                {
+                    Source = new TileImageSource(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri)
+                },
+                Children =
+                {
+                    new TileGroup()
+                    {
+                        Children =
+                        {
+                            new TileSubgroup()
+                            {
+                                Weight = 33,
+                                Children =
+                                {
+                                    new TileImage()
+                                    {
+                                        Crop = TileImageCrop.Circle,
+                                        Source = new TileImageSource(Locator.MusicPlayerVM.CurrentArtist.Picture)
+                                    }
+                                }
+
+                            },
+                            new TileSubgroup()
+                            {
+                                Children =
+                                {
+                                   new TileText()
+                                    {
+                                        Text = "Now Playing",
+                                        Style = TileTextStyle.Body,
+                                    },
+                                   new TileText()
+                                    {
+                                    Text = Locator.MusicPlayerVM.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.CurrentTrack.ArtistName,
+                                    Wrap = true,
+                                    Style = TileTextStyle.CaptionSubtle
+                                    }
+                                }
+                            }
+                        }
+                    },
+                }
+            };
+
+
+            return new TileBinding()
+            {
+                Branding = TileBranding.NameAndLogo,
+                Content = bindingContent
+            };
+        }
+
+        private static TileBinding CreateLargeMusicTileBinding()
+        {
+            var bindingContent = new TileBindingContentAdaptive()
+            {
+                PeekImage = new TilePeekImage()
+                {
+                    Source = new TileImageSource(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri)
+                },
+                Children =
+                {
+                    new TileGroup()
+                    {
+                        Children =
+                        {
+                            new TileSubgroup()
+                            {
+                              Weight = 1
+                            },
+                            new TileSubgroup()
+                            {
+                                Weight = 2,
+                                Children =
+                                {
+                                    new TileImage()
+                                    {
+                                        Crop = TileImageCrop.Circle,
+                                        Source = new TileImageSource(Locator.MusicPlayerVM.CurrentArtist.Picture)
+                                    }
+                                }
+                            },
+                            new TileSubgroup()
+                            {
+                                Weight = 1
+                            }
+                        }
+                    },
+                    new TileText()
+                    {
+                        Text = "Now Playing",
+                        Style = TileTextStyle.Title,
+                        Align = TileTextAlign.Center
+                    },
+                    new TileText()
+                    {
+                        Text = Locator.MusicPlayerVM.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.CurrentTrack.ArtistName,
+                        Wrap = true,
+                        Style = TileTextStyle.SubtitleSubtle,
+                        Align = TileTextAlign.Center
+                    }
+                }
+            };
+
+            return new TileBinding()
+            {
+                Branding = TileBranding.NameAndLogo,
+                Content = bindingContent
+            };
+        }
+#endif
+        #endregion
         public static void UpdateMediumTileWithMusicInfo()
         {
             const TileTemplateType template = TileTemplateType.TileSquare150x150PeekImageAndText02;
