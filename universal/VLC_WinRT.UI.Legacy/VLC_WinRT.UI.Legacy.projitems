@@ -245,6 +245,7 @@
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\TopBar.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\TrackItemTemplate.xaml">
       <SubType>Designer</SubType>
