@@ -105,6 +105,11 @@ namespace VLC_WinRT.ViewModels.VideoVM
         #region contructors
         public VideoLibraryVM()
         {
+           ResetLibrary();
+        }
+
+        public void ResetLibrary()
+        {
             LoadingState = LoadingState.NotLoaded;
             Videos = new ObservableCollection<VideoItem>();
             ViewedVideos = new ObservableCollection<VideoItem>();
