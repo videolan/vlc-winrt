@@ -34,7 +34,7 @@ namespace VLC_WinRT.Helpers
         /// </summary>
         public static async Task ExceptionLogCheckup()
         {
-            LogHelper.usedForRead = true;
+            LogHelper.FrontendUsedForRead = true;
             if (ApplicationSettingsHelper.Contains("ExceptionLog"))
             {
                 var dialog = new MessageDialog(Strings.CrashReport, Strings.WeNeedYourHelp);
@@ -69,7 +69,7 @@ namespace VLC_WinRT.Helpers
                 }));
                 await dialog.ShowAsync();
             }
-            LogHelper.usedForRead = false;
+            LogHelper.FrontendUsedForRead = false;
         }
 
         /// <summary>

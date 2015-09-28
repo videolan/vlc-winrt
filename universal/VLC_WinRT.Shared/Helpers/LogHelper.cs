@@ -3,51 +3,72 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Helpers
 {
     public static class LogHelper
     {
-        public static StorageFile LogFile;
-        public static bool usedForRead = false;
-        private static bool signalUpdate = false;
+        private static StorageFile _frontendLogFile;
+        private static StorageFile _backendLogFile;
+
+        public static bool FrontendUsedForRead = false;
+        private static bool frontendSignalUpdate = false;
         static readonly SemaphoreSlim WriteFileSemaphoreSlim = new SemaphoreSlim(1);
+
         static LogHelper()
         {
+            Task.Run(() => InitBackendFile());
         }
 
-        static async Task Initialize()
+        private static async Task InitFrontendFile()
         {
             try
             {
-                LogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("LogFile.txt", CreationCollisionOption.OpenIfExists);
-                if (signalUpdate)
+                _frontendLogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("FrontendLog.txt", CreationCollisionOption.OpenIfExists);
+                if (frontendSignalUpdate)
                 {
-                    await FileIO.WriteTextAsync(LogFile, "App updated on " + DateTime.Now.ToString());
-                    signalUpdate = false;
+                    await FileIO.WriteTextAsync(_frontendLogFile, "App updated on " + DateTime.Now.ToString());
+                    frontendSignalUpdate = false;
                 }
                 Log("------------------------------------------");
-                Log("------------------------------------------");
-                Log("------------------------------------------");
-                Log("App launch " + DateTime.Now.ToString());
+                Log("App launch :" + DateTime.Now.ToString());
             }
-            catch { }
-        }
-
-        public static async void Log(object o)
-        {
-            Debug.WriteLine(o.ToString());
-            if (LogFile == null)
+            catch
             {
-                await Initialize();
             }
-            if (LogFile == null) return;
-            await WriteInLog(LogFile, o.ToString());
         }
 
-        public static void RuntimeLog(object o)
+        private static async Task InitBackendFile()
+        {
+            // Backend file init
+            _backendLogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("BackendLog.txt", CreationCollisionOption.ReplaceExisting);
+            await Locator.VLCService.PlayerInstanceReady.Task;
+            Locator.VLCService.Instance.logSet(LogCb);
+        }
+
+        private static void LogCb(int param0, string param1)
+        {
+            Log(param1, true);
+        }
+
+        public static async void Log(object o, bool backendLog = false)
         {
             Debug.WriteLine(o.ToString());
+            if (backendLog)
+            {
+                if (_backendLogFile == null) return;
+                await WriteInLog(_backendLogFile, o.ToString());
+            }
+            else
+            {
+                if (_frontendLogFile == null)
+                {
+                    await InitFrontendFile();
+                }
+                if (_frontendLogFile == null) return;
+                await WriteInLog(_frontendLogFile, o.ToString());
+            }
         }
 
         static async Task WriteInLog(StorageFile file, string value)
@@ -55,7 +76,7 @@ namespace VLC_WinRT.Helpers
             await WriteFileSemaphoreSlim.WaitAsync();
             try
             {
-                if (file != null && !usedForRead)
+                if (file != null && !FrontendUsedForRead)
                 {
                     await FileIO.AppendLinesAsync(file, new string[1] { value });
                 }
@@ -68,7 +89,7 @@ namespace VLC_WinRT.Helpers
 
         public static void SignalUpdate()
         {
-            signalUpdate = true;
+            frontendSignalUpdate = true;
         }
     }
 }
