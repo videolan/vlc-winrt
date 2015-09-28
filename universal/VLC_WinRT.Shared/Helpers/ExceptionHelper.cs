@@ -77,80 +77,41 @@ namespace VLC_WinRT.Helpers
         /// </summary>
         public static void UnhandledExceptionLogger(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
         {
-            StringBuilder stringExceptionBuilder = new StringBuilder("Exception Log VLC for Modern Windows v");
-            stringExceptionBuilder.AppendLine(AppVersion);
-            stringExceptionBuilder.Append("Message: ").AppendLine(unhandledExceptionEventArgs.Message);
-            stringExceptionBuilder.Append("Date: ").AppendLine(DateTime.UtcNow.ToString("s"));
-            stringExceptionBuilder.AppendLine();
-            stringExceptionBuilder.Append("Current Page: ");
-            if (App.ApplicationFrame != null && App.ApplicationFrame.CurrentSourcePageType != null)
-            {
-                stringExceptionBuilder.AppendLine(App.ApplicationFrame.CurrentSourcePageType.FullName);
-            }
-            else
-            {
-                stringExceptionBuilder.AppendLine("Null");
-            }
-            stringExceptionBuilder.AppendLine();
-
-            AppendAllExceptions(stringExceptionBuilder, unhandledExceptionEventArgs.Exception);
-            stringExceptionBuilder.AppendLine();
-            AppendMemoryUsage(stringExceptionBuilder);
-
-            CreateExceptionalMsg(stringExceptionBuilder.ToString());
+            if (unhandledExceptionEventArgs.Exception == null) return;
+            LogException(unhandledExceptionEventArgs.Exception);
         }
-
-        /// <summary>
-        /// Saves the <paramref name="exception"/> for report on next startup
-        /// </summary>
-        public static void CreateMemorizedException(string method, Exception exception)
-        {
-            StringBuilder stringExceptionBuilder = new StringBuilder("Exception Log VLC for Windows Store v");
-            stringExceptionBuilder.AppendLine(AppVersion);
-            stringExceptionBuilder.Append("Exception at: ").AppendLine(method);
-            stringExceptionBuilder.Append("Date: ").AppendLine(DateTime.UtcNow.ToString("s"));
-            stringExceptionBuilder.AppendLine();
-
-            AppendAllExceptions(stringExceptionBuilder, exception);
-            stringExceptionBuilder.AppendLine();
-            AppendMemoryUsage(stringExceptionBuilder);
-
-            CreateExceptionalMsg(stringExceptionBuilder.ToString());
-        }
-
-        /// <summary>
-        /// Saves the <paramref name="value"/> for report on next startup
-        /// </summary>
-        public static void CreateExceptionalMsg(string value)
-        {
-            ApplicationSettingsHelper.SaveSettingsValue("ExceptionLog", value);
-        }
-
+        
         /// <summary>
         /// Appends the <paramref name="exception"/> and all it InnerExceptions to the <paramref name="stringBuilder"/>
         /// </summary>
-        private static void AppendAllExceptions(StringBuilder stringBuilder, Exception exception)
+        public static void LogException(Exception exception, string method = null)
         {
             bool inner = false;
+            LogHelper.Log("Reporting an Exception");
+            AppendMemoryUsage();
             for (Exception ex = exception; ex != null; ex = ex.InnerException)
             {
-                stringBuilder.AppendLine(inner ? "InnerException" : "Exception:");
-                stringBuilder.Append("Message: ").AppendLine(ex.Message);
-                stringBuilder.Append("HelpLink: ").AppendLine(ex.HelpLink);
-                stringBuilder.Append("HResult: ").AppendLine(ex.HResult.ToString());
-                stringBuilder.Append("Source: ").AppendLine(ex.Source);
-                stringBuilder.AppendLine("StackTrace: ");
-                stringBuilder.AppendLine(ex.StackTrace);
-                stringBuilder.AppendLine();
+                LogHelper.Log(inner ? "InnerException" : "Exception:");
+                LogHelper.Log("Message: ");
+                LogHelper.Log(ex.Message);
+                LogHelper.Log("HelpLink: ");
+                LogHelper.Log(ex.HelpLink);
+                LogHelper.Log("HResult: ");
+                LogHelper.Log(ex.HResult.ToString());
+                LogHelper.Log("Source: ");
+                LogHelper.Log(ex.Source);
+                LogHelper.Log("StackTrace: ");
+                LogHelper.Log(ex.StackTrace);
+                LogHelper.Log("");
 
                 if (exception.Data != null && exception.Data.Count > 0)
                 {
-                    stringBuilder.AppendLine("Additional Data: ");
+                    LogHelper.Log("Additional Data: ");
                     foreach (DictionaryEntry entry in exception.Data)
                     {
-                        stringBuilder.AppendLine(entry.Key + ";" + entry.Value);
+                        LogHelper.Log(entry.Key + ";" + entry.Value);
                     }
-                    stringBuilder.AppendLine();
+                    LogHelper.Log("");
                 }
 
                 inner = true;
@@ -160,7 +121,7 @@ namespace VLC_WinRT.Helpers
         /// <summary>
         /// Appends the current memory usage and limits on Windows Phone to the <paramref name="stringBuilder"/>
         /// </summary>
-        private static void AppendMemoryUsage(StringBuilder stringBuilder)
+        private static void AppendMemoryUsage()
         {
 #if WINDOWS_PHONE_APP
             try
@@ -172,9 +133,9 @@ namespace VLC_WinRT.Helpers
 
                 AppMemoryUsageUlong /= 1024*1024;
                 AppMemoryUsageLimitUlong /= 1024*1024;
-                stringBuilder.Append("CurrentRAM: ").AppendLine(AppMemoryUsageUlong.ToString());
-                stringBuilder.Append("MaxRAM: ").AppendLine(AppMemoryUsageLimitUlong.ToString());
-                stringBuilder.Append("CommentOnRAM: ").AppendLine(MemoryManager.AppMemoryUsageLevel.ToString());
+                LogHelper.Log("CurrentRAM: "); LogHelper.Log(AppMemoryUsageUlong.ToString());
+                LogHelper.Log("MaxRAM: "); LogHelper.Log(AppMemoryUsageLimitUlong.ToString());
+                LogHelper.Log("CommentOnRAM: "); LogHelper.Log(MemoryManager.AppMemoryUsageLevel.ToString());
             }
             catch { }
 #endif

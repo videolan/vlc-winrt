@@ -35,7 +35,7 @@ namespace VLC_WinRT.Commands
             }
             catch (Exception ex)
             {
-                ExceptionHelper.CreateMemorizedException("PlayNetworkMRLCommand.Execute", ex);
+                ExceptionHelper.LogException(ex, "PlayNetworkMRLCommand.Execute");
                 return;
             }
             Locator.NavigationService.Go(VLCPage.VideoPlayerPage);

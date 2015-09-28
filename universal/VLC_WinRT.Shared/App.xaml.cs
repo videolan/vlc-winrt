@@ -197,7 +197,7 @@ namespace VLC_WinRT
             }
             catch (Exception e)
             {
-                ExceptionHelper.CreateMemorizedException("App.cs.OnActivated", e);
+                ExceptionHelper.LogException("App.cs.OnActivated", e);
             }
         }
 #endif
