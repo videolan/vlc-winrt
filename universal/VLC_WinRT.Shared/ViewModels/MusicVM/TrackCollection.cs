@@ -24,7 +24,6 @@ using VLC_WinRT.Model.Video;
 using VLC_WinRT.Utils;
 using System.Diagnostics;
 using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.Services.RunTime;
 
 namespace VLC_WinRT.ViewModels.MusicVM
 {
