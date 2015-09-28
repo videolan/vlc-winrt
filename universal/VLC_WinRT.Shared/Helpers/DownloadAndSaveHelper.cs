@@ -41,11 +41,9 @@ namespace VLC_WinRT.Helpers
         {
             try
             {
-                LogHelper.Log("THUMBNAILER VIDEO: Start for videoid:" + fileName);
                 Guid BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
                 fileName += ".jpg";
                 StorageFolder videoPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("videoPic", CreationCollisionOption.OpenIfExists);
-                LogHelper.Log("THUMBNAILER VIDEO: opening file for videoid:" + fileName);
                 var file = await videoPic.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
                 using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
                 {
@@ -62,7 +60,6 @@ namespace VLC_WinRT.Helpers
                             pixels);
                         await pixelStream.FlushAsync();
                     }
-                    LogHelper.Log("THUMBNAILER VIDEO: Dispose streams for videoid:" + fileName);
                     await encoder.FlushAsync();
                     await stream.FlushAsync();
                 }

@@ -29,10 +29,8 @@ namespace VLC_WinRT.Helpers
         /// </summary>
         public static object ReadResetSettingsValue(string key, bool localSettings = true)
         {
-            LogHelper.RuntimeLog(key);
             if (!Contains(key, localSettings))
             {
-                LogHelper.RuntimeLog("null returned");
                 return null;
             }
             else
@@ -42,7 +40,6 @@ namespace VLC_WinRT.Helpers
                     ApplicationData.Current.LocalSettings.Values.Remove(key);
                 else
                     ApplicationData.Current.RoamingSettings.Values.Remove(key);
-                LogHelper.RuntimeLog("value found " + value.ToString());
                 return value;
             }
         }
@@ -52,16 +49,13 @@ namespace VLC_WinRT.Helpers
         /// </summary>
         public static object ReadSettingsValue(string key, bool localSettings = true)
         {
-            LogHelper.RuntimeLog(key);
             if (!Contains(key, localSettings))
             {
-                LogHelper.RuntimeLog("null returned");
                 return null;
             }
             else
             {
                 var value = (localSettings) ? ApplicationData.Current.LocalSettings.Values[key] : ApplicationData.Current.RoamingSettings.Values[key];
-                LogHelper.RuntimeLog("value found " + value.ToString());
                 return value;
             }
         }
@@ -71,7 +65,6 @@ namespace VLC_WinRT.Helpers
         /// </summary>
         public static void SaveSettingsValue(string key, object value, bool localSettings = true)
         {
-            LogHelper.RuntimeLog(key + ":" + value.ToString());
             if (!Contains(key, localSettings))
             {
                 if (localSettings)
