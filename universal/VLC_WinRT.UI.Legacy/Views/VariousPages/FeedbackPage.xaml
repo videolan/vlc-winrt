@@ -17,6 +17,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1"
@@ -55,14 +57,28 @@
                                    MaxLength="700"/>
         <CheckBox x:Name="SendLogsCheckBox"
                   Grid.Row="5"
-                  Margin="{StaticResource FrameMargin}"
+                  Margin="{StaticResource FrameMarginBothSides}"
                   IsChecked="True"
                   Content="Send the logs" />
-        <Button Grid.Row="6"
+        <CheckBox x:Name="InsiderCheckBox"
+                  Grid.Row="6"
+                  Margin="{StaticResource FrameMargin}"
+                  IsChecked="False"
+                  Content="Running Windows Insider build"
+                  Checked="InsiderCheckBox_OnChecked"
+                  Unchecked="InsiderCheckBox_OnUnchecked"/>
+        <userControls:FocusTextBox  x:Name="BuildNumberTextBox"
+                                    Grid.Row="7"
+                                    Visibility="Collapsed"
+                                    Margin="{StaticResource FrameMarginBothSides}"
+                                    PlaceholderText="Windows 10 build number"
+                                    MaxLength="5"
+                                    InputScope="Number" />
+        <Button Grid.Row="8"
                 Margin="{StaticResource FrameMarginBothSides}"
                 Content="Send feedback"
                 Click="SendFeedback_Click" />
-        <Grid Grid.Row="7"
+        <Grid Grid.Row="9"
               Margin="{StaticResource FrameMargin}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

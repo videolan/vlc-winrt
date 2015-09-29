@@ -46,6 +46,9 @@ namespace VLC_WinRT.Model
             set { platformVersion = value; }
         }
 
+        [DataMember(Name = nameof(PlatformBuild))]
+        public int PlatformBuild { get; set; }
+
         [DataMember(Name = nameof(AppVersion))]
         public string AppVersion
         {

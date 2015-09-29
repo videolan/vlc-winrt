@@ -28,6 +28,26 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
         {
             LogHelper.FrontendUsedForRead = true;
             var fbItem = new Feedback();
+
+            if (InsiderCheckBox.IsChecked.HasValue && InsiderCheckBox.IsChecked.Value)
+            {
+                if (string.IsNullOrEmpty(BuildNumberTextBox.Text))
+                {
+                    StatusTextBox.Text = "Please specify the Windows Insider build number";
+                    return;
+                }
+                int buildN;
+                if (int.TryParse(BuildNumberTextBox.Text, out buildN) && buildN > 10000 && buildN < 11000) // UGLY but should do the trick for now
+                {
+                    fbItem.PlatformBuild = buildN;
+                }
+                else
+                {
+                    StatusTextBox.Text = "The Windows Insider build number is incorrect";
+                    return;
+                }
+            }
+
             fbItem.Comment = DetailsTextBox.Text;
             fbItem.Summary = SummaryTextBox.Text;
 
@@ -89,6 +109,16 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
                     LogHelper.FrontendUsedForRead = false;
                 });
             }
+        }
+
+        private void InsiderCheckBox_OnChecked(object sender, RoutedEventArgs e)
+        {
+            BuildNumberTextBox.Visibility = Visibility.Visible;
+        }
+
+        private void InsiderCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            BuildNumberTextBox.Visibility = Visibility.Collapsed;
         }
     }
 }
