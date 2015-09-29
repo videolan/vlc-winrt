@@ -117,6 +117,8 @@ namespace VLC_WinRT.ViewModels
 
         public ActionCommand GotoSearchPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SearchPage));
 
+        public ActionCommand SendLogs { get; } = new ActionCommand(() => ExceptionHelper.ExceptionLogCheckup());
+
         public ChangeMainPageMusicViewCommand ChangeMainPageMusicViewCommand { get; } = new ChangeMainPageMusicViewCommand();
 
         public ChangeMainPageVideoViewCommand ChangeMainPageVideoViewCommand { get; } = new ChangeMainPageVideoViewCommand();

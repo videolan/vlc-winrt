@@ -105,6 +105,8 @@
                             Content="Special thanks page"
                             Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToThanksPageCommand}" />
                 </Grid>
+                <Button Content="Send logs"
+                        Command="{Binding Source={StaticResource Locator}, Path=MainVM.SendLogs}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>
