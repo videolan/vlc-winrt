@@ -217,7 +217,7 @@ namespace VLC_WinRT.Model.Video
             if (storageFile != null)
             {
                 File = storageFile;
-                Name = storageFile.DisplayName;
+                Name = (string.IsNullOrEmpty(storageFile.DisplayName)) ? "Unknown name" : storageFile.DisplayName;
                 AlphaKey = Name.ToUpper()[0];
                 Type = storageFile.FileType.Replace(".", "").ToLower();
                 Path = storageFile.Path;
