@@ -272,8 +272,6 @@ namespace VLC_WinRT.ViewModels
 
         private bool NeedsToDrop()
         {
-            Package thisPackage = Package.Current;
-            PackageVersion version = thisPackage.Id.Version;
             if (ApplicationSettingsHelper.Contains(Strings.DatabaseVersion) && (int)ApplicationSettingsHelper.ReadSettingsValue(Strings.DatabaseVersion) == Numbers.DbVersion)
             {
                 LogHelper.Log("DB does not need to be dropped.");
