@@ -17,7 +17,7 @@ namespace VLC_WinRT.Helpers
         private static StorageFile _backendLogFile;
 
         public static bool FrontendUsedForRead = false;
-        private static bool frontendSignalUpdate = false;
+        private static bool frontendSignalUpdate;
         static readonly SemaphoreSlim WriteFileSemaphoreSlim = new SemaphoreSlim(1);
 
         public static StorageFile FrontEndLogFile => _frontendLogFile;
@@ -35,11 +35,11 @@ namespace VLC_WinRT.Helpers
                 _frontendLogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("FrontendLog.txt", CreationCollisionOption.OpenIfExists);
                 if (frontendSignalUpdate)
                 {
-                    await FileIO.WriteTextAsync(_frontendLogFile, "App updated on " + DateTime.Now.ToString());
+                    await FileIO.WriteTextAsync(_frontendLogFile, "App updated on " + DateTime.Now);
                     frontendSignalUpdate = false;
                 }
                 Log("------------------------------------------");
-                Log("App launch :" + DateTime.Now.ToString());
+                Log("App launch :" + DateTime.Now);
             }
             catch
             {
@@ -49,16 +49,17 @@ namespace VLC_WinRT.Helpers
         private static async Task InitBackendFile()
         {
             // Backend file init
-            _backendLogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("BackendLog.txt", CreationCollisionOption.ReplaceExisting);
+            _backendLogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("BackendLog.txt", CreationCollisionOption.OpenIfExists);
+            var fileSize = await _backendLogFile.GetSize();
+            if (fileSize > 50000)
+            {
+                _backendLogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("BackendLog.txt", CreationCollisionOption.ReplaceExisting);
+            }
             await Locator.VLCService.PlayerInstanceReady.Task;
-            Locator.VLCService.Instance.logSet(LogCb);
+            Locator.VLCService.Instance.logSet(LogBackendCallback);
         }
 
-        private static void LogCb(int param0, string param1)
-        {
-            Log(param1, true);
-        }
-
+        #region loggers
         public static async void Log(object o, bool backendLog = false)
         {
             Debug.WriteLine(o.ToString());
