@@ -74,6 +74,58 @@ namespace VLC_WinRT.Helpers
             }
         }
 
+        /// <summary>
+        /// Logs unhandled exceptions before the app goes down for report on next startup
+        /// </summary>
+        public static void Log(UnhandledExceptionEventArgs unhandledExceptionEventArgs)
+        {
+            if (unhandledExceptionEventArgs.Exception == null) return;
+            Log(unhandledExceptionEventArgs.Exception);
+        }
+
+        /// <summary>
+        /// Appends the <paramref name="exception"/> and all it InnerExceptions to the <paramref name="stringBuilder"/>
+        /// </summary>
+        public static void Log(Exception exception, string method = null)
+        {
+            bool inner = false;
+            Log("Reporting an Exception");
+            Log(Strings.MemoryUsage());
+
+            for (Exception ex = exception; ex != null; ex = ex.InnerException)
+            {
+                Log(inner ? "InnerException" : "Exception:");
+                Log("Message: ");
+                Log(ex.Message);
+                Log("HelpLink: ");
+                Log(ex.HelpLink);
+                Log("HResult: ");
+                Log(ex.HResult.ToString());
+                Log("Source: ");
+                Log(ex.Source);
+                Log("StackTrace: ");
+                Log(ex.StackTrace);
+                Log("");
+
+                if (exception.Data != null && exception.Data.Count > 0)
+                {
+                    Log("Additional Data: ");
+                    foreach (DictionaryEntry entry in exception.Data)
+                    {
+                        Log(entry.Key + ";" + entry.Value);
+                    }
+                    Log("");
+                }
+
+                inner = true;
+            }
+        }
+        private static void LogBackendCallback(int param0, string param1)
+        {
+            Log(param1, true);
+        }
+        #endregion
+
         static async Task WriteInLog(StorageFile file, string value)
         {
             await WriteFileSemaphoreSlim.WaitAsync();

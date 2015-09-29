@@ -67,7 +67,7 @@ namespace VLC_WinRT.Helpers
             catch (Exception e)
             {
                 LogHelper.Log("Failed to save the video thunbnail for videoId:" + fileName);
-                ExceptionHelper.LogException(e, nameof(DownloadAndSaveHelper) + "." + nameof(WriteableBitmapToStorageFile));
+                LogHelper.Log(e, nameof(DownloadAndSaveHelper) + "." + nameof(WriteableBitmapToStorageFile));
             }
         }
     }

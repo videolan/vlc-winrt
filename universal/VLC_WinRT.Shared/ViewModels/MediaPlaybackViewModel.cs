@@ -1173,7 +1173,7 @@ namespace VLC_WinRT.ViewModels
                 }
                 catch (Exception exception)
                 {
-                    ExceptionHelper.LogException(exception, nameof(MediaPlaybackViewModel) + "." + nameof(SetMediaTransportControls));
+                    LogHelper.Log(exception, nameof(MediaPlaybackViewModel) + "." + nameof(SetMediaTransportControls));
                 }
             });
         }

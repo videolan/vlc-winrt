@@ -239,7 +239,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
             catch (Exception e)
             {
-                ExceptionHelper.LogException(e, nameof(MusicLibraryManagement) + "."  + nameof(GetAllMusicFolders));
+                LogHelper.Log(e, nameof(MusicLibraryManagement) + "."  + nameof(GetAllMusicFolders));
             }
         }
 
@@ -274,7 +274,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
             catch (Exception e)
             {
-                ExceptionHelper.LogException(e, nameof(MusicLibraryManagement) + "." + nameof(CreateDatabaseFromMusicFolder));
+                LogHelper.Log(e, nameof(MusicLibraryManagement) + "." + nameof(CreateDatabaseFromMusicFolder));
             }
         }
 
@@ -374,7 +374,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
             catch (Exception e)
             {
-                ExceptionHelper.LogException(e, nameof(MusicLibraryManagement) + "." + nameof(CreateDatabaseFromMusicFile));
+                LogHelper.Log(e, nameof(MusicLibraryManagement) + "." + nameof(CreateDatabaseFromMusicFile));
             }
         }
 

@@ -27,6 +27,30 @@ namespace VLC_WinRT.Utils
             }
         }
 
+        public static string FeedbackAzureURL => "https://vlc.azure-mobile.net/tables/feedback";
+
+        /// <summary>
+         /// Appends the current memory usage and limits on Windows Phone to the <paramref name="stringBuilder"/>
+         /// </summary>
+        public static string MemoryUsage()
+        {
+#if WINDOWS_PHONE_APP
+            try
+            {
+                // Gets the app's current memory usage    
+                ulong AppMemoryUsageUlong = Windows.System.MemoryManager.AppMemoryUsage;
+                // Gets the app's memory usage limit    
+                ulong AppMemoryUsageLimitUlong = Windows.System.MemoryManager.AppMemoryUsageLimit;
+
+                AppMemoryUsageUlong /= 1024 * 1024;
+                AppMemoryUsageLimitUlong /= 1024 * 1024;
+                return "UsedRAM : " + AppMemoryUsageUlong + " - MaxRAM : " + AppMemoryUsageLimitUlong;
+            }
+            catch { }
+#endif
+            return null;
+        }
+
         public static readonly string VideoPicFolderPath = "ms-appdata:///local/videoPic/";
 
         public static readonly string FeedbackMailAdress = "modernvlc@outlook.com";

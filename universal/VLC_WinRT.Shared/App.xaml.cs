@@ -52,7 +52,7 @@ namespace VLC_WinRT
         {
             InitializeComponent();
             Suspending += OnSuspending;
-            UnhandledException += ExceptionHelper.UnhandledExceptionLogger;
+            UnhandledException += (o, ex) => LogHelper.Log(ex);
             Container = AutoFacConfiguration.Configure();
         }
 
@@ -190,7 +190,7 @@ namespace VLC_WinRT
             }
             catch (Exception e)
             {
-                ExceptionHelper.LogException("App.cs.OnActivated", e);
+                LogHelper.Log("App.cs.OnActivated", e);
             }
         }
 #endif
