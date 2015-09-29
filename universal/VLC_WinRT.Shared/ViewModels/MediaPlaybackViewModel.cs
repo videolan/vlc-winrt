@@ -398,9 +398,9 @@ namespace VLC_WinRT.ViewModels
             {
                 // It's definitely a stream since it doesn't add a proper path but a FolderRelativeId
                 var mrl = file.FolderRelativeId;
-                var lastIndex = mrl.LastIndexOf("\\", StringComparison.OrdinalIgnoreCase) + "\\".Length;
+                var lastIndex = mrl.LastIndexOf("\\", StringComparison.OrdinalIgnoreCase);
                 if (lastIndex != -1)
-                    mrl = mrl.Remove(0, lastIndex);
+                    mrl = mrl.Remove(0, lastIndex + "\\".Length);
                 await PlayStream(mrl);
                 return;
             }
