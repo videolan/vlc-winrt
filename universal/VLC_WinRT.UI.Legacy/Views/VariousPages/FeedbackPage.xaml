@@ -76,6 +76,7 @@
             <TextBlock x:Name="StatusTextBox"
                        Grid.Column="2"
                        TextWrapping="Wrap"
+                       VerticalAlignment="Center"
                        Style="{StaticResource BodyTextBlockStyle}" />
         </Grid>
     </Grid>
