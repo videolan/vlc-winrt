@@ -62,7 +62,8 @@ namespace VLC_WinRT.Helpers
         #region loggers
         public static async void Log(object o, bool backendLog = false)
         {
-            Debug.WriteLine(o.ToString());
+            if (o == null) return;
+            Debug.WriteLine(o?.ToString());
             if (backendLog)
             {
                 if (_backendLogFile == null) return;
