@@ -25,6 +25,7 @@
         SettingsPageMusic,
         SettingsPageVideo,
         VideoPlayerOptionsPanel,
-        TrackEditorPage
+        TrackEditorPage,
+        FeedbackPage
     }
 }

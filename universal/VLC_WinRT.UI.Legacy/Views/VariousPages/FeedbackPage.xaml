@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="VLC_WinRT.UI.Legacy.Views.VariousPages.FeedbackPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VLC_WinRT.UI.Legacy.Views.VariousPages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:userControls="using:VLC_WinRT.Views.UserControls"
+      mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal">
+            <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          HorizontalAlignment="Right"
+                          Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.ChangeSettingsViewCommand}"
+                          CommandParameter="-1"
+                          Width="50"
+                          Margin="{StaticResource FrameMarginLeft}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                              Margin="0,3,0,0"
+                              FontFamily="ms-appx:VLC.ttf#W10" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <TextBlock Text="New feedback"
+                       Style="{StaticResource SubheaderTextBlockStyle}" />
+        </StackPanel>
+        <TextBlock Grid.Row="2"
+                   Margin="{StaticResource FrameMarginBothSides}"
+                   Text="What's the problem?"
+                   Foreground="{StaticResource MainColor}"
+                   Style="{StaticResource SubtitleTextBlockStyle}" />
+        <userControls:FocusTextBox x:Name="SummaryTextBox"
+                                   Grid.Row="3"
+                                   Margin="{StaticResource FrameMargin}"
+                                   PlaceholderText="Summary"
+                                   MaxLength="100"
+                                   TextWrapping="Wrap"/>
+        <userControls:FocusTextBox x:Name="DetailsTextBox"
+                                   Grid.Row="4"
+                                   Margin="{StaticResource FrameMarginBothSides}"
+                                   PlaceholderText="Add details"
+                                   TextWrapping="Wrap" 
+                                   MaxLength="700"/>
+        <CheckBox x:Name="SendLogsCheckBox"
+                  Grid.Row="5"
+                  Margin="{StaticResource FrameMargin}"
+                  IsChecked="True"
+                  Content="Send the logs" />
+        <Button Grid.Row="6"
+                Margin="{StaticResource FrameMarginBothSides}"
+                Content="Send feedback"
+                Click="SendFeedback_Click" />
+        <Grid Grid.Row="7"
+              Margin="{StaticResource FrameMargin}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ProgressRing x:Name="ProgressRing"
+                          Grid.Column="0" 
+                          VerticalAlignment="Center"
+                          IsActive="False" />
+            <TextBlock x:Name="StatusTextBox"
+                       Grid.Column="2"
+                       TextWrapping="Wrap"
+                       Style="{StaticResource BodyTextBlockStyle}" />
+        </Grid>
+    </Grid>
+</UserControl>

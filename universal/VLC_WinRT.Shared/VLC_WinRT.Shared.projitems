@@ -152,6 +152,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoLibrary\TitleDecrapifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoLibrary\VideoLibraryManagement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Events\InteretConnectionChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Feedback.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\FileExplorer\IVLCStorageFile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\FileExplorer\IVLCStorageItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\FileExplorer\RootFolderType.cs" />

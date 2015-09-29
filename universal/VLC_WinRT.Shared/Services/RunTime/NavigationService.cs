@@ -126,6 +126,9 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.TrackEditorPage:
                     GoBack_Default();
                     break;
+                case VLCPage.FeedbackPage:
+                    GoBack_HideFlyout();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -242,6 +245,9 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.TrackEditorPage:
                     App.ApplicationFrame.Navigate(typeof (TrackEditorPage));
                     break;
+                case VLCPage.FeedbackPage:
+                    App.SplitShell.RightFlyoutContent = new FeedbackPage();
+                    break;
                 default:
                     break;
             }
@@ -265,7 +271,8 @@ namespace VLC_WinRT.Services.RunTime
                    page == VLCPage.SettingsPageMusic ||
                    page == VLCPage.SettingsPageVideo ||
                    page == VLCPage.SettingsPage ||
-                   page == VLCPage.VideoPlayerOptionsPanel;
+                   page == VLCPage.VideoPlayerOptionsPanel ||
+                   page == VLCPage.FeedbackPage;
         }
 
         /// <summary>
@@ -300,6 +307,8 @@ namespace VLC_WinRT.Services.RunTime
                 return VLCPage.SearchPage;
             if (page == typeof (TrackEditorPage))
                 return VLCPage.TrackEditorPage;
+            if (page == typeof (FeedbackPage))
+                return VLCPage.FeedbackPage;
             return VLCPage.None;
         }
 
