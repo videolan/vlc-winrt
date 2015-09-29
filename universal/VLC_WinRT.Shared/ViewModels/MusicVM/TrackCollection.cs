@@ -197,11 +197,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 OnPropertyChanged("CanGoPrevious");
                 OnPropertyChanged("CanGoNext");
             }
-            catch (ArgumentOutOfRangeException exception)
-            {
-                _currentTrack = 0;
-                SetActiveTrackProperty();
-            }
             catch (Exception exception)
             {
 
