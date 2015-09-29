@@ -18,18 +18,6 @@ namespace VLC_WinRT.Helpers
     public static class ExceptionHelper
     {
         /// <summary>
-        /// Returns the current App Version
-        /// </summary>
-        public static string AppVersion
-        {
-            get
-            {
-                PackageVersion version = Package.Current.Id.Version;
-                return String.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
-            }
-        }
-
-        /// <summary>
         /// Checks if any exception has been saved for reporting, prompts the user for sending it and deletes it
         /// </summary>
         public static async Task ExceptionLogCheckup()

@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
+using Windows.ApplicationModel;
 using VLC_WinRT.Model.Music;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
@@ -12,6 +14,18 @@ namespace VLC_WinRT.Utils
     public static class Strings
     {
         public static readonly string DatabaseVersion = "DatabaseVersion";
+
+        /// <summary>
+        /// Returns the current App Version
+        /// </summary>
+        public static string AppVersion
+        {
+            get
+            {
+                PackageVersion version = Package.Current.Id.Version;
+                return String.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
+            }
+        }
 
         public static readonly string VideoPicFolderPath = "ms-appdata:///local/videoPic/";
 
