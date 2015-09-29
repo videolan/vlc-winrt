@@ -40,7 +40,7 @@ namespace VLC_WinRT.Helpers
                 LogHelper.FrontendUsedForRead = false;
             };
 
-            request.Data.Properties.Title = "[" + AppVersion + "] VLC logs";
+            request.Data.Properties.Title = "[" + Strings.AppVersion + "] VLC logs";
             var desc = "Please send this mail to : " + Strings.FeedbackMailAdress;
             request.Data.Properties.Description = desc;
             request.Data.SetText(desc);
