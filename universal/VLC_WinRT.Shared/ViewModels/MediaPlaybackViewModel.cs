@@ -214,7 +214,7 @@ namespace VLC_WinRT.ViewModels
             get { return _spuDelay; }
             set
             {
-                if(_mediaService is VLCService)
+                if (_mediaService is VLCService)
                 {
                     (_mediaService as VLCService).SetSpuDelay(value * 1000);
                     SetProperty(ref _spuDelay, value);
@@ -733,7 +733,7 @@ namespace VLC_WinRT.ViewModels
                 }
                 else
                 {
-                    _playerEngine = PlayerEngine.VLC; 
+                    _playerEngine = PlayerEngine.VLC;
                 }
             }
 
@@ -904,7 +904,7 @@ namespace VLC_WinRT.ViewModels
         {
             if (Locator.VideoVm.CurrentVideo != null)
             {
-                Locator.VideoVm.CurrentVideo.TimeWatchedSeconds = (int)((double)Time/1000);;
+                Locator.VideoVm.CurrentVideo.TimeWatchedSeconds = (int)((double)Time / 1000); ;
                 await Locator.VideoLibraryVM.VideoRepository.Update(Locator.VideoVm.CurrentVideo).ConfigureAwait(false);
             }
         }

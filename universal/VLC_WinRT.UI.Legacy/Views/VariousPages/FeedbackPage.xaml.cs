@@ -75,7 +75,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
                     fb.BackendLog = fb.FrontendLog = "None";
                 }
 
-                var jsonSer = new DataContractJsonSerializer(typeof(Feedback));
+                var jsonSer = new DataContractJsonSerializer(typeof (Feedback));
                 var ms = new MemoryStream();
                 jsonSer.WriteObject(ms, fb);
                 ms.Position = 0;
