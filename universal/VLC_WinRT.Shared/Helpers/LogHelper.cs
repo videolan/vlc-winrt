@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Xaml;
+using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
+using WinRTXamlToolkit.IO.Extensions;
 
 namespace VLC_WinRT.Helpers
 {
