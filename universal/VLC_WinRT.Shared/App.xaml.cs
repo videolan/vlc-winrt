@@ -190,7 +190,7 @@ namespace VLC_WinRT
             }
             catch (Exception e)
             {
-                LogHelper.Log("App.cs.OnActivated", e);
+                LogHelper.Log(e, "App.cs.OnActivated");
             }
         }
 #endif
