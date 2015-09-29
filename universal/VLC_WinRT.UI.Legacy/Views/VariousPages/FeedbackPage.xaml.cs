@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.Web.Http;
 using Windows.Web.Http.Headers;
@@ -13,6 +14,7 @@ using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
+using WinRTXamlToolkit.Controls.Extensions;
 using HttpClient = Windows.Web.Http.HttpClient;
 
 namespace VLC_WinRT.UI.Legacy.Views.VariousPages
@@ -85,7 +87,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
                 var str = await theContent.ReadAsStringAsync();
                 var result = await httpClient.PostAsync(new Uri(Strings.FeedbackAzureURL), new HttpStringContent(str, UnicodeEncoding.Utf8, "application/json"));
 
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
                     if (result.EnsureSuccessStatusCode().IsSuccessStatusCode)
                     {
@@ -96,17 +98,25 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
                     {
                         StatusTextBox.Text = "An error occured when sending the feedback.";
                         ProgressRing.IsActive = false;
+#if DEBUG
+                        var md = new MessageDialog(result.ReasonPhrase + " - " + result.Content + " - " + result.StatusCode, "Bug in the Request");
+                        await md.ShowAsyncQueue();
+#endif
                     }
                     LogHelper.FrontendUsedForRead = false;
                 });
             }
-            catch
+            catch (Exception e)
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
                     StatusTextBox.Text = "An error occured when sending the feedback.";
                     ProgressRing.IsActive = false;
                     LogHelper.FrontendUsedForRead = false;
+#if DEBUG
+                    var md = new MessageDialog(e.ToString(), "Bug");
+                    await md.ShowAsyncQueue();
+#endif
                 });
             }
         }
