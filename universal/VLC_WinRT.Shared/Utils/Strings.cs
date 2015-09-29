@@ -33,6 +33,11 @@ namespace VLC_WinRT.Utils
             get
             {
                 var deviceInfo = new EasClientDeviceInformation();
+                if (string.IsNullOrEmpty(deviceInfo.SystemManufacturer) ||
+                    string.IsNullOrEmpty(deviceInfo.SystemProductName))
+                {
+                    return "Unknown model";
+                }
                 return $"{deviceInfo?.SystemManufacturer ?? "Unknown OEM"} - {deviceInfo?.SystemProductName ?? "Unknown model"}";
             }
         }
