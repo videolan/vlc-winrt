@@ -26,19 +26,7 @@ namespace VLC_WinRT.Commands
                 ToastHelper.Basic("Please enter a valid URL.");
                 return;
             }
-            mrl = mrl.Trim();
-            //TODO: pass MRL to vlc
-            try
-            {
-                var stream = new StreamMedia(mrl);
-                await Locator.MediaPlaybackViewModel.SetMedia(stream);
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Log(ex, nameof(PlayNetworkMRLCommand) + "." + nameof(Execute));
-                return;
-            }
-            Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
+            await Locator.MediaPlaybackViewModel.PlayStream(mrl);
             Locator.MainVM.CloseStreamFlyout();
         }
     }

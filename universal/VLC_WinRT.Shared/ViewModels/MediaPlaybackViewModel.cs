@@ -394,6 +394,17 @@ namespace VLC_WinRT.ViewModels
         {
             if (file == null) return;
             await Locator.VLCService.PlayerInstanceReady.Task;
+            if (string.IsNullOrEmpty(file.Path))
+            {
+                // It's definitely a stream since it doesn't add a proper path but a FolderRelativeId
+                var mrl = file.FolderRelativeId;
+                var lastIndex = mrl.LastIndexOf("\\", StringComparison.OrdinalIgnoreCase) + "\\".Length;
+                if (lastIndex != -1)
+                    mrl = mrl.Remove(0, lastIndex);
+                await PlayStream(mrl);
+                return;
+            }
+
             var token = StorageApplicationPermissions.FutureAccessList.Add(file);
             if (VLCFileExtensions.FileTypeHelper(file.FileType) == VLCFileExtensions.VLCFileType.Video)
             {
@@ -403,6 +414,28 @@ namespace VLC_WinRT.ViewModels
             {
                 await PlayAudioFile(file, token);
             }
+        }
+
+        /// <summary>
+        /// Navigates to the Video Player with the request MRL as parameter
+        /// </summary>
+        /// <param name="mrl">The stream MRL to be played</param>
+        /// <returns></returns>
+        public async Task PlayStream(string mrl)
+        {
+            mrl = mrl.Trim();
+            //TODO: pass MRL to vlc
+            try
+            {
+                var stream = new StreamMedia(mrl);
+                await Locator.MediaPlaybackViewModel.SetMedia(stream);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Log(ex, nameof(MediaPlaybackViewModel) + "." + nameof(PlayStream));
+                return;
+            }
+            Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
         }
 
         /// <summary>
