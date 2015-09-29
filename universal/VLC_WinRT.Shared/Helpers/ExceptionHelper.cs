@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using VLC_WinRT.Utils;
 using Windows.ApplicationModel;
-using Windows.ApplicationModel.Resources;
-using Windows.System;
-using Windows.UI.Popups;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Foundation;
+using Windows.Storage;
 using Windows.UI.Xaml;
+
 #if WINDOWS_PHONE_APP
-using Windows.ApplicationModel.Email;
 using Windows.Security.ExchangeActiveSyncProvisioning;
 #endif
 
@@ -20,44 +19,60 @@ namespace VLC_WinRT.Helpers
         /// <summary>
         /// Checks if any exception has been saved for reporting, prompts the user for sending it and deletes it
         /// </summary>
-        public static async Task ExceptionLogCheckup()
+        public static void ExceptionLogCheckup()
         {
             LogHelper.FrontendUsedForRead = true;
-            if (ApplicationSettingsHelper.Contains("ExceptionLog"))
+            RegisterForShare();
+            DataTransferManager.ShowShareUI();
+        }
+
+        private static void RegisterForShare()
+        {
+            DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
+            dataTransferManager.DataRequested += new TypedEventHandler<DataTransferManager, DataRequestedEventArgs>(ShareFileHandler);
+        }
+
+        private static void ShareFileHandler(DataTransferManager sender, DataRequestedEventArgs e)
+        {
+            DataRequest request = e.Request;
+            request.Data.OperationCompleted += (package, args) =>
             {
-                var dialog = new MessageDialog(Strings.CrashReport, Strings.WeNeedYourHelp);
-                dialog.Commands.Add(new UICommand(Strings.Yes, async command =>
-                {
+                LogHelper.FrontendUsedForRead = false;
+            };
+
+            request.Data.Properties.Title = "[" + AppVersion + "] VLC logs";
+            var desc = "Please send this mail to : " + Strings.FeedbackMailAdress;
+            request.Data.Properties.Description = desc;
+            request.Data.SetText(desc);
+
 #if WINDOWS_PHONE_APP
-                    EasClientDeviceInformation deviceInfo = new EasClientDeviceInformation();
-
-                    var email = new EmailMessage();
-                    email.To.Add(new EmailRecipient("modernvlc@outlook.com"));
-                    email.Subject = String.Format("WP8.1 v{0} {1} ON {2}", AppVersion, deviceInfo.SystemManufacturer, deviceInfo.SystemProductName);
-                    email.Body = ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog").ToString();
-                    email.Attachments.Add(new EmailAttachment(LogHelper.LogFile.Name, LogHelper.LogFile));
-
-                    if (email.Body.Contains("GetAlbumUrl : AlbumURLWorkedViaVLC"))
-                    {
-                        email.Subject += " ARTCOVER";
-                    }
-
-                    await EmailManager.ShowComposeNewEmailAsync(email);
-#else
-                    string subject = Uri.EscapeDataString("VLC for Windows 8.1 v" + AppVersion);
-                    string body = Uri.EscapeDataString(ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog").ToString());
-
-                    var uri = new Uri(String.Format("mailto:" + Strings.FeedbackMailAdress + "?subject={0}&body={1}", subject, body));
-                    await Launcher.LaunchUriAsync(uri);
-#endif
-                }));
-                dialog.Commands.Add(new UICommand(Strings.No, command =>
-                {
-                    ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog");
-                }));
-                await dialog.ShowAsync();
+            try
+            {
+                EasClientDeviceInformation deviceInfo = new EasClientDeviceInformation();
+                request.Data.Properties.Title += String.Format("WP8.1 v{0} {1} ON {2}", AppVersion, deviceInfo.SystemManufacturer, deviceInfo.SystemProductName);
             }
-            LogHelper.FrontendUsedForRead = false;
+            catch
+            {
+            }
+#endif
+
+            DataRequestDeferral deferral = request.GetDeferral();
+            try
+            {
+                var attachedFiles = new List<StorageFile>();
+                attachedFiles.Add(LogHelper.FrontEndLogFile);
+                attachedFiles.Add(LogHelper.BackendLogFile);
+                request.Data.SetStorageItems(attachedFiles);
+            }
+            catch
+            {
+                deferral.Complete();
+                LogHelper.FrontendUsedForRead = false;
+            }
+            finally
+            {
+                deferral.Complete();
+            }
         }
 
         /// <summary>
