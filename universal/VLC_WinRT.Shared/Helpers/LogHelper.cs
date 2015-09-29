@@ -16,6 +16,9 @@ namespace VLC_WinRT.Helpers
         private static bool frontendSignalUpdate = false;
         static readonly SemaphoreSlim WriteFileSemaphoreSlim = new SemaphoreSlim(1);
 
+        public static StorageFile FrontEndLogFile => _frontendLogFile;
+        public static StorageFile BackendLogFile => _backendLogFile;
+
         static LogHelper()
         {
             Task.Run(() => InitBackendFile());
