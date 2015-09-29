@@ -77,6 +77,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
                         StatusTextBox.Text = "An error occured when sending the feedback.";
                         ProgressRing.IsActive = false;
                     }
+                    LogHelper.FrontendUsedForRead = false;
                 });
             }
             catch
@@ -85,6 +86,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
                 {
                     StatusTextBox.Text = "An error occured when sending the feedback.";
                     ProgressRing.IsActive = false;
+                    LogHelper.FrontendUsedForRead = false;
                 });
             }
         }
