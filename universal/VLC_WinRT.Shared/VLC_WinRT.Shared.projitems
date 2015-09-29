@@ -137,7 +137,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AppViewHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DisplayHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DownloadAndSaveHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ExceptionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LoadImageToMemoryHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LogHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MemoryUsageHelper.cs" />
