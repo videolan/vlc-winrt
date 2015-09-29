@@ -4,6 +4,7 @@ using System.Linq;
 using Windows.ApplicationModel;
 using VLC_WinRT.Model.Music;
 using Windows.ApplicationModel.Resources;
+using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.Storage;
 
 namespace VLC_WinRT.Utils
@@ -24,6 +25,15 @@ namespace VLC_WinRT.Utils
             {
                 PackageVersion version = Package.Current.Id.Version;
                 return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+            }
+        }
+
+        public static string DeviceModel
+        {
+            get
+            {
+                var deviceInfo = new EasClientDeviceInformation();
+                return $"{deviceInfo?.SystemManufacturer ?? "Unknown OEM"} - {deviceInfo?.SystemProductName ?? "Unknown model"}";
             }
         }
 
