@@ -101,13 +101,6 @@ namespace VLC_WinRT
             {
                 await LaunchTheApp();
                 Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[Locator.NavigationService.VLCHomePageToPanelIndex(Locator.SettingsVM.HomePage)];
-                try
-                {
-                    await ExceptionHelper.ExceptionLogCheckup();
-                }
-                catch
-                {
-                }
             }
             if (args.Arguments.Contains("SecondaryTile"))
             {
