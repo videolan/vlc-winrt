@@ -10,9 +10,9 @@ namespace VLC_WinRT.Model
     public class Feedback
     {
 #if WINDOWS_PHONE_APP
-        private string platform = "Windows Phone";
+        private string platform = "WP";
 #else
-        private string platform = "Windows";
+        private string platform = "W";
 #endif
         private string platformVersion = "8.1/10";
         private string appVersion = Strings.AppVersion;
