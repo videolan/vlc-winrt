@@ -18,11 +18,7 @@ namespace VLC_WinRT.Views.VariousPages
         public SettingsPage()
         {
             this.InitializeComponent();
-            Package thisPackage = Package.Current;
-            PackageVersion version = thisPackage.Id.Version;
-            string appVersion = string.Format("{0}.{1}.{2}.{3}",
-                version.Major, version.Minor, version.Build, version.Revision);
-            AppVersion.Text = "v" + appVersion;
+            AppVersion.Text = "v" + Strings.AppVersion;
             Extensions.HideWindowsOnlyElements(RootPanel);
         }
     }
