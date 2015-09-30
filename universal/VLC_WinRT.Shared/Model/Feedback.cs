@@ -32,6 +32,9 @@ namespace VLC_WinRT.Model
         [DataMember(Name = nameof(FrontendLog))]
         public string FrontendLog { get; set; }
 
+        [DataMember(Name = nameof(Fixed))]
+        public bool Fixed { get; set; }
+
         [DataMember(Name = nameof(Platform))]
         public string Platform
         {
