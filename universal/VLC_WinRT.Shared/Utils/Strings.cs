@@ -75,62 +75,62 @@ namespace VLC_WinRT.Utils
         public static readonly string VideoDatabase = Path.Combine(ApplicationData.Current.LocalFolder.Path, "mediavlcVideos.sqlite");
         public static readonly string SettingsDatabase = Path.Combine(ApplicationData.Current.LocalFolder.Path, "settings.sqlite");
 
-        public static readonly string PodcastFolderName = "Podcasts";
+        public static string PodcastFolderName => "Podcasts";
 
         public static readonly char UnknownChar = '#';
         public static readonly string UnknownString = UnknownChar.ToString();
 
         private static readonly ResourceLoader _resourcesLoader = ResourceLoader.GetForViewIndependentUse();
 
-        public static readonly string Home = _resourcesLoader.GetString("Home");
-        public static readonly string Music = _resourcesLoader.GetString("Music");
-        public static readonly string RemovableStorage = _resourcesLoader.GetString("RemovableStorage");
-        public static readonly string FileExplorer = _resourcesLoader.GetString("Files");
-        public static readonly string Network = _resourcesLoader.GetString("network");
-        public static readonly string Library = _resourcesLoader.GetString("library");
+        public static string Home => _resourcesLoader.GetString("Home");
+        public static string Music => _resourcesLoader.GetString("Music");
+        public static string RemovableStorage => _resourcesLoader.GetString("RemovableStorage");
+        public static string FileExplorer => _resourcesLoader.GetString("Files");
+        public static string Network => _resourcesLoader.GetString("network");
+        public static string Library => _resourcesLoader.GetString("library");
 
-        public static readonly string UnknownArtist = _resourcesLoader.GetString("UnknownArtist");
-        public static readonly string UnknownAlbum = _resourcesLoader.GetString("UnknownAlbum");
-        public static readonly string UnknownTrack = _resourcesLoader.GetString("UnknownTrack");
-        public static readonly string UnknownShow = _resourcesLoader.GetString("UntitledShow");
+        public static string UnknownArtist => _resourcesLoader.GetString("UnknownArtist");
+        public static string UnknownAlbum => _resourcesLoader.GetString("UnknownAlbum");
+        public static string UnknownTrack => _resourcesLoader.GetString("UnknownTrack");
+        public static string UnknownShow => _resourcesLoader.GetString("UntitledShow");
 
-        public static readonly string Albums = _resourcesLoader.GetString("Albums");
-        public static readonly string Artists = _resourcesLoader.GetString("Artists");
-        public static readonly string Songs = _resourcesLoader.GetString("Songs");
-        public static readonly string Playlists = _resourcesLoader.GetString("Playlists");
+        public static string Albums => _resourcesLoader.GetString("Albums");
+        public static string Artists => _resourcesLoader.GetString("Artists");
+        public static string Songs => _resourcesLoader.GetString("Songs");
+        public static string Playlists => _resourcesLoader.GetString("Playlists");
 
-        public static readonly string Videos = _resourcesLoader.GetString("Videos");
-        public static readonly string Shows = _resourcesLoader.GetString("Shows");
-        public static readonly string CameraRoll = _resourcesLoader.GetString("CameraRoll/Text");
+        public static string Videos => _resourcesLoader.GetString("Videos");
+        public static string Shows => _resourcesLoader.GetString("Shows");
+        public static string CameraRoll => _resourcesLoader.GetString("CameraRoll/Text");
 
 
-        public static readonly string OrderByArtist = _resourcesLoader.GetString("OrderByArtist");
-        public static readonly string OrderByDate = _resourcesLoader.GetString("OrderByDate");
-        public static readonly string OrderByAlbum = _resourcesLoader.GetString("OrderByAlbum");
+        public static string OrderByArtist => _resourcesLoader.GetString("OrderByArtist");
+        public static string OrderByDate => _resourcesLoader.GetString("OrderByDate");
+        public static string OrderByAlbum => _resourcesLoader.GetString("OrderByAlbum");
 
-        public static readonly string OrderAscending = _resourcesLoader.GetString("OrderAscending");
-        public static readonly string OrderDescending = _resourcesLoader.GetString("OrderDescending");
+        public static string OrderAscending => _resourcesLoader.GetString("OrderAscending");
+        public static string OrderDescending => _resourcesLoader.GetString("OrderDescending");
 
-        public static readonly string AlbumsFound = _resourcesLoader.GetString("AlbumsFound");
-        public static readonly string NewVideo = _resourcesLoader.GetString("VideosFound");
+        public static string AlbumsFound => _resourcesLoader.GetString("AlbumsFound");
+        public static string NewVideo => _resourcesLoader.GetString("VideosFound");
         
-        public static readonly string PlaylistAlreadyExists = _resourcesLoader.GetString("PlaylistAlreadyExists");
-        public static readonly string TrackAlreadyExistsInPlaylist = _resourcesLoader.GetString("TrackAlreadyExistsInPlaylist");
-        public static readonly string TrackAddedToYourPlaylist = _resourcesLoader.GetString("TrackAddedToYourPlaylist");
-        public static readonly string HaveToSelectPlaylist = _resourcesLoader.GetString("HaveToSelectPlaylist");
+        public static string PlaylistAlreadyExists => _resourcesLoader.GetString("PlaylistAlreadyExists");
+        public static string TrackAlreadyExistsInPlaylist => _resourcesLoader.GetString("TrackAlreadyExistsInPlaylist");
+        public static string TrackAddedToYourPlaylist => _resourcesLoader.GetString("TrackAddedToYourPlaylist");
+        public static string HaveToSelectPlaylist => _resourcesLoader.GetString("HaveToSelectPlaylist");
 
-        public static readonly string CrashReport = _resourcesLoader.GetString("CrashReport");
-        public static readonly string WeNeedYourHelp = _resourcesLoader.GetString("WeNeedYourHelp");
+        public static string CrashReport => _resourcesLoader.GetString("CrashReport");
+        public static string WeNeedYourHelp => _resourcesLoader.GetString("WeNeedYourHelp");
 
-        public static readonly string Yes = _resourcesLoader.GetString("Yes");
-        public static readonly string No = _resourcesLoader.GetString("No");
+        public static string Yes => _resourcesLoader.GetString("Yes");
+        public static string No => _resourcesLoader.GetString("No");
 
-        public static readonly string NoBiographyFound = _resourcesLoader.GetString("NoBiographyFound");
+        public static string NoBiographyFound => _resourcesLoader.GetString("NoBiographyFound");
 
-        public static readonly string PrivacyStatement = _resourcesLoader.GetString("PrivacyStatement");
-        public static readonly string SpecialThanks = _resourcesLoader.GetString("SpecialThanks");
-        public static readonly string Settings = _resourcesLoader.GetString("Settings");
-        public static readonly string License = _resourcesLoader.GetString("License");
+        public static string PrivacyStatement => _resourcesLoader.GetString("PrivacyStatement");
+        public static string SpecialThanks => _resourcesLoader.GetString("SpecialThanks");
+        public static string Settings => _resourcesLoader.GetString("Settings");
+        public static string License => _resourcesLoader.GetString("License");
 
         public Strings()
         {
