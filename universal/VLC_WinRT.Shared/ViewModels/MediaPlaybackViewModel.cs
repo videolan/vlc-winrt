@@ -1216,9 +1216,9 @@ namespace VLC_WinRT.ViewModels
                     updater.Thumbnail = null;
                     updater.Update();
                 }
-                catch (Exception exception)
+                catch (Exception e)
                 {
-                    LogHelper.Log(exception, nameof(MediaPlaybackViewModel) + "." + nameof(SetMediaTransportControls));
+                    LogHelper.Log(StringsHelper.ExceptionToString(e));
                 }
             });
         }
