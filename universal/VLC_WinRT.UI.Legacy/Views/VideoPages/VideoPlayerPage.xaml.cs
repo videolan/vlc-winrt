@@ -53,7 +53,6 @@ namespace VLC_WinRT.Views.VideoPages
         void Responsive()
         {
             var width = Window.Current.Bounds.Width;
-            var height = Window.Current.Bounds.Height;
             if (width < 800)
             {
                 VisualStateManager.GoToState(this, "Narrow", false);
@@ -66,7 +65,7 @@ namespace VLC_WinRT.Views.VideoPages
             {
                 VisualStateManager.GoToState(this, "Full", false);
             }
-            Locator.MediaPlaybackViewModel._mediaService.SetSizeVideoPlayer((uint)Math.Ceiling(width), (uint)Math.Ceiling(height));
+            Locator.MediaPlaybackViewModel._mediaService.SetSizeVideoPlayer((uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualWidth), (uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualHeight));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
