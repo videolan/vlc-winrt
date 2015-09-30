@@ -300,7 +300,6 @@ namespace VLC_WinRT.ViewModels
             Locator.MusicLibraryVM._artistDatabase.Initialize();
             Locator.MusicLibraryVM._trackDatabase.Initialize();
             Locator.VideoLibraryVM.VideoRepository.Initialize();
-            LogHelper.SignalUpdate();
         }
     }
 }

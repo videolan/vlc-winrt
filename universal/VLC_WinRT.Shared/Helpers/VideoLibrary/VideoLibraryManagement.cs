@@ -157,7 +157,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
             }
             catch (Exception e)
             {
-                LogHelper.Log(e, nameof(VideoLibraryManagement) + "." + nameof(AddVideo));
+                LogHelper.Log(StringsHelper.ExceptionToString(e));
             }
         }
 
@@ -232,7 +232,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
             }
             catch (Exception e)
             {
-                LogHelper.Log(e, nameof(VideoLibraryManagement) + "." + nameof(GetFilesFromSubFolders));
+                LogHelper.Log(StringsHelper.ExceptionToString(e));
             }
         }
 
@@ -286,7 +286,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
             }
             catch (Exception e)
             {
-                LogHelper.Log(e, nameof(VideoLibraryManagement) + "." + nameof(AddTvShow));
+                LogHelper.Log(StringsHelper.ExceptionToString(e));
             }
         }
 

@@ -53,7 +53,6 @@ namespace VLC_WinRT
         {
             InitializeComponent();
             Suspending += OnSuspending;
-            UnhandledException += (o, ex) => LogHelper.Log(ex);
             Container = AutoFacConfiguration.Configure();
         }
 

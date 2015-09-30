@@ -1,13 +1,23 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Runtime.Serialization.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
+using Windows.Web.Http;
+using VLC_WinRT.Model;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using WinRTXamlToolkit.IO.Extensions;
+using HttpClient = Windows.Web.Http.HttpClient;
+using Windows.Web.Http.Headers;
 
 namespace VLC_WinRT.Helpers
 {
@@ -16,30 +26,55 @@ namespace VLC_WinRT.Helpers
         private static StorageFile _frontendLogFile;
         private static StorageFile _backendLogFile;
 
-        public static bool FrontendUsedForRead = false;
-        private static bool frontendSignalUpdate;
-        static readonly SemaphoreSlim WriteFileSemaphoreSlim = new SemaphoreSlim(1);
+        private static readonly List<string> backEndBuffer = new List<string>(5);
+        private static readonly List<string> frontEndBuffer = new List<string>(5);
 
-        public static StorageFile FrontEndLogFile => _frontendLogFile;
-        public static StorageFile BackendLogFile => _backendLogFile;
+        static readonly SemaphoreSlim BackendSemaphoreSlim = new SemaphoreSlim(1);
+        static readonly SemaphoreSlim FrontendSemaphoreSlim = new SemaphoreSlim(1);
 
         static LogHelper()
         {
             Task.Run(() => InitBackendFile());
+            Task.Run(() => InitFrontendFile());
+            TaskScheduler.UnobservedTaskException += (sender, args) =>
+            {
+                args.SetObserved();
+                ApplicationSettingsHelper.SaveSettingsValue("LastUnhandledException", StringsHelper.ExceptionToString(args.Exception));
+                var lines = new List<string>(2)
+                {
+                    "Unobserved Task Exception:",
+                    args.Exception.ToString()
+                };
+                Task.Run(() => FrontendSemaphore(() => WriteInLog(_frontendLogFile, lines)));
+            };
+
+            App.Current.UnhandledException += (o, ex) =>
+            {
+                ApplicationSettingsHelper.SaveSettingsValue("LastUnhandledException", StringsHelper.ExceptionToString(ex.Exception));
+                var lines = new List<string>(2)
+                {
+                    "Unhandled Exception:",
+                    ex.Exception.ToString()
+                };
+                Task.Run(() => FrontendSemaphore(() => WriteInLog(_frontendLogFile, lines)));
+            };
         }
 
         private static async Task InitFrontendFile()
         {
             try
             {
-                _frontendLogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("FrontendLog.txt", CreationCollisionOption.OpenIfExists);
-                if (frontendSignalUpdate)
-                {
-                    await FileIO.WriteTextAsync(_frontendLogFile, "App updated on " + DateTime.Now);
-                    frontendSignalUpdate = false;
-                }
+                _frontendLogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("FrontendLog.txt", CreationCollisionOption.ReplaceExisting);
+
                 Log("------------------------------------------");
                 Log("App launch :" + DateTime.Now);
+
+                if (ApplicationSettingsHelper.Contains("LastUnhandledException"))
+                {
+                    Log("Found previous unhandled exception");
+                    var unhandledEx = ApplicationSettingsHelper.ReadResetSettingsValue("LastUnhandledException");
+                    Log(unhandledEx.ToString());
+                }
             }
             catch
             {
@@ -50,107 +85,114 @@ namespace VLC_WinRT.Helpers
         {
             // Backend file init
             _backendLogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("BackendLog.txt", CreationCollisionOption.OpenIfExists);
-            var fileSize = await _backendLogFile.GetSize();
-            if (fileSize > 50000)
-            {
-                _backendLogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("BackendLog.txt", CreationCollisionOption.ReplaceExisting);
-            }
             await Locator.VLCService.PlayerInstanceReady.Task;
             Locator.VLCService.Instance.logSet(LogBackendCallback);
         }
 
-        #region loggers
-        public static async void Log(object o, bool backendLog = false)
+        public static async Task ResetBackendFile()
         {
-            if (o == null) return;
-            Debug.WriteLine(o?.ToString());
-            if (backendLog)
+            await Task.Run(() => BackendSemaphore(async () => await ResetBackendLogFile()));
+        }
+
+        #region loggers
+
+        public static void Log(string s, bool backend = false)
+        {
+            if (string.IsNullOrEmpty(s)) return;
+            if (backend)
             {
-                if (_backendLogFile == null) return;
-                await WriteInLog(_backendLogFile, o.ToString());
+                backEndBuffer.Add(s);
+                if (backEndBuffer.Count == 5)
+                {
+                    var lines = backEndBuffer.ToList();
+                    backEndBuffer.Clear();
+                    Task.Run(() => BackendSemaphore(() => WriteInLog(_backendLogFile, lines)));
+                }
             }
             else
             {
-                if (_frontendLogFile == null)
+                frontEndBuffer.Add(s);
+                if (frontEndBuffer.Count == 5)
                 {
-                    await InitFrontendFile();
+                    var lines = frontEndBuffer.ToList();
+                    frontEndBuffer.Clear();
+                    Task.Run(() => FrontendSemaphore(() => WriteInLog(_frontendLogFile, lines)));
                 }
-                if (_frontendLogFile == null) return;
-                await WriteInLog(_frontendLogFile, o.ToString());
             }
         }
-
-        /// <summary>
-        /// Logs unhandled exceptions before the app goes down for report on next startup
-        /// </summary>
-        public static void Log(UnhandledExceptionEventArgs unhandledExceptionEventArgs)
-        {
-            if (unhandledExceptionEventArgs.Exception == null) return;
-            Log(unhandledExceptionEventArgs.Exception);
-        }
-
-        /// <summary>
-        /// Appends the <paramref name="exception"/> and all it InnerExceptions to the <paramref name="stringBuilder"/>
-        /// </summary>
-        public static void Log(Exception exception, string method = null)
-        {
-            bool inner = false;
-            Log("Reporting an Exception");
-            Log(Strings.MemoryUsage());
-
-            for (Exception ex = exception; ex != null; ex = ex.InnerException)
-            {
-                Log(inner ? "InnerException" : "Exception:");
-                Log("Message: ");
-                Log(ex.Message);
-                Log("HelpLink: ");
-                Log(ex.HelpLink);
-                Log("HResult: ");
-                Log(ex.HResult.ToString());
-                Log("Source: ");
-                Log(ex.Source);
-                Log("StackTrace: ");
-                Log(ex.StackTrace);
-                Log("");
-
-                if (exception.Data != null && exception.Data.Count > 0)
-                {
-                    Log("Additional Data: ");
-                    foreach (DictionaryEntry entry in exception.Data)
-                    {
-                        Log(entry.Key + ";" + entry.Value);
-                    }
-                    Log("");
-                }
-
-                inner = true;
-            }
-        }
+        
+        
         private static void LogBackendCallback(int param0, string param1)
         {
             Log(param1, true);
         }
         #endregion
 
-        static async Task WriteInLog(StorageFile file, string value)
+        static async Task WriteInLog(StorageFile file, List<string> values)
         {
-            await WriteFileSemaphoreSlim.WaitAsync();
-            try
+            if (file != null)
             {
-                if (file != null && !FrontendUsedForRead)
-                {
-                    await FileIO.AppendLinesAsync(file, new string[1] { value });
-                }
-            }
-            finally
-            {
-                WriteFileSemaphoreSlim.Release();
+                await FileIO.AppendLinesAsync(file, values);
             }
         }
 
-        public static void SignalUpdate()
+        static async Task ResetBackendLogFile()
         {
-            frontendSignalUpdate = true;
+            _backendLogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("BackendLog.txt", CreationCollisionOption.ReplaceExisting);
+        }
+
+        static async Task BackendSemaphore(Func<Task> a)
+        {
+            await BackendSemaphoreSlim.WaitAsync();
+            try
+            {
+                await a();
+            }
+            finally
+            {
+                BackendSemaphoreSlim.Release();
+            }
+        }
+
+        static async Task FrontendSemaphore(Func<Task> a)
+        {
+            await FrontendSemaphoreSlim.WaitAsync();
+            try
+            {
+                await a();
+            }
+            finally
+            {
+                FrontendSemaphoreSlim.Release();
+            }
+        }
+
+        public static async Task<Windows.Web.Http.HttpResponseMessage> SendFeedback(Feedback fb, bool sendLogs)
+        {
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Accept.Add(new HttpMediaTypeWithQualityHeaderValue("application/json"));
+            httpClient.DefaultRequestHeaders.Add("X-ZUMO-APPLICATION", "SBEhmMRzWBrKTGXfDkhVNGfXmsSrzv88");
+
+            if (sendLogs)
+            {
+                fb.BackendLog = await FileIO.ReadTextAsync(_backendLogFile) ?? "None";
+                fb.FrontendLog = await FileIO.ReadTextAsync(_frontendLogFile) ?? "None";
+            }
+            else
+            {
+                fb.BackendLog = fb.FrontendLog = "None";
+            }
+
+            var jsonSer = new DataContractJsonSerializer(typeof(Feedback));
+            var ms = new MemoryStream();
+            jsonSer.WriteObject(ms, fb);
+            ms.Position = 0;
+            var sr = new StreamReader(ms);
+            var theContent = new StringContent(sr.ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
+
+            var str = await theContent.ReadAsStringAsync();
+            var result = await httpClient.PostAsync(new Uri(Strings.FeedbackAzureURL), new HttpStringContent(str, UnicodeEncoding.Utf8, "application/json"));
+            return result;
         }
     }
 }

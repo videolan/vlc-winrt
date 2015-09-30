@@ -15,7 +15,6 @@ using VLC_WinRT.Model;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using WinRTXamlToolkit.Controls.Extensions;
-using HttpClient = Windows.Web.Http.HttpClient;
 
 namespace VLC_WinRT.UI.Legacy.Views.VariousPages
 {
@@ -28,7 +27,6 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
 
         private void SendFeedback_Click(object sender, RoutedEventArgs e)
         {
-            LogHelper.FrontendUsedForRead = true;
             var fbItem = new Feedback();
 
             if (InsiderCheckBox.IsChecked.HasValue && InsiderCheckBox.IsChecked.Value)
@@ -63,29 +61,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
         {
             try
             {
-                var httpClient = new HttpClient();
-                httpClient.DefaultRequestHeaders.Accept.Add(new HttpMediaTypeWithQualityHeaderValue("application/json"));
-                httpClient.DefaultRequestHeaders.Add("X-ZUMO-APPLICATION", "SBEhmMRzWBrKTGXfDkhVNGfXmsSrzv88");
-
-                if (sendLogs)
-                {
-                    fb.BackendLog = await FileIO.ReadTextAsync(LogHelper.BackendLogFile) ?? "None";
-                    fb.FrontendLog = await FileIO.ReadTextAsync(LogHelper.FrontEndLogFile) ?? "None";
-                }
-                else
-                {
-                    fb.BackendLog = fb.FrontendLog = "None";
-                }
-
-                var jsonSer = new DataContractJsonSerializer(typeof (Feedback));
-                var ms = new MemoryStream();
-                jsonSer.WriteObject(ms, fb);
-                ms.Position = 0;
-                var sr = new StreamReader(ms);
-                var theContent = new StringContent(sr.ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
-
-                var str = await theContent.ReadAsStringAsync();
-                var result = await httpClient.PostAsync(new Uri(Strings.FeedbackAzureURL), new HttpStringContent(str, UnicodeEncoding.Utf8, "application/json"));
+                var result = await LogHelper.SendFeedback(fb, sendLogs);
 
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
@@ -103,7 +79,6 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
                         await md.ShowAsyncQueue();
 #endif
                     }
-                    LogHelper.FrontendUsedForRead = false;
                 });
             }
             catch (Exception e)
@@ -112,7 +87,6 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
                 {
                     StatusTextBox.Text = "An error occured when sending the feedback.";
                     ProgressRing.IsActive = false;
-                    LogHelper.FrontendUsedForRead = false;
 #if DEBUG
                     var md = new MessageDialog(e.ToString(), "Bug");
                     await md.ShowAsyncQueue();

@@ -31,10 +31,10 @@ namespace VLC_WinRT.Services.RunTime
             {
                 thumb = await file.GetThumbnailAsync(ThumbnailMode.VideosView);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 LogHelper.Log("Error getting thumbnail: ");
-                LogHelper.Log(ex);
+                LogHelper.Log(StringsHelper.ExceptionToString(e));
             }
             return thumb;
         }

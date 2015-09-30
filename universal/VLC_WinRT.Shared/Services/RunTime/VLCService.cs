@@ -70,7 +70,7 @@ namespace VLC_WinRT.Services.RunTime
             }
             catch (Exception e)
             {
-                LogHelper.Log(e, "VLC Service : Couldn't create VLC Instance");
+                LogHelper.Log("VLC Service : Couldn't create VLC Instance\n" + StringsHelper.ExceptionToString(e));
                 ToastHelper.Basic("Can't start VLC Player");
             }
             if (Instance != null)

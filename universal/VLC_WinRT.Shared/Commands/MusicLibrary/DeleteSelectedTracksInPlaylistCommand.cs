@@ -27,7 +27,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
                     }
                     catch (Exception exception)
                     {
-                        LogHelper.Log(exception);
+                        LogHelper.Log(StringsHelper.ExceptionToString(exception));
                     }
                 });
             }

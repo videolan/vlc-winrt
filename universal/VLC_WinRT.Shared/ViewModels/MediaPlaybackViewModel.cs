@@ -430,9 +430,9 @@ namespace VLC_WinRT.ViewModels
                 var stream = new StreamMedia(mrl);
                 await Locator.MediaPlaybackViewModel.SetMedia(stream);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                LogHelper.Log(ex, nameof(MediaPlaybackViewModel) + "." + nameof(PlayStream));
+                LogHelper.Log(StringsHelper.ExceptionToString(e));
                 return;
             }
             Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
@@ -743,6 +743,12 @@ namespace VLC_WinRT.ViewModels
             _mediaService.MediaFailed += _mediaService_MediaFailed;
             _mediaService.StatusChanged += PlayerStateChanged;
             _mediaService.TimeChanged += UpdateTime;
+
+            if (autoPlay)
+            {
+                // Reset the libVLC log file
+                await LogHelper.ResetBackendFile();
+            }
 
             // Send the media we want to play
             await _mediaService.SetMediaFile(media);
