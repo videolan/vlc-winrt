@@ -37,6 +37,7 @@ namespace VLC_WinRT.Views.VideoPages
         {
             this.Unloaded += VideoPlayerPage_Unloaded;
             this.SizeChanged += VideoPlayerPage_SizeChanged;
+            Responsive();
         }
 
         void VideoPlayerPage_Unloaded(object sender, RoutedEventArgs e)
