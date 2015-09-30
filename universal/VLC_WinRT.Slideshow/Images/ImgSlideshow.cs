@@ -45,11 +45,18 @@ namespace Slide2D.Images
         {
             get
             {
-                if (UseDefaultPic)
-                    return DefaultImg;
-                if (ImgIndex >= Imgs.Count)
+                try
+                {
+                    if (UseDefaultPic)
+                        return DefaultImg;
+                    if (ImgIndex >= Imgs.Count)
+                        return null;
+                    return Imgs[ImgIndex];
+                }
+                catch
+                {
                     return null;
-                return Imgs[ImgIndex];
+                }
             }
         }
 

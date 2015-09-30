@@ -1038,18 +1038,18 @@ namespace VLC_WinRT.ViewModels
             if (type == TrackType.Audio)
             {
                 target = _audioTracks;
-                source = ((VLCService)_mediaService).MediaPlayer.audioTrackDescription();
+                source = ((VLCService)_mediaService).MediaPlayer?.audioTrackDescription();
             }
             else
             {
                 target = _subtitlesTracks;
-                source = ((VLCService)_mediaService).MediaPlayer.spuDescription();
+                source = ((VLCService)_mediaService).MediaPlayer?.spuDescription();
             }
 
-            target.Clear();
+            target?.Clear();
             foreach (var t in source)
             {
-                target.Add(new DictionaryKeyValue()
+                target?.Add(new DictionaryKeyValue()
                 {
                     Id = t.id(),
                     Name = t.name(),
@@ -1057,12 +1057,12 @@ namespace VLC_WinRT.ViewModels
             }
 
             // This assumes we have a "Disable" track for both subtitles & audio
-            if (type == TrackType.Subtitle && CurrentSubtitle == null && _subtitlesTracks.Count > 1)
+            if (type == TrackType.Subtitle && CurrentSubtitle == null && _subtitlesTracks?.Count > 1)
             {
                 _currentSubtitle = 1;
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentSubtitle"));
             }
-            else if (type == TrackType.Audio && CurrentAudioTrack == null && _audioTracks.Count > 1)
+            else if (type == TrackType.Audio && CurrentAudioTrack == null && _audioTracks?.Count > 1)
             {
                 _currentAudioTrack = 1;
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentAudioTrack"));
@@ -1098,9 +1098,9 @@ namespace VLC_WinRT.ViewModels
         {
             if (!(_mediaService is VLCService)) return;
             var vlcService = (VLCService)_mediaService;
-            var mP = vlcService.MediaPlayer;
+            var mP = vlcService?.MediaPlayer;
             // Get chapters
-            var chapters = mP.chapterDescription(-1);
+            var chapters = mP?.chapterDescription(-1);
             foreach (var c in chapters)
             {
                 var vlcChapter = new VLCChapterDescription(c);
@@ -1113,8 +1113,11 @@ namespace VLC_WinRT.ViewModels
             });
 
             // Get subtitle delay etc
-            _audioDelay = mP.audioDelay();
-            _spuDelay = mP.spuDelay();
+            if (mP != null)
+            {
+                _audioDelay = mP.audioDelay();
+                _spuDelay = mP.spuDelay();
+            }
         }
 
         public async void UpdateCurrentChapter()
@@ -1149,9 +1152,12 @@ namespace VLC_WinRT.ViewModels
             try
             {
                 _systemMediaTransportControls = systemMediaTransportControls;
-                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
-                _systemMediaTransportControls.ButtonPressed += SystemMediaTransportControlsOnButtonPressed;
-                _systemMediaTransportControls.IsEnabled = false;
+                if (_systemMediaTransportControls != null)
+                {
+                    _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
+                    _systemMediaTransportControls.ButtonPressed += SystemMediaTransportControlsOnButtonPressed;
+                    _systemMediaTransportControls.IsEnabled = false;
+                }
             }
             catch (Exception exception)
             { }
