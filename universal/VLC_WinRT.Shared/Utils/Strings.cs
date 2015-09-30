@@ -12,7 +12,7 @@ namespace VLC_WinRT.Utils
     /// <summary>
     /// Magic strings belong here
     /// </summary>
-    public static class Strings
+    public class Strings
     {
         public static readonly string DatabaseVersion = "DatabaseVersion";
 
@@ -132,7 +132,7 @@ namespace VLC_WinRT.Utils
         public static readonly string Settings = _resourcesLoader.GetString("Settings");
         public static readonly string License = _resourcesLoader.GetString("License");
 
-        static Strings()
+        public Strings()
         {
         }
 

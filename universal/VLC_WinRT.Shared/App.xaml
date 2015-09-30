@@ -1,6 +1,7 @@
 ﻿<Application x:Class="VLC_WinRT.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:utils="using:VLC_WinRT.Utils">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
@@ -95,6 +96,7 @@
                 <ResourceDictionary Source="ms-appx:///Resources/Flyouts.xaml" />
                 <ResourceDictionary Source="ms-appx:///Resources/PlatformFlyouts.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <utils:Strings x:Key="Strings" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
