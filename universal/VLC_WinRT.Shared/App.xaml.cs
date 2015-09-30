@@ -44,6 +44,7 @@ namespace VLC_WinRT
         public static Model.Music.AlbumItem SelectedAlbumItem;
         public static IContainer Container;
         public static BackgroundAudioHelper BackgroundAudioHelper = new BackgroundAudioHelper();
+
         /// <summary>
         ///     Initializes the singleton application object.  This is the first line of authored code
         ///     executed, and as such is the logical equivalent of main() or WinMain().
