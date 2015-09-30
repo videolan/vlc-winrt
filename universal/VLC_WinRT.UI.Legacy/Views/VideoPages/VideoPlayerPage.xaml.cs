@@ -10,6 +10,7 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using VLC_WinRT.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -18,7 +19,9 @@ using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Helpers;
 using Windows.Graphics.Display;
 using Windows.UI.Input;
+using Windows.UI.Popups;
 using VLC_WinRT.Model.Video;
+using VLC_WinRT.Services.RunTime;
 
 namespace VLC_WinRT.Views.VideoPages
 {
@@ -242,6 +245,62 @@ namespace VLC_WinRT.Views.VideoPages
             else if (newVol < 0)
                 newVol = 0;
             return newVol;
+        }
+
+        private void PlaceholderInteractionGrid_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            PopMainMenu();
+        }
+
+        private async void PopMainMenu()
+        {
+            var pos = MouseService.GetPointerPosition();
+            var menu = new PopupMenu();
+            menu.Commands.Add(new UICommand(Locator.MediaPlaybackViewModel.IsPlaying ? "Pause" : "Play", command => Locator.MediaPlaybackViewModel.Pause()));
+            menu.Commands.Add(new UICommand("Stop", command => Locator.MediaPlaybackViewModel.GoBack.Execute(null)));
+            menu.Commands.Add(new UICommandSeparator());
+            menu.Commands.Add(new UICommand("Audio", PopAudioMenu));
+            menu.Commands.Add(new UICommand("Video", PopVideoMenu));
+            menu.Commands.Add(new UICommand("Playback", PopPlaybackMenu));
+            await menu.ShowForSelectionAsync(new Rect(pos, pos), Placement.Right);
+        }
+
+        private async void PopVideoMenu(IUICommand c)
+        {
+            var pos = MouseService.GetPointerPosition();
+            var menu = new PopupMenu();
+            menu.Commands.Add(new UICommand("Back", command => PopMainMenu()));
+            menu.Commands.Add(new UICommand("Fullscreen toggle", command => AppViewHelper.SetFullscreen()));
+            menu.Commands.Add(new UICommandSeparator());
+            menu.Commands.Add(new UICommand("Subtitles", command => Locator.VideoVm.ToggleIsVideoPlayerSubtitlesSettingsVisible.Execute(null)));
+            await menu.ShowForSelectionAsync(new Rect(pos, pos), Placement.Right);
+        }
+
+        private async void PopPlaybackMenu(IUICommand c)
+        {
+            var pos = MouseService.GetPointerPosition();
+            var menu = new PopupMenu();
+            menu.Commands.Add(new UICommand("Back", command => PopMainMenu()));
+            menu.Commands.Add(new UICommand("Chapters", command => Locator.VideoVm.OpenVideoPlayerOptionsPanel.Execute(null)));
+            menu.Commands.Add(new UICommandSeparator());
+            menu.Commands.Add(new UICommand("Increase speed", command => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("faster")));
+            menu.Commands.Add(new UICommand("Decrease speed", command => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("slower")));
+            menu.Commands.Add(new UICommand("Reset speed", command => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("reset")));
+            await menu.ShowForSelectionAsync(new Rect(pos, pos), Placement.Right);
+
+        }
+
+        private async void PopAudioMenu(IUICommand c)
+        {
+            var pos = MouseService.GetPointerPosition();
+            var menu = new PopupMenu();
+            menu.Commands.Add(new UICommand("Back", command => PopMainMenu()));
+            menu.Commands.Add(new UICommand("Audio tracks", command => Locator.VideoVm.ToggleIsVideoPlayerAudioTracksSettingsVisible.Execute(null)));
+            menu.Commands.Add(new UICommandSeparator());
+            menu.Commands.Add(new UICommand("Increase volume", command => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("higher")));
+            menu.Commands.Add(new UICommand("Decrease volume", command => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("lower")));
+            menu.Commands.Add(new UICommand("Mute", command => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("mute")));
+            await menu.ShowForSelectionAsync(new Rect(pos, pos), Placement.Right);
         }
     }
 }
