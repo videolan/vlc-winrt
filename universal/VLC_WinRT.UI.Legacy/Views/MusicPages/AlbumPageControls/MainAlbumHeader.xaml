@@ -68,6 +68,7 @@
                           VerticalAlignment="Top"
                           Margin="{StaticResource FrameMarginRight}"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          x:Uid="ViewArtistLabel"
                           Label="view artist"
                           Command="{Binding ViewArtist}"
                           CommandParameter="{Binding ArtistId}">
@@ -85,7 +86,8 @@
                        FontWeight="Light"
                        Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}">
                 <Run Text="{Binding Tracks.Count}"/>
-                <Run Text="tracks"/>
+                <Run Text="tracks"
+                     x:Uid="Track"/>
             </TextBlock>
         </Grid>
 
@@ -105,7 +107,7 @@
             <AppBarButton Grid.Column="1"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
-                          Label="Play"
+                          x:Uid="PlayAlbumButton"
                           Command="{Binding PlayAlbum}"
                           CommandParameter="{Binding}"
                           Foreground="{StaticResource MainColor}">

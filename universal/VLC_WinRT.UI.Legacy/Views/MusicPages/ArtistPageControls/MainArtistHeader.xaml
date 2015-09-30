@@ -82,7 +82,7 @@
             </AppBarButton>
             <AppBarButton Grid.Column="0"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Label="Play all"
+                          x:Uid="PlayAllAppButton"
                           VerticalAlignment="Center"
                           Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayArtistAlbumsCommand}"
                           CommandParameter="{Binding CurrentArtist}"
