@@ -47,6 +47,7 @@ namespace VLC_WinRT.Services.RunTime
             {
                 artist.Biography = bio;
             });
+            await Locator.MusicLibraryVM._artistDatabase.Update(artist);
         }
 
         public async Task<bool> GetAlbumCover(AlbumItem album)

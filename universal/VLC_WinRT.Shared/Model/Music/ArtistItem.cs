@@ -150,14 +150,14 @@ namespace VLC_WinRT.Model.Music
         {
             get
             {
-                if (_biography != null)
+                if (!string.IsNullOrEmpty(_biography) && _biography != "Loading")
                 {
                     return _biography;
                 }
                 if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
                     return "Please verify your internet connection";
                 Task.Run(async () => await App.MusicMetaService.GetArtistBiography(this));
-                return "Loading";
+                return null;
             }
             set { SetProperty(ref _biography, value); }
         }
