@@ -9,6 +9,7 @@
 
 using System;
 using Windows.Devices.Input;
+using Windows.Foundation;
 using Windows.UI.Xaml;
 using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels;
@@ -118,6 +119,24 @@ namespace VLC_WinRT.Services.RunTime
                 Window.Current.CoreWindow.PointerCursor = _oldCursor;
 #endif
             }
+        }
+
+        public static Point GetPointerPosition()
+        {
+            Window currentWindow = Window.Current;
+            Point point;
+
+            try
+            {
+                point = currentWindow.CoreWindow.PointerPosition;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return new Point(double.NegativeInfinity, double.NegativeInfinity);
+            }
+
+            Rect bounds = currentWindow.Bounds;
+            return new Point(point.X - bounds.X, point.Y - bounds.Y);
         }
     }
 }
