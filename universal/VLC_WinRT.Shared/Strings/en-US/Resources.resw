@@ -142,7 +142,7 @@
     <value>albums</value>
   </data>
   <data name="AlbumsFound" xml:space="preserve">
-    <value>albums found</value>
+    <value>albums found : {0}</value>
   </data>
   <data name="AllBackers" xml:space="preserve">
     <value>all backers</value>
@@ -244,7 +244,7 @@
     <value>feedback sent! thank you</value>
   </data>
   <data name="FileExplorer" xml:space="preserve">
-    <value>file explorer</value>
+    <value>files</value>
   </data>
   <data name="GoldPartners" xml:space="preserve">
     <value>gold partners</value>

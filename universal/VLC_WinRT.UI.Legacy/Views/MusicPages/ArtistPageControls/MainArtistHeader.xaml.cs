@@ -2,6 +2,7 @@
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using VLC_WinRT.Utils;
 using WinRTXamlToolkit.Controls.Extensions;
 namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
 {
@@ -28,13 +29,13 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
             parent = GetContentPresenter();
             if (IsArtistAlbumsList(parent))
             {
-                SwitchBetweenViewsButton.Label = _resourcesLoader.GetString("Track/Text");
+                SwitchBetweenViewsButton.Label = Strings.Tracks;
                 SwitchBetweenViewsGlyph.Glyph = App.Current.Resources["DropdownSymbol"].ToString();
             }
             else
             {
                 SwitchBetweenViewsGlyph.Glyph = App.Current.Resources["AlbumDiscSymbol"].ToString();
-                SwitchBetweenViewsButton.Label = _resourcesLoader.GetString("AlbumText/Text"); ;
+                SwitchBetweenViewsButton.Label = Strings.Albums;
             }
         }
 

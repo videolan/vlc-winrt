@@ -672,7 +672,7 @@
         </trans-unit>
         <trans-unit id="Resources\AlbumsFound" translate="yes" xml:space="preserve">
           <source>albums found</source>
-          <target state="new">albums found</target>
+          <target state="translated">albums found : {0}</target>
         </trans-unit>
         <trans-unit id="Resources\Albums" translate="yes" xml:space="preserve">
           <source>albums</source>
