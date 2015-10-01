@@ -137,6 +137,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="ApplicationInsights.config" />
+    <None Include="MultilingualResources\VLC_WinRT.Windows.fr-FR.xlf" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
