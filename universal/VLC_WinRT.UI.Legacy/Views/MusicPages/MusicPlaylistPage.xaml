@@ -16,7 +16,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="1"
-                   Text="playlist"
+                   Text="{Binding Source={StaticResource Strings}, Path=Playlist}"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    Margin="{StaticResource FrameMargin}" />
         <ListView Grid.Row="3"

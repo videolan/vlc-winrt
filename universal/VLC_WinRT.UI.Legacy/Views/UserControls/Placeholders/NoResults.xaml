@@ -17,7 +17,7 @@
                    HorizontalAlignment="Center"
                    TextAlignment="Center"
                    VerticalAlignment="Center" />
-        <TextBlock Text="Sorry, we've got no results to show"
+        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=NoResults}"
                    FontSize="23"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    TextAlignment="Center" />

@@ -97,6 +97,7 @@ namespace VLC_WinRT.Utils
         public static string Loading => _resourcesLoader.GetString(nameof(Loading));
         public static string LoadingMusic => _resourcesLoader.GetString(nameof(LoadingMusic));
         public static string NoInternetConnection => _resourcesLoader.GetString(nameof(NoInternetConnection));
+        public static string Website => _resourcesLoader.GetString(nameof(Website));
 
         // MUSIC ITEMS
         public static string UnknownArtist => _resourcesLoader.GetString(nameof(UnknownArtist));
@@ -108,11 +109,14 @@ namespace VLC_WinRT.Utils
         public static string Artists => _resourcesLoader.GetString(nameof(Artists));
         public static string Songs => _resourcesLoader.GetString(nameof(Songs));
         public static string Playlists => _resourcesLoader.GetString(nameof(Playlists));
+        public static string MyPlaylists => _resourcesLoader.GetString(nameof(MyPlaylists));
         public static string Tracks => _resourcesLoader.GetString(nameof(Tracks));
+        public static string MusicShows => _resourcesLoader.GetString(nameof(MusicShows));
 
         // MUSIC MICS
         public static string Audio => _resourcesLoader.GetString(nameof(Audio));
         public static string MusicFolders => _resourcesLoader.GetString(nameof(MusicFolders));
+        public static string MusicFoldersDescription => _resourcesLoader.GetString(nameof(MusicFoldersDescription));
         public static string OrderByArtist => _resourcesLoader.GetString(nameof(OrderByArtist));
         public static string OrderByDate => _resourcesLoader.GetString(nameof(OrderByDate));
         public static string OrderByAlbum => _resourcesLoader.GetString(nameof(OrderByAlbum));
@@ -122,6 +126,8 @@ namespace VLC_WinRT.Utils
         public static string Videos => _resourcesLoader.GetString(nameof(Videos));
         public static string Shows => _resourcesLoader.GetString(nameof(Shows));
         public static string CameraRoll => _resourcesLoader.GetString(nameof(CameraRoll));
+        public static string Season => _resourcesLoader.GetString(nameof(Season));
+        public static string Episode => _resourcesLoader.GetString(nameof(Episode));
 
         // VIDEO MISC
         public static string Video => _resourcesLoader.GetString(nameof(Video));
@@ -132,6 +138,7 @@ namespace VLC_WinRT.Utils
         public static string SubtitleDelay => _resourcesLoader.GetString(nameof(SubtitleDelay));
 
         // PLAYBACK
+        public static string Playlist => _resourcesLoader.GetString(nameof(Playlist));
         public static string NowPlaying => _resourcesLoader.GetString(nameof(NowPlaying));
         public static string Speed => _resourcesLoader.GetString(nameof(Speed));
         public static string ResetSpeed => _resourcesLoader.GetString(nameof(ResetSpeed));
@@ -167,6 +174,8 @@ namespace VLC_WinRT.Utils
 
         // ACTIONS
         public static string Back => _resourcesLoader.GetString(nameof(Back));
+        public static string Add => _resourcesLoader.GetString(nameof(Add));
+
         // PLAY ..
         public static string Play => _resourcesLoader.GetString(nameof(Play));
         public static string Playback => _resourcesLoader.GetString(nameof(Playback));
@@ -186,9 +195,14 @@ namespace VLC_WinRT.Utils
         public static string OpenStream => _resourcesLoader.GetString(nameof(OpenStream));
         public static string OpenSubtitle => _resourcesLoader.GetString(nameof(OpenSubtitle));
 
+        // DELETE
+        public static string DeleteSelected => _resourcesLoader.GetString(nameof(DeleteSelected));
+        public static string DeletePlaylist => _resourcesLoader.GetString(nameof(DeletePlaylist));
+
         // PIN ...
         public static string PinAlbum => _resourcesLoader.GetString(nameof(PinAlbum));
         public static string PinArtist => _resourcesLoader.GetString(nameof(PinArtist));
+        public static string TileRemoved => _resourcesLoader.GetString(nameof(TileRemoved));
 
         public static string EditMetadata => _resourcesLoader.GetString(nameof(EditMetadata));
         public static string ChangeAlbumCover => _resourcesLoader.GetString(nameof(ChangeAlbumCover));
@@ -198,7 +212,9 @@ namespace VLC_WinRT.Utils
         // PLAYLISTS
         public static string NewPlaylist => _resourcesLoader.GetString(nameof(NewPlaylist));
         public static string AddToPlaylist => _resourcesLoader.GetString(nameof(AddToPlaylist));
-
+        public static string AddToCurrentPlaylist => _resourcesLoader.GetString(nameof(AddToCurrentPlaylist));
+        public static string ShowPlaylist => _resourcesLoader.GetString(nameof(ShowPlaylist));
+        
         // VIEW ...
         public static string ViewArtist => _resourcesLoader.GetString(nameof(ViewArtist));
         public static string ViewAlbum => _resourcesLoader.GetString(nameof(ViewAlbum));
@@ -206,6 +222,7 @@ namespace VLC_WinRT.Utils
         public static string AddToCollection => _resourcesLoader.GetString(nameof(AddToCollection));
         public static string RemoveFolder => _resourcesLoader.GetString(nameof(RemoveFolder));
         public static string RemoveVideoFolderDescription => _resourcesLoader.GetString(nameof(RemoveVideoFolderDescription));
+        public static string RemoveMusicFolderDescription => _resourcesLoader.GetString(nameof(RemoveMusicFolderDescription));
         public static string AddFolder => _resourcesLoader.GetString(nameof(AddFolder));
         public static string Connect => _resourcesLoader.GetString(nameof(Connect));
         public static string Reset => _resourcesLoader.GetString(nameof(Reset));
@@ -296,7 +313,12 @@ namespace VLC_WinRT.Utils
         public static string SpecifiedBuildIncorrect => _resourcesLoader.GetString(nameof(SpecifiedBuildIncorrect));
         public static string WindowsBuildNumberPlaceholder => _resourcesLoader.GetString(nameof(WindowsBuildNumberPlaceholder));
 
-
+        // ERRORS
+        public static string FailOpenVideo => _resourcesLoader.GetString(nameof(FailOpenVideo));
+        public static string FailNavigateVideoPlayerPage => _resourcesLoader.GetString(nameof(FailNavigateVideoPlayerPage));
+        public static string FailStartVLCEngine => _resourcesLoader.GetString(nameof(FailStartVLCEngine));
+        public static string FailFilePlayBackground => _resourcesLoader.GetString(nameof(FailFilePlayBackground));
+        
         public Strings()
         {
         }

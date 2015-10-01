@@ -133,7 +133,7 @@
         <AppBarButton x:Name="ShowPlaylistButton"
                       Grid.Row="1"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Label="Show playlist"
+                      Label="{Binding Source={StaticResource Strings}, Path=ShowPlaylist}"
                       Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.GoToMusicPlaylistPageCommand}"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center"

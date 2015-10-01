@@ -86,7 +86,7 @@
                                            Style="{StaticResource SubheaderTextBlockStyle}"
                                            FontSize="24" />
                                 <HyperlinkButton NavigateUri="http://www.judsonwhite.com/"
-                                                 Content="Website"
+                                                 Content="{Binding Source={StaticResource Strings}, Path=Website}"
                                                  Margin="0,4,0,0" />
                             </StackPanel>
                             <StackPanel Margin="0,10">
@@ -94,7 +94,7 @@
                                            Style="{StaticResource SubheaderTextBlockStyle}"
                                            FontSize="24" />
                                 <HyperlinkButton NavigateUri="http://www.monostream.ch/"
-                                                 Content="Website"
+                                                 Content="{Binding Source={StaticResource Strings}, Path=Website}"
                                                  Margin="0,4,0,0" />
                             </StackPanel>
                             <StackPanel Margin="0,10">
@@ -118,35 +118,35 @@
                                 <TextBlock Text="Kaoxee Web"
                                            Style="{StaticResource SubheaderTextBlockStyle}" />
                                 <HyperlinkButton NavigateUri="http://www.kaoxee.com/"
-                                                 Content="Website"
+                                                 Content="{Binding Source={StaticResource Strings}, Path=Website}"
                                                  Margin="0,4,0,0" />
                             </StackPanel>
                             <StackPanel Margin="0,10">
                                 <TextBlock Text="7digital"
                                            Style="{StaticResource SubheaderTextBlockStyle}" />
                                 <HyperlinkButton NavigateUri="http://www.7digital.com/"
-                                                 Content="Website"
+                                                 Content="{Binding Source={StaticResource Strings}, Path=Website}"
                                                  Margin="0,4,0,0" />
                             </StackPanel>
                             <StackPanel Margin="0,10">
                                 <TextBlock Text="Gabriel Topala"
                                            Style="{StaticResource SubheaderTextBlockStyle}" />
                                 <HyperlinkButton NavigateUri="http://www.gtopala.com/"
-                                                 Content="Website"
+                                                 Content="{Binding Source={StaticResource Strings}, Path=Website}"
                                                  Margin="0,4,0,0" />
                             </StackPanel>
                             <StackPanel Margin="0,10">
                                 <TextBlock Text="MySurround"
                                            Style="{StaticResource SubheaderTextBlockStyle}" />
                                 <HyperlinkButton NavigateUri="http://www.mysurround.com/"
-                                                 Content="Website"
+                                                 Content="{Binding Source={StaticResource Strings}, Path=Website}"
                                                  Margin="0,4,0,0" />
                             </StackPanel>
                             <StackPanel Margin="0,10">
                                 <TextBlock Text="Melissa Pack"
                                            Style="{StaticResource SubheaderTextBlockStyle}" />
                                 <HyperlinkButton NavigateUri="http://freeldssheetmusic.org/"
-                                                 Content="Website"
+                                                 Content="{Binding Source={StaticResource Strings}, Path=Website}"
                                                  Margin="0,4,0,0" />
                             </StackPanel>
                         </StackPanel>

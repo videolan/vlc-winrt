@@ -34,7 +34,7 @@
                           FontSize="30" />
             </Button>
             <TextBlock x:Name="HeaderTextBlock"
-                       Text="now playing"
+                       Text="{Binding Source={StaticResource Strings}, Path=NowPlaying}"
                        FontSize="36"
                        FontWeight="ExtraLight"
                        Margin="{StaticResource FrameMarginLeft}" />

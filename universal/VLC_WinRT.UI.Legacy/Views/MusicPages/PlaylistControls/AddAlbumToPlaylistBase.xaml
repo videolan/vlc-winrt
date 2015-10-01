@@ -52,7 +52,7 @@
                        TextTrimming="CharacterEllipsis"
                        TextWrapping="NoWrap"
                        VerticalAlignment="Top"
-                       Text="add to playlist"
+                       Text="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
                        Style="{StaticResource SubheaderTextBlockStyle}"/>
         </Grid>
         <Grid Grid.Row="2"
@@ -77,7 +77,7 @@
         </Grid>
         <TextBlock Grid.Row="3"
                    Grid.Column="1"
-                   Text="Create a new playlist"
+                   Text="{Binding Source={StaticResource Strings}, Path=NewPlaylist}"
                    Margin="0,12,0,0"
                    Style="{StaticResource TitleTextBlockStyle}" />
         <Grid Grid.Row="4"
@@ -88,14 +88,14 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <userControls:FocusTextBox x:Name="playlistName"
-                                       PlaceholderText="Playlist name" />
+                                       PlaceholderText="{Binding Source={StaticResource Strings}, Path=PlaylistNamePlaceholder}" />
             <Button Grid.Column="1"
-                    Content="Add"
+                    Content="{Binding Source={StaticResource Strings}, Path=Add}"
                     Click="NewPlaylistButton_Click" />
         </Grid>
         <TextBlock Grid.Row="5"
                    Grid.Column="1"
-                   Text="My playlists"
+                   Text="{Binding Source={StaticResource Strings}, Path=MyPlaylists}"
                    Style="{StaticResource TitleTextBlockStyle}" />
         <ListView Grid.Row="6"
                   Grid.Column="1"
@@ -124,7 +124,7 @@
             <Button Grid.Column="1"
                     Margin="{StaticResource FrameMarginLeft}"
                     Width="168"
-                    Content="Add to current playlist"
+                    Content="{Binding Source={StaticResource Strings}, Path=AddToCurrentPlaylist}"
                     Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.AddToPlayingPlaylist}"
                     CommandParameter="{Binding CurrentAlbum}"
                     Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"

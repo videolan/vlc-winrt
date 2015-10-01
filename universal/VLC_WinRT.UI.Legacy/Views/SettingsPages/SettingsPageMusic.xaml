@@ -37,8 +37,7 @@
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight" />
                 <TextBlock Tag="WindowsOnly"
-                           x:Uid="MusicSettings"
-                           Text="VLC will only search songs that are in your music library. You can add folders to your library here:"
+                           Text="{Binding Source={StaticResource Strings}, Path=MusicFoldersDescription}"
                            Style="{StaticResource BodyTextBlockStyle}"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
                 <ListView Tag="WindowsOnly"
@@ -62,7 +61,7 @@
                                                     <RowDefinition Height="12" />
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <TextBlock Text="If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC."
+                                                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RemoveMusicFolderDescription}"
                                                            Style="{StaticResource BodyTextBlockStyle}" />
                                                 <Button Grid.Row="2"
                                                         Content="{Binding Source={StaticResource Strings}, Path=RemoveFolder}"

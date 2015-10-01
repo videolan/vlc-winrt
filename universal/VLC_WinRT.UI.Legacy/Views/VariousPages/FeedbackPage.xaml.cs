@@ -68,7 +68,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
                     if (result.EnsureSuccessStatusCode().IsSuccessStatusCode)
                     {
                         Locator.NavigationService.Go(VLCPage.SettingsPage);
-                        ToastHelper.Basic("Feedback sent ! Thank you.");
+                        ToastHelper.Basic(Strings.FeedbackThankYou);
                     }
                     else
                     {

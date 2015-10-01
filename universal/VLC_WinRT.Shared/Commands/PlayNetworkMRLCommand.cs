@@ -23,7 +23,6 @@ namespace VLC_WinRT.Commands
             var mrl = parameter as string;
             if (string.IsNullOrEmpty(mrl))
             {
-                ToastHelper.Basic("Please enter a valid URL.");
                 return;
             }
             await Locator.MediaPlaybackViewModel.PlayStream(mrl);

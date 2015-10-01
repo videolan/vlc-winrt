@@ -38,7 +38,7 @@
                 <Run Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
                      Foreground="{StaticResource MainColor}" />
                 <LineBreak />
-                <Run Text="UPCOMING SHOWS"
+                <Run Text="{Binding Source={StaticResource Strings}, Path=MusicShows}"
                      FontSize="19" />
             </TextBlock>
         </Grid>

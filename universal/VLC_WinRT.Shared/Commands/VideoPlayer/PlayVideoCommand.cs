@@ -32,7 +32,9 @@ namespace VLC_WinRT.Commands.VideoPlayer
             // If the VM is null, we can't do anything. So just return.
             if (videoVm == null)
             {
+#if DEBUG
                 ToastHelper.Basic("Failed to load the selected video, the video view model is null.");
+#endif
                 LogHelper.Log("PLAYVIDEO: VideoVm is null, returning");
                 return;
             }
@@ -50,7 +52,7 @@ namespace VLC_WinRT.Commands.VideoPlayer
             {
                 // TODO: Enhance error handling
                 // TODO: Remove hardcoded English
-                ToastHelper.Basic("Failed to load the selected video");
+                ToastHelper.Basic(Strings.FailOpenVideo);
                 return;
             }
 
@@ -63,7 +65,7 @@ namespace VLC_WinRT.Commands.VideoPlayer
             {
                 // TODO: Enhance error handling
                 // TODO: Remove hardcoded English
-                ToastHelper.Basic(string.Format("Failed to navigate to video player page."));
+                ToastHelper.Basic(string.Format(Strings.FailNavigateVideoPlayerPage));
                 LogHelper.Log("PLAYVIDEO: failed to navigate to video player page.");
             }
         }

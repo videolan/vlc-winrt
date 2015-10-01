@@ -21,11 +21,11 @@
             <TextBlock Grid.Column="2"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        VerticalAlignment="Center">
-                <Run Text="Season"
+                <Run Text="{Binding Source={StaticResource Strings}, Path=Season}"
                      FontSize="20" />
                 <Run Text="{Binding Season}" />
                 <LineBreak />
-                <Run Text="Episode"
+                <Run Text="{Binding Source={StaticResource Strings}, Path=Episode}"
                      FontSize="20" />
                 <Run Text="{Binding Episode}" />
             </TextBlock>

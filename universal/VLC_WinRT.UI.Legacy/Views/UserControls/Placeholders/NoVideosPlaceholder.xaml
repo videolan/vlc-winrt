@@ -40,7 +40,7 @@
                 Style="{StaticResource TextBlockButtonStyle}"
                 HorizontalAlignment="Center">
             <TextBlock>
-                <Run Text="shows"
+                <Run Text="{Binding Source={StaticResource Strings}, Path=Shows}"
                      FontWeight="Light"
                      FontSize="25"/>
                 <Run Text="{StaticResource ChevronToRightSymbol}"
@@ -52,7 +52,7 @@
                 Style="{StaticResource TextBlockButtonStyle}"
                 HorizontalAlignment="Center">
             <TextBlock>
-                <Run Text="camera roll"
+                <Run Text="{Binding Source={StaticResource Strings}, Path=CameraRoll}"
                      FontWeight="Light"
                      FontSize="25"/>
                 <Run Text="{StaticResource ChevronToRightSymbol}"

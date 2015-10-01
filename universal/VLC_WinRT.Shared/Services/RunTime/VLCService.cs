@@ -21,6 +21,7 @@ using System.Linq;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Model.Stream;
 using libVLCX;
+using VLC_WinRT.Utils;
 using MediaPlayer = libVLCX.MediaPlayer;
 using VLC_WinRT.ViewModels;
 
@@ -71,7 +72,7 @@ namespace VLC_WinRT.Services.RunTime
             catch (Exception e)
             {
                 LogHelper.Log("VLC Service : Couldn't create VLC Instance\n" + StringsHelper.ExceptionToString(e));
-                ToastHelper.Basic("Can't start VLC Player");
+                ToastHelper.Basic(Strings.FailStartVLCEngine);
             }
             if (Instance != null)
             {

@@ -314,7 +314,7 @@ namespace VLC_WinRT.Helpers
             {
                 SecondaryTile secondaryTile = new SecondaryTile(tileId);
                 await secondaryTile.RequestDeleteForSelectionAsync(Window.Current.Bounds, Placement.Default);
-                ToastHelper.Basic("Tile removed !");
+                ToastHelper.Basic(Strings.TileRemoved);
             }
         }
 

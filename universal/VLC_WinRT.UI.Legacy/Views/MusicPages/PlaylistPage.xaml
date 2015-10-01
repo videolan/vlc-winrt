@@ -78,7 +78,7 @@
                                FontWeight="Light"
                                Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}">
                 <Run Text="{Binding CurrentTrackCollection.Playlist.Count}" />
-                <Run Text="tracks" />
+                <Run Text="{Binding Source={StaticResource Strings}, Path=Tracks}" />
                     </TextBlock>
                 </Grid>
 
@@ -93,7 +93,7 @@
                     </Grid.ColumnDefinitions>
                     <AppBarButton Grid.Column="1"
                                   Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                  Label="Play all"
+                                  Label="{Binding Source={StaticResource Strings}, Path=PlayAll}"
                                   Command="{Binding CurrentTrackCollection.PlayTrackCollCommand}"
                                   CommandParameter="0">
                         <AppBarButton.Icon>
@@ -102,7 +102,7 @@
                         </AppBarButton.Icon>
                     </AppBarButton>
                     <AppBarButton Grid.Column="0"
-                                  Label="delete selected"
+                                  Label="{Binding Source={StaticResource Strings}, Path=DeleteSelected}"
                                   Style="{StaticResource AppBarButtonStyleHorizontal}"
                                   Visibility="{Binding CurrentTrackCollection.SelectedTracks.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
                                   Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.DeletePlaylistTrackCommand}">
@@ -113,7 +113,7 @@
                     </AppBarButton>
                     <AppBarButton Grid.Column="3"
                                   Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                  Label="delete playlist"
+                                  Label="{Binding Source={StaticResource Strings}, Path=DeletePlaylist}"
                                   DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                                   Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.DeletePlaylistCommand}">
                         <AppBarButton.Icon>

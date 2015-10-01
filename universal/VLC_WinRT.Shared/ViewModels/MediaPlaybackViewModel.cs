@@ -726,7 +726,7 @@ namespace VLC_WinRT.ViewModels
                     }
                     else
                     {
-                        ToastHelper.Basic("This file might not play in background", false, "background");
+                        ToastHelper.Basic(Strings.FailFilePlayBackground, false, "background");
                         _playerEngine = PlayerEngine.VLC;
                         _mediaService.Stop();
                     }

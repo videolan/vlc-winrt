@@ -139,7 +139,7 @@
             </Grid>
             <AppBarButton Grid.Row="3"
                           Margin="{StaticResource FrameMargin}"
-                          Label="Add to current playlist"
+                          Label="{Binding Source={StaticResource Strings}, Path=AddToCurrentPlaylist}"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.AddToPlayingPlaylist}"
                           CommandParameter="{Binding}"
