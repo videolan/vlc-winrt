@@ -371,7 +371,7 @@
     <Style x:Key="ThinProgressBar"
            TargetType="ProgressBar">
         <Setter Property="Foreground"
-                Value="{StaticResource ProgressBarForegroundThemeBrush}" />
+                Value="{ThemeResource MainColor}" />
         <Setter Property="Background"
                 Value="{StaticResource ProgressBarBackgroundThemeBrush}" />
         <Setter Property="BorderBrush"
@@ -557,27 +557,27 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="E1"
                                                                        Storyboard.TargetProperty="Fill">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource ProgressBarIndeterminateForegroundThemeBrush}" />
+                                                                    Value="{ThemeResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="E2"
                                                                        Storyboard.TargetProperty="Fill">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource ProgressBarIndeterminateForegroundThemeBrush}" />
+                                                                    Value="{ThemeResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="E3"
                                                                        Storyboard.TargetProperty="Fill">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource ProgressBarIndeterminateForegroundThemeBrush}" />
+                                                                    Value="{ThemeResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="E4"
                                                                        Storyboard.TargetProperty="Fill">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource ProgressBarIndeterminateForegroundThemeBrush}" />
+                                                                    Value="{ThemeResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="E5"
                                                                        Storyboard.TargetProperty="Fill">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource ProgressBarIndeterminateForegroundThemeBrush}" />
+                                                                    Value="{ThemeResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <!-- Both FadeOutThemeAnimation and a DoubleAnimation on Opacity are necessary
                                          here.  The FadeOutThemeAnimation is necessary in the Indeterminate state so
@@ -1096,23 +1096,6 @@
                                 </VisualState>
                                 <VisualState x:Name="PointerOverPressed">
                                     <Storyboard>
-                                        <!--<PointerDownThemeAnimation TargetName="ContentContainer" />
-                                                            <DoubleAnimation Storyboard.TargetName="PointerOverBorder"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     Duration="0"
-                                                     To="1" />
-                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SelectionBackground"
-                                                                    Storyboard.TargetProperty="Fill">
-                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBackgroundThemeBrush}" />
-                                                            </ObjectAnimationUsingKeyFrames>
-                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SelectedBorder"
-                                                                    Storyboard.TargetProperty="Stroke">
-                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBorderThemeBrush}" />
-                                                            </ObjectAnimationUsingKeyFrames>
-                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SelectedEarmark"
-                                                                   Storyboard.TargetProperty="Fill">
-                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBackgroundThemeBrush}" />
-                                                            </ObjectAnimationUsingKeyFrames>-->
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
@@ -1457,7 +1440,7 @@
                                                Stroke="{StaticResource ListViewItemFocusBorderThemeBrush}" />
                                     <Rectangle x:Name="SelectionBackground"
                                                Margin="4"
-                                               Fill="{StaticResource ListViewItemSelectedBackgroundThemeBrush}"
+                                               Fill="{ThemeResource SemiLightMainColor}"
                                                Opacity="0" />
                                     <Border x:Name="ContentBorder"
                                             Background="{TemplateBinding Background}"
@@ -1494,7 +1477,7 @@
                                     <Rectangle x:Name="SelectedBorder"
                                                IsHitTestVisible="False"
                                                Opacity="0"
-                                               Stroke="{StaticResource ListViewItemSelectedBackgroundThemeBrush}"
+                                               Stroke="{ThemeResource SemiLightMainColor}"
                                                StrokeThickness="{StaticResource ListViewItemSelectedBorderThemeThickness}"
                                                Margin="4" />
                                     <Border x:Name="SelectedCheckMarkOuter"
@@ -1508,7 +1491,7 @@
                                               Width="40">
                                             <Path x:Name="SelectedEarmark"
                                                   Data="M0,0 L40,0 L40,40 z"
-                                                  Fill="{StaticResource ListViewItemSelectedBackgroundThemeBrush}"
+                                                  Fill="{ThemeResource SemiLightMainColor}"
                                                   Stretch="Fill" />
                                             <Path Data="F1 M133.1,17.9 L137.2,13.2 L144.6,19.6 L156.4,5.8 L161.2,9.9 L145.6,28.4 z"
                                                   Fill="{StaticResource ListViewItemCheckThemeBrush}"
@@ -1579,23 +1562,6 @@
                                 </VisualState>
                                 <VisualState x:Name="PointerOverPressed">
                                     <Storyboard>
-                                        <!--<PointerDownThemeAnimation TargetName="ContentContainer" />
-                                                            <DoubleAnimation Storyboard.TargetName="PointerOverBorder"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     Duration="0"
-                                                     To="1" />
-                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SelectionBackground"
-                                                                    Storyboard.TargetProperty="Fill">
-                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBackgroundThemeBrush}" />
-                                                            </ObjectAnimationUsingKeyFrames>
-                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SelectedBorder"
-                                                                    Storyboard.TargetProperty="Stroke">
-                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBorderThemeBrush}" />
-                                                            </ObjectAnimationUsingKeyFrames>
-                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SelectedEarmark"
-                                                                   Storyboard.TargetProperty="Fill">
-                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBackgroundThemeBrush}" />
-                                                            </ObjectAnimationUsingKeyFrames>-->
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
@@ -1938,7 +1904,7 @@
                                                Stroke="{StaticResource ListViewItemFocusBorderThemeBrush}" />
                                     <Rectangle x:Name="SelectionBackground"
                                                Margin="4"
-                                               Fill="{StaticResource ListViewItemSelectedBackgroundThemeBrush}"
+                                               Fill="{ThemeResource SemiLightMainColor}"
                                                Opacity="0" />
                                     <Border x:Name="ContentBorder"
                                             Background="{TemplateBinding Background}"
@@ -1976,7 +1942,7 @@
                                     <Rectangle x:Name="SelectedBorder"
                                                IsHitTestVisible="False"
                                                Opacity="0"
-                                               Stroke="{StaticResource ListViewItemSelectedBackgroundThemeBrush}"
+                                               Stroke="{ThemeResource SemiLightMainColor}"
                                                StrokeThickness="{StaticResource ListViewItemSelectedBorderThemeThickness}"
                                                Margin="4" />
                                     <Border x:Name="SelectedCheckMarkOuter"
@@ -1990,7 +1956,7 @@
                                               Width="40">
                                             <Path x:Name="SelectedEarmark"
                                                   Data="M0,0 L40,0 L40,40 z"
-                                                  Fill="{StaticResource ListViewItemSelectedBackgroundThemeBrush}"
+                                                  Fill="{ThemeResource SemiLightMainColor}"
                                                   Stretch="Fill" />
                                             <Path Data="F1 M133.1,17.9 L137.2,13.2 L144.6,19.6 L156.4,5.8 L161.2,9.9 L145.6,28.4 z"
                                                   Fill="{StaticResource ListViewItemCheckThemeBrush}"
@@ -2451,7 +2417,7 @@
                                                Stroke="{ThemeResource ListViewItemFocusBorderThemeBrush}" />
                                     <Rectangle x:Name="SelectionBackground"
                                                Margin="4"
-                                               Fill="{ThemeResource ListViewItemSelectedBackgroundThemeBrush}"
+                                               Fill="{ThemeResource SemiLightMainColor}"
                                                Opacity="0" />
                                     <Border x:Name="ContentBorder"
                                             Background="{TemplateBinding Background}"
@@ -2492,7 +2458,7 @@
                                     <Rectangle x:Name="SelectedBorder"
                                                IsHitTestVisible="False"
                                                Opacity="0"
-                                               Stroke="{ThemeResource ListViewItemSelectedBackgroundThemeBrush}"
+                                               Stroke="{ThemeResource SemiLightMainColor}"
                                                StrokeThickness="{ThemeResource ListViewItemSelectedBorderThemeThickness}"
                                                Margin="4" />
                                     <Border x:Name="SelectedCheckMarkOuter"
@@ -2505,7 +2471,7 @@
                                               Width="40">
                                             <Path x:Name="SelectedEarmark"
                                                   Data="M0,0 L40,0 L40,40 z"
-                                                  Fill="{ThemeResource ListViewItemSelectedBackgroundThemeBrush}"
+                                                  Fill="{ThemeResource SemiLightMainColor}"
                                                   Stretch="Fill" />
                                             <Path Data="F1 M133.1,17.9 L137.2,13.2 L144.6,19.6 L156.4,5.8 L161.2,9.9 L145.6,28.4 z"
                                                   Fill="{ThemeResource ListViewItemCheckThemeBrush}"
