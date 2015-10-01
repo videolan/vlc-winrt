@@ -278,6 +278,7 @@ namespace VLC_WinRT.Utils
         
         public static string EvenIfBackground => _resourcesLoader.GetString(nameof(EvenIfBackground));
         public static string EvenIfNotBackground => _resourcesLoader.GetString(nameof(EvenIfNotBackground));
+        public static string NeedRestart => _resourcesLoader.GetString(nameof(NeedRestart));
 
         // LastFM
         public static string ConnectToLastFM => _resourcesLoader.GetString(nameof(ConnectToLastFM));
@@ -318,7 +319,15 @@ namespace VLC_WinRT.Utils
         public static string FailNavigateVideoPlayerPage => _resourcesLoader.GetString(nameof(FailNavigateVideoPlayerPage));
         public static string FailStartVLCEngine => _resourcesLoader.GetString(nameof(FailStartVLCEngine));
         public static string FailFilePlayBackground => _resourcesLoader.GetString(nameof(FailFilePlayBackground));
-        
+
+        // COLORS AND THEMES
+        public static string Light => _resourcesLoader.GetString(nameof(Light));
+        public static string Dark => _resourcesLoader.GetString(nameof(Dark));
+        public static string AccentColor => _resourcesLoader.GetString(nameof(AccentColor));
+        public static string BackgroundColor => _resourcesLoader.GetString(nameof(BackgroundColor));
+        public static string TitleBar => _resourcesLoader.GetString(nameof(TitleBar));
+
+
         public Strings()
         {
         }
