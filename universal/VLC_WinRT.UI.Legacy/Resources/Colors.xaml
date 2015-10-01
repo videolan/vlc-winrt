@@ -3,13 +3,10 @@
                     xmlns:local="using:VLC_WinRT.Resources">
     <Color x:Key="MainColorBase">#ff8800</Color>
     <Color x:Key="InactiveMainColorBase">#EB974E</Color>
-    <Color x:Key="StatusBarColorBase">#ff7200</Color>
     <SolidColorBrush x:Key="MainColor"
                      Color="{StaticResource MainColorBase}" />
     <SolidColorBrush x:Key="InactiveMainColor"
                      Color="{StaticResource InactiveMainColorBase}" />
-    <SolidColorBrush x:Key="StatusBarColor"
-                     Color="{StaticResource StatusBarColorBase}" />
     <SolidColorBrush x:Key="LightMainSolidColorBrush"
                      Color="{StaticResource MainColorBase}"
                      Opacity="0.1" />
