@@ -37,10 +37,12 @@
                 <ToggleSwitch Header="{Binding Source={StaticResource Strings}, Path=HardwareDecoding}"
                               IsOn="{Binding HardwareAccelerationEnabled, Mode=TwoWay}"
                               Margin="-6,0,0,0" />
-                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=HardwareDecodingDescription}"
-                           Style="{StaticResource BodyTextBlockStyle}"
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
-                           Margin="0,-6,0,12" />
+                           Margin="0,-6,0,12">
+                    <Run Text="{Binding Source={StaticResource Strings}, Path=HardwareDecodingDescription}" />
+                    <Run Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}" />
+                </TextBlock>
                 
                 <ToggleSwitch Tag="WindowsOnly"
                               Header="{Binding Source={StaticResource Strings}, Path=VideoPlaybackInBackground}"
