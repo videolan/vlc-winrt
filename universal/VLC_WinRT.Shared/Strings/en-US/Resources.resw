@@ -574,16 +574,16 @@
     <value>tracks</value>
   </data>
   <data name="UnknownAlbum" xml:space="preserve">
-    <value>unknown album</value>
+    <value>Unknown album</value>
   </data>
   <data name="UnknownArtist" xml:space="preserve">
-    <value>unknown artist</value>
+    <value>Unknown artist</value>
   </data>
   <data name="UnknownShow" xml:space="preserve">
-    <value>unknown show</value>
+    <value>Unknown show</value>
   </data>
   <data name="UnknownTrack" xml:space="preserve">
-    <value>unknown track</value>
+    <value>Unknown track</value>
   </data>
   <data name="UpcomingShows" xml:space="preserve">
     <value>upcoming shows</value>
@@ -622,7 +622,7 @@
     <value>view artist</value>
   </data>
   <data name="VLCTeamThankYou" xml:space="preserve">
-    <value>the vlc team would like to thank all the people who made this app possible</value>
+    <value>The VLC team would like to thank all the people who made this app possible</value>
   </data>
   <data name="Volume" xml:space="preserve">
     <value>volume</value>
