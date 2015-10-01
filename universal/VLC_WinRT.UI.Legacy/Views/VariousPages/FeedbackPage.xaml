@@ -41,7 +41,7 @@
         <TextBlock Grid.Row="2"
                    Margin="{StaticResource FrameMarginBothSides}"
                    Text="{Binding Source={StaticResource Strings}, Path=NewFeedbackSubtitle}"
-                   Foreground="{StaticResource MainColor}"
+                   Foreground="{ThemeResource MainColor}"
                    Style="{StaticResource SubtitleTextBlockStyle}" />
         <userControls:FocusTextBox x:Name="SummaryTextBox"
                                    Grid.Row="3"

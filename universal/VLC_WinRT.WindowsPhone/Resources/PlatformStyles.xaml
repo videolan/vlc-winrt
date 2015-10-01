@@ -4,7 +4,7 @@
 
     <Thickness x:Key="TitleMargin">0</Thickness>
     <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush"
-                     Color="{StaticResource MainColorBase}" />
+                     Color="{ThemeResource MainColorBase}" />
 
     <Thickness x:Key="HorizontalListViewItemMargin">0,0,18,0</Thickness>
 
@@ -115,7 +115,7 @@
     <Style x:Key="VLCCommandBarStyle"
            TargetType="CommandBar">
         <Setter Property="Background"
-                Value="{StaticResource MainColor}" />
+                Value="{ThemeResource MainColor}" />
         <Setter Property="Opacity"
                 Value="0.99" />
         <Setter Property="RequestedTheme"

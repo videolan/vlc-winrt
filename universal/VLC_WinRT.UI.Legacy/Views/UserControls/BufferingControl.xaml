@@ -13,7 +13,7 @@
                 VerticalAlignment="Center">
         <ProgressBar IsIndeterminate="True" />
         <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
-                   Foreground="{StaticResource MainColor}"
+                   Foreground="{ThemeResource MainColor}"
                    HorizontalAlignment="Center">
             <Run Text="{Binding Source={StaticResource Strings}, Path=Loading}"/>
             <Run Text="{Binding BufferingProgress}"/>

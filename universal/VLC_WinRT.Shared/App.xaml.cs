@@ -22,6 +22,7 @@ using Windows.ApplicationModel.Core;
 using Windows.Storage.AccessCache;
 using Windows.UI;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml.Media;
 using VLC_WinRT.BackgroundHelpers;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Controls;
@@ -243,6 +244,8 @@ namespace VLC_WinRT
         public static void SetShellDecoration()
         {
             RootPage.RequestedTheme = (SettingsViewModel.GetApplicationTheme() == ApplicationTheme.Light) ? ElementTheme.Light : ElementTheme.Dark;
+            App.Current.Resources["MainColorBase"] = Locator.SettingsVM.AccentColor;
+            App.Current.Resources["MainColor"] = new SolidColorBrush() {Color = Locator.SettingsVM.AccentColor};
         }
     }
 }

@@ -15,7 +15,7 @@
                     Content="{Binding Source={StaticResource Strings}, Path=TopVideos}"
                     FontSize="40"
                     FontWeight="Light"
-                    Foreground="{StaticResource MainColor}"
+                    Foreground="{ThemeResource MainColor}"
                     Style="{StaticResource TextBlockButtonStyle}"
                     Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
                     CommandParameter="1"/>
@@ -62,7 +62,7 @@
                     Margin="{StaticResource FrameMarginLeft}"
                     FontSize="40"
                     FontWeight="Light"
-                    Foreground="{StaticResource MainColor}"
+                    Foreground="{ThemeResource MainColor}"
                     Style="{StaticResource TextBlockButtonStyle}"
                     Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
                     CommandParameter="2" />

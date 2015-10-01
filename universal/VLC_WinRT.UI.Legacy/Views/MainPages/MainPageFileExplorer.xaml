@@ -148,7 +148,7 @@
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           HorizontalAlignment="Right"
                           Label="{Binding Source={StaticResource Strings}, Path=PlayFolder}"
-                          Foreground="{StaticResource MainColor}"
+                          Foreground="{ThemeResource MainColor}"
                           Command="{Binding CurrentStorageVM.PlayFolderCommand}"
                           CommandParameter="{Binding CurrentStorageVM.StorageItems}">
                 <AppBarButton.Icon>

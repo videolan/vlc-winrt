@@ -47,7 +47,7 @@
                         <DataTemplate>
                             <TextBlock Text="{Binding ShowTitle}"
                                        Style="{StaticResource SubheaderTextBlockStyle}"
-                                       Foreground="{StaticResource MainColor}" />
+                                       Foreground="{ThemeResource MainColor}" />
                         </DataTemplate>
                     </GroupStyle.HeaderTemplate>
                 </GroupStyle>

@@ -21,6 +21,7 @@ using VLC_WinRT.Model.Video;
 using VLC_WinRT.Model;
 using VLC_WinRT.Views.MusicPages;
 using Windows.Storage;
+using Windows.UI;
 using Windows.UI.Core;
 using VLC_WinRT.Commands.Navigation;
 using VLC_WinRT.Commands.Settings;
@@ -39,6 +40,8 @@ namespace VLC_WinRT.ViewModels.Settings
         private bool _notificationOnNewSongForeground;
 #endif
         private ApplicationTheme applicationTheme;
+        private List<Color> _accentColors;
+        private Color _accentColor;
         private bool _continueVideoPlaybackInBackground;
         private OrderType _albumsOrderType;
         private OrderListing _albumsOrderListing;
@@ -64,6 +67,64 @@ namespace VLC_WinRT.ViewModels.Settings
             {
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(ApplicationTheme), (int)value);
                 SetProperty(ref applicationTheme, value);
+                App.SetShellDecoration();
+            }
+        }
+
+        public List<Color> AccentColors
+        {
+            get
+            {
+                if (_accentColors != null && _accentColors.Any())
+                    return _accentColors;
+                _accentColors = new List<Color>()
+                {
+                    Color.FromArgb(255, 0xff, 0x88, 0x00),
+                    Color.FromArgb(255, 26, 188, 156),
+                    Color.FromArgb(255, 46, 204, 113),
+                    Color.FromArgb(255, 52, 152, 219),
+                    Color.FromArgb(255, 155, 89, 182),
+                    Color.FromArgb(255, 52, 73, 94),
+                    Color.FromArgb(255, 22, 160, 133),
+                    Color.FromArgb(255, 39, 174, 96),
+                    Color.FromArgb(255, 41, 128, 185),
+                    Color.FromArgb(255, 142, 68, 173),
+                    Color.FromArgb(255, 44, 62, 80),
+                    Color.FromArgb(255, 241, 196, 15),
+                    Color.FromArgb(255, 230, 126, 34),
+                    Color.FromArgb(255, 231, 76, 60),
+                    Color.FromArgb(255, 243, 156, 18),
+                    Color.FromArgb(255, 211, 84, 0),
+                    Color.FromArgb(255, 192, 57, 43)
+                };
+                return _accentColors;
+            }
+        }
+
+        public Color AccentColor
+        {
+            get
+            {
+                var color = ApplicationSettingsHelper.ReadSettingsValue(nameof(AccentColor));
+                if (color == null || string.IsNullOrEmpty(color.ToString()))
+                {
+                    _accentColor = AccentColors[0];
+                }
+                else
+                {
+                    var str = color.ToString();
+                    _accentColor = new Color();
+                    _accentColor.A = byte.Parse(str.Substring(1, 2), NumberStyles.AllowHexSpecifier);
+                    _accentColor.R = byte.Parse(str.Substring(3, 2), NumberStyles.AllowHexSpecifier);
+                    _accentColor.G = byte.Parse(str.Substring(5, 2), NumberStyles.AllowHexSpecifier);
+                    _accentColor.B = byte.Parse(str.Substring(7, 2), NumberStyles.AllowHexSpecifier);
+                }
+                return _accentColor;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(AccentColor), value.ToString());
+                SetProperty(ref _accentColor, value);
                 App.SetShellDecoration();
             }
         }

@@ -41,10 +41,31 @@
                         <Binding Source="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                                  Path="ApplicationTheme"
                                  Converter="{StaticResource ApplicationThemeBooleanConverter}"
-                                 Mode="TwoWay"/>
+                                 Mode="TwoWay" />
                     </ToggleSwitch.IsOn>
                 </ToggleSwitch>
 
+                <GridView DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+                          ItemsSource="{Binding AccentColors}"
+                          SelectedItem="{Binding AccentColor, Mode=TwoWay}">
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="75"
+                                  Width="75">
+                                <Grid.Background>
+                                    <SolidColorBrush Color="{Binding}" />
+                                </Grid.Background>
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal"
+                                           ItemHeight="75"
+                                           ItemWidth="75" />
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
                 <TextBlock Text="{Binding Source={StaticResource Strings}, Path=HomePage}"
                            Margin="0,12,0,0"
                            FontSize="22"

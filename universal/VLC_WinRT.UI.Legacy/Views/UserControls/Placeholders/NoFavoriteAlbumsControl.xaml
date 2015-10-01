@@ -45,7 +45,7 @@
             <Run Text="{Binding Source={StaticResource Strings}, Path=HowToFavoriteAlbum1}"/>
             <Run Text="{StaticResource FavoriteSymbol}"
                  FontFamily="ms-appx:VLC.ttf#W10"
-                 Foreground="{StaticResource MainColor}" />
+                 Foreground="{ThemeResource MainColor}" />
             <Run Text="{Binding Source={StaticResource Strings}, Path=HowToFavoriteAlbum2}"/>
         </TextBlock>
     </Grid>

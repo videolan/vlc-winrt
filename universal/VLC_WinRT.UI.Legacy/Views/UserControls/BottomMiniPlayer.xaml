@@ -367,7 +367,7 @@
                     Command="{Binding PlayOrPauseCommand}"
                     Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
                     Holding="PlayPauseHold"
-                    Foreground="{StaticResource MainColor}">
+                    Foreground="{ThemeResource MainColor}">
                 <FontIcon x:Name="PlayIcon"
                           Glyph="{StaticResource PlaySymbol}"
                           FontFamily="ms-appx:VLC.ttf#W10" />
@@ -377,7 +377,7 @@
                     Command="{Binding PlayOrPauseCommand}"
                     Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Holding="PlayPauseHold"
-                    Foreground="{StaticResource MainColor}">
+                    Foreground="{ThemeResource MainColor}">
                 <FontIcon x:Name="PauseIcon"
                           Glyph="{StaticResource PauseSymbol}"
                           FontFamily="ms-appx:VLC.ttf#W10" />

@@ -75,7 +75,7 @@
                 <AppBarButton Grid.Row="0"
                               Label="{Binding Source={StaticResource Strings}, Path=PlayTrack}"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
-                              Foreground="{StaticResource MainColor}"
+                              Foreground="{ThemeResource MainColor}"
                               Command="{Binding TrackClicked}"
                               CommandParameter="{Binding}"
                               Click="ActionButton_Click">

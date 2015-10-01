@@ -145,7 +145,7 @@
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   VerticalAlignment="Center"
                                   Command="{Binding PlayOrPauseCommand}"
-                                  Foreground="{StaticResource MainColor}">
+                                  Foreground="{ThemeResource MainColor}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PlaySymbol}"
                                       FontFamily="ms-appx:VLC.ttf#W10"
@@ -159,7 +159,7 @@
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   VerticalAlignment="Center"
                                   Command="{Binding PlayOrPauseCommand}"
-                                  Foreground="{StaticResource MainColor}">
+                                  Foreground="{ThemeResource MainColor}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PauseSymbol}"
                                       FontFamily="ms-appx:VLC.ttf#W10"

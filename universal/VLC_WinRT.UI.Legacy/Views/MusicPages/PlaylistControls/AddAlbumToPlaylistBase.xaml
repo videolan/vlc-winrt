@@ -119,7 +119,7 @@
             </Grid.ColumnDefinitions>
             <Button Content="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
                     Click="AddToPlaylistButton_Click" 
-                    Background="{StaticResource MainColor}"
+                    Background="{ThemeResource MainColor}"
                     HorizontalAlignment="Stretch"/>
             <Button Grid.Column="1"
                     Margin="{StaticResource FrameMarginLeft}"

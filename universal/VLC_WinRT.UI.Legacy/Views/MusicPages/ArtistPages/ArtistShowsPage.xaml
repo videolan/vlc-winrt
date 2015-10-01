@@ -36,7 +36,7 @@
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis">
                 <Run Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
-                     Foreground="{StaticResource MainColor}" />
+                     Foreground="{ThemeResource MainColor}" />
                 <LineBreak />
                 <Run Text="{Binding Source={StaticResource Strings}, Path=MusicShows}"
                      FontSize="19" />
@@ -86,7 +86,7 @@
                                        Grid.Row="0"
                                        Grid.RowSpan="2"
                                        Margin="0,0,12,0"
-                                       Foreground="{StaticResource MainColor}"
+                                       Foreground="{ThemeResource MainColor}"
                                        TextAlignment="Center">
                                 <Run Text="{Binding Date, Converter={StaticResource DateTimeToDayOfMonthConverter}}"
                                      FontSize="38"
@@ -139,7 +139,7 @@
             <Grid Visibility="{Binding IsUpcomingShowsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ProgressRing IsActive="True"
                               Background="Transparent"
-                              Foreground="{StaticResource MainColor}"
+                              Foreground="{ThemeResource MainColor}"
                               VerticalAlignment="Center"
                               HorizontalAlignment="Center" />
 

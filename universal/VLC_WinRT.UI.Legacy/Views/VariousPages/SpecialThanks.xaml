@@ -79,7 +79,7 @@
                         <TextBlock Text="{Binding Source={StaticResource Strings}, Path=GoldPartners}"
                                    FontSize="24"
                                    Style="{StaticResource TitleTextBlockStyle}"
-                                   Foreground="{StaticResource MainColor}" />
+                                   Foreground="{ThemeResource MainColor}" />
                         <StackPanel Grid.Row="1">
                             <StackPanel>
                                 <TextBlock Text="Judson White"
@@ -112,7 +112,7 @@
                         <TextBlock Text="{Binding Source={StaticResource Strings}, Path=SilverPartners}"
                                    FontSize="24"
                                    Style="{StaticResource TitleTextBlockStyle}"
-                                   Foreground="{StaticResource MainColor}" />
+                                   Foreground="{ThemeResource MainColor}" />
                         <StackPanel Grid.Row="1">
                             <StackPanel>
                                 <TextBlock Text="Kaoxee Web"
@@ -159,7 +159,7 @@
                         <TextBlock Text="{Binding Source={StaticResource Strings}, Path=ImportantSponsors}"
                                    FontSize="24"
                                    Style="{StaticResource TitleTextBlockStyle}"
-                                   Foreground="{StaticResource MainColor}" />
+                                   Foreground="{ThemeResource MainColor}" />
                         <StackPanel Grid.Row="1">
                             <StackPanel>
                                 <TextBlock Text="David Rygg"
@@ -193,7 +193,7 @@
                         <TextBlock Text="{Binding Source={StaticResource Strings}, Path=NotableSponsors}"
                                    FontSize="24"
                                    Style="{StaticResource TitleTextBlockStyle}"
-                                   Foreground="{StaticResource MainColor}" />
+                                   Foreground="{ThemeResource MainColor}" />
                         <StackPanel Grid.Row="1">
                             <StackPanel>
                                 <TextBlock Text="Juan Pablo Black Romero"
@@ -233,7 +233,7 @@
                                 <Grid VerticalAlignment="Center">
                                     <TextBlock Text="{Binding Name}"
                                                Style="{StaticResource SubheaderTextBlockStyle}"
-                                               Foreground="{StaticResource MainColor}"
+                                               Foreground="{ThemeResource MainColor}"
                                                VerticalAlignment="Center" />
                                 </Grid>
                             </DataTemplate>

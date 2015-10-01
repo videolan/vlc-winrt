@@ -108,7 +108,7 @@
                           Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
                           Command="{Binding PlayAlbum}"
                           CommandParameter="{Binding}"
-                          Foreground="{StaticResource MainColor}">
+                          Foreground="{ThemeResource MainColor}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PlaySymbol}"
                               FontFamily="ms-appx:VLC.ttf#W10" />

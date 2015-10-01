@@ -28,7 +28,7 @@
                        Margin="0,-12,0,0">
                 <Run Text="{Binding Source={StaticResource Strings}, Path=Volume}"/>
                 <Run Text="{Binding Volume}"
-                     Foreground="{StaticResource MainColor}"
+                     Foreground="{ThemeResource MainColor}"
                      FontSize="26"
                      FontWeight="Light"/>
             </TextBlock>
