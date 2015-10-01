@@ -228,6 +228,7 @@ namespace VLC_WinRT
             Dispatcher = Window.Current.Dispatcher;
             Window.Current.Content = new MainPage();
             await SplitShell.TemplateApplied.Task;
+            SetShellDecoration();
 #if WINDOWS_PHONE_APP
             StatusBarHelper.Initialize();
 #else
@@ -237,7 +238,6 @@ namespace VLC_WinRT
             Locator.MainVM.DropTablesIfNeeded();
             ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
             Window.Current.Activate();
-            SetShellDecoration();
             Locator.Slideshow.RestoreSlideshow();
         }
 
