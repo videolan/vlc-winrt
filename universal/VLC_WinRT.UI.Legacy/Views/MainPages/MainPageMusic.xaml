@@ -117,7 +117,7 @@
 				  </AppBarButton>
 
                 <AppBarButton Grid.Column="5"
-                              Label="{Binding Source={StaticResource Locator}, Path=NewPlaylist}"
+                              Label="{Binding Source={StaticResource Strings}, Path=NewPlaylist}"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Foreground="{ThemeResource MainColor}"
                               Command="{Binding ShowCreateNewPlaylistPaneCommand}"
