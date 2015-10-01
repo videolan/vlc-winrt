@@ -232,7 +232,6 @@ namespace VLC_WinRT
 #if WINDOWS_PHONE_APP
             StatusBarHelper.Initialize();
 #else
-            AppViewHelper.SetAppView((Color)App.Current.Resources["MainColorBase"]);
             AppViewHelper.SetTitleBar(true);
 #endif
             Locator.MainVM.DropTablesIfNeeded();
@@ -254,6 +253,16 @@ namespace VLC_WinRT
                 Color = Locator.SettingsVM.AccentColor,
                 Opacity = 0.7
             };
+#if WINDOWS_APP
+            if (Locator.SettingsVM.AccentColorTitleBar)
+            {
+                AppViewHelper.SetAppView(Colors.White);
+            }
+            else
+            {
+                AppViewHelper.SetAppView((Color)App.Current.Resources["MainColorBase"]);
+            }
+#endif
         }
     }
 }
