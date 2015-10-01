@@ -104,53 +104,46 @@
                            Margin="0,20,0,0"
                            FontWeight="SemiLight" />
                 <ToggleSwitch  Tag="WindowsOnly"
-                               x:Uid="NotificationSongStarts"
-                               Header="Notification when a new song starts"
+                               Header="{Binding Source={StaticResource Strings}, Path=NotificationWhenSongStarts}"
                                IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}"
                                Margin="-6,0,0,0" />
                 <ToggleSwitch  Tag="WindowsOnly"
-                               x:Uid="NotificationNotBackground"
-                               Header="Even if the app is not in background"
+                               Header="{Binding Source={StaticResource Strings}, Path=EvenIfNotBackground}"
                                IsOn="{Binding NotificationOnNewSongForeground, Mode=TwoWay}"
                                Visibility="{Binding NotificationOnNewSong, Converter={StaticResource BooleanToVisibilityConverter}}"
                                Margin="-6,0,0,0" />
-                <TextBlock Text="Connect to Last.FM"
-                           x:Uid="ConnectToLastFm"
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=ConnectToLastFM}"
                            Margin="0,20,0,0"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight" />
                 <userControls:FocusTextBox Height="30"
                                            Width="250"
-                                           x:Uid="UsernameTextbox"
                                            Margin="0,12,0,12"
                                            FontSize="18"
                                            FontWeight="Light"
                                            Text="{Binding LastFmUserName, Mode=TwoWay}"
-                                           PlaceholderText="username"
+                                           PlaceholderText="{Binding Source={StaticResource Strings}, Path=Username}"
                                            HorizontalAlignment="Left" />
                 <PasswordBox x:Name="PasswordBoxLastFm"
-                             x:Uid="PasswordBoxLastFm"
                              Height="30"
                              Width="250"
                              FontSize="18"
                              FontWeight="Light"
                              Password="{Binding LastFmPassword, Mode=TwoWay}"
-                             PlaceholderText="password"
+                             PlaceholderText="{Binding Source={StaticResource Strings}, Path=Password}"
                              GotFocus="FocusTextBox_GotFocus"
                              LostFocus="FocusTextBox_LostFocus"
                              HorizontalAlignment="Left"
                              Style="{StaticResource FocusPasswordBox}" />
-                <TextBlock Text="You are connected to Last.FM"
-                           x:Uid="ConnectedToLastFm"
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=ConnectedToLastFM}"
                            Style="{StaticResource TitleTextBlockStyle}"
                            Foreground="{StaticResource SecondColor}"
                            Visibility="{Binding LastFmIsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <TextBlock x:Name="ErrorConnectLastFmTextBox"
                            Style="{StaticResource TitleTextBlockStyle}"
                            Visibility="Collapsed" />
-                <AppBarButton Label="connect"
-                              x:Uid="Connect"
+                <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=Connect}"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Margin="0,6,0,0"
                               Click="ConnectToLastFM_Click">
@@ -161,13 +154,12 @@
                 </AppBarButton>
 
 
-                <TextBlock Text="Reset"
-                           x:Uid="Reset"
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Reset}"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Margin="0,20,0,0"
                            FontWeight="SemiLight" />
-                <Button Content="Reset the music database" x:Uid="ResetMusicDb"
+                <Button Content="{Binding Source={StaticResource Strings}, Path=ResetMusicDatabase}"
                         DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                         Command="{Binding StartMusicIndexingCommand}"
                         CommandParameter="True"

@@ -149,10 +149,15 @@ namespace VLC_WinRT.Utils
         public static string AddToCollection => _resourcesLoader.GetString(nameof(AddToCollection));
         public static string RemoveFolder => _resourcesLoader.GetString(nameof(RemoveFolder));
         public static string AddFolder => _resourcesLoader.GetString(nameof(AddFolder));
+        public static string Connect => _resourcesLoader.GetString(nameof(Connect));
+        public static string Reset => _resourcesLoader.GetString(nameof(Reset));
+        public static string ResetMusicDatabase => _resourcesLoader.GetString(nameof(ResetMusicDatabase));
 
         // PLACEHOLDERS
         public static string PlaylistNamePlaceholder => _resourcesLoader.GetString(nameof(PlaylistNamePlaceholder));
         public static string NoBiographyFound => _resourcesLoader.GetString(nameof(NoBiographyFound));
+        public static string Username => _resourcesLoader.GetString(nameof(Username));
+        public static string Password => _resourcesLoader.GetString(nameof(Password));
 
 
         // SETTINGS
@@ -166,6 +171,11 @@ namespace VLC_WinRT.Utils
         public static string MusicSettings => _resourcesLoader.GetString(nameof(MusicSettings));
         public static string AboutTheApp => _resourcesLoader.GetString(nameof(AboutTheApp));
         public static string Notifications => _resourcesLoader.GetString(nameof(Notifications));
+        public static string NotificationWhenSongStarts => _resourcesLoader.GetString(nameof(NotificationWhenSongStarts));
+        public static string EvenIfBackground => _resourcesLoader.GetString(nameof(EvenIfBackground));
+        public static string EvenIfNotBackground => _resourcesLoader.GetString(nameof(EvenIfNotBackground));
+        public static string ConnectToLastFM => _resourcesLoader.GetString(nameof(ConnectToLastFM));
+        public static string ConnectedToLastFM => _resourcesLoader.GetString(nameof(ConnectedToLastFM));
 
         public Strings()
         {
