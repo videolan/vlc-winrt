@@ -117,648 +117,529 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddContent.Text" xml:space="preserve">
-    <value>Add content to your</value>
+  <data name="AboutTheApp" xml:space="preserve">
+    <value />
   </data>
-  <data name="AddContentCont.Text" xml:space="preserve">
-    <value>in order to use this section.</value>
+  <data name="Add" xml:space="preserve">
+    <value />
   </data>
-  <data name="AddFolder.Content" xml:space="preserve">
-    <value>Add a new folder</value>
+  <data name="AddDetails" xml:space="preserve">
+    <value />
   </data>
-  <data name="AlbumHeader.Header" xml:space="preserve">
-    <value>albums</value>
+  <data name="AddFolder" xml:space="preserve">
+    <value />
   </data>
-  <data name="Artist" xml:space="preserve">
-    <value>Artist</value>
+  <data name="AddToCollection" xml:space="preserve">
+    <value />
   </data>
-  <data name="ArtistHeader.Text" xml:space="preserve">
-    <value>artist</value>
+  <data name="AddToCurrentPlaylist" xml:space="preserve">
+    <value />
   </data>
-  <data name="Artists" xml:space="preserve">
-    <value>Artists</value>
-  </data>
-  <data name="AudioHubHeader.Header" xml:space="preserve">
-    <value>audio</value>
-  </data>
-  <data name="Biography.Header" xml:space="preserve">
-    <value>biography</value>
-  </data>
-  <data name="ChangeAlbumArt.Text" xml:space="preserve">
-    <value>Change Album Art</value>
-  </data>
-  <data name="ChangeVideoFolder.Content" xml:space="preserve">
-    <value>Change default Video folder</value>
-  </data>
-  <data name="Clear.Text" xml:space="preserve">
-    <value>Clear</value>
-  </data>
-  <data name="CustomMusicFolder.Text" xml:space="preserve">
-    <value> custom music folders</value>
-  </data>
-  <data name="CustomVideoFolder.Text" xml:space="preserve">
-    <value> custom video folders</value>
-  </data>
-  <data name="DecreaseSpeed.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Decrease speed</value>
-  </data>
-  <data name="ElementsNotFound.Text" xml:space="preserve">
-    <value>It seems that we didn't find any elements in there.</value>
-  </data>
-  <data name="Favorite.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Favorite</value>
-  </data>
-  <data name="FavoriteAlbums" xml:space="preserve">
-    <value>Favorite Albums</value>
-  </data>
-  <data name="FeaturesOpen.Text" xml:space="preserve">
-    <value>Open a video from anywhere on your device. Swipe up or right click to open a file from the App Bar.</value>
-  </data>
-  <data name="FeaturesSomething.Text" xml:space="preserve">
-    <value>Plays something (plays anything after the bugs are fixed).</value>
-  </data>
-  <data name="FeaturesUSB.Text" xml:space="preserve">
-    <value>USB and SD Card support.</value>
-  </data>
-  <data name="FeaturesVidLib.Text" xml:space="preserve">
-    <value>Video Library support. Add files to your Video Library and play them directly.</value>
-  </data>
-  <data name="Filter.Text" xml:space="preserve">
-    <value>Please select a field to filter by...</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>home</value>
-  </data>
-  <data name="IncreaseSpeed.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Increase speed</value>
-  </data>
-  <data name="IndexingMusic1.Text" xml:space="preserve">
-    <value>Indexing Music library</value>
-  </data>
-  <data name="IndexingMusic2.Text" xml:space="preserve">
-    <value>VLC may be unresponsive</value>
-  </data>
-  <data name="ItsLonely.Text" xml:space="preserve">
-    <value>It's lonely here.</value>
-  </data>
-  <data name="LastViewed.Text" xml:space="preserve">
-    <value>last viewed</value>
-  </data>
-  <data name="MainPageTitle.Text" xml:space="preserve">
-    <value>VLC for Windows 8.1</value>
-  </data>
-  <data name="MediaServers" xml:space="preserve">
-    <value>media servers</value>
-  </data>
-  <data name="MediaServersHeader.Text" xml:space="preserve">
-    <value>Media servers</value>
-  </data>
-  <data name="Movies.Text" xml:space="preserve">
-    <value>movies</value>
-  </data>
-  <data name="Music" xml:space="preserve">
-    <value>music</value>
-  </data>
-  <data name="MusicHeader.Text" xml:space="preserve">
-    <value>Music</value>
-  </data>
-  <data name="MusicSettingsHeader.Header" xml:space="preserve">
-    <value>music settings</value>
-  </data>
-  <data name="NetworkUrl.Text" xml:space="preserve">
-    <value>Network URL:</value>
-  </data>
-  <data name="NoBiographyFound" xml:space="preserve">
-    <value>It seems we didn't find a biography for this artist.</value>
-  </data>
-  <data name="NothingToSeeHere.Text" xml:space="preserve">
-    <value>Nothing to see here</value>
-  </data>
-  <data name="OpenFile.Text" xml:space="preserve">
-    <value>Open a file</value>
-  </data>
-  <data name="OpenNetworkStream.Text" xml:space="preserve">
-    <value>Open Network Stream...</value>
-  </data>
-  <data name="OpenStream.Text" xml:space="preserve">
-    <value>open stream</value>
-  </data>
-  <data name="OpenVideo" xml:space="preserve">
-    <value>Open Video</value>
-  </data>
-  <data name="OpenVideoFile.Text" xml:space="preserve">
-    <value>open video</value>
-  </data>
-  <data name="Or.Text" xml:space="preserve">
-    <value>or</value>
-  </data>
-  <data name="PartnersGold.Text" xml:space="preserve">
-    <value>gold partners</value>
-  </data>
-  <data name="PartnersOther.Text" xml:space="preserve">
-    <value>other backers</value>
-  </data>
-  <data name="PartnersSilver.Text" xml:space="preserve">
-    <value>silver partners</value>
-  </data>
-  <data name="Pinned" xml:space="preserve">
-    <value>Pinned</value>
-  </data>
-  <data name="Play.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Play</value>
-  </data>
-  <data name="Playlists" xml:space="preserve">
-    <value>Playlists</value>
-  </data>
-  <data name="PopularAlbums.Header" xml:space="preserve">
-    <value>popular albums</value>
-  </data>
-  <data name="PrivacyStatement" xml:space="preserve">
-    <value>Privacy Statement</value>
-  </data>
-  <data name="RemovableDevices.Text" xml:space="preserve">
-    <value>Removable devices</value>
-  </data>
-  <data name="RemovableStorage" xml:space="preserve">
-    <value>removable devices</value>
-  </data>
-  <data name="RemoveableDevice.Text" xml:space="preserve">
-    <value>Plug-in a removable device</value>
-  </data>
-  <data name="RemoveableDeviceMessage1.Text" xml:space="preserve">
-    <value>Plug in a removable storage and VLC will detects all the files in it.</value>
-  </data>
-  <data name="RemoveableDeviceMessage2.Text" xml:space="preserve">
-    <value>Waiting for removable storages</value>
-  </data>
-  <data name="RemoveFolder.Content" xml:space="preserve">
-    <value>Remove this folder</value>
-  </data>
-  <data name="Search.Text" xml:space="preserve">
-    <value>Search</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="SettingsHeader.Header" xml:space="preserve">
-    <value>settings</value>
-  </data>
-  <data name="SimilarArtists.Header" xml:space="preserve">
-    <value>similar artists</value>
-  </data>
-  <data name="Songs" xml:space="preserve">
-    <value>Songs</value>
-  </data>
-  <data name="SpecialThanks" xml:space="preserve">
-    <value>Special Thanks</value>
-  </data>
-  <data name="Track.Text" xml:space="preserve">
-    <value>tracks</value>
-  </data>
-  <data name="Tracks" xml:space="preserve">
-    <value>Tracks</value>
-  </data>
-  <data name="Unfavorite.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Unfavorite</value>
-  </data>
-  <data name="UnknownArtist" xml:space="preserve">
-    <value>Unknown Artist</value>
-  </data>
-  <data name="UnknownTrack" xml:space="preserve">
-    <value>Unknown Track</value>
-  </data>
-  <data name="VideoHubHeader.Header" xml:space="preserve">
-    <value>videos</value>
-  </data>
-  <data name="Videos" xml:space="preserve">
-    <value>videos</value>
-  </data>
-  <data name="VideoSettings.Text" xml:space="preserve">
-    <value>VLC will only search videos that are in your video library. You can add folders to your library here:</value>
-  </data>
-  <data name="VideoSettingsHeader.Header" xml:space="preserve">
-    <value>video settings</value>
-  </data>
-  <data name="VideosHeader.Text" xml:space="preserve">
-    <value>Video</value>
-  </data>
-  <data name="VideosNotFound1.Text" xml:space="preserve">
-    <value>It seems that we didn't find any elements in your Video library.</value>
-  </data>
-  <data name="VideosNotFound2.Text" xml:space="preserve">
-    <value>Maybe we didn't search in the right places.</value>
-  </data>
-  <data name="VlcThankYou.Text" xml:space="preserve">
-    <value>The VLC for Windows 8 Team would like to thank very much the people who made this application possible:</value>
-  </data>
-  <data name="NetworkServers.Text" xml:space="preserve">
-    <value>Waiting for network servers</value>
-  </data>
-  <data name="SearchField.PlaceholderText" xml:space="preserve">
-    <value>Search</value>
-  </data>
-  <data name="SearchingDLNA.Text" xml:space="preserve">
-    <value>We are searching for DLNA Servers.</value>
-  </data>
-  <data name="SettingsMain.Text" xml:space="preserve">
-    <value>settings</value>
-  </data>
-  <data name="DownloadAlbumArt.Text" xml:space="preserve">
-    <value>Download Album Art</value>
-  </data>
-  <data name="DevelopersHeader.Text" xml:space="preserve">
-    <value>developers</value>
-  </data>
-  <data name="LicenseHeader.Text" xml:space="preserve">
-    <value>license</value>
-  </data>
-  <data name="MenuAboutApp.Text" xml:space="preserve">
-    <value>About the App</value>
-  </data>
-  <data name="MenuAppSettings.Text" xml:space="preserve">
-    <value>App Settings</value>
-  </data>
-  <data name="MusicInformation.Text" xml:space="preserve">
-    <value>music information</value>
-  </data>
-  <data name="VlcLicenseCondition.Text" xml:space="preserve">
-    <value>VLC for Windows 8.1 is licensed under the GNU General Public License, version 2 (herein referred to as GPL).</value>
+  <data name="AddToPlaylist" xml:space="preserve">
+    <value />
   </data>
   <data name="Albums" xml:space="preserve">
-    <value>Albums</value>
-  </data>
-  <data name="AlbumsPlusSongs.Text" xml:space="preserve">
-    <value>albums+songs</value>
-  </data>
-  <data name="AlbumText.Text" xml:space="preserve">
-    <value>albums: </value>
-  </data>
-  <data name="AudioTracks.Text" xml:space="preserve">
-    <value>Audio tracks</value>
-  </data>
-  <data name="LikeAppButton.Label" xml:space="preserve">
-    <value>Like</value>
-  </data>
-  <data name="MusicSettings.Text" xml:space="preserve">
-    <value>VLC will only search for songs that are in your music library. You can add folders to your library here:</value>
-  </data>
-  <data name="NoFavoriteAlbumsHeader.Text" xml:space="preserve">
-    <value>You don't have favorite albums</value>
-  </data>
-  <data name="NoFavoriteAlbumText1.Text" xml:space="preserve">
-    <value>When playing an album, press the</value>
-  </data>
-  <data name="NoFavoriteAlbumText2.Text" xml:space="preserve">
-    <value>button and you'll find your favorite albums easier than ever!</value>
-  </data>
-  <data name="NotificationNotBackground.Header" xml:space="preserve">
-    <value>Even if the app is not in background</value>
-  </data>
-  <data name="NotificationSongStarts.Header" xml:space="preserve">
-    <value>Notification when a new song starts</value>
-  </data>
-  <data name="OpenSubtitle.Content" xml:space="preserve">
-    <value>Open Subtitle</value>
-  </data>
-  <data name="PlayAlbum.Text" xml:space="preserve">
-    <value>play album</value>
-  </data>
-  <data name="PlayAllAppButton.Label" xml:space="preserve">
-    <value>Play All</value>
-  </data>
-  <data name="PlayAllButton.Text" xml:space="preserve">
-    <value>Play All</value>
-  </data>
-  <data name="Speed.Text" xml:space="preserve">
-    <value>Speed</value>
-  </data>
-  <data name="Subtitles.Text" xml:space="preserve">
-    <value>Subtitles</value>
-  </data>
-  <data name="UntitledShow" xml:space="preserve">
-    <value>Untitled Show</value>
-  </data>
-  <data name="Shows" xml:space="preserve">
-    <value>shows</value>
-  </data>
-  <data name="OrderByArtist" xml:space="preserve">
-    <value>By artist</value>
-  </data>
-  <data name="OrderByDate" xml:space="preserve">
-    <value>By date</value>
-  </data>
-  <data name="OrderAscending" xml:space="preserve">
-    <value>Ascending</value>
-  </data>
-  <data name="OrderDescending" xml:space="preserve">
-    <value>Descending</value>
-  </data>
-  <data name="OpenFile2.Label" xml:space="preserve">
-    <value>Open a file</value>
-  </data>
-  <data name="OpenNetworkStream2.Label" xml:space="preserve">
-    <value>Open stream</value>
-  </data>
-  <data name="Playlist.Header" xml:space="preserve">
-    <value>playlist</value>
-  </data>
-  <data name="SdCard" xml:space="preserve">
-    <value>SD Card</value>
-  </data>
-  <data name="Search1" xml:space="preserve">
-    <value>search</value>
-  </data>
-  <data name="CrashReport" xml:space="preserve">
-    <value>VLC has crashed and made an automatic bug report. Do you allow us to sent it?</value>
-  </data>
-  <data name="No" xml:space="preserve">
-    <value>No</value>
-  </data>
-  <data name="WeNeedYourHelp" xml:space="preserve">
-    <value>We need your help</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
-  </data>
-  <data name="FileOpen" xml:space="preserve">
-    <value>open a file</value>
-  </data>
-  <data name="HomeHeader.Header" xml:space="preserve">
-    <value>home</value>
-  </data>
-  <data name="More" xml:space="preserve">
-    <value>more</value>
-  </data>
-  <data name="MusicHubHeader.Header" xml:space="preserve">
-    <value>music</value>
-  </data>
-  <data name="SDCardHeader" xml:space="preserve">
-    <value>sd card</value>
-  </data>
-  <data name="StreamOpen" xml:space="preserve">
-    <value>open stream</value>
-  </data>
-  <data name="TopAlbums.Content" xml:space="preserve">
-    <value>top albums</value>
-  </data>
-  <data name="TopVideos.Content" xml:space="preserve">
-    <value>top videos</value>
-  </data>
-  <data name="ViewAll" xml:space="preserve">
-    <value>view all</value>
-  </data>
-  <data name="AllVideos.Text" xml:space="preserve">
-    <value>all videos</value>
-  </data>
-  <data name="CameraRoll.Text" xml:space="preserve">
-    <value>camera roll</value>
-  </data>
-  <data name="EnterAUrl.PlaceholderText" xml:space="preserve">
-    <value>Enter a URL</value>
-  </data>
-  <data name="FavoriteText.Text" xml:space="preserve">
-    <value>favorite</value>
-  </data>
-  <data name="PinAlbum.Text" xml:space="preserve">
-    <value>pin album</value>
-  </data>
-  <data name="PlaylistText.Text" xml:space="preserve">
-    <value>playlists</value>
-  </data>
-  <data name="SeeUpcomingShows.Text" xml:space="preserve">
-    <value>see upcoming shows</value>
-  </data>
-  <data name="SongsText.Text" xml:space="preserve">
-    <value>songs</value>
-  </data>
-  <data name="TvShows.Text" xml:space="preserve">
-    <value>shows</value>
-  </data>
-  <data name="ViewArtist.Text" xml:space="preserve">
-    <value>view artist</value>
-  </data>
-  <data name="AddToCollectionButton.Content" xml:space="preserve">
-    <value>Add to Collection</value>
-  </data>
-  <data name="AddToPlaylistButton.Content" xml:space="preserve">
-    <value>Add to Playlist</value>
-  </data>
-  <data name="BackButton.Text" xml:space="preserve">
-    <value>Back</value>
-  </data>
-  <data name="GeneralSettingsHeader.Header" xml:space="preserve">
-    <value>general</value>
-  </data>
-  <data name="PlaceholderTextBox.PlaceholderText" xml:space="preserve">
-    <value>Playlist Name</value>
-  </data>
-  <data name="PlaylistShareText.Text" xml:space="preserve">
-    <value>The playlist will also be available on your Windows computer, laptop or tablet, only if the audio files are on your other devices.</value>
-  </data>
-  <data name="AddToPlaylist.Text" xml:space="preserve">
-    <value>Add to playlist</value>
-  </data>
-  <data name="EmptyText.Text" xml:space="preserve">
-    <value>It's empty here</value>
-  </data>
-  <data name="FavoriteLabel.Label" xml:space="preserve">
-    <value>Favorite</value>
-  </data>
-  <data name="NewPlaylist.Label" xml:space="preserve">
-    <value>new playlist</value>
-  </data>
-  <data name="NoCameraVideos.Text" xml:space="preserve">
-    <value>We did not find videos in your camera roll</value>
-  </data>
-  <data name="NoPlaylists.Text" xml:space="preserve">
-    <value>You don't have playlists ... yet</value>
-  </data>
-  <data name="NoShows.Text" xml:space="preserve">
-    <value>We did not find shows in your phone storage</value>
-  </data>
-  <data name="PlayTrack.Label" xml:space="preserve">
-    <value>play track</value>
-  </data>
-  <data name="PlayVideo.Label" xml:space="preserve">
-    <value>play video</value>
-  </data>
-  <data name="PlayWholeAlbum.Label" xml:space="preserve">
-    <value>Play whole album</value>
-  </data>
-  <data name="SeeShows.Content" xml:space="preserve">
-    <value>see shows</value>
-  </data>
-  <data name="ViewAlbum.Label" xml:space="preserve">
-    <value>view album</value>
-  </data>
-  <data name="UnknownAlbum" xml:space="preserve">
-    <value>Unknown Album</value>
-  </data>
-  <data name="CameraRollButton.Content" xml:space="preserve">
-    <value>camera roll</value>
-  </data>
-  <data name="HoweverSearch.Text" xml:space="preserve">
-    <value>... however you may find what you want here</value>
-  </data>
-  <data name="MoreHeader.Header" xml:space="preserve">
-    <value>more</value>
-  </data>
-  <data name="NowPlaying.Header" xml:space="preserve">
-    <value>now playing</value>
-  </data>
-  <data name="ShowsButton.Content" xml:space="preserve">
-    <value>shows</value>
-  </data>
-  <data name="WeDidNotFindVideos.Text" xml:space="preserve">
-    <value>We did not find videos in your Videos folder</value>
-  </data>
-  <data name="ViewArtistLabel.Label" xml:space="preserve">
-    <value>view artist</value>
+    <value />
   </data>
   <data name="AlbumsFound" xml:space="preserve">
-    <value>Albums found : {0}</value>
-    <comment>{0} represents the number of albums found</comment>
+    <value />
   </data>
-  <data name="File.Label" xml:space="preserve">
-    <value>file</value>
+  <data name="AllBackers" xml:space="preserve">
+    <value />
   </data>
-  <data name="Files" xml:space="preserve">
-    <value>files</value>
+  <data name="Animations" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Artists" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Audio" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AudioDelay" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AudioTracks" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CameraRoll" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ChangeAlbumCover" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Chapters" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CheckCredentials" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConnectedToLastFM" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Connecting" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConnectToLastFM" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CrashReport" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DecreaseSpeed" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DecreaseVolume" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeletePlaylist" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeleteSelected" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EditMetadata" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ElementsNotFound" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EnterURL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Episode" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorSendingFeedback" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EvenIfBackground" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EvenIfNotBackground" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FailFilePlayBackground" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FailNavigateVideoPlayerPage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FailOpenVideo" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FailStartVLCEngine" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FeedbackThankYou" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FileExplorer" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GoldPartners" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HardwareDecoding" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HardwareDecodingDescription" xml:space="preserve">
+    <value />
   </data>
   <data name="HaveToSelectPlaylist" xml:space="preserve">
-    <value>You need to select a playlist</value>
+    <value />
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HomePage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HomePageDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HoweverYouMayFindWhatYouWantHere" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HowToFavoriteAlbum1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HowToFavoriteAlbum2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ImportantSponsors" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IncreaseSpeed" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IncreaseVolume" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ItsEmpty" xml:space="preserve">
+    <value />
+  </data>
+  <data name="KeyboardShortcuts" xml:space="preserve">
+    <value />
   </data>
   <data name="Library" xml:space="preserve">
-    <value>library</value>
+    <value />
   </data>
   <data name="License" xml:space="preserve">
-    <value>License</value>
+    <value />
   </data>
-  <data name="MostPlayedArtists.Text" xml:space="preserve">
-    <value>most played artists</value>
+  <data name="Loading" xml:space="preserve">
+    <value />
   </data>
-  <data name="MusicSettingMenu.Label" xml:space="preserve">
-    <value>Music</value>
+  <data name="LoadingMusic" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MostPlayedArtists" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Music" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MusicFolders" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MusicFoldersDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MusicSettings" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MusicShows" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Mute" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MyPlaylists" xml:space="preserve">
+    <value />
   </data>
   <data name="Network" xml:space="preserve">
-    <value>network</value>
+    <value />
+  </data>
+  <data name="NewFeedback" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NewFeedbackSubtitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NewPlaylist" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NewVideos" xml:space="preserve">
+    <value />
+  </data>
+  <data name="No" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NoBiographyFound" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NoCameraVideosFound" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NoFavoriteAlbums" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NoInternetConnection" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NoPlaylists" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NoShowsFound" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NotableSponsors" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NothingToSeeHere" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NotificationWhenSongStarts" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NoVideosFound" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NowPlaying" xml:space="preserve">
+    <value />
+  </data>
+  <data name="OpenFile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="OpenStream" xml:space="preserve">
+    <value />
+  </data>
+  <data name="OpenSubtitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="OrderAscending" xml:space="preserve">
+    <value />
   </data>
   <data name="OrderByAlbum" xml:space="preserve">
-    <value>by album</value>
+    <value />
+  </data>
+  <data name="OrderByArtist" xml:space="preserve">
+    <value />
+  </data>
+  <data name="OrderByDate" xml:space="preserve">
+    <value />
+  </data>
+  <data name="OrderDescending" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PinAlbum" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PinArtist" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Play" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlayAlbum" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlayAll" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Playback" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlayerSettings" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlayFolder" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Playlist" xml:space="preserve">
+    <value />
   </data>
   <data name="PlaylistAlreadyExists" xml:space="preserve">
-    <value>This playlist already exists</value>
+    <value />
   </data>
-  <data name="RecommendedForYou.Text" xml:space="preserve">
-    <value>recommended for you</value>
+  <data name="PlaylistNamePlaceholder" xml:space="preserve">
+    <value />
   </data>
-  <data name="RefreshMusicLibrary.Label" xml:space="preserve">
-    <value>refresh music library</value>
+  <data name="Playlists" xml:space="preserve">
+    <value />
   </data>
-  <data name="RefreshVideoLibrary.Label" xml:space="preserve">
-    <value>refresh video library</value>
+  <data name="PlayTrack" xml:space="preserve">
+    <value />
   </data>
-  <data name="SettingsLabel.Label" xml:space="preserve">
-    <value>settings</value>
+  <data name="PlayVideo" xml:space="preserve">
+    <value />
   </data>
-  <data name="Stream.Label" xml:space="preserve">
-    <value>stream</value>
+  <data name="PremiumSponsors" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PrivacyStatement" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RecommendedForYou" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RefreshMusicLibrary" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RefreshVideoLibrary" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RemovableStorage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RemoveFolder" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RemoveMusicFolderDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RemoveVideoFolderDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ResetMusicDatabase" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ResetSpeed" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RichAnimationsDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RunningInsiderBuild" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Season" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SendFeedback" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SendingFeedback" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SendLogs" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ShowPlaylist" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Shows" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Shuffle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SilverPartners" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Songs" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SpecialThanks" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SpecifiedBuildIncorrect" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SpecifyBuild" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SubtitleDelay" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Subtitles" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SubtitlesEncoding" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TileRemoved" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TopVideos" xml:space="preserve">
+    <value />
   </data>
   <data name="TrackAddedToYourPlaylist" xml:space="preserve">
-    <value>Track added to the playlist</value>
+    <value />
   </data>
   <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
-    <value>This track is already in the playlist</value>
+    <value />
   </data>
-  <data name="UserInterface.Label" xml:space="preserve">
-    <value>User interface</value>
+  <data name="Tracks" xml:space="preserve">
+    <value />
   </data>
-  <data name="VideoSettingMenu.Label" xml:space="preserve">
-    <value>Video</value>
+  <data name="UnknownAlbum" xml:space="preserve">
+    <value />
   </data>
-  <data name="VideosFound" xml:space="preserve">
-    <value>New videos : {0}</value>
-    <comment>{0} represents the number of videos found</comment>
+  <data name="UnknownArtist" xml:space="preserve">
+    <value />
   </data>
-  <data name="YourMusic.Content" xml:space="preserve">
-    <value>your music</value>
+  <data name="UnknownShow" xml:space="preserve">
+    <value />
   </data>
-  <data name="Connect.Label" xml:space="preserve">
-    <value>connect</value>
+  <data name="UnknownTrack" xml:space="preserve">
+    <value />
   </data>
-  <data name="ConnectedToLastFm.Text" xml:space="preserve">
-    <value>You are connected to Last.FM</value>
+  <data name="UpcomingShows" xml:space="preserve">
+    <value />
   </data>
-  <data name="ConnectToLastFm.Text" xml:space="preserve">
-    <value>Connect to Last.FM</value>
+  <data name="UserInterface" xml:space="preserve">
+    <value />
   </data>
-  <data name="MusicFolders.Text" xml:space="preserve">
-    <value>Music folders</value>
+  <data name="Username" xml:space="preserve">
+    <value />
   </data>
-  <data name="Notifications.Text" xml:space="preserve">
-    <value>Notifications</value>
+  <data name="Video" xml:space="preserve">
+    <value />
   </data>
-  <data name="PasswordBoxLastFm.PlaceholderText" xml:space="preserve">
-    <value>password</value>
+  <data name="VideoFolders" xml:space="preserve">
+    <value />
   </data>
-  <data name="PlayAlbumButton.Label" xml:space="preserve">
-    <value>Play album</value>
+  <data name="VideoFoldersDescription" xml:space="preserve">
+    <value />
   </data>
-  <data name="Reset.Text" xml:space="preserve">
-    <value>Reset</value>
+  <data name="VideoPlayback" xml:space="preserve">
+    <value />
   </data>
-  <data name="ResetMusicDb.Content" xml:space="preserve">
-    <value>Reset the music database</value>
+  <data name="VideoPlaybackInBackground" xml:space="preserve">
+    <value />
   </data>
-  <data name="ResetMusicDbHelp.Text" xml:space="preserve">
-    <value>This will delete all the playlists made with VLC, and index the music library again.</value>
+  <data name="Videos" xml:space="preserve">
+    <value />
   </data>
-  <data name="UsernameTextbox.PlaceholderText" xml:space="preserve">
-    <value>username</value>
+  <data name="VideoSettings" xml:space="preserve">
+    <value />
   </data>
-  <data name="Animations.Text" xml:space="preserve">
-    <value>Animations</value>
+  <data name="ViewAlbum" xml:space="preserve">
+    <value />
   </data>
-  <data name="AnimationsExplain.Header" xml:space="preserve">
-    <value>Use rich animations in the slideshows</value>
+  <data name="ViewArtist" xml:space="preserve">
+    <value />
   </data>
-  <data name="HomePage.Text" xml:space="preserve">
-    <value>Home page</value>
+  <data name="VLCTeamThankYou" xml:space="preserve">
+    <value />
   </data>
-  <data name="HomePageExplain.Text" xml:space="preserve">
-    <value>VLC will start on the selected page.</value>
+  <data name="Volume" xml:space="preserve">
+    <value />
   </data>
-  <data name="KeyboardShortcuts.Text" xml:space="preserve">
-    <value>Keyboard shortcuts</value>
+  <data name="Website" xml:space="preserve">
+    <value />
   </data>
-  <data name="RemoveFolderExplain.Text" xml:space="preserve">
-    <value>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</value>
+  <data name="WeNeedYourHelp" xml:space="preserve">
+    <value />
   </data>
-  <data name="SubtitlesEncoding.Text" xml:space="preserve">
-    <value>Subtitle encoding</value>
+  <data name="WindowsBuildNumberPlaceholder" xml:space="preserve">
+    <value />
   </data>
-  <data name="ThemeSetting.Text" xml:space="preserve">
-    <value>Theme</value>
+  <data name="Yes" xml:space="preserve">
+    <value />
   </data>
-  <data name="ThemeToggle.Header" xml:space="preserve">
-    <value>Application theme</value>
-  </data>
-  <data name="UserInterfaceHeader.Text" xml:space="preserve">
-    <value>User interface</value>
-  </data>
-  <data name="VideoLibrary.Text" xml:space="preserve">
-    <value>Video Library</value>
-  </data>
-  <data name="VideoPlayback.Text" xml:space="preserve">
-    <value>Video playback</value>
-  </data>
-  <data name="VideoPlaybackBackground.Header" xml:space="preserve">
-    <value>Video playback in background</value>
-  </data>
-  <data name="VideoPlaybackExplain.Header" xml:space="preserve">
-    <value>Hardware decoding when possible (experimental)</value>
-  </data>
-  <data name="VideoPlaybackExplainTwo.Text" xml:space="preserve">
-    <value>Hardware decoding may not work on your device. You need to restart the app to apply changes</value>
+  <data name="YourMusic" xml:space="preserve">
+    <value />
   </data>
 </root>
