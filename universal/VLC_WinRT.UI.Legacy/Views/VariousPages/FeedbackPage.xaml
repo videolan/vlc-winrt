@@ -35,48 +35,48 @@
                               FontFamily="ms-appx:VLC.ttf#W10" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <TextBlock Text="New feedback"
+            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=NewFeedback}"
                        Style="{StaticResource SubheaderTextBlockStyle}" />
         </StackPanel>
         <TextBlock Grid.Row="2"
                    Margin="{StaticResource FrameMarginBothSides}"
-                   Text="What's the problem?"
+                   Text="{Binding Source={StaticResource Strings}, Path=NewFeedbackSubtitle}"
                    Foreground="{StaticResource MainColor}"
                    Style="{StaticResource SubtitleTextBlockStyle}" />
         <userControls:FocusTextBox x:Name="SummaryTextBox"
                                    Grid.Row="3"
                                    Margin="{StaticResource FrameMargin}"
-                                   PlaceholderText="Summary"
+                                   PlaceholderText="{Binding Source={StaticResource Strings}, Path=Summary}"
                                    MaxLength="100"
                                    TextWrapping="Wrap"/>
         <userControls:FocusTextBox x:Name="DetailsTextBox"
                                    Grid.Row="4"
                                    Margin="{StaticResource FrameMarginBothSides}"
-                                   PlaceholderText="Add details"
+                                   PlaceholderText="{Binding Source={StaticResource Strings}, Path=AddDetails}"
                                    TextWrapping="Wrap" 
                                    MaxLength="700"/>
         <CheckBox x:Name="SendLogsCheckBox"
                   Grid.Row="5"
                   Margin="{StaticResource FrameMarginBothSides}"
                   IsChecked="True"
-                  Content="Send the logs" />
+                  Content="{Binding Source={StaticResource Strings}, Path=SendLogs}" />
         <CheckBox x:Name="InsiderCheckBox"
                   Grid.Row="6"
                   Margin="{StaticResource FrameMargin}"
                   IsChecked="False"
-                  Content="Running Windows Insider build"
+                  Content="{Binding Source={StaticResource Strings}, Path=RunningInsiderBuild}"
                   Checked="InsiderCheckBox_OnChecked"
                   Unchecked="InsiderCheckBox_OnUnchecked"/>
         <userControls:FocusTextBox  x:Name="BuildNumberTextBox"
                                     Grid.Row="7"
                                     Visibility="Collapsed"
                                     Margin="{StaticResource FrameMarginBothSides}"
-                                    PlaceholderText="Windows 10 build number"
+                                    PlaceholderText="{Binding Source={StaticResource Strings}, Path=WindowsBuildNumberPlaceholder}"
                                     MaxLength="5"
                                     InputScope="Number" />
         <Button Grid.Row="8"
                 Margin="{StaticResource FrameMarginBothSides}"
-                Content="Send feedback"
+                Content="{Binding Source={StaticResource Strings}, Path=SendFeedback}"
                 Click="SendFeedback_Click" />
         <Grid Grid.Row="9"
               Margin="{StaticResource FrameMargin}">

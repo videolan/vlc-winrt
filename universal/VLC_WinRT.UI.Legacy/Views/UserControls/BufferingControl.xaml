@@ -15,7 +15,7 @@
         <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
                    Foreground="{StaticResource MainColor}"
                    HorizontalAlignment="Center">
-            <Run Text="Loading -"/>
+            <Run Text="{Binding Source={StaticResource Strings}, Path=Loading}"/>
             <Run Text="{Binding BufferingProgress}"/>
             <Run Text="%"/>
         </TextBlock>

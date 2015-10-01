@@ -29,7 +29,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Text="AUDIO TRACKS"
+            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=AudioTracks}"
                        Style="{StaticResource BaselineTextStyle}"
                        Foreground="{ThemeResource BasicForeground}"
                        VerticalAlignment="Center"

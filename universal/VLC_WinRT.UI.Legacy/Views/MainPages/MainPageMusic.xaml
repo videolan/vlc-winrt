@@ -149,12 +149,12 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayAllButton"
                                                        Storyboard.TargetProperty="Label">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="play all" />
+                                                    Value="{Binding Source={StaticResource Strings}, Path=PlayAll}" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ShuffleButton"
                                                        Storyboard.TargetProperty="Label">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="shuffle" />
+                                                    Value="{Binding Source={StaticResource Strings}, Path=Shuffle}" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>

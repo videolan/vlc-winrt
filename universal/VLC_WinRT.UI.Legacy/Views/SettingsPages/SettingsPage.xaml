@@ -93,14 +93,14 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Button Content="License page"
+                    <Button Content="{Binding Source={StaticResource Strings}, Path=License}"
                             Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToLicensePageCommand}" />
                     <Button Grid.Column="2"
                             Margin="12,0,0,0"
-                            Content="Special thanks page"
+                            Content="{Binding Source={StaticResource Strings}, Path=SpecialThanks}"
                             Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToThanksPageCommand}" />
                 </Grid>
-                <Button Content="Send feedback"
+                <Button Content="{Binding Source={StaticResource Strings}, Path=SendFeedback}"
                         Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToFeedbackPageCommand}" />
             </StackPanel>
         </ScrollViewer>

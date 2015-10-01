@@ -4,7 +4,7 @@
                     xmlns:flyouts="using:VLC_WinRT.Views.UserControls.Flyouts">
 
     <MenuFlyout x:Key="ArtistMenuFlyout">
-        <MenuFlyoutItem Text="pin artist"
+        <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PinArtist}"
                         Command="{Binding PinArtistCommand}"
                         CommandParameter="{Binding}" />
     </MenuFlyout>

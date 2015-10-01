@@ -129,7 +129,7 @@
             </Grid.ColumnDefinitions>
             <AppBarButton Grid.Column="1"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Label="Back"
+                          Label="{Binding Source={StaticResource Strings}, Path=Back}"
                           Command="{Binding CurrentStorageVM.GoBackCommand}"
                           IsEnabled="{Binding CurrentStorageVM.CanGoBack}"
                           Margin="0,0,24,0">
@@ -147,7 +147,7 @@
             <AppBarButton Grid.Column="3"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           HorizontalAlignment="Right"
-                          Label="play folder"
+                          Label="{Binding Source={StaticResource Strings}, Path=PlayFolder}"
                           Foreground="{StaticResource MainColor}"
                           Command="{Binding CurrentStorageVM.PlayFolderCommand}"
                           CommandParameter="{Binding CurrentStorageVM.StorageItems}">

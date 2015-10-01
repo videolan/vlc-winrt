@@ -51,14 +51,14 @@
         <StackPanel Grid.Row="4"
                     Orientation="Horizontal">
             <Button x:Name="SponsorsButton"
-                    Content="Premium sponsors"
+                    Content="{Binding Source={StaticResource Strings}, Path=PremiumSponsors}"
                     Style="{StaticResource TextBlockButtonStyle}"
                     FontSize="24"
                     FontWeight="Light"
                     Click="SwitchList_ClickSponsors"
                     Margin="{StaticResource FrameMargin}" />
             <Button x:Name="AllButton"
-                    Content="All"
+                    Content="{Binding Source={StaticResource Strings}, Path=AllBackers}"
                     Style="{StaticResource TextBlockButtonStyle}"
                     FontSize="24"
                     FontWeight="Light"
@@ -156,7 +156,7 @@
                             <RowDefinition Height="40" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock Text="important sponsors"
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=ImportantSponsors}"
                                    FontSize="24"
                                    Style="{StaticResource TitleTextBlockStyle}"
                                    Foreground="{StaticResource MainColor}" />
@@ -190,7 +190,7 @@
                             <RowDefinition Height="40" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock Text="notable sponsors"
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=NotableSponsors}"
                                    FontSize="24"
                                    Style="{StaticResource TitleTextBlockStyle}"
                                    Foreground="{StaticResource MainColor}" />

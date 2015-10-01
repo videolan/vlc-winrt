@@ -133,7 +133,7 @@
                                                 Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerAudioTracksSettingsVisible}" />
                                 <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Subtitles}"
                                                 Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerSubtitlesSettingsVisible}" />
-                                <MenuFlyoutItem Text="Select subtitle file"
+                                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OpenSubtitle}"
                                                 Command="{Binding OpenSubtitleCommand}" />
                             </MenuFlyout>
                         </AppBarButton.Flyout>

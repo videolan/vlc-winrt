@@ -94,7 +94,7 @@ namespace VLC_WinRT.Utils
         public static string YourMusic => _resourcesLoader.GetString(nameof(YourMusic));
         public static string MostPlayedArtists => _resourcesLoader.GetString(nameof(MostPlayedArtists));
         public static string RecommendedForYou => _resourcesLoader.GetString(nameof(RecommendedForYou));
-
+        public static string Loading => _resourcesLoader.GetString(nameof(Loading));
 
         // MUSIC ITEMS
         public static string UnknownArtist => _resourcesLoader.GetString(nameof(UnknownArtist));
@@ -109,6 +109,7 @@ namespace VLC_WinRT.Utils
         public static string Tracks => _resourcesLoader.GetString(nameof(Tracks));
 
         // MUSIC MICS
+        public static string Audio => _resourcesLoader.GetString(nameof(Audio));
         public static string MusicFolders => _resourcesLoader.GetString(nameof(MusicFolders));
         public static string OrderByArtist => _resourcesLoader.GetString(nameof(OrderByArtist));
         public static string OrderByDate => _resourcesLoader.GetString(nameof(OrderByDate));
@@ -121,13 +122,25 @@ namespace VLC_WinRT.Utils
         public static string CameraRoll => _resourcesLoader.GetString(nameof(CameraRoll));
 
         // VIDEO MISC
+        public static string Video => _resourcesLoader.GetString(nameof(Video));
         public static string VideoFolders => _resourcesLoader.GetString(nameof(VideoFolders));
         public static string VideoFoldersDescription => _resourcesLoader.GetString(nameof(VideoFoldersDescription));
+        public static string PlayerSettings => _resourcesLoader.GetString(nameof(PlayerSettings));
+        public static string AudioDelay => _resourcesLoader.GetString(nameof(AudioDelay));
+        public static string SubtitleDelay => _resourcesLoader.GetString(nameof(SubtitleDelay));
 
         // VIDEO PLAYBACK
         public static string Speed => _resourcesLoader.GetString(nameof(Speed));
+        public static string ResetSpeed => _resourcesLoader.GetString(nameof(ResetSpeed));
+        public static string IncreaseSpeed => _resourcesLoader.GetString(nameof(IncreaseSpeed));
+        public static string DecreaseSpeed => _resourcesLoader.GetString(nameof(DecreaseSpeed));
         public static string AudioTracks => _resourcesLoader.GetString(nameof(AudioTracks));
         public static string Subtitles => _resourcesLoader.GetString(nameof(Subtitles));
+        public static string Chapters => _resourcesLoader.GetString(nameof(Chapters));
+        public static string Volume => _resourcesLoader.GetString(nameof(Volume));
+        public static string IncreaseVolume => _resourcesLoader.GetString(nameof(IncreaseVolume));
+        public static string DecreaseVolume => _resourcesLoader.GetString(nameof(DecreaseVolume));
+        public static string Mute => _resourcesLoader.GetString(nameof(Mute));
 
 
         public static string OrderAscending => _resourcesLoader.GetString(nameof(OrderAscending));
@@ -150,18 +163,31 @@ namespace VLC_WinRT.Utils
 
 
         // ACTIONS
+        public static string Back => _resourcesLoader.GetString(nameof(Back));
         // PLAY ..
+        public static string Play => _resourcesLoader.GetString(nameof(Play));
+        public static string Playback => _resourcesLoader.GetString(nameof(Playback));
+        public static string Pause => _resourcesLoader.GetString(nameof(Pause));
+        public static string Stop => _resourcesLoader.GetString(nameof(Stop));
+
         public static string PlayAlbum => _resourcesLoader.GetString(nameof(PlayAlbum));
         public static string PlayTrack => _resourcesLoader.GetString(nameof(PlayTrack));
         public static string PlayVideo => _resourcesLoader.GetString(nameof(PlayVideo));
         public static string PlayAll => _resourcesLoader.GetString(nameof(PlayAll));
+        public static string PlayFolder => _resourcesLoader.GetString(nameof(PlayFolder));
+        public static string Shuffle => _resourcesLoader.GetString(nameof(Shuffle));
+
 
         // OPEN ...
         public static string OpenFile => _resourcesLoader.GetString(nameof(OpenFile));
         public static string OpenStream => _resourcesLoader.GetString(nameof(OpenStream));
+        public static string OpenSubtitle => _resourcesLoader.GetString(nameof(OpenSubtitle));
 
-
+        // PIN ...
         public static string PinAlbum => _resourcesLoader.GetString(nameof(PinAlbum));
+        public static string PinArtist => _resourcesLoader.GetString(nameof(PinArtist));
+
+        public static string EditMetadata => _resourcesLoader.GetString(nameof(EditMetadata));
         public static string ChangeAlbumCover => _resourcesLoader.GetString(nameof(ChangeAlbumCover));
         public static string UpcomingShows => _resourcesLoader.GetString(nameof(UpcomingShows));
 
@@ -209,10 +235,17 @@ namespace VLC_WinRT.Utils
         // SETTINGS
 
         public static string PrivacyStatement => _resourcesLoader.GetString(nameof(PrivacyStatement));
+        // SPECIAL THANKS
         public static string SpecialThanks => _resourcesLoader.GetString(nameof(SpecialThanks));
         public static string VLCTeamThankYou => _resourcesLoader.GetString(nameof(VLCTeamThankYou));
+        public static string PremiumSponsors => _resourcesLoader.GetString(nameof(PremiumSponsors));
+        public static string AllBackers => _resourcesLoader.GetString(nameof(AllBackers));
         public static string GoldPartners => _resourcesLoader.GetString(nameof(GoldPartners));
         public static string SilverPartners => _resourcesLoader.GetString(nameof(SilverPartners));
+        public static string ImportantSponsors => _resourcesLoader.GetString(nameof(ImportantSponsors));
+        public static string NotableSponsors => _resourcesLoader.GetString(nameof(NotableSponsors));
+
+
         public static string Settings => _resourcesLoader.GetString(nameof(Settings));
         public static string License => _resourcesLoader.GetString(nameof(License));
         public static string UserInterface => _resourcesLoader.GetString(nameof(UserInterface));
@@ -238,6 +271,22 @@ namespace VLC_WinRT.Utils
         public static string HardwareDecoding => _resourcesLoader.GetString(nameof(HardwareDecoding));
         public static string HardwareDecodingDescription => _resourcesLoader.GetString(nameof(HardwareDecodingDescription));
         public static string SubtitlesEncoding => _resourcesLoader.GetString(nameof(SubtitlesEncoding));
+
+        // FEEDBACK
+        public static string SendFeedback => _resourcesLoader.GetString(nameof(SendFeedback));
+        public static string NewFeedback => _resourcesLoader.GetString(nameof(NewFeedback));
+        public static string NewFeedbackSubtitle => _resourcesLoader.GetString(nameof(NewFeedbackSubtitle));
+        public static string Summary => _resourcesLoader.GetString(nameof(Summary));
+        public static string AddDetails => _resourcesLoader.GetString(nameof(AddDetails));
+        public static string SendLogs => _resourcesLoader.GetString(nameof(SendLogs));
+        public static string RunningInsiderBuild => _resourcesLoader.GetString(nameof(RunningInsiderBuild));
+        public static string SendingFeedback => _resourcesLoader.GetString(nameof(SendingFeedback));
+        public static string FeedbackThankYou => _resourcesLoader.GetString(nameof(FeedbackThankYou));
+        public static string ErrorSendingFeedback => _resourcesLoader.GetString(nameof(ErrorSendingFeedback));
+        public static string SpecifyBuild => _resourcesLoader.GetString(nameof(SpecifyBuild));
+        public static string SpecifiedBuildIncorrect => _resourcesLoader.GetString(nameof(SpecifiedBuildIncorrect));
+        public static string WindowsBuildNumberPlaceholder => _resourcesLoader.GetString(nameof(WindowsBuildNumberPlaceholder));
+
 
         public Strings()
         {

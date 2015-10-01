@@ -117,7 +117,7 @@
             <AppBarButton Grid.Column="3"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
-                          Label="add to playlist"
+                          Label="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
                           Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.OpenAddAlbumToPlaylistDialogCommand}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource AddSymbol}"

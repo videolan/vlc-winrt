@@ -33,7 +33,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
             {
                 if (string.IsNullOrEmpty(BuildNumberTextBox.Text))
                 {
-                    StatusTextBox.Text = "Please specify the Windows Insider build number";
+                    StatusTextBox.Text = Strings.SpecifyBuild;
                     return;
                 }
                 int buildN;
@@ -43,7 +43,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
                 }
                 else
                 {
-                    StatusTextBox.Text = "The Windows Insider build number is incorrect";
+                    StatusTextBox.Text = Strings.SpecifiedBuildIncorrect;
                     return;
                 }
             }
@@ -52,7 +52,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
             fbItem.Summary = SummaryTextBox.Text;
 
             var sendLogs = SendLogsCheckBox.IsChecked.HasValue && SendLogsCheckBox.IsChecked.Value;
-            StatusTextBox.Text = "Sending feedback ...";
+            StatusTextBox.Text = Strings.SendingFeedback;
             ProgressRing.IsActive = true;
             Task.Run(() => SendFeedbackItem(fbItem, sendLogs));
         }
@@ -72,7 +72,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
                     }
                     else
                     {
-                        StatusTextBox.Text = "An error occured when sending the feedback.";
+                        StatusTextBox.Text = Strings.ErrorSendingFeedback;
                         ProgressRing.IsActive = false;
 #if DEBUG
                         var md = new MessageDialog(result.ReasonPhrase + " - " + result.Content + " - " + result.StatusCode, "Bug in the Request");
@@ -85,7 +85,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
             {
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
-                    StatusTextBox.Text = "An error occured when sending the feedback.";
+                    StatusTextBox.Text = Strings.ErrorSendingFeedback;
                     ProgressRing.IsActive = false;
 #if DEBUG
                     var md = new MessageDialog(e.ToString(), "Bug");

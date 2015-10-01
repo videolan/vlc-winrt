@@ -106,7 +106,7 @@
                 </AppBarButton>
                 <AppBarButton Grid.Column="1"
                               Grid.Row="0"
-                              Label="edit metadata"
+                              Label="{Binding Source={StaticResource Strings}, Path=EditMetadata}"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.StartTrackMetaEdit}"
                               CommandParameter="{Binding}"

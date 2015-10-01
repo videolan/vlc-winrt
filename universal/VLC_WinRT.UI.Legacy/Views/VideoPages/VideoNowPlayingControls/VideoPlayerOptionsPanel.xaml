@@ -56,7 +56,7 @@
                                TextTrimming="CharacterEllipsis"
                                TextWrapping="NoWrap"
                                VerticalAlignment="Top"
-                               Text="Player settings"
+                               Text="{Binding Source={StaticResource Strings}, Path=PlayerSettings}"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                 </Grid>
                 <TextBlock Grid.Row="2"
@@ -98,7 +98,7 @@
                            Foreground="{ThemeResource BasicForeground}"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight">
-                <Run Text="Audio delay" />
+                <Run Text="{Binding Source={StaticResource Strings}, Path=AudioDelay}" />
                 <Run Text="{Binding AudioDelay}"
                      Foreground="{StaticResource MainColor}"
                      FontSize="26"
@@ -111,7 +111,7 @@
                 <StackPanel Grid.Row="6"
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
-                    <Button Content="Reset"
+                    <Button Content="{Binding Source={StaticResource Strings}, Path=Reset}"
                             Command="{Binding ChangeAudioDelayCommand}"
                             CommandParameter="reset" />
                     <Button Content="-"
@@ -144,7 +144,7 @@
                            Foreground="{ThemeResource BasicForeground}"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight">
-                <Run Text="Subtitle delay" />
+                <Run Text="{Binding Source={StaticResource Strings}, Path=SubtitleDelay}" />
                 <Run Text="{Binding SpuDelay}"
                      Foreground="{StaticResource MainColor}"
                      FontSize="26"
@@ -157,7 +157,7 @@
                 <StackPanel Grid.Row="10"
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
-                    <Button Content="Reset"
+                    <Button Content="{Binding Source={StaticResource Strings}, Path=Reset}"
                             Command="{Binding ChangeSpuDelayCommand}"
                             CommandParameter="reset" />
                     <Button Content="-"
@@ -190,7 +190,7 @@
                            Foreground="{ThemeResource BasicForeground}"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight">
-                <Run Text="Chapters" />
+                <Run Text="{Binding Source={StaticResource Strings}, Path=Chapters}" />
                 <Run Text="{Binding Chapters.Count}"
                      Foreground="{StaticResource MainColor}"
                      FontSize="26"
