@@ -132,7 +132,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                     {
                         if (isNewVideo)
                         {
-                            Locator.MainVM.InformationText = string.Format(Strings.NewVideo, mediaVM.Name);
+                            Locator.MainVM.InformationText = string.Format(Strings.NewVideos, mediaVM.Name);
                         }
 
                         if (mediaVM.IsCameraRoll)
