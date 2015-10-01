@@ -182,10 +182,6 @@
                 </triggers:Interactions.Triggers>
             </ScrollWatcher:ListViewScrollWatcher>
         </Grid>
-        <removableStorage:PlugARemovableStorage Grid.Row="1"
-                                                Grid.RowSpan="3"
-                                                d:IsHidden="True"
-                                                Visibility="{Binding StorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

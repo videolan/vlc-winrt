@@ -225,13 +225,7 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoVideosPlaceholder.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\PlugARemovableStorage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\StartSearchingSomething.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\WaitingForNetworkAnswer.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\SideBar.xaml">
@@ -465,14 +459,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoVideosPlaceholder.xaml.cs">
       <DependentUpon>NoVideosPlaceholder.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\PlugARemovableStorage.xaml.cs">
-      <DependentUpon>PlugARemovableStorage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\StartSearchingSomething.xaml.cs">
       <DependentUpon>StartSearchingSomething.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\WaitingForNetworkAnswer.xaml.cs">
-      <DependentUpon>WaitingForNetworkAnswer.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\SideBar.xaml.cs">
       <DependentUpon>SideBar.xaml</DependentUpon>
