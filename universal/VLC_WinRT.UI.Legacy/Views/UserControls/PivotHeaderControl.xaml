@@ -70,7 +70,7 @@
         <FontIcon x:Name="Icon"
                   FontFamily="ms-appx:VLC.ttf#W10"
                   Glyph="{Binding PathData}"
-                  FontSize="26"
+                  FontSize="30"
                   VerticalAlignment="Center" />
         <TextBlock x:Name="Title"
                    Grid.Column="2"
