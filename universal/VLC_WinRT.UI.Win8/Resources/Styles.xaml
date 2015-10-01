@@ -3817,7 +3817,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnob"
                                                                        Storyboard.TargetProperty="Fill">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
+                                                                    Value="{ThemeResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <DoubleAnimation Storyboard.TargetName="OffContentPresenter"
                                                          Storyboard.TargetProperty="Opacity"
@@ -3835,6 +3835,11 @@
                                 </VisualState>
                                 <VisualState x:Name="OnContent">
                                     <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnob"
+                                                                       Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource BasicForeground}" />
+                                        </ObjectAnimationUsingKeyFrames>
                                         <DoubleAnimation Storyboard.TargetName="OnContentPresenter"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="1"
@@ -3930,8 +3935,8 @@
                                                 BorderThickness="2"
                                                 CornerRadius="9">
                                             <Ellipse x:Name="SwitchKnob"
-                                                     Fill="{ThemeResource ToggleSwitchThumbBackgroundThemeBrush}"
-                                                     Stroke="{ThemeResource ToggleSwitchThumbBorderThemeBrush}"
+                                                     Fill="{ThemeResource MainColor}"
+                                                     Stroke="{ThemeResource MainColor}"
                                                      StrokeThickness="0"
                                                      HorizontalAlignment="Left"
                                                      Width="12"
