@@ -7,28 +7,23 @@
             mc:Ignorable="d"
             d:DesignHeight="300"
             d:DesignWidth="400">
-    <MenuFlyoutItem x:Uid="PlayAlbum"
-                    Text="play all"
+    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
                     Command="{Binding PlayAlbum}"
                     CommandParameter="{Binding}" />
     <MenuFlyoutItem Text="add to current playlist"
                     Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.AddToPlayingPlaylist}"
                     CommandParameter="{Binding}" 
                     Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-    <MenuFlyoutItem x:Uid="ViewArtist"
-                    Text="view artist"
+    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=ViewArtist}"
                     Command="{Binding ViewArtist}"
                     CommandParameter="{Binding ArtistId}" />
-    <MenuFlyoutItem x:Uid="PinAlbum"
-                    Text="pin album"
+    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PinAlbum}"
                     Command="{Binding PinAlbumCommand}"
                     CommandParameter="{Binding}" />
-    <MenuFlyoutItem x:Uid="ChangeAlbumArt"
-                                            Text="change album art"
+    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=ChangeAlbumCover}"
                                             Command="{Binding ChangeAlbumArtCommand}"
                                             CommandParameter="{Binding}" />
-    <MenuFlyoutItem x:Uid="SeeUpcomingShows"
-                    Text="see upcoming shows"
+    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=UpcomingShows}"
                     Command="{Binding SeeArtistShowsCommand}"
                     CommandParameter="{Binding ArtistId}" />
 </MenuFlyout>

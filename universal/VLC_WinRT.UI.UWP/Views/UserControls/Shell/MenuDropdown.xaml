@@ -19,25 +19,21 @@
         </AppBarButton.Icon>
         <AppBarButton.Flyout>
             <MenuFlyout>
-                <MenuFlyoutItem x:Uid="FileText"
-                                Text="file"
+                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OpenFile}"
                                 Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}"
                                 Tag="{StaticResource OpenFileSymbol}"
                                 Style="{StaticResource MenuFlyoutItemIconTemplate}" />
-                <MenuFlyoutItem x:Uid="SettingsText"
-                                Text="settings"
+                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Settings}"
                                 Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}"
                                 Tag="{StaticResource SettingsSymbol}"
                                 Style="{StaticResource MenuFlyoutItemIconTemplate}" />
                 <MenuFlyoutSeparator />
-                <MenuFlyoutItem x:Uid="RefreshMusicLibraryText"
-                                Text="refresh music library"
+                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=RefreshMusicLibrary}"
                                 DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                                 Command="{Binding StartMusicIndexingCommand}"
                                 Tag="{StaticResource RefreshSymbol}"
                                 Style="{StaticResource MenuFlyoutItemIconTemplate}" />
-                <MenuFlyoutItem x:Uid="RefreshVideoLibraryText"
-                                Text="refresh video library"
+                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=RefreshVideoLibrary}"
                                 DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
                                 Command="{Binding StartVideoIndexingCommand}"
                                 Tag="{StaticResource RefreshSymbol}"

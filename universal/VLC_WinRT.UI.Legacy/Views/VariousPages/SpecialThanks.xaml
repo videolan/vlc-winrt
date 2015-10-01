@@ -40,13 +40,11 @@
                               FontFamily="ms-appx:VLC.ttf#W10" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <TextBlock Text="Special thanks"
-                       x:Uid="SpecialThanks"
+            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=SpecialThanks}"
                        Style="{StaticResource SubheaderTextBlockStyle}" />
         </StackPanel>
         <TextBlock Grid.Row="2"
-                   x:Uid="VlcThankYou"
-                   Text="The VLC team would like to thank everyone who is in this page"
+                   Text="{Binding Source={StaticResource Strings}, Path=VLCTeamThankYou}"
                    Style="{StaticResource TitleTextBlockStyle}"
                    TextWrapping="Wrap"
                    Margin="{StaticResource FrameMargin}" />
@@ -78,8 +76,7 @@
                             <RowDefinition Height="40" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock x:Uid="PartnersGold"
-                                   Text="gold partners"
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=GoldPartners}"
                                    FontSize="24"
                                    Style="{StaticResource TitleTextBlockStyle}"
                                    Foreground="{StaticResource MainColor}" />
@@ -112,8 +109,7 @@
                             <RowDefinition Height="40" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock x:Uid="PartnersSilver"
-                                   Text="silver partners"
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=SilverPartners}"
                                    FontSize="24"
                                    Style="{StaticResource TitleTextBlockStyle}"
                                    Foreground="{StaticResource MainColor}" />

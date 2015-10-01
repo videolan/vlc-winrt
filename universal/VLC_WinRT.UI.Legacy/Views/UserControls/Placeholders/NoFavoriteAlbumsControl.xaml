@@ -32,8 +32,7 @@
             </ListView.Items>
         </ListView>
         <TextBlock Grid.Row="1"
-                   Text="You don't have favorite albums"
-                   x:Uid="NoFavoriteAlbumsHeader"
+                   Text="{Binding Source={StaticResource Strings}, Path=NoFavoriteAlbums}"
                    Style="{StaticResource HeaderTextBlockStyle}"
                    LineStackingStrategy="MaxHeight"
                    TextWrapping="Wrap"
@@ -43,13 +42,11 @@
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    Margin="{StaticResource FrameMarginBothSides}"
                    FontSize="22">
-            <Run x:Uid="NoFavoriteAlbumText1"
-                 Text="When playing an album, press the" />
+            <Run Text="{Binding Source={StaticResource Strings}, Path=HowToFavoriteAlbum1}"/>
             <Run Text="{StaticResource FavoriteSymbol}"
                  FontFamily="ms-appx:VLC.ttf#W10"
                  Foreground="{StaticResource MainColor}" />
-            <Run x:Uid="NoFavoriteAlbumText2"
-                 Text="button and you'll find your favorite albums easier than ever!" />
+            <Run Text="{Binding Source={StaticResource Strings}, Path=HowToFavoriteAlbum2}"/>
         </TextBlock>
     </Grid>
 </UserControl>

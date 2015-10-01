@@ -61,7 +61,7 @@
                    FontWeight="SemiLight"
                    FontSize="19">
             <Run Text="{Binding Albums.Count}" />
-            <Run Text="albums" />
+            <Run Text="{Binding Source={StaticResource Strings}, Path=Albums}" />
         </TextBlock>
     </Grid>
 </UserControl>

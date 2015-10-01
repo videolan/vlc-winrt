@@ -29,10 +29,10 @@
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    VerticalAlignment="Center"
                    TextAlignment="Center">
-            <Run x:Uid="WeDidNotFindVideos" Text="We did not find videos in your Videos folder"
+            <Run Text="{Binding Source={StaticResource Strings}, Path=NoVideosFound}"
                  FontSize="20" />
             <LineBreak />
-            <Run x:Uid="HoweverSearch" Text="... however you may find what you want here"
+            <Run Text="{Binding Source={StaticResource Strings}, Path=HoweverYouMayFindWhatYouWantHere}"
                  FontSize="18" />
         </TextBlock>
         <Button Grid.Row="3"

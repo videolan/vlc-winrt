@@ -68,8 +68,7 @@
             <StackPanel Grid.Row="1"
                         Margin="12,0,0,0"
                         VerticalAlignment="Center">
-                <AppBarButton x:Uid="PlayVideo"
-                              Label="play video"
+                <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=PlayVideo}"
                               Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.CloseFlyoutAndPlayVideoCommand}"
                               CommandParameter="{Binding}"
                               Click="ActionButton_Click"

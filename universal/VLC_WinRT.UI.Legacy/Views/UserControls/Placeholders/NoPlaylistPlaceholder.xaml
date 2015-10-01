@@ -25,8 +25,7 @@
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    VerticalAlignment="Center"
                    TextAlignment="Center">
-            <Run x:Uid="NoPlaylists"
-                 Text="You don't have playlists ... yet"
+            <Run Text="{Binding Source={StaticResource Strings}, Path=NoPlaylists}"
                  FontSize="18" />
         </TextBlock>
     </Grid>

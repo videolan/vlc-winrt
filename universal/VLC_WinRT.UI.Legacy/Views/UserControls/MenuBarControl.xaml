@@ -28,10 +28,9 @@
 
           <AppBarButton Grid.Column="1"
                         VerticalAlignment="Center"
-                        x:Uid="File"
                         Style="{StaticResource AppBarButtonStyleHorizontal}"
-                        Label="file"
-                        Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}">
+                          Label="{Binding Source={StaticResource Strings}, Path=OpenFile}"
+                          Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}">
               <AppBarButton.Icon>
                   <FontIcon Glyph="{StaticResource OpenFileSymbol}"
                             FontFamily="ms-appx:VLC.ttf#W10" />
@@ -39,10 +38,9 @@
           </AppBarButton>
           <AppBarButton Grid.Column="3"
                         VerticalAlignment="Center"
-                        x:Uid="Stream"
                         Style="{StaticResource AppBarButtonStyleHorizontal}"
-                        Label="stream"
-                        Flyout="{StaticResource PhoneOpenStreamFlyout}">
+                          Label="{Binding Source={StaticResource Strings}, Path=OpenStream}"
+                          Flyout="{StaticResource PhoneOpenStreamFlyout}">
               <AppBarButton.Icon>
                   <FontIcon Glyph="{StaticResource StreamSymbol}"
                             FontFamily="ms-appx:VLC.ttf#W10" />
@@ -50,9 +48,8 @@
           </AppBarButton>
           <AppBarButton Grid.Column="5"
                         VerticalAlignment="Center"
-                        x:Uid="SettingsLabel"
-                        Label="settings"
-                        Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Label="{Binding Source={StaticResource Strings}, Path=Settings}"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
                         Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}" Margin="0,11,0,10">
               <AppBarButton.Icon>
                   <FontIcon Glyph="{StaticResource SettingsSymbol}"
@@ -72,9 +69,8 @@
           </Grid.ColumnDefinitions>
           <AppBarButton Grid.Column="1"
                         VerticalAlignment="Center"
-                        x:Uid="RefreshVideoLibrary"
-                        Label="refresh video library"
-                        Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Label="{Binding Source={StaticResource Strings}, Path=RefreshVideoLibrary}"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
                         DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
                         Command="{Binding StartVideoIndexingCommand}"
                         IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}">
@@ -87,9 +83,8 @@
           <AppBarButton x:Name="RefreshButton"
                         Grid.Column="3"
                         VerticalAlignment="Center"
-                        x:Uid="RefreshMusicLibrary"
-                        Label="refresh music library"
-                        Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Label="{Binding Source={StaticResource Strings}, Path=RefreshMusicLibrary}"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
                         DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                         Command="{Binding StartMusicIndexingCommand}"
                         IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}">

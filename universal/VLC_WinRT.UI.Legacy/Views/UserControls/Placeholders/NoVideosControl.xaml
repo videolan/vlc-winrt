@@ -31,8 +31,7 @@
             </ListView.Items>
         </ListView>
         <TextBlock Grid.Row="1"
-                   x:Uid="WeDidNotFindVideos"
-                   Text="We did not find videos in your Videos folder"
+                   Text="{Binding Source={StaticResource Strings}, Path=NoVideosFound}"
                    Margin="{StaticResource FrameMarginLeft}"
                    Style="{StaticResource SubheaderTextBlockStyle}"/>
     </Grid>

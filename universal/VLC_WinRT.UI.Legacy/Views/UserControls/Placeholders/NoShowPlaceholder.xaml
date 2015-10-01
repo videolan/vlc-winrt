@@ -26,12 +26,10 @@
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    VerticalAlignment="Center"
                    TextAlignment="Center">
-            <Run x:Uid="EmptyText" 
-                 Text="It's empty here"
+            <Run Text="{Binding Source={StaticResource Strings}, Path=ItsEmpty}"
                  FontSize="20" />
             <LineBreak />
-            <Run x:Uid="NoShows" 
-                 Text="We did not find shows in your phone storage"
+            <Run Text="{Binding Source={StaticResource Strings}, Path=NoShowsFound}"
                  FontSize="18" />
         </TextBlock>
     </Grid>

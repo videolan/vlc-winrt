@@ -60,13 +60,12 @@
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                 </Grid>
                 <TextBlock Grid.Row="2"
-                           x:Uid="Speed"
-                           Text="Speed"
+                           Text="{Binding Source={StaticResource Strings}, Path=Speed}"
                            Foreground="{ThemeResource BasicForeground}"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight" />
                 <Button Grid.Row="2"
-                        Content="Reset"
+                        Content="{Binding Source={StaticResource Strings}, Path=Reset}"
                         HorizontalAlignment="Right"
                         Command="{Binding ChangePlaybackSpeedRateCommand}"
                         CommandParameter="reset" />

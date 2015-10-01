@@ -72,9 +72,8 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <AppBarButton x:Uid="PlayTrack"
-                              Grid.Row="0"
-                              Label="play track"
+                <AppBarButton Grid.Row="0"
+                              Label="{Binding Source={StaticResource Strings}, Path=PlayTrack}"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Foreground="{StaticResource MainColor}"
                               Command="{Binding TrackClicked}"
@@ -85,9 +84,8 @@
                                   FontFamily="ms-appx:VLC.ttf#W10" />
                     </AppBarButton.Icon>
                 </AppBarButton>
-                <AppBarButton x:Uid="ViewAlbum"
-                              Grid.Row="1"
-                              Label="view album"
+                <AppBarButton Grid.Row="1"
+                              Label="{Binding Source={StaticResource Strings}, Path=ViewAlbum}"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.AlbumClickedCommand}"
                               CommandParameter="{Binding AlbumId}"
@@ -96,9 +94,8 @@
                         <PathIcon Data="{StaticResource AlbumPathNarrow}" />
                     </AppBarButton.Icon>
                 </AppBarButton>
-                <AppBarButton x:Uid="ViewArtistLabel"
-                              Grid.Row="2"
-                              Label="view artist"
+                <AppBarButton Grid.Row="2"
+                              Label="{Binding Source={StaticResource Strings}, Path=ViewArtist}"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.ArtistClickedCommand}"
                               CommandParameter="{Binding ArtistId}"
@@ -128,12 +125,10 @@
                     <ColumnDefinition Width="{StaticResource FrameMarginGridLength}"/>
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Uid="AddToPlaylist"
-                           Text="Add to playlist"
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
                            Style="{StaticResource SubheaderTextBlockStyle}" />
                 <AppBarButton Grid.Column="2"
-                              x:Uid="NewPlaylist"
-                              Label="new playlist"
+                              Label="{Binding Source={StaticResource Strings}, Path=NewPlaylist}"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Command="{Binding ShowCreateNewPlaylistPaneCommand}">
                 <AppBarButton.Icon>
