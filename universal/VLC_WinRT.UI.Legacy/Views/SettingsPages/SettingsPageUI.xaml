@@ -26,16 +26,14 @@
                                       FontFamily="ms-appx:VLC.ttf#W10" />
                         </AppBarButton.Icon>
                     </AppBarButton>
-                    <TextBlock Text="User interface" x:Uid="UserInterfaceHeader"
+                    <TextBlock Text="{Binding Source={StaticResource Strings}, Path=UserInterface}"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                 </StackPanel>
-                <TextBlock Text="Theme"
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Theme}"
                            FontSize="22"
-                           x:Uid="ThemeSetting"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight" />
-                <ToggleSwitch  Header="Application theme"
-                               x:Uid="ThemeToggle"
+                <ToggleSwitch  Header="{Binding Source={StaticResource Strings}, Path=AppTheme}"
                                OffContent="Light"
                                OnContent="Dark"
                                Margin="-6,0,0,0">
@@ -47,12 +45,12 @@
                     </ToggleSwitch.IsOn>
                 </ToggleSwitch>
 
-                <TextBlock Text="Home page"
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=HomePage}"
                            Margin="0,12,0,0"
                            FontSize="22"
-                           Style="{StaticResource SubheaderTextBlockStyle}" x:Uid="HomePage"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight" />
-                <TextBlock Text="VLC will start on the selected page." x:Uid="HomePageExplain"
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=HomePageDescription}"
                            Style="{StaticResource BodyTextBlockStyle}" />
                 <ComboBox Margin="0,12,0,0"
                           ItemsSource="{Binding HomePageCollection}"
@@ -67,16 +65,16 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-                <TextBlock Text="Animations" x:Uid="Animations"
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Animations}"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Margin="0,12,0,0"
                            FontWeight="SemiLight" />
-                <ToggleSwitch  Header="Use rich animations in the slideshows" x:Uid="AnimationsExplain"
+                <ToggleSwitch  Header="{Binding Source={StaticResource Strings}, Path=RichAnimationsDescription}"
                                IsOn="{Binding RichAnimations, Mode=TwoWay}"
                                Margin="-6,0,0,0" />
-                
-                <TextBlock Text="Keyboard shortcuts" x:Uid="KeyboardShortcuts"
+
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}"
                            Margin="0,12,0,0"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"

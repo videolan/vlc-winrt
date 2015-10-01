@@ -176,6 +176,13 @@ namespace VLC_WinRT.Utils
         public static string EvenIfNotBackground => _resourcesLoader.GetString(nameof(EvenIfNotBackground));
         public static string ConnectToLastFM => _resourcesLoader.GetString(nameof(ConnectToLastFM));
         public static string ConnectedToLastFM => _resourcesLoader.GetString(nameof(ConnectedToLastFM));
+        public static string Theme => _resourcesLoader.GetString(nameof(Theme));
+        public static string AppTheme => _resourcesLoader.GetString(nameof(AppTheme));
+        public static string HomePage => _resourcesLoader.GetString(nameof(HomePage));
+        public static string HomePageDescription => _resourcesLoader.GetString(nameof(HomePageDescription));
+        public static string Animations => _resourcesLoader.GetString(nameof(Animations));
+        public static string RichAnimationsDescription => _resourcesLoader.GetString(nameof(RichAnimationsDescription));
+        public static string KeyboardShortcuts => _resourcesLoader.GetString(nameof(KeyboardShortcuts));
 
         public Strings()
         {
