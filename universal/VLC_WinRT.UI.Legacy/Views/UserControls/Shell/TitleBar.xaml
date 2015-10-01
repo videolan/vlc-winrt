@@ -8,7 +8,8 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Grid MinHeight="40"
+    <Grid x:Name="RootGrid" 
+          MinHeight="40"
           Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="47" />
@@ -26,6 +27,7 @@
               Width="17"
               Stretch="UniformToFill" />
         <TextBlock Grid.Column="2"
+                   x:Name="Title"
                    Text="VLC"
                    Foreground="{ThemeResource MainColor}"
                    VerticalAlignment="Center"
