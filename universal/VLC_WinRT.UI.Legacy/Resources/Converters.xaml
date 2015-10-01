@@ -43,6 +43,5 @@
     <converters:PageToVisibilityConverter x:Key="PageToVisibilityConverter"/>
     <converters:PositionToTimeStampStringConverter x:Key="PositionToTimeStampStringConverter"/>
     <converters:MusicViewVisibilityConverter x:Key="MusicViewVisibilityConverter"/>
-    <converters:BooleanToMainColorConverter x:Key="BooleanToMainColorConverter"/>
     <converters:RootFolderTypeToNameConverter x:Key="RootFolderTypeToNameConverter"/>
 </ResourceDictionary>
