@@ -81,7 +81,9 @@ namespace VLC_WinRT.ViewModels.Settings
                 _accentColors = new List<Color>()
                 {
                     Color.FromArgb(255, 0xff, 0x88, 0x00),
-                    Color.FromArgb(255, 26, 188, 156),
+                    Color.FromArgb(255, 241, 13, 162),
+                    Color.FromArgb(255, 240, 67, 98),
+                    Color.FromArgb(255, 239, 95, 65),
                     Color.FromArgb(255, 46, 204, 113),
                     Color.FromArgb(255, 52, 152, 219),
                     Color.FromArgb(255, 155, 89, 182),
