@@ -6,645 +6,705 @@
     </header>
     <body>
       <group id="Resources">
-        <trans-unit id="Resources\ViewArtistLabel\Label" translate="yes" xml:space="preserve">
-          <source>view artist</source>
-          <target state="new">view artist</target>
+        <trans-unit id="Resources\YourMusic" translate="yes" xml:space="preserve">
+          <source>your music</source>
+          <target state="new">your music</target>
         </trans-unit>
-        <trans-unit id="Resources\WeDidNotFindVideos\Text" translate="yes" xml:space="preserve">
-          <source>We did not find videos in your Videos folder</source>
-          <target state="new">We did not find videos in your Videos folder</target>
+        <trans-unit id="Resources\RemoveFolder" translate="yes" xml:space="preserve">
+          <source>remove folder</source>
+          <target state="new">remove folder</target>
         </trans-unit>
-        <trans-unit id="Resources\UnknownAlbum" translate="yes" xml:space="preserve">
-          <source>Unknown Album</source>
-          <target state="new">Unknown Album</target>
+        <trans-unit id="Resources\RemoveMusicFolderDescription" translate="yes" xml:space="preserve">
+          <source>If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</source>
+          <target state="new">If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</target>
         </trans-unit>
-        <trans-unit id="Resources\CameraRollButton\Content" translate="yes" xml:space="preserve">
-          <source>camera roll</source>
-          <target state="new">camera roll</target>
+        <trans-unit id="Resources\RemoveVideoFolderDescription" translate="yes" xml:space="preserve">
+          <source>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</source>
+          <target state="new">If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</target>
         </trans-unit>
-        <trans-unit id="Resources\HoweverSearch\Text" translate="yes" xml:space="preserve">
-          <source>... however you may find what you want here</source>
-          <target state="new">... however you may find what you want here</target>
+        <trans-unit id="Resources\Reset" translate="yes" xml:space="preserve">
+          <source>reset</source>
+          <target state="new">reset</target>
         </trans-unit>
-        <trans-unit id="Resources\MoreHeader\Header" translate="yes" xml:space="preserve">
-          <source>more</source>
-          <target state="new">more</target>
+        <trans-unit id="Resources\ResetMusicDatabase" translate="yes" xml:space="preserve">
+          <source>reset music database</source>
+          <target state="new">reset music database</target>
         </trans-unit>
-        <trans-unit id="Resources\NowPlaying\Header" translate="yes" xml:space="preserve">
-          <source>now playing</source>
-          <target state="new">now playing</target>
+        <trans-unit id="Resources\ResetSpeed" translate="yes" xml:space="preserve">
+          <source>reset speed</source>
+          <target state="new">reset speed</target>
         </trans-unit>
-        <trans-unit id="Resources\ShowsButton\Content" translate="yes" xml:space="preserve">
-          <source>shows</source>
-          <target state="new">shows</target>
+        <trans-unit id="Resources\RichAnimationsDescription" translate="yes" xml:space="preserve">
+          <source>Use rich animations in the slideshows</source>
+          <target state="new">Use rich animations in the slideshows</target>
         </trans-unit>
-        <trans-unit id="Resources\ViewAlbum\Label" translate="yes" xml:space="preserve">
-          <source>view album</source>
-          <target state="new">view album</target>
+        <trans-unit id="Resources\RunningInsiderBuild" translate="yes" xml:space="preserve">
+          <source>are you running an Insider build?</source>
+          <target state="new">are you running an Insider build?</target>
         </trans-unit>
-        <trans-unit id="Resources\SeeShows\Content" translate="yes" xml:space="preserve">
-          <source>see shows</source>
-          <target state="new">see shows</target>
-        </trans-unit>
-        <trans-unit id="Resources\PlayWholeAlbum\Label" translate="yes" xml:space="preserve">
-          <source>Play whole album</source>
-          <target state="new">Play whole album</target>
-        </trans-unit>
-        <trans-unit id="Resources\PlayVideo\Label" translate="yes" xml:space="preserve">
-          <source>play video</source>
-          <target state="new">play video</target>
-        </trans-unit>
-        <trans-unit id="Resources\PlayTrack\Label" translate="yes" xml:space="preserve">
-          <source>play track</source>
-          <target state="new">play track</target>
-        </trans-unit>
-        <trans-unit id="Resources\NoShows\Text" translate="yes" xml:space="preserve">
-          <source>We did not find shows in your phone storage</source>
-          <target state="new">We did not find shows in your phone storage</target>
-        </trans-unit>
-        <trans-unit id="Resources\NoPlaylists\Text" translate="yes" xml:space="preserve">
-          <source>You don't have playlists ... yet</source>
-          <target state="new">You don't have playlists ... yet</target>
-        </trans-unit>
-        <trans-unit id="Resources\NoCameraVideos\Text" translate="yes" xml:space="preserve">
-          <source>We did not find videos in your camera roll</source>
-          <target state="new">We did not find videos in your camera roll</target>
-        </trans-unit>
-        <trans-unit id="Resources\NewPlaylist\Label" translate="yes" xml:space="preserve">
-          <source>new playlist</source>
-          <target state="new">new playlist</target>
-        </trans-unit>
-        <trans-unit id="Resources\FavoriteLabel\Label" translate="yes" xml:space="preserve">
-          <source>Favorite</source>
-          <target state="new">Favorite</target>
-        </trans-unit>
-        <trans-unit id="Resources\EmptyText\Text" translate="yes" xml:space="preserve">
-          <source>It's empty here</source>
-          <target state="new">It's empty here</target>
-        </trans-unit>
-        <trans-unit id="Resources\AddToPlaylist\Text" translate="yes" xml:space="preserve">
-          <source>Add to playlist</source>
-          <target state="new">Add to playlist</target>
-        </trans-unit>
-        <trans-unit id="Resources\ViewArtist\Text" translate="yes" xml:space="preserve">
-          <source>view artist</source>
-          <target state="new">view artist</target>
-        </trans-unit>
-        <trans-unit id="Resources\TvShows\Text" translate="yes" xml:space="preserve">
-          <source>shows</source>
-          <target state="new">shows</target>
-        </trans-unit>
-        <trans-unit id="Resources\SongsText\Text" translate="yes" xml:space="preserve">
-          <source>songs</source>
-          <target state="new">songs</target>
-        </trans-unit>
-        <trans-unit id="Resources\SeeUpcomingShows\Text" translate="yes" xml:space="preserve">
-          <source>see upcoming shows</source>
-          <target state="new">see upcoming shows</target>
-        </trans-unit>
-        <trans-unit id="Resources\PlaylistText\Text" translate="yes" xml:space="preserve">
-          <source>playlists</source>
-          <target state="new">playlists</target>
-        </trans-unit>
-        <trans-unit id="Resources\PinAlbum\Text" translate="yes" xml:space="preserve">
-          <source>pin album</source>
-          <target state="new">pin album</target>
-        </trans-unit>
-        <trans-unit id="Resources\FavoriteText\Text" translate="yes" xml:space="preserve">
-          <source>favorite</source>
-          <target state="new">favorite</target>
-        </trans-unit>
-        <trans-unit id="Resources\EnterAUrl\PlaceholderText" translate="yes" xml:space="preserve">
-          <source>Enter a URL</source>
-          <target state="new">Enter a URL</target>
-        </trans-unit>
-        <trans-unit id="Resources\CameraRoll\Text" translate="yes" xml:space="preserve">
-          <source>camera roll</source>
-          <target state="new">camera roll</target>
-        </trans-unit>
-        <trans-unit id="Resources\AllVideos\Text" translate="yes" xml:space="preserve">
-          <source>all videos</source>
-          <target state="new">all videos</target>
-        </trans-unit>
-        <trans-unit id="Resources\ViewAll" translate="yes" xml:space="preserve">
-          <source>view all</source>
-          <target state="new">view all</target>
-        </trans-unit>
-        <trans-unit id="Resources\TopVideos\Content" translate="yes" xml:space="preserve">
-          <source>top videos</source>
-          <target state="new">top videos</target>
-        </trans-unit>
-        <trans-unit id="Resources\TopAlbums\Content" translate="yes" xml:space="preserve">
-          <source>top albums</source>
-          <target state="new">top albums</target>
-        </trans-unit>
-        <trans-unit id="Resources\StreamOpen" translate="yes" xml:space="preserve">
-          <source>open stream</source>
-          <target state="new">open stream</target>
-        </trans-unit>
-        <trans-unit id="Resources\SDCardHeader" translate="yes" xml:space="preserve">
-          <source>sd card</source>
-          <target state="new">sd card</target>
-        </trans-unit>
-        <trans-unit id="Resources\MusicHubHeader\Header" translate="yes" xml:space="preserve">
-          <source>music</source>
-          <target state="new">music</target>
-        </trans-unit>
-        <trans-unit id="Resources\More" translate="yes" xml:space="preserve">
-          <source>more</source>
-          <target state="new">more</target>
-        </trans-unit>
-        <trans-unit id="Resources\HomeHeader\Header" translate="yes" xml:space="preserve">
-          <source>home</source>
-          <target state="new">home</target>
-        </trans-unit>
-        <trans-unit id="Resources\FileOpen" translate="yes" xml:space="preserve">
-          <source>open a file</source>
-          <target state="new">open a file</target>
-        </trans-unit>
-        <trans-unit id="Resources\Yes" translate="yes" xml:space="preserve">
-          <source>Yes</source>
-          <target state="new">Yes</target>
-        </trans-unit>
-        <trans-unit id="Resources\WeNeedYourHelp" translate="yes" xml:space="preserve">
-          <source>We need your help</source>
-          <target state="new">We need your help</target>
-        </trans-unit>
-        <trans-unit id="Resources\No" translate="yes" xml:space="preserve">
-          <source>No</source>
-          <target state="new">No</target>
-        </trans-unit>
-        <trans-unit id="Resources\CrashReport" translate="yes" xml:space="preserve">
-          <source>VLC has crashed and made an automatic bug report. Do you allow us to sent it?</source>
-          <target state="new">VLC has crashed and made an automatic bug report. Do you allow us to sent it?</target>
-        </trans-unit>
-        <trans-unit id="Resources\Search1" translate="yes" xml:space="preserve">
+        <trans-unit id="Resources\Search" translate="yes" xml:space="preserve">
           <source>search</source>
           <target state="new">search</target>
         </trans-unit>
-        <trans-unit id="Resources\SdCard" translate="yes" xml:space="preserve">
-          <source>SD Card</source>
-          <target state="new">SD Card</target>
+        <trans-unit id="Resources\Season" translate="yes" xml:space="preserve">
+          <source>season</source>
+          <target state="new">season</target>
         </trans-unit>
-        <trans-unit id="Resources\Playlist\Header" translate="yes" xml:space="preserve">
-          <source>playlist</source>
-          <target state="new">playlist</target>
+        <trans-unit id="Resources\SendFeedback" translate="yes" xml:space="preserve">
+          <source>send feedback</source>
+          <target state="new">send feedback</target>
         </trans-unit>
-        <trans-unit id="Resources\OpenNetworkStream2\Label" translate="yes" xml:space="preserve">
-          <source>Open stream</source>
-          <target state="new">Open stream</target>
+        <trans-unit id="Resources\SendingFeedback" translate="yes" xml:space="preserve">
+          <source>sending feedback</source>
+          <target state="new">sending feedback</target>
         </trans-unit>
-        <trans-unit id="Resources\OpenFile2\Label" translate="yes" xml:space="preserve">
-          <source>Open a file</source>
-          <target state="new">Open a file</target>
+        <trans-unit id="Resources\SendLogs" translate="yes" xml:space="preserve">
+          <source>send logs</source>
+          <target state="new">send logs</target>
         </trans-unit>
-        <trans-unit id="Resources\OrderDescending" translate="yes" xml:space="preserve">
-          <source>Descending</source>
-          <target state="new">Descending</target>
+        <trans-unit id="Resources\Settings" translate="yes" xml:space="preserve">
+          <source>settings</source>
+          <target state="new">settings</target>
         </trans-unit>
-        <trans-unit id="Resources\OrderAscending" translate="yes" xml:space="preserve">
-          <source>Ascending</source>
-          <target state="new">Ascending</target>
-        </trans-unit>
-        <trans-unit id="Resources\OrderByDate" translate="yes" xml:space="preserve">
-          <source>By date</source>
-          <target state="new">By date</target>
-        </trans-unit>
-        <trans-unit id="Resources\OrderByArtist" translate="yes" xml:space="preserve">
-          <source>By artist</source>
-          <target state="new">By artist</target>
+        <trans-unit id="Resources\ShowPlaylist" translate="yes" xml:space="preserve">
+          <source>show playlist</source>
+          <target state="new">show playlist</target>
         </trans-unit>
         <trans-unit id="Resources\Shows" translate="yes" xml:space="preserve">
           <source>shows</source>
           <target state="new">shows</target>
         </trans-unit>
-        <trans-unit id="Resources\UntitledShow" translate="yes" xml:space="preserve">
-          <source>Untitled Show</source>
-          <target state="new">Untitled Show</target>
+        <trans-unit id="Resources\Shuffle" translate="yes" xml:space="preserve">
+          <source>shuffle</source>
+          <target state="new">shuffle</target>
         </trans-unit>
-        <trans-unit id="Resources\Subtitles\Text" translate="yes" xml:space="preserve">
-          <source>Subtitles</source>
-          <target state="new">Subtitles</target>
+        <trans-unit id="Resources\SilverPartners" translate="yes" xml:space="preserve">
+          <source>silver partners</source>
+          <target state="new">silver partners</target>
         </trans-unit>
-        <trans-unit id="Resources\Speed\Text" translate="yes" xml:space="preserve">
-          <source>Speed</source>
-          <target state="new">Speed</target>
+        <trans-unit id="Resources\Songs" translate="yes" xml:space="preserve">
+          <source>songs</source>
+          <target state="new">songs</target>
         </trans-unit>
-        <trans-unit id="Resources\PlayAllButton\Text" translate="yes" xml:space="preserve">
-          <source>Play All</source>
-          <target state="new">Play All</target>
+        <trans-unit id="Resources\SpecialThanks" translate="yes" xml:space="preserve">
+          <source>special thanks</source>
+          <target state="new">special thanks</target>
         </trans-unit>
-        <trans-unit id="Resources\PlayAllAppButton\Label" translate="yes" xml:space="preserve">
-          <source>Play All</source>
-          <target state="new">Play All</target>
+        <trans-unit id="Resources\SpecifiedBuildIncorrect" translate="yes" xml:space="preserve">
+          <source>the specified build number is incorrect</source>
+          <target state="new">the specified build number is incorrect</target>
         </trans-unit>
-        <trans-unit id="Resources\PlayAlbum\Text" translate="yes" xml:space="preserve">
-          <source>play album</source>
-          <target state="new">play album</target>
+        <trans-unit id="Resources\SpecifyBuild" translate="yes" xml:space="preserve">
+          <source>please specify you Windows 10 Insider build number</source>
+          <target state="new">please specify you Windows 10 Insider build number</target>
         </trans-unit>
-        <trans-unit id="Resources\OpenSubtitle\Content" translate="yes" xml:space="preserve">
-          <source>Open Subtitle</source>
-          <target state="new">Open Subtitle</target>
+        <trans-unit id="Resources\Speed" translate="yes" xml:space="preserve">
+          <source>speed</source>
+          <target state="new">speed</target>
         </trans-unit>
-        <trans-unit id="Resources\NotificationSongStarts\Header" translate="yes" xml:space="preserve">
-          <source>Notification when a new song starts</source>
-          <target state="new">Notification when a new song starts</target>
+        <trans-unit id="Resources\Stop" translate="yes" xml:space="preserve">
+          <source>stop</source>
+          <target state="new">stop</target>
         </trans-unit>
-        <trans-unit id="Resources\NotificationNotBackground\Header" translate="yes" xml:space="preserve">
-          <source>Even if the app is not in background</source>
-          <target state="new">Even if the app is not in background</target>
+        <trans-unit id="Resources\SubtitleDelay" translate="yes" xml:space="preserve">
+          <source>subtitle delay</source>
+          <target state="new">subtitle delay</target>
         </trans-unit>
-        <trans-unit id="Resources\NoFavoriteAlbumText2\Text" translate="yes" xml:space="preserve">
-          <source>button and you'll find your favorite albums easier than ever!</source>
-          <target state="new">button and you'll find your favorite albums easier than ever!</target>
+        <trans-unit id="Resources\Subtitles" translate="yes" xml:space="preserve">
+          <source>subtitles</source>
+          <target state="new">subtitles</target>
         </trans-unit>
-        <trans-unit id="Resources\NoFavoriteAlbumText1\Text" translate="yes" xml:space="preserve">
-          <source>When playing an album, press the</source>
-          <target state="new">When playing an album, press the</target>
+        <trans-unit id="Resources\SubtitlesEncoding" translate="yes" xml:space="preserve">
+          <source>subtitles encoding</source>
+          <target state="new">subtitles encoding</target>
         </trans-unit>
-        <trans-unit id="Resources\NoFavoriteAlbumsHeader\Text" translate="yes" xml:space="preserve">
-          <source>You don't have favorite albums...</source>
-          <target state="new">You don't have favorite albums...</target>
+        <trans-unit id="Resources\Summary" translate="yes" xml:space="preserve">
+          <source>summary</source>
+          <target state="new">summary</target>
         </trans-unit>
-        <trans-unit id="Resources\MusicSettings\Text" translate="yes" xml:space="preserve">
-          <source>VLC will only search for songs that are in your music library. You can add folders to your library here:</source>
-          <target state="new">VLC will only search for songs that are in your music library. You can add folders to your library here:</target>
+        <trans-unit id="Resources\Theme" translate="yes" xml:space="preserve">
+          <source>theme</source>
+          <target state="new">theme</target>
         </trans-unit>
-        <trans-unit id="Resources\LikeAppButton\Label" translate="yes" xml:space="preserve">
-          <source>Like</source>
-          <target state="new">Like</target>
+        <trans-unit id="Resources\TileRemoved" translate="yes" xml:space="preserve">
+          <source>tile removed</source>
+          <target state="new">tile removed</target>
         </trans-unit>
-        <trans-unit id="Resources\AudioTracks\Text" translate="yes" xml:space="preserve">
-          <source>Audio tracks</source>
-          <target state="new">Audio tracks</target>
+        <trans-unit id="Resources\TopVideos" translate="yes" xml:space="preserve">
+          <source>top videos</source>
+          <target state="new">top videos</target>
         </trans-unit>
-        <trans-unit id="Resources\AlbumText\Text" translate="yes" xml:space="preserve">
-          <source>albums</source>
-          <target state="new">albums</target>
+        <trans-unit id="Resources\TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
+          <source>track added to the playlist</source>
+          <target state="new">track added to the playlist</target>
         </trans-unit>
-        <trans-unit id="Resources\AlbumsPlusSongs\Text" translate="yes" xml:space="preserve">
-          <source>albums+songs</source>
-          <target state="new">albums+songs</target>
+        <trans-unit id="Resources\TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
+          <source>this track is already in that playlist</source>
+          <target state="new">this track is already in that playlist</target>
         </trans-unit>
-        <trans-unit id="Resources\Albums" translate="yes" xml:space="preserve">
-          <source>Albums</source>
-          <target state="new">Albums</target>
+        <trans-unit id="Resources\Tracks" translate="yes" xml:space="preserve">
+          <source>tracks</source>
+          <target state="new">tracks</target>
         </trans-unit>
-        <trans-unit id="Resources\VlcLicenseCondition\Text" translate="yes" xml:space="preserve">
-          <source>VLC for Windows 8.1 is licensed under the GNU General Public License, version 2 (herein referred to as GPL).</source>
-          <target state="new">VLC for Windows 8.1 is licensed under the GNU General Public License, version 2 (herein referred to as GPL).</target>
+        <trans-unit id="Resources\UnknownAlbum" translate="yes" xml:space="preserve">
+          <source>unknown album</source>
+          <target state="new">unknown album</target>
         </trans-unit>
-        <trans-unit id="Resources\MusicInformation\Text" translate="yes" xml:space="preserve">
-          <source>music information</source>
-          <target state="new">music information</target>
+        <trans-unit id="Resources\UnknownArtist" translate="yes" xml:space="preserve">
+          <source>unknown artist</source>
+          <target state="new">unknown artist</target>
         </trans-unit>
-        <trans-unit id="Resources\MenuAppSettings\Text" translate="yes" xml:space="preserve">
-          <source>App Settings</source>
-          <target state="new">App Settings</target>
+        <trans-unit id="Resources\UnknownShow" translate="yes" xml:space="preserve">
+          <source>unknown show</source>
+          <target state="new">unknown show</target>
         </trans-unit>
-        <trans-unit id="Resources\MenuAboutApp\Text" translate="yes" xml:space="preserve">
-          <source>About the App</source>
-          <target state="new">About the App</target>
+        <trans-unit id="Resources\UnknownTrack" translate="yes" xml:space="preserve">
+          <source>unknown track</source>
+          <target state="new">unknown track</target>
         </trans-unit>
-        <trans-unit id="Resources\LicenseHeader\Text" translate="yes" xml:space="preserve">
-          <source>license</source>
-          <target state="new">license</target>
+        <trans-unit id="Resources\UpcomingShows" translate="yes" xml:space="preserve">
+          <source>upcoming shows</source>
+          <target state="new">upcoming shows</target>
         </trans-unit>
-        <trans-unit id="Resources\DevelopersHeader\Text" translate="yes" xml:space="preserve">
-          <source>developers</source>
-          <target state="new">developers</target>
+        <trans-unit id="Resources\UserInterface" translate="yes" xml:space="preserve">
+          <source>user interface</source>
+          <target state="new">user interface</target>
         </trans-unit>
-        <trans-unit id="Resources\DownloadAlbumArt\Text" translate="yes" xml:space="preserve">
-          <source>Download Album Art</source>
-          <target state="new">Download Album Art</target>
+        <trans-unit id="Resources\Username" translate="yes" xml:space="preserve">
+          <source>username</source>
+          <target state="new">username</target>
         </trans-unit>
-        <trans-unit id="Resources\SettingsMain\Text" translate="yes" xml:space="preserve">
-          <source>settings</source>
-          <target state="new">settings</target>
+        <trans-unit id="Resources\Video" translate="yes" xml:space="preserve">
+          <source>video</source>
+          <target state="new">video</target>
         </trans-unit>
-        <trans-unit id="Resources\SearchingDLNA\Text" translate="yes" xml:space="preserve">
-          <source>We are searching for DLNA Servers.</source>
-          <target state="new">We are searching for DLNA Servers.</target>
+        <trans-unit id="Resources\VideoFolders" translate="yes" xml:space="preserve">
+          <source>video folders</source>
+          <target state="new">video folders</target>
         </trans-unit>
-        <trans-unit id="Resources\SearchField\PlaceholderText" translate="yes" xml:space="preserve">
-          <source>Search</source>
-          <target state="new">Search</target>
+        <trans-unit id="Resources\VideoFoldersDescription" translate="yes" xml:space="preserve">
+          <source>VLC will only search songs that are in your video library. You can add folders to your library here</source>
+          <target state="new">VLC will only search songs that are in your video library. You can add folders to your library here</target>
         </trans-unit>
-        <trans-unit id="Resources\NetworkServers\Text" translate="yes" xml:space="preserve">
-          <source>Waiting for network servers</source>
-          <target state="new">Waiting for network servers</target>
+        <trans-unit id="Resources\VideoPlayback" translate="yes" xml:space="preserve">
+          <source>video playback</source>
+          <target state="new">video playback</target>
         </trans-unit>
-        <trans-unit id="Resources\VlcThankYou\Text" translate="yes" xml:space="preserve">
-          <source>The VLC for Windows 8 Team would like to thank very much the people who made this application possible:</source>
-          <target state="new">The VLC for Windows 8 Team would like to thank very much the people who made this application possible:</target>
-        </trans-unit>
-        <trans-unit id="Resources\VideosNotFound2\Text" translate="yes" xml:space="preserve">
-          <source>Maybe we didn't search in the right places.</source>
-          <target state="new">Maybe we didn't search in the right places.</target>
-        </trans-unit>
-        <trans-unit id="Resources\VideosNotFound1\Text" translate="yes" xml:space="preserve">
-          <source>It seems that we didn't find any elements in your Video library.</source>
-          <target state="new">It seems that we didn't find any elements in your Video library.</target>
-        </trans-unit>
-        <trans-unit id="Resources\VideosHeader\Text" translate="yes" xml:space="preserve">
-          <source>videos</source>
-          <target state="new">videos</target>
-        </trans-unit>
-        <trans-unit id="Resources\VideoSettingsHeader\Header" translate="yes" xml:space="preserve">
-          <source>video settings</source>
-          <target state="new">video settings</target>
-        </trans-unit>
-        <trans-unit id="Resources\VideoSettings\Text" translate="yes" xml:space="preserve">
-          <source>VLC will only search videos that are in your video library. You can add folders to your library here:</source>
-          <target state="new">VLC will only search videos that are in your video library. You can add folders to your library here:</target>
+        <trans-unit id="Resources\VideoPlaybackInBackground" translate="yes" xml:space="preserve">
+          <source>play video in background</source>
+          <target state="new">play video in background</target>
         </trans-unit>
         <trans-unit id="Resources\Videos" translate="yes" xml:space="preserve">
           <source>videos</source>
           <target state="new">videos</target>
         </trans-unit>
-        <trans-unit id="Resources\VideoHubHeader\Header" translate="yes" xml:space="preserve">
-          <source>videos</source>
-          <target state="new">videos</target>
+        <trans-unit id="Resources\VideoSettings" translate="yes" xml:space="preserve">
+          <source>video settings</source>
+          <target state="new">video settings</target>
         </trans-unit>
-        <trans-unit id="Resources\UnknownTrack" translate="yes" xml:space="preserve">
-          <source>Unknown Track</source>
-          <target state="new">Unknown Track</target>
+        <trans-unit id="Resources\ViewAlbum" translate="yes" xml:space="preserve">
+          <source>view album</source>
+          <target state="new">view album</target>
         </trans-unit>
-        <trans-unit id="Resources\UnknownArtist" translate="yes" xml:space="preserve">
-          <source>Unknown Artist</source>
-          <target state="new">Unknown Artist</target>
+        <trans-unit id="Resources\ViewArtist" translate="yes" xml:space="preserve">
+          <source>view artist</source>
+          <target state="new">view artist</target>
         </trans-unit>
-        <trans-unit id="Resources\Unfavorite\[using:Windows.UI.Xaml.Automation]AutomationProperties\Name" translate="yes" xml:space="preserve">
-          <source>Unfavorite</source>
-          <target state="new">Unfavorite</target>
+        <trans-unit id="Resources\VLCTeamThankYou" translate="yes" xml:space="preserve">
+          <source>the vlc team would like to thank all the people who made this app possible</source>
+          <target state="new">the vlc team would like to thank all the people who made this app possible</target>
         </trans-unit>
-        <trans-unit id="Resources\Tracks" translate="yes" xml:space="preserve">
-          <source>Tracks</source>
-          <target state="new">Tracks</target>
+        <trans-unit id="Resources\Volume" translate="yes" xml:space="preserve">
+          <source>volume</source>
+          <target state="new">volume</target>
         </trans-unit>
-        <trans-unit id="Resources\Track\Text" translate="yes" xml:space="preserve">
-          <source>track</source>
-          <target state="new">track</target>
+        <trans-unit id="Resources\Website" translate="yes" xml:space="preserve">
+          <source>website</source>
+          <target state="new">website</target>
         </trans-unit>
-        <trans-unit id="Resources\SpecialThanks" translate="yes" xml:space="preserve">
-          <source>Special Thanks</source>
-          <target state="new">Special Thanks</target>
+        <trans-unit id="Resources\WeNeedYourHelp" translate="yes" xml:space="preserve">
+          <source>we need your help</source>
+          <target state="new">we need your help</target>
         </trans-unit>
-        <trans-unit id="Resources\Songs" translate="yes" xml:space="preserve">
-          <source>Songs</source>
-          <target state="new">Songs</target>
+        <trans-unit id="Resources\WindowsBuildNumberPlaceholder" translate="yes" xml:space="preserve">
+          <source>Windows 10 Insider build number</source>
+          <target state="new">Windows 10 Insider build number</target>
         </trans-unit>
-        <trans-unit id="Resources\SimilarArtists\Header" translate="yes" xml:space="preserve">
-          <source>similar artists</source>
-          <target state="new">similar artists</target>
+        <trans-unit id="Resources\Yes" translate="yes" xml:space="preserve">
+          <source>yes</source>
+          <target state="new">yes</target>
         </trans-unit>
-        <trans-unit id="Resources\SettingsHeader\Header" translate="yes" xml:space="preserve">
-          <source>settings</source>
-          <target state="new">settings</target>
+        <trans-unit id="Resources\Network" translate="yes" xml:space="preserve">
+          <source>network</source>
+          <target state="new">network</target>
         </trans-unit>
-        <trans-unit id="Resources\Settings" translate="yes" xml:space="preserve">
-          <source>Settings</source>
-          <target state="new">Settings</target>
+        <trans-unit id="Resources\MusicFolders" translate="yes" xml:space="preserve">
+          <source>music folders</source>
+          <target state="new">music folders</target>
         </trans-unit>
-        <trans-unit id="Resources\Search\Text" translate="yes" xml:space="preserve">
-          <source>Search</source>
-          <target state="new">Search</target>
+        <trans-unit id="Resources\MusicFoldersDescription" translate="yes" xml:space="preserve">
+          <source>VLC will only search songs that are in your music library. You can add folders to your library here</source>
+          <target state="new">VLC will only search songs that are in your music library. You can add folders to your library here</target>
         </trans-unit>
-        <trans-unit id="Resources\RemoveFolder\Content" translate="yes" xml:space="preserve">
-          <source>Remove this folder</source>
-          <target state="new">Remove this folder</target>
-        </trans-unit>
-        <trans-unit id="Resources\RemoveableDeviceMessage2\Text" translate="yes" xml:space="preserve">
-          <source>Waiting for removable storages</source>
-          <target state="new">Waiting for removable storages</target>
-        </trans-unit>
-        <trans-unit id="Resources\RemoveableDeviceMessage1\Text" translate="yes" xml:space="preserve">
-          <source>Plug in a removable storage and VLC will detects all the files in it.</source>
-          <target state="new">Plug in a removable storage and VLC will detects all the files in it.</target>
-        </trans-unit>
-        <trans-unit id="Resources\RemoveableDevice\Text" translate="yes" xml:space="preserve">
-          <source>Plug-in a removable device</source>
-          <target state="new">Plug-in a removable device</target>
-        </trans-unit>
-        <trans-unit id="Resources\RemovableStorage" translate="yes" xml:space="preserve">
-          <source>removable devices</source>
-          <target state="new">removable devices</target>
-        </trans-unit>
-        <trans-unit id="Resources\RemovableDevices\Text" translate="yes" xml:space="preserve">
-          <source>Removable devices</source>
-          <target state="new">Removable devices</target>
-        </trans-unit>
-        <trans-unit id="Resources\PrivacyStatement" translate="yes" xml:space="preserve">
-          <source>Privacy Statement</source>
-          <target state="new">Privacy Statement</target>
-        </trans-unit>
-        <trans-unit id="Resources\PopularAlbums\Header" translate="yes" xml:space="preserve">
-          <source>popular albums</source>
-          <target state="new">popular albums</target>
-        </trans-unit>
-        <trans-unit id="Resources\Playlists" translate="yes" xml:space="preserve">
-          <source>Playlists</source>
-          <target state="new">Playlists</target>
-        </trans-unit>
-        <trans-unit id="Resources\Play\[using:Windows.UI.Xaml.Automation]AutomationProperties\Name" translate="yes" xml:space="preserve">
-          <source>Play</source>
-          <target state="new">Play</target>
-        </trans-unit>
-        <trans-unit id="Resources\Pinned" translate="yes" xml:space="preserve">
-          <source>Pinned</source>
-          <target state="new">Pinned</target>
-        </trans-unit>
-        <trans-unit id="Resources\PartnersSilver\Text" translate="yes" xml:space="preserve">
-          <source>silver partners</source>
-          <target state="new">silver partners</target>
-        </trans-unit>
-        <trans-unit id="Resources\PartnersOther\Text" translate="yes" xml:space="preserve">
-          <source>other backers</source>
-          <target state="new">other backers</target>
-        </trans-unit>
-        <trans-unit id="Resources\PartnersGold\Text" translate="yes" xml:space="preserve">
-          <source>gold partners</source>
-          <target state="new">gold partners</target>
-        </trans-unit>
-        <trans-unit id="Resources\Or\Text" translate="yes" xml:space="preserve">
-          <source>or</source>
-          <target state="new">or</target>
-        </trans-unit>
-        <trans-unit id="Resources\OpenVideoFile\Text" translate="yes" xml:space="preserve">
-          <source>open video</source>
-          <target state="new">open video</target>
-        </trans-unit>
-        <trans-unit id="Resources\OpenVideo" translate="yes" xml:space="preserve">
-          <source>Open Video</source>
-          <target state="new">Open Video</target>
-        </trans-unit>
-        <trans-unit id="Resources\OpenStream\Text" translate="yes" xml:space="preserve">
-          <source>open stream</source>
-          <target state="new">open stream</target>
-        </trans-unit>
-        <trans-unit id="Resources\OpenNetworkStream\Text" translate="yes" xml:space="preserve">
-          <source>Open Network Stream...</source>
-          <target state="new">Open Network Stream...</target>
-        </trans-unit>
-        <trans-unit id="Resources\OpenFile\Text" translate="yes" xml:space="preserve">
-          <source>Open a file</source>
-          <target state="new">Open a file</target>
-        </trans-unit>
-        <trans-unit id="Resources\NothingToSeeHere\Text" translate="yes" xml:space="preserve">
-          <source>Nothing to see here</source>
-          <target state="new">Nothing to see here</target>
-        </trans-unit>
-        <trans-unit id="Resources\NoBiographyFound" translate="yes" xml:space="preserve">
-          <source>It seems we didn't find a biography for this artist.</source>
-          <target state="new">It seems we didn't find a biography for this artist.</target>
-        </trans-unit>
-        <trans-unit id="Resources\NetworkUrl\Text" translate="yes" xml:space="preserve">
-          <source>Network URL:</source>
-          <target state="new">Network URL:</target>
-        </trans-unit>
-        <trans-unit id="Resources\MusicSettingsHeader\Header" translate="yes" xml:space="preserve">
+        <trans-unit id="Resources\MusicSettings" translate="yes" xml:space="preserve">
           <source>music settings</source>
           <target state="new">music settings</target>
         </trans-unit>
-        <trans-unit id="Resources\MusicHeader\Text" translate="yes" xml:space="preserve">
-          <source>music</source>
-          <target state="new">music</target>
+        <trans-unit id="Resources\MusicShows" translate="yes" xml:space="preserve">
+          <source>music shows</source>
+          <target state="new">music shows</target>
+        </trans-unit>
+        <trans-unit id="Resources\Mute" translate="yes" xml:space="preserve">
+          <source>mute</source>
+          <target state="new">mute</target>
+        </trans-unit>
+        <trans-unit id="Resources\MyPlaylists" translate="yes" xml:space="preserve">
+          <source>my playlists</source>
+          <target state="new">my playlists</target>
+        </trans-unit>
+        <trans-unit id="Resources\Library" translate="yes" xml:space="preserve">
+          <source>library</source>
+          <target state="new">library</target>
+        </trans-unit>
+        <trans-unit id="Resources\HomePage" translate="yes" xml:space="preserve">
+          <source>home page</source>
+          <target state="new">home page</target>
+        </trans-unit>
+        <trans-unit id="Resources\HomePageDescription" translate="yes" xml:space="preserve">
+          <source>VLC will start on the selected page</source>
+          <target state="new">VLC will start on the selected page</target>
+        </trans-unit>
+        <trans-unit id="Resources\HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
+          <source>however you may find what you're looking for here</source>
+          <target state="new">however you may find what you're looking for here</target>
+        </trans-unit>
+        <trans-unit id="Resources\HowToFavoriteAlbum1" translate="yes" xml:space="preserve">
+          <source>to favorite an album, just press</source>
+          <target state="new">to favorite an album, just press</target>
+        </trans-unit>
+        <trans-unit id="Resources\HowToFavoriteAlbum2" translate="yes" xml:space="preserve">
+          <source>and you'll get an instant access to it</source>
+          <target state="new">and you'll get an instant access to it</target>
+        </trans-unit>
+        <trans-unit id="Resources\ImportantSponsors" translate="yes" xml:space="preserve">
+          <source>important sponsors</source>
+          <target state="new">important sponsors</target>
+        </trans-unit>
+        <trans-unit id="Resources\IncreaseSpeed" translate="yes" xml:space="preserve">
+          <source>increase speed</source>
+          <target state="new">increase speed</target>
+        </trans-unit>
+        <trans-unit id="Resources\IncreaseVolume" translate="yes" xml:space="preserve">
+          <source>increase volume</source>
+          <target state="new">increase volume</target>
+        </trans-unit>
+        <trans-unit id="Resources\ItsEmpty" translate="yes" xml:space="preserve">
+          <source>it's empty here</source>
+          <target state="new">it's empty here</target>
+        </trans-unit>
+        <trans-unit id="Resources\KeyboardShortcuts" translate="yes" xml:space="preserve">
+          <source>keyboard shortcuts</source>
+          <target state="new">keyboard shortcuts</target>
+        </trans-unit>
+        <trans-unit id="Resources\RemovableStorage" translate="yes" xml:space="preserve">
+          <source>removable storage</source>
+          <target state="new">removable storage</target>
+        </trans-unit>
+        <trans-unit id="Resources\NewFeedback" translate="yes" xml:space="preserve">
+          <source>new feedback</source>
+          <target state="new">new feedback</target>
+        </trans-unit>
+        <trans-unit id="Resources\NewFeedbackSubtitle" translate="yes" xml:space="preserve">
+          <source>what's the problem?</source>
+          <target state="new">what's the problem?</target>
+        </trans-unit>
+        <trans-unit id="Resources\NewPlaylist" translate="yes" xml:space="preserve">
+          <source>new playlist</source>
+          <target state="new">new playlist</target>
+        </trans-unit>
+        <trans-unit id="Resources\NewVideos" translate="yes" xml:space="preserve">
+          <source>new videos</source>
+          <target state="new">new videos</target>
+        </trans-unit>
+        <trans-unit id="Resources\No" translate="yes" xml:space="preserve">
+          <source>no</source>
+          <target state="new">no</target>
+        </trans-unit>
+        <trans-unit id="Resources\NoBiographyFound" translate="yes" xml:space="preserve">
+          <source>no bio found for this artist</source>
+          <target state="new">no bio found for this artist</target>
+        </trans-unit>
+        <trans-unit id="Resources\NoCameraVideosFound" translate="yes" xml:space="preserve">
+          <source>no camera videos found</source>
+          <target state="new">no camera videos found</target>
+        </trans-unit>
+        <trans-unit id="Resources\NoFavoriteAlbums" translate="yes" xml:space="preserve">
+          <source>no favorite albums</source>
+          <target state="new">no favorite albums</target>
+        </trans-unit>
+        <trans-unit id="Resources\NoInternetConnection" translate="yes" xml:space="preserve">
+          <source>no internet connection</source>
+          <target state="new">no internet connection</target>
+        </trans-unit>
+        <trans-unit id="Resources\NoPlaylists" translate="yes" xml:space="preserve">
+          <source>no playlists</source>
+          <target state="new">no playlists</target>
+        </trans-unit>
+        <trans-unit id="Resources\NoShowsFound" translate="yes" xml:space="preserve">
+          <source>no shows found</source>
+          <target state="new">no shows found</target>
+        </trans-unit>
+        <trans-unit id="Resources\NotableSponsors" translate="yes" xml:space="preserve">
+          <source>notable sponsors</source>
+          <target state="new">notable sponsors</target>
+        </trans-unit>
+        <trans-unit id="Resources\NothingToSeeHere" translate="yes" xml:space="preserve">
+          <source>there's nothing to see here</source>
+          <target state="new">there's nothing to see here</target>
+        </trans-unit>
+        <trans-unit id="Resources\Notifications" translate="yes" xml:space="preserve">
+          <source>notifications</source>
+          <target state="new">notifications</target>
+        </trans-unit>
+        <trans-unit id="Resources\NotificationWhenSongStarts" translate="yes" xml:space="preserve">
+          <source>notifications= when the song starts</source>
+          <target state="new">notifications= when the song starts</target>
+        </trans-unit>
+        <trans-unit id="Resources\NoVideosFound" translate="yes" xml:space="preserve">
+          <source>we did not find videos</source>
+          <target state="new">we did not find videos</target>
+        </trans-unit>
+        <trans-unit id="Resources\NowPlaying" translate="yes" xml:space="preserve">
+          <source>now playing</source>
+          <target state="new">now playing</target>
+        </trans-unit>
+        <trans-unit id="Resources\OpenFile" translate="yes" xml:space="preserve">
+          <source>open file</source>
+          <target state="new">open file</target>
+        </trans-unit>
+        <trans-unit id="Resources\OpenStream" translate="yes" xml:space="preserve">
+          <source>open stream</source>
+          <target state="new">open stream</target>
+        </trans-unit>
+        <trans-unit id="Resources\OpenSubtitle" translate="yes" xml:space="preserve">
+          <source>open subtitle</source>
+          <target state="new">open subtitle</target>
+        </trans-unit>
+        <trans-unit id="Resources\OrderAscending" translate="yes" xml:space="preserve">
+          <source>ascending</source>
+          <target state="new">ascending</target>
+        </trans-unit>
+        <trans-unit id="Resources\OrderByAlbum" translate="yes" xml:space="preserve">
+          <source>by album</source>
+          <target state="new">by album</target>
+        </trans-unit>
+        <trans-unit id="Resources\OrderByArtist" translate="yes" xml:space="preserve">
+          <source>by artist</source>
+          <target state="new">by artist</target>
+        </trans-unit>
+        <trans-unit id="Resources\OrderByDate" translate="yes" xml:space="preserve">
+          <source>by date</source>
+          <target state="new">by date</target>
+        </trans-unit>
+        <trans-unit id="Resources\OrderDescending" translate="yes" xml:space="preserve">
+          <source>descending</source>
+          <target state="new">descending</target>
+        </trans-unit>
+        <trans-unit id="Resources\Password" translate="yes" xml:space="preserve">
+          <source>password</source>
+          <target state="new">password</target>
+        </trans-unit>
+        <trans-unit id="Resources\Pause" translate="yes" xml:space="preserve">
+          <source>pause</source>
+          <target state="new">pause</target>
+        </trans-unit>
+        <trans-unit id="Resources\PinAlbum" translate="yes" xml:space="preserve">
+          <source>pin album</source>
+          <target state="new">pin album</target>
+        </trans-unit>
+        <trans-unit id="Resources\PinArtist" translate="yes" xml:space="preserve">
+          <source>pin artist</source>
+          <target state="new">pin artist</target>
+        </trans-unit>
+        <trans-unit id="Resources\Play" translate="yes" xml:space="preserve">
+          <source>play</source>
+          <target state="new">play</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlayAlbum" translate="yes" xml:space="preserve">
+          <source>play album</source>
+          <target state="new">play album</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlayAll" translate="yes" xml:space="preserve">
+          <source>play all</source>
+          <target state="new">play all</target>
+        </trans-unit>
+        <trans-unit id="Resources\Playback" translate="yes" xml:space="preserve">
+          <source>playback</source>
+          <target state="new">playback</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlayerSettings" translate="yes" xml:space="preserve">
+          <source>player settings</source>
+          <target state="new">player settings</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlayFolder" translate="yes" xml:space="preserve">
+          <source>play folder</source>
+          <target state="new">play folder</target>
+        </trans-unit>
+        <trans-unit id="Resources\Playlist" translate="yes" xml:space="preserve">
+          <source>playlist</source>
+          <target state="new">playlist</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlaylistAlreadyExists" translate="yes" xml:space="preserve">
+          <source>this playlist already exists</source>
+          <target state="new">this playlist already exists</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlaylistNamePlaceholder" translate="yes" xml:space="preserve">
+          <source>playlist name</source>
+          <target state="new">playlist name</target>
+        </trans-unit>
+        <trans-unit id="Resources\Playlists" translate="yes" xml:space="preserve">
+          <source>playlists</source>
+          <target state="new">playlists</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlayTrack" translate="yes" xml:space="preserve">
+          <source>play track</source>
+          <target state="new">play track</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlayVideo" translate="yes" xml:space="preserve">
+          <source>play video</source>
+          <target state="new">play video</target>
+        </trans-unit>
+        <trans-unit id="Resources\PremiumSponsors" translate="yes" xml:space="preserve">
+          <source>premium sponsors</source>
+          <target state="new">premium sponsors</target>
+        </trans-unit>
+        <trans-unit id="Resources\PrivacyStatement" translate="yes" xml:space="preserve">
+          <source>privacy statement</source>
+          <target state="new">privacy statement</target>
+        </trans-unit>
+        <trans-unit id="Resources\RecommendedForYou" translate="yes" xml:space="preserve">
+          <source>recommended for you</source>
+          <target state="new">recommended for you</target>
+        </trans-unit>
+        <trans-unit id="Resources\RefreshMusicLibrary" translate="yes" xml:space="preserve">
+          <source>refresh music library</source>
+          <target state="new">refresh music library</target>
+        </trans-unit>
+        <trans-unit id="Resources\RefreshVideoLibrary" translate="yes" xml:space="preserve">
+          <source>refresh video library</source>
+          <target state="new">refresh video library</target>
         </trans-unit>
         <trans-unit id="Resources\Music" translate="yes" xml:space="preserve">
           <source>music</source>
           <target state="new">music</target>
         </trans-unit>
-        <trans-unit id="Resources\Movies\Text" translate="yes" xml:space="preserve">
-          <source>movies</source>
-          <target state="new">movies</target>
+        <trans-unit id="Resources\License" translate="yes" xml:space="preserve">
+          <source>license</source>
+          <target state="new">license</target>
         </trans-unit>
-        <trans-unit id="Resources\MediaServersHeader\Text" translate="yes" xml:space="preserve">
-          <source>Media servers</source>
-          <target state="new">Media servers</target>
+        <trans-unit id="Resources\Loading" translate="yes" xml:space="preserve">
+          <source>loading</source>
+          <target state="new">loading</target>
         </trans-unit>
-        <trans-unit id="Resources\MediaServers" translate="yes" xml:space="preserve">
-          <source>media servers</source>
-          <target state="new">media servers</target>
+        <trans-unit id="Resources\LoadingMusic" translate="yes" xml:space="preserve">
+          <source>loading music</source>
+          <target state="new">loading music</target>
         </trans-unit>
-        <trans-unit id="Resources\MainPageTitle\Text" translate="yes" xml:space="preserve">
-          <source>VLC for Windows 8.1</source>
-          <target state="new">VLC for Windows 8.1</target>
-        </trans-unit>
-        <trans-unit id="Resources\LastViewed\Text" translate="yes" xml:space="preserve">
-          <source>last viewed</source>
-          <target state="new">last viewed</target>
-        </trans-unit>
-        <trans-unit id="Resources\ItsLonely\Text" translate="yes" xml:space="preserve">
-          <source>It's lonely here.</source>
-          <target state="new">It's lonely here.</target>
-        </trans-unit>
-        <trans-unit id="Resources\IndexingMusic2\Text" translate="yes" xml:space="preserve">
-          <source>VLC may be unresponsive</source>
-          <target state="new">VLC may be unresponsive</target>
-        </trans-unit>
-        <trans-unit id="Resources\IndexingMusic1\Text" translate="yes" xml:space="preserve">
-          <source>Indexing Music library</source>
-          <target state="new">Indexing Music library</target>
-        </trans-unit>
-        <trans-unit id="Resources\IncreaseSpeed\[using:Windows.UI.Xaml.Automation]AutomationProperties\Name" translate="yes" xml:space="preserve">
-          <source>Increase speed</source>
-          <target state="new">Increase speed</target>
+        <trans-unit id="Resources\MostPlayedArtists" translate="yes" xml:space="preserve">
+          <source>most played artists</source>
+          <target state="new">most played artists</target>
         </trans-unit>
         <trans-unit id="Resources\Home" translate="yes" xml:space="preserve">
           <source>home</source>
           <target state="new">home</target>
         </trans-unit>
-        <trans-unit id="Resources\Filter\Text" translate="yes" xml:space="preserve">
-          <source>Please select a field to filter by...</source>
-          <target state="new">Please select a field to filter by...</target>
+        <trans-unit id="Resources\GoldPartners" translate="yes" xml:space="preserve">
+          <source>gold partners</source>
+          <target state="new">gold partners</target>
         </trans-unit>
-        <trans-unit id="Resources\FeaturesVidLib\Text" translate="yes" xml:space="preserve">
-          <source>Video Library support. Add files to your Video Library and play them directly.</source>
-          <target state="new">Video Library support. Add files to your Video Library and play them directly.</target>
+        <trans-unit id="Resources\HardwareDecoding" translate="yes" xml:space="preserve">
+          <source>hardware decoding</source>
+          <target state="new">hardware decoding</target>
         </trans-unit>
-        <trans-unit id="Resources\FeaturesUSB\Text" translate="yes" xml:space="preserve">
-          <source>USB and SD Card support.</source>
-          <target state="new">USB and SD Card support.</target>
+        <trans-unit id="Resources\HardwareDecodingDescription" translate="yes" xml:space="preserve">
+          <source>Hardware decoding may not work on your device. You need to restart the app to apply changes</source>
+          <target state="new">Hardware decoding may not work on your device. You need to restart the app to apply changes</target>
         </trans-unit>
-        <trans-unit id="Resources\FeaturesSomething\Text" translate="yes" xml:space="preserve">
-          <source>Plays something (plays anything after the bugs are fixed).</source>
-          <target state="new">Plays something (plays anything after the bugs are fixed).</target>
+        <trans-unit id="Resources\HaveToSelectPlaylist" translate="yes" xml:space="preserve">
+          <source>please select a playlist</source>
+          <target state="new">please select a playlist</target>
         </trans-unit>
-        <trans-unit id="Resources\FeaturesOpen\Text" translate="yes" xml:space="preserve">
-          <source>Open a video from anywhere on your device. Swipe up or right click to open a file from the App Bar.</source>
-          <target state="new">Open a video from anywhere on your device. Swipe up or right click to open a file from the App Bar.</target>
+        <trans-unit id="Resources\FileExplorer" translate="yes" xml:space="preserve">
+          <source>file explorer</source>
+          <target state="new">file explorer</target>
         </trans-unit>
-        <trans-unit id="Resources\FavoriteAlbums" translate="yes" xml:space="preserve">
-          <source>Favorite Albums</source>
-          <target state="new">Favorite Albums</target>
+        <trans-unit id="Resources\AboutTheApp" translate="yes" xml:space="preserve">
+          <source>about the app</source>
+          <target state="new">about the app</target>
         </trans-unit>
-        <trans-unit id="Resources\Favorite\[using:Windows.UI.Xaml.Automation]AutomationProperties\Name" translate="yes" xml:space="preserve">
-          <source>Favorite</source>
-          <target state="new">Favorite</target>
+        <trans-unit id="Resources\Add" translate="yes" xml:space="preserve">
+          <source>add</source>
+          <target state="new">add</target>
         </trans-unit>
-        <trans-unit id="Resources\ElementsNotFound\Text" translate="yes" xml:space="preserve">
-          <source>It seems that we didn't find any elements in there.</source>
-          <target state="new">It seems that we didn't find any elements in there.</target>
+        <trans-unit id="Resources\AddDetails" translate="yes" xml:space="preserve">
+          <source>add details</source>
+          <target state="new">add details</target>
         </trans-unit>
-        <trans-unit id="Resources\DecreaseSpeed\[using:Windows.UI.Xaml.Automation]AutomationProperties\Name" translate="yes" xml:space="preserve">
-          <source>Decrease speed</source>
-          <target state="new">Decrease speed</target>
+        <trans-unit id="Resources\AddFolder" translate="yes" xml:space="preserve">
+          <source>add folder</source>
+          <target state="new">add folder</target>
         </trans-unit>
-        <trans-unit id="Resources\CustomVideoFolder\Text" translate="yes" xml:space="preserve">
-          <source> custom video folders</source>
-          <target state="new"> custom video folders</target>
+        <trans-unit id="Resources\AddToCollection" translate="yes" xml:space="preserve">
+          <source>add to collection</source>
+          <target state="new">add to collection</target>
         </trans-unit>
-        <trans-unit id="Resources\CustomMusicFolder\Text" translate="yes" xml:space="preserve">
-          <source> custom music folders</source>
-          <target state="new"> custom music folders</target>
+        <trans-unit id="Resources\AddToCurrentPlaylist" translate="yes" xml:space="preserve">
+          <source>add to current playlist</source>
+          <target state="new">add to current playlist</target>
         </trans-unit>
-        <trans-unit id="Resources\Clear\Text" translate="yes" xml:space="preserve">
-          <source>Clear</source>
-          <target state="new">Clear</target>
+        <trans-unit id="Resources\AddToPlaylist" translate="yes" xml:space="preserve">
+          <source>add to playlist</source>
+          <target state="new">add to playlist</target>
         </trans-unit>
-        <trans-unit id="Resources\ChangeVideoFolder\Content" translate="yes" xml:space="preserve">
-          <source>Change default Video folder</source>
-          <target state="new">Change default Video folder</target>
-        </trans-unit>
-        <trans-unit id="Resources\ChangeAlbumArt\Text" translate="yes" xml:space="preserve">
-          <source>Change Album Art</source>
-          <target state="new">Change Album Art</target>
-        </trans-unit>
-        <trans-unit id="Resources\Biography\Header" translate="yes" xml:space="preserve">
-          <source>biography</source>
-          <target state="new">biography</target>
-        </trans-unit>
-        <trans-unit id="Resources\AudioHubHeader\Header" translate="yes" xml:space="preserve">
-          <source>audio</source>
-          <target state="new">audio</target>
-        </trans-unit>
-        <trans-unit id="Resources\Artists" translate="yes" xml:space="preserve">
-          <source>Artists</source>
-          <target state="new">Artists</target>
-        </trans-unit>
-        <trans-unit id="Resources\ArtistHeader\Text" translate="yes" xml:space="preserve">
-          <source>artist</source>
-          <target state="new">artist</target>
-        </trans-unit>
-        <trans-unit id="Resources\Artist" translate="yes" xml:space="preserve">
-          <source>Artist</source>
-          <target state="new">Artist</target>
-        </trans-unit>
-        <trans-unit id="Resources\AlbumHeader\Header" translate="yes" xml:space="preserve">
+        <trans-unit id="Resources\Albums" translate="yes" xml:space="preserve">
           <source>albums</source>
           <target state="new">albums</target>
         </trans-unit>
-        <trans-unit id="Resources\AddFolder\Content" translate="yes" xml:space="preserve">
-          <source>Add a new folder</source>
-          <target state="new">Add a new folder</target>
+        <trans-unit id="Resources\AlbumsFound" translate="yes" xml:space="preserve">
+          <source>albums found</source>
+          <target state="new">albums found</target>
         </trans-unit>
-        <trans-unit id="Resources\AddContentCont\Text" translate="yes" xml:space="preserve">
-          <source>in order to use this section.</source>
-          <target state="new">in order to use this section.</target>
+        <trans-unit id="Resources\AllBackers" translate="yes" xml:space="preserve">
+          <source>all backers</source>
+          <target state="new">all backers</target>
         </trans-unit>
-        <trans-unit id="Resources\AddContent\Text" translate="yes" xml:space="preserve">
-          <source>Add content to your</source>
-          <target state="new">Add content to your</target>
+        <trans-unit id="Resources\Animations" translate="yes" xml:space="preserve">
+          <source>animations</source>
+          <target state="new">animations</target>
+        </trans-unit>
+        <trans-unit id="Resources\AppTheme" translate="yes" xml:space="preserve">
+          <source>application theme</source>
+          <target state="new">application theme</target>
+        </trans-unit>
+        <trans-unit id="Resources\Artists" translate="yes" xml:space="preserve">
+          <source>artists</source>
+          <target state="new">artists</target>
+        </trans-unit>
+        <trans-unit id="Resources\Audio" translate="yes" xml:space="preserve">
+          <source>audio</source>
+          <target state="new">audio</target>
+        </trans-unit>
+        <trans-unit id="Resources\AudioDelay" translate="yes" xml:space="preserve">
+          <source>audio delay</source>
+          <target state="new">audio delay</target>
+        </trans-unit>
+        <trans-unit id="Resources\AudioTracks" translate="yes" xml:space="preserve">
+          <source>audio tracks</source>
+          <target state="new">audio tracks</target>
+        </trans-unit>
+        <trans-unit id="Resources\Back" translate="yes" xml:space="preserve">
+          <source>back</source>
+          <target state="new">back</target>
+        </trans-unit>
+        <trans-unit id="Resources\CameraRoll" translate="yes" xml:space="preserve">
+          <source>camera roll</source>
+          <target state="new">camera roll</target>
+        </trans-unit>
+        <trans-unit id="Resources\ChangeAlbumCover" translate="yes" xml:space="preserve">
+          <source>change album cover</source>
+          <target state="new">change album cover</target>
+        </trans-unit>
+        <trans-unit id="Resources\Chapters" translate="yes" xml:space="preserve">
+          <source>chapters</source>
+          <target state="new">chapters</target>
+        </trans-unit>
+        <trans-unit id="Resources\CheckCredentials" translate="yes" xml:space="preserve">
+          <source>an error occured, please check your credentials</source>
+          <target state="new">an error occured, please check your credentials</target>
+        </trans-unit>
+        <trans-unit id="Resources\Connect" translate="yes" xml:space="preserve">
+          <source>connect</source>
+          <target state="new">connect</target>
+        </trans-unit>
+        <trans-unit id="Resources\ConnectedToLastFM" translate="yes" xml:space="preserve">
+          <source>connected to Last.FM</source>
+          <target state="new">connected to Last.FM</target>
+        </trans-unit>
+        <trans-unit id="Resources\Connecting" translate="yes" xml:space="preserve">
+          <source>connecting</source>
+          <target state="new">connecting</target>
+        </trans-unit>
+        <trans-unit id="Resources\ConnectToLastFM" translate="yes" xml:space="preserve">
+          <source>connect to Last.FM</source>
+          <target state="new">connect to Last.FM</target>
+        </trans-unit>
+        <trans-unit id="Resources\CrashReport" translate="yes" xml:space="preserve">
+          <source>crash report</source>
+          <target state="new">crash report</target>
+        </trans-unit>
+        <trans-unit id="Resources\DecreaseSpeed" translate="yes" xml:space="preserve">
+          <source>decrease speed</source>
+          <target state="new">decrease speed</target>
+        </trans-unit>
+        <trans-unit id="Resources\DecreaseVolume" translate="yes" xml:space="preserve">
+          <source>decrease volume</source>
+          <target state="new">decrease volume</target>
+        </trans-unit>
+        <trans-unit id="Resources\DeletePlaylist" translate="yes" xml:space="preserve">
+          <source>delete playlist</source>
+          <target state="new">delete playlist</target>
+        </trans-unit>
+        <trans-unit id="Resources\DeleteSelected" translate="yes" xml:space="preserve">
+          <source>delete selected</source>
+          <target state="new">delete selected</target>
+        </trans-unit>
+        <trans-unit id="Resources\EditMetadata" translate="yes" xml:space="preserve">
+          <source>edit metadata</source>
+          <target state="new">edit metadata</target>
+        </trans-unit>
+        <trans-unit id="Resources\ElementsNotFound" translate="yes" xml:space="preserve">
+          <source>we did not find elements in there</source>
+          <target state="new">we did not find elements in there</target>
+        </trans-unit>
+        <trans-unit id="Resources\EnterURL" translate="yes" xml:space="preserve">
+          <source>enter a url</source>
+          <target state="new">enter a url</target>
+        </trans-unit>
+        <trans-unit id="Resources\Episode" translate="yes" xml:space="preserve">
+          <source>episode</source>
+          <target state="new">episode</target>
+        </trans-unit>
+        <trans-unit id="Resources\ErrorSendingFeedback" translate="yes" xml:space="preserve">
+          <source>an error occured while sending the feedback</source>
+          <target state="new">an error occured while sending the feedback</target>
+        </trans-unit>
+        <trans-unit id="Resources\EvenIfBackground" translate="yes" xml:space="preserve">
+          <source>even if the app is in background</source>
+          <target state="new">even if the app is in background</target>
+        </trans-unit>
+        <trans-unit id="Resources\EvenIfNotBackground" translate="yes" xml:space="preserve">
+          <source>even if the app is not in background</source>
+          <target state="new">even if the app is not in background</target>
+        </trans-unit>
+        <trans-unit id="Resources\FailFilePlayBackground" translate="yes" xml:space="preserve">
+          <source>This file may not play in the background</source>
+          <target state="new">This file may not play in the background</target>
+        </trans-unit>
+        <trans-unit id="Resources\FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
+          <source>VLC failed to navigate to the Video Player page</source>
+          <target state="new">VLC failed to navigate to the Video Player page</target>
+        </trans-unit>
+        <trans-unit id="Resources\FailOpenVideo" translate="yes" xml:space="preserve">
+          <source>VLC failed to open the video</source>
+          <target state="new">VLC failed to open the video</target>
+        </trans-unit>
+        <trans-unit id="Resources\FailStartVLCEngine" translate="yes" xml:space="preserve">
+          <source>The app failed to start the VLC engine</source>
+          <target state="new">The app failed to start the VLC engine</target>
+        </trans-unit>
+        <trans-unit id="Resources\FeedbackThankYou" translate="yes" xml:space="preserve">
+          <source>feedback sent! thank you</source>
+          <target state="new">feedback sent! thank you</target>
         </trans-unit>
       </group>
     </body>
