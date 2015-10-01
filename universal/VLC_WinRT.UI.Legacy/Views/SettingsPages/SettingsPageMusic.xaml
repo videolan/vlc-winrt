@@ -27,13 +27,12 @@
                                       FontFamily="ms-appx:VLC.ttf#W10" />
                         </AppBarButton.Icon>
                     </AppBarButton>
-                    <TextBlock x:Uid="MusicHeader" Text="Music"
+                    <TextBlock Text="{Binding Source={StaticResource Strings}, Path=MusicSettings}"
                                Style="{StaticResource SubheaderTextBlockStyle}"/>
                 </StackPanel>
                 
                 <TextBlock Tag="WindowsOnly"
-                           x:Uid="MusicFolders"
-                           Text="Music folders"
+                           Text="{Binding Source={StaticResource Strings}, Path=MusicFolders}"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight" />
@@ -66,8 +65,7 @@
                                                 <TextBlock Text="If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC."
                                                            Style="{StaticResource BodyTextBlockStyle}" />
                                                 <Button Grid.Row="2"
-                                                        Content="Remove this folder"
-                                                        x:Uid="RemoveFolder"
+                                                        Content="{Binding Source={StaticResource Strings}, Path=RemoveFolder}"
                                                         Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.RemoveFolderFromMusicLibrary}"
                                                         CommandParameter="{Binding}" />
                                             </Grid>
@@ -96,13 +94,11 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <Button Tag="WindowsOnly"
-                        Content="Add a new folder"
-                        x:Uid="AddFolder"
+                        Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
                         Command="{Binding AddFolderToLibrary}"
                         CommandParameter="{Binding MusicLibraryId}" />
                 <TextBlock Tag="WindowsOnly"
-                           x:Uid="Notifications"
-                           Text="Notifications"
+                           Text="{Binding Source={StaticResource Strings}, Path=Notifications}"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Margin="0,20,0,0"

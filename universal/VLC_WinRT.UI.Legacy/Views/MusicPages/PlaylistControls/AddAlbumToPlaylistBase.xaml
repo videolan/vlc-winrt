@@ -117,8 +117,7 @@
                 <ColumnDefinition MaxWidth="3*" 
                                   Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button x:Uid="AddToPlaylistButton"
-                    Content="Add to playlist"
+            <Button Content="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
                     Click="AddToPlaylistButton_Click" 
                     Background="{StaticResource MainColor}"
                     HorizontalAlignment="Stretch"/>

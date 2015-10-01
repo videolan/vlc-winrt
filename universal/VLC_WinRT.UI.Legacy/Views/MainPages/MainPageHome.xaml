@@ -11,9 +11,8 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
     <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
         <StackPanel Margin="{StaticResource FooterMarginBottom}">
-            <Button x:Uid="TopVideos"
-                    Margin="{StaticResource FrameMarginLeft}"
-                    Content="top videos"
+            <Button Margin="{StaticResource FrameMarginLeft}"
+                    Content="{Binding Source={StaticResource Strings}, Path=TopVideos}"
                     FontSize="40"
                     FontWeight="Light"
                     Foreground="{StaticResource MainColor}"
@@ -59,8 +58,7 @@
                                           Margin="{StaticResource FrameMarginVertical}"
                                           Visibility="{Binding ViewedVideos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
 
-            <Button Content="your music"
-                    x:Uid="YourMusic"
+            <Button Content="{Binding Source={StaticResource Strings}, Path=YourMusic}"
                     Margin="{StaticResource FrameMarginLeft}"
                     FontSize="40"
                     FontWeight="Light"
@@ -68,8 +66,7 @@
                     Style="{StaticResource TextBlockButtonStyle}"
                     Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
                     CommandParameter="2" />
-            <TextBlock Text="most played artists"
-                       x:Uid="MostPlayedArtists"
+            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=MostPlayedArtists}"
                        Margin="{StaticResource FrameMarginLeft}"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
@@ -108,8 +105,7 @@
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <TextBlock Text="recommended for you"
-                       x:Uid="RecommendedForYou"
+            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RecommendedForYou}"
                        Margin="{StaticResource FrameMarginLeft}"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
@@ -210,9 +206,8 @@
 
                                     <AppBarButton Grid.Row="1"
                                                   Grid.Column="2"
-                                                  x:Uid="PlayAlbumButton"
                                                   Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                                  Label="Play album"
+                                                  Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
                                                   Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAlbumCommand}"
                                                   CommandParameter="{Binding Id}">
                                         <AppBarButton.Icon>

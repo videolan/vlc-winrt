@@ -32,12 +32,10 @@
                         </AppBarButton.Icon>
                     </AppBarButton>
                     <TextBlock Grid.Column="1"
-                               Text="Settings"
-                               x:Uid="MenuAppSettings"
+                               Text="{Binding Source={StaticResource Strings}, Path=Settings}"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                 </Grid>
-                <AppBarButton Label="User interface"
-                              x:Uid="UserInterface"
+                <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=UserInterface}"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Command="{Binding ChangeSettingsViewCommand}"
                               CommandParameter="0"
@@ -50,8 +48,7 @@
                                   FontFamily="ms-appx:VLC.ttf#W10" />
                     </AppBarButton.Icon>
                 </AppBarButton>
-                <AppBarButton Label="Video"
-                              x:Uid="VideoSettingMenu"
+                <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=VideoSettings}"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Command="{Binding ChangeSettingsViewCommand}"
                               CommandParameter="1"
@@ -64,8 +61,7 @@
                                   FontFamily="ms-appx:VLC.ttf#W10" />
                     </AppBarButton.Icon>
                 </AppBarButton>
-                <AppBarButton Label="Music"
-                              x:Uid="MusicSettingMenu"
+                <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=MusicSettings}"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Command="{Binding ChangeSettingsViewCommand}"
                               CommandParameter="2"
@@ -80,8 +76,7 @@
                 </AppBarButton>
 
 
-                <TextBlock Text="About the app"
-                           x:Uid="MenuAboutApp"
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=AboutTheApp}"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Margin="0,20" />
                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
