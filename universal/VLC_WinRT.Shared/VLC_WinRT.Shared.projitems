@@ -255,4 +255,9 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Services\Mocks\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)MultilingualResources\VLC_WinRT.Windows.en.xlf" />
+    <None Include="$(MSBuildThisFileDirectory)MultilingualResources\VLC_WinRT.Windows.fr.xlf" />
+    <None Include="$(MSBuildThisFileDirectory)MultilingualResources\VLC_WinRT.Windows.qps-ploc.xlf" />
+  </ItemGroup>
 </Project>
