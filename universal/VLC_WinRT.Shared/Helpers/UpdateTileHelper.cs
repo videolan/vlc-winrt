@@ -52,7 +52,7 @@ namespace VLC_WinRT.Helpers
                 {
                     new TileText()
                     {
-                        Text = "Now Playing",
+                        Text = Strings.NowPlaying,
                         Style = TileTextStyle.Body,
                     },
                     new TileText()
@@ -166,7 +166,7 @@ namespace VLC_WinRT.Helpers
                     },
                     new TileText()
                     {
-                        Text = "Now Playing",
+                        Text = Strings.NowPlaying,
                         Style = TileTextStyle.Title,
                         Align = TileTextAlign.Center
                     },
@@ -194,7 +194,7 @@ namespace VLC_WinRT.Helpers
             var tileXml = TileUpdateManager.GetTemplateContent(template);
 
             var tileTextAttributes = tileXml.GetElementsByTagName("text");
-            tileTextAttributes[0].InnerText = "playing";
+            tileTextAttributes[0].InnerText = Strings.NowPlaying;
             if (Locator.MusicPlayerVM.CurrentTrack != null)
             {
                 tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.CurrentTrack.ArtistName;
@@ -216,7 +216,7 @@ namespace VLC_WinRT.Helpers
 
             var tileTextAttributes = tileXml.GetElementsByTagName("text");
 #if WINDOWS_APP
-            tileTextAttributes[0].InnerText = "Now playing";
+            tileTextAttributes[0].InnerText = Strings.NowPlaying;
 #endif
             if (Locator.MusicPlayerVM.CurrentTrack != null)
             {
@@ -250,7 +250,7 @@ namespace VLC_WinRT.Helpers
             const TileTemplateType template = TileTemplateType.TileSquare150x150PeekImageAndText02;
             var tileXml = TileUpdateManager.GetTemplateContent(template);
             var tileTextAttributes = tileXml.GetElementsByTagName("text");
-            tileTextAttributes[0].InnerText = "playing";
+            tileTextAttributes[0].InnerText = Strings.NowPlaying;
             if (Locator.VideoVm.CurrentVideo != null)
             {
                 tileTextAttributes[1].InnerText = Locator.VideoVm.CurrentVideo.Name;
@@ -270,7 +270,7 @@ namespace VLC_WinRT.Helpers
             var tileXml = TileUpdateManager.GetTemplateContent(template);
             var tileTextAttributes = tileXml.GetElementsByTagName("text");
 #if WINDOWS_APP
-            tileTextAttributes[0].InnerText = "Now playing";
+            tileTextAttributes[0].InnerText = Strings.NowPlaying;
 #endif
             if (Locator.VideoVm.CurrentVideo != null)
             {

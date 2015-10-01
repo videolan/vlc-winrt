@@ -100,7 +100,7 @@ namespace VLC_WinRT.ViewModels
             get { return _isInternet; }
             set
             {
-                InformationText = !value ? "No Internet connection" : "";
+                InformationText = !value ? Strings.NoInternetConnection : "";
                 SetProperty(ref _isInternet, value);
             }
         }

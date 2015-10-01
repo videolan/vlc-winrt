@@ -248,7 +248,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                Locator.MainVM.InformationText = "Loading music";
+                Locator.MainVM.InformationText = Strings.LoadingMusic;
                 LoadingState = LoadingState.Loading;
             });
             await GetFavoriteAndRandomAlbums();
@@ -322,7 +322,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 _randomAlbums?.Clear();
                 _favoriteAlbums?.Clear();
                 _groupedAlbums?.Clear();
-                Locator.MainVM.InformationText = "Searching for music";
+                Locator.MainVM.InformationText = Strings.LoadingMusic;
                 IsBusy = true;
                 IsLoaded = false;
                 OnPropertyChanged("IsBusy");

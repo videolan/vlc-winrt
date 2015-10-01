@@ -95,6 +95,8 @@ namespace VLC_WinRT.Utils
         public static string MostPlayedArtists => _resourcesLoader.GetString(nameof(MostPlayedArtists));
         public static string RecommendedForYou => _resourcesLoader.GetString(nameof(RecommendedForYou));
         public static string Loading => _resourcesLoader.GetString(nameof(Loading));
+        public static string LoadingMusic => _resourcesLoader.GetString(nameof(LoadingMusic));
+        public static string NoInternetConnection => _resourcesLoader.GetString(nameof(NoInternetConnection));
 
         // MUSIC ITEMS
         public static string UnknownArtist => _resourcesLoader.GetString(nameof(UnknownArtist));
@@ -129,7 +131,8 @@ namespace VLC_WinRT.Utils
         public static string AudioDelay => _resourcesLoader.GetString(nameof(AudioDelay));
         public static string SubtitleDelay => _resourcesLoader.GetString(nameof(SubtitleDelay));
 
-        // VIDEO PLAYBACK
+        // PLAYBACK
+        public static string NowPlaying => _resourcesLoader.GetString(nameof(NowPlaying));
         public static string Speed => _resourcesLoader.GetString(nameof(Speed));
         public static string ResetSpeed => _resourcesLoader.GetString(nameof(ResetSpeed));
         public static string IncreaseSpeed => _resourcesLoader.GetString(nameof(IncreaseSpeed));
@@ -258,8 +261,14 @@ namespace VLC_WinRT.Utils
         
         public static string EvenIfBackground => _resourcesLoader.GetString(nameof(EvenIfBackground));
         public static string EvenIfNotBackground => _resourcesLoader.GetString(nameof(EvenIfNotBackground));
+
+        // LastFM
         public static string ConnectToLastFM => _resourcesLoader.GetString(nameof(ConnectToLastFM));
         public static string ConnectedToLastFM => _resourcesLoader.GetString(nameof(ConnectedToLastFM));
+        public static string CheckCredentials => _resourcesLoader.GetString(nameof(CheckCredentials));
+        public static string Connecting => _resourcesLoader.GetString(nameof(Connecting));
+
+
         public static string Theme => _resourcesLoader.GetString(nameof(Theme));
         public static string AppTheme => _resourcesLoader.GetString(nameof(AppTheme));
         public static string HomePage => _resourcesLoader.GetString(nameof(HomePage));

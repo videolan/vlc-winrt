@@ -200,7 +200,7 @@ namespace VLC_WinRT.Views.VideoPages
                 case GestureActionType.Null:
                     break;
                 case GestureActionType.Volume:
-                    GestureTextBlockDescription.Text = "Volume " + computeVolumeFromGesture(e.Cumulative) + "%";
+                    GestureTextBlockDescription.Text = Strings.Volume + " " + computeVolumeFromGesture(e.Cumulative) + "%";
                     break;
                 case GestureActionType.Brightness:
                     break;
