@@ -119,6 +119,10 @@ namespace VLC_WinRT.Utils
         public static string Shows => _resourcesLoader.GetString(nameof(Shows));
         public static string CameraRoll => _resourcesLoader.GetString(nameof(CameraRoll));
 
+        // VIDEO MISC
+        public static string VideoFolders => _resourcesLoader.GetString(nameof(VideoFolders));
+        public static string VideoFoldersDescription => _resourcesLoader.GetString(nameof(VideoFoldersDescription));
+
 
 
         public static string OrderAscending => _resourcesLoader.GetString(nameof(OrderAscending));
@@ -148,6 +152,7 @@ namespace VLC_WinRT.Utils
         public static string ViewArtist => _resourcesLoader.GetString(nameof(ViewArtist));
         public static string AddToCollection => _resourcesLoader.GetString(nameof(AddToCollection));
         public static string RemoveFolder => _resourcesLoader.GetString(nameof(RemoveFolder));
+        public static string RemoveVideoFolderDescription => _resourcesLoader.GetString(nameof(RemoveVideoFolderDescription));
         public static string AddFolder => _resourcesLoader.GetString(nameof(AddFolder));
         public static string Connect => _resourcesLoader.GetString(nameof(Connect));
         public static string Reset => _resourcesLoader.GetString(nameof(Reset));
@@ -172,6 +177,8 @@ namespace VLC_WinRT.Utils
         public static string AboutTheApp => _resourcesLoader.GetString(nameof(AboutTheApp));
         public static string Notifications => _resourcesLoader.GetString(nameof(Notifications));
         public static string NotificationWhenSongStarts => _resourcesLoader.GetString(nameof(NotificationWhenSongStarts));
+        public static string VideoPlaybackInBackground => _resourcesLoader.GetString(nameof(VideoPlaybackInBackground));
+        
         public static string EvenIfBackground => _resourcesLoader.GetString(nameof(EvenIfBackground));
         public static string EvenIfNotBackground => _resourcesLoader.GetString(nameof(EvenIfNotBackground));
         public static string ConnectToLastFM => _resourcesLoader.GetString(nameof(ConnectToLastFM));
@@ -183,6 +190,10 @@ namespace VLC_WinRT.Utils
         public static string Animations => _resourcesLoader.GetString(nameof(Animations));
         public static string RichAnimationsDescription => _resourcesLoader.GetString(nameof(RichAnimationsDescription));
         public static string KeyboardShortcuts => _resourcesLoader.GetString(nameof(KeyboardShortcuts));
+        public static string VideoPlayback => _resourcesLoader.GetString(nameof(VideoPlayback));
+        public static string HardwareDecoding => _resourcesLoader.GetString(nameof(HardwareDecoding));
+        public static string HardwareDecodingDescription => _resourcesLoader.GetString(nameof(HardwareDecodingDescription));
+        public static string SubtitlesEncoding => _resourcesLoader.GetString(nameof(SubtitlesEncoding));
 
         public Strings()
         {

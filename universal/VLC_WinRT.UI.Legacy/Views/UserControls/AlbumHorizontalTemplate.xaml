@@ -46,8 +46,7 @@
         <AppBarButton Grid.Row="1"
                       Grid.Column="2"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      x:Uid="PlayAlbumButton"
-                      Label="Play album"
+                      Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
                       Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAlbumCommand}"
                       CommandParameter="{Binding Key.Item3}"
                       Foreground="{StaticResource MainColor}">

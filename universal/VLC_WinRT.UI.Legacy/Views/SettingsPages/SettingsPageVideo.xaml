@@ -27,22 +27,27 @@
                                       FontFamily="ms-appx:VLC.ttf#W10" />
                         </AppBarButton.Icon>
                     </AppBarButton>
-                    <TextBlock Text="Video" x:Uid="VideosHeader"
+                    <TextBlock Text="{Binding Source={StaticResource Strings}, Path=VideoSettings}"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                 </StackPanel>
-                <TextBlock Text="Video playback" x:Uid="VideoPlayback"
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=VideoPlayback}"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight" />
-                <ToggleSwitch x:Uid="VideoPlaybackExplain" Header="Hardware decoding when possible (experimental)"
+                <ToggleSwitch Header="{Binding Source={StaticResource Strings}, Path=HardwareDecoding}"
                               IsOn="{Binding HardwareAccelerationEnabled, Mode=TwoWay}"
                               Margin="-6,0,0,0" />
-                <TextBlock x:Uid="VideoPlaybackExplainTwo" Text="Hardware decoding may not work on your device. You need to restart the app to apply changes"
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=HardwareDecodingDescription}"
                            Style="{StaticResource BodyTextBlockStyle}"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
                            Margin="0,-6,0,12" />
                 
-                <TextBlock x:Uid="SubtitlesEncoding" Text="Subtitles encoding"
+                <ToggleSwitch Tag="WindowsOnly"
+                              Header="{Binding Source={StaticResource Strings}, Path=VideoPlaybackInBackground}"
+                              IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}"
+                              Margin="-6,0,0,0" />
+                
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=SubtitlesEncoding}"
                            Margin="0,12,0,0"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
@@ -61,14 +66,12 @@
                 </ComboBox>
 
                 <TextBlock Tag="WindowsOnly"
-                           x:Uid="VideoFolders"
-                           Text="Video folders"
+                           Text="{Binding Source={StaticResource Strings}, Path=VideoFolders}"
                            FontSize="22"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight" />
                 <TextBlock Tag="WindowsOnly"
-                           x:Uid="VideoSettings"
-                           Text="VLC will only search videos that are in your video library. You can add folders to your library here:"
+                           Text="{Binding Source={StaticResource Strings}, Path=VideoFoldersDescription}"
                            Style="{StaticResource BodyTextBlockStyle}"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
                 <ListView Tag="WindowsOnly"
@@ -92,11 +95,10 @@
                                                     <RowDefinition Height="12" />
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <TextBlock x:Uid="RemoveFolderExplain" Text="If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC."
+                                                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RemoveVideoFolderDescription}"
                                                            Style="{StaticResource BodyTextBlockStyle}" />
                                                 <Button Grid.Row="2"
-                                                        Content="Remove this folder"
-                                                        x:Uid="RemoveFolder"
+                                                        Content="{Binding Source={StaticResource Strings}, Path=RemoveFolder}"
                                                         Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.RemoveFolderFromVideoLibrary}"
                                                         CommandParameter="{Binding}" />
                                             </Grid>
@@ -125,23 +127,11 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <Button Tag="WindowsOnly"
-                        Content="Add a new folder"
-                        x:Uid="AddFolder"
+                        Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
                         Command="{Binding AddFolderToLibrary}"
                         CommandParameter="{Binding VideoLibraryId}" />
 
-                <TextBlock Tag="WindowsOnly"
-                           Text="Video Library"
-                           x:Uid="VideoLibrary"
-                           FontSize="22"
-                           Margin="0,20,0,0"
-                           Style="{StaticResource SubheaderTextBlockStyle}"
-                           FontWeight="SemiLight" />
-                <ToggleSwitch Tag="WindowsOnly"
-                              x:Uid="VideoPlaybackBackground"
-                              Header="Video playback in background"
-                              IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}"
-                              Margin="-6,0,0,0" />
+
             </StackPanel>
         </ScrollViewer>
     </Grid>
