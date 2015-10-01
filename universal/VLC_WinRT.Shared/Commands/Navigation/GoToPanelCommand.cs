@@ -21,6 +21,7 @@ namespace VLC_WinRT.Commands.Navigation
     {
         public override async void Execute(object parameter)
         {
+            if (parameter == null) return;
             Model.Panel panel = null;
             if (parameter is Model.Panel)
             {
