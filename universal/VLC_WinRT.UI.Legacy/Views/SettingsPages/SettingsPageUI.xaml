@@ -34,8 +34,8 @@
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight" />
                 <ToggleSwitch  Header="{Binding Source={StaticResource Strings}, Path=AppTheme}"
-                               OffContent="Light"
-                               OnContent="Dark"
+                               OffContent="{Binding Source={StaticResource Strings}, Path=Light}"
+                               OnContent="{Binding Source={StaticResource Strings}, Path=Dark}"
                                Margin="-6,0,0,0">
                     <ToggleSwitch.IsOn>
                         <Binding Source="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
