@@ -253,7 +253,7 @@
     <value>hardware decoding</value>
   </data>
   <data name="HardwareDecodingDescription" xml:space="preserve">
-    <value>Hardware decoding may not work on your device. You need to restart the app to apply changes</value>
+    <value>Hardware decoding may not work on your device.</value>
   </data>
   <data name="HaveToSelectPlaylist" xml:space="preserve">
     <value>please select a playlist</value>
@@ -641,5 +641,23 @@
   </data>
   <data name="YourMusic" xml:space="preserve">
     <value>your music</value>
+  </data>
+  <data name="AccentColor" xml:space="preserve">
+    <value>accent color</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>background color</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>dark</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>light</value>
+  </data>
+  <data name="TitleBar" xml:space="preserve">
+    <value>title bar</value>
+  </data>
+  <data name="NeedRestart" xml:space="preserve">
+    <value>You need to restart the app to apply changes</value>
   </data>
 </root>
