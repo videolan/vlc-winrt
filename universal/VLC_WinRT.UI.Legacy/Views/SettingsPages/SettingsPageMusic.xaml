@@ -137,7 +137,7 @@
                              Style="{StaticResource FocusPasswordBox}" />
                 <TextBlock Text="{Binding Source={StaticResource Strings}, Path=ConnectedToLastFM}"
                            Style="{StaticResource TitleTextBlockStyle}"
-                           Foreground="{StaticResource MainColor}"
+                           Foreground="{ThemeResource MainColor}"
                            Visibility="{Binding LastFmIsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <TextBlock x:Name="ErrorConnectLastFmTextBox"
                            Style="{StaticResource TitleTextBlockStyle}"

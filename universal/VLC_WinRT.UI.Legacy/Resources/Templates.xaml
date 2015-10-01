@@ -23,7 +23,7 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="1"
                        Text="{Binding Key}"
-                       Foreground="{StaticResource MainColor}"
+                       Foreground="{ThemeResource MainColor}"
                        FontSize="23" />
         </Grid>
     </DataTemplate>
@@ -85,7 +85,7 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0"
                   Grid.RowSpan="5"
-                  Background="{StaticResource MainColor}"
+                  Background="{ThemeResource MainColor}"
                   Visibility="{Binding IsCurrent, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <Path Grid.Row="1"
                   Data="{Binding PathData}"

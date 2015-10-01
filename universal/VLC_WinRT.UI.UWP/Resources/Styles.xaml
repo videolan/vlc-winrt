@@ -94,7 +94,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Text"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource MainColor}" />
+                                                                    Value="{ThemeResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -822,7 +822,7 @@
                                 <Setter Property="BorderThickness"
                                         Value="1" />
                                 <Setter Property="BorderBrush"
-                                        Value="{StaticResource MainColor}" />
+                                        Value="{ThemeResource MainColor}" />
                                 <Setter Property="Background"
                                         Value="Transparent" />
                                 <Setter Property="Template">
@@ -849,7 +849,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
                                                                        Storyboard.TargetName="HorizontalDecreaseRect">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource MainColor}" />
+                                                                    Value="{ThemeResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -980,7 +980,7 @@
                                            Height="2"
                                            Grid.Row="1" />
                                 <Rectangle x:Name="HorizontalDecreaseRect"
-                                           Fill="{StaticResource MainColor}"
+                                           Fill="{ThemeResource MainColor}"
                                            Height="2"
                                            Grid.Row="1" />
                                 <TickBar x:Name="TopTickBar"
@@ -1431,7 +1431,7 @@
                                     <Rectangle x:Name="PointerOverBorder"
                                                IsHitTestVisible="False"
                                                Opacity="0"
-                                               Fill="{StaticResource MainColor}"
+                                               Fill="{ThemeResource MainColor}"
                                                Margin="1" />
                                     <Rectangle x:Name="FocusVisual"
                                                IsHitTestVisible="False"
@@ -2409,7 +2409,7 @@
                                     <Rectangle x:Name="PointerOverBorder"
                                                IsHitTestVisible="False"
                                                Opacity="0"
-                                               Fill="{StaticResource MainColor}" />
+                                               Fill="{ThemeResource MainColor}" />
                                     <Rectangle x:Name="FocusVisual"
                                                IsHitTestVisible="False"
                                                Opacity="0"
@@ -2815,7 +2815,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource MainColor}" />
+                                                                    Value="{ThemeResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -2829,7 +2829,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource MainColor}" />
+                                                                    Value="{ThemeResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -3029,12 +3029,12 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
                                                                        Storyboard.TargetName="ContentPresenter">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource MainColor}" />
+                                                                    Value="{ThemeResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
                                                                        Storyboard.TargetName="DropDownGlyph">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource MainColor}" />
+                                                                    Value="{ThemeResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -3143,7 +3143,7 @@
                                    VerticalAlignment="Center" />
                         <Popup x:Name="Popup">
                             <Border x:Name="PopupBorder"
-                                    BorderBrush="{StaticResource MainColor}"
+                                    BorderBrush="{ThemeResource MainColor}"
                                     BorderThickness="1"
                                     Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
                                     HorizontalAlignment="Stretch">

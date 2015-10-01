@@ -19,14 +19,15 @@
             <ColumnDefinition Width="6" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Path Data="{StaticResource VLCFlatPath}"
-              Fill="{StaticResource MainColor}"
+        <Path x:Name="VLCLogo"  
+              Data="{StaticResource VLCFlatPath}"
+              Fill="{ThemeResource MainColor}"
               Height="17"
               Width="17"
               Stretch="UniformToFill" />
         <TextBlock Grid.Column="2"
                    Text="VLC"
-                   Foreground="{StaticResource MainColor}"
+                   Foreground="{ThemeResource MainColor}"
                    VerticalAlignment="Center"
                    FontSize="15" />
         <ProgressRing Grid.Column="4"

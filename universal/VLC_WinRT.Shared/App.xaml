@@ -34,13 +34,13 @@
                     <SolidColorBrush x:Key="TextBoxBorderThemeBrush"
                                      Color="#FFFFFFFF" />
                     <SolidColorBrush x:Key="TextSelectionHighlightColorThemeBrush"
-                                     Color="{StaticResource MainColorBase}" />
+                                     Color="{ThemeResource MainColorBase}" />
                     <SolidColorBrush x:Key="TextBoxBackgroundThemeBrush"
                                      Color="#50FFFFFF" />
                     <SolidColorBrush x:Key="ToggleSwitchCurtainBackgroundThemeBrush"
-                                     Color="{StaticResource MainColorBase}" />
+                                     Color="{ThemeResource MainColorBase}" />
                     <SolidColorBrush x:Key="ComboBoxItemPointerOverForegroundThemeBrush"
-                                     Color="{StaticResource MainColorBase}" />
+                                     Color="{ThemeResource MainColorBase}" />
                     <SolidColorBrush x:Key="ComboBoxItemPressedBackgroundThemeBrush"
                                      Color="#252525" />
                     <SolidColorBrush x:Key="ComboBoxItemPressedForegroundThemeBrush"
@@ -67,7 +67,7 @@
                     <SolidColorBrush x:Key="BasicForeground"
                                      Color="Black" />
                     <SolidColorBrush x:Key="SliderForegroundProgressTheneBrush"
-                                     Color="{StaticResource MainColorBase}" />
+                                     Color="{ThemeResource MainColorBase}" />
                     <SolidColorBrush x:Key="LightGray1ThemeBrush"
                                      Color="#FFF3F3F3" />
                     <SolidColorBrush x:Key="LightGray2ThemeBrush"
@@ -77,11 +77,11 @@
                     <SolidColorBrush x:Key="TextBoxBorderThemeBrush"
                                      Color="#E5E5E5" />
                     <SolidColorBrush x:Key="TextSelectionHighlightColorThemeBrush"
-                                     Color="{StaticResource MainColorBase}"/>
+                                     Color="{ThemeResource MainColorBase}"/>
                     <SolidColorBrush x:Key="TextBoxBackgroundThemeBrush"
                                      Color="#50CCCCCC" />
                     <SolidColorBrush x:Key="ToggleSwitchCurtainBackgroundThemeBrush"
-                                     Color="{StaticResource MainColorBase}" />
+                                     Color="{ThemeResource MainColorBase}" />
                     <SolidColorBrush x:Key="ToggleSwitchThumbBackgroundThemeBrush"
                                      Color="WhiteSmoke"/>
                 </ResourceDictionary>

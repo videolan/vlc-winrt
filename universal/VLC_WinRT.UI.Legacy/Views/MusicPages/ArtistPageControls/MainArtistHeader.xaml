@@ -87,7 +87,7 @@
                           Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayArtistAlbumsCommand}"
                           CommandParameter="{Binding CurrentArtist}"
                           HorizontalAlignment="Right"
-                          Foreground="{StaticResource MainColor}">
+                          Foreground="{ThemeResource MainColor}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PlaySymbol}"
                               FontFamily="ms-appx:VLC.ttf#W10" />
