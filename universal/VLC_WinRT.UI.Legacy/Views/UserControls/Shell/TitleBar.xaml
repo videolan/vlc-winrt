@@ -9,7 +9,7 @@
              d:DesignWidth="400">
 
     <Grid MinHeight="40"
-          Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
+          Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="47" />
             <ColumnDefinition Width="6" />

@@ -160,8 +160,8 @@
                                           HorizontalAlignment="Stretch" />
 
                         <Grid x:Name="RightFlyoutGridContainer"
-                              Grid.Row="0"
-                              Grid.RowSpan="4"
+                              Grid.Row="1"
+                              Grid.RowSpan="3"
                               Opacity="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -171,7 +171,7 @@
                                 <PlaneProjection x:Name="RightFlyoutPlaneProjection" />
                             </Grid.Projection>
                             <Grid x:Name="FlyoutBackgroundGrid"
-                                  Background="Transparent"
+                                  Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
                                   HorizontalAlignment="Stretch"
                                   Grid.Column="0">
                                 <Rectangle HorizontalAlignment="Right"
