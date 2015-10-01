@@ -3,9 +3,9 @@
                     xmlns:local="using:VLC_WinRT.Resources">
     <Color x:Key="MainColorBase">#ff8800</Color>
     <SolidColorBrush x:Key="MainColor"
-                     Color="{StaticResource MainColorBase}" />
+                     Color="{ThemeResource MainColorBase}" />
     <SolidColorBrush x:Key="SemiLightMainColor"
-                     Color="{StaticResource MainColorBase}" 
+                     Color="{ThemeResource MainColorBase}" 
                      Opacity="0.7"/>
     <SolidColorBrush x:Key="ListViewItemPointerOverBackgroundThemeBrush"
                      Color="LightGray" />
