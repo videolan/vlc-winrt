@@ -2727,12 +2727,12 @@
                         </VisualStateManager.VisualStateGroups>
                         <Grid HorizontalAlignment="Left"
                               Height="38.5"
-                              Width="25">
+                              Width="35">
                             <Grid x:Name="ContentRoot"
                                   Background="Transparent">
                                 <Viewbox Stretch="Uniform"
-                                         Height="25"
-                                         Width="25">
+                                         Height="32"
+                                         Width="32">
                                     <ContentPresenter x:Name="Content"
                                                       AutomationProperties.AccessibilityView="Raw"
                                                       Content="{TemplateBinding Icon}"
