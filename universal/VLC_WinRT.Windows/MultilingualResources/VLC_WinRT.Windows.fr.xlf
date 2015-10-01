@@ -1,0 +1,712 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="fr" original="VLC_WinRT.Windows_Multilingual.prilog.xml" tool-id="MultilingualAppToolkit" product-name="VLC_WinRT.Windows" product-version="1.0.0.0" build-num="0">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="3.1.1250.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="Resources">
+        <trans-unit id="Resources\YourMusic" translate="yes" xml:space="preserve">
+          <source>your music</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">votre musique</target>
+        </trans-unit>
+        <trans-unit id="Resources\RemoveFolder" translate="yes" xml:space="preserve">
+          <source>remove folder</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">supprimer le dossier</target>
+        </trans-unit>
+        <trans-unit id="Resources\RemoveMusicFolderDescription" translate="yes" xml:space="preserve">
+          <source>If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Si vous ne souhaitez pas que ce dossier dans votre bibliothèque de musique, vous pouvez le supprimer. Il affecte toutes les applications, pas uniquement VLC</target>
+        </trans-unit>
+        <trans-unit id="Resources\RemoveVideoFolderDescription" translate="yes" xml:space="preserve">
+          <source>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Si vous ne souhaitez pas que ce dossier dans votre bibliothèque vidéo, vous pouvez le supprimer. Il affecte toutes les applications, pas uniquement VLC</target>
+        </trans-unit>
+        <trans-unit id="Resources\Reset" translate="yes" xml:space="preserve">
+          <source>reset</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Réinitialiser</target>
+        </trans-unit>
+        <trans-unit id="Resources\ResetMusicDatabase" translate="yes" xml:space="preserve">
+          <source>reset music database</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Réinitialiser la base de données de musique</target>
+        </trans-unit>
+        <trans-unit id="Resources\ResetSpeed" translate="yes" xml:space="preserve">
+          <source>reset speed</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Réinitialiser la vitesse</target>
+        </trans-unit>
+        <trans-unit id="Resources\RichAnimationsDescription" translate="yes" xml:space="preserve">
+          <source>Use rich animations in the slideshows</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Utiliser des animations complexes dans les diaporamas</target>
+        </trans-unit>
+        <trans-unit id="Resources\RunningInsiderBuild" translate="yes" xml:space="preserve">
+          <source>are you running an Insider build?</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">vous exécutez une génération internes ?</target>
+        </trans-unit>
+        <trans-unit id="Resources\Search" translate="yes" xml:space="preserve">
+          <source>search</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">recherche</target>
+        </trans-unit>
+        <trans-unit id="Resources\Season" translate="yes" xml:space="preserve">
+          <source>season</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">saison</target>
+        </trans-unit>
+        <trans-unit id="Resources\SendFeedback" translate="yes" xml:space="preserve">
+          <source>send feedback</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">envoyer des commentaires</target>
+        </trans-unit>
+        <trans-unit id="Resources\SendingFeedback" translate="yes" xml:space="preserve">
+          <source>sending feedback</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">envoi de commentaires</target>
+        </trans-unit>
+        <trans-unit id="Resources\SendLogs" translate="yes" xml:space="preserve">
+          <source>send logs</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">envoi de journaux</target>
+        </trans-unit>
+        <trans-unit id="Resources\Settings" translate="yes" xml:space="preserve">
+          <source>settings</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">paramètres</target>
+        </trans-unit>
+        <trans-unit id="Resources\ShowPlaylist" translate="yes" xml:space="preserve">
+          <source>show playlist</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">afficher la sélection</target>
+        </trans-unit>
+        <trans-unit id="Resources\Shows" translate="yes" xml:space="preserve">
+          <source>shows</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">montre</target>
+        </trans-unit>
+        <trans-unit id="Resources\Shuffle" translate="yes" xml:space="preserve">
+          <source>shuffle</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">lecture aléatoire</target>
+        </trans-unit>
+        <trans-unit id="Resources\SilverPartners" translate="yes" xml:space="preserve">
+          <source>silver partners</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">partenaires d'argent</target>
+        </trans-unit>
+        <trans-unit id="Resources\Songs" translate="yes" xml:space="preserve">
+          <source>songs</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">chansons</target>
+        </trans-unit>
+        <trans-unit id="Resources\SpecialThanks" translate="yes" xml:space="preserve">
+          <source>special thanks</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Remerciements</target>
+        </trans-unit>
+        <trans-unit id="Resources\SpecifiedBuildIncorrect" translate="yes" xml:space="preserve">
+          <source>the specified build number is incorrect</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">le numéro de version spécifié est incorrect</target>
+        </trans-unit>
+        <trans-unit id="Resources\SpecifyBuild" translate="yes" xml:space="preserve">
+          <source>please specify you Windows 10 Insider build number</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Veuillez spécifier que vous Windows 10 Insider numéro de build</target>
+        </trans-unit>
+        <trans-unit id="Resources\Speed" translate="yes" xml:space="preserve">
+          <source>speed</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">vitesse</target>
+        </trans-unit>
+        <trans-unit id="Resources\Stop" translate="yes" xml:space="preserve">
+          <source>stop</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">arrêter</target>
+        </trans-unit>
+        <trans-unit id="Resources\SubtitleDelay" translate="yes" xml:space="preserve">
+          <source>subtitle delay</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">délai de sous-titre</target>
+        </trans-unit>
+        <trans-unit id="Resources\Subtitles" translate="yes" xml:space="preserve">
+          <source>subtitles</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">sous-titres</target>
+        </trans-unit>
+        <trans-unit id="Resources\SubtitlesEncoding" translate="yes" xml:space="preserve">
+          <source>subtitles encoding</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">codage de sous-titres</target>
+        </trans-unit>
+        <trans-unit id="Resources\Summary" translate="yes" xml:space="preserve">
+          <source>summary</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Résumé</target>
+        </trans-unit>
+        <trans-unit id="Resources\Theme" translate="yes" xml:space="preserve">
+          <source>theme</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">thème</target>
+        </trans-unit>
+        <trans-unit id="Resources\TileRemoved" translate="yes" xml:space="preserve">
+          <source>tile removed</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Mosaïque supprimé</target>
+        </trans-unit>
+        <trans-unit id="Resources\TopVideos" translate="yes" xml:space="preserve">
+          <source>top videos</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">vidéos supérieur</target>
+        </trans-unit>
+        <trans-unit id="Resources\TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
+          <source>track added to the playlist</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">piste ajouté à la sélection</target>
+        </trans-unit>
+        <trans-unit id="Resources\TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
+          <source>this track is already in that playlist</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Cette option est déjà dans cette sélection.</target>
+        </trans-unit>
+        <trans-unit id="Resources\Tracks" translate="yes" xml:space="preserve">
+          <source>tracks</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">pistes</target>
+        </trans-unit>
+        <trans-unit id="Resources\UnknownAlbum" translate="yes" xml:space="preserve">
+          <source>unknown album</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">album inconnu</target>
+        </trans-unit>
+        <trans-unit id="Resources\UnknownArtist" translate="yes" xml:space="preserve">
+          <source>unknown artist</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Artiste inconnu</target>
+        </trans-unit>
+        <trans-unit id="Resources\UnknownShow" translate="yes" xml:space="preserve">
+          <source>unknown show</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Afficher inconnu</target>
+        </trans-unit>
+        <trans-unit id="Resources\UnknownTrack" translate="yes" xml:space="preserve">
+          <source>unknown track</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">piste inconnue</target>
+        </trans-unit>
+        <trans-unit id="Resources\UpcomingShows" translate="yes" xml:space="preserve">
+          <source>upcoming shows</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">émissions à venir</target>
+        </trans-unit>
+        <trans-unit id="Resources\UserInterface" translate="yes" xml:space="preserve">
+          <source>user interface</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">interface utilisateur</target>
+        </trans-unit>
+        <trans-unit id="Resources\Username" translate="yes" xml:space="preserve">
+          <source>username</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">nom d'utilisateur</target>
+        </trans-unit>
+        <trans-unit id="Resources\Video" translate="yes" xml:space="preserve">
+          <source>video</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">vidéo</target>
+        </trans-unit>
+        <trans-unit id="Resources\VideoFolders" translate="yes" xml:space="preserve">
+          <source>video folders</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">dossiers vidéo</target>
+        </trans-unit>
+        <trans-unit id="Resources\VideoFoldersDescription" translate="yes" xml:space="preserve">
+          <source>VLC will only search songs that are in your video library. You can add folders to your library here</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC recherche uniquement les chansons de votre bibliothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici</target>
+        </trans-unit>
+        <trans-unit id="Resources\VideoPlayback" translate="yes" xml:space="preserve">
+          <source>video playback</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">lecture de la vidéo</target>
+        </trans-unit>
+        <trans-unit id="Resources\VideoPlaybackInBackground" translate="yes" xml:space="preserve">
+          <source>play video in background</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">lire la vidéo en arrière-plan</target>
+        </trans-unit>
+        <trans-unit id="Resources\Videos" translate="yes" xml:space="preserve">
+          <source>videos</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">vidéos</target>
+        </trans-unit>
+        <trans-unit id="Resources\VideoSettings" translate="yes" xml:space="preserve">
+          <source>video settings</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">paramètres vidéo</target>
+        </trans-unit>
+        <trans-unit id="Resources\ViewAlbum" translate="yes" xml:space="preserve">
+          <source>view album</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">afficher l'album</target>
+        </trans-unit>
+        <trans-unit id="Resources\ViewArtist" translate="yes" xml:space="preserve">
+          <source>view artist</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">artiste de l'affichage</target>
+        </trans-unit>
+        <trans-unit id="Resources\VLCTeamThankYou" translate="yes" xml:space="preserve">
+          <source>the vlc team would like to thank all the people who made this app possible</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">le vlc aimerait remercier toutes les personnes ayant effectué cette application possible</target>
+        </trans-unit>
+        <trans-unit id="Resources\Volume" translate="yes" xml:space="preserve">
+          <source>volume</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">volume</target>
+        </trans-unit>
+        <trans-unit id="Resources\Website" translate="yes" xml:space="preserve">
+          <source>website</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">site Web</target>
+        </trans-unit>
+        <trans-unit id="Resources\WeNeedYourHelp" translate="yes" xml:space="preserve">
+          <source>we need your help</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nous avons besoin de votre aide</target>
+        </trans-unit>
+        <trans-unit id="Resources\WindowsBuildNumberPlaceholder" translate="yes" xml:space="preserve">
+          <source>Windows 10 Insider build number</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Numéro de build de Windows 10 initiés</target>
+        </trans-unit>
+        <trans-unit id="Resources\Yes" translate="yes" xml:space="preserve">
+          <source>yes</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Oui</target>
+        </trans-unit>
+        <trans-unit id="Resources\Network" translate="yes" xml:space="preserve">
+          <source>network</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">réseau</target>
+        </trans-unit>
+        <trans-unit id="Resources\MusicFolders" translate="yes" xml:space="preserve">
+          <source>music folders</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">dossiers de musique</target>
+        </trans-unit>
+        <trans-unit id="Resources\MusicFoldersDescription" translate="yes" xml:space="preserve">
+          <source>VLC will only search songs that are in your music library. You can add folders to your library here</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC recherche uniquement les chansons de votre bibliothèque musicale. Vous pouvez ajouter des dossiers à votre bibliothèque ici</target>
+        </trans-unit>
+        <trans-unit id="Resources\MusicSettings" translate="yes" xml:space="preserve">
+          <source>music settings</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">paramètres de musique</target>
+        </trans-unit>
+        <trans-unit id="Resources\MusicShows" translate="yes" xml:space="preserve">
+          <source>music shows</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">diaporamas de musique</target>
+        </trans-unit>
+        <trans-unit id="Resources\Mute" translate="yes" xml:space="preserve">
+          <source>mute</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Muet</target>
+        </trans-unit>
+        <trans-unit id="Resources\MyPlaylists" translate="yes" xml:space="preserve">
+          <source>my playlists</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Mes sélections</target>
+        </trans-unit>
+        <trans-unit id="Resources\Library" translate="yes" xml:space="preserve">
+          <source>library</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">bibliothèque</target>
+        </trans-unit>
+        <trans-unit id="Resources\HomePage" translate="yes" xml:space="preserve">
+          <source>home page</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">page d'accueil</target>
+        </trans-unit>
+        <trans-unit id="Resources\HomePageDescription" translate="yes" xml:space="preserve">
+          <source>VLC will start on the selected page</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC démarre sur la page sélectionnée</target>
+        </trans-unit>
+        <trans-unit id="Resources\HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
+          <source>however you may find what you're looking for here</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Toutefois, vous pouvez trouver ce que vous cherchez ici</target>
+        </trans-unit>
+        <trans-unit id="Resources\HowToFavoriteAlbum1" translate="yes" xml:space="preserve">
+          <source>to favorite an album, just press</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">à un album de votre choix, appuyez sur la touche</target>
+        </trans-unit>
+        <trans-unit id="Resources\HowToFavoriteAlbum2" translate="yes" xml:space="preserve">
+          <source>and you'll get an instant access to it</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">et vous obtiendrez un accès instantané</target>
+        </trans-unit>
+        <trans-unit id="Resources\ImportantSponsors" translate="yes" xml:space="preserve">
+          <source>important sponsors</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">sponsors importants</target>
+        </trans-unit>
+        <trans-unit id="Resources\IncreaseSpeed" translate="yes" xml:space="preserve">
+          <source>increase speed</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">augmenter la vitesse</target>
+        </trans-unit>
+        <trans-unit id="Resources\IncreaseVolume" translate="yes" xml:space="preserve">
+          <source>increase volume</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">augmenter le volume</target>
+        </trans-unit>
+        <trans-unit id="Resources\ItsEmpty" translate="yes" xml:space="preserve">
+          <source>it's empty here</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Il est ici vide</target>
+        </trans-unit>
+        <trans-unit id="Resources\KeyboardShortcuts" translate="yes" xml:space="preserve">
+          <source>keyboard shortcuts</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">raccourcis clavier</target>
+        </trans-unit>
+        <trans-unit id="Resources\RemovableStorage" translate="yes" xml:space="preserve">
+          <source>removable storage</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">stockage amovible</target>
+        </trans-unit>
+        <trans-unit id="Resources\NewFeedback" translate="yes" xml:space="preserve">
+          <source>new feedback</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">nouveaux commentaires</target>
+        </trans-unit>
+        <trans-unit id="Resources\NewFeedbackSubtitle" translate="yes" xml:space="preserve">
+          <source>what's the problem?</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Quel est le problème ?</target>
+        </trans-unit>
+        <trans-unit id="Resources\NewPlaylist" translate="yes" xml:space="preserve">
+          <source>new playlist</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">nouvelle sélection</target>
+        </trans-unit>
+        <trans-unit id="Resources\NewVideos" translate="yes" xml:space="preserve">
+          <source>new videos</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">de nouvelles vidéos</target>
+        </trans-unit>
+        <trans-unit id="Resources\No" translate="yes" xml:space="preserve">
+          <source>no</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ne</target>
+        </trans-unit>
+        <trans-unit id="Resources\NoBiographyFound" translate="yes" xml:space="preserve">
+          <source>no bio found for this artist</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Aucun bio trouvé pour cet artiste</target>
+        </trans-unit>
+        <trans-unit id="Resources\NoCameraVideosFound" translate="yes" xml:space="preserve">
+          <source>no camera videos found</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">aucune vidéo de l'appareil photo trouvé</target>
+        </trans-unit>
+        <trans-unit id="Resources\NoFavoriteAlbums" translate="yes" xml:space="preserve">
+          <source>no favorite albums</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">aucun album favori</target>
+        </trans-unit>
+        <trans-unit id="Resources\NoInternetConnection" translate="yes" xml:space="preserve">
+          <source>no internet connection</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Aucune connexion internet</target>
+        </trans-unit>
+        <trans-unit id="Resources\NoPlaylists" translate="yes" xml:space="preserve">
+          <source>no playlists</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">aucune sélection</target>
+        </trans-unit>
+        <trans-unit id="Resources\NoShowsFound" translate="yes" xml:space="preserve">
+          <source>no shows found</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">aucune émission trouvée</target>
+        </trans-unit>
+        <trans-unit id="Resources\NotableSponsors" translate="yes" xml:space="preserve">
+          <source>notable sponsors</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">sponsors notables</target>
+        </trans-unit>
+        <trans-unit id="Resources\NothingToSeeHere" translate="yes" xml:space="preserve">
+          <source>there's nothing to see here</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Il n'y a rien à voir ici</target>
+        </trans-unit>
+        <trans-unit id="Resources\Notifications" translate="yes" xml:space="preserve">
+          <source>notifications</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">notifications</target>
+        </trans-unit>
+        <trans-unit id="Resources\NotificationWhenSongStarts" translate="yes" xml:space="preserve">
+          <source>notifications= when the song starts</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">notifications = au démarrage de la chanson</target>
+        </trans-unit>
+        <trans-unit id="Resources\NoVideosFound" translate="yes" xml:space="preserve">
+          <source>we did not find videos</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nous n'avons trouvé vidéos</target>
+        </trans-unit>
+        <trans-unit id="Resources\NowPlaying" translate="yes" xml:space="preserve">
+          <source>now playing</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">lecture en cours</target>
+        </trans-unit>
+        <trans-unit id="Resources\OpenFile" translate="yes" xml:space="preserve">
+          <source>open file</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ouvrir le fichier</target>
+        </trans-unit>
+        <trans-unit id="Resources\OpenStream" translate="yes" xml:space="preserve">
+          <source>open stream</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ouvrir le flux de données</target>
+        </trans-unit>
+        <trans-unit id="Resources\OpenSubtitle" translate="yes" xml:space="preserve">
+          <source>open subtitle</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ouvrez le sous-titre</target>
+        </trans-unit>
+        <trans-unit id="Resources\OrderAscending" translate="yes" xml:space="preserve">
+          <source>ascending</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">dans l'ordre croissant</target>
+        </trans-unit>
+        <trans-unit id="Resources\OrderByAlbum" translate="yes" xml:space="preserve">
+          <source>by album</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">par album</target>
+        </trans-unit>
+        <trans-unit id="Resources\OrderByArtist" translate="yes" xml:space="preserve">
+          <source>by artist</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">par artiste</target>
+        </trans-unit>
+        <trans-unit id="Resources\OrderByDate" translate="yes" xml:space="preserve">
+          <source>by date</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">par date</target>
+        </trans-unit>
+        <trans-unit id="Resources\OrderDescending" translate="yes" xml:space="preserve">
+          <source>descending</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">tri décroissant</target>
+        </trans-unit>
+        <trans-unit id="Resources\Password" translate="yes" xml:space="preserve">
+          <source>password</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">mot de passe</target>
+        </trans-unit>
+        <trans-unit id="Resources\Pause" translate="yes" xml:space="preserve">
+          <source>pause</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">mettre en pause</target>
+        </trans-unit>
+        <trans-unit id="Resources\PinAlbum" translate="yes" xml:space="preserve">
+          <source>pin album</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">album de broche</target>
+        </trans-unit>
+        <trans-unit id="Resources\PinArtist" translate="yes" xml:space="preserve">
+          <source>pin artist</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">artiste de broche</target>
+        </trans-unit>
+        <trans-unit id="Resources\Play" translate="yes" xml:space="preserve">
+          <source>play</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">lire</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlayAlbum" translate="yes" xml:space="preserve">
+          <source>play album</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">lire l'album</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlayAll" translate="yes" xml:space="preserve">
+          <source>play all</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">lire tout</target>
+        </trans-unit>
+        <trans-unit id="Resources\Playback" translate="yes" xml:space="preserve">
+          <source>playback</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">lecture</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlayerSettings" translate="yes" xml:space="preserve">
+          <source>player settings</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">paramètres du lecteur</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlayFolder" translate="yes" xml:space="preserve">
+          <source>play folder</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">lire le dossier</target>
+        </trans-unit>
+        <trans-unit id="Resources\Playlist" translate="yes" xml:space="preserve">
+          <source>playlist</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">sélection</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlaylistAlreadyExists" translate="yes" xml:space="preserve">
+          <source>this playlist already exists</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Cette sélection existe déjà</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlaylistNamePlaceholder" translate="yes" xml:space="preserve">
+          <source>playlist name</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">nom de la sélection</target>
+        </trans-unit>
+        <trans-unit id="Resources\Playlists" translate="yes" xml:space="preserve">
+          <source>playlists</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">listes de diffusion</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlayTrack" translate="yes" xml:space="preserve">
+          <source>play track</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Lire piste</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlayVideo" translate="yes" xml:space="preserve">
+          <source>play video</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">lire la vidéo</target>
+        </trans-unit>
+        <trans-unit id="Resources\PremiumSponsors" translate="yes" xml:space="preserve">
+          <source>premium sponsors</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">sponsors de la prime</target>
+        </trans-unit>
+        <trans-unit id="Resources\PrivacyStatement" translate="yes" xml:space="preserve">
+          <source>privacy statement</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">déclaration de confidentialité</target>
+        </trans-unit>
+        <trans-unit id="Resources\RecommendedForYou" translate="yes" xml:space="preserve">
+          <source>recommended for you</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">recommandé pour vous</target>
+        </trans-unit>
+        <trans-unit id="Resources\RefreshMusicLibrary" translate="yes" xml:space="preserve">
+          <source>refresh music library</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Actualiser la bibliothèque Musique</target>
+        </trans-unit>
+        <trans-unit id="Resources\RefreshVideoLibrary" translate="yes" xml:space="preserve">
+          <source>refresh video library</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Actualiser la bibliothèque vidéo</target>
+        </trans-unit>
+        <trans-unit id="Resources\Music" translate="yes" xml:space="preserve">
+          <source>music</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">musique</target>
+        </trans-unit>
+        <trans-unit id="Resources\License" translate="yes" xml:space="preserve">
+          <source>license</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">licence</target>
+        </trans-unit>
+        <trans-unit id="Resources\Loading" translate="yes" xml:space="preserve">
+          <source>loading</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">chargement</target>
+        </trans-unit>
+        <trans-unit id="Resources\LoadingMusic" translate="yes" xml:space="preserve">
+          <source>loading music</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">chargement de musique</target>
+        </trans-unit>
+        <trans-unit id="Resources\MostPlayedArtists" translate="yes" xml:space="preserve">
+          <source>most played artists</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">plus les artistes lus</target>
+        </trans-unit>
+        <trans-unit id="Resources\Home" translate="yes" xml:space="preserve">
+          <source>home</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">accueil</target>
+        </trans-unit>
+        <trans-unit id="Resources\GoldPartners" translate="yes" xml:space="preserve">
+          <source>gold partners</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">partenaires Gold</target>
+        </trans-unit>
+        <trans-unit id="Resources\HardwareDecoding" translate="yes" xml:space="preserve">
+          <source>hardware decoding</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">décodage matériel</target>
+        </trans-unit>
+        <trans-unit id="Resources\HardwareDecodingDescription" translate="yes" xml:space="preserve">
+          <source>Hardware decoding may not work on your device. You need to restart the app to apply changes</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Décodage matériel peut ne pas fonctionne sur votre périphérique. Vous devez redémarrer l'application pour appliquer les modifications</target>
+        </trans-unit>
+        <trans-unit id="Resources\HaveToSelectPlaylist" translate="yes" xml:space="preserve">
+          <source>please select a playlist</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Veuillez sélectionner une liste de diffusion</target>
+        </trans-unit>
+        <trans-unit id="Resources\FileExplorer" translate="yes" xml:space="preserve">
+          <source>file explorer</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Explorateur de fichiers</target>
+        </trans-unit>
+        <trans-unit id="Resources\AboutTheApp" translate="yes" xml:space="preserve">
+          <source>about the app</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">à propos de l'application</target>
+        </trans-unit>
+        <trans-unit id="Resources\Add" translate="yes" xml:space="preserve">
+          <source>add</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ajouter</target>
+        </trans-unit>
+        <trans-unit id="Resources\AddDetails" translate="yes" xml:space="preserve">
+          <source>add details</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ajouter des détails</target>
+        </trans-unit>
+        <trans-unit id="Resources\AddFolder" translate="yes" xml:space="preserve">
+          <source>add folder</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ajouter un dossier</target>
+        </trans-unit>
+        <trans-unit id="Resources\AddToCollection" translate="yes" xml:space="preserve">
+          <source>add to collection</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ajouter à la collection</target>
+        </trans-unit>
+        <trans-unit id="Resources\AddToCurrentPlaylist" translate="yes" xml:space="preserve">
+          <source>add to current playlist</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ajouter à la sélection en cours</target>
+        </trans-unit>
+        <trans-unit id="Resources\AddToPlaylist" translate="yes" xml:space="preserve">
+          <source>add to playlist</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ajouter à la sélection</target>
+        </trans-unit>
+        <trans-unit id="Resources\Albums" translate="yes" xml:space="preserve">
+          <source>albums</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">albums</target>
+        </trans-unit>
+        <trans-unit id="Resources\AlbumsFound" translate="yes" xml:space="preserve">
+          <source>albums found</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">albums trouvés</target>
+        </trans-unit>
+        <trans-unit id="Resources\AllBackers" translate="yes" xml:space="preserve">
+          <source>all backers</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">tous les importantes</target>
+        </trans-unit>
+        <trans-unit id="Resources\Animations" translate="yes" xml:space="preserve">
+          <source>animations</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">animations</target>
+        </trans-unit>
+        <trans-unit id="Resources\AppTheme" translate="yes" xml:space="preserve">
+          <source>application theme</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">thème de l'application</target>
+        </trans-unit>
+        <trans-unit id="Resources\Artists" translate="yes" xml:space="preserve">
+          <source>artists</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">artistes</target>
+        </trans-unit>
+        <trans-unit id="Resources\Audio" translate="yes" xml:space="preserve">
+          <source>audio</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">audio</target>
+        </trans-unit>
+        <trans-unit id="Resources\AudioDelay" translate="yes" xml:space="preserve">
+          <source>audio delay</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">délai audio</target>
+        </trans-unit>
+        <trans-unit id="Resources\AudioTracks" translate="yes" xml:space="preserve">
+          <source>audio tracks</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">pistes audio</target>
+        </trans-unit>
+        <trans-unit id="Resources\Back" translate="yes" xml:space="preserve">
+          <source>back</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">sauvegarder</target>
+        </trans-unit>
+        <trans-unit id="Resources\CameraRoll" translate="yes" xml:space="preserve">
+          <source>camera roll</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">rouleau de caméra</target>
+        </trans-unit>
+        <trans-unit id="Resources\ChangeAlbumCover" translate="yes" xml:space="preserve">
+          <source>change album cover</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">modifier la couverture d'album</target>
+        </trans-unit>
+        <trans-unit id="Resources\Chapters" translate="yes" xml:space="preserve">
+          <source>chapters</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">chapitres</target>
+        </trans-unit>
+        <trans-unit id="Resources\CheckCredentials" translate="yes" xml:space="preserve">
+          <source>an error occured, please check your credentials</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">une erreur s'est produite, veuillez vérifier vos informations d'identification</target>
+        </trans-unit>
+        <trans-unit id="Resources\Connect" translate="yes" xml:space="preserve">
+          <source>connect</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">se connecter</target>
+        </trans-unit>
+        <trans-unit id="Resources\ConnectedToLastFM" translate="yes" xml:space="preserve">
+          <source>connected to Last.FM</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">connecté à Last.FM</target>
+        </trans-unit>
+        <trans-unit id="Resources\Connecting" translate="yes" xml:space="preserve">
+          <source>connecting</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">connexion</target>
+        </trans-unit>
+        <trans-unit id="Resources\ConnectToLastFM" translate="yes" xml:space="preserve">
+          <source>connect to Last.FM</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">se connecter à Last.FM</target>
+        </trans-unit>
+        <trans-unit id="Resources\CrashReport" translate="yes" xml:space="preserve">
+          <source>crash report</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">rapport d'incident</target>
+        </trans-unit>
+        <trans-unit id="Resources\DecreaseSpeed" translate="yes" xml:space="preserve">
+          <source>decrease speed</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">réduire la vitesse</target>
+        </trans-unit>
+        <trans-unit id="Resources\DecreaseVolume" translate="yes" xml:space="preserve">
+          <source>decrease volume</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">diminuer le volume</target>
+        </trans-unit>
+        <trans-unit id="Resources\DeletePlaylist" translate="yes" xml:space="preserve">
+          <source>delete playlist</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">supprimer la sélection</target>
+        </trans-unit>
+        <trans-unit id="Resources\DeleteSelected" translate="yes" xml:space="preserve">
+          <source>delete selected</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">supprimer sélectionné</target>
+        </trans-unit>
+        <trans-unit id="Resources\EditMetadata" translate="yes" xml:space="preserve">
+          <source>edit metadata</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">modifier les métadonnées</target>
+        </trans-unit>
+        <trans-unit id="Resources\ElementsNotFound" translate="yes" xml:space="preserve">
+          <source>we did not find elements in there</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nous n'avons trouvé éléments dans cet emplacement</target>
+        </trans-unit>
+        <trans-unit id="Resources\EnterURL" translate="yes" xml:space="preserve">
+          <source>enter a url</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Entrez une url</target>
+        </trans-unit>
+        <trans-unit id="Resources\Episode" translate="yes" xml:space="preserve">
+          <source>episode</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">épisode</target>
+        </trans-unit>
+        <trans-unit id="Resources\ErrorSendingFeedback" translate="yes" xml:space="preserve">
+          <source>an error occured while sending the feedback</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">une erreur s'est produite lors de l'envoi de commentaires</target>
+        </trans-unit>
+        <trans-unit id="Resources\EvenIfBackground" translate="yes" xml:space="preserve">
+          <source>even if the app is in background</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">même si l'application est en arrière-plan</target>
+        </trans-unit>
+        <trans-unit id="Resources\EvenIfNotBackground" translate="yes" xml:space="preserve">
+          <source>even if the app is not in background</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">même si l'application n'est pas en arrière-plan</target>
+        </trans-unit>
+        <trans-unit id="Resources\FailFilePlayBackground" translate="yes" xml:space="preserve">
+          <source>This file may not play in the background</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ce fichier ne peut pas lire en arrière-plan</target>
+        </trans-unit>
+        <trans-unit id="Resources\FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
+          <source>VLC failed to navigate to the Video Player page</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC n'a pas pu accéder à la page du lecteur vidéo</target>
+        </trans-unit>
+        <trans-unit id="Resources\FailOpenVideo" translate="yes" xml:space="preserve">
+          <source>VLC failed to open the video</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC n'a pas pu ouvrir la vidéo</target>
+        </trans-unit>
+        <trans-unit id="Resources\FailStartVLCEngine" translate="yes" xml:space="preserve">
+          <source>The app failed to start the VLC engine</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">L'application n'a pas pu démarrer le moteur VLC</target>
+        </trans-unit>
+        <trans-unit id="Resources\FeedbackThankYou" translate="yes" xml:space="preserve">
+          <source>feedback sent! thank you</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">commentaire envoyé ! Nous vous remercions de</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
