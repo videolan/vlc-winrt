@@ -283,16 +283,16 @@ namespace VLC_WinRT.ViewModels.VideoVM
                     scaleTransform.CenterY = screenHeight / 2;
                     App.RootPage.SwapChainPanel.RenderTransform = scaleTransform;
                     break;
-                case VLCSurfaceZoom.SURFACE_FILL:
-                    break;
-                case VLCSurfaceZoom.SURFACE_16_9:
-                    break;
-                case VLCSurfaceZoom.SURFACE_4_3:
-                    break;
-                case VLCSurfaceZoom.SURFACE_ORIGINAL:
-                    break;
-                case VLCSurfaceZoom.SURFACE_CUSTOM_ZOOM:
-                    break;
+                //case VLCSurfaceZoom.SURFACE_FILL:
+                //    break;
+                //case VLCSurfaceZoom.SURFACE_16_9:
+                //    break;
+                //case VLCSurfaceZoom.SURFACE_4_3:
+                //    break;
+                //case VLCSurfaceZoom.SURFACE_ORIGINAL:
+                //    break;
+                //case VLCSurfaceZoom.SURFACE_CUSTOM_ZOOM:
+                //    break;
                 default:
                     break;
             }
