@@ -93,12 +93,12 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Button Content="{Binding Source={StaticResource Strings}, Path=License}"
-                            Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToLicensePageCommand}" />
+                    <Button Content="{Binding Source={StaticResource Strings}, Path=SpecialThanks}"
+                            Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToThanksPageCommand}" />
                     <Button Grid.Column="2"
                             Margin="12,0,0,0"
-                            Content="{Binding Source={StaticResource Strings}, Path=SpecialThanks}"
-                            Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToThanksPageCommand}" />
+                            Content="{Binding Source={StaticResource Strings}, Path=License}"
+                            Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToLicensePageCommand}" />
                 </Grid>
                 <Button Content="{Binding Source={StaticResource Strings}, Path=SendFeedback}"
                         Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToFeedbackPageCommand}" />
