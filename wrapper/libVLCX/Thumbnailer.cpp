@@ -112,6 +112,7 @@ static WriteableBitmap^ CopyToBitmap(thumbnailer_sys_t* sys)
     hr = pixelBytes->Buffer(&modifyablePixels);
 
     for (unsigned int i = 0; i < sys->thumbSize; i += 4) {
+        if (sys->thumbData == NULL) continue;
         //B
         modifyablePixels[i] = sys->thumbData[i];
         //G
