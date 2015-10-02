@@ -9,5 +9,6 @@
         SURFACE_16_9 = 4,
         SURFACE_4_3 = 5,
         SURFACE_ORIGINAL = 6,
+        SURFACE_CUSTOM_ZOOM = 7,
     }
 }
