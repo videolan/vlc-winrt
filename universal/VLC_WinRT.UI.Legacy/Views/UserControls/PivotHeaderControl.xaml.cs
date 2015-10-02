@@ -18,11 +18,7 @@ namespace VLC_WinRT.Views.UserControls
         
         void Responsive()
         {
-            if (Window.Current.Bounds.Width < 770)
-            {
-                VisualStateUtilities.GoToState(this, "Snap", false);
-            }
-            else if (Window.Current.Bounds.Width < 1000)
+            if (Window.Current.Bounds.Width < 1000)
             {
                 VisualStateUtilities.GoToState(this, "HalfSnap", false);
             }
