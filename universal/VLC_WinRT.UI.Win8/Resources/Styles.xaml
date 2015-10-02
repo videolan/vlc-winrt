@@ -225,6 +225,8 @@
 
     <!-- BUTTONS -->
     <Style TargetType="Button">
+        <Setter Property="RequestedTheme"
+                Value="Dark" />
         <Setter Property="Background"
                 Value="{ThemeResource TextBoxBackgroundThemeBrush}" />
         <Setter Property="Foreground"
@@ -257,14 +259,19 @@
                     <Grid>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                                        Storyboard.TargetProperty="Color"
+                                                        To="{ThemeResource SemiLightMainColorBase}" />
+                                    </Storyboard>
+                                </VisualState>
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource ButtonPointerOverBackgroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                                        Storyboard.TargetProperty="Color"
+                                                        To="{ThemeResource MainColorBase}"
+                                                        SpeedRatio="4"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -324,9 +331,12 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Border x:Name="Border"
-                                Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
+                            <Border.Background>
+                                <SolidColorBrush x:Name="BorderBackground" 
+                                                 Color="{ThemeResource SemiLightMainColorBase}" />
+                            </Border.Background>
                             <ContentPresenter x:Name="ContentPresenter"
                                               Content="{TemplateBinding Content}"
                                               ContentTransitions="{TemplateBinding ContentTransitions}"
