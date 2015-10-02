@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using VLC_WinRT.Commands;
@@ -22,6 +23,7 @@ using libVLCX;
 using System.Diagnostics;
 using Windows.UI.Xaml.Media;
 using VLC_WinRT.Commands.VideoPlayer;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.ViewModels.VideoVM
 {
@@ -35,6 +37,8 @@ namespace VLC_WinRT.ViewModels.VideoVM
         private bool isVideoPlayerSubtitlesSettingsVisible;
         private bool isVideoPlayerAudioTracksSettingsVisible;
         private bool isVideoPlayerVolumeSettingsVisible;
+        private List<VLCSurfaceZoom> zooms;
+
         #endregion
 
         #region private fields
@@ -120,6 +124,23 @@ namespace VLC_WinRT.ViewModels.VideoVM
         #endregion
 
         #region public fields
+
+        public List<VLCSurfaceZoom> Zooms
+        {
+            get
+            {
+                if (zooms == null || !zooms.Any())
+                {
+                    zooms = new List<VLCSurfaceZoom>()
+                    {
+                        VLCSurfaceZoom.SURFACE_BEST_FIT,
+                        VLCSurfaceZoom.SURFACE_FIT_HORIZONTAL,
+                        VLCSurfaceZoom.SURFACE_FIT_VERTICAL
+                    };
+                }
+                return zooms;
+            }
+        }
         #endregion
 
         #region constructors
