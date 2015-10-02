@@ -10,6 +10,9 @@ using VLC_WinRT.Slideshow.Texts;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
+using Microsoft.Graphics.Canvas.Brushes;
+using VLC_WinRT.ViewModels;
 #if WINDOWS_APP
 // This namespace only works on Windows/Windows Phone 8.1 apps.
 using Microsoft.Graphics.Canvas.Numerics;
@@ -34,7 +37,7 @@ namespace Slide2D.Images
 
         private int frame = 0;
         private bool fastChange;
-        private float zoom = 0;
+        private float blurAmount = 10;
         public Img DefaultImg;
         public List<Img> Imgs = new List<Img>();
         public List<Txt> Texts = new List<Txt>();
@@ -71,30 +74,49 @@ namespace Slide2D.Images
         public void Update(CanvasAnimatedUpdateEventArgs args)
         {
             if (currentImg == null) return;
-            if (currentImg.GaussianBlurCache == null)
-            {
-                currentImg.GaussianBlurCache = new GaussianBlurEffect()
-                {
-                    Source = currentImg.Bmp,
-                    BlurAmount = 1.0f,
-                    Optimization = EffectOptimization.Speed
-                };
-            }
 
-            if (frame <= OutroFrameThreshold)
+
+            bool computeBlurPic = true;
+            if (frame < IntroFrameThreshold)
             {
                 if (frame == 0)
                 {
                     // Set Default values
                     currentImg.Opacity = 0;
+                    blurAmount = 10;
                 }
+                blurAmount -= 0.035f;
+            }
+            else if (frame <= OutroFrameThreshold)
+            {
                 if (_richAnimations)
-                    zoom += 0.0001f;
+                {
+
+                }
+
+                if (currentImg.GaussianBlurCache != null)
+                {
+                    computeBlurPic = false;
+                }
             }
             else if (frame < 1000)
             {
                 if (_richAnimations)
-                    zoom += 0.005f;
+                {
+
+                }
+                blurAmount += 0.035f;
+            }
+
+            if (computeBlurPic)
+            {
+                Debug.WriteLine("Computing blur img");
+                currentImg.GaussianBlurCache = new GaussianBlurEffect()
+                {
+                    Source = currentImg.Bmp,
+                    BlurAmount = blurAmount,
+                    Optimization = EffectOptimization.Speed
+                };
             }
 
             float screenRatio = (float)MetroSlideshow.WindowWidth / (float)MetroSlideshow.WindowHeight;
@@ -109,6 +131,8 @@ namespace Slide2D.Images
                 currentImg.Scale = (float)(MetroSlideshow.WindowWidth / currentImg.Width);
             }
 
+
+
             // "Vector2" requires System.Numerics for UWP. But for some reason ScaleEffect can only use Windows.Foundation.Numerics,
             // which you can't use to make vectors. So... we can't use this yet until we can figure out what's wrong here.
 
@@ -118,8 +142,8 @@ namespace Slide2D.Images
                 Source = currentImg.GaussianBlurCache,
                 Scale = new Vector2()
                 {
-                    X = currentImg.Scale + zoom,
-                    Y = currentImg.Scale + zoom
+                    X = currentImg.Scale,
+                    Y = currentImg.Scale
                 },
             };
 
@@ -141,7 +165,7 @@ namespace Slide2D.Images
                 var decrease = 0.0027f;
                 if (fastChange)
                 {
-                    currentImg.Opacity -= decrease*4;
+                    currentImg.Opacity -= decrease * 4;
                 }
                 else
                 {
@@ -169,6 +193,8 @@ namespace Slide2D.Images
                 Width = MetroSlideshow.WindowWidth
             }, currentImg.Opacity);
 #endif
+            args.DrawingSession.FillRectangle(new Rect(0, 0, MetroSlideshow.WindowWidth, MetroSlideshow.WindowHeight), 
+                Color.FromArgb(10, Locator.SettingsVM.AccentColor.R, Locator.SettingsVM.AccentColor.G, Locator.SettingsVM.AccentColor.B));
 
             threshold++;
 
@@ -195,7 +221,6 @@ namespace Slide2D.Images
             fastChange = false;
             UseDefaultPic = nextIsDefaultPic;
             frame = 0;
-            zoom = 0;
         }
 
         public void ChangePicFast(bool nextIsDefault)
