@@ -173,7 +173,7 @@
                                    IsTabStop="False"
                                    VerticalAlignment="Center"
                                    Style="{StaticResource AppBarButtonStyleHuge}"
-                                   Command="{Binding Source={StaticResource Locator}, Path=VideoVm.OpenVideoPlayerOptionsPanel}" />
+                                   Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerOptionsPanelVisible}" />
                     <AppBarButton x:Name="VolumeButton"
                                   Grid.Column="4"
                                   IsCompact="True"
