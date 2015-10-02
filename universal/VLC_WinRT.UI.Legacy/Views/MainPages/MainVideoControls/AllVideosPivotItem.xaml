@@ -43,7 +43,8 @@
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
-                                   SizeChanged="VideosWrapGrid_SizeChanged"/>
+                                   SizeChanged="VideosWrapGrid_SizeChanged"
+                                   Margin="{StaticResource FrameMarginTop}"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ScrollWatcher:ListViewScrollWatcher>
