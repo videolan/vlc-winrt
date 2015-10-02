@@ -47,12 +47,12 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="FontSize">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="19" />
+                                                    Value="20" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="75" />
+                                                    Value="80" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
