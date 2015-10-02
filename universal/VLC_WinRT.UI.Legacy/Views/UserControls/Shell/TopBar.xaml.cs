@@ -61,5 +61,11 @@ namespace VLC_WinRT.Views.UserControls
             }
             Locator.SearchVM.SearchTag = MusicSearchBox.Text;
         }
+
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PanelsListView.SelectedItem == null) return;
+            PanelsListView.ScrollIntoView(PanelsListView.SelectedItem, ScrollIntoViewAlignment.Leading);
+        }
     }
 }
