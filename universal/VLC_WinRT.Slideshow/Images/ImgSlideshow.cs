@@ -13,7 +13,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Microsoft.Graphics.Canvas.Brushes;
 using VLC_WinRT.ViewModels;
-#if WINDOWS_APP
+#if WINDOWS_UWP
+#else
 // This namespace only works on Windows/Windows Phone 8.1 apps.
 using Microsoft.Graphics.Canvas.Numerics;
 #endif
@@ -139,7 +140,8 @@ namespace Slide2D.Images
             // "Vector2" requires System.Numerics for UWP. But for some reason ScaleEffect can only use Windows.Foundation.Numerics,
             // which you can't use to make vectors. So... we can't use this yet until we can figure out what's wrong here.
 
-#if WINDOWS_APP
+#if WINDOWS_UWP
+#else
             var scaleEffect = new ScaleEffect()
             {
                 Source = currentImg.GaussianBlurCache,
@@ -189,7 +191,8 @@ namespace Slide2D.Images
                 }
             }
 
-#if WINDOWS_APP
+#if WINDOWS_UWP
+#else
             args.DrawingSession.DrawImage(currentImg.ScaleEffect, new Vector2(), new Rect()
             {
                 Height = MetroSlideshow.WindowHeight,
