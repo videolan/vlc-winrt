@@ -20,6 +20,7 @@ using Windows.Storage.AccessCache;
 using Windows.UI.Xaml;
 using libVLCX;
 using System.Diagnostics;
+using Windows.UI.Xaml.Media;
 using VLC_WinRT.Commands.VideoPlayer;
 
 namespace VLC_WinRT.ViewModels.VideoVM
@@ -54,8 +55,8 @@ namespace VLC_WinRT.ViewModels.VideoVM
             }
             set
             {
-                ChangeSurfaceZoom(value);
                 SetProperty(ref currentSurfaceZoom, value);
+                ChangeSurfaceZoom(value);
             }
         }
 
@@ -201,11 +202,9 @@ namespace VLC_WinRT.ViewModels.VideoVM
 
         private void ChangeSurfaceZoom(VLCSurfaceZoom desiredZoom)
         {
-            var screenWidth = Window.Current.Bounds.Width;
-            var screenHeight = Window.Current.Bounds.Height;
-
-            var dw = screenWidth;
-
+            var screenWidth = App.RootPage.SwapChainPanel.ActualWidth;
+            var screenHeight = App.RootPage.SwapChainPanel.ActualHeight;
+            
             var vlcService = (VLCService)Locator.MediaPlaybackViewModel._mediaService;
             var videoTrack = vlcService.MediaPlayer?.media()?.tracks()?.First(x => x.type() == TrackType.Video);
             var videoHeight = videoTrack.height();
@@ -214,31 +213,55 @@ namespace VLC_WinRT.ViewModels.VideoVM
             var sarDen = videoTrack.sarDen();
             var sarNum = videoTrack.sarNum();
 
-            double var=0, displayedVideoWidth;
-            if(sarDen == sarNum)
+            double var = 0, displayedVideoWidth;
+            if (sarDen == sarNum)
             {
                 // Assuming it's 1:1 pixel
-                var = (float)videoHeight / videoWidth;
+                var = (float)videoWidth / videoHeight;
             }
             else
             {
-                
+                var = (videoWidth * (double)sarNum / sarDen) / videoHeight;
             }
 
+            var screenar = (float)screenWidth / screenHeight;
+            double displayedVideoHeight = 0;
+            if (var > screenar)
+            {
+                displayedVideoHeight = screenWidth * ((float)videoHeight / videoWidth);
+                displayedVideoWidth = screenWidth;
+            }
+            else
+            {
+                displayedVideoHeight = screenHeight;
+                displayedVideoWidth = displayedVideoHeight * var;
+            }
+
+            double bandesNoiresVertical = screenHeight - displayedVideoHeight;
+            double bandesNoiresHorizontal = screenWidth - displayedVideoWidth;
+
+            var scaleTransform = new ScaleTransform();
             switch (desiredZoom)
             {
                 case VLCSurfaceZoom.SURFACE_BEST_FIT:
                     break;
                 case VLCSurfaceZoom.SURFACE_FIT_HORIZONTAL:
+                    var horizontalScale = displayedVideoWidth / (displayedVideoWidth - bandesNoiresHorizontal);
 
+                    scaleTransform.ScaleX = horizontalScale;
+                    scaleTransform.ScaleY = horizontalScale;
+                    scaleTransform.CenterX = screenWidth / 2;
+                    scaleTransform.CenterY = screenHeight / 2;
+                    App.RootPage.SwapChainPanel.RenderTransform = scaleTransform;
                     break;
                 case VLCSurfaceZoom.SURFACE_FIT_VERTICAL:
-                    double displayedVideoHeight = screenWidth * var;
-                    double bandesNoires = screenHeight - displayedVideoHeight;
-                    var dar = screenWidth / displayedVideoHeight;
-                    //App.RootPage.SwapChainPanel.Height = App.RootPage.SwapChainPanel.ActualHeight * dar;
-                    //App.RootPage.SwapChainPanel.Width = App.RootPage.SwapChainPanel.ActualWidth * dar;
-                    Debug.WriteLine(displayedVideoHeight);
+                    var verticalScale = displayedVideoHeight / (displayedVideoHeight - bandesNoiresVertical);
+
+                    scaleTransform.ScaleX = verticalScale;
+                    scaleTransform.ScaleY = verticalScale;
+                    scaleTransform.CenterX = screenWidth / 2;
+                    scaleTransform.CenterY = screenHeight / 2;
+                    App.RootPage.SwapChainPanel.RenderTransform = scaleTransform;
                     break;
                 case VLCSurfaceZoom.SURFACE_FILL:
                     break;
@@ -248,10 +271,12 @@ namespace VLC_WinRT.ViewModels.VideoVM
                     break;
                 case VLCSurfaceZoom.SURFACE_ORIGINAL:
                     break;
+                case VLCSurfaceZoom.SURFACE_CUSTOM_ZOOM:
+                    break;
                 default:
                     break;
             }
         }
-#endregion
+        #endregion
     }
 }
