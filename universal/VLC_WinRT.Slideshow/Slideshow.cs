@@ -36,23 +36,23 @@ namespace Slide2D
 
         public void Initialize(ref CanvasAnimatedControl cac)
         {
-            //canvas = cac;
-            //canvas.CreateResources += Canvas_CreateResources;
-            //canvas.Update += Canvas_Update;
-            //canvas.Draw += Canvas_Draw;
-            //canvas.ForceSoftwareRenderer = false;
-            //canvas.Paused = true;
+            canvas = cac;
+            canvas.CreateResources += Canvas_CreateResources;
+            canvas.Update += Canvas_Update;
+            canvas.Draw += Canvas_Draw;
+            canvas.ForceSoftwareRenderer = false;
+            canvas.Paused = true;
 
-            //float dpiLimit = 96.0f;
-            //if (canvas.Dpi > dpiLimit)
-            //{
-            //    canvas.DpiScale = dpiLimit / canvas.Dpi;
-            //}
+            float dpiLimit = 96.0f;
+            if (canvas.Dpi > dpiLimit)
+            {
+                canvas.DpiScale = dpiLimit / canvas.Dpi;
+            }
 
-            //Window.Current.SizeChanged += Current_SizeChanged;
-            //slideshow = new ImgClassicSlideshow();
+            Window.Current.SizeChanged += Current_SizeChanged;
+            slideshow = new ImgClassicSlideshow();
 
-            //CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
+            CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
         }
 
         private void ApplicationState_Activated(CoreWindow sender, WindowActivatedEventArgs args)
