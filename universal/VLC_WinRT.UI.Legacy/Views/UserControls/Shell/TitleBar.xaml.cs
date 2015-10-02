@@ -37,7 +37,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
         {
             if (Locator.SettingsVM.AccentColorTitleBar)
             {
-                VLCLogo.Fill = Title.Foreground = new SolidColorBrush(Colors.White);
+                VLCLogo.Fill = Title.Foreground = ProgressRing.Foreground = InformationText.Foreground = new SolidColorBrush(Colors.White);
                 if (Locator.SettingsVM.ApplicationTheme == ApplicationTheme.Light)
                 {
                     RootGrid.Background = new SolidColorBrush(Locator.SettingsVM.AccentColor);
@@ -51,7 +51,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             }
             else
             {
-                VLCLogo.Fill = Title.Foreground = new SolidColorBrush(Locator.SettingsVM.AccentColor);
+                VLCLogo.Fill = Title.Foreground = ProgressRing.Foreground = InformationText.Foreground = new SolidColorBrush(Locator.SettingsVM.AccentColor);
                 if (Locator.SettingsVM.ApplicationTheme == ApplicationTheme.Light)
                 {
                     RootGrid.Background = new SolidColorBrush(Color.FromArgb(0xf2, 0xe8, 0xe8, 0xe8));

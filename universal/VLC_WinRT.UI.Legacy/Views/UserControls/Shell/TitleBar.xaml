@@ -32,11 +32,13 @@
                    Foreground="{ThemeResource MainColor}"
                    VerticalAlignment="Center"
                    FontSize="15" />
-        <ProgressRing Grid.Column="4"
+        <ProgressRing x:Name="ProgressRing"
+                      Grid.Column="4"
                       IsActive="True"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                       Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" />
-        <TextBlock Grid.Column="6"
+        <TextBlock x:Name="InformationText"
+                   Grid.Column="6"
                    VerticalAlignment="Center"
                    FontSize="15"
                    Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
