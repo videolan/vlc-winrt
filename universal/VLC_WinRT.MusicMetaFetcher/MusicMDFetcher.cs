@@ -70,7 +70,12 @@ namespace VLC_WinRT.MusicMetaFetcher
             try
             {
                 var clientPic = new HttpClient();
-                var imageElement = lastFmArtist.Images.LastOrDefault(node => !string.IsNullOrEmpty(node.Url));
+                var nonEmptyImgs = lastFmArtist.Images.Where(node => !string.IsNullOrEmpty(node.Url)).ToList();
+                var index = nonEmptyImgs.Count - 1;
+                if (nonEmptyImgs.Count == 6)
+                    index -= 1;
+                if (index == -1) return null;
+                var imageElement = nonEmptyImgs.ElementAt(index);
                 if (imageElement == null) return null;
                 HttpResponseMessage responsePic = await clientPic.GetAsync(imageElement.Url);
                 byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
