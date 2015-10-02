@@ -27,7 +27,8 @@ namespace Slide2D
 
         public static event WindowSizeChanged WindowSizeUpdated;
         private ImgSlideshow slideshow;
-        
+
+        private bool wasPausedBeforeCoreWindowDeactivation = false;
         public MetroSlideshow()
         {
             SetWindowSize();
@@ -35,21 +36,42 @@ namespace Slide2D
 
         public void Initialize(ref CanvasAnimatedControl cac)
         {
-            canvas = cac;
-            canvas.CreateResources += Canvas_CreateResources;
-            canvas.Update += Canvas_Update;
-            canvas.Draw += Canvas_Draw;
-            canvas.ForceSoftwareRenderer = false;
-            canvas.Paused = true;
+            //canvas = cac;
+            //canvas.CreateResources += Canvas_CreateResources;
+            //canvas.Update += Canvas_Update;
+            //canvas.Draw += Canvas_Draw;
+            //canvas.ForceSoftwareRenderer = false;
+            //canvas.Paused = true;
 
-            float dpiLimit = 96.0f;
-            if (canvas.Dpi > dpiLimit)
+            //float dpiLimit = 96.0f;
+            //if (canvas.Dpi > dpiLimit)
+            //{
+            //    canvas.DpiScale = dpiLimit / canvas.Dpi;
+            //}
+
+            //Window.Current.SizeChanged += Current_SizeChanged;
+            //slideshow = new ImgClassicSlideshow();
+
+            //CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
+        }
+
+        private void ApplicationState_Activated(CoreWindow sender, WindowActivatedEventArgs args)
+        {
+            if (args.WindowActivationState == CoreWindowActivationState.Deactivated)
             {
-                canvas.DpiScale = dpiLimit / canvas.Dpi;
+                if (IsPaused)
+                {
+                    wasPausedBeforeCoreWindowDeactivation = true;
+                }
+                IsPaused = true;
             }
-
-            Window.Current.SizeChanged += Current_SizeChanged;
-            slideshow = new ImgClassicSlideshow();
+            else
+            {
+                if (!wasPausedBeforeCoreWindowDeactivation)
+                {
+                    IsPaused = false;
+                }
+            }
         }
 
         private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
@@ -144,8 +166,11 @@ namespace Slide2D
 
         public bool IsPaused
         {
-            get { return canvas.Paused; }
-            set { canvas.Paused = value; }
+            get
+            {
+                return canvas != null && canvas.Paused;
+            }
+            set { if (canvas != null) canvas.Paused = value; }
         }
 
         public bool RichAnimations
