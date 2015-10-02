@@ -1,12 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:VLC_WinRT.Resources">
-    <Color x:Key="MainColorBase">#ff8800</Color>
+    <Color x:Key="MainColorBase">#ffff8800</Color>
+    <Color x:Key="SemiLightMainColorBase">#B3FF8800</Color>
     <SolidColorBrush x:Key="MainColor"
                      Color="{ThemeResource MainColorBase}" />
     <SolidColorBrush x:Key="SemiLightMainColor"
-                     Color="{ThemeResource MainColorBase}" 
-                     Opacity="0.7"/>
+                     Color="{ThemeResource SemiLightMainColorBase}" />
     <SolidColorBrush x:Key="ListViewItemPointerOverBackgroundThemeBrush"
                      Color="LightGray" />
 </ResourceDictionary>
