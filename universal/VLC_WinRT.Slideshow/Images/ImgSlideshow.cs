@@ -94,7 +94,7 @@ namespace Slide2D.Images
                 }
 
                 if (_richAnimations)
-                    blurAmount -= 0.035f;
+                    blurAmount -= 0.025f;
             }
             else if (frame <= OutroFrameThreshold)
             {
@@ -107,7 +107,7 @@ namespace Slide2D.Images
             {
                 if (_richAnimations)
                 {
-                    blurAmount += 0.035f;
+                    blurAmount += 0.025f;
                 }
             }
 
