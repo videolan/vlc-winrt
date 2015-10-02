@@ -272,8 +272,9 @@ namespace VLC_WinRT.Views.VideoPages
             var menu = new PopupMenu();
             menu.Commands.Add(new UICommand(Strings.Back, command => PopMainMenu()));
             menu.Commands.Add(new UICommand("Fullscreen toggle", command => AppViewHelper.SetFullscreen()));
+            menu.Commands.Add(new UICommand(Strings.Zoom, command => Locator.VideoVm.ToggleIsVideoPlayerOptionsPanelVisible.Execute(null)));
             menu.Commands.Add(new UICommandSeparator());
-            menu.Commands.Add(new UICommand("Subtitles", command => Locator.VideoVm.ToggleIsVideoPlayerSubtitlesSettingsVisible.Execute(null)));
+            menu.Commands.Add(new UICommand(Strings.Subtitles, command => Locator.VideoVm.ToggleIsVideoPlayerSubtitlesSettingsVisible.Execute(null)));
             await menu.ShowForSelectionAsync(new Rect(pos, pos), Placement.Right);
         }
 
@@ -282,7 +283,7 @@ namespace VLC_WinRT.Views.VideoPages
             var pos = MouseService.GetPointerPosition();
             var menu = new PopupMenu();
             menu.Commands.Add(new UICommand(Strings.Back, command => PopMainMenu()));
-            menu.Commands.Add(new UICommand(Strings.Chapters, command => Locator.VideoVm.OpenVideoPlayerOptionsPanel.Execute(null)));
+            menu.Commands.Add(new UICommand(Strings.Chapters, command => Locator.VideoVm.ToggleIsVideoPlayerOptionsPanelVisible.Execute(null)));
             menu.Commands.Add(new UICommandSeparator());
             menu.Commands.Add(new UICommand(Strings.IncreaseSpeed, command => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("faster")));
             menu.Commands.Add(new UICommand(Strings.DecreaseSpeed, command => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("slower")));
