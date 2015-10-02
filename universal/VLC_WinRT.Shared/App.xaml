@@ -61,7 +61,7 @@
                     <SolidColorBrush x:Key="ApplicationOverlayTranslucentThemeBrush"
                                      Color="#F2E8E8E8" />
                     <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
-                                     Color="#AAFFFFFF" />
+                                     Color="#AAF5F5F5" />
                     <SolidColorBrush x:Key="ApplicationBackgroundQuarterTranslucentThemeBrush"
                                      Color="#B3FFFFFF" />
                     <SolidColorBrush x:Key="BasicForeground"
