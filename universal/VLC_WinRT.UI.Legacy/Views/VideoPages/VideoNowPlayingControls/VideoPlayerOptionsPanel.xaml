@@ -32,6 +32,9 @@
                     <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -189,6 +192,27 @@
                 <TextBlock Grid.Row="14"
                            Foreground="{ThemeResource BasicForeground}"
                            Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight"
+                           Text="{Binding Source={StaticResource Strings}, Path=Zoom}" />
+                <ComboBox Grid.Row="15"
+                          Margin="{StaticResource FrameMarginTop}"
+                          DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
+                          ItemsSource="{Binding Zooms}"
+                          SelectedItem="{Binding CurrentSurfaceZoom, Mode=TwoWay}"
+                          Style="{StaticResource VLCLightComboBox}"
+                          Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}"
+                          Width="200">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                
+                <TextBlock Grid.Row="17"
+                           Foreground="{ThemeResource BasicForeground}"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight">
                 <Run Text="{Binding Source={StaticResource Strings}, Path=Chapters}" />
                 <Run Text="{Binding Chapters.Count}"
@@ -196,7 +220,7 @@
                      FontSize="26"
                      FontWeight="Light" />
                 </TextBlock>
-                <ListView Grid.Row="15"
+                <ListView Grid.Row="18"
                           DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                           ItemsSource="{Binding Chapters}"
                           SelectedItem="{Binding CurrentChapter, Mode=TwoWay}"
