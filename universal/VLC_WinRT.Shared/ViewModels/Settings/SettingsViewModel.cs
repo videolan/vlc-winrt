@@ -141,7 +141,7 @@ namespace VLC_WinRT.ViewModels.Settings
                 var accentColorTitleBar = ApplicationSettingsHelper.ReadSettingsValue(nameof(AccentColorTitleBar));
                 if (accentColorTitleBar == null)
                 {
-                    _accentColorTitleBar = true;
+                    _accentColorTitleBar = false;
                 }
                 else
                 {
