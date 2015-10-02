@@ -83,17 +83,21 @@ namespace Slide2D.Images
                 {
                     // Set Default values
                     currentImg.Opacity = 0;
-                    blurAmount = 10;
+                    if (_richAnimations)
+                    {
+                        blurAmount = 10f;
+                    }
+                    else
+                    {
+                        blurAmount = 3f;
+                    }
                 }
-                blurAmount -= 0.035f;
+
+                if (_richAnimations)
+                    blurAmount -= 0.035f;
             }
             else if (frame <= OutroFrameThreshold)
             {
-                if (_richAnimations)
-                {
-
-                }
-
                 if (currentImg.GaussianBlurCache != null)
                 {
                     computeBlurPic = false;
@@ -103,9 +107,8 @@ namespace Slide2D.Images
             {
                 if (_richAnimations)
                 {
-
+                    blurAmount += 0.035f;
                 }
-                blurAmount += 0.035f;
             }
 
             if (computeBlurPic)
@@ -193,7 +196,7 @@ namespace Slide2D.Images
                 Width = MetroSlideshow.WindowWidth
             }, currentImg.Opacity);
 #endif
-            args.DrawingSession.FillRectangle(new Rect(0, 0, MetroSlideshow.WindowWidth, MetroSlideshow.WindowHeight), 
+            args.DrawingSession.FillRectangle(new Rect(0, 0, MetroSlideshow.WindowWidth, MetroSlideshow.WindowHeight),
                 Color.FromArgb(10, Locator.SettingsVM.AccentColor.R, Locator.SettingsVM.AccentColor.G, Locator.SettingsVM.AccentColor.B));
 
             threshold++;

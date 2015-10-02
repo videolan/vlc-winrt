@@ -10,6 +10,7 @@ using VLC_WinRT.ViewModels;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
