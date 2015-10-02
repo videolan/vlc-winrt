@@ -74,7 +74,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\PickVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\StartVideoIndexingCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\OpenSubtitleCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\OpenVideoPlayerSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\PlayVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\SetAudioTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\SetSubtitleTrackCommand.cs" />

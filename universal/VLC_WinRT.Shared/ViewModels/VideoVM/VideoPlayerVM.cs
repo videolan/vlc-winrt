@@ -117,8 +117,6 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoVm.IsVideoPlayerOptionsPanelVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = !Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible;
         });
-        
-        public OpenVideoPlayerOptionsPanel OpenVideoPlayerOptionsPanel { get; } = new OpenVideoPlayerOptionsPanel();
         #endregion
 
         #region public fields
