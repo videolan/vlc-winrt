@@ -30,7 +30,7 @@ namespace VLC_WinRT.MusicMetaFetcher
             ApiKeyLastFm = lastFmApiKey;
         }
 
-        public async Task<List<Show>>  GetArtistEvents(string artistName)
+        public async Task<List<Show>> GetArtistEvents(string artistName)
         {
             var shows = await DownloadArtistEventFromLastFm(artistName);
             return shows;
@@ -76,7 +76,7 @@ namespace VLC_WinRT.MusicMetaFetcher
                 byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
                 return img;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 Debug.WriteLine("Error getting or saving art from LastFm.");
                 return null;
@@ -195,7 +195,7 @@ namespace VLC_WinRT.MusicMetaFetcher
             return gotArt;
         }
 
-        public async Task<List<Album>>  GetArtistTopAlbums(string artistName)
+        public async Task<List<Album>> GetArtistTopAlbums(string artistName)
         {
             try
             {
@@ -213,7 +213,7 @@ namespace VLC_WinRT.MusicMetaFetcher
             return null;
         }
 
-        public async Task<List<Artist>>  GetArtistSimilarsArtist(string artistName)
+        public async Task<List<Artist>> GetArtistSimilarsArtist(string artistName)
         {
             try
             {
@@ -229,7 +229,7 @@ namespace VLC_WinRT.MusicMetaFetcher
             return null;
         }
 
-        public async Task<List<Artist>>  GetTopArtistGenre(string genre)
+        public async Task<List<Artist>> GetTopArtistGenre(string genre)
         {
             try
             {
