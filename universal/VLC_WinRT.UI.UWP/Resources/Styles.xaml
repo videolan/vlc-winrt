@@ -244,7 +244,7 @@
         <Setter Property="FontWeight"
                 Value="Normal" />
         <Setter Property="FontSize"
-                Value="{ThemeResource ControlContentThemeFontSize}" />
+                Value="{StaticResource ControlContentThemeFontSize}" />
         <Setter Property="MinHeight"
                 Value="{ThemeResource TextControlThemeMinHeight}" />
         <Setter Property="MinWidth"
@@ -809,7 +809,7 @@
         <Setter Property="FontFamily"
                 Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontSize"
-                Value="{ThemeResource ControlContentThemeFontSize}" />
+                Value="{StaticResource ControlContentThemeFontSize}" />
         <Setter Property="ManipulationMode"
                 Value="None" />
         <Setter Property="Template">
@@ -1994,7 +1994,7 @@
         <Setter Property="FontFamily"
                 Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontSize"
-                Value="{ThemeResource ControlContentThemeFontSize}" />
+                Value="{StaticResource ControlContentThemeFontSize}" />
         <Setter Property="Background"
                 Value="Transparent" />
         <Setter Property="TabNavigation"
@@ -2801,7 +2801,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse"
                                                                        Storyboard.TargetProperty="Fill">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource StatusBarColor}" />
+                                                                    Value="{StaticResource SemiLightMainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -2810,7 +2810,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse"
                                                                        Storyboard.TargetProperty="Fill">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource StatusBarColor}" />
+                                                                    Value="{StaticResource SemiLightMainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content"
                                                                        Storyboard.TargetProperty="Foreground">
@@ -3679,7 +3679,7 @@
         <Setter Property="FontWeight"
                 Value="Normal" />
         <Setter Property="FontSize"
-                Value="{ThemeResource ControlContentThemeFontSize}" />
+                Value="{StaticResource ControlContentThemeFontSize}" />
         <Setter Property="MinWidth"
                 Value="154" />
         <Setter Property="Template">

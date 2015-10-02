@@ -28,7 +28,8 @@
     <x:Double x:Key="TextControlThemeMinHeight">35</x:Double>
     <SolidColorBrush x:Key="ListViewItemPlaceholderBackgroundThemeBrush"
                      Color="Transparent" />
-
+    <x:Double x:Key="ControlContentThemeFontSize">17</x:Double>
+    
     <!-- ICONS AND SYMBOLS -->
     <!-- Segoe MLD2 Font -->
     <x:String x:Key="HomeSymbol"></x:String>
