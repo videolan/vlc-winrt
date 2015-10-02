@@ -87,9 +87,10 @@ namespace VLC_WinRT.ViewModels.VideoVM
             get { return isVideoPlayerVolumeSettingsVisible; }
             set { SetProperty(ref isVideoPlayerVolumeSettingsVisible, value); }
         }
-        
+
         public ActionCommand ToggleIsVideoPlayerOptionsPanelVisible { get; } = new ActionCommand(() =>
         {
+            Locator.NavigationService.Go(VLCPage.VideoPlayerOptionsPanel);
             Locator.VideoVm.IsVideoPlayerOptionsPanelVisible = !Locator.VideoVm.IsVideoPlayerOptionsPanelVisible;
             Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
