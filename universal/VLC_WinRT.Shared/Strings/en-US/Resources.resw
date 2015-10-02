@@ -660,4 +660,7 @@
   <data name="NeedRestart" xml:space="preserve">
     <value>You need to restart the app to apply changes</value>
   </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>zoom</value>
+  </data>
 </root>

@@ -151,6 +151,7 @@ namespace VLC_WinRT.Utils
         public static string IncreaseVolume => _resourcesLoader.GetString(nameof(IncreaseVolume));
         public static string DecreaseVolume => _resourcesLoader.GetString(nameof(DecreaseVolume));
         public static string Mute => _resourcesLoader.GetString(nameof(Mute));
+        public static string Zoom => _resourcesLoader.GetString(nameof(Zoom));
 
 
         public static string OrderAscending => _resourcesLoader.GetString(nameof(OrderAscending));
