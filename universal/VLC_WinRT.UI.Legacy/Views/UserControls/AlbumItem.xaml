@@ -89,8 +89,6 @@
                           Visibility="Collapsed"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
-                          VerticalAlignment="Center"
-                          Margin="6,0,0,0"
                           Command="{Binding PlayAlbum}"
                           CommandParameter="{Binding}">
                 <AppBarButton.Icon>
@@ -105,19 +103,19 @@
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
                        FontSize="15"
-                       FontWeight="SemiLight"
+                       FontWeight="SemiBold"
                        VerticalAlignment="Center"
-                       Margin="6,0,0,0" />
+                       Margin="5,0,0,0" />
             <TextBlock x:Name="ArtistTextBlock" 
                        Grid.Row="2"
                        Text="{Binding Artist, Converter={StaticResource ArtistStringConverter}}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
                        FontSize="14"
-                       FontWeight="Light"
+                       FontWeight="Normal"
                        Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                        VerticalAlignment="Center"
-                       Margin="6,0,0,0" />
+                       Margin="5,0,0,6" />
         </Grid>
     </Grid>
 </UserControl>
