@@ -224,9 +224,10 @@ namespace VLC_WinRT.ViewModels.VideoVM
         {
             var screenWidth = App.RootPage.SwapChainPanel.ActualWidth;
             var screenHeight = App.RootPage.SwapChainPanel.ActualHeight;
-            
+
             var vlcService = (VLCService)Locator.MediaPlaybackViewModel._mediaService;
-            var videoTrack = vlcService.MediaPlayer?.media()?.tracks()?.First(x => x.type() == TrackType.Video);
+            var videoTrack = vlcService.MediaPlayer?.media()?.tracks()?.FirstOrDefault(x => x.type() == TrackType.Video);
+            if (videoTrack == null) return;
             var videoHeight = videoTrack.height();
             var videoWidth = videoTrack.width();
 
