@@ -19,6 +19,8 @@ using VLC_WinRT.Views.MainPages;
 using VLC_WinRT.ViewModels.MusicVM;
 using System.Linq;
 using Windows.ApplicationModel.Core;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Foundation;
 using Windows.Storage.AccessCache;
 using Windows.UI;
 using Windows.UI.ViewManagement;
@@ -28,6 +30,7 @@ using VLC_WinRT.Utils;
 using VLC_WinRT.Controls;
 using VLC_WinRT.Views.UserControls;
 using VLC_WinRT.ViewModels.Settings;
+using WinRTXamlToolkit.IO.Serialization;
 
 namespace VLC_WinRT
 {
@@ -155,10 +158,65 @@ namespace VLC_WinRT
             Locator.NavigationService.PageNavigatedCallback(args.SourcePageType);
         }
 
-#if WINDOWS_PHONE_APP
         protected async override void OnActivated(IActivatedEventArgs args)
         {
             base.OnActivated(args);
+            if (Window.Current.Content == null)
+            {
+                await LaunchTheApp();
+            }
+            if (args.Kind == ActivationKind.Protocol)
+            {
+                var protocolArgs = (ProtocolActivatedEventArgs)args;
+                var uri = protocolArgs.Uri;
+                WwwFormUrlDecoder decoder = new WwwFormUrlDecoder(uri.Query);
+
+                switch (uri.Host)
+                {
+                    case "openstream":
+                        // do stuff
+                        if (decoder[0]?.Name == "from")
+                        {
+                            switch (decoder[0].Value)
+                            {
+                                case "clipboard":
+                                    await Task.Delay(1000);
+                                    var dataPackage = Clipboard.GetContent();
+                                    Uri url = null;
+                                    if (dataPackage.Contains(StandardDataFormats.ApplicationLink))
+                                    {
+                                        url = await dataPackage.GetApplicationLinkAsync();
+                                    }
+                                    else if (dataPackage.Contains(StandardDataFormats.WebLink))
+                                    {
+                                        url = await dataPackage.GetWebLinkAsync();
+                                    }
+                                    else if (dataPackage.Contains(StandardDataFormats.Text))
+                                    {
+                                        url = new Uri(await dataPackage.GetTextAsync());
+                                    }
+                                    if (url != null)
+                                        await Locator.MediaPlaybackViewModel.PlayStream(url.AbsoluteUri);
+                                    break;
+                                case "useraction":
+                                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[Locator.NavigationService.VLCHomePageToPanelIndex(Locator.SettingsVM.HomePage)];
+                                    Locator.MainVM.OpenStreamFlyout();
+                                    break;
+                                case "url":
+                                    if (decoder[1]?.Name == "url")
+                                    {
+                                        if (!string.IsNullOrEmpty(decoder[1].Value))
+                                        {
+                                            await Locator.MediaPlaybackViewModel.PlayStream(decoder[1].Value);
+                                        }
+                                    }
+                                    break;
+                            }
+                        }
+                        break;
+                }
+            }
+#if WINDOWS_PHONE_APP
             try
             {
                 var continueArgs = args as FileOpenPickerContinuationEventArgs;
@@ -167,8 +225,6 @@ namespace VLC_WinRT
                     switch (OpenFilePickerReason)
                     {
                         case OpenFilePickerReason.OnOpeningVideo: 
-                            if (Window.Current.Content == null)
-                                await LaunchTheApp();
                             await Locator.MediaPlaybackViewModel.OpenFile(continueArgs.Files[0]);
                             break;
                         case OpenFilePickerReason.OnOpeningSubtitle:
@@ -193,8 +249,8 @@ namespace VLC_WinRT
             {
                 LogHelper.Log(StringsHelper.ExceptionToString(e));
             }
-        }
 #endif
+        }
 
         /// <summary>
         ///     Invoked when application execution is being suspended.  Application state is saved

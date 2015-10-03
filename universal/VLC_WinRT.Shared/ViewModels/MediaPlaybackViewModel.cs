@@ -397,6 +397,7 @@ namespace VLC_WinRT.ViewModels
             if (string.IsNullOrEmpty(file.Path))
             {
                 // It's definitely a stream since it doesn't add a proper path but a FolderRelativeId
+                // WARNING : Apps should use vlc://openstream/?from=url&url= for this matter
                 var mrl = file.FolderRelativeId;
                 var lastIndex = mrl.LastIndexOf("\\", StringComparison.OrdinalIgnoreCase);
                 if (lastIndex != -1)
@@ -424,6 +425,7 @@ namespace VLC_WinRT.ViewModels
         public async Task PlayStream(string mrl)
         {
             mrl = mrl.Trim();
+            await Locator.VLCService.PlayerInstanceReady.Task;
             //TODO: pass MRL to vlc
             try
             {
