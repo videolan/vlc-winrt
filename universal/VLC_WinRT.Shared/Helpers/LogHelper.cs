@@ -99,6 +99,7 @@ namespace VLC_WinRT.Helpers
         public static void Log(string s, bool backend = false)
         {
             if (string.IsNullOrEmpty(s)) return;
+            Debug.WriteLine(s);
             if (backend)
             {
                 backEndBuffer.Add(s);
