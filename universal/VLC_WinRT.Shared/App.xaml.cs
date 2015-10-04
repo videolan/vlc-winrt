@@ -194,38 +194,42 @@ namespace VLC_WinRT
                         break;
                 }
             }
+
 #if WINDOWS_PHONE_APP
-            try
+            if (args.Kind == ActivationKind.FileOpenPicker)
             {
-                var continueArgs = args as FileOpenPickerContinuationEventArgs;
-                if (continueArgs != null && continueArgs.Files.Any())
+                try
                 {
-                    switch (OpenFilePickerReason)
+                    var continueArgs = args as FileOpenPickerContinuationEventArgs;
+                    if (continueArgs != null && continueArgs.Files.Any())
                     {
-                        case OpenFilePickerReason.OnOpeningVideo: 
-                            await Locator.MediaPlaybackViewModel.OpenFile(continueArgs.Files[0]);
-                            break;
-                        case OpenFilePickerReason.OnOpeningSubtitle:
-                            {
-                                Locator.MediaPlaybackViewModel.OpenSubtitleCommand.Execute(continueArgs.Files[0]);
-                            }
-                            break;
-                        case OpenFilePickerReason.OnPickingAlbumArt:
-                            if (continueArgs.Files == null) return;
-                            var file = continueArgs.Files.First();
-                            if (file == null) return;
-                            var byteArray = await ConvertImage.ConvertImagetoByte(file);
-                            await App.MusicMetaService.SaveAlbumImageAsync(SelectedAlbumItem, byteArray);
-                            await Locator.MusicLibraryVM._albumDatabase.Update(SelectedAlbumItem);
-                            SelectedAlbumItem = null;
-                            break;
+                        switch (OpenFilePickerReason)
+                        {
+                            case OpenFilePickerReason.OnOpeningVideo: 
+                                await Locator.MediaPlaybackViewModel.OpenFile(continueArgs.Files[0]);
+                                break;
+                            case OpenFilePickerReason.OnOpeningSubtitle:
+                                {
+                                    Locator.MediaPlaybackViewModel.OpenSubtitleCommand.Execute(continueArgs.Files[0]);
+                                }
+                                break;
+                            case OpenFilePickerReason.OnPickingAlbumArt:
+                                if (continueArgs.Files == null) return;
+                                var file = continueArgs.Files.First();
+                                if (file == null) return;
+                                var byteArray = await ConvertImage.ConvertImagetoByte(file);
+                                await App.MusicMetaService.SaveAlbumImageAsync(SelectedAlbumItem, byteArray);
+                                await Locator.MusicLibraryVM._albumDatabase.Update(SelectedAlbumItem);
+                                SelectedAlbumItem = null;
+                                break;
+                        }
                     }
+                    OpenFilePickerReason = OpenFilePickerReason.Null;
                 }
-                OpenFilePickerReason = OpenFilePickerReason.Null;
-            }
-            catch (Exception e)
-            {
-                LogHelper.Log(StringsHelper.ExceptionToString(e));
+                catch (Exception e)
+                {
+                    LogHelper.Log(StringsHelper.ExceptionToString(e));
+                }
             }
 #endif
         }
