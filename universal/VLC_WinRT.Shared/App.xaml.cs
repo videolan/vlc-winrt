@@ -244,7 +244,7 @@ namespace VLC_WinRT
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
-            Locator.VLCService.Trim();
+            Locator.VLCService?.Trim();
             deferral.Complete();
         }
 
