@@ -155,7 +155,7 @@ namespace VLC_WinRT
                         // do stuff
                         if (decoder[0]?.Name == "from")
                         {
-                            switch (decoder[0].Value)
+                            switch (decoder[0]?.Value)
                             {
                                 case "clipboard":
                                     await Task.Delay(1000);
@@ -183,7 +183,7 @@ namespace VLC_WinRT
                                 case "url":
                                     if (decoder[1]?.Name == "url")
                                     {
-                                        if (!string.IsNullOrEmpty(decoder[1].Value))
+                                        if (!string.IsNullOrEmpty(decoder[1]?.Value))
                                         {
                                             await Locator.MediaPlaybackViewModel.PlayStream(decoder[1].Value);
                                         }
