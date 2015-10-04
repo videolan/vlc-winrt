@@ -112,7 +112,7 @@
                 </DoubleAnimationUsingKeyFrames>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderInteractionGrid"
                                                Storyboard.TargetProperty="Visibility">
-                    <DiscreteObjectKeyFrame KeyTime="0:0:1"
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
                                             Value="Collapsed" />
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
