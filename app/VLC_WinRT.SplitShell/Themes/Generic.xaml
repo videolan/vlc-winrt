@@ -138,8 +138,6 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <ContentPresenter x:Name="TitleBarContentPresenter"
-                                          Grid.Row="0" />
                         <ContentPresenter x:Name="TopBarContentPresenter"
                                           Grid.Row="1">
                             <ContentPresenter.RenderTransform>
@@ -194,6 +192,8 @@
                                               HorizontalAlignment="Right"
                                               MinWidth="300"/>
                         </Grid>
+                        <ContentPresenter x:Name="TitleBarContentPresenter"
+                                          Grid.Row="0" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
