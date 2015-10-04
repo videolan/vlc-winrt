@@ -57,32 +57,13 @@ namespace VLC_WinRT
             Container = AutoFacConfiguration.Configure();
         }
 
-        public static Frame ApplicationFrame
-        {
-            get
-            {
-                return RootPage != null ? RootPage.ShellContent.NavigationFrame : null;
-            }
-        }
+        public static Frame ApplicationFrame => RootPage?.ShellContent.NavigationFrame;
 
-        public static MainPage RootPage
-        {
-            get { return Window.Current?.Content as MainPage; }
-        }
+        public static MainPage RootPage => Window.Current?.Content as MainPage;
 
-        public static SplitShell SplitShell
-        {
-            get
-            {
-                return RootPage.SplitShell;
-                //return new SplitShell();
-            }
-        }
+        public static SplitShell SplitShell => RootPage.SplitShell;
 
-        public static MusicMetaService MusicMetaService
-        {
-            get { return Container.Resolve<MusicMetaService>(); }
-        }
+        public static MusicMetaService MusicMetaService => Container.Resolve<MusicMetaService>();
 
         /// <summary>
         ///     Invoked when the application is launched normally by the end user.  Other entry points
