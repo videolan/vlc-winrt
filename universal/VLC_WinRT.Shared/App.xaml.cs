@@ -34,9 +34,6 @@ using WinRTXamlToolkit.IO.Serialization;
 
 namespace VLC_WinRT
 {
-    /// <summary>
-    ///     Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
     public sealed partial class App : Application
     {
         public static CoreDispatcher Dispatcher;
