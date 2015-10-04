@@ -134,7 +134,16 @@ namespace VLC_WinRT.Views.VideoPages
                 Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible ||
                 Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible)
                 return;
-            VisualStateManager.GoToState(this, !isVisible ? "ControlsCollapsed" : "ControlsVisible", false);
+            if (!isVisible)
+            {
+                ControlsGridFadeOut.Value = ControlsGrid.ActualHeight;
+                HeaderGridFadeOut.Value = -HeaderGrid.ActualHeight;
+                FadeOut.Begin();
+            }
+            else
+            {
+                FadeIn.Begin();
+            }
         }
 
         private void PlaceholderInteractionGrid_OnTapped(object sender, TappedRoutedEventArgs e)
