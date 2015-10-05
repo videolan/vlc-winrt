@@ -136,6 +136,11 @@ namespace VLC_WinRT.Utils
         public static string PlayerSettings => _resourcesLoader.GetString(nameof(PlayerSettings));
         public static string AudioDelay => _resourcesLoader.GetString(nameof(AudioDelay));
         public static string SubtitleDelay => _resourcesLoader.GetString(nameof(SubtitleDelay));
+        public static string Zoom => _resourcesLoader.GetString(nameof(Zoom));
+        public static string SURFACE_FIT_VERTICAL => _resourcesLoader.GetString(nameof(SURFACE_FIT_VERTICAL));
+        public static string SURFACE_FIT_HORIZONTAL => _resourcesLoader.GetString(nameof(SURFACE_FIT_HORIZONTAL));
+        public static string SURFACE_BEST_FIT => _resourcesLoader.GetString(nameof(SURFACE_BEST_FIT));
+
 
         // PLAYBACK
         public static string Playlist => _resourcesLoader.GetString(nameof(Playlist));
@@ -151,7 +156,6 @@ namespace VLC_WinRT.Utils
         public static string IncreaseVolume => _resourcesLoader.GetString(nameof(IncreaseVolume));
         public static string DecreaseVolume => _resourcesLoader.GetString(nameof(DecreaseVolume));
         public static string Mute => _resourcesLoader.GetString(nameof(Mute));
-        public static string Zoom => _resourcesLoader.GetString(nameof(Zoom));
 
 
         public static string OrderAscending => _resourcesLoader.GetString(nameof(OrderAscending));
@@ -164,13 +168,20 @@ namespace VLC_WinRT.Utils
         public static string TrackAlreadyExistsInPlaylist => _resourcesLoader.GetString(nameof(TrackAlreadyExistsInPlaylist));
         public static string TrackAddedToYourPlaylist => _resourcesLoader.GetString(nameof(TrackAddedToYourPlaylist));
         public static string HaveToSelectPlaylist => _resourcesLoader.GetString(nameof(HaveToSelectPlaylist));
+        public static string YourPlaylistWontBeAccessible => _resourcesLoader.GetString(nameof(YourPlaylistWontBeAccessible));
 
+
+        // ERRORS
+        public static string Sorry => _resourcesLoader.GetString(nameof(Sorry));
         public static string CrashReport => _resourcesLoader.GetString(nameof(CrashReport));
         public static string WeNeedYourHelp => _resourcesLoader.GetString(nameof(WeNeedYourHelp));
+        public static string MediaCantBeRead => _resourcesLoader.GetString(nameof(MediaCantBeRead));
+        public static string ConnectionLostPleaseCheck => _resourcesLoader.GetString(nameof(ConnectionLostPleaseCheck));
 
+        // MISC
         public static string Yes => _resourcesLoader.GetString(nameof(Yes));
         public static string No => _resourcesLoader.GetString(nameof(No));
-
+        public static string AreYouSure => _resourcesLoader.GetString(nameof(AreYouSure));
 
 
         // ACTIONS

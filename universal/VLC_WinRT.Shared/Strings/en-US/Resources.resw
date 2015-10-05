@@ -663,4 +663,25 @@
   <data name="Zoom" xml:space="preserve">
     <value>zoom</value>
   </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>are you sure?</value>
+  </data>
+  <data name="MediaCantBeRead" xml:space="preserve">
+    <value>the media can't be read</value>
+  </data>
+  <data name="Sorry" xml:space="preserve">
+    <value>we're sorry</value>
+  </data>
+  <data name="SURFACE_BEST_FIT" xml:space="preserve">
+    <value>best fit</value>
+  </data>
+  <data name="SURFACE_FIT_HORIZONTAL" xml:space="preserve">
+    <value>horizontal cropping</value>
+  </data>
+  <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
+    <value>vertical cropping</value>
+  </data>
+  <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
+    <value>your playlist won't be accessible</value>
+  </data>
 </root>
