@@ -204,12 +204,11 @@
                           Width="200">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding}" />
+                            <TextBlock Text="{Binding Converter={StaticResource VLCSurfaceZoomStringifyConverter}}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-                
                 <TextBlock Grid.Row="17"
                            Foreground="{ThemeResource BasicForeground}"
                            Style="{StaticResource SubheaderTextBlockStyle}"

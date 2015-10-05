@@ -25,15 +25,11 @@
     <converters:DoubleSpeedToUnderstandableSpeedConverter x:Key="DoubleSpeedToUnderstandableSpeedConverter" />
     <converters:CurrentTrackForegroundConverter x:Key="CurrentTrackForegroundConverter" />
     <converters:OpacityDecreaserConverter  x:Key="OpacityDecreaserConverter" />
-    <converters:OrderTypeStringifyConverter x:Key="OrderTypeStringifyConverter" />
     <converters:DateTimeToDayOfMonthConverter  x:Key="DateTimeToDayOfMonthConverter" />
     <converters:DateTimeToShortMonthConverter x:Key="DateTimeToShortMonthConverter" />
     <converters:BottomMiniPlayerVisibilityConverter x:Key="BottomMiniPlayerVisibilityConverter" />
     <converters:FavoriteSymbolConverter x:Key="FavoriteSymbolConverter" />
     <converters:FavoriteLabelConverter x:Key="FavoriteLabelConverter" />
-    <converters:VideoViewStringifyConverter x:Key="VideoViewStringifyConverter" />
-    <converters:MusicViewStringifyConverter x:Key="MusicViewStringifyConverter" />
-    <converters:VLCPageStringifyConverter x:Key="VLCPageStringifyConverter" /> 
     <converters:PositionToFixedPointConverter x:Key="PositionToFixedPointConverter" />
     <converters:CurrentTrackEnhancifierConverter x:Key="CurrentTrackEnhancifierConverter" />
     <converters:NullIntConverter x:Key="NullIntConverter" />
@@ -44,4 +40,11 @@
     <converters:PositionToTimeStampStringConverter x:Key="PositionToTimeStampStringConverter"/>
     <converters:MusicViewVisibilityConverter x:Key="MusicViewVisibilityConverter"/>
     <converters:RootFolderTypeToNameConverter x:Key="RootFolderTypeToNameConverter"/>
+
+    <!-- Strings converter -->
+    <converters:VideoViewStringifyConverter x:Key="VideoViewStringifyConverter" />
+    <converters:MusicViewStringifyConverter x:Key="MusicViewStringifyConverter" />
+    <converters:VLCPageStringifyConverter x:Key="VLCPageStringifyConverter" />
+    <converters:OrderTypeStringifyConverter x:Key="OrderTypeStringifyConverter" />
+    <converters:VLCSurfaceZoomStringifyConverter x:Key="VLCSurfaceZoomStringifyConverter" />
 </ResourceDictionary>
