@@ -66,47 +66,41 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Border x:Name="HeaderGrid">
-            <Border.RenderTransform>
+        <userControls:BufferingControl HorizontalAlignment="Right"/>
+        <Grid x:Name="HeaderGrid"
+              Height="50"
+              Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+            <Grid.RenderTransform>
                 <TranslateTransform />
-            </Border.RenderTransform>
-            <Border.Background>
-                <LinearGradientBrush EndPoint="0.5,1"
-                                     StartPoint="0.5,0">
-                    <GradientStop Color="#DD000000"
-                                  Offset="0.2" />
-                    <GradientStop Color="#00000000"
-                                  Offset="1" />
-                </LinearGradientBrush>
-            </Border.Background>
-            <Grid Margin="24,40,24,24"
-                  Height="30">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Button x:Name="GoBackButton"
-                        Grid.Column="0"
-                        Style="{StaticResource TextBlockButtonStyle}"
-                        Command="{Binding GoBack}">
-                    <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
-                              FontFamily="ms-appx:VLC.ttf#W10"
-                              FontSize="30" />
-                </Button>
-                <TextBlock Grid.Column="2"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center"
-                           FontSize="20"
-                           DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
-                           Text="{Binding CurrentVideo.Name}"
-                           TextWrapping="NoWrap"
-                           TextTrimming="CharacterEllipsis" />
-            </Grid>
-        </Border>
+            </Grid.RenderTransform>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="GoBackButton"
+                    Grid.Column="1"
+                    Style="{StaticResource TextBlockButtonStyle}"
+                    Command="{Binding GoBack}">
+                <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                          FontFamily="ms-appx:VLC.ttf#W10"
+                          FontSize="30" />
+            </Button>
+            <TextBlock Grid.Column="3"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
+                       Text="{Binding CurrentVideo.Name}"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis" />
+            <userControls:BufferingControl Grid.Column="5"/>
+        </Grid>
 
         <Grid Grid.Row="1">
-            <userControls:BufferingControl />
             <Border x:Name="GestureBorder"
                     Visibility="Collapsed"
                     Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
