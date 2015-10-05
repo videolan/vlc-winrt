@@ -220,7 +220,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
             return false;
         }
 
-        private void ChangeSurfaceZoom(VLCSurfaceZoom desiredZoom)
+        public void ChangeSurfaceZoom(VLCSurfaceZoom desiredZoom)
         {
             var screenWidth = App.RootPage.SwapChainPanel.ActualWidth;
             var screenHeight = App.RootPage.SwapChainPanel.ActualHeight;

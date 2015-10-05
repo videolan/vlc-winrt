@@ -70,6 +70,7 @@ namespace VLC_WinRT.Views.VideoPages
                 VisualStateManager.GoToState(this, "Full", false);
             }
             Locator.MediaPlaybackViewModel._mediaService.SetSizeVideoPlayer((uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualWidth), (uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualHeight));
+            Locator.VideoVm.ChangeSurfaceZoom(Locator.VideoVm.CurrentSurfaceZoom);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
