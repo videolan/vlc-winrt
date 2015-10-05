@@ -265,6 +265,8 @@ namespace VLC_WinRT.ViewModels.VideoVM
             switch (desiredZoom)
             {
                 case VLCSurfaceZoom.SURFACE_BEST_FIT:
+                    scaleTransform.ScaleX = scaleTransform.ScaleY = 1;
+                    App.RootPage.SwapChainPanel.RenderTransform = scaleTransform;
                     break;
                 case VLCSurfaceZoom.SURFACE_FIT_HORIZONTAL:
                     var horizontalScale = displayedVideoWidth / (displayedVideoWidth - bandesNoiresHorizontal);
