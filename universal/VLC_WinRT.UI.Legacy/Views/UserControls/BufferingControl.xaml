@@ -9,15 +9,24 @@
              d:DesignWidth="400"
              d:DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
 
-    <StackPanel Visibility="{Binding IsBuffered, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
-                VerticalAlignment="Center">
-        <ProgressBar IsIndeterminate="True" />
-        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
+    <Grid Visibility="{Binding IsBuffered, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
+          VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+        </Grid.ColumnDefinitions>
+        <ProgressRing IsActive="True"
+                      VerticalAlignment="Center"
+                      Foreground="{ThemeResource MainColor}" />
+        <TextBlock Grid.Column="2"
+                   Style="{StaticResource BaseTextBlockStyle}"
                    Foreground="{ThemeResource MainColor}"
-                   HorizontalAlignment="Center">
-            <Run Text="{Binding Source={StaticResource Strings}, Path=Loading}"/>
-            <Run Text="{Binding BufferingProgress}"/>
-            <Run Text="%"/>
+                   VerticalAlignment="Center">
+            <Run Text="{Binding Source={StaticResource Strings}, Path=Loading}" />
+            <Run Text="{Binding BufferingProgress}" />
+            <Run Text="%" />
         </TextBlock>
-    </StackPanel>
+    </Grid>
 </UserControl>
