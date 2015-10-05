@@ -2,6 +2,7 @@
 using VLC_WinRT.Helpers;
 using Windows.Graphics.Display;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -16,6 +17,20 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             this.InitializeComponent();
             this.Loaded += TitleBar_Loaded;
             Locator.SettingsVM.PropertyChanged += SettingsVM_PropertyChanged;
+            CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
+        }
+
+        private void ApplicationState_Activated(CoreWindow sender, WindowActivatedEventArgs args)
+        {
+            if (args.WindowActivationState == CoreWindowActivationState.Deactivated)
+            {
+                VLCLogo.Fill = Title.Foreground = ProgressRing.Foreground = InformationText.Foreground = new SolidColorBrush(Colors.DimGray);
+                RootGrid.Background = new SolidColorBrush(Color.FromArgb(0xd9, 0x05, 0x05, 0x05));
+            }
+            else
+            {
+                Responsive();
+            }
         }
 
         private void TitleBar_Loaded(object sender, RoutedEventArgs e)
