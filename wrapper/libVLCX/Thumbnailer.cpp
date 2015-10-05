@@ -33,6 +33,7 @@ using namespace libVLCX;
 enum thumbnail_state{
     THUMB_SEEKING,
     THUMB_SEEKED,
+    THUMB_RENDERING,
     THUMB_RENDERED,
     THUMB_CANCELLED
 };
@@ -81,8 +82,11 @@ static void CancelPreparse(const libvlc_event_t*, void* data)
 static void onSeekChanged( const libvlc_event_t*ev, void* data )
 {
     auto sys = reinterpret_cast<thumbnailer_sys_t*>( data );
-    if ( ev->u.media_player_position_changed.new_position >= SEEK_POSITION )
-        sys->state = THUMB_SEEKED;
+    if (ev->u.media_player_position_changed.new_position >= SEEK_POSITION)
+    {
+        int s = THUMB_SEEKING;
+        sys->state.compare_exchange_strong(s, THUMB_SEEKED);
+    }
 }
 
 /**
@@ -133,7 +137,8 @@ static WriteableBitmap^ CopyToBitmap(thumbnailer_sys_t* sys)
 static void Unlock(void *opaque, void *picture, void *const *pixels){
     thumbnailer_sys_t* sys = (thumbnailer_sys_t*) opaque;
 
-    if (sys->state != THUMB_SEEKED)
+    int s = THUMB_SEEKED;
+    if (sys->state.compare_exchange_strong(s, THUMB_RENDERING) == false)
         return;
 
     CoreWindow^ window = CoreApplication::MainView->CoreWindow;
@@ -203,7 +208,7 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
         sys->thumbWidth = width;
         sys->thumbSize = pitch * sys->thumbHeight;
         sys->thumbData.reset(new char[sys->thumbSize]);
-        sys->hLock = CreateEventEx(nullptr, nullptr, CREATE_EVENT_INITIAL_SET, EVENT_MODIFY_STATE);
+        sys->hLock = CreateEventEx(nullptr, nullptr, 0, EVENT_MODIFY_STATE);
         sys->mp = mp;
 
         libvlc_video_set_format(mp, "BGRA", sys->thumbWidth, sys->thumbHeight, pitch);
