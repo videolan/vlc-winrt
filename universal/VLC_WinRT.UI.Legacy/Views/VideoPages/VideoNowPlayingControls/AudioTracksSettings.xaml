@@ -16,7 +16,6 @@
 
     <Border x:Name="RootGrid"
             Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
-            RequestedTheme="Dark"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
             Width="300"
