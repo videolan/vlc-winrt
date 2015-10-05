@@ -120,7 +120,7 @@
                 <ListView ItemsSource="{Binding KeyboardActions}"
                           ItemContainerStyle="{StaticResource ListViewItemContainerStyleNoSelectCheck}"
                           SelectionMode="None"
-                          Margin="-3,0,0,0">
+                          Margin="{StaticResource FrameMarginTop}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Foreground="{ThemeResource BasicForeground}">

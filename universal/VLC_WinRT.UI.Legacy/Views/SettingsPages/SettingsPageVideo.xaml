@@ -131,7 +131,8 @@
                 <Button Tag="WindowsOnly"
                         Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
                         Command="{Binding AddFolderToLibrary}"
-                        CommandParameter="{Binding VideoLibraryId}" />
+                        CommandParameter="{Binding VideoLibraryId}"
+                        Margin="{StaticResource FrameMarginTop}"/>
 
 
             </StackPanel>
