@@ -67,7 +67,7 @@ namespace VLC_WinRT.ViewModels.Settings
             }
             set
             {
-                ApplicationSettingsHelper.SaveSettingsValue(nameof(ApplicationTheme), (int)value);
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(ApplicationTheme), (int)value, false);
                 SetProperty(ref applicationTheme, value);
                 App.SetShellDecoration();
             }
@@ -160,7 +160,7 @@ namespace VLC_WinRT.ViewModels.Settings
 
         public static ApplicationTheme GetApplicationTheme()
         {
-            var appTheme = ApplicationSettingsHelper.ReadSettingsValue(nameof(ApplicationTheme));
+            var appTheme = ApplicationSettingsHelper.ReadSettingsValue(nameof(ApplicationTheme), false);
             ApplicationTheme applicationTheme;
             if (appTheme == null)
             {
