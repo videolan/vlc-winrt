@@ -242,7 +242,7 @@ namespace VLC_WinRT.ViewModels
                 {
                     if (Locator.MediaPlaybackViewModel?.IsPlaying == true && Locator.MediaPlaybackViewModel.IsStream)
                     {
-                        var lostStreamDialog = new MessageDialog("Connection to the server was stopped, please check your Internet connection");
+                        var lostStreamDialog = new MessageDialog(Strings.ConnectionLostPleaseCheck, Strings.Sorry);
                         await lostStreamDialog.ShowAsyncQueue();
                     }
                 }

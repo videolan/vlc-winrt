@@ -11,7 +11,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
     {
         public override async void Execute(object parameter)
         {
-            var md = new MessageDialog("Your playlist will no longer be accessible", "Are you sure?");
+            var md = new MessageDialog(Strings.YourPlaylistWontBeAccessible, Strings.AreYouSure );
             md.Commands.Add(new UICommand("yes", async command =>
             {
                 await MusicLibraryManagement.DeletePlaylist(Locator.MusicLibraryVM.CurrentTrackCollection);

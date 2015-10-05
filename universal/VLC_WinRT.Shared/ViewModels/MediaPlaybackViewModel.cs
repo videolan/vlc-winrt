@@ -811,7 +811,7 @@ namespace VLC_WinRT.ViewModels
             {
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
-                    var md = new MessageDialog("Your media cannot be read.", "We're sorry");
+                    var md = new MessageDialog(Strings.MediaCantBeRead, Strings.Sorry);
                     await md.ShowAsyncQueue();
                     // ensure we call Stop so we unregister all events
                     Stop();
