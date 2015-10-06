@@ -109,7 +109,7 @@ namespace VLC_WinRT.ViewModels.Settings
         {
             get
             {
-                var color = ApplicationSettingsHelper.ReadSettingsValue(nameof(AccentColor));
+                var color = ApplicationSettingsHelper.ReadSettingsValue(nameof(AccentColor), false);
                 if (color == null || string.IsNullOrEmpty(color.ToString()))
                 {
                     _accentColor = AccentColors[0];
@@ -128,7 +128,7 @@ namespace VLC_WinRT.ViewModels.Settings
             set
             {
                 if (_accentColor == value) return;
-                ApplicationSettingsHelper.SaveSettingsValue(nameof(AccentColor), value.ToString());
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(AccentColor), value.ToString(), false);
                 SetProperty(ref _accentColor, value);
                 App.SetShellDecoration();
             }
@@ -138,7 +138,7 @@ namespace VLC_WinRT.ViewModels.Settings
         {
             get
             {
-                var accentColorTitleBar = ApplicationSettingsHelper.ReadSettingsValue(nameof(AccentColorTitleBar));
+                var accentColorTitleBar = ApplicationSettingsHelper.ReadSettingsValue(nameof(AccentColorTitleBar), false);
                 if (accentColorTitleBar == null)
                 {
                     _accentColorTitleBar = false;
@@ -152,7 +152,7 @@ namespace VLC_WinRT.ViewModels.Settings
             set
             {
                 if (_accentColorTitleBar == value) return;
-                ApplicationSettingsHelper.SaveSettingsValue(nameof(AccentColorTitleBar), value);
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(AccentColorTitleBar), value, false);
                 SetProperty(ref _accentColorTitleBar, value);
                 App.SetShellDecoration();
             }
@@ -381,7 +381,7 @@ namespace VLC_WinRT.ViewModels.Settings
         {
             get
             {
-                var albumsOrderType = ApplicationSettingsHelper.ReadSettingsValue("AlbumsOrderType");
+                var albumsOrderType = ApplicationSettingsHelper.ReadSettingsValue("AlbumsOrderType", false);
                 if (albumsOrderType == null)
                 {
                     _albumsOrderType = OrderType.ByAlbum;
@@ -394,7 +394,7 @@ namespace VLC_WinRT.ViewModels.Settings
             }
             set
             {
-                ApplicationSettingsHelper.SaveSettingsValue("AlbumsOrderType", (int)value);
+                ApplicationSettingsHelper.SaveSettingsValue("AlbumsOrderType", (int)value, false);
                 if ((int)value == 0 || value != _albumsOrderType)
                     MusicLibraryManagement.OrderAlbums();
                 SetProperty(ref _albumsOrderType, value);
@@ -405,7 +405,7 @@ namespace VLC_WinRT.ViewModels.Settings
         {
             get
             {
-                var albumsOrderListing = ApplicationSettingsHelper.ReadSettingsValue("AlbumsOrderListing");
+                var albumsOrderListing = ApplicationSettingsHelper.ReadSettingsValue("AlbumsOrderListing", false);
                 if (albumsOrderListing == null)
                 {
                     _albumsOrderListing = OrderListing.Ascending;
@@ -418,7 +418,7 @@ namespace VLC_WinRT.ViewModels.Settings
             }
             set
             {
-                ApplicationSettingsHelper.SaveSettingsValue("AlbumsOrderListing", (int)value);
+                ApplicationSettingsHelper.SaveSettingsValue("AlbumsOrderListing", (int)value, false);
                 if (value != _albumsOrderListing)
                     MusicLibraryManagement.OrderAlbums();
                 SetProperty(ref _albumsOrderListing, value);
@@ -429,7 +429,7 @@ namespace VLC_WinRT.ViewModels.Settings
         {
             get
             {
-                var musicView = ApplicationSettingsHelper.ReadSettingsValue("MusicView");
+                var musicView = ApplicationSettingsHelper.ReadSettingsValue("MusicView", false);
                 if (musicView == null)
                 {
                     _musicView = MusicView.Artists;
@@ -442,7 +442,7 @@ namespace VLC_WinRT.ViewModels.Settings
             }
             set
             {
-                ApplicationSettingsHelper.SaveSettingsValue("MusicView", (int)value);
+                ApplicationSettingsHelper.SaveSettingsValue("MusicView", (int)value, false);
                 if (value != _musicView)
                 {
                     Locator.MainVM.ChangeMainPageMusicViewCommand.Execute((int)value);
@@ -455,7 +455,7 @@ namespace VLC_WinRT.ViewModels.Settings
         {
             get
             {
-                var videoView = ApplicationSettingsHelper.ReadSettingsValue("VideoView");
+                var videoView = ApplicationSettingsHelper.ReadSettingsValue("VideoView", false);
                 if (videoView == null)
                 {
                     _videoView = VideoView.Videos;
@@ -468,7 +468,7 @@ namespace VLC_WinRT.ViewModels.Settings
             }
             set
             {
-                ApplicationSettingsHelper.SaveSettingsValue("VideoView", (int)value);
+                ApplicationSettingsHelper.SaveSettingsValue("VideoView", (int)value, false);
                 if (value != _videoView)
                 {
                     Locator.MainVM.ChangeMainPageVideoViewCommand.Execute((int)value);
@@ -571,7 +571,7 @@ namespace VLC_WinRT.ViewModels.Settings
         {
             get
             {
-                var homePage = ApplicationSettingsHelper.ReadSettingsValue("Homepage");
+                var homePage = ApplicationSettingsHelper.ReadSettingsValue("Homepage", false);
                 if (homePage == null)
                 {
                     _homePage = VLCPage.MainPageHome;
@@ -584,7 +584,7 @@ namespace VLC_WinRT.ViewModels.Settings
             }
             set
             {
-                ApplicationSettingsHelper.SaveSettingsValue("Homepage", (int)value);
+                ApplicationSettingsHelper.SaveSettingsValue("Homepage", (int)value, false);
                 SetProperty(ref _homePage, value);
             }
         }
@@ -593,7 +593,7 @@ namespace VLC_WinRT.ViewModels.Settings
         {
             get
             {
-                var subtitleEncodingValue = ApplicationSettingsHelper.ReadSettingsValue(nameof(SubtitleEncodingValue));
+                var subtitleEncodingValue = ApplicationSettingsHelper.ReadSettingsValue(nameof(SubtitleEncodingValue), false);
                 if (string.IsNullOrEmpty((string) subtitleEncodingValue))
                 {
                     _subtitlesEncodingValue = "System";
@@ -610,7 +610,7 @@ namespace VLC_WinRT.ViewModels.Settings
             {
                 if (value == "System")
                     value = "";
-                ApplicationSettingsHelper.SaveSettingsValue(nameof(SubtitleEncodingValue), value);
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(SubtitleEncodingValue), value, false);
                 SetProperty(ref _subtitlesEncodingValue, value);
             }
         }
