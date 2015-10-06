@@ -1,11 +1,75 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="en" original="VLC_WinRT.Windows_Multilingual.prilog.xml" tool-id="MultilingualAppToolkit" product-name="VLC_WinRT.Windows" product-version="1.0.0.0" build-num="0">
+  <file datatype="xml" source-language="en-US" target-language="qps-ploc" original="VLC_WinRT.Windows_Multilingual.prilog.xml" tool-id="MultilingualAppToolkit" product-name="VLC_WinRT.Windows" product-version="1.0.0.0" build-num="0">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="3.1.1250.0" tool-company="Microsoft" />
     </header>
     <body>
       <group id="Resources">
+        <trans-unit id="Resources\NoResults" translate="yes" xml:space="preserve">
+          <source>no results</source>
+          <target state="new">no results</target>
+        </trans-unit>
+        <trans-unit id="Resources\AccentColor" translate="yes" xml:space="preserve">
+          <source>accent color</source>
+          <target state="new">accent color</target>
+        </trans-unit>
+        <trans-unit id="Resources\BackgroundColor" translate="yes" xml:space="preserve">
+          <source>background color</source>
+          <target state="new">background color</target>
+        </trans-unit>
+        <trans-unit id="Resources\Dark" translate="yes" xml:space="preserve">
+          <source>dark</source>
+          <target state="new">dark</target>
+        </trans-unit>
+        <trans-unit id="Resources\Light" translate="yes" xml:space="preserve">
+          <source>light</source>
+          <target state="new">light</target>
+        </trans-unit>
+        <trans-unit id="Resources\TitleBar" translate="yes" xml:space="preserve">
+          <source>title bar</source>
+          <target state="new">title bar</target>
+        </trans-unit>
+        <trans-unit id="Resources\NeedRestart" translate="yes" xml:space="preserve">
+          <source>You need to restart the app to apply changes</source>
+          <target state="new">You need to restart the app to apply changes</target>
+        </trans-unit>
+        <trans-unit id="Resources\Zoom" translate="yes" xml:space="preserve">
+          <source>zoom</source>
+          <target state="new">zoom</target>
+        </trans-unit>
+        <trans-unit id="Resources\AreYouSure" translate="yes" xml:space="preserve">
+          <source>are you sure?</source>
+          <target state="new">are you sure?</target>
+        </trans-unit>
+        <trans-unit id="Resources\MediaCantBeRead" translate="yes" xml:space="preserve">
+          <source>the media can't be read</source>
+          <target state="new">the media can't be read</target>
+        </trans-unit>
+        <trans-unit id="Resources\Sorry" translate="yes" xml:space="preserve">
+          <source>we're sorry</source>
+          <target state="new">we're sorry</target>
+        </trans-unit>
+        <trans-unit id="Resources\SURFACE_BEST_FIT" translate="yes" xml:space="preserve">
+          <source>best fit</source>
+          <target state="new">best fit</target>
+        </trans-unit>
+        <trans-unit id="Resources\SURFACE_FIT_HORIZONTAL" translate="yes" xml:space="preserve">
+          <source>horizontal cropping</source>
+          <target state="new">horizontal cropping</target>
+        </trans-unit>
+        <trans-unit id="Resources\SURFACE_FIT_VERTICAL" translate="yes" xml:space="preserve">
+          <source>vertical cropping</source>
+          <target state="new">vertical cropping</target>
+        </trans-unit>
+        <trans-unit id="Resources\YourPlaylistWontBeAccessible" translate="yes" xml:space="preserve">
+          <source>your playlist won't be accessible</source>
+          <target state="new">your playlist won't be accessible</target>
+        </trans-unit>
+        <trans-unit id="Resources\NoArtistShowsFound" translate="yes" xml:space="preserve">
+          <source>we didn't find shows for this artist</source>
+          <target state="new">we didn't find shows for this artist</target>
+        </trans-unit>
         <trans-unit id="Resources\YourMusic" translate="yes" xml:space="preserve">
           <source>your music</source>
           <target state="new">your music</target>
@@ -31,8 +95,8 @@
           <target state="new">volume</target>
         </trans-unit>
         <trans-unit id="Resources\VLCTeamThankYou" translate="yes" xml:space="preserve">
-          <source>the vlc team would like to thank all the people who made this app possible</source>
-          <target state="new">the vlc team would like to thank all the people who made this app possible</target>
+          <source>The VLC team would like to thank all the people who made this app possible</source>
+          <target state="new">The VLC team would like to thank all the people who made this app possible</target>
         </trans-unit>
         <trans-unit id="Resources\ViewArtist" translate="yes" xml:space="preserve">
           <source>view artist</source>
@@ -83,20 +147,20 @@
           <target state="new">upcoming shows</target>
         </trans-unit>
         <trans-unit id="Resources\UnknownTrack" translate="yes" xml:space="preserve">
-          <source>unknown track</source>
-          <target state="new">unknown track</target>
+          <source>Unknown track</source>
+          <target state="new">Unknown track</target>
         </trans-unit>
         <trans-unit id="Resources\UnknownShow" translate="yes" xml:space="preserve">
-          <source>unknown show</source>
-          <target state="new">unknown show</target>
+          <source>Unknown show</source>
+          <target state="new">Unknown show</target>
         </trans-unit>
         <trans-unit id="Resources\UnknownArtist" translate="yes" xml:space="preserve">
-          <source>unknown artist</source>
-          <target state="new">unknown artist</target>
+          <source>Unknown artist</source>
+          <target state="new">Unknown artist</target>
         </trans-unit>
         <trans-unit id="Resources\UnknownAlbum" translate="yes" xml:space="preserve">
-          <source>unknown album</source>
-          <target state="new">unknown album</target>
+          <source>Unknown album</source>
+          <target state="new">Unknown album</target>
         </trans-unit>
         <trans-unit id="Resources\Tracks" translate="yes" xml:space="preserve">
           <source>tracks</source>
@@ -523,8 +587,8 @@
           <target state="new">please select a playlist</target>
         </trans-unit>
         <trans-unit id="Resources\HardwareDecodingDescription" translate="yes" xml:space="preserve">
-          <source>Hardware decoding may not work on your device. You need to restart the app to apply changes</source>
-          <target state="new">Hardware decoding may not work on your device. You need to restart the app to apply changes</target>
+          <source>Hardware decoding may not work on your device.</source>
+          <target state="new">Hardware decoding may not work on your device.</target>
         </trans-unit>
         <trans-unit id="Resources\HardwareDecoding" translate="yes" xml:space="preserve">
           <source>hardware decoding</source>
@@ -535,8 +599,8 @@
           <target state="new">gold partners</target>
         </trans-unit>
         <trans-unit id="Resources\FileExplorer" translate="yes" xml:space="preserve">
-          <source>file explorer</source>
-          <target state="translated">files</target>
+          <source>files</source>
+          <target state="needs-review-translation">files</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resources\FeedbackThankYou" translate="yes" xml:space="preserve">
           <source>feedback sent! thank you</source>
@@ -671,10 +735,9 @@
           <target state="new">all backers</target>
         </trans-unit>
         <trans-unit id="Resources\AlbumsFound" translate="yes" xml:space="preserve">
-          <source>albums found</source>
-          <target state="translated">albums found : {0}</target>
-          <note from="MultilingualEditor" annotates="source" priority="4">{0} is the number of found albums</note>
-          </trans-unit>
+          <source>albums found : {0}</source>
+          <target state="needs-review-translation">albums found : {0}</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
         <trans-unit id="Resources\Albums" translate="yes" xml:space="preserve">
           <source>albums</source>
           <target state="new">albums</target>

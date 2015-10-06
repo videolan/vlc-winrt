@@ -921,6 +921,15 @@
   <ItemGroup>
     <Folder Include="plugins\lua\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="MultilingualResources\VLC_WinRT.Windows.en.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MultilingualResources\VLC_WinRT.Windows.fr.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MultilingualResources\VLC_WinRT.Windows.qps-ploc.xlf" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
