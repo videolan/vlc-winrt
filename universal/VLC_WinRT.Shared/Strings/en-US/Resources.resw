@@ -684,4 +684,10 @@
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>your playlist won't be accessible</value>
   </data>
+  <data name="NoArtistShowsFound" xml:space="preserve">
+    <value>we didn't find shows for this artist</value>
+  </data>
+  <data name="NoResults" xml:space="preserve">
+    <value>no results</value>
+  </data>
 </root>

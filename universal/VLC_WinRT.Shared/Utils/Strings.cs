@@ -255,6 +255,7 @@ namespace VLC_WinRT.Utils
         public static string ElementsNotFound => _resourcesLoader.GetString(nameof(ElementsNotFound));
         
         public static string NoVideosFound => _resourcesLoader.GetString(nameof(NoVideosFound));
+        public static string NoResults => _resourcesLoader.GetString(nameof(NoResults));
         public static string HoweverYouMayFindWhatYouWantHere => _resourcesLoader.GetString(nameof(HoweverYouMayFindWhatYouWantHere));
         public static string NoCameraVideosFound => _resourcesLoader.GetString(nameof(NoCameraVideosFound));
         public static string NoFavoriteAlbums => _resourcesLoader.GetString(nameof(NoFavoriteAlbums));
@@ -262,7 +263,7 @@ namespace VLC_WinRT.Utils
         public static string NoShowsFound => _resourcesLoader.GetString(nameof(NoShowsFound));
         public static string HowToFavoriteAlbum1 => _resourcesLoader.GetString(nameof(HowToFavoriteAlbum1));
         public static string HowToFavoriteAlbum2 => _resourcesLoader.GetString(nameof(HowToFavoriteAlbum2));
-
+        public static string NoArtistShowsFound => _resourcesLoader.GetString(nameof(NoArtistShowsFound));
 
         // SETTINGS
 
