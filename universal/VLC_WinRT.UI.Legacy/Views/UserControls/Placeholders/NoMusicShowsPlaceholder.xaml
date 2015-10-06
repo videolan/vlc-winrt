@@ -24,7 +24,7 @@
                Style="{StaticResource SubheaderTextBlockStyle}"
                VerticalAlignment="Center"
                TextAlignment="Center">
-        <Run Text="This artist doesn't have upcoming shows"
+        <Run Text="{Binding Source={StaticResource Strings}, Path=NoArtistShowsFound}"
              FontSize="20" />
     </TextBlock>
   </Grid>
