@@ -15,10 +15,35 @@
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="1"
-                   Text="{Binding Source={StaticResource Strings}, Path=Playlist}"
-                   Style="{StaticResource SubheaderTextBlockStyle}"
-                   Margin="{StaticResource FrameMargin}" />
+        <Grid Grid.Row="1"
+              RequestedTheme="Dark">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <AppBarButton Grid.Column="0"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Margin="{StaticResource FrameMarginLeft}"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Stretch"
+                          DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                          Command="{Binding GoBackCommand}"
+                          Width="50">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                              Margin="0,3,0,0"
+                              FontFamily="ms-appx:VLC.ttf#W10" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <TextBlock Grid.Column="1"
+                       Margin="{StaticResource FrameMarginRight}"
+                       TextTrimming="CharacterEllipsis"
+                       TextWrapping="NoWrap"
+                       VerticalAlignment="Top"
+                       Text="{Binding Source={StaticResource Strings}, Path=Playlist}"
+                       Style="{StaticResource SubheaderTextBlockStyle}" />
+        </Grid>
+
         <ListView Grid.Row="3"
                   Margin="{StaticResource FrameMargin}"
                   DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
