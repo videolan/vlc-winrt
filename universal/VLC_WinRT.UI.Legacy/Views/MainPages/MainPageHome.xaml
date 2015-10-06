@@ -111,7 +111,7 @@
                        DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                        Visibility="{Binding RecommendedArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
 
-            <ScrollViewer  Style="{StaticResource HorizontalScrollViewerStyle}">
+            <ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
                 <Grid MaxHeight="270"
                       Margin="{StaticResource FrameMarginVertical}">
                     <Grid.ColumnDefinitions>
