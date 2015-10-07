@@ -49,7 +49,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
         #endregion
 
         #region public props
-        public BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
 
         public AlbumItem CurrentAlbum
         {

@@ -268,7 +268,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public async Task RestorePlaylist()
         {
-            var playlist = Locator.MusicPlayerVM.BackgroundTrackRepository.LoadPlaylist();
+            var playlist = Locator.MediaPlaybackViewModel.BackgroundTrackRepository.LoadPlaylist();
             if (!playlist.Any())
             {
                 return;

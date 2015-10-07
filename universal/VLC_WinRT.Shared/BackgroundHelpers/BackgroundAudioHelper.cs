@@ -51,7 +51,7 @@ namespace VLC_WinRT.BackgroundHelpers
         public async Task AddToPlaylist(List<BackgroundTrackItem> trackItems)
         {
             var bgTracks = trackItems.Select(backgroundTrackItem => new BackgroundTrackItem(backgroundTrackItem.Id, backgroundTrackItem.AlbumId, backgroundTrackItem.ArtistId, backgroundTrackItem.ArtistName, backgroundTrackItem.AlbumName, backgroundTrackItem.Name, backgroundTrackItem.Path)).ToList();
-            await Locator.MusicPlayerVM.BackgroundTrackRepository.AddBunchTracks(bgTracks);
+            await Locator.MediaPlaybackViewModel.BackgroundTrackRepository.AddBunchTracks(bgTracks);
 #if WINDOWS_PHONE_APP
             try
             {
@@ -79,7 +79,7 @@ namespace VLC_WinRT.BackgroundHelpers
 
         public async Task ResetCollection(ResetType resetType)
         {
-            Locator.MusicPlayerVM.BackgroundTrackRepository.Clear();
+            Locator.MediaPlaybackViewModel.BackgroundTrackRepository.Clear();
 #if WINDOWS_PHONE_APP
             try
             {

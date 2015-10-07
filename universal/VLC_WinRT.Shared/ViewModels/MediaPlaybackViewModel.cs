@@ -43,6 +43,7 @@ using VLC_WinRT.Utils;
 using WinRTXamlToolkit.Controls.Extensions;
 using VLC_WinRT.Commands.VideoPlayer;
 using VLC_WinRT.Commands.VideoLibrary;
+using VLC_WinRT.SharedBackground.Database;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -362,6 +363,7 @@ namespace VLC_WinRT.ViewModels
         #endregion
 
         #region public fields
+        public BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
         public List<DictionaryKeyValue> AudioTracks
         {
             get { return _audioTracks; }
