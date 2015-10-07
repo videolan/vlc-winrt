@@ -184,6 +184,7 @@ namespace VLC_WinRT.Views.VideoPages
 
         private void PlaceholderInteractionGrid_OnManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
         {
+            if (isLocked) return;
             Debug.WriteLine("VideoPlayerPage gesture started");
             if (Math.Abs(e.Cumulative.Translation.Y) > Math.Abs(e.Cumulative.Translation.X))
             {
@@ -205,6 +206,7 @@ namespace VLC_WinRT.Views.VideoPages
 
         private void PlaceholderInteractionGrid_OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
+            if (isLocked) return;
             var cumulativeTranslationX = e.Cumulative.Translation.X;
             switch (currentGestureActionType)
             {
@@ -226,6 +228,7 @@ namespace VLC_WinRT.Views.VideoPages
 
         private void PlaceholderInteractionGrid_OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
+            if (isLocked) return;
             switch (currentGestureActionType)
             {
                 case GestureActionType.Null:
@@ -266,6 +269,7 @@ namespace VLC_WinRT.Views.VideoPages
 
         private async void PopMainMenu()
         {
+            if (isLocked) return;
             var pos = MouseService.GetPointerPosition();
             var menu = new PopupMenu();
             menu.Commands.Add(new UICommand(Locator.MediaPlaybackViewModel.IsPlaying ? Strings.Pause : Strings.Play, command => Locator.MediaPlaybackViewModel.Pause()));
