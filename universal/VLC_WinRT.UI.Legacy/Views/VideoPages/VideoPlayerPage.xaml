@@ -84,7 +84,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <userControls:BufferingControl HorizontalAlignment="Right"/>
+        <userControls:BufferingControl HorizontalAlignment="Right" />
         <Grid x:Name="HeaderGrid"
               Height="50"
               Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
@@ -140,9 +140,7 @@
                   ManipulationCompleted="PlaceholderInteractionGrid_OnManipulationCompleted"
                   Tapped="PlaceholderInteractionGrid_OnTapped"
                   DoubleTapped="PlaceholderInteractionGrid_DoubleTapped"
-                  RightTapped="PlaceholderInteractionGrid_OnRightTapped">
-
-            </Grid>
+                  RightTapped="PlaceholderInteractionGrid_OnRightTapped" />
             <videoControls:AudioTracksSettings />
             <videoControls:SubtitlesSettings />
             <videoControls:VolumeSliderSettings />
