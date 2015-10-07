@@ -35,12 +35,31 @@
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
+                                               Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <ExponentialEase EasingMode="EaseInOut"
+                                             Exponent="0" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
             </Storyboard>
             <Storyboard x:Name="FadeIn">
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
                     <EasingDoubleKeyFrame KeyTime="0:0:0.7"
                                           Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <ExponentialEase EasingMode="EaseInOut"
+                                             Exponent="3" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
+                                               Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                          Value="1">
                         <EasingDoubleKeyFrame.EasingFunction>
                             <ExponentialEase EasingMode="EaseInOut"
                                              Exponent="3" />
@@ -96,7 +115,8 @@
                        Text="{Binding CurrentVideo.Name}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis" />
-            <userControls:BufferingControl Grid.Column="5"/>
+            <userControls:BufferingControl x:Name="BufferingControl"
+                                           Grid.Column="5" />
         </Grid>
 
         <Grid Grid.Row="1">
