@@ -27,6 +27,8 @@ using System.Collections.Generic;
 using libVLCX;
 using System.Collections;
 using System.Linq.Expressions;
+using System.Reflection;
+using Windows.Foundation;
 
 namespace VLC_WinRT.Helpers.MusicLibrary
 {
@@ -187,16 +189,9 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         public static Task DoRoutineMusicLibraryCheck()
         {
-#if WINDOWS_PHONE_APP
-            return GetAllMusicFolders();
-#else
             return PerformMusicLibraryIndexing();
-#endif
         }
-
-
-#if WINDOWS_PHONE_APP
-#else
+        
         /// <summary>
         /// This method is Windows-only since the crappy WP OS throws a 
         /// NotImplementedexception when calling QueryOptions, CreateFileQueryWithOptions
@@ -208,7 +203,32 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             foreach (var type in VLCFileExtensions.Supported)
                 queryOptions.FileTypeFilter.Add(type);
             var fileQueryResult = KnownFolders.MusicLibrary.CreateFileQueryWithOptions(queryOptions);
-            var files = await fileQueryResult.GetFilesAsync();
+            IReadOnlyList<StorageFile> files = null;
+#if WINDOWS_PHONE_APP
+            if (OSHelper.IsWindows10) // On Windows 10 Mobile devices, the API is present, but we need to use Reflection to use it
+            {
+                var getFilesMethod = fileQueryResult.GetType()
+                                    .GetRuntimeMethods()?
+                                    .Where(x => x.Name == nameof(fileQueryResult.GetFilesAsync))?
+                                    .FirstOrDefault(x => !x.GetParameters().Any());
+                if (getFilesMethod != null)
+                {
+                    files = await ((IAsyncOperation<IReadOnlyList<StorageFile>>) getFilesMethod.Invoke(fileQueryResult, null));
+                }
+                else
+                {
+                    await GetAllMusicFolders();
+                    return;
+                }
+            }
+            else
+            {
+                await GetAllMusicFolders();
+                return;
+            }
+#else
+            files = await fileQueryResult.GetFilesAsync();
+#endif
             foreach (var item in files)
             {
                 if (Locator.MediaPlaybackViewModel.ContinueIndexing != null) // We prevent indexing this file and upcoming files when a video is playing
@@ -219,7 +239,6 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 await DiscoverTrackItemOrWaitAsync(item);
             }
         }
-#endif
 
         public static async Task GetAllMusicFolders()
         {
