@@ -218,7 +218,7 @@ namespace VLC_WinRT.Views.VideoPages
                 case GestureActionType.Brightness:
                     break;
                 case GestureActionType.Seek:
-                    var seekInSeconds = Math.Floor(cumulativeTranslationX/10);
+                    var seekInSeconds = Math.Floor(cumulativeTranslationX / 10);
                     GestureTextBlockDescription.Text = StringsHelper.SecondsToString(seekInSeconds) + " (" + StringsHelper.MillisecondsToString(Locator.MediaPlaybackViewModel.Time) + ")";
                     break;
                 default:
