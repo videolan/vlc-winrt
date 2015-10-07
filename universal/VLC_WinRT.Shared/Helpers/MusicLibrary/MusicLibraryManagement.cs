@@ -74,6 +74,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                     await CreateDatabaseFromMusicFile(storageItem);
                 }
             }
+            catch(Exception e)
+            {
+                LogHelper.Log(StringsHelper.ExceptionToString(e));
+                TrackItemDiscovererSemaphoreSlim.Release();
+            }
             finally
             {
                 TrackItemDiscovererSemaphoreSlim.Release();
