@@ -158,6 +158,8 @@ namespace VLC_WinRT
                             switch (decoder[0]?.Value)
                             {
                                 case "clipboard":
+#if WINDOWS_PHONE_APP
+#else
                                     await Task.Delay(1000);
                                     var dataPackage = Clipboard.GetContent();
                                     Uri url = null;
@@ -175,6 +177,7 @@ namespace VLC_WinRT
                                     }
                                     if (url != null)
                                         await Locator.MediaPlaybackViewModel.PlayStream(url.AbsoluteUri);
+#endif
                                     break;
                                 case "useraction":
                                     Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[Locator.NavigationService.VLCHomePageToPanelIndex(Locator.SettingsVM.HomePage)];
