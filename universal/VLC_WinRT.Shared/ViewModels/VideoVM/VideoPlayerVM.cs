@@ -222,6 +222,8 @@ namespace VLC_WinRT.ViewModels.VideoVM
 
         public void ChangeSurfaceZoom(VLCSurfaceZoom desiredZoom)
         {
+            if (!(Locator.MediaPlaybackViewModel._mediaService is VLCService)) return;
+
             var screenWidth = App.RootPage.SwapChainPanel.ActualWidth;
             var screenHeight = App.RootPage.SwapChainPanel.ActualHeight;
 
