@@ -35,6 +35,7 @@
         <ProgressRing x:Name="ProgressRing"
                       Grid.Column="4"
                       IsActive="True"
+                      Style="{StaticResource ProgressRing}"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                       Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <TextBlock x:Name="InformationText"

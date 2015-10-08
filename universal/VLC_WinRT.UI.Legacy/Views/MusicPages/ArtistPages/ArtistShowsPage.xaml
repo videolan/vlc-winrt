@@ -138,8 +138,7 @@
             </ListView>
             <Grid Visibility="{Binding IsUpcomingShowsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ProgressRing IsActive="True"
-                              Background="Transparent"
-                              Foreground="{ThemeResource MainColor}"
+                              Style="{StaticResource ProgressRing}"
                               VerticalAlignment="Center"
                               HorizontalAlignment="Center" />
 

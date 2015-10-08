@@ -88,7 +88,8 @@
             <ProgressRing x:Name="ProgressRing"
                           Grid.Column="0" 
                           VerticalAlignment="Center"
-                          IsActive="False" />
+                          IsActive="False"
+                          Style="{StaticResource ProgressRing}" />
             <TextBlock x:Name="StatusTextBox"
                        Grid.Column="2"
                        TextWrapping="Wrap"

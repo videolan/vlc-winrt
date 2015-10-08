@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
         <ProgressRing IsActive="True"
                       VerticalAlignment="Center"
-                      Foreground="{ThemeResource MainColor}" />
+                      Style="{StaticResource ProgressRing}" />
         <TextBlock Grid.Column="2"
                    Style="{StaticResource BaseTextBlockStyle}"
                    Foreground="{ThemeResource MainColor}"
