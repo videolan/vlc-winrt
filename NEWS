@@ -1,6 +1,16 @@
+Changes between 1.8.0 and 1.8.1
+-------------------------------
+Release: 08 October 2015
+
+Bugfixes:
+ * Prevent crash when indexing music library on some WP8.1 devices
+ * Fix ProgressRing style
+ * Fix text in TextBox not visible on some tiny WP8.1 devices
+ * Fix Invalid Cast exception causing the app to crash in rare situations
+
 Changes between 1.7.0 and 1.8.0
 -------------------------------
-Release: 09 October 2015
+Release: 08 October 2015
 
 Application:
  * New translation system : French language added
