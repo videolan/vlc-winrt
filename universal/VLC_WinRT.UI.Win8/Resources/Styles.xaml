@@ -3410,8 +3410,7 @@
                                       Padding="{TemplateBinding Padding}"
                                       IsTabStop="False"
                                       AutomationProperties.AccessibilityView="Raw"
-                                      ZoomMode="Disabled"
-                                      VerticalAlignment="Center" />
+                                      ZoomMode="Disabled" />
                         <ContentControl x:Name="PlaceholderTextContentPresenter"
                                         Grid.Row="1"
                                         Margin="{TemplateBinding BorderThickness}"
