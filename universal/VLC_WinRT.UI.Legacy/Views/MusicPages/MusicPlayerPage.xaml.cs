@@ -45,6 +45,11 @@ namespace VLC_WinRT.Views.MusicPages
             base.OnNavigatedFrom(e);
             MouseMoved();
             Locator.Slideshow.ClearTextList();
+#if WINDOWS_APP
+            Locator.MediaPlaybackViewModel.MouseService.OnHidden -= MouseStateChanged;
+            Locator.MediaPlaybackViewModel.MouseService.OnMoved -= MouseMoved;
+            Locator.MusicPlayerVM.PropertyChanged -= MusicPlayerVM_PropertyChanged;
+#endif
         }
 
         private void MouseStateChanged()
