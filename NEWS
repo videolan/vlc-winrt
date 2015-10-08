@@ -1,3 +1,29 @@
+Changes between 1.7.0 and 1.8.0
+-------------------------------
+Release: 09 October 2015
+
+Application:
+ * New translation system : French language added
+ * Artist biographies are now saved in the SQL database
+ * New feedback system
+ * Context menu in the Video Player
+ * More personalisation options : accent colors, background colors, titlebar
+ * Buttons and texts are bigger on tiny screens
+ * Slideshow updated, new animations
+ * Added Video Player zoom options : Vertical Zoom, Horizontal Zoom
+ * Added Video Player animations
+ * Some settings are synced between devices
+ * Windows 10 Mobile uses W10 APIs to get songs from the Music Library
+ * Minor UI fixes
+ * New vlc:// protocol
+
+Bugfixes:
+ * Fixed duplicate Current Track in the Playlist
+ * Fixed crashed at launch when another app was sending a stream that was considered as File
+ * Trying to work around the broken LastFM APIs
+ * Slideshow is now paused when the app is in background
+ * Crashes at first launch when indexing and getting video thumbnails
+
 Changes between 1.6.2 and 1.7.0
 -------------------------------
 Release: 15 September 2015
