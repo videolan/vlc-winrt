@@ -17,6 +17,7 @@ namespace VLC_WinRT.Model
         private string platformVersion = "8.1/10";
         private string appVersion = Strings.AppVersion;
         private string device = Strings.DeviceModel;
+        private string firmware = Strings.Firmware;
 
         public string Id { get; set; }
 
@@ -64,6 +65,13 @@ namespace VLC_WinRT.Model
         {
             get { return device; }
             set { device = value; }
+        }
+
+        [DataMember(Name = nameof(Firmware))]
+        public string Firmware
+        {
+            get { return firmware; }
+            set { firmware = value; }
         }
     }
 }

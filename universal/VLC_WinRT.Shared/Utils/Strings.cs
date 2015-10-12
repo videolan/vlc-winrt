@@ -42,6 +42,23 @@ namespace VLC_WinRT.Utils
             }
         }
 
+        public static string Firmware
+        {
+            get
+            {
+#if WINDOWS_APP
+                return "Unknown";
+#else
+                var deviceInfo = new EasClientDeviceInformation();
+                if (string.IsNullOrEmpty(deviceInfo.SystemFirmwareVersion))
+                {
+                    return "Unknown";
+                }
+                return deviceInfo.SystemFirmwareVersion;
+#endif
+            }
+        }
+
         public static string FeedbackAzureURL => "https://vlc.azure-mobile.net/tables/feedback";
 
         /// <summary>
