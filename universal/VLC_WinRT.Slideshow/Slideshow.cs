@@ -50,7 +50,7 @@ namespace Slide2D
             }
 
             Window.Current.SizeChanged += Current_SizeChanged;
-            slideshow = new ImgClassicSlideshow();
+            slideshow = new ImgSlideshow();
 
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
         }

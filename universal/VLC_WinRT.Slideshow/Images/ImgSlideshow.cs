@@ -21,7 +21,7 @@ using Microsoft.Graphics.Canvas.Numerics;
 
 namespace Slide2D.Images
 {
-    public abstract class ImgSlideshow
+    public class ImgSlideshow
     {
         private const int IntroFrameThreshold = 200;
         private const int OutroFrameThreshold = 900;
