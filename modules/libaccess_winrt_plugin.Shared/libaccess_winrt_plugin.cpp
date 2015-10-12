@@ -82,6 +82,7 @@ struct access_sys_t
 {
     IRandomAccessStream^   readStream;
     DataReader^            dataReader;
+    uint64_t               i_pos;
 };
 
 
@@ -210,6 +211,7 @@ int Open(vlc_object_t *object)
     if (p_sys == nullptr)
         return VLC_EGENERIC;
 
+    p_sys->i_pos = 0;
     if (pf_open(p_sys, futureAccesToken ) != VLC_SUCCESS) {
         OutputDebugStringW(L"Error opening file with Path");
         Close(object);
@@ -268,7 +270,7 @@ ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
         OutputDebugString(L"Failure while reading block\n");
         if( ex->HResult == HRESULT_FROM_WIN32(ERROR_OPLOCK_HANDLE_CLOSED) ){
             if( OpenFileAsync(p_sys, GetString(access->psz_location)) == VLC_SUCCESS ){
-                p_sys->readStream->Seek(access->info.i_pos);
+                p_sys->readStream->Seek(p_sys->i_pos);
                 return Read(access, buffer, size);
             }
             OutputDebugString(L"Failed to reopen file\n");
@@ -276,7 +278,7 @@ ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
         return -1;
     }
 
-    access->info.i_pos += totalRead;
+    p_sys->i_pos += totalRead;
     access->info.b_eof = p_sys->readStream->Position >= p_sys->readStream->Size;
     if( access->info.b_eof ){
         OutputDebugString(L"End of file reached\n");
@@ -293,7 +295,7 @@ int Seek(access_t *access, uint64_t position)
     try
     {
         p_sys->readStream->Seek(position);
-        access->info.i_pos = position;
+        p_sys->i_pos = position;
         access->info.b_eof = p_sys->readStream->Position >= p_sys->readStream->Size;
     }
     catch( int ex )
