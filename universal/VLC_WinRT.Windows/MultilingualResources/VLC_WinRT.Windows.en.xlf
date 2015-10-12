@@ -6,6 +6,10 @@
     </header>
     <body>
       <group id="Resources">
+        <trans-unit id="Resources\ForceLandscape" translate="yes" xml:space="preserve">
+          <source>Force landscape</source>
+          <target state="new">Force landscape</target>
+        </trans-unit>
         <trans-unit id="Resources\NoResults" translate="yes" xml:space="preserve">
           <source>no results</source>
           <target state="new">no results</target>

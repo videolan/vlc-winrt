@@ -327,6 +327,7 @@ namespace VLC_WinRT.Utils
         public static string VideoPlayback => _resourcesLoader.GetString(nameof(VideoPlayback));
         public static string HardwareDecoding => _resourcesLoader.GetString(nameof(HardwareDecoding));
         public static string HardwareDecodingDescription => _resourcesLoader.GetString(nameof(HardwareDecodingDescription));
+        public static string ForceLandscape => _resourcesLoader.GetString(nameof(ForceLandscape));
         public static string SubtitlesEncoding => _resourcesLoader.GetString(nameof(SubtitlesEncoding));
 
         // FEEDBACK

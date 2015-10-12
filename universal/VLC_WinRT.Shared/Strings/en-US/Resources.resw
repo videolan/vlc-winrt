@@ -690,4 +690,7 @@
   <data name="NoResults" xml:space="preserve">
     <value>no results</value>
   </data>
+  <data name="ForceLandscape" xml:space="preserve">
+    <value>Force landscape</value>
+  </data>
 </root>
