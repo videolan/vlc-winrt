@@ -10,8 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Images\Img.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Images\ImgClassicSlideshow.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Images\ImgGridSlideshow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Images\ImgSlideshow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Slideshow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Texts\Txt.cs" />
