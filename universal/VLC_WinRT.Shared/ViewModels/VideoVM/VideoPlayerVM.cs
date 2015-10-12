@@ -21,6 +21,7 @@ using Windows.Storage.AccessCache;
 using Windows.UI.Xaml;
 using libVLCX;
 using System.Diagnostics;
+using Windows.Graphics.Display;
 using Windows.UI.Xaml.Media;
 using VLC_WinRT.Commands.VideoPlayer;
 using VLC_WinRT.Model;
@@ -155,6 +156,10 @@ namespace VLC_WinRT.ViewModels.VideoVM
             // re-mark the task as completed.
             Locator.MediaPlaybackViewModel.ContinueIndexing = new TaskCompletionSource<bool>();
             Locator.Slideshow.IsPaused = true;
+            if (Locator.SettingsVM.ForceLandscape)
+            {
+                DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
+            }
         }
 
         public void OnNavigatedFrom()
@@ -168,6 +173,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
             Locator.Slideshow.IsPaused = false;
+            DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
         }
 
         public async Task<bool> TryUseSubtitleFromFolder()

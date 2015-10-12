@@ -55,6 +55,7 @@ namespace VLC_WinRT.ViewModels.Settings
         private string _subtitlesEncodingValue;
         private bool _lastFmIsConnected = false;
         private bool _hardwareAcceleration;
+        private bool _forceLandscape;
         private bool _richAnimations;
         private List<KeyboardAction> _keyboardActions;
         private List<string> _subtitlesEncodingValues;
@@ -548,6 +549,28 @@ namespace VLC_WinRT.ViewModels.Settings
             {
                 ApplicationSettingsHelper.SaveSettingsValue("HardwareAccelerationEnabled", value);
                 SetProperty(ref _hardwareAcceleration, value);
+            }
+        }
+
+        public bool ForceLandscape
+        {
+            get
+            {
+                var force = ApplicationSettingsHelper.ReadSettingsValue(nameof(ForceLandscape));
+                if (force == null)
+                {
+                    _forceLandscape = true;
+                }
+                else
+                {
+                    _forceLandscape = (bool) force;
+                }
+                return _forceLandscape;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(ForceLandscape), value);
+                SetProperty(ref _forceLandscape, value);
             }
         }
 
