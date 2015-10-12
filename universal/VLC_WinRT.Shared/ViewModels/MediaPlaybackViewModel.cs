@@ -1272,7 +1272,13 @@ namespace VLC_WinRT.ViewModels
 
         public void Pause()
         {
-            _mediaService.Pause();
+            try
+            {
+                _mediaService.Pause();
+            }
+            catch
+            {
+            }
         }
 
         public void Dispose()
