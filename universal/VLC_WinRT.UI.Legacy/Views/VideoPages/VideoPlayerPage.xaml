@@ -168,7 +168,7 @@
                 Grid.Row="2"
                 Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
                 Margin="24"
-                Padding="24"
+                Padding="12"
                 CornerRadius="6">
             <Border.RenderTransform>
                 <TranslateTransform />
