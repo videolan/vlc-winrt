@@ -1,3 +1,15 @@
+Changes between 1.8.2 and 1.8.3
+-------------------------------
+Release: 13 October 2015
+
+Application:
+ * Add "Stretch" zoom in the Video Player
+ * Zoom is the first video settings in the Settings
+ * Reduce the Height of the Video Player controls grid
+ * Improve responsive design : display volume slider on bigger screens
+ * Add Zoom button toggle on phones
+ * Some buttons were too easy to press on tiny screens, should be better
+
 Changes between 1.8.1 and 1.8.2
 ------------------------------
 Release: 12 October 2015
