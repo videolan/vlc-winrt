@@ -2562,6 +2562,8 @@
                 Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontWeight"
                 Value="Normal" />
+        <Setter Property="Width"
+                Value="50" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="AppBarButton">
