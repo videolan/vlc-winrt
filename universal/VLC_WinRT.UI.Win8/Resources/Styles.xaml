@@ -2563,18 +2563,23 @@
         <Setter Property="FontWeight"
                 Value="Normal" />
         <Setter Property="Width"
-                Value="50" />
+                Value="45" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="AppBarButton">
-                    <StackPanel x:Name="LayoutRoot"
-                                Background="Transparent"
-                                Width="{TemplateBinding Width}">
+                    <Border x:Name="LayoutRoot"
+                            Width="{TemplateBinding Width}"
+                            Background="Transparent">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ApplicationViewStates">
                                 <VisualState x:Name="FullSize" />
                                 <VisualState x:Name="Compact">
                                     <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextLabel"
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -2609,21 +2614,33 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid HorizontalAlignment="Center"
-                              Height="{TemplateBinding Height}"
-                              Margin="0"
-                              Width="{TemplateBinding Width}">
-                            <Grid x:Name="ContentRoot"
-                                  Background="Transparent">
-                                <ContentPresenter x:Name="Content"
-                                                  AutomationProperties.AccessibilityView="Raw"
-                                                  Content="{TemplateBinding Icon}"
-                                                  Foreground="{TemplateBinding Foreground}"
-                                                  HorizontalAlignment="Stretch"
-                                                  VerticalAlignment="Stretch" />
+                        <StackPanel VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                            <Grid HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Height="{TemplateBinding Height}"
+                                  Margin="0">
+                                <Grid x:Name="ContentRoot"
+                                      Background="Transparent">
+                                    <ContentPresenter x:Name="Content"
+                                                      AutomationProperties.AccessibilityView="Raw"
+                                                      Content="{TemplateBinding Icon}"
+                                                      Foreground="{TemplateBinding Foreground}"
+                                                      HorizontalAlignment="Stretch"
+                                                      VerticalAlignment="Stretch" />
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </StackPanel>
+                            <TextBlock x:Name="TextLabel"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       Width="{TemplateBinding Width}"
+                                       TextAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       Text="{TemplateBinding Label}" />
+                        </StackPanel>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -2678,7 +2695,7 @@
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
                                                                        Storyboard.TargetProperty="Opacity">
                                             <EasingDoubleKeyFrame KeyTime="0:0:0.2"
-                                                                  Value="0.7"/>
+                                                                  Value="0.7" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -2761,7 +2778,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="AppBarToggleButton">
                     <Grid x:Name="RootGrid"
-                          Width="100"
                           Background="Transparent">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ApplicationViewStates">
@@ -2892,10 +2908,10 @@
                                   Height="40"
                                   Margin="0,0,0,5"
                                   HorizontalAlignment="Center">
-                                <Ellipse x:Name="Ellipse" 
+                                <Ellipse x:Name="Ellipse"
                                          Width="40"
                                          Height="40"
-                                         Fill="Transparent"/>
+                                         Fill="Transparent" />
                                 <ContentPresenter x:Name="Content"
                                                   Content="{TemplateBinding Icon}"
                                                   Foreground="{TemplateBinding Foreground}"
