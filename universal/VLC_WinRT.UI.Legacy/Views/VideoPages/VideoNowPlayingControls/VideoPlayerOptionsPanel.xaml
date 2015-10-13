@@ -10,8 +10,8 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
 
     <Border x:Name="RootGrid"
-          Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
-          Padding="{StaticResource FrameMarginHorizontal}">
+            Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+            Padding="{StaticResource FrameMarginHorizontal}">
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
             <Grid>
                 <Grid.RowDefinitions>
