@@ -191,7 +191,8 @@ namespace VLC_WinRT.Views.VideoPages
             {
                 if (e.Position.X < (Window.Current.Bounds.Width / 2))
                 {
-                    currentGestureActionType = GestureActionType.Brightness;
+                    //currentGestureActionType = GestureActionType.Brightness; As we don't have brightness API access yet
+                    currentGestureActionType = GestureActionType.Volume; // brightness = volume for the moment
                 }
                 else if (e.Position.X > (Window.Current.Bounds.Width / 2))
                 {
