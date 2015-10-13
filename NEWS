@@ -1,3 +1,14 @@
+Changes between 1.8.1 and 1.8.2
+------------------------------
+Release: 12 October 2015
+
+Application:
+ * Add "Force landscape orientation" setting
+ * The feedback system now gets the firmware of the device
+
+Bugfixes:
+ * Prevent wrong animation on video player swapchainr after playing music
+
 Changes between 1.8.0 and 1.8.1
 -------------------------------
 Release: 08 October 2015
