@@ -271,6 +271,11 @@ namespace VLC_WinRT.ViewModels.VideoVM
             double bandesNoiresHorizontal = screenWidth - displayedVideoWidth;
 
             var scaleTransform = new ScaleTransform();
+            var verticalScale = Math.Abs(displayedVideoHeight / (displayedVideoHeight - bandesNoiresVertical));
+            var horizontalScale = Math.Abs(displayedVideoWidth / (displayedVideoWidth - bandesNoiresHorizontal));
+
+            scaleTransform.CenterX = screenWidth / 2;
+            scaleTransform.CenterY = screenHeight / 2;
             switch (desiredZoom)
             {
                 case VLCSurfaceZoom.SURFACE_BEST_FIT:
