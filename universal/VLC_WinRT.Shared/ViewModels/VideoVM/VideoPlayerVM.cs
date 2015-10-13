@@ -290,9 +290,18 @@ namespace VLC_WinRT.ViewModels.VideoVM
                 case VLCSurfaceZoom.SURFACE_FIT_VERTICAL:
                     scaleTransform.ScaleX = verticalScale;
                     scaleTransform.ScaleY = verticalScale;
-                    scaleTransform.CenterX = screenWidth / 2;
-                    scaleTransform.CenterY = screenHeight / 2;
-                    App.RootPage.SwapChainPanel.RenderTransform = scaleTransform;
+                    break;
+                case VLCSurfaceZoom.SURFACE_STRETCH:
+                    if (bandesNoiresVertical > 0)
+                    {
+                        scaleTransform.ScaleX = 1;
+                        scaleTransform.ScaleY = verticalScale;
+                    }
+                    else if (bandesNoiresHorizontal > 0)
+                    {
+                        scaleTransform.ScaleX = horizontalScale;
+                        scaleTransform.ScaleY = 1;
+                    }
                     break;
                 //case VLCSurfaceZoom.SURFACE_FILL:
                 //    break;
