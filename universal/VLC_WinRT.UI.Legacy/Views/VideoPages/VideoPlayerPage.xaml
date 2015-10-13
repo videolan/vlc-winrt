@@ -176,19 +176,20 @@
             <Grid>
                 <userControls:SliderControl x:Name="Slider" />
                 <Grid Margin="0,60,0,0"
-                      MaxWidth="600">
+                      MaxWidth="750">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
-                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}"
                                         Grid.Column="0"
                                         Name="LockToggleButton"
                                         IsCompact="True"
                                         VerticalAlignment="Center"
+                                        HorizontalAlignment="Stretch"
                                         Click="LockToggleButton_Click">
                         <AppBarToggleButton.Icon>
                             <FontIcon x:Name="LockToggleIcon"
@@ -199,7 +200,7 @@
                     </AppBarToggleButton>
                     <AppBarButton x:Name="SubtitlesButton"
                                   Grid.Column="1"
-                                  HorizontalAlignment="Center"
+                                  HorizontalAlignment="Stretch"
                                   IsCompact="True"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   VerticalAlignment="Center">
@@ -225,6 +226,7 @@
                                   Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   VerticalAlignment="Center"
+                                  HorizontalAlignment="Stretch"
                                   Command="{Binding PlayOrPauseCommand}"
                                   Foreground="{ThemeResource MainColor}">
                         <AppBarButton.Icon>
@@ -239,6 +241,7 @@
                                   Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   VerticalAlignment="Center"
+                                  HorizontalAlignment="Stretch"
                                   Command="{Binding PlayOrPauseCommand}"
                                   Foreground="{ThemeResource MainColor}">
                         <AppBarButton.Icon>
@@ -247,23 +250,31 @@
                                       FontSize="42" />
                         </AppBarButton.Icon>
                     </AppBarButton>
-                    <AppBarButton  Grid.Column="3"
-                                   Name="MenuButton"
-                                   Icon="More"
-                                   IsCompact="True"
-                                   IsTabStop="False"
-                                   VerticalAlignment="Center"
-                                   Style="{StaticResource AppBarButtonStyleHuge}"
-                                   Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerOptionsPanelVisible}" />
-                    <AppBarButton x:Name="VolumeButton"
+                    <AppBarButton Grid.Column="3"
+                                  Name="MenuButton"
+                                  Icon="More"
+                                  IsCompact="True"
+                                  IsTabStop="False"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Stretch"
+                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerOptionsPanelVisible}" />
+                    <Grid x:Name="VolumeGrid"
+                          Grid.Column="4">
+                        <Slider x:Name="VolumeSlider" 
+                                Value="{Binding Volume, Mode=TwoWay}"
+                                Maximum="100"
+                                Style="{StaticResource VLCSlider}"
+                                Margin="0,9,0,0" />
+                    </Grid>
+                    <AppBarButton x:Name="ZoomButton"
                                   Grid.Column="4"
                                   IsCompact="True"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   VerticalAlignment="Center"
-                                  HorizontalAlignment="Center"
-                                  Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerVolumeSettingsVisible}">
+                                  HorizontalAlignment="Stretch">
                         <AppBarButton.Icon>
-                            <FontIcon Glyph="{StaticResource VolumeSymbol}"
+                            <FontIcon Glyph="{StaticResource ExpandWindow}"
                                       FontFamily="ms-appx:VLC.ttf#W10"
                                       FontSize="24" />
                         </AppBarButton.Icon>
@@ -281,6 +292,11 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="0" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VolumeGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Medium">
@@ -289,6 +305,11 @@
                                                        Storyboard.TargetProperty="Margin">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="24" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VolumeGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
@@ -300,14 +321,14 @@
                                                     Value="48,0" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
-                                                       Storyboard.TargetProperty="Padding">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="24,12" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
                                                        Storyboard.TargetProperty="MaxWidth">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="1500" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VolumeGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>

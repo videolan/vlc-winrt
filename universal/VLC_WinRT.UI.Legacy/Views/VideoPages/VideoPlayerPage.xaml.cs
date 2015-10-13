@@ -176,7 +176,8 @@ namespace VLC_WinRT.Views.VideoPages
             SubtitlesButton.IsEnabled = !isLocked;
             PlayButton.IsEnabled = !isLocked;
             PauseButton.IsEnabled = !isLocked;
-            VolumeButton.IsEnabled = !isLocked;
+            VolumeSlider.IsEnabled = !isLocked;
+            ZoomButton.IsEnabled = !isLocked;
             MenuButton.IsEnabled = !isLocked;
             DisplayProperties.AutoRotationPreferences = (isLocked) ? DisplayInformation.GetForCurrentView().CurrentOrientation : DisplayOrientations.None;
 
