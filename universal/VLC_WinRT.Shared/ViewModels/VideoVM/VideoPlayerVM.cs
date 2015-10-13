@@ -280,20 +280,14 @@ namespace VLC_WinRT.ViewModels.VideoVM
             {
                 case VLCSurfaceZoom.SURFACE_BEST_FIT:
                     scaleTransform.ScaleX = scaleTransform.ScaleY = 1;
-                    App.RootPage.SwapChainPanel.RenderTransform = scaleTransform;
                     break;
                 case VLCSurfaceZoom.SURFACE_FIT_HORIZONTAL:
-                    var horizontalScale = displayedVideoWidth / (displayedVideoWidth - bandesNoiresHorizontal);
-
                     scaleTransform.ScaleX = horizontalScale;
                     scaleTransform.ScaleY = horizontalScale;
                     scaleTransform.CenterX = screenWidth / 2;
                     scaleTransform.CenterY = screenHeight / 2;
-                    App.RootPage.SwapChainPanel.RenderTransform = scaleTransform;
                     break;
                 case VLCSurfaceZoom.SURFACE_FIT_VERTICAL:
-                    var verticalScale = displayedVideoHeight / (displayedVideoHeight - bandesNoiresVertical);
-
                     scaleTransform.ScaleX = verticalScale;
                     scaleTransform.ScaleY = verticalScale;
                     scaleTransform.CenterX = screenWidth / 2;
@@ -313,6 +307,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
                 default:
                     break;
             }
+            App.RootPage.SwapChainPanel.RenderTransform = scaleTransform;
         }
         #endregion
     }
