@@ -123,6 +123,8 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoVm.IsVideoPlayerOptionsPanelVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = !Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible;
         });
+
+        public SurfaceZoomToggleCommand SurfaceZoomToggleCommand { get; } = new SurfaceZoomToggleCommand();
         #endregion
 
         #region public fields

@@ -269,14 +269,17 @@
                     </Grid>
                     <AppBarButton x:Name="ZoomButton"
                                   Grid.Column="4"
-                                  IsCompact="True"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
-                                  VerticalAlignment="Center"
-                                  HorizontalAlignment="Stretch">
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
+                                  Label="{Binding CurrentSurfaceZoom, Converter={StaticResource VLCSurfaceZoomStringifyConverter}}"
+                                  Command="{Binding SurfaceZoomToggleCommand}"
+                                  Width="100">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource ExpandWindow}"
                                       FontFamily="ms-appx:VLC.ttf#W10"
-                                      FontSize="24" />
+                                      FontSize="27" />
                         </AppBarButton.Icon>
                     </AppBarButton>
                 </Grid>

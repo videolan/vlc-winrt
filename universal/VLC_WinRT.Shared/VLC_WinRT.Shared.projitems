@@ -78,6 +78,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\SetAudioTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\SetSubtitleTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\StopVideoCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\SurfaceZoomToggleCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VLCFileExplorer\GoUpperFolderCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VLCFileExplorer\IStorageItemClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VLCFileExplorer\PlayFolderCommand.cs" />
