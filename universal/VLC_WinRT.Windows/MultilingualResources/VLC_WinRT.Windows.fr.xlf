@@ -6,6 +6,10 @@
     </header>
     <body>
       <group id="Resources">
+        <trans-unit id="Resources\SURFACE_STRETCH" translate="yes" xml:space="preserve">
+          <source>stretch</source>
+          <target state="new">stretch</target>
+        </trans-unit>
         <trans-unit id="Resources\ForceLandscape" translate="yes" xml:space="preserve">
           <source>Force landscape</source>
           <target state="translated">Forcer paysage</target>

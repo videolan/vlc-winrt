@@ -157,6 +157,7 @@ namespace VLC_WinRT.Utils
         public static string SURFACE_FIT_VERTICAL => _resourcesLoader.GetString(nameof(SURFACE_FIT_VERTICAL));
         public static string SURFACE_FIT_HORIZONTAL => _resourcesLoader.GetString(nameof(SURFACE_FIT_HORIZONTAL));
         public static string SURFACE_BEST_FIT => _resourcesLoader.GetString(nameof(SURFACE_BEST_FIT));
+        public static string SURFACE_STRETCH => _resourcesLoader.GetString(nameof(SURFACE_STRETCH));
 
 
         // PLAYBACK

@@ -693,4 +693,7 @@
   <data name="ForceLandscape" xml:space="preserve">
     <value>Force landscape</value>
   </data>
+  <data name="SURFACE_STRETCH" xml:space="preserve">
+    <value>stretch</value>
+  </data>
 </root>

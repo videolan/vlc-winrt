@@ -22,6 +22,8 @@ namespace VLC_WinRT.Converters
                         return Strings.SURFACE_FIT_HORIZONTAL.ToUpperFirstChar();
                     case VLCSurfaceZoom.SURFACE_FIT_VERTICAL:
                         return Strings.SURFACE_FIT_VERTICAL.ToUpperFirstChar();
+                    case VLCSurfaceZoom.SURFACE_STRETCH:
+                        return Strings.SURFACE_STRETCH.ToUpperFirstChar();
                     default:
                         throw new ArgumentOutOfRangeException(nameof(value), value, null);
                 }

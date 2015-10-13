@@ -137,7 +137,8 @@ namespace VLC_WinRT.ViewModels.VideoVM
                     {
                         VLCSurfaceZoom.SURFACE_BEST_FIT,
                         VLCSurfaceZoom.SURFACE_FIT_HORIZONTAL,
-                        VLCSurfaceZoom.SURFACE_FIT_VERTICAL
+                        VLCSurfaceZoom.SURFACE_FIT_VERTICAL,
+                        VLCSurfaceZoom.SURFACE_STRETCH
                     };
                 }
                 return zooms;
