@@ -195,19 +195,19 @@
                             <FontIcon x:Name="LockToggleIcon"
                                       Glyph="{StaticResource UnlockedSymbol}"
                                       FontFamily="ms-appx:VLC.ttf#W10"
-                                      FontSize="22" />
+                                      FontSize="27" />
                         </AppBarToggleButton.Icon>
                     </AppBarToggleButton>
                     <AppBarButton x:Name="SubtitlesButton"
                                   Grid.Column="1"
                                   HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
                                   IsCompact="True"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
-                                  VerticalAlignment="Center">
+                                  Style="{StaticResource AppBarButtonStyleHuge}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource ConversationSymbol}"
                                       FontFamily="ms-appx:VLC.ttf#W10"
-                                      FontSize="22" />
+                                      FontSize="27" />
                         </AppBarButton.Icon>
                         <AppBarButton.Flyout>
                             <MenuFlyout>
@@ -225,8 +225,8 @@
                                   IsCompact="True"
                                   Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
-                                  VerticalAlignment="Center"
                                   HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
                                   Command="{Binding PlayOrPauseCommand}"
                                   Foreground="{ThemeResource MainColor}">
                         <AppBarButton.Icon>
@@ -240,8 +240,8 @@
                                   IsCompact="True"
                                   Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
-                                  VerticalAlignment="Center"
                                   HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
                                   Command="{Binding PlayOrPauseCommand}"
                                   Foreground="{ThemeResource MainColor}">
                         <AppBarButton.Icon>
@@ -255,8 +255,8 @@
                                   Icon="More"
                                   IsCompact="True"
                                   IsTabStop="False"
-                                  VerticalAlignment="Center"
                                   HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerOptionsPanelVisible}" />
                     <Grid x:Name="VolumeGrid"
@@ -300,6 +300,11 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ZoomButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Medium">
@@ -313,6 +318,11 @@
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ZoomButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
@@ -332,6 +342,11 @@
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ZoomButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
