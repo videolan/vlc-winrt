@@ -104,7 +104,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <userControls:BufferingControl HorizontalAlignment="Right" />
         <Grid x:Name="HeaderGrid"
               Height="50"
               Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
@@ -135,8 +134,6 @@
                        Text="{Binding CurrentVideo.Name}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis" />
-            <userControls:BufferingControl x:Name="BufferingControl"
-                                           Grid.Column="5" />
         </Grid>
 
         <Grid Grid.Row="1">
@@ -151,6 +148,7 @@
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center" />
             </Border>
+            <userControls:BufferingControl HorizontalAlignment="Right" />
             <!-- We will put there the control for swype, tap, double tap, etc -->
             <Grid x:Name="PlaceholderInteractionGrid"
                   Background="Transparent"
