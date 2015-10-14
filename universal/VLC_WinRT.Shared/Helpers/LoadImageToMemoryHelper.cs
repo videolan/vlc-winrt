@@ -42,7 +42,11 @@ namespace VLC_WinRT.Helpers
             }
             if (!fileExists)
             {
-                await MusicLibraryManagement.FetchAlbumCoverOrWaitAsync(item);
+                try
+                {
+                    await MusicLibraryManagement.FetchAlbumCoverOrWaitAsync(item);
+                }
+                catch { }
             }
         }
 

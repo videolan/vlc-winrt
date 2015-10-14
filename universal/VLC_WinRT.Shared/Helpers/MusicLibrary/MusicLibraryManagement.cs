@@ -444,30 +444,51 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         public static async Task PopulateTracks(this AlbumItem album)
         {
-            var tracks = Locator.MusicLibraryVM._trackDatabase.LoadTracksByAlbumId(album.Id).ToObservable();
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            try
             {
-                album.Tracks = tracks;
-            });
+                var tracks = Locator.MusicLibraryVM._trackDatabase.LoadTracksByAlbumId(album.Id).ToObservable();
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    album.Tracks = tracks;
+                });
+            }
+            catch (Exception e)
+            {
+                LogHelper.Log(StringsHelper.ExceptionToString(e));
+            }
         }
 
         public static async Task PopulateAlbums(this ArtistItem artist)
         {
-            var albums = await Locator.MusicLibraryVM._albumDatabase.LoadAlbumsFromId(artist.Id).ToObservableAsync();
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            try
             {
-                artist.Albums = albums;
-            });
+                var albums = await Locator.MusicLibraryVM._albumDatabase.LoadAlbumsFromId(artist.Id).ToObservableAsync();
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    artist.Albums = albums;
+                });
+            }
+            catch (Exception e)
+            {
+                LogHelper.Log(StringsHelper.ExceptionToString(e));
+            }
         }
 
         public static async Task PopulateTracksByAlbum(this ArtistItem artist)
         {
-            var tracks = await Locator.MusicLibraryVM._trackDatabase.LoadTracksByArtistId(artist.Id);
-            var groupedTracks = tracks.GroupBy(x => new Tuple<string, string, int>(x.AlbumName, x.Thumbnail, x.AlbumId));
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            try
             {
-                artist.TracksGroupedByAlbum = groupedTracks;
-            });
+                var tracks = await Locator.MusicLibraryVM._trackDatabase.LoadTracksByArtistId(artist.Id);
+                var groupedTracks = tracks.GroupBy(x => new Tuple<string, string, int>(x.AlbumName, x.Thumbnail, x.AlbumId));
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    artist.TracksGroupedByAlbum = groupedTracks;
+                });
+            }
+            catch (Exception e)
+            {
+                LogHelper.Log(StringsHelper.ExceptionToString(e));
+            }
         }
 
         public static async Task LoadFavoriteRandomAlbums()
