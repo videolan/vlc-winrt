@@ -179,8 +179,19 @@ namespace VLC_WinRT.Views.VideoPages
             VolumeSlider.IsEnabled = !isLocked;
             ZoomButton.IsEnabled = !isLocked;
             MenuButton.IsEnabled = !isLocked;
-            DisplayProperties.AutoRotationPreferences = (isLocked) ? DisplayInformation.GetForCurrentView().CurrentOrientation : DisplayOrientations.None;
 
+            if (Locator.SettingsVM.ForceLandscape)
+            {
+                DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
+            }
+            else if (isLocked)
+            {
+                DisplayInformation.AutoRotationPreferences = DisplayInformation.GetForCurrentView().CurrentOrientation;
+            }
+            else
+            {
+                DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
+            }
         }
 
         private void PlaceholderInteractionGrid_OnManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
