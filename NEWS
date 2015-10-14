@@ -3,7 +3,7 @@ Changes between 1.8.3 and 1.8.4
 Release: 14 October 2015
 
 Application:
- * Tab to hide the Controls grid in the video player
+ * Tap to hide the Controls grid in the video player
  * Hide cursor after 4 seconds, not 3
 
 Bugfixes:
