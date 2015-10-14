@@ -87,8 +87,17 @@ namespace VLC_WinRT.Services.RunTime
             if (App.OpenFilePickerReason != OpenFilePickerReason.Null) return;
             isMouseVisible = false;
 #if WINDOWS_APP
-            if(Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage)
-                Window.Current.CoreWindow.PointerCursor = null;
+            if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage)
+            {
+                var pos = GetPointerPosition();
+                if (pos.Y > AppViewHelper.TitleBarHeight &&
+                    pos.Y < Window.Current.Bounds.Height &&
+                    pos.X > 0 &&
+                    pos.X < Window.Current.Bounds.Width)
+                {
+                    Window.Current.CoreWindow.PointerCursor = null;
+                }
+            }
 #else
 #endif
             _cursorTimer.Stop();
