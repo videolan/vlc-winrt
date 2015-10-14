@@ -150,7 +150,7 @@ namespace VLC_WinRT.Views.VideoPages
 
         private void PlaceholderInteractionGrid_OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            if (e.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Touch && !isVisible)
+            if (e.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Touch)
                 Locator.MediaPlaybackViewModel.MouseService.Content_Tapped(sender, e);
         }
 
