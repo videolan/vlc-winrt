@@ -1,3 +1,16 @@
+Changes between 1.8.3 and 1.8.4
+-------------------------------
+Release: 14 October 2015
+
+Application:
+ * Tab to hide the Controls grid in the video player
+ * Hide cursor after 4 seconds, not 3
+
+Bugfixes:
+ * The cursor wasn't visible in some cases when playing a video
+ * Lock/Unlock of video player let the app be in wrong orientation
+ * Several green screens are fixed
+
 Changes between 1.8.2 and 1.8.3
 -------------------------------
 Release: 13 October 2015
