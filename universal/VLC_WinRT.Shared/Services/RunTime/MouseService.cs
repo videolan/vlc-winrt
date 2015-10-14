@@ -26,7 +26,7 @@ namespace VLC_WinRT.Services.RunTime
         private DispatcherTimer _cursorTimer;
         private const int CursorHiddenAfterSeconds = 4;
         private bool _shouldMouseBeHidden = false;
-        private bool isMouseVisible=true;
+        private bool isMouseVisible = true;
 
         public delegate void MouseHidden();
 
@@ -83,7 +83,8 @@ namespace VLC_WinRT.Services.RunTime
         void LostInput()
         {
             if (Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage &&
-                Locator.NavigationService.CurrentPage != VLCPage.MusicPlayerPage) return;
+                Locator.NavigationService.CurrentPage != VLCPage.MusicPlayerPage)
+                return;
             if (App.OpenFilePickerReason != OpenFilePickerReason.Null) return;
             isMouseVisible = false;
 #if WINDOWS_APP
