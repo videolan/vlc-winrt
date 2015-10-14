@@ -24,7 +24,7 @@ namespace VLC_WinRT.Services.RunTime
 #else
 #endif
         private DispatcherTimer _cursorTimer;
-        private const int CursorHiddenAfterSeconds = 3;
+        private const int CursorHiddenAfterSeconds = 4;
         private bool _shouldMouseBeHidden = false;
         private bool isMouseVisible=true;
 
