@@ -147,6 +147,7 @@ namespace VLC_WinRT
             {
                 var protocolArgs = (ProtocolActivatedEventArgs)args;
                 var uri = protocolArgs.Uri;
+                if (string.IsNullOrEmpty(uri.Query)) return;
                 WwwFormUrlDecoder decoder = new WwwFormUrlDecoder(uri.Query);
 
                 switch (uri.Host)
