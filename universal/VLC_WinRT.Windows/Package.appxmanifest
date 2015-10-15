@@ -105,7 +105,9 @@
           </BackgroundTasks>
         </Extension>
         <Extension Category="windows.protocol">
-          <Protocol Name="vlc" />
+          <Protocol Name="vlc" m2:DesiredView="useMore">
+            <DisplayName>VLC</DisplayName>
+          </Protocol>
         </Extension>
       </Extensions>
     </Application>
