@@ -14,6 +14,7 @@ using Windows.UI.Xaml;
 using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels;
 using Windows.UI.Core;
+using VLC_WinRT.Helpers;
 
 namespace VLC_WinRT.Services.RunTime
 {
