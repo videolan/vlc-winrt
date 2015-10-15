@@ -165,7 +165,7 @@ namespace VLC_WinRT.ViewModels
                 Debug.WriteLine("new volume set: " + value);
                 if (value > 0 && value <= 100)
                 {
-                    _mediaService.SetVolume(value);
+                    _mediaService?.SetVolume(value);
                     SetProperty(ref _volume, value);
                 }
             }
