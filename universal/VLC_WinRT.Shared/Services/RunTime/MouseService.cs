@@ -70,15 +70,22 @@ namespace VLC_WinRT.Services.RunTime
         void InputDetected()
         {
             if (!_shouldMouseBeHidden) return;
-            _cursorTimer.Stop();
-            _cursorTimer.Start();
-            if (isMouseVisible) return;
-            isMouseVisible = true;
+            var pos = GetPointerPosition();
+            if (pos.Y > AppViewHelper.TitleBarHeight &&
+                pos.Y < Window.Current.Bounds.Height &&
+                pos.X > 0 &&
+                pos.X < Window.Current.Bounds.Width)
+            {
+                _cursorTimer.Stop();
+                _cursorTimer.Start();
+                if (isMouseVisible) return;
+                isMouseVisible = true;
 #if WINDOWS_APP
-            Window.Current.CoreWindow.PointerCursor = _oldCursor;
+                Window.Current.CoreWindow.PointerCursor = _oldCursor;
 #else
 #endif
-            OnMoved?.Invoke();
+                OnMoved?.Invoke();
+            }
         }
 
         void LostInput()
