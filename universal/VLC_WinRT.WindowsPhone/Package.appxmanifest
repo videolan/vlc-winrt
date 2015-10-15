@@ -105,6 +105,11 @@
             <Task Type="audio" />
           </BackgroundTasks>
         </Extension>
+        <Extension Category="windows.protocol">
+          <Protocol Name="vlc">
+            <DisplayName>VLC</DisplayName>
+          </Protocol>
+        </Extension>
       </Extensions>
     </Application>
   </Applications>
