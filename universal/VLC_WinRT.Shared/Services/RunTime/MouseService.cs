@@ -70,22 +70,18 @@ namespace VLC_WinRT.Services.RunTime
         void InputDetected()
         {
             if (!_shouldMouseBeHidden) return;
-            var pos = GetPointerPosition();
-            if (pos.Y > AppViewHelper.TitleBarHeight &&
-                pos.Y < Window.Current.Bounds.Height &&
-                pos.X > 0 &&
-                pos.X < Window.Current.Bounds.Width)
-            {
-                _cursorTimer.Stop();
-                _cursorTimer.Start();
-                if (isMouseVisible) return;
-                isMouseVisible = true;
+            if (!IsCursorInWindow()) return;
+
+            _cursorTimer.Stop();
+            _cursorTimer.Start();
+
+            if (isMouseVisible) return;
+            isMouseVisible = true;
 #if WINDOWS_APP
                 Window.Current.CoreWindow.PointerCursor = _oldCursor;
 #else
 #endif
-                OnMoved?.Invoke();
-            }
+            OnMoved?.Invoke();
         }
 
         void LostInput()
@@ -98,11 +94,7 @@ namespace VLC_WinRT.Services.RunTime
 #if WINDOWS_APP
             if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage)
             {
-                var pos = GetPointerPosition();
-                if (pos.Y > AppViewHelper.TitleBarHeight &&
-                    pos.Y < Window.Current.Bounds.Height &&
-                    pos.X > 0 &&
-                    pos.X < Window.Current.Bounds.Width)
+                if (IsCursorInWindow())
                 {
                     Window.Current.CoreWindow.PointerCursor = null;
                 }
@@ -155,6 +147,18 @@ namespace VLC_WinRT.Services.RunTime
 
             Rect bounds = currentWindow.Bounds;
             return new Point(point.X - bounds.X, point.Y - bounds.Y);
+        }
+
+        public static bool IsCursorInWindow()
+        {
+            var pos = GetPointerPosition();
+            if (pos == null) return false;
+
+
+            return pos.Y > AppViewHelper.TitleBarHeight &&
+                   pos.Y < Window.Current.Bounds.Height &&
+                   pos.X > 0 &&
+                   pos.X < Window.Current.Bounds.Width;
         }
     }
 }
