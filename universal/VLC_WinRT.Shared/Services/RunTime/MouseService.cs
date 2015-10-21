@@ -26,7 +26,6 @@ namespace VLC_WinRT.Services.RunTime
 #endif
         private DispatcherTimer _cursorTimer;
         private const int CursorHiddenAfterSeconds = 4;
-        private bool _shouldMouseBeHidden = false;
         private bool isMouseVisible = true;
 
         public delegate void MouseHidden();
@@ -69,7 +68,6 @@ namespace VLC_WinRT.Services.RunTime
 
         void InputDetected()
         {
-            if (!_shouldMouseBeHidden) return;
             if (!IsCursorInWindow()) return;
 
             _cursorTimer.Stop();
@@ -114,7 +112,6 @@ namespace VLC_WinRT.Services.RunTime
         {
             lock (this)
             {
-                _shouldMouseBeHidden = true;
                 _cursorTimer.Start();
             }
         }
@@ -123,7 +120,6 @@ namespace VLC_WinRT.Services.RunTime
         {
             lock (this)
             {
-                _shouldMouseBeHidden = false;
                 _cursorTimer.Stop();
 #if WINDOWS_APP
                 Window.Current.CoreWindow.PointerCursor = _oldCursor;
