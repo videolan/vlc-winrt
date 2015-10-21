@@ -61,9 +61,7 @@ namespace VLC_WinRT.ViewModels
 
         private int _currentSubtitle;
         private int _currentAudioTrack;
-
-        private readonly DisplayRequest _displayAlwaysOnRequest = new DisplayRequest();
-
+        
         private int _volume = 100;
         private int _speedRate;
         private long _audioDelay;
@@ -134,14 +132,6 @@ namespace VLC_WinRT.ViewModels
             {
                 if (value != _isPlaying)
                 {
-                    if (value)
-                    {
-                        OnPlaybackStarting();
-                    }
-                    else
-                    {
-                        OnPlaybackStopped();
-                    }
                     SetProperty(ref _isPlaying, value);
                 }
                 OnPropertyChanged("PlayingType");
@@ -469,24 +459,7 @@ namespace VLC_WinRT.ViewModels
             Locator.VideoVm.CurrentVideo = videoVm;
             await PlaylistHelper.Play(videoVm);
         }
-
-        private void privateDisplayCall(bool shouldActivate)
-        {
-            if (_displayAlwaysOnRequest == null) return;
-            try
-            {
-                if (shouldActivate)
-                {
-                    _displayAlwaysOnRequest.RequestActive();
-                }
-                else
-                {
-                    _displayAlwaysOnRequest.RequestRelease();
-                }
-            }
-            catch { }
-        }
-
+        
         private async void UpdateTime(Int64 time)
         {
             await UpdateTimeFromUIThread();
@@ -530,28 +503,7 @@ namespace VLC_WinRT.ViewModels
                 TrackCollection.IsRunning = false;
             });
         }
-
-        private void OnPlaybackStarting()
-        {
-            if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage ||
-                Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage)
-            {
-                privateDisplayCall(true);
-                // video playback only
-                _mouseService.HideMouse();
-            }
-        }
-
-        private void OnPlaybackStopped()
-        {
-            if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage ||
-                Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage)
-            {
-                privateDisplayCall(false);
-                _mouseService.RestoreMouse();
-            }
-        }
-
+        
         public async void OnLengthChanged(Int64 length)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
