@@ -1,3 +1,18 @@
+Changes between 1.8.4 and 1.8.5
+-------------------------------
+Release: 21 October 2015
+
+Bugfixes:
+ * Several cursors bugs when playing a video
+ * Some crashes at launch are fixed
+
+Application:
+ * VLC Protocol enabled for both WP and W8.1/10 projects
+
+Core:
+ * Updated libav
+ * Correct map/unmap of textures in the Direct3D Vout
+
 Changes between 1.8.3 and 1.8.4
 -------------------------------
 Release: 14 October 2015
