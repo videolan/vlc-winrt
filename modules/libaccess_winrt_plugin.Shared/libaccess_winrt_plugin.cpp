@@ -110,7 +110,6 @@ Platform::String^
 GetString(const char* in)
 {
     std::string sin( in );
-    replaceAll( sin, "\\\\", "\\" );
     std::unique_ptr<wchar_t, void(*)(void*)> str( ToWide(sin.c_str()), free );
     return ref new Platform::String(str.get());
 }
