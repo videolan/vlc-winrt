@@ -158,6 +158,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
             // If we navigate back and forth to the main page, we also don't want to 
             // re-mark the task as completed.
             Locator.MediaPlaybackViewModel.ContinueIndexing = new TaskCompletionSource<bool>();
+            DisplayHelper.PrivateDisplayCall(true);
             Locator.Slideshow.IsPaused = true;
             if (Locator.SettingsVM.ForceLandscape)
             {
@@ -177,6 +178,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
             Locator.Slideshow.IsPaused = false;
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
+            DisplayHelper.PrivateDisplayCall(false);
         }
 
         public async Task<bool> TryUseSubtitleFromFolder()
