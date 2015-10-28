@@ -17,11 +17,13 @@ namespace VLC_WinRT.Views.MainPages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            Locator.FileExplorerVM.OnNavigatedTo();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
+            Locator.FileExplorerVM.Dispose();
         }
 
 
