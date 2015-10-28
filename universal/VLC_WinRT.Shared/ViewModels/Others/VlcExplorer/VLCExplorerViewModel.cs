@@ -35,12 +35,12 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
         #endregion
 
         #region private fields
-        private ObservableCollection<FileExplorerViewModel> _storageVMs = new ObservableCollection<FileExplorerViewModel>();
+        private ObservableCollection<FileExplorerViewModel> _storageVMs;
         #endregion
 
         #region public props
 
-        public RemovableDeviceClickedCommand RemovableDeviceClicked { get; } =new RemovableDeviceClickedCommand();
+        public RemovableDeviceClickedCommand RemovableDeviceClicked { get; } = new RemovableDeviceClickedCommand();
 
         public FileExplorerViewModel CurrentStorageVM
         {
@@ -64,9 +64,9 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             get { return _storageVMs.GroupBy(x => x.Type); }
         } 
         #endregion
-
-        public VLCExplorerViewModel()
+        public void OnNavigatedTo()
         {
+            _storageVMs = new ObservableCollection<FileExplorerViewModel>();
             var musicLibrary = new FileExplorerViewModel(KnownFolders.MusicLibrary, RootFolderType.Library);
             StorageVMs.Add(musicLibrary);
             var videoLibrary = new FileExplorerViewModel(KnownFolders.VideosLibrary, RootFolderType.Library);
@@ -82,6 +82,21 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             Task.Run(() => InitializeSDCard());
 #endif
             OnPropertyChanged(nameof(StorageVMsGrouped));
+        }
+
+        public void Dispose()
+        {
+#if WINDOWS_PHONE_APP
+#else
+            _deviceService.ExternalDeviceAdded -= DeviceAdded;
+            _deviceService.ExternalDeviceRemoved -= DeviceRemoved;
+            _deviceService.Dispose();
+            _deviceService = null;
+#endif
+            _currentStorageVM = null;
+            _storageVMs.Clear();
+            _storageVMs = null;
+            GC.Collect();
         }
 
         private async Task InitializeSDCard()
@@ -166,14 +181,5 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             });
         }
 #endif
-
-        public void Dispose()
-        {
-#if WINDOWS_APP
-            _deviceService.ExternalDeviceAdded -= DeviceAdded;
-            _deviceService.ExternalDeviceRemoved -= DeviceRemoved;
-            _deviceService = null;
-#endif
-        }
     }
 }
