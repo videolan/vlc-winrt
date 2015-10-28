@@ -36,39 +36,38 @@ namespace VLC_WinRT.Utils
             // Register View Models
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
-                builder.RegisterType<DesignTime.ThumbnailService>().As<IThumbnailService>().SingleInstance();
+                builder.RegisterType<DesignTime.ThumbnailService>().As<IThumbnailService>();
             }
             else
             {
-                // TODO: These should not be SingleInstance
-                builder.RegisterType<MainVM>().SingleInstance();
-                builder.RegisterType<MediaPlaybackViewModel>().SingleInstance();
-                builder.RegisterType<MusicLibraryVM>().SingleInstance();
-                builder.RegisterType<MusicPlayerVM>().SingleInstance();
-                builder.RegisterType<VideoLibraryVM>().SingleInstance();
-                builder.RegisterType<VideoPlayerVM>().SingleInstance();
-                builder.RegisterType<SettingsViewModel>().SingleInstance();
-                builder.RegisterType<SearchViewModel>().SingleInstance();
+                builder.RegisterType<MainVM>();
+                builder.RegisterType<MediaPlaybackViewModel>();
+                builder.RegisterType<MusicLibraryVM>();
+                builder.RegisterType<MusicPlayerVM>();
+                builder.RegisterType<VideoLibraryVM>();
+                builder.RegisterType<VideoPlayerVM>();
+                builder.RegisterType<SettingsViewModel>();
+                builder.RegisterType<SearchViewModel>();
 
-                builder.RegisterType<VLCExplorerViewModel>().SingleInstance();
+                builder.RegisterType<VLCExplorerViewModel>();
 
                 // Register Services
-                builder.RegisterType<MetroSlideshow>().SingleInstance();
-                builder.RegisterType<VLCService>().SingleInstance();
-                builder.RegisterType<MFService>().SingleInstance();
+                builder.RegisterType<MetroSlideshow>();
+                builder.RegisterType<VLCService>();
+                builder.RegisterType<MFService>();
 #if WINDOWS_PHONE_APP
-                builder.RegisterType<BGPlayerService>().SingleInstance();
+                builder.RegisterType<BGPlayerService>();
 #endif
-                builder.RegisterType<NavigationService>().SingleInstance();
-                builder.RegisterType<MusicMetaService>().SingleInstance();
-                builder.RegisterType<KeyboardListenerService>().SingleInstance();
-                builder.RegisterType<NetworkListenerService>().SingleInstance();
+                builder.RegisterType<NavigationService>();
+                builder.RegisterType<MusicMetaService>();
+                builder.RegisterType<KeyboardListenerService>();
+                builder.RegisterType<NetworkListenerService>();
 
-                builder.RegisterType<MouseService>().SingleInstance();
+                builder.RegisterType<MouseService>();
 
                 builder.RegisterType<ExternalDeviceService>().SingleInstance();
-                builder.RegisterType<SpecialThanksViewModel>().SingleInstance();
-                builder.RegisterType<ThumbnailService>().As<IThumbnailService>().SingleInstance();
+                builder.RegisterType<SpecialThanksViewModel>();
+                builder.RegisterType<ThumbnailService>().As<IThumbnailService>();
             }
 
             return builder.Build();
