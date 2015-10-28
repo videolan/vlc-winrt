@@ -63,7 +63,6 @@ namespace VLC_WinRT
 
         public static SplitShell SplitShell => RootPage.SplitShell;
 
-        public static MusicMetaService MusicMetaService => Container.Resolve<MusicMetaService>();
 
         /// <summary>
         ///     Invoked when the application is launched normally by the end user.  Other entry points
@@ -216,7 +215,7 @@ namespace VLC_WinRT
                                 var file = continueArgs.Files.First();
                                 if (file == null) return;
                                 var byteArray = await ConvertImage.ConvertImagetoByte(file);
-                                await App.MusicMetaService.SaveAlbumImageAsync(SelectedAlbumItem, byteArray);
+                                await Locator.MusicMetaService.SaveAlbumImageAsync(SelectedAlbumItem, byteArray);
                                 await Locator.MusicLibraryVM._albumDatabase.Update(SelectedAlbumItem);
                                 SelectedAlbumItem = null;
                                 break;

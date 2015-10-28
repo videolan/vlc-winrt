@@ -10,6 +10,7 @@
 using Windows.UI.Xaml.Controls;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Utils;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Commands.MusicLibrary
 {
@@ -26,7 +27,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
                     album = args.ClickedItem as AlbumItem;
             }
 
-            await App.MusicMetaService.GetAlbumCover(album);
+            await Locator.MusicMetaService.GetAlbumCover(album);
         }
     }
 }

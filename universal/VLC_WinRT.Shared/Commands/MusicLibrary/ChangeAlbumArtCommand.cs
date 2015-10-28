@@ -49,7 +49,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
             var file = await openPicker.PickSingleFileAsync();
             if (file == null) return;
             var byteArray = await ConvertImage.ConvertImagetoByte(file);
-            await App.MusicMetaService.SaveAlbumImageAsync(album, byteArray);
+            await Locator.MusicMetaService.SaveAlbumImageAsync(album, byteArray);
             await Locator.MusicLibraryVM._albumDatabase.Update(album);
 #endif
         }

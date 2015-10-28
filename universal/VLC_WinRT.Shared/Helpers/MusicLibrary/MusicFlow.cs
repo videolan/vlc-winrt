@@ -76,7 +76,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             //#else 
             return null;
             //#endif
-            //            var artists = await App.MusicMetaService.GetTopArtistGenre(currentArtist.Genre);
+            //            var artists = await Locator.MusicMetaService.GetTopArtistGenre(currentArtist.Genre);
             //            if (artists == null || !artists.Any()) return null;
             //            var artistsInCollection = InCollection(artists.Select(x => x.Name).ToList());
             //            return artistsInCollection;
@@ -84,7 +84,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         public static async Task<List<ArtistItem>> GetFollowingArtistViaSimilarity(ArtistItem currentArtist)
         {
-            await App.MusicMetaService.GetSimilarArtists(currentArtist);
+            await Locator.MusicMetaService.GetSimilarArtists(currentArtist);
             if (currentArtist.OnlineRelatedArtists == null || !currentArtist.OnlineRelatedArtists.Any())
                 return null; // no more similar artists
             var artistsInCollection = InCollection(currentArtist.OnlineRelatedArtists.Select(x => x.Name).ToList());
@@ -93,7 +93,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         public static async Task<List<ArtistItem>> GetPopularArtistFromGenre(string genre)
         {
-            var popularArtists = await App.MusicMetaService.GetTopArtistGenre(genre);
+            var popularArtists = await Locator.MusicMetaService.GetTopArtistGenre(genre);
             var artistsInCollection = InCollection(popularArtists.Select(x=>x.Name).ToList());
             return artistsInCollection;
         }

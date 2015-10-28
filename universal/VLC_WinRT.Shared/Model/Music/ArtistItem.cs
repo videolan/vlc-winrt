@@ -10,6 +10,7 @@ using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
 using VLC_WinRT.Utils;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Model.Music
 {
@@ -105,7 +106,7 @@ namespace VLC_WinRT.Model.Music
             try
             {
                 if (MemoryUsageHelper.PercentMemoryUsed() > MemoryUsageHelper.MaxRamForResourceIntensiveTasks) return;
-                await App.MusicMetaService.GetArtistPicture(this);
+                await Locator.MusicMetaService.GetArtistPicture(this);
             }
             catch (Exception)
             {
@@ -156,7 +157,7 @@ namespace VLC_WinRT.Model.Music
                 }
                 if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
                     return "Please verify your internet connection";
-                Task.Run(async () => await App.MusicMetaService.GetArtistBiography(this));
+                Task.Run(async () => await Locator.MusicMetaService.GetArtistBiography(this));
                 return null;
             }
             set { SetProperty(ref _biography, value); }
@@ -170,7 +171,7 @@ namespace VLC_WinRT.Model.Music
                 if (_onlinePopularAlbumItems != null)
                     return _onlinePopularAlbumItems;
                 if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                    Task.Run(() => App.MusicMetaService.GetPopularAlbums(this));
+                    Task.Run(() => Locator.MusicMetaService.GetPopularAlbums(this));
                 return null;
             }
             set { SetProperty(ref _onlinePopularAlbumItems, value); }
@@ -184,7 +185,7 @@ namespace VLC_WinRT.Model.Music
                 if (_onlineRelatedArtists != null)
                     return _onlineRelatedArtists;
                 if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                    Task.Run(() => App.MusicMetaService.GetSimilarArtists(this));
+                    Task.Run(() => Locator.MusicMetaService.GetSimilarArtists(this));
                 return null;
             }
             set { SetProperty(ref _onlineRelatedArtists, value); }
@@ -212,7 +213,7 @@ namespace VLC_WinRT.Model.Music
                 {
                     IsUpcomingShowsLoading = true;
                     _isUpcomingShowsItemsLoaded = true;
-                    Task.Run(() => App.MusicMetaService.GetArtistEvents(this));
+                    Task.Run(() => Locator.MusicMetaService.GetArtistEvents(this));
                 }
                 return _upcomingShowItems;
             }

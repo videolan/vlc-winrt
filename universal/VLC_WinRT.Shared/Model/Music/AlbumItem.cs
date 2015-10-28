@@ -175,7 +175,7 @@ namespace VLC_WinRT.Model.Music
                 if (IsPictureLoaded)
                     return;
                 Debug.WriteLine("Searching online cover for " + Name);
-                await App.MusicMetaService.GetAlbumCover(this);
+                await Locator.MusicMetaService.GetAlbumCover(this);
             }
             catch (Exception)
             {
