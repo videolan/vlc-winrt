@@ -130,7 +130,7 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
                        FontSize="20"
-                       DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
+                       DataContext="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm}"
                        Text="{Binding CurrentVideo.Name}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis" />
@@ -212,9 +212,9 @@
                         <AppBarButton.Flyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=AudioTracks}"
-                                                Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerAudioTracksSettingsVisible}" />
+                                                Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerAudioTracksSettingsVisible}" />
                                 <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Subtitles}"
-                                                Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerSubtitlesSettingsVisible}" />
+                                                Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerSubtitlesSettingsVisible}" />
                                 <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OpenSubtitle}"
                                                 Command="{Binding OpenSubtitleCommand}" />
                             </MenuFlyout>
@@ -258,7 +258,7 @@
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Stretch"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
-                                  Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerOptionsPanelVisible}" />
+                                  Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerOptionsPanelVisible}" />
                     <Grid x:Name="VolumeGrid"
                           Grid.Column="4">
                         <Slider x:Name="VolumeSlider" 
@@ -272,7 +272,7 @@
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Stretch"
-                                  DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
+                                  DataContext="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm}"
                                   Label="{Binding CurrentSurfaceZoom, Converter={StaticResource VLCSurfaceZoomStringifyConverter}}"
                                   Command="{Binding SurfaceZoomToggleCommand}"
                                   Width="100">

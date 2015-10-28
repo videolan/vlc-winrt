@@ -456,7 +456,7 @@ namespace VLC_WinRT.ViewModels
             await videoVm.Initialize(file);
             if (token != null)
                 videoVm.Token = token;
-            Locator.VideoVm.CurrentVideo = videoVm;
+            Locator.VideoPlayerVm.CurrentVideo = videoVm;
             await PlaylistHelper.Play(videoVm);
         }
         
@@ -575,7 +575,7 @@ namespace VLC_WinRT.ViewModels
                 });
                 var video = (VideoItem)media;
                 await Locator.MediaPlaybackViewModel.InitializePlayback(video, autoPlay);
-                await Locator.VideoVm.TryUseSubtitleFromFolder();
+                await Locator.VideoPlayerVm.TryUseSubtitleFromFolder();
 
                 if (video.TimeWatched != TimeSpan.FromSeconds(0))
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.Time = (Int64)video.TimeWatched.TotalMilliseconds);
@@ -648,7 +648,7 @@ namespace VLC_WinRT.ViewModels
                 UseVlcLib = true;
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    Locator.VideoVm.CurrentVideo = null;
+                    Locator.VideoPlayerVm.CurrentVideo = null;
                     Locator.MediaPlaybackViewModel.PlayingType = PlayingType.Video;
                     IsStream = true;
                 });
@@ -804,11 +804,11 @@ namespace VLC_WinRT.ViewModels
                 case PlayingType.Video:
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                     {
-                        if (Locator.VideoVm.CurrentVideo != null)
-                            Locator.VideoVm.CurrentVideo.TimeWatchedSeconds = 0;
+                        if (Locator.VideoPlayerVm.CurrentVideo != null)
+                            Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = 0;
                     });
-                    if (Locator.VideoVm.CurrentVideo != null)
-                        await Locator.VideoLibraryVM.VideoRepository.Update(Locator.VideoVm.CurrentVideo).ConfigureAwait(false);
+                    if (Locator.VideoPlayerVm.CurrentVideo != null)
+                        await Locator.VideoLibraryVM.VideoRepository.Update(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
                     break;
                 case PlayingType.NotPlaying:
                     break;
@@ -864,10 +864,10 @@ namespace VLC_WinRT.ViewModels
 
         public async Task UpdatePosition()
         {
-            if (Locator.VideoVm.CurrentVideo != null)
+            if (Locator.VideoPlayerVm.CurrentVideo != null)
             {
-                Locator.VideoVm.CurrentVideo.TimeWatchedSeconds = (int)((double)Time / 1000); ;
-                await Locator.VideoLibraryVM.VideoRepository.Update(Locator.VideoVm.CurrentVideo).ConfigureAwait(false);
+                Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = (int)((double)Time / 1000); ;
+                await Locator.VideoLibraryVM.VideoRepository.Update(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
             }
         }
 

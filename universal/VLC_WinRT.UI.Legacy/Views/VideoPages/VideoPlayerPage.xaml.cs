@@ -70,7 +70,7 @@ namespace VLC_WinRT.Views.VideoPages
                 VisualStateManager.GoToState(this, "Full", false);
             }
             Locator.MediaPlaybackViewModel._mediaService.SetSizeVideoPlayer((uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualWidth), (uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualHeight));
-            Locator.VideoVm.ChangeSurfaceZoom(Locator.VideoVm.CurrentSurfaceZoom);
+            Locator.VideoPlayerVm.ChangeSurfaceZoom(Locator.VideoPlayerVm.CurrentSurfaceZoom);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -79,7 +79,7 @@ namespace VLC_WinRT.Views.VideoPages
             App.RootPage.SwapChainPanel.Visibility = Visibility.Visible;
             Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
-            Locator.VideoVm.OnNavigatedTo();
+            Locator.VideoPlayerVm.OnNavigatedTo();
             Responsive();
             AppViewHelper.FullscreenStateChanged += FullScreenStateChanged;
             FullScreenStateChanged();
@@ -89,7 +89,7 @@ namespace VLC_WinRT.Views.VideoPages
         {
             base.OnNavigatingFrom(e);
             App.RootPage.SwapChainPanel.Visibility = Visibility.Collapsed;
-            Locator.VideoVm.OnNavigatedFrom();
+            Locator.VideoPlayerVm.OnNavigatedFrom();
             AppViewHelper.FullscreenStateChanged -= FullScreenStateChanged;
             App.SplitShell.TitleBarHeight = AppViewHelper.TitleBarHeight;
         }
@@ -130,10 +130,10 @@ namespace VLC_WinRT.Views.VideoPages
 
         void DisplayOrHide()
         {
-            if (Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible ||
-                Locator.VideoVm.IsVideoPlayerOptionsPanelVisible ||
-                Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible ||
-                Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible)
+            if (Locator.VideoPlayerVm.IsVideoPlayerAudioTracksSettingsVisible ||
+                Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible ||
+                Locator.VideoPlayerVm.IsVideoPlayerSubtitlesSettingsVisible ||
+                Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible)
                 return;
             if (!isVisible)
             {
@@ -300,9 +300,9 @@ namespace VLC_WinRT.Views.VideoPages
             var menu = new PopupMenu();
             menu.Commands.Add(new UICommand(Strings.Back, command => PopMainMenu()));
             menu.Commands.Add(new UICommand("Fullscreen toggle", command => AppViewHelper.SetFullscreen()));
-            menu.Commands.Add(new UICommand(Strings.Zoom, command => Locator.VideoVm.ToggleIsVideoPlayerOptionsPanelVisible.Execute(null)));
+            menu.Commands.Add(new UICommand(Strings.Zoom, command => Locator.VideoPlayerVm.ToggleIsVideoPlayerOptionsPanelVisible.Execute(null)));
             menu.Commands.Add(new UICommandSeparator());
-            menu.Commands.Add(new UICommand(Strings.Subtitles, command => Locator.VideoVm.ToggleIsVideoPlayerSubtitlesSettingsVisible.Execute(null)));
+            menu.Commands.Add(new UICommand(Strings.Subtitles, command => Locator.VideoPlayerVm.ToggleIsVideoPlayerSubtitlesSettingsVisible.Execute(null)));
             await menu.ShowForSelectionAsync(new Rect(pos, pos), Placement.Right);
         }
 
@@ -311,7 +311,7 @@ namespace VLC_WinRT.Views.VideoPages
             var pos = MouseService.GetPointerPosition();
             var menu = new PopupMenu();
             menu.Commands.Add(new UICommand(Strings.Back, command => PopMainMenu()));
-            menu.Commands.Add(new UICommand(Strings.Chapters, command => Locator.VideoVm.ToggleIsVideoPlayerOptionsPanelVisible.Execute(null)));
+            menu.Commands.Add(new UICommand(Strings.Chapters, command => Locator.VideoPlayerVm.ToggleIsVideoPlayerOptionsPanelVisible.Execute(null)));
             menu.Commands.Add(new UICommandSeparator());
             menu.Commands.Add(new UICommand(Strings.IncreaseSpeed, command => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("faster")));
             menu.Commands.Add(new UICommand(Strings.DecreaseSpeed, command => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("slower")));
@@ -325,7 +325,7 @@ namespace VLC_WinRT.Views.VideoPages
             var pos = MouseService.GetPointerPosition();
             var menu = new PopupMenu();
             menu.Commands.Add(new UICommand(Strings.Back, command => PopMainMenu()));
-            menu.Commands.Add(new UICommand(Strings.AudioTracks, command => Locator.VideoVm.ToggleIsVideoPlayerAudioTracksSettingsVisible.Execute(null)));
+            menu.Commands.Add(new UICommand(Strings.AudioTracks, command => Locator.VideoPlayerVm.ToggleIsVideoPlayerAudioTracksSettingsVisible.Execute(null)));
             menu.Commands.Add(new UICommandSeparator());
             menu.Commands.Add(new UICommand(Strings.IncreaseVolume, command => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("higher")));
             menu.Commands.Add(new UICommand(Strings.DecreaseVolume, command => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("lower")));

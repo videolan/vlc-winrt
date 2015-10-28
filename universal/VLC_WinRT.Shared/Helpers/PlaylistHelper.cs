@@ -23,9 +23,9 @@ namespace VLC_WinRT.Helpers
         public static async Task Play(this VideoItem videoVm, bool resetPlaylist = true)
         {
             await videoVm.AddVideoToPlaylist(resetPlaylist);
-            LogHelper.Log("PLAYVIDEO: Settings videoVm as Locator.VideoVm.CurrentVideo");
-            Locator.VideoVm.CurrentVideo = videoVm;
-            await Task.Run(() => Locator.MediaPlaybackViewModel.SetMedia(Locator.VideoVm.CurrentVideo, false));
+            LogHelper.Log("PLAYVIDEO: Settings videoVm as Locator.VideoPlayerVm.CurrentVideo");
+            Locator.VideoPlayerVm.CurrentVideo = videoVm;
+            await Task.Run(() => Locator.MediaPlaybackViewModel.SetMedia(Locator.VideoPlayerVm.CurrentVideo, false));
         }
 
         #endregion

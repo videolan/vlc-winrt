@@ -251,13 +251,13 @@ namespace VLC_WinRT.Helpers
             var tileXml = TileUpdateManager.GetTemplateContent(template);
             var tileTextAttributes = tileXml.GetElementsByTagName("text");
             tileTextAttributes[0].InnerText = Strings.NowPlaying;
-            if (Locator.VideoVm.CurrentVideo != null)
+            if (Locator.VideoPlayerVm.CurrentVideo != null)
             {
-                tileTextAttributes[1].InnerText = Locator.VideoVm.CurrentVideo.Name;
+                tileTextAttributes[1].InnerText = Locator.VideoPlayerVm.CurrentVideo.Name;
 
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
-                if (Locator.VideoVm.CurrentVideo != null)
-                    tileImgAttribues[0].Attributes[1].NodeValue = Strings.VideoPicFolderPath + Locator.VideoVm.CurrentVideo.Id + ".jpg";
+                if (Locator.VideoPlayerVm.CurrentVideo != null)
+                    tileImgAttribues[0].Attributes[1].NodeValue = Strings.VideoPicFolderPath + Locator.VideoPlayerVm.CurrentVideo.Id + ".jpg";
             }
             var tileNotification = new TileNotification(tileXml);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
@@ -272,12 +272,12 @@ namespace VLC_WinRT.Helpers
 #if WINDOWS_APP
             tileTextAttributes[0].InnerText = Strings.NowPlaying;
 #endif
-            if (Locator.VideoVm.CurrentVideo != null)
+            if (Locator.VideoPlayerVm.CurrentVideo != null)
             {
-                tileTextAttributes[0].InnerText = Locator.VideoVm.CurrentVideo.Name;
+                tileTextAttributes[0].InnerText = Locator.VideoPlayerVm.CurrentVideo.Name;
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
-                if (Locator.VideoVm.CurrentVideo != null)
-                    tileImgAttribues[0].Attributes[1].NodeValue = Strings.VideoPicFolderPath + Locator.VideoVm.CurrentVideo.Id + ".jpg";
+                if (Locator.VideoPlayerVm.CurrentVideo != null)
+                    tileImgAttribues[0].Attributes[1].NodeValue = Strings.VideoPicFolderPath + Locator.VideoPlayerVm.CurrentVideo.Id + ".jpg";
             }
             var tileNotification = new TileNotification(tileXml);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);

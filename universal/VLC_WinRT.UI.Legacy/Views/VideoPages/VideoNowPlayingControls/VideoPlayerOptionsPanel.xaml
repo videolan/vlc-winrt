@@ -68,7 +68,7 @@
                            Text="{Binding Source={StaticResource Strings}, Path=Zoom}" />
                 <ComboBox Grid.Row="3"
                           Margin="{StaticResource FrameMarginTop}"
-                          DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
+                          DataContext="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm}"
                           ItemsSource="{Binding Zooms}"
                           SelectedItem="{Binding CurrentSurfaceZoom, Mode=TwoWay}"
                           Style="{StaticResource VLCLightComboBox}"

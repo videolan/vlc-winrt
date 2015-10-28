@@ -8,11 +8,11 @@ namespace VLC_WinRT.Commands.VideoPlayer
     {
         public override void Execute(object parameter)
         {
-            var index = (int)Locator.VideoVm.CurrentSurfaceZoom;
+            var index = (int)Locator.VideoPlayerVm.CurrentSurfaceZoom;
             var nextIndex = ++index;
-            if (nextIndex == Locator.VideoVm.Zooms.Count)
+            if (nextIndex == Locator.VideoPlayerVm.Zooms.Count)
                 nextIndex = 0;
-            Locator.VideoVm.CurrentSurfaceZoom = Locator.VideoVm.Zooms[nextIndex];
+            Locator.VideoPlayerVm.CurrentSurfaceZoom = Locator.VideoPlayerVm.Zooms[nextIndex];
         }
     }
 }

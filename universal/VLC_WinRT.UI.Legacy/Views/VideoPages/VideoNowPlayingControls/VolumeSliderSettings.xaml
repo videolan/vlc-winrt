@@ -9,7 +9,7 @@
              d:DesignWidth="400"
              VerticalAlignment="Bottom">
     <UserControl.Visibility>
-        <Binding Source="{Binding Source={StaticResource Locator}, Path=VideoVm}"
+        <Binding Source="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm}"
                  Path="IsVideoPlayerVolumeSettingsVisible"
                  Converter="{StaticResource BooleanToVisibilityConverter}" />
     </UserControl.Visibility>
@@ -38,7 +38,7 @@
                     FontSize="22"
                     Margin="0,-3,0,0"
                     HorizontalAlignment="Right"
-                    Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerVolumeSettingsVisible}" />
+                    Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerVolumeSettingsVisible}" />
             <Slider Grid.Row="1"
                     Value="{Binding Volume, Mode=TwoWay}"
                     Maximum="100"
