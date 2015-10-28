@@ -103,10 +103,10 @@ namespace VLC_WinRT.ViewModels
                     case PlayerEngine.VLC:
                         return Locator.VLCService;
                     case PlayerEngine.MediaFoundation:
-                        return App.Container.Resolve<MFService>();
+                        return Locator.MFService;
 #if WINDOWS_PHONE_APP
                     case PlayerEngine.BackgroundMFPlayer:
-                        return App.Container.Resolve<BGPlayerService>();
+                        return Locator.BGPlayerService;
 #endif
                     default:
                         //todo : Implement properly BackgroundPlayerService 
