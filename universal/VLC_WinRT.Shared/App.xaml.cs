@@ -73,12 +73,6 @@ namespace VLC_WinRT
         /// <param name="args">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
-#if DEBUG
-            if (Debugger.IsAttached)
-            {
-                DebugSettings.EnableFrameRateCounter = true;
-            }
-#endif
             if (Window.Current.Content == null)
             {
                 await LaunchTheApp();
