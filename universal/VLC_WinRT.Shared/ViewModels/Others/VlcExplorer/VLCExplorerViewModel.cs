@@ -61,7 +61,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 
         public IEnumerable<IGrouping<RootFolderType, FileExplorerViewModel>> StorageVMsGrouped
         {
-            get { return _storageVMs.GroupBy(x => x.Type); }
+            get { return _storageVMs?.GroupBy(x => x.Type); }
         } 
         #endregion
         public void OnNavigatedTo()
