@@ -22,7 +22,6 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0"
               Visibility="{Binding IsMainBackButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -86,8 +85,6 @@
                           FontFamily="ms-appx:VLC.ttf#W10" />
             </AppBarButton.Icon>
         </AppBarButton>
-
-        <shell:MenuDropdown Grid.Column="3" />
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
