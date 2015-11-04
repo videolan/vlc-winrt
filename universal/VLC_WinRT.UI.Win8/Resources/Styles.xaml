@@ -3330,9 +3330,9 @@
            TargetType="ComboBox"
            x:Key="VLCLightComboBox">
         <Setter Property="FontWeight"
-                Value="Light" />
+                Value="SemiLight" />
         <Setter Property="FontSize"
-                Value="18" />
+                Value="17" />
     </Style>
 
 
