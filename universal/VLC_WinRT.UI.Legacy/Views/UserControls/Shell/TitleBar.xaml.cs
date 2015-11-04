@@ -60,7 +60,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
                 else
                 {
                     var darkColor = new SolidColorBrush(Locator.SettingsVM.AccentColor);
-                    darkColor.Opacity = 0.6;
+                    darkColor.Opacity = 0.7;
                     RootGrid.Background = darkColor;
                 }
             }
