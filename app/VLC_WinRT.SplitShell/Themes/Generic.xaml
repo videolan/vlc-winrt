@@ -132,6 +132,10 @@
                                 </ObjectAnimationUsingKeyFrames>
                             </Storyboard>
                         </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -139,27 +143,32 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <ContentPresenter x:Name="TopBarContentPresenter"
-                                          Grid.Row="1">
+                                          Grid.Row="1"
+                                          Grid.Column="1">
                             <ContentPresenter.RenderTransform>
                                 <TranslateTransform x:Name="TopBarContentPresenterTranslateTransform" />
                             </ContentPresenter.RenderTransform>
                         </ContentPresenter>
                         <ContentPresenter x:Name="InformationContentPresenter"
-                                          Grid.Row="2" />
+                                          Grid.Row="2"
+                                          Grid.Column="1" />
                         <ContentPresenter x:Name="ContentPresenter"
-                                          Grid.Row="3">
+                                          Grid.Row="3"
+                                          Grid.Column="1">
                             <ContentPresenter.RenderTransform>
                                 <TranslateTransform x:Name="ContentPresenterTranslateTransform" />
                             </ContentPresenter.RenderTransform>
                         </ContentPresenter>
                         <ContentPresenter x:Name="FooterContentPresenter"
                                           Grid.Row="3"
+                                          Grid.Column="1"
                                           VerticalAlignment="Bottom"
                                           HorizontalAlignment="Stretch" />
 
                         <Grid x:Name="RightFlyoutGridContainer"
                               Grid.Row="1"
                               Grid.RowSpan="3"
+                              Grid.Column="1"
                               Opacity="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -190,10 +199,18 @@
                             <ContentPresenter x:Name="RightFlyoutContentPresenter"
                                               Grid.Column="1"
                                               HorizontalAlignment="Right"
-                                              MinWidth="300"/>
+                                              MinWidth="300" />
+                        </Grid>
+                        <Grid x:Name="SplitPane"
+                              Grid.Row="1"
+                              Grid.RowSpan="3"
+                              Grid.Column="0">
+                            <ContentPresenter x:Name="SplitPaneContentPresenter" />
                         </Grid>
                         <ContentPresenter x:Name="TitleBarContentPresenter"
-                                          Grid.Row="0" />
+                                          Grid.Row="0"
+                                          Grid.Column="0"
+                                          Grid.ColumnSpan="2" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

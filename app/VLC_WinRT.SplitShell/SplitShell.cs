@@ -22,6 +22,7 @@ namespace VLC_WinRT.Controls
     [TemplatePart(Name = RightFlyoutGridContainerName, Type = typeof(Grid))]
     [TemplatePart(Name = FlyoutBackgroundGridName, Type = typeof(Grid))]
     [TemplatePart(Name = FooterContentPresenterName, Type = typeof(ContentPresenter))]
+    [TemplatePart(Name = SplitPaneContentPresenterName, Type = typeof(ContentPresenter))]
     public sealed class SplitShell : Control
     {
         public event FlyoutCloseRequested FlyoutCloseRequested;
@@ -40,7 +41,8 @@ namespace VLC_WinRT.Controls
         private const string RightFlyoutGridContainerName = "RightFlyoutGridContainer";
         private const string FlyoutBackgroundGridName = "FlyoutBackgroundGrid";
         private const string FooterContentPresenterName = "FooterContentPresenter";
-        
+        private const string SplitPaneContentPresenterName = "SplitPaneContentPresenter";
+
         private Grid _rightFlyoutGridContainer;
         private Grid _flyoutBackgroundGrid;
         private ContentPresenter _contentPresenter;
@@ -48,6 +50,7 @@ namespace VLC_WinRT.Controls
         private ContentPresenter _titleBarContentPresenter;
         private ContentPresenter _rightFlyoutContentPresenter;
         private ContentPresenter _footerContentPresenter;
+        private ContentPresenter _splitPaneContentPresenter;
 
         private PlaneProjection _rightFlyoutPlaneProjection;
         private Storyboard _rightFlyoutFadeIn;
@@ -61,6 +64,12 @@ namespace VLC_WinRT.Controls
         {
             await TemplateApplied.Task;
             _contentPresenter.Content = contentPresenter;
+        }
+
+        public async void SetSplitPaneContentPresenter(object contentPresenter)
+        {
+            await TemplateApplied.Task;
+            _splitPaneContentPresenter.Content = contentPresenter;
         }
 
         public async void SetTitleBarContentPresenter(object contentPresenter)
@@ -216,7 +225,23 @@ namespace VLC_WinRT.Controls
             var that = (SplitShell)dependencyObject;
             that.SetFooterContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
         }
+
+        public DependencyObject SplitPaneContent
+        {
+            get { return (DependencyObject) GetValue(SplitPaneContentProperty); }
+            set { SetValue(SplitPaneContentProperty, value); }
+        }
+
+        public static readonly DependencyProperty SplitPaneContentProperty = DependencyProperty.Register("SplitPaneContent", typeof(DependencyObject), typeof(SplitShell), new PropertyMetadata(default(DependencyObject), SplitPaneContentPropertyChangedCallback));
+
+        private static void SplitPaneContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var that = (SplitShell) dependencyObject;
+            that.SetSplitPaneContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
+        }
+
         #endregion
+
 
         #region InformationContent Property
 
@@ -299,6 +324,7 @@ namespace VLC_WinRT.Controls
             _flyoutBackgroundGrid = (Grid)GetTemplateChild(FlyoutBackgroundGridName);
             _footerContentPresenter = (ContentPresenter) GetTemplateChild(FooterContentPresenterName);
             _titleBarContentPresenter = (ContentPresenter) GetTemplateChild(TitleBarContentPresenterName);
+            _splitPaneContentPresenter = (ContentPresenter) GetTemplateChild(SplitPaneContentPresenterName);
 
             Responsive();
             Window.Current.SizeChanged += Current_SizeChanged;
