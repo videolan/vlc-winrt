@@ -4,7 +4,10 @@
     <Color x:Key="MainColorBase">#ffff8800</Color>
     <Color x:Key="SemiLightMainColorBase">#B3FF8800</Color>
     <SolidColorBrush x:Key="MainColor"
-                     Color="{ThemeResource MainColorBase}" />
+                     Color="{ThemeResource MainColorBase}"/>
+    <SolidColorBrush x:Key="TranslucentMainColor"
+                     Color="{ThemeResource MainColorBase}"
+                     Opacity="0.5" />
     <SolidColorBrush x:Key="SemiLightMainColor"
                      Color="{ThemeResource SemiLightMainColorBase}" />
     <SolidColorBrush x:Key="ListViewItemPointerOverBackgroundThemeBrush"

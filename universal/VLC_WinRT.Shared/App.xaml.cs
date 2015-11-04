@@ -283,6 +283,11 @@ namespace VLC_WinRT
             {
                 Color = Locator.SettingsVM.AccentColor
             };
+            App.Current.Resources["TranslucentMainColor"] = new SolidColorBrush()
+            {
+                Color = Locator.SettingsVM.AccentColor,
+                Opacity = 0.5
+            };
             var lightColor = Color.FromArgb(179, Locator.SettingsVM.AccentColor.R, Locator.SettingsVM.AccentColor.G,
                 Locator.SettingsVM.AccentColor.B);
             App.Current.Resources["SemiLightMainColorBase"] = lightColor;
