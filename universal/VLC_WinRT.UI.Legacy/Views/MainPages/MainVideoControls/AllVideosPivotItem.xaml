@@ -44,10 +44,61 @@
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
                                    SizeChanged="VideosWrapGrid_SizeChanged"
-                                   Margin="{StaticResource FrameMarginTop}"/>
+                                   Margin="{StaticResource FrameMarginTop}" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
+            <ListView.Header>
+                <Grid Visibility="{Binding ViewedVideos.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding Source={StaticResource Strings}, Path=TopVideos}"
+                               Style="{StaticResource SubheaderTextBlockStyle}"/>
+                    <ListView x:Name="VideosListView"
+                              Grid.Row="2"
+                              Height="180"
+                              ItemsSource="{Binding ViewedVideos}"
+                              ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
+                              ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                              IsItemClickEnabled="True"
+                              SelectionMode="None"
+                              IsSwipeEnabled="False"
+                              ScrollViewer.VerticalScrollMode="Disabled"
+                              ScrollViewer.HorizontalScrollMode="Enabled"
+                              ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                        <triggers:Interactions.Triggers>
+                            <triggers:EventTrigger EventName="ItemClick">
+                                <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
+                                                              PassEventArgsToCommand="True" />
+                            </triggers:EventTrigger>
+                        </triggers:Interactions.Triggers>
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <AddDeleteThemeTransition />
+                                <EntranceThemeTransition />
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid Orientation="Horizontal"
+                                               ItemWidth="246"
+                                               ItemHeight="171" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                    <Grid Grid.Row="3"
+                          Margin="24,0"
+                          MaxWidth="400"
+                          Height="1"
+                          VerticalAlignment="Center"
+                          Background="{ThemeResource InvertedApplicationBackgroundQuarterTranslucentThemeBrush}" />
+                </Grid>
+            </ListView.Header>
         </ScrollWatcher:ListViewScrollWatcher>
-        <placeholder:NoVideosPlaceholder Visibility="{Binding Videos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+        <placeholder:NoVideosPlaceholder Grid.Row="2"
+                                         Visibility="{Binding Videos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>
