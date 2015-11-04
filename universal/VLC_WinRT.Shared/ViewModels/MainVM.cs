@@ -196,6 +196,8 @@ namespace VLC_WinRT.ViewModels
                     App.SplitShell.FooterContent = new BottomMiniPlayer();
                 if (App.SplitShell.TitleBarContent == null)
                     App.SplitShell.TitleBarContent = new TitleBar();
+                if (App.SplitShell.SplitPaneContent == null)
+                    App.SplitShell.SplitPaneContent = new SideBar();
                 CurrentPage = page;
                 CanGoBack = Locator.NavigationService.CanGoBack();
             };
