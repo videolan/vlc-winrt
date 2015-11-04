@@ -168,7 +168,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             {
                 var random = new Random().Next(0, Locator.MusicLibraryVM.TopArtists.Count - 1);
                 var suggestedArtists = await MusicFlow.GetFollowingArtistViaSimilarity(Locator.MusicLibraryVM.TopArtists[random]);
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.RecommendedArtists = new ObservableCollection<ArtistItem>(suggestedArtists));
+                if (suggestedArtists != null)
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.RecommendedArtists = new ObservableCollection<ArtistItem>(suggestedArtists));
             }
 
             // We use the user top artists and top albums to search for "popular Music" with the Same genre, that are in its collection, to recommend them
