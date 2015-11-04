@@ -19,11 +19,11 @@
             </TransitionCollection>
         </Grid.Transitions>
         <ScrollWatcher:ListViewScrollWatcher ItemsSource="{Binding Videos}"
-                  ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  IsItemClickEnabled="True"
-                  SelectionMode="None"
-                  IsSwipeEnabled="False">
+                                             ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
+                                             ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                             IsItemClickEnabled="True"
+                                             SelectionMode="None"
+                                             IsSwipeEnabled="False">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
@@ -31,7 +31,7 @@
                 </triggers:EventTrigger>
                 <triggers:EventTrigger EventName="ScrollDetected">
                     <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.ScrollDetectedCommand}"
-                                                    PassEventArgsToCommand="True" />
+                                                  PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
             <ListView.ItemContainerTransitions>

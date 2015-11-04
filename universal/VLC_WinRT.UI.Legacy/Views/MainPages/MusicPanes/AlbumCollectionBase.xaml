@@ -30,13 +30,13 @@
             <SemanticZoom.ZoomedInView>
                 <ScrollWatcher:ListViewScrollWatcher x:Name="AlbumsZoomedInView"
                                                      ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
-                          ItemTemplate="{StaticResource AlbumItemTemplate}"
-                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                          IsItemClickEnabled="True"
-                          SelectionMode="None"
-                          IsSwipeEnabled="False"
-                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                        ScrollViewer.HorizontalScrollMode="Disabled">
+                                                     ItemTemplate="{StaticResource AlbumItemTemplate}"
+                                                     ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                                     IsItemClickEnabled="True"
+                                                     SelectionMode="None"
+                                                     IsSwipeEnabled="False"
+                                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                     ScrollViewer.HorizontalScrollMode="Disabled">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
                             <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"

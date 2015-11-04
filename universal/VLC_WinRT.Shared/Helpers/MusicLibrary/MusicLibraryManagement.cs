@@ -74,7 +74,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                     await CreateDatabaseFromMusicFile(storageItem);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 LogHelper.Log(StringsHelper.ExceptionToString(e));
                 TrackItemDiscovererSemaphoreSlim.Release();
@@ -92,8 +92,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 LogHelper.Log("Loading artists from MusicDB ...");
                 var artists = await Locator.MusicLibraryVM._artistDatabase.Load();
                 LogHelper.Log("Found " + artists.Count + " artists from MusicDB");
-                await OrderArtists(artists);            
-                
+                await OrderArtists(artists);
+
                 var albums = await Locator.MusicLibraryVM._albumDatabase.LoadAlbums(x => x.ArtistId != 0).ToObservableAsync();
                 var orderedAlbums = albums.OrderBy(x => x.Artist).ThenBy(x => x.Name);
 
@@ -234,7 +234,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                     return;
                 }
 #else
-                var queryOptions = new QueryOptions {FolderDepth = FolderDepth.Deep};
+                var queryOptions = new QueryOptions { FolderDepth = FolderDepth.Deep };
                 foreach (var type in VLCFileExtensions.Supported)
                     queryOptions.FileTypeFilter.Add(type);
                 var fileQueryResult = KnownFolders.MusicLibrary.CreateFileQueryWithOptions(queryOptions);
@@ -243,7 +243,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 foreach (var item in files)
                 {
                     if (Locator.MediaPlaybackViewModel.ContinueIndexing != null)
-                        // We prevent indexing this file and upcoming files when a video is playing
+                    // We prevent indexing this file and upcoming files when a video is playing
                     {
                         await Locator.MediaPlaybackViewModel.ContinueIndexing.Task;
                         Locator.MediaPlaybackViewModel.ContinueIndexing = null;
@@ -251,7 +251,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                     await DiscoverTrackItemOrWaitAsync(item);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 LogHelper.Log(StringsHelper.ExceptionToString(e));
             }

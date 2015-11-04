@@ -22,12 +22,12 @@
             <Grid>
                 <SwapChainPanel x:Name="SwapChainPanel"
                                 x:FieldModifier="public"
-                                Loaded="SwapPanelLoaded"/>
+                                Loaded="SwapPanelLoaded" />
                 <MediaElement x:Name="MfMediaElement"
                               x:FieldModifier="public"
                               AudioDeviceType="Multimedia"
                               AudioCategory="BackgroundCapableMedia"
-                              Loaded="MfMediaElement_Loaded"/>
+                              Loaded="MfMediaElement_Loaded" />
 
                 <userControls:ShellContent x:Name="ShellContent"
                                            x:FieldModifier="public" />
