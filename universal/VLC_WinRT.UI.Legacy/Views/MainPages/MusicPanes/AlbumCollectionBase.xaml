@@ -48,14 +48,54 @@
                         </triggers:EventTrigger>
                     </triggers:Interactions.Triggers>
                     <ListView.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource ListviewGroupHeaderDataTemplate}"/>
+                        <GroupStyle HeaderTemplate="{StaticResource ListviewGroupHeaderDataTemplate}" />
                     </ListView.GroupStyle>
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid SizeChanged="AlbumsWrapGrid_SizeChanged"
-                                           Orientation="Horizontal"/>
+                                           Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
+                    <ListView.Header>
+                        <Grid Visibility="{Binding RandomAlbums.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RecommendedForYou}"
+                                       Style="{StaticResource SubheaderTextBlockStyle}"/>
+                            <ListView x:Name="AlbumsListView"
+                                      Grid.Row="2"
+                                      ItemsSource="{Binding RandomAlbums}"
+                                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                      ItemTemplate="{StaticResource AlbumItemTemplate}"
+                                      IsItemClickEnabled="True"
+                                      SelectionMode="None"
+                                      IsSwipeEnabled="False"
+                                      ScrollViewer.VerticalScrollMode="Disabled">
+                                <triggers:Interactions.Triggers>
+                                    <triggers:EventTrigger EventName="ItemClick">
+                                        <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
+                                                                      PassEventArgsToCommand="True" />
+                                    </triggers:EventTrigger>
+                                </triggers:Interactions.Triggers>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <ItemsWrapGrid Orientation="Horizontal"
+                                                       SizeChanged="AlbumsWrapGrid_SizeChanged" />
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                            </ListView>
+                            <Grid Grid.Row="3"
+                                  Margin="24,0"
+                                  MaxWidth="400"
+                                  Height="1"
+                                  VerticalAlignment="Center"
+                                  Background="{ThemeResource InvertedApplicationBackgroundQuarterTranslucentThemeBrush}" />
+                        </Grid>
+                    </ListView.Header>
                 </ScrollWatcher:ListViewScrollWatcher>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
