@@ -44,9 +44,6 @@ namespace VLC_WinRT.Commands.Navigation
 
             switch (panel.Index)
             {
-                case 0:
-                    Locator.NavigationService.Go(VLCPage.MainPageHome);
-                    break;
                 case 1:
                     Locator.NavigationService.Go(VLCPage.MainPageVideo);
                     break;

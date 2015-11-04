@@ -270,7 +270,6 @@ namespace VLC_WinRT.ViewModels.Settings
 
         public List<VLCPage> HomePageCollection { get; set; } = new List<VLCPage>()
         {
-            VLCPage.MainPageHome,
             VLCPage.MainPageVideo,
             VLCPage.MainPageMusic,
             VLCPage.MainPageFileExplorer
@@ -597,7 +596,7 @@ namespace VLC_WinRT.ViewModels.Settings
                 var homePage = ApplicationSettingsHelper.ReadSettingsValue("Homepage", false);
                 if (homePage == null)
                 {
-                    _homePage = VLCPage.MainPageHome;
+                    _homePage = VLCPage.MainPageVideo;
                 }
                 else
                 {

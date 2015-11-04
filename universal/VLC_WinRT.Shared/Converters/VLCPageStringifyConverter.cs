@@ -13,8 +13,6 @@ namespace VLC_WinRT.Converters
             {
                 switch ((VLCPage)value)
                 {
-                    case VLCPage.MainPageHome:
-                        return Strings.Home;
                     case VLCPage.MainPageMusic:
                         return Strings.Music;
                     case VLCPage.MainPageVideo:

@@ -3,7 +3,6 @@
     public enum VLCPage
     {
         None,
-        MainPageHome,
         MainPageVideo,
         MainPageMusic,
         MainPageFileExplorer,

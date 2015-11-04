@@ -52,8 +52,6 @@ namespace VLC_WinRT.Services.RunTime
         {
             switch (CurrentPage)
             {
-                case VLCPage.MainPageHome:
-                    break;
                 case VLCPage.MainPageVideo:
                     Locator.MainVM.GoToPanelCommand.Execute(0);
                     break;
@@ -168,9 +166,6 @@ namespace VLC_WinRT.Services.RunTime
             if (!IsFlyout(desiredPage) && desiredPage == CurrentPage) return;
             switch (desiredPage)
             {
-                case VLCPage.MainPageHome:
-                    App.ApplicationFrame.Navigate(typeof(MainPageHome));
-                    break;
                 case VLCPage.MainPageVideo:
                     App.ApplicationFrame.Navigate(typeof(MainPageVideos));
                     break;
@@ -285,8 +280,6 @@ namespace VLC_WinRT.Services.RunTime
 
         VLCPage PageTypeToVLCPage(Type page)
         {
-            if (page == typeof(MainPageHome))
-                return VLCPage.MainPageHome;
             if (page == typeof(MainPageVideos))
                 return VLCPage.MainPageVideo;
             if (page == typeof(MainPageMusic))
@@ -316,8 +309,6 @@ namespace VLC_WinRT.Services.RunTime
         {
             switch (p)
             {
-                case VLCPage.MainPageHome:
-                    return 0;
                 case VLCPage.MainPageVideo:
                     return 1;
                 case VLCPage.MainPageMusic:
@@ -336,8 +327,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public bool IsPageAMainPage(VLCPage p)
         {
-            return p == VLCPage.MainPageHome
-                   || p == VLCPage.MainPageVideo
+            return p == VLCPage.MainPageVideo
                    || p == VLCPage.MainPageMusic
                    || p == VLCPage.MainPageFileExplorer;
         }
