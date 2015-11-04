@@ -5,28 +5,71 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:triggers="using:WinRT.Triggers"
+             xmlns:shell="using:VLC_WinRT.UI.UWP.Views.UserControls.Shell"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
     <Grid x:Name="SidebarGrid"
-          Loaded="Sidebar_Loaded"
-          Background="{ThemeResource ApplicationBarForegroundThemeBrush}">
-        <ListView x:Name="PanelsListView"
-                  ItemsSource="{Binding Panels}"
-                  IsItemClickEnabled="True"
-                  SelectionMode="None"
-                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
-                  ItemTemplate="{StaticResource SidebarMiniIconItemTemplate}"
-                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                  VerticalAlignment="Top">
-            <triggers:Interactions.Triggers>
-                <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding GoToPanelCommand}"
-                                                  PassEventArgsToCommand="True" />
-                </triggers:EventTrigger>
-            </triggers:Interactions.Triggers>
-        </ListView>
+          Background="{ThemeResource TranslucentMainColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64" />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid >
+            <shell:MenuDropdown />
+        </Grid>
+        <StackPanel Grid.Row="1">
+            <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
+                          Label="{Binding Source={StaticResource Strings}, Path=OpenFile}"
+                          Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource OpenFileSymbol}"
+                              FontFamily="ms-appx:VLC.ttf#W10" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
+                          Label="{Binding Source={StaticResource Strings}, Path=OpenStream}"
+                          Flyout="{StaticResource PhoneOpenStreamFlyout}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource StreamSymbol}"
+                              FontFamily="ms-appx:VLC.ttf#W10" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    VerticalAlignment="Bottom">
+            <AppBarButton VerticalAlignment="Center"
+                          Label="{Binding Source={StaticResource Strings}, Path=RefreshVideoLibrary}"
+                          Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
+                          DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
+                          Command="{Binding StartVideoIndexingCommand}"
+                          IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource RefreshSymbol}"
+                              FontFamily="ms-appx:VLC.ttf#W10" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=RefreshMusicLibrary}"
+                          Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
+                          DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                          Command="{Binding StartMusicIndexingCommand}"
+                          IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource RefreshSymbol}"
+                              FontFamily="ms-appx:VLC.ttf#W10" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=Settings}"
+                          Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
+                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource SettingsSymbol}"
+                              FontFamily="ms-appx:VLC.ttf#W10" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </StackPanel>
     </Grid>
 </UserControl>
