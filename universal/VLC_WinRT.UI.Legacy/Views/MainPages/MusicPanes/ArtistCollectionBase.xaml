@@ -69,6 +69,52 @@
                             </ItemsWrapGrid>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
+                    <ListView.Header>
+                        <Grid Visibility="{Binding RecommendedArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RecommendedForYou}"
+                                       Style="{StaticResource SubheaderTextBlockStyle}"/>
+                            <ListView x:Name="RecommendedArtistListView"
+                                      Grid.Row="2"
+                                      IsItemClickEnabled="True"
+                                      IsSwipeEnabled="False"
+                                      ItemsSource="{Binding RecommendedArtists}"
+                                      SelectionMode="None"
+                                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                      ItemTemplate="{StaticResource ArtistHorizontalTemplate}"
+                                      Visibility="{Binding RecommendedArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+                                <triggers:Interactions.Triggers>
+                                    <triggers:EventTrigger EventName="ItemClick">
+                                        <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
+                                                                      PassEventArgsToCommand="True" />
+                                    </triggers:EventTrigger>
+                                </triggers:Interactions.Triggers>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <ItemsWrapGrid Orientation="Vertical"
+                                                       ItemWidth="350">
+                                            <ItemsWrapGrid.ChildrenTransitions>
+                                                <TransitionCollection>
+                                                    <RepositionThemeTransition />
+                                                </TransitionCollection>
+                                            </ItemsWrapGrid.ChildrenTransitions>
+                                        </ItemsWrapGrid>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                            </ListView>
+                            <Grid Grid.Row="3"
+                                  Margin="24,0"
+                                  MaxWidth="400"
+                                  Height="1"
+                                  VerticalAlignment="Center"
+                                  Background="{ThemeResource InvertedApplicationBackgroundQuarterTranslucentThemeBrush}" />
+                        </Grid>
+                    </ListView.Header>
                 </ScrollWatcher:ListViewScrollWatcher>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
