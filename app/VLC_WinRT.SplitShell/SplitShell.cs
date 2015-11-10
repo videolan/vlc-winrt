@@ -6,10 +6,13 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
+using VLC_WinRT.Helpers;
 
 namespace VLC_WinRT.Controls
 {
     public delegate void FlyoutCloseRequested(object sender, EventArgs e);
+
+    public delegate void ContentSizeChanged(double newWidth);
 
     [TemplatePart(Name = TitleBarContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = TopBarContentPresenterName, Type = typeof(ContentPresenter))]
@@ -29,7 +32,13 @@ namespace VLC_WinRT.Controls
     public sealed class SplitShell : Control
     {
         public event FlyoutCloseRequested FlyoutCloseRequested;
+        public event ContentSizeChanged ContentSizeChanged;
         public TaskCompletionSource<bool> TemplateApplied = new TaskCompletionSource<bool>();
+        
+        private DispatcherTimer _windowResizerTimer = new DispatcherTimer()
+        {
+            Interval = TimeSpan.FromMilliseconds(200)
+        };
 
         private const string ContentPresenterName = "ContentPresenter";
         private const string TopBarContentPresenterName = "TopBarContentPresenter";
@@ -312,6 +321,8 @@ namespace VLC_WinRT.Controls
 
             Responsive();
             Window.Current.SizeChanged += Current_SizeChanged;
+            _contentPresenter.Width = Window.Current.Bounds.Width;
+
             TemplateApplied.SetResult(true);
 
             _rightFlyoutGridContainer.Visibility = Visibility.Collapsed;
@@ -320,6 +331,8 @@ namespace VLC_WinRT.Controls
 
             _splitPaneOpenerGrid.ManipulationMode = ManipulationModes.TranslateX;
             _splitPaneOpenerGrid.ManipulationDelta += _splitPaneOpenerGrid_ManipulationDelta;
+
+            _windowResizerTimer.Tick += _windowResizerTimer_Tick;
         }
 
         private void _splitPaneOpenerGrid_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
@@ -342,6 +355,15 @@ namespace VLC_WinRT.Controls
         void Responsive()
         {
             _rightFlyoutContentPresenter.Width = Window.Current.Bounds.Width < 560 ? Window.Current.Bounds.Width : 560;
+            _windowResizerTimer.Stop();
+            _windowResizerTimer.Start();
+        }
+
+        private void _windowResizerTimer_Tick(object sender, object e)
+        {
+            _contentPresenter.Width = Window.Current.Bounds.Width;
+            _windowResizerTimer.Stop();
+            ContentSizeChanged?.Invoke(_contentPresenter.Width);
         }
 
         private void RightFlyoutGridContainerOnTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
