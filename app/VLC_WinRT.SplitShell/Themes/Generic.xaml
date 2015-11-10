@@ -131,11 +131,41 @@
                                                             Value="Collapsed" />
                                 </ObjectAnimationUsingKeyFrames>
                             </Storyboard>
+                            <Storyboard x:Name="SidePaneOpening">
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SplitPane"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="Visible" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SplitPaneContentPresenterProjection"
+                                                               Storyboard.TargetProperty="GlobalOffsetX">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                          Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <ExponentialEase Exponent="3"
+                                                             EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                            <Storyboard x:Name="SidePaneClosing">
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SplitPaneContentPresenterProjection"
+                                                               Storyboard.TargetProperty="GlobalOffsetX">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2"
+                                                          Value="-250">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <ExponentialEase Exponent="3"
+                                                             EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SplitPane"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.2"
+                                                            Value="Collapsed" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
                         </Grid.Resources>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -143,32 +173,27 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <ContentPresenter x:Name="TopBarContentPresenter"
-                                          Grid.Row="1"
-                                          Grid.Column="1">
+                                          Grid.Row="1">
                             <ContentPresenter.RenderTransform>
                                 <TranslateTransform x:Name="TopBarContentPresenterTranslateTransform" />
                             </ContentPresenter.RenderTransform>
                         </ContentPresenter>
                         <ContentPresenter x:Name="InformationContentPresenter"
-                                          Grid.Row="2"
-                                          Grid.Column="1" />
+                                          Grid.Row="2" />
                         <ContentPresenter x:Name="ContentPresenter"
-                                          Grid.Row="3"
-                                          Grid.Column="1">
+                                          Grid.Row="3">
                             <ContentPresenter.RenderTransform>
                                 <TranslateTransform x:Name="ContentPresenterTranslateTransform" />
                             </ContentPresenter.RenderTransform>
                         </ContentPresenter>
                         <ContentPresenter x:Name="FooterContentPresenter"
                                           Grid.Row="3"
-                                          Grid.Column="1"
                                           VerticalAlignment="Bottom"
                                           HorizontalAlignment="Stretch" />
 
                         <Grid x:Name="RightFlyoutGridContainer"
                               Grid.Row="1"
                               Grid.RowSpan="3"
-                              Grid.Column="1"
                               Opacity="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -201,16 +226,35 @@
                                               HorizontalAlignment="Right"
                                               MinWidth="300" />
                         </Grid>
+                        
+                        <Grid x:Name="SplitPaneOpenerGrid"
+                              Grid.Row="1"
+                              Grid.RowSpan="3"
+                              HorizontalAlignment="Left"
+                              Width="16"
+                              Background="Transparent"/>
+                        
                         <Grid x:Name="SplitPane"
                               Grid.Row="1"
                               Grid.RowSpan="3"
-                              Grid.Column="0">
-                            <ContentPresenter x:Name="SplitPaneContentPresenter" />
+                              Visibility="Collapsed">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter x:Name="SplitPaneContentPresenter">
+                                <ContentPresenter.Projection>
+                                    <PlaneProjection x:Name="SplitPaneContentPresenterProjection"
+                                                     GlobalOffsetX="-250"/>
+                                </ContentPresenter.Projection>
+                            </ContentPresenter>
+                            <Grid x:Name="SplitPaneEmptyGrid" 
+                                  Grid.Column="1"
+                                  Background="Transparent" />
                         </Grid>
                         <ContentPresenter x:Name="TitleBarContentPresenter"
                                           Grid.Row="0"
-                                          Grid.Column="0"
-                                          Grid.ColumnSpan="2" />
+                                          Grid.Column="0" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

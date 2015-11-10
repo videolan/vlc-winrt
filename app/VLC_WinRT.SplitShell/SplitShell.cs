@@ -18,11 +18,15 @@ namespace VLC_WinRT.Controls
     [TemplatePart(Name = RightFlyoutContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = RightFlyoutFadeInName, Type = typeof(Storyboard))]
     [TemplatePart(Name = RightFlyoutFadeOutName, Type = typeof(Storyboard))]
+    [TemplatePart(Name = SidePaneOpeningName, Type = typeof(Storyboard))]
+    [TemplatePart(Name = SidePaneClosingName, Type = typeof(Storyboard))]
     [TemplatePart(Name = RightFlyoutPlaneProjectionName, Type = typeof(PlaneProjection))]
     [TemplatePart(Name = RightFlyoutGridContainerName, Type = typeof(Grid))]
     [TemplatePart(Name = FlyoutBackgroundGridName, Type = typeof(Grid))]
     [TemplatePart(Name = FooterContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = SplitPaneContentPresenterName, Type = typeof(ContentPresenter))]
+    [TemplatePart(Name = SplitPaneEmptyGridName, Type = typeof(Grid))]
+    [TemplatePart(Name = SplitPaneOpenerGridName, Type = typeof(Grid))]
     public sealed class SplitShell : Control
     {
         public event FlyoutCloseRequested FlyoutCloseRequested;
@@ -42,9 +46,15 @@ namespace VLC_WinRT.Controls
         private const string FlyoutBackgroundGridName = "FlyoutBackgroundGrid";
         private const string FooterContentPresenterName = "FooterContentPresenter";
         private const string SplitPaneContentPresenterName = "SplitPaneContentPresenter";
+        private const string SidePaneOpeningName = "SidePaneOpening";
+        private const string SidePaneClosingName = "SidePaneClosing";
+        private const string SplitPaneEmptyGridName = "SplitPaneEmptyGrid";
+        private const string SplitPaneOpenerGridName = "SplitPaneOpenerGrid";
 
         private Grid _rightFlyoutGridContainer;
         private Grid _flyoutBackgroundGrid;
+        private Grid _splitPaneEmptyGrid;
+        private Grid _splitPaneOpenerGrid;
         private ContentPresenter _contentPresenter;
         private ContentPresenter _topBarContentPresenter;
         private ContentPresenter _titleBarContentPresenter;
@@ -57,9 +67,11 @@ namespace VLC_WinRT.Controls
         private Storyboard _rightFlyoutFadeOut;
         private Storyboard _topBarFadeOut;
         private Storyboard _topBarFadeIn;
+        private Storyboard _sidePaneOpening;
+        private Storyboard _sidePaneClosing;
         private ContentPresenter _informationGrid;
         private TextBlock _informationTextBlock;
-        
+
         public async void SetContentPresenter(object contentPresenter)
         {
             await TemplateApplied.Task;
@@ -322,9 +334,13 @@ namespace VLC_WinRT.Controls
             _rightFlyoutPlaneProjection = (PlaneProjection)GetTemplateChild(RightFlyoutPlaneProjectionName);
             _rightFlyoutGridContainer = (Grid)GetTemplateChild(RightFlyoutGridContainerName);
             _flyoutBackgroundGrid = (Grid)GetTemplateChild(FlyoutBackgroundGridName);
-            _footerContentPresenter = (ContentPresenter) GetTemplateChild(FooterContentPresenterName);
-            _titleBarContentPresenter = (ContentPresenter) GetTemplateChild(TitleBarContentPresenterName);
-            _splitPaneContentPresenter = (ContentPresenter) GetTemplateChild(SplitPaneContentPresenterName);
+            _footerContentPresenter = (ContentPresenter)GetTemplateChild(FooterContentPresenterName);
+            _titleBarContentPresenter = (ContentPresenter)GetTemplateChild(TitleBarContentPresenterName);
+            _splitPaneContentPresenter = (ContentPresenter)GetTemplateChild(SplitPaneContentPresenterName);
+            _sidePaneOpening = (Storyboard)GetTemplateChild(SidePaneOpeningName);
+            _sidePaneClosing = (Storyboard)GetTemplateChild(SidePaneClosingName);
+            _splitPaneEmptyGrid = (Grid)GetTemplateChild(SplitPaneEmptyGridName);
+            _splitPaneOpenerGrid = (Grid)GetTemplateChild(SplitPaneOpenerGridName);
 
             Responsive();
             Window.Current.SizeChanged += Current_SizeChanged;
@@ -332,6 +348,22 @@ namespace VLC_WinRT.Controls
             
             _rightFlyoutGridContainer.Visibility = Visibility.Collapsed;
             _flyoutBackgroundGrid.Tapped += RightFlyoutGridContainerOnTapped;
+            _splitPaneEmptyGrid.Tapped += _splitPaneEmptyGrid_Tapped;
+
+            _splitPaneOpenerGrid.ManipulationMode = ManipulationModes.TranslateX;
+            _splitPaneOpenerGrid.ManipulationDelta += _splitPaneOpenerGrid_ManipulationDelta;
+        }
+
+        private void _splitPaneOpenerGrid_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+            if (e.Cumulative.Translation.X > 50)
+            {
+                if (!IsLeftPaneOpen)
+                {
+                    OpenLeftPane();
+                    e.Complete();
+                }
+            }
         }
 
         private void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
@@ -347,6 +379,11 @@ namespace VLC_WinRT.Controls
         private void RightFlyoutGridContainerOnTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
         {
             FlyoutCloseRequested?.Invoke(null, new EventArgs());
+        }
+
+        private void _splitPaneEmptyGrid_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            CloseLeftPane();
         }
 
         void ShowFlyout()
@@ -373,7 +410,27 @@ namespace VLC_WinRT.Controls
             IsTopBarOpen = true;
         }
 
-        public bool IsRightFlyoutOpen { get; set; }
+        public void OpenLeftPane()
+        {
+            _sidePaneOpening.Begin();
+            IsLeftPaneOpen = true;
+        }
+
+        public void CloseLeftPane()
+        {
+            _sidePaneClosing.Begin();
+            IsLeftPaneOpen = false;
+        }
+
+        public void ToggleLeftPane()
+        {
+            if (IsLeftPaneOpen)
+                CloseLeftPane();
+            else OpenLeftPane();
+        }
+
+        public bool IsLeftPaneOpen { get; private set; }
+        public bool IsRightFlyoutOpen { get; private set; }
         public bool IsTopBarOpen { get; set; }
     }
 }
