@@ -9,20 +9,42 @@
     <DataTemplate x:Key="WPTrackTemplateWNumber">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"
-                       Text="{Binding Index, Converter={StaticResource NullIntConverter}}"
-                       FontSize="30"
-                       FontWeight="ExtraLight"
+                       Text="{Binding IndexString, Converter={StaticResource NullIntConverter}}"
+                       FontSize="20"
+                       FontWeight="SemiLight"
+                       Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                       Style="{StaticResource TitleTextBlockStyle}"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center" />
-            <userControls:TrackItemTemplate Margin="12,0,0,0"
-                                            Grid.Column="1" />
+            <userControls:TrackItemTemplate Grid.Column="2" />
         </Grid>
     </DataTemplate>
-
+    
+    <DataTemplate x:Key="AlbumTrackTemplateWithRightMargin">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="{Binding IndexString, Converter={StaticResource NullIntConverter}}"
+                       FontSize="20"
+                       FontWeight="SemiLight"
+                       Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" />
+            <userControls:TrackItemTemplate Grid.Column="2" />
+        </Grid>
+    </DataTemplate>
+    
     <DataTemplate x:Key="TrackTemplateDetailed">
         <userControls:TrackItemTemplateDetailed />
     </DataTemplate>
