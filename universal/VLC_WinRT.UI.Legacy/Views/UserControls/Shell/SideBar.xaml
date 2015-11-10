@@ -12,7 +12,8 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
     <Grid x:Name="SidebarGrid"
-          Background="{ThemeResource TranslucentMainColor}">
+          Background="{ThemeResource ApplicationThirdForegroundThemeBrush}"
+          Width="250">
         <Grid.RowDefinitions>
             <RowDefinition Height="64" />
             <RowDefinition />
@@ -24,7 +25,8 @@
         <StackPanel Grid.Row="1">
             <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
                           Label="{Binding Source={StaticResource Strings}, Path=OpenFile}"
-                          Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}">
+                          Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}"
+                          Foreground="{ThemeResource MainColor}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource OpenFileSymbol}"
                               FontFamily="ms-appx:VLC.ttf#W10" />
