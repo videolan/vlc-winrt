@@ -2667,8 +2667,7 @@
                 <ControlTemplate TargetType="AppBarButton">
                     <StackPanel x:Name="LayoutRoot"
                                 Orientation="Horizontal"
-                                Background="Transparent"
-                                Margin="0,0,6,0">
+                                Background="Transparent">
                         <StackPanel.Projection>
                             <PlaneProjection x:Name="AppBarButtonPlaneProjection"
                                              LocalOffsetZ="0" />
