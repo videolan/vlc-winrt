@@ -173,6 +173,8 @@ namespace VLC_WinRT.Services.RunTime
         public void Go(VLCPage desiredPage)
         {
             if (!IsFlyout(desiredPage) && desiredPage == CurrentPage) return;
+
+            App.SplitShell.CloseLeftPane();
             switch (desiredPage)
             {
                 case VLCPage.MainPageVideo:
