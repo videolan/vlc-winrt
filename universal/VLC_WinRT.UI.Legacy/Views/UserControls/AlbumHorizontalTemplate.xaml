@@ -12,48 +12,64 @@
              d:DesignWidth="400"
              Margin="{StaticResource FrameMarginVertical}" >
 
-    <Grid Height="80">
+    <Grid Height="90">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="80" />
-            <ColumnDefinition Width="12" />
-            <ColumnDefinition />
+            <ColumnDefinition Width="90" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0"
-              Grid.RowSpan="2"
-              Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+        <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
             <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
                       FontFamily="ms-appx:VLC.ttf#W10"
                       FontSize="26"
                       Foreground="{ThemeResource MainColor}" />
         </Grid>
-        <Image Grid.Row="0"
-               Grid.RowSpan="2"
-               Height="80"
-               Width="80"
+        <Image Grid.RowSpan="2" 
+               Height="90"
+               Width="90"
                Stretch="UniformToFill"
-               Source="{Binding Key.Item2}" />
-        <TextBlock Grid.Row="0"
-                   Grid.Column="2"
-                   Text="{Binding Key.Item1, Converter={StaticResource ArtistStringConverter}}"
-                   FontSize="21"
-                   FontWeight="Light"
+               Source="{Binding Key.AlbumImage}" />
+        <TextBlock Grid.Column="2"
+                   Text="{Binding Key.Name, Converter={StaticResource ArtistStringConverter}}"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   Margin="0,0,6,0"
                    VerticalAlignment="Bottom"/>
 
-        <AppBarButton Grid.Row="1"
-                      Grid.Column="2"
+        <AppBarButton Grid.Column="2"
+                      Grid.Row="1"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
                       Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
                       Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAlbumCommand}"
-                      CommandParameter="{Binding Key.Item3}"
+                      CommandParameter="{Binding Key.Id}"
                       Foreground="{ThemeResource MainColor}">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource PlaySymbol}"
                           FontFamily="ms-appx:VLC.ttf#W10" />
             </AppBarButton.Icon>
         </AppBarButton>
+        <AppBarButton Grid.Column="4"
+                      Grid.RowSpan="2"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Icon="{Binding Key.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
+                      Command="{Binding Key.PinAlbumCommand}"
+                      CommandParameter="{Binding Key}"
+                      VerticalAlignment="Center"
+                      Margin="{StaticResource FrameMargin}" />
+        <AppBarButton Grid.Column="6"
+                      Grid.RowSpan="2"
+                      Icon="{Binding Key.Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
+                      Command="{Binding Key.FavoriteAlbum}"
+                      CommandParameter="{Binding Key.Id}"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      VerticalAlignment="Center"
+                      Margin="{StaticResource FrameMargin}" />
     </Grid>
 </UserControl>
