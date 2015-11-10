@@ -480,7 +480,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             try
             {
                 var tracks = await Locator.MusicLibraryVM._trackDatabase.LoadTracksByArtistId(artist.Id);
-                var groupedTracks = tracks.GroupBy(x => new Tuple<string, string, int>(x.AlbumName, x.Thumbnail, x.AlbumId));
+                var groupedTracks = tracks.GroupBy(x => Locator.MusicLibraryVM.Albums.FirstOrDefault(y => y.Id == x.AlbumId));
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     artist.TracksGroupedByAlbum = groupedTracks;
