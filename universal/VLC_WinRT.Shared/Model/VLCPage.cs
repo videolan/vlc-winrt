@@ -6,6 +6,7 @@
         MainPageVideo,
         MainPageMusic,
         MainPageFileExplorer,
+        MainPageNetwork,
         AlbumPage,
         ArtistPage,
         PlaylistPage,

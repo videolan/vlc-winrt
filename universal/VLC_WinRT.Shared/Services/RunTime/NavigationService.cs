@@ -4,6 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Documents;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
+using VLC_WinRT.UI.Legacy.Views.MainPages;
 using VLC_WinRT.UI.Legacy.Views.MusicPages;
 using VLC_WinRT.UI.Legacy.Views.MusicPages.TagEditorPages;
 using VLC_WinRT.UI.Legacy.Views.SettingsPages;
@@ -59,6 +60,9 @@ namespace VLC_WinRT.Services.RunTime
                     Locator.MainVM.GoToPanelCommand.Execute(0);
                     break;
                 case VLCPage.MainPageFileExplorer:
+                    Locator.MainVM.GoToPanelCommand.Execute(0);
+                    break;
+                case VLCPage.MainPageNetwork:
                     Locator.MainVM.GoToPanelCommand.Execute(0);
                     break;
                 case VLCPage.AlbumPage:
@@ -175,6 +179,9 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MainPageFileExplorer:
                     App.ApplicationFrame.Navigate(typeof(MainPageFileExplorer));
                     break;
+                case VLCPage.MainPageNetwork:
+                    App.ApplicationFrame.Navigate(typeof(MainPageNetwork));
+                    break;
                 case VLCPage.AlbumPage:
                     App.SplitShell.RightFlyoutContent = new AlbumPageBase();
                     break;
@@ -286,6 +293,8 @@ namespace VLC_WinRT.Services.RunTime
                 return VLCPage.MainPageMusic;
             if (page == typeof(MainPageFileExplorer))
                 return VLCPage.MainPageFileExplorer;
+            if (page == typeof(MainPageNetwork))
+                return VLCPage.MainPageNetwork;
             if (page == typeof(PlaylistPage))
                 return VLCPage.PlaylistPage;
             if (page == typeof(MusicPlaylistPage))
@@ -315,6 +324,8 @@ namespace VLC_WinRT.Services.RunTime
                     return 2;
                 case VLCPage.MainPageFileExplorer:
                     return 3;
+                case VLCPage.MainPageNetwork:
+                    return 4;
                 default:
                     return 0;
             }
@@ -329,7 +340,8 @@ namespace VLC_WinRT.Services.RunTime
         {
             return p == VLCPage.MainPageVideo
                    || p == VLCPage.MainPageMusic
-                   || p == VLCPage.MainPageFileExplorer;
+                   || p == VLCPage.MainPageFileExplorer
+                   || p == VLCPage.MainPageNetwork;
         }
     }
 }

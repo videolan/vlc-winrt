@@ -55,6 +55,9 @@ namespace VLC_WinRT.Commands.Navigation
                 case 3:
                     Locator.NavigationService.Go(VLCPage.MainPageFileExplorer);
                     break;
+                case 4:
+                    Locator.NavigationService.Go(VLCPage.MainPageNetwork);
+                    break;
             }
             
             if (App.SplitShell.IsRightFlyoutOpen)

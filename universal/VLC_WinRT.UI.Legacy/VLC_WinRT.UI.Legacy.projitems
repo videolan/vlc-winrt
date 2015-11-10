@@ -52,6 +52,10 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageMusic.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageNetwork.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageVideos.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -284,6 +288,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageMusic.xaml.cs">
       <DependentUpon>MainPageMusic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageNetwork.xaml.cs">
+      <DependentUpon>MainPageNetwork.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageVideos.xaml.cs">
       <DependentUpon>MainPageVideos.xaml</DependentUpon>
