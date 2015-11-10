@@ -4,7 +4,7 @@ using VLC_WinRT.Model.Video;
 
 namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
 {
-    public sealed partial class ArtistPageBase : UserControl
+    public sealed partial class ArtistPageBase : Page
     {
         public ArtistPageBase()
         {

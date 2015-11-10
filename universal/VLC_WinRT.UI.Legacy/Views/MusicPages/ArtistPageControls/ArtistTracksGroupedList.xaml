@@ -8,12 +8,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-    <UserControl.Resources>
-        <CollectionViewSource x:Key="TracksGroupedByAlbum"
-                              IsSourceGrouped="True"
-                              Source="{Binding CurrentArtist.TracksGroupedByAlbum}" />
-    </UserControl.Resources>
-    <ListView ItemsSource="{Binding Source={StaticResource TracksGroupedByAlbum}}"
+    <ListView 
               ItemTemplate="{StaticResource WPTrackTemplateWNumber}"
               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
               SelectionMode="None"

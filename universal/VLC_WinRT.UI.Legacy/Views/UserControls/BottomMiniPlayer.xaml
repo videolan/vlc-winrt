@@ -9,8 +9,8 @@
              d:DesignHeight="300"
              d:DesignWidth="400"
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-             Visibility="{Binding CurrentPage, Converter={StaticResource BottomMiniPlayerVisibilityConverter}}"
-             RequestedTheme="Dark">
+             Visibility="{Binding CurrentPage, Converter={StaticResource BottomMiniPlayerVisibilityConverter}}">
+    
     <Grid x:Name="RootGrid"
           Height="60"
           Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">

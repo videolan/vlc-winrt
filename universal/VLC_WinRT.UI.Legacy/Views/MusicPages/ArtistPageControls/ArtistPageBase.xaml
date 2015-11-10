@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="VLC_WinRT.Views.MusicPages.ArtistPageControls.ArtistPageBase"
+﻿<Page x:Class="VLC_WinRT.Views.MusicPages.ArtistPageControls.ArtistPageBase"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:VLC_WinRT.Views.MusicPages.ArtistPageControls"
@@ -9,4 +9,4 @@
              d:DesignWidth="400"
              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
     <ContentPresenter x:Name="ArtistPageBaseContent" />
-</UserControl>
+</Page>
