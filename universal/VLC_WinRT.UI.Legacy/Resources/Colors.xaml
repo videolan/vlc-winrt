@@ -7,7 +7,7 @@
                      Color="{ThemeResource MainColorBase}"/>
     <SolidColorBrush x:Key="TranslucentMainColor"
                      Color="{ThemeResource MainColorBase}"
-                     Opacity="0.5" />
+                     Opacity="0.9" />
     <SolidColorBrush x:Key="SemiLightMainColor"
                      Color="{ThemeResource SemiLightMainColorBase}" />
     <SolidColorBrush x:Key="ListViewItemPointerOverBackgroundThemeBrush"
