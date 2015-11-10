@@ -11,17 +11,12 @@
 
     <DataTemplate x:Key="SimilarArtistTemplate">
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="12" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0"
-                  Grid.RowSpan="2">
+            <Grid Grid.Row="0">
                 <Ellipse Fill="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
                          Height="120"
                          Width="120" />
@@ -30,7 +25,7 @@
                           FontSize="29"
                           Foreground="{ThemeResource MainColor}" />
             </Grid>
-            <Ellipse Grid.RowSpan="2"
+            <Ellipse Grid.Row="0" 
                      Height="120"
                      Width="120">
                 <Ellipse.Fill>
@@ -38,22 +33,13 @@
                                 ImageSource="{Binding Images, Converter={StaticResource AlbumImageConverter}}" />
                 </Ellipse.Fill>
             </Ellipse>
-            <TextBlock Grid.Column="2"
-                       Grid.Row="0"
+            <TextBlock Grid.Row="2"
                        Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
-                       FontSize="25"
-                       FontWeight="SemiLight"
-                       VerticalAlignment="Bottom"
-                       TextTrimming="CharacterEllipsis" />
-            <TextBlock Grid.Column="2"
-                       Grid.Row="1"
                        Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                       VerticalAlignment="Top"
+                       FontSize="21"
                        FontWeight="SemiLight"
-                       FontSize="19">
-            <Run Text="{Binding Albums.Count}" />
-            <Run Text="{Binding Source={StaticResource Strings}, Path=Albums}" />
-            </TextBlock>
+                       HorizontalAlignment="Center"
+                       TextTrimming="CharacterEllipsis" />
         </Grid>
     </DataTemplate>
 </ResourceDictionary>
