@@ -13,7 +13,7 @@
     
     <Grid x:Name="RootGrid"
           Height="60"
-          Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
+          Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
         <Grid.Visibility>
             <Binding Source="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
                      Path="IsRunning"
