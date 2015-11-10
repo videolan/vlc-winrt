@@ -67,6 +67,18 @@ namespace VLC_WinRT.Model.Music
             set { SetProperty(ref _index, value); }
         }
 
+        public string IndexString
+        {
+            get
+            {
+                if (_index < 10)
+                {
+                    return "0" + _index;
+                }
+                return _index.ToString();
+            }
+        }
+
         public int DiscNumber
         {
             get { return _disc; }
