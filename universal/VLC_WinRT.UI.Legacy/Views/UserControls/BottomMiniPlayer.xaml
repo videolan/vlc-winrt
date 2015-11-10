@@ -322,14 +322,14 @@
                            Text="{Binding CurrentTrack.Name}"
                            TextWrapping="NoWrap"
                            TextTrimming="CharacterEllipsis"
-                           FontWeight="SemiLight"
+                           FontWeight="Normal"
                            FontSize="19"
                            VerticalAlignment="Bottom"/>
                 <TextBlock Grid.Column="2"
                            Grid.Row="1"
                            Text="{Binding CurrentTrack.ArtistName}"
                            TextWrapping="NoWrap"
-                           FontWeight="Light"
+                           FontWeight="SemiLight"
                            TextTrimming="CharacterEllipsis"
                            FontSize="15" />
             </Grid>
