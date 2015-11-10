@@ -116,7 +116,7 @@
                         <DataTemplate>
                             <Grid>
                                 <TextBlock Text="{Binding Group.Key}"
-                                           Style="{StaticResource SemanticZoomViewOutTextBlockStyle}"/>
+                                           Style="{StaticResource SemanticZoomViewOutTextBlockStyle}" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
