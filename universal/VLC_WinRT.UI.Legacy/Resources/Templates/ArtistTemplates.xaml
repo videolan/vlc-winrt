@@ -8,31 +8,52 @@
     <DataTemplate x:Key="ArtistHorizontalTemplate">
         <userControls:ArtistHorizontalTemplate />
     </DataTemplate>
-    
+
     <DataTemplate x:Key="SimilarArtistTemplate">
-        <Grid RequestedTheme="Dark">
-            <Image Source="{Binding Images, Converter={StaticResource AlbumImageConverter}}"
-                   Stretch="UniformToFill" />
-            <Grid Height="80"
-                  VerticalAlignment="Bottom">
-                <Grid.Background>
-                    <LinearGradientBrush StartPoint="1,0">
-                        <GradientStopCollection>
-                            <GradientStop Color="#990A0A0A"
-                                          Offset="1" />
-                            <GradientStop Color="#00020202" />
-                        </GradientStopCollection>
-                    </LinearGradientBrush>
-                </Grid.Background>
-                <StackPanel VerticalAlignment="Bottom"
-                            HorizontalAlignment="Left"
-                            Margin="5">
-                    <TextBlock Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
-                               TextWrapping="NoWrap"
-                               TextTrimming="CharacterEllipsis"
-                               FontSize="16" />
-                </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                  Grid.RowSpan="2">
+                <Ellipse Fill="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+                         Height="120"
+                         Width="120" />
+                <FontIcon Glyph="{StaticResource BuddySymbol}"
+                          FontFamily="ms-appx:VLC.ttf#W10"
+                          FontSize="29"
+                          Foreground="{ThemeResource MainColor}" />
             </Grid>
+            <Ellipse Grid.RowSpan="2"
+                     Height="120"
+                     Width="120">
+                <Ellipse.Fill>
+                    <ImageBrush Stretch="UniformToFill"
+                                ImageSource="{Binding Images, Converter={StaticResource AlbumImageConverter}}" />
+                </Ellipse.Fill>
+            </Ellipse>
+            <TextBlock Grid.Column="2"
+                       Grid.Row="0"
+                       Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
+                       FontSize="25"
+                       FontWeight="SemiLight"
+                       VerticalAlignment="Bottom"
+                       TextTrimming="CharacterEllipsis" />
+            <TextBlock Grid.Column="2"
+                       Grid.Row="1"
+                       Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                       VerticalAlignment="Top"
+                       FontWeight="SemiLight"
+                       FontSize="19">
+            <Run Text="{Binding Albums.Count}" />
+            <Run Text="{Binding Source={StaticResource Strings}, Path=Albums}" />
+            </TextBlock>
         </Grid>
     </DataTemplate>
 </ResourceDictionary>
