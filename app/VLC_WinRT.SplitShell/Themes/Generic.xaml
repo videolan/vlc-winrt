@@ -147,9 +147,29 @@
                                         </EasingDoubleKeyFrame.EasingFunction>
                                     </EasingDoubleKeyFrame>
                                 </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SplitPaneSidebarProjection"
+                                                               Storyboard.TargetProperty="GlobalOffsetX">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                          Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <ExponentialEase Exponent="3"
+                                                             EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
                             </Storyboard>
                             <Storyboard x:Name="SidePaneClosing">
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SplitPaneContentPresenterProjection"
+                                                               Storyboard.TargetProperty="GlobalOffsetX">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2"
+                                                          Value="-250">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <ExponentialEase Exponent="3"
+                                                             EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SplitPaneSidebarProjection"
                                                                Storyboard.TargetProperty="GlobalOffsetX">
                                     <EasingDoubleKeyFrame KeyTime="0:0:0.2"
                                                           Value="-250">
@@ -237,6 +257,7 @@
                               Visibility="Collapsed">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <ContentPresenter x:Name="SplitPaneContentPresenter">
@@ -245,8 +266,26 @@
                                                      GlobalOffsetX="-250"/>
                                 </ContentPresenter.Projection>
                             </ContentPresenter>
+                            <Rectangle Grid.Column="1" 
+                                       Width="16">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0"
+                                                         EndPoint="1,0">
+                                        <GradientStopCollection>
+                                            <GradientStop Color="#75101010"
+                                                          Offset="0" />
+                                            <GradientStop Color="#00101010"
+                                                          Offset="1" />
+                                        </GradientStopCollection>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                                <Rectangle.Projection>
+                                    <PlaneProjection x:Name="SplitPaneSidebarProjection"
+                                                     GlobalOffsetX="-250" />
+                                </Rectangle.Projection>
+                            </Rectangle>
                             <Grid x:Name="SplitPaneEmptyGrid" 
-                                  Grid.Column="1"
+                                  Grid.Column="2"
                                   Background="Transparent" />
                         </Grid>
                         <ContentPresenter x:Name="TitleBarContentPresenter"
