@@ -23,6 +23,9 @@
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <shell:MenuDropdown />
+        </Grid>
         <Grid Grid.Column="0"
               Visibility="{Binding IsMainBackButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
               Margin="{StaticResource FrameMarginHorizontal}">
