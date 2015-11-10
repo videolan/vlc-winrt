@@ -43,25 +43,25 @@ namespace VLC_WinRT.Views.UserControls
             if (index == 0)
             {
                 SetPivotAnimation(false);
-                if (Locator.NavigationService.CurrentPage == VLCPage.MainPageHome)
+                if (Locator.NavigationService.CurrentPage == VLCPage.MainPageVideo)
                     newCurrentIndex = 3;
-                else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageVideo)
-                    newCurrentIndex = 0;
                 else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic)
-                    newCurrentIndex = 1;
+                    newCurrentIndex = 0;
                 else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageFileExplorer)
+                    newCurrentIndex = 1;
+                else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageNetwork)
                     newCurrentIndex = 2;
             }
             else if (index == 2)
             {
                 SetPivotAnimation(true);
-                if (Locator.NavigationService.CurrentPage == VLCPage.MainPageHome)
+                if (Locator.NavigationService.CurrentPage == VLCPage.MainPageVideo)
                     newCurrentIndex = 1;
-                else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageVideo)
-                    newCurrentIndex = 2;
                 else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic)
-                    newCurrentIndex = 3;
+                    newCurrentIndex = 2;
                 else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageFileExplorer)
+                    newCurrentIndex = 3;
+                else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageNetwork)
                     newCurrentIndex = 0;
                 // Told ya ¯\_(ツ)_/¯
             }
