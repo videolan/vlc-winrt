@@ -6,6 +6,10 @@
     </header>
     <body>
       <group id="Resources">
+        <trans-unit id="Resources\SimilarArtists" translate="yes" xml:space="preserve">
+          <source>Similar artists</source>
+          <target state="new">Similar artists</target>
+        </trans-unit>
         <trans-unit id="Resources\SURFACE_STRETCH" translate="yes" xml:space="preserve">
           <source>stretch</source>
           <target state="translated">étirer</target>

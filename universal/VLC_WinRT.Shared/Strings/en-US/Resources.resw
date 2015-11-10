@@ -696,4 +696,7 @@
   <data name="SURFACE_STRETCH" xml:space="preserve">
     <value>stretch</value>
   </data>
+  <data name="SimilarArtists" xml:space="preserve">
+    <value>Similar artists</value>
+  </data>
 </root>
