@@ -19,17 +19,12 @@
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
         <interactivity:Interaction.Behaviors>
             <core:EventTriggerBehavior EventName="Holding">
                 <utils:OpenMenuFlyoutAction />
             </core:EventTriggerBehavior>
         </interactivity:Interaction.Behaviors>
         <TextBlock Grid.Column="0"
-                   Grid.Row="0"
                    x:Name="NameTextBlock"
                    Text="{Binding Name}"
                    TextWrapping="NoWrap"
@@ -37,17 +32,9 @@
                    FontWeight="SemiLight"
                    Style="{StaticResource TitleTextBlockStyle}"
                    FontSize="20"
-                   Margin="0,0,6,0" 
-                   Loaded="NameTextBlock_OnLoaded"/>
-        <TextBlock Grid.Column="0"
-                   Grid.Row="1"
-                   Text="{Binding ArtistName, Converter={StaticResource ArtistStringConverter}}"
-                   Style="{StaticResource BaseTextBlockStyle}"
-                   Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                   FontWeight="Light" />
+                   Loaded="NameTextBlock_OnLoaded"
+                   VerticalAlignment="Center"/>
         <TextBlock Grid.Column="1"
-                   Grid.Row="0"
-                   Grid.RowSpan="2"
                    FontWeight="Light"
                    FontSize="19"
                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
