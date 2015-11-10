@@ -74,7 +74,7 @@ namespace VLC_WinRT.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.ArtistPage:
-                    GoBack_HideFlyout();
+                    GoBack_Default();
                     break;
                 case VLCPage.PlaylistPage:
                     GoBack_HideFlyout();
@@ -193,7 +193,7 @@ namespace VLC_WinRT.Services.RunTime
                     App.SplitShell.RightFlyoutContent = new AlbumPageBase();
                     break;
                 case VLCPage.ArtistPage:
-                    App.SplitShell.RightFlyoutContent = new ArtistPageBase();
+                    App.ApplicationFrame.Navigate(typeof(ArtistPageBase));
                     break;
                 case VLCPage.PlaylistPage:
                     App.SplitShell.RightFlyoutContent = new PlaylistPage();
@@ -268,7 +268,6 @@ namespace VLC_WinRT.Services.RunTime
         public bool IsFlyout(VLCPage page)
         {
             return page == VLCPage.AlbumPage ||
-                   page == VLCPage.ArtistPage ||
                    page == VLCPage.AddAlbumToPlaylistDialog ||
                    page == VLCPage.CreateNewPlaylistDialog ||
                    page == VLCPage.ArtistShowsPage ||
@@ -318,6 +317,8 @@ namespace VLC_WinRT.Services.RunTime
                 return VLCPage.TrackEditorPage;
             if (page == typeof (FeedbackPage))
                 return VLCPage.FeedbackPage;
+            if (page == typeof(ArtistPageBase))
+                return VLCPage.ArtistPage;
             return VLCPage.None;
         }
 
