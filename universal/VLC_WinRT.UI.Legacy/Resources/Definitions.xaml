@@ -20,6 +20,7 @@
     <Thickness x:Key="TitleBarMarginTop">0,32,0,0</Thickness>
     <Thickness x:Key="FooterMarginBottom">0,0,0,60</Thickness>
     <Thickness x:Key="FrameMarginAtTopAndFooterMarginAtBottom">0,16,0,60</Thickness>
+    <Thickness x:Key="FrameMarginHorizontalPlusFooter">16,0,16,60</Thickness>
 
 
     <!-- FRAMEWORK REDEFINITIONS -->
