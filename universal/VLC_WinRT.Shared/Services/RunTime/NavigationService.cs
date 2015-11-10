@@ -43,7 +43,12 @@ namespace VLC_WinRT.Services.RunTime
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             e.Handled = true;
-            if (CurrentPage == VLCPage.MainPageHome)
+            if (App.SplitShell.IsLeftPaneOpen)
+            {
+                App.SplitShell.CloseLeftPane();
+                return;
+            }
+            if (Locator.NavigationService.IsPageAMainPage(CurrentPage))
                 e.Handled = false;
             GoBack_Specific();
         }
