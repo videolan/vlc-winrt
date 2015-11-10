@@ -107,9 +107,9 @@ namespace VLC_WinRT.Controls
         public async void SetTopbarVisibility(object visibility)
         {
             await TemplateApplied.Task;
-            _topBarContentPresenter.Visibility = (Visibility) visibility;
+            _topBarContentPresenter.Visibility = (Visibility)visibility;
         }
-        
+
 
         public async void SetInformationContent(object contentPresenter)
         {
@@ -159,13 +159,13 @@ namespace VLC_WinRT.Controls
             get { return (Visibility)GetValue(TopBarVisibilityProperty); }
             set { SetValue(TopBarVisibilityProperty, value); }
         }
-        
+
         public static readonly DependencyProperty TopBarVisibilityProperty = DependencyProperty.Register(
             "TopBarVisibility", typeof(Visibility), typeof(SplitShell), new PropertyMetadata(Visibility.Visible, TopbarVisibilityPropertyChangedCallback));
 
         private static void TopbarVisibilityPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var that = (SplitShell) dependencyObject;
+            var that = (SplitShell)dependencyObject;
             that.SetTopbarVisibility(dependencyPropertyChangedEventArgs.NewValue);
         }
 
@@ -240,7 +240,7 @@ namespace VLC_WinRT.Controls
 
         public DependencyObject SplitPaneContent
         {
-            get { return (DependencyObject) GetValue(SplitPaneContentProperty); }
+            get { return (DependencyObject)GetValue(SplitPaneContentProperty); }
             set { SetValue(SplitPaneContentProperty, value); }
         }
 
@@ -248,7 +248,7 @@ namespace VLC_WinRT.Controls
 
         private static void SplitPaneContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var that = (SplitShell) dependencyObject;
+            var that = (SplitShell)dependencyObject;
             that.SetSplitPaneContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
         }
 
@@ -329,8 +329,8 @@ namespace VLC_WinRT.Controls
             _rightFlyoutContentPresenter = (ContentPresenter)GetTemplateChild(RightFlyoutContentPresenterName);
             _rightFlyoutFadeIn = (Storyboard)GetTemplateChild(RightFlyoutFadeInName);
             _rightFlyoutFadeOut = (Storyboard)GetTemplateChild(RightFlyoutFadeOutName);
-            _topBarFadeOut = (Storyboard) GetTemplateChild(TopBarFadeOutName);
-            _topBarFadeIn = (Storyboard) GetTemplateChild(TopBarFadeInName);
+            _topBarFadeOut = (Storyboard)GetTemplateChild(TopBarFadeOutName);
+            _topBarFadeIn = (Storyboard)GetTemplateChild(TopBarFadeInName);
             _rightFlyoutPlaneProjection = (PlaneProjection)GetTemplateChild(RightFlyoutPlaneProjectionName);
             _rightFlyoutGridContainer = (Grid)GetTemplateChild(RightFlyoutGridContainerName);
             _flyoutBackgroundGrid = (Grid)GetTemplateChild(FlyoutBackgroundGridName);
@@ -345,7 +345,7 @@ namespace VLC_WinRT.Controls
             Responsive();
             Window.Current.SizeChanged += Current_SizeChanged;
             TemplateApplied.SetResult(true);
-            
+
             _rightFlyoutGridContainer.Visibility = Visibility.Collapsed;
             _flyoutBackgroundGrid.Tapped += RightFlyoutGridContainerOnTapped;
             _splitPaneEmptyGrid.Tapped += _splitPaneEmptyGrid_Tapped;
