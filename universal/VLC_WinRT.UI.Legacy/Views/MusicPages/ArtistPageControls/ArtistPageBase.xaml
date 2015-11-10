@@ -132,12 +132,22 @@
               Grid.Column="2"
               Visibility="Collapsed">
             <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                 <RowDefinition />
             </Grid.RowDefinitions>
+
             <TextBlock Grid.Row="1"
+                       Text="{Binding CurrentArtist.Biography}"
+                       Style="{StaticResource BodyTextBlockStyle}"
+                       TextTrimming="CharacterEllipsis"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top" />
+            
+            <TextBlock Grid.Row="3"
                        TextTrimming="CharacterEllipsis"
                        TextWrapping="NoWrap"
                        VerticalAlignment="Top"
@@ -145,7 +155,7 @@
                        Text="{Binding Source={StaticResource Strings}, Path=SimilarArtists}"
                        Style="{StaticResource SubheaderTextBlockStyle}" />
             <ListView x:Name="SimilarArtistsListView"
-                      Grid.Row="3"
+                      Grid.Row="5"
                       ItemsSource="{Binding CurrentArtist.OnlineRelatedArtists}"
                       ItemTemplate="{StaticResource SimilarArtistTemplate}"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -175,7 +185,7 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SimilarArtistsListView"
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExtraInfoGrid"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="700" />
@@ -189,7 +199,7 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SimilarArtistsListView"
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExtraInfoGrid"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="350" />
