@@ -45,7 +45,6 @@ namespace VLC_WinRT.ViewModels
         private Panel _currentPanel;
         private bool _isInternet;
         private string _searchTag = "";
-        private bool _menuBarDisplayed = false;
         private bool _preventAppExit = false;
         private string _informationText;
         private bool _isBackground = false;
@@ -57,11 +56,6 @@ namespace VLC_WinRT.ViewModels
         #endregion
 
         #region public props
-        public bool MenuBarDisplayed
-        {
-            get { return _menuBarDisplayed; }
-            set { SetProperty(ref _menuBarDisplayed, value); }
-        }
 
         public VLCPage CurrentPage
         {
@@ -186,10 +180,6 @@ namespace VLC_WinRT.ViewModels
                 }
                 if (App.SplitShell.TopBarContent == null)
                     App.SplitShell.TopBarContent = new TopBar();
-                if (App.SplitShell.InformationText == null)
-                    App.SplitShell.InformationText = new MenuBarControl();
-                if (MenuBarDisplayed)
-                    MenuBarDisplayed = false;
                 if (!App.SplitShell.IsTopBarOpen)
                     App.SplitShell.ShowTopBar();
                 if (App.SplitShell.FooterContent == null)

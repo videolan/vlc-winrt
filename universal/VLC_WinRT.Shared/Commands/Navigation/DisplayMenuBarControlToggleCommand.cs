@@ -7,7 +7,7 @@ namespace VLC_WinRT.Commands.Navigation
     {
         public override void Execute(object parameter)
         {
-            Locator.MainVM.MenuBarDisplayed = !Locator.MainVM.MenuBarDisplayed;
+            App.SplitShell.ToggleLeftPane();
         }
     }
 }

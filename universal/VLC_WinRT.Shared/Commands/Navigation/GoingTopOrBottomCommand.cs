@@ -14,7 +14,6 @@ namespace VLC_WinRT.Commands.Navigation
             {
                 if (Locator.MediaPlaybackViewModel.TrackCollection.IsRunning && Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music)
                 {
-                    Locator.MainVM.MenuBarDisplayed = false;
                     App.SplitShell.HideTopBar();
                 }
             }

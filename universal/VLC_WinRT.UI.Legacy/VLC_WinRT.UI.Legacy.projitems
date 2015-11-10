@@ -180,9 +180,6 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\FocusTextBox.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\MenuBarControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\PivotHeaderControl.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -410,9 +407,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\FocusTextBox.xaml.cs">
       <DependentUpon>FocusTextBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\MenuBarControl.xaml.cs">
-      <DependentUpon>MenuBarControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\PivotHeaderControl.xaml.cs">
       <DependentUpon>PivotHeaderControl.xaml</DependentUpon>

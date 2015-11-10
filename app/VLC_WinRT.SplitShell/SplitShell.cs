@@ -13,7 +13,6 @@ namespace VLC_WinRT.Controls
 
     [TemplatePart(Name = TitleBarContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = TopBarContentPresenterName, Type = typeof(ContentPresenter))]
-    [TemplatePart(Name = InformationContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = ContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = RightFlyoutContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = RightFlyoutFadeInName, Type = typeof(Storyboard))]
@@ -31,11 +30,10 @@ namespace VLC_WinRT.Controls
     {
         public event FlyoutCloseRequested FlyoutCloseRequested;
         public TaskCompletionSource<bool> TemplateApplied = new TaskCompletionSource<bool>();
-        
+
         private const string ContentPresenterName = "ContentPresenter";
         private const string TopBarContentPresenterName = "TopBarContentPresenter";
         private const string TitleBarContentPresenterName = "TitleBarContentPresenter";
-        private const string InformationContentPresenterName = "InformationContentPresenter";
         private const string RightFlyoutContentPresenterName = "RightFlyoutContentPresenter";
         private const string RightFlyoutFadeInName = "RightFlyoutFadeIn";
         private const string RightFlyoutFadeOutName = "RightFlyoutFadeOut";
@@ -69,7 +67,6 @@ namespace VLC_WinRT.Controls
         private Storyboard _topBarFadeIn;
         private Storyboard _sidePaneOpening;
         private Storyboard _sidePaneClosing;
-        private ContentPresenter _informationGrid;
         private TextBlock _informationTextBlock;
 
         public async void SetContentPresenter(object contentPresenter)
@@ -108,13 +105,6 @@ namespace VLC_WinRT.Controls
         {
             await TemplateApplied.Task;
             _topBarContentPresenter.Visibility = (Visibility)visibility;
-        }
-
-
-        public async void SetInformationContent(object contentPresenter)
-        {
-            await TemplateApplied.Task;
-            _informationGrid.Content = contentPresenter;
         }
 
         public async void SetRightPaneContentPresenter(object content)
@@ -251,27 +241,8 @@ namespace VLC_WinRT.Controls
             var that = (SplitShell)dependencyObject;
             that.SetSplitPaneContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
         }
-
         #endregion
-
-
-        #region InformationContent Property
-
-        public DependencyObject InformationText
-        {
-            get { return (DependencyObject)GetValue(InformationTextProperty); }
-            set { SetValue(InformationTextProperty, value); }
-        }
-
-        public static readonly DependencyProperty InformationTextProperty = DependencyProperty.Register("InformationText", typeof(DependencyObject), typeof(SplitShell), new PropertyMetadata(default(DependencyObject), InformationContentPresenterPropertyChangedCallback));
-
-        private static void InformationContentPresenterPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var that = (SplitShell)dependencyObject;
-            that.SetInformationContent(dependencyPropertyChangedEventArgs.NewValue);
-        }
-        #endregion
-
+        
         #region TitleBar Property
 
         public DependencyObject TitleBarContent
@@ -292,9 +263,7 @@ namespace VLC_WinRT.Controls
             var that = (SplitShell)dependencyObject;
             that.SetTitleBarContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
         }
-
-
-
+        
         public double TitleBarHeight
         {
             get { return (int)GetValue(TitleBarHeightProperty); }
@@ -325,7 +294,6 @@ namespace VLC_WinRT.Controls
             base.OnApplyTemplate();
             _contentPresenter = (ContentPresenter)GetTemplateChild(ContentPresenterName);
             _topBarContentPresenter = (ContentPresenter)GetTemplateChild(TopBarContentPresenterName);
-            _informationGrid = (ContentPresenter)GetTemplateChild(InformationContentPresenterName);
             _rightFlyoutContentPresenter = (ContentPresenter)GetTemplateChild(RightFlyoutContentPresenterName);
             _rightFlyoutFadeIn = (Storyboard)GetTemplateChild(RightFlyoutFadeInName);
             _rightFlyoutFadeOut = (Storyboard)GetTemplateChild(RightFlyoutFadeOutName);
