@@ -252,7 +252,7 @@ namespace VLC_WinRT.Services.RunTime
                     App.SplitShell.RightFlyoutContent = new VideoPlayerOptionsPanel();
                     break;
                 case VLCPage.TrackEditorPage:
-                    App.ApplicationFrame.Navigate(typeof (TrackEditorPage));
+                    App.ApplicationFrame.Navigate(typeof(TrackEditorPage));
                     break;
                 case VLCPage.FeedbackPage:
                     App.SplitShell.RightFlyoutContent = new FeedbackPage();
@@ -313,9 +313,9 @@ namespace VLC_WinRT.Services.RunTime
                 return VLCPage.SettingsPage;
             if (page == typeof(SearchPage))
                 return VLCPage.SearchPage;
-            if (page == typeof (TrackEditorPage))
+            if (page == typeof(TrackEditorPage))
                 return VLCPage.TrackEditorPage;
-            if (page == typeof (FeedbackPage))
+            if (page == typeof(FeedbackPage))
                 return VLCPage.FeedbackPage;
             if (page == typeof(ArtistPageBase))
                 return VLCPage.ArtistPage;
