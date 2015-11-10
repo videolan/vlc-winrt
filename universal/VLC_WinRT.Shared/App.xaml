@@ -7,6 +7,9 @@
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Dark">
                     <Color x:Key="ApplicationPageBackgroundThemeColor">Black</Color>
+                    <Color x:Key="ApplicationThirdForegroundThemeColor">#252525</Color>
+                    <Color x:Key="TransparentApplicationThirdForegroundThemeColor">#00252525</Color>
+                    
                     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                                      Color="{StaticResource ApplicationPageBackgroundThemeColor}" />
                     <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
@@ -14,7 +17,7 @@
                     <SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush"
                                      Color="LightGray" />
                     <SolidColorBrush x:Key="ApplicationThirdForegroundThemeBrush"
-                                     Color="#252525" />
+                                     Color="{StaticResource ApplicationThirdForegroundThemeColor}" />
                     <SolidColorBrush x:Key="ApplicationOverlayTranslucentThemeBrush"
                                      Color="#d9000000" />
                     <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
@@ -55,6 +58,9 @@
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <Color x:Key="ApplicationPageBackgroundThemeColor">White</Color>
+                    <Color x:Key="ApplicationThirdForegroundThemeColor">WhiteSmoke</Color>
+                    <Color x:Key="TransparentApplicationThirdForegroundThemeColor">#00f5f5f5</Color>
+                    
                     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                                      Color="{StaticResource ApplicationPageBackgroundThemeColor}" />
                     <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
@@ -62,7 +68,7 @@
                     <SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush"
                                      Color="DimGray" />
                     <SolidColorBrush x:Key="ApplicationThirdForegroundThemeBrush"
-                                     Color="WhiteSmoke" />
+                                     Color="{StaticResource ApplicationThirdForegroundThemeColor}" />
                     <SolidColorBrush x:Key="ApplicationOverlayTranslucentThemeBrush"
                                      Color="#F2F0F0F0" />
                     <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
