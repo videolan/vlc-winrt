@@ -49,5 +49,16 @@ namespace VLC_WinRT.Model.Video
                 wrapGrid.ItemHeight = wrapGrid.ItemWidth = (width.Value / splitScreen);
             }
         }
+
+        public static void ComputeAlbumTracks(ref ItemsWrapGrid wrapGrid, double? width = null)
+        {
+            if (width == null) width = Window.Current.Bounds.Width;
+
+            if (width > 700)
+            {
+                wrapGrid.ItemWidth = width.Value/2;
+            }
+            else wrapGrid.ItemWidth = width.Value;
+        }
     }
 }
