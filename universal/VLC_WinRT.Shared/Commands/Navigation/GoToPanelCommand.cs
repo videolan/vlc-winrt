@@ -33,8 +33,10 @@ namespace VLC_WinRT.Commands.Navigation
             }
             else if (parameter is string || parameter is int)
             {
-                panel = Locator.MainVM.Panels.First(x => x.Index == int.Parse(parameter.ToString()));
+                panel = Locator.MainVM.Panels.FirstOrDefault(x => x.Index == int.Parse(parameter.ToString()));
             }
+
+            if (panel == null) return;
 
 #if WINDOWS_PHONE_APP
             var iPreviousView = App.RootPage.ShellContent.CurrentViewIndex;
