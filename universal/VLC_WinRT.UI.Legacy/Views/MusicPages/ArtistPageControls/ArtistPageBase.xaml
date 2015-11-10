@@ -29,8 +29,7 @@
         </Grid.RowDefinitions>
         <local:MainArtistHeader />
         <SemanticZoom Grid.Row="1"
-                      Grid.Column="0"
-                      IsZoomedInViewActive="False">
+                      Grid.Column="0">
             <SemanticZoom.ZoomedInView>
                 <ListView x:Name="AlbumsListView"
                           ItemsSource="{Binding Source={StaticResource TracksGroupedByAlbum}}"
