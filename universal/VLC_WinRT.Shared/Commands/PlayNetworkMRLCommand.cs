@@ -26,7 +26,6 @@ namespace VLC_WinRT.Commands
                 return;
             }
             await Locator.MediaPlaybackViewModel.PlayStream(mrl);
-            Locator.MainVM.CloseStreamFlyout();
         }
     }
 }
