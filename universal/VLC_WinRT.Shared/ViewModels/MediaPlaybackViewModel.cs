@@ -555,7 +555,7 @@ namespace VLC_WinRT.ViewModels
         public async Task SetMedia(IVLCMedia media, bool forceVlcLib = false, bool autoPlay = true)
         {
             if (media == null)
-                throw new ArgumentNullException("media", "Media parameter is missing. Can't play anything");
+                throw new ArgumentNullException(nameof(media), "Media parameter is missing. Can't play anything");
             Stop();
             UseVlcLib = forceVlcLib;
 
