@@ -5,15 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WinRT.Views.UserControls"
-      mc:Ignorable="d">
+      mc:Ignorable="d"
+      DataContext="{Binding Source={StaticResource Locator}, Path=StreamsVM}">
 
     <Page.Resources>
         <CollectionViewSource x:Key="StreamsHistoryAndFavoritesGroupedResource"
-                              IsSourceGrouped="True"
-                              Source="{Binding StreamsHistoryAndFavoritesGrouped}"
-                              />
+                              Source="{Binding StreamsHistoryAndFavoritesGrouped}" />
     </Page.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -21,7 +20,6 @@
         </Grid.RowDefinitions>
         <ContentPresenter x:Name="MainPageNetworkContentPresenter"
                           x:FieldModifier="public"
-                          Grid.Row="2"
                           Margin="{StaticResource FrameMargin}" />
         <Grid Grid.Row="0"
               Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
@@ -30,7 +28,7 @@
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <userControls:FocusTextBox x:Name="MrlTextBox" 
+            <userControls:FocusTextBox x:Name="MrlTextBox"
                                        PlaceholderText="{Binding Source={StaticResource Strings}, Path=EnterURL}"
                                        InputScope="Url"
                                        MinWidth="300" />
@@ -46,12 +44,17 @@
             </Button>
         </Grid>
         <ListView Grid.Row="1"
-                  ItemsSource="{Binding RelativeSource={StaticResource StreamsHistoryAndFavoritesGroupedResource}}">
+                  ItemsSource="{Binding Source={StaticResource StreamsHistoryAndFavoritesGroupedResource}}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="fdsfsdfsdf" Foreground="Red"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </Grid>
 </Page>

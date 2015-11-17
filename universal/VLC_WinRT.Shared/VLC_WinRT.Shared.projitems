@@ -129,6 +129,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Database\ArtistDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\IDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\KeyboardActionDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\StreamsDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\TrackCollectionDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\TrackDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\TracklistItemDatabase.cs" />
@@ -219,6 +220,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\BackerCountryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\SearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\SpecialThanksViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\StreamsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\VlcExplorer\VLCExplorerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\VlcExplorer\FileExplorerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsViewModel.cs" />

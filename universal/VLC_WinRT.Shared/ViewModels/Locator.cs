@@ -37,6 +37,7 @@ namespace VLC_WinRT.ViewModels
         private static VideoLibraryVM _videoLibrary;
         private static VideoPlayerVM _videoPlayer;
         private static VLCExplorerViewModel _vlcExplorer;
+        private static StreamsViewModel _streams;
         private static SettingsViewModel _settings;
         private static SearchViewModel _search;
         private static SpecialThanksViewModel _specialThanks;
@@ -77,7 +78,7 @@ namespace VLC_WinRT.ViewModels
 
         public static SettingsViewModel SettingsVM => _settings ?? (_settings = App.Container.Resolve<SettingsViewModel>());
         public static SearchViewModel SearchVM => _search ?? (_search = App.Container.Resolve<SearchViewModel>());
-
+        public static StreamsViewModel StreamsVM => _streams ?? (_streams = App.Container.Resolve<StreamsViewModel>());
         public static SpecialThanksViewModel SpecialThanksVM => _specialThanks ?? (_specialThanks = App.Container.Resolve<SpecialThanksViewModel>()); 
 
         public static NavigationService NavigationService => _navigationService ?? (_navigationService = App.Container.Resolve<NavigationService>());

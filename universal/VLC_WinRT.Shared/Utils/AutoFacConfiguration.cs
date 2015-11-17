@@ -46,6 +46,7 @@ namespace VLC_WinRT.Utils
                 builder.RegisterType<MusicPlayerVM>();
                 builder.RegisterType<VideoLibraryVM>();
                 builder.RegisterType<VideoPlayerVM>();
+                builder.RegisterType<StreamsViewModel>();
                 builder.RegisterType<SettingsViewModel>();
                 builder.RegisterType<SearchViewModel>();
 
