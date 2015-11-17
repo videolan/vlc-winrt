@@ -33,12 +33,14 @@ namespace VLC_WinRT.Model.Stream
             set { SetProperty(ref _duration, value); }
         }
 
+        [Ignore]
         public StorageFile File
         {
             get { throw new NotImplementedException(); }
             set { throw new NotImplementedException(); }
         }
 
+        [Ignore]
         public string Token
         {
             get
