@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Core;
@@ -240,17 +241,10 @@ namespace VLC_WinRT.ViewModels
                 }
             });
         }
-
-        public void CloseStreamFlyout()
-        {
-            var streamFLyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout;
-            streamFLyout?.Hide();
-        }
-
+        
         public void OpenStreamFlyout()
         {
-            var streamFLyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout;
-            streamFLyout?.ShowAt(App.SplitShell);
+            CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Index == 4);
         }
 
         public ObservableCollection<Panel> Panels
