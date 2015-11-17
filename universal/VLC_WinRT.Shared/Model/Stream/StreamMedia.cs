@@ -6,7 +6,7 @@ using libVLCX;
 
 namespace VLC_WinRT.Model.Stream
 {
-    class StreamMedia : BindableBase, IVLCMedia
+    public class StreamMedia : BindableBase, IVLCMedia
     {
         private string _filePath;
         private TimeSpan _duration;
