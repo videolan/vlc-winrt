@@ -7,9 +7,15 @@
       xmlns:userControls="using:VLC_WinRT.Views.UserControls"
       mc:Ignorable="d">
 
+    <Page.Resources>
+        <CollectionViewSource x:Key="StreamsHistoryAndFavoritesGroupedResource"
+                              IsSourceGrouped="True"
+                              Source="{Binding StreamsHistoryAndFavoritesGrouped}"
+                              />
+    </Page.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
             <RowDefinition Height="50" />
             <RowDefinition />
         </Grid.RowDefinitions>
@@ -39,5 +45,13 @@
                 </Button.Content>
             </Button>
         </Grid>
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding RelativeSource={StaticResource StreamsHistoryAndFavoritesGroupedResource}}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
     </Grid>
 </Page>
