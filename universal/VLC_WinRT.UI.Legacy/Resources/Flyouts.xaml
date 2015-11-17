@@ -9,7 +9,6 @@
                         CommandParameter="{Binding}" />
     </MenuFlyout>
     <flyouts:AlbumMenuFlyout x:Key="AlbumMenuFlyout" />
-    <flyouts:OpenStreamFlyout x:Key="PhoneOpenStreamFlyout"/>
     <flyouts:TrackItemFlyout x:Key="TrackItemFlyout"/>
     <flyouts:VideoInformationFlyout x:Key="VideoInformationFlyout" />
 </ResourceDictionary>
