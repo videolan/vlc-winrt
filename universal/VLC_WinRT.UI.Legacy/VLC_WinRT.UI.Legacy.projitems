@@ -166,9 +166,6 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\AlbumMenuFlyout.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\OpenStreamFlyout.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\TrackItemFlyout.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -390,9 +387,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\AlbumMenuFlyout.xaml.cs">
       <DependentUpon>AlbumMenuFlyout.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\OpenStreamFlyout.xaml.cs">
-      <DependentUpon>OpenStreamFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\TrackItemFlyout.xaml.cs">
       <DependentUpon>TrackItemFlyout.xaml</DependentUpon>
