@@ -34,7 +34,8 @@
             </AppBarButton>
             <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
                           Label="{Binding Source={StaticResource Strings}, Path=OpenStream}"
-                          Flyout="{StaticResource PhoneOpenStreamFlyout}">
+                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
+                          CommandParameter="4">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource StreamSymbol}"
                               FontFamily="ms-appx:VLC.ttf#W10" />
