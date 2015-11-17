@@ -52,6 +52,11 @@ namespace VLC_WinRT.Model.Stream
 
         public bool IsCurrentPlaying { get; set; }
 
+        public StreamMedia()
+        {
+            
+        }
+
         public StreamMedia(string mrl)
         {
             Path = mrl;
