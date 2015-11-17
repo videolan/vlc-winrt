@@ -10,14 +10,14 @@ using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.ViewModels.Others
 {
-    public class SearchViewModel : BindableBase
+    public class SearchViewModel : BindableBase, IDisposable
     {
-        private ObservableCollection<AlbumItem> _searchResultsAlbums = new ObservableCollection<AlbumItem>();
-        private ObservableCollection<VideoItem> _searchResultsVideos = new ObservableCollection<VideoItem>();
+        private ObservableCollection<AlbumItem> _searchResultsAlbums;
+        private ObservableCollection<VideoItem> _searchResultsVideos;
 
         private string _searchTag;
         private bool _musicSearchEnabled;
-        private bool _videoSearchEnabled = true;
+        private bool _videoSearchEnabled;
 
         public ObservableCollection<AlbumItem> SearchResultsAlbums
         {
@@ -100,6 +100,13 @@ namespace VLC_WinRT.ViewModels.Others
 
         public SearchViewModel()
         {
+        }
+
+        public void OnNavigatedTo()
+        {
+            _searchResultsAlbums = new ObservableCollection<AlbumItem>();
+            _searchResultsVideos = new ObservableCollection<VideoItem>();
+            _videoSearchEnabled = true;
             SearchResultsAlbums.CollectionChanged += SearchResults_CollectionChanged;
             SearchResultsVideos.CollectionChanged += SearchResults_CollectionChanged;
         }
@@ -107,6 +114,16 @@ namespace VLC_WinRT.ViewModels.Others
         private void SearchResults_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChanged(nameof(ResultsCount));
+        }
+
+        public void Dispose()
+        {
+            SearchResultsAlbums.CollectionChanged -= SearchResults_CollectionChanged;
+            SearchResultsVideos.CollectionChanged -= SearchResults_CollectionChanged;
+            _searchResultsAlbums.Clear();
+            _searchResultsAlbums = null;
+            _searchResultsVideos.Clear();
+            _searchResultsVideos = null;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using VLC_WinRT.Model.Video;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.ViewModels;
 
@@ -12,6 +13,18 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
         {
             this.InitializeComponent();
             this.Loaded += SearchPage_Loaded;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            Locator.SearchVM.OnNavigatedTo();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            Locator.SearchVM.Dispose();
         }
 
         private void SearchPage_Loaded(object sender, RoutedEventArgs e)
