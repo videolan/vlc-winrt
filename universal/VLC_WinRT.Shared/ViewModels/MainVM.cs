@@ -163,15 +163,6 @@ namespace VLC_WinRT.ViewModels
                 var appView = ApplicationView.GetForCurrentView();
                 if (page != VLCPage.VideoPlayerPage)
                 {
-                    // We shouldn't load music and video libraries if the app opens on video page, because it's bad
-                    if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
-                    {
-                        var _ = Task.Run(async () => await Locator.VideoLibraryVM.Initialize());
-                    }
-                    if (Locator.MusicLibraryVM.LoadingState == LoadingState.NotLoaded)
-                    {
-                        var _ = Task.Run(async () => await Locator.MusicLibraryVM.Initialize());
-                    }
                     appView.Title = "";
                 }
                 else
