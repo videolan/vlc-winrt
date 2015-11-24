@@ -20,8 +20,10 @@ namespace VLC_WinRT.Database
 
         public void Initialize()
         {
-            var db = new SQLiteConnection(DbPath);
-            db.CreateTable<TrackItem>();
+            using (var db = new SQLiteConnection(DbPath))
+            {
+                db.CreateTable<TrackItem>();
+            }
         }
 
         public void Drop()
