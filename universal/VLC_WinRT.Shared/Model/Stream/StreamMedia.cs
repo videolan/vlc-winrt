@@ -52,6 +52,8 @@ namespace VLC_WinRT.Model.Stream
 
         public bool IsCurrentPlaying { get; set; }
 
+        public static DeleteStreamCommand DeleteStream { get; } = new DeleteStreamCommand();
+
         public StreamMedia()
         {
             
