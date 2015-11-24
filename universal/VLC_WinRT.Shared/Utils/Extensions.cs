@@ -16,14 +16,14 @@ namespace VLC_WinRT.Utils
             return source.IndexOf(value, comparisonType) >= 0;
         }
 
-        public static ObservableCollection<T> ToObservable<T>(this IEnumerable<T> source)
+        public static SmartCollection<T> ToObservable<T>(this IEnumerable<T> source)
         {
-            return new ObservableCollection<T>(source);
+            return new SmartCollection<T>(source);
         }
 
-        public static async Task<ObservableCollection<T>> ToObservableAsync<T>(this Task<List<T>> source)
+        public static async Task<SmartCollection<T>> ToObservableAsync<T>(this Task<List<T>> source)
         {
-            return new ObservableCollection<T>(await source);
+            return new SmartCollection<T>(await source);
         }
 
         public static ObservableCollection<IVLCMedia> ToPlaylist(this IEnumerable<TrackItem> source)
