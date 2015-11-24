@@ -5,14 +5,15 @@ using SQLite;
 using VLC_WinRT.Model.Music;
 using System.Collections.Generic;
 using VLC_WinRT.Utils;
+using System.Linq.Expressions;
+using System;
 
 namespace VLC_WinRT.Database
 {
     public class ArtistDatabase : IDatabase
     {
         private static readonly string DbPath = Strings.MusicDatabase;
-
-        private SQLiteConnection connection;
+        
         public ArtistDatabase()
         {
             Initialize();
@@ -20,9 +21,10 @@ namespace VLC_WinRT.Database
 
         public void Initialize()
         {
-            var db = new SQLiteConnection(DbPath);
-            connection = db;
-            connection.CreateTable<ArtistItem>();
+            using (var db = new SQLiteConnection(DbPath))
+            {
+                db.CreateTable<ArtistItem>();
+            }
         }
 
         public void Drop()
@@ -33,16 +35,28 @@ namespace VLC_WinRT.Database
             }
         }
 
-        public async Task<List<ArtistItem>> Load()
+        public async Task<List<ArtistItem>> Load(Expression<Func<ArtistItem, bool>> compare = null)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return await connection.Table<ArtistItem>().ToListAsync();
+            AsyncTableQuery<ArtistItem> query;
+            if (compare == null)
+            {
+                query = connection.Table<ArtistItem>();
+            }
+            else
+            {
+                query = connection.Table<ArtistItem>().Where(compare);
+            }
+            return await query.ToListAsync();
         }
 
         public ArtistItem LoadViaArtistName(string artistName)
         {
-            var query = connection.Table<ArtistItem>().Where(x => x.Name.Equals(artistName));
-            return query.FirstOrDefault();
+            using (var db = new SQLiteConnection(DbPath))
+            {
+                var query = db.Table<ArtistItem>().Where(x => x.Name.Equals(artistName));
+                return query.FirstOrDefault();
+            }
         }
 
         public Task Update(ArtistItem artist)
