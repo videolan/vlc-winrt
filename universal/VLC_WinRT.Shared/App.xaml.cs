@@ -269,9 +269,10 @@ namespace VLC_WinRT
 #else
             AppViewHelper.SetTitleBar(true);
 #endif
-            Locator.MainVM.DropTablesIfNeeded();
-            ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
             Window.Current.Activate();
+            Locator.MusicLibraryVM.MusicLibrary.DropTablesIfNeeded();
+            VideoLibraryManagement.DropTablesIfNeeded();
+            ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
             Locator.Slideshow.RestoreSlideshow();
         }
 
