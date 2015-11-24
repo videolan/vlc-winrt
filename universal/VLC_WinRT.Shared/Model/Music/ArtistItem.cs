@@ -19,9 +19,7 @@ namespace VLC_WinRT.Model.Music
         private string _name;
         private bool _isPictureLoaded;
         private ObservableCollection<AlbumItem> _albumItems;
-        private IEnumerable<IGrouping<AlbumItem, TrackItem>> _tracksByAlbum;
-
-        private bool _isTracksGroupedByAlbumLoaded;
+        
         private bool _isAlbumsLoaded = false;
 
         // more informations
@@ -122,31 +120,13 @@ namespace VLC_WinRT.Model.Music
                 if (!_isAlbumsLoaded)
                 {
                     _isAlbumsLoaded = true;
-                    Task.Run(async () => await this.PopulateAlbums());
+                    Task.Run(async () => await Locator.MusicLibraryVM.MusicLibrary.PopulateAlbums(this));
                 }
                 return _albumItems ?? (_albumItems = new ObservableCollection<AlbumItem>());
             }
             set { SetProperty(ref _albumItems, value); }
         }
-
-        [Ignore]
-        public IEnumerable<IGrouping<AlbumItem, TrackItem>> TracksGroupedByAlbum
-        {
-            get
-            {
-                if (!_isTracksGroupedByAlbumLoaded)
-                {
-                    _isTracksGroupedByAlbumLoaded = true;
-                    Task.Run(async () => await this.PopulateTracksByAlbum());
-                }
-                return _tracksByAlbum;
-            }
-            set
-            {
-                SetProperty(ref _tracksByAlbum, value);
-            }
-        }
-
+        
         public string Biography
         {
             get
