@@ -14,7 +14,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
             {
                 var album = parameter as AlbumItem;
                 album.IsPinned = !album.IsPinned;
-                await Locator.MusicLibraryVM._albumDatabase.Update(album);
+                await Locator.MusicLibraryVM.MusicLibrary.Update(album);
                 UpdateTileHelper.CreateOrReplaceSecondaryTile(VLCItemType.Album, album.Id, album.Name);
             }
         }

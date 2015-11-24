@@ -47,7 +47,7 @@ namespace VLC_WinRT.Services.RunTime
             {
                 artist.Biography = bio;
             });
-            await Locator.MusicLibraryVM._artistDatabase.Update(artist);
+            await Locator.MusicLibraryVM.MusicLibrary.Update(artist);
         }
 
         public async Task<bool> GetAlbumCover(AlbumItem album)
@@ -62,7 +62,7 @@ namespace VLC_WinRT.Services.RunTime
                 var success = bytes != null && await SaveAlbumImageAsync(album, bytes);
                 if (success)
                 {
-                    await Locator.MusicLibraryVM._albumDatabase.Update(album);
+                    await Locator.MusicLibraryVM.MusicLibrary.Update(album);
                     return true;
                 }
             }
@@ -81,7 +81,7 @@ namespace VLC_WinRT.Services.RunTime
                 var success = bytes != null && await SaveArtistImageAsync(artist, bytes);
                 if (success)
                 {
-                    await Locator.MusicLibraryVM._artistDatabase.Update(artist);
+                    await Locator.MusicLibraryVM.MusicLibrary.Update(artist);
                     return true;
                 }
             }

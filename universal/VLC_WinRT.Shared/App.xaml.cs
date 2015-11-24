@@ -31,6 +31,7 @@ using VLC_WinRT.Controls;
 using VLC_WinRT.Views.UserControls;
 using VLC_WinRT.ViewModels.Settings;
 using WinRTXamlToolkit.IO.Serialization;
+using VLC_WinRT.Helpers.VideoLibrary;
 
 namespace VLC_WinRT
 {
@@ -93,13 +94,13 @@ namespace VLC_WinRT
                 {
                     query = args.Replace("SecondaryTile-Album-", "");
                     id = int.Parse(query);
-                    if (Locator.MusicLibraryVM.LoadingState == LoadingState.Loaded)
+                    if (Locator.MusicLibraryVM.LoadingStateAlbums == LoadingState.Loaded)
                     {
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.AlbumClickedCommand.Execute(id));
                     }
                     else
                     {
-                        await Locator.MusicLibraryVM.MusicCollectionLoaded.Task;
+                        await Locator.MusicLibraryVM.MusicLibrary.MusicCollectionLoaded.Task;
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.AlbumClickedCommand.Execute(id));
                     }
                 }
@@ -107,13 +108,13 @@ namespace VLC_WinRT
                 {
                     query = args.Replace("SecondaryTile-Artist-", "");
                     id = int.Parse(query);
-                    if (Locator.MusicLibraryVM.LoadingState == LoadingState.Loaded)
+                    if (Locator.MusicLibraryVM.LoadingStateArtists == LoadingState.Loaded)
                     {
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.ArtistClickedCommand.Execute(id));
                     }
                     else
                     {
-                        await Locator.MusicLibraryVM.MusicCollectionLoaded.Task;
+                        await Locator.MusicLibraryVM.MusicLibrary.MusicCollectionLoaded.Task;
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.ArtistClickedCommand.Execute(id));
                     }
                 }

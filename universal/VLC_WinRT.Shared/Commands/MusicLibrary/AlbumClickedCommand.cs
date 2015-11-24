@@ -25,11 +25,11 @@ namespace VLC_WinRT.Commands.MusicLibrary
             else if (parameter is int)
             {
                 var id = (int)parameter;
-                album = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == id);
+                album = Locator.MusicLibraryVM.MusicLibrary.Albums.FirstOrDefault(x => x.Id == id);
             }
             try
             { 
-                Locator.MusicLibraryVM.CurrentArtist = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
+                Locator.MusicLibraryVM.CurrentArtist = Locator.MusicLibraryVM.MusicLibrary.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
                 Locator.MusicLibraryVM.CurrentAlbum = album;
             }
             catch { }

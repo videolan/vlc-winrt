@@ -53,8 +53,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         ArtistItem GetFirstArtist()
         {
-            var random = new Random().Next(0, Locator.MusicLibraryVM.Artists.Count - 1);
-            var firstArtist = Locator.MusicLibraryVM.Artists[random];
+            var random = new Random().Next(0, Locator.MusicLibraryVM.MusicLibrary.Artists.Count - 1);
+            var firstArtist = Locator.MusicLibraryVM.MusicLibrary.Artists[random];
             return firstArtist;
         }
 
@@ -100,7 +100,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         static List<ArtistItem> InCollection(List<string> artistsName)
         {
-            return artistsName.Select(artistName => Locator.MusicLibraryVM.Artists.FirstOrDefault(x => String.Equals(x.Name, artistName, StringComparison.CurrentCultureIgnoreCase))).Where(artistItem => artistItem != null).ToList();
+            return artistsName.Select(artistName => Locator.MusicLibraryVM.MusicLibrary.Artists.FirstOrDefault(x => String.Equals(x.Name, artistName, StringComparison.CurrentCultureIgnoreCase))).Where(artistItem => artistItem != null).ToList();
         }
     }
 }

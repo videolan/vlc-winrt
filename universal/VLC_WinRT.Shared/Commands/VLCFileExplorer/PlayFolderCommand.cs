@@ -8,6 +8,7 @@ using VLC_WinRT.Model.Video;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.FileExplorer;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Commands.VLCFileExplorer
 {
@@ -28,7 +29,7 @@ namespace VLC_WinRT.Commands.VLCFileExplorer
             {
                 if(VLCFileExtensions.AudioExtensions.Contains((file.StorageItem as StorageFile).FileType.ToLower()))
                 {
-                    var trackItem = await MusicLibraryManagement.GetTrackItemFromFile(file.StorageItem as StorageFile);
+                    var trackItem = await Locator.MusicLibraryVM.MusicLibrary.GetTrackItemFromFile(file.StorageItem as StorageFile);
                     playlist.Add(trackItem);
                 }
                 else if(VLCFileExtensions.VideoExtensions.Contains((file.StorageItem as StorageFile).FileType.ToLower()))

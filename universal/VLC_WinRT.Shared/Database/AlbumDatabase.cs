@@ -35,10 +35,10 @@ namespace VLC_WinRT.Database
             }
         }
 
-        public async Task<List<AlbumItem>> LoadAlbumsFromId(int artistId)
+        public Task<List<AlbumItem>> LoadAlbumsFromId(int artistId)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return await connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).OrderBy(x => x.Name).ToListAsync();
+            return connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).OrderBy(x => x.Name).ToListAsync();
         }
 
         public async Task<AlbumItem> LoadAlbumViaName(int artistId, string albumName)
@@ -49,18 +49,28 @@ namespace VLC_WinRT.Database
             return result.FirstOrDefault();
         }
 
-        public async Task<AlbumItem> LoadAlbum(int albumId)
+        public AlbumItem LoadAlbum(int albumId)
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            var query = connection.Table<AlbumItem>().Where(x => x.Id.Equals(albumId));
-            var result = await query.ToListAsync();
-            return result.FirstOrDefault();
+            using (var connection = new SQLiteConnection(DbPath))
+            {
+                var query = connection.Table<AlbumItem>().Where(x => x.Id.Equals(albumId));
+                var result = query.ToList();
+                return result.FirstOrDefault();
+            }
         }
 
-        public async Task<List<AlbumItem>> LoadAlbums(Expression<Func<AlbumItem, bool>> compare)
+        public async Task<List<AlbumItem>> LoadAlbums(Expression<Func<AlbumItem, bool>> compare = null)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            var query = connection.Table<AlbumItem>().Where(compare);
+            AsyncTableQuery<AlbumItem> query;
+            if (compare == null)
+            {
+                query = connection.Table<AlbumItem>();
+            }
+            else
+            {
+                query = connection.Table<AlbumItem>().Where(compare);
+            }
             return await query.ToListAsync();
         }
 

@@ -135,17 +135,17 @@ namespace VLC_WinRT.Helpers
 
         public static IEnumerable<ArtistItem> SearchArtistItems(string tag)
         {
-            return Locator.MusicLibraryVM.Artists.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+            return Locator.MusicLibraryVM.MusicLibrary.Artists.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public static IEnumerable<AlbumItem> SearchAlbumItems(string tag)
         {
-            return Locator.MusicLibraryVM.Artists.SelectMany(node => node.Albums).Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+            return Locator.MusicLibraryVM.MusicLibrary.Artists.SelectMany(node => node.Albums).Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public static IEnumerable<TrackItem> SearchTrackItems(string tag)
         {
-            return Locator.MusicLibraryVM.Tracks.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+            return Locator.MusicLibraryVM.MusicLibrary.Tracks.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public static IEnumerable<VideoItem> SearchVideoItems(string tag)

@@ -297,10 +297,10 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                 return false;
             try
             {
-                if (Locator.MediaPlaybackViewModel.ContinueIndexing != null)
+                if (Locator.MusicLibraryVM.MusicLibrary.ContinueIndexing != null)
                 {
-                    await Locator.MediaPlaybackViewModel.ContinueIndexing.Task;
-                    Locator.MediaPlaybackViewModel.ContinueIndexing = null;
+                    await Locator.MusicLibraryVM.MusicLibrary.ContinueIndexing.Task;
+                    Locator.MusicLibraryVM.MusicLibrary.ContinueIndexing = null;
                 }
 #if WINDOWS_PHONE_APP
                 if (MemoryUsageHelper.PercentMemoryUsed() > MemoryUsageHelper.MaxRamForResourceIntensiveTasks)

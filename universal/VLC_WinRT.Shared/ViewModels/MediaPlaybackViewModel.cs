@@ -440,7 +440,7 @@ namespace VLC_WinRT.ViewModels
         public async Task PlayAudioFile(StorageFile file, string token = null)
         {
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
-            var trackItem = await MusicLibraryManagement.GetTrackItemFromFile(file, token);
+            var trackItem = await Locator.MusicLibraryVM.MusicLibrary.GetTrackItemFromFile(file, token);
             await PlaylistHelper.PlayTrackFromFilePicker(trackItem);
         }
 
@@ -609,7 +609,7 @@ namespace VLC_WinRT.ViewModels
                 }
                 catch (Exception exception)
                 {
-                    await MusicLibraryManagement.RemoveTrackFromCollectionAndDatabase(track);
+                    await Locator.MusicLibraryVM.MusicLibrary.RemoveTrackFromCollectionAndDatabase(track);
                     await Task.Delay(500);
 
                     if (TrackCollection.CanGoNext)
@@ -637,7 +637,7 @@ namespace VLC_WinRT.ViewModels
                         if (Locator.MusicPlayerVM.CurrentArtist != null)
                         {
                             Locator.MusicPlayerVM.CurrentArtist.PlayCount++;
-                            await Locator.MusicLibraryVM._artistDatabase.Update(Locator.MusicPlayerVM.CurrentArtist);
+                            await Locator.MusicLibraryVM.MusicLibrary.Update(Locator.MusicPlayerVM.CurrentArtist);
                         }
                     });
                 }
