@@ -255,37 +255,5 @@ namespace VLC_WinRT.ViewModels
                 SetProperty(ref _panels, value);
             }
         }
-
-        private bool NeedsToDrop()
-        {
-            if (ApplicationSettingsHelper.Contains(Strings.DatabaseVersion) && (int)ApplicationSettingsHelper.ReadSettingsValue(Strings.DatabaseVersion) == Numbers.DbVersion)
-            {
-                LogHelper.Log("DB does not need to be dropped.");
-                return false;
-            }
-            else
-            {
-                LogHelper.Log("DB needs to be dropped.");
-                ApplicationSettingsHelper.SaveSettingsValue(Strings.DatabaseVersion, Numbers.DbVersion);
-                return true;
-            }
-        }
-
-        public void DropTablesIfNeeded()
-        {
-            if (!NeedsToDrop()) return;
-            Locator.MusicLibraryVM.TrackCollectionRepository.Drop();
-            Locator.MusicLibraryVM.TracklistItemRepository.Drop();
-            Locator.MusicLibraryVM._albumDatabase.Drop();
-            Locator.MusicLibraryVM._artistDatabase.Drop();
-            Locator.MusicLibraryVM._trackDatabase.Drop();
-            Locator.VideoLibraryVM.VideoRepository.Drop();
-            Locator.MusicLibraryVM.TrackCollectionRepository.Initialize();
-            Locator.MusicLibraryVM.TracklistItemRepository.Initialize();
-            Locator.MusicLibraryVM._albumDatabase.Initialize();
-            Locator.MusicLibraryVM._artistDatabase.Initialize();
-            Locator.MusicLibraryVM._trackDatabase.Initialize();
-            Locator.VideoLibraryVM.VideoRepository.Initialize();
-        }
     }
 }

@@ -79,7 +79,7 @@ namespace VLC_WinRT.ViewModels
 
         #region public props
         public MouseService MouseService { get { return _mouseService; } }
-        public TaskCompletionSource<bool> ContinueIndexing { get; set; }
+        
         public bool UseVlcLib { get; set; }
         
         public IVLCMedia CurrentMedia

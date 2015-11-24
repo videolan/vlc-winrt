@@ -30,34 +30,22 @@ namespace VLC_WinRT.ViewModels.MusicVM
 {
     public class MusicLibraryVM : BindableBase
     {
-        #region databases
-        public ArtistDatabase _artistDatabase = new ArtistDatabase();
-        public TrackDatabase _trackDatabase = new TrackDatabase();
-        public AlbumDatabase _albumDatabase = new AlbumDatabase();
-        public TracklistItemRepository TracklistItemRepository = new TracklistItemRepository();
-        public TrackCollectionRepository TrackCollectionRepository = new TrackCollectionRepository();
-        #endregion
-        #region task completion sources
-        public TaskCompletionSource<bool> MusicCollectionLoaded = new TaskCompletionSource<bool>();
-        #endregion
+        public MusicLibraryManagement MusicLibrary = new MusicLibraryManagement();
         #region private fields
-        private ObservableCollection<ArtistItem> _artists = new ObservableCollection<ArtistItem>();
-        private ObservableCollection<ArtistItem> _topArtists = new ObservableCollection<ArtistItem>(); 
+        private ObservableCollection<ArtistItem> _topArtists = new ObservableCollection<ArtistItem>();
         private ObservableCollection<ArtistItem> _recommendedArtists = new ObservableCollection<ArtistItem>(); // recommanded with MusicFlow
-         
-        private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
+
         private ObservableCollection<TrackCollection> _trackCollections = new ObservableCollection<TrackCollection>();
 
-        private ObservableCollection<AlbumItem> _albums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
 
-        private IEnumerable<IGrouping<char, TrackItem>> _groupedTracks;
-        private ObservableCollection<GroupItemList<AlbumItem>> _groupedAlbums;
-        private IEnumerable<IGrouping<string, ArtistItem>> _groupedArtists;
         #endregion
         #region private props
-        private LoadingState _loadingState = LoadingState.NotLoaded;
+        private LoadingState _loadingStateArtists = LoadingState.NotLoaded;
+        private LoadingState _loadingStateAlbums = LoadingState.NotLoaded;
+        private LoadingState _loadingStateTracks = LoadingState.NotLoaded;
+        private LoadingState _loadingStatePlaylists = LoadingState.NotLoaded;
 
         private ArtistItem _focusOnAnArtist; // recommended with MusicFlow
         private TrackItem _currentTrack;
@@ -74,8 +62,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public ObservableCollection<TrackCollection> TrackCollections
         {
-            get { return _trackCollections; }
-            set { SetProperty(ref _trackCollections, value); }
+            get { return MusicLibrary.TrackCollections; }
         }
 
         public ObservableCollection<AlbumItem> FavoriteAlbums
@@ -88,12 +75,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             get { return _randomAlbums; }
             set { SetProperty(ref _randomAlbums, value); }
-        }
-
-        public ObservableCollection<ArtistItem> Artists
-        {
-            get { return _artists; }
-            set { SetProperty(ref _artists, value); }
         }
 
         public ObservableCollection<ArtistItem> TopArtists
@@ -110,32 +91,17 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public IEnumerable<IGrouping<string, ArtistItem>> GroupedArtists
         {
-            get { return _groupedArtists; }
-            set { SetProperty(ref _groupedArtists, value); }
-        }
-
-        public ObservableCollection<TrackItem> Tracks
-        {
-            get { return _tracks; }
-            set { SetProperty(ref _tracks, value); }
+            get { return MusicLibrary.OrderArtists(); }
         }
 
         public IEnumerable<IGrouping<char, TrackItem>> GroupedTracks
         {
-            get { return _groupedTracks; }
-            set { SetProperty(ref _groupedTracks, value); }
-        }
-
-        public ObservableCollection<AlbumItem> Albums
-        {
-            get { return _albums; }
-            set { SetProperty(ref _albums, value); }
+            get { return MusicLibrary.OrderTracks(); }
         }
 
         public ObservableCollection<GroupItemList<AlbumItem>> GroupedAlbums
         {
-            get { return _groupedAlbums; }
-            set { SetProperty(ref _groupedAlbums, value); }
+            get { return MusicLibrary.OrderAlbums(Locator.SettingsVM.AlbumsOrderType, Locator.SettingsVM.AlbumsOrderListing); }
         }
         #endregion
         #region public props
@@ -144,13 +110,28 @@ namespace VLC_WinRT.ViewModels.MusicVM
             get { return _musicView; }
             set { SetProperty(ref _musicView, value); }
         }
-        
-        public LoadingState LoadingState
+
+        public LoadingState LoadingStateArtists
         {
-            get { return _loadingState; }
-            set { SetProperty(ref _loadingState, value); }
+            get { return _loadingStateArtists; }
+            set { SetProperty(ref _loadingStateArtists, value); }
         }
-        
+        public LoadingState LoadingStateAlbums
+        {
+            get { return _loadingStateAlbums; }
+            set { SetProperty(ref _loadingStateAlbums, value); }
+        }
+        public LoadingState LoadingStateTracks
+        {
+            get { return _loadingStateTracks; }
+            set { SetProperty(ref _loadingStateTracks, value); }
+        }
+        public LoadingState LoadingStatePlaylists
+        {
+            get { return _loadingStatePlaylists; }
+            set { SetProperty(ref _loadingStatePlaylists, value); }
+        }
+
         public bool IsLoaded
         {
             get { return _isLoaded; }
@@ -244,112 +225,241 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         #endregion
 
-        public async Task Initialize()
+        public void ResetLibrary()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                Locator.MainVM.InformationText = Strings.LoadingMusic;
-                LoadingState = LoadingState.Loading;
-            });
-            await GetFavoriteAndRandomAlbums();
-            await GetMusicFromLibrary();
+            LoadingStateAlbums = LoadingState.NotLoaded;
+            LoadingStateArtists = LoadingState.NotLoaded;
+            LoadingStateTracks = LoadingState.NotLoaded;
+            LoadingStatePlaylists = LoadingState.NotLoaded;
+
+            RecommendedArtists?.Clear();
+            RecommendedArtists = new ObservableCollection<ArtistItem>();
+
+            RandomAlbums?.Clear();
+            RandomAlbums = new ObservableCollection<AlbumItem>();
+            FavoriteAlbums?.Clear();
+            FavoriteAlbums = new ObservableCollection<AlbumItem>();
+
+            GC.Collect();
         }
 
-        #region methods
-
-        public async Task GetFavoriteAndRandomAlbums()
+        public void OnNavigatedTo()
         {
-            await MusicLibraryManagement.LoadFavoriteRandomAlbums();
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                OnPropertyChanged("RandomAlbums");
-                OnPropertyChanged("FavoriteAlbums");
-            });
+            ResetLibrary();
+            Task.Run(() => MusicLibrary.Initialize());
         }
 
-        public async Task GetMusicFromLibrary()
+        public void OnNavigatedToArtists()
         {
-            await LoadFromDatabase();
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => IsMusicLibraryEmpty = false);
-            if (!Artists.Any())
+            if (LoadingStateArtists == LoadingState.NotLoaded)
             {
-                Debug.WriteLine("Starting music indexation");
-                await StartIndexing();
-                return;
+                InitializeArtists();
             }
+        }
+
+        public void OnNavigatedToAlbums()
+        {
+            if (LoadingStateAlbums == LoadingState.NotLoaded)
+            {
+                InitializeAlbums();
+            }
+        }
+
+        public void OnNavigatedToTracks()
+        {
+            if (LoadingStateTracks == LoadingState.NotLoaded)
+            {
+                InitializeTracks();
+            }
+        }
+
+        public void OnNavigatedToPlaylists()
+        {
+            if (LoadingStatePlaylists == LoadingState.NotLoaded)
+            {
+                InitializePlaylists();
+            }
+        }
+
+        public void OnNavigatedFrom()
+        {
+            ResetLibrary();
+        }
+
+        public void OnNavigatedFromArtists()
+        {
+            if (MusicLibrary.Artists != null)
+                MusicLibrary.Artists.CollectionChanged -= Artists_CollectionChanged;
+        }
+
+        public void OnNavigatedFromAlbums()
+        {
+            if (MusicLibrary.Albums != null)
+                MusicLibrary.Albums.CollectionChanged -= Albums_CollectionChanged;
+        }
+
+        Task InitializeAlbums()
+        {
+            return Task.Run(async () =>
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    Locator.MainVM.InformationText = Strings.LoadingMusic;
+                    LoadingStateAlbums = LoadingState.Loading;
+                });
+
+                if (MusicLibrary.Albums != null)
+                    MusicLibrary.Albums.CollectionChanged += Albums_CollectionChanged;
+                await MusicLibrary.LoadAlbumsFromDatabase();
+                var randomAlbums = await MusicLibrary.LoadRandomAlbumsFromDatabase();
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    RandomAlbums = randomAlbums;
+
+                    Locator.MainVM.InformationText = String.Empty;
+                    LoadingStateAlbums = LoadingState.Loaded;
+                });
+            });
+        }
+
+        private async void Albums_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            await OrderAlbums();
+        }
+
+        public async Task OrderAlbums()
+        {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
-                LoadingState = LoadingState.Loaded;
-                IsLoaded = true;
-                IsBusy = false;
-                Locator.MainVM.InformationText = "";
+                OnPropertyChanged(nameof(GroupedAlbums));
             });
-            MusicCollectionLoaded.SetResult(true);
-            await PerformRoutineCheckIfNotBusy();
         }
 
-        public async Task PerformRoutineCheckIfNotBusy()
+        Task InitializeArtists()
         {
-            // Routine check to add new files if there are new ones
-            if (!IsBusy)
+            return Task.Run(async () =>
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    IsBusy = true;
+                    Locator.MainVM.InformationText = Strings.LoadingMusic;
+                    LoadingStateArtists = LoadingState.Loading;
                 });
-                await MusicLibraryManagement.DoRoutineMusicLibraryCheck();
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+
+                if (MusicLibrary.Artists != null)
+                    MusicLibrary.Artists.CollectionChanged += Artists_CollectionChanged;
+                await MusicLibrary.LoadArtistsFromDatabase();
+                var recommendedArtists = await MusicLibrary.LoadRandomArtistsFromDatabase();
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    IsBusy = false;
-                    Locator.MainVM.InformationText = "";
+                    RecommendedArtists = recommendedArtists;
+
+                    Locator.MainVM.InformationText = String.Empty;
+                    LoadingStateArtists = LoadingState.Loaded;
                 });
-            }
+            });
         }
 
-        public async Task StartIndexing()
+        private async void Artists_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            // Clean DBs
-            _artistDatabase.Drop();
-            _trackDatabase.Drop();
-            _albumDatabase.Drop();
-            
-            await DispatchHelper.InvokeAsync(() =>
-            {            
-                // Clear runtime collections
-                _albums?.Clear();
-                _artists?.Clear();
-                _tracks?.Clear();
-                _randomAlbums?.Clear();
-                _favoriteAlbums?.Clear();
-                _groupedAlbums?.Clear();
-                Locator.MainVM.InformationText = Strings.LoadingMusic;
-                IsBusy = true;
-                IsLoaded = false;
-                OnPropertyChanged("IsBusy");
-                OnPropertyChanged("IsLoaded");
+            await OrderArtists();
+        }
+
+        async Task OrderArtists()
+        {
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            {
+                OnPropertyChanged(nameof(GroupedArtists));
             });
-            _artistDatabase = new ArtistDatabase();
-            _artistDatabase.Initialize();
-            _trackDatabase.Initialize();
-            _albumDatabase.Initialize();
+        }
 
-            await MusicLibraryManagement.DoRoutineMusicLibraryCheck();
-            await LoadFromDatabase();
+        Task InitializeTracks()
+        {
+            return Task.Run(async () =>
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    Locator.MainVM.InformationText = Strings.LoadingMusic;
+                    LoadingStateTracks = LoadingState.Loading;
+                });
 
+                await MusicLibrary.LoadTracksFromDatabase();
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    Locator.MainVM.InformationText = String.Empty;
+                    LoadingStateTracks = LoadingState.Loaded;
+                });
+                await OrderTracks();
+            });
+        }
+
+        async Task OrderTracks()
+        {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                IsBusy = false;
-                IsLoaded = true;
-                IsMusicLibraryEmpty = false;
-                OnPropertyChanged("Artists");
-                OnPropertyChanged("FavoriteAlbums");
-                OnPropertyChanged("IsBusy");
-                OnPropertyChanged("IsMusicLibraryEmpty");
-                OnPropertyChanged("IsLoaded");
-                LoadingState = LoadingState.Loaded;
-                Locator.MainVM.InformationText = "";
+                OnPropertyChanged(nameof(GroupedTracks));
             });
-            await GetFavoriteAndRandomAlbums();
+        }
+
+        Task InitializePlaylists()
+        {
+            return Task.Run(async () =>
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    Locator.MainVM.InformationText = Strings.LoadingMusic;
+                    LoadingStatePlaylists = LoadingState.Loading;
+                });
+
+                await MusicLibrary.LoadPlaylistsFromDatabase();
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    OnPropertyChanged(nameof(TrackCollections));
+
+                    Locator.MainVM.InformationText = String.Empty;
+                    LoadingStatePlaylists = LoadingState.Loaded;
+                });
+            });
+        }
+        #region methods            
+
+        static async Task InsertIntoGroupAlbum(AlbumItem album)
+        {
+            if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByArtist)
+            {
+                var artist = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedArtistName(album.Artist));
+                if (artist == null)
+                {
+                    artist = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedArtistName(album.Artist) };
+                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, artist.Key) < 0));
+                    i++;
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, artist));
+                }
+                else await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => artist.Add(album));
+            }
+            else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByDate)
+            {
+                var year = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedYear(album.Year));
+                if (year == null)
+                {
+                    var newyear = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedYear(album.Year) };
+                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, newyear.Key) < 0));
+                    i++;
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, newyear));
+                }
+                else await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => year.Add(album));
+            }
+            else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByAlbum)
+            {
+                var firstChar = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedAlbumFirstLetter(album.Name));
+                if (firstChar == null)
+                {
+                    var newChar = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedAlbumFirstLetter(album.Name) };
+                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, newChar.Key) < 0));
+                    i++;
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, newChar));
+                }
+                else await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => firstChar.Add(album));
+            }
         }
 
 
@@ -357,14 +467,13 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                Artists.Clear();
-                Tracks.Clear();
+                MusicLibrary.Artists.Clear();
+                MusicLibrary.Tracks.Clear();
             });
-            await MusicLibraryManagement.LoadFromSQL();
-            await MusicLibraryManagement.LoadMusicFlow();
+            await MusicLibrary.LoadMusicFlow();
             await DispatchHelper.InvokeAsync(() =>
             {
-                IsMusicLibraryEmpty = !Artists.Any();
+                IsMusicLibraryEmpty = !MusicLibrary.Artists.Any();
                 OnPropertyChanged("IsMusicLibraryEmpty");
             });
         }

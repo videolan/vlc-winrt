@@ -29,16 +29,34 @@ using System.Collections;
 using System.Linq.Expressions;
 using System.Reflection;
 using Windows.Foundation;
+using VLC_WinRT.Database;
 
 namespace VLC_WinRT.Helpers.MusicLibrary
 {
-    public static class MusicLibraryManagement
+    public class MusicLibraryManagement
     {
-        static readonly SemaphoreSlim AlbumCoverFetcherSemaphoreSlim = new SemaphoreSlim(2);
-        static readonly SemaphoreSlim ArtistPicFetcherSemaphoreSlim = new SemaphoreSlim(2);
-        static readonly SemaphoreSlim TrackItemDiscovererSemaphoreSlim = new SemaphoreSlim(2);
+        #region databases
+        ArtistDatabase artistDatabase = new ArtistDatabase();
+        TrackDatabase trackDatabase = new TrackDatabase();
+        AlbumDatabase albumDatabase = new AlbumDatabase();
+        TracklistItemRepository tracklistItemRepository = new TracklistItemRepository();
+        TrackCollectionRepository trackCollectionRepository = new TrackCollectionRepository();
+        #endregion
+        #region collections
+        public SmartCollection<ArtistItem> Artists { get; private set; }
+        public SmartCollection<AlbumItem> Albums { get; private set; }
+        public SmartCollection<TrackItem> Tracks { get; private set; }
+        public SmartCollection<TrackCollection> TrackCollections { get; private set; }
+        #endregion
+        #region mutexes
+        public TaskCompletionSource<bool> ContinueIndexing { get; set; }
+        public TaskCompletionSource<bool> MusicCollectionLoaded = new TaskCompletionSource<bool>();
 
-        public static async Task FetchAlbumCoverOrWaitAsync(AlbumItem albumItem)
+        readonly SemaphoreSlim AlbumCoverFetcherSemaphoreSlim = new SemaphoreSlim(2);
+        readonly SemaphoreSlim ArtistPicFetcherSemaphoreSlim = new SemaphoreSlim(2);
+        readonly SemaphoreSlim TrackItemDiscovererSemaphoreSlim = new SemaphoreSlim(2);
+
+        public async Task FetchAlbumCoverOrWaitAsync(AlbumItem albumItem)
         {
             await AlbumCoverFetcherSemaphoreSlim.WaitAsync();
             try
@@ -51,7 +69,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
         }
 
-        public static async Task FetchArtistPicOrWaitAsync(ArtistItem artistItem)
+        public async Task FetchArtistPicOrWaitAsync(ArtistItem artistItem)
         {
             await ArtistPicFetcherSemaphoreSlim.WaitAsync();
             try
@@ -64,12 +82,12 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
         }
 
-        public static async Task DiscoverTrackItemOrWaitAsync(StorageFile storageItem)
+        async Task DiscoverTrackItemOrWaitAsync(StorageFile storageItem)
         {
             await TrackItemDiscovererSemaphoreSlim.WaitAsync();
             try
             {
-                if (!await Locator.MusicLibraryVM._trackDatabase.DoesTrackExist(storageItem.Path))
+                if (!await trackDatabase.DoesTrackExist(storageItem.Path))
                 {
                     await CreateDatabaseFromMusicFile(storageItem);
                 }
@@ -84,58 +102,129 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 TrackItemDiscovererSemaphoreSlim.Release();
             }
         }
+        #endregion
 
-        public static async Task LoadFromSQL()
+        #region Load Collections from DB
+        public async Task LoadAlbumsFromDatabase()
+        {
+            try
+            {
+                LogHelper.Log("Loading albums from MusicDB ...");
+                var albums = await albumDatabase.LoadAlbums().ToObservableAsync();
+                var orderedAlbums = albums.OrderBy(x => x.Artist).ThenBy(x => x.Name);
+                Albums.AddRange(orderedAlbums);
+            }
+            catch
+            {
+                LogHelper.Log("Error selecting albums from database.");
+            }
+        }
+
+        public async Task<ObservableCollection<AlbumItem>> LoadRandomAlbumsFromDatabase()
+        {
+            try
+            {
+                var favAlbums = await albumDatabase.LoadAlbums(x => x.Favorite).ToObservableAsync();
+                if (favAlbums?.Count < 3) // TODO : Magic number
+                {
+                    var nonfavAlbums = await albumDatabase.LoadAlbums(x => x.Favorite == false).ToObservableAsync();
+                    if (nonfavAlbums.Count > 1)
+                    {
+                        int total = nonfavAlbums.Count - 1;
+                        for (int i = 0; i < total; i++)
+                        {
+                            favAlbums.Add(nonfavAlbums[i]);
+                        }
+                    }
+                }
+                return favAlbums;
+            }
+            catch (Exception)
+            {
+                LogHelper.Log("Error selecting random albums from database.");
+            }
+            return new ObservableCollection<AlbumItem>();
+        }
+
+
+        public async Task LoadArtistsFromDatabase()
         {
             try
             {
                 LogHelper.Log("Loading artists from MusicDB ...");
-                var artists = await Locator.MusicLibraryVM._artistDatabase.Load();
+                var artists = await artistDatabase.Load();
                 LogHelper.Log("Found " + artists.Count + " artists from MusicDB");
-                await OrderArtists(artists);
+                Artists.AddRange(artists.OrderBy(x => x.Name).ToObservable());
+            }
+            catch { }
+        }
 
-                var albums = await Locator.MusicLibraryVM._albumDatabase.LoadAlbums(x => x.ArtistId != 0).ToObservableAsync();
-                var orderedAlbums = albums.OrderBy(x => x.Artist).ThenBy(x => x.Name);
-
-                var tracks = await Locator.MusicLibraryVM._trackDatabase.LoadTracks().ToObservableAsync();
-                var groupedTracks = tracks.GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownChar : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ToUpper().ElementAt(0) : Strings.UnknownChar));
-
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+        public async Task<ObservableCollection<ArtistItem>> LoadRandomArtistsFromDatabase()
+        {
+            try
+            {
+                var topArtists = (await artistDatabase.Load(x => x.PlayCount > 10).ToObservableAsync()).Take(20);
+                // We use user top artists to search for similar artists in its collection, to recommend them
+                if (topArtists.Any())
                 {
-                    Locator.MusicLibraryVM.TopArtists = new ObservableCollection<ArtistItem>(artists.FindAll(x => x.PlayCount > 10).Take(20));
-                    Locator.MusicLibraryVM.Tracks = tracks;
-                    Locator.MusicLibraryVM.Albums = new ObservableCollection<AlbumItem>(orderedAlbums);
+                    var random = new Random().Next(0, topArtists.Count() - 1);
+                    var suggestedArtists = await MusicFlow.GetFollowingArtistViaSimilarity(topArtists.ElementAt(random));
+                    if (suggestedArtists != null)
+                        return new ObservableCollection<ArtistItem>(suggestedArtists);
+                }
+            }
+            catch (Exception)
+            {
+                LogHelper.Log("Error selecting random and recommended artists from database.");
+            }
+            return new ObservableCollection<ArtistItem>();
+        }
 
-                    if (Locator.MainVM.CurrentPage == VLCPage.MainPageMusic && Locator.MusicLibraryVM.MusicView == MusicView.Albums && (Locator.MusicLibraryVM.GroupedAlbums == null || !Locator.MusicLibraryVM.GroupedAlbums.Any()))
-                    {
-                        OrderAlbums();
-                    }
-                    Locator.MusicLibraryVM.GroupedTracks = groupedTracks;
-                });
+        public async Task LoadTracksFromDatabase()
+        {
+            try
+            {
+                Tracks = await trackDatabase.LoadTracks().ToObservableAsync();
+            }
+            catch (Exception)
+            {
+                LogHelper.Log("Error selecting tracks from database.");
+            }
+        }
 
-                var trackColl = await Locator.MusicLibraryVM.TrackCollectionRepository.LoadTrackCollections().ToObservableAsync();
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+        public Task<bool> IsMusicDatabaseEmpty()
+        {
+            return trackDatabase.IsEmpty();
+        }
+
+        public async Task LoadPlaylistsFromDatabase()
+        {
+            try
+            {
+                var trackColl = await trackCollectionRepository.LoadTrackCollections().ToObservableAsync();
+                foreach (var trackCollection in trackColl)
                 {
-                    Locator.MusicLibraryVM.TrackCollections = trackColl;
-                });
-
-                foreach (TrackCollection trackCollection in Locator.MusicLibraryVM.TrackCollections)
-                {
-                    var observableCollection = await Locator.MusicLibraryVM.TracklistItemRepository.LoadTracks(trackCollection);
+                    var observableCollection = await tracklistItemRepository.LoadTracks(trackCollection);
                     foreach (TracklistItem tracklistItem in observableCollection)
                     {
-                        TrackItem item = await Locator.MusicLibraryVM._trackDatabase.LoadTrack(tracklistItem.TrackId);
+                        TrackItem item = await trackDatabase.LoadTrack(tracklistItem.TrackId);
                         trackCollection.Playlist.Add(item);
                     }
                 }
+                TrackCollections = trackColl;
             }
             catch (Exception)
             {
                 LogHelper.Log("Error getting database.");
             }
         }
+        #endregion
 
-        public static async Task LoadMusicFlow()
+        /// <summary>
+        /// TODO IMPROVE
+        /// </summary>
+        /// <returns></returns>
+        public async Task LoadMusicFlow()
         {
             // We use user top artists to generated background images
             foreach (var artistItem in Locator.MusicLibraryVM.TopArtists)
@@ -148,62 +237,24 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
             // Choosing 5 pics randomly
             var r = new Random();
-            if (Locator.MusicLibraryVM.Artists.Any())
+            if (Artists.Any())
             {
-                var count = Locator.MusicLibraryVM.Artists.Count;
+                var count = Artists.Count;
                 var tries = (count < 5) ? count : 5;
                 for (int search = 0; search < tries; search++)
                 {
                     var i = r.Next(0, count - 1);
-                    if (Locator.MusicLibraryVM.Artists[i].IsPictureLoaded)
+                    if (Artists[i].IsPictureLoaded)
                     {
-                        Locator.Slideshow.AddImg(Locator.MusicLibraryVM.Artists[i].Picture);
-                    }
-                }
-            }
-
-
-            // We use user top artists to search for similar artists in its collection, to recommend them
-            if (Locator.MusicLibraryVM.TopArtists.Any())
-            {
-                var random = new Random().Next(0, Locator.MusicLibraryVM.TopArtists.Count - 1);
-                var suggestedArtists = await MusicFlow.GetFollowingArtistViaSimilarity(Locator.MusicLibraryVM.TopArtists[random]);
-                if (suggestedArtists != null)
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.RecommendedArtists = new ObservableCollection<ArtistItem>(suggestedArtists));
-            }
-
-            // We use the user top artists and top albums to search for "popular Music" with the Same genre, that are in its collection, to recommend them
-            // Example. TopArtist = [ Muse, Coldplay ]. Genre is Rock, Pop. We'll search on the Internet popular rock/pop artists. If some of them are in the local user's collection,
-            // We add them to the list
-            // The code below is not fully implemented
-            return;
-            if (Locator.MusicLibraryVM.FavoriteAlbums.Any())
-            {
-                var random = new Random().Next(0, Locator.MusicLibraryVM.FavoriteAlbums.Count - 1);
-                var trackItem = await Locator.MusicLibraryVM._trackDatabase.GetFirstTrackOfAlbumId(Locator.MusicLibraryVM.FavoriteAlbums[random].Id);
-                if (trackItem != null)
-                {
-                    var popularArtists = await MusicFlow.GetPopularArtistFromGenre(trackItem.Genre);
-                    if (popularArtists != null && popularArtists.Any())
-                    {
-                        random = new Random().Next(0, popularArtists.Count - 1);
-                        Locator.MusicLibraryVM.FocusOnAnArtist = popularArtists[random];
+                        Locator.Slideshow.AddImg(Artists[i].Picture);
                     }
                 }
             }
         }
 
-        public static Task DoRoutineMusicLibraryCheck()
-        {
-            return PerformMusicLibraryIndexing();
-        }
+        #region Music Library Indexation Logic
         
-        /// <summary>
-        /// This method is Windows-only since the crappy WP OS throws a 
-        /// NotImplementedexception when calling QueryOptions, CreateFileQueryWithOptions
-        /// </summary>
-        /// <returns></returns>
-        public static async Task PerformMusicLibraryIndexing()
+        async Task PerformMusicLibraryIndexing()
         {
             try
             {
@@ -221,7 +272,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                                         .FirstOrDefault(x => !x.GetParameters().Any());
                     if (getFilesMethod != null)
                     {
-                        files = await ((IAsyncOperation<IReadOnlyList<StorageFile>>) getFilesMethod.Invoke(fileQueryResult, null));
+                        files = await ((IAsyncOperation<IReadOnlyList<StorageFile>>)getFilesMethod.Invoke(fileQueryResult, null));
                     }
                     else
                     {
@@ -243,11 +294,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 #endif
                 foreach (var item in files)
                 {
-                    if (Locator.MediaPlaybackViewModel.ContinueIndexing != null)
+                    if (ContinueIndexing != null)
                     // We prevent indexing this file and upcoming files when a video is playing
                     {
-                        await Locator.MediaPlaybackViewModel.ContinueIndexing.Task;
-                        Locator.MediaPlaybackViewModel.ContinueIndexing = null;
+                        await ContinueIndexing.Task;
+                        ContinueIndexing = null;
                     }
                     await DiscoverTrackItemOrWaitAsync(item);
                 }
@@ -258,7 +309,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
         }
 
-        public static async Task GetAllMusicFolders()
+        async Task GetAllMusicFolders()
         {
             try
             {
@@ -280,14 +331,14 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
         }
 
-        private static async Task CreateDatabaseFromMusicFolder(StorageFolder musicFolder)
+        async Task CreateDatabaseFromMusicFolder(StorageFolder musicFolder)
         {
             try
             {
-                if (Locator.MediaPlaybackViewModel.ContinueIndexing != null) // We prevent indexing new folder and files recursively when a Video is playing
+                if (ContinueIndexing != null) // We prevent indexing new folder and files recursively when a Video is playing
                 {
-                    await Locator.MediaPlaybackViewModel.ContinueIndexing.Task;
-                    Locator.MediaPlaybackViewModel.ContinueIndexing = null;
+                    await ContinueIndexing.Task;
+                    ContinueIndexing = null;
                 }
                 if (musicFolder.Name != Strings.PodcastFolderName)
                 {
@@ -315,7 +366,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
         }
 
-        private static async Task CreateDatabaseFromMusicFile(StorageFile item)
+        async Task CreateDatabaseFromMusicFile(StorageFile item)
         {
             try
             {
@@ -339,13 +390,13 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 {
                     var artistName = mP.Artist?.Trim();
                     var albumArtistName = mP.AlbumArtist?.Trim();
-                    ArtistItem artist = Locator.MusicLibraryVM._artistDatabase.LoadViaArtistName(string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName);
+                    ArtistItem artist = artistDatabase.LoadViaArtistName(string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName);
                     if (artist == null)
                     {
                         artist = new ArtistItem();
                         artist.Name = string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName;
                         artist.PlayCount = 0;
-                        await Locator.MusicLibraryVM._artistDatabase.Add(artist);
+                        await artistDatabase.Add(artist);
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
                             AddArtist(artist);
@@ -354,7 +405,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
                     var albumName = mP.Album?.Trim();
                     var albumYear = mP.Year;
-                    AlbumItem album = await Locator.MusicLibraryVM._albumDatabase.LoadAlbumViaName(artist.Id, albumName);
+                    AlbumItem album = await albumDatabase.LoadAlbumViaName(artist.Id, albumName);
                     if (album == null)
                     {
                         var albumUrl = Locator.VLCService.GetAlbumUrl(media);
@@ -381,12 +432,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                             Year = albumYear,
                             AlbumCoverUri = albumSimplifiedUrl
                         };
-                        await Locator.MusicLibraryVM._albumDatabase.Add(album);
+                        await albumDatabase.Add(album);
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
-                            var artistFromCollection = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
-                            AddAlbum(album, artistFromCollection);
-                            Locator.MainVM.InformationText = string.Format(Strings.AlbumsFound, Locator.MusicLibraryVM.Albums.Count);
+                            AddAlbum(album);
+                            Locator.MainVM.InformationText = string.Format(Strings.AlbumsFound, Locator.MusicLibraryVM.MusicLibrary.Albums.Count);
                         });
                     }
 
@@ -405,7 +455,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         DiscNumber = mP.DiscNumber,
                         Genre = mP.Genre
                     };
-                    await Locator.MusicLibraryVM._trackDatabase.Add(track);
+                    await trackDatabase.Add(track);
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => AddTrack(track));
                 }
             }
@@ -414,11 +464,12 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 LogHelper.Log(StringsHelper.ExceptionToString(e));
             }
         }
+        #endregion
 
-        public static async void AddArtist(ArtistItem artist)
+        public async void AddArtist(ArtistItem artist)
         {
-            Locator.MusicLibraryVM.Artists.Add(artist);
-            if (Locator.MusicLibraryVM.Artists.Count < 3)
+            Artists.Add(artist);
+            if (Artists.Count < 3)
             {
                 await artist.LoadPicture();
                 if (artist.IsPictureLoaded)
@@ -428,284 +479,151 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
         }
 
-        public static void AddAlbum(AlbumItem album, ArtistItem artist)
+        public void AddAlbum(AlbumItem album)
         {
-            artist?.Albums.Add(album);
-            if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic && Locator.MusicLibraryVM.MusicView == MusicView.Albums)
-            {
-                Task.Run(() => InsertIntoGroupAlbum(album));
-            }
-            Locator.MusicLibraryVM.Albums.Add(album);
+            Albums.Add(album);
         }
 
-        public static void AddTrack(TrackItem track)
+        public void AddTrack(TrackItem track)
         {
-            Locator.MusicLibraryVM.Tracks.Add(track);
+            Tracks.Add(track);
         }
 
-        public static async Task PopulateTracks(this AlbumItem album)
+
+        public ObservableCollection<GroupItemList<AlbumItem>> OrderAlbums(OrderType orderType, OrderListing orderListing)
         {
-            try
+            if (Albums == null) return null;
+            var groupedAlbums = new ObservableCollection<GroupItemList<AlbumItem>>();
+            if (orderType == OrderType.ByArtist)
             {
-                var tracks = Locator.MusicLibraryVM._trackDatabase.LoadTracksByAlbumId(album.Id).ToObservable();
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                if (orderListing == OrderListing.Ascending)
                 {
-                    album.Tracks = tracks;
-                });
-            }
-            catch (Exception e)
-            {
-                LogHelper.Log(StringsHelper.ExceptionToString(e));
-            }
-        }
-
-        public static async Task PopulateAlbums(this ArtistItem artist)
-        {
-            try
-            {
-                var albums = await Locator.MusicLibraryVM._albumDatabase.LoadAlbumsFromId(artist.Id).ToObservableAsync();
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    artist.Albums = albums;
-                });
-            }
-            catch (Exception e)
-            {
-                LogHelper.Log(StringsHelper.ExceptionToString(e));
-            }
-        }
-
-        public static async Task PopulateTracksByAlbum(this ArtistItem artist)
-        {
-            try
-            {
-                var tracks = await Locator.MusicLibraryVM._trackDatabase.LoadTracksByArtistId(artist.Id);
-                var groupedTracks = tracks.GroupBy(x => Locator.MusicLibraryVM.Albums.FirstOrDefault(y => y.Id == x.AlbumId));
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    artist.TracksGroupedByAlbum = groupedTracks;
-                });
-            }
-            catch (Exception e)
-            {
-                LogHelper.Log(StringsHelper.ExceptionToString(e));
-            }
-        }
-
-        public static async Task LoadFavoriteRandomAlbums()
-        {
-            try
-            {
-                var howManyAlbumsToFill = 3;
-                if (Locator.MusicLibraryVM.RandomAlbums != null && Locator.MusicLibraryVM.RandomAlbums.Any()) return;
-                ObservableCollection<AlbumItem> favAlbums = await Locator.MusicLibraryVM._albumDatabase.LoadAlbums(x => x.Favorite).ToObservableAsync();
-                if (favAlbums != null && favAlbums.Any())
-                {
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    var groupQuery = from album in Albums
+                                     orderby album.Artist
+                                     group album by Strings.HumanizedArtistName(album.Artist) into a
+                                     select new { GroupName = a.Key, Items = a };
+                    foreach (var g in groupQuery)
                     {
-                        Locator.MusicLibraryVM.FavoriteAlbums = favAlbums;
-                        Locator.MusicLibraryVM.RandomAlbums = favAlbums.Count > howManyAlbumsToFill ? favAlbums.Take(howManyAlbumsToFill).ToObservable() : favAlbums;
-                        howManyAlbumsToFill -= Locator.MusicLibraryVM.RandomAlbums.Count;
-                    });
-                }
-                if (howManyAlbumsToFill == 0) return;
-                ObservableCollection<AlbumItem> nonfavAlbums = await Locator.MusicLibraryVM._albumDatabase.LoadAlbums(x => x.Favorite == false).ToObservableAsync();
-                if (nonfavAlbums != null && nonfavAlbums.Any())
-                {
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    {
-                        int total = (nonfavAlbums.Count > howManyAlbumsToFill) ? howManyAlbumsToFill : nonfavAlbums.Count - 1;
-                        for (int i = 0; i < total; i++)
+                        GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
+                        albums.Key = g.GroupName;
+                        foreach (var album in g.Items)
                         {
-                            Locator.MusicLibraryVM.RandomAlbums.Add(nonfavAlbums[i]);
+                            albums.Add(album);
                         }
-                    });
-                }
-            }
-            catch (Exception)
-            {
-                LogHelper.Log("Error selecting random albums.");
-            }
-        }
-
-        public static async Task OrderArtists(IEnumerable<ArtistItem> artists)
-        {
-            var orderedArtists = artists.OrderBy(x => x.Name);
-            var groupedArtists = orderedArtists.GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownString : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ToUpper().ElementAt(0).ToString() : Strings.UnknownString));
-
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                Locator.MusicLibraryVM.Artists = new ObservableCollection<ArtistItem>(orderedArtists);
-                Locator.MusicLibraryVM.GroupedArtists = groupedArtists;
-            });
-        }
-
-        public static void OrderAlbums()
-        {
-            Task.Run(async () =>
-            {
-                var groupedAlbums = new ObservableCollection<GroupItemList<AlbumItem>>();
-                if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByArtist)
-                {
-                    if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
-                    {
-                        var groupQuery = from album in Locator.MusicLibraryVM.Albums
-                                         orderby album.Artist
-                                         group album by Strings.HumanizedArtistName(album.Artist) into a
-                                         select new { GroupName = a.Key, Items = a };
-                        foreach (var g in groupQuery)
-                        {
-                            GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
-                            albums.Key = g.GroupName;
-                            foreach (var album in g.Items)
-                            {
-                                albums.Add(album);
-                            }
-                            groupedAlbums.Add(albums);
-                        }
-                    }
-                    else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
-                    {
-                        var groupQuery = from album in Locator.MusicLibraryVM.Albums
-                                         orderby album.Artist descending
-                                         group album by Strings.HumanizedArtistName(album.Artist) into a
-                                         select new { GroupName = a.Key, Items = a };
-                        foreach (var g in groupQuery)
-                        {
-                            GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
-                            albums.Key = g.GroupName;
-                            foreach (var album in g.Items)
-                            {
-                                albums.Add(album);
-                            }
-                            groupedAlbums.Add(albums);
-                        }
+                        groupedAlbums.Add(albums);
                     }
                 }
-                else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByDate)
+                else if (orderListing == OrderListing.Descending)
                 {
-                    if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
+                    var groupQuery = from album in Albums
+                                     orderby album.Artist descending
+                                     group album by Strings.HumanizedArtistName(album.Artist) into a
+                                     select new { GroupName = a.Key, Items = a };
+                    foreach (var g in groupQuery)
                     {
-                        var groupQuery = from album in Locator.MusicLibraryVM.Albums
-                                         orderby album.Year
-                                         group album by Strings.HumanizedYear(album.Year) into a
-                                         select new { GroupName = a.Key, Items = a };
-                        foreach (var g in groupQuery)
+                        GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
+                        albums.Key = g.GroupName;
+                        foreach (var album in g.Items)
                         {
-                            GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
-                            albums.Key = g.GroupName;
-                            foreach (var album in g.Items)
-                            {
-                                albums.Add(album);
-                            }
-                            groupedAlbums.Add(albums);
+                            albums.Add(album);
                         }
-                    }
-                    else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
-                    {
-                        var groupQuery = from album in Locator.MusicLibraryVM.Albums
-                                         orderby album.Year descending
-                                         group album by Strings.HumanizedYear(album.Year) into a
-                                         select new { GroupName = a.Key, Items = a };
-                        foreach (var g in groupQuery)
-                        {
-                            GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
-                            albums.Key = g.GroupName;
-                            foreach (var album in g.Items)
-                            {
-                                albums.Add(album);
-                            }
-                            groupedAlbums.Add(albums);
-                        }
+                        groupedAlbums.Add(albums);
                     }
                 }
-                else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByAlbum)
+            }
+            else if (orderType == OrderType.ByDate)
+            {
+                if (orderListing == OrderListing.Ascending)
                 {
-                    if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
+                    var groupQuery = from album in Albums
+                                     orderby album.Year
+                                     group album by Strings.HumanizedYear(album.Year) into a
+                                     select new { GroupName = a.Key, Items = a };
+                    foreach (var g in groupQuery)
                     {
-                        var groupQuery = from album in Locator.MusicLibraryVM.Albums
-                                         orderby album.Name
-                                         group album by Strings.HumanizedAlbumFirstLetter(album.Name) into a
-                                         select new { GroupName = a.Key, Items = a };
-                        foreach (var g in groupQuery)
+                        GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
+                        albums.Key = g.GroupName;
+                        foreach (var album in g.Items)
                         {
-                            GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
-                            albums.Key = g.GroupName;
-                            foreach (var album in g.Items)
-                            {
-                                albums.Add(album);
-                            }
-                            groupedAlbums.Add(albums);
+                            albums.Add(album);
                         }
-                    }
-                    else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
-                    {
-                        var groupQuery = from album in Locator.MusicLibraryVM.Albums
-                                         orderby album.Name descending
-                                         group album by Strings.HumanizedAlbumFirstLetter(album.Name) into a
-                                         select new { GroupName = a.Key, Items = a };
-                        foreach (var g in groupQuery)
-                        {
-                            GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
-                            albums.Key = g.GroupName;
-                            foreach (var album in g.Items)
-                            {
-                                albums.Add(album);
-                            }
-                            groupedAlbums.Add(albums);
-                        }
+                        groupedAlbums.Add(albums);
                     }
                 }
-
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.GroupedAlbums = groupedAlbums);
-            });
+                else if (orderListing == OrderListing.Descending)
+                {
+                    var groupQuery = from album in Albums
+                                     orderby album.Year descending
+                                     group album by Strings.HumanizedYear(album.Year) into a
+                                     select new { GroupName = a.Key, Items = a };
+                    foreach (var g in groupQuery)
+                    {
+                        GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
+                        albums.Key = g.GroupName;
+                        foreach (var album in g.Items)
+                        {
+                            albums.Add(album);
+                        }
+                        groupedAlbums.Add(albums);
+                    }
+                }
+            }
+            else if (orderType == OrderType.ByAlbum)
+            {
+                if (orderListing == OrderListing.Ascending)
+                {
+                    var groupQuery = from album in Albums
+                                     orderby album.Name
+                                     group album by Strings.HumanizedAlbumFirstLetter(album.Name) into a
+                                     select new { GroupName = a.Key, Items = a };
+                    foreach (var g in groupQuery)
+                    {
+                        GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
+                        albums.Key = g.GroupName;
+                        foreach (var album in g.Items)
+                        {
+                            albums.Add(album);
+                        }
+                        groupedAlbums.Add(albums);
+                    }
+                }
+                else if (orderListing == OrderListing.Descending)
+                {
+                    var groupQuery = from album in Albums
+                                     orderby album.Name descending
+                                     group album by Strings.HumanizedAlbumFirstLetter(album.Name) into a
+                                     select new { GroupName = a.Key, Items = a };
+                    foreach (var g in groupQuery)
+                    {
+                        GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
+                        albums.Key = g.GroupName;
+                        foreach (var album in g.Items)
+                        {
+                            albums.Add(album);
+                        }
+                        groupedAlbums.Add(albums);
+                    }
+                }
+            }
+            return groupedAlbums;
         }
 
-        static async Task InsertIntoGroupAlbum(AlbumItem album)
+        public IEnumerable<IGrouping<string, ArtistItem>> OrderArtists()
         {
-            if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByArtist)
-            {
-                var artist = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedArtistName(album.Artist));
-                if (artist == null)
-                {
-                    artist = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedArtistName(album.Artist) };
-                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, artist.Key) < 0));
-                    i++;
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, artist));
-                }
-                else await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => artist.Add(album));
-            }
-            else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByDate)
-            {
-                var year = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedYear(album.Year));
-                if (year == null)
-                {
-                    var newyear = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedYear(album.Year) };
-                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, newyear.Key) < 0));
-                    i++;
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, newyear));
-                }
-                else await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => year.Add(album));
-            }
-            else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByAlbum)
-            {
-                var firstChar = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedAlbumFirstLetter(album.Name));
-                if (firstChar == null)
-                {
-                    var newChar = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedAlbumFirstLetter(album.Name) };
-                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, newChar.Key) < 0));
-                    i++;
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, newChar));
-                }
-                else await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => firstChar.Add(album));
-            }
+            return Artists?.GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownString : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ToUpper().ElementAt(0).ToString() : Strings.UnknownString));
         }
 
-        public static async Task AddNewPlaylist(string trackCollectionName)
+        public IEnumerable<IGrouping<char, TrackItem>> OrderTracks()
+        {
+            return Tracks?.GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownChar : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ToUpper().ElementAt(0) : Strings.UnknownChar));
+        }
+
+
+        public async Task AddNewPlaylist(string trackCollectionName)
         {
             if (string.IsNullOrEmpty(trackCollectionName)) return;
             TrackCollection trackCollection = null;
-            trackCollection = await Locator.MusicLibraryVM.TrackCollectionRepository.LoadFromName(trackCollectionName);
+            trackCollection = await trackCollectionRepository.LoadFromName(trackCollectionName);
             if (trackCollection != null)
             {
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => ToastHelper.Basic(Strings.PlaylistAlreadyExists));
@@ -714,27 +632,26 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             {
                 trackCollection = new TrackCollection();
                 trackCollection.Name = trackCollectionName;
-                await Locator.MusicLibraryVM.TrackCollectionRepository.Add(trackCollection);
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.TrackCollections.Add(trackCollection));
+                await trackCollectionRepository.Add(trackCollection);
+                TrackCollections.Add(trackCollection);
             }
         }
 
-        public static Task DeletePlaylistTrack(TrackItem track, TrackCollection trackCollection)
+        public Task DeletePlaylistTrack(TrackItem track, TrackCollection trackCollection)
         {
-            return Locator.MusicLibraryVM.TracklistItemRepository.Remove(track.Id, trackCollection.Id);
+            return tracklistItemRepository.Remove(track.Id, trackCollection.Id);
         }
 
-        public static async Task DeletePlaylist(TrackCollection trackCollection)
+        public async Task DeletePlaylist(TrackCollection trackCollection)
         {
-            await Locator.MusicLibraryVM.TrackCollectionRepository.Remove(trackCollection);
+            await trackCollectionRepository.Remove(trackCollection);
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                Locator.MusicLibraryVM.TrackCollections.Remove(trackCollection);
-                Locator.MusicLibraryVM.CurrentTrackCollection = null;
+                TrackCollections.Remove(trackCollection);
             });
         }
 
-        public static async Task AddToPlaylist(TrackItem trackItem, bool displayToastNotif = true)
+        public async Task AddToPlaylist(TrackItem trackItem, bool displayToastNotif = true)
         {
             if (Locator.MusicLibraryVM.CurrentTrackCollection == null) return;
             if (Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Contains(trackItem))
@@ -743,7 +660,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 return;
             }
             Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Add(trackItem);
-            await Locator.MusicLibraryVM.TracklistItemRepository.Add(new TracklistItem()
+            await tracklistItemRepository.Add(new TracklistItem()
             {
                 TrackId = trackItem.Id,
                 TrackCollectionId = Locator.MusicLibraryVM.CurrentTrackCollection.Id,
@@ -752,14 +669,14 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 ToastHelper.Basic(string.Format(Strings.TrackAddedToYourPlaylist, trackItem.Name));
         }
 
-        public static async Task AddToPlaylist(AlbumItem albumItem)
+        public async Task AddToPlaylist(AlbumItem albumItem)
         {
             if (Locator.MusicLibraryVM.CurrentTrackCollection == null) return;
             var playlistId = Locator.MusicLibraryVM.CurrentTrackCollection.Id;
             foreach (TrackItem trackItem in albumItem.Tracks)
             {
                 Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Add(trackItem);
-                await Locator.MusicLibraryVM.TracklistItemRepository.Add(new TracklistItem()
+                await tracklistItemRepository.Add(new TracklistItem()
                 {
                     TrackId = trackItem.Id,
                     TrackCollectionId = playlistId,
@@ -768,39 +685,39 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             ToastHelper.Basic(string.Format(Strings.TrackAddedToYourPlaylist, albumItem.Name));
         }
 
-        public static async Task UpdateTrackCollection(TrackCollection trackCollection)
+        public async Task UpdateTrackCollection(TrackCollection trackCollection)
         {
-            var loadTracks = await Locator.MusicLibraryVM.TracklistItemRepository.LoadTracks(trackCollection);
+            var loadTracks = await tracklistItemRepository.LoadTracks(trackCollection);
             foreach (TracklistItem tracklistItem in loadTracks)
             {
-                await Locator.MusicLibraryVM.TracklistItemRepository.Remove(tracklistItem);
+                await tracklistItemRepository.Remove(tracklistItem);
             }
             foreach (TrackItem trackItem in trackCollection.Playlist)
             {
                 var trackListItem = new TracklistItem { TrackId = trackItem.Id, TrackCollectionId = trackCollection.Id };
-                await Locator.MusicLibraryVM.TracklistItemRepository.Add(trackListItem);
+                await tracklistItemRepository.Add(trackListItem);
             }
         }
 
-        public static async Task RemoveTrackFromCollectionAndDatabase(TrackItem trackItem)
+        public async Task RemoveTrackFromCollectionAndDatabase(TrackItem trackItem)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 try
                 {
-                    Locator.MusicLibraryVM._trackDatabase.Remove(Locator.MusicLibraryVM.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
-                    Locator.MusicLibraryVM.Tracks.Remove(Locator.MusicLibraryVM.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
-                    var album = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId);
+                    trackDatabase.Remove(Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
+                    Tracks.Remove(Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
+                    var album = Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId);
                     album?.Tracks.Remove(album.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
 
-                    var artist = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == trackItem.ArtistId);
+                    var artist = Artists.FirstOrDefault(x => x.Id == trackItem.ArtistId);
                     var artistalbum = artist?.Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId);
                     artistalbum?.Tracks.Remove(artistalbum.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
                     if (album.Tracks.Count == 0)
                     {
                         // We should remove the album as a whole
-                        Locator.MusicLibraryVM.Albums.Remove(album);
-                        Locator.MusicLibraryVM._albumDatabase.Remove(album);
+                        Albums.Remove(album);
+                        albumDatabase.Remove(album);
                         artist.Albums.Remove(artistalbum);
                     }
                     var playingTrack = Locator.MediaPlaybackViewModel.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackItem.Id);
@@ -812,7 +729,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             });
         }
 
-        public static bool AddAlbumToPlaylist(object args)
+        public bool AddAlbumToPlaylist(object args)
         {
             if (Locator.MusicLibraryVM.CurrentTrackCollection == null)
             {
@@ -831,10 +748,10 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             return true;
         }
 
-        public async static Task<TrackItem> GetTrackItemFromFile(StorageFile track, string token = null)
+        public async Task<TrackItem> GetTrackItemFromFile(StorageFile track, string token = null)
         {
             //TODO: Warning, is it safe to consider this a good idea?
-            var trackItem = await Locator.MusicLibraryVM._trackDatabase.LoadTrackByPath(track.Path);
+            var trackItem = await trackDatabase.LoadTrackByPath(track.Path);
             if (trackItem != null)
             {
                 return trackItem;
@@ -863,6 +780,166 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 trackItem.Token = token;
             }
             return trackItem;
+        }
+
+        public async Task PopulateTracks(AlbumItem album)
+        {
+            try
+            {
+                var tracks = trackDatabase.LoadTracksByAlbumId(album.Id).ToObservable();
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    album.Tracks = tracks;
+                });
+            }
+            catch (Exception e)
+            {
+                LogHelper.Log(StringsHelper.ExceptionToString(e));
+            }
+        }
+
+        public async Task PopulateAlbums(ArtistItem artist)
+        {
+            try
+            {
+                var albums = await albumDatabase.LoadAlbumsFromId(artist.Id).ToObservableAsync();
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    artist.Albums = albums;
+                });
+            }
+            catch (Exception e)
+            {
+                LogHelper.Log(StringsHelper.ExceptionToString(e));
+            }
+        }
+
+        public Task<List<TracklistItem>> LoadTracks(TrackCollection trackCollection)
+        {
+            return tracklistItemRepository.LoadTracks(trackCollection);
+        }
+
+        public Task<TrackItem> LoadTrackById(int id)
+        {
+            return trackDatabase.LoadTrack(id);
+        }
+
+        public Task<List<TrackItem>> LoadTracksByArtistId(int id)
+        {
+            return trackDatabase.LoadTracksByArtistId(id);
+        }
+
+        public List<TrackItem> LoadTracksByAlbumId(int id)
+        {
+            return trackDatabase.LoadTracksByAlbumId(id);
+        }
+
+        public async Task<ArtistItem> LoadArtist(int id)
+        {
+            return await artistDatabase.LoadArtist(id);
+        }
+
+        public AlbumItem LoadAlbum(int id)
+        {
+            return albumDatabase.LoadAlbum(id);
+        }
+
+        public Task<List<AlbumItem>> LoadAlbums(int artistId)
+        {
+            return albumDatabase.LoadAlbumsFromId(artistId);
+        }
+
+        public Task Update(ArtistItem artist)
+        {
+            return artistDatabase.Update(artist);
+        }
+
+        public Task Update(AlbumItem album)
+        {
+            return albumDatabase.Update(album);
+        }
+
+        public Task Remove(TracklistItem tracklist)
+        {
+            return tracklistItemRepository.Remove(tracklist);
+        }
+
+        public Task RemoveTrackInPlaylist(int trackid, int playlistid)
+        {
+            return tracklistItemRepository.Remove(trackid, playlistid);
+        }
+
+        public void DropTablesIfNeeded()
+        {
+            if (!Numbers.NeedsToDrop()) return;
+            trackCollectionRepository.Drop();
+            tracklistItemRepository.Drop();
+            albumDatabase.Drop();
+            artistDatabase.Drop();
+            trackDatabase.Drop();
+            trackCollectionRepository.Initialize();
+            tracklistItemRepository.Initialize();
+            albumDatabase.Initialize();
+            artistDatabase.Initialize();
+            trackDatabase.Initialize();
+        }
+
+        public async Task PerformRoutineCheckIfNotBusy()
+        {
+            // Routine check to add new files if there are new ones
+            //if (!IsBusy)
+            //{
+            //    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            //    {
+            //        IsBusy = true;
+            //    });
+            //    await MusicLibrary.DoRoutineMusicLibraryCheck();
+            //    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            //    {
+            //        IsBusy = false;
+            //        Locator.MainVM.InformationText = "";
+            //    });
+            //}
+        }
+
+        public async Task Initialize()
+        {
+            Artists = new SmartCollection<ArtistItem>();
+            Albums = new SmartCollection<AlbumItem>();
+            Tracks = new SmartCollection<TrackItem>();
+            TrackCollections = new SmartCollection<TrackCollection>();
+
+            // Doing full indexing from scratch if 0 tracks are found
+            if (await IsMusicDatabaseEmpty())
+            {
+                await StartIndexing();
+            }
+            else
+            {
+                // Else, perform a Routine Indexing (without dropping tables)
+                await PerformMusicLibraryIndexing();
+            }
+        }
+
+        async Task StartIndexing()
+        {
+            artistDatabase.Drop();
+            albumDatabase.Drop();
+            trackDatabase.Drop();
+            trackCollectionRepository.Drop();
+            tracklistItemRepository.Drop();
+
+            artistDatabase.Initialize();
+            albumDatabase.Initialize();
+            trackDatabase.Initialize();
+            trackCollectionRepository.Initialize();
+            tracklistItemRepository.Initialize();
+
+            Artists?.Clear();
+            Albums?.Clear();
+            Tracks?.Clear();
+            TrackCollections?.Clear();
+            await PerformMusicLibraryIndexing();
         }
     }
 }

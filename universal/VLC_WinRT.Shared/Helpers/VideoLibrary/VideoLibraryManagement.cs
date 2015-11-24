@@ -349,5 +349,11 @@ namespace VLC_WinRT.Helpers.VideoLibrary
             return false;
         }
 
+        public static void DropTablesIfNeeded()
+        {
+            if (!Numbers.NeedsToDrop()) return;
+            Locator.VideoLibraryVM.VideoRepository.Drop();
+            Locator.VideoLibraryVM.VideoRepository.Initialize();
+        }
     }
 }

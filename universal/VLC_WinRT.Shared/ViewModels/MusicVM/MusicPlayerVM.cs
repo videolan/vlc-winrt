@@ -41,8 +41,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
         #region private props
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArist;
-        private ArtistDatabase _artistDatabase = new ArtistDatabase();
-        private AlbumDatabase _albumDatabase = new AlbumDatabase();
         #endregion
 
         #region private fields
@@ -169,7 +167,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             if (CurrentTrack == null) return;
             if (CurrentArtist != null && CurrentArtist.Id == CurrentTrack.ArtistId) return;
-            CurrentArtist = await _artistDatabase.LoadArtist(CurrentTrack.ArtistId);
+            CurrentArtist = await Locator.MusicLibraryVM.MusicLibrary.LoadArtist(CurrentTrack.ArtistId);
             SetUpSlideshow();
         }
 
@@ -178,7 +176,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             if (CurrentTrack == null) return;
             if (CurrentArtist == null) return;
             if (CurrentAlbum != null && CurrentAlbum.Id == CurrentTrack.AlbumId) return;
-            CurrentAlbum = await _albumDatabase.LoadAlbum(CurrentTrack.AlbumId);
+            CurrentAlbum = Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(CurrentTrack.AlbumId);
         }
 
 
