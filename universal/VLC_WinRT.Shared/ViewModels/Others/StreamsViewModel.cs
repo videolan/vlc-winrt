@@ -25,7 +25,10 @@ namespace VLC_WinRT.ViewModels.Others
         public async Task Initialize()
         {
             streams = await StreamsDatabase.Load();
-            OnPropertyChanged(nameof(StreamsHistoryAndFavoritesGrouped));
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            {
+                OnPropertyChanged(nameof(StreamsHistoryAndFavoritesGrouped));
+            });
         }
 
         public void Dispose()
