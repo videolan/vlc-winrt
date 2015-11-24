@@ -21,7 +21,15 @@ namespace VLC_WinRT.Commands
     {
         public override async void Execute(object parameter)
         {
-            var mrl = parameter as string;
+            string mrl = null;
+            if (parameter is string)
+            {
+                mrl = (string)parameter;
+            }
+            else if (parameter is ItemClickEventArgs)
+            {
+                mrl = (((ItemClickEventArgs) parameter).ClickedItem as StreamMedia)?.Path;
+            }
             if (string.IsNullOrEmpty(mrl))
             {
                 return;
