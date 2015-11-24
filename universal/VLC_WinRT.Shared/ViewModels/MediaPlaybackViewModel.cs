@@ -653,7 +653,10 @@ namespace VLC_WinRT.ViewModels
                     IsStream = true;
                 });
                 await Locator.MediaPlaybackViewModel.InitializePlayback(media, autoPlay);
-                await Locator.StreamsVM.StreamsDatabase.Insert(media as StreamMedia);
+                if (! await Locator.StreamsVM.StreamsDatabase.Contains(media as StreamMedia))
+                {
+                    await Locator.StreamsVM.StreamsDatabase.Insert(media as StreamMedia);
+                }
             }
         }
 
