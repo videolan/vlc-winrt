@@ -48,5 +48,22 @@ namespace VLC_WinRT.Database
             var connection = new SQLiteAsyncConnection(DbPath);
             return connection.UpdateAsync(stream);
         }
+
+        public Task<StreamMedia> Get(StreamMedia stream)
+        {
+            var connection = new SQLiteAsyncConnection(DbPath);
+            return connection.FindAsync<StreamMedia>(x => x.Id == stream.Id);
+        }
+
+        public Task Delete(StreamMedia stream)
+        {
+            var connection = new SQLiteAsyncConnection(DbPath);
+            return connection.DeleteAsync(stream);
+        }
+
+        public async Task<bool> Contains(StreamMedia stream)
+        {
+            return await Get(stream) != null;
+        }
     }
 }
