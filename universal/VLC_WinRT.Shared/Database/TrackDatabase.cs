@@ -100,6 +100,13 @@ namespace VLC_WinRT.Database
             return await query.ToListAsync();
         }
 
+        public async Task<bool> IsEmpty()
+        {
+            var connection = new SQLiteAsyncConnection(DbPath);
+            int c = await connection.Table<TrackItem>().CountAsync();
+            return c == 0;
+        }
+
         public async Task<List<TrackItem>> LoadTracks()
         {
             var connection = new SQLiteAsyncConnection(DbPath);
