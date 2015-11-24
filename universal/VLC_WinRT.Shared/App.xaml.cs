@@ -265,7 +265,7 @@ namespace VLC_WinRT
             await SplitShell.TemplateApplied.Task;
             SetShellDecoration();
 #if WINDOWS_PHONE_APP
-            StatusBarHelper.Initialize();
+            await StatusBarHelper.Initialize();
 #else
             AppViewHelper.SetTitleBar(true);
 #endif
