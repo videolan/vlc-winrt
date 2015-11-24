@@ -10,5 +10,19 @@
 
         // Database Version 
         public static readonly int DbVersion = 5;
+        public static bool NeedsToDrop()
+        {
+            if (ApplicationSettingsHelper.Contains(Strings.DatabaseVersion) && (int)ApplicationSettingsHelper.ReadSettingsValue(Strings.DatabaseVersion) == Numbers.DbVersion)
+            {
+                LogHelper.Log("DB does not need to be dropped.");
+                return false;
+            }
+            else
+            {
+                LogHelper.Log("DB needs to be dropped.");
+                ApplicationSettingsHelper.SaveSettingsValue(Strings.DatabaseVersion, Numbers.DbVersion);
+                return true;
+            }
+        }
     }
 }
