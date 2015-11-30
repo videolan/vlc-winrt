@@ -376,7 +376,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             {
                 if (!VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower())) return;
                 var media = Locator.VLCService.GetMediaFromPath(item.Path);
-                MediaProperties mP = Locator.VLCService.GetMusicProperties(media);
+                var mP = Locator.VLCService.GetMusicProperties(media);
                 if (mP == null || (string.IsNullOrEmpty(mP.Artist) && string.IsNullOrEmpty(mP.Album) && mP.Title == item.Name))
                 {
                     var props = await item.Properties.GetMusicPropertiesAsync();
