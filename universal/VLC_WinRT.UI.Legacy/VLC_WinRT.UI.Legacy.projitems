@@ -145,11 +145,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\AlbumHorizontalTemplate.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\AlbumItem.xaml">
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\AlbumWithTracksResponsiveTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\ArtistHorizontalTemplate.xaml">
       <SubType>Designer</SubType>
@@ -367,11 +368,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPageVideo.xaml.cs">
       <DependentUpon>SettingsPageVideo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\AlbumHorizontalTemplate.xaml.cs">
-      <DependentUpon>AlbumHorizontalTemplate.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\AlbumItem.xaml.cs">
       <DependentUpon>AlbumItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\AlbumWithTracksResponsiveTemplate.xaml.cs">
+      <DependentUpon>AlbumWithTracksResponsiveTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\ArtistHorizontalTemplate.xaml.cs">
       <DependentUpon>ArtistHorizontalTemplate.xaml</DependentUpon>
