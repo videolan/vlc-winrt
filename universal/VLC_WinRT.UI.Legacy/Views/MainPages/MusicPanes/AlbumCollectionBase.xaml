@@ -70,11 +70,13 @@
                                       Grid.Row="2"
                                       ItemsSource="{Binding RandomAlbums}"
                                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                                      ItemTemplate="{StaticResource AlbumItemTemplate}"
+                                      ItemTemplate="{StaticResource AlbumItemTemplateFixedSize}"
                                       IsItemClickEnabled="True"
                                       SelectionMode="None"
                                       IsSwipeEnabled="False"
-                                      ScrollViewer.VerticalScrollMode="Disabled">
+                                      ScrollViewer.VerticalScrollMode="Disabled"
+                                      ScrollViewer.HorizontalScrollMode="Enabled"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                                 <triggers:Interactions.Triggers>
                                     <triggers:EventTrigger EventName="ItemClick">
                                         <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
@@ -83,8 +85,7 @@
                                 </triggers:Interactions.Triggers>
                                 <ListView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <ItemsWrapGrid Orientation="Horizontal"
-                                                       SizeChanged="AlbumsWrapGrid_SizeChanged" />
+                                        <ItemsStackPanel Orientation="Horizontal" />
                                     </ItemsPanelTemplate>
                                 </ListView.ItemsPanel>
                             </ListView>
