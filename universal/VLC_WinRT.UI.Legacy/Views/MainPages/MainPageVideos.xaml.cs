@@ -20,8 +20,19 @@ namespace VLC_WinRT.Views.MainPages
         public MainPageVideos()
         {
             InitializeComponent();
-            this.NavigationCacheMode = NavigationCacheMode.Enabled;
             this.Loaded += MainPageMusic_Loaded;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            Locator.VideoLibraryVM.OnNavigatedTo();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            Locator.VideoLibraryVM.OnNavigatedFrom();
         }
 
         void MainPageMusic_Loaded(object sender, RoutedEventArgs e)
