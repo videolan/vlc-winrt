@@ -26,19 +26,22 @@
         <Grid Grid.Row="0"
               Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition MinWidth="300" Width="3*"/>
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="50" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <userControls:FocusTextBox x:Name="MrlTextBox"
+                                       Grid.Column="1"
                                        PlaceholderText="{Binding Source={StaticResource Strings}, Path=EnterURL}"
-                                       InputScope="Url"
-                                       MinWidth="300" />
-            <Button Grid.Column="1"
+                                       InputScope="Url" />
+            <Button Grid.Column="3"
                     Style="{StaticResource TextBlockButtonStyle}"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    Click="ButtonBase_OnClick">
+                    Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PlayNetworkMRL}"
+                    CommandParameter="{Binding ElementName=MrlTextBox, Path=Text}">
                 <Button.Content>
                     <FontIcon Glyph="{StaticResource CheckSymbol}"
                               FontFamily="ms-appx:VLC.ttf#W10" />
@@ -46,15 +49,51 @@
             </Button>
         </Grid>
         <ListView Grid.Row="1"
-                  ItemsSource="{Binding Source={StaticResource StreamsHistoryAndFavoritesGroupedResource}}">
+                  ItemsSource="{Binding Source={StaticResource StreamsHistoryAndFavoritesGroupedResource}}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PlayNetworkMRL}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <ItemsWrapGrid Orientation="Horizontal" />
+                    <ItemsWrapGrid Orientation="Horizontal"
+                                   ItemWidth="300"
+                                   Margin="{StaticResource FrameMarginBothSides}"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="fdsfsdfsdf" Foreground="Red"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Path}"
+                                   TextTrimming="CharacterEllipsis"
+                                   Margin="0,-3,0,0"
+                                   VerticalAlignment="Center"/>
+                        <Button Grid.Column="2" 
+                                Content="{StaticResource HorizontalDotsSymbol}"
+                                Style="{StaticResource TextBlockButtonStyle}"
+                                Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
+                                VerticalAlignment="Center"
+                                FontFamily="Segoe UI Symbol">
+                          <Button.Flyout>
+                            <MenuFlyout>
+                              <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=DeleteSelected}" 
+                                              Command="{Binding DeleteStream}"
+                                              CommandParameter="{Binding}"/>
+                            </MenuFlyout>
+                          </Button.Flyout>
+                        </Button>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
