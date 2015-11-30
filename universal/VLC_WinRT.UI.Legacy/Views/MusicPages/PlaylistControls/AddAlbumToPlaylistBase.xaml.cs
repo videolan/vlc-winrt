@@ -14,13 +14,13 @@ namespace VLC_WinRT.Views.MusicPages.PlaylistControls
 
         private async void NewPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
-            await MusicLibraryManagement.AddNewPlaylist(playlistName.Text);
+            await Locator.MusicLibraryVM.MusicLibrary.AddNewPlaylist(playlistName.Text);
         }
 
 
         private void AddToPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MusicLibraryManagement.AddAlbumToPlaylist(null))
+            if (Locator.MusicLibraryVM.MusicLibrary.AddAlbumToPlaylist(null))
                 Locator.NavigationService.GoBack_Specific();
         }
     }
