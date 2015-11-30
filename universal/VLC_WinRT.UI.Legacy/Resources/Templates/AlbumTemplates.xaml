@@ -6,6 +6,7 @@
                     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                     xmlns:winrtext="using:WinRTXamlToolkit.Controls.Extensions"
                     xmlns:userControls="using:VLC_WinRT.Views.UserControls"
+                    xmlns:userControl="using:VLC_WinRT.UI.Legacy.Views.UserControls"
                     xmlns:placeholders="using:VLC_WinRT.Views.UserControls.Placeholders">
 
     <DataTemplate x:Key="AlbumItemTemplate">
@@ -16,7 +17,11 @@
         <userControls:AlbumItem Height="173"
                                 Width="173"/>
     </DataTemplate>
-
+    
+    <DataTemplate x:Key="AlbumResponsiveTemplate">
+        <userControl:AlbumWithTracksResponsiveTemplate />
+    </DataTemplate>
+    
     <DataTemplate x:Key="FakeAlbumTemplate">
         <placeholders:FakeAlbumControl />
     </DataTemplate>
