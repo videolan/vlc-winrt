@@ -8,11 +8,7 @@ namespace VLC_WinRT.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is String && !string.IsNullOrEmpty((string)value))
-            {
-                return value;
-            }
-            return Strings.UnknownAlbum;
+            return Strings.HumanizedAlbumName((string) value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
