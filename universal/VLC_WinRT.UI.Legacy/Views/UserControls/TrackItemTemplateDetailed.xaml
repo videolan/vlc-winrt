@@ -12,32 +12,46 @@
              d:DesignWidth="400">
     <Grid FlyoutBase.AttachedFlyout="{StaticResource TrackItemFlyout}"
           RightTapped="Grid_RightTapped"
-          Holding="Grid_Holding">
+          Holding="Grid_Holding"
+          VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*" />
             <ColumnDefinition />
             <ColumnDefinition />
-            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="12" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0"
-                   x:Name="NameTextBlock"
-                   Text="{Binding Name}"
-                   TextWrapping="NoWrap"
-                   TextTrimming="CharacterEllipsis"
-                   FontWeight="SemiLight"
-                   Style="{StaticResource TitleTextBlockStyle}"
-                   FontSize="20"
-                   Margin="0,0,6,0"
-                   Loaded="NameTextBlock_OnLoaded" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="MusicLogo"
+                       Foreground="{ThemeResource MainColor}"
+                       Text="{StaticResource MusicSymbol}"
+                       FontFamily="ms-appx:VLC.ttf#W10"
+                       FontSize="23"
+                       Width="30"
+                       Visibility="Collapsed" />
+            <TextBlock Grid.Column="1"
+                       x:Name="NameTextBlock"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"
+                       FontWeight="SemiLight"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       FontSize="20"
+                       Margin="0,0,6,0"
+                       Loaded="NameTextBlock_OnLoaded" />
+        </Grid>
         <TextBlock Grid.Column="1"
-                   Text="{Binding ArtistName, Converter={StaticResource ArtistStringConverter}}"
+                   x:Name="ArtistNameTextBlock"
                    Style="{StaticResource BaseTextBlockStyle}"
                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                    FontWeight="Light"
                    TextWrapping="NoWrap"
                    TextTrimming="CharacterEllipsis" />
         <TextBlock Grid.Column="2"
+                   x:Name="AlbumNameTextBlock"
                    Text="{Binding AlbumName, Converter={StaticResource AlbumStringConverter}}"
                    Style="{StaticResource BaseTextBlockStyle}"
                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
