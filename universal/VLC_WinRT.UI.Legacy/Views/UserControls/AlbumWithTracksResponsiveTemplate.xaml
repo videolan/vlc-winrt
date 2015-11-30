@@ -4,6 +4,7 @@
              xmlns:local="using:VLC_WinRT.UI.Legacy.Views.UserControls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:triggers="using:WinRT.Triggers"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -21,7 +22,6 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
@@ -43,6 +43,7 @@
                         VerticalAlignment="Center">
                 <TextBlock Grid.Column="2"
                            Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
+                           TextTrimming="CharacterEllipsis"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Margin="0,0,6,0" />
 
@@ -61,7 +62,7 @@
             </StackPanel>
 
             <AppBarButton x:Name="PinAppBarButton"
-                          Grid.Column="4"
+                          Grid.Column="3"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Icon="{Binding IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
                           Command="{Binding PinAlbumCommand}"
@@ -69,7 +70,7 @@
                           VerticalAlignment="Center"
                           Margin="{StaticResource FrameMargin}" />
             <AppBarButton  x:Name="FavoriteAppBarButton"
-                           Grid.Column="6"
+                           Grid.Column="5"
                            Icon="{Binding Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
                            Command="{Binding FavoriteAlbum}"
                            CommandParameter="{Binding Id}"
@@ -80,9 +81,17 @@
         <ListView x:Name="TracksListView"
                   Grid.Row="1"
                   Visibility="Collapsed"
+                  SelectionMode="None"
+                  IsItemClickEnabled="True"
                   ItemsSource="{Binding Tracks}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                  ItemContainerStyle="{StaticResource ListViewItemBasic}"
                   ItemTemplate="{StaticResource AlbumTrackTemplateWithRightMargin}">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding TrackClicked}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
