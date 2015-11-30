@@ -10,13 +10,6 @@
       d:DesignWidth="400"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <Page.Resources>
-        <CollectionViewSource x:Key="TracksGroupedByAlbum"
-                              x:Name="TracksGroupedByAlbum"
-                              IsSourceGrouped="True"
-                              Source="{Binding CurrentArtist.TracksGroupedByAlbum}" />
-    </Page.Resources>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
