@@ -28,104 +28,26 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <local:MainArtistHeader />
-        <SemanticZoom Grid.Row="1"
-                      Grid.Column="0">
-            <SemanticZoom.ZoomedInView>
-                <ListView x:Name="AlbumsListView"
-                          ItemsSource="{Binding Source={StaticResource TracksGroupedByAlbum}}"
-                          ItemTemplate="{StaticResource AlbumTrackTemplateWithRightMargin}"
-                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                          IsItemClickEnabled="True"
-                          SelectionMode="None">
-                    <triggers:Interactions.Triggers>
-                        <triggers:EventTrigger EventName="ItemClick">
-                            <triggers:InvokeCommandAction Command="{Binding TrackClickedCommand}"
-                                                          PassEventArgsToCommand="True" />
-                        </triggers:EventTrigger>
-                    </triggers:Interactions.Triggers>
-                    <ListView.ItemContainerTransitions>
-                        <TransitionCollection>
-                            <AddDeleteThemeTransition />
-                        </TransitionCollection>
-                    </ListView.ItemContainerTransitions>
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <ItemsWrapGrid Orientation="Horizontal"
-                                           Margin="{StaticResource FrameMarginHorizontalPlusFooter}" />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource AlbumHorizontalTemplate}" />
-                    </ListView.GroupStyle>
-                </ListView>
-            </SemanticZoom.ZoomedInView>
-            <SemanticZoom.ZoomedOutView>
-                <ListView x:Name="AlbumsZoomedOutView"
-                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                          ItemsSource="{Binding Source={StaticResource TracksGroupedByAlbum}, Path=CollectionGroups}"
-                          IsItemClickEnabled="True"
-                          SelectionMode="None">
-                    <ListView.ItemContainerTransitions>
-                        <TransitionCollection>
-                            <AddDeleteThemeTransition />
-                        </TransitionCollection>
-                    </ListView.ItemContainerTransitions>
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <ItemsStackPanel Margin="{StaticResource FrameMarginHorizontalPlusFooter}" />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Height="120">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="120" />
-                                    <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0"
-                                      Grid.RowSpan="2"
-                                      Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
-                                    <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
-                                              FontFamily="ms-appx:VLC.ttf#W10"
-                                              FontSize="26"
-                                              Foreground="{ThemeResource MainColor}" />
-                                </Grid>
-                                <Image Grid.Row="0"
-                                       Grid.RowSpan="2"
-                                       Height="120"
-                                       Width="120"
-                                       Stretch="UniformToFill"
-                                       Source="{Binding Group.Key.AlbumImage}" />
-                                <TextBlock Grid.Row="0"
-                                           Grid.Column="2"
-                                           Text="{Binding Group.Key.Name, Converter={StaticResource ArtistStringConverter}}"
-                                           FontSize="21"
-                                           FontWeight="Light"
-                                           VerticalAlignment="Bottom" />
-
-                                <AppBarButton Grid.Row="1"
-                                              Grid.Column="2"
-                                              Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                              Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
-                                              Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAlbumCommand}"
-                                              CommandParameter="{Binding Group.Key.Id   }"
-                                              Foreground="{ThemeResource MainColor}">
-                                    <AppBarButton.Icon>
-                                        <FontIcon Glyph="{StaticResource PlaySymbol}"
-                                                  FontFamily="ms-appx:VLC.ttf#W10" />
-                                    </AppBarButton.Icon>
-                                </AppBarButton>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </SemanticZoom.ZoomedOutView>
-        </SemanticZoom>
+        <ListView Grid.Row="1"
+                  Grid.Column="0"
+                  x:Name="AlbumsListView"
+                  ItemsSource="{Binding CurrentArtist.Albums}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                  ItemTemplate="{StaticResource AlbumResponsiveTemplate}"
+                  IsItemClickEnabled="False"
+                  SelectionMode="None"
+                  Margin="{StaticResource FrameMarginLeft}">
+            <ListView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition />
+                </TransitionCollection>
+            </ListView.ItemContainerTransitions>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Margin="{StaticResource FooterMarginBottom}"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
         <Grid x:Name="ExtraInfoGrid"
               Grid.Row="0"
               Grid.RowSpan="2"

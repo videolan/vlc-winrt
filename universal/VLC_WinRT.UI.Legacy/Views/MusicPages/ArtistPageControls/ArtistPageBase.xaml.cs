@@ -57,9 +57,7 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
 
         void ResponsiveListView()
         {
-            var wrapGrid = AlbumsListView.ItemsPanelRoot as ItemsWrapGrid;
-            if (wrapGrid == null) return;
-            TemplateSizer.ComputeAlbumTracks(ref wrapGrid, AlbumsListView.ActualWidth - wrapGrid.Margin.Left - wrapGrid.Margin.Right);
+
         }
     }
 }
