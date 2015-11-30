@@ -28,7 +28,7 @@
     <DataTemplate x:Key="AlbumTrackTemplateWithRightMargin">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="40" />
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition />
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
@@ -40,7 +40,7 @@
                        Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                        Style="{StaticResource TitleTextBlockStyle}"
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Center" />
+                       HorizontalAlignment="Left" />
             <userControls:TrackItemTemplate Grid.Column="2" />
         </Grid>
     </DataTemplate>
