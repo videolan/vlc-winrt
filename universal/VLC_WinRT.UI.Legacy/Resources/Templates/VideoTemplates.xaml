@@ -8,6 +8,11 @@
         <userControls:CompactVideoItemControl />
     </DataTemplate>
 
+    <DataTemplate x:Key="PhoneCompactVideoTemplateFixedSize">
+        <userControls:CompactVideoItemControl Height="185"
+                                              Width="246"/>
+    </DataTemplate>
+    
     <DataTemplate x:Key="PhoneShowTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
