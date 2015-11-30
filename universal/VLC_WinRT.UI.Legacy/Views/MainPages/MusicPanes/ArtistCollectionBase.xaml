@@ -36,13 +36,13 @@
                       ScrollViewer.HorizontalScrollMode="Disabled">
             <SemanticZoom.ZoomedInView>
                 <ScrollWatcher:ListViewScrollWatcher x:Name="ArtistListView"
-                                                             IsItemClickEnabled="True"
-                                                             ItemsSource="{Binding Artists}"
-                                                             SelectionMode="None"
-                                                             ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                                                             ItemTemplate="{StaticResource ArtistHorizontalTemplate}"
-                                                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                             ScrollViewer.HorizontalScrollMode="Disabled">
+                                                     IsItemClickEnabled="True"
+                                                     ItemsSource="{Binding Source={StaticResource GroupArtists}}"
+                                                     SelectionMode="None"
+                                                     ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                                     ItemTemplate="{StaticResource ArtistHorizontalTemplate}"
+                                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                     ScrollViewer.HorizontalScrollMode="Disabled">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
                             <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
