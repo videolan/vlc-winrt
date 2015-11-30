@@ -3,6 +3,9 @@ using Windows.Storage;
 using SQLite;
 using VLC_WinRT.Utils;
 using libVLCX;
+using VLC_WinRT.Commands;
+using VLC_WinRT.Commands.VideoLibrary;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Model.Stream
 {

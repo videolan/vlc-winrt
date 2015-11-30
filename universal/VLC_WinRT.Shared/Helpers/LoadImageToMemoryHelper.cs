@@ -5,6 +5,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
 using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Model.Music;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Helpers
 {
