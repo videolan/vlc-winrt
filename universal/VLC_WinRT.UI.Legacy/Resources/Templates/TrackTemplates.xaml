@@ -46,7 +46,7 @@
     </DataTemplate>
     
     <DataTemplate x:Key="TrackTemplateDetailed">
-        <userControls:TrackItemTemplateDetailed />
+        <userControls:TrackItemTemplateDetailed Track="{Binding Track}"/>
     </DataTemplate>
     
     <DataTemplate x:Key="TrackTemplateDetailedNoFlyout">
