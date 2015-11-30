@@ -35,6 +35,10 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 {
     public class MusicLibraryManagement
     {
+        #region properties
+        private bool _alreadyIndexedOnce = false;
+
+        #endregion
         #region databases
         ArtistDatabase artistDatabase = new ArtistDatabase();
         TrackDatabase trackDatabase = new TrackDatabase();
@@ -935,6 +939,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             Tracks = new SmartCollection<TrackItem>();
             TrackCollections = new SmartCollection<TrackCollection>();
 
+            if (_alreadyIndexedOnce) return;
+            _alreadyIndexedOnce = true;
             // Doing full indexing from scratch if 0 tracks are found
             if (await IsMusicDatabaseEmpty())
             {
