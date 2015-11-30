@@ -176,6 +176,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
                     IsBusy = true;
                 });
                 await Initialize();
+                await InitializeCameraRollVideos();
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                 {
                     IsBusy = false;
