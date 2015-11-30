@@ -9,6 +9,18 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
         public AlbumCollectionBase()
         {
             this.InitializeComponent();
+            this.Loaded += AlbumCollectionBase_Loaded;
+            this.Unloaded += AlbumCollectionBase_Unloaded;
+        }
+
+        private void AlbumCollectionBase_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Locator.MusicLibraryVM.OnNavigatedFromAlbums();
+        }
+
+        private void AlbumCollectionBase_Loaded(object sender, RoutedEventArgs e)
+        {
+            Locator.MusicLibraryVM.OnNavigatedToAlbums();
         }
 
         private void AlbumsWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
