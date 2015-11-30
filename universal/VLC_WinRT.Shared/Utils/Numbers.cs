@@ -1,4 +1,6 @@
-﻿namespace VLC_WinRT.Utils
+﻿using VLC_WinRT.Helpers;
+
+namespace VLC_WinRT.Utils
 {
     /// <summary>
     /// Magic numbers belong here
