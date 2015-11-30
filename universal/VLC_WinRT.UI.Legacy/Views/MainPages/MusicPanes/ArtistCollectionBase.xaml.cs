@@ -17,17 +17,9 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
             this.Loaded += ArtistCollectionBase_Loaded;
         }
 
-        async void ArtistCollectionBase_Loaded(object sender, RoutedEventArgs e)
+        void ArtistCollectionBase_Loaded(object sender, RoutedEventArgs e)
         {
-            await Locator.MusicLibraryVM.MusicCollectionLoaded.Task;
-            if (Locator.MusicLibraryVM.Artists.Count > Numbers.SemanticZoomItemCountThreshold)
-            {
-                var b = new Binding();
-                b.Mode = BindingMode.OneWay;
-                b.Source = this.Resources["GroupArtists"] as CollectionViewSource;
-                ArtistListView.SetBinding(ListView.ItemsSourceProperty, b);
-                SemanticZoom.IsZoomOutButtonEnabled = true;
-            }
+            Locator.MusicLibraryVM.OnNavigatedToArtists();
         }
 
         private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
