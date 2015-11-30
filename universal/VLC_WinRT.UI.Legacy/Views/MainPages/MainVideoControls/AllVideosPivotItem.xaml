@@ -61,7 +61,7 @@
                               Grid.Row="2"
                               Height="180"
                               ItemsSource="{Binding ViewedVideos}"
-                              ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
+                              ItemTemplate="{StaticResource PhoneCompactVideoTemplateFixedSize}"
                               ItemContainerStyle="{StaticResource ListViewItemStyle}"
                               IsItemClickEnabled="True"
                               SelectionMode="None"
@@ -83,9 +83,7 @@
                         </ListView.ItemContainerTransitions>
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <ItemsWrapGrid Orientation="Horizontal"
-                                               ItemWidth="246"
-                                               ItemHeight="171" />
+                                <ItemsStackPanel Orientation="Horizontal"/>
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
                     </ListView>
