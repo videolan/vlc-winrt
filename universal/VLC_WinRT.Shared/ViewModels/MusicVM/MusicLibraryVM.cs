@@ -54,7 +54,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
         private TrackCollection _currentTrackCollection;
         private bool _isLoaded = false;
         private bool _isBusy = false;
-        private bool _isMusicLibraryEmpty = true;
         public MusicView _musicView;
         #endregion
 
@@ -144,12 +143,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
             set { SetProperty(ref _isBusy, value); }
         }
 
-        public bool IsMusicLibraryEmpty
-        {
-            get { return _isMusicLibraryEmpty; }
-            set { SetProperty(ref _isMusicLibraryEmpty, value); }
-        }
-        
+        public bool IsMusicLibraryEmpty => MusicLibrary.Artists?.Count == 0 && MusicLibrary.Albums?.Count == 0 && MusicLibrary.Tracks?.Count == 0;
+
         public StartMusicIndexingCommand StartMusicIndexingCommand { get; } = new StartMusicIndexingCommand();
 
         public AddToPlaylistCommand AddToPlaylistCommand { get; } = new AddToPlaylistCommand();
@@ -318,6 +313,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
                     Locator.MainVM.InformationText = String.Empty;
                     LoadingStateAlbums = LoadingState.Loaded;
+                    OnPropertyChanged(nameof(IsMusicLibraryEmpty));
                 });
             });
         }
@@ -355,6 +351,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
                     Locator.MainVM.InformationText = String.Empty;
                     LoadingStateArtists = LoadingState.Loaded;
+                    OnPropertyChanged(nameof(IsMusicLibraryEmpty));
                 });
             });
         }
@@ -387,6 +384,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 {
                     Locator.MainVM.InformationText = String.Empty;
                     LoadingStateTracks = LoadingState.Loaded;
+                    OnPropertyChanged(nameof(IsMusicLibraryEmpty));
                 });
                 await OrderTracks();
             });
@@ -460,22 +458,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 }
                 else await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => firstChar.Add(album));
             }
-        }
-
-
-        private async Task LoadFromDatabase()
-        {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                MusicLibrary.Artists.Clear();
-                MusicLibrary.Tracks.Clear();
-            });
-            await MusicLibrary.LoadMusicFlow();
-            await DispatchHelper.InvokeAsync(() =>
-            {
-                IsMusicLibraryEmpty = !MusicLibrary.Artists.Any();
-                OnPropertyChanged("IsMusicLibraryEmpty");
-            });
         }
         #endregion
     }
