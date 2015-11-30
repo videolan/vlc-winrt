@@ -45,7 +45,8 @@
                        TextWrapping="NoWrap"
                        VerticalAlignment="Top"
                        Text="{Binding CurrentArtist.Name, Converter={StaticResource ArtistStringConverter}}"
-                       Style="{StaticResource SubheaderTextBlockStyle}" />
+                       Style="{StaticResource SubheaderTextBlockStyle}" 
+                       FontSize="36"/>
 
             <AppBarButton Grid.Column="1"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
