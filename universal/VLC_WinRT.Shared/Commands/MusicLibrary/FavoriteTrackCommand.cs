@@ -22,16 +22,8 @@ namespace VLC_WinRT.Commands.MusicPlayer
             var track = parameter as TrackItem;
             if (track == null)
                 return;
-            var trackDatabase = new TrackDatabase();
-            // searching the track in the trackcollection
-            int i = Locator.MusicLibraryVM.MusicLibrary.Tracks.IndexOf(track);
-
-            // If the track is favorite, then now it is not
-            // if the track was not favorite, now it is
-            // updating the Track collection
-            Locator.MusicLibraryVM.MusicLibrary.Tracks[i].Favorite = !(track).Favorite;
-            // Update Database
-            await trackDatabase.Update(Locator.MusicLibraryVM.MusicLibrary.Tracks[i]);
+            track.Favorite = !track.Favorite;
+            await Locator.MusicLibraryVM.MusicLibrary.Update(track);
         }
     }
 }
