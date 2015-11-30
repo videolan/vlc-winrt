@@ -24,7 +24,7 @@
     <Grid>
         <Grid.Transitions>
             <TransitionCollection>
-                <EntranceThemeTransition/>
+                <EntranceThemeTransition />
             </TransitionCollection>
         </Grid.Transitions>
         <placeholder:NothingToSeeHere Visibility="{Binding Artists.Count, Converter={StaticResource CountToVisibilityConverter}}" />
@@ -54,7 +54,7 @@
                         </triggers:EventTrigger>
                     </triggers:Interactions.Triggers>
                     <ListView.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource ListviewGroupHeaderDataTemplate}"/>
+                        <GroupStyle HeaderTemplate="{StaticResource ListviewGroupHeaderDataTemplate}" />
                     </ListView.GroupStyle>
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -78,7 +78,7 @@
                                 <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                             </Grid.RowDefinitions>
                             <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RecommendedForYou}"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"/>
+                                       Style="{StaticResource SubheaderTextBlockStyle}" />
                             <ListView x:Name="RecommendedArtistListView"
                                       Grid.Row="2"
                                       IsItemClickEnabled="True"
@@ -136,7 +136,7 @@
                         <DataTemplate>
                             <Grid>
                                 <TextBlock Text="{Binding Group.Key}"
-                                           Style="{StaticResource SemanticZoomViewOutTextBlockStyle}"/>
+                                           Style="{StaticResource SemanticZoomViewOutTextBlockStyle}" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

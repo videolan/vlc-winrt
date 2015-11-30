@@ -56,7 +56,7 @@
                         <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                     </Grid.RowDefinitions>
                     <TextBlock Text="{Binding Source={StaticResource Strings}, Path=TopVideos}"
-                               Style="{StaticResource SubheaderTextBlockStyle}"/>
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
                     <ListView x:Name="VideosListView"
                               Grid.Row="2"
                               Height="180"

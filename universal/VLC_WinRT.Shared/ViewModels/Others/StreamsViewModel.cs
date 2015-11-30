@@ -15,7 +15,7 @@ namespace VLC_WinRT.ViewModels.Others
         public StreamsDatabase StreamsDatabase = new StreamsDatabase();
         public IEnumerable<IGrouping<string, StreamMedia>> StreamsHistoryAndFavoritesGrouped
         {
-            get { return streams?.GroupBy(x=>x.Id.ToString()); }
+            get { return streams?.GroupBy(x => x.Id.ToString()); }
         }
 
         public void OnNavigatedTo()

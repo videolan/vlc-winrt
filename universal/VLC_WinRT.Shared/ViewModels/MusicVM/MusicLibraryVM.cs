@@ -166,7 +166,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public ArtistClickedCommand ArtistClickedCommand { get; } = new ArtistClickedCommand();
 
-        public ResetCurrentArtistAndAlbumCommand ResetCurrentArtistAndAlbumCommand { get;} = new ResetCurrentArtistAndAlbumCommand();
+        public ResetCurrentArtistAndAlbumCommand ResetCurrentArtistAndAlbumCommand { get; } = new ResetCurrentArtistAndAlbumCommand();
 
         public PlayArtistAlbumsCommand PlayArtistAlbumsCommand { get; } = new PlayArtistAlbumsCommand();
 
