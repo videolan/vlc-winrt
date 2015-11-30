@@ -30,12 +30,6 @@ namespace VLC_WinRT.Helpers
         public static ObservableCollection<SearchResult> SearchTracks(string tag)
         {
             var results = new ObservableCollection<SearchResult>();
-            IEnumerable<TrackItem> trackItems = SearchTrackItems(tag);
-            foreach (TrackItem item in trackItems)
-            {
-                results.Add(new SearchResult(item.Name, item.Thumbnail,
-                    VLCItemType.Track, item.Id));
-            }
             return results;
         }
 
@@ -141,12 +135,7 @@ namespace VLC_WinRT.Helpers
         {
             return Locator.MusicLibraryVM.MusicLibrary.LoadAlbums(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
         }
-
-        public static IEnumerable<TrackItem> SearchTrackItems(string tag)
-        {
-            return Locator.MusicLibraryVM.MusicLibrary.Tracks.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
-        }
-
+        
         public static IEnumerable<VideoItem> SearchVideoItems(string tag)
         {
             return Locator.VideoLibraryVM.Videos.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
