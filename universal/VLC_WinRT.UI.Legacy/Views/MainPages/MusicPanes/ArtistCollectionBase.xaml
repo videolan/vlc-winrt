@@ -86,7 +86,7 @@
                                       ItemsSource="{Binding RecommendedArtists}"
                                       SelectionMode="None"
                                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                                      ItemTemplate="{StaticResource ArtistHorizontalTemplate}"
+                                      ItemTemplate="{StaticResource ArtistHorizontalTemplateFixedSize}"
                                       Visibility="{Binding RecommendedArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                                 <triggers:Interactions.Triggers>
                                     <triggers:EventTrigger EventName="ItemClick">
@@ -96,14 +96,13 @@
                                 </triggers:Interactions.Triggers>
                                 <ListView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <ItemsWrapGrid Orientation="Vertical"
-                                                       ItemWidth="350">
-                                            <ItemsWrapGrid.ChildrenTransitions>
+                                        <ItemsStackPanel Orientation="Horizontal">
+                                            <ItemsStackPanel.ChildrenTransitions>
                                                 <TransitionCollection>
                                                     <RepositionThemeTransition />
                                                 </TransitionCollection>
-                                            </ItemsWrapGrid.ChildrenTransitions>
-                                        </ItemsWrapGrid>
+                                            </ItemsStackPanel.ChildrenTransitions>
+                                        </ItemsStackPanel>
                                     </ItemsPanelTemplate>
                                 </ListView.ItemsPanel>
                             </ListView>
