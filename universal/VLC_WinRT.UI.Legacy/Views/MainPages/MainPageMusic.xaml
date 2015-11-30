@@ -68,7 +68,6 @@
                     <DataTemplate>
                         <TextBlock x:Name="Title"
                                    Text="{Binding Converter={StaticResource MusicViewStringifyConverter}}"
-                                   Foreground="{ThemeResource BasicForeground}"
                                    VerticalAlignment="Center"
                                    FontSize="19"
                                    FontWeight="SemiLight"
