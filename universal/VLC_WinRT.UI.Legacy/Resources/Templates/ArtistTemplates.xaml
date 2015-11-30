@@ -9,6 +9,10 @@
         <userControls:ArtistHorizontalTemplate />
     </DataTemplate>
 
+    <DataTemplate x:Key="ArtistHorizontalTemplateFixedSize">
+        <userControls:ArtistHorizontalTemplate Width="350"/>
+    </DataTemplate>
+    
     <DataTemplate x:Key="SimilarArtistTemplate">
         <Grid>
             <Grid.RowDefinitions>
