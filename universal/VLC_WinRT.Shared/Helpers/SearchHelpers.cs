@@ -21,8 +21,7 @@ namespace VLC_WinRT.Helpers
             var artistItems = await SearchArtistItems(tag);
             foreach (var artistItem in artistItems)
             {
-                results.Add(new SearchResult(artistItem.Name,
-                    ApplicationData.Current.LocalFolder.Path + "\\artistPic\\" + artistItem.Id + ".jpg",
+                results.Add(new SearchResult(artistItem.Name, ApplicationData.Current.LocalFolder.Path + "\\artistPic\\" + artistItem.Id + ".jpg",
                     VLCItemType.Artist, artistItem.Id));
             }
             return results;
