@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="VLC_WinRT.UI.Legacy.Views.UserControls.AlbumWithTracksResponsiveTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WinRT.UI.Legacy.Views.UserControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="HeaderGrid" 
+              Height="90"
+              Background="Transparent"
+              Margin="{StaticResource FrameMarginBottom}"
+              Tapped="HeaderGrid_Tapped">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+                <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
+                          FontFamily="ms-appx:VLC.ttf#W10"
+                          FontSize="26"
+                          Foreground="{ThemeResource MainColor}" />
+            </Grid>
+            <Image x:Name="CoverImage" 
+                   Height="90"
+                   Width="90"
+                   Stretch="UniformToFill"
+                   Source="{Binding AlbumImage}" />
+
+            <StackPanel Grid.Column="2"
+                        VerticalAlignment="Center">
+                <TextBlock Grid.Column="2"
+                           Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           Margin="0,0,6,0" />
+
+                <AppBarButton x:Name="PlayAppBarButton" 
+                              Margin="-6,6,0,0"
+                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
+                              Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAlbumCommand}"
+                              CommandParameter="{Binding Id}"
+                              Foreground="{ThemeResource MainColor}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource PlaySymbol}"
+                                  FontFamily="ms-appx:VLC.ttf#W10" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </StackPanel>
+
+            <AppBarButton x:Name="PinAppBarButton"
+                          Grid.Column="4"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Icon="{Binding IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
+                          Command="{Binding PinAlbumCommand}"
+                          CommandParameter="{Binding}"
+                          VerticalAlignment="Center"
+                          Margin="{StaticResource FrameMargin}" />
+            <AppBarButton  x:Name="FavoriteAppBarButton"
+                           Grid.Column="6"
+                           Icon="{Binding Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
+                           Command="{Binding FavoriteAlbum}"
+                           CommandParameter="{Binding Id}"
+                           Style="{StaticResource AppBarButtonStyleHorizontal}"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource FrameMargin}" />
+        </Grid>
+        <ListView x:Name="TracksListView"
+                  Grid.Row="1"
+                  Visibility="Collapsed"
+                  ItemsSource="{Binding Tracks}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                  ItemTemplate="{StaticResource AlbumTrackTemplateWithRightMargin}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal"
+                                   Margin="0,0,16,60" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+    </Grid>
+</UserControl>
