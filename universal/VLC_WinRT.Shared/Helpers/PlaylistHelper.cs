@@ -44,7 +44,7 @@ namespace VLC_WinRT.Helpers
             if (track != null)
             {
                 await Locator.MediaPlaybackViewModel.TrackCollection.SetCurrentTrackPosition(Locator.MediaPlaybackViewModel.TrackCollection.Playlist.IndexOf(track));
-                await Task.Run(async () => await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false));
+                await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false);
             }
         }
 

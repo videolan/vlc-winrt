@@ -552,112 +552,120 @@ namespace VLC_WinRT.ViewModels
             mediaService.SetNullMediaPlayer();
         }
 
-        public async Task SetMedia(IVLCMedia media, bool forceVlcLib = false, bool autoPlay = true)
+        public Task SetMedia(IVLCMedia media, bool forceVlcLib = false, bool autoPlay = true)
         {
-            if (media == null)
-                throw new ArgumentNullException(nameof(media), "Media parameter is missing. Can't play anything");
-            Stop();
-            UseVlcLib = forceVlcLib;
-
-            if (media is VideoItem)
+            return Task.Run(async () =>
             {
-                // First things first: we need to pause the slideshow here before any action is done by VLC
-                Locator.Slideshow.IsPaused = true;
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    PlayingType = PlayingType.Video;
-                    IsStream = false;
-                    if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage)
-                    {
-                        Locator.NavigationService.GoBack_Default();
-                    }
-                    Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
-                });
-                var video = (VideoItem)media;
-                await Locator.MediaPlaybackViewModel.InitializePlayback(video, autoPlay);
-                await Locator.VideoPlayerVm.TryUseSubtitleFromFolder();
+                if (media == null)
+                    throw new ArgumentNullException(nameof(media), "Media parameter is missing. Can't play anything");
+                Stop();
+                UseVlcLib = forceVlcLib;
 
-                if (video.TimeWatched != TimeSpan.FromSeconds(0))
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.Time = (Int64)video.TimeWatched.TotalMilliseconds);
+                if (media is VideoItem)
+                {
+                    // First things first: we need to pause the slideshow here before any action is done by VLC
+                    Locator.Slideshow.IsPaused = true;
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        PlayingType = PlayingType.Video;
+                        IsStream = false;
+                        if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage)
+                        {
+                            Locator.NavigationService.GoBack_Default();
+                        }
+                        Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
+                    });
+                    var video = (VideoItem)media;
+                    await Locator.MediaPlaybackViewModel.InitializePlayback(video, autoPlay);
+                    await Locator.VideoPlayerVm.TryUseSubtitleFromFolder();
+
+                    if (video.TimeWatched != TimeSpan.FromSeconds(0))
+                        await
+                            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                                () => Locator.MediaPlaybackViewModel.Time = (Int64)video.TimeWatched.TotalMilliseconds);
 #if WINDOWS_PHONE_APP
-                try
-                {
-                    var messageDictionary = new ValueSet();
-                    messageDictionary.Add(BackgroundAudioConstants.ClearUVC, "");
-                    BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
-                }
-                catch
-                {
-                }
+                    try
+                    {
+                        var messageDictionary = new ValueSet();
+                        messageDictionary.Add(BackgroundAudioConstants.ClearUVC, "");
+                        BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
+                    }
+                    catch
+                    {
+                    }
 #else
                 await SetMediaTransportControlsInfo(string.IsNullOrEmpty(video.Name) ? "Video" : video.Name);
 #endif
-                UpdateTileHelper.UpdateMediumTileWithVideoInfo();
-            }
-            else if (media is TrackItem)
-            {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    IsStream = false;
-                    PlayingType = PlayingType.Music;
-                });
-                var track = (TrackItem)media;
-                StorageFile currentTrackFile;
-                try
-                {
-                    currentTrackFile = track.File ?? await StorageFile.GetFileFromPathAsync(track.Path);
+                    UpdateTileHelper.UpdateMediumTileWithVideoInfo();
                 }
-                catch (Exception exception)
+                else if (media is TrackItem)
                 {
-                    await Locator.MusicLibraryVM.MusicLibrary.RemoveTrackFromCollectionAndDatabase(track);
-                    await Task.Delay(500);
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        IsStream = false;
+                        PlayingType = PlayingType.Music;
+                    });
+                    var track = (TrackItem)media;
+                    StorageFile currentTrackFile;
+                    try
+                    {
+                        currentTrackFile = track.File ?? await StorageFile.GetFileFromPathAsync(track.Path);
+                    }
+                    catch (Exception exception)
+                    {
+                        await Locator.MusicLibraryVM.MusicLibrary.RemoveTrackFromCollectionAndDatabase(track);
+                        await Task.Delay(500);
 
-                    if (TrackCollection.CanGoNext)
-                    {
-                        await PlayNext();
+                        if (TrackCollection.CanGoNext)
+                        {
+                            await PlayNext();
+                        }
+                        else
+                        {
+                            await
+                                App.Dispatcher.RunAsync(CoreDispatcherPriority.Low,
+                                    () => Locator.NavigationService.GoBack_Specific());
+                        }
+                        return;
                     }
-                    else
+                    await Locator.MediaPlaybackViewModel.InitializePlayback(track, autoPlay);
+                    if (_playerEngine != PlayerEngine.BackgroundMFPlayer)
                     {
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.NavigationService.GoBack_Specific());
-                    }
-                    return;
-                }
-                await Locator.MediaPlaybackViewModel.InitializePlayback(track, autoPlay);
-                if (_playerEngine != PlayerEngine.BackgroundMFPlayer)
-                {
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-                    {
-                        await Locator.MusicPlayerVM.SetCurrentArtist();
-                        await Locator.MusicPlayerVM.SetCurrentAlbum();
-                        await Locator.MusicPlayerVM.UpdatePlayingUI();
-                        await Locator.MusicPlayerVM.Scrobble();
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                        {
+                            await Locator.MusicPlayerVM.SetCurrentArtist();
+                            await Locator.MusicPlayerVM.SetCurrentAlbum();
+                            await Locator.MusicPlayerVM.UpdatePlayingUI();
+                            await Locator.MusicPlayerVM.Scrobble();
 #if WINDOWS_APP
                         await Locator.MusicPlayerVM.UpdateWindows8UI();
 #endif
-                        if (Locator.MusicPlayerVM.CurrentArtist != null)
-                        {
-                            Locator.MusicPlayerVM.CurrentArtist.PlayCount++;
-                            await Locator.MusicLibraryVM.MusicLibrary.Update(Locator.MusicPlayerVM.CurrentArtist);
-                        }
+                            if (Locator.MusicPlayerVM.CurrentArtist != null)
+                            {
+                                Locator.MusicPlayerVM.CurrentArtist.PlayCount++;
+                                await Locator.MusicLibraryVM.MusicLibrary.Update(Locator.MusicPlayerVM.CurrentArtist);
+                            }
+                        });
+                    }
+                    ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack,
+                        TrackCollection.CurrentTrack);
+                }
+                else if (media is StreamMedia)
+                {
+                    UseVlcLib = true;
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        Locator.VideoPlayerVm.CurrentVideo = null;
+                        Locator.MediaPlaybackViewModel.PlayingType = PlayingType.Video;
+                        IsStream = true;
                     });
+                    await Locator.MediaPlaybackViewModel.InitializePlayback(media, autoPlay);
+                    if (!await Locator.StreamsVM.StreamsDatabase.Contains(media as StreamMedia))
+                    {
+                        await Locator.StreamsVM.StreamsDatabase.Insert(media as StreamMedia);
+                    }
                 }
-                ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, TrackCollection.CurrentTrack);
-            }
-            else if (media is StreamMedia)
-            {
-                UseVlcLib = true;
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    Locator.VideoPlayerVm.CurrentVideo = null;
-                    Locator.MediaPlaybackViewModel.PlayingType = PlayingType.Video;
-                    IsStream = true;
-                });
-                await Locator.MediaPlaybackViewModel.InitializePlayback(media, autoPlay);
-                if (! await Locator.StreamsVM.StreamsDatabase.Contains(media as StreamMedia))
-                {
-                    await Locator.StreamsVM.StreamsDatabase.Insert(media as StreamMedia);
-                }
-            }
+            });
         }
 
         public async Task InitializePlayback(IVLCMedia media, bool autoPlay)
