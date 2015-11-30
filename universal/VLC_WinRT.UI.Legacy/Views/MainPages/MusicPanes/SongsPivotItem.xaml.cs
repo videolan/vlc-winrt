@@ -3,6 +3,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.Helpers;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Views.MainPages.MusicPanes
 {
@@ -16,6 +17,7 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
 
         private void Collection_Loaded(object sender, RoutedEventArgs e)
         {
+            Locator.MusicLibraryVM.OnNavigatedToTracks();
             Window.Current.SizeChanged += Current_SizeChanged;
             this.Unloaded += OnUnloaded;
             Responsive();
