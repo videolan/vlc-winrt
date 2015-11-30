@@ -105,7 +105,6 @@ namespace VLC_WinRT.ViewModels.VideoVM
         #region contructors
         public VideoLibraryVM()
         {
-           ResetLibrary();
         }
 
         public void ResetLibrary()
