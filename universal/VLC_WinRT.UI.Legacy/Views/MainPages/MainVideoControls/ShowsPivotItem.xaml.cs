@@ -7,6 +7,12 @@ namespace VLC_WinRT.Views.MainPages.MainVideoControls
         public ShowsPivotItem()
         {
             this.InitializeComponent();
+            this.Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            Locator.VideoLibraryVM.OnNavigatedToAllVideos();
         }
     }
 }
