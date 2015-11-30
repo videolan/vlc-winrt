@@ -20,7 +20,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             bool foundFirstArt = false;
             while (!foundFirstArt)
             {
-                var artistItem = GetFirstArtist();
+                var artistItem = await GetFirstArtist();
                 if (artistItem == null || string.IsNullOrEmpty(artistItem.Name)) return false;
                 firstArtist = artistItem;
                 foundFirstArt = true;
@@ -51,10 +51,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             return true;
         }
 
-        ArtistItem GetFirstArtist()
+        async Task<ArtistItem> GetFirstArtist()
         {
-            var random = new Random().Next(0, Locator.MusicLibraryVM.MusicLibrary.Artists.Count - 1);
-            var firstArtist = Locator.MusicLibraryVM.MusicLibrary.Artists[random];
+            var artistsCount = await Locator.MusicLibraryVM.MusicLibrary.ArtistCount();
+            var random = new Random().Next(0, artistsCount - 1);
+            var firstArtist = await Locator.MusicLibraryVM.MusicLibrary.ArtistAt(random);
             return firstArtist;
         }
 
@@ -100,7 +101,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         static List<ArtistItem> InCollection(List<string> artistsName)
         {
-            return artistsName.Select(artistName => Locator.MusicLibraryVM.MusicLibrary.Artists.FirstOrDefault(x => String.Equals(x.Name, artistName, StringComparison.CurrentCultureIgnoreCase))).Where(artistItem => artistItem != null).ToList();
+            return artistsName.Select(artistName => Locator.MusicLibraryVM.MusicLibrary.LoadViaArtistName(artistName)).Where(artistItem => artistItem != null).ToList();
         }
     }
 }

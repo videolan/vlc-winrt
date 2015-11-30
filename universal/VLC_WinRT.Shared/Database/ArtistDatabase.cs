@@ -35,6 +35,18 @@ namespace VLC_WinRT.Database
             }
         }
 
+        public Task<int> Count()
+        {
+            var connection = new SQLiteAsyncConnection(DbPath);
+            return connection.Table<ArtistItem>().CountAsync();
+        }
+
+        public Task<ArtistItem> At(int index)
+        {
+            var connection = new SQLiteAsyncConnection(DbPath);
+            return connection.Table<ArtistItem>().ElementAtAsync(index);
+        }
+
         public async Task<List<ArtistItem>> Load(Expression<Func<ArtistItem, bool>> compare = null)
         {
             var connection = new SQLiteAsyncConnection(DbPath);

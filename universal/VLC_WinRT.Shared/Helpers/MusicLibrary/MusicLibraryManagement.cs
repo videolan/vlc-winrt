@@ -152,7 +152,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             try
             {
                 LogHelper.Log("Loading artists from MusicDB ...");
-                var artists = await artistDatabase.Load();
+                var artists = await LoadArtists(null);
                 LogHelper.Log("Found " + artists.Count + " artists from MusicDB");
                 Artists.AddRange(artists.OrderBy(x => x.Name).ToObservable());
             }
@@ -163,7 +163,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         {
             try
             {
-                var topArtists = (await artistDatabase.Load(x => x.PlayCount > 10).ToObservableAsync()).Take(20);
+                var topArtists = (await LoadArtists(x => x.PlayCount > 10).ToObservableAsync()).Take(20);
                 // We use user top artists to search for similar artists in its collection, to recommend them
                 if (topArtists.Any())
                 {
@@ -390,7 +390,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 {
                     var artistName = mP.Artist?.Trim();
                     var albumArtistName = mP.AlbumArtist?.Trim();
-                    ArtistItem artist = artistDatabase.LoadViaArtistName(string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName);
+                    ArtistItem artist = LoadViaArtistName(string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName);
                     if (artist == null)
                     {
                         artist = new ArtistItem();
@@ -839,6 +839,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             return await artistDatabase.LoadArtist(id);
         }
 
+        public ArtistItem LoadViaArtistName(string name)
+        {
+            return artistDatabase.LoadViaArtistName(name);
+        }
+
         public AlbumItem LoadAlbum(int id)
         {
             return albumDatabase.LoadAlbum(id);
@@ -868,6 +873,27 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         {
             return tracklistItemRepository.Remove(trackid, playlistid);
         }
+
+        public Task<int> ArtistCount()
+        {
+            return artistDatabase.Count();
+        }
+
+        public Task<ArtistItem> ArtistAt(int index)
+        {
+            return artistDatabase.At(index);
+        }
+
+        public Task<List<ArtistItem>> LoadArtists(Expression<Func<ArtistItem, bool>> predicate)
+        {
+            return artistDatabase.Load(predicate);
+        }
+
+        public Task<List<AlbumItem>> LoadAlbums(Expression<Func<AlbumItem, bool>> predicate)
+        {
+            return albumDatabase.Load(predicate);
+        }
+
 
         public void DropTablesIfNeeded()
         {

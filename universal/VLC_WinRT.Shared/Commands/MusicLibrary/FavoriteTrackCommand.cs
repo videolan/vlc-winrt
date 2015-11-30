@@ -30,19 +30,6 @@ namespace VLC_WinRT.Commands.MusicPlayer
             // if the track was not favorite, now it is
             // updating the Track collection
             Locator.MusicLibraryVM.MusicLibrary.Tracks[i].Favorite = !(track).Favorite;
-            var trackFromArtistCollection = Locator.MusicLibraryVM.MusicLibrary.Artists.FirstOrDefault(
-                x =>
-                {
-                    var trackItem = parameter as TrackItem;
-                    return trackItem != null && x.Name == trackItem.ArtistName;
-                })
-                .Albums.FirstOrDefault(y =>
-                {
-                    var item = parameter as TrackItem;
-                    return item != null && y.Name == item.AlbumName;
-                })
-                .Tracks.FirstOrDefault(z => z == (parameter as TrackItem));
-
             // Update Database
             await trackDatabase.Update(Locator.MusicLibraryVM.MusicLibrary.Tracks[i]);
         }

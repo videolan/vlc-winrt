@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
@@ -59,7 +60,7 @@ namespace VLC_WinRT.ViewModels.Others
             set
             {
                 if (MusicSearchEnabled && !string.IsNullOrEmpty(value) && value.Length > 1)
-                    SearchHelpers.SearchAlbums(value, SearchResultsAlbums);
+                    Task.Run(() => SearchHelpers.SearchAlbums(value, SearchResultsAlbums));
                 else if (VideoSearchEnabled && !string.IsNullOrEmpty(value) && value.Length > 1)
                     SearchHelpers.SearchVideos(value, SearchResultsVideos);
                 SetProperty(ref _searchTag, value);

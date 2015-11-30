@@ -25,15 +25,19 @@ namespace VLC_WinRT.Commands.MusicLibrary
             else if (parameter is int)
             {
                 var id = (int)parameter;
-                album = Locator.MusicLibraryVM.MusicLibrary.Albums.FirstOrDefault(x => x.Id == id);
+                album = Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(id);
             }
             try
-            { 
-                Locator.MusicLibraryVM.CurrentArtist = Locator.MusicLibraryVM.MusicLibrary.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
-                Locator.MusicLibraryVM.CurrentAlbum = album;
+            {
+                if (album != null)
+                {
+                    Locator.MusicLibraryVM.CurrentArtist = await Locator.MusicLibraryVM.MusicLibrary.LoadArtist(album.ArtistId);
+                    Locator.MusicLibraryVM.CurrentAlbum = album;
+                }
             }
             catch { }
-            Locator.NavigationService.Go(VLCPage.AlbumPage);
+            if (album != null)
+                Locator.NavigationService.Go(VLCPage.AlbumPage);
         }
     }
 }

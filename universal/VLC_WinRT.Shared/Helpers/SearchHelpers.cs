@@ -15,10 +15,10 @@ namespace VLC_WinRT.Helpers
 {
     public static class SearchHelpers
     {        
-        public static ObservableCollection<SearchResult> SearchArtists(string tag)
+        public static async Task<ObservableCollection<SearchResult>> SearchArtists(string tag)
         {
             var results = new ObservableCollection<SearchResult>();
-            IEnumerable<ArtistItem> artistItems = SearchArtistItems(tag);
+            var artistItems = await SearchArtistItems(tag);
             foreach (var artistItem in artistItems)
             {
                 results.Add(new SearchResult(artistItem.Name,
@@ -40,10 +40,10 @@ namespace VLC_WinRT.Helpers
             return results;
         }
 
-        public static ObservableCollection<SearchResult> SearchAlbumsGeneric(string tag)
+        public static async Task<ObservableCollection<SearchResult>> SearchAlbumsGeneric(string tag)
         {
             var results = new ObservableCollection<SearchResult>();
-            IEnumerable<AlbumItem> albumItems = SearchAlbumItems(tag);
+            var albumItems = await SearchAlbumItems(tag);
             foreach (AlbumItem albumItem in albumItems)
             {
                 results.Add(new SearchResult(albumItem.Name,
@@ -54,9 +54,9 @@ namespace VLC_WinRT.Helpers
             return results;
         }
 
-        public static void SearchAlbums(string tag, ObservableCollection<AlbumItem> results)
+        public static async Task SearchAlbums(string tag, ObservableCollection<AlbumItem> results)
         {
-            var albums = SearchAlbumItems(tag);
+            var albums = await SearchAlbumItems(tag);
             foreach (var album in albums)
             {
                 if (!results.Contains(album)) 
@@ -120,9 +120,9 @@ namespace VLC_WinRT.Helpers
             }
         }
 
-        public static void SearchMusic(string tag, ObservableCollection<SearchResult> results)
+        public static async Task SearchMusic(string tag, ObservableCollection<SearchResult> results)
         {
-            var albums = SearchAlbumsGeneric(tag);
+            var albums = await SearchAlbumsGeneric(tag);
             foreach (var album in albums.Where(album => !results.Contains(album)))
             {
                 results.Add(album);
@@ -133,14 +133,14 @@ namespace VLC_WinRT.Helpers
             }
         }
 
-        public static IEnumerable<ArtistItem> SearchArtistItems(string tag)
+        public static Task<List<ArtistItem>> SearchArtistItems(string tag)
         {
-            return Locator.MusicLibraryVM.MusicLibrary.Artists.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+            return Locator.MusicLibraryVM.MusicLibrary.LoadArtists(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
         }
 
-        public static IEnumerable<AlbumItem> SearchAlbumItems(string tag)
+        public static Task<List<AlbumItem>> SearchAlbumItems(string tag)
         {
-            return Locator.MusicLibraryVM.MusicLibrary.Artists.SelectMany(node => node.Albums).Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+            return Locator.MusicLibraryVM.MusicLibrary.LoadAlbums(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public static IEnumerable<TrackItem> SearchTrackItems(string tag)

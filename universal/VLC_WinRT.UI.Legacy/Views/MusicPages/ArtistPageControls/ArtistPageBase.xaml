@@ -25,7 +25,7 @@
                   Grid.Column="0"
                   x:Name="AlbumsListView"
                   ItemsSource="{Binding CurrentArtist.Albums}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                  ItemContainerStyle="{StaticResource ListViewItemBasic}"
                   ItemTemplate="{StaticResource AlbumResponsiveTemplate}"
                   IsItemClickEnabled="False"
                   SelectionMode="None"

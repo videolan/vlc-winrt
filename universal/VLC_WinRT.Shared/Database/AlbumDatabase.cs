@@ -74,6 +74,21 @@ namespace VLC_WinRT.Database
             return await query.ToListAsync();
         }
 
+        public async Task<List<AlbumItem>> Load(Expression<Func<AlbumItem, bool>> compare = null)
+        {
+            var connection = new SQLiteAsyncConnection(DbPath);
+            AsyncTableQuery<AlbumItem> query;
+            if (compare == null)
+            {
+                query = connection.Table<AlbumItem>();
+            }
+            else
+            {
+                query = connection.Table<AlbumItem>().Where(compare);
+            }
+            return await query.ToListAsync();
+        }
+
         public Task Update(AlbumItem album)
         {
             var connection = new SQLiteAsyncConnection(DbPath);

@@ -8,13 +8,13 @@ namespace VLC_WinRT.Commands.MusicLibrary
 {
     public class SeeArtistShowsCommand : AlwaysExecutableCommand
     {
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             Locator.NavigationService.Go(VLCPage.ArtistShowsPage);
             var artistItem = parameter as ArtistItem;
             if (artistItem == null && parameter is int)
             {
-                artistItem = Locator.MusicLibraryVM.MusicLibrary.Artists.FirstOrDefault(x => x.Id == (int)parameter);
+                artistItem = await Locator.MusicLibraryVM.MusicLibrary.LoadArtist((int)parameter);
                 if (artistItem == null) return;
             }
             Locator.MusicLibraryVM.CurrentArtist = artistItem;

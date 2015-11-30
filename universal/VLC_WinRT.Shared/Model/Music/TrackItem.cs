@@ -105,7 +105,7 @@ namespace VLC_WinRT.Model.Music
             get
             {
                 if (string.IsNullOrEmpty(_thumbnail))
-                    _thumbnail = Locator.MusicLibraryVM.MusicLibrary.Albums.FirstOrDefault(x => x.Id == this.AlbumId)?.AlbumCoverFullUri;
+                    _thumbnail = Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(this.AlbumId)?.AlbumCoverFullUri;
                 return _thumbnail;
             }
             set { SetProperty(ref _thumbnail, value); }
