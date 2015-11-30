@@ -13,8 +13,9 @@ namespace VLC_WinRT.Commands.MusicPlayer
     {
         public override async void Execute(object parameter)
         {
-            if (Locator.MusicLibraryVM.MusicLibrary.Tracks == null || !Locator.MusicLibraryVM.MusicLibrary.Tracks.Any()) return;
-            var shuffledTracks = Locator.MusicLibraryVM.MusicLibrary.Tracks.Shuffle();
+            var tracks = await Locator.MusicLibraryVM.MusicLibrary.LoadTracks();
+            if (tracks == null || !tracks.Any()) return;
+            var shuffledTracks = tracks.Shuffle();
             await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(shuffledTracks.ToPlaylist());
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
         }
