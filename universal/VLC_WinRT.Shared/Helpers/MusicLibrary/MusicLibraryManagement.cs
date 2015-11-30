@@ -40,11 +40,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         #endregion
         #region databases
-        ArtistDatabase artistDatabase = new ArtistDatabase();
-        TrackDatabase trackDatabase = new TrackDatabase();
-        AlbumDatabase albumDatabase = new AlbumDatabase();
-        TracklistItemRepository tracklistItemRepository = new TracklistItemRepository();
-        TrackCollectionRepository trackCollectionRepository = new TrackCollectionRepository();
+        readonly ArtistDatabase artistDatabase = new ArtistDatabase();
+        readonly TrackDatabase trackDatabase = new TrackDatabase();
+        readonly AlbumDatabase albumDatabase = new AlbumDatabase();
+        readonly TracklistItemRepository tracklistItemRepository = new TracklistItemRepository();
+        readonly TrackCollectionRepository trackCollectionRepository = new TrackCollectionRepository();
         #endregion
         #region collections
         public SmartCollection<ArtistItem> Artists { get; private set; }
