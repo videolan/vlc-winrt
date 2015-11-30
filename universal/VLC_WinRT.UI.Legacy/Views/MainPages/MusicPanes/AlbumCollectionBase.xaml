@@ -22,7 +22,7 @@
                 <EntranceThemeTransition />
             </TransitionCollection>
         </Grid.Transitions>
-        <controls:NothingToSeeHere Visibility="{Binding Albums.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+        <controls:NothingToSeeHere Visibility="{Binding IsMusicLibraryEmpty, Converter={StaticResource CountToVisibilityConverter}}" />
         <SemanticZoom Padding="0"
                       ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
