@@ -277,9 +277,16 @@ namespace VLC_WinRT
             Locator.Slideshow.RestoreSlideshow();
         }
 
-        public static void SetShellDecoration()
+        public static void SetShellDecoration(bool forceTemporaryAppTheme = false, bool forceDark = false)
         {
-            RootPage.RequestedTheme = (SettingsViewModel.GetApplicationTheme() == ApplicationTheme.Light) ? ElementTheme.Light : ElementTheme.Dark;
+            if (forceTemporaryAppTheme)
+            {
+                RootPage.RequestedTheme = forceDark ? ElementTheme.Dark : ElementTheme.Light;
+            }
+            else
+            {
+                RootPage.RequestedTheme = (SettingsViewModel.GetApplicationTheme() == ApplicationTheme.Light) ? ElementTheme.Light : ElementTheme.Dark;
+            }
             App.Current.Resources["MainColorBase"] = Locator.SettingsVM.AccentColor;
             App.Current.Resources["MainColor"] = new SolidColorBrush()
             {

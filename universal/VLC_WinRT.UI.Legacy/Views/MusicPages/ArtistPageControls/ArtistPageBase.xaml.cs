@@ -17,6 +17,7 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
 
         private void ArtistAlbumsList_Loaded(object sender, RoutedEventArgs e)
         {
+            App.SetShellDecoration(true, true);
             App.SplitShell.ContentSizeChanged += SplitShell_ContentSizeChanged;
             AlbumsListView.SizeChanged += AlbumsListViewOnSizeChanged;
             this.Unloaded += ArtistAlbumsList_Unloaded;
@@ -36,6 +37,7 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
 
         private void ArtistAlbumsList_Unloaded(object sender, RoutedEventArgs e)
         {
+            App.SetShellDecoration();
             App.SplitShell.ContentSizeChanged -= SplitShell_ContentSizeChanged;
         }
         
