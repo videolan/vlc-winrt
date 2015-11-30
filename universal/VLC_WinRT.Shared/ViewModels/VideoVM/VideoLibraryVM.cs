@@ -113,18 +113,54 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Videos = new ObservableCollection<VideoItem>();
             ViewedVideos = new ObservableCollection<VideoItem>();
             CameraRoll = new ObservableCollection<VideoItem>();
+            Shows = new ObservableCollection<TvShow>();
+            CurrentShow = null;
+            GC.Collect();
         }
 
-        public async Task Initialize()
+        public void OnNavigatedTo()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => LoadingState = LoadingState.Loading);
-            await VideoLibraryManagement.GetViewedVideos().ConfigureAwait(false);
-            await VideoLibraryManagement.GetVideos(VideoRepository).ConfigureAwait(false);
-            await VideoLibraryManagement.GetVideosFromCameraRoll(VideoRepository).ConfigureAwait(false);
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            ResetLibrary();
+        }
+
+        public void OnNavigatedToAllVideos()
+        {
+            if (LoadingState == LoadingState.NotLoaded)
             {
-                Locator.MainVM.InformationText = "";
+                Initialize();
+            }
+        }
+
+        public void OnNavigatedToCameraRollVideos()
+        {
+            if (LoadingState == LoadingState.NotLoaded)
+            {
+                InitializeCameraRollVideos();
+            }
+        }
+
+        public void OnNavigatedFrom()
+        {
+            ResetLibrary();
+        }
+
+        Task Initialize()
+        {
+            return Task.Run(async () =>
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => LoadingState = LoadingState.Loading);
+                await VideoLibraryManagement.GetViewedVideos().ConfigureAwait(false);
+                await VideoLibraryManagement.GetVideos(VideoRepository).ConfigureAwait(false);
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    Locator.MainVM.InformationText = "";
+                });
             });
+        }
+
+        Task InitializeCameraRollVideos()
+        {
+            return Task.Run(async () => await VideoLibraryManagement.GetVideosFromCameraRoll(VideoRepository).ConfigureAwait(false));
         }
 
         #endregion
