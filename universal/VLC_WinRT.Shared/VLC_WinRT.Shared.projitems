@@ -70,6 +70,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Settings\RemoveFolderFromMusicLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Settings\RemoveFolderFromVideoLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\CloseFlyoutAndPlayVideoCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\DeleteStreamCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\FavoriteVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\PickVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\StartVideoIndexingCommand.cs" />

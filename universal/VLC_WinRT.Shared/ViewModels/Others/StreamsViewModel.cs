@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 using VLC_WinRT.Database;
 using VLC_WinRT.Model.Stream;
 using VLC_WinRT.Utils;
