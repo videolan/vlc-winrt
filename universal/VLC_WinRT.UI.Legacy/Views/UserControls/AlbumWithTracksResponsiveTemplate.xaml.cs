@@ -1,6 +1,10 @@
 ﻿using VLC_WinRT.Model.Video;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
+using VLC_WinRT.ViewModels;
+#if WINDOWS_PHONE_APP
+using Windows.Phone.UI.Input;
+#endif
 
 namespace VLC_WinRT.UI.Legacy.Views.UserControls
 {
@@ -19,6 +23,17 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             this.SizeChanged += AlbumWithTracksResponsiveTemplate_SizeChanged;
             ResponsiveTracksListView();
             Responsive();
+#if WINDOWS_PHONE_APP
+            HardwareButtons.BackPressed += (obj, args) =>
+            {
+                if (areTracksVisible && forceVisibleTracks)
+                {
+                    Locator.MainVM.PreventAppExit = true;
+                    args.Handled = true;
+                    HideTracks();
+                }
+            };
+#endif
         }
 
         private void AlbumWithTracksResponsiveTemplate_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
@@ -41,8 +56,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             }
             else
             {
-                TracksListView.Visibility = PlayAppBarButton.Visibility = FavoriteAppBarButton.Visibility = PinAppBarButton.Visibility = Visibility.Collapsed;
-                areTracksVisible = false;
+                HideTracks();
             }
 
             if (this.ActualWidth > 900)
@@ -59,6 +73,12 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
         {
             TracksListView.Visibility = PlayAppBarButton.Visibility = FavoriteAppBarButton.Visibility = PinAppBarButton.Visibility = Visibility.Visible;
             areTracksVisible = true;
+        }
+
+        void HideTracks()
+        {
+            TracksListView.Visibility = PlayAppBarButton.Visibility = FavoriteAppBarButton.Visibility = PinAppBarButton.Visibility = Visibility.Collapsed;
+            areTracksVisible = false;
         }
 
         void ResponsiveTracksListView()
