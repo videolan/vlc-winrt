@@ -96,7 +96,8 @@
                 </Grid>
             </ListView.Header>
         </ScrollWatcher:ListViewScrollWatcher>
-        <placeholder:NoVideosPlaceholder Grid.Row="2"
+        <placeholder:NoVideosPlaceholder VerticalAlignment="Bottom"
+                                         Margin="{StaticResource FrameMarginHorizontalPlusFooter}"
                                          Visibility="{Binding Videos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>
