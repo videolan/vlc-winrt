@@ -13,15 +13,16 @@ namespace VLC_WinRT.Commands.MusicPlayer
     {
         public override async void Execute(object parameter)
         {
-            if (Locator.MusicLibraryVM.MusicLibrary.Tracks == null || !Locator.MusicLibraryVM.MusicLibrary.Tracks.Any()) return;
+            var tracks = await Locator.MusicLibraryVM.MusicLibrary.LoadTracks();
+            if (tracks == null || !tracks.Any()) return;
             var itemClickArgs = parameter as ItemClickEventArgs;
             var index = 0;
             if (itemClickArgs != null)
             {
                 var selectedTrack = itemClickArgs.ClickedItem as TrackItem;
-                index = Locator.MusicLibraryVM.MusicLibrary.Tracks.IndexOf(selectedTrack);
+                index = tracks.IndexOf(selectedTrack);
             }
-            await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(Locator.MusicLibraryVM.MusicLibrary.Tracks.ToPlaylist(), true, index);
+            await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(tracks.ToPlaylist(), true, index);
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
         }
     }
