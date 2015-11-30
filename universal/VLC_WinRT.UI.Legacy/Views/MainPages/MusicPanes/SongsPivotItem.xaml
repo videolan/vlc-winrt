@@ -48,7 +48,7 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <placeholder:NothingToSeeHere Visibility="{Binding IsMusicLibraryEmpty, Converter={StaticResource CountToVisibilityConverter}}"/>
+        <placeholder:NothingToSeeHere Visibility="{Binding IsMusicLibraryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
       
         <SemanticZoom ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
             <SemanticZoom.ZoomedInView>
