@@ -9,7 +9,14 @@ namespace VLC_WinRT.Views.MainPages.MainVideoControls
         public CameraRollPivotItem()
         {
             this.InitializeComponent();
+            this.Loaded += CameraRollPivotItem_Loaded;
         }
+
+        private void CameraRollPivotItem_Loaded(object sender, RoutedEventArgs e)
+        {
+            Locator.VideoLibraryVM.OnNavigatedToCameraRollVideos();
+        }
+
         private void VideosWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             TemplateSizer.ComputeCompactVideo(sender as ItemsWrapGrid, CameraRollListView.ActualWidth);
