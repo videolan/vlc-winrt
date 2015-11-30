@@ -12,8 +12,9 @@
         <userControls:AlbumItem />
     </DataTemplate>
 
-    <DataTemplate x:Key="AlbumHorizontalTemplate">
-        <userControls:AlbumHorizontalTemplate />
+    <DataTemplate x:Key="AlbumItemTemplateFixedSize">
+        <userControls:AlbumItem Height="173"
+                                Width="173"/>
     </DataTemplate>
 
     <DataTemplate x:Key="FakeAlbumTemplate">
