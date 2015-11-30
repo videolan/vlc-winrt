@@ -7,8 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System.IO;
-using System.Linq;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
