@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Views.MainPages.MainVideoControls
 {
