@@ -932,7 +932,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             //    {
             //        IsBusy = true;
             //    });
-            //    await MusicLibrary.DoRoutineMusicLibraryCheck();
+            await StartIndexing();
             //    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             //    {
             //        IsBusy = false;
