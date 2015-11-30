@@ -868,6 +868,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             return albumDatabase.Update(album);
         }
 
+        public Task Update(TrackItem track)
+        {
+            return trackDatabase.Update(track);
+        }
+
         public Task Remove(TracklistItem tracklist)
         {
             return tracklistItemRepository.Remove(tracklist);
@@ -898,6 +903,10 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             return albumDatabase.Load(predicate);
         }
 
+        public Task<List<TrackItem>> LoadTracks()
+        {
+            return trackDatabase.LoadTracks();
+        }
 
         public void DropTablesIfNeeded()
         {
