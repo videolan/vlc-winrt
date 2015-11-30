@@ -396,7 +396,7 @@ namespace VLC_WinRT.ViewModels.Settings
             {
                 ApplicationSettingsHelper.SaveSettingsValue("AlbumsOrderType", (int)value, false);
                 if ((int)value == 0 || value != _albumsOrderType)
-                    MusicLibraryManagement.OrderAlbums();
+                    Locator.MusicLibraryVM.OrderAlbums();
                 SetProperty(ref _albumsOrderType, value);
             }
         }
