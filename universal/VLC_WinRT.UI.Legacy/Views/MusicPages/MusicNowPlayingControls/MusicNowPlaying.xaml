@@ -74,15 +74,14 @@
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis">
                 <Run Text="{Binding Name}"
-                     FontSize="30"
-                     FontWeight="Light" />
+                     FontSize="25" />
                 <LineBreak />
-                <Run Text="{Binding AlbumName, Converter={StaticResource StringToUpperConverter}}"
+                <Run Text="{Binding AlbumName}"
                      FontSize="19"
                      Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
-                <Run Text=" | "
+                <Run Text=" - "
                      FontSize="16" />
-                <Run Text="{Binding ArtistName, Converter={StaticResource StringToUpperConverter}}"
+                <Run Text="{Binding ArtistName}"
                      FontSize="19"
                      Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
             </TextBlock>
@@ -253,6 +252,17 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SongInformationTextBlock"
+                                                       Storyboard.TargetProperty="HorizontalAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Left" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SongInformationTextBlock"
+                                                       Storyboard.TargetProperty="TextAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Left" />
+                        </ObjectAnimationUsingKeyFrames>
+                        
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Narrow">
@@ -325,7 +335,17 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderTextBlock"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SongInformationTextBlock"
+                                                       Storyboard.TargetProperty="HorizontalAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Center" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SongInformationTextBlock"
+                                                       Storyboard.TargetProperty="TextAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Center" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
