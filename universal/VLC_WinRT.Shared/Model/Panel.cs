@@ -11,22 +11,20 @@ using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Model
 {
-    public class Panel : BindableBase
+    public class Panel
     {
-        private string _title;
-        private int _index;
-        private string _pathData;
-
-        public Panel(string t, int i, string pd, bool isdefault = false)
+        public Panel(string t, int i, string defaultIcon, string filledIcon)
         {
-            _title = t;
-            _index = i;
-            _pathData = pd;
+            Title = t;
+            Index = i;
+            DefaultIcon = defaultIcon;
+            FilledIcon = filledIcon;
         }
 
-        public string Title { get { return _title; } set { SetProperty(ref _title, value); } }
-        public int Index { get { return _index; } set { SetProperty(ref _index, value); } }
-        public string PathData { get { return _pathData; } set { SetProperty(ref _pathData, value); } }
+        public string Title { get; private set; }
+        public int Index { get; private set; }
+        public string DefaultIcon { get; private set; }
 
+        public string FilledIcon { get; private set; }
     }
 }
