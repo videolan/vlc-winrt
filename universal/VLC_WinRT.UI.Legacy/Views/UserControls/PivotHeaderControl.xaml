@@ -11,11 +11,15 @@
           Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="6"
-                              x:Name="MiddleColumnDefinition" />
+            <ColumnDefinition Width="6" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="12" />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="3" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Normal">
@@ -59,10 +63,21 @@
                 <VisualState x:Name="Snap">
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
-                                                       Storyboard.TargetProperty="Visibility">
+                                                       Storyboard.TargetProperty="(Grid.Row)">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
+                                                    Value="2" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
+                                                       Storyboard.TargetProperty="(Grid.Column)">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
+                                                       Storyboard.TargetProperty="(Grid.Row)">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
