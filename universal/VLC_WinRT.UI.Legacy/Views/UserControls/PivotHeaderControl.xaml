@@ -68,8 +68,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <FontIcon x:Name="Icon"
-                  FontFamily="ms-appx:VLC.ttf#W10"
-                  Glyph="{Binding PathData}"
+                  FontFamily="{StaticResource VLCFont}"
                   FontSize="30"
                   VerticalAlignment="Center" />
         <TextBlock x:Name="Title"

@@ -25,11 +25,10 @@
         <StackPanel Grid.Row="1">
             <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
                           Label="{Binding Source={StaticResource Strings}, Path=OpenFile}"
-                          Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}"
-                          Foreground="{ThemeResource MainColor}">
+                          Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}">
                 <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource OpenFileSymbol}"
-                              FontFamily="ms-appx:VLC.ttf#W10" />
+                    <FontIcon Glyph="{StaticResource FileSymbol}"
+                              FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
@@ -38,7 +37,7 @@
                           CommandParameter="4">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource StreamSymbol}"
-                              FontFamily="ms-appx:VLC.ttf#W10" />
+                              FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
         </StackPanel>
@@ -52,7 +51,7 @@
                           IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource RefreshSymbol}"
-                              FontFamily="ms-appx:VLC.ttf#W10" />
+                              FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=RefreshMusicLibrary}"
@@ -62,7 +61,7 @@
                           IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource RefreshSymbol}"
-                              FontFamily="ms-appx:VLC.ttf#W10" />
+                              FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=Settings}"
@@ -70,7 +69,7 @@
                           Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource SettingsSymbol}"
-                              FontFamily="ms-appx:VLC.ttf#W10" />
+                              FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
         </StackPanel>

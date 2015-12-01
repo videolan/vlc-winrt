@@ -29,7 +29,7 @@
             <TextBlock x:Name="MusicLogo"
                        Foreground="{ThemeResource MainColor}"
                        Text="{StaticResource MusicSymbol}"
-                       FontFamily="ms-appx:VLC.ttf#W10"
+                       FontFamily="{StaticResource VLCFont}"
                        FontSize="23"
                        Width="30"
                        Visibility="Collapsed" />

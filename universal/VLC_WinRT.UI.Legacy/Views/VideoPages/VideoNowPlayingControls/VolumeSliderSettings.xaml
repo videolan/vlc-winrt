@@ -34,7 +34,7 @@
             </TextBlock>
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     Content="{StaticResource CloseSymbol}"
-                    FontFamily="ms-appx:VLC.ttf#W10"
+                    FontFamily="{StaticResource VLCFont}"
                     FontSize="22"
                     Margin="0,-3,0,0"
                     HorizontalAlignment="Right"

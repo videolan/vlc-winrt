@@ -35,7 +35,7 @@
                      Height="120"
                      Width="120" />
             <FontIcon Glyph="{StaticResource BuddySymbol}"
-                      FontFamily="ms-appx:VLC.ttf#W10"
+                      FontFamily="{StaticResource VLCFont}"
                       FontSize="29"
                       Foreground="{ThemeResource MainColor}" />
         </Grid>

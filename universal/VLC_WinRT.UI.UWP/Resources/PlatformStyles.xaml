@@ -79,7 +79,7 @@
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <StackPanel Orientation="Horizontal">
-              <FontIcon FontFamily="ms-appx:VLC.ttf#W10"  Margin="0,0,12,0" x:Name="TextBlock" Glyph="{TemplateBinding Tag}" Height="16" Width="16" FontSize="16" />
+              <FontIcon FontFamily="{StaticResource VLCFont}"  Margin="0,0,12,0" x:Name="TextBlock" Glyph="{TemplateBinding Tag}" Height="16" Width="16" FontSize="16" />
               <TextBlock  Text="{TemplateBinding Text}" TextTrimming="CharacterEllipsis" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
 
             </StackPanel>

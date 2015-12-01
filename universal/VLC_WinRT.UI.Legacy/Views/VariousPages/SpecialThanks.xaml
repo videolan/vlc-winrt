@@ -37,7 +37,7 @@
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
                               Margin="0,3,0,0"
-                              FontFamily="ms-appx:VLC.ttf#W10" />
+                              FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
             <TextBlock Text="{Binding Source={StaticResource Strings}, Path=SpecialThanks}"

@@ -123,7 +123,7 @@
                     Style="{StaticResource TextBlockButtonStyle}"
                     Command="{Binding GoBack}">
                 <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
-                          FontFamily="ms-appx:VLC.ttf#W10"
+                          FontFamily="{StaticResource VLCFont}"
                           FontSize="30" />
             </Button>
             <TextBlock Grid.Column="3"
@@ -194,7 +194,7 @@
                         <AppBarToggleButton.Icon>
                             <FontIcon x:Name="LockToggleIcon"
                                       Glyph="{StaticResource UnlockedSymbol}"
-                                      FontFamily="ms-appx:VLC.ttf#W10"
+                                      FontFamily="{StaticResource VLCFont}"
                                       FontSize="27" />
                         </AppBarToggleButton.Icon>
                     </AppBarToggleButton>
@@ -206,7 +206,7 @@
                                   Style="{StaticResource AppBarButtonStyleHuge}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource ConversationSymbol}"
-                                      FontFamily="ms-appx:VLC.ttf#W10"
+                                      FontFamily="{StaticResource VLCFont}"
                                       FontSize="27" />
                         </AppBarButton.Icon>
                         <AppBarButton.Flyout>
@@ -231,7 +231,7 @@
                                   Foreground="{ThemeResource MainColor}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PlaySymbol}"
-                                      FontFamily="ms-appx:VLC.ttf#W10"
+                                      FontFamily="{StaticResource VLCFont}"
                                       FontSize="42" />
                         </AppBarButton.Icon>
                     </AppBarButton>
@@ -246,7 +246,7 @@
                                   Foreground="{ThemeResource MainColor}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PauseSymbol}"
-                                      FontFamily="ms-appx:VLC.ttf#W10"
+                                      FontFamily="{StaticResource VLCFont}"
                                       FontSize="42" />
                         </AppBarButton.Icon>
                     </AppBarButton>
@@ -278,7 +278,7 @@
                                   Width="100">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource ExpandWindow}"
-                                      FontFamily="ms-appx:VLC.ttf#W10"
+                                      FontFamily="{StaticResource VLCFont}"
                                       FontSize="27" />
                         </AppBarButton.Icon>
                     </AppBarButton>

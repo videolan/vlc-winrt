@@ -25,8 +25,8 @@
                 <Grid Grid.Row="0"
                       Grid.RowSpan="2"
                       Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
-                    <FontIcon Glyph="{StaticResource PylonSymbol}"
-                              FontFamily="ms-appx:VLC.ttf#W10"
+                    <FontIcon Glyph="{StaticResource FileFilledSymbol}"
+                              FontFamily="{StaticResource VLCFont}"
                               FontSize="42"
                               Foreground="{ThemeResource MainColor}" />
                 </Grid>
@@ -75,7 +75,7 @@
                               Style="{StaticResource AppBarButtonStyleHorizontal}">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource PlaySymbol}"
-                                  FontFamily="ms-appx:VLC.ttf#W10" />
+                                  FontFamily="{StaticResource VLCFont}" />
                     </AppBarButton.Icon>
                 </AppBarButton>
             </StackPanel>

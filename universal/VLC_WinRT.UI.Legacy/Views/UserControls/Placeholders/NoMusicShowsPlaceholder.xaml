@@ -14,7 +14,7 @@
         <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
         <TextBlock Text="{StaticResource CalendarSymbol}"
-                   FontFamily="ms-appx:VLC.ttf#W10"
+                   FontFamily="{StaticResource VLCFont}"
                    Foreground="{StaticResource SemiLightMainColor}"
                FontSize="80"
                HorizontalAlignment="Center"

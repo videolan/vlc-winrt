@@ -29,7 +29,7 @@
             </Grid.ColumnDefinitions>
             <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
                 <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
-                          FontFamily="ms-appx:VLC.ttf#W10"
+                          FontFamily="{StaticResource VLCFont}"
                           FontSize="26"
                           Foreground="{ThemeResource MainColor}" />
             </Grid>
@@ -56,7 +56,7 @@
                               Foreground="{ThemeResource MainColor}">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource PlaySymbol}"
-                                  FontFamily="ms-appx:VLC.ttf#W10" />
+                                  FontFamily="{StaticResource VLCFont}" />
                     </AppBarButton.Icon>
                 </AppBarButton>
             </StackPanel>

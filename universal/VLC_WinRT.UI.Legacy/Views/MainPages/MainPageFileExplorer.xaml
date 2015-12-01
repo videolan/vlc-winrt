@@ -130,7 +130,7 @@
                           Margin="0,0,24,0">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
-                              FontFamily="ms-appx:VLC.ttf#W10" />
+                              FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
             <TextBlock x:Name="CurrentFolderNameWideTextBlock"
@@ -148,7 +148,7 @@
                           CommandParameter="{Binding CurrentStorageVM.StorageItems}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PlaySymbol}"
-                              FontFamily="ms-appx:VLC.ttf#W10" />
+                              FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
         </Grid>

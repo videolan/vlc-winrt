@@ -3887,7 +3887,7 @@
                                                               VerticalAlignment="Center"
                                                               HorizontalAlignment="Center"
                                                               FontStyle="Normal"
-                                                              FontFamily="ms-appx:VLC.ttf#W10"
+                                                              FontFamily="{StaticResource VLCFont}"
                                                               Glyph="{StaticResource CloseSymbol}"
                                                               AutomationProperties.AccessibilityView="Raw" />
                                                 </Border>

@@ -42,7 +42,7 @@
             </Grid.RowDefinitions>
             <FontIcon Grid.RowSpan="2"
                       Foreground="{StaticResource SemiLightMainColor}"
-                      FontFamily="ms-appx:VLC.ttf#W10"
+                      FontFamily="{StaticResource VLCFont}"
                       Glyph="{Binding Converter={StaticResource StorageTypeToIconConverter}}"
                       FontSize="32" />
             <TextBlock Grid.Column="2"

@@ -44,7 +44,7 @@
                    FontSize="22">
             <Run Text="{Binding Source={StaticResource Strings}, Path=HowToFavoriteAlbum1}"/>
             <Run Text="{StaticResource FavoriteSymbol}"
-                 FontFamily="ms-appx:VLC.ttf#W10"
+                 FontFamily="{StaticResource VLCFont}"
                  Foreground="{ThemeResource MainColor}" />
             <Run Text="{Binding Source={StaticResource Strings}, Path=HowToFavoriteAlbum2}"/>
         </TextBlock>

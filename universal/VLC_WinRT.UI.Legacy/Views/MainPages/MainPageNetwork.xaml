@@ -44,7 +44,7 @@
                     CommandParameter="{Binding ElementName=MrlTextBox, Path=Text}">
                 <Button.Content>
                     <FontIcon Glyph="{StaticResource CheckSymbol}"
-                              FontFamily="ms-appx:VLC.ttf#W10" />
+                              FontFamily="{StaticResource VLCFont}" />
                 </Button.Content>
             </Button>
         </Grid>

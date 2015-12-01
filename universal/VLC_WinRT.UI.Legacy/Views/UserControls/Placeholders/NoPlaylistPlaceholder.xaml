@@ -15,8 +15,8 @@
             <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <FontIcon Glyph="{StaticResource MusicPlaylistSymbol}"
-                  FontFamily="ms-appx:VLC.ttf#W10"
+        <FontIcon Glyph="{StaticResource OrderedListSymbol}"
+                  FontFamily="{StaticResource VLCFont}"
                   Foreground="{StaticResource SemiLightMainColor}"
                   FontSize="60"
                    HorizontalAlignment="Center"

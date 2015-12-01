@@ -14,8 +14,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <FontIcon Glyph="{StaticResource MultimediaFileSymbol}"
-                  FontFamily="ms-appx:VLC.ttf#W10"
+        <FontIcon Glyph="{StaticResource FileFilledSymbol}"
+                  FontFamily="{StaticResource VLCFont}"
                   Foreground="{StaticResource SemiLightMainColor}"
                   FontSize="80"
                    HorizontalAlignment="Center"

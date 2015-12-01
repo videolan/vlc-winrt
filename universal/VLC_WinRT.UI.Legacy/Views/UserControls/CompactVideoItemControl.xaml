@@ -19,8 +19,8 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0"
                   Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
-                <FontIcon Glyph="{StaticResource PylonSymbol}"
-                          FontFamily="ms-appx:VLC.ttf#W10"
+                <FontIcon Glyph="{StaticResource FileFilledSymbol}"
+                          FontFamily="{StaticResource VLCFont}"
                           FontSize="42"
                           Foreground="{ThemeResource MainColor}" />
             </Grid>

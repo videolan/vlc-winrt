@@ -81,7 +81,7 @@
                               Click="ActionButton_Click">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource PlaySymbol}"
-                                  FontFamily="ms-appx:VLC.ttf#W10" />
+                                  FontFamily="{StaticResource VLCFont}" />
                     </AppBarButton.Icon>
                 </AppBarButton>
                 <AppBarButton Grid.Row="1"
@@ -112,8 +112,8 @@
                               CommandParameter="{Binding}"
                               Click="ActionButton_Click">
                     <AppBarButton.Icon>
-                        <FontIcon Glyph="{StaticResource MusicPlaylistSymbol}"
-                                  FontFamily="ms-appx:VLC.ttf#W10"/>
+                        <FontIcon Glyph="{StaticResource OrderedListSymbol}"
+                                  FontFamily="{StaticResource VLCFont}"/>
                     </AppBarButton.Icon>
                 </AppBarButton>
             </Grid>
@@ -133,7 +133,7 @@
                               Command="{Binding ShowCreateNewPlaylistPaneCommand}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource AddSymbol}"
-                              FontFamily="ms-appx:VLC.ttf#W10" />
+                              FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
                 </AppBarButton>
             </Grid>
@@ -145,8 +145,8 @@
                           CommandParameter="{Binding}"
                           Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource MusicPlaylistSymbol}"
-                              FontFamily="ms-appx:VLC.ttf#W10" />
+                    <FontIcon Glyph="{StaticResource OrderedListSymbol}"
+                              FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
             <Grid Grid.Row="4"
