@@ -94,29 +94,15 @@ namespace VLC_WinRT
                 {
                     query = args.Replace("SecondaryTile-Album-", "");
                     id = int.Parse(query);
-                    if (Locator.MusicLibraryVM.LoadingStateAlbums == LoadingState.Loaded)
-                    {
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.AlbumClickedCommand.Execute(id));
-                    }
-                    else
-                    {
-                        await Locator.MusicLibraryVM.MusicLibrary.MusicCollectionLoaded.Task;
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.AlbumClickedCommand.Execute(id));
-                    }
+
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.AlbumClickedCommand.Execute(id));
                 }
                 else if (args.Contains("Artist"))
                 {
                     query = args.Replace("SecondaryTile-Artist-", "");
                     id = int.Parse(query);
-                    if (Locator.MusicLibraryVM.LoadingStateArtists == LoadingState.Loaded)
-                    {
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.ArtistClickedCommand.Execute(id));
-                    }
-                    else
-                    {
-                        await Locator.MusicLibraryVM.MusicLibrary.MusicCollectionLoaded.Task;
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.ArtistClickedCommand.Execute(id));
-                    }
+
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.ArtistClickedCommand.Execute(id));
                 }
             }
             catch (Exception e)
