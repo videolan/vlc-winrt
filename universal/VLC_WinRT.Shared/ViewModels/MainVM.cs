@@ -152,10 +152,10 @@ namespace VLC_WinRT.ViewModels
             networkListenerService.InternetConnectionChanged += networkListenerService_InternetConnectionChanged;
             _isInternet = NetworkListenerService.IsConnected;
             
-            Panels.Add(new Panel(Strings.Videos, 1, App.Current.Resources["MovieSymbol"].ToString()));
-            Panels.Add(new Panel(Strings.Music, 2, App.Current.Resources["MusicSymbol"].ToString()));
-            Panels.Add(new Panel(Strings.FileExplorer, 3, App.Current.Resources["FileExplorerSymbol"].ToString()));
-            Panels.Add(new Panel(Strings.Network, 4, App.Current.Resources["VolumeSymbol"].ToString()));
+            Panels.Add(new Panel(Strings.Videos, 1, App.Current.Resources["VideoSymbol"].ToString(), App.Current.Resources["VideoFilledSymbol"].ToString()));
+            Panels.Add(new Panel(Strings.Music, 2, App.Current.Resources["MusicSymbol"].ToString(), App.Current.Resources["MusicFilledSymbol"].ToString()));
+            Panels.Add(new Panel(Strings.FileExplorer, 3, App.Current.Resources["FileExplorerSymbol"].ToString(), App.Current.Resources["FileExplorerFilledSymbol"].ToString()));
+            Panels.Add(new Panel(Strings.Network, 4, App.Current.Resources["StreamSymbol"].ToString(), App.Current.Resources["StreamFilledSymbol"].ToString()));
 
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
             Locator.NavigationService.ViewNavigated += (sender, page) =>
