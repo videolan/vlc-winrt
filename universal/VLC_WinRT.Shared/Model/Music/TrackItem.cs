@@ -188,7 +188,5 @@ namespace VLC_WinRT.Model.Music
                 return new Tuple<FromType, string>(FromType.FromPath, Path);
             return null;
         }
-
-        public TrackItem Track => this;
     }
 }
