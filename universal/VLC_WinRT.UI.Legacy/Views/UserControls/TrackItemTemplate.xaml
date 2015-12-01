@@ -26,19 +26,17 @@
         </interactivity:Interaction.Behaviors>
         <TextBlock Grid.Column="0"
                    x:Name="NameTextBlock"
-                   Text="{Binding Name}"
                    TextWrapping="NoWrap"
                    TextTrimming="CharacterEllipsis"
                    FontWeight="SemiLight"
                    Style="{StaticResource TitleTextBlockStyle}"
                    FontSize="20"
-                   Loaded="NameTextBlock_OnLoaded"
                    VerticalAlignment="Center"/>
         <TextBlock Grid.Column="1"
+                   x:Name="DurationTextBlock"
                    FontWeight="Light"
                    FontSize="19"
                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                   Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center" />
     </Grid>

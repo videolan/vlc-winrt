@@ -59,9 +59,9 @@
                    TextWrapping="NoWrap"
                    TextTrimming="CharacterEllipsis" />
         <TextBlock Grid.Column="4"
+                   x:Name="DurationTextBlock"
                    FontWeight="Light"
                    FontSize="19"
-                   Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                   Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}" />
+                   Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}" />
     </Grid>
 </UserControl>

@@ -2,8 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:VLC_WinRT.Resources.Templates"
                     xmlns:userControls="using:VLC_WinRT.Views.UserControls">
+    
     <DataTemplate x:Key="WPTrackTemplateWONumber">
-        <userControls:TrackItemTemplate />
+        <userControls:TrackItemTemplate Track="{Binding}"/>
     </DataTemplate>
 
     <DataTemplate x:Key="WPTrackTemplateWNumber">
@@ -21,7 +22,8 @@
                        Style="{StaticResource TitleTextBlockStyle}"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center" />
-            <userControls:TrackItemTemplate Grid.Column="2" />
+            <userControls:TrackItemTemplate Grid.Column="2" 
+                                            Track="{Binding}"/>
         </Grid>
     </DataTemplate>
     
@@ -41,7 +43,8 @@
                        Style="{StaticResource TitleTextBlockStyle}"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left" />
-            <userControls:TrackItemTemplate Grid.Column="2" />
+            <userControls:TrackItemTemplate Grid.Column="2" 
+                                            Track="{Binding}"/>
         </Grid>
     </DataTemplate>
     
@@ -50,7 +53,8 @@
     </DataTemplate>
     
     <DataTemplate x:Key="TrackTemplateDetailedNoFlyout">
-        <userControls:TrackItemTemplateDetailed IsFlyoutEnabled="False"/>
+        <userControls:TrackItemTemplateDetailed IsFlyoutEnabled="False"
+                                                Track="{Binding}"/>
     </DataTemplate>
     
 </ResourceDictionary>

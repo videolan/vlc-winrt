@@ -53,6 +53,7 @@ namespace VLC_WinRT.Views.UserControls
             NameTextBlock.Text = Track.Name;
             ArtistNameTextBlock.Text = Strings.HumanizedArtistName(Track.ArtistName);
             AlbumNameTextBlock.Text = Strings.HumanizedAlbumName(Track.AlbumName);
+            DurationTextBlock.Text = Strings.HumanizeSeconds(Track.Duration.TotalSeconds);
             Track.PropertyChanged += TrackItemOnPropertyChanged;
             UpdateTrack();
         }
