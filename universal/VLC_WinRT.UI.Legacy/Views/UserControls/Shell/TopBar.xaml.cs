@@ -33,7 +33,7 @@ namespace VLC_WinRT.Views.UserControls
 
         void Responsive(double width)
         {
-            if (width <= 700)
+            if (width <= 850)
                 VisualStateUtilities.GoToState(this, "Minimal", false);
             else if(width <= 1050)
                 VisualStateUtilities.GoToState(this, "Medium", false);
@@ -60,12 +60,6 @@ namespace VLC_WinRT.Views.UserControls
                 Locator.NavigationService.GoBack_HideFlyout();
             }
             Locator.SearchVM.SearchTag = MusicSearchBox.Text;
-        }
-
-        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (PanelsListView.SelectedItem == null) return;
-            PanelsListView.ScrollIntoView(PanelsListView.SelectedItem, ScrollIntoViewAlignment.Leading);
         }
     }
 }

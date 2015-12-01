@@ -37,13 +37,12 @@
                   ItemTemplate="{StaticResource PivotHeaderDataTemplate}"
                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
                   ScrollViewer.HorizontalScrollMode="Enabled"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                  SelectionChanged="Selector_OnSelectionChanged">
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsStackPanel Orientation="Horizontal"
                                      Height="60"
-                                     Margin="{StaticResource FrameMarginHorizontal}"/>
+                                     Margin="{StaticResource FrameMarginHorizontal}" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemContainerTransitions>
@@ -64,17 +63,6 @@
                                    DataContext="{Binding Source={StaticResource Locator}, Path=SearchVM}"
                                    Text="{Binding SearchTag}" />
 
-        <AppBarButton x:Name="SearchButton"
-                      Grid.Column="2"
-                      HorizontalAlignment="Right"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GotoSearchPageCommand}">
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource SearchSymbol}"
-                          FontFamily="ms-appx:VLC.ttf#W10" />
-            </AppBarButton.Icon>
-        </AppBarButton>
-
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Minimal">
@@ -84,10 +72,10 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton"
-                                                       Storyboard.TargetProperty="Visibility">
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ColumnGrid"
+                                                       Storyboard.TargetProperty="Height">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
+                                                    Value="75" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
@@ -103,24 +91,24 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="200" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton"
-                                                       Storyboard.TargetProperty="Visibility">
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ColumnGrid"
+                                                       Storyboard.TargetProperty="Height">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
+                                                    Value="60" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Normal">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicSearchBox"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ColumnGrid"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="60" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>

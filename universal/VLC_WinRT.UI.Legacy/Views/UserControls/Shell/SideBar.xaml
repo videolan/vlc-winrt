@@ -23,6 +23,17 @@
             <shell:MenuDropdown />
         </Grid>
         <StackPanel Grid.Row="1">
+            <AppBarButton x:Name="SearchButton"
+                          Grid.Column="2"
+                          Label="{Binding Source={StaticResource Strings}, Path=Search}"
+                          Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
+                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.GotoSearchPageCommand}"
+                          Foreground="{ThemeResource MainColor}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource SearchSymbol}"
+                              FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
             <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
                           Label="{Binding Source={StaticResource Strings}, Path=OpenFile}"
                           Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}">
