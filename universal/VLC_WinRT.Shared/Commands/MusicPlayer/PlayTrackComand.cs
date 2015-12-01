@@ -20,7 +20,8 @@ namespace VLC_WinRT.Commands.MusicPlayer
     {
         public async override void Execute(object parameter)
         {
-            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
+            if (Locator.NavigationService.CurrentPage != VLCPage.MusicPlayerPage && Locator.NavigationService.CurrentPage != VLCPage.CurrentPlaylistPage)
+                Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             TrackItem track = null;
             if (parameter is ItemClickEventArgs)
             {
