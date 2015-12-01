@@ -23,7 +23,6 @@
     <converters:StorageTypeToIconConverter x:Key="StorageTypeToIconConverter" />
     <converters:MiniPlayerVisibilityFromPlayingTypeConverter x:Key="MiniPlayerVisibilityFromPlayingTypeConverter" />
     <converters:DoubleSpeedToUnderstandableSpeedConverter x:Key="DoubleSpeedToUnderstandableSpeedConverter" />
-    <converters:CurrentTrackForegroundConverter x:Key="CurrentTrackForegroundConverter" />
     <converters:OpacityDecreaserConverter  x:Key="OpacityDecreaserConverter" />
     <converters:DateTimeToDayOfMonthConverter  x:Key="DateTimeToDayOfMonthConverter" />
     <converters:DateTimeToShortMonthConverter x:Key="DateTimeToShortMonthConverter" />
@@ -31,7 +30,6 @@
     <converters:FavoriteSymbolConverter x:Key="FavoriteSymbolConverter" />
     <converters:FavoriteLabelConverter x:Key="FavoriteLabelConverter" />
     <converters:PositionToFixedPointConverter x:Key="PositionToFixedPointConverter" />
-    <converters:CurrentTrackEnhancifierConverter x:Key="CurrentTrackEnhancifierConverter" />
     <converters:NullIntConverter x:Key="NullIntConverter" />
     <converters:PinConverter x:Key="PinConverter" />
     <converters:ApplicationThemeBooleanConverter x:Key="ApplicationThemeBooleanConverter"/>

@@ -94,8 +94,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BottomMiniPlayerVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CountToVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\CurrentTrackEnhancifierConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\CurrentTrackForegroundConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DateTimeToShortDescriptionConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DateTimeToShortMonthConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DoubleSpeedToUnderstandableSpeedConverter.cs" />
