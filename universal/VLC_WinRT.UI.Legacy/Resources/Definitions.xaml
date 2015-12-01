@@ -30,6 +30,8 @@
     <SolidColorBrush x:Key="ListViewItemPlaceholderBackgroundThemeBrush"
                      Color="Transparent" />
     <x:Double x:Key="ControlContentThemeFontSize">17</x:Double>
+
+    <x:String x:Key="VLCFont">ms-appx:VLC.ttf#VLC</x:String>
     
     <!-- ICONS AND SYMBOLS -->
     <!-- Segoe MLD2 Font -->
