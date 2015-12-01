@@ -105,6 +105,6 @@
     </DataTemplate>
 
     <DataTemplate x:Key="PivotHeaderDataTemplate">
-        <userControls:PivotHeaderControl />
+        <userControls:PivotHeaderControl Panel="{Binding}"/>
     </DataTemplate>
 </ResourceDictionary>

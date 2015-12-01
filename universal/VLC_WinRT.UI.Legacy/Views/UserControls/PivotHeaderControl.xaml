@@ -73,7 +73,6 @@
                   VerticalAlignment="Center" />
         <TextBlock x:Name="Title"
                    Grid.Column="2"
-                   Text="{Binding Title}"
                    VerticalAlignment="Center"
                    FontWeight="Light"/>
     </Grid>
