@@ -373,5 +373,22 @@ namespace VLC_WinRT.Utils
         {
             return string.IsNullOrEmpty(albumName) ? Strings.UnknownString : (char.IsLetter(albumName.ElementAt(0)) ? albumName.ElementAt(0).ToString().ToUpper() : Strings.UnknownString);
         }
+
+        public static string HumanizeSeconds(double value)
+        {
+            if (double.IsNaN(value))
+            {
+                return "";
+            }
+            var time = TimeSpan.FromSeconds(value);
+            if (time.Hours > 0)
+            {
+                return String.Format("{0:hh\\:mm\\:ss}", time);
+            }
+            else
+            {
+                return String.Format("{0:mm\\:ss}", time);
+            }
+        }
     }
 }

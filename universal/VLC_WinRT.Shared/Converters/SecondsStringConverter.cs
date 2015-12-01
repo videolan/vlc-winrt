@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System;
+using VLC_WinRT.Utils;
 using Windows.UI.Xaml.Data;
 
 namespace VLC_WinRT.Converters
@@ -16,19 +17,7 @@ namespace VLC_WinRT.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (double.IsNaN((double) value))
-            {
-                return "";
-            }
-            TimeSpan time = TimeSpan.FromSeconds((double)value);
-            if (time.Hours > 0)
-            {
-                return String.Format("{0:hh\\:mm\\:ss}", time);
-            }
-            else
-            {
-                return String.Format("{0:mm\\:ss}", time);
-            }
+            return Strings.HumanizeSeconds((double)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
