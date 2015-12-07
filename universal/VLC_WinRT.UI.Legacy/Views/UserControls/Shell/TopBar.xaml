@@ -41,8 +41,7 @@
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsStackPanel Orientation="Horizontal"
-                                     Height="60"
-                                     Margin="{StaticResource FrameMarginHorizontal}" />
+                                     Height="60"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemContainerTransitions>
@@ -72,11 +71,6 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ColumnGrid"
-                                                       Storyboard.TargetProperty="Height">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="75" />
-                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Medium">
@@ -91,11 +85,6 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="200" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ColumnGrid"
-                                                       Storyboard.TargetProperty="Height">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="60" />
-                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Normal">
@@ -104,11 +93,6 @@
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ColumnGrid"
-                                                       Storyboard.TargetProperty="Height">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="60" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
