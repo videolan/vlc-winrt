@@ -73,7 +73,7 @@
                            Grid.Column="5"
                            Icon="{Binding Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
                            Command="{Binding FavoriteAlbum}"
-                           CommandParameter="{Binding Id}"
+                           CommandParameter="{Binding}"
                            Style="{StaticResource AppBarButtonStyleHorizontal}"
                            VerticalAlignment="Center"
                            Margin="{StaticResource FrameMargin}" />
