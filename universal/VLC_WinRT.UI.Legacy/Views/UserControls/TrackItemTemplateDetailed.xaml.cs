@@ -50,6 +50,7 @@ namespace VLC_WinRT.Views.UserControls
 
         public void Init()
         {
+            if (Track == null) return;
             NameTextBlock.Text = Track.Name;
             ArtistNameTextBlock.Text = Strings.HumanizedArtistName(Track.ArtistName);
             AlbumNameTextBlock.Text = Strings.HumanizedAlbumName(Track.AlbumName);
