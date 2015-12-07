@@ -154,7 +154,8 @@
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemTemplate="{StaticResource TrackTemplateDetailed}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                  Visibility="Collapsed">
             <ListView.RenderTransform>
                 <TranslateTransform x:Name="PlaylistGridTranslateTransform" />
             </ListView.RenderTransform>
