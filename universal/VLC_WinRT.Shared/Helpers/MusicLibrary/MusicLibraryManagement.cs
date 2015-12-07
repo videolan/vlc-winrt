@@ -151,6 +151,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         }
 
 
+        public Task<List<AlbumItem>> Contains(string column, string value)
+        {
+            return albumDatabase.Contains(column, value);
+        }
+
         public async Task LoadArtistsFromDatabase()
         {
             try

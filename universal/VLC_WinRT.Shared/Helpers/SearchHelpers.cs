@@ -47,7 +47,7 @@ namespace VLC_WinRT.Helpers
             return results;
         }
 
-        public static async Task SearchAlbums(string tag, ObservableCollection<AlbumItem> results)
+        public static async Task<List<AlbumItem>> SearchAlbums(string tag, List<AlbumItem> results)
         {
             var albums = await SearchAlbumItems(tag);
             foreach (var album in albums)
@@ -60,11 +60,12 @@ namespace VLC_WinRT.Helpers
                 if (!albums.Contains(result))
                     results.Remove(result);
             }
+            return results;
         }
 
-        public static ObservableCollection<SearchResult> SearchVideosGeneric(string tag, ObservableCollection<SearchResult> results)
+        public static async Task<ObservableCollection<SearchResult>> SearchVideosGeneric(string tag, ObservableCollection<SearchResult> results)
         {
-            var videoVms = SearchVideoItems(tag);
+            var videoVms = await SearchVideoItems(tag);
             foreach (VideoItem vm in videoVms)
             {
                 results.Add(new SearchResult(vm.Name, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + vm.Name + ".jpg", VLCItemType.Video));
@@ -75,42 +76,24 @@ namespace VLC_WinRT.Helpers
             {
                 results.Add(new SearchResult(showsVm.Name, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + showsVm.Name + ".jpg", VLCItemType.VideoShow));
             }
-
-            var cameraVms = SearchCameraItems(tag);
-            foreach (var cameraVm in cameraVms)
-            {
-                results.Add(new SearchResult(cameraVm.Name, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + cameraVm.Name + ".jpg", VLCItemType.VideoCamera));
-            }
             return results;
         }
 
-        public static void SearchVideos(string tag, ObservableCollection<VideoItem> results)
+        public static async Task<List<VideoItem>> SearchVideos(string tag, List<VideoItem> results)
         {
-            var videos = SearchVideoItems(tag);
+            var videos = await SearchVideoItems(tag);
             foreach (var video in videos)
             {
                 if (!results.Contains(video))
                     results.Add(video);
             }
-            var shows = SearchShowItems(tag);
-            foreach (var show in shows)
-            {
-                if (!results.Contains(show))
-                    results.Add(show);
-            }
-
-            var cameras = SearchCameraItems(tag);
-            foreach (var camera in cameras)
-            {
-                if (!results.Contains(camera))
-                    results.Add(camera);
-            }
 
             foreach (var result in results.ToList())
             {
-                if (!videos.Contains(result) && !shows.Contains(result) && !cameras.Contains(result))
+                if (!videos.Contains(result))
                     results.Remove(result);
             }
+            return results;
         }
 
         public static async Task SearchMusic(string tag, ObservableCollection<SearchResult> results)
@@ -133,17 +116,12 @@ namespace VLC_WinRT.Helpers
 
         public static Task<List<AlbumItem>> SearchAlbumItems(string tag)
         {
-            return Locator.MusicLibraryVM.MusicLibrary.LoadAlbums(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
-        }
-        
-        public static IEnumerable<VideoItem> SearchVideoItems(string tag)
-        {
-            return Locator.VideoLibraryVM.Videos.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+            return Locator.MusicLibraryVM.MusicLibrary.Contains(nameof(AlbumItem.Name), tag);
         }
 
-        public static IEnumerable<VideoItem> SearchCameraItems(string tag)
+        public static Task<List<VideoItem>> SearchVideoItems(string tag)
         {
-            return Locator.VideoLibraryVM.CameraRoll.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+            return Locator.VideoLibraryVM.VideoRepository.Contains(nameof(VideoItem.Name), tag);
         }
 
         public static IEnumerable<VideoItem> SearchShowItems(string tag)

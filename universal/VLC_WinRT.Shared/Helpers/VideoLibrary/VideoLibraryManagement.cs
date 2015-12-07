@@ -309,7 +309,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                 WriteableBitmap image = null;
                 StorageItemThumbnail thumb = null;
                 // If file is a mkv, we save the thumbnail in a VideoPic folder so we don't consume CPU and resources each launch
-                if (VLCFileExtensions.MFSupported.Contains(videoItem.File.FileType.ToLower()))
+                if (VLCFileExtensions.MFSupported.Contains(videoItem.File?.FileType.ToLower()))
                 {
                     thumb = await ThumbsService.GetThumbnail(videoItem.File).ConfigureAwait(false);
                 }

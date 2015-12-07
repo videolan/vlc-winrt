@@ -1,8 +1,10 @@
 ﻿using SQLite;
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.Utils;
@@ -59,6 +61,13 @@ namespace VLC_WinRT.Database
             var connection = new SQLiteAsyncConnection(DbPath);
             var req = connection.Table<VideoItem>().Where(x => x.TimeWatchedSeconds > 0);
             return req.ToListAsync();
+        }
+        
+
+        public Task<List<VideoItem>> Contains(string column, string value)
+        {
+            var connection = new SQLiteAsyncConnection(DbPath);
+            return connection.QueryAsync<VideoItem>($"SELECT * FROM {nameof(VideoItem)} WHERE {column} LIKE '%{value}%';", new string[] { });
         }
     }
 }

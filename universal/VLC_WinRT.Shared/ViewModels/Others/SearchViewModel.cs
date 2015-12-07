@@ -13,8 +13,8 @@ namespace VLC_WinRT.ViewModels.Others
 {
     public class SearchViewModel : BindableBase, IDisposable
     {
-        private ObservableCollection<AlbumItem> _searchResultsAlbums;
-        private ObservableCollection<VideoItem> _searchResultsVideos;
+        private List<AlbumItem> _searchResultsAlbums;
+        private List<VideoItem> _searchResultsVideos;
 
         private string _searchTag;
         private bool _musicSearchEnabled;
@@ -22,20 +22,12 @@ namespace VLC_WinRT.ViewModels.Others
 
         public ObservableCollection<AlbumItem> SearchResultsAlbums
         {
-            get { return _searchResultsAlbums; }
-            set
-            {
-                SetProperty(ref _searchResultsAlbums, value);
-            }
+            get { return _searchResultsAlbums.ToObservable(); }
         }
 
         public ObservableCollection<VideoItem> SearchResultsVideos
         {
-            get { return _searchResultsVideos; }
-            set
-            {
-                SetProperty(ref _searchResultsVideos, value);
-            }
+            get { return _searchResultsVideos.ToObservable(); }
         }
 
         public int ResultsCount
@@ -60,9 +52,9 @@ namespace VLC_WinRT.ViewModels.Others
             set
             {
                 if (MusicSearchEnabled && !string.IsNullOrEmpty(value) && value.Length > 1)
-                    Task.Run(() => SearchHelpers.SearchAlbums(value, SearchResultsAlbums));
+                    Task.Run(() => SearchAlbums(value));
                 else if (VideoSearchEnabled && !string.IsNullOrEmpty(value) && value.Length > 1)
-                    SearchHelpers.SearchVideos(value, SearchResultsVideos);
+                    Task.Run(() => SearchVideos(value));
                 SetProperty(ref _searchTag, value);
             }
         }
@@ -78,7 +70,7 @@ namespace VLC_WinRT.ViewModels.Others
                 OnPropertyChanged("VideoSearchEnabled");
                 if (value && !string.IsNullOrEmpty(SearchTag))
                 {
-                    SearchHelpers.SearchAlbums(SearchTag, SearchResultsAlbums);
+                    Task.Run(() => SearchAlbums(SearchTag));
                 }
             }
         }
@@ -94,7 +86,7 @@ namespace VLC_WinRT.ViewModels.Others
                 OnPropertyChanged("MusicSearchEnabled");
                 if (value && !string.IsNullOrEmpty(SearchTag))
                 {
-                    SearchHelpers.SearchVideos(SearchTag, SearchResultsVideos);
+                    Task.Run(() => SearchVideos(SearchTag));
                 }
             }
         }
@@ -105,26 +97,41 @@ namespace VLC_WinRT.ViewModels.Others
 
         public void OnNavigatedTo()
         {
-            _searchResultsAlbums = new ObservableCollection<AlbumItem>();
-            _searchResultsVideos = new ObservableCollection<VideoItem>();
+            _searchResultsAlbums = new List<AlbumItem>();
+            _searchResultsVideos = new List<VideoItem>();
             _videoSearchEnabled = true;
-            SearchResultsAlbums.CollectionChanged += SearchResults_CollectionChanged;
-            SearchResultsVideos.CollectionChanged += SearchResults_CollectionChanged;
         }
 
         private void SearchResults_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            OnPropertyChanged(nameof(ResultsCount));
         }
 
         public void Dispose()
         {
-            SearchResultsAlbums.CollectionChanged -= SearchResults_CollectionChanged;
-            SearchResultsVideos.CollectionChanged -= SearchResults_CollectionChanged;
             _searchResultsAlbums.Clear();
             _searchResultsAlbums = null;
             _searchResultsVideos.Clear();
             _searchResultsVideos = null;
+        }
+
+        async Task SearchVideos(string tag)
+        {
+            _searchResultsVideos = await SearchHelpers.SearchVideos(tag, _searchResultsVideos);
+            await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () =>
+            {
+                OnPropertyChanged(nameof(SearchResultsVideos));
+                OnPropertyChanged(nameof(ResultsCount));
+            });
+        }
+
+        async Task SearchAlbums(string tag)
+        {
+            _searchResultsAlbums = await SearchHelpers.SearchAlbums(tag, _searchResultsAlbums);
+            await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () =>
+            {
+                OnPropertyChanged(nameof(SearchResultsAlbums));
+                OnPropertyChanged(nameof(ResultsCount));
+            });
         }
     }
 }

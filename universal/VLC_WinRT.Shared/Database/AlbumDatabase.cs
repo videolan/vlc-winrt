@@ -89,6 +89,12 @@ namespace VLC_WinRT.Database
             return await query.ToListAsync();
         }
 
+        public Task<List<AlbumItem>> Contains(string column, string value)
+        {
+            var connection = new SQLiteAsyncConnection(DbPath);
+            return connection.QueryAsync<AlbumItem>($"SELECT * FROM {nameof(AlbumItem)} WHERE {column} LIKE '%{value}%';", new string[] { });
+        }
+
         public Task Update(AlbumItem album)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
