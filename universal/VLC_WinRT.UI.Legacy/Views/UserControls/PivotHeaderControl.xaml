@@ -7,17 +7,17 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-    <Grid VerticalAlignment="Stretch"
-          Background="Transparent">
+    <Grid x:Name="RootGrid"
+          Margin="0,0,12,0"
+          VerticalAlignment="Stretch"
+          HorizontalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="6" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="12" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="3" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <VisualStateManager.VisualStateGroups>
@@ -39,6 +39,11 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="120" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0,0,12,0" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="HalfSnap">
@@ -58,6 +63,11 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="80" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0,0,12,0" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Snap">
@@ -65,7 +75,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="(Grid.Row)">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="2" />
+                                                    Value="1" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="(Grid.Column)">
@@ -77,7 +87,16 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="0" />
                         </ObjectAnimationUsingKeyFrames>
-                        
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
+                                                       Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="16" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
@@ -89,6 +108,6 @@
         <TextBlock x:Name="Title"
                    Grid.Column="2"
                    VerticalAlignment="Center"
-                   FontWeight="Light"/>
+                   FontWeight="Light" />
     </Grid>
 </UserControl>

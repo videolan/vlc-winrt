@@ -79,15 +79,17 @@ namespace VLC_WinRT.Views.UserControls
             if (Window.Current.Bounds.Width < 700)
             {
                 VisualStateUtilities.GoToState(this, "Snap", false);
-                this.Width = (Window.Current.Bounds.Width - 60) / Locator.MainVM.Panels.Count;
+                this.Width = (Window.Current.Bounds.Width - 90) / Locator.MainVM.Panels.Count;
             }
             else if (Window.Current.Bounds.Width < 1000)
             {
                 VisualStateUtilities.GoToState(this, "HalfSnap", false);
+                this.Width = double.NaN;
             }
             else
             {
                 VisualStateUtilities.GoToState(this, "Normal", false);
+                this.Width = double.NaN;
             }
         }
 
