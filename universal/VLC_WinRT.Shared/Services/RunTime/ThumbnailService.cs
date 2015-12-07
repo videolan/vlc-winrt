@@ -57,6 +57,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public async Task<PreparseResult> GetScreenshot(StorageFile file)
         {
+            if (file == null) return null;
             string token = StorageApplicationPermissions.FutureAccessList.Add(file);
             var res = await _thumbnailer.TakeScreenshot("winrt://" + token, 320, 200, 2500);
             return res;
