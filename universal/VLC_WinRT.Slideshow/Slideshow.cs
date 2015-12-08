@@ -74,7 +74,7 @@ namespace Slide2D
             }
         }
 
-        private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        private void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
         {
             SetWindowSize();
             WindowSizeUpdated?.Invoke();
