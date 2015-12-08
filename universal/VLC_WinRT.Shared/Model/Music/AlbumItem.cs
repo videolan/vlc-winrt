@@ -96,7 +96,7 @@ namespace VLC_WinRT.Model.Music
                 if (!_isTracksLoaded)
                 {
                     _isTracksLoaded = true;
-                    Task.Run(async () => await Locator.MusicLibraryVM.MusicLibrary.PopulateTracks(this));
+                    Task.Run(() => Locator.MusicLibraryVM.MusicLibrary.PopulateTracks(this)).ConfigureAwait(false);
                 }
                 return _trackItems ?? (_trackItems = new List<TrackItem>());
             }
@@ -148,7 +148,7 @@ namespace VLC_WinRT.Model.Music
                 if (_albumImage == null && _albumImageLoadingState == LoadingState.NotLoaded)
                 {
                     _albumImageLoadingState = LoadingState.Loading;
-                    Task.Run(() => ResetAlbumArt());
+                    Task.Run(() => ResetAlbumArt()).ConfigureAwait(false);
                 }
                 return _albumImage;
             }
