@@ -25,16 +25,7 @@ namespace VLC_WinRT.Helpers
             {
                 if (fileExists)
                 {
-                    var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(item.AlbumCoverFullUri));
-                    using (var stream = await file.OpenAsync(FileAccessMode.Read))
-                    {
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                        {
-                            var image = new BitmapImage();
-                            image.SetSource(stream);
-                            item.AlbumImage = image;
-                        });
-                    }
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => item.AlbumImage = new BitmapImage(new Uri(item.AlbumCoverFullUri)));
                 }
             }
             catch (Exception)
