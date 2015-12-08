@@ -594,7 +594,7 @@ namespace VLC_WinRT.ViewModels
                     {
                     }
 #else
-                await SetMediaTransportControlsInfo(string.IsNullOrEmpty(video.Name) ? "Video" : video.Name);
+                    await SetMediaTransportControlsInfo(string.IsNullOrEmpty(video.Name) ? "Video" : video.Name);
 #endif
                     UpdateTileHelper.UpdateMediumTileWithVideoInfo();
                 }
@@ -622,9 +622,7 @@ namespace VLC_WinRT.ViewModels
                         }
                         else
                         {
-                            await
-                                App.Dispatcher.RunAsync(CoreDispatcherPriority.Low,
-                                    () => Locator.NavigationService.GoBack_Specific());
+                            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.NavigationService.GoBack_Specific());
                         }
                         return;
                     }
@@ -638,7 +636,7 @@ namespace VLC_WinRT.ViewModels
                             await Locator.MusicPlayerVM.UpdatePlayingUI();
                             await Locator.MusicPlayerVM.Scrobble();
 #if WINDOWS_APP
-                        await Locator.MusicPlayerVM.UpdateWindows8UI();
+                            await Locator.MusicPlayerVM.UpdateWindows8UI();
 #endif
                             if (Locator.MusicPlayerVM.CurrentArtist != null)
                             {
@@ -647,8 +645,7 @@ namespace VLC_WinRT.ViewModels
                             }
                         });
                     }
-                    ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack,
-                        TrackCollection.CurrentTrack);
+                    ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, TrackCollection.CurrentTrack);
                 }
                 else if (media is StreamMedia)
                 {
