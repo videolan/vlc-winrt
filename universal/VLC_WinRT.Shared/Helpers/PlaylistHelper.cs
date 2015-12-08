@@ -82,23 +82,26 @@ namespace VLC_WinRT.Helpers
         /// <param name="album"></param>
         /// <param name="resetQueue">Reset or not the current Playlist before adding new elements</param>
         /// <returns></returns>
-        public static async Task AddAlbumToPlaylist(int albumId, bool resetQueue = true, bool play = true, TrackItem track = null, int index = 0)
+        public static Task AddAlbumToPlaylist(int albumId, bool resetQueue = true, bool play = true, TrackItem track = null, int index = 0)
         {
-            if (resetQueue)
+            return Task.Run(async () =>
             {
-                await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
-            }
-            var trackItems = Locator.MusicLibraryVM.MusicLibrary.LoadTracksByAlbumId(albumId);
-            await Locator.MediaPlaybackViewModel.TrackCollection.Add(trackItems);
-            if (play)
-            {
-                if (track != null)
+                if (resetQueue)
                 {
-                    index = trackItems.IndexOf(trackItems.FirstOrDefault(x => x.Id == track.Id));
+                    await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
                 }
-                if (index != -1 && index < trackItems.Count)
-                    await PlayMusicTrack(trackItems[index].Id);
-            }
+                var trackItems = Locator.MusicLibraryVM.MusicLibrary.LoadTracksByAlbumId(albumId);
+                await Locator.MediaPlaybackViewModel.TrackCollection.Add(trackItems);
+                if (play)
+                {
+                    if (track != null)
+                    {
+                        index = trackItems.IndexOf(trackItems.FirstOrDefault(x => x.Id == track.Id));
+                    }
+                    if (index != -1 && index < trackItems.Count)
+                        await PlayMusicTrack(trackItems[index].Id);
+                }
+            });
         }
 
         /// <summary>
@@ -119,21 +122,24 @@ namespace VLC_WinRT.Helpers
                 await PlayMusicTrack(trackItems[0].Id);
         }
 
-        public static async Task AddTrackCollectionToPlaylistAndPlay(ObservableCollection<IVLCMedia> trackCollection, bool play = true, int? index = null)
+        public static Task AddTrackCollectionToPlaylistAndPlay(ObservableCollection<IVLCMedia> trackCollection, bool play = true, int? index = null)
         {
-            await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
-            await Locator.MediaPlaybackViewModel.TrackCollection.SetPlaylist(trackCollection);
-
-            if (play)
+            return Task.Run(async () =>
             {
-                if (!trackCollection.Any()) return;
-                if (index >= trackCollection.Count) return;
-                var finalindex = trackCollection[index ?? 0];
-                if (finalindex is TrackItem)
-                    await PlayMusicTrack(finalindex.Id);
-                else if (finalindex is VideoItem)
-                    await ((VideoItem)finalindex).Play(false);
-            }
+                await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
+                await Locator.MediaPlaybackViewModel.TrackCollection.SetPlaylist(trackCollection);
+
+                if (play)
+                {
+                    if (!trackCollection.Any()) return;
+                    if (index >= trackCollection.Count) return;
+                    var finalindex = trackCollection[index ?? 0];
+                    if (finalindex is TrackItem)
+                        await PlayMusicTrack(finalindex.Id);
+                    else if (finalindex is VideoItem)
+                        await((VideoItem)finalindex).Play(false);
+                }
+            });
         }
         #endregion
     }
