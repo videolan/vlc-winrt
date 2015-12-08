@@ -308,9 +308,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
         /// Only this method should set the CurrentTrack property of TrackCollection.
         /// </summary>
         /// <param name="index"></param>
-        public async Task SetCurrentTrackPosition(int index)
+        public Task SetCurrentTrackPosition(int index)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentTrack = index);
+            return App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentTrack = index).AsTask();
         }
     }
 }
