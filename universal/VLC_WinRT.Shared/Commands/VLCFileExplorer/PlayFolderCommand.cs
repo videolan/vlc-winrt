@@ -24,7 +24,7 @@ namespace VLC_WinRT.Commands.VLCFileExplorer
                 if (file != null && VLCFileExtensions.Supported.Contains((file.StorageItem as StorageFile).FileType.ToLower()))
                     files.Add((VLCStorageFile)item);
             }
-            var playlist = new ObservableCollection<IVLCMedia>();
+            var playlist = new SmartCollection<IVLCMedia>();
             foreach (var file in files)
             {
                 if(VLCFileExtensions.AudioExtensions.Contains((file.StorageItem as StorageFile).FileType.ToLower()))

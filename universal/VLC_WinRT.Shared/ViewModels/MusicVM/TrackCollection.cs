@@ -29,8 +29,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
 {
     public class TrackCollection : BindableBase
     {
-        private ObservableCollection<IVLCMedia> _tracksCollection;
-        private ObservableCollection<IVLCMedia> _nonShuffledPlaylist;
+        private SmartCollection<IVLCMedia> _tracksCollection;
+        private SmartCollection<IVLCMedia> _nonShuffledPlaylist;
         private int _currentTrack;
         private bool _isRunning;
         private bool _isShuffled;
@@ -120,14 +120,14 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         #region public fields
         [Ignore]
-        public ObservableCollection<IVLCMedia> Playlist
+        public SmartCollection<IVLCMedia> Playlist
         {
             get { return _tracksCollection; }
             private set { SetProperty(ref _tracksCollection, value); }
         }
 
         [Ignore]
-        public ObservableCollection<IVLCMedia> NonShuffledPlaylist
+        public SmartCollection<IVLCMedia> NonShuffledPlaylist
         {
             get { return _nonShuffledPlaylist; }
             set { SetProperty(ref _nonShuffledPlaylist, value); }
@@ -149,13 +149,13 @@ namespace VLC_WinRT.ViewModels.MusicVM
             {
                 RestorePlaylist();
             }
-            _tracksCollection = new ObservableCollection<IVLCMedia>();
+            _tracksCollection = new SmartCollection<IVLCMedia>();
             InitializePlaylist();
         }
 
         public TrackCollection()
         {
-            _tracksCollection = new ObservableCollection<IVLCMedia>();
+            _tracksCollection = new SmartCollection<IVLCMedia>();
             InitializePlaylist();
         }
         #endregion
@@ -203,8 +203,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
             }
         }
 
-        public async Task SetPlaylist(ObservableCollection<IVLCMedia> playlist)
+        public async Task SetPlaylist(IEnumerable<IVLCMedia> tracks)
         {
+            var playlist = new SmartCollection<IVLCMedia>(tracks);
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Playlist = playlist);
             var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Locator.MediaPlaybackViewModel.TrackCollection.Playlist.ToTrackItemPlaylist());
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
@@ -214,7 +215,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             if (IsShuffled)
             {
-                NonShuffledPlaylist = new ObservableCollection<IVLCMedia>(Playlist);
+                NonShuffledPlaylist = new SmartCollection<IVLCMedia>(Playlist);
                 Random r = new Random();
                 for (int i = 0; i < Playlist.Count; i++)
                 {
@@ -257,11 +258,13 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public async Task Add(List<TrackItem> trackItems)
         {
+            var count = (uint)Playlist.Count;
             foreach (var track in trackItems)
             {
-                track.Index = (uint)Playlist.Count;
-                Playlist.Add(track);
+                track.Index = count;
+                count++;
             }
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Playlist.AddRange(trackItems));
             var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems);
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
         }
@@ -274,7 +277,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 return;
             }
             var trackIds = playlist.Select(node => node.Id);
-            Playlist = new ObservableCollection<IVLCMedia>();
+            Playlist = new SmartCollection<IVLCMedia>();
             foreach (int trackId in trackIds)
             {
                 var trackItem = await Locator.MusicLibraryVM.MusicLibrary.LoadTrackById(trackId);
