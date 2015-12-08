@@ -13,6 +13,7 @@ using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
+using System.Collections.Generic;
 
 namespace VLC_WinRT.Model.Music
 {
@@ -28,7 +29,7 @@ namespace VLC_WinRT.Model.Music
         private int _year;
         private bool _favorite;
         private bool _isTracksLoaded = false;
-        private ObservableCollection<TrackItem> _trackItems;
+        private List<TrackItem> _trackItems;
         private bool _isPinned;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
@@ -88,7 +89,7 @@ namespace VLC_WinRT.Model.Music
         public SeeArtistShowsCommand SeeArtistShowsCommand { get; } = new SeeArtistShowsCommand();
 
         [Ignore]
-        public ObservableCollection<TrackItem> Tracks
+        public List<TrackItem> Tracks
         {
             get
             {
@@ -97,7 +98,7 @@ namespace VLC_WinRT.Model.Music
                     _isTracksLoaded = true;
                     Task.Run(async () => await Locator.MusicLibraryVM.MusicLibrary.PopulateTracks(this));
                 }
-                return _trackItems ?? (_trackItems = new ObservableCollection<TrackItem>());
+                return _trackItems ?? (_trackItems = new List<TrackItem>());
             }
             set { SetProperty(ref _trackItems, value); }
         }

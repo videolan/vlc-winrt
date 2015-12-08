@@ -795,7 +795,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         {
             try
             {
-                var tracks = trackDatabase.LoadTracksByAlbumId(album.Id).ToObservable();
+                var tracks = trackDatabase.LoadTracksByAlbumId(album.Id);
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     album.Tracks = tracks;
