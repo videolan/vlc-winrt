@@ -4,6 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.Model.Video;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
 {
@@ -17,7 +18,7 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
 
         private void ArtistAlbumsList_Loaded(object sender, RoutedEventArgs e)
         {
-            App.SetShellDecoration(true, true);
+            Locator.Slideshow.SetTheme(true);
             App.SplitShell.ContentSizeChanged += SplitShell_ContentSizeChanged;
             AlbumsListView.SizeChanged += AlbumsListViewOnSizeChanged;
             this.Unloaded += ArtistAlbumsList_Unloaded;

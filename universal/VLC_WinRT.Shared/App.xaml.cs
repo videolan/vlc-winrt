@@ -272,6 +272,7 @@ namespace VLC_WinRT
             {
                 RootPage.RequestedTheme = (SettingsViewModel.GetApplicationTheme() == ApplicationTheme.Light) ? ElementTheme.Light : ElementTheme.Dark;
             }
+            Locator.Slideshow.SetTheme(SettingsViewModel.GetApplicationTheme() == ApplicationTheme.Dark);
             App.Current.Resources["MainColorBase"] = Locator.SettingsVM.AccentColor;
             App.Current.Resources["MainColor"] = new SolidColorBrush()
             {

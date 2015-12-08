@@ -161,5 +161,18 @@ namespace Slide2D
             get { return slideshow.TextInSlideshowEnabled; }
             set { slideshow.TextInSlideshowEnabled = value; }
         }
+
+        public async void SetTheme(bool dark)
+        {
+            await IsLoaded.Task;
+            if (dark)
+            {
+                canvas.ClearColor = Colors.Black;
+            }
+            else
+            {
+                canvas.ClearColor = Colors.White;
+            }
+        }
     }
 }
