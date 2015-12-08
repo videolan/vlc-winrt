@@ -2,6 +2,10 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
 using VLC_WinRT.ViewModels;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.Utils;
+using Windows.UI.Xaml.Media.Imaging;
+using System;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 #endif
@@ -49,7 +53,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
                 forceVisibleTracks = false;
                 return;
             }
-            
+
             if (this.ActualWidth > 600)
             {
                 ShowTracks();
@@ -95,6 +99,40 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
                 forceVisibleTracks = true;
                 ShowTracks();
             }
+        }
+        
+        public AlbumItem Album
+        {
+            get { return (AlbumItem)GetValue(AlbumProperty); }
+            set { SetValue(AlbumProperty, value); }
+        }
+
+        public static readonly DependencyProperty AlbumProperty =
+            DependencyProperty.Register("Album", typeof(AlbumItem), typeof(AlbumWithTracksResponsiveTemplate), new PropertyMetadata(null, PropertyChangedCallback));
+
+
+        private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var that = (AlbumWithTracksResponsiveTemplate)dependencyObject;
+            that.Init();
+        }
+
+        public void Init()
+        {
+            if (Album == null) return;
+            NameTextBlock.Text = Strings.HumanizedAlbumName(Album.Name);
+
+            PlayAppBarButton.Label = Strings.PlayAlbum;
+            PlayAppBarButton.Command = Locator.MusicLibraryVM.PlayAlbumCommand;
+            PlayAppBarButton.CommandParameter = Album;
+
+            PinAppBarButton.Command = Album.PinAlbumCommand;
+            PinAppBarButton.CommandParameter = Album;
+
+            FavoriteAppBarButton.Command = Album.FavoriteAlbum;
+            FavoriteAppBarButton.CommandParameter = Album;
+
+            TracksListView.ItemsSource = Locator.MusicLibraryVM.MusicLibrary.LoadTracksByAlbumId(Album.Id);
         }
     }
 }

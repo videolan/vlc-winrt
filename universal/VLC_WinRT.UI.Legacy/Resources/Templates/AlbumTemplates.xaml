@@ -19,7 +19,7 @@
     </DataTemplate>
     
     <DataTemplate x:Key="AlbumResponsiveTemplate">
-        <userControl:AlbumWithTracksResponsiveTemplate />
+        <userControl:AlbumWithTracksResponsiveTemplate Album="{Binding}"/>
     </DataTemplate>
     
     <DataTemplate x:Key="FakeAlbumTemplate">

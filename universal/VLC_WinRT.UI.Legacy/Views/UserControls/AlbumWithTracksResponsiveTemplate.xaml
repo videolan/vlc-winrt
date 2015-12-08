@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid x:Name="HeaderGrid" 
+        <Grid x:Name="HeaderGrid"
               Height="90"
               Background="Transparent"
               Margin="{StaticResource FrameMarginBottom}"
@@ -33,7 +33,7 @@
                           FontSize="26"
                           Foreground="{ThemeResource MainColor}" />
             </Grid>
-            <Image x:Name="CoverImage" 
+            <Image x:Name="CoverImage"
                    Height="90"
                    Width="90"
                    Stretch="UniformToFill"
@@ -42,17 +42,14 @@
             <StackPanel Grid.Column="2"
                         VerticalAlignment="Center">
                 <TextBlock Grid.Column="2"
-                           Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
+                           x:Name="NameTextBlock"
                            TextTrimming="CharacterEllipsis"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Margin="0,0,6,0" />
 
-                <AppBarButton x:Name="PlayAppBarButton" 
+                <AppBarButton x:Name="PlayAppBarButton"
                               Margin="-6,6,0,0"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
-                              Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
-                              Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAlbumCommand}"
-                              CommandParameter="{Binding}"
                               Foreground="{ThemeResource MainColor}">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource PlaySymbol}"
@@ -65,15 +62,11 @@
                           Grid.Column="3"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Icon="{Binding IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
-                          Command="{Binding PinAlbumCommand}"
-                          CommandParameter="{Binding}"
                           VerticalAlignment="Center"
                           Margin="{StaticResource FrameMargin}" />
             <AppBarButton  x:Name="FavoriteAppBarButton"
                            Grid.Column="5"
                            Icon="{Binding Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
-                           Command="{Binding FavoriteAlbum}"
-                           CommandParameter="{Binding}"
                            Style="{StaticResource AppBarButtonStyleHorizontal}"
                            VerticalAlignment="Center"
                            Margin="{StaticResource FrameMargin}" />
@@ -83,7 +76,6 @@
                   Visibility="Collapsed"
                   SelectionMode="None"
                   IsItemClickEnabled="True"
-                  ItemsSource="{Binding Tracks}"
                   ItemContainerStyle="{StaticResource ListViewItemBasic}"
                   ItemTemplate="{StaticResource AlbumTrackTemplateWithRightMargin}">
             <triggers:Interactions.Triggers>
