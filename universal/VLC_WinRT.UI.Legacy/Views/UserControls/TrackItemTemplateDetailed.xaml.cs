@@ -72,6 +72,7 @@ namespace VLC_WinRT.Views.UserControls
 
         private void TrackItemTemplateDetailed_Unloaded(object sender, RoutedEventArgs e)
         {
+            if (Track != null)
             Track.PropertyChanged -= TrackItemOnPropertyChanged;
         }
 
