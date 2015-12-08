@@ -33,13 +33,10 @@ namespace Slide2D.Images
 
         // ------
         public bool TextInSlideshowEnabled;
-        public bool UseDefaultPic;
-        private bool nextIsDefaultPic;
 
         private int frame = 0;
         private bool fastChange;
         private float blurAmount = 10;
-        public Img DefaultImg;
         public List<Img> Imgs = new List<Img>();
         public List<Txt> Texts = new List<Txt>();
         private int ImgIndex = 0;
@@ -51,8 +48,6 @@ namespace Slide2D.Images
             {
                 try
                 {
-                    if (UseDefaultPic)
-                        return DefaultImg;
                     if (ImgIndex >= Imgs.Count)
                         return null;
                     return Imgs[ImgIndex];
@@ -213,7 +208,7 @@ namespace Slide2D.Images
                 }
                 else frame++;
             }
-            if ((nextIsDefaultPic && frame < EndFrameThresholdDefaultPic) || (!nextIsDefaultPic && frame < EndFrameThreshold))
+            if (frame < EndFrameThreshold)
                 return;
             // Resetting variables
             if (ImgIndex < Imgs.Count - 1)
@@ -225,16 +220,7 @@ namespace Slide2D.Images
                 ImgIndex = 0;
             }
             fastChange = false;
-            UseDefaultPic = nextIsDefaultPic;
             frame = 0;
-        }
-
-        public void ChangePicFast(bool nextIsDefault)
-        {
-            // seek to outro
-            fastChange = true;
-            frame = OutroFrameThreshold;
-            nextIsDefaultPic = nextIsDefault;
         }
     }
 }

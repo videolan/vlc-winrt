@@ -260,7 +260,6 @@ namespace VLC_WinRT
             Locator.MusicLibraryVM.MusicLibrary.DropTablesIfNeeded();
             VideoLibraryManagement.DropTablesIfNeeded();
             ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
-            Locator.Slideshow.RestoreSlideshow();
         }
 
         public static void SetShellDecoration(bool forceTemporaryAppTheme = false, bool forceDark = false)

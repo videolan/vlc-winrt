@@ -123,30 +123,7 @@ namespace Slide2D
             {
             }
         }
-
-        public async void SetDefaultPic(string file)
-        {
-            await IsLoaded.Task;
-            if (string.IsNullOrEmpty(file)) return;
-            var i = new Img(file);
-            await i.Initialize(canvas);
-            slideshow.DefaultImg = i;
-        }
-
-        public async void GoDefaultPic()
-        {
-            await IsLoaded.Task;
-            canvas.Paused = false;
-            slideshow.ChangePicFast(true);
-        }
-
-        public async void RestoreSlideshow()
-        {
-            await IsLoaded.Task;
-            canvas.Paused = false;
-            slideshow.ChangePicFast(false);
-        }
-
+        
         public void SetText(List<Txt> texts)
         {
             slideshow.Texts.Clear();
