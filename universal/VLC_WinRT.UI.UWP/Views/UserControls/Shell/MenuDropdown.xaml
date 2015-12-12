@@ -20,9 +20,7 @@
         <AppBarButton.Flyout>
             <MenuFlyout>
                 <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OpenFile}"
-                                Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}"
-                                Tag="{StaticResource OpenFileSymbol}"
-                                Style="{StaticResource MenuFlyoutItemIconTemplate}" />
+                                Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}" />
                 <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Settings}"
                                 Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}"
                                 Tag="{StaticResource SettingsSymbol}"
