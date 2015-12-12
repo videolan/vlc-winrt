@@ -59,12 +59,22 @@ HRESULT MMDeviceLocator::ActivateCompleted(IActivateAudioInterfaceAsyncOperation
         }
         else
         {
-            AudioClientProperties props = AudioClientProperties{
-                sizeof(props),
-                FALSE,
-                AudioCategory_BackgroundCapableMedia,
-                AUDCLNT_STREAMOPTIONS_NONE
-            };
+			// "BackgroundCapableMedia" does not work in UWP
+#ifndef WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_PC_APP | WINAPI_PARTITION_PHONE_APP | WINAPI_PARTITION_APP | WINAPI_PARTITION_DESKTOP)
+			AudioClientProperties props = AudioClientProperties{
+				sizeof(props),
+				FALSE,
+				AudioCategory_BackgroundCapableMedia,
+				AUDCLNT_STREAMOPTIONS_NONE
+			};
+#else
+			AudioClientProperties props = AudioClientProperties{
+				sizeof(props),
+				FALSE,
+				AudioCategory_Media,
+				AUDCLNT_STREAMOPTIONS_NONE
+			};
+#endif
             auto res = m_AudioClient->SetClientProperties(&props);
             if (res != S_OK) {
                 OutputDebugString(TEXT("Failed to set audio client properties"));
