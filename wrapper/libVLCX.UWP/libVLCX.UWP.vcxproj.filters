@@ -2,14 +2,18 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Resources">
-      <UniqueIdentifier>e33a95cf-f3f4-4043-9f37-4777cc11c2cf</UniqueIdentifier>
+      <UniqueIdentifier>4d673108-a06d-490f-9565-7faba5bf678f</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="..\libVLCX\MMDeviceLocator.cpp" />
+    <ClCompile Include="..\libVLCX\Thumbnailer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="..\libVLCX\MMDeviceLocator.h" />
+    <ClInclude Include="..\libVLCX\Thumbnailer.h" />
   </ItemGroup>
 </Project>
