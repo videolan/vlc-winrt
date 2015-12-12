@@ -132,13 +132,13 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\modules\libaccess_winrt_plugin\libaccess_winrt_plugin.vcxproj">
-      <Project>{a3345ed6-a13a-487b-9ef3-412fed4916d1}</Project>
-      <Name>libaccess_winrt_plugin</Name>
+    <ProjectReference Include="..\..\modules\libaccess_winrt_plugin.UWP\libaccess_winrt_plugin.UWP.vcxproj">
+      <Project>{cc3931b9-6065-4a55-a444-5b5e9de3da44}</Project>
+      <Name>libaccess_winrt_plugin.UWP</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\wrapper\libVLCX\libVLCX.vcxproj">
-      <Project>{22532381-be8b-40e0-a881-22ce24342d5a}</Project>
-      <Name>libVLCX</Name>
+    <ProjectReference Include="..\..\wrapper\libVLCX.UWP\libVLCX.UWP.vcxproj">
+      <Project>{dc8bbfae-5203-44be-9a7c-b3273038d676}</Project>
+      <Name>libVLCX.UWP</Name>
     </ProjectReference>
     <ProjectReference Include="..\VLC_WinRT.ShareBackground\VLC_WinRT.ShareBackground.csproj">
       <Project>{b1e774a5-87a6-4d23-bec1-ad157333f69f}</Project>

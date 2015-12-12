@@ -87,7 +87,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
         public void Dispose()
         {
 #if WINDOWS_PHONE_APP
-#else
+#elif WINDOWS_APP
             _deviceService.ExternalDeviceAdded -= DeviceAdded;
             _deviceService.ExternalDeviceRemoved -= DeviceRemoved;
             _deviceService.Dispose();
