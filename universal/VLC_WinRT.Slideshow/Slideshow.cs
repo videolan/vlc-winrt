@@ -121,10 +121,7 @@ namespace Slide2D
 
         public bool IsPaused
         {
-            get
-            {
-                return canvas != null && canvas.Paused;
-            }
+            get { return canvas != null && canvas.Paused; }
             set { if (canvas != null) canvas.Paused = value; }
         }
 
