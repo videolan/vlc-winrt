@@ -13,6 +13,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Microsoft.Graphics.Canvas.Brushes;
 using VLC_WinRT.ViewModels;
+using VLC_WinRT.Model;
+using VLC_WinRT.ViewModels.MusicVM;
+using VLC_WinRT.Helpers;
 #if WINDOWS_UWP
 #else
 // This namespace only works on Windows/Windows Phone 8.1 apps.
@@ -38,42 +41,99 @@ namespace Slide2D.Images
 
         private int frame = 0;
         private bool fastChange;
-        private float blurAmount = 10;
-        public List<Img> Imgs = new List<Img>();
+        private float blurAmount = MaximumBlur;
+
+        private Color backgroundColor;
+        private bool newColorIsDark;
+
         public List<Txt> Texts = new List<Txt>();
         private int ImgIndex = 0;
-        private int txtIndex = 0;
 
-        private Img currentImg
-        {
-            get
-            {
-                try
-                {
-                    if (ImgIndex >= Imgs.Count)
-                        return null;
-                    return Imgs[ImgIndex];
-                }
-                catch
-                {
-                    return null;
-                }
-            }
-        }
+        private Img currentImg;
+        private Img nextImg;
 
         private bool _richAnimations;
+        private bool changeBackgroundColor;
 
         public bool RichAnimations
         {
             get { return _richAnimations; }
             set { _richAnimations = value; }
         }
-
-        public void Update(CanvasAnimatedUpdateEventArgs args)
+        
+        public ImgSlideshow()
         {
+            backgroundColor.A = 255;
+            Locator.MusicLibraryVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
+            Locator.MusicPlayerVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
+        }
+
+        private void MusicLibraryVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(MusicLibraryVM.CurrentArtist))
+            {
+                Navigated();
+            }
+        }
+
+        void Navigated()
+        {
+            bool newPic = false;
+            if (Locator.NavigationService.CurrentPage == VLCPage.AlbumPage ||
+                Locator.NavigationService.CurrentPage == VLCPage.ArtistPage)
+            {
+                if (Locator.MusicLibraryVM.CurrentArtist == null) return;
+                if (Locator.MusicLibraryVM.CurrentArtist.IsPictureLoaded)
+                {
+                    nextImg = new Img(Locator.MusicLibraryVM.CurrentArtist.Picture);
+                    newPic = true;
+                }
+            }
+            else if (Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage)
+            {
+                if (Locator.MusicPlayerVM.CurrentArtist == null) return;
+                if (Locator.MusicPlayerVM.CurrentArtist.IsPictureLoaded)
+                {
+                    nextImg = new Img(Locator.MusicPlayerVM.CurrentArtist.Picture);
+                    newPic = true;
+                }
+            }
+            //return new Img(Locator.MusicLibraryVM.MusicLibrary.Artists?.ElementAt(0)?.Picture);
+            if (newPic)
+            {
+                frame = OutroFrameThreshold;
+                fastChange = true;
+            }
+            return;
+        }
+
+        public async void Update(CanvasAnimatedUpdateEventArgs args)
+        {
+            if (changeBackgroundColor)
+            {
+                backgroundColor.A = 255;
+                if (newColorIsDark && backgroundColor.R > 0)
+                {
+                    backgroundColor.R = backgroundColor.G = backgroundColor.B -= 15;
+                }
+                else if (!newColorIsDark && backgroundColor.R < 255)
+                {
+                    backgroundColor.R = backgroundColor.G = backgroundColor.B += 15;
+                }
+                else
+                {
+                    changeBackgroundColor = false;
+                    newColorIsDark = false;
+                }
+                MetroSlideshow.canvas.ClearColor = backgroundColor;
+            }
             if (currentImg == null) return;
 
-
+            if (!currentImg.Loaded)
+            {
+                await currentImg.Initialize(MetroSlideshow.canvas);
+            }
+            
             bool computeBlurPic = true;
             if (frame < IntroFrameThreshold)
             {
@@ -176,29 +236,30 @@ namespace Slide2D.Images
             }
         }
 
-        public void Draw(CanvasAnimatedDrawEventArgs args)
+        public async void Draw(CanvasAnimatedDrawEventArgs args)
         {
-            if (currentImg?.ScaleEffect == null) return;
-            if (TextInSlideshowEnabled)
+            if (currentImg?.ScaleEffect != null)
             {
-                var txts = Texts.ToList();
-                foreach (var text in txts)
+                if (TextInSlideshowEnabled)
                 {
-                    text.Draw(ref args, ref txts);
+                    var txts = Texts.ToList();
+                    foreach (var text in txts)
+                    {
+                        text.Draw(ref args, ref txts);
+                    }
                 }
-            }
 
 #if WINDOWS_UWP
 #else
-            args.DrawingSession.DrawImage(currentImg.ScaleEffect, new Vector2(), new Rect()
-            {
-                Height = MetroSlideshow.WindowHeight,
-                Width = MetroSlideshow.WindowWidth
-            }, currentImg.Opacity);
+                args.DrawingSession.DrawImage(currentImg.ScaleEffect, new Vector2(), new Rect()
+                {
+                    Height = MetroSlideshow.WindowHeight,
+                    Width = MetroSlideshow.WindowWidth
+                }, currentImg.Opacity);
 #endif
-            args.DrawingSession.FillRectangle(new Rect(0, 0, MetroSlideshow.WindowWidth, MetroSlideshow.WindowHeight),
-                Color.FromArgb(10, Locator.SettingsVM.AccentColor.R, Locator.SettingsVM.AccentColor.G, Locator.SettingsVM.AccentColor.B));
-
+                args.DrawingSession.FillRectangle(new Rect(0, 0, MetroSlideshow.WindowWidth, MetroSlideshow.WindowHeight),
+                    Color.FromArgb(10, Locator.SettingsVM.AccentColor.R, Locator.SettingsVM.AccentColor.G, Locator.SettingsVM.AccentColor.B));
+            }
             threshold++;
 
             if (threshold == 1)
@@ -213,7 +274,8 @@ namespace Slide2D.Images
             if (frame < EndFrameThreshold)
                 return;
             // Resetting variables
-            if (ImgIndex < Imgs.Count - 1)
+            var artistCount = await Locator.MusicLibraryVM.MusicLibrary.ArtistCount();
+            if (ImgIndex < artistCount - 1)
             {
                 ImgIndex++;
             }
@@ -221,7 +283,11 @@ namespace Slide2D.Images
             {
                 ImgIndex = 0;
             }
-            fastChange = false;
+            if (fastChange)
+            {
+                fastChange = false;
+                currentImg = nextImg;
+            }
             frame = 0;
             blurAmount = MaximumBlur;
         }
