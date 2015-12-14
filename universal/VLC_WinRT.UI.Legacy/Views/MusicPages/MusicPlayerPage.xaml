@@ -8,6 +8,7 @@
       xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
       xmlns:ScrollWatcher="using:ScrollWatcher"
       mc:Ignorable="d"
+      RequestedTheme="Dark"
       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
 
     <Grid>
