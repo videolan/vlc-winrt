@@ -168,7 +168,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
             if (CurrentTrack == null) return;
             if (CurrentArtist != null && CurrentArtist.Id == CurrentTrack.ArtistId) return;
             CurrentArtist = await Locator.MusicLibraryVM.MusicLibrary.LoadArtist(CurrentTrack.ArtistId);
-            SetUpSlideshow();
         }
 
         public async Task SetCurrentAlbum()
@@ -208,12 +207,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 }
             }
             catch { }
-        }
-
-        public void SetUpSlideshow()
-        {
-            if(Locator.MusicPlayerVM.CurrentArtist?.Picture != null)
-                Locator.Slideshow.AddImg(Locator.MusicPlayerVM.CurrentArtist.Picture);
         }
     }
 }
