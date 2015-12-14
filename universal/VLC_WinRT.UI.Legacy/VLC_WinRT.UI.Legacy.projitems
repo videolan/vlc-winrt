@@ -232,6 +232,10 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\SliderControl.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\SliderControlHorizontal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\TrackItemTemplate.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -451,6 +455,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\SliderControl.xaml.cs">
       <DependentUpon>SliderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\SliderControlHorizontal.xaml.cs">
+      <DependentUpon>SliderControlHorizontal.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\TrackItemTemplate.xaml.cs">
       <DependentUpon>TrackItemTemplate.xaml</DependentUpon>
