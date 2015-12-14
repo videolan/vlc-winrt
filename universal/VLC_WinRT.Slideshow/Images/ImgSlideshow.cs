@@ -28,6 +28,8 @@ namespace Slide2D.Images
         private const int EndFrameThresholdDefaultPic = 1020;
         private const int EndFrameThreshold = 1100;
 
+        private const float MaximumBlur = 10f;
+
         // Debug only, to slow down frames
         int threshold = 0;
 
