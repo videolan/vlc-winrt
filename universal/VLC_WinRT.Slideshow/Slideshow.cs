@@ -137,16 +137,16 @@ namespace Slide2D
             set { slideshow.TextInSlideshowEnabled = value; }
         }
 
-        public async void SetTheme(bool dark)
+        public async void SetTheme(bool force, bool dark = false)
         {
             await IsLoaded.Task;
-            if (dark)
+            if (force)
             {
-                canvas.ClearColor = Colors.Black;
+                slideshow.SetTheme(dark);
             }
             else
             {
-                canvas.ClearColor = Colors.White;
+                slideshow.SetTheme(Locator.SettingsVM.ApplicationTheme == ApplicationTheme.Dark);
             }
         }
     }
