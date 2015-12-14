@@ -102,28 +102,6 @@ namespace Slide2D
             IsLoaded.TrySetResult(true);
         }
 
-        public async void AddImg(string file)
-        {
-            try
-            {
-                await IsLoaded.Task;
-                if (string.IsNullOrEmpty(file)) return;
-                Img i = new Img(file);
-                try
-                {
-                    await i.Initialize(canvas);
-                }
-                catch
-                {
-                }
-                if (i.Loaded)
-                    slideshow.Imgs.Add(i);
-            }
-            catch
-            {
-            }
-        }
-        
         public void SetText(List<Txt> texts)
         {
             slideshow.Texts.Clear();
