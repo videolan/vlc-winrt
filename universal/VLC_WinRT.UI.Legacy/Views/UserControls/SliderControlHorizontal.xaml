@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="VLC_WinRT.UI.Legacy.Views.UserControls.SliderControlHorizontal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WinRT.UI.Legacy.Views.UserControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}"
+                   FontWeight="Light"
+                   FontSize="18" />
+        <Slider Grid.Column="2"
+                Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
+                Style="{StaticResource VLCSlider}"
+                Maximum="500"
+                ThumbToolTipValueConverter="{StaticResource PositionToTimeStampStringConverter}" />
+        <TextBlock Grid.Column="4"
+                   Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
+                   FontWeight="Light"
+                   FontSize="18"
+                   Foreground="{ThemeResource BasicForeground}" />
+    </Grid>
+</UserControl>
