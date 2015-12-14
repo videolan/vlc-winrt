@@ -55,7 +55,7 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+        <Grid Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
               PointerEntered="Cover_PointerEntered">
             <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
                       FontFamily="{StaticResource VLCFont}"

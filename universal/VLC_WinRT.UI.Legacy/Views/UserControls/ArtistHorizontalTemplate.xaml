@@ -31,7 +31,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0"
               Grid.RowSpan="2">
-            <Ellipse Fill="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+            <Ellipse Fill="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
                      Height="120"
                      Width="120" />
             <FontIcon Glyph="{StaticResource BuddySymbol}"
