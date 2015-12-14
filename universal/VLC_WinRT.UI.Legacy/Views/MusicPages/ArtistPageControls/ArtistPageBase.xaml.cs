@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
+using Windows.UI.Xaml.Navigation;
 
 namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
 {
