@@ -85,7 +85,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Text"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="Gray" />
+                                                                    Value="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
