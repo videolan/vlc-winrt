@@ -70,7 +70,8 @@
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Label="{Binding Source={StaticResource Strings}, Path=ViewArtist}"
                           Command="{Binding ViewArtist}"
-                          CommandParameter="{Binding ArtistId}">
+                          CommandParameter="{Binding ArtistId}"
+                          Foreground="{ThemeResource MainColor}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource BuddySymbol}"
                               FontFamily="{StaticResource VLCFont}" />
