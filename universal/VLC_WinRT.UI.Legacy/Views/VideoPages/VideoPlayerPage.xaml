@@ -10,7 +10,8 @@
       xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
       mc:Ignorable="d"
       Background="Transparent"
-      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
+      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+      RequestedTheme="Dark">
 
     <Grid>
         <Grid.Resources>
