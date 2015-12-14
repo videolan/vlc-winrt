@@ -264,6 +264,7 @@ namespace VLC_WinRT
 
         public static void SetShellDecoration(bool forceTemporaryAppTheme = false, bool forceDark = false)
         {
+            Locator.Slideshow.SetTheme(SettingsViewModel.GetApplicationTheme() == ApplicationTheme.Dark);
             if (forceTemporaryAppTheme)
             {
                 RootPage.RequestedTheme = forceDark ? ElementTheme.Dark : ElementTheme.Light;
@@ -272,7 +273,6 @@ namespace VLC_WinRT
             {
                 RootPage.RequestedTheme = (SettingsViewModel.GetApplicationTheme() == ApplicationTheme.Light) ? ElementTheme.Light : ElementTheme.Dark;
             }
-            Locator.Slideshow.SetTheme(SettingsViewModel.GetApplicationTheme() == ApplicationTheme.Dark);
             App.Current.Resources["MainColorBase"] = Locator.SettingsVM.AccentColor;
             App.Current.Resources["MainColor"] = new SolidColorBrush()
             {
