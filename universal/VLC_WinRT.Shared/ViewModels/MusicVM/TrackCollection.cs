@@ -66,7 +66,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 #if WINDOWS_PHONE_APP
                 if (Locator.MediaPlaybackViewModel._mediaService is BGPlayerService)
                 {
-                    ((BGPlayerService) Locator.MediaPlaybackViewModel._mediaService).SetRepeat(value);
+                    ((BGPlayerService)Locator.MediaPlaybackViewModel._mediaService).SetRepeat(value);
                 }
 #endif
             }
