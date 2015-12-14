@@ -21,6 +21,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -55,7 +56,7 @@
                        Text="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
                        Style="{StaticResource SubheaderTextBlockStyle}"/>
         </Grid>
-        <Grid Grid.Row="2"
+        <Grid Grid.Row="3"
               Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="70" />
@@ -75,12 +76,12 @@
                          FontSize="16" />
             </TextBlock>
         </Grid>
-        <TextBlock Grid.Row="3"
+        <TextBlock Grid.Row="4"
                    Grid.Column="1"
                    Text="{Binding Source={StaticResource Strings}, Path=NewPlaylist}"
                    Margin="0,12,0,0"
                    Style="{StaticResource TitleTextBlockStyle}" />
-        <Grid Grid.Row="4"
+        <Grid Grid.Row="5"
               Grid.Column="1"
               Margin="0,12">
             <Grid.ColumnDefinitions>
@@ -93,11 +94,11 @@
                     Content="{Binding Source={StaticResource Strings}, Path=Add}"
                     Click="NewPlaylistButton_Click" />
         </Grid>
-        <TextBlock Grid.Row="5"
+        <TextBlock Grid.Row="6"
                    Grid.Column="1"
                    Text="{Binding Source={StaticResource Strings}, Path=MyPlaylists}"
                    Style="{StaticResource TitleTextBlockStyle}" />
-        <ListView Grid.Row="6"
+        <ListView Grid.Row="7"
                   Grid.Column="1"
                   Margin="0,12,0,0"
                   ItemsSource="{Binding TrackCollections}"
@@ -105,11 +106,11 @@
                   ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}">
         </ListView>
-        <placeholder:NoPlaylistPlaceholder Grid.Row="6"
+        <placeholder:NoPlaylistPlaceholder Grid.Row="7"
                                            Grid.Column="1"
                                            Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}"
                                            Margin="0,12,0,0" />
-        <Grid Grid.Row="7"
+        <Grid Grid.Row="8"
               Grid.Column="1"
               Margin="{StaticResource FrameMarginTop}">
             <Grid.ColumnDefinitions>
