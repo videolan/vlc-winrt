@@ -223,6 +223,17 @@ namespace Slide2D.Images
             }
             fastChange = false;
             frame = 0;
+            blurAmount = MaximumBlur;
+        }
+
+        public void SetTheme(bool dark)
+        {
+            var newColor = (dark) ? Colors.Black : Colors.White;
+            if (newColor != backgroundColor)
+            {
+                changeBackgroundColor = true;
+                newColorIsDark = dark;
+            }
         }
     }
 }
