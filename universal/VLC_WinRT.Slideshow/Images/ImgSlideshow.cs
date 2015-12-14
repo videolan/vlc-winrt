@@ -83,7 +83,7 @@ namespace Slide2D.Images
                     currentImg.Opacity = 0;
                     if (_richAnimations)
                     {
-                        blurAmount = 10f;
+                        blurAmount = MaximumBlur;
                     }
                     else
                     {
