@@ -13,17 +13,23 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
         public ArtistPageBase()
         {
             this.InitializeComponent();
-            this.Loaded += ArtistAlbumsList_Loaded;
         }
 
-        private void ArtistAlbumsList_Loaded(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Locator.Slideshow.SetTheme(true);
+            base.OnNavigatedTo(e);
+            Locator.Slideshow.SetTheme(true, true);
             App.SplitShell.ContentSizeChanged += SplitShell_ContentSizeChanged;
             AlbumsListView.SizeChanged += AlbumsListViewOnSizeChanged;
-            this.Unloaded += ArtistAlbumsList_Unloaded;
             Responsive();
             ResponsiveListView();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            Locator.Slideshow.SetTheme(false);
+            App.SplitShell.ContentSizeChanged -= SplitShell_ContentSizeChanged;
         }
 
         private void AlbumsListViewOnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
@@ -34,12 +40,6 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
         private void SplitShell_ContentSizeChanged(double newWidth)
         {
             Responsive();
-        }
-
-        private void ArtistAlbumsList_Unloaded(object sender, RoutedEventArgs e)
-        {
-            App.SetShellDecoration();
-            App.SplitShell.ContentSizeChanged -= SplitShell_ContentSizeChanged;
         }
         
         void Responsive()
