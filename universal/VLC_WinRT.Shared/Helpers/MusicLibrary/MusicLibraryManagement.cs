@@ -446,14 +446,6 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         public async void AddArtist(ArtistItem artist)
         {
             Artists.Add(artist);
-            if (Artists.Count < 3)
-            {
-                await artist.LoadPicture();
-                if (artist.IsPictureLoaded)
-                {
-                    Locator.Slideshow.AddImg(artist.Picture);
-                }
-            }
         }
 
         public void AddAlbum(AlbumItem album)
