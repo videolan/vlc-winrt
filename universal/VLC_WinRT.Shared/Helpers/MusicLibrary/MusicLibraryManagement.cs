@@ -229,40 +229,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         }
         #endregion
 
-        /// <summary>
-        /// TODO IMPROVE
-        /// </summary>
-        /// <returns></returns>
-        public async Task LoadMusicFlow()
-        {
-            // We use user top artists to generated background images
-            foreach (var artistItem in Locator.MusicLibraryVM.TopArtists)
-            {
-                if (artistItem.IsPictureLoaded)
-                {
-                    Locator.Slideshow.AddImg(artistItem.Picture);
-                }
-            }
-
-            // Choosing 5 pics randomly
-            var r = new Random();
-            if (Artists.Any())
-            {
-                var count = Artists.Count;
-                var tries = (count < 5) ? count : 5;
-                for (int search = 0; search < tries; search++)
-                {
-                    var i = r.Next(0, count - 1);
-                    if (Artists[i].IsPictureLoaded)
-                    {
-                        Locator.Slideshow.AddImg(Artists[i].Picture);
-                    }
-                }
-            }
-        }
-
         #region Music Library Indexation Logic
-        
+
         async Task PerformMusicLibraryIndexing()
         {
             try
