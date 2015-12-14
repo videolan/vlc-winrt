@@ -11,7 +11,7 @@ namespace VLC_WinRT.Converters
         {
             if (value is VLCStorageFolder)
             {
-                return App.Current.Resources["FolderSymbol"];
+                return App.Current.Resources["FolderFilledSymbol"];
             }
             else
             {
