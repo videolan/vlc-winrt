@@ -937,19 +937,17 @@
                             <Style x:Key="SliderThumbStyle"
                                    TargetType="Thumb">
                                 <Setter Property="BorderThickness"
-                                        Value="1" />
+                                        Value="0" />
                                 <Setter Property="BorderBrush"
-                                        Value="{ThemeResource MainColor}" />
+                                        Value="{ThemeResource BasicForeground}" />
                                 <Setter Property="Background"
                                         Value="Transparent" />
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Thumb">
-                                            <Ellipse Fill="{TemplateBinding Background}"
-                                                     Stroke="{TemplateBinding BorderBrush}"
-                                                     StrokeThickness="2"
-                                                     Height="25"
-                                                     Width="25" />
+                                            <Rectangle Fill="{TemplateBinding BorderBrush}"
+                                                       Height="20"
+                                                       Width="2" />
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
@@ -963,26 +961,10 @@
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="HorizontalDecreaseRect">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource MainColor}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
-
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="HorizontalDecreaseRect">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="White" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="HorizontalTrackRect">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderTrackPressedBackgroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
@@ -1031,26 +1013,6 @@
                                 </VisualState>
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="HorizontalDecreaseRect">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="White" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="HorizontalTrackRect">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderTrackPointerOverBackgroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
-                                                                       Storyboard.TargetName="HorizontalThumb">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderThumbPointerOverBackgroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
-                                                                       Storyboard.TargetName="HorizontalThumb">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderThumbPointerOverBorderThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -1097,7 +1059,7 @@
                                            Height="2"
                                            Grid.Row="1" />
                                 <Rectangle x:Name="HorizontalDecreaseRect"
-                                           Fill="{ThemeResource MainColor}"
+                                           Fill="{ThemeResource BasicForeground}"
                                            Height="2"
                                            Grid.Row="1" />
                                 <TickBar x:Name="TopTickBar"
@@ -1126,9 +1088,9 @@
                                        AutomationProperties.AccessibilityView="Raw"
                                        Grid.Column="1"
                                        DataContext="{TemplateBinding Value}"
-                                       Height="25"
+                                       Height="20"
                                        Grid.Row="1"
-                                       Width="25" />
+                                       Width="2" />
                                 <Rectangle x:Name="HorizontalBorder"
                                            Grid.ColumnSpan="3"
                                            Grid.Row="1"
@@ -2036,7 +1998,7 @@
                                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                               Margin="{TemplateBinding Padding}"
-                                                              Foreground="{ThemeResource BasicForeground}"/>
+                                                              Foreground="{ThemeResource BasicForeground}" />
                                             <!-- The 'Xg' text simulates the amount of space one line of text will occupy.
                                              In the DataPlaceholder state, the Content is not loaded yet so we
                                              approximate the size of the item using placeholder text. -->
