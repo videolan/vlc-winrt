@@ -206,7 +206,6 @@ namespace Slide2D.Images
 
             if (computeBlurPic)
             {
-                Debug.WriteLine("Computing blur img");
                 currentImg.GaussianBlurCache = new GaussianBlurEffect()
                 {
                     Source = currentImg.Bmp,
