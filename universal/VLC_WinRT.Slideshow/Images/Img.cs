@@ -15,8 +15,24 @@ namespace Slide2D.Images
 
         public ScaleEffect ScaleEffect { get; set; }
         public string Src { get; private set; }
-        public double Height { get { return Bmp.SizeInPixels.Height; } }
-        public double Width { get { return Bmp.SizeInPixels.Width; } }
+        public double Height
+        {
+            get
+            {
+                if (Bmp != null) return Bmp.SizeInPixels.Height;
+                return -1;
+            }
+        }
+
+        public double Width
+        {
+            get
+            {
+                if (Bmp != null) return Bmp.SizeInPixels.Width;
+                return -1;
+            }
+        }
+
         public float Scale { get; set; }
         public float Opacity { get; set; }
         public bool Loaded { get; set; }
