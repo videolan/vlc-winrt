@@ -823,6 +823,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             return albumDatabase.LoadAlbumsFromId(artistId);
         }
 
+        public Task<int> LoadAlbumsCount(int artistId)
+        {
+            return albumDatabase.LoadAlbumsCountFromId(artistId);
+        }
+
         public Task Update(ArtistItem artist)
         {
             return artistDatabase.Update(artist);
