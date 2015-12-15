@@ -98,6 +98,8 @@ namespace VLC_WinRT.Utils
         public static readonly string UnknownString = UnknownChar.ToString();
 
         private static readonly ResourceLoader _resourcesLoader = ResourceLoader.GetForViewIndependentUse();
+        
+        public static string Dash => "­­­ — ";
 
         public static string Home => _resourcesLoader.GetString(nameof(Home));
         public static string Music => _resourcesLoader.GetString(nameof(Music));
