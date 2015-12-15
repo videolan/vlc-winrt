@@ -12,7 +12,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
     {
         public override async void Execute(object parameter)
         {
-            Locator.NavigationService.GoBack_HideFlyout();
+            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             TrackItem track = null;
             if (parameter is ItemClickEventArgs)
             {
@@ -25,7 +25,6 @@ namespace VLC_WinRT.Commands.MusicLibrary
                 return;
             }
             await PlaylistHelper.AddAlbumToPlaylist(track.AlbumId, true, true, track);
-            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
         }
     }
 }

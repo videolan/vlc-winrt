@@ -19,8 +19,6 @@ namespace VLC_WinRT.Commands.MusicPlayer
     {
         public override async void Execute(object parameter)
         {
-            Locator.NavigationService.GoBack_HideFlyout();
-            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             AlbumItem albumItem = parameter as AlbumItem;
             if (albumItem != null)
             {
@@ -32,6 +30,7 @@ namespace VLC_WinRT.Commands.MusicPlayer
             }
             if (albumItem != null)
             {
+                Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
                 await PlaylistHelper.AddAlbumToPlaylist(albumItem.Id, true, true, null, 0);
             }
         }

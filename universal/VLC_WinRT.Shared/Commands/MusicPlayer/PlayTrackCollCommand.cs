@@ -14,6 +14,8 @@ namespace VLC_WinRT.Commands.MusicPlayer
         {
             var trackCollection = Locator.MusicLibraryVM.CurrentTrackCollection;
             if (trackCollection == null || trackCollection.Playlist == null || !trackCollection.Playlist.Any()) return;
+            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
+
             if (parameter is int)
             {
                 await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(trackCollection.Playlist, true, (int) parameter);
@@ -25,8 +27,6 @@ namespace VLC_WinRT.Commands.MusicPlayer
                 await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(trackCollection.Playlist, true, index);
             }
             else await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(trackCollection.Playlist);
-            Locator.NavigationService.GoBack_HideFlyout();
-            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
         }
     }
 }

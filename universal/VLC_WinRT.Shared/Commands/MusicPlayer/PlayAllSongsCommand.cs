@@ -15,6 +15,7 @@ namespace VLC_WinRT.Commands.MusicPlayer
         {
             var tracks = await Locator.MusicLibraryVM.MusicLibrary.LoadTracks();
             if (tracks == null || !tracks.Any()) return;
+            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             var itemClickArgs = parameter as ItemClickEventArgs;
             var index = 0;
             if (itemClickArgs != null)
@@ -23,7 +24,6 @@ namespace VLC_WinRT.Commands.MusicPlayer
                 index = tracks.IndexOf(selectedTrack);
             }
             await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(tracks.ToPlaylist(), true, index);
-            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
         }
     }
 }

@@ -15,9 +15,9 @@ namespace VLC_WinRT.Commands.MusicPlayer
         {
             var tracks = await Locator.MusicLibraryVM.MusicLibrary.LoadTracks();
             if (tracks == null || !tracks.Any()) return;
+            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             var shuffledTracks = tracks.Shuffle();
             await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(shuffledTracks.ToPlaylist());
-            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
         }
     }
 }

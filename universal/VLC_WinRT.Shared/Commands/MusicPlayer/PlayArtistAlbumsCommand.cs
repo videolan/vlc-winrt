@@ -10,10 +10,9 @@ namespace VLC_WinRT.Commands.MusicPlayer
     {
         public override async void Execute(object parameter)
         {
-            Locator.NavigationService.GoBack_HideFlyout();
-            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             if (parameter is ArtistItem)
             {
+                Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
                 var artist = parameter as ArtistItem;
                 var tracks = await Locator.MusicLibraryVM.MusicLibrary.LoadTracksByArtistId(artist.Id).ToObservableAsync();
                 await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(tracks.ToPlaylist());
