@@ -19,7 +19,9 @@
         </Grid.ColumnDefinitions>
         <TextBlock Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}"
                    FontWeight="Light"
-                   FontSize="18" />
+                   FontSize="18"
+                   Width="60"
+                   HorizontalAlignment="Right"/>
         <Slider Grid.Column="2"
                 Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
                 Style="{StaticResource VLCSlider}"
@@ -29,6 +31,8 @@
                    Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
                    FontWeight="Light"
                    FontSize="18"
-                   Foreground="{ThemeResource BasicForeground}" />
+                   Foreground="{ThemeResource BasicForeground}"
+                   Width="60"
+                   HorizontalAlignment="Left"/>
     </Grid>
 </UserControl>
