@@ -79,7 +79,7 @@
                 <Run Text="{Binding AlbumName}"
                      FontSize="19"
                      Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
-                <Run Text=" - "
+                <Run Text="{Binding Source={StaticResource Strings}, Path=Dash}"
                      FontSize="16" />
                 <Run Text="{Binding ArtistName}"
                      FontSize="19"
