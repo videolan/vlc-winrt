@@ -15,7 +15,6 @@ namespace VLC_WinRT.Controls
     public delegate void ContentSizeChanged(double newWidth);
 
     [TemplatePart(Name = TitleBarContentPresenterName, Type = typeof(ContentPresenter))]
-    [TemplatePart(Name = TopBarContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = ContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = RightFlyoutContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = RightFlyoutFadeInName, Type = typeof(Storyboard))]
@@ -41,7 +40,6 @@ namespace VLC_WinRT.Controls
         };
 
         private const string ContentPresenterName = "ContentPresenter";
-        private const string TopBarContentPresenterName = "TopBarContentPresenter";
         private const string TitleBarContentPresenterName = "TitleBarContentPresenter";
         private const string RightFlyoutContentPresenterName = "RightFlyoutContentPresenter";
         private const string RightFlyoutFadeInName = "RightFlyoutFadeIn";
@@ -63,7 +61,6 @@ namespace VLC_WinRT.Controls
         private Grid _splitPaneEmptyGrid;
         private Grid _splitPaneOpenerGrid;
         private ContentPresenter _contentPresenter;
-        private ContentPresenter _topBarContentPresenter;
         private ContentPresenter _titleBarContentPresenter;
         private ContentPresenter _rightFlyoutContentPresenter;
         private ContentPresenter _footerContentPresenter;
@@ -103,19 +100,7 @@ namespace VLC_WinRT.Controls
                 h = 0;
             _titleBarContentPresenter.Height = h;
         }
-
-        public async void SetTopbarContentPresenter(object contentPresenter)
-        {
-            await TemplateApplied.Task;
-            _topBarContentPresenter.Content = contentPresenter;
-        }
-
-        public async void SetTopbarVisibility(object visibility)
-        {
-            await TemplateApplied.Task;
-            _topBarContentPresenter.Visibility = (Visibility)visibility;
-        }
-
+        
         public async void SetRightPaneContentPresenter(object content)
         {
             await TemplateApplied.Task;
@@ -149,39 +134,6 @@ namespace VLC_WinRT.Controls
         {
             var that = (SplitShell)dependencyObject;
             that.SetContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
-        }
-        #endregion
-
-        #region TopBarContent Property
-        public Visibility TopBarVisibility
-        {
-            get { return (Visibility)GetValue(TopBarVisibilityProperty); }
-            set { SetValue(TopBarVisibilityProperty, value); }
-        }
-
-        public static readonly DependencyProperty TopBarVisibilityProperty = DependencyProperty.Register(
-            "TopBarVisibility", typeof(Visibility), typeof(SplitShell), new PropertyMetadata(Visibility.Visible, TopbarVisibilityPropertyChangedCallback));
-
-        private static void TopbarVisibilityPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var that = (SplitShell)dependencyObject;
-            that.SetTopbarVisibility(dependencyPropertyChangedEventArgs.NewValue);
-        }
-
-        public DependencyObject TopBarContent
-        {
-            get { return (DependencyObject)GetValue(TopBarContentProperty); }
-            set { SetValue(TopBarContentProperty, value); }
-        }
-
-        public static readonly DependencyProperty TopBarContentProperty = DependencyProperty.Register(
-            "TopBarContent", typeof(DependencyObject), typeof(SplitShell), new PropertyMetadata(default(DependencyObject), TopBarContentPropertyChangedCallback));
-
-
-        private static void TopBarContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var that = (SplitShell)dependencyObject;
-            that.SetTopbarContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
         }
         #endregion
 
@@ -302,7 +254,6 @@ namespace VLC_WinRT.Controls
         {
             base.OnApplyTemplate();
             _contentPresenter = (ContentPresenter)GetTemplateChild(ContentPresenterName);
-            _topBarContentPresenter = (ContentPresenter)GetTemplateChild(TopBarContentPresenterName);
             _rightFlyoutContentPresenter = (ContentPresenter)GetTemplateChild(RightFlyoutContentPresenterName);
             _rightFlyoutFadeIn = (Storyboard)GetTemplateChild(RightFlyoutFadeInName);
             _rightFlyoutFadeOut = (Storyboard)GetTemplateChild(RightFlyoutFadeOutName);

@@ -10,16 +10,6 @@
                     <Grid>
                         <Grid.Resources>
                             <Storyboard x:Name="TopBarFadeOut">
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TopBarContentPresenterTranslateTransform"
-                                                               Storyboard.TargetProperty="Y">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.6"
-                                                          Value="-50">
-                                        <EasingDoubleKeyFrame.EasingFunction>
-                                            <ExponentialEase EasingMode="EaseInOut"
-                                                             Exponent="3" />
-                                        </EasingDoubleKeyFrame.EasingFunction>
-                                    </EasingDoubleKeyFrame>
-                                </DoubleAnimationUsingKeyFrames>
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenterTranslateTransform"
                                                                Storyboard.TargetProperty="Y">
                                     <EasingDoubleKeyFrame KeyTime="0:0:0.6"
@@ -30,23 +20,8 @@
                                         </EasingDoubleKeyFrame.EasingFunction>
                                     </EasingDoubleKeyFrame>
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TopBarContentPresenter"
-                                                               Storyboard.TargetProperty="Opacity">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.6"
-                                                          Value="0" />
-                                </DoubleAnimationUsingKeyFrames>
                             </Storyboard>
                             <Storyboard x:Name="TopBarFadeIn">
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TopBarContentPresenterTranslateTransform"
-                                                               Storyboard.TargetProperty="Y">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.4"
-                                                          Value="0">
-                                        <EasingDoubleKeyFrame.EasingFunction>
-                                            <ExponentialEase EasingMode="EaseInOut"
-                                                             Exponent="3" />
-                                        </EasingDoubleKeyFrame.EasingFunction>
-                                    </EasingDoubleKeyFrame>
-                                </DoubleAnimationUsingKeyFrames>
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenterTranslateTransform"
                                                                Storyboard.TargetProperty="Y">
                                     <EasingDoubleKeyFrame KeyTime="0:0:0.2"
@@ -56,11 +31,6 @@
                                                              Exponent="2" />
                                         </EasingDoubleKeyFrame.EasingFunction>
                                     </EasingDoubleKeyFrame>
-                                </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TopBarContentPresenter"
-                                                               Storyboard.TargetProperty="Opacity">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.4"
-                                                          Value="1" />
                                 </DoubleAnimationUsingKeyFrames>
                             </Storyboard>
                             <Storyboard x:Name="RightFlyoutFadeIn">
@@ -188,29 +158,21 @@
                         </Grid.Resources>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <ContentPresenter x:Name="TopBarContentPresenter"
-                                          Grid.Row="1">
-                            <ContentPresenter.RenderTransform>
-                                <TranslateTransform x:Name="TopBarContentPresenterTranslateTransform" />
-                            </ContentPresenter.RenderTransform>
-                        </ContentPresenter>
                         <ContentPresenter x:Name="ContentPresenter"
-                                          Grid.Row="2">
+                                          Grid.Row="1">
                             <ContentPresenter.RenderTransform>
                                 <TranslateTransform x:Name="ContentPresenterTranslateTransform" />
                             </ContentPresenter.RenderTransform>
                         </ContentPresenter>
                         <ContentPresenter x:Name="FooterContentPresenter"
-                                          Grid.Row="2"
+                                          Grid.Row="1"
                                           VerticalAlignment="Bottom"
                                           HorizontalAlignment="Stretch" />
 
                         <Grid x:Name="RightFlyoutGridContainer"
                               Grid.Row="1"
-                              Grid.RowSpan="2"
                               Opacity="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -246,14 +208,12 @@
                         
                         <Grid x:Name="SplitPaneOpenerGrid"
                               Grid.Row="1"
-                              Grid.RowSpan="2"
                               HorizontalAlignment="Left"
                               Width="16"
                               Background="Transparent"/>
                         
                         <Grid x:Name="SplitPane"
                               Grid.Row="1"
-                              Grid.RowSpan="2"
                               Visibility="Collapsed">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />

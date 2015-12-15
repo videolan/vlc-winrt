@@ -232,7 +232,6 @@ namespace VLC_WinRT.Services.RunTime
                     Locator.Slideshow.IsPaused = true;
                     AppViewHelper.ResizeWindow(false, 400, 80 + AppViewHelper.TitleBarHeight);
                     AppViewHelper.SetAppView(Colors.WhiteSmoke);
-                    App.SplitShell.TopBarVisibility = Visibility.Collapsed;
                     App.SplitShell.FooterVisibility = Visibility.Collapsed;
                     App.ApplicationFrame.Navigate(typeof(MiniPlayerWindow));
                     break;

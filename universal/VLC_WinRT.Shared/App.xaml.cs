@@ -58,7 +58,7 @@ namespace VLC_WinRT
             Container = AutoFacConfiguration.Configure();
         }
 
-        public static Frame ApplicationFrame => RootPage?.ShellContent.NavigationFrame;
+        public static Frame ApplicationFrame => RootPage?.NavigationFrame;
 
         public static MainPage RootPage => Window.Current?.Content as MainPage;
 
