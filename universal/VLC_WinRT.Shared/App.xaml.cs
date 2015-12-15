@@ -264,7 +264,7 @@ namespace VLC_WinRT
 
         public static void SetShellDecoration(bool forceTemporaryAppTheme = false, bool forceDark = false)
         {
-            Locator.Slideshow.SetTheme(SettingsViewModel.GetApplicationTheme() == ApplicationTheme.Dark);
+            Locator.Slideshow.SetTheme(false);
             if (forceTemporaryAppTheme)
             {
                 RootPage.RequestedTheme = forceDark ? ElementTheme.Dark : ElementTheme.Light;
