@@ -33,6 +33,7 @@ namespace Slide2D.Images
 
         private const float MaximumBlur = 10f;
 
+        private Random random = new Random();
         // Debug only, to slow down frames
         int threshold = 0;
 
@@ -50,7 +51,7 @@ namespace Slide2D.Images
         private int ImgIndex = 0;
 
         private Img currentImg;
-        private Img nextImg;
+        private List<Img> images = new List<Img>();
 
         private bool _richAnimations;
         private bool changeBackgroundColor;
@@ -76,8 +77,9 @@ namespace Slide2D.Images
             }
         }
 
-        void Navigated()
+        async void Navigated()
         {
+            images.Clear();
             bool newPic = false;
             if (Locator.NavigationService.CurrentPage == VLCPage.AlbumPage ||
                 Locator.NavigationService.CurrentPage == VLCPage.ArtistPage)
@@ -85,8 +87,19 @@ namespace Slide2D.Images
                 if (Locator.MusicLibraryVM.CurrentArtist == null) return;
                 if (Locator.MusicLibraryVM.CurrentArtist.IsPictureLoaded)
                 {
-                    nextImg = new Img(Locator.MusicLibraryVM.CurrentArtist.Picture);
+                    images.Add(new Img(Locator.MusicLibraryVM.CurrentArtist.Picture));
                     newPic = true;
+                }
+                var albums = await Locator.MusicLibraryVM.MusicLibrary.LoadAlbums(Locator.MusicLibraryVM.CurrentArtist.Id);
+                if (albums != null)
+                {
+                    foreach (var albumItem in albums)
+                    {
+                        if (albumItem.IsPictureLoaded)
+                        {
+                            images.Add(new Img(albumItem.AlbumCoverFullUri));
+                        }
+                    }
                 }
             }
             else if (Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage)
@@ -94,11 +107,32 @@ namespace Slide2D.Images
                 if (Locator.MusicPlayerVM.CurrentArtist == null) return;
                 if (Locator.MusicPlayerVM.CurrentArtist.IsPictureLoaded)
                 {
-                    nextImg = new Img(Locator.MusicPlayerVM.CurrentArtist.Picture);
+                    images.Add(new Img(Locator.MusicPlayerVM.CurrentArtist.Picture));
                     newPic = true;
                 }
+                var album = Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(Locator.MusicPlayerVM.CurrentTrack.AlbumId);
+                if (album != null)
+                {
+                    if (album.IsPictureLoaded)
+                    {
+                        images.Add(new Img(album.AlbumCoverFullUri));
+                        newPic = true;
+                    }
+                }
             }
-            //return new Img(Locator.MusicLibraryVM.MusicLibrary.Artists?.ElementAt(0)?.Picture);
+            else
+            {
+                var artistList = await Locator.MusicLibraryVM.MusicLibrary.LoadArtists(x => x.IsPictureLoaded);
+                if (artistList != null)
+                {
+                    foreach (var artist in artistList)
+                    {
+                        images.Add(new Img(artist.Picture));
+                        newPic = true;
+                    }
+                }
+            }
+
             if (newPic)
             {
                 frame = OutroFrameThreshold;
@@ -286,8 +320,9 @@ namespace Slide2D.Images
             if (fastChange)
             {
                 fastChange = false;
-                currentImg = nextImg;
             }
+            // Choosing a new img to display in the next loop
+            getNextImg();
             frame = 0;
             blurAmount = MaximumBlur;
         }
@@ -300,6 +335,18 @@ namespace Slide2D.Images
                 changeBackgroundColor = true;
                 newColorIsDark = dark;
             }
+        }
+
+        void getNextImg()
+        {
+            Debug.WriteLine($"Choosing a picture out of {images.Count} pictures.");
+            int nextImgIndex = 0;
+            if (images.Count > 2)
+                nextImgIndex = random.Next(0, images.Count - 1);
+            else
+                nextImgIndex = random.NextDouble() < 0.5 ? 0 : 1;
+            currentImg = images[nextImgIndex];
+            Debug.WriteLine($"Choose picture uri = {currentImg.Src}");
         }
     }
 }
