@@ -50,7 +50,7 @@
                   ItemsSource="{Binding TrackCollection.Playlist}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
-                  ItemTemplate="{StaticResource TrackTemplateDetailedNoFlyout}"
+                  ItemTemplate="{StaticResource TrackItemTemplateDetailedVertical}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

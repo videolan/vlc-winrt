@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="VLC_WinRT.UI.Legacy.Views.UserControls.TrackItemTemplateDetailedVertical"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WinRT.UI.Legacy.Views.UserControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             xmlns:utils="using:VLC_WinRT.Utils"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Image x:Name="CoverImage"
+               Stretch="UniformToFill"
+               Width="60"
+               Height="60"/>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="8" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="NameTextBlock"
+                       Grid.Row="0"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"
+                       FontWeight="SemiLight"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       FontSize="19"
+                       VerticalAlignment="Bottom" />
+            <TextBlock Grid.Row="2"
+                       x:Name="ArtistAlbumNameTextBlock"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"
+                       FontWeight="Light"
+                       Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                       FontSize="16"
+                       VerticalAlignment="Top" />
+        </Grid>
+    </Grid>
+</UserControl>

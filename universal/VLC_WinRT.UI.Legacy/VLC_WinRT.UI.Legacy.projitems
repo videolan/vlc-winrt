@@ -242,6 +242,10 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\TrackItemTemplateDetailed.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\TrackItemTemplateDetailedVertical.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\VLCLogoWithGradient.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -464,6 +468,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\TrackItemTemplateDetailed.xaml.cs">
       <DependentUpon>TrackItemTemplateDetailed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\TrackItemTemplateDetailedVertical.xaml.cs">
+      <DependentUpon>TrackItemTemplateDetailedVertical.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\VLCLogoWithGradient.xaml.cs">
       <DependentUpon>VLCLogoWithGradient.xaml</DependentUpon>
