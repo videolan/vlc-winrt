@@ -216,6 +216,7 @@ namespace Slide2D.Images
 
             float screenRatio = (float)MetroSlideshow.WindowWidth / (float)MetroSlideshow.WindowHeight;
             float imgRatio = (float)currentImg.Width / (float)currentImg.Height;
+            if (currentImg.Width == -1 || currentImg.Height == -1) return;
             if (imgRatio > screenRatio)
             {
                 //img wider than screen, need to scale horizontally
