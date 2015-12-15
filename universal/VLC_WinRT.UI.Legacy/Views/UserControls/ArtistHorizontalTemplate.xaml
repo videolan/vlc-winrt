@@ -47,21 +47,19 @@
                             ImageSource="{Binding ArtistImage}" />
             </Ellipse.Fill>
         </Ellipse>
-        <TextBlock Grid.Column="2"
+        <TextBlock x:Name="NameTextBlock" 
+                   Grid.Column="2"
                    Grid.Row="0"
-                   Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
                    FontSize="25"
                    FontWeight="SemiLight"
                    VerticalAlignment="Bottom"
                    TextTrimming="CharacterEllipsis"/>
-        <TextBlock Grid.Column="2"
+        <TextBlock x:Name="AlbumsCountTextBlock" 
+                   Grid.Column="2"
                    Grid.Row="1"
                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                    VerticalAlignment="Top"
                    FontWeight="SemiLight"
-                   FontSize="19">
-            <Run Text="{Binding Albums.Count}" />
-            <Run Text="{Binding Source={StaticResource Strings}, Path=Albums}" />
-        </TextBlock>
+                   FontSize="19"/>
     </Grid>
 </UserControl>

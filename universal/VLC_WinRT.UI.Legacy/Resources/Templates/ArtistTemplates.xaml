@@ -6,11 +6,12 @@
                     xmlns:userControls="using:VLC_WinRT.Views.UserControls">
 
     <DataTemplate x:Key="ArtistHorizontalTemplate">
-        <userControls:ArtistHorizontalTemplate />
+        <userControls:ArtistHorizontalTemplate Artist="{Binding}"/>
     </DataTemplate>
 
     <DataTemplate x:Key="ArtistHorizontalTemplateFixedSize">
-        <userControls:ArtistHorizontalTemplate Width="350"/>
+        <userControls:ArtistHorizontalTemplate Width="350"
+                                               Artist="{Binding}" />
     </DataTemplate>
     
     <DataTemplate x:Key="SimilarArtistTemplate">
