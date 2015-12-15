@@ -3854,7 +3854,7 @@
         <Setter Property="FontWeight"
                 Value="SemiLight" />
         <Setter Property="FontSize"
-                Value="17" />
+                Value="15" />
     </Style>
 
 
