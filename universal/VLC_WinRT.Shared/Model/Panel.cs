@@ -13,16 +13,16 @@ namespace VLC_WinRT.Model
 {
     public class Panel
     {
-        public Panel(string t, int i, string defaultIcon, string filledIcon)
+        public Panel(string t, VLCPage tgt, string defaultIcon, string filledIcon)
         {
             Title = t;
-            Index = i;
+            Target = tgt;
             DefaultIcon = defaultIcon;
             FilledIcon = filledIcon;
         }
 
         public string Title { get; private set; }
-        public int Index { get; private set; }
+        public VLCPage Target { get; private set; }
         public string DefaultIcon { get; private set; }
 
         public string FilledIcon { get; private set; }
