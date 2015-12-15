@@ -71,7 +71,8 @@ namespace Slide2D.Images
 
         private void MusicLibraryVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(MusicLibraryVM.CurrentArtist))
+            if (e.PropertyName == nameof(MusicLibraryVM.CurrentArtist)
+                || e.PropertyName == nameof(MusicLibraryVM.CurrentAlbum))
             {
                 Navigated();
             }
