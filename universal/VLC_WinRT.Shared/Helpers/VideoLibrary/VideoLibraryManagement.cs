@@ -44,7 +44,11 @@ namespace VLC_WinRT.Helpers.VideoLibrary
 
         public static async Task GetViewedVideos()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.VideoLibraryVM.ViewedVideos.Clear());
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            {
+                Locator.VideoLibraryVM.ViewedVideos = new ObservableCollection<VideoItem>();
+                Locator.VideoLibraryVM.ViewedVideos?.Clear();
+            });
 
             var result = await Locator.VideoLibraryVM.VideoRepository.GetLastViewed();
             var orderedResults = result.OrderByDescending(x => x.LastWatched).Take(6);
