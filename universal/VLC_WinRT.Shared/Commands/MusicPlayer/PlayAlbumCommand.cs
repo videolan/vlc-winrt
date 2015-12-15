@@ -20,14 +20,16 @@ namespace VLC_WinRT.Commands.MusicPlayer
         public override async void Execute(object parameter)
         {
             AlbumItem albumItem = parameter as AlbumItem;
-            if (albumItem != null)
+            if (parameter is AlbumItem)
             {
+                albumItem = (AlbumItem) parameter;
             }
             else if (parameter is int)
             {
                 var id = (int) parameter;
                 albumItem = Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(id);
             }
+
             if (albumItem != null)
             {
                 Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
