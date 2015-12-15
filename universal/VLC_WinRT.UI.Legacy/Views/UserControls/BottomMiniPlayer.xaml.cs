@@ -22,9 +22,6 @@ namespace VLC_WinRT.Views.UserControls
             Responsive();
             Window.Current.SizeChanged += Current_SizeChanged;
             Unloaded += BottomMiniPlayer_Unloaded;
-#if WINDOWS_PHONE_APP
-            MiniPlayerColumnDefinition.Width = new GridLength(0, GridUnitType.Pixel);
-#endif
         }
 
         void BottomMiniPlayer_Unloaded(object sender, RoutedEventArgs e)
