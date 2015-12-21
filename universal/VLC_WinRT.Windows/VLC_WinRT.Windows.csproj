@@ -128,8 +128,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\UserControls\ShellContent.xaml.cs">
-      <DependentUpon>ShellContent.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\HomePageController.xaml.cs">
+      <DependentUpon>HomePageController.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
