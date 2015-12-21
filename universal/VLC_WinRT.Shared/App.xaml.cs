@@ -161,7 +161,6 @@ namespace VLC_WinRT
 #endif
                                     break;
                                 case "useraction":
-                                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[Locator.NavigationService.VLCHomePageToPanelIndex(Locator.SettingsVM.HomePage)];
                                     Locator.MainVM.OpenStreamFlyout();
                                     break;
                                 case "url":
