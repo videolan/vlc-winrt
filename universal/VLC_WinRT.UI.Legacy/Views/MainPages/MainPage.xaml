@@ -28,9 +28,16 @@
                               AudioDeviceType="Multimedia"
                               AudioCategory="BackgroundCapableMedia"
                               Loaded="MfMediaElement_Loaded" />
-
-                <userControls:ShellContent x:Name="ShellContent"
-                                           x:FieldModifier="public" />
+                <Frame x:Name="NavigationFrame"
+                       x:FieldModifier="public"
+                       Background="Transparent"
+                       Navigated="MainFrame_OnNavigated">
+                    <Frame.ContentTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition />
+                        </TransitionCollection>
+                    </Frame.ContentTransitions>
+                </Frame>
             </Grid>
         </controls:SplitShell.Content>
     </controls:SplitShell>

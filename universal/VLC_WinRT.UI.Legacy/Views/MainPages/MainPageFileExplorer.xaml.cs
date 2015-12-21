@@ -13,22 +13,10 @@ namespace VLC_WinRT.Views.MainPages
             this.InitializeComponent();
             this.Loaded += MainPageFileExplorer_Loaded;
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            Locator.FileExplorerVM.OnNavigatedTo();
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-            Locator.FileExplorerVM.Dispose();
-        }
-
-
+        
         private void MainPageFileExplorer_Loaded(object sender, RoutedEventArgs e)
         {
+            Locator.FileExplorerVM.OnNavigatedTo();
             Responsive();
             this.SizeChanged += OnSizeChanged;
             this.Unloaded += OnUnloaded;
@@ -41,6 +29,7 @@ namespace VLC_WinRT.Views.MainPages
 
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
         {
+            Locator.FileExplorerVM.Dispose();
             this.SizeChanged -= OnSizeChanged;
         }
 

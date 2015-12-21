@@ -20,14 +20,6 @@ namespace VLC_WinRT.Views.UserControls
             Responsive(Window.Current.Bounds.Width);
             Window.Current.SizeChanged += Current_SizeChanged;
             this.Unloaded += MusicPaneButtons_Unloaded;
-            Locator.NavigationService.ViewNavigated += ViewNavigated;
-        }
-
-        private void ViewNavigated(object sender, VLCPage newPage)
-        {
-            this.Visibility = Locator.NavigationService.IsPageAMainPage(newPage)
-                ? Visibility.Visible
-                : Visibility.Collapsed;
         }
 
         void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)

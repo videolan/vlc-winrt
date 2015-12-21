@@ -57,20 +57,18 @@ namespace VLC_WinRT.ViewModels
         #endregion
 
         #region public props
-
-        public VLCPage CurrentPage
-        {
-            get { return currentPage; }
-            set { SetProperty(ref currentPage, value); }
-        }
-
         public Panel CurrentPanel
         {
             get { return _currentPanel; }
             set
             {
                 SetProperty(ref _currentPanel, value);
-                Locator.MainVM.GoToPanelCommand.Execute(value);
+#if WINDOWS_PHONE_APP
+            var iPreviousView = App.RootPage.ShellContent.CurrentViewIndex;
+            var iNewView = Locator.MainVM.Panels.IndexOf(panel);
+            App.RootPage.ShellContent.SetPivotAnimation(iNewView > iPreviousView);
+#endif
+                Locator.NavigationService.Go(value.Target);
             }
         }
 
@@ -99,11 +97,9 @@ namespace VLC_WinRT.ViewModels
                 SetProperty(ref _isInternet, value);
             }
         }
-        
+
         public GoBackCommand GoBackCommand { get; } = new GoBackCommand();
-
-        public GoToPanelCommand GoToPanelCommand { get; } = new GoToPanelCommand();
-
+        
         public ActionCommand GoToSettingsPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SettingsPage));
 
         public ActionCommand GoToThanksPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SpecialThanksPage));
@@ -114,8 +110,6 @@ namespace VLC_WinRT.ViewModels
 
         public ActionCommand GoToFeedbackPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.FeedbackPage));
         
-        public ChangeMainPageMusicViewCommand ChangeMainPageMusicViewCommand { get; } = new ChangeMainPageMusicViewCommand();
-
         public ChangeMainPageVideoViewCommand ChangeMainPageVideoViewCommand { get; } = new ChangeMainPageVideoViewCommand();
 
         public CreateMiniPlayerView CreateMiniPlayerView { get; } = new CreateMiniPlayerView();
@@ -151,11 +145,11 @@ namespace VLC_WinRT.ViewModels
             networkListenerService = App.Container.Resolve<NetworkListenerService>();
             networkListenerService.InternetConnectionChanged += networkListenerService_InternetConnectionChanged;
             _isInternet = NetworkListenerService.IsConnected;
-            
-            Panels.Add(new Panel(Strings.Videos, 1, App.Current.Resources["VideoSymbol"].ToString(), App.Current.Resources["VideoFilledSymbol"].ToString()));
-            Panels.Add(new Panel(Strings.Music, 2, App.Current.Resources["MusicSymbol"].ToString(), App.Current.Resources["MusicFilledSymbol"].ToString()));
-            Panels.Add(new Panel(Strings.FileExplorer, 3, App.Current.Resources["FileExplorerSymbol"].ToString(), App.Current.Resources["FileExplorerFilledSymbol"].ToString()));
-            Panels.Add(new Panel(Strings.Network, 4, App.Current.Resources["StreamSymbol"].ToString(), App.Current.Resources["StreamFilledSymbol"].ToString()));
+
+            Panels.Add(new Panel(Strings.Videos, VLCPage.MainPageVideo, App.Current.Resources["VideoSymbol"].ToString(), App.Current.Resources["VideoFilledSymbol"].ToString()));
+            Panels.Add(new Panel(Strings.Music, VLCPage.MainPageMusic, App.Current.Resources["MusicSymbol"].ToString(), App.Current.Resources["MusicFilledSymbol"].ToString()));
+            Panels.Add(new Panel(Strings.FileExplorer, VLCPage.MainPageFileExplorer, App.Current.Resources["FileExplorerSymbol"].ToString(), App.Current.Resources["FileExplorerFilledSymbol"].ToString()));
+            Panels.Add(new Panel(Strings.Network, VLCPage.MainPageNetwork, App.Current.Resources["StreamSymbol"].ToString(), App.Current.Resources["StreamFilledSymbol"].ToString()));
 
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
             Locator.NavigationService.ViewNavigated += (sender, page) =>
@@ -171,8 +165,6 @@ namespace VLC_WinRT.ViewModels
                     if (!string.IsNullOrEmpty(title))
                         appView.Title = title;
                 }
-                if (App.SplitShell.TopBarContent == null)
-                    App.SplitShell.TopBarContent = new TopBar();
                 if (!App.SplitShell.IsTopBarOpen)
                     App.SplitShell.ShowTopBar();
                 if (App.SplitShell.FooterContent == null)
@@ -181,7 +173,6 @@ namespace VLC_WinRT.ViewModels
                     App.SplitShell.TitleBarContent = new TitleBar();
                 if (App.SplitShell.SplitPaneContent == null)
                     App.SplitShell.SplitPaneContent = new SideBar();
-                CurrentPage = page;
                 CanGoBack = Locator.NavigationService.CanGoBack();
             };
             InitializeSlideshow();
@@ -231,10 +222,10 @@ namespace VLC_WinRT.ViewModels
                 }
             });
         }
-        
+
         public void OpenStreamFlyout()
         {
-            CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Index == 4);
+            Locator.NavigationService.Go(VLCPage.MainPageNetwork);
         }
 
         public ObservableCollection<Panel> Panels

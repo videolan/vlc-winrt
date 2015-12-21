@@ -15,7 +15,6 @@ namespace VLC_WinRT.Commands.Navigation
         public override async void Execute(object parameter)
         {
             Locator.NavigationService.Go(VLCPage.MiniPlayerView);
-            Locator.NavigationService.CurrentPage = VLCPage.MiniPlayerView;
         }
     }
 }

@@ -23,20 +23,9 @@ namespace VLC_WinRT.Views.MainPages
             this.Loaded += MainPageMusic_Loaded;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            Locator.VideoLibraryVM.OnNavigatedTo();
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-            Locator.VideoLibraryVM.OnNavigatedFrom();
-        }
-
         void MainPageMusic_Loaded(object sender, RoutedEventArgs e)
         {
+            Locator.VideoLibraryVM.OnNavigatedTo();
             Responsive(Window.Current.Bounds.Width);
             Window.Current.SizeChanged += Current_SizeChanged;
             this.Unloaded += AlbumsCollectionButtons_Unloaded;
@@ -50,6 +39,7 @@ namespace VLC_WinRT.Views.MainPages
         void AlbumsCollectionButtons_Unloaded(object sender, RoutedEventArgs e)
         {
             Window.Current.SizeChanged -= Current_SizeChanged;
+            Locator.VideoLibraryVM.OnNavigatedFrom();
         }
 
         void Responsive(double width)

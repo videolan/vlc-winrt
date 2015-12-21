@@ -1,4 +1,5 @@
-﻿using VLC_WinRT.Utils;
+﻿using VLC_WinRT.UI.Legacy.Views.MainPages;
+using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
 using VLC_WinRT.Views.MainPages.MainVideoControls;
@@ -11,7 +12,7 @@ namespace VLC_WinRT.Commands.Navigation
         public override void Execute(object parameter)
         {
             var index = int.Parse(parameter.ToString());
-            var frame = (App.ApplicationFrame.Content as MainPageVideos).MainPageVideoContentPresenter;
+            var frame = ((App.ApplicationFrame.Content as HomePage).HomePageController.HomePageContentPresenter.Content as MainPageVideos).MainPageVideoContentPresenter;
             Switch(index, frame);
         }
 

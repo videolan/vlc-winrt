@@ -35,14 +35,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\PlayTrackComand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\ShareNowPlayingMusicCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\TrackCollectionClickedCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\ChangeMainPageMusicViewCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\ChangeMainPageVideoViewCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\ChangeSettingsViewCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\CreateMiniPlayerView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\DisplayMenuBarControlToggleCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\GoBackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\GoingTopOrBottomCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\GoToPanelCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayNextCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayPauseCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayPreviousCommand.cs" />

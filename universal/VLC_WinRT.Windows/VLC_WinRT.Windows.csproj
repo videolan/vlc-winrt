@@ -876,9 +876,9 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
-    <Page Include="Views\UserControls\ShellContent.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Views\UserControls\HomePageController.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

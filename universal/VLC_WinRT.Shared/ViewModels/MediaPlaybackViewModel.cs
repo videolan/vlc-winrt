@@ -44,6 +44,7 @@ using WinRTXamlToolkit.Controls.Extensions;
 using VLC_WinRT.Commands.VideoPlayer;
 using VLC_WinRT.Commands.VideoLibrary;
 using VLC_WinRT.SharedBackground.Database;
+using System.Linq;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -802,7 +803,7 @@ namespace VLC_WinRT.ViewModels
                     PlayingType = PlayingType.NotPlaying;
                     if (!Locator.NavigationService.GoBack_Default())
                     {
-                        Locator.MainVM.GoToPanelCommand.Execute(0);
+                        Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
                     }
                 });
             }

@@ -1,4 +1,5 @@
-﻿using VLC_WinRT.Utils;
+﻿using VLC_WinRT.Model;
+using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
 
@@ -8,7 +9,7 @@ namespace VLC_WinRT.Commands.VLCFileExplorer
     {
         public override void Execute(object parameter)
         {
-            if (App.ApplicationFrame.CurrentSourcePageType == typeof (MainPageFileExplorer))
+            if (Locator.NavigationService.CurrentPage == VLCPage.MainPageFileExplorer)
             {
                 if (Locator.FileExplorerVM.CurrentStorageVM != null &&
                     Locator.FileExplorerVM.CurrentStorageVM.CanGoBack)

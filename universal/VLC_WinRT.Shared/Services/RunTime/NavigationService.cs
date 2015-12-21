@@ -27,7 +27,14 @@ namespace VLC_WinRT.Services.RunTime
 {
     public class NavigationService
     {
-        public VLCPage CurrentPage;
+        private VLCPage currentPage;
+        public VLCPage CurrentPage
+        {
+            get
+            {
+                return currentPage;
+            }
+        }
         public bool PreventAppExit { get; set; } = false;
         public delegate void Navigated(object sender, VLCPage newPage);
         public Navigated ViewNavigated = delegate { };
@@ -59,16 +66,9 @@ namespace VLC_WinRT.Services.RunTime
             switch (CurrentPage)
             {
                 case VLCPage.MainPageVideo:
-                    Locator.MainVM.GoToPanelCommand.Execute(0);
-                    break;
                 case VLCPage.MainPageMusic:
-                    Locator.MainVM.GoToPanelCommand.Execute(0);
-                    break;
                 case VLCPage.MainPageFileExplorer:
-                    Locator.MainVM.GoToPanelCommand.Execute(0);
-                    break;
                 case VLCPage.MainPageNetwork:
-                    Locator.MainVM.GoToPanelCommand.Execute(0);
                     break;
                 case VLCPage.AlbumPage:
                     GoBack_HideFlyout();
@@ -109,7 +109,6 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MiniPlayerView:
                     AppViewHelper.SetAppView((Color)App.Current.Resources["MainColorBase"]);
                     AppViewHelper.ResizeWindow(true);
-                    App.SplitShell.TopBarVisibility = Visibility.Visible;
                     App.SplitShell.FooterVisibility = Visibility.Visible;
                     GoBack_Default();
                     Locator.Slideshow.IsPaused = false;
@@ -157,6 +156,7 @@ namespace VLC_WinRT.Services.RunTime
             if (canGoBack)
             {
                 App.ApplicationFrame.GoBack();
+                PageNavigatedCallback(App.ApplicationFrame.CurrentSourcePageType);
                 ViewNavigated(null, CurrentPage);
             }
             return canGoBack;
@@ -166,7 +166,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             App.SplitShell.HideFlyout();
             // Restoring the currentPage
-            CurrentPage = PageTypeToVLCPage(App.ApplicationFrame.CurrentSourcePageType);
+            currentPage = PageTypeToVLCPage(App.ApplicationFrame.CurrentSourcePageType);
             ViewNavigated(null, CurrentPage);
         }
 
@@ -179,16 +179,11 @@ namespace VLC_WinRT.Services.RunTime
             switch (desiredPage)
             {
                 case VLCPage.MainPageVideo:
-                    App.ApplicationFrame.Navigate(typeof(MainPageVideos));
-                    break;
                 case VLCPage.MainPageMusic:
-                    App.ApplicationFrame.Navigate(typeof(MainPageMusic));
-                    break;
                 case VLCPage.MainPageFileExplorer:
-                    App.ApplicationFrame.Navigate(typeof(MainPageFileExplorer));
-                    break;
                 case VLCPage.MainPageNetwork:
-                    App.ApplicationFrame.Navigate(typeof(MainPageNetwork));
+                    if (App.ApplicationFrame.CurrentSourcePageType != typeof(HomePage))
+                        App.ApplicationFrame.Navigate(typeof(HomePage));
                     break;
                 case VLCPage.AlbumPage:
                     App.SplitShell.RightFlyoutContent = new AlbumPageBase();
@@ -260,8 +255,7 @@ namespace VLC_WinRT.Services.RunTime
                 default:
                     break;
             }
-            if (IsFlyout(desiredPage))
-                CurrentPage = desiredPage;
+            currentPage = desiredPage;
             ViewNavigated(null, CurrentPage);
         }
 
@@ -288,11 +282,16 @@ namespace VLC_WinRT.Services.RunTime
         /// </summary>
         public void PageNavigatedCallback(Type page)
         {
-            CurrentPage = PageTypeToVLCPage(page);
+            currentPage = PageTypeToVLCPage(page);
+
         }
 
         VLCPage PageTypeToVLCPage(Type page)
         {
+            if (page == typeof(HomePage))
+            {
+                return Locator.MainVM.CurrentPanel.Target;
+            }
             if (page == typeof(MainPageVideos))
                 return VLCPage.MainPageVideo;
             if (page == typeof(MainPageMusic))

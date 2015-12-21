@@ -12,6 +12,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.ViewModels;
 using Microsoft.Xaml.Interactivity;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.Views.MainPages.MusicPanes;
+using VLC_WinRT.ViewModels.Settings;
 
 namespace VLC_WinRT.Views.MainPages
 {
@@ -22,22 +25,11 @@ namespace VLC_WinRT.Views.MainPages
             this.InitializeComponent();
             this.Loaded += MainPageMusic_Loaded;
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            Locator.MusicLibraryVM.OnNavigatedTo();
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-            Locator.MusicLibraryVM.OnNavigatedFrom();
-        }
-
+        
         void MainPageMusic_Loaded(object sender, RoutedEventArgs e)
         {
             Responsive(Window.Current.Bounds.Width);
+            Locator.MusicLibraryVM.OnNavigatedTo();
             Window.Current.SizeChanged += Current_SizeChanged;
             this.Unloaded += AlbumsCollectionButtons_Unloaded;
         }
@@ -50,6 +42,7 @@ namespace VLC_WinRT.Views.MainPages
         void AlbumsCollectionButtons_Unloaded(object sender, RoutedEventArgs e)
         {
             Window.Current.SizeChanged -= Current_SizeChanged;
+            Locator.MusicLibraryVM.OnNavigatedFrom();
         }
 
         void Responsive(double width)
@@ -64,7 +57,39 @@ namespace VLC_WinRT.Views.MainPages
         {
             if (MainPageMusicContentPresenter.Content == null)
             {
-                Locator.MainVM.ChangeMainPageMusicViewCommand.Execute((int)Locator.SettingsVM.MusicView);
+                Switch(Locator.SettingsVM.MusicView);
+            }
+            Locator.SettingsVM.PropertyChanged += SettingsVM_PropertyChanged;
+        }
+
+        private void SettingsVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(SettingsViewModel.MusicView))
+            {
+                Switch(Locator.SettingsVM.MusicView);
+            }
+        }
+
+        void Switch(MusicView view)
+        {
+            switch (view)
+            {
+                case MusicView.Albums:
+                    if (!(MainPageMusicContentPresenter.Content is AlbumCollectionBase))
+                        MainPageMusicContentPresenter.Content = new AlbumCollectionBase();
+                    break;
+                case MusicView.Artists:
+                    if (!(MainPageMusicContentPresenter.Content is ArtistCollectionBase))
+                        MainPageMusicContentPresenter.Content = new ArtistCollectionBase();
+                    break;
+                case MusicView.Songs:
+                    if (!(MainPageMusicContentPresenter.Content is SongsPivotItem))
+                        MainPageMusicContentPresenter.Content = new SongsPivotItem();
+                    break;
+                case MusicView.Playlists:
+                    if (!(MainPageMusicContentPresenter.Content is PlaylistPivotItem))
+                        MainPageMusicContentPresenter.Content = new PlaylistPivotItem();
+                    break;
             }
         }
     }

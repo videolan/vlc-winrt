@@ -2,8 +2,6 @@
 using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.Model;
-using Windows.UI.Text;
-using System.Diagnostics;
 using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Views.UserControls
@@ -64,7 +62,7 @@ namespace VLC_WinRT.Views.UserControls
 
         void UpdatePivot()
         {
-            if (Panel.Index == Locator.MainVM.CurrentPanel.Index)
+            if (Panel.Target == Locator.MainVM.CurrentPanel.Target)
             {
                 Icon.Glyph = Panel.FilledIcon;
             }

@@ -443,10 +443,6 @@ namespace VLC_WinRT.ViewModels.Settings
             set
             {
                 ApplicationSettingsHelper.SaveSettingsValue("MusicView", (int)value, false);
-                if (value != _musicView)
-                {
-                    Locator.MainVM.ChangeMainPageMusicViewCommand.Execute((int)value);
-                }
                 SetProperty(ref _musicView, value);
             }
         }

@@ -17,7 +17,6 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <ContentPresenter x:Name="MainPageMusicContentPresenter"
-                          x:FieldModifier="public"
                           Grid.Row="1"
                           Loaded="MusicPanesFrame_OnLoaded"
                           Margin="{StaticResource FrameMargin}" />
