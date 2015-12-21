@@ -76,7 +76,7 @@ namespace VLC_WinRT
             if (Window.Current.Content == null)
             {
                 await LaunchTheApp();
-                Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[Locator.NavigationService.VLCHomePageToPanelIndex(Locator.SettingsVM.HomePage)];
+                Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
             }
             if (args.Arguments.Contains("SecondaryTile"))
             {
