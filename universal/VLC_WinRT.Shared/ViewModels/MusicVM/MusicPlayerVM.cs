@@ -7,30 +7,23 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using VLC_WinRT.Utils;
-using VLC_WinRT.Database;
 using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Resources;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
+using VLC_WinRT.BackgroundAudioPlayer.Model;
+using VLC_WinRT.BackgroundHelpers;
 using VLC_WinRT.Commands.MediaPlayback;
-using VLC_WinRT.Commands.MusicLibrary;
 using VLC_WinRT.Commands.MusicPlayer;
 using VLC_WinRT.Helpers;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.BackgroundAudioPlayer.Model;
-using VLC_WinRT.SharedBackground.Database;
-using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
-using System.Collections.Generic;
-using System.Diagnostics;
-using VLC_WinRT.Slideshow.Texts;
-using Windows.UI;
-using Microsoft.Graphics.Canvas.Text;
-using VLC_WinRT.BackgroundHelpers;
-using Windows.UI.Xaml;
 using VLC_WinRT.Model;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
+using VLC_WinRT.Utils;
 #if WINDOWS_PHONE_APP
-using Windows.Media.Playback;
+
 #endif
 
 namespace VLC_WinRT.ViewModels.MusicVM
@@ -89,7 +82,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public GoToMusicPlayerPage GoToMusicPlayerPage { get; } = new GoToMusicPlayerPage();
 
-        public ShuffleCommand Shuffle { get; }= new ShuffleCommand();
+        public ShuffleCommand Shuffle { get; } = new ShuffleCommand();
 
         public ShareNowPlayingMusicCommand ShareNowPlayingMusicCommand { get; } = new ShareNowPlayingMusicCommand();
 
@@ -162,10 +155,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     // TODO : this shouldn't be here
                     var milliseconds = BackgroundAudioHelper.Instance?.NaturalDuration.TotalMilliseconds;
                     if (milliseconds != null && milliseconds.HasValue && double.IsNaN(milliseconds.Value))
-                        Locator.MediaPlaybackViewModel.OnLengthChanged((long) milliseconds);
+                        Locator.MediaPlaybackViewModel.OnLengthChanged((long)milliseconds);
 #endif
                     if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack)) return;
-                    int index = (int) ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+                    int index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
                     Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = index;
                     await SetCurrentArtist();
                     await SetCurrentAlbum();
@@ -173,7 +166,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine(nameof(MusicPlayerVM) + " " + nameof(UpdateTrackFromMF) + " Exception : " + e.ToString());
+                    Debug.WriteLine(nameof(MusicPlayerVM) + " " + nameof(UpdateTrackFromMF) + " Exception : " + e);
                 }
             });
         }
