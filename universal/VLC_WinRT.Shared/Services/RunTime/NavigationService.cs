@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Documents;
@@ -25,20 +27,21 @@ using Windows.Phone.UI.Input;
 
 namespace VLC_WinRT.Services.RunTime
 {
+    public delegate void HomePageNavigated(object sender, VLCPage homepage);
     public class NavigationService
     {
-        private VLCPage currentPage;
-        public VLCPage CurrentPage
-        {
-            get
-            {
-                return currentPage;
-            }
-        }
-        public bool PreventAppExit { get; set; } = false;
-        public delegate void Navigated(object sender, VLCPage newPage);
-        public Navigated ViewNavigated = delegate { };
+        public VLCPage CurrentPage { get; private set; }
+        private VLCPage currentFlyout { get; set; }
 
+        private VLCPage currentHomePage { get; set; }
+
+        public bool PreventAppExit { get; set; } = false;
+
+        public delegate void Navigated(object sender, VLCPage newPage);
+
+
+        public Navigated ViewNavigated = delegate { };
+        private event HomePageNavigated HomePageNavigated;
         public NavigationService()
         {
 #if WINDOWS_PHONE_APP
@@ -48,34 +51,40 @@ namespace VLC_WinRT.Services.RunTime
             App.SplitShell.LeftSidebarClosed += SplitShell_LeftSidebarClosed;
             App.SplitShell.RightSidebarNavigated += SplitShell_RightSidebarNavigated;
             App.SplitShell.RightSidebarClosed += SplitShell_RightSidebarClosed;
+            HomePageNavigated += NavigationService_HomePageNavigated;
         }
 
+        private void NavigationService_HomePageNavigated(object sender, VLCPage homepage)
+        {
+            VLCPageNavigated(homepage);
+        }
+        
         private void SplitShell_RightSidebarNavigated(object sender, EventArgs p)
         {
-            VLCPageNavigated();
+            VLCPageNavigated(currentFlyout);
         }
 
         private void SplitShell_RightSidebarClosed(object sender, EventArgs e)
         {
-            currentPage = PageTypeToVLCPage(App.ApplicationFrame.CurrentSourcePageType);
-            VLCPageNavigated();
+            VLCPageNavigated(PageTypeToVLCPage(App.ApplicationFrame.CurrentSourcePageType));
         }
 
         private void SplitShell_LeftSidebarClosed(object sender, EventArgs e)
         {
-            currentPage = PageTypeToVLCPage(App.ApplicationFrame.CurrentSourcePageType);
-            VLCPageNavigated();
+            Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == currentHomePage);
         }
 
         private void NavigationFrame_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
         {
-            currentPage = PageTypeToVLCPage(e.SourcePageType);
-            VLCPageNavigated();
+            VLCPageNavigated(PageTypeToVLCPage(e.SourcePageType));
         }
 
-        void VLCPageNavigated()
+        void VLCPageNavigated(VLCPage page)
         {
-            ToastHelper.Basic(currentPage.ToString());
+            if (CurrentPage == page) return;
+            CurrentPage = page;
+            Debug.WriteLine(CurrentPage);
+            ViewNavigated.Invoke(null, CurrentPage);
         }
 
 #if WINDOWS_PHONE_APP
@@ -200,14 +209,17 @@ namespace VLC_WinRT.Services.RunTime
         public void Go(VLCPage desiredPage)
         {
             if (!IsFlyout(desiredPage) && desiredPage == CurrentPage) return;
-            if (!IsFlyout(desiredPage))
+            if (App.SplitShell.IsLeftPaneOpen)
                 App.SplitShell.CloseLeftPane();
 
-            App.SplitShell.HideFlyout();
+            if (IsFlyout(desiredPage))
+                currentFlyout = desiredPage;
+
             switch (desiredPage)
             {
                 case VLCPage.LeftSidebar:
                     App.SplitShell.OpenLeftPane();
+                    CurrentPage = desiredPage;
                     break;
                 case VLCPage.MainPageVideo:
                 case VLCPage.MainPageMusic:
@@ -215,6 +227,8 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MainPageNetwork:
                     if (App.ApplicationFrame.CurrentSourcePageType != typeof(HomePage))
                         App.ApplicationFrame.Navigate(typeof(HomePage));
+                    HomePageNavigated?.Invoke(null, desiredPage);
+                    currentHomePage = desiredPage;
                     break;
                 case VLCPage.AlbumPage:
                     App.SplitShell.RightFlyoutContent = new AlbumPageBase();
@@ -286,8 +300,8 @@ namespace VLC_WinRT.Services.RunTime
                 default:
                     break;
             }
-            if (IsFlyout(desiredPage))
-                currentPage = desiredPage;
+            if (App.SplitShell.IsRightFlyoutOpen && !IsFlyout(desiredPage))
+                App.SplitShell.HideFlyout();
         }
 
         public bool IsFlyout(VLCPage page)

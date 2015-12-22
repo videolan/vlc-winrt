@@ -50,15 +50,19 @@ namespace VLC_WinRT.UI.Legacy.Views.MainPages
             switch (page)
             {
                 case VLCPage.MainPageVideo:
+                    if (HomePageController.HomePageContentPresenter.Content is MainPageVideos) return;
                     HomePageController.HomePageContentPresenter.Content = new MainPageVideos();
                     break;
                 case VLCPage.MainPageMusic:
+                    if (HomePageController.HomePageContentPresenter.Content is MainPageMusic) return;
                     HomePageController.HomePageContentPresenter.Content = new MainPageMusic();
                     break;
                 case VLCPage.MainPageFileExplorer:
+                    if (HomePageController.HomePageContentPresenter.Content is MainPageFileExplorer) return;
                     HomePageController.HomePageContentPresenter.Content = new MainPageFileExplorer();
                     break;
                 case VLCPage.MainPageNetwork:
+                    if (HomePageController.HomePageContentPresenter.Content is MainPageNetwork) return;
                     HomePageController.HomePageContentPresenter.Content = new MainPageNetwork();
                     break;
             }
