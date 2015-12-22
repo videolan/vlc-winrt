@@ -1,4 +1,5 @@
-﻿using VLC_WinRT.Model;
+﻿using Microsoft.Xaml.Interactivity;
+using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
 using Windows.UI.Xaml.Controls;
@@ -22,6 +23,17 @@ namespace VLC_WinRT.UI.Legacy.Views.MainPages
             base.OnNavigatedTo(e);
             Locator.MainVM.PropertyChanged += MainVM_PropertyChanged;
             Navigate(Locator.MainVM.CurrentPanel.Target);
+            this.SizeChanged += HomePage_SizeChanged;
+#if WINDOWS_PHONE_APP
+            VisualStateUtilities.GoToState(this, nameof(Phone), false);
+#elif WINDOWS_APP
+            VisualStateUtilities.GoToState(this, nameof(Standard), false);
+#endif
+        }
+
+        private void HomePage_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
+        {
+            Responsive();
         }
 
         private void MainVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -50,6 +62,10 @@ namespace VLC_WinRT.UI.Legacy.Views.MainPages
                     HomePageController.HomePageContentPresenter.Content = new MainPageNetwork();
                     break;
             }
+        }
+        
+        void Responsive()
+        {
         }
     }
 }
