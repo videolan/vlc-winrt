@@ -178,6 +178,9 @@ namespace VLC_WinRT.Services.RunTime
             App.SplitShell.HideFlyout();
             switch (desiredPage)
             {
+                case VLCPage.LeftSidebar:
+                    App.SplitShell.OpenLeftPane();
+                    break;
                 case VLCPage.MainPageVideo:
                 case VLCPage.MainPageMusic:
                 case VLCPage.MainPageFileExplorer:
