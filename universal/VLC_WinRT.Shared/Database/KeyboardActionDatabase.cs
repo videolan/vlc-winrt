@@ -22,9 +22,15 @@ namespace VLC_WinRT.Database
 
         public void Initialize()
         {
-            using (var db = new SQLiteConnection(DbPath))
+            try
             {
-                db.CreateTable<KeyboardAction>();
+                using (var db = new SQLiteConnection(DbPath))
+                {
+                    db.CreateTable<KeyboardAction>();
+                }
+            }
+            catch
+            {
             }
         }
 
