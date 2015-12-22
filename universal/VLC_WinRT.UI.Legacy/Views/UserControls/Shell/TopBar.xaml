@@ -18,15 +18,10 @@
           MinWidth="320"
           Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <shell:MenuDropdown />
-        </Grid>
-        <ListView Grid.Column="1"
-                  x:Name="PanelsListView"
+        <ListView x:Name="PanelsListView"
                   ItemsSource="{Binding Panels}"
                   SelectedItem="{Binding CurrentPanel, Mode=TwoWay}"
                   IsSwipeEnabled="False"

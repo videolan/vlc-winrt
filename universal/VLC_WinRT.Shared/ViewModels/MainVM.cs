@@ -146,6 +146,7 @@ namespace VLC_WinRT.ViewModels
             networkListenerService.InternetConnectionChanged += networkListenerService_InternetConnectionChanged;
             _isInternet = NetworkListenerService.IsConnected;
 
+            Panels.Add(new Panel("home", VLCPage.LeftSidebar, App.Current.Resources["MenuOpenRight"].ToString(), App.Current.Resources["MenuOpenRight"].ToString()));
             Panels.Add(new Panel(Strings.Videos, VLCPage.MainPageVideo, App.Current.Resources["VideoSymbol"].ToString(), App.Current.Resources["VideoFilledSymbol"].ToString()));
             Panels.Add(new Panel(Strings.Music, VLCPage.MainPageMusic, App.Current.Resources["MusicSymbol"].ToString(), App.Current.Resources["MusicFilledSymbol"].ToString()));
             Panels.Add(new Panel(Strings.FileExplorer, VLCPage.MainPageFileExplorer, App.Current.Resources["FileExplorerSymbol"].ToString(), App.Current.Resources["FileExplorerFilledSymbol"].ToString()));
