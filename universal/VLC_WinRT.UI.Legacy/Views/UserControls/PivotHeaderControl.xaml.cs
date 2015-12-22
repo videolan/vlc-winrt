@@ -25,9 +25,8 @@ namespace VLC_WinRT.Views.UserControls
 
         // Using a DependencyProperty as the backing store for Panel.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PanelProperty =
-            DependencyProperty.Register("Panel", typeof(Model.Panel), typeof(PivotHeaderControl), new PropertyMetadata(null, PropertyChangedCallback));
-
-
+            DependencyProperty.Register(nameof(Panel), typeof(Model.Panel), typeof(PivotHeaderControl), new PropertyMetadata(null, PropertyChangedCallback));
+        
         private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var that = (PivotHeaderControl)dependencyObject;
@@ -76,17 +75,17 @@ namespace VLC_WinRT.Views.UserControls
         {
             if (Window.Current.Bounds.Width < 700)
             {
-                VisualStateUtilities.GoToState(this, "Snap", false);
-                this.Width = (Window.Current.Bounds.Width - 90) / Locator.MainVM.Panels.Count;
+                VisualStateUtilities.GoToState(this, nameof(Snap), false);
+                this.Width = (Window.Current.Bounds.Width - 24) / Locator.MainVM.Panels.Count;
             }
             else if (Window.Current.Bounds.Width < 1000)
             {
-                VisualStateUtilities.GoToState(this, "HalfSnap", false);
+                VisualStateUtilities.GoToState(this, nameof(HalfSnap), false);
                 this.Width = double.NaN;
             }
             else
             {
-                VisualStateUtilities.GoToState(this, "Normal", false);
+                VisualStateUtilities.GoToState(this, nameof(Normal), false);
                 this.Width = double.NaN;
             }
         }
