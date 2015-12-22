@@ -44,6 +44,38 @@ namespace VLC_WinRT.Services.RunTime
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 #endif
+            App.RootPage.NavigationFrame.Navigated += NavigationFrame_Navigated;
+            App.SplitShell.LeftSidebarClosed += SplitShell_LeftSidebarClosed;
+            App.SplitShell.RightSidebarNavigated += SplitShell_RightSidebarNavigated;
+            App.SplitShell.RightSidebarClosed += SplitShell_RightSidebarClosed;
+        }
+
+        private void SplitShell_RightSidebarNavigated(object sender, EventArgs p)
+        {
+            VLCPageNavigated();
+        }
+
+        private void SplitShell_RightSidebarClosed(object sender, EventArgs e)
+        {
+            currentPage = PageTypeToVLCPage(App.ApplicationFrame.CurrentSourcePageType);
+            VLCPageNavigated();
+        }
+
+        private void SplitShell_LeftSidebarClosed(object sender, EventArgs e)
+        {
+            currentPage = PageTypeToVLCPage(App.ApplicationFrame.CurrentSourcePageType);
+            VLCPageNavigated();
+        }
+
+        private void NavigationFrame_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
+        {
+            currentPage = PageTypeToVLCPage(e.SourcePageType);
+            VLCPageNavigated();
+        }
+
+        void VLCPageNavigated()
+        {
+            ToastHelper.Basic(currentPage.ToString());
         }
 
 #if WINDOWS_PHONE_APP
@@ -156,8 +188,6 @@ namespace VLC_WinRT.Services.RunTime
             if (canGoBack)
             {
                 App.ApplicationFrame.GoBack();
-                PageNavigatedCallback(App.ApplicationFrame.CurrentSourcePageType);
-                ViewNavigated(null, CurrentPage);
             }
             return canGoBack;
         }
@@ -165,16 +195,14 @@ namespace VLC_WinRT.Services.RunTime
         public void GoBack_HideFlyout()
         {
             App.SplitShell.HideFlyout();
-            // Restoring the currentPage
-            currentPage = PageTypeToVLCPage(App.ApplicationFrame.CurrentSourcePageType);
-            ViewNavigated(null, CurrentPage);
         }
 
         public void Go(VLCPage desiredPage)
         {
             if (!IsFlyout(desiredPage) && desiredPage == CurrentPage) return;
+            if (!IsFlyout(desiredPage))
+                App.SplitShell.CloseLeftPane();
 
-            App.SplitShell.CloseLeftPane();
             App.SplitShell.HideFlyout();
             switch (desiredPage)
             {
@@ -258,8 +286,8 @@ namespace VLC_WinRT.Services.RunTime
                 default:
                     break;
             }
-            currentPage = desiredPage;
-            ViewNavigated(null, CurrentPage);
+            if (IsFlyout(desiredPage))
+                currentPage = desiredPage;
         }
 
         public bool IsFlyout(VLCPage page)
@@ -278,15 +306,6 @@ namespace VLC_WinRT.Services.RunTime
                    page == VLCPage.SettingsPage ||
                    page == VLCPage.VideoPlayerOptionsPanel ||
                    page == VLCPage.FeedbackPage;
-        }
-
-        /// <summary>
-        /// This callback is fired for Pages only, not flyouts
-        /// </summary>
-        public void PageNavigatedCallback(Type page)
-        {
-            currentPage = PageTypeToVLCPage(page);
-
         }
 
         VLCPage PageTypeToVLCPage(Type page)

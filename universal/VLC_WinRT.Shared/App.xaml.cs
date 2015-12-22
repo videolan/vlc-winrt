@@ -110,12 +110,7 @@ namespace VLC_WinRT
                 LogHelper.Log("Failed to open from secondary tile : " + e.ToString());
             }
         }
-
-        private void RootFrame_FirstNavigated(object sender, NavigationEventArgs args)
-        {
-            Locator.NavigationService.PageNavigatedCallback(args.SourcePageType);
-        }
-
+        
         protected async override void OnActivated(IActivatedEventArgs args)
         {
             base.OnActivated(args);
@@ -258,7 +253,6 @@ namespace VLC_WinRT
             Window.Current.Activate();
             Locator.MusicLibraryVM.MusicLibrary.DropTablesIfNeeded();
             VideoLibraryManagement.DropTablesIfNeeded();
-            ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
         }
 
         public static void SetShellDecoration(bool forceTemporaryAppTheme = false, bool forceDark = false)

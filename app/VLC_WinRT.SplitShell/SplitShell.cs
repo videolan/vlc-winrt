@@ -11,7 +11,9 @@ using VLC_WinRT.Helpers;
 namespace VLC_WinRT.Controls
 {
     public delegate void FlyoutCloseRequested(object sender, EventArgs e);
-
+    public delegate void LeftSidebarClosed(object sender, EventArgs e);
+    public delegate void RightSidebarNavigated(object sender, EventArgs p);
+    public delegate void RightSidebarClosed(object sender, EventArgs e);
     public delegate void ContentSizeChanged(double newWidth);
 
     [TemplatePart(Name = TitleBarContentPresenterName, Type = typeof(ContentPresenter))]
@@ -31,6 +33,9 @@ namespace VLC_WinRT.Controls
     public sealed class SplitShell : Control
     {
         public event FlyoutCloseRequested FlyoutCloseRequested;
+        public event LeftSidebarClosed LeftSidebarClosed;
+        public event RightSidebarNavigated RightSidebarNavigated;
+        public event RightSidebarClosed RightSidebarClosed;
         public event ContentSizeChanged ContentSizeChanged;
         public TaskCompletionSource<bool> TemplateApplied = new TaskCompletionSource<bool>();
         
@@ -106,6 +111,7 @@ namespace VLC_WinRT.Controls
             await TemplateApplied.Task;
             _rightFlyoutContentPresenter.Content = content;
             ShowFlyout();
+            RightSidebarNavigated?.Invoke(null, new EventArgs());
         }
 
         public async void SetFooterContentPresenter(object content)
@@ -146,7 +152,7 @@ namespace VLC_WinRT.Controls
         }
 
         public static readonly DependencyProperty RightFlyoutContentProperty = DependencyProperty.Register(
-            "RightFlyoutContent", typeof(DependencyObject), typeof(SplitShell),
+            nameof(RightFlyoutContent), typeof(DependencyObject), typeof(SplitShell),
             new PropertyMetadata(default(DependencyObject), RightFlyoutContentPropertyChangedCallback));
 
         private static void RightFlyoutContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
@@ -337,6 +343,7 @@ namespace VLC_WinRT.Controls
         {
             _rightFlyoutFadeOut.Begin();
             IsRightFlyoutOpen = false;
+            RightSidebarClosed?.Invoke(null, new EventArgs());
         }
 
         public void HideTopBar()
@@ -361,6 +368,7 @@ namespace VLC_WinRT.Controls
         {
             _sidePaneClosing.Begin();
             IsLeftPaneOpen = false;
+            LeftSidebarClosed?.Invoke(null, new EventArgs());
         }
 
         public void ToggleLeftPane()
