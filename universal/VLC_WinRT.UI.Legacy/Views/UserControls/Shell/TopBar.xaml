@@ -14,7 +14,7 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
     <Grid x:Name="ColumnGrid"
-          Height="60"
+          Height="55"
           MinWidth="320"
           Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
         <Grid.ColumnDefinitions>
@@ -35,7 +35,7 @@
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsStackPanel Orientation="Horizontal"
-                                     Height="60"/>
+                                     Height="55" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemContainerTransitions>
@@ -64,6 +64,11 @@
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PanelsListView"
+                                                       Storyboard.TargetProperty="HorizontalAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Center" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>

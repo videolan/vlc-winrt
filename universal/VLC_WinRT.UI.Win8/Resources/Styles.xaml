@@ -1041,7 +1041,7 @@
                         <Grid x:Name="SliderContainer"
                               Grid.Row="1">
                             <Grid x:Name="HorizontalTemplate"
-                                  Height="25"
+                                  Height="20"
                                   Background="Transparent">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
