@@ -26,6 +26,7 @@
         SettingsPageVideo,
         VideoPlayerOptionsPanel,
         TrackEditorPage,
-        FeedbackPage
+        FeedbackPage,
+        LeftSidebar
     }
 }
