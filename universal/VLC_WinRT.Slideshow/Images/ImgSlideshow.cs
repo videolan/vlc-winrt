@@ -341,6 +341,7 @@ namespace Slide2D.Images
         void getNextImg()
         {
             Debug.WriteLine($"Choosing a picture out of {images.Count} pictures.");
+            if (images.Count == 0) return;
             int nextImgIndex = 0;
             if (images.Count > 2)
                 nextImgIndex = random.Next(0, images.Count - 1);
