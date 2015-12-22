@@ -9,22 +9,22 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
-             DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-             Visibility="{Binding CurrentPage, Converter={StaticResource BottomMiniPlayerVisibilityConverter}}">
-
+             DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+             Visibility="{Binding IsMiniPlayerVisible}">
     <Grid x:Name="RootGrid"
           RequestedTheme="Dark"
           Height="60"
-          Background="{ThemeResource TranslucentMainColor}">
-        <Grid.Visibility>
-            <Binding Source="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
-                     Path="IsRunning"
-                     Converter="{StaticResource BooleanToVisibilityConverter}" />
-        </Grid.Visibility>
+          Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1" />
+            <RowDefinition />
+            <RowDefinition Height="1" />
+        </Grid.RowDefinitions>
         <userControls:SliderControlHorizontal x:Name="SliderControl"
+                                              Grid.Row="1"
                                               RequestedTheme="Dark"
-                                              VerticalAlignment="Center"/>
-        <Grid>
+                                              VerticalAlignment="Center" />
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -164,6 +164,10 @@
                 </Button>
             </Grid>
         </Grid>
+
+        <Grid Grid.Row="2"
+              Background="{ThemeResource InvertedApplicationBackgroundSemiTranslucentThemeBrush}" />
+
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="FullWindows">

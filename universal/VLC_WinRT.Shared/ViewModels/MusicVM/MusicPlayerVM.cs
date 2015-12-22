@@ -93,6 +93,21 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public GoToMusicPlaylistPageCommand GoToMusicPlaylistPageCommand { get; } = new GoToMusicPlaylistPageCommand();
         public AddToPlayingPlaylist AddToPlayingPlaylist { get; } = new AddToPlayingPlaylist();
+        public Visibility IsMiniPlayerVisible
+        {
+            get
+            {
+                if (Locator.MediaPlaybackViewModel.TrackCollection.IsRunning &&
+                    Locator.MediaPlaybackViewModel.PlayingType == Model.PlayingType.Music &&
+                    (Locator.NavigationService.CurrentPage != Model.VLCPage.CurrentPlaylistPage &&
+                     Locator.NavigationService.CurrentPage != Model.VLCPage.MusicPlayerPage &&
+                     Locator.NavigationService.CurrentPage != Model.VLCPage.VideoPlayerPage))
+                {
+                    return Visibility.Visible;
+                }
+                return Visibility.Collapsed;
+            }
+        }
         #endregion
 
         public MusicPlayerVM()
