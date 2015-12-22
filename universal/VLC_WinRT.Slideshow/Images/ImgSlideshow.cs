@@ -61,12 +61,19 @@ namespace Slide2D.Images
             get { return _richAnimations; }
             set { _richAnimations = value; }
         }
-        
+
         public ImgSlideshow()
         {
             backgroundColor.A = 255;
             Locator.MusicLibraryVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
             Locator.MusicPlayerVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
+            Locator.NavigationService.ViewNavigated += ViewNavigated;
+            Navigated();
+        }
+
+        private void ViewNavigated(object sender, VLCPage page)
+        {
+            //if (page != VLCPage.AlbumPage && page != VLCPage.ArtistPage && page != VLCPage.MusicPlayerPage)
         }
 
         private void MusicLibraryVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
