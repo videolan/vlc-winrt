@@ -27,6 +27,8 @@ using VLC_WinRT.Slideshow.Texts;
 using Windows.UI;
 using Microsoft.Graphics.Canvas.Text;
 using VLC_WinRT.BackgroundHelpers;
+using Windows.UI.Xaml;
+using VLC_WinRT.Model;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 #endif
@@ -112,8 +114,23 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public MusicPlayerVM()
         {
+            Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged += MediaPlaybackViewModel_PropertyChanged;
+            Locator.NavigationService.ViewNavigated += ViewNavigated;
         }
-                
+
+        private void MediaPlaybackViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(TrackCollection.IsRunning))
+            {
+                OnPropertyChanged(nameof(IsMiniPlayerVisible));
+            }
+        }
+
+        private void ViewNavigated(object sender, VLCPage p)
+        {
+            OnPropertyChanged(nameof(IsMiniPlayerVisible));
+        }
+
         public async Task UpdateWindows8UI()
         {
             // Setting the info for windows 8 controls
