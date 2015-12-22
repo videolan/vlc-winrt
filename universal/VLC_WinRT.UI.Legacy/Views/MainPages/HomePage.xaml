@@ -19,8 +19,10 @@
         <userControls:HomePageController x:Name="HomePageController"
                                          x:FieldModifier="public"
                                          Grid.Row="1" />
-        
-        <userControls:BottomMiniPlayer Grid.Row="2"/>
+
+        <userControls:BottomMiniPlayer Grid.Row="2"
+                                       DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+                                       Visibility="{Binding IsMiniPlayerVisibleHomePage}"/>
         
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

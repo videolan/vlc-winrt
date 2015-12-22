@@ -92,11 +92,29 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             get
             {
+                OnPropertyChanged(nameof(IsMiniPlayerVisibleHomePage));
                 if (Locator.MediaPlaybackViewModel.TrackCollection.IsRunning &&
-                    Locator.MediaPlaybackViewModel.PlayingType == Model.PlayingType.Music &&
-                    (Locator.NavigationService.CurrentPage != Model.VLCPage.CurrentPlaylistPage &&
-                     Locator.NavigationService.CurrentPage != Model.VLCPage.MusicPlayerPage &&
-                     Locator.NavigationService.CurrentPage != Model.VLCPage.VideoPlayerPage))
+                    Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music &&
+                    (Locator.NavigationService.CurrentPage != VLCPage.CurrentPlaylistPage &&
+                     Locator.NavigationService.CurrentPage != VLCPage.MusicPlayerPage &&
+                     Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage))
+                {
+                    return Visibility.Visible;
+                }
+                return Visibility.Collapsed;
+            }
+        }
+
+        public Visibility IsMiniPlayerVisibleHomePage
+        {
+            get
+            {
+                if (Locator.MediaPlaybackViewModel.TrackCollection.IsRunning &&
+                    Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music &&
+                    (Locator.NavigationService.CurrentPage != VLCPage.MainPageVideo &&
+                     Locator.NavigationService.CurrentPage != VLCPage.MainPageFileExplorer &&
+                     Locator.NavigationService.CurrentPage != VLCPage.MainPageMusic &&
+                     Locator.NavigationService.CurrentPage != VLCPage.MainPageNetwork))
                 {
                     return Visibility.Visible;
                 }
@@ -111,7 +129,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             Locator.NavigationService.ViewNavigated += ViewNavigated;
         }
 
-        private void MediaPlaybackViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void MediaPlaybackViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(TrackCollection.IsRunning))
             {
