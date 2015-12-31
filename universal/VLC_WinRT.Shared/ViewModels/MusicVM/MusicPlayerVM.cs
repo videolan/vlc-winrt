@@ -195,9 +195,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
             {
                 Locator.MediaPlaybackViewModel.TrackCollection.IsRunning = true;
                 Locator.MediaPlaybackViewModel.TrackCollection.SetActiveTrackProperty();
-                OnPropertyChanged("TrackCollection");
-                OnPropertyChanged("PlayingType");
-                OnPropertyChanged("CurrentTrack");
+                OnPropertyChanged(nameof(TrackCollection));
+                OnPropertyChanged(nameof(PlayingType));
+                OnPropertyChanged(nameof(CurrentTrack));
 #if WINDOWS_UWP
                 UpdateTileHelper.UpdateMusicTile();
 #else
