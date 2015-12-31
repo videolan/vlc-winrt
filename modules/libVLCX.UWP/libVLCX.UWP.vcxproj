@@ -130,12 +130,12 @@
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\include;$(ProjectDir)..\libvlcpp\;$(ProjectDir)..\libvlcX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\include;$(ProjectDir)..\libvlcpp\;$(ProjectDir)..\libvlcX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Universal\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
       <AdditionalDependencies>runtimeobject.lib;d3d11.lib;dxgi.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -163,12 +163,12 @@
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\include;$(ProjectDir)..\libvlcpp\;$(ProjectDir)..\libvlcX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\include;$(ProjectDir)..\libvlcpp\;$(ProjectDir)..\libvlcX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Universal\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
       <AdditionalDependencies>runtimeobject.lib;d3d11.lib;dxgi.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

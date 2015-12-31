@@ -85,16 +85,16 @@
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\WindowsPhone\vlc-x86\$(Configuration)\plugins\access\
-copy /Y $(TargetPath) $(SolutionDir)..\vlc\WindowsPhone\vlc-win32\$(Configuration)\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\libvlc\WindowsPhone\vlc-x86\$(Configuration)\plugins\access\
+copy /Y $(TargetPath) $(SolutionDir)..\libvlc\WindowsPhone\vlc-win32\$(Configuration)\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -105,16 +105,16 @@ copy /Y $(TargetPath) $(SolutionDir)..\vlc\WindowsPhone\vlc-win32\$(Configuratio
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\WindowsPhone\vlc-x86\$(Configuration)\plugins\access\
-copy /Y $(TargetPath) $(SolutionDir)..\vlc\WindowsPhone\vlc-win32\$(Configuration)\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\libvlc\WindowsPhone\vlc-x86\$(Configuration)\plugins\access\
+copy /Y $(TargetPath) $(SolutionDir)..\libvlc\WindowsPhone\vlc-win32\$(Configuration)\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -125,15 +125,15 @@ copy /Y $(TargetPath) $(SolutionDir)..\vlc\WindowsPhone\vlc-win32\$(Configuratio
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -144,17 +144,17 @@ copy /Y $(TargetPath) $(SolutionDir)..\vlc\WindowsPhone\vlc-win32\$(Configuratio
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

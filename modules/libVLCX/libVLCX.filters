@@ -19,10 +19,10 @@
     <ClInclude Include="DirectXManger.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\vlc\libvlc.dll">
+    <None Include="..\..\libvlc\libvlc.dll">
       <Filter>Resources</Filter>
     </None>
-    <None Include="..\..\vlc\libvlccore.dll">
+    <None Include="..\..\libvlc\libvlccore.dll">
       <Filter>Resources</Filter>
     </None>
   </ItemGroup>
