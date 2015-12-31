@@ -49,6 +49,7 @@ namespace VLC_WinRT.Views.UserControls
 
         public void Init()
         {
+            if (Track == null) return;
             NameTextBlock.Text = Track.Name;
             DurationTextBlock.Text = Strings.HumanizeSeconds(Track.Duration.TotalSeconds);
 
