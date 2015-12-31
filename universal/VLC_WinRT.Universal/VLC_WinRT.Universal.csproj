@@ -787,7 +787,7 @@
       <Project>{cc3931b9-6065-4a55-a444-5b5e9de3da44}</Project>
       <Name>libaccess_winrt_plugin.UWP</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\wrapper\libVLCX.UWP\libVLCX.UWP.vcxproj">
+    <ProjectReference Include="..\..\modules\libVLCX.UWP\libVLCX.UWP.vcxproj">
       <Project>{dc8bbfae-5203-44be-9a7c-b3273038d676}</Project>
       <Name>libVLCX.UWP</Name>
     </ProjectReference>

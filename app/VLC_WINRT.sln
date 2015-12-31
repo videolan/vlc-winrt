@@ -4,7 +4,7 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libaccess_winrt_plugin", "..\modules\libaccess_winrt_plugin\libaccess_winrt_plugin.vcxproj", "{A3345ED6-A13A-487B-9EF3-412FED4916D1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX", "..\wrapper\libVLCX\libVLCX.vcxproj", "{22532381-BE8B-40E0-A881-22CE24342D5A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX", "..\modules\libVLCX\libVLCX.vcxproj", "{22532381-BE8B-40E0-A881-22CE24342D5A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A3345ED6-A13A-487B-9EF3-412FED4916D1} = {A3345ED6-A13A-487B-9EF3-412FED4916D1}
 	EndProjectSection
@@ -19,9 +19,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WinRT.WindowsPhone", ".
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libVLCX", "libVLCX", "{8B17BE9D-3E88-497F-8BA3-BA2E6905069E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX.Shared", "..\wrapper\libVLCX.Shared\libVLCX.Shared.vcxitems", "{2783FE22-06AE-457B-A8B3-626AA52290C1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX.Shared", "..\modules\libVLCX.Shared\libVLCX.Shared.vcxitems", "{2783FE22-06AE-457B-A8B3-626AA52290C1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX.WindowsPhone", "..\wrapper\libVLCX.WindowsPhone\libVLCX.WindowsPhone.vcxproj", "{5D78F68E-C377-449E-A508-5B8E706D0039}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX.WindowsPhone", "..\modules\libVLCX.WindowsPhone\libVLCX.WindowsPhone.vcxproj", "{5D78F68E-C377-449E-A508-5B8E706D0039}"
 	ProjectSection(ProjectDependencies) = postProject
 		{544EBD72-C9E2-4C3F-9038-36683F843241} = {544EBD72-C9E2-4C3F-9038-36683F843241}
 	EndProjectSection
@@ -52,7 +52,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC_WinRT.UI.UWP", "..\univ
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VLC_WinRT.UI", "VLC_WinRT.UI", "{23A01350-FA37-457D-8184-082E8BA49F9A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX.UWP", "..\wrapper\libVLCX.UWP\libVLCX.UWP.vcxproj", "{DC8BBFAE-5203-44BE-9A7C-B3273038D676}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX.UWP", "..\modules\libVLCX.UWP\libVLCX.UWP.vcxproj", "{DC8BBFAE-5203-44BE-9A7C-B3273038D676}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libaccess_winrt_plugin.UWP", "..\modules\libaccess_winrt_plugin.UWP\libaccess_winrt_plugin.UWP.vcxproj", "{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}"
 EndProject
@@ -74,8 +74,8 @@ Global
 		..\universal\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{544ebd72-c9e2-4c3f-9038-36683f843241}*SharedItemsImports = 4
 		..\universal\VLC_WinRT.UI.UWP\VLC_WinRT.UI.UWP.projitems*{8ca1e6d0-4829-4864-b405-7a1122e9edd5}*SharedItemsImports = 13
-		..\wrapper\libVLCX.Shared\libVLCX.Shared.vcxitems*{22532381-be8b-40e0-a881-22ce24342d5a}*SharedItemsImports = 4
-		..\wrapper\libVLCX.Shared\libVLCX.Shared.vcxitems*{5d78f68e-c377-449e-a508-5b8e706d0039}*SharedItemsImports = 4
+		..\modules\libVLCX.Shared\libVLCX.Shared.vcxitems*{22532381-be8b-40e0-a881-22ce24342d5a}*SharedItemsImports = 4
+		..\modules\libVLCX.Shared\libVLCX.Shared.vcxitems*{5d78f68e-c377-449e-a508-5b8e706d0039}*SharedItemsImports = 4
 		..\universal\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
 		..\universal\VLC_WinRT.UI.Win8\VLC_WinRT.UI.Win8.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
 		..\universal\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
@@ -86,9 +86,9 @@ Global
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{90a8a6a5-091d-4d4e-a8cd-4ec09ddb1047}*SharedItemsImports = 9
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{cc3931b9-6065-4a55-a444-5b5e9de3da44}*SharedItemsImports = 4
 		..\universal\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{d499d5a2-b899-4664-94e8-65c8114582de}*SharedItemsImports = 13
-		..\wrapper\libVLCX.Shared\libVLCX.Shared.vcxitems*{dc8bbfae-5203-44be-9a7c-b3273038d676}*SharedItemsImports = 4
+		..\modules\libVLCX.Shared\libVLCX.Shared.vcxitems*{dc8bbfae-5203-44be-9a7c-b3273038d676}*SharedItemsImports = 4
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{a3345ed6-a13a-487b-9ef3-412fed4916d1}*SharedItemsImports = 4
-		..\wrapper\libVLCX.Shared\libVLCX.Shared.vcxitems*{2783fe22-06ae-457b-a8b3-626aa52290c1}*SharedItemsImports = 9
+		..\modules\libVLCX.Shared\libVLCX.Shared.vcxitems*{2783fe22-06ae-457b-a8b3-626aa52290c1}*SharedItemsImports = 9
 		..\universal\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{ad0c8b4f-7a03-42cc-b8da-bf8d50df822b}*SharedItemsImports = 13
 		..\universal\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems*{adcb4c5d-450d-40f5-b60a-9dd96ff17dd6}*SharedItemsImports = 13
 	EndGlobalSection

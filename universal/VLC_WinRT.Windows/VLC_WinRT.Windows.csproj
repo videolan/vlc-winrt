@@ -902,7 +902,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\wrapper\libVLCX\libVLCX.vcxproj">
+    <ProjectReference Include="..\..\modules\libVLCX\libVLCX.vcxproj">
       <Project>{22532381-be8b-40e0-a881-22ce24342d5a}</Project>
       <Name>libVLCX</Name>
     </ProjectReference>

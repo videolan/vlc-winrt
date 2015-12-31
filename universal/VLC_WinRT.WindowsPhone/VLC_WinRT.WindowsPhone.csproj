@@ -864,7 +864,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\wrapper\libVLCX.WindowsPhone\libVLCX.WindowsPhone.vcxproj">
+    <ProjectReference Include="..\..\modules\libVLCX.WindowsPhone\libVLCX.WindowsPhone.vcxproj">
       <Project>{5d78f68e-c377-449e-a508-5b8e706d0039}</Project>
       <Name>libVLCX.WindowsPhone</Name>
     </ProjectReference>
