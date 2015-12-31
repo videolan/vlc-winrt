@@ -53,7 +53,7 @@ You can download it at https://dev.windows.com/en-us/develop/multilingual-app-to
 
 2) Build and package the front-end
 ----------------------------------
-Open the VLC_WinRT solution in app/VLC_WINRT.sln
+Open the VLC_WinRT solution in build/VLC_WINRT.sln
 
 3a) Get a developer signature from your account
 --------------------------------------------------

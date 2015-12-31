@@ -36,13 +36,13 @@ _ReSharper*/
 *.orig
 *.vspx
 *.psess
-app/packages
-app/VLC_WINRT.sln.DotSettings
+build/packages
+build/VLC_WINRT.sln.DotSettings
 *dll
 *.stackdump
-app/ui/plugins/access/libaccess_winrt_plugin.dll
-app/ui/plugins/video_output/libdirect2d_winrt_plugin.dll
-app/ui/plugins/audio_output/libxaudio2_winrt_plugin.dll
+build/ui/plugins/access/libaccess_winrt_plugin.dll
+build/ui/plugins/video_output/libdirect2d_winrt_plugin.dll
+build/ui/plugins/audio_output/libxaudio2_winrt_plugin.dll
 universal/VLC_WinRT.Windows/BundleArtifacts
 universal/VLC_WinRT.Windows/Package.StoreAssociation.xml
 universal/VLC_WinRT.WindowsPhone/ApplicationInsights.config
@@ -56,7 +56,7 @@ vlc/plugins/
 vlc/plugins/plugins.dat
 
 #Store association
-app/ui/Package.StoreAssociation.xml
+build/ui/Package.StoreAssociation.xml
 
 #mac stuff
 .DS_Store
