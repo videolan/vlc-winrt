@@ -18,8 +18,9 @@
         </Grid.RowDefinitions>
         <ContentPresenter x:Name="MainPageMusicContentPresenter"
                           Grid.Row="1"
-                          Loaded="MusicPanesFrame_OnLoaded"
-                          Margin="{StaticResource FrameMargin}" />
+                          Loaded="MusicPanesFrame_OnLoaded"/>
+
+
         <Grid Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
