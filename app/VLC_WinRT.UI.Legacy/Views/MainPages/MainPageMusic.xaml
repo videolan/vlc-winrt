@@ -29,7 +29,6 @@
             </Grid.ColumnDefinitions>
             <ComboBox x:Name="MusicViewComboBox"
                       Grid.Column="1"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                       ItemsSource="{Binding MusicViewCollection}"
                       SelectedItem="{Binding MusicView, Mode=TwoWay}"
                       Style="{StaticResource VLCComboBox}"
@@ -43,7 +42,6 @@
             </ComboBox>
             <ListView Grid.Column="1"
                       x:Name="PanelsListView"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                       ItemsSource="{Binding MusicViewCollection}"
                       SelectedItem="{Binding MusicView, Mode=TwoWay}"
                       IsSwipeEnabled="False"
@@ -86,7 +84,7 @@
                     <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <musicPanesControls:AlbumsCollectionButtons Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='0'}" />
+                <musicPanesControls:AlbumsCollectionButtons Visibility="{Binding AlbumsCollectionsButtonVisible}" />
                 <AppBarButton x:Name="PlayAllButton"
                               Grid.Column="1"
                               Foreground="{ThemeResource MainColor}"
@@ -104,7 +102,7 @@
                 </AppBarButton>
                 <AppBarButton x:Name="ShuffleButton"
                               Grid.Column="3"
-                              Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='0,1,2'}"
+                              Visibility="{Binding ShuffleButtonVisible}"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Foreground="{ThemeResource MainColor}"
                               Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}"
@@ -127,7 +125,7 @@
                               VerticalAlignment="Center"
                               FontSize="15"
                               FontWeight="SemiLight"
-                              Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='3'}">
+                              Visibility="{Binding PlaylistButtonsVisible}">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource AddSymbol}"
                                   FontFamily="{StaticResource VLCFont}" />

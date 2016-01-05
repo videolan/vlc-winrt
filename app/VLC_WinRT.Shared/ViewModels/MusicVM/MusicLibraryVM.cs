@@ -27,6 +27,7 @@ using VLC_WinRT.Commands.MusicLibrary;
 using VLC_WinRT.Model.Search;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Commands.MusicPlayer;
+using Windows.UI.Xaml;
 
 namespace VLC_WinRT.ViewModels.MusicVM
 {
@@ -62,6 +63,13 @@ namespace VLC_WinRT.ViewModels.MusicVM
         #endregion
 
         #region public fields
+        public List<MusicView> MusicViewCollection { get; set; } = new List<MusicView>()
+        {
+            MusicView.Artists,
+            MusicView.Albums,
+            MusicView.Songs,
+            MusicView.Playlists
+        };
 
         public ObservableCollection<TrackCollection> TrackCollections
         {
@@ -110,10 +118,48 @@ namespace VLC_WinRT.ViewModels.MusicVM
         }
         #endregion
         #region public props
+
+
         public MusicView MusicView
         {
-            get { return _musicView; }
-            set { SetProperty(ref _musicView, value); }
+            get
+            {
+                var musicView = ApplicationSettingsHelper.ReadSettingsValue(nameof(MusicView), false);
+                if (musicView == null)
+                {
+                    _musicView = MusicView.Artists;
+                }
+                else
+                {
+                    _musicView = (MusicView)musicView;
+                }
+                return _musicView;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(MusicView), (int)value, false);
+                SetProperty(ref _musicView, value);
+                OnPropertyChanged(nameof(AlbumsCollectionsButtonVisible));
+                OnPropertyChanged(nameof(ShuffleButtonVisible));
+                OnPropertyChanged(nameof(PlaylistButtonsVisible));
+            }
+        }
+
+        public Visibility AlbumsCollectionsButtonVisible { get { return MusicView == MusicView.Albums ? Visibility.Visible : Visibility.Collapsed; } }
+        public Visibility ShuffleButtonVisible
+        {
+            get
+            {
+                return (MusicView == MusicView.Albums || MusicView == MusicView.Artists || MusicView == MusicView.Songs) ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
+        public Visibility PlaylistButtonsVisible
+        {
+            get
+            {
+                return MusicView == MusicView.Playlists ? Visibility.Visible : Visibility.Collapsed;
+            }
         }
 
         public LoadingState LoadingStateArtists

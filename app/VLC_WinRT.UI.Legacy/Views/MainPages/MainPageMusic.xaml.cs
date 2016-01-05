@@ -15,6 +15,7 @@ using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Views.MainPages.MusicPanes;
 using VLC_WinRT.ViewModels.Settings;
+using VLC_WinRT.ViewModels.MusicVM;
 
 namespace VLC_WinRT.Views.MainPages
 {
@@ -57,16 +58,16 @@ namespace VLC_WinRT.Views.MainPages
         {
             if (MainPageMusicContentPresenter.Content == null)
             {
-                Switch(Locator.SettingsVM.MusicView);
+                Switch(Locator.MusicLibraryVM.MusicView);
             }
-            Locator.SettingsVM.PropertyChanged += SettingsVM_PropertyChanged;
+            Locator.MusicLibraryVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
         }
 
-        private void SettingsVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void MusicLibraryVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(SettingsViewModel.MusicView))
+            if (e.PropertyName == nameof(MusicLibraryVM.MusicView))
             {
-                Switch(Locator.SettingsVM.MusicView);
+                Switch(Locator.MusicLibraryVM.MusicView);
             }
         }
 

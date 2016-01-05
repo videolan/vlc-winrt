@@ -292,17 +292,6 @@ namespace VLC_WinRT.ViewModels.Settings
             OrderListing.Descending
         };
 
-
-        public List<MusicView> MusicViewCollection
-        { get; set; }
-        = new List<MusicView>()
-        {
-            MusicView.Artists,
-            MusicView.Albums,
-            MusicView.Songs,
-            MusicView.Playlists
-        };
-
         public List<VideoView> VideoViewCollection
         { get; set; }
         = new List<VideoView>()
@@ -422,28 +411,6 @@ namespace VLC_WinRT.ViewModels.Settings
                 if (value != _albumsOrderListing)
                     Locator.MusicLibraryVM.OrderAlbums();
                 SetProperty(ref _albumsOrderListing, value);
-            }
-        }
-
-        public MusicView MusicView
-        {
-            get
-            {
-                var musicView = ApplicationSettingsHelper.ReadSettingsValue("MusicView", false);
-                if (musicView == null)
-                {
-                    _musicView = MusicView.Artists;
-                }
-                else
-                {
-                    _musicView = (MusicView)musicView;
-                }
-                return _musicView;
-            }
-            set
-            {
-                ApplicationSettingsHelper.SaveSettingsValue("MusicView", (int)value, false);
-                SetProperty(ref _musicView, value);
             }
         }
 
