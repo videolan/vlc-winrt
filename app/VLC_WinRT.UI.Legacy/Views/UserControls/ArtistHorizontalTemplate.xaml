@@ -43,8 +43,8 @@
                  Height="120"
                  Width="120">
             <Ellipse.Fill>
-                <ImageBrush Stretch="UniformToFill"
-                            ImageSource="{Binding ArtistImage}" />
+                <ImageBrush x:Name="ArtistImageBrush" 
+                            Stretch="UniformToFill"/>
             </Ellipse.Fill>
         </Ellipse>
         <TextBlock x:Name="NameTextBlock" 

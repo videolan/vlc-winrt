@@ -30,18 +30,27 @@ namespace VLC_WinRT.Views.UserControls
             var that = (ArtistHorizontalTemplate)dependencyObject;
             that.Init();
         }
-
-
+        
         public void Init()
         {
             NameTextBlock.Text = Strings.HumanizedArtistName(Artist.Name);
-            var id = Artist.Id;
+            Artist.PropertyChanged += Artist_PropertyChanged;
+            
+            var artist = Artist;
             Task.Run(async () =>
             {
-                var albumsCount = await Locator.MusicLibraryVM.MusicLibrary.LoadAlbumsCount(id);
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low,
-                        () => AlbumsCountTextBlock.Text = albumsCount + " " + Strings.Albums);
+                await artist.ResetArtistHeader();
+                var albumsCount = await Locator.MusicLibraryVM.MusicLibrary.LoadAlbumsCount(artist.Id);
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => AlbumsCountTextBlock.Text = albumsCount + " " + Strings.Albums);
             });
+        }
+
+        private async void Artist_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Artist.ArtistImage))
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => ArtistImageBrush.ImageSource = Artist.ArtistImage);
+            }
         }
     }
 }
