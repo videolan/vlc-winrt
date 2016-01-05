@@ -275,6 +275,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 var fileQueryResult = KnownFolders.MusicLibrary.CreateFileQueryWithOptions(queryOptions);
                 files = await fileQueryResult.GetFilesAsync();
 #endif
+                var sw = new Stopwatch();
+                sw.Start();
                 foreach (var item in files)
                 {
                     if (ContinueIndexing != null)
@@ -285,6 +287,9 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                     }
                     await DiscoverTrackItemOrWaitAsync(item);
                 }
+                sw.Stop();
+                Debug.WriteLine($"Done discover tracks in {sw.Elapsed.TotalSeconds} seconds");
+                Debug.WriteLine($"Indexed : {Tracks.Count}");
             }
             catch (Exception e)
             {
