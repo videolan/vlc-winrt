@@ -77,7 +77,7 @@ namespace VLC_WinRT.Model.Music
                 if (_artistImage == null && _artistImageLoadingState == LoadingState.NotLoaded)
                 {
                     _artistImageLoadingState = LoadingState.Loading;
-                    Task.Run(() => ResetArtistHeader());
+                    ResetArtistHeader();
                 }
 
                 return _artistImage;
@@ -87,7 +87,7 @@ namespace VLC_WinRT.Model.Music
 
         public Task ResetArtistHeader()
         {
-            return LoadImageToMemoryHelper.LoadImageToMemory(this);
+            return Task.Factory.StartNew(() => LoadImageToMemoryHelper.LoadImageToMemory(this));
         }
 
         [Ignore]
