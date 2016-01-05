@@ -10,6 +10,8 @@ using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.Views.UserControls;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace VLC_WinRT.UI.Legacy.Views.UserControls
 {
@@ -45,9 +47,18 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
         public void Init()
         {
+            if (Track == null) return;
             NameTextBlock.Text = Track.Name;
             ArtistAlbumNameTextBlock.Text = Track.ArtistName + Strings.Dash + Track.AlbumName;
-            if (Track.Thumbnail != null) CoverImage.Source = new BitmapImage(new Uri(Track.Thumbnail));
+            var trackItem = Track;
+            Task.Run(async () =>
+            {
+                var uri = await trackItem.LoadThumbnail();
+                if (!string.IsNullOrEmpty(uri))
+                {
+                    await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () => CoverImage.Source = new BitmapImage(new Uri(uri)));
+                }
+            });
 
             Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged += TrackItemOnPropertyChanged;
             UpdateTrack();
@@ -63,6 +74,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
         void UpdateTrack()
         {
+            if (Track == null) return;
             if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack == -1 || Locator.MediaPlaybackViewModel.TrackCollection.Playlist?.Count == 0) return;
             if (Track.Id == Locator.MediaPlaybackViewModel.TrackCollection.Playlist[Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack].Id)
             {
