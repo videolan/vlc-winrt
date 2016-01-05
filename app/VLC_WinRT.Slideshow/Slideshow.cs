@@ -3,6 +3,7 @@ using Microsoft.Graphics.Canvas.UI.Xaml;
 using Slide2D.Images;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using VLC_WinRT.Slideshow.Texts;
@@ -137,16 +138,21 @@ namespace Slide2D
             set { slideshow.TextInSlideshowEnabled = value; }
         }
 
+        public bool IsDarkTheme { get; set; }
+
         public async void SetTheme(bool force, bool dark = false)
         {
             await IsLoaded.Task;
+            Debug.WriteLine($"Setting slideshow theme : Force ? {force} -- {dark}");
             if (force)
             {
+                IsDarkTheme = dark;
                 slideshow.SetTheme(dark);
             }
             else
             {
-                slideshow.SetTheme(Locator.SettingsVM.ApplicationTheme == ApplicationTheme.Dark);
+                IsDarkTheme = Locator.SettingsVM.ApplicationTheme == ApplicationTheme.Dark;
+                slideshow.SetTheme(IsDarkTheme);
             }
         }
     }
