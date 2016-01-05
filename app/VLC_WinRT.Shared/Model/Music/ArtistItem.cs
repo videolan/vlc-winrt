@@ -99,17 +99,16 @@ namespace VLC_WinRT.Model.Music
             set { SetProperty(ref _isPictureLoaded, value); }
         }
 
-        public async Task LoadPicture()
+        public Task LoadPicture()
         {
-            try
-            {
-                if (MemoryUsageHelper.PercentMemoryUsed() > MemoryUsageHelper.MaxRamForResourceIntensiveTasks) return;
-                await Locator.MusicMetaService.GetArtistPicture(this);
-            }
-            catch (Exception)
-            {
-                LogHelper.Log("Error getting artist picture : " + _name);
-            }
+            return Locator.MusicMetaService.GetArtistPicture(this);
+        }
+
+        public Task LoadBio()
+        {
+            if (string.IsNullOrEmpty(_biography))
+                return Task.Run(async () => await Locator.MusicMetaService.GetArtistBiography(this));
+            return null;
         }
 
         [Ignore]
