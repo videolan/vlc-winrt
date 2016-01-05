@@ -957,11 +957,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         async Task StartIndexing()
         {
-            artistDatabase.Drop();
-            albumDatabase.Drop();
-            trackDatabase.Drop();
-            trackCollectionRepository.Drop();
-            tracklistItemRepository.Drop();
+            artistDatabase.DeleteAll();
+            albumDatabase.DeleteAll();
+            trackDatabase.DeleteAll();
+            trackCollectionRepository.DeleteAll();
+            tracklistItemRepository.DeleteAll();
 
             artistDatabase.Initialize();
             albumDatabase.Initialize();
