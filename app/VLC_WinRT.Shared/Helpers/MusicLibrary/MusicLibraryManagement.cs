@@ -56,9 +56,9 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         public TaskCompletionSource<bool> ContinueIndexing { get; set; }
         public TaskCompletionSource<bool> MusicCollectionLoaded = new TaskCompletionSource<bool>();
 
-        readonly SemaphoreSlim AlbumCoverFetcherSemaphoreSlim = new SemaphoreSlim(2);
-        readonly SemaphoreSlim ArtistPicFetcherSemaphoreSlim = new SemaphoreSlim(2);
-        readonly SemaphoreSlim TrackItemDiscovererSemaphoreSlim = new SemaphoreSlim(2);
+        readonly SemaphoreSlim AlbumCoverFetcherSemaphoreSlim = new SemaphoreSlim(4);
+        readonly SemaphoreSlim ArtistPicFetcherSemaphoreSlim = new SemaphoreSlim(4);
+        readonly SemaphoreSlim TrackItemDiscovererSemaphoreSlim = new SemaphoreSlim(1);
 
         public async Task FetchAlbumCoverOrWaitAsync(AlbumItem albumItem)
         {
