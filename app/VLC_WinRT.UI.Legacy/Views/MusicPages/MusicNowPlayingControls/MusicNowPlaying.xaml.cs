@@ -18,21 +18,21 @@ namespace VLC_WinRT.Views.MusicPages.MusicNowPlayingControls
             this.Loaded += MusicNowPlaying_Loaded;
         }
 
-        private void MusicNowPlaying_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void MusicNowPlaying_Loaded(object sender, RoutedEventArgs e)
         {
             Responsive();
-            this.SizeChanged += MusicNowPlaying_SizeChanged;
+            Window.Current.SizeChanged += Current_SizeChanged;
             this.Unloaded += MusicNowPlaying_Unloaded;
         }
 
-        private void MusicNowPlaying_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
+        private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
             Responsive();
         }
 
-        private void MusicNowPlaying_Unloaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void MusicNowPlaying_Unloaded(object sender, RoutedEventArgs e)
         {
-            this.SizeChanged -= MusicNowPlaying_SizeChanged;
+            Window.Current.SizeChanged -= Current_SizeChanged;
         }
 
         private void Responsive()
