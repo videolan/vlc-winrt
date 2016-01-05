@@ -352,7 +352,7 @@ namespace Slide2D.Images
             int nextImgIndex = 0;
             if (images.Count > 2)
                 nextImgIndex = random.Next(0, images.Count - 1);
-            else
+            else if (images.Count > 1)
                 nextImgIndex = random.NextDouble() < 0.5 ? 0 : 1;
             currentImg = images[nextImgIndex];
             Debug.WriteLine($"Choose picture uri = {currentImg.Src}");
