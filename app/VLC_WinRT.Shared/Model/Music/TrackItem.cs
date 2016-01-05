@@ -7,6 +7,7 @@ using VLC_WinRT.Commands.MusicLibrary;
 using VLC_WinRT.Commands.MusicPlayer;
 using VLC_WinRT.Utils;
 using Windows.Storage.AccessCache;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
 using libVLCX;
 using VLC_WinRT.Helpers;
@@ -105,12 +106,18 @@ namespace VLC_WinRT.Model.Music
             get
             {
                 if (string.IsNullOrEmpty(_thumbnail))
-                    _thumbnail = Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(this.AlbumId)?.AlbumCoverFullUri;
+                {
+                    Task.Run(async () =>
+                    {
+                        _thumbnail = (await Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(this.AlbumId))?.AlbumCoverFullUri;
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => OnPropertyChanged(nameof(Thumbnail)));
+                    });
+                }
                 return _thumbnail;
             }
             set { SetProperty(ref _thumbnail, value); }
         }
-        
+
         [Ignore]
         public BitmapImage AlbumImage
         {
