@@ -377,6 +377,11 @@ namespace VLC_WinRT.Utils
             return string.IsNullOrEmpty(albumName) ? Strings.UnknownString : (char.IsLetter(albumName.ElementAt(0)) ? albumName.ElementAt(0).ToString().ToUpper() : Strings.UnknownString);
         }
 
+        public static string HumanizedArtistFirstLetter(string artist)
+        {
+            return (string.IsNullOrEmpty(artist) ? Strings.UnknownString : (char.IsLetter(artist.ElementAt(0)) ? artist.ToUpper().ElementAt(0).ToString() : Strings.UnknownString));
+        }
+
         public static string HumanizeSeconds(double value)
         {
             if (double.IsNaN(value))
