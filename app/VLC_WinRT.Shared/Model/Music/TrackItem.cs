@@ -109,13 +109,18 @@ namespace VLC_WinRT.Model.Music
                 {
                     Task.Run(async () =>
                     {
-                        _thumbnail = (await Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(this.AlbumId))?.AlbumCoverFullUri;
+                        _thumbnail = await LoadThumbnail();
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => OnPropertyChanged(nameof(Thumbnail)));
                     });
                 }
                 return _thumbnail;
             }
             set { SetProperty(ref _thumbnail, value); }
+        }
+
+        public async Task<string> LoadThumbnail()
+        {
+            return (await Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(this.AlbumId))?.AlbumCoverFullUri;
         }
 
         [Ignore]
