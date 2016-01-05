@@ -29,7 +29,6 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            Locator.Slideshow.SetTheme(false);
             App.SplitShell.ContentSizeChanged -= SplitShell_ContentSizeChanged;
         }
 
