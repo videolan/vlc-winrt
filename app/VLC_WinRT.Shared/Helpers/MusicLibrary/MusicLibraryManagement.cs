@@ -385,10 +385,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         artist.Name = string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName;
                         artist.PlayCount = 0;
                         await artistDatabase.Add(artist);
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-                        {
-                            AddArtist(artist);
-                        });
+                        AddArtist(artist);
                     }
 
                     var albumName = mP.Album?.Trim();
@@ -421,9 +418,9 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                             AlbumCoverUri = albumSimplifiedUrl
                         };
                         await albumDatabase.Add(album);
+                        AddAlbum(album);
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
-                            AddAlbum(album);
                             Locator.MainVM.InformationText = string.Format(Strings.AlbumsFound, Locator.MusicLibraryVM.MusicLibrary.Albums.Count);
                         });
                     }
