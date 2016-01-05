@@ -378,7 +378,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 {
                     var artistName = mP.Artist?.Trim();
                     var albumArtistName = mP.AlbumArtist?.Trim();
-                    ArtistItem artist = LoadViaArtistName(string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName);
+                    ArtistItem artist = await LoadViaArtistName(string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName);
                     if (artist == null)
                     {
                         artist = new ArtistItem();
