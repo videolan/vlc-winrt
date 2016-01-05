@@ -11,6 +11,7 @@ using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
+using System.Diagnostics;
 
 namespace VLC_WinRT.Model.Music
 {
