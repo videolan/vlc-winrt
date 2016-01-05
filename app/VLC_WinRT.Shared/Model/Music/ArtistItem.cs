@@ -19,7 +19,7 @@ namespace VLC_WinRT.Model.Music
         private string _name;
         private bool _isPictureLoaded;
         private ObservableCollection<AlbumItem> _albumItems;
-        
+
         private bool _isAlbumsLoaded = false;
 
         // more informations
@@ -126,7 +126,7 @@ namespace VLC_WinRT.Model.Music
             }
             set { SetProperty(ref _albumItems, value); }
         }
-        
+
         public string Biography
         {
             get

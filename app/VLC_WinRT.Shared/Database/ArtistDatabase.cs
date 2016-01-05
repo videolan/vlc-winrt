@@ -13,7 +13,7 @@ namespace VLC_WinRT.Database
     public class ArtistDatabase : IDatabase
     {
         private static readonly string DbPath = Strings.MusicDatabase;
-        
+
         public ArtistDatabase()
         {
             Initialize();

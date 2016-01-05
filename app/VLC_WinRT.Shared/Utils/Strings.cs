@@ -62,8 +62,8 @@ namespace VLC_WinRT.Utils
         public static string FeedbackAzureURL => "https://vlc.azure-mobile.net/tables/feedback";
 
         /// <summary>
-         /// Appends the current memory usage and limits on Windows Phone to the <paramref name="stringBuilder"/>
-         /// </summary>
+        /// Appends the current memory usage and limits on Windows Phone to the <paramref name="stringBuilder"/>
+        /// </summary>
         public static string MemoryUsage()
         {
 #if WINDOWS_PHONE_APP
@@ -98,7 +98,7 @@ namespace VLC_WinRT.Utils
         public static readonly string UnknownString = UnknownChar.ToString();
 
         private static readonly ResourceLoader _resourcesLoader = ResourceLoader.GetForViewIndependentUse();
-        
+
         public static string Dash => "­­­ — ";
 
         public static string Home => _resourcesLoader.GetString(nameof(Home));
@@ -185,7 +185,7 @@ namespace VLC_WinRT.Utils
 
         public static string AlbumsFound => _resourcesLoader.GetString(nameof(AlbumsFound));
         public static string NewVideos => _resourcesLoader.GetString(nameof(NewVideos));
-        
+
         public static string PlaylistAlreadyExists => _resourcesLoader.GetString(nameof(PlaylistAlreadyExists));
         public static string TrackAlreadyExistsInPlaylist => _resourcesLoader.GetString(nameof(TrackAlreadyExistsInPlaylist));
         public static string TrackAddedToYourPlaylist => _resourcesLoader.GetString(nameof(TrackAddedToYourPlaylist));
@@ -248,7 +248,7 @@ namespace VLC_WinRT.Utils
         public static string AddToPlaylist => _resourcesLoader.GetString(nameof(AddToPlaylist));
         public static string AddToCurrentPlaylist => _resourcesLoader.GetString(nameof(AddToCurrentPlaylist));
         public static string ShowPlaylist => _resourcesLoader.GetString(nameof(ShowPlaylist));
-        
+
         // VIEW ...
         public static string ViewArtist => _resourcesLoader.GetString(nameof(ViewArtist));
         public static string ViewAlbum => _resourcesLoader.GetString(nameof(ViewAlbum));
@@ -263,19 +263,19 @@ namespace VLC_WinRT.Utils
         public static string ResetMusicDatabase => _resourcesLoader.GetString(nameof(ResetMusicDatabase));
         public static string RefreshMusicLibrary => _resourcesLoader.GetString(nameof(RefreshMusicLibrary));
         public static string RefreshVideoLibrary => _resourcesLoader.GetString(nameof(RefreshVideoLibrary));
-        
+
         // PLACEHOLDERS
         public static string PlaylistNamePlaceholder => _resourcesLoader.GetString(nameof(PlaylistNamePlaceholder));
         public static string NoBiographyFound => _resourcesLoader.GetString(nameof(NoBiographyFound));
         public static string Username => _resourcesLoader.GetString(nameof(Username));
         public static string Password => _resourcesLoader.GetString(nameof(Password));
         public static string EnterURL => _resourcesLoader.GetString(nameof(EnterURL));
-        
+
         // SEVERAL WAYS TO SAY WE FOUND NOTHING
         public static string ItsEmpty => _resourcesLoader.GetString(nameof(ItsEmpty));
         public static string NothingToSeeHere => _resourcesLoader.GetString(nameof(NothingToSeeHere));
         public static string ElementsNotFound => _resourcesLoader.GetString(nameof(ElementsNotFound));
-        
+
         public static string NoVideosFound => _resourcesLoader.GetString(nameof(NoVideosFound));
         public static string NoResults => _resourcesLoader.GetString(nameof(NoResults));
         public static string HoweverYouMayFindWhatYouWantHere => _resourcesLoader.GetString(nameof(HoweverYouMayFindWhatYouWantHere));
@@ -310,7 +310,7 @@ namespace VLC_WinRT.Utils
         public static string Notifications => _resourcesLoader.GetString(nameof(Notifications));
         public static string NotificationWhenSongStarts => _resourcesLoader.GetString(nameof(NotificationWhenSongStarts));
         public static string VideoPlaybackInBackground => _resourcesLoader.GetString(nameof(VideoPlaybackInBackground));
-        
+
         public static string EvenIfBackground => _resourcesLoader.GetString(nameof(EvenIfBackground));
         public static string EvenIfNotBackground => _resourcesLoader.GetString(nameof(EvenIfNotBackground));
         public static string NeedRestart => _resourcesLoader.GetString(nameof(NeedRestart));
