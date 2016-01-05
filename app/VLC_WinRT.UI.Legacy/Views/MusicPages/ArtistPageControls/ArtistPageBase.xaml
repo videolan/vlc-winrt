@@ -57,7 +57,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="1"
-                       Text="{Binding CurrentArtist.Biography}"
+                       Text="{Binding CurrentArtist.BiographyString}"
                        Style="{StaticResource BodyTextBlockStyle}"
                        TextTrimming="CharacterEllipsis"
                        HorizontalAlignment="Left"

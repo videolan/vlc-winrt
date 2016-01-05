@@ -134,12 +134,24 @@ namespace VLC_WinRT.Model.Music
                 {
                     return _biography;
                 }
-                if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                    return "Please verify your internet connection";
-                Task.Run(async () => await Locator.MusicMetaService.GetArtistBiography(this));
                 return null;
             }
-            set { SetProperty(ref _biography, value); }
+            set
+            {
+                SetProperty(ref _biography, value);
+                OnPropertyChanged(nameof(Biography));
+            }
+        }
+
+        [Ignore]
+        public string BiographyString
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_biography))
+                    LoadBio();
+                return _biography;
+            }
         }
 
         [Ignore]
