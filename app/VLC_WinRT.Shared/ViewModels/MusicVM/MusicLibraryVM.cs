@@ -204,7 +204,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public TrackCollectionClickedCommand TrackCollectionClickedCommand { get; } = new TrackCollectionClickedCommand();
 
         public ShowCreateNewPlaylistPane ShowCreateNewPlaylistPaneCommand { get; } = new ShowCreateNewPlaylistPane();
-        
+
         public ChangeAlbumArtCommand ChangeAlbumArtCommand { get; } = new ChangeAlbumArtCommand();
 
         public DownloadAlbumArtCommand DownloadAlbumArtCommand { get; } = new DownloadAlbumArtCommand();
@@ -385,7 +385,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             {
                 foreach (var newItem in e.NewItems)
                 {
-                    var album = (AlbumItem) newItem;
+                    var album = (AlbumItem)newItem;
                     await InsertIntoGroupAlbum(album);
                 }
             }
@@ -553,7 +553,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         async Task InsertIntoGroupArtist(ArtistItem artist)
         {
             var supposedFirstChar = Strings.HumanizedArtistFirstLetter(artist.Name);
-            var firstChar = GroupedArtists.FirstOrDefault(x=>x.Key == supposedFirstChar);
+            var firstChar = GroupedArtists.FirstOrDefault(x => x.Key == supposedFirstChar);
             if (firstChar == null)
             {
                 var newChar = new GroupItemList<ArtistItem>(artist)
