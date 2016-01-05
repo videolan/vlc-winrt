@@ -140,7 +140,7 @@ namespace VLC_WinRT.Model.Music
             set
             {
                 SetProperty(ref _biography, value);
-                OnPropertyChanged(nameof(Biography));
+                OnPropertyChanged(nameof(BiographyString));
             }
         }
 
@@ -150,7 +150,7 @@ namespace VLC_WinRT.Model.Music
             get
             {
                 if (string.IsNullOrEmpty(_biography))
-                    LoadBio();
+                    Task.Run(() => LoadBio());
                 return _biography;
             }
         }

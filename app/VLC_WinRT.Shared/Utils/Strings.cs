@@ -142,7 +142,7 @@ namespace VLC_WinRT.Utils
         public static string OrderByArtist => _resourcesLoader.GetString(nameof(OrderByArtist));
         public static string OrderByDate => _resourcesLoader.GetString(nameof(OrderByDate));
         public static string OrderByAlbum => _resourcesLoader.GetString(nameof(OrderByAlbum));
-
+        public static string Biography => "Biography";
 
         // VIDEOS ITEMS
         public static string Videos => _resourcesLoader.GetString(nameof(Videos));
