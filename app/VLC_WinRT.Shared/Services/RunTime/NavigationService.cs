@@ -85,6 +85,14 @@ namespace VLC_WinRT.Services.RunTime
             CurrentPage = page;
             Debug.WriteLine(CurrentPage);
             ViewNavigated.Invoke(null, CurrentPage);
+
+            if (Locator.SettingsVM.ApplicationTheme == ApplicationTheme.Light && Locator.Slideshow.IsDarkTheme)
+            {
+                if (page != VLCPage.MusicPlayerPage && page != VLCPage.CurrentPlaylistPage)
+                {
+                    Locator.Slideshow.SetTheme(false);
+                }
+            }
         }
 
 #if WINDOWS_PHONE_APP
