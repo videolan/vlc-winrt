@@ -6,6 +6,8 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.Utils;
 using Windows.UI.Xaml.Media.Imaging;
 using System;
+using System.Threading.Tasks;
+
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 #endif
@@ -111,13 +113,13 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             DependencyProperty.Register("Album", typeof(AlbumItem), typeof(AlbumWithTracksResponsiveTemplate), new PropertyMetadata(null, PropertyChangedCallback));
 
 
-        private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        private static async void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var that = (AlbumWithTracksResponsiveTemplate)dependencyObject;
-            that.Init();
+            await that.Init();
         }
 
-        public void Init()
+        public async Task Init()
         {
             if (Album == null) return;
             NameTextBlock.Text = Strings.HumanizedAlbumName(Album.Name);
