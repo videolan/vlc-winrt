@@ -14,6 +14,7 @@ namespace VLC_WinRT.Utils
     /// </summary>
     public class Strings
     {
+        public static readonly string AlreadyLaunched = "AlreadyLaunched";
         public static readonly string DatabaseVersion = "DatabaseVersion";
 
         /// <summary>
