@@ -101,7 +101,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         static List<ArtistItem> InCollection(List<string> artistsName)
         {
-            return artistsName.Select(artistName => Locator.MusicLibraryVM.MusicLibrary.LoadViaArtistName(artistName)).Where(artistItem => artistItem != null).ToList();
+            return artistsName.Select(artistName => Locator.MusicLibraryVM.MusicLibrary.LoadViaArtistName(artistName).Result).Where(artistItem => artistItem != null).ToList();
         }
     }
 }
