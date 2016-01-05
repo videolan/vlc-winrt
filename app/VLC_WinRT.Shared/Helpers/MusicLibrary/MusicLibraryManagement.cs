@@ -119,6 +119,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         {
             try
             {
+                Albums?.Clear();
                 LogHelper.Log("Loading albums from MusicDB ...");
                 var albums = await albumDatabase.LoadAlbums().ToObservableAsync();
                 var orderedAlbums = albums.OrderBy(x => x.Artist).ThenBy(x => x.Name);
@@ -166,6 +167,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         {
             try
             {
+                Artists?.Clear();
                 LogHelper.Log("Loading artists from MusicDB ...");
                 var artists = await LoadArtists(null);
                 LogHelper.Log("Found " + artists.Count + " artists from MusicDB");
