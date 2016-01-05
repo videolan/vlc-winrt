@@ -102,7 +102,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MillisecondsStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MiniPlayerVisibilityFromPlayingTypeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MusicViewStringifyConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\MusicViewVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NegatedBooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NegatedCountToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NullIntConverter.cs" />
