@@ -126,6 +126,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Database\ArtistDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\IDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\KeyboardActionDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\MusicDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\StreamsDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\TrackCollectionDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\TrackDatabase.cs" />

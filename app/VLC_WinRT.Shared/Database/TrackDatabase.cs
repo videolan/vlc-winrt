@@ -34,99 +34,135 @@ namespace VLC_WinRT.Database
             }
         }
 
+        public void DeleteAll()
+        {
+            using (var db = new SQLiteConnection(DbPath))
+            {
+                db.DeleteAll<TrackItem>();
+            }
+        }
+
         public async Task<bool> DoesTrackExist(string path)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             bool b = false;
             var connection = new SQLiteAsyncConnection(DbPath);
             var query = connection.Table<TrackItem>().Where(x => x.Path == path);
             b = await query.CountAsync() != 0;
+            MusicDatabase.DatabaseOperation.Release();
             return b;
         }
 
         public async Task<TrackItem> LoadTrackByPath(string path)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
             var query = connection.Table<TrackItem>().Where(x => x.Path == path);
             if (await query.CountAsync() > 0)
             {
-                return await query.FirstOrDefaultAsync();
+                var track = await query.FirstOrDefaultAsync();
+                MusicDatabase.DatabaseOperation.Release();
+                return track;
             }
             return null;
         }
 
         public async Task<TrackItem> LoadTrack(int trackId)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
             var query = connection.Table<TrackItem>().Where(x => x.Id.Equals(trackId));
             var result = await query.ToListAsync();
+            MusicDatabase.DatabaseOperation.Release();
             return result.FirstOrDefault();
         }
 
         public async Task<TrackItem> LoadTrack(int artistId, int albumId, string trackName)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
             var query = connection.Table<TrackItem>().Where(x => x.Name.Equals(trackName)).Where(x => x.ArtistId == artistId).Where(x => x.AlbumId == albumId);
             var result = await query.ToListAsync();
+            MusicDatabase.DatabaseOperation.Release();
             return result.FirstOrDefault();
         }
 
-        public List<TrackItem> LoadTracksByAlbumId(int albumId)
+        public async Task<List<TrackItem>> LoadTracksByAlbumId(int albumId)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             using (var connection = new SQLiteConnection(DbPath))
             {
                 var query = connection.Table<TrackItem>().Where(x => x.AlbumId == albumId).OrderBy(x => x.DiscNumber).ThenBy(x => x.Index);
-                return query.ToList();
+                var tracks = query.ToList();
+                MusicDatabase.DatabaseOperation.Release();
+                return tracks;
             }
         }
 
         public async Task<TrackItem> GetFirstTrackOfAlbumId(int albumId)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
             var query = connection.Table<TrackItem>().Where(x => x.AlbumId == albumId);
             var result = await query.FirstOrDefaultAsync();
+            MusicDatabase.DatabaseOperation.Release();
             return result;
         }
 
         public async Task<string> GetFirstTrackPathByAlbumId(int albumId)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var trackItem = await GetFirstTrackOfAlbumId(albumId);
+            MusicDatabase.DatabaseOperation.Release();
             return trackItem?.Path;
         }
 
         public async Task<List<TrackItem>> LoadTracksByArtistId(int artistId)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
             var query = connection.Table<TrackItem>().Where(x => x.ArtistId == artistId);
-            return await query.ToListAsync();
+            var tracks= await query.ToListAsync();
+            MusicDatabase.DatabaseOperation.Release();
+            return tracks;
         }
 
         public async Task<bool> IsEmpty()
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
             int c = await connection.Table<TrackItem>().CountAsync();
+            MusicDatabase.DatabaseOperation.Release();
             return c == 0;
         }
 
         public async Task<List<TrackItem>> LoadTracks()
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
             var query = connection.Table<TrackItem>().OrderBy(x => x.Name);
-            return await query.ToListAsync();
+            var tracks= await query.ToListAsync();
+            MusicDatabase.DatabaseOperation.Release();
+            return tracks;
         }
 
-        public Task Update(TrackItem track)
+        public async Task Update(TrackItem track)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.UpdateAsync(track);
+            await connection.UpdateAsync(track);
+            MusicDatabase.DatabaseOperation.Release();
         }
 
         public async Task Add(TrackItem track)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
             var query = connection.Table<TrackItem>().Where(x => x.Path == track.Path);
             var result = await query.ToListAsync();
             if (result.Count == 0)
                 await connection.InsertAsync(track);
+            MusicDatabase.DatabaseOperation.Release();
         }
 
         public Task Remove(TrackItem track)

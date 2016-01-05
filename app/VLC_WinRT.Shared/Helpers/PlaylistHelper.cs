@@ -90,7 +90,7 @@ namespace VLC_WinRT.Helpers
                 {
                     await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
                 }
-                var trackItems = Locator.MusicLibraryVM.MusicLibrary.LoadTracksByAlbumId(albumId);
+                var trackItems = await Locator.MusicLibraryVM.MusicLibrary.LoadTracksByAlbumId(albumId);
                 await Locator.MediaPlaybackViewModel.TrackCollection.Add(trackItems);
                 if (play)
                 {

@@ -443,7 +443,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         }
         #endregion
 
-        public async void AddArtist(ArtistItem artist)
+        public void AddArtist(ArtistItem artist)
         {
             Artists.Add(artist);
         }
@@ -577,9 +577,24 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             return groupedAlbums;
         }
 
-        public IEnumerable<IGrouping<string, ArtistItem>> OrderArtists()
+        public ObservableCollection<GroupItemList<ArtistItem>> OrderArtists()
         {
-            return Artists?.GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownString : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ToUpper().ElementAt(0).ToString() : Strings.UnknownString));
+            var groupedArtists = new ObservableCollection<GroupItemList<ArtistItem>>();
+            var groupQuery = from artist in Artists
+                             orderby artist.Name
+                             group artist by Strings.HumanizedArtistFirstLetter(artist.Name) into a
+                             select new { GroupName = a.Key, Items = a };
+            foreach (var g in groupQuery)
+            {
+                GroupItemList<ArtistItem> artists = new GroupItemList<ArtistItem>();
+                artists.Key = g.GroupName;
+                foreach (var artist in g.Items)
+                {
+                    artists.Add(artist);
+                }
+                groupedArtists.Add(artists);
+            }
+            return groupedArtists;
         }
 
         public IEnumerable<IGrouping<char, TrackItem>> OrderTracks()
@@ -755,7 +770,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         {
             try
             {
-                var tracks = trackDatabase.LoadTracksByAlbumId(album.Id);
+                var tracks = await trackDatabase.LoadTracksByAlbumId(album.Id);
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     album.Tracks = tracks;
@@ -798,9 +813,9 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             return trackDatabase.LoadTracksByArtistId(id);
         }
 
-        public List<TrackItem> LoadTracksByAlbumId(int id)
+        public async Task<List<TrackItem>> LoadTracksByAlbumId(int id)
         {
-            return trackDatabase.LoadTracksByAlbumId(id);
+            return await trackDatabase.LoadTracksByAlbumId(id);
         }
 
         public async Task<ArtistItem> LoadArtist(int id)
@@ -808,12 +823,12 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             return await artistDatabase.LoadArtist(id);
         }
 
-        public ArtistItem LoadViaArtistName(string name)
+        public async Task<ArtistItem> LoadViaArtistName(string name)
         {
-            return artistDatabase.LoadViaArtistName(name);
+            return await artistDatabase.LoadViaArtistName(name);
         }
 
-        public AlbumItem LoadAlbum(int id)
+        public Task<AlbumItem> LoadAlbum(int id)
         {
             return albumDatabase.LoadAlbum(id);
         }

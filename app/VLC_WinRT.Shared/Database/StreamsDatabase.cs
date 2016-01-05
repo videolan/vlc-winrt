@@ -30,7 +30,15 @@ namespace VLC_WinRT.Database
                 db.DropTable<StreamMedia>();
             }
         }
-        
+
+        public void DeleteAll()
+        {
+            using (var db = new SQLiteConnection(DbPath))
+            {
+                db.DeleteAll<StreamMedia>();
+            }
+        }
+
         public async Task<List<StreamMedia>> Load()
         {
             var connection = new SQLiteAsyncConnection(DbPath);

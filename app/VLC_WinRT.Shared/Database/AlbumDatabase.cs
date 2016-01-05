@@ -35,38 +35,59 @@ namespace VLC_WinRT.Database
             }
         }
 
-        public Task<List<AlbumItem>> LoadAlbumsFromId(int artistId)
+        public void DeleteAll()
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).OrderBy(x => x.Name).ToListAsync();
+            using (var db = new SQLiteConnection(DbPath))
+            {
+                db.DeleteAll<AlbumItem>();
+            }
         }
 
-        public Task<int> LoadAlbumsCountFromId(int artistId)
+        public async Task<List<AlbumItem>> LoadAlbumsFromId(int artistId)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).CountAsync();
+            var album = await connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).OrderBy(x => x.Name).ToListAsync();
+            MusicDatabase.DatabaseOperation.Release();
+            return album;
+        }
+
+        public async Task<int> LoadAlbumsCountFromId(int artistId)
+        {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
+            var connection = new SQLiteAsyncConnection(DbPath);
+            var count= await connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).CountAsync();
+            MusicDatabase.DatabaseOperation.Release();
+            return count;
         }
 
         public async Task<AlbumItem> LoadAlbumViaName(int artistId, string albumName)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
             var query = connection.Table<AlbumItem>().Where(x => x.Name.Equals(albumName)).Where(x => x.ArtistId == artistId);
             var result = await query.ToListAsync();
-            return result.FirstOrDefault();
+            var album= result.FirstOrDefault();
+            MusicDatabase.DatabaseOperation.Release();
+            return album;
         }
 
-        public AlbumItem LoadAlbum(int albumId)
+        public async Task<AlbumItem> LoadAlbum(int albumId)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             using (var connection = new SQLiteConnection(DbPath))
             {
                 var query = connection.Table<AlbumItem>().Where(x => x.Id.Equals(albumId));
                 var result = query.ToList();
-                return result.FirstOrDefault();
+                var album =result.FirstOrDefault();
+                MusicDatabase.DatabaseOperation.Release();
+                return album;
             }
         }
 
         public async Task<List<AlbumItem>> LoadAlbums(Expression<Func<AlbumItem, bool>> compare = null)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
             AsyncTableQuery<AlbumItem> query;
             if (compare == null)
@@ -77,11 +98,14 @@ namespace VLC_WinRT.Database
             {
                 query = connection.Table<AlbumItem>().Where(compare);
             }
-            return await query.ToListAsync();
+            var albums= await query.ToListAsync();
+            MusicDatabase.DatabaseOperation.Release();
+            return albums;
         }
 
         public async Task<List<AlbumItem>> Load(Expression<Func<AlbumItem, bool>> compare = null)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
             AsyncTableQuery<AlbumItem> query;
             if (compare == null)
@@ -92,25 +116,34 @@ namespace VLC_WinRT.Database
             {
                 query = connection.Table<AlbumItem>().Where(compare);
             }
-            return await query.ToListAsync();
+            var albums= await query.ToListAsync();
+            MusicDatabase.DatabaseOperation.Release();
+            return albums;
         }
 
-        public Task<List<AlbumItem>> Contains(string column, string value)
+        public async Task<List<AlbumItem>> Contains(string column, string value)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.QueryAsync<AlbumItem>($"SELECT * FROM {nameof(AlbumItem)} WHERE {column} LIKE '%{value}%';", new string[] { });
+            var list = await connection.QueryAsync<AlbumItem>($"SELECT * FROM {nameof(AlbumItem)} WHERE {column} LIKE '%{value}%';", new string[] { });
+            MusicDatabase.DatabaseOperation.Release();
+            return list;
         }
 
-        public Task Update(AlbumItem album)
+        public async Task Update(AlbumItem album)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.UpdateAsync(album);
+            await connection.UpdateAsync(album);
+            MusicDatabase.DatabaseOperation.Release();
         }
 
-        public Task Add(AlbumItem album)
+        public async Task Add(AlbumItem album)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.InsertAsync(album);
+            await connection.InsertAsync(album);
+            MusicDatabase.DatabaseOperation.Release();
         }
 
         public void Remove(AlbumItem album)

@@ -35,20 +35,35 @@ namespace VLC_WinRT.Database
             }
         }
 
-        public Task<int> Count()
+        public void DeleteAll()
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.Table<ArtistItem>().CountAsync();
+            using (var db = new SQLiteConnection(DbPath))
+            {
+                db.DeleteAll<ArtistItem>();
+            }
         }
 
-        public Task<ArtistItem> At(int index)
+        public async Task<int> Count()
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.Table<ArtistItem>().ElementAtAsync(index);
+            var count = await connection.Table<ArtistItem>().CountAsync();
+            MusicDatabase.DatabaseOperation.Release();
+            return count;
+        }
+
+        public async Task<ArtistItem> At(int index)
+        {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
+            var connection = new SQLiteAsyncConnection(DbPath);
+            var artist = await connection.Table<ArtistItem>().ElementAtAsync(index);
+            MusicDatabase.DatabaseOperation.Release();
+            return artist;
         }
 
         public async Task<List<ArtistItem>> Load(Expression<Func<ArtistItem, bool>> compare = null)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
             AsyncTableQuery<ArtistItem> query;
             if (compare == null)
@@ -59,42 +74,54 @@ namespace VLC_WinRT.Database
             {
                 query = connection.Table<ArtistItem>().Where(compare);
             }
-            return await query.ToListAsync();
+            var artists = await query.ToListAsync();
+            MusicDatabase.DatabaseOperation.Release();
+            return artists;
         }
 
-        public ArtistItem LoadViaArtistName(string artistName)
+        public async Task<ArtistItem> LoadViaArtistName(string artistName)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             using (var db = new SQLiteConnection(DbPath))
             {
                 var query = db.Table<ArtistItem>().Where(x => x.Name.Equals(artistName));
-                return query.FirstOrDefault();
+                var artist= query.FirstOrDefault();
+                MusicDatabase.DatabaseOperation.Release();
+                return artist;
             }
         }
 
-        public Task Update(ArtistItem artist)
+        public async Task Update(ArtistItem artist)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.UpdateAsync(artist);
+            await connection.UpdateAsync(artist);
         }
 
-        public Task Add(ArtistItem artist)
+        public async Task Add(ArtistItem artist)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.InsertAsync(artist);
+            await connection.InsertAsync(artist);
+            MusicDatabase.DatabaseOperation.Release();
         }
 
         public async Task<ArtistItem> LoadArtist(int artistId)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
             var query = connection.Table<ArtistItem>().Where(x => x.Id.Equals(artistId));
             var result = await query.ToListAsync();
-            return result.FirstOrDefault();
+            var artist= result.FirstOrDefault();
+            MusicDatabase.DatabaseOperation.Release();
+            return artist;
         }
 
-        public Task Remove(ArtistItem artist)
+        public async Task Remove(ArtistItem artist)
         {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
             var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.DeleteAsync(artist);
+            await connection.DeleteAsync(artist);
+            MusicDatabase.DatabaseOperation.Release();
         }
     }
 }

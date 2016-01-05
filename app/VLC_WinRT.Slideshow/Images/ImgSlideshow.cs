@@ -118,7 +118,7 @@ namespace Slide2D.Images
                     images.Add(new Img(Locator.MusicPlayerVM.CurrentArtist.Picture));
                     newPic = true;
                 }
-                var album = Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(Locator.MusicPlayerVM.CurrentTrack.AlbumId);
+                var album = await Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(Locator.MusicPlayerVM.CurrentTrack.AlbumId);
                 if (album != null)
                 {
                     if (album.IsPictureLoaded)

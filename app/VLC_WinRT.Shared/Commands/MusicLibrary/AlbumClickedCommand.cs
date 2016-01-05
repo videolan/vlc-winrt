@@ -25,7 +25,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
             else if (parameter is int)
             {
                 var id = (int)parameter;
-                album = Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(id);
+                album = await Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(id);
             }
             try
             {

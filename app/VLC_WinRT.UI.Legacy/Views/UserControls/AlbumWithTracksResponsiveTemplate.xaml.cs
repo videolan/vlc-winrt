@@ -132,7 +132,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             FavoriteAppBarButton.Command = Album.FavoriteAlbum;
             FavoriteAppBarButton.CommandParameter = Album;
 
-            TracksListView.ItemsSource = Locator.MusicLibraryVM.MusicLibrary.LoadTracksByAlbumId(Album.Id);
+            TracksListView.ItemsSource = await Locator.MusicLibraryVM.MusicLibrary.LoadTracksByAlbumId(Album.Id);
         }
     }
 }

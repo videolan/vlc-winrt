@@ -36,6 +36,14 @@ namespace VLC_WinRT.Database
             }
         }
 
+        public void DeleteAll()
+        {
+            using (var db = new SQLiteConnection(DbPath))
+            {
+                db.DeleteAll<VideoItem>();
+            }
+        }
+
         public async Task<VideoItem> GetFromPath(String path)
         {
             var conn = new SQLiteAsyncConnection(DbPath);

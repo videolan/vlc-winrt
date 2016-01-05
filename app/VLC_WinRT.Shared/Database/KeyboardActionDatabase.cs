@@ -75,5 +75,13 @@ namespace VLC_WinRT.Database
         {
             throw new NotImplementedException();
         }
+
+        public void DeleteAll()
+        {
+            using (var db = new SQLiteConnection(DbPath))
+            {
+                db.DeleteAll<KeyboardAction>();
+            }
+        }
     }
 }

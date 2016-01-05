@@ -26,6 +26,14 @@ namespace VLC_WinRT.Database
             }
         }
 
+        public void DeleteAll()
+        {
+            using (var db = new SQLiteConnection(DbPath))
+            {
+                db.DeleteAll<TrackCollection>();
+            }
+        }
+
         public async Task<TrackCollection> LoadFromName(string name)
         {
             var connection = new SQLiteAsyncConnection(DbPath);

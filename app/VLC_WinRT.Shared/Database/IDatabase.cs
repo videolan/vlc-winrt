@@ -4,5 +4,6 @@
     {
         void Initialize();
         void Drop();
+        void DeleteAll();
     }
 }

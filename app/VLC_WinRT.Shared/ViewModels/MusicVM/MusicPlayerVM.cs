@@ -218,7 +218,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             if (CurrentTrack == null) return;
             if (CurrentArtist == null) return;
             if (CurrentAlbum != null && CurrentAlbum.Id == CurrentTrack.AlbumId) return;
-            CurrentAlbum = Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(CurrentTrack.AlbumId);
+            CurrentAlbum = await Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(CurrentTrack.AlbumId);
         }
 
 
