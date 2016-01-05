@@ -36,4 +36,3 @@ namespace VLC_WinRT.Commands.Navigation
         }
     }
 }
-

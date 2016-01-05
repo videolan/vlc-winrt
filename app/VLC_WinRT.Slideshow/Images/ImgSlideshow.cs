@@ -61,7 +61,7 @@ namespace Slide2D.Images
             get { return _richAnimations; }
             set { _richAnimations = value; }
         }
-
+        
         public ImgSlideshow()
         {
             backgroundColor.A = 255;

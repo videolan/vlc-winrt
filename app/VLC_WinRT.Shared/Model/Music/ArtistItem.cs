@@ -195,7 +195,6 @@ namespace VLC_WinRT.Model.Music
             set { SetProperty(ref _isPinned, value); }
         }
 
-
         [Ignore]
         public List<Show> UpcomingShows
         {
