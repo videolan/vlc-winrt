@@ -213,6 +213,7 @@ namespace Slide2D.Images
 
             if (computeBlurPic)
             {
+                if (currentImg.Bmp == null) return;
                 currentImg.GaussianBlurCache = new GaussianBlurEffect()
                 {
                     Source = currentImg.Bmp,
@@ -238,7 +239,7 @@ namespace Slide2D.Images
 
             // "Vector2" requires System.Numerics for UWP. But for some reason ScaleEffect can only use Windows.Foundation.Numerics,
             // which you can't use to make vectors. So... we can't use this yet until we can figure out what's wrong here.
-
+            if (currentImg.GaussianBlurCache == null) return;
 #if WINDOWS_UWP
 #else
             var scaleEffect = new ScaleEffect()
