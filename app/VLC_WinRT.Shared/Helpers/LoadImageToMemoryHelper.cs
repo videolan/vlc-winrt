@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Core;
@@ -56,16 +57,8 @@ namespace VLC_WinRT.Helpers
             {
                 if (fileExists)
                 {
-                    var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(item.Picture));
-                    using (var stream = await file.OpenAsync(FileAccessMode.Read))
-                    {
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                        {
-                            var image = new BitmapImage();
-                            image.SetSource(stream);
-                            item.ArtistImage = image;
-                        });
-                    }
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => item.ArtistImage = new BitmapImage(new Uri(item.Picture)));
+                    Debug.WriteLine($"Artist picture set : {item.Name}");
                 }
             }
             catch (Exception ex)
