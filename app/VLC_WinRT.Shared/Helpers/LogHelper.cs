@@ -99,27 +99,31 @@ namespace VLC_WinRT.Helpers
         public static void Log(string s, bool backend = false)
         {
             if (string.IsNullOrEmpty(s)) return;
-            Debug.WriteLine(s);
-            if (backend)
+            try
             {
-                backEndBuffer.Add(s);
-                if (backEndBuffer.Count == 5)
+                //Debug.WriteLine(s);
+                if (backend)
                 {
-                    var lines = backEndBuffer.ToList();
-                    backEndBuffer.Clear();
-                    Task.Run(() => BackendSemaphore(() => WriteInLog(_backendLogFile, lines)));
+                    backEndBuffer.Add(s);
+                    if (backEndBuffer.Count >= 5)
+                    {
+                        var lines = backEndBuffer.ToList();
+                        backEndBuffer.Clear();
+                        Task.Run(() => BackendSemaphore(() => WriteInLog(_backendLogFile, lines)));
+                    }
+                }
+                else
+                {
+                    frontEndBuffer.Add(s);
+                    if (frontEndBuffer.Count >= 5)
+                    {
+                        var lines = frontEndBuffer.ToList();
+                        frontEndBuffer.Clear();
+                        Task.Run(() => FrontendSemaphore(() => WriteInLog(_frontendLogFile, lines)));
+                    }
                 }
             }
-            else
-            {
-                frontEndBuffer.Add(s);
-                if (frontEndBuffer.Count == 5)
-                {
-                    var lines = frontEndBuffer.ToList();
-                    frontEndBuffer.Clear();
-                    Task.Run(() => FrontendSemaphore(() => WriteInLog(_frontendLogFile, lines)));
-                }
-            }
+            catch { }
         }
         
         
