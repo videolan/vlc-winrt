@@ -78,7 +78,13 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             await ArtistPicFetcherSemaphoreSlim.WaitAsync();
             try
             {
+                Debug.WriteLine($"{DateTime.Now} -- loading pic : {artistItem.Name}");
                 await artistItem.LoadPicture();
+                Debug.WriteLine($"{DateTime.Now} -- loading operation DONE: {artistItem.Name}");
+            }
+            catch
+            {
+                ArtistPicFetcherSemaphoreSlim.Release();
             }
             finally
             {
