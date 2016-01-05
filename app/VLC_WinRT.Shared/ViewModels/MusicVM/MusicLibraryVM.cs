@@ -10,8 +10,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
+using System.Xml.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
@@ -32,11 +34,13 @@ namespace VLC_WinRT.ViewModels.MusicVM
     {
         public MusicLibraryManagement MusicLibrary = new MusicLibraryManagement();
         #region private fields
+        private ObservableCollection<GroupItemList<ArtistItem>> _groupedArtists;
         private ObservableCollection<ArtistItem> _topArtists = new ObservableCollection<ArtistItem>();
         private ObservableCollection<ArtistItem> _recommendedArtists = new ObservableCollection<ArtistItem>(); // recommanded with MusicFlow
 
         private ObservableCollection<TrackCollection> _trackCollections = new ObservableCollection<TrackCollection>();
 
+        private ObservableCollection<GroupItemList<AlbumItem>> _groupedAlbums;
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
 
@@ -88,9 +92,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
             set { SetProperty(ref _recommendedArtists, value); }
         }
 
-        public IEnumerable<IGrouping<string, ArtistItem>> GroupedArtists
+        public ObservableCollection<GroupItemList<ArtistItem>> GroupedArtists
         {
-            get { return MusicLibrary.OrderArtists(); }
+            get { return _groupedArtists; }
+            set { SetProperty(ref _groupedArtists, value); }
         }
 
         public IEnumerable<IGrouping<char, TrackItem>> GroupedTracks
@@ -100,7 +105,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public ObservableCollection<GroupItemList<AlbumItem>> GroupedAlbums
         {
-            get { return MusicLibrary.OrderAlbums(Locator.SettingsVM.AlbumsOrderType, Locator.SettingsVM.AlbumsOrderListing); }
+            get { return _groupedAlbums; }
+            set { SetProperty(ref _groupedAlbums, value); }
         }
         #endregion
         #region public props
@@ -301,6 +307,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 {
                     Locator.MainVM.InformationText = Strings.LoadingMusic;
                     LoadingStateAlbums = LoadingState.Loading;
+                    GroupedAlbums = new ObservableCollection<GroupItemList<AlbumItem>>();
                 });
 
                 if (MusicLibrary.Albums != null)
@@ -318,13 +325,31 @@ namespace VLC_WinRT.ViewModels.MusicVM
             });
         }
 
-        private async void Albums_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private async void Albums_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            await OrderAlbums();
+            if (MusicLibrary.Albums?.Count == 0 || MusicLibrary.Albums?.Count == 1)
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    OnPropertyChanged(nameof(IsMusicLibraryEmpty));
+                });
+            }
+
+            if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems.Count > 0)
+            {
+                foreach (var newItem in e.NewItems)
+                {
+                    var album = (AlbumItem) newItem;
+                    await InsertIntoGroupAlbum(album);
+                }
+            }
+            else
+                await OrderAlbums();
         }
 
         public async Task OrderAlbums()
         {
+            _groupedAlbums = MusicLibrary.OrderAlbums(Locator.SettingsVM.AlbumsOrderType, Locator.SettingsVM.AlbumsOrderListing);
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
                 OnPropertyChanged(nameof(GroupedAlbums));
@@ -339,6 +364,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 {
                     Locator.MainVM.InformationText = Strings.LoadingMusic;
                     LoadingStateArtists = LoadingState.Loading;
+                    GroupedArtists = new ObservableCollection<GroupItemList<ArtistItem>>();
                 });
 
                 if (MusicLibrary.Artists != null)
@@ -356,13 +382,31 @@ namespace VLC_WinRT.ViewModels.MusicVM
             });
         }
 
-        private async void Artists_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private async void Artists_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            await OrderArtists();
+            if (MusicLibrary.Artists?.Count == 0 || MusicLibrary.Artists?.Count == 1)
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    OnPropertyChanged(nameof(IsMusicLibraryEmpty));
+                });
+            }
+
+            if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems.Count > 0)
+            {
+                foreach (var newItem in e.NewItems)
+                {
+                    var artist = (ArtistItem)newItem;
+                    await InsertIntoGroupArtist(artist);
+                }
+            }
+            else
+                await OrderArtists();
         }
 
         async Task OrderArtists()
         {
+            _groupedArtists = MusicLibrary.OrderArtists();
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
                 OnPropertyChanged(nameof(GroupedArtists));
@@ -457,6 +501,26 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, newChar));
                 }
                 else await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => firstChar.Add(album));
+            }
+        }
+
+        async Task InsertIntoGroupArtist(ArtistItem artist)
+        {
+            var supposedFirstChar = Strings.HumanizedArtistFirstLetter(artist.Name);
+            var firstChar = GroupedArtists.FirstOrDefault(x=>x.Key == supposedFirstChar);
+            if (firstChar == null)
+            {
+                var newChar = new GroupItemList<ArtistItem>(artist)
+                {
+                    Key = supposedFirstChar
+                };
+                int i = GroupedArtists.IndexOf(Locator.MusicLibraryVM.GroupedArtists.LastOrDefault(x => string.Compare(x.Key, newChar.Key) < 0));
+                i++;
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.High, () => GroupedArtists.Insert(i, newChar));
+            }
+            else
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.High, () => firstChar.Add(artist));
             }
         }
         #endregion
