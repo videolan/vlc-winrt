@@ -52,8 +52,8 @@
                     </ListView.GroupStyle>
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <ItemsWrapGrid SizeChanged="AlbumsWrapGrid_SizeChanged"
-                                           Orientation="Horizontal" />
+                            <ItemsWrapGrid Orientation="Horizontal"
+                                           Margin="{StaticResource FrameMargin}" />
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
                     <ListView.Header>
@@ -65,7 +65,8 @@
                                 <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                             </Grid.RowDefinitions>
                             <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RecommendedForYou}"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"/>
+                                       Style="{StaticResource SubheaderTextBlockStyle}"
+                                       Margin="{StaticResource FrameMargin}" />
                             <ListView x:Name="AlbumsListView"
                                       Grid.Row="2"
                                       ItemsSource="{Binding RandomAlbums}"
@@ -85,7 +86,8 @@
                                 </triggers:Interactions.Triggers>
                                 <ListView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <ItemsStackPanel Orientation="Horizontal" />
+                                        <ItemsStackPanel Orientation="Horizontal"
+                                                         Margin="{StaticResource FrameMarginLeft}"/>
                                     </ItemsPanelTemplate>
                                 </ListView.ItemsPanel>
                             </ListView>

@@ -12,21 +12,23 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
             this.InitializeComponent();
             this.Loaded += AlbumCollectionBase_Loaded;
             this.Unloaded += AlbumCollectionBase_Unloaded;
+            this.SizeChanged += AlbumCollectionBase_SizeChanged;
         }
 
-        private void AlbumCollectionBase_Unloaded(object sender, RoutedEventArgs e)
+        private void AlbumCollectionBase_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Locator.MusicLibraryVM.OnNavigatedFromAlbums();
+            if (AlbumsZoomedInView.ItemsPanelRoot == null) return;
+            TemplateSizer.ComputeAlbums(AlbumsZoomedInView.ItemsPanelRoot as ItemsWrapGrid, AlbumsZoomedInView.ItemsPanelRoot.ActualWidth - 6);
+        }
+
+        private async void AlbumCollectionBase_Unloaded(object sender, RoutedEventArgs e)
+        {
+            await Locator.MusicLibraryVM.OnNavigatedFromAlbums();
         }
 
         private void AlbumCollectionBase_Loaded(object sender, RoutedEventArgs e)
         {
             Locator.MusicLibraryVM.OnNavigatedToAlbums();
-        }
-
-        private void AlbumsWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid, AlbumsZoomedInView.ItemsPanelRoot.ActualWidth - 6);
         }
 
         private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)

@@ -20,7 +20,8 @@
                               Source="{Binding GroupedTracks}" />
     </Page.Resources>
     <Grid x:Name="RootGrid"
-          Loaded="Collection_Loaded">
+          Loaded="Collection_Loaded"
+          Margin="{StaticResource FrameMargin}">
         <Grid.Transitions>
             <TransitionCollection>
                 <EntranceThemeTransition />

@@ -44,7 +44,8 @@
                                                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
                                                      ItemTemplate="{StaticResource ArtistHorizontalTemplate}"
                                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                     ScrollViewer.HorizontalScrollMode="Disabled">
+                                                     ScrollViewer.HorizontalScrollMode="Disabled"
+                                                     Margin="{StaticResource FrameMargin}">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
                             <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
@@ -80,7 +81,8 @@
                                 <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                             </Grid.RowDefinitions>
                             <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RecommendedForYou}"
-                                       Style="{StaticResource SubheaderTextBlockStyle}" />
+                                       Style="{StaticResource SubheaderTextBlockStyle}"
+                                       Margin="{StaticResource FrameMargin}" />
                             <ListView x:Name="RecommendedArtistListView"
                                       Grid.Row="2"
                                       IsItemClickEnabled="True"
@@ -98,7 +100,8 @@
                                 </triggers:Interactions.Triggers>
                                 <ListView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <ItemsStackPanel Orientation="Horizontal">
+                                        <ItemsStackPanel Orientation="Horizontal"
+                                                         Margin="{StaticResource FrameMarginLeft}">
                                             <ItemsStackPanel.ChildrenTransitions>
                                                 <TransitionCollection>
                                                     <RepositionThemeTransition />

@@ -13,7 +13,8 @@
       d:DesignWidth="400"
       d:DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <Grid x:Name="RootGrid">
+    <Grid x:Name="RootGrid"
+          Margin="{StaticResource FrameMargin}">
         <Grid.Transitions>
             <TransitionCollection>
                 <EntranceThemeTransition />
