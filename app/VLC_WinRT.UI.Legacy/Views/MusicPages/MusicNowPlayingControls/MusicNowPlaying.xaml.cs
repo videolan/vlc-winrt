@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.ViewModels;
+using System.Diagnostics;
 
 namespace VLC_WinRT.Views.MusicPages.MusicNowPlayingControls
 {
