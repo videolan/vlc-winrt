@@ -12,9 +12,8 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
              Visibility="{Binding IsMiniPlayerVisible}">
     <Grid x:Name="RootGrid"
-          RequestedTheme="Dark"
           Height="60"
-          Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
+          Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1" />
             <RowDefinition />
@@ -22,7 +21,6 @@
         </Grid.RowDefinitions>
         <userControls:SliderControlHorizontal x:Name="SliderControl"
                                               Grid.Row="1"
-                                              RequestedTheme="Dark"
                                               VerticalAlignment="Center" />
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
