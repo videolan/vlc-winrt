@@ -210,7 +210,7 @@ namespace VLC_WinRT.Helpers
 
         public static void SetTitleBar(bool extend)
         {
-            var titleBarInstance = GetTitleBarInstanceOnW10();
+            var titleBarInstance = GetCoreTitleBarInstanceOnW10();
             if (titleBarInstance == null) return;
             titleBarInstance.ExtendViewIntoTitleBar = extend;
         }
@@ -220,20 +220,28 @@ namespace VLC_WinRT.Helpers
 #if WINDOWS_PHONE_APP
             return 0;
 #else
-            var titleBarInstance = GetTitleBarInstanceOnW10();
+            var titleBarInstance = GetCoreTitleBarInstanceOnW10();
             if (titleBarInstance == null) return DefaultTitleBarHeight;
             if (titleBarInstance.Height == 0) return DefaultTitleBarHeight;
             return titleBarInstance.Height;
 #endif
         }
 
-        public static dynamic GetTitleBarInstanceOnW10()
+#if WINDOWS_UWP
+        public static CoreApplicationViewTitleBar GetCoreTitleBarInstanceOnW10()
+        {
+            var coreAppView = CoreApplication.GetCurrentView();
+            return coreAppView.TitleBar;
+        }
+#else
+        public static dynamic GetCoreTitleBarInstanceOnW10()
         {
             var coreAppView = CoreApplication.GetCurrentView();
             var allProperties = coreAppView.GetType().GetRuntimeProperties();
             var titleBar = allProperties.FirstOrDefault(x => x.Name == "TitleBar");
             dynamic titleBarInstance = titleBar?.GetMethod.Invoke(coreAppView, null);
             return titleBarInstance;
-        }
+    }
+#endif
     }
 }
