@@ -240,26 +240,24 @@ namespace Slide2D.Images
             // "Vector2" requires System.Numerics for UWP. But for some reason ScaleEffect can only use Windows.Foundation.Numerics,
             // which you can't use to make vectors. So... we can't use this yet until we can figure out what's wrong here.
             if (currentImg.GaussianBlurCache == null) return;
-#if WINDOWS_UWP
-#else
+
             var scaleEffect = new ScaleEffect()
             {
                 Source = currentImg.GaussianBlurCache,
-                Scale = new Vector2()
+                Scale = new System.Numerics.Vector2()
                 {
                     X = currentImg.Scale,
                     Y = currentImg.Scale
                 },
             };
 
-            scaleEffect.CenterPoint = new Vector2()
+            scaleEffect.CenterPoint = new System.Numerics.Vector2()
             {
                 X = 0,
                 Y = 0
             };
 
             currentImg.ScaleEffect = scaleEffect;
-#endif
 
             if (frame < IntroFrameThreshold)
             {
@@ -292,14 +290,13 @@ namespace Slide2D.Images
                     }
                 }
 
-#if WINDOWS_UWP
-#else
-                args.DrawingSession.DrawImage(currentImg.ScaleEffect, new Vector2(), new Rect()
+
+                args.DrawingSession.DrawImage(currentImg.ScaleEffect, new System.Numerics.Vector2(), new Rect()
                 {
                     Height = MetroSlideshow.WindowHeight,
                     Width = MetroSlideshow.WindowWidth
                 }, currentImg.Opacity);
-#endif
+
                 args.DrawingSession.FillRectangle(new Rect(0, 0, MetroSlideshow.WindowWidth, MetroSlideshow.WindowHeight),
                     Color.FromArgb(10, Locator.SettingsVM.AccentColor.R, Locator.SettingsVM.AccentColor.G, Locator.SettingsVM.AccentColor.B));
             }
