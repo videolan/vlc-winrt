@@ -11,7 +11,7 @@ namespace VLC_WinRT.Utils
         public static readonly int SemanticZoomItemCountThreshold = 25;
 
         // Database Version 
-        public static readonly int DbVersion = 5;
+        public static readonly int DbVersion = 6;
         public static bool NeedsToDrop()
         {
             if (!ApplicationSettingsHelper.Contains(Strings.AlreadyLaunched) || ApplicationSettingsHelper.Contains(Strings.DatabaseVersion) && (int)ApplicationSettingsHelper.ReadSettingsValue(Strings.DatabaseVersion) == Numbers.DbVersion)
