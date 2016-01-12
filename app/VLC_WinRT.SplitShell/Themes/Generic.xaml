@@ -191,9 +191,9 @@
                                         <LinearGradientBrush StartPoint="0,0"
                                                              EndPoint="1,0">
                                             <GradientStopCollection>
-                                                <GradientStop Color="#96404040"
+                                                <GradientStop Color="{ThemeResource ShadowStartColor}"
                                                               Offset="1" />
-                                                <GradientStop Color="#00404040"
+                                                <GradientStop Color="{ThemeResource ShadowEndColor}"
                                                               Offset="0" />
                                             </GradientStopCollection>
                                         </LinearGradientBrush>
@@ -232,9 +232,9 @@
                                     <LinearGradientBrush StartPoint="0,0"
                                                          EndPoint="1,0">
                                         <GradientStopCollection>
-                                            <GradientStop Color="#75101010"
+                                            <GradientStop Color="{ThemeResource ShadowStartColor}"
                                                           Offset="0" />
-                                            <GradientStop Color="#00101010"
+                                            <GradientStop Color="{ThemeResource ShadowEndColor}"
                                                           Offset="1" />
                                         </GradientStopCollection>
                                     </LinearGradientBrush>
