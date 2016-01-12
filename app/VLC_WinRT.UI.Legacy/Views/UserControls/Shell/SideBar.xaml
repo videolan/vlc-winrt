@@ -44,8 +44,7 @@
             </AppBarButton>
             <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
                           Label="{Binding Source={StaticResource Strings}, Path=OpenStream}"
-                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
-                          CommandParameter="4">
+                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToStreamPanel}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource StreamSymbol}"
                               FontFamily="{StaticResource VLCFont}" />
