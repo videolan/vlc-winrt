@@ -702,10 +702,7 @@ namespace VLC_WinRT.ViewModels
                     _playerEngine = PlayerEngine.VLC;
                 }
             }
-
-            // Now, ensure the chosen Player is ready to play something
-            await Locator.MediaPlaybackViewModel._mediaService.PlayerInstanceReady.Task;
-
+            
             _mediaService.MediaFailed += _mediaService_MediaFailed;
             _mediaService.StatusChanged += PlayerStateChanged;
             _mediaService.TimeChanged += UpdateTime;

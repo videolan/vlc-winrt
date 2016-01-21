@@ -38,7 +38,7 @@ namespace VLC_WinRT.Services.RunTime
             PlayerInstanceReady = new TaskCompletionSource<bool>();
         }
 
-        public void Initialize(object mediaElement)
+        public Task Initialize(object mediaElement)
         {
             var mE = mediaElement as MediaElement;
             if (mE == null) throw new ArgumentNullException("mediaElement", "MediaFoundationService needs a MediaElement");
@@ -49,14 +49,14 @@ namespace VLC_WinRT.Services.RunTime
             Instance.MediaEnded += Instance_MediaEnded;
             Instance.BufferingProgressChanged += Instance_BufferingProgressChanged;
             PlayerInstanceReady.SetResult(true);
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            return App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 dispatchTimer = new DispatcherTimer()
                 {
                     Interval = TimeSpan.FromSeconds(1),
                 };
                 dispatchTimer.Tick += dispatchTimer_Tick;
-            });
+            }).AsTask();
         }
 
         void Instance_BufferingProgressChanged(object sender, RoutedEventArgs e)

@@ -21,7 +21,7 @@ namespace VLC_WinRT.Services.Interface
         /// or the MediaElement itself from the XAML when using MediaFoundation
         /// </summary>
         /// <param name="panel"></param>
-        void Initialize(object panel);
+        Task Initialize(object panel = null);
 
         /// <summary>
         /// Sets the path of the file to played.

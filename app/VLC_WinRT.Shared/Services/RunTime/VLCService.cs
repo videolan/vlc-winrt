@@ -47,45 +47,49 @@ namespace VLC_WinRT.Services.RunTime
             PlayerInstanceReady = new TaskCompletionSource<bool>();
         }
 
-        public void Initialize(object panel)
+        public Task Initialize(object o = null)
         {
-            var swapchain = panel as SwapChainPanel;
-            if (swapchain == null) throw new ArgumentNullException("panel", "VLCService needs a SwapChainpanel");
-            var param = new List<string>
+            return App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                "-I",
-                "dummy",
-                "--no-osd",
-                "--verbose=3",
-                "--no-stats",
-                "--avcodec-fast",
-                string.Format("--freetype-font={0}\\segoeui.ttf",Windows.ApplicationModel.Package.Current.InstalledLocation.Path),
-                "--subsdec-encoding",
-                Locator.SettingsVM.SubtitleEncodingValue == "System" ? "" : Locator.SettingsVM.SubtitleEncodingValue
-            };
+                var param = new List<string>
+                {
+                    "-I",
+                    "dummy",
+                    "--no-osd",
+                    "--verbose=3",
+                    "--no-stats",
+                    "--avcodec-fast",
+                    string.Format("--freetype-font={0}\\segoeui.ttf",Windows.ApplicationModel.Package.Current.InstalledLocation.Path),
+                    "--subsdec-encoding",
+                    Locator.SettingsVM.SubtitleEncodingValue == "System" ? "" : Locator.SettingsVM.SubtitleEncodingValue
+                };
 
-            // So far, this NEEDS to be called from the main thread
-            try
-            {
-                Instance = new Instance(param, swapchain);
-            }
-            catch (Exception e)
-            {
-                LogHelper.Log("VLC Service : Couldn't create VLC Instance\n" + StringsHelper.ExceptionToString(e));
-                ToastHelper.Basic(Strings.FailStartVLCEngine);
-            }
-            if (Instance != null)
-            {
-                PlayerInstanceReady.SetResult(true);
-            }
+                // So far, this NEEDS to be called from the main thread
+                try
+                {
+                    Instance = new Instance(param, App.RootPage.SwapChainPanel);
+                }
+                catch (Exception e)
+                {
+                    LogHelper.Log("VLC Service : Couldn't create VLC Instance\n" + StringsHelper.ExceptionToString(e));
+                    ToastHelper.Basic(Strings.FailStartVLCEngine);
+                }
+                PlayerInstanceReady.SetResult(Instance != null);
+            }).AsTask();
         }
 
         public async Task SetMediaFile(IVLCMedia media)
         {
             var mrl_fromType = media.GetMrlAndFromType();
             LogHelper.Log("SetMRL: " + mrl_fromType.Item2);
+            if (Instance == null)
+            {
+                await Initialize();
+            }
             await PlayerInstanceReady.Task;
-            if (Instance == null) return;
+
+            if (!PlayerInstanceReady.Task.Result) return;
+
             var mediaVLC = new Media(Instance, mrl_fromType.Item2, mrl_fromType.Item1);
             // Hardware decoding
             mediaVLC.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");

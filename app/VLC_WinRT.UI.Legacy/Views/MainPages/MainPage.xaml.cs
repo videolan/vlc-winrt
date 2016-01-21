@@ -40,12 +40,7 @@ namespace VLC_WinRT.Views.MainPages
         {
             Locator.Slideshow.Initialize(ref Slideshower);
         }
-
-        private void SwapPanelLoaded(object sender, RoutedEventArgs e)
-        {
-            Locator.VLCService.Initialize(SwapChainPanel);
-        }
-
+        
         private void MfMediaElement_Loaded(object sender, RoutedEventArgs e)
         {
             Locator.MFService.Initialize(MfMediaElement);

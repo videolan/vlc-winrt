@@ -21,8 +21,7 @@
         <controls:SplitShell.Content>
             <Grid>
                 <SwapChainPanel x:Name="SwapChainPanel"
-                                x:FieldModifier="public"
-                                Loaded="SwapPanelLoaded" />
+                                x:FieldModifier="public" />
                 <MediaElement x:Name="MfMediaElement"
                               x:FieldModifier="public"
                               AudioDeviceType="Multimedia"
