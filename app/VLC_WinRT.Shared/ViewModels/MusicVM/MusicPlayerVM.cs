@@ -72,7 +72,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     return null;
                 if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack > Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Count)
                 {
-                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = 0);
+                    DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = 0);
                     return null;
                 }
                 var media = Locator.MediaPlaybackViewModel.CurrentMedia;
@@ -165,7 +165,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public async Task UpdateTrackFromMF()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 try
                 {
@@ -191,7 +191,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public async Task UpdatePlayingUI()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Locator.MediaPlaybackViewModel.TrackCollection.IsRunning = true;
                 Locator.MediaPlaybackViewModel.TrackCollection.SetActiveTrackProperty();

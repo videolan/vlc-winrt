@@ -20,6 +20,7 @@ using Autofac;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.FileExplorer;
+using Windows.UI.Core;
 
 #if WINDOWS_APP
 using Windows.Devices.Portable;
@@ -106,7 +107,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             if (cards.Any())
             {
                 var external = new FileExplorerViewModel(cards[0], RootFolderType.ExternalDevice);
-                await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
                     StorageVMs.Add(external);
                     OnPropertyChanged(nameof(StorageVMsGrouped));
@@ -122,7 +123,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
                 foreach (var dlnaFolder in dlnaFolders)
                 {
                     var folder = new FileExplorerViewModel(dlnaFolder, RootFolderType.Network);
-                    await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                    await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                     {
                         StorageVMs.Add(folder);
                         OnPropertyChanged(nameof(StorageVMsGrouped));
@@ -143,7 +144,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 
         private async Task AddFolder(string newId)
         {
-            await DispatchHelper.InvokeAsync(() =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 try
                 {
@@ -164,7 +165,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 
         private async void DeviceRemoved(object sender, string id)
         {
-            await DispatchHelper.InvokeAsync(() =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 FileExplorerViewModel removedViewModel = StorageVMs.FirstOrDefault(vm => vm.Id == id);
                 if (removedViewModel != null)

@@ -148,10 +148,10 @@ namespace VLC_WinRT.ViewModels.VideoVM
         {
             return Task.Run(async () =>
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => LoadingState = LoadingState.Loading);
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => LoadingState = LoadingState.Loading);
                 await VideoLibraryManagement.GetViewedVideos().ConfigureAwait(false);
                 await VideoLibraryManagement.GetVideos(VideoRepository).ConfigureAwait(false);
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
                     Locator.MainVM.InformationText = "";
                 });
@@ -171,13 +171,13 @@ namespace VLC_WinRT.ViewModels.VideoVM
             // Routine check to add new files if there are new ones
             if (!IsBusy)
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
                     IsBusy = true;
                 });
                 await Initialize();
                 await InitializeCameraRollVideos();
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
                     IsBusy = false;
                 });

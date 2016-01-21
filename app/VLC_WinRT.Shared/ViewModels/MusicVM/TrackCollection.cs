@@ -170,7 +170,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public async Task ResetCollection()
         {
             await App.BackgroundAudioHelper.ResetCollection(ResetType.NormalReset);
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Playlist.Clear();
                 CurrentTrack = -1;
@@ -206,7 +206,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public async Task SetPlaylist(IEnumerable<IVLCMedia> tracks)
         {
             var playlist = new SmartCollection<IVLCMedia>(tracks);
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Playlist = playlist);
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Playlist = playlist);
             var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Locator.MediaPlaybackViewModel.TrackCollection.Playlist.ToTrackItemPlaylist());
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
         }
@@ -244,7 +244,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public async Task Add(VideoItem videoItem, bool isPlayingPlaylist)
         {
             if (Playlist.FirstOrDefault(x => x.Path == videoItem.Path) != null) return;
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Playlist.Add(videoItem);
                 OnPropertyChanged(nameof(CanGoNext));
@@ -255,7 +255,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             if (Playlist.FirstOrDefault(x => x.Id == trackItem.Id) != null) return;
             trackItem.Index = (uint)Playlist.Count;
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
                 Playlist.Add(trackItem);
                 OnPropertyChanged(nameof(CanGoNext));
@@ -272,7 +272,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 track.Index = count;
                 count++;
             }
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
                 Playlist.AddRange(trackItems);
                 OnPropertyChanged(nameof(CanGoNext));
@@ -322,7 +322,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         /// <param name="index"></param>
         public Task SetCurrentTrackPosition(int index)
         {
-            return App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentTrack = index).AsTask();
+            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => CurrentTrack = index);
         }
     }
 }

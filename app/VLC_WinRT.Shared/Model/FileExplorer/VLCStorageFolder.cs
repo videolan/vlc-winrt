@@ -31,7 +31,7 @@ namespace VLC_WinRT.Model
         async Task Initialize()
         {
             var props = await storageItem.GetBasicPropertiesAsync();
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
                 if (props.DateModified.Year == 1601) return;
                 lastModified = props.DateModified.ToString("dd/MM/yyyy hh:mm");

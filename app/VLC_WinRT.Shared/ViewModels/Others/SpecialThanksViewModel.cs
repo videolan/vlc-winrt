@@ -6,6 +6,7 @@ using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.System.Threading;
 using VLC_WinRT.Utils;
+using Windows.UI.Core;
 
 namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 {
@@ -40,7 +41,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
                         backerCountries.Add(backerCountry);
                     }
                 }
-                await DispatchHelper.InvokeAsync(() => BackerCountries = backerCountries);
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => BackerCountries = backerCountries);
             });
         }
 

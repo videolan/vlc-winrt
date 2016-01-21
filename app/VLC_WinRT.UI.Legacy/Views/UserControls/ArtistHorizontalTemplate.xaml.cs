@@ -41,7 +41,7 @@ namespace VLC_WinRT.Views.UserControls
             {
                 await artist.ResetArtistHeader();
                 var albumsCount = await Locator.MusicLibraryVM.MusicLibrary.LoadAlbumsCount(artist.Id);
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => AlbumsCountTextBlock.Text = albumsCount + " " + Strings.Albums);
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => AlbumsCountTextBlock.Text = albumsCount + " " + Strings.Albums);
             });
         }
 
@@ -49,7 +49,7 @@ namespace VLC_WinRT.Views.UserControls
         {
             if (e.PropertyName == nameof(Artist.ArtistImage))
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => ArtistImageBrush.ImageSource = Artist.ArtistImage);
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => ArtistImageBrush.ImageSource = Artist.ArtistImage);
             }
         }
     }

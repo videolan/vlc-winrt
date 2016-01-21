@@ -19,7 +19,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
                 Locator.NavigationService.GoBack_Specific();
             }));
             md.Commands.Add(new UICommand("no"));
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () => await md.ShowAsync());
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () => await md.ShowAsync());
         }
     }
 }

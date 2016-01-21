@@ -45,7 +45,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
 
         public static async Task GetViewedVideos()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
                 Locator.VideoLibraryVM.ViewedVideos = new ObservableCollection<VideoItem>();
                 Locator.VideoLibraryVM.ViewedVideos?.Clear();
@@ -62,7 +62,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                         StorageFile file = await StorageFile.GetFileFromPathAsync(videoVm.Path);
                         videoVm.File = file;
                     }
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                     {
                         Locator.VideoLibraryVM.ViewedVideos.Add(videoVm);
                     });
@@ -133,7 +133,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                     }
 
                     // Get back to UI thread
-                    await DispatchHelper.InvokeAsync(() =>
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         if (isNewVideo)
                         {
@@ -187,13 +187,13 @@ namespace VLC_WinRT.Helpers.VideoLibrary
             }
             if (Locator.VideoLibraryVM.Videos.Count > 0)
             {
-                await DispatchHelper.InvokeAsync(() => Locator.VideoLibraryVM.HasNoMedia = false);
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.VideoLibraryVM.HasNoMedia = false);
             }
             else
             {
-                await DispatchHelper.InvokeAsync(() => Locator.VideoLibraryVM.HasNoMedia = true);
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.VideoLibraryVM.HasNoMedia = true);
             }
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
                 Locator.VideoLibraryVM.LoadingState = LoadingState.Loaded;
             });
@@ -275,7 +275,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                 if (show == null)
                 {
                     show = new TvShow(episode.ShowTitle);
-                    await DispatchHelper.InvokeAsync(() =>
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         show.Episodes.Add(episode);
                         Locator.VideoLibraryVM.Shows.Add(show);
@@ -286,7 +286,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                 else
                 {
                     if (show.Episodes.FirstOrDefault(x => x.Id == episode.Id) == null)
-                        await DispatchHelper.InvokeAsync(() => show.Episodes.Add(episode));
+                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => show.Episodes.Add(episode));
                 }
             }
             catch (Exception e)
@@ -325,13 +325,13 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                     if (res == null)
                         return true;
                     image = res.Bitmap();
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => videoItem.Duration = TimeSpan.FromMilliseconds(res.Length()));
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => videoItem.Duration = TimeSpan.FromMilliseconds(res.Length()));
                 }
                 if (thumb != null || image != null)
                 {
                     // RunAsync won't await on the lambda it receives, so we need to do it ourselves
                     var tcs = new TaskCompletionSource<bool>();
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, async () =>
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, async () =>
                     {
                         if (thumb != null)
                         {

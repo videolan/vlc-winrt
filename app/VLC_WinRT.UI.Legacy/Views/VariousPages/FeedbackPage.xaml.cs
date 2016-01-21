@@ -63,7 +63,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
             {
                 var result = await LogHelper.SendFeedback(fb, sendLogs);
 
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                 {
                     if (result.EnsureSuccessStatusCode().IsSuccessStatusCode)
                     {
@@ -83,7 +83,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
             }
             catch (Exception e)
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                 {
                     StatusTextBox.Text = Strings.ErrorSendingFeedback;
                     ProgressRing.IsActive = false;

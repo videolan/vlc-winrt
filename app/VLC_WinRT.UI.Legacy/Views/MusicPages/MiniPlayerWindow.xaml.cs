@@ -12,6 +12,7 @@ using VLC_WinRT.Controls;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.UI.Legacy.Views.MusicPages
 {
@@ -203,7 +204,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
 
         private async void OpenMainWindow_Click(object sender, RoutedEventArgs e)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => CoreApplication.MainView.CoreWindow.Activate());
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => CoreApplication.MainView.CoreWindow.Activate());
         }
 
         private async void ExpandWindow_Click(object sender, RoutedEventArgs e)

@@ -56,7 +56,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
                 var uri = await trackItem.LoadThumbnail();
                 if (!string.IsNullOrEmpty(uri))
                 {
-                    await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () => CoverImage.Source = new BitmapImage(new Uri(uri)));
+                    await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () => CoverImage.Source = new BitmapImage(new Uri(uri)));
                 }
             });
 

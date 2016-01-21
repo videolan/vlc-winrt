@@ -385,7 +385,7 @@ namespace VLC_WinRT.ViewModels.Settings
             {
                 ApplicationSettingsHelper.SaveSettingsValue("AlbumsOrderType", (int)value, false);
                 if ((int)value == 0 || value != _albumsOrderType)
-                    Locator.MusicLibraryVM.OrderAlbums();
+                    Task.Run(() => Locator.MusicLibraryVM.OrderAlbums()).ConfigureAwait(false);
                 SetProperty(ref _albumsOrderType, value);
             }
         }
@@ -409,7 +409,7 @@ namespace VLC_WinRT.ViewModels.Settings
             {
                 ApplicationSettingsHelper.SaveSettingsValue("AlbumsOrderListing", (int)value, false);
                 if (value != _albumsOrderListing)
-                    Locator.MusicLibraryVM.OrderAlbums();
+                    Task.Run(() => Locator.MusicLibraryVM.OrderAlbums());
                 SetProperty(ref _albumsOrderListing, value);
             }
         }
@@ -606,13 +606,13 @@ namespace VLC_WinRT.ViewModels.Settings
         public async Task GetMusicLibraryFolders()
         {
             var musicLib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => MusicFolders = musicLib.Folders.ToList());
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MusicFolders = musicLib.Folders.ToList());
         }
 
         public async Task GetVideoLibraryFolders()
         {
             var videosLib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Videos);
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => VideoFolders = videosLib.Folders.ToList());
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => VideoFolders = videosLib.Folders.ToList());
         }
 #endif
     }

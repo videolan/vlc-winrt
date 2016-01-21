@@ -468,7 +468,7 @@ namespace VLC_WinRT.ViewModels
 
         private async Task UpdateTimeFromUIThread()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
                 OnPropertyChanged("Time");
                 // Assume position also changes when time does.
@@ -480,7 +480,7 @@ namespace VLC_WinRT.ViewModels
 
         public async Task CleanViewModel()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 _mediaService.Stop();
                 PlayingType = PlayingType.NotPlaying;
@@ -507,7 +507,7 @@ namespace VLC_WinRT.ViewModels
         
         public async void OnLengthChanged(Int64 length)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (length < 0) return;
                 TimeTotal = TimeSpan.FromMilliseconds(length);
@@ -535,7 +535,7 @@ namespace VLC_WinRT.ViewModels
 
                 _audioTracks.Clear();
                 _subtitlesTracks.Clear();
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     CurrentAudioTrack = null;
                     CurrentSubtitle = null;
@@ -566,7 +566,7 @@ namespace VLC_WinRT.ViewModels
                 {
                     // First things first: we need to pause the slideshow here before any action is done by VLC
                     Locator.Slideshow.IsPaused = true;
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         PlayingType = PlayingType.Video;
                         IsStream = false;
@@ -582,7 +582,7 @@ namespace VLC_WinRT.ViewModels
 
                     if (video.TimeWatched != TimeSpan.FromSeconds(0))
                         await
-                            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                            DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal,
                                 () => Locator.MediaPlaybackViewModel.Time = (Int64)video.TimeWatched.TotalMilliseconds);
 #if WINDOWS_PHONE_APP
                     try
@@ -601,7 +601,7 @@ namespace VLC_WinRT.ViewModels
                 }
                 else if (media is TrackItem)
                 {
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         IsStream = false;
                         PlayingType = PlayingType.Music;
@@ -623,14 +623,14 @@ namespace VLC_WinRT.ViewModels
                         }
                         else
                         {
-                            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.NavigationService.GoBack_Specific());
+                            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => Locator.NavigationService.GoBack_Specific());
                         }
                         return;
                     }
                     await Locator.MediaPlaybackViewModel.InitializePlayback(track, autoPlay);
                     if (_playerEngine != PlayerEngine.BackgroundMFPlayer)
                     {
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                         {
                             await Locator.MusicPlayerVM.SetCurrentArtist();
                             await Locator.MusicPlayerVM.SetCurrentAlbum();
@@ -651,7 +651,7 @@ namespace VLC_WinRT.ViewModels
                 else if (media is StreamMedia)
                 {
                     UseVlcLib = true;
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         Locator.VideoPlayerVm.CurrentVideo = null;
                         Locator.MediaPlaybackViewModel.PlayingType = PlayingType.Video;
@@ -748,13 +748,13 @@ namespace VLC_WinRT.ViewModels
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => SpeedRate = 100);
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => SpeedRate = 100);
         }
 
         private async void MediaServiceOnOnBuffering(int f)
         {
             _bufferingProgress = f;
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 IsBuffered = f == 100;
                 OnPropertyChanged("BufferingProgress");
@@ -770,7 +770,7 @@ namespace VLC_WinRT.ViewModels
             }
             else
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                 {
                     var md = new MessageDialog(Strings.MediaCantBeRead, Strings.Sorry);
                     await md.ShowAsyncQueue();
@@ -793,7 +793,7 @@ namespace VLC_WinRT.ViewModels
                     await StartAgain();
                     return;
                 }
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
                     TrackCollection.IsRunning = false;
                     IsPlaying = false;
@@ -809,7 +809,7 @@ namespace VLC_WinRT.ViewModels
                 case PlayingType.Music:
                     break;
                 case PlayingType.Video:
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                     {
                         if (Locator.VideoPlayerVm.CurrentVideo != null)
                             Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = 0;
@@ -828,7 +828,7 @@ namespace VLC_WinRT.ViewModels
 
         public async Task StartAgain()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 TrackCollection.CurrentTrack = 0;
                 await Locator.MediaPlaybackViewModel.SetMedia(CurrentMedia, false);
@@ -839,7 +839,7 @@ namespace VLC_WinRT.ViewModels
         {
             if (TrackCollection.CanGoNext)
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                 {
                     TrackCollection.CurrentTrack++;
                     await Locator.MediaPlaybackViewModel.SetMedia(CurrentMedia, false);
@@ -855,7 +855,7 @@ namespace VLC_WinRT.ViewModels
         {
             if (TrackCollection.CanGoPrevious)
             {
-                await DispatchHelper.InvokeAsync(() => TrackCollection.CurrentTrack--);
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => TrackCollection.CurrentTrack--);
                 await Locator.MediaPlaybackViewModel.SetMedia(CurrentMedia, false);
             }
             else
@@ -957,7 +957,7 @@ namespace VLC_WinRT.ViewModels
         {
             try
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
                     IsPlaying = e == MediaState.Playing || e == MediaState.Buffering;
                     MediaState = e;
@@ -1023,12 +1023,12 @@ namespace VLC_WinRT.ViewModels
             if (type == TrackType.Subtitle && CurrentSubtitle == null && _subtitlesTracks?.Count > 1)
             {
                 _currentSubtitle = 1;
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentSubtitle"));
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentSubtitle"));
             }
             else if (type == TrackType.Audio && CurrentAudioTrack == null && _audioTracks?.Count > 1)
             {
                 _currentAudioTrack = 1;
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentAudioTrack"));
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentAudioTrack"));
             }
         }
 
@@ -1048,12 +1048,12 @@ namespace VLC_WinRT.ViewModels
             if (type == TrackType.Subtitle)
             {
                 _currentSubtitle = -1;
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentSubtitle"));
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentSubtitle"));
             }
             else
             {
                 _currentAudioTrack = -1;
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentAudioTrack"));
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentAudioTrack"));
             }
         }
 
@@ -1069,7 +1069,7 @@ namespace VLC_WinRT.ViewModels
                 var vlcChapter = new VLCChapterDescription(c);
                 _chapters.Add(vlcChapter);
             }
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(Chapters));
                 OnPropertyChanged(nameof(CurrentChapter));
@@ -1085,7 +1085,7 @@ namespace VLC_WinRT.ViewModels
 
         public async void UpdateCurrentChapter()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(CurrentChapter));
             });
@@ -1128,7 +1128,7 @@ namespace VLC_WinRT.ViewModels
 
         public async Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 try
                 {
@@ -1163,7 +1163,7 @@ namespace VLC_WinRT.ViewModels
 
         public async Task SetMediaTransportControlsInfo(string title)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 try
                 {

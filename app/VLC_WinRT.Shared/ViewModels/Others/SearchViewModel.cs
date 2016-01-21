@@ -117,7 +117,7 @@ namespace VLC_WinRT.ViewModels.Others
         async Task SearchVideos(string tag)
         {
             _searchResultsVideos = await SearchHelpers.SearchVideos(tag, _searchResultsVideos);
-            await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () =>
             {
                 OnPropertyChanged(nameof(SearchResultsVideos));
                 OnPropertyChanged(nameof(ResultsCount));
@@ -127,7 +127,7 @@ namespace VLC_WinRT.ViewModels.Others
         async Task SearchAlbums(string tag)
         {
             _searchResultsAlbums = await SearchHelpers.SearchAlbums(tag, _searchResultsAlbums);
-            await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () =>
             {
                 OnPropertyChanged(nameof(SearchResultsAlbums));
                 OnPropertyChanged(nameof(ResultsCount));

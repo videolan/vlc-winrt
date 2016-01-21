@@ -251,7 +251,7 @@ namespace VLC_WinRT.Model.Video
                 duration = mP.Duration;
             }
 
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Duration = duration;
             });

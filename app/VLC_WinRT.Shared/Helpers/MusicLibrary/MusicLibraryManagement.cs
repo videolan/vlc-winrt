@@ -421,7 +421,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         };
                         await albumDatabase.Add(album);
                         AddAlbum(album);
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                         {
                             Locator.MainVM.InformationText = string.Format(Strings.AlbumsFound, Locator.MusicLibraryVM.MusicLibrary.Albums.Count);
                         });
@@ -443,7 +443,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         Genre = mP.Genre
                     };
                     await trackDatabase.Add(track);
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => AddTrack(track));
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => AddTrack(track));
                 }
             }
             catch (Exception e)
@@ -620,7 +620,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             trackCollection = await trackCollectionRepository.LoadFromName(trackCollectionName);
             if (trackCollection != null)
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => ToastHelper.Basic(Strings.PlaylistAlreadyExists));
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => ToastHelper.Basic(Strings.PlaylistAlreadyExists));
             }
             else
             {
@@ -639,7 +639,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         public async Task DeletePlaylist(TrackCollection trackCollection)
         {
             await trackCollectionRepository.Remove(trackCollection);
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 TrackCollections.Remove(trackCollection);
             });
@@ -695,7 +695,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         public async Task RemoveTrackFromCollectionAndDatabase(TrackItem trackItem)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 try
                 {
@@ -781,7 +781,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             try
             {
                 var tracks = await trackDatabase.LoadTracksByAlbumId(album.Id);
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     album.Tracks = tracks;
                 });
@@ -797,7 +797,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             try
             {
                 var albums = await albumDatabase.LoadAlbumsFromId(artist.Id).ToObservableAsync();
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     artist.Albums = albums;
                 });
@@ -923,12 +923,12 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             // Routine check to add new files if there are new ones
             //if (!IsBusy)
             //{
-            //    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            //    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             //    {
             //        IsBusy = true;
             //    });
             await StartIndexing();
-            //    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            //    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             //    {
             //        IsBusy = false;
             //        Locator.MainVM.InformationText = "";

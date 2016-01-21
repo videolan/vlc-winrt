@@ -49,7 +49,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public Task Initialize(object o = null)
         {
-            return App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            return DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
                 var param = new List<string>
                 {
@@ -75,7 +75,7 @@ namespace VLC_WinRT.Services.RunTime
                     ToastHelper.Basic(Strings.FailStartVLCEngine);
                 }
                 PlayerInstanceReady.SetResult(Instance != null);
-            }).AsTask();
+            });
         }
 
         public async Task SetMediaFile(IVLCMedia media)

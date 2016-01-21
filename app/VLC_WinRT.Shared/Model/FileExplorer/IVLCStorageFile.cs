@@ -34,7 +34,7 @@ namespace VLC_WinRT.Model
                 sizeString = size.GetSizeString();
 
 
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
                 lastModified = props.DateModified.ToString("dd/MM/yyyy hh:mm");
                 sizeHumanizedString = sizeString;

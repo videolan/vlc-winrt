@@ -21,7 +21,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             var artists = await musicMdFetcher.GetArtistSimilarsArtist(artist.Name);
             if (artists == null) return;
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 artist.IsOnlineRelatedArtistsLoaded = true;
                 artist.OnlineRelatedArtists = artists;
@@ -32,7 +32,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             var albums = await musicMdFetcher.GetArtistTopAlbums(artist.Name);
             if (albums == null) return;
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 artist.IsOnlinePopularAlbumItemsLoaded = true;
                 artist.OnlinePopularAlbumItems = albums;
@@ -43,7 +43,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             var bio = await musicMdFetcher.GetArtistBiography(artist.Name);
             if (bio == null) return;
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 artist.Biography = bio;
             });
@@ -92,7 +92,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             if (await SaveImage(album.Id, "albumPic", img))
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     album.AlbumCoverUri = $"albumPic/{album.Id}.jpg";
                 });
@@ -107,7 +107,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             if (await SaveImage(artist.Id, "artistPic", img))
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => artist.IsPictureLoaded = true);
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => artist.IsPictureLoaded = true);
                 await artist.ResetArtistHeader();
                 return true;
             }
@@ -122,7 +122,7 @@ namespace VLC_WinRT.Services.RunTime
         public async Task GetArtistEvents(ArtistItem artist)
         {
             var shows = await musicMdFetcher.GetArtistEvents(artist.Name);
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 artist.IsUpcomingShowsLoading = false;
                 if (shows == null) return; 

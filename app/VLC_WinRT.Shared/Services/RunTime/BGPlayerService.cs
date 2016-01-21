@@ -55,7 +55,7 @@ namespace VLC_WinRT.Services.RunTime
 
             AddMediaPlayerEventHandlers();
             
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 dispatchTimer = new DispatcherTimer()
                 {
@@ -70,7 +70,7 @@ namespace VLC_WinRT.Services.RunTime
                 {
                     if (!dispatchTimer.IsEnabled)
                     {
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                         {
                             Locator.MediaPlaybackViewModel.IsPlaying = true;
                             Instance_CurrentStateChanged(null, new RoutedEventArgs());
@@ -113,7 +113,7 @@ namespace VLC_WinRT.Services.RunTime
                                 PlayerInstanceReady.SetResult(true);
                             break;
                         case BackgroundAudioConstants.BackgroundTaskCancelled:
-                            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                             {
                                 Locator.MediaPlaybackViewModel.IsPlaying = false;
                             });
@@ -134,12 +134,12 @@ namespace VLC_WinRT.Services.RunTime
 
         private async void CurrentOnMediaOpened(MediaPlayer sender, object args)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Instance_MediaOpened(null, new RoutedEventArgs()));
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Instance_MediaOpened(null, new RoutedEventArgs()));
         }
 
         private async void MediaPlayer_CurrentStateChanged(MediaPlayer sender, object args)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Instance_CurrentStateChanged(null, new RoutedEventArgs()));
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Instance_CurrentStateChanged(null, new RoutedEventArgs()));
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace VLC_WinRT.Services.RunTime
         public async void Play(int trackId)
         {
             // todo : remove the mockup
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (Instance == null) return;
                 try
@@ -233,7 +233,7 @@ namespace VLC_WinRT.Services.RunTime
         public async void Pause()
         {
             // vlc pause() method is a play/pause toggle. we reproduce the same behaviour here
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 if (Instance == null) return;
                 switch (mediaState)
@@ -254,7 +254,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public async void Stop()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (Instance == null) return;
                 dispatchTimer?.Stop();
@@ -279,7 +279,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public async void SkipAhead()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (Instance == null) return;
                 Instance.Position = Instance.Position.Add(TimeSpan.FromSeconds(10));
@@ -288,7 +288,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public async void SkipBack()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (Instance == null) return;
                 var seconds = Instance?.Position.TotalSeconds - 10;

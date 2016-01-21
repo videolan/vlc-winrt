@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
@@ -17,19 +18,31 @@ namespace VLC_WinRT.Utils
 {
     public class DispatchHelper
     {
-        public static Task InvokeAsync(Action action)
-        {
-            //for some reason this crashes the designer (so dont do it in design mode)
-            if (DesignMode.DesignModeEnabled) return Task.FromResult<bool>(false);
+        static readonly SemaphoreSlim ThreadUISemaphoreSlim = new SemaphoreSlim(0);
 
-            if (CoreApplication.MainView.CoreWindow == null || CoreApplication.MainView.CoreWindow.Dispatcher.HasThreadAccess)
+        public static async Task InvokeAsync(CoreDispatcherPriority priority, Action action)
+        {
+            ThreadUISemaphoreSlim.Wait();
+
+            try
             {
-                action();
-                return Task.FromResult<bool>(true);
+                //for some reason this crashes the designer (so dont do it in design mode)
+                if (!DesignMode.DesignModeEnabled)
+                {
+                    if (CoreApplication.MainView.CoreWindow == null || CoreApplication.MainView.CoreWindow.Dispatcher.HasThreadAccess)
+                    {
+                        action();
+                    }
+                    else
+                    {
+                        await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action());
+                    }
+                }
             }
-            else
+            catch { ThreadUISemaphoreSlim.Release(); }
+            finally
             {
-                return CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action()).AsTask();
+                ThreadUISemaphoreSlim.Release();
             }
         }
 
@@ -37,7 +50,7 @@ namespace VLC_WinRT.Utils
         // Prefer the asynchronous version whenever possible
         public static void Invoke(Action action)
         {
-            InvokeAsync(action).Wait();
+            InvokeAsync(CoreDispatcherPriority.Normal, action).Wait();
         }
     }
 }

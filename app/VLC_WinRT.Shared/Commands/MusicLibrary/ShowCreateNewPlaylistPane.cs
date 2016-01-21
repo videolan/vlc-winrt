@@ -10,7 +10,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
     {
         public override async void Execute(object parameter)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Locator.NavigationService.Go(VLCPage.CreateNewPlaylistDialog);
             });

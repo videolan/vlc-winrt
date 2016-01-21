@@ -10,6 +10,7 @@ using VLC_WinRT.Model;
 using VLC_WinRT.Model.Stream;
 using VLC_WinRT.Services.Interface;
 using libVLCX;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Services.RunTime
 {
@@ -49,14 +50,14 @@ namespace VLC_WinRT.Services.RunTime
             Instance.MediaEnded += Instance_MediaEnded;
             Instance.BufferingProgressChanged += Instance_BufferingProgressChanged;
             PlayerInstanceReady.SetResult(true);
-            return App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 dispatchTimer = new DispatcherTimer()
                 {
                     Interval = TimeSpan.FromSeconds(1),
                 };
                 dispatchTimer.Tick += dispatchTimer_Tick;
-            }).AsTask();
+            });
         }
 
         void Instance_BufferingProgressChanged(object sender, RoutedEventArgs e)
@@ -89,7 +90,7 @@ namespace VLC_WinRT.Services.RunTime
         public async Task SetMediaFile(IVLCMedia media)
         {
             var tcs = new TaskCompletionSource<bool>();
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             { tcs.SetResult(Instance != null); });
             var instanceExists = await tcs.Task;
             if (!instanceExists) return;
@@ -117,7 +118,7 @@ namespace VLC_WinRT.Services.RunTime
                 var randomAccessStream = await randomAccessStreamReference.OpenReadAsync();
                 if (randomAccessStream != null)
                 {
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         try
                         {
@@ -163,7 +164,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public async void Play()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (Instance == null) return;
                 Instance.MediaOpened += (sender, args) => Instance.Play();
@@ -179,7 +180,7 @@ namespace VLC_WinRT.Services.RunTime
         public async void Pause()
         {
             // vlc pause() method is a play/pause toggle. we reproduce the same behaviour here
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (Instance == null) return;
                 switch (Instance.CurrentState)
@@ -196,7 +197,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public async void Stop()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (Instance == null) return;
                 dispatchTimer?.Stop();
@@ -220,7 +221,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public async void SkipAhead()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (Instance == null) return;
                 Instance.Position = Instance.Position.Add(TimeSpan.FromSeconds(10));
@@ -229,7 +230,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public async void SkipBack()
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (Instance == null) return;
                 Instance.Position = TimeSpan.FromSeconds(Instance.Position.TotalSeconds - 10);

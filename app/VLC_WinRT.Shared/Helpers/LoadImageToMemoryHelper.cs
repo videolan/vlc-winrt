@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Helpers
 {
@@ -26,7 +27,7 @@ namespace VLC_WinRT.Helpers
             {
                 if (fileExists)
                 {
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => item.AlbumImage = new BitmapImage(new Uri(item.AlbumCoverFullUri)));
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => item.AlbumImage = new BitmapImage(new Uri(item.AlbumCoverFullUri)));
                 }
             }
             catch (Exception)
@@ -57,7 +58,7 @@ namespace VLC_WinRT.Helpers
             {
                 if (fileExists)
                 {
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => item.ArtistImage = new BitmapImage(new Uri(item.Picture)));
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => item.ArtistImage = new BitmapImage(new Uri(item.Picture)));
                     Debug.WriteLine($"Artist picture set : {item.Name}");
                 }
             }
@@ -82,7 +83,7 @@ namespace VLC_WinRT.Helpers
                     var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(item.Thumbnail));
                     using (var stream = await file.OpenAsync(FileAccessMode.Read))
                     {
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                         {
                             var image = new BitmapImage();
                             image.SetSource(stream);

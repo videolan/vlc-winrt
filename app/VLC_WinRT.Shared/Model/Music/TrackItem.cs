@@ -110,7 +110,7 @@ namespace VLC_WinRT.Model.Music
                     Task.Run(async () =>
                     {
                         _thumbnail = await LoadThumbnail();
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => OnPropertyChanged(nameof(Thumbnail)));
+                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => OnPropertyChanged(nameof(Thumbnail)));
                     });
                 }
                 return _thumbnail;

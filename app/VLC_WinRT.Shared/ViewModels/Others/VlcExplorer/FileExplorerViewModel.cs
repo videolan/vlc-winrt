@@ -86,7 +86,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
         {
             try
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     _storageItems.Clear();
                     IsFolderEmpty = false;
@@ -113,7 +113,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                         vlcItems.Add(folder);
                     }
                 }
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
                     StorageItems = new ObservableCollection<IVLCStorageItem>(vlcItems);
                     OnPropertyChanged("StorageItems");
@@ -123,7 +123,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
             {
                 LogHelper.Log("Failed to index folders and files in " + BackStack.Last().DisplayName + "\n" + exception.ToString());
             }
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
                 OnPropertyChanged("CanGoBack");
                 IsFolderEmpty = !StorageItems.Any();
