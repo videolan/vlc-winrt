@@ -92,29 +92,11 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             get
             {
-                OnPropertyChanged(nameof(IsMiniPlayerVisibleHomePage));
                 if (Locator.MediaPlaybackViewModel.TrackCollection.IsRunning &&
                     Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music &&
                     (Locator.NavigationService.CurrentPage != VLCPage.CurrentPlaylistPage &&
                      Locator.NavigationService.CurrentPage != VLCPage.MusicPlayerPage &&
                      Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage))
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-
-        public Visibility IsMiniPlayerVisibleHomePage
-        {
-            get
-            {
-                if (Locator.MediaPlaybackViewModel.TrackCollection.IsRunning &&
-                    Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music &&
-                    (Locator.NavigationService.CurrentPage != VLCPage.MainPageVideo &&
-                     Locator.NavigationService.CurrentPage != VLCPage.MainPageFileExplorer &&
-                     Locator.NavigationService.CurrentPage != VLCPage.MainPageMusic &&
-                     Locator.NavigationService.CurrentPage != VLCPage.MainPageNetwork))
                 {
                     return Visibility.Visible;
                 }
