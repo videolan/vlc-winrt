@@ -48,7 +48,6 @@ namespace VLC_WinRT.ViewModels.Settings
         private OrderType _albumsOrderType;
         private OrderListing _albumsOrderListing;
         private MusicView _musicView;
-        private VideoView _videoView;
         private VLCPage _homePage;
         private string _lastFmUserName;
         private string _lastFmPassword;
@@ -291,15 +290,7 @@ namespace VLC_WinRT.ViewModels.Settings
             OrderListing.Ascending,
             OrderListing.Descending
         };
-
-        public List<VideoView> VideoViewCollection
-        { get; set; }
-        = new List<VideoView>()
-        {
-            VideoView.Videos,
-            VideoView.Shows,
-            VideoView.CameraRoll
-        };
+                
 #if WINDOWS_APP
         public List<StorageFolder> MusicFolders
         {
@@ -411,32 +402,6 @@ namespace VLC_WinRT.ViewModels.Settings
                 if (value != _albumsOrderListing)
                     Task.Run(() => Locator.MusicLibraryVM.OrderAlbums());
                 SetProperty(ref _albumsOrderListing, value);
-            }
-        }
-
-        public VideoView VideoView
-        {
-            get
-            {
-                var videoView = ApplicationSettingsHelper.ReadSettingsValue("VideoView", false);
-                if (videoView == null)
-                {
-                    _videoView = VideoView.Videos;
-                }
-                else
-                {
-                    _videoView = (VideoView)videoView;
-                }
-                return _videoView;
-            }
-            set
-            {
-                ApplicationSettingsHelper.SaveSettingsValue("VideoView", (int)value, false);
-                if (value != _videoView)
-                {
-                    Locator.MainVM.ChangeMainPageVideoViewCommand.Execute((int)value);
-                }
-                SetProperty(ref _videoView, value);
             }
         }
 

@@ -29,7 +29,6 @@
 
             <ListView Grid.Column="1"
                       x:Name="PanelsListView"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                       ItemsSource="{Binding VideoViewCollection}"
                       SelectedItem="{Binding VideoView, Mode=TwoWay}"
                       IsSwipeEnabled="False"

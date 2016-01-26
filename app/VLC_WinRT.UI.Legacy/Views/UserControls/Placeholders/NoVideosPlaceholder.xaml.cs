@@ -14,12 +14,12 @@ namespace VLC_WinRT.Views.UserControls.Placeholder
 
         private void ShowsClick(object sender, RoutedEventArgs e)
         {
-            Locator.SettingsVM.VideoView = VideoView.Shows;
+            Locator.VideoLibraryVM.VideoView = VideoView.Shows;
         }
 
         private void CameraRollClick(object sender, RoutedEventArgs e)
         {
-            Locator.SettingsVM.VideoView = VideoView.CameraRoll;
+            Locator.VideoLibraryVM.VideoView = VideoView.CameraRoll;
         }
     }
 }

@@ -21,6 +21,7 @@ using VLC_WinRT.Model.Video;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Commands.VideoPlayer;
 using VLC_WinRT.Commands.VideoLibrary;
+using System.Collections.Generic;
 
 namespace VLC_WinRT.ViewModels.VideoVM
 {
@@ -35,6 +36,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         #endregion
 
         #region private props
+        private VideoView _videoView;
         private LoadingState _loadingState;
         private bool _isBusy = false;
         private bool _hasNoMedia = true;
@@ -42,6 +44,12 @@ namespace VLC_WinRT.ViewModels.VideoVM
         #endregion
 
         #region public fields
+        public List<VideoView> VideoViewCollection { get; set; } = new List<VideoView>()
+        {
+            VideoView.Videos,
+            VideoView.Shows,
+            VideoView.CameraRoll
+        };
 
         public ObservableCollection<VideoItem> Videos
         {
@@ -72,6 +80,27 @@ namespace VLC_WinRT.ViewModels.VideoVM
         #endregion
 
         #region public props
+        public VideoView VideoView
+        {
+            get
+            {
+                var videoView = ApplicationSettingsHelper.ReadSettingsValue(nameof(VideoView), false);
+                if (videoView == null)
+                {
+                    _videoView = VideoView.Videos;
+                }
+                else
+                {
+                    _videoView = (VideoView)videoView;
+                }
+                return _videoView;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(VideoView), (int)value, false);
+                SetProperty(ref _videoView, value);
+            }
+        }
 
         public TvShow CurrentShow
         {
