@@ -52,10 +52,10 @@ namespace VLC_WinRT.Helpers
             var albums = await SearchAlbumItems(tag);
             foreach (var album in albums)
             {
-                if (!results.Contains(album)) 
+                if (results != null && !results.Contains(album)) 
                     results.Add(album);
             }
-            foreach (var result in results.ToList())
+            foreach (var result in results?.ToList())
             {
                 if (!albums.Contains(result))
                     results.Remove(result);
