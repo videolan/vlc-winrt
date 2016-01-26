@@ -333,34 +333,34 @@ namespace VLC_WinRT.ViewModels.MusicVM
             ResetLibrary();
         }
 
-        public async Task OnNavigatedFromArtists()
+        public Task OnNavigatedFromArtists()
         {
             if (MusicLibrary.Artists != null)
             {
                 MusicLibrary.Artists.CollectionChanged -= Artists_CollectionChanged;
                 MusicLibrary.Artists.Clear();
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
                     GroupedArtists = null;
                     LoadingStateArtists = LoadingState.NotLoaded;
                 });
-                GC.Collect();
             }
+            return null;
         }
 
-        public async Task OnNavigatedFromAlbums()
+        public Task OnNavigatedFromAlbums()
         {
             if (MusicLibrary.Albums != null)
             {
                 MusicLibrary.Albums.CollectionChanged -= Albums_CollectionChanged;
                 MusicLibrary.Albums.Clear();
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
                     GroupedAlbums = null;
                     LoadingStateAlbums = LoadingState.NotLoaded;
                 });
-                GC.Collect();
             }
+            return null;
         }
 
         Task InitializeAlbums()
