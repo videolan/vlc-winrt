@@ -17,6 +17,7 @@ using VLC_WinRT.ViewModels;
 using Windows.Foundation.Collections;
 using VLC_WinRT.BackgroundHelpers;
 using MediaPlayer = Windows.Media.Playback.MediaPlayer;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Services.RunTime
 {
