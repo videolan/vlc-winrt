@@ -16,116 +16,52 @@ namespace VLC_WinRT.Helpers
 
     public static class AppViewHelper
     {
-        public delegate void FullscreenToggle();
-        public static FullscreenToggle FullscreenStateChanged = delegate { };
-        private const double DefaultTitleBarHeight = 40;
-
-        public static double TitleBarHeight
-        {
-            get
-            {
-                return DefaultTitleBarHeight;
-                var height = AppViewHelper.SetTitleBarHeight();
-                return height;
-            }
-        }
-
         public static double PreviousWindowHeight;
         public static double PreviousWindowsWidth;
 
+        public static double TitleBarHeight
+        {
+            get { return CoreApplication.GetCurrentView().TitleBar.Height; }
+        }
+        
         static AppViewHelper()
         {
-            DisplayInformation.GetForCurrentView().DpiChanged += AppViewHelper_DpiChanged;
         }
-
-        private static void AppViewHelper_DpiChanged(DisplayInformation sender, object args)
+        
+        public static void SetAppView(bool extend)
         {
-            SetTitleBarHeight();
-        }
-
-        public static bool IsFullScreen()
-        {
-            var v = ApplicationView.GetForCurrentView();
-            var isFullScreenModeProperty = v.GetType().GetRuntimeProperty("IsFullScreenMode"); // Available only in Windows 10
-            if (isFullScreenModeProperty != null)
-            {
-                object isFullScreenMode = isFullScreenModeProperty.GetValue(v);
-                return (bool)isFullScreenMode;
-            }
-            return v.IsFullScreen;
-        }
-
-        private static bool DoesPropertyExist(string prop, dynamic list)
-        {
-            foreach (dynamic property in list)
-            {
-                if (property.Name == prop)
-                    return true;
-            }
-            return false;
-        }
-
-        public static void SetAppView(Color fgColor)
-        {
-#if WINDOWS_APP
-            try
-            {
-                var v = ApplicationView.GetForCurrentView();
-                var allProperties = v.GetType().GetRuntimeProperties();
-                var titleBar = allProperties.FirstOrDefault(x => x.Name == "TitleBar");
-                if (titleBar == null) return;
-                dynamic bb = titleBar.GetMethod.Invoke(v, null);
-                if (bb != null)
-                {
-                    var appViewProperties = bb.GetType().DeclaredProperties;
-                    bb.BackgroundColor = Color.FromArgb(0, 0, 0, 0);
-                    bb.ForegroundColor = fgColor;
-                    bb.ButtonForegroundColor = fgColor;
-                    bb.ButtonBackgroundColor = Color.FromArgb(0, 0, 0, 0);
-
-                    if (DoesPropertyExist("InactiveBackgroundColor", appViewProperties))
-                        bb.InactiveBackgroundColor = Color.FromArgb(0, 0, 0, 0);
-                    if (DoesPropertyExist("ButtonInactiveForegroundColor", appViewProperties))
-                        bb.ButtonInactiveForegroundColor = bb.ButtonForegroundColor;
-                    if (DoesPropertyExist("InactiveForegroundColor", appViewProperties))
-                        bb.InactiveForegroundColor = bb.ButtonForegroundColor;
-                    if (DoesPropertyExist("ButtonInactiveBackgroundColor", appViewProperties))
-                        bb.ButtonInactiveBackgroundColor = bb.BackgroundColor;
-                }
-            }
-            catch
-            {
-            }
-#elif WINDOWS_UAP
-            var titleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
-            Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+#if WINDOWS_UWP
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            titleBar.ButtonBackgroundColor = Color.FromArgb(0, 0, 0, 0);
 #endif
         }
 
-        public static void SetFullscreen(bool forceExit = false)
+        public static void SetFullscreen()
         {
-#if WINDOWS_APP
+#if WINDOWS_UWP
             var v = ApplicationView.GetForCurrentView();
-            var runtimeMethods = v.GetType().GetRuntimeMethods();
 
-            if (IsFullScreen() || forceExit)
+            if (v.IsFullScreenMode)
             {
-                var exitFullScreenMode = runtimeMethods.FirstOrDefault(x => x.Name == "ExitFullScreenMode");
-                exitFullScreenMode?.Invoke(v, null);
+                v.ExitFullScreenMode();
             }
             else
             {
-                var tryEnterFullScreenMode = runtimeMethods.FirstOrDefault(x => x.Name == "TryEnterFullScreenMode");
-                tryEnterFullScreenMode?.Invoke(v, null);
+                v.TryEnterFullScreenMode();
             }
-            FullscreenStateChanged();
 #endif
         }
-
+        
+        public static bool GetFullscreen()
+        {
+            var v = ApplicationView.GetForCurrentView();
+            return v.IsFullScreenMode;
+        }
 
         public static async Task CreateNewWindow(Type view, double width, double height)
         {
-#if WINDOWS_APP
+#if WINDOWS_UWP
             var newCoreAppView = CoreApplication.CreateNewView();
             var appView = ApplicationView.GetForCurrentView();
             await newCoreAppView.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, async () =>
@@ -163,7 +99,7 @@ namespace VLC_WinRT.Helpers
 
         public static async void ResizeWindow(bool restoPreviousSize, double width = 0, double height = 0)
         {
-#if WINDOWS_APP
+#if WINDOWS_UWP
             var appView = ApplicationView.GetForCurrentView();
             var allMethods = appView.GetType().GetRuntimeMethods();
             var setPrefferedMinSize = allMethods.FirstOrDefault(x => x.Name == "SetPreferredMinSize");
@@ -207,41 +143,5 @@ namespace VLC_WinRT.Helpers
             }
 #endif
         }
-
-        public static void SetTitleBar(bool extend)
-        {
-            var titleBarInstance = GetCoreTitleBarInstanceOnW10();
-            if (titleBarInstance == null) return;
-            titleBarInstance.ExtendViewIntoTitleBar = extend;
-        }
-
-        public static double SetTitleBarHeight()
-        {
-#if WINDOWS_PHONE_APP
-            return 0;
-#else
-            var titleBarInstance = GetCoreTitleBarInstanceOnW10();
-            if (titleBarInstance == null) return DefaultTitleBarHeight;
-            if (titleBarInstance.Height == 0) return DefaultTitleBarHeight;
-            return titleBarInstance.Height;
-#endif
-        }
-
-#if WINDOWS_UWP
-        public static CoreApplicationViewTitleBar GetCoreTitleBarInstanceOnW10()
-        {
-            var coreAppView = CoreApplication.GetCurrentView();
-            return coreAppView.TitleBar;
-        }
-#else
-        public static dynamic GetCoreTitleBarInstanceOnW10()
-        {
-            var coreAppView = CoreApplication.GetCurrentView();
-            var allProperties = coreAppView.GetType().GetRuntimeProperties();
-            var titleBar = allProperties.FirstOrDefault(x => x.Name == "TitleBar");
-            dynamic titleBarInstance = titleBar?.GetMethod.Invoke(coreAppView, null);
-            return titleBarInstance;
-    }
-#endif
     }
 }

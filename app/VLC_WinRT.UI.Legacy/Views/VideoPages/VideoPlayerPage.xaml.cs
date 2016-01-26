@@ -81,7 +81,6 @@ namespace VLC_WinRT.Views.VideoPages
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
             Locator.VideoPlayerVm.OnNavigatedTo();
             Responsive();
-            AppViewHelper.FullscreenStateChanged += FullScreenStateChanged;
             FullScreenStateChanged();
         }
 
@@ -90,13 +89,12 @@ namespace VLC_WinRT.Views.VideoPages
             base.OnNavigatingFrom(e);
             App.RootPage.SwapChainPanel.Visibility = Visibility.Collapsed;
             Locator.VideoPlayerVm.OnNavigatedFrom();
-            AppViewHelper.FullscreenStateChanged -= FullScreenStateChanged;
             App.SplitShell.TitleBarHeight = AppViewHelper.TitleBarHeight;
         }
 
         private void FullScreenStateChanged()
         {
-            if (AppViewHelper.IsFullScreen())
+            if (AppViewHelper.GetFullscreen())
             {
                 App.SplitShell.TitleBarHeight = 0;
             }

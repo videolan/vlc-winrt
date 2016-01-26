@@ -248,7 +248,7 @@ namespace VLC_WinRT
 #if WINDOWS_PHONE_APP
             await StatusBarHelper.Initialize();
 #else
-            AppViewHelper.SetTitleBar(true);
+            AppViewHelper.SetAppView(true);
 #endif
             Window.Current.Activate();
             Locator.MusicLibraryVM.MusicLibrary.DropTablesIfNeeded();
@@ -280,16 +280,6 @@ namespace VLC_WinRT
                 Locator.SettingsVM.AccentColor.B);
             App.Current.Resources["SemiLightMainColorBase"] = lightColor;
             App.Current.Resources["SemiLightMainColor"] = new SolidColorBrush() { Color = lightColor };
-#if WINDOWS_APP
-            if (Locator.SettingsVM.AccentColorTitleBar)
-            {
-                AppViewHelper.SetAppView(Colors.White);
-            }
-            else
-            {
-                AppViewHelper.SetAppView((Color)App.Current.Resources["MainColorBase"]);
-            }
-#endif
         }
     }
 }

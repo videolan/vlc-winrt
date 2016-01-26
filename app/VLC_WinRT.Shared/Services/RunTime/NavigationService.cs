@@ -156,7 +156,6 @@ namespace VLC_WinRT.Services.RunTime
                     GoBack_Default();
                     break;
                 case VLCPage.MiniPlayerView:
-                    AppViewHelper.SetAppView((Color)App.Current.Resources["MainColorBase"]);
                     AppViewHelper.ResizeWindow(true);
                     App.SplitShell.FooterVisibility = Visibility.Visible;
                     GoBack_Default();
@@ -279,7 +278,6 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MiniPlayerView:
                     Locator.Slideshow.IsPaused = true;
                     AppViewHelper.ResizeWindow(false, 400, 80 + AppViewHelper.TitleBarHeight);
-                    AppViewHelper.SetAppView(Colors.WhiteSmoke);
                     App.SplitShell.FooterVisibility = Visibility.Collapsed;
                     App.ApplicationFrame.Navigate(typeof(MiniPlayerWindow));
                     break;

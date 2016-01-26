@@ -32,7 +32,6 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
             this.SizeChanged += MiniPlayerWindow_SizeChanged;
             Initialize();
             Responsive();
-            AppViewHelper.SetAppView(Colors.WhiteSmoke);
         }
 
         private void MiniPlayerWindow_SizeChanged(object sender, SizeChangedEventArgs e)

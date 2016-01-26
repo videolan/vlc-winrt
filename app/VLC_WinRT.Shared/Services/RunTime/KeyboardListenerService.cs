@@ -188,7 +188,7 @@ namespace VLC_WinRT.Services.RunTime
                         AppViewHelper.SetFullscreen();
                         break;
                     case VLCAction.LeaveFullscreen:
-                        AppViewHelper.SetFullscreen(true);
+                        AppViewHelper.SetFullscreen();
                         break;
                     case VLCAction.PauseToggle:
                         if (Locator.MediaPlaybackViewModel.MediaState == MediaState.Paused

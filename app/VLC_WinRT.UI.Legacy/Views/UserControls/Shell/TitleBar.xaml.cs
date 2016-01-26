@@ -7,6 +7,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using VLC_WinRT.ViewModels;
+using Windows.ApplicationModel.Core;
 
 namespace VLC_WinRT.UI.Legacy.Views.UserControls
 {
@@ -18,6 +19,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             this.Loaded += TitleBar_Loaded;
             Locator.SettingsVM.PropertyChanged += SettingsVM_PropertyChanged;
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
+            CoreApplication.GetCurrentView().TitleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
         }
 
         private void ApplicationState_Activated(CoreWindow sender, WindowActivatedEventArgs args)
@@ -36,6 +38,11 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
         private void TitleBar_Loaded(object sender, RoutedEventArgs e)
         {
             Responsive();
+        }
+
+        private void TitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
+        {
+            RootGrid.Height = AppViewHelper.TitleBarHeight;
         }
 
         private void SettingsVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
