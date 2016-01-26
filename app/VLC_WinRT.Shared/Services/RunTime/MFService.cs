@@ -18,7 +18,7 @@ namespace VLC_WinRT.Services.RunTime
     {
         public MediaElement Instance
         {
-            get { return App.RootPage.MfMediaElement; }
+            get { return null; }
         }
 
         public event EventHandler MediaFailed;

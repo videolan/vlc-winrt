@@ -41,17 +41,11 @@ namespace VLC_WinRT.Views.MainPages
             Locator.Slideshow.Initialize(ref Slideshower);
         }
         
-        private void MfMediaElement_Loaded(object sender, RoutedEventArgs e)
-        {
-            Locator.MFService.Initialize(MfMediaElement);
-        }
-
         private void SplitShell_FlyoutCloseRequested(object sender, System.EventArgs e)
         {
             Locator.NavigationService.GoBack_HideFlyout();
         }
-
-
+        
         private void MainFrame_OnNavigated(object sender, NavigationEventArgs e)
         {
 #if WINDOWS_APP
