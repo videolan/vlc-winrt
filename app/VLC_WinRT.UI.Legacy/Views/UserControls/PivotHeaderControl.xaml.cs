@@ -73,25 +73,13 @@ namespace VLC_WinRT.Views.UserControls
 
         void Responsive()
         {
-            if (Window.Current.Bounds.Width < 700)
-            {
-                VisualStateUtilities.GoToState(this, nameof(Snap), false);
-                this.Width = (Window.Current.Bounds.Width - 24) / Locator.MainVM.Panels.Count;
-            }
-            else if (Panel?.Target != VLCPage.LeftSidebar && Window.Current.Bounds.Width < 1000)
+            if (Window.Current.Bounds.Width < 1000)
             {
                 VisualStateUtilities.GoToState(this, nameof(HalfSnap), false);
-                this.Width = double.NaN;
-            }
-            else if (Panel?.Target != VLCPage.LeftSidebar)
-            {
-                VisualStateUtilities.GoToState(this, nameof(Normal), false);
-                this.Width = double.NaN;
             }
             else
             {
-                VisualStateUtilities.GoToState(this, nameof(NormalHamburger), false);
-                this.Width = double.NaN;
+                VisualStateUtilities.GoToState(this, nameof(Normal), false);
             }
         }
 
