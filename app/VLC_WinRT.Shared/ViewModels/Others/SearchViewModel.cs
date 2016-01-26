@@ -67,7 +67,7 @@ namespace VLC_WinRT.ViewModels.Others
             {
                 SetProperty(ref _musicSearchEnabled, value);
                 _videoSearchEnabled = !value;
-                _searchResultsVideos.Clear();
+                _searchResultsVideos?.Clear();
                 OnPropertyChanged("VideoSearchEnabled");
                 if (value && !string.IsNullOrEmpty(SearchTag))
                 {
@@ -83,7 +83,7 @@ namespace VLC_WinRT.ViewModels.Others
             {
                 SetProperty(ref _videoSearchEnabled, value);
                 _musicSearchEnabled = !value;
-                _searchResultsAlbums.Clear();
+                _searchResultsAlbums?.Clear();
                 OnPropertyChanged("MusicSearchEnabled");
                 if (value && !string.IsNullOrEmpty(SearchTag))
                 {
