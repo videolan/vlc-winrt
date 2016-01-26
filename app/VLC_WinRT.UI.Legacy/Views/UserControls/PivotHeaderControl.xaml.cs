@@ -35,6 +35,7 @@ namespace VLC_WinRT.Views.UserControls
 
         public void Init()
         {
+            if (Panel == null) return;
             Icon.Glyph = Panel.DefaultIcon;
             Title.Text = Panel.Title;
             UpdatePivot();
