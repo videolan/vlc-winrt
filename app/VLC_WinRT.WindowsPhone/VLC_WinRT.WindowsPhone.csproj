@@ -815,7 +815,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Graphics.Canvas">
-      <HintPath>..\..\build\packages\Win2D.win81.1.11.0\lib\wpa\Microsoft.Graphics.Canvas.winmd</HintPath>
+      <HintPath>..\..\build\packages\Win2D.win81.1.14.0\lib\wpa\Microsoft.Graphics.Canvas.winmd</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
@@ -905,13 +905,11 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\build\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\build\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
-    <Error Condition="!Exists('..\..\build\packages\Win2D.win81.1.10.0\build\wpa\Win2D.win81.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\build\packages\Win2D.win81.1.10.0\build\wpa\Win2D.win81.targets'))" />
-    <Error Condition="!Exists('..\..\build\packages\Win2D.win81.1.11.0\build\wpa\Win2D.win81.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\build\packages\Win2D.win81.1.11.0\build\wpa\Win2D.win81.targets'))" />
+    <Error Condition="!Exists('..\..\build\packages\Win2D.win81.1.14.0\build\wpa\Win2D.win81.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\build\packages\Win2D.win81.1.14.0\build\wpa\Win2D.win81.targets'))" />
   </Target>
   <Import Project="..\..\build\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\build\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Import Project="..\..\build\packages\Win2D.win81.1.10.0\build\wpa\Win2D.win81.targets" Condition="Exists('..\..\build\packages\Win2D.win81.1.10.0\build\wpa\Win2D.win81.targets')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets" Label="MultilingualAppToolkit" />
-  <Import Project="..\..\build\packages\Win2D.win81.1.11.0\build\wpa\Win2D.win81.targets" Condition="Exists('..\..\build\packages\Win2D.win81.1.11.0\build\wpa\Win2D.win81.targets')" />
+  <Import Project="..\..\build\packages\Win2D.win81.1.14.0\build\wpa\Win2D.win81.targets" Condition="Exists('..\..\build\packages\Win2D.win81.1.14.0\build\wpa\Win2D.win81.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
