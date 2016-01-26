@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -102,12 +103,36 @@ namespace VLC_WinRT.ViewModels.Others
             _videoSearchEnabled = true;
         }
 
+        public void TextChanged(string text)
+        {
+            if (string.IsNullOrEmpty(SearchTag) && !string.IsNullOrEmpty(text))
+            {
+                if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic)
+                {
+                    MusicSearchEnabled = true;
+                }
+                else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageVideo)
+                {
+                    VideoSearchEnabled = true;
+                }
+                Locator.MainVM.GotoSearchPageCommand.Execute(null);
+            }
+            else if (string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(SearchTag))
+            {
+                Locator.NavigationService.GoBack_HideFlyout();
+            }
+            SearchTag = text;
+        }
+
         private void SearchResults_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
         }
 
         public void Dispose()
         {
+            var searchPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == VLCPage.SearchPage);
+            if (searchPanel != null)
+                Locator.MainVM.Panels.Remove(searchPanel);
             _searchResultsAlbums.Clear();
             _searchResultsAlbums = null;
             _searchResultsVideos.Clear();

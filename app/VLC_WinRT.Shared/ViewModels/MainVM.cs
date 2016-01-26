@@ -101,7 +101,12 @@ namespace VLC_WinRT.ViewModels
 
         public ActionCommand GoToLicensePageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.LicensePage));
 
-        public ActionCommand GotoSearchPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SearchPage));
+        public ActionCommand GotoSearchPageCommand { get; } = new ActionCommand(() =>
+        {
+            var searchPanel = new Panel(Strings.Search, VLCPage.SearchPage, App.Current.Resources["SearchSymbol"].ToString(), App.Current.Resources["SearchFilledSymbol"].ToString());
+            Locator.MainVM.Panels.Add(searchPanel);
+            Locator.MainVM.CurrentPanel = searchPanel;
+        });
 
         public ActionCommand GoToFeedbackPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.FeedbackPage));
         public ActionCommand GoToStreamPanel { get; } = new ActionCommand(() => Locator.MainVM.OpenStreamFlyout());

@@ -118,6 +118,7 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MainPageMusic:
                 case VLCPage.MainPageFileExplorer:
                 case VLCPage.MainPageNetwork:
+                case VLCPage.SearchPage:
                     break;
                 case VLCPage.AlbumPage:
                     GoBack_HideFlyout();
@@ -151,9 +152,6 @@ namespace VLC_WinRT.Services.RunTime
                     break;
                 case VLCPage.LicensePage:
                     GoBack_HideFlyout();
-                    break;
-                case VLCPage.SearchPage:
-                    GoBack_Default();
                     break;
                 case VLCPage.MiniPlayerView:
                     AppViewHelper.ResizeWindow(true);
@@ -232,6 +230,7 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MainPageMusic:
                 case VLCPage.MainPageFileExplorer:
                 case VLCPage.MainPageNetwork:
+                case VLCPage.SearchPage:
                     if (App.ApplicationFrame.CurrentSourcePageType != typeof(HomePage))
                         App.ApplicationFrame.Navigate(typeof(HomePage));
                     HomePageNavigated?.Invoke(null, desiredPage);
@@ -271,9 +270,6 @@ namespace VLC_WinRT.Services.RunTime
                     break;
                 case VLCPage.LicensePage:
                     App.SplitShell.RightFlyoutContent = new LicensePage();
-                    break;
-                case VLCPage.SearchPage:
-                    App.ApplicationFrame.Navigate(typeof(SearchPage));
                     break;
                 case VLCPage.MiniPlayerView:
                     Locator.Slideshow.IsPaused = true;
