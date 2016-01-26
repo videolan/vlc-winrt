@@ -95,7 +95,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             _deviceService = null;
 #endif
             _currentStorageVM = null;
-            _storageVMs.Clear();
+            _storageVMs?.Clear();
             _storageVMs = null;
             GC.Collect();
         }
