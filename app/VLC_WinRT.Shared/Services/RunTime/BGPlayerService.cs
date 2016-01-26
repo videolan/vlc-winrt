@@ -49,7 +49,7 @@ namespace VLC_WinRT.Services.RunTime
             Initialize(null);
         }
 
-        public async void Initialize(object mediaElement)
+        public async Task Initialize(object mediaElement = null)
         {
             ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.AppState, BackgroundAudioConstants.ForegroundAppActive);
 
