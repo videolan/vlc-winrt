@@ -9,7 +9,7 @@
              xmlns:userControls="using:VLC_WinRT.Views.UserControls"
              mc:Ignorable="d"
              DataContext="{Binding Source={StaticResource Locator}, Path=SearchVM}">
-
+<!-- TODO : USE A PIVOT HERE ON WINDOWS 10 + WINDOWS PHONE 8.1 and a COMBOBOX on WINDOWS 8.!-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
