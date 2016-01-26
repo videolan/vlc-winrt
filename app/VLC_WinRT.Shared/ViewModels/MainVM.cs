@@ -63,11 +63,6 @@ namespace VLC_WinRT.ViewModels
             set
             {
                 SetProperty(ref _currentPanel, value);
-#if WINDOWS_PHONE_APP
-            var iPreviousView = App.RootPage.ShellContent.CurrentViewIndex;
-            var iNewView = Locator.MainVM.Panels.IndexOf(panel);
-            App.RootPage.ShellContent.SetPivotAnimation(iNewView > iPreviousView);
-#endif
                 Locator.NavigationService.Go(value.Target);
             }
         }
