@@ -18,16 +18,22 @@ namespace VLC_WinRT.Helpers
     {
         public static double PreviousWindowHeight;
         public static double PreviousWindowsWidth;
-
         public static double TitleBarHeight
         {
-            get { return CoreApplication.GetCurrentView().TitleBar.Height; }
+            get
+            {
+#if WINDOWS_UWP
+                return CoreApplication.GetCurrentView().TitleBar.Height;
+#else
+                return 32;
+#endif
+            }
         }
-        
+
         static AppViewHelper()
         {
         }
-        
+
         public static void SetAppView(bool extend)
         {
 #if WINDOWS_UWP
@@ -52,11 +58,15 @@ namespace VLC_WinRT.Helpers
             }
 #endif
         }
-        
+
         public static bool GetFullscreen()
         {
             var v = ApplicationView.GetForCurrentView();
+#if WINDOWS_UWP
             return v.IsFullScreenMode;
+#else
+            return true;
+#endif
         }
 
         public static async Task CreateNewWindow(Type view, double width, double height)

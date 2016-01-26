@@ -19,7 +19,12 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             this.Loaded += TitleBar_Loaded;
             Locator.SettingsVM.PropertyChanged += SettingsVM_PropertyChanged;
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
+#if WINDOWS_UWP
             CoreApplication.GetCurrentView().TitleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
+#elif WINDOWS_APP
+            RootGrid.Height = 0;
+            RootGrid.Visibility = Visibility.Collapsed;
+#endif
         }
 
         private void ApplicationState_Activated(CoreWindow sender, WindowActivatedEventArgs args)
@@ -40,10 +45,12 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             Responsive();
         }
 
+#if WINDOWS_UWP
         private void TitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
         {
             RootGrid.Height = AppViewHelper.TitleBarHeight;
         }
+#endif
 
         private void SettingsVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
