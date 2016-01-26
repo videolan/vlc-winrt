@@ -18,32 +18,22 @@ namespace VLC_WinRT.Utils
 {
     public class DispatchHelper
     {
-        static readonly SemaphoreSlim ThreadUISemaphoreSlim = new SemaphoreSlim(0);
-
-        public static async Task InvokeAsync(CoreDispatcherPriority priority, Action action)
+        public static Task InvokeAsync(CoreDispatcherPriority priority, Action action)
         {
-            ThreadUISemaphoreSlim.Wait();
-
-            try
+            //for some reason this crashes the designer (so dont do it in design mode)
+            if (!DesignMode.DesignModeEnabled)
             {
-                //for some reason this crashes the designer (so dont do it in design mode)
-                if (!DesignMode.DesignModeEnabled)
+                if (CoreApplication.MainView.CoreWindow == null || CoreApplication.MainView.CoreWindow.Dispatcher.HasThreadAccess)
                 {
-                    if (CoreApplication.MainView.CoreWindow == null || CoreApplication.MainView.CoreWindow.Dispatcher.HasThreadAccess)
-                    {
-                        action();
-                    }
-                    else
-                    {
-                        await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action());
-                    }
+                    action();
+                    return Task.FromResult(true);
+                }
+                else
+                {
+                    return CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action()).AsTask();
                 }
             }
-            catch { ThreadUISemaphoreSlim.Release(); }
-            finally
-            {
-                ThreadUISemaphoreSlim.Release();
-            }
+            return Task.FromResult(true);
         }
 
         // This should be avoided as much as possible as it will block a thread.
