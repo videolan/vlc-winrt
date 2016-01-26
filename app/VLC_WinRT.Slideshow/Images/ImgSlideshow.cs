@@ -151,130 +151,134 @@ namespace Slide2D.Images
 
         public async void Update(CanvasAnimatedUpdateEventArgs args)
         {
-            if (changeBackgroundColor)
+            try
             {
-                backgroundColor.A = 255;
-                if (newColorIsDark && backgroundColor.R > 0)
+                if (changeBackgroundColor)
                 {
-                    backgroundColor.R = backgroundColor.G = backgroundColor.B -= 15;
-                }
-                else if (!newColorIsDark && backgroundColor.R < 255)
-                {
-                    backgroundColor.R = backgroundColor.G = backgroundColor.B += 15;
-                }
-                else
-                {
-                    changeBackgroundColor = false;
-                    newColorIsDark = false;
-                }
-                MetroSlideshow.canvas.ClearColor = backgroundColor;
-            }
-            if (currentImg == null) return;
-
-            if (!currentImg.Loaded)
-            {
-                await currentImg.Initialize(MetroSlideshow.canvas);
-            }
-            
-            bool computeBlurPic = true;
-            if (frame < IntroFrameThreshold)
-            {
-                if (frame == 0)
-                {
-                    // Set Default values
-                    currentImg.Opacity = 0;
-                    if (_richAnimations)
+                    backgroundColor.A = 255;
+                    if (newColorIsDark && backgroundColor.R > 0)
                     {
-                        blurAmount = MaximumBlur;
+                        backgroundColor.R = backgroundColor.G = backgroundColor.B -= 15;
+                    }
+                    else if (!newColorIsDark && backgroundColor.R < 255)
+                    {
+                        backgroundColor.R = backgroundColor.G = backgroundColor.B += 15;
                     }
                     else
                     {
-                        blurAmount = 3f;
+                        changeBackgroundColor = false;
+                        newColorIsDark = false;
+                    }
+                    MetroSlideshow.canvas.ClearColor = backgroundColor;
+                }
+                if (currentImg == null) return;
+
+                if (!currentImg.Loaded)
+                {
+                    await currentImg.Initialize(MetroSlideshow.canvas);
+                }
+
+                bool computeBlurPic = true;
+                if (frame < IntroFrameThreshold)
+                {
+                    if (frame == 0)
+                    {
+                        // Set Default values
+                        currentImg.Opacity = 0;
+                        if (_richAnimations)
+                        {
+                            blurAmount = MaximumBlur;
+                        }
+                        else
+                        {
+                            blurAmount = 3f;
+                        }
+                    }
+
+                    if (_richAnimations)
+                        blurAmount -= 0.025f;
+                }
+                else if (frame <= OutroFrameThreshold)
+                {
+                    if (currentImg.GaussianBlurCache != null)
+                    {
+                        computeBlurPic = false;
+                    }
+                }
+                else if (frame < 1000)
+                {
+                    if (_richAnimations)
+                    {
+                        blurAmount += 0.025f;
                     }
                 }
 
-                if (_richAnimations)
-                    blurAmount -= 0.025f;
-            }
-            else if (frame <= OutroFrameThreshold)
-            {
-                if (currentImg.GaussianBlurCache != null)
+                if (computeBlurPic)
                 {
-                    computeBlurPic = false;
+                    if (currentImg.Bmp == null) return;
+                    currentImg.GaussianBlurCache = new GaussianBlurEffect()
+                    {
+                        Source = currentImg.Bmp,
+                        BlurAmount = blurAmount,
+                        Optimization = EffectOptimization.Speed
+                    };
                 }
-            }
-            else if (frame < 1000)
-            {
-                if (_richAnimations)
+
+                float screenRatio = (float)MetroSlideshow.WindowWidth / (float)MetroSlideshow.WindowHeight;
+                float imgRatio = (float)currentImg.Width / (float)currentImg.Height;
+                if (currentImg.Width == -1 || currentImg.Height == -1) return;
+                if (imgRatio > screenRatio)
                 {
-                    blurAmount += 0.025f;
-                }
-            }
-
-            if (computeBlurPic)
-            {
-                if (currentImg.Bmp == null) return;
-                currentImg.GaussianBlurCache = new GaussianBlurEffect()
-                {
-                    Source = currentImg.Bmp,
-                    BlurAmount = blurAmount,
-                    Optimization = EffectOptimization.Speed
-                };
-            }
-
-            float screenRatio = (float)MetroSlideshow.WindowWidth / (float)MetroSlideshow.WindowHeight;
-            float imgRatio = (float)currentImg.Width / (float)currentImg.Height;
-            if (currentImg.Width == -1 || currentImg.Height == -1) return;
-            if (imgRatio > screenRatio)
-            {
-                //img wider than screen, need to scale horizontally
-                currentImg.Scale = (float)(MetroSlideshow.WindowHeight / currentImg.Height);
-            }
-            else
-            {
-                currentImg.Scale = (float)(MetroSlideshow.WindowWidth / currentImg.Width);
-            }
-
-
-
-            // "Vector2" requires System.Numerics for UWP. But for some reason ScaleEffect can only use Windows.Foundation.Numerics,
-            // which you can't use to make vectors. So... we can't use this yet until we can figure out what's wrong here.
-            if (currentImg.GaussianBlurCache == null) return;
-
-            var scaleEffect = new ScaleEffect()
-            {
-                Source = currentImg.GaussianBlurCache,
-                Scale = new System.Numerics.Vector2()
-                {
-                    X = currentImg.Scale,
-                    Y = currentImg.Scale
-                },
-            };
-
-            scaleEffect.CenterPoint = new System.Numerics.Vector2()
-            {
-                X = 0,
-                Y = 0
-            };
-
-            currentImg.ScaleEffect = scaleEffect;
-
-            if (frame < IntroFrameThreshold)
-            {
-                currentImg.Opacity += 0.0013f;
-            }
-            else if (frame > OutroFrameThreshold)
-            {
-                var decrease = 0.0027f;
-                if (fastChange)
-                {
-                    currentImg.Opacity -= decrease * 4;
+                    //img wider than screen, need to scale horizontally
+                    currentImg.Scale = (float)(MetroSlideshow.WindowHeight / currentImg.Height);
                 }
                 else
                 {
-                    currentImg.Opacity -= decrease;
+                    currentImg.Scale = (float)(MetroSlideshow.WindowWidth / currentImg.Width);
+                }
+
+
+
+                // "Vector2" requires System.Numerics for UWP. But for some reason ScaleEffect can only use Windows.Foundation.Numerics,
+                // which you can't use to make vectors. So... we can't use this yet until we can figure out what's wrong here.
+                if (currentImg.GaussianBlurCache == null) return;
+
+                var scaleEffect = new ScaleEffect()
+                {
+                    Source = currentImg.GaussianBlurCache,
+                    Scale = new System.Numerics.Vector2()
+                    {
+                        X = currentImg.Scale,
+                        Y = currentImg.Scale
+                    },
+                };
+
+                scaleEffect.CenterPoint = new System.Numerics.Vector2()
+                {
+                    X = 0,
+                    Y = 0
+                };
+
+                currentImg.ScaleEffect = scaleEffect;
+
+                if (frame < IntroFrameThreshold)
+                {
+                    currentImg.Opacity += 0.0013f;
+                }
+                else if (frame > OutroFrameThreshold)
+                {
+                    var decrease = 0.0027f;
+                    if (fastChange)
+                    {
+                        currentImg.Opacity -= decrease * 4;
+                    }
+                    else
+                    {
+                        currentImg.Opacity -= decrease;
+                    }
                 }
             }
+            catch { }
         }
 
         public async void Draw(CanvasAnimatedDrawEventArgs args)
