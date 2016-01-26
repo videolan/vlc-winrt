@@ -8,8 +8,7 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Grid x:Name="RootGrid" 
-          MinHeight="40"
+    <Grid x:Name="RootGrid"
           Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="47" />
