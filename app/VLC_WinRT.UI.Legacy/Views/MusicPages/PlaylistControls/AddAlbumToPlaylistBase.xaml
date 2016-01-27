@@ -19,9 +19,9 @@
             <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
+            <RowDefinition Height="{StaticResource FrameMarginGridLengthDouble}" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
+            <RowDefinition Height="{StaticResource FrameMarginGridLengthDouble}" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />

@@ -49,14 +49,13 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
+                <RowDefinition Height="{StaticResource FrameMarginGridLengthDouble}" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
+                <RowDefinition Height="{StaticResource FrameMarginGridLengthDouble}" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-
             
             <TextBlock Grid.Row="1"
                        TextTrimming="CharacterEllipsis"

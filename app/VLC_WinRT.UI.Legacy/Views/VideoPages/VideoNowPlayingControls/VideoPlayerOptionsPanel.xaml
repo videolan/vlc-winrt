@@ -15,7 +15,7 @@
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
+                    <RowDefinition Height="{StaticResource FrameMarginGridLengthDouble}" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />

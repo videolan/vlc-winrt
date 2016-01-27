@@ -10,7 +10,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
+            <RowDefinition Height="{StaticResource FrameMarginGridLengthDouble}" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="Auto" />

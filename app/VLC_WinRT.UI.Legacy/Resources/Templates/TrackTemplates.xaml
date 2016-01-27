@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="40" />
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition />
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLengthDouble}" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"
                        Text="{Binding IndexString, Converter={StaticResource NullIntConverter}}"

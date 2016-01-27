@@ -14,7 +14,7 @@
           Background="Black"
           Height="350">
         <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource TitleBarMarginGridLength}" />
+            <RowDefinition Height="{StaticResource FrameMarginGridLengthDouble}" />
             <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
