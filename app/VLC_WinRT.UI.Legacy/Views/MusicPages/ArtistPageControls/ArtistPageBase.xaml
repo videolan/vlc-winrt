@@ -85,6 +85,7 @@
                 <ListView.ItemContainerTransitions>
                     <TransitionCollection>
                         <AddDeleteThemeTransition />
+                        <EntranceThemeTransition IsStaggeringEnabled="True" />
                     </TransitionCollection>
                 </ListView.ItemContainerTransitions>
                 <ListView.ItemsPanel>
