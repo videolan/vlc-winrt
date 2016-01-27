@@ -536,7 +536,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 if (artist == null)
                 {
                     artist = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedArtistName(album.Artist) };
-                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, artist.Key) < 0));
+                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare((string)x.Key, (string)artist.Key) < 0));
                     i++;
                     await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, artist));
                 }
@@ -548,7 +548,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 if (year == null)
                 {
                     var newyear = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedYear(album.Year) };
-                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, newyear.Key) < 0));
+                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare((string)x.Key, (string)newyear.Key) < 0));
                     i++;
                     await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, newyear));
                 }
@@ -560,7 +560,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 if (firstChar == null)
                 {
                     var newChar = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedAlbumFirstLetter(album.Name) };
-                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, newChar.Key) < 0));
+                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare((string)x.Key, (string)newChar.Key) < 0));
                     i++;
                     await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, newChar));
                 }
@@ -579,7 +579,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     Key = supposedFirstChar
                 };
                 if (GroupedArtists == null) return;
-                int i = GroupedArtists.IndexOf(Locator.MusicLibraryVM.GroupedArtists.LastOrDefault(x => string.Compare(x.Key, newChar.Key) < 0));
+                int i = GroupedArtists.IndexOf(Locator.MusicLibraryVM.GroupedArtists.LastOrDefault(x => string.Compare((string)x.Key, (string)newChar.Key) < 0));
                 i++;
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.High, () => GroupedArtists.Insert(i, newChar));
             }
