@@ -293,16 +293,12 @@ namespace Slide2D.Images
                         text.Draw(ref args, ref txts);
                     }
                 }
-
-
+                
                 args.DrawingSession.DrawImage(currentImg.ScaleEffect, new System.Numerics.Vector2(), new Rect()
                 {
                     Height = MetroSlideshow.WindowHeight,
                     Width = MetroSlideshow.WindowWidth
                 }, currentImg.Opacity);
-
-                args.DrawingSession.FillRectangle(new Rect(0, 0, MetroSlideshow.WindowWidth, MetroSlideshow.WindowHeight),
-                    Color.FromArgb(10, Locator.SettingsVM.AccentColor.R, Locator.SettingsVM.AccentColor.G, Locator.SettingsVM.AccentColor.B));
             }
             threshold++;
 
