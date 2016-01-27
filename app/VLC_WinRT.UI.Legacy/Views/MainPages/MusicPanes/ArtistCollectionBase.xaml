@@ -67,6 +67,8 @@
                                 <ItemsWrapGrid.ChildrenTransitions>
                                     <TransitionCollection>
                                         <RepositionThemeTransition />
+                                        <AddDeleteThemeTransition />
+                                        <EntranceThemeTransition IsStaggeringEnabled="True" />
                                     </TransitionCollection>
                                 </ItemsWrapGrid.ChildrenTransitions>
                             </ItemsWrapGrid>

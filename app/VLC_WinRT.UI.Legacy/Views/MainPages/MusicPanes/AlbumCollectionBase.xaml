@@ -53,7 +53,14 @@
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid Orientation="Horizontal"
-                                           Margin="{StaticResource FrameMargin}" />
+                                           Margin="{StaticResource FrameMargin}">
+                                <ItemsWrapGrid.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition />
+                                        <EntranceThemeTransition IsStaggeringEnabled="True" />
+                                    </TransitionCollection>
+                                </ItemsWrapGrid.ChildrenTransitions>
+                            </ItemsWrapGrid>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
                     <ListView.Header>
@@ -87,7 +94,13 @@
                                 <ListView.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <ItemsStackPanel Orientation="Horizontal"
-                                                         Margin="{StaticResource FrameMarginLeft}"/>
+                                                         Margin="{StaticResource FrameMarginLeft}">
+                                            <ItemsStackPanel.ChildrenTransitions>
+                                                <TransitionCollection>
+                                                    <EntranceThemeTransition IsStaggeringEnabled="True" />
+                                                </TransitionCollection>
+                                            </ItemsStackPanel.ChildrenTransitions>
+                                        </ItemsStackPanel>
                                     </ItemsPanelTemplate>
                                 </ListView.ItemsPanel>
                             </ListView>
