@@ -55,6 +55,12 @@ namespace VLC_WinRT.Database
             }
         }
 
+        /// <summary>
+        /// This method gets the albums for a specified artist, along with all the tracks of the albums
+        /// TODO : The SQLite request could be greatly improved IMO
+        /// </summary>
+        /// <param name="artistId"></param>
+        /// <returns></returns>
         public async Task<List<AlbumItem>> LoadAlbumsFromIdWithTracks(int artistId)
         {
             await MusicDatabase.DatabaseOperation.WaitAsync();
