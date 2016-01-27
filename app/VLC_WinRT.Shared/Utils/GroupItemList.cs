@@ -16,7 +16,7 @@ namespace VLC_WinRT.Utils
 
         }
 
-        public string Key { get; set; }
+        public object Key { get; set; }
 
         public new IEnumerator GetEnumerator()
         {
