@@ -189,7 +189,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     if (trackItem == null) continue;
                     trackItem.IsCurrentPlaying = false;
                 }
-                if (Playlist[_currentTrack] != null)
+                if (_currentTrack < Playlist?.Count && Playlist[_currentTrack] != null)
                 {
                     Playlist[_currentTrack].IsCurrentPlaying = true;
                     Debug.WriteLine(Playlist[_currentTrack].Path + " Is the active track");
