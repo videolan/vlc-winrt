@@ -139,44 +139,7 @@ namespace VLC_WinRT.MusicMetaFetcher
 
         private async Task<List<Show>> DownloadArtistEventFromLastFm(string artistName)
         {
-            var lastFmClient = new LastFmClient();
-            var lastfmArtistEvents = await lastFmClient.GetArtistEventInfo(artistName);
-            if (lastfmArtistEvents == null) return null;
-            try
-            {
-                var shows = new List<Show>();
-                foreach (var show in lastfmArtistEvents.Shows)
-                {
-                    DateTime date;
-                    Show Show = null;
-                    bool tryParse = DateTime.TryParse(show.StartDate, out date);
-                    if (tryParse)
-                    {
-                        if (show.Venue.Location.GeoPoint != null && show.Venue.Location.GeoPoint.Latitude != null &&
-                            show.Venue.Location.GeoPoint.Longitute != null)
-                        {
-                            Show = new Show(show.Title, date, show.Venue.Location.City, show.Venue.Location.Country, show.Venue.Location.GeoPoint.Latitude, show.Venue.Location.GeoPoint.Longitute);
-                        }
-                        else
-                        {
-                            Show = new Show(show.Title, date, show.Venue.Location.City, show.Venue.Location.Country);
-                        }
-                    }
-                    else continue;
-                    foreach (var artistShow in show.Artists.Artists)
-                    {
-                        // dirty hack
-                        if (artistShow is JValue)
-                            Show.Artists.Add(artistShow.Value);
-                    }
-                    shows.Add(Show);
-                }
-                return shows;
-            }
-            catch (Exception exception)
-            {
-                Debug.WriteLine("Error when trying to map from Events collection to Artist object for artist : " + artistName + " exceptio log " + exception.ToString());
-            }
+            throw new NotImplementedException();
             return null;
         }
 

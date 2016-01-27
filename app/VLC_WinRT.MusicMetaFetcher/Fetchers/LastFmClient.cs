@@ -22,31 +22,6 @@ namespace VLC_WinRT.MusicMetaFetcher.Fetchers
 {
     public class LastFmClient : IMusicMetaFetcher
     {
-        public async Task<Artist> GetArtistEventInfo(string artistName)
-        {
-            try
-            {
-                var lastFmClient = new HttpClient();
-                string url =
-                    string.Format(
-                        "http://ws.audioscrobbler.com/2.0/?method=artist.getevents&artist={1}&api_key={0}&format=json&pretty=true",
-                        MusicMDFetcher.ApiKeyLastFm, artistName);
-                var reponse = await lastFmClient.GetStringAsync(new Uri(url));
-                var artistEventInfo = JsonConvert.DeserializeObject<ArtistEventInformation>(reponse);
-                if (artistEventInfo == null) return null;
-                if (artistEventInfo.Events == null) return null;
-                if (artistEventInfo.Events.Event == null) return null;
-                var artist = new Artist();
-                artist.MapFrom(artistEventInfo);
-                return artist;
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("Error when trying to get Shows for artist : " + artistName + " exception log " + e.ToString());
-            }
-            return null;
-        }
-
         public async Task<Artist> GetArtistInfo(string artistName)
         {
             try

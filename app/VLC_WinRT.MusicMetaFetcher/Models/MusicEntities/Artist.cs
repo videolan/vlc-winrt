@@ -36,8 +36,8 @@ namespace VLC_WinRT.MusicMetaFetcher.Models.MusicEntities
         public string Biography { get; set; }
 
         public bool OnTour { get; set; }
+        
 
-        public List<Event> Shows { get; set; }
         /// <summary>
         /// Map from LastFmClient TopArtist LastFmClient Entity.
         /// </summary>
@@ -122,14 +122,6 @@ namespace VLC_WinRT.MusicMetaFetcher.Models.MusicEntities
             var bigImage = new Image() { Url = string.Format("{0}?size=big", deezerArtist.Picture) };
             this.Images = new List<Image>() { smallImage, mediumImage, bigImage };
             this.DeezerId = deezerArtist.Id.ToString();
-        }
-
-        public void MapFrom(ArtistEventInformation artistEventInformation)
-        {
-            if (artistEventInformation == null) return;
-            if (artistEventInformation.Events == null) return;
-            if (artistEventInformation.Events.Event == null) return;
-            this.Shows = artistEventInformation.Events.Event.ToList();
         }
     }
 }

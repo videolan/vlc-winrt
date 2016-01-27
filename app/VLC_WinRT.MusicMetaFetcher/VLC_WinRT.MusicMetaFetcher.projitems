@@ -16,7 +16,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Deezer\Artists.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Deezer\Tracks.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LastFm\AlbumInformation.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\LastFm\ArtistEventInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LastFm\ArtistInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LastFm\SimilarArtistInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LastFm\TopAlbumInformation.cs" />
