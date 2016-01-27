@@ -140,6 +140,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -155,6 +158,9 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
@@ -173,6 +179,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
@@ -188,6 +197,9 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -203,6 +215,9 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -218,6 +233,9 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
