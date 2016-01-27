@@ -808,6 +808,36 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
         }
 
+        public async Task PopulateAlbumsWithTracks(ArtistItem artist)
+        {
+            try
+            {
+                var albums = await albumDatabase.LoadAlbumsFromIdWithTracks(artist.Id).ToObservableAsync();
+                var groupedAlbums = new ObservableCollection<GroupItemList<TrackItem>>();
+                var groupQuery = from album in albums
+                                 orderby album.Name
+                                 group album.Tracks by album into a
+                                 select new { GroupName = a.Key, Items = a };
+                foreach (var g in groupQuery)
+                {
+                    GroupItemList<TrackItem> tracks = new GroupItemList<TrackItem>();
+                    tracks.Key = g.GroupName;
+                    foreach (var track in g.Items)
+                    {
+                        tracks.AddRange(track);
+                    }
+                    groupedAlbums.Add(tracks);
+                }
+
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    artist.Albums = albums;
+                    artist.AlbumsGrouped = groupedAlbums;
+                });
+            }
+            catch { }
+        }
+
         public Task<List<TracklistItem>> LoadTracks(TrackCollection trackCollection)
         {
             return tracklistItemRepository.LoadTracks(trackCollection);
