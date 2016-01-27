@@ -26,6 +26,7 @@ namespace VLC_WinRT.Helpers
 #if WINDOWS_UWP
         public static void UpdateMusicTile()
         {
+            if (Locator.MusicPlayerVM.CurrentTrack == null) return;
             var content = new TileContent()
             {
                 Visual = new TileVisual()
@@ -44,10 +45,6 @@ namespace VLC_WinRT.Helpers
         {
             var bindingContent = new TileBindingContentAdaptive()
             {
-                PeekImage = new TilePeekImage()
-                {
-                    Source = new TileImageSource(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri)
-                },
                 Children =
                 {
                     new TileText()
@@ -63,7 +60,15 @@ namespace VLC_WinRT.Helpers
                     }
                 }
             };
-
+            
+            if (!string.IsNullOrEmpty(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri))
+            {
+                bindingContent.PeekImage = new TilePeekImage()
+                {
+                    Source = new TileImageSource(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri)
+                };
+            }
+            
             return new TileBinding()
             {
                 Branding = TileBranding.Logo,
@@ -75,29 +80,12 @@ namespace VLC_WinRT.Helpers
         {
             var bindingContent = new TileBindingContentAdaptive()
             {
-                PeekImage = new TilePeekImage()
-                {
-                    Source = new TileImageSource(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri)
-                },
                 Children =
                 {
                     new TileGroup()
                     {
                         Children =
                         {
-                            new TileSubgroup()
-                            {
-                                Weight = 33,
-                                Children =
-                                {
-                                    new TileImage()
-                                    {
-                                        Crop = TileImageCrop.Circle,
-                                        Source = new TileImageSource(Locator.MusicPlayerVM.CurrentArtist.Picture)
-                                    }
-                                }
-
-                            },
                             new TileSubgroup()
                             {
                                 Children =
@@ -120,6 +108,31 @@ namespace VLC_WinRT.Helpers
                 }
             };
 
+            if (!string.IsNullOrEmpty(Locator.MusicPlayerVM.CurrentAlbum?.AlbumCoverFullUri))
+            {
+                bindingContent.PeekImage = new TilePeekImage()
+                {
+                    Source = new TileImageSource(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri)
+                };
+            }
+
+            if (!string.IsNullOrEmpty(Locator.MusicPlayerVM.CurrentArtist?.Picture))
+            {
+                var artistPic = new TileSubgroup()
+                {
+                    Weight = 33,
+                    Children =
+                                {
+                                    new TileImage()
+                                    {
+                                        Crop = TileImageCrop.Circle,
+                                        Source = new TileImageSource(Locator.MusicPlayerVM.CurrentArtist.Picture)
+                                    }
+                                }
+
+                };
+                (bindingContent.Children[0] as TileGroup).Children.Insert(0, artistPic);
+            }
 
             return new TileBinding()
             {
@@ -132,10 +145,6 @@ namespace VLC_WinRT.Helpers
         {
             var bindingContent = new TileBindingContentAdaptive()
             {
-                PeekImage = new TilePeekImage()
-                {
-                    Source = new TileImageSource(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri)
-                },
                 Children =
                 {
                     new TileGroup()
@@ -149,14 +158,6 @@ namespace VLC_WinRT.Helpers
                             new TileSubgroup()
                             {
                                 Weight = 2,
-                                Children =
-                                {
-                                    new TileImage()
-                                    {
-                                        Crop = TileImageCrop.Circle,
-                                        Source = new TileImageSource(Locator.MusicPlayerVM.CurrentArtist.Picture)
-                                    }
-                                }
                             },
                             new TileSubgroup()
                             {
@@ -179,7 +180,23 @@ namespace VLC_WinRT.Helpers
                     }
                 }
             };
+            if (!string.IsNullOrEmpty(Locator.MusicPlayerVM.CurrentAlbum?.AlbumCoverFullUri))
+            {
+                bindingContent.PeekImage = new TilePeekImage()
+                {
+                    Source = new TileImageSource(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri)
+                };
+            }
 
+            if (!string.IsNullOrEmpty(Locator.MusicPlayerVM.CurrentArtist?.Picture))
+            {
+                var artistPic = new TileImage()
+                {
+                    Crop = TileImageCrop.Circle,
+                    Source = new TileImageSource(Locator.MusicPlayerVM.CurrentArtist.Picture)
+                };
+                (bindingContent.Children[0] as TileGroup).Children[1].Children.Add(artistPic);
+            }
             return new TileBinding()
             {
                 Branding = TileBranding.NameAndLogo,
