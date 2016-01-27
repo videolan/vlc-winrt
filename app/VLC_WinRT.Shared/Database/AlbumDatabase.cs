@@ -7,6 +7,7 @@ using SQLite;
 using VLC_WinRT.Model.Music;
 using System.Collections.Generic;
 using VLC_WinRT.Utils;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Database
 {
@@ -46,10 +47,28 @@ namespace VLC_WinRT.Database
         public async Task<List<AlbumItem>> LoadAlbumsFromId(int artistId)
         {
             await MusicDatabase.DatabaseOperation.WaitAsync();
-            var connection = new SQLiteAsyncConnection(DbPath);
-            var album = await connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).OrderBy(x => x.Name).ToListAsync();
-            MusicDatabase.DatabaseOperation.Release();
-            return album;
+            using (var connection = new SQLiteConnection(DbPath))
+            {
+                var albums = connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).OrderBy(x => x.Name).ToList();
+                MusicDatabase.DatabaseOperation.Release();
+                return albums;
+            }
+        }
+
+        public async Task<List<AlbumItem>> LoadAlbumsFromIdWithTracks(int artistId)
+        {
+            await MusicDatabase.DatabaseOperation.WaitAsync();
+            using (var connection = new SQLiteConnection(DbPath))
+            {
+                var albums = connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).OrderBy(x => x.Name).ToList();
+                foreach (var album in albums)
+                {
+                    var tracks = connection.Table<TrackItem>().Where(x => x.AlbumId == album.Id).OrderBy(x => x.DiscNumber).ThenBy(x => x.Index).ToList();
+                    album.Tracks = tracks;
+                }
+                MusicDatabase.DatabaseOperation.Release();
+                return albums;
+            }
         }
 
         public async Task<int> LoadAlbumsCountFromId(int artistId)
