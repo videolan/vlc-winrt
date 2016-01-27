@@ -31,7 +31,7 @@
     <DataTemplate x:Key="AlbumTrackTemplateWithRightMargin">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="35" />
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition />
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLengthDouble}" />
