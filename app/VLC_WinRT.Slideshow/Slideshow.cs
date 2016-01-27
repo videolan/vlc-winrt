@@ -52,29 +52,8 @@ namespace Slide2D
 
             Window.Current.SizeChanged += Current_SizeChanged;
             slideshow = new ImgSlideshow();
-
-            CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
         }
-
-        private void ApplicationState_Activated(CoreWindow sender, WindowActivatedEventArgs args)
-        {
-            if (args.WindowActivationState == CoreWindowActivationState.Deactivated)
-            {
-                if (IsPaused)
-                {
-                    wasPausedBeforeCoreWindowDeactivation = true;
-                }
-                IsPaused = true;
-            }
-            else
-            {
-                if (!wasPausedBeforeCoreWindowDeactivation)
-                {
-                    IsPaused = false;
-                }
-            }
-        }
-
+        
         private void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
         {
             SetWindowSize();
