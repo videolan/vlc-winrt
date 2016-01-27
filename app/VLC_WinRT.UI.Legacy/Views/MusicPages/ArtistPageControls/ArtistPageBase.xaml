@@ -24,22 +24,27 @@
         <ListView Grid.Row="1"
                   Grid.Column="0"
                   x:Name="AlbumsListView"
-                  ItemsSource="{Binding CurrentArtist.Albums}"
+                  ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
                   ItemContainerStyle="{StaticResource ListViewItemBasic}"
-                  ItemTemplate="{StaticResource AlbumResponsiveTemplate}"
+                  ItemTemplate="{StaticResource AlbumTrackTemplateWithRightMargin}"
                   IsItemClickEnabled="False"
                   SelectionMode="None"
                   Margin="{StaticResource FrameMarginLeft}">
             <ListView.ItemContainerTransitions>
                 <TransitionCollection>
                     <AddDeleteThemeTransition />
+                    <EntranceThemeTransition IsStaggeringEnabled="True"/>
                 </TransitionCollection>
             </ListView.ItemContainerTransitions>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Margin="{StaticResource FooterMarginBottom}"/>
+                    <ItemsWrapGrid Orientation="Horizontal"
+                                   Margin="{StaticResource FooterMarginBottom}"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
+            <ListView.GroupStyle>
+                <GroupStyle HeaderTemplate="{StaticResource AlbumResponsiveTemplate}" />
+            </ListView.GroupStyle>
         </ListView>
         <Grid x:Name="ExtraInfoGrid"
               Grid.Row="0"

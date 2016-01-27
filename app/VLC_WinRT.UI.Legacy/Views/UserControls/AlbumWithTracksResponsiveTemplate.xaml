@@ -9,87 +9,75 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Grid>
+    <Grid x:Name="HeaderGrid"
+          Height="90"
+          Background="Transparent"
+          Margin="{StaticResource FrameMarginBottom}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLengthDouble}" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLengthDouble}" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLengthDouble}" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid x:Name="HeaderGrid"
-              Height="90"
-              Background="Transparent"
-              Margin="{StaticResource FrameMarginBottom}"
-              Tapped="HeaderGrid_Tapped">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
-                <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
-                          FontFamily="{StaticResource VLCFont}"
-                          FontSize="26"
-                          Foreground="{ThemeResource MainColor}" />
-            </Grid>
-            <Image x:Name="CoverImage"
-                   Height="90"
-                   Width="90"
-                   Stretch="UniformToFill"
-                   Source="{Binding AlbumImage}" />
-
-            <StackPanel Grid.Column="2"
-                        VerticalAlignment="Center">
-                <TextBlock Grid.Column="2"
-                           x:Name="NameTextBlock"
-                           TextTrimming="CharacterEllipsis"
-                           Style="{StaticResource SubheaderTextBlockStyle}"
-                           Margin="0,0,6,0" />
-
-                <AppBarButton x:Name="PlayAppBarButton"
-                              Margin="-6,12,0,0"
-                              Style="{StaticResource AppBarButtonStyleHorizontal}"
-                              Foreground="{ThemeResource MainColor}">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="{StaticResource PlaySymbol}"
-                                  FontFamily="{StaticResource VLCFont}" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
-            </StackPanel>
-
-            <AppBarButton x:Name="PinAppBarButton"
-                          Grid.Column="3"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Icon="{Binding IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
-                          VerticalAlignment="Center"
-                          Margin="{StaticResource FrameMargin}" />
-            <AppBarButton  x:Name="FavoriteAppBarButton"
-                           Grid.Column="5"
-                           Icon="{Binding Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
-                           Style="{StaticResource AppBarButtonStyleHorizontal}"
-                           VerticalAlignment="Center"
-                           Margin="{StaticResource FrameMargin}" />
+        <Grid Grid.Row="0"
+              Grid.RowSpan="2"
+              Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+            <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
+                      FontFamily="{StaticResource VLCFont}"
+                      FontSize="26"
+                      Foreground="{ThemeResource MainColor}" />
         </Grid>
-        <ListView x:Name="TracksListView"
-                  Grid.Row="1"
-                  Visibility="Collapsed"
-                  SelectionMode="None"
-                  IsItemClickEnabled="True"
-                  ItemContainerStyle="{StaticResource ListViewItemBasic}"
-                  ItemTemplate="{StaticResource AlbumTrackTemplateWithRightMargin}">
-            <triggers:Interactions.Triggers>
-                <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding TrackClicked}"
-                                                  PassEventArgsToCommand="True" />
-                </triggers:EventTrigger>
-            </triggers:Interactions.Triggers>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid Orientation="Horizontal"
-                                   Margin="0,0,16,60" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </ListView>
+        <Image x:Name="CoverImage"
+               Grid.Row="0"
+               Grid.RowSpan="2"
+               Height="90"
+               Width="90"
+               Stretch="UniformToFill"
+               Source="{Binding Key.AlbumImage}" />
+
+        <TextBlock x:Name="NameTextBlock"
+                   Grid.Row="0"
+                   Grid.Column="2"
+                   Grid.ColumnSpan="5"
+                   TextTrimming="CharacterEllipsis"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   Margin="0,0,6,0"
+                   MaxLines="1" />
+
+        <AppBarButton x:Name="PlayAppBarButton"
+                      Grid.Row="1"
+                      Grid.Column="2"
+                      Margin="-6,12,0,0"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Foreground="{ThemeResource MainColor}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource PlaySymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+
+      <AppBarButton x:Name="PinAppBarButton"
+                    Grid.Row="1"
+                    Grid.Column="4"
+                    Margin="-6,12,0,0"
+                    Style="{StaticResource AppBarButtonStyleHorizontal}"
+                    Icon="{Binding Key.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left" />
+        <AppBarButton  x:Name="FavoriteAppBarButton"
+                       Grid.Row="1"
+                       Grid.Column="6"
+                       Margin="-6,12,0,0"
+                       Icon="{Binding Key.Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
+                       Style="{StaticResource AppBarButtonStyleHorizontal}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left" />
     </Grid>
 </UserControl>

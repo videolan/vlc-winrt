@@ -16,55 +16,25 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 {
     public sealed partial class AlbumWithTracksResponsiveTemplate : UserControl
     {
-        bool areTracksVisible = false;
-        bool forceVisibleTracks = false;
         public AlbumWithTracksResponsiveTemplate()
         {
             this.InitializeComponent();
             this.Loaded += AlbumWithTracksResponsiveTemplate_Loaded;
         }
 
-        private void AlbumWithTracksResponsiveTemplate_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void AlbumWithTracksResponsiveTemplate_Loaded(object sender, RoutedEventArgs e)
         {
             this.SizeChanged += AlbumWithTracksResponsiveTemplate_SizeChanged;
-            ResponsiveTracksListView();
             Responsive();
-#if WINDOWS_PHONE_APP
-            HardwareButtons.BackPressed += (obj, args) =>
-            {
-                if (areTracksVisible && forceVisibleTracks)
-                {
-                    Locator.MainVM.PreventAppExit = true;
-                    args.Handled = true;
-                    HideTracks();
-                }
-            };
-#endif
         }
 
-        private void AlbumWithTracksResponsiveTemplate_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
+        private void AlbumWithTracksResponsiveTemplate_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            ResponsiveTracksListView();
             Responsive();
         }
 
         void Responsive()
         {
-            if (forceVisibleTracks)
-            {
-                forceVisibleTracks = false;
-                return;
-            }
-
-            if (this.ActualWidth > 600)
-            {
-                ShowTracks();
-            }
-            else
-            {
-                HideTracks();
-            }
-
             if (this.ActualWidth > 900)
             {
                 CoverImage.Width = CoverImage.Height = HeaderGrid.Height = 150;
@@ -75,34 +45,6 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             }
         }
 
-        void ShowTracks()
-        {
-            TracksListView.Visibility = PlayAppBarButton.Visibility = FavoriteAppBarButton.Visibility = PinAppBarButton.Visibility = Visibility.Visible;
-            areTracksVisible = true;
-        }
-
-        void HideTracks()
-        {
-            TracksListView.Visibility = PlayAppBarButton.Visibility = FavoriteAppBarButton.Visibility = PinAppBarButton.Visibility = Visibility.Collapsed;
-            areTracksVisible = false;
-        }
-
-        void ResponsiveTracksListView()
-        {
-            var wrapGrid = TracksListView.ItemsPanelRoot as ItemsWrapGrid;
-            if (wrapGrid == null) return;
-            TemplateSizer.ComputeAlbumTracks(ref wrapGrid, TracksListView.ActualWidth - wrapGrid.Margin.Left - wrapGrid.Margin.Right);
-        }
-
-        private void HeaderGrid_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
-        {
-            if (!areTracksVisible)
-            {
-                forceVisibleTracks = true;
-                ShowTracks();
-            }
-        }
-        
         public AlbumItem Album
         {
             get { return (AlbumItem)GetValue(AlbumProperty); }
@@ -110,7 +52,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
         }
 
         public static readonly DependencyProperty AlbumProperty =
-            DependencyProperty.Register("Album", typeof(AlbumItem), typeof(AlbumWithTracksResponsiveTemplate), new PropertyMetadata(null, PropertyChangedCallback));
+            DependencyProperty.Register(nameof(Album), typeof(AlbumItem), typeof(AlbumWithTracksResponsiveTemplate), new PropertyMetadata(null, PropertyChangedCallback));
 
 
         private static async void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
@@ -133,8 +75,6 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
             FavoriteAppBarButton.Command = Album.FavoriteAlbum;
             FavoriteAppBarButton.CommandParameter = Album;
-
-            TracksListView.ItemsSource = await Locator.MusicLibraryVM.MusicLibrary.LoadTracksByAlbumId(Album.Id);
         }
     }
 }

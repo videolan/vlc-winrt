@@ -22,7 +22,7 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
             App.SplitShell.ContentSizeChanged += SplitShell_ContentSizeChanged;
             AlbumsListView.SizeChanged += AlbumsListViewOnSizeChanged;
             Responsive();
-            ResponsiveListView();
+            ResponsiveTracksListView();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -33,7 +33,7 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
 
         private void AlbumsListViewOnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            ResponsiveListView();
+            ResponsiveTracksListView();
         }
 
         private void SplitShell_ContentSizeChanged(double newWidth)
@@ -57,9 +57,11 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
             }
         }
 
-        void ResponsiveListView()
+        void ResponsiveTracksListView()
         {
-
+            var wrapGrid = AlbumsListView.ItemsPanelRoot as ItemsWrapGrid;
+            if (wrapGrid == null) return;
+            TemplateSizer.ComputeAlbumTracks(ref wrapGrid, AlbumsListView.ActualWidth - wrapGrid.Margin.Left - wrapGrid.Margin.Right);
         }
     }
 }
