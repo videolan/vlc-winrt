@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace VLC_WinRT.Utils
 {
-    public class GroupItemList<T> : ObservableCollection<T>
+    public class GroupItemList<T> : SmartCollection<T>
     {
         public GroupItemList(T item) : base(new[] { item })
         {
