@@ -42,6 +42,7 @@ namespace Slide2D.Images
 
         private int frame = 0;
         private bool fastChange;
+        private bool clearSlideshow;
         private float blurAmount = MaximumBlur;
 
         private Color backgroundColor;
@@ -73,7 +74,7 @@ namespace Slide2D.Images
 
         private void ViewNavigated(object sender, VLCPage page)
         {
-            //if (page != VLCPage.AlbumPage && page != VLCPage.ArtistPage && page != VLCPage.MusicPlayerPage)
+            Navigated();
         }
 
         private void MusicLibraryVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -89,6 +90,7 @@ namespace Slide2D.Images
         {
             images.Clear();
             bool newPic = false;
+            clearSlideshow = false;
             if (Locator.NavigationService.CurrentPage == VLCPage.AlbumPage ||
                 Locator.NavigationService.CurrentPage == VLCPage.ArtistPage)
             {
@@ -128,21 +130,19 @@ namespace Slide2D.Images
                     }
                 }
             }
+            else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic)
+            {
+                newPic = true;
+            }
             else
             {
-                var artistList = await Locator.MusicLibraryVM.MusicLibrary.LoadArtists(x => x.IsPictureLoaded);
-                if (artistList != null)
-                {
-                    foreach (var artist in artistList)
-                    {
-                        images.Add(new Img(artist.Picture));
-                        newPic = true;
-                    }
-                }
+                newPic = true;
+                clearSlideshow = true;
             }
 
             if (newPic)
             {
+                MetroSlideshow.canvas.Paused = false;
                 frame = OutroFrameThreshold;
                 fastChange = true;
             }
@@ -331,6 +331,12 @@ namespace Slide2D.Images
             {
                 fastChange = false;
             }
+
+            if (clearSlideshow)
+            {
+                MetroSlideshow.canvas.Paused = true;
+            }
+
             // Choosing a new img to display in the next loop
             getNextImg();
             frame = 0;
