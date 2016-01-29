@@ -221,6 +221,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public TrackClickedCommand TrackClickedCommand { get; } = new TrackClickedCommand();
 
+        public AlbumTrackClickedCommand AlbumTrackClickedCommand { get; } = new AlbumTrackClickedCommand();
+
         public PlayAllRandomCommand PlayAllRandomCommand { get; } = new PlayAllRandomCommand();
 
         public PlayAllSongsCommand PlayAllSongsCommand { get; } = new PlayAllSongsCommand();
