@@ -151,7 +151,7 @@
                        VerticalAlignment="Top"
                        Margin="{StaticResource FrameMarginHorizontal}"
                        MaxWidth="450"
-                       TextAlignment="Justify"/>
+                       TextAlignment="Justify" />
         </Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
