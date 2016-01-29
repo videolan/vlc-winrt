@@ -10,14 +10,25 @@
                     xmlns:placeholders="using:VLC_WinRT.Views.UserControls.Placeholders">
 
     <DataTemplate x:Key="AlbumItemTemplate">
-        <userControls:AlbumItem />
+        <userControls:AlbumItem Album="{Binding}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="AlbumItemTemplateKeyBinding">
+        <userControls:AlbumItem Album="{Binding Group.Key}" />
     </DataTemplate>
 
     <DataTemplate x:Key="AlbumItemTemplateFixedSize">
-        <userControls:AlbumItem Height="173"
-                                Width="173"/>
+        <userControls:AlbumItem Album="{Binding}"
+                                Height="173"
+                                Width="173" />
     </DataTemplate>
     
+    <DataTemplate x:Key="AlbumItemTemplateFixedSizeKeyBinding">
+        <userControls:AlbumItem Album="{Binding Group.Key}"
+                                Height="173"
+                                Width="173" />
+    </DataTemplate>
+
     <DataTemplate x:Key="AlbumResponsiveTemplate">
         <userControl:AlbumWithTracksResponsiveTemplate Album="{Binding Key}"/>
     </DataTemplate>

@@ -31,16 +31,26 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
             App.SplitShell.ContentSizeChanged -= SplitShell_ContentSizeChanged;
         }
 
-        private void AlbumsListViewOnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        private void ZoomedOutItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            ResponsiveTracksListView();
+            AlbumsSemanticZoomZoomedOut.SizeChanged += ZoomedOutItemsWrapGrid_SizeChanged;
+            ResponsiveAlbumsWrapGrid();
         }
 
         private void SplitShell_ContentSizeChanged(double newWidth)
         {
             Responsive();
         }
-        
+        private void AlbumsListViewOnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            ResponsiveTracksListView();
+        }
+
+        private void ZoomedOutItemsWrapGrid_SizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            ResponsiveAlbumsWrapGrid();
+        }
+
         void Responsive()
         {
             if (Window.Current.Bounds.Width < 1150)
@@ -61,7 +71,19 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
         {
             var wrapGrid = AlbumsListView.ItemsPanelRoot as ItemsWrapGrid;
             if (wrapGrid == null) return;
-            TemplateSizer.ComputeAlbumTracks(ref wrapGrid, AlbumsListView.ActualWidth - wrapGrid.Margin.Left - wrapGrid.Margin.Right);
+            if (AlbumsSemanticZoom.IsZoomedInViewActive)
+                TemplateSizer.ComputeAlbumTracks(ref wrapGrid, AlbumsListView.ActualWidth - wrapGrid.Margin.Left - wrapGrid.Margin.Right);
+        }
+
+        void ResponsiveAlbumsWrapGrid()
+        {
+            var wrapGridZoomedOut = AlbumsSemanticZoomZoomedOut.ItemsPanelRoot as ItemsWrapGrid;
+                TemplateSizer.ComputeAlbums(wrapGridZoomedOut, AlbumsSemanticZoomZoomedOut.ActualWidth - wrapGridZoomedOut.Margin.Left - wrapGridZoomedOut.Margin.Right);
+        }
+
+        private void SemanticZoom_ViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
+        {
+            AlbumsSemanticZoomZoomedOut.ItemsSource = GroupAlbums.View.CollectionGroups;
         }
     }
 }

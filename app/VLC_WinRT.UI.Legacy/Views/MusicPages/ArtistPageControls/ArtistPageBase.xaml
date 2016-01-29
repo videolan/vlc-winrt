@@ -27,31 +27,69 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <local:MainArtistHeader />
-        <ListView Grid.Row="1"
-                  Grid.Column="0"
-                  x:Name="AlbumsListView"
-                  ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
-                  ItemContainerStyle="{StaticResource ListViewItemBasic}"
-                  ItemTemplate="{StaticResource AlbumTrackTemplateWithRightMargin}"
-                  IsItemClickEnabled="False"
-                  SelectionMode="None"
-                  Margin="{StaticResource FrameMarginLeft}">
-            <ListView.ItemContainerTransitions>
-                <TransitionCollection>
-                    <AddDeleteThemeTransition />
-                    <EntranceThemeTransition IsStaggeringEnabled="True"/>
-                </TransitionCollection>
-            </ListView.ItemContainerTransitions>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid Orientation="Horizontal"
-                                   Margin="{StaticResource FooterMarginBottom}"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.GroupStyle>
-                <GroupStyle HeaderTemplate="{StaticResource AlbumResponsiveTemplate}" />
-            </ListView.GroupStyle>
-        </ListView>
+        <SemanticZoom x:Name="AlbumsSemanticZoom" 
+                      Grid.Row="1"
+                      Grid.Column="0"
+                      Padding="0"
+                      ViewChangeCompleted="SemanticZoom_ViewChangeCompleted"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      ScrollViewer.HorizontalScrollMode="Disabled">
+            <SemanticZoom.ZoomedInView>
+                <ListView x:Name="AlbumsListView"
+                          ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
+                          ItemContainerStyle="{StaticResource ListViewItemBasic}"
+                          ItemTemplate="{StaticResource AlbumTrackTemplateWithRightMargin}"
+                          IsItemClickEnabled="True"
+                          SelectionMode="None"
+                          Margin="{StaticResource FrameMarginLeft}">
+                    <triggers:Interactions.Triggers>
+                        <triggers:EventTrigger EventName="ItemClick">
+                            <triggers:InvokeCommandAction Command="{Binding AlbumTrackClickedCommand}"
+                                                          PassEventArgsToCommand="True" />
+                        </triggers:EventTrigger>
+                    </triggers:Interactions.Triggers>
+                    <ListView.ItemContainerTransitions>
+                        <TransitionCollection>
+                            <AddDeleteThemeTransition />
+                            <EntranceThemeTransition IsStaggeringEnabled="True" />
+                        </TransitionCollection>
+                    </ListView.ItemContainerTransitions>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal"
+                                           Margin="{StaticResource FooterMarginBottom}" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.GroupStyle>
+                        <GroupStyle HeaderTemplate="{StaticResource AlbumResponsiveTemplate}" />
+                    </ListView.GroupStyle>
+                </ListView>
+            </SemanticZoom.ZoomedInView>
+            <SemanticZoom.ZoomedOutView>
+                <ListView x:Name="AlbumsSemanticZoomZoomedOut"
+                          ItemsSource="{Binding CurrentArtist.Albums}"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          ItemTemplate="{StaticResource AlbumItemTemplateKeyBinding}"
+                          IsItemClickEnabled="True"
+                          SelectionMode="None"
+                          Margin="{StaticResource FrameMarginLeft}">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal"
+                                           Margin="{StaticResource FooterMarginBottom}"
+                                           Loaded="ZoomedOutItemsWrapGrid_Loaded">
+                                <ItemsWrapGrid.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition />
+                                        <EntranceThemeTransition IsStaggeringEnabled="True" />
+                                    </TransitionCollection>
+                                </ItemsWrapGrid.ChildrenTransitions>
+                            </ItemsWrapGrid>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </SemanticZoom.ZoomedOutView>
+        </SemanticZoom>
         <Grid x:Name="ExtraInfoGrid"
               Grid.Row="0"
               Grid.RowSpan="2"
