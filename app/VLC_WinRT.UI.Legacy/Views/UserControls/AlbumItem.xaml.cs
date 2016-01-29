@@ -1,4 +1,7 @@
 ﻿using System.Diagnostics;
+using System.Threading.Tasks;
+using VLC_WinRT.Utils;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -32,6 +35,46 @@ namespace VLC_WinRT.Views.UserControls
         {
             if (e.Pointer.PointerDeviceType != Windows.Devices.Input.PointerDeviceType.Mouse) return;
             VisualStateManager.GoToState(this, "Normal", false);
+        }
+        
+
+        public Model.Music.AlbumItem Album
+        {
+            get { return (Model.Music.AlbumItem)GetValue(AlbumProperty); }
+            set { SetValue(AlbumProperty, value); }
+        }
+
+        public static readonly DependencyProperty AlbumProperty =
+            DependencyProperty.Register(nameof(Album), typeof(Model.Music.AlbumItem), typeof(AlbumItem), new PropertyMetadata(null, PropertyChangedCallback));
+
+        private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var that = (AlbumItem)dependencyObject;
+            that.Init();
+        }
+
+        public void Init()
+        {
+            NameTextBlock.Text = Strings.HumanizedAlbumName(Album.Name);
+            ArtistTextBlock.Text = Strings.HumanizedArtistName(Album.Artist);
+            
+            ButtonOverlay.Command = Album.PlayAlbum;
+            ButtonOverlay.CommandParameter = Album;
+
+            Album.PropertyChanged += Album_PropertyChanged;
+            var album = Album;
+            Task.Run(async () =>
+            {
+                await album.ResetAlbumArt();
+            });
+        }
+
+        private async void Album_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Album.AlbumImage))
+            {
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => Cover.Source = Album.AlbumImage);
+            }
         }
     }
 }

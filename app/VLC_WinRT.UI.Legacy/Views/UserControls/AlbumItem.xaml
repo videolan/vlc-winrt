@@ -62,7 +62,7 @@
                       FontSize="42"
                       Foreground="{ThemeResource MainColor}" />
         </Grid>
-        <Image Source="{Binding AlbumImage}"
+        <Image x:Name="Cover" 
                Stretch="UniformToFill"/>
         <Grid PointerExited="Cover_PointerExited"
               PointerEntered="Cover_PointerEntered"
@@ -88,9 +88,7 @@
                           x:Name="ButtonOverlay"
                           Visibility="Collapsed"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
-                          Command="{Binding PlayAlbum}"
-                          CommandParameter="{Binding}">
+                          Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PlaySymbol}"
                               FontSize="36"
@@ -99,7 +97,6 @@
             </AppBarButton>
             <TextBlock x:Name="NameTextBlock" 
                        Grid.Row="1"
-                       Text="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
                        FontSize="15"
@@ -108,7 +105,6 @@
                        Margin="5,0,0,0" />
             <TextBlock x:Name="ArtistTextBlock" 
                        Grid.Row="2"
-                       Text="{Binding Artist, Converter={StaticResource ArtistStringConverter}}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
                        FontSize="14"
