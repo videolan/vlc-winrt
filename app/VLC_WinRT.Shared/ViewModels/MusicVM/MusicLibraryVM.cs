@@ -534,11 +534,12 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByArtist)
             {
-                var artist = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedArtistName(album.Artist));
+                var artist = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => (string)x.Key == Strings.HumanizedArtistName(album.Artist));
                 if (artist == null)
                 {
                     artist = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedArtistName(album.Artist) };
-                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare((string)x.Key, (string)artist.Key) < 0));
+                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => 
+                    string.Compare((string)x.Key, (string)artist.Key, StringComparison.OrdinalIgnoreCase) < 0));
                     i++;
                     await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, artist));
                 }
@@ -546,7 +547,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             }
             else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByDate)
             {
-                var year = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedYear(album.Year));
+                var year = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => (string)x.Key == Strings.HumanizedYear(album.Year));
                 if (year == null)
                 {
                     var newyear = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedYear(album.Year) };
@@ -558,7 +559,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             }
             else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByAlbum)
             {
-                var firstChar = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedAlbumFirstLetter(album.Name));
+                var firstChar = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => (string)x.Key == Strings.HumanizedAlbumFirstLetter(album.Name));
                 if (firstChar == null)
                 {
                     var newChar = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedAlbumFirstLetter(album.Name) };
@@ -573,7 +574,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         async Task InsertIntoGroupArtist(ArtistItem artist)
         {
             var supposedFirstChar = Strings.HumanizedArtistFirstLetter(artist.Name);
-            var firstChar = GroupedArtists.FirstOrDefault(x => x.Key == supposedFirstChar);
+            var firstChar = GroupedArtists.FirstOrDefault(x => (string)x.Key == supposedFirstChar);
             if (firstChar == null)
             {
                 var newChar = new GroupItemList<ArtistItem>(artist)
