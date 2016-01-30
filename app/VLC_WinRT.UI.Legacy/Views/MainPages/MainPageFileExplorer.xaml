@@ -30,7 +30,7 @@
               Grid.Column="0"
               Grid.RowSpan="4"
               Width="250"
-              Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}">
+              Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
             <ListView ItemsSource="{Binding Source={StaticResource StorageVMsGroupedByType}}"
                       SelectedItem="{Binding CurrentStorageVM}"
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyleNoSelectCheck}">
