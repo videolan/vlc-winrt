@@ -71,7 +71,6 @@ namespace VLC_WinRT.Services.RunTime
 
         private void SplitShell_LeftSidebarClosed(object sender, EventArgs e)
         {
-            Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == currentHomePage);
         }
 
         private void NavigationFrame_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
