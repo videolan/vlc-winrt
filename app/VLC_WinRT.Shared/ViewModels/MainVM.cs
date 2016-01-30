@@ -224,7 +224,7 @@ namespace VLC_WinRT.ViewModels
 
         public void OpenStreamFlyout()
         {
-            Locator.NavigationService.Go(VLCPage.MainPageNetwork);
+            CurrentPanel = Panels.FirstOrDefault(x => x.Target == VLCPage.MainPageNetwork);
         }
 
         public ObservableCollection<Panel> Panels
