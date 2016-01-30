@@ -124,10 +124,9 @@
             </Grid.ColumnDefinitions>
             <AppBarButton Grid.Column="1"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Label="{Binding Source={StaticResource Strings}, Path=Back}"
                           Command="{Binding CurrentStorageVM.GoBackCommand}"
                           IsEnabled="{Binding CurrentStorageVM.CanGoBack}"
-                          Margin="0,0,24,0">
+                          Margin="0,0,6,0">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
                               FontFamily="{StaticResource VLCFont}" />
