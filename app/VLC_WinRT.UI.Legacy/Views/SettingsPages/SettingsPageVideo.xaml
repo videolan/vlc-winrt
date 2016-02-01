@@ -14,7 +14,8 @@
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
             <StackPanel x:Name="RootPanel"
                         Margin="{StaticResource FrameMarginBothSidesWithTitleMargin}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal"
+                            Margin="{StaticResource FrameMarginBottom}">
                     <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
                                   HorizontalAlignment="Right"
                                   Command="{Binding ChangeSettingsViewCommand}"
@@ -34,8 +35,7 @@
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontWeight="SemiLight" />
                 <ToggleSwitch Header="{Binding Source={StaticResource Strings}, Path=HardwareDecoding}"
-                              IsOn="{Binding HardwareAccelerationEnabled, Mode=TwoWay}"
-                              Margin="-6,0,0,0" />
+                              IsOn="{Binding HardwareAccelerationEnabled, Mode=TwoWay}" />
                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
                            Margin="0,-6,0,12">
@@ -44,14 +44,12 @@
                 </TextBlock>
 
                 <ToggleSwitch Header="{Binding Source={StaticResource Strings}, Path=ForceLandscape}"
-                              IsOn="{Binding ForceLandscape, Mode=TwoWay}"
-                              Margin="-6,0,0,0" />
-                
+                              IsOn="{Binding ForceLandscape, Mode=TwoWay}" />
+
                 <ToggleSwitch Tag="WindowsOnly"
                               Header="{Binding Source={StaticResource Strings}, Path=VideoPlaybackInBackground}"
-                              IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}"
-                              Margin="-6,0,0,0" />
-                
+                              IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}" />
+
                 <TextBlock Text="{Binding Source={StaticResource Strings}, Path=SubtitlesEncoding}"
                            Margin="0,12,0,0"
                            FontSize="22"

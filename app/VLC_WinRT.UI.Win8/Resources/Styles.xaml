@@ -2891,6 +2891,8 @@
                 Value="{StaticResource ControlContentThemeFontSize}" />
         <Setter Property="MinWidth"
                 Value="154" />
+        <Setter Property="Margin"
+                Value="-6,0,0,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleSwitch">

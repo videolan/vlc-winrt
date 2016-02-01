@@ -14,7 +14,8 @@
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
             <StackPanel x:Name="RootPanel"
                         Margin="{StaticResource FrameMarginBothSidesWithTitleMargin}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal"
+                            Margin="{StaticResource FrameMarginBottom}">
                     <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
                                   HorizontalAlignment="Right"
                                   Command="{Binding ChangeSettingsViewCommand}"
@@ -103,13 +104,11 @@
                            FontWeight="SemiLight" />
                 <ToggleSwitch  Tag="WindowsOnly"
                                Header="{Binding Source={StaticResource Strings}, Path=NotificationWhenSongStarts}"
-                               IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}"
-                               Margin="-6,0,0,0" />
+                               IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}"/>
                 <ToggleSwitch  Tag="WindowsOnly"
                                Header="{Binding Source={StaticResource Strings}, Path=EvenIfNotBackground}"
                                IsOn="{Binding NotificationOnNewSongForeground, Mode=TwoWay}"
-                               Visibility="{Binding NotificationOnNewSong, Converter={StaticResource BooleanToVisibilityConverter}}"
-                               Margin="-6,0,0,0" />
+                               Visibility="{Binding NotificationOnNewSong, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 <TextBlock Text="{Binding Source={StaticResource Strings}, Path=ConnectToLastFM}"
                            Margin="0,20,0,0"
                            FontSize="22"

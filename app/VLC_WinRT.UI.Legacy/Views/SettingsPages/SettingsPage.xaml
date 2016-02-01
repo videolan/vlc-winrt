@@ -11,9 +11,8 @@
           Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
           DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
-            <StackPanel x:Name="RootPanel"
-                        Margin="{StaticResource FrameMarginBothSidesWithTitleMargin}">
-                <Grid>
+            <StackPanel x:Name="RootPanel">
+                <Grid Margin="{StaticResource TitleBarMarginTop}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
@@ -24,7 +23,8 @@
                                   HorizontalAlignment="Stretch"
                                   DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
                                   Command="{Binding GoBackCommand}"
-                                  Width="50">
+                                  Width="50"
+                                  Margin="{StaticResource FrameMarginLeft}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
                                       Margin="0,3,0,0"
@@ -36,7 +36,7 @@
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                 </Grid>
                 <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=UserInterface}"
-                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
                               Command="{Binding ChangeSettingsViewCommand}"
                               CommandParameter="0"
                               FontWeight="Light"
@@ -49,7 +49,7 @@
                     </AppBarButton.Icon>
                 </AppBarButton>
                 <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=VideoSettings}"
-                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
                               Command="{Binding ChangeSettingsViewCommand}"
                               CommandParameter="1"
                               FontWeight="Light"
@@ -62,7 +62,7 @@
                     </AppBarButton.Icon>
                 </AppBarButton>
                 <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=MusicSettings}"
-                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
                               Command="{Binding ChangeSettingsViewCommand}"
                               CommandParameter="2"
                               FontWeight="Light"
@@ -78,15 +78,16 @@
 
                 <TextBlock Text="{Binding Source={StaticResource Strings}, Path=AboutTheApp}"
                            Style="{StaticResource SubheaderTextBlockStyle}"
-                           Margin="0,20" />
+                           Margin="{StaticResource FrameMarginBothSides}"/>
                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
-                           VerticalAlignment="Center">
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource FrameMarginLeft}">
                     <Run Text="VLC"/>
                     <Run x:Name="AppVersion" />
                     <Run Text="for Windows Store" />
                 </TextBlock>
-                <Grid Margin="{StaticResource FrameMarginVertical}">
+                <Grid Margin="{StaticResource FrameMarginBothSides}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
@@ -101,7 +102,8 @@
                             Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToLicensePageCommand}" />
                 </Grid>
                 <Button Content="{Binding Source={StaticResource Strings}, Path=SendFeedback}"
-                        Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToFeedbackPageCommand}" />
+                        Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToFeedbackPageCommand}"
+                        Margin="{StaticResource FrameMarginLeft}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

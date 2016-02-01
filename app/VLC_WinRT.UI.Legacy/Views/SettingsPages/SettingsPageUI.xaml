@@ -14,7 +14,8 @@
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
             <StackPanel x:Name="RootPanel"
                         Margin="{StaticResource FrameMarginBothSidesWithTitleMargin}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal"
+                            Margin="{StaticResource FrameMarginBottom}">
                     <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
                                   HorizontalAlignment="Right"
                                   Command="{Binding ChangeSettingsViewCommand}"
@@ -35,8 +36,7 @@
                            FontWeight="SemiLight" />
                 <ToggleSwitch  Header="{Binding Source={StaticResource Strings}, Path=AppTheme}"
                                OffContent="{Binding Source={StaticResource Strings}, Path=Light}"
-                               OnContent="{Binding Source={StaticResource Strings}, Path=Dark}"
-                               Margin="-6,0,0,0">
+                               OnContent="{Binding Source={StaticResource Strings}, Path=Dark}">
                     <ToggleSwitch.IsOn>
                         <Binding Source="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                                  Path="ApplicationTheme"
@@ -46,8 +46,7 @@
                 </ToggleSwitch>
                 <ToggleSwitch  Header="{Binding Source={StaticResource Strings}, Path=TitleBar}"
                                OffContent="{Binding Source={StaticResource Strings}, Path=BackgroundColor}"
-                               OnContent="{Binding Source={StaticResource Strings}, Path=AccentColor}"
-                               Margin="-6,0,0,0">
+                               OnContent="{Binding Source={StaticResource Strings}, Path=AccentColor}">
                     <ToggleSwitch.IsOn>
                         <Binding Source="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                                  Path="AccentColorTitleBar"
@@ -109,8 +108,7 @@
                            Margin="0,12,0,0"
                            FontWeight="SemiLight" />
                 <ToggleSwitch  Header="{Binding Source={StaticResource Strings}, Path=RichAnimationsDescription}"
-                               IsOn="{Binding RichAnimations, Mode=TwoWay}"
-                               Margin="-6,0,0,0" />
+                               IsOn="{Binding RichAnimations, Mode=TwoWay}" />
 
                 <TextBlock Text="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}"
                            Margin="0,12,0,0"
