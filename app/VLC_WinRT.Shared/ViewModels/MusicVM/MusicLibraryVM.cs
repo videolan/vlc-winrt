@@ -162,6 +162,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
             }
         }
 
+        public Visibility MusicLibraryEmptyVisible => IsMusicLibraryEmpty ? Visibility.Visible : Visibility.Collapsed;
+
         public LoadingState LoadingStateArtists
         {
             get { return _loadingStateArtists; }
@@ -387,6 +389,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     Locator.MainVM.InformationText = String.Empty;
                     LoadingStateAlbums = LoadingState.Loaded;
                     OnPropertyChanged(nameof(IsMusicLibraryEmpty));
+                    OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
                 });
             });
         }
@@ -398,6 +401,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     OnPropertyChanged(nameof(IsMusicLibraryEmpty));
+                    OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
                 });
             }
 
@@ -444,6 +448,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     Locator.MainVM.InformationText = String.Empty;
                     LoadingStateArtists = LoadingState.Loaded;
                     OnPropertyChanged(nameof(IsMusicLibraryEmpty));
+                    OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
                 });
             });
         }
@@ -455,6 +460,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     OnPropertyChanged(nameof(IsMusicLibraryEmpty));
+                    OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
                 });
             }
 
@@ -495,6 +501,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     Locator.MainVM.InformationText = String.Empty;
                     LoadingStateTracks = LoadingState.Loaded;
                     OnPropertyChanged(nameof(IsMusicLibraryEmpty));
+                    OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
                 });
                 await OrderTracks();
             });
