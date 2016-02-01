@@ -258,7 +258,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             set
             {
                 SetProperty(ref _currentAlbum, value);
-                OnPropertyChanged("CurrentArtist");
+                OnPropertyChanged(nameof(CurrentArtist));
             }
         }
 
