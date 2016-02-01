@@ -35,12 +35,12 @@
                                      Color="#FF101010" />
 
                     <SolidColorBrush x:Key="InvertedApplicationBackgroundSemiTranslucentThemeBrush"
-                                     Color="#AAEEEEEE" />
+                                     Color="#AAEAEAEA" />
                     <SolidColorBrush x:Key="InvertedApplicationBackgroundQuarterTranslucentThemeBrush"
                                      Color="#B3FFFFFF" />
 
                     <Color x:Key="ShadowStartColor">#96151515</Color>
-                    <Color x:Key="ShadowEndColor">#00101010</Color> 
+                    <Color x:Key="ShadowEndColor">#00101010</Color>
 
 
                     <!-- SDK Colors -->
@@ -62,6 +62,7 @@
                                      Color="WhiteSmoke"/>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
+                    <Color x:Key="SystemAccentColor">#ff8800</Color>
                     <Color x:Key="ApplicationPageBackgroundThemeColor">White</Color>
                     <Color x:Key="ApplicationThirdForegroundThemeColor">WhiteSmoke</Color>
                     <Color x:Key="TransparentApplicationThirdForegroundThemeColor">#00f5f5f5</Color>
@@ -77,7 +78,7 @@
                     <SolidColorBrush x:Key="ApplicationOverlayTranslucentThemeBrush"
                                      Color="#F2F0F0F0" />
                     <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
-                                     Color="#AAEEEEEE" />
+                                     Color="#AAEAEAEA" />
                     <SolidColorBrush x:Key="ApplicationBackgroundQuarterTranslucentThemeBrush"
                                      Color="#B3FFFFFF" />
                     <SolidColorBrush x:Key="BasicForeground"
