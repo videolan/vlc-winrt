@@ -40,6 +40,7 @@ namespace VLC_WinRT.Helpers
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
             titleBar.ButtonBackgroundColor = Color.FromArgb(0, 0, 0, 0);
+            titleBar.ButtonInactiveBackgroundColor = Color.FromArgb(0, 0, 0, 0);
 #endif
         }
 
