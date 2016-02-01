@@ -119,57 +119,7 @@ namespace VLC_WinRT
             }
             if (args.Kind == ActivationKind.Protocol)
             {
-                var protocolArgs = (ProtocolActivatedEventArgs)args;
-                var uri = protocolArgs.Uri;
-                if (string.IsNullOrEmpty(uri.Query)) return;
-                WwwFormUrlDecoder decoder = new WwwFormUrlDecoder(uri.Query);
-
-                switch (uri.Host)
-                {
-                    case "openstream":
-                        // do stuff
-                        if (decoder[0]?.Name == "from")
-                        {
-                            switch (decoder[0]?.Value)
-                            {
-                                case "clipboard":
-#if WINDOWS_PHONE_APP
-#else
-                                    await Task.Delay(1000);
-                                    var dataPackage = Clipboard.GetContent();
-                                    Uri url = null;
-                                    if (dataPackage.Contains(StandardDataFormats.ApplicationLink))
-                                    {
-                                        url = await dataPackage.GetApplicationLinkAsync();
-                                    }
-                                    else if (dataPackage.Contains(StandardDataFormats.WebLink))
-                                    {
-                                        url = await dataPackage.GetWebLinkAsync();
-                                    }
-                                    else if (dataPackage.Contains(StandardDataFormats.Text))
-                                    {
-                                        url = new Uri(await dataPackage.GetTextAsync());
-                                    }
-                                    if (url != null)
-                                        await Locator.MediaPlaybackViewModel.PlayStream(url.AbsoluteUri);
-#endif
-                                    break;
-                                case "useraction":
-                                    Locator.MainVM.OpenStreamFlyout();
-                                    break;
-                                case "url":
-                                    if (decoder[1]?.Name == "url")
-                                    {
-                                        if (!string.IsNullOrEmpty(decoder[1]?.Value))
-                                        {
-                                            await Locator.MediaPlaybackViewModel.PlayStream(decoder[1].Value);
-                                        }
-                                    }
-                                    break;
-                            }
-                        }
-                        break;
-                }
+                await HandleProtocolActivation(args);
             }
 
 #if WINDOWS_PHONE_APP
@@ -236,6 +186,68 @@ namespace VLC_WinRT
             if (Window.Current.Content == null)
                 await LaunchTheApp();
             await Locator.MediaPlaybackViewModel.OpenFile(args.Files[0] as StorageFile);
+        }
+
+        private async Task HandleProtocolActivation(IActivatedEventArgs args)
+        {
+            var protocolArgs = (ProtocolActivatedEventArgs)args;
+            var uri = protocolArgs.Uri;
+            if (string.IsNullOrEmpty(uri.Query)) return;
+            WwwFormUrlDecoder decoder = new WwwFormUrlDecoder(uri.Query);
+
+            switch (uri.Host)
+            {
+                case "goto":
+                    if (decoder[0]?.Name == "page")
+                    {
+                        if (decoder[0]?.Value == VLCPage.SettingsPageUI.ToString())
+                            Locator.NavigationService.Go(VLCPage.SettingsPageUI);
+                    }
+                    break;
+                case "openstream":
+                    // do stuff
+                    if (decoder[0]?.Name == "from")
+                    {
+                        switch (decoder[0]?.Value)
+                        {
+                            case "clipboard":
+#if WINDOWS_PHONE_APP
+#else
+                                await Task.Delay(1000);
+                                var dataPackage = Clipboard.GetContent();
+                                Uri url = null;
+                                if (dataPackage.Contains(StandardDataFormats.ApplicationLink))
+                                {
+                                    url = await dataPackage.GetApplicationLinkAsync();
+                                }
+                                else if (dataPackage.Contains(StandardDataFormats.WebLink))
+                                {
+                                    url = await dataPackage.GetWebLinkAsync();
+                                }
+                                else if (dataPackage.Contains(StandardDataFormats.Text))
+                                {
+                                    url = new Uri(await dataPackage.GetTextAsync());
+                                }
+                                if (url != null)
+                                    await Locator.MediaPlaybackViewModel.PlayStream(url.AbsoluteUri);
+#endif
+                                break;
+                            case "useraction":
+                                Locator.MainVM.OpenStreamFlyout();
+                                break;
+                            case "url":
+                                if (decoder[1]?.Name == "url")
+                                {
+                                    if (!string.IsNullOrEmpty(decoder[1]?.Value))
+                                    {
+                                        await Locator.MediaPlaybackViewModel.PlayStream(decoder[1].Value);
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                    break;
+            }
         }
 
         private async Task LaunchTheApp()
