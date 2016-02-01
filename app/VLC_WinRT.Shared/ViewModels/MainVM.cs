@@ -103,9 +103,12 @@ namespace VLC_WinRT.ViewModels
 
         public ActionCommand GotoSearchPageCommand { get; } = new ActionCommand(() =>
         {
-            var searchPanel = new Panel(Strings.Search, VLCPage.SearchPage, App.Current.Resources["SearchSymbol"].ToString(), App.Current.Resources["SearchFilledSymbol"].ToString());
-            Locator.MainVM.Panels.Add(searchPanel);
-            Locator.MainVM.CurrentPanel = searchPanel;
+            if (Locator.MainVM.CurrentPanel.Target != VLCPage.SearchPage)
+            {
+                var searchPanel = new Panel(Strings.Search, VLCPage.SearchPage, App.Current.Resources["SearchSymbol"].ToString(), App.Current.Resources["SearchFilledSymbol"].ToString());
+                Locator.MainVM.Panels.Add(searchPanel);
+                Locator.MainVM.CurrentPanel = searchPanel;
+            }
         });
 
         public ActionCommand GoToFeedbackPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.FeedbackPage));
