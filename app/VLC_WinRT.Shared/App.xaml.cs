@@ -76,7 +76,6 @@ namespace VLC_WinRT
             if (Window.Current.Content == null)
             {
                 await LaunchTheApp();
-                Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
             }
             if (args.Arguments.Contains("SecondaryTile"))
             {
@@ -253,6 +252,7 @@ namespace VLC_WinRT
             Window.Current.Activate();
             Locator.MusicLibraryVM.MusicLibrary.DropTablesIfNeeded();
             VideoLibraryManagement.DropTablesIfNeeded();
+            Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
         }
 
         public static void SetShellDecoration(bool forceTemporaryAppTheme = false, bool forceDark = false)
