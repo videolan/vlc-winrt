@@ -15,14 +15,12 @@
           Height="60"
           Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1" />
             <RowDefinition />
-            <RowDefinition Height="1" />
         </Grid.RowDefinitions>
         <userControls:SliderControlHorizontal x:Name="SliderControl"
-                                              Grid.Row="1"
+                                              Grid.Row="0"
                                               VerticalAlignment="Center" />
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -163,8 +161,6 @@
             </Grid>
         </Grid>
 
-        <Grid Grid.Row="2"
-              Background="{ThemeResource InvertedApplicationBackgroundSemiTranslucentThemeBrush}" />
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
