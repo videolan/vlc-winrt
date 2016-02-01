@@ -11,7 +11,6 @@ namespace VLC_WinRT.Commands.MusicLibrary
     {
         public override async void Execute(object parameter)
         {
-            Locator.NavigationService.Go(VLCPage.ArtistPage);
             ArtistItem artist = null;
             if (parameter is ArtistItem)
             {
@@ -38,6 +37,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
             }
             if (artist == null) return;
             Locator.MusicLibraryVM.CurrentArtist = artist;
+            Locator.NavigationService.Go(VLCPage.ArtistPage);
         }
     }
 }
