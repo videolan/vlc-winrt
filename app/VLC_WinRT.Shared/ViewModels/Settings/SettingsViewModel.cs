@@ -32,7 +32,8 @@ namespace VLC_WinRT.ViewModels.Settings
 {
     public class SettingsViewModel : BindableBase
     {
-#if WINDOWS_APP
+#if WINDOWS_PHONE_APP
+#else
         private List<StorageFolder> _musicFolders;
         private List<StorageFolder> _videoFolders;
         private bool musicFoldersLoaded;
@@ -130,7 +131,6 @@ namespace VLC_WinRT.ViewModels.Settings
                 if (_accentColor == value) return;
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(AccentColor), value.ToString(), false);
                 SetProperty(ref _accentColor, value);
-                App.SetShellDecoration();
             }
         }
 
@@ -154,7 +154,6 @@ namespace VLC_WinRT.ViewModels.Settings
                 if (_accentColorTitleBar == value) return;
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(AccentColorTitleBar), value, false);
                 SetProperty(ref _accentColorTitleBar, value);
-                App.SetShellDecoration();
             }
         }
 
@@ -290,8 +289,9 @@ namespace VLC_WinRT.ViewModels.Settings
             OrderListing.Ascending,
             OrderListing.Descending
         };
-                
-#if WINDOWS_APP
+
+#if WINDOWS_PHONE_APP
+#else
         public List<StorageFolder> MusicFolders
         {
             get
@@ -567,7 +567,8 @@ namespace VLC_WinRT.ViewModels.Settings
 
         public ChangeSettingsViewCommand ChangeSettingsViewCommand { get; } = new ChangeSettingsViewCommand();
 
-#if WINDOWS_APP
+#if WINDOWS_PHONE_APP
+#else
         public async Task GetMusicLibraryFolders()
         {
             var musicLib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
