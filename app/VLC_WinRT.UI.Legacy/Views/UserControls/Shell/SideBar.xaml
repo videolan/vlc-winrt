@@ -12,7 +12,7 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
     <Grid x:Name="SidebarGrid"
-          Background="{ThemeResource ApplicationThirdForegroundThemeBrush}"
+          Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
           Width="250">
         <Grid.RowDefinitions>
             <RowDefinition Height="64" />
