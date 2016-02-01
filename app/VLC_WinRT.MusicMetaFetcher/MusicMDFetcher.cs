@@ -139,7 +139,6 @@ namespace VLC_WinRT.MusicMetaFetcher
 
         private async Task<List<Show>> DownloadArtistEventFromLastFm(string artistName)
         {
-            throw new NotImplementedException();
             return null;
         }
 
