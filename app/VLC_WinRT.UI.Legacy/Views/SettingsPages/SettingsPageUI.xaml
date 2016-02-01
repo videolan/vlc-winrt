@@ -75,6 +75,9 @@
                         </ItemsPanelTemplate>
                     </GridView.ItemsPanel>
                 </GridView>
+                <Button x:Name="ApplyColor" 
+                        Click="ApplyColorButton_Click"
+                        Content="Apply and restart"/>
                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
                            Margin="0,0,0,12">
