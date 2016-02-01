@@ -6,6 +6,7 @@
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Dark">
+                    <Color x:Key="SystemAccentColor">#ff8800</Color>
                     <Color x:Key="ApplicationPageBackgroundThemeColor">Black</Color>
                     <Color x:Key="ApplicationThirdForegroundThemeColor">#252525</Color>
                     <Color x:Key="TransparentApplicationThirdForegroundThemeColor">#00252525</Color>
