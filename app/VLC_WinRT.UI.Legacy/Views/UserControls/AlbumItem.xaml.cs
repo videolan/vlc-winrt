@@ -55,6 +55,7 @@ namespace VLC_WinRT.Views.UserControls
 
         public void Init()
         {
+            if (Album == null) return;
             NameTextBlock.Text = Strings.HumanizedAlbumName(Album.Name);
             ArtistTextBlock.Text = Strings.HumanizedArtistName(Album.Artist);
             
@@ -73,6 +74,7 @@ namespace VLC_WinRT.Views.UserControls
         {
             if (e.PropertyName == nameof(Album.AlbumImage))
             {
+                if (Album == null) return;
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => Cover.Source = Album.AlbumImage);
             }
         }
