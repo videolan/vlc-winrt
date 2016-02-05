@@ -169,7 +169,8 @@ namespace Slide2D.Images
                         changeBackgroundColor = false;
                         newColorIsDark = false;
                     }
-                    MetroSlideshow.canvas.ClearColor = backgroundColor;
+
+                    Debug.WriteLine($"Setting slideshow theme : {backgroundColor.R}");
                 }
                 if (currentImg == null) return;
 
@@ -293,7 +294,7 @@ namespace Slide2D.Images
                         text.Draw(ref args, ref txts);
                     }
                 }
-                
+                args.DrawingSession.Clear(backgroundColor);
                 args.DrawingSession.DrawImage(currentImg.ScaleEffect, new System.Numerics.Vector2(), new Rect()
                 {
                     Height = MetroSlideshow.WindowHeight,
