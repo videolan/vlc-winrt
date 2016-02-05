@@ -10,12 +10,18 @@
              d:DesignWidth="400">
 
     <Pivot ItemsSource="{Binding Panels}"
-           HeaderTemplate="{StaticResource PivotHeaderDataTemplate}"
-           SelectedItem="{Binding CurrentPanel, Mode=TwoWay}">
+           SelectedItem="{Binding CurrentPanel, Mode=TwoWay}"
+           Style="{StaticResource HorizontalPivotStyle}">
         <Pivot.ItemTemplate>
             <DataTemplate>
-                <shellControls:HomePageController Tag="Pivot"/>
+                <shellControls:HomePageController Tag="Pivot" />
             </DataTemplate>
         </Pivot.ItemTemplate>
+        <Pivot.HeaderTemplate>
+            <DataTemplate>
+                <shellControls:PivotHeaderControl Panel="{Binding}" 
+                                                 Margin="0,12,0,0"/>
+            </DataTemplate>
+        </Pivot.HeaderTemplate>
     </Pivot>
 </UserControl>
