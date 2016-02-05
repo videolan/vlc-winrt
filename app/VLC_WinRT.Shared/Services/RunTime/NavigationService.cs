@@ -15,13 +15,15 @@ using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
 using VLC_WinRT.Views.MusicPages;
 using VLC_WinRT.Views.MusicPages.AlbumPageControls;
-using VLC_WinRT.Views.MusicPages.ArtistPageControls;
 using VLC_WinRT.Views.MusicPages.ArtistPages;
 using VLC_WinRT.Views.MusicPages.PlaylistControls;
 using VLC_WinRT.Views.VariousPages;
 using VLC_WinRT.Views.VideoPages;
 using VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls;
-#if WINDOWS_PHONE_APP
+using Windows.Foundation.Metadata;
+using VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls;
+#if WINDOWS_APP
+#else
 using Windows.Phone.UI.Input;
 #endif
 
@@ -171,12 +173,15 @@ namespace VLC_WinRT.Services.RunTime
                     break;
                 case VLCPage.SettingsPageUI:
                     GoBack_HideFlyout();
+                    Go(VLCPage.SettingsPage);
                     break;
                 case VLCPage.SettingsPageMusic:
                     GoBack_HideFlyout();
+                    Go(VLCPage.SettingsPage);
                     break;
                 case VLCPage.SettingsPageVideo:
                     GoBack_HideFlyout();
+                    Go(VLCPage.SettingsPage);
                     break;
                 case VLCPage.VideoPlayerOptionsPanel:
                     GoBack_HideFlyout();
