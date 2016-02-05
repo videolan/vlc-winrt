@@ -22,6 +22,7 @@ using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
 using VLC_WinRT.Utils;
+using System.Linq;
 #if WINDOWS_PHONE_APP
 
 #endif
@@ -158,11 +159,21 @@ namespace VLC_WinRT.ViewModels.MusicVM
                         Locator.MediaPlaybackViewModel.OnLengthChanged((long)milliseconds);
 #endif
                     if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack)) return;
-                    int index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
-                    Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = index;
-                    await SetCurrentArtist();
-                    await SetCurrentAlbum();
-                    await UpdatePlayingUI();
+                    var index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+                    if (Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Any())
+                    {
+                        if (index == -1)
+                        {
+                            // Background Audio was terminated
+                            // We need to reset the playlist, or set the current track 0.
+                            ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, 0);
+                            index = 0;
+                        }
+                        Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = index;
+                        await SetCurrentArtist();
+                        await SetCurrentAlbum();
+                        await UpdatePlayingUI();
+                    }
                 }
                 catch (Exception e)
                 {
