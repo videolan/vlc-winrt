@@ -1,0 +1,81 @@
+﻿<UserControl
+    x:Class="VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls.ArtistAlbumsSemanticView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:triggers="using:WinRT.Triggers"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="GroupAlbums"
+                              x:Name="GroupAlbums"
+                              IsSourceGrouped="True"
+                              Source="{Binding CurrentArtist.AlbumsGrouped}" />
+    </UserControl.Resources>
+
+    <SemanticZoom x:Name="AlbumsSemanticZoom"
+                  Padding="0"
+                  ViewChangeCompleted="SemanticZoom_ViewChangeCompleted"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ScrollViewer.HorizontalScrollMode="Disabled">
+        <SemanticZoom.ZoomedInView>
+            <ListView x:Name="AlbumsListView"
+                      ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
+                      ItemContainerStyle="{StaticResource ListViewItemBasic}"
+                      ItemTemplate="{StaticResource AlbumTrackTemplateWithRightMargin}"
+                      IsItemClickEnabled="True"
+                      SelectionMode="None"
+                      Margin="{StaticResource FrameMarginLeft}">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding AlbumTrackClickedCommand}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <AddDeleteThemeTransition />
+                        <EntranceThemeTransition IsStaggeringEnabled="True" />
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Horizontal"
+                                       Margin="{StaticResource FooterMarginBottom}" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.GroupStyle>
+                    <GroupStyle HeaderTemplate="{StaticResource AlbumResponsiveTemplate}" />
+                </ListView.GroupStyle>
+            </ListView>
+        </SemanticZoom.ZoomedInView>
+        <SemanticZoom.ZoomedOutView>
+            <ListView x:Name="AlbumsSemanticZoomZoomedOut"
+                      ItemsSource="{Binding CurrentArtist.Albums}"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                      ItemTemplate="{StaticResource AlbumItemTemplateKeyBinding}"
+                      IsItemClickEnabled="True"
+                      SelectionMode="None"
+                      Margin="{StaticResource FrameMarginLeft}">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Horizontal"
+                                       Margin="{StaticResource FooterMarginBottom}"
+                                       Loaded="ZoomedOutItemsWrapGrid_Loaded">
+                            <ItemsWrapGrid.ChildrenTransitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition />
+                                    <EntranceThemeTransition IsStaggeringEnabled="True" />
+                                </TransitionCollection>
+                            </ItemsWrapGrid.ChildrenTransitions>
+                        </ItemsWrapGrid>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+        </SemanticZoom.ZoomedOutView>
+    </SemanticZoom>
+</UserControl>

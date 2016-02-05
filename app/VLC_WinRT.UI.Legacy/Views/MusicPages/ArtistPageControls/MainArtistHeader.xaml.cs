@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
+namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
 {
     public sealed partial class MainArtistHeader : UserControl
     {
