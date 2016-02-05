@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using VLC_WinRT.ViewModels;
 using Windows.ApplicationModel.Core;
+using Windows.UI.ViewManagement;
 
 namespace VLC_WinRT.UI.Legacy.Views.UserControls
 {
@@ -20,7 +21,10 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             Locator.SettingsVM.PropertyChanged += SettingsVM_PropertyChanged;
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
 #if WINDOWS_UWP
-            CoreApplication.GetCurrentView().TitleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
+            var titleBar = CoreApplication.GetCurrentView().TitleBar;
+            RootGrid.Height = titleBar.Height;
+            titleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
+            ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseVisible);
 #elif WINDOWS_APP
             RootGrid.Height = 0;
             RootGrid.Visibility = Visibility.Collapsed;
@@ -54,7 +58,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
         private void SettingsVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Locator.SettingsVM.AccentColor) 
+            if (e.PropertyName == nameof(Locator.SettingsVM.AccentColor)
                 || e.PropertyName == nameof(Locator.SettingsVM.AccentColorTitleBar)
                 || e.PropertyName == nameof(Locator.SettingsVM.ApplicationTheme))
             {
