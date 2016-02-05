@@ -68,12 +68,12 @@ namespace Slide2D
 
         private void Canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
-            slideshow.Update(args);
+            slideshow.Update(sender, args);
         }
 
         private void Canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            slideshow.Draw(args);
+            slideshow.Draw(sender, args);
         }
 
         private async void Canvas_CreateResources(CanvasAnimatedControl sender,

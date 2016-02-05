@@ -42,7 +42,7 @@ namespace Slide2D.Images
             Opacity = 0;
         }
 
-        public async Task Initialize(CanvasAnimatedControl cac)
+        public async Task Initialize(ICanvasAnimatedControl cac)
         {
             Bmp = await CanvasBitmap.LoadAsync(cac, new Uri(Src));
             Loaded = true;

@@ -149,7 +149,7 @@ namespace Slide2D.Images
             return;
         }
 
-        public async void Update(CanvasAnimatedUpdateEventArgs args)
+        public async void Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
             try
             {
@@ -175,7 +175,7 @@ namespace Slide2D.Images
 
                 if (!currentImg.Loaded)
                 {
-                    await currentImg.Initialize(MetroSlideshow.canvas);
+                    await currentImg.Initialize(sender);
                 }
 
                 bool computeBlurPic = true;
@@ -281,7 +281,7 @@ namespace Slide2D.Images
             catch { }
         }
 
-        public async void Draw(CanvasAnimatedDrawEventArgs args)
+        public async void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             if (currentImg?.ScaleEffect != null)
             {
@@ -330,7 +330,7 @@ namespace Slide2D.Images
 
             if (clearSlideshow)
             {
-                MetroSlideshow.canvas.Paused = true;
+                sender.Paused = true;
             }
 
             // Choosing a new img to display in the next loop
