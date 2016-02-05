@@ -33,5 +33,48 @@
                 <shellControls:HomePageController Tag="Pivot"/>
             </DataTemplate>
         </Pivot.ItemTemplate>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Tiny">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="SearchBox.Visibility"
+                                Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+
+
+                <VisualState x:Name="Medium">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="SearchBox.Visibility"
+                                Value="Visible" />
+                        <Setter Property="SearchBox.Width"
+                                Value="200" />
+                    </VisualState.Setters>
+                </VisualState>
+
+
+                <VisualState x:Name="Tall">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="SearchBox.Visibility"
+                                Value="Visible" />
+                        <Setter Property="SearchBox.Width"
+                                Value="270" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Pivot>
 </UserControl>
