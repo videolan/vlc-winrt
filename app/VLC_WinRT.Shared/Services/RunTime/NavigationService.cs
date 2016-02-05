@@ -44,8 +44,14 @@ namespace VLC_WinRT.Services.RunTime
         private event HomePageNavigated HomePageNavigated;
         public NavigationService()
         {
-#if WINDOWS_PHONE_APP
-            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+#if WINDOWS_APP
+#else
+#if WINDOWS_UWP
+            if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1,0))
+#endif
+            {
+                HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+            }
 #endif
             App.RootPage.NavigationFrame.Navigated += NavigationFrame_Navigated;
             App.SplitShell.LeftSidebarClosed += SplitShell_LeftSidebarClosed;
@@ -94,7 +100,8 @@ namespace VLC_WinRT.Services.RunTime
             }
         }
 
-#if WINDOWS_PHONE_APP
+#if WINDOWS_APP
+#else
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             e.Handled = true;

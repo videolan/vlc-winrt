@@ -10,6 +10,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WinRT.ViewModels;
+using Windows.Foundation.Metadata;
 
 namespace VLC_WinRT.Helpers
 {
@@ -38,9 +39,14 @@ namespace VLC_WinRT.Helpers
         {
 #if WINDOWS_UWP
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
-            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            var appView = ApplicationView.GetForCurrentView();
+            var titleBar = appView.TitleBar;
             titleBar.ButtonBackgroundColor = Color.FromArgb(0, 0, 0, 0);
             titleBar.ButtonInactiveBackgroundColor = Color.FromArgb(0, 0, 0, 0);
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                Windows.UI.ViewManagement.StatusBar.GetForCurrentView().HideAsync();
+            }
 #endif
         }
 
