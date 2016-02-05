@@ -255,7 +255,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.0": {
+      "NotificationsExtensions.Win10/10586.0.1": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -1606,7 +1606,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Win2D.uwp/1.13.0": {
+      "Win2D.uwp/1.15.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
@@ -1927,7 +1927,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.0": {
+      "NotificationsExtensions.Win10/10586.0.1": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -3325,7 +3325,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Win2D.uwp/1.13.0": {
+      "Win2D.uwp/1.15.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
@@ -3635,7 +3635,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.0": {
+      "NotificationsExtensions.Win10/10586.0.1": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -5019,7 +5019,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Win2D.uwp/1.13.0": {
+      "Win2D.uwp/1.15.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
@@ -5348,7 +5348,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.0": {
+      "NotificationsExtensions.Win10/10586.0.1": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -6746,7 +6746,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Win2D.uwp/1.13.0": {
+      "Win2D.uwp/1.15.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
@@ -7056,7 +7056,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.0": {
+      "NotificationsExtensions.Win10/10586.0.1": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -8440,7 +8440,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Win2D.uwp/1.13.0": {
+      "Win2D.uwp/1.15.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
@@ -8769,7 +8769,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.0": {
+      "NotificationsExtensions.Win10/10586.0.1": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -10167,7 +10167,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Win2D.uwp/1.13.0": {
+      "Win2D.uwp/1.15.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
@@ -10477,7 +10477,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.0": {
+      "NotificationsExtensions.Win10/10586.0.1": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -11861,7 +11861,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Win2D.uwp/1.13.0": {
+      "Win2D.uwp/1.15.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
@@ -12779,8 +12779,8 @@
         "tools/install.ps1"
       ]
     },
-    "NotificationsExtensions.Win10/10586.0.0": {
-      "sha512": "MISR3bytM8ZHZtaJbWUU4GxHbnQKqUfjohg5uSAflFUqztKbvhDmKN1fTJYs/oYovhBFrU4P3CoiWfRnT7FTWw==",
+    "NotificationsExtensions.Win10/10586.0.1": {
+      "sha512": "V+80x83JYU4aN1oN9HB3OsCDmYkH38NW8V/WFY26ITTmvX6EetNhmfqI60pvmXZGiqYKMdIz2b0EBA+nSzGqFA==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -12797,7 +12797,7 @@
         "lib/uap10.0/NotificationsExtensions.winmd.xml",
         "lib/uap10.0/NotificationsExtensions.xml",
         "NotificationsExtensions.Win10.nuspec",
-        "package/services/metadata/core-properties/5d5cbb4e5ec6464fa0b3cee3b82d40de.psmdcp"
+        "package/services/metadata/core-properties/34e3622aed2a44d984729529672fd012.psmdcp"
       ]
     },
     "ScrollWatcher/1.0.5": {
@@ -15509,8 +15509,8 @@
         "System.Xml.XmlSerializer.nuspec"
       ]
     },
-    "Win2D.uwp/1.13.0": {
-      "sha512": "Aa7ESMMe5GWXLig9L/HCIanvKd7DACMaytp+dnnB/ic1OqKjqlHiki8t4zde0RMk6QyvkvpYC6gb3taulY5XXw==",
+    "Win2D.uwp/1.15.0": {
+      "sha512": "XRWV08p8DThX92CfTGdg6mrK1CoNIklme8R/i9rjZOvzAx+6lfTDNjMseweIZqaaIdL+8+gMiqvqu+etfj+0LA==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -15518,10 +15518,9 @@
         "build/native/Win2D.uwp.targets",
         "include/Microsoft.Graphics.Canvas.h",
         "include/Microsoft.Graphics.Canvas.native.h",
-        "lib/uap10.0/en/Microsoft.Graphics.Canvas.xml",
         "lib/uap10.0/Microsoft.Graphics.Canvas.winmd",
         "lib/uap10.0/Microsoft.Graphics.Canvas.xml",
-        "package/services/metadata/core-properties/335e2338bbf1463f8fd92714cd162c2b.psmdcp",
+        "package/services/metadata/core-properties/4c29eb45b89442779b2a0409ff1a16b0.psmdcp",
         "runtimes/win10-arm/native/Microsoft.Graphics.Canvas.dll",
         "runtimes/win10-x64/native/Microsoft.Graphics.Canvas.dll",
         "runtimes/win10-x86/native/Microsoft.Graphics.Canvas.dll",
@@ -15614,9 +15613,9 @@
       "Inflatable.Lastfm >= 0.2.2.252",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "Newtonsoft.Json >= 8.0.2",
-      "NotificationsExtensions.Win10 >= 10586.0.0",
+      "NotificationsExtensions.Win10 >= 10586.0.1",
       "ScrollWatcher >= 1.0.5",
-      "Win2D.uwp >= 1.13.0",
+      "Win2D.uwp >= 1.15.0",
       "WinRTTriggers >= 1.6.0",
       "WinRTXamlToolkit >= 1.6.1.3"
     ],

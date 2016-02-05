@@ -4,9 +4,9 @@
     "Inflatable.Lastfm": "0.2.2.252",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Newtonsoft.Json": "8.0.2",
-    "NotificationsExtensions.Win10": "10586.0.0",
+    "NotificationsExtensions.Win10": "10586.0.1",
     "ScrollWatcher": "1.0.5",
-    "Win2D.uwp": "1.13.0",
+    "Win2D.uwp": "1.15.0",
     "WinRTTriggers": "1.6.0",
     "WinRTXamlToolkit": "1.6.1.3"
   },
