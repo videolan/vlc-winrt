@@ -13,7 +13,7 @@
     <canvas:CanvasAnimatedControl x:Name="Slideshower"
                                   Loaded="Slideshower_Loaded_1"
                                   IsFixedTimeStep="False"
-                                  TargetElapsedTime="0:0:0.3"/>
+                                  TargetElapsedTime="0:0:0.3" />
 
     <controls:SplitShell x:Name="SplitShell"
                          x:FieldModifier="public"
