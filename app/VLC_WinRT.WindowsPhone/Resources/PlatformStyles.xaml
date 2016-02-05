@@ -79,7 +79,7 @@
                             <PivotPanel x:Name="Panel"
                                         VerticalAlignment="Stretch">
                                 <PivotHeaderPanel x:Name="Header"
-                                                  Visibility="Collapsed">
+                                                  Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
                                     <PivotHeaderPanel.RenderTransform>
                                         <CompositeTransform x:Name="HeaderTranslateTransform"
                                                             TranslateX="0" />
