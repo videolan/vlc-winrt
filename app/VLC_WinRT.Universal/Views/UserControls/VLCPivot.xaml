@@ -51,7 +51,7 @@
 
                 <VisualState x:Name="Medium">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="600" />
+                        <AdaptiveTrigger MinWindowWidth="750" />
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
@@ -65,7 +65,7 @@
 
                 <VisualState x:Name="Tall">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="600" />
+                        <AdaptiveTrigger MinWindowWidth="1000" />
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
