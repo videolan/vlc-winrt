@@ -39,8 +39,6 @@
                              Color="#B3000000" />
             <SolidColorBrush x:Key="BasicForeground"
                              Color="White" />
-            <SolidColorBrush x:Key="SliderForegroundProgressTheneBrush"
-                             Color="White" />
             <SolidColorBrush x:Key="LightGray1ThemeBrush"
                              Color="#FF252525" />
             <SolidColorBrush x:Key="LightGray2ThemeBrush"
@@ -95,8 +93,6 @@
                              Color="#B3FFFFFF" />
             <SolidColorBrush x:Key="BasicForeground"
                              Color="Black" />
-            <SolidColorBrush x:Key="SliderForegroundProgressTheneBrush"
-                             Color="{ThemeResource MainColorBase}" />
             <SolidColorBrush x:Key="LightGray1ThemeBrush"
                              Color="#FFF3F3F3" />
             <SolidColorBrush x:Key="LightGray2ThemeBrush"

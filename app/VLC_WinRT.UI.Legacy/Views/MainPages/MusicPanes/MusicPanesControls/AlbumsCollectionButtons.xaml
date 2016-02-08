@@ -7,8 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-    <Grid HorizontalAlignment="Right"
-          RequestedTheme="Light">
+    <Grid HorizontalAlignment="Right">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />

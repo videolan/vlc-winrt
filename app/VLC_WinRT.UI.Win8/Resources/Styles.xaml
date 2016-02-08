@@ -2161,7 +2161,7 @@
     <Style x:Key="VLCComboBox"
            TargetType="ComboBox">
         <Setter Property="Foreground"
-                Value="{ThemeResource SliderForegroundProgressTheneBrush}" />
+                Value="{ThemeResource MainColor}" />
         <Setter Property="Background"
                 Value="Transparent" />
         <Setter Property="FontSize"
