@@ -20,7 +20,9 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
 
         private void ArtistCollectionBase_Unloaded(object sender, RoutedEventArgs e)
         {
-            Locator.MusicLibraryVM.OnNavigatedFromArtists();
+            if (Locator.NavigationService.CurrentPage != Model.VLCPage.ArtistPage) {
+                Locator.MusicLibraryVM.OnNavigatedFromArtists();
+            }
         }
 
         void ArtistCollectionBase_Loaded(object sender, RoutedEventArgs e)
