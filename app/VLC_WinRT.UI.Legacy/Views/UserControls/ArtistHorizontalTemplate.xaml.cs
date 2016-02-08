@@ -14,6 +14,12 @@ namespace VLC_WinRT.Views.UserControls
         public ArtistHorizontalTemplate()
         {
             this.InitializeComponent();
+            this.SizeChanged += ArtistHorizontalTemplate_SizeChanged;
+        }
+
+        private void ArtistHorizontalTemplate_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            AvatarEllipse.Height = NoAvatarEllipse.Height = AvatarColumnDefinition.ActualWidth;
         }
 
         public ArtistItem Artist

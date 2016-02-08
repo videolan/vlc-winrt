@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using VLC_WinRT.Model.Video;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.ViewModels.MusicVM;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,13 +24,23 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
         private void ArtistAlbumsSemanticView_Loaded(object sender, RoutedEventArgs e)
         {
             AlbumsListView.SizeChanged += AlbumsListViewOnSizeChanged;
+            Locator.MusicLibraryVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
             ResponsiveTracksListView();
             this.Unloaded += ArtistAlbumsSemanticView_Unloaded;
+        }
+
+        private void MusicLibraryVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(MusicLibraryVM.CurrentArtist))
+            {
+                AlbumsSemanticZoom.IsZoomedInViewActive = true;
+            }
         }
 
         private void ArtistAlbumsSemanticView_Unloaded(object sender, RoutedEventArgs e)
         {
             AlbumsListView.SizeChanged -= AlbumsListViewOnSizeChanged;
+            Locator.MusicLibraryVM.PropertyChanged -= MusicLibraryVM_PropertyChanged;
         }
 
         private void ZoomedOutItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)

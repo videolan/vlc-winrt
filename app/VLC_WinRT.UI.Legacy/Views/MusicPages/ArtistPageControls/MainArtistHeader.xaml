@@ -12,45 +12,26 @@
           Background="Transparent"
           VerticalAlignment="Top">
         <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="36" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <AppBarButton Grid.Column="0"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Margin="{StaticResource FrameMarginLeft}"
-                          VerticalAlignment="Center"
-                          HorizontalAlignment="Stretch"
-                          DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-                          Command="{Binding GoBackCommand}"
-                          Width="50">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
-                              Margin="0,3,0,0"
-                              FontFamily="{StaticResource VLCFont}" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <TextBlock Grid.Column="1"
-                       Margin="{StaticResource FrameMarginRight}"
-                       TextTrimming="CharacterEllipsis"
+            <TextBlock TextTrimming="CharacterEllipsis"
                        TextWrapping="NoWrap"
                        VerticalAlignment="Top"
                        Text="{Binding CurrentArtist.Name, Converter={StaticResource ArtistStringConverter}}"
                        Style="{StaticResource SubheaderTextBlockStyle}" 
                        FontSize="36"/>
 
-            <AppBarButton Grid.Column="2"
+            <AppBarButton Grid.Column="1"
                           x:Name="PlayButton"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Label="{Binding Source={StaticResource Strings}, Path=PlayAll}"
@@ -63,14 +44,14 @@
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Grid.Column="4"
+            <AppBarButton Grid.Column="3"
                           x:Name="PinButton"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Icon="{Binding CurrentArtist.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
                           VerticalAlignment="Center"
                           Command="{Binding CurrentArtist.PinArtistCommand}"
                           CommandParameter="{Binding CurrentArtist}" />
-            <AppBarButton Grid.Column="6"
+            <AppBarButton Grid.Column="5"
                           x:Name="ShowsButton"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
@@ -82,7 +63,7 @@
                 </AppBarButton.Icon>
             </AppBarButton>
         </Grid>
-        <Grid Grid.Row="2"
+        <Grid Grid.Row="1"
               x:Name="SnapCommandGrid"
               Visibility="Collapsed"
               Margin="{StaticResource FrameMarginTop}">

@@ -33,7 +33,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
         {
             Responsive();
         }
-        
+
         void Responsive()
         {
             if (Window.Current.Bounds.Width < 1150)
@@ -49,6 +49,5 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
                 VisualStateUtilities.GoToState(this, "Wide", false);
             }
         }
-
     }
 }

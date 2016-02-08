@@ -28,8 +28,7 @@
                       ItemContainerStyle="{StaticResource ListViewItemBasic}"
                       ItemTemplate="{StaticResource AlbumTrackTemplateWithRightMargin}"
                       IsItemClickEnabled="True"
-                      SelectionMode="None"
-                      Margin="{StaticResource FrameMarginLeft}">
+                      SelectionMode="None">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding AlbumTrackClickedCommand}"
@@ -59,12 +58,12 @@
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       ItemTemplate="{StaticResource AlbumItemTemplateKeyBinding}"
                       IsItemClickEnabled="True"
-                      SelectionMode="None"
-                      Margin="{StaticResource FrameMarginLeft}">
+                      SelectionMode="None">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid Orientation="Horizontal"
                                        Margin="{StaticResource FooterMarginBottom}"
+                                       HorizontalAlignment="Center"
                                        Loaded="ZoomedOutItemsWrapGrid_Loaded">
                             <ItemsWrapGrid.ChildrenTransitions>
                                 <TransitionCollection>

@@ -9,18 +9,6 @@
       d:DesignWidth="400"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <!-- TODO
-    THIS PAGE ON WINDOWS 8.1 WILL BASICALLY REMAIN THE SAME
-    ON WINDOWS 10, THIS PAGE WILL HAVE UP TO 3 COLUMNS:
-    - Artists list (easy navigation between artist)
-    - Artist albums
-    - Artist info
-    
-    When screen size is MEDIUM, the Artists list disappear
-    When screen size is TINY, the Artists list is hidden 
-    AND there's a pivot for navigating between albums and info
-    -->
-    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -31,10 +19,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <local:MainArtistHeader />
+        <local:MainArtistHeader Margin="{StaticResource FrameMarginBothSides}"/>
 
         <local:ArtistAlbumsSemanticView Grid.Row="1"
-                                        Grid.Column="0" />
+                                        Grid.Column="0"
+                                        Margin="{StaticResource FrameMarginLeft}" />
 
         <local:ArtistInfoControl x:Name="ExtraInfoGrid"
                                  Grid.Row="0"

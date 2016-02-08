@@ -44,7 +44,7 @@
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
-                                   ItemWidth="150"
+                                   ItemWidth="120"
                                    HorizontalAlignment="Center"
                                    Margin="{StaticResource FooterMarginBottom}" />
                 </ItemsPanelTemplate>
