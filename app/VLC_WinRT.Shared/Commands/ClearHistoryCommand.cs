@@ -17,6 +17,7 @@ namespace VLC_WinRT.Commands
         public override void Execute(object parameter)
         {
             //TODO: Do it
+            // Just DO IT !
         }
     }
 }
