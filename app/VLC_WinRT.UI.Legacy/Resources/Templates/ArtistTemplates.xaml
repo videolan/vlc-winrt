@@ -23,16 +23,16 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Ellipse Fill="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
-                         Height="120"
-                         Width="120" />
+                         Height="100"
+                         Width="100" />
                 <FontIcon Glyph="{StaticResource BuddySymbol}"
                           FontFamily="{StaticResource VLCFont}"
                           FontSize="29"
                           Foreground="{ThemeResource MainColor}" />
             </Grid>
             <Ellipse Grid.Row="0" 
-                     Height="120"
-                     Width="120">
+                     Height="100"
+                     Width="100">
                 <Ellipse.Fill>
                     <ImageBrush Stretch="UniformToFill"
                                 ImageSource="{Binding Images, Converter={StaticResource AlbumImageConverter}}" />
@@ -41,7 +41,7 @@
             <TextBlock Grid.Row="2"
                        Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
                        Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                       FontSize="21"
+                       FontSize="18"
                        FontWeight="SemiLight"
                        HorizontalAlignment="Center"
                        TextTrimming="CharacterEllipsis" />
