@@ -12,7 +12,8 @@
 
     <Pivot ItemsSource="{Binding Panels}"
            HeaderTemplate="{StaticResource PivotHeaderDataTemplate}"
-           SelectedItem="{Binding CurrentPanel, Mode=TwoWay}">
+           SelectedItem="{Binding CurrentPanel, Mode=TwoWay}"
+           Style="{StaticResource TitlelessPivot}">
         <Pivot.LeftHeader>
             <shell:MenuDropdown />
         </Pivot.LeftHeader>

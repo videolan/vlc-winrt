@@ -535,6 +535,11 @@
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
                                     <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                       Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
                                         <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
                                     </Storyboard>
                                 </VisualState>
@@ -2275,7 +2280,8 @@
         </Setter>
     </Style>
     
-    <Style TargetType="Pivot">
+    <Style x:Key="TitlelessPivot" 
+           TargetType="Pivot">
         <Setter Property="Margin"
                 Value="0" />
         <Setter Property="Padding"
