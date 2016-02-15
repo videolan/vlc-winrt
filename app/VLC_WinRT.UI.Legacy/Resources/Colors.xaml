@@ -21,7 +21,9 @@
             <Color x:Key="SystemAccentColor">#ff8800</Color>
             <Color x:Key="ApplicationPageBackgroundThemeColor">Black</Color>
             <Color x:Key="ApplicationThirdForegroundThemeColor">#252525</Color>
+            <Color x:Key="ApplicationFourthForegroundThemeColor">#454545</Color>
             <Color x:Key="TransparentApplicationThirdForegroundThemeColor">#00252525</Color>
+            <Color x:Key="ApplicationOverlayTranslucentThemeColor">#e5151515</Color>
 
             <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                              Color="{StaticResource ApplicationPageBackgroundThemeColor}" />
@@ -31,8 +33,11 @@
                              Color="LightGray" />
             <SolidColorBrush x:Key="ApplicationThirdForegroundThemeBrush"
                              Color="{StaticResource ApplicationThirdForegroundThemeColor}" />
+            <SolidColorBrush x:Key="ApplicationFourthForegroundThemeBrush"
+                             Color="{StaticResource ApplicationFourthForegroundThemeColor}" />
+            
             <SolidColorBrush x:Key="ApplicationOverlayTranslucentThemeBrush"
-                             Color="#e5151515" />
+                             Color="{StaticResource ApplicationOverlayTranslucentThemeColor}" />
             <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
                              Color="#AA202020" />
             <SolidColorBrush x:Key="ApplicationBackgroundQuarterTranslucentThemeBrush"
@@ -45,13 +50,10 @@
                              Color="#FF101010" />
 
             <SolidColorBrush x:Key="InvertedApplicationBackgroundSemiTranslucentThemeBrush"
-                             Color="#AAEAEAEA" />
-            <SolidColorBrush x:Key="InvertedApplicationBackgroundQuarterTranslucentThemeBrush"
-                             Color="#B3FFFFFF" />
+                             Color="#50EAEAEA" />
 
             <Color x:Key="ShadowStartColor">#96151515</Color>
             <Color x:Key="ShadowEndColor">#00101010</Color>
-
 
             <!-- SDK Colors -->
             <SolidColorBrush x:Key="TextBoxBorderThemeBrush"
@@ -70,12 +72,20 @@
                              Color="WhiteSmoke" />
             <SolidColorBrush x:Key="ToggleSwitchThumbBackgroundThemeBrush"
                              Color="WhiteSmoke" />
+            <SolidColorBrush x:Key="ScrollBarTrackBackgroundThemeBrush"
+                             Color="{ThemeResource ApplicationOverlayTranslucentThemeColor}" />
+            <SolidColorBrush x:Key="ScrollBarButtonForegroundThemeBrush"
+                             Color="{ThemeResource ApplicationFourthForegroundThemeColor}" />
+            <SolidColorBrush x:Key="ScrollBarButtonPointerOverBackgroundThemeBrush"
+                             Color="{ThemeResource ApplicationOverlayTranslucentThemeColor}" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
             <Color x:Key="SystemAccentColor">#ff8800</Color>
             <Color x:Key="ApplicationPageBackgroundThemeColor">White</Color>
             <Color x:Key="ApplicationThirdForegroundThemeColor">WhiteSmoke</Color>
+            <Color x:Key="ApplicationFourthForegroundThemeColor">#f0f0f0</Color>
             <Color x:Key="TransparentApplicationThirdForegroundThemeColor">#00f5f5f5</Color>
+            <Color x:Key="ApplicationOverlayTranslucentThemeColor">#F2F0F0F0</Color>
 
             <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                              Color="{StaticResource ApplicationPageBackgroundThemeColor}" />
@@ -85,8 +95,11 @@
                              Color="DimGray" />
             <SolidColorBrush x:Key="ApplicationThirdForegroundThemeBrush"
                              Color="{StaticResource ApplicationThirdForegroundThemeColor}" />
+            <SolidColorBrush x:Key="ApplicationFourthForegroundThemeBrush"
+                             Color="{StaticResource ApplicationFourthForegroundThemeColor}" />
+            
             <SolidColorBrush x:Key="ApplicationOverlayTranslucentThemeBrush"
-                             Color="#F2F0F0F0" />
+                             Color="{StaticResource ApplicationOverlayTranslucentThemeColor}" />
             <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
                              Color="#AAEAEAEA" />
             <SolidColorBrush x:Key="ApplicationBackgroundQuarterTranslucentThemeBrush"
@@ -97,10 +110,9 @@
                              Color="#FFF3F3F3" />
             <SolidColorBrush x:Key="LightGray2ThemeBrush"
                              Color="#FFF9F9F9" />
+            
             <SolidColorBrush x:Key="InvertedApplicationBackgroundSemiTranslucentThemeBrush"
-                             Color="#AA202020" />
-            <SolidColorBrush x:Key="InvertedApplicationBackgroundQuarterTranslucentThemeBrush"
-                             Color="#B3000000" />
+                             Color="#50353535" />
 
             <Color x:Key="ShadowStartColor">#96F7F7F7</Color>
             <Color x:Key="ShadowEndColor">#00F5F5F5</Color>
@@ -116,6 +128,12 @@
                              Color="{ThemeResource MainColorBase}" />
             <SolidColorBrush x:Key="ToggleSwitchThumbBackgroundThemeBrush"
                              Color="WhiteSmoke" />
+            <SolidColorBrush x:Key="ScrollBarTrackBackgroundThemeBrush"
+                             Color="{ThemeResource ApplicationOverlayTranslucentThemeColor}" />
+            <SolidColorBrush x:Key="ScrollBarButtonForegroundThemeBrush"
+                             Color="{ThemeResource ApplicationFourthForegroundThemeColor}" />
+            <SolidColorBrush x:Key="ScrollBarButtonPointerOverBackgroundThemeBrush"
+                             Color="{ThemeResource ApplicationOverlayTranslucentThemeColor}" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>
