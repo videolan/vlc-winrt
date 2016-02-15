@@ -55,6 +55,11 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        
         <Grid Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
               PointerEntered="Cover_PointerEntered">
             <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
@@ -64,54 +69,43 @@
         </Grid>
         <Image x:Name="Cover" 
                Stretch="UniformToFill"/>
-        <Grid PointerExited="Cover_PointerExited"
-              PointerEntered="Cover_PointerEntered"
-              RequestedTheme="Dark">
-            <Grid.Background>
-                <LinearGradientBrush EndPoint="0.5,1"
-                                     StartPoint="0.5,0">
-                    <GradientStop Color="#DC000000"
-                                  Offset="1" />
-                    <GradientStop Color="#00000000"
-                                  Offset="0.6" />
-                    <GradientStop Color="#00000000"
-                                  Offset="0" />
-                </LinearGradientBrush>
-            </Grid.Background>
+        <Grid Grid.Row="1" 
+              PointerExited="Cover_PointerExited"
+              PointerEntered="Cover_PointerEntered">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="20" />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
-            <AppBarButton Grid.Row="1"
+            <AppBarButton Grid.Row="0"
                           Grid.RowSpan="2"
                           x:Name="ButtonOverlay"
                           Visibility="Collapsed"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}">
+                          Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
+                          HorizontalAlignment="Center">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PlaySymbol}"
                               FontSize="36"
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <TextBlock x:Name="NameTextBlock" 
-                       Grid.Row="1"
+            <TextBlock x:Name="NameTextBlock"
+                       Grid.Row="0"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
                        FontSize="15"
                        FontWeight="SemiBold"
                        VerticalAlignment="Center"
-                       Margin="5,0,0,0" />
-            <TextBlock x:Name="ArtistTextBlock" 
-                       Grid.Row="2"
+                       HorizontalAlignment="Center" />
+            <TextBlock x:Name="ArtistTextBlock"
+                       Grid.Row="1"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
                        FontSize="14"
                        FontWeight="Normal"
                        Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                        VerticalAlignment="Center"
-                       Margin="5,0,0,6" />
+                       HorizontalAlignment="Center" />
         </Grid>
     </Grid>
 </UserControl>
