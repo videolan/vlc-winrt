@@ -345,28 +345,19 @@
                       <VisualState x:Name="Normal" />
                       <VisualState x:Name="PointerOver">
                         <Storyboard>
-                          <DoubleAnimation Duration="0:0:0"
-                                           To="1"
-                                           Storyboard.TargetProperty="Opacity"
-                                           Storyboard.TargetName="BackgroundPointerOver" />
-                          <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                         Storyboard.TargetName="ArrowPointerOver">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{ThemeResource ScrollBarButtonPointerOverForegroundThemeBrush}" />
-                          </ObjectAnimationUsingKeyFrames>
-                        </Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0"
+                                                                     To="1"
+                                                                     Storyboard.TargetProperty="Opacity"
+                                                                     Storyboard.TargetName="BackgroundPointerOver" />
+                                                </Storyboard>
                       </VisualState>
                       <VisualState x:Name="Pressed">
                         <Storyboard>
-                          <DoubleAnimation Duration="0:0:0"
-                                           To="1"
-                                           Storyboard.TargetProperty="Opacity"
-                                           Storyboard.TargetName="BackgroundPressed" />
-                          <DoubleAnimation Duration="0"
-                                           To="1"
-                                           Storyboard.TargetProperty="Opacity"
-                                           Storyboard.TargetName="ArrowPressed" />
-                        </Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0"
+                                                                     To="1"
+                                                                     Storyboard.TargetProperty="Opacity"
+                                                                     Storyboard.TargetName="BackgroundPointerOver" />
+                                                </Storyboard>
                       </VisualState>
                       <VisualState x:Name="Disabled" />
                     </VisualStateGroup>
@@ -374,37 +365,19 @@
                   <Rectangle x:Name="BackgroundPointerOver"
                              Fill="{ThemeResource ScrollBarButtonPointerOverBackgroundThemeBrush}"
                              Opacity="0"
-                             Stroke="{ThemeResource ScrollBarButtonPointerOverBorderThemeBrush}"
-                             StrokeThickness="1" />
-                  <Path x:Name="ArrowPointerOver"
-                        Data="M0.062734604,0 L5.4720101,5.5553346 L10.881266,0 L10.944,4.1183305 L5.4776478,9.6730003 L0,4.1183305 z"
-                        Fill="{ThemeResource ScrollBarButtonForegroundThemeBrush}"
-                        HorizontalAlignment="Center"
-                        Height="7"
-                        Margin="0,7,0,0"
-                        Stretch="Fill"
-                        StrokeThickness="0"
-                        UseLayoutRounding="False"
-                        VerticalAlignment="Top"
-                        Width="7" />
-                  <Rectangle x:Name="BackgroundPressed"
-                             Fill="{ThemeResource ScrollBarButtonPressedBackgroundThemeBrush}"
-                             Opacity="0"
-                             Stroke="{ThemeResource ScrollBarButtonPressedBorderThemeBrush}"
-                             StrokeThickness="1" />
-                  <Path x:Name="ArrowPressed"
-                        Data="M0.062734604,0 L5.4720101,5.5553346 L10.881266,0 L10.944,4.1183305 L5.4776478,9.6730003 L0,4.1183305 z"
-                        Fill="{ThemeResource ScrollBarButtonPressedForegroundThemeBrush}"
-                        HorizontalAlignment="Center"
-                        Height="7"
-                        Margin="0,7,0,0"
-                        Opacity="0"
-                        Stretch="Fill"
-                        StrokeThickness="0"
-                        UseLayoutRounding="False"
-                        VerticalAlignment="Top"
-                        Width="7" />
-                </Grid>
+                             StrokeThickness="0" />
+                                    <Path x:Name="ArrowPointerOver"
+                                          Data="M0.062734604,0 L5.4720101,5.5553346 L10.881266,0 L10.944,4.1183305 L5.4776478,9.6730003 L0,4.1183305 z"
+                                          Fill="{ThemeResource ScrollBarButtonForegroundThemeBrush}"
+                                          HorizontalAlignment="Center"
+                                          Height="7"
+                                          Margin="0,7,0,0"
+                                          Stretch="Fill"
+                                          StrokeThickness="0"
+                                          UseLayoutRounding="False"
+                                          VerticalAlignment="Top"
+                                          Width="7" />
+                                </Grid>
               </ControlTemplate>
               <ControlTemplate x:Key="VerticalDecrementTemplate"
                                TargetType="RepeatButton">
@@ -414,28 +387,19 @@
                       <VisualState x:Name="Normal" />
                       <VisualState x:Name="PointerOver">
                         <Storyboard>
-                          <DoubleAnimation Duration="0:0:0"
-                                           To="1"
-                                           Storyboard.TargetProperty="Opacity"
-                                           Storyboard.TargetName="BackgroundPointerOver" />
-                          <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                         Storyboard.TargetName="ArrowPointerOver">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{ThemeResource ScrollBarButtonPointerOverForegroundThemeBrush}" />
-                          </ObjectAnimationUsingKeyFrames>
-                        </Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0"
+                                                                     To="1"
+                                                                     Storyboard.TargetProperty="Opacity"
+                                                                     Storyboard.TargetName="BackgroundPointerOver" />
+                                                </Storyboard>
                       </VisualState>
                       <VisualState x:Name="Pressed">
-                        <Storyboard>
-                          <DoubleAnimation Duration="0:0:0"
-                                           To="1"
-                                           Storyboard.TargetProperty="Opacity"
-                                           Storyboard.TargetName="BackgroundPressed" />
-                          <DoubleAnimation Duration="0"
-                                           To="1"
-                                           Storyboard.TargetProperty="Opacity"
-                                           Storyboard.TargetName="ArrowPressed" />
-                        </Storyboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0"
+                                                                     To="1"
+                                                                     Storyboard.TargetProperty="Opacity"
+                                                                     Storyboard.TargetName="BackgroundPointerOver" />
+                                                </Storyboard>
                       </VisualState>
                       <VisualState x:Name="Disabled" />
                     </VisualStateGroup>
@@ -443,37 +407,19 @@
                   <Rectangle x:Name="BackgroundPointerOver"
                              Fill="{ThemeResource ScrollBarButtonPointerOverBackgroundThemeBrush}"
                              Opacity="0"
-                             Stroke="{ThemeResource ScrollBarButtonPointerOverBorderThemeBrush}"
-                             StrokeThickness="1" />
-                  <Path x:Name="ArrowPointerOver"
-                        Data="M5.6343679,0 L11.113339,5.5538998 L11.05059,9.6716595 L5.640007,4.117095 L0.22944409,9.6716595 L0.1666943,5.5538998 z"
-                        Fill="{ThemeResource ScrollBarButtonForegroundThemeBrush}"
-                        HorizontalAlignment="Center"
-                        Height="7"
-                        Margin="0,0,0,7"
-                        Stretch="Fill"
-                        StrokeThickness="0"
-                        UseLayoutRounding="False"
-                        VerticalAlignment="Bottom"
-                        Width="7" />
-                  <Rectangle x:Name="BackgroundPressed"
-                             Fill="{ThemeResource ScrollBarButtonPressedBackgroundThemeBrush}"
-                             Opacity="0"
-                             Stroke="{ThemeResource ScrollBarButtonPressedBorderThemeBrush}"
-                             StrokeThickness="1" />
-                  <Path x:Name="ArrowPressed"
-                        Data="M5.6343679,0 L11.113339,5.5538998 L11.05059,9.6716595 L5.640007,4.117095 L0.22944409,9.6716595 L0.1666943,5.5538998 z"
-                        Fill="{ThemeResource ScrollBarButtonPressedForegroundThemeBrush}"
-                        HorizontalAlignment="Center"
-                        Height="7"
-                        Margin="0,0,0,7"
-                        Opacity="0"
-                        Stretch="Fill"
-                        StrokeThickness="0"
-                        UseLayoutRounding="False"
-                        VerticalAlignment="Bottom"
-                        Width="7" />
-                </Grid>
+                             StrokeThickness="0" />
+                                    <Path x:Name="ArrowPointerOver"
+                                          Data="M5.6343679,0 L11.113339,5.5538998 L11.05059,9.6716595 L5.640007,4.117095 L0.22944409,9.6716595 L0.1666943,5.5538998 z"
+                                          Fill="{ThemeResource ScrollBarButtonForegroundThemeBrush}"
+                                          HorizontalAlignment="Center"
+                                          Height="7"
+                                          Margin="0,0,0,7"
+                                          Stretch="Fill"
+                                          StrokeThickness="0"
+                                          UseLayoutRounding="False"
+                                          VerticalAlignment="Bottom"
+                                          Width="7" />
+                                </Grid>
               </ControlTemplate>
               <ControlTemplate x:Key="VerticalThumbTemplate"
                                TargetType="Thumb">
@@ -482,29 +428,23 @@
                     <VisualStateGroup x:Name="CommonStates">
                       <VisualState x:Name="Normal" />
                       <VisualState x:Name="PointerOver">
-                        <Storyboard>
-                          <DoubleAnimation Duration="0"
-                                           To="1"
-                                           Storyboard.TargetProperty="Opacity"
-                                           Storyboard.TargetName="BackgroundPointerOver" />
-                          <DoubleAnimation Duration="0"
-                                           To="0"
-                                           Storyboard.TargetProperty="Opacity"
-                                           Storyboard.TargetName="Background" />
-                        </Storyboard>
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
+                                                                                   Storyboard.TargetProperty="Background">
+                                                        <DiscreteObjectKeyFrame Value="{ThemeResource ApplicationFourthForegroundThemeBrush}" 
+                                                                                KeyTime="0"/>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
                       </VisualState>
-                      <VisualState x:Name="Pressed">
-                        <Storyboard>
-                          <DoubleAnimation Duration="0"
-                                           To="1"
-                                           Storyboard.TargetProperty="Opacity"
-                                           Storyboard.TargetName="BackgroundPressed" />
-                          <DoubleAnimation Duration="0"
-                                           To="0"
-                                           Storyboard.TargetProperty="Opacity"
-                                           Storyboard.TargetName="Background" />
-                        </Storyboard>
-                      </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
+                                                                                   Storyboard.TargetProperty="Background">
+                                                        <DiscreteObjectKeyFrame Value="{ThemeResource ApplicationFourthForegroundThemeBrush}"
+                                                                                KeyTime="0" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
                       <VisualState x:Name="Disabled">
                         <Storyboard>
                           <DoubleAnimation Duration="0"
@@ -521,20 +461,10 @@
                   </VisualStateManager.VisualStateGroups>
                   <Grid x:Name="ThumbVisual"
                         Margin="0">
-                    <Border x:Name="Background"
-                            BorderBrush="{ThemeResource ScrollBarThumbBorderThemeBrush}"
-                            BorderThickness="1"
-                            Background="{ThemeResource ScrollBarThumbBackgroundThemeBrush}" />
-                    <Border x:Name="BackgroundPointerOver"
-                            BorderBrush="{ThemeResource ScrollBarThumbPointerOverBorderThemeBrush}"
-                            BorderThickness="1"
-                            Background="{ThemeResource ScrollBarThumbPointerOverBackgroundThemeBrush}"
-                            Opacity="0" />
-                    <Border x:Name="BackgroundPressed"
-                            BorderThickness="0"
-                            Background="{StaticResource SemiLightMainColor}"
-                            Opacity="0" />
-                  </Grid>
+                                        <Grid x:Name="Background"
+                                              CornerRadius="5"
+                                              Background="{ThemeResource ApplicationThirdForegroundThemeBrush}" />
+                                    </Grid>
                 </Grid>
               </ControlTemplate>
               <ControlTemplate x:Key="HorizontalThumbTemplate"
@@ -791,11 +721,11 @@
                             VerticalAlignment="Stretch" />
               <Thumb x:Name="VerticalThumb"
                      AutomationProperties.AccessibilityView="Raw"
-                     Background="{TemplateBinding Background}"
+                     Background="Transparent"
                      MinHeight="40"
                      Grid.Row="2"
                      Template="{StaticResource VerticalThumbTemplate}"
-                     Width="10" />
+                     Width="9" />
               <RepeatButton x:Name="VerticalLargeIncrease"
                             HorizontalAlignment="Stretch"
                             IsTabStop="False"
