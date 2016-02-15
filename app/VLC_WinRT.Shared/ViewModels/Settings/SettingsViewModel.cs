@@ -44,7 +44,6 @@ namespace VLC_WinRT.ViewModels.Settings
         private ApplicationTheme applicationTheme;
         private List<Color> _accentColors;
         private Color _accentColor;
-        private bool _accentColorTitleBar;
         private bool _continueVideoPlaybackInBackground;
         private OrderType _albumsOrderType;
         private OrderListing _albumsOrderListing;
@@ -131,29 +130,6 @@ namespace VLC_WinRT.ViewModels.Settings
                 if (_accentColor == value) return;
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(AccentColor), value.ToString(), false);
                 SetProperty(ref _accentColor, value);
-            }
-        }
-
-        public bool AccentColorTitleBar
-        {
-            get
-            {
-                var accentColorTitleBar = ApplicationSettingsHelper.ReadSettingsValue(nameof(AccentColorTitleBar), false);
-                if (accentColorTitleBar == null)
-                {
-                    _accentColorTitleBar = false;
-                }
-                else
-                {
-                    _accentColorTitleBar = (bool)accentColorTitleBar;
-                }
-                return _accentColorTitleBar;
-            }
-            set
-            {
-                if (_accentColorTitleBar == value) return;
-                ApplicationSettingsHelper.SaveSettingsValue(nameof(AccentColorTitleBar), value, false);
-                SetProperty(ref _accentColorTitleBar, value);
             }
         }
 
