@@ -22,6 +22,7 @@ Thumbs.db
 *.log
 *.sdf
 *.opensdf
+*.opendb
 *.ncrunchsolution
 *.ncrunchproject
 *.pfx
