@@ -1411,6 +1411,11 @@
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
                                     <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
+                                                                       Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource BasicForeground}" />
+                                        </ObjectAnimationUsingKeyFrames>
                                         <DoubleAnimation Storyboard.TargetName="ContentPresenterProjection"
                                                          Storyboard.TargetProperty="LocalOffsetZ"
                                                          SpeedRatio="4"
@@ -1469,16 +1474,7 @@
                             <VisualStateGroup x:Name="SelectionHintStates">
                                 <VisualState x:Name="VerticalSelectionHint">
                                     <Storyboard>
-                                        <SwipeHintThemeAnimation TargetName="SelectionBackground"
-                                                                 ToVerticalOffset="15"
-                                                                 ToHorizontalOffset="0" />
                                         <SwipeHintThemeAnimation TargetName="ContentBorder"
-                                                                 ToVerticalOffset="15"
-                                                                 ToHorizontalOffset="0" />
-                                        <SwipeHintThemeAnimation TargetName="SelectedBorder"
-                                                                 ToVerticalOffset="15"
-                                                                 ToHorizontalOffset="0" />
-                                        <SwipeHintThemeAnimation TargetName="SelectedCheckMark"
                                                                  ToVerticalOffset="15"
                                                                  ToHorizontalOffset="0" />
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HintGlyph"
@@ -1493,16 +1489,7 @@
                                 </VisualState>
                                 <VisualState x:Name="HorizontalSelectionHint">
                                     <Storyboard>
-                                        <SwipeHintThemeAnimation TargetName="SelectionBackground"
-                                                                 ToHorizontalOffset="-23"
-                                                                 ToVerticalOffset="0" />
                                         <SwipeHintThemeAnimation TargetName="ContentBorder"
-                                                                 ToHorizontalOffset="-23"
-                                                                 ToVerticalOffset="0" />
-                                        <SwipeHintThemeAnimation TargetName="SelectedBorder"
-                                                                 ToHorizontalOffset="-23"
-                                                                 ToVerticalOffset="0" />
-                                        <SwipeHintThemeAnimation TargetName="SelectedCheckMark"
                                                                  ToHorizontalOffset="-23"
                                                                  ToVerticalOffset="0" />
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HintGlyph"
@@ -1524,26 +1511,14 @@
                             <VisualStateGroup x:Name="SelectionStates">
                                 <VisualState x:Name="Unselecting">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="HintGlyphBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Unselected">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="HintGlyphBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="UnselectedPointerOver">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="HintGlyphBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -1553,76 +1528,28 @@
                                 </VisualState>
                                 <VisualState x:Name="UnselectedSwiping">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectingGlyph"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="0.5" />
-                                        <DoubleAnimation Storyboard.TargetName="HintGlyphBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Selecting">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectionBackground"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="SelectingGlyph"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="HintGlyphBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource ListViewItemSelectedForegroundThemeBrush}" />
+                                                                    Value="{ThemeResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Selected">
                                     <Storyboard>
-                                        <!--<DoubleAnimation Storyboard.TargetName="SelectionBackground"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />-->
-                                        <!--<DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />-->
-                                        <DoubleAnimation Storyboard.TargetName="SelectedCheckMark"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource ListViewItemSelectedForegroundThemeBrush}" />
+                                                                    Value="{ThemeResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="SelectedSwiping">
                                     <Storyboard>
-                                        <!--<DoubleAnimation Storyboard.TargetName="SelectionBackground"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />-->
-                                        <DoubleAnimation Storyboard.TargetName="SelectedCheckMark"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -1632,18 +1559,6 @@
                                 </VisualState>
                                 <VisualState x:Name="SelectedUnfocused">
                                     <Storyboard>
-                                        <!--<DoubleAnimation Storyboard.TargetName="SelectionBackground"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />-->
-                                        <DoubleAnimation Storyboard.TargetName="SelectedCheckMark"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -1690,9 +1605,6 @@
                                         <FadeInThemeAnimation TargetName="MultiArrangeOverlayBackground" />
                                         <FadeInThemeAnimation TargetName="MultiArrangeOverlayText" />
                                         <DragItemThemeAnimation TargetName="ContentBorder" />
-                                        <FadeOutThemeAnimation TargetName="SelectionBackground" />
-                                        <FadeOutThemeAnimation TargetName="SelectedCheckMarkOuter" />
-                                        <FadeOutThemeAnimation TargetName="SelectedBorder" />
                                         <FadeOutThemeAnimation TargetName="PointerOverBorder" />
                                     </Storyboard>
                                 </VisualState>
@@ -1769,36 +1681,6 @@
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="ReorderHintContent"
                               Background="Transparent">
-                            <Path x:Name="SelectingGlyph"
-                                  Opacity="0"
-                                  Data="F1 M133.1,17.9 L137.2,13.2 L144.6,19.6 L156.4,5.8 L161.2,9.9 L145.6,28.4 z"
-                                  Fill="{ThemeResource ListViewItemCheckSelectingThemeBrush}"
-                                  Height="13"
-                                  Stretch="Fill"
-                                  Width="15"
-                                  HorizontalAlignment="Right"
-                                  Margin="0,9.5,9.5,0"
-                                  VerticalAlignment="Top"
-                                  FlowDirection="LeftToRight" />
-                            <Border x:Name="HintGlyphBorder"
-                                    Height="40"
-                                    Width="40"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    Opacity="0"
-                                    Margin="4">
-                                <Path x:Name="HintGlyph"
-                                      Opacity="0"
-                                      Data="F1 M133.1,17.9 L137.2,13.2 L144.6,19.6 L156.4,5.8 L161.2,9.9 L145.6,28.4 z"
-                                      Fill="{ThemeResource ListViewItemCheckHintThemeBrush}"
-                                      Height="13"
-                                      Stretch="Fill"
-                                      Width="15"
-                                      HorizontalAlignment="Right"
-                                      Margin="0,5.5,5.5,0"
-                                      VerticalAlignment="Top"
-                                      FlowDirection="LeftToRight" />
-                            </Border>
                             <Border x:Name="ContentContainer">
                                 <Grid x:Name="InnerDragContent"
                                       Margin="0,0,13,13">
@@ -1849,35 +1731,6 @@
                                                        IsHitTestVisible="False"
                                                        Opacity="0"
                                                        Fill="{ThemeResource ListViewItemDragBackgroundThemeBrush}" />
-                                        </Grid>
-                                    </Border>
-                                    <Rectangle x:Name="SelectedBorder"
-                                               IsHitTestVisible="False"
-                                               Opacity="0"
-                                               Stroke="{ThemeResource SemiLightMainColor}"
-                                               StrokeThickness="{ThemeResource ListViewItemSelectedBorderThemeThickness}"
-                                               Margin="4" />
-                                    <Border x:Name="SelectedCheckMarkOuter"
-                                            IsHitTestVisible="False"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Top">
-                                        <Grid x:Name="SelectedCheckMark"
-                                              Opacity="0"
-                                              Height="40"
-                                              Width="40">
-                                            <Path x:Name="SelectedEarmark"
-                                                  Data="M0,0 L40,0 L40,40 z"
-                                                  Fill="{ThemeResource SemiLightMainColor}"
-                                                  Stretch="Fill" />
-                                            <Path Data="F1 M133.1,17.9 L137.2,13.2 L144.6,19.6 L156.4,5.8 L161.2,9.9 L145.6,28.4 z"
-                                                  Fill="{ThemeResource ListViewItemCheckThemeBrush}"
-                                                  Height="13"
-                                                  Stretch="Fill"
-                                                  Width="15"
-                                                  HorizontalAlignment="Right"
-                                                  Margin="0,5.5,5.5,0"
-                                                  VerticalAlignment="Top"
-                                                  FlowDirection="LeftToRight" />
                                         </Grid>
                                     </Border>
                                     <TextBlock x:Name="MultiArrangeOverlayText"
@@ -2240,7 +2093,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource MainColor}" />
+                                                                    Value="{ThemeResource BasicForeground}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Grid"
                                                                        Storyboard.TargetProperty="Background">
