@@ -1,0 +1,184 @@
+﻿<Page x:Class="VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionBase"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:triggers="using:WinRT.Triggers"
+      xmlns:ScrollWatcher="using:ScrollWatcher"
+      mc:Ignorable="d"
+      d:DesignHeight="300"
+      d:DesignWidth="400"
+      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+
+    <Page.Resources>
+        <CollectionViewSource x:Key="GroupArtists"
+                              x:Name="GroupArtists"
+                              IsSourceGrouped="True"
+                              Source="{Binding GroupedArtists}" />
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="ArtistsGridColumnDefinition"
+                              Width="Auto" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            <ColumnDefinition x:Name="ArtistGridColumnDefinition"
+                              Width="5*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="ArtistsGrid"
+              Grid.Column="0"
+              Visibility="Collapsed"
+              x:DeferLoadStrategy="Lazy"
+              Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
+              Padding="{StaticResource FrameMarginLeft}">
+            <SemanticZoom x:Name="SemanticZoom"
+                          Grid.Row="1"
+                          Padding="0"
+                          IsZoomOutButtonEnabled="False"
+                          ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ScrollViewer.HorizontalScrollMode="Disabled">
+                <SemanticZoom.ZoomedInView>
+                    <ScrollWatcher:ListViewScrollWatcher x:Name="ArtistListView"
+                                                         ItemsSource="{Binding Source={StaticResource GroupArtists}}"
+                                                         SelectionMode="Single"
+                                                         IsItemClickEnabled="True"
+                                                         SelectedItem="{Binding CurrentArtist}"
+                                                         IsSynchronizedWithCurrentItem="False"
+                                                         ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                                         ItemTemplate="{StaticResource ArtistHorizontalTemplate}"
+                                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                         ScrollViewer.HorizontalScrollMode="Disabled">
+                        <triggers:Interactions.Triggers>
+                            <triggers:EventTrigger EventName="ItemClick">
+                                <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
+                                                              PassEventArgsToCommand="True" />
+                            </triggers:EventTrigger>
+                            <triggers:EventTrigger EventName="ScrollDetected">
+                                <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.ScrollDetectedCommand}"
+                                                              PassEventArgsToCommand="True" />
+                            </triggers:EventTrigger>
+                        </triggers:Interactions.Triggers>
+                        <ListView.GroupStyle>
+                            <GroupStyle HeaderTemplate="{StaticResource ListviewGroupHeaderDataTemplate}" />
+                        </ListView.GroupStyle>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsStackPanel AreStickyGroupHeadersEnabled="False">
+                                    <ItemsStackPanel.ChildrenTransitions>
+                                        <TransitionCollection>
+                                            <RepositionThemeTransition />
+                                            <AddDeleteThemeTransition />
+                                            <EntranceThemeTransition IsStaggeringEnabled="True" />
+                                        </TransitionCollection>
+                                    </ItemsStackPanel.ChildrenTransitions>
+                                </ItemsStackPanel>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ScrollWatcher:ListViewScrollWatcher>
+                </SemanticZoom.ZoomedInView>
+                <SemanticZoom.ZoomedOutView>
+                    <ListView x:Name="ArtistsZoomedOutView"
+                              Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+                              VerticalContentAlignment="Center"
+                              SelectionMode="None"
+                              ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid Orientation="Horizontal"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               GroupPadding="30,0"
+                                               ItemWidth="50" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock Text="{Binding Group.Key}"
+                                               Style="{StaticResource SemanticZoomViewOutTextBlockStyle}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </SemanticZoom.ZoomedOutView>
+            </SemanticZoom>
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <local:MainArtistHeader x:Name="MainArtistHeader"
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Left"/>
+            <Pivot Grid.Row="1"
+                   Style="{StaticResource TitlelessPivot}">
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
+                                      FontFamily="{StaticResource VLCFont}"
+                                      FontSize="30" />
+                            <TextBlock Margin="5,0,0,0"
+                                       Text="{Binding Source={StaticResource Strings}, Path=Albums}" />
+                        </StackPanel>
+                    </PivotItem.Header>
+                    <local:ArtistAlbumsSemanticView />
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="{StaticResource BuddySymbol}"
+                                      FontFamily="{StaticResource VLCFont}"
+                                      FontSize="30" />
+                            <TextBlock Margin="5,0,0,0"
+                                       Text="{Binding Source={StaticResource Strings}, Path=SimilarArtists}" />
+                        </StackPanel>
+                    </PivotItem.Header>
+                    <local:ArtistInfoControl x:Name="ExtraInfoGrid" />
+                </PivotItem>
+            </Pivot>
+        </Grid>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1450" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ExtraInfoGrid.Visibility"
+                                Value="Visible" />
+                        <Setter Target="ArtistsGrid.Visibility"
+                                Value="Visible" />
+                        <Setter Target="ArtistsGridColumnDefinition.Width"
+                                Value="1.2*" />
+                        <Setter Target="MainArtistHeader.IsBackButtonVisible"
+                                Value="False" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Medium">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1150" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ExtraInfoGrid.Visibility"
+                                Value="Visible" />
+                        <Setter Target="ArtistsGrid.Visibility"
+                                Value="Visible" />
+                        <Setter Target="ArtistsGridColumnDefinition.Width"
+                                Value="1.4*" />
+                        <Setter Target="MainArtistHeader.IsBackButtonVisible"
+                                Value="False" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>
