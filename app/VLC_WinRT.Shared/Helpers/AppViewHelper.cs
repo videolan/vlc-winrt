@@ -11,6 +11,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WinRT.ViewModels;
 using Windows.Foundation.Metadata;
+using VLC_WinRT.UI.Legacy.Views.UserControls;
+using VLC_WinRT.Views.UserControls;
 
 namespace VLC_WinRT.Helpers
 {
@@ -38,11 +40,13 @@ namespace VLC_WinRT.Helpers
         public static void SetAppView(bool extend)
         {
 #if WINDOWS_UWP
-            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = extend;
             var appView = ApplicationView.GetForCurrentView();
             var titleBar = appView.TitleBar;
-            titleBar.ButtonBackgroundColor = Color.FromArgb(0, 0, 0, 0);
-            titleBar.ButtonInactiveBackgroundColor = Color.FromArgb(0, 0, 0, 0);
+            titleBar.ButtonForegroundColor = Colors.DimGray;
+            titleBar.ButtonBackgroundColor = Colors.Transparent;
+            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
                 Windows.UI.ViewManagement.StatusBar.GetForCurrentView().HideAsync();
