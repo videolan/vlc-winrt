@@ -302,9 +302,14 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public void OnNavigatedToArtists()
         {
-            if (LoadingStateArtists == LoadingState.NotLoaded)
+            if (LoadingStateArtists == LoadingState.NotLoaded && GroupedArtists == null)
             {
                 InitializeArtists();
+            }
+            else
+            {
+                OnPropertyChanged(nameof(IsMusicLibraryEmpty));
+                OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
             }
         }
 
