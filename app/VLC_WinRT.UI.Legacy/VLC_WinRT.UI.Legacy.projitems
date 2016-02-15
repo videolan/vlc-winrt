@@ -239,10 +239,6 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\SideBar.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\TitleBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\TopBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -477,9 +473,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\SideBar.xaml.cs">
       <DependentUpon>SideBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\TitleBar.xaml.cs">
-      <DependentUpon>TitleBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\TopBar.xaml.cs">
       <DependentUpon>TopBar.xaml</DependentUpon>
