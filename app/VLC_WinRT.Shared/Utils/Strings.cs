@@ -374,12 +374,12 @@ namespace VLC_WinRT.Utils
         public static string HumanizedYear(int year) { return year == 0 ? Strings.UnknownString : year.ToString(); }
         public static string HumanizedAlbumFirstLetter(string albumName)
         {
-            return string.IsNullOrEmpty(albumName) ? Strings.UnknownString : (char.IsLetter(albumName.ElementAt(0)) ? albumName.ElementAt(0).ToString().ToUpper() : Strings.UnknownString);
+            return string.IsNullOrEmpty(albumName) ? Strings.UnknownArtist[0].ToString() : (char.IsLetter(albumName.ElementAt(0)) ? albumName.ElementAt(0).ToString().ToUpper() : Strings.UnknownString);
         }
 
         public static string HumanizedArtistFirstLetter(string artist)
         {
-            return (string.IsNullOrEmpty(artist) ? Strings.UnknownString : (char.IsLetter(artist.ElementAt(0)) ? artist.ToUpper().ElementAt(0).ToString() : Strings.UnknownString));
+            return (string.IsNullOrEmpty(artist) ? Strings.UnknownArtist[0].ToString() : (char.IsLetter(artist.ElementAt(0)) ? artist.ToUpper().ElementAt(0).ToString() : Strings.UnknownString));
         }
 
         public static string HumanizeSeconds(double value)
