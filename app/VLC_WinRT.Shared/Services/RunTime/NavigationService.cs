@@ -251,7 +251,12 @@ namespace VLC_WinRT.Services.RunTime
                     App.SplitShell.RightFlyoutContent = new AlbumPageBase();
                     break;
                 case VLCPage.ArtistPage:
-                    App.ApplicationFrame.Navigate(typeof(ArtistPageBase));
+#if WINDOWS_UWP // On UWP, the ArtistPage is embedded in MainpageMusic and Artists MusicView, it is not the case on Windows 9.1
+                    if (CurrentPage != VLCPage.MainPageMusic || Locator.MusicLibraryVM.MusicView != Model.Music.MusicView.Artists)
+#endif
+                    {
+                        App.ApplicationFrame.Navigate(typeof(ArtistPageBase));
+                    }
                     break;
                 case VLCPage.PlaylistPage:
                     App.SplitShell.RightFlyoutContent = new PlaylistPage();
