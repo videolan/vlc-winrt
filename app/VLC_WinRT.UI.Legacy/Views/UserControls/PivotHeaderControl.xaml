@@ -31,7 +31,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="FontSize">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="22" />
+                                                    Value="19" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
                                                        Storyboard.TargetProperty="Margin">
@@ -48,11 +48,6 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Left" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
-                                                       Storyboard.TargetProperty="Width">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="100" />
-                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="HalfSnap">
@@ -65,12 +60,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="FontSize">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="19" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
-                                                       Storyboard.TargetProperty="Width">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="80" />
+                                                    Value="16" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
                                                        Storyboard.TargetProperty="Margin">
@@ -137,7 +127,7 @@
         </VisualStateManager.VisualStateGroups>
         <FontIcon x:Name="Icon"
                   FontFamily="{StaticResource VLCFont}"
-                  FontSize="30"
+                  FontSize="23"
                   VerticalAlignment="Center" />
         <TextBlock x:Name="Title"
                    Grid.Column="2"
