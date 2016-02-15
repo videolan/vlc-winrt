@@ -16,16 +16,10 @@
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="ListviewGroupHeaderDataTemplate">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="12" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="1"
-                       Text="{Binding Key}"
-                       Foreground="{ThemeResource MainColor}"
-                       FontSize="23" />
-        </Grid>
+        <TextBlock Grid.Row="1"
+                   Text="{Binding Key}"
+                   Foreground="{ThemeResource MainColor}"
+                   FontSize="20" />
     </DataTemplate>
 
     <DataTemplate x:Key="FolderDataTemplate">
