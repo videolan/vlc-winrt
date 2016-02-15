@@ -9,29 +9,42 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
     <Grid x:Name="HeaderGrid"
-          Background="Transparent"
-          VerticalAlignment="Top">
+          Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
+                <ColumnDefinition Width="36" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="36" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock TextTrimming="CharacterEllipsis"
+            <AppBarButton x:Name="BackButton" 
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          FontSize="20"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Stretch"
+                          DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                          Command="{Binding GoBackCommand}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                              FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <TextBlock Grid.Column="1"
+                       TextTrimming="CharacterEllipsis"
                        TextWrapping="NoWrap"
                        VerticalAlignment="Top"
+                       Margin="0,-8,0,0"
                        Text="{Binding CurrentArtist.Name, Converter={StaticResource ArtistStringConverter}}"
                        Style="{StaticResource SubheaderTextBlockStyle}" 
                        FontSize="36"/>
 
-            <AppBarButton Grid.Column="1"
+            <AppBarButton Grid.Column="3"
                           x:Name="PlayButton"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Label="{Binding Source={StaticResource Strings}, Path=PlayAll}"
@@ -44,24 +57,13 @@
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Grid.Column="3"
+            <AppBarButton Grid.Column="5"
                           x:Name="PinButton"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Icon="{Binding CurrentArtist.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
                           VerticalAlignment="Center"
                           Command="{Binding CurrentArtist.PinArtistCommand}"
                           CommandParameter="{Binding CurrentArtist}" />
-            <AppBarButton Grid.Column="5"
-                          x:Name="ShowsButton"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          VerticalAlignment="Center"
-                          Command="{Binding CurrentArtist.SeeArtistShowsCommand}"
-                          CommandParameter="{Binding CurrentArtist}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource CalendarSymbol}"
-                              FontFamily="{StaticResource VLCFont}" />
-                </AppBarButton.Icon>
-            </AppBarButton>
         </Grid>
         <Grid Grid.Row="1"
               x:Name="SnapCommandGrid"
@@ -70,8 +72,6 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="55" />
                 <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="12" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
@@ -94,16 +94,6 @@
                           VerticalAlignment="Center"
                           Command="{Binding CurrentArtist.PinArtistCommand}"
                           CommandParameter="{Binding CurrentArtist}" />
-            <AppBarButton Grid.Column="4"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          VerticalAlignment="Center"
-                          Command="{Binding CurrentArtist.SeeArtistShowsCommand}"
-                          CommandParameter="{Binding CurrentArtist}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource CalendarSymbol}"
-                              FontFamily="{StaticResource VLCFont}" />
-                </AppBarButton.Icon>
-            </AppBarButton>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
@@ -125,11 +115,6 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ShowsButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Wide">
@@ -145,11 +130,6 @@
                                                     Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PinButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ShowsButton"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
