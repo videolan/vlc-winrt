@@ -2201,8 +2201,7 @@
                 <ControlTemplate TargetType="Pivot">
                     <Grid x:Name="RootElement"
                           HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                          Background="{TemplateBinding Background}">
+                          VerticalAlignment="{TemplateBinding VerticalAlignment}">
                         <Grid.Resources>
                             <Style x:Key="BaseContentControlStyle"
                                    TargetType="ContentControl">
@@ -2436,11 +2435,11 @@
                                         <ContentControl x:Name="HeaderClipper"
                                                         Grid.Column="1"
                                                         UseSystemFocusVisuals="True"
-                                                        HorizontalContentAlignment="Stretch">
+                                                        HorizontalContentAlignment="Left">
                                             <ContentControl.Clip>
                                                 <RectangleGeometry x:Name="HeaderClipperGeometry" />
                                             </ContentControl.Clip>
-                                            <Grid Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
+                                            <Grid Background="{TemplateBinding Background}">
                                                 <PivotHeaderPanel x:Name="StaticHeader"
                                                                   Visibility="Collapsed" />
                                                 <PivotHeaderPanel x:Name="Header">
@@ -2481,7 +2480,7 @@
                                                 Background="Transparent" />
                                         <ContentPresenter x:Name="RightHeaderPresenter"
                                                           Grid.Column="2"
-                                                          Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
+                                                          Background="{TemplateBinding Background}"
                                                           Content="{TemplateBinding RightHeader}"
                                                           ContentTemplate="{TemplateBinding RightHeaderTemplate}"
                                                           HorizontalAlignment="Stretch"
