@@ -10,85 +10,22 @@
       d:DesignWidth="400"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <Page.Resources>
-        <CollectionViewSource x:Key="GroupArtists"
-                              x:Name="GroupArtists"
-                              IsSourceGrouped="True"
-                              Source="{Binding GroupedArtists}" />
-    </Page.Resources>
-
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="ArtistsGridColumnDefinition" 
-                              Width="Auto" />
-            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-            <ColumnDefinition x:Name="ArtistGridColumnDefinition"
-                              Width="5*"/>
-        </Grid.ColumnDefinitions>
-        <Grid x:Name="ArtistsGrid"
-              Grid.Column="0"
-              Grid.ColumnSpan="2"
-              Visibility="Collapsed"
-              x:DeferLoadStrategy="Lazy"
-              Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Label="Back to collection"
-                          FontSize="20"
-                          VerticalAlignment="Center"
-                          HorizontalAlignment="Stretch"
-                          DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-                          Command="{Binding GoBackCommand}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
-                              FontFamily="{StaticResource VLCFont}" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <ListView x:Name="ArtistListView"
-                      Grid.Row="1"
-                      IsItemClickEnabled="True"
-                      ItemsSource="{Binding Source={StaticResource GroupArtists}}"
-                      SelectionMode="None"
-                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                      ItemTemplate="{StaticResource ArtistHorizontalTemplate}"
-                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      ScrollViewer.HorizontalScrollMode="Disabled"
-                      Margin="{StaticResource FrameMarginLeft}">
-                <triggers:Interactions.Triggers>
-                    <triggers:EventTrigger EventName="ItemClick">
-                        <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
-                                                      PassEventArgsToCommand="True" />
-                    </triggers:EventTrigger>
-                </triggers:Interactions.Triggers>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsStackPanel Margin="{StaticResource FrameMarginTop}">
-                            <ItemsStackPanel.ChildrenTransitions>
-                                <TransitionCollection>
-                                    <RepositionThemeTransition />
-                                    <AddDeleteThemeTransition />
-                                    <EntranceThemeTransition IsStaggeringEnabled="True" />
-                                </TransitionCollection>
-                            </ItemsStackPanel.ChildrenTransitions>
-                        </ItemsStackPanel>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-        </Grid>
-
-        <Pivot Grid.Column="2">
-            <Pivot.Title>
-                <local:MainArtistHeader />
-            </Pivot.Title>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <local:MainArtistHeader x:Name="MainArtistHeader"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left" />
+        <Pivot Grid.Row="1"
+               Style="{StaticResource TitlelessPivot}">
             <PivotItem>
                 <PivotItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
-                                  FontFamily="{StaticResource VLCFont}" 
-                                  FontSize="30"/>
+                                  FontFamily="{StaticResource VLCFont}"
+                                  FontSize="30" />
                         <TextBlock Margin="5,0,0,0"
                                    Text="{Binding Source={StaticResource Strings}, Path=Albums}" />
                     </StackPanel>
@@ -105,66 +42,8 @@
                                    Text="{Binding Source={StaticResource Strings}, Path=SimilarArtists}" />
                     </StackPanel>
                 </PivotItem.Header>
-                <local:ArtistInfoControl x:Name="ExtraInfoGrid"/>
+                <local:ArtistInfoControl x:Name="ExtraInfoGrid" />
             </PivotItem>
         </Pivot>
-
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="Wide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1450" />
-                    </VisualState.StateTriggers>
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExtraInfoGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistsGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistsGridColumnDefinition"
-                                                       Storyboard.TargetProperty="Width">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="1.5*" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Medium">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1150" />
-                    </VisualState.StateTriggers>
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExtraInfoGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistsGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistsGridColumnDefinition"
-                                                       Storyboard.TargetProperty="Width">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="1.5*" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Narrow">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistsGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>
