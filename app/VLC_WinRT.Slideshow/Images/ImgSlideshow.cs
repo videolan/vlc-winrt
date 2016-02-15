@@ -307,6 +307,7 @@ namespace Slide2D.Images
 
         public async void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
+            args.DrawingSession.Clear(backgroundColor);
             if (currentImg?.ScaleEffect != null)
             {
                 if (TextInSlideshowEnabled)
@@ -317,7 +318,6 @@ namespace Slide2D.Images
                         text.Draw(ref args, ref txts);
                     }
                 }
-                args.DrawingSession.Clear(backgroundColor);
                 args.DrawingSession.DrawImage(currentImg.ScaleEffect, new System.Numerics.Vector2(), new Rect()
                 {
                     Height = MetroSlideshow.WindowHeight,
