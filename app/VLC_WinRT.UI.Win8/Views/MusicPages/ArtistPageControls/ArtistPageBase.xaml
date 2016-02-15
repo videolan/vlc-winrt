@@ -19,7 +19,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <local:MainArtistHeader Margin="{StaticResource FrameMarginBothSides}"/>
+        <local:MainArtistHeader Margin="{StaticResource FrameMarginBothSides}"
+                                IsBackButtonVisible="True"/>
 
         <local:ArtistAlbumsSemanticView Grid.Row="1"
                                         Grid.Column="0"
