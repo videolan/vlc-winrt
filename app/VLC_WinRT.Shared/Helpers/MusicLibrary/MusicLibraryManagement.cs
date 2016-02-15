@@ -478,8 +478,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 if (orderListing == OrderListing.Ascending)
                 {
                     var groupQuery = from album in Albums
-                                     orderby album.Artist
                                      group album by Strings.HumanizedArtistName(album.Artist) into a
+                                     orderby a.Key
                                      select new { GroupName = a.Key, Items = a };
                     foreach (var g in groupQuery)
                     {
@@ -495,8 +495,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 else if (orderListing == OrderListing.Descending)
                 {
                     var groupQuery = from album in Albums
-                                     orderby album.Artist descending
                                      group album by Strings.HumanizedArtistName(album.Artist) into a
+                                     orderby a.Key descending
                                      select new { GroupName = a.Key, Items = a };
                     foreach (var g in groupQuery)
                     {
@@ -552,8 +552,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 if (orderListing == OrderListing.Ascending)
                 {
                     var groupQuery = from album in Albums
-                                     orderby album.Name
                                      group album by Strings.HumanizedAlbumFirstLetter(album.Name) into a
+                                     orderby a.Key
                                      select new { GroupName = a.Key, Items = a };
                     foreach (var g in groupQuery)
                     {
@@ -569,8 +569,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 else if (orderListing == OrderListing.Descending)
                 {
                     var groupQuery = from album in Albums
-                                     orderby album.Name descending
                                      group album by Strings.HumanizedAlbumFirstLetter(album.Name) into a
+                                     orderby a.Key descending
                                      select new { GroupName = a.Key, Items = a };
                     foreach (var g in groupQuery)
                     {
@@ -591,8 +591,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         {
             var groupedArtists = new ObservableCollection<GroupItemList<ArtistItem>>();
             var groupQuery = from artist in Artists
-                             orderby artist.Name
                              group artist by Strings.HumanizedArtistFirstLetter(artist.Name) into a
+                             orderby a.Key
                              select new { GroupName = a.Key, Items = a };
             foreach (var g in groupQuery)
             {
