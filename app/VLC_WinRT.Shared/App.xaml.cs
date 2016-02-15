@@ -269,13 +269,14 @@ namespace VLC_WinRT
 
         public static void SetShellDecoration(bool forceTemporaryAppTheme = false, bool forceDark = false)
         {
-            Locator.Slideshow.SetTheme(false);
             if (forceTemporaryAppTheme)
             {
                 RootPage.RequestedTheme = forceDark ? ElementTheme.Dark : ElementTheme.Light;
+                Locator.Slideshow.SetTheme(true, forceDark);
             }
             else
             {
+                Locator.Slideshow.SetTheme(false);
                 RootPage.RequestedTheme = (SettingsViewModel.GetApplicationTheme() == ApplicationTheme.Light) ? ElementTheme.Light : ElementTheme.Dark;
             }
             App.Current.Resources["MainColorBase"] = Locator.SettingsVM.AccentColor;
