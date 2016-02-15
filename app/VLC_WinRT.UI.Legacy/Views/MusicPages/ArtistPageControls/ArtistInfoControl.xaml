@@ -11,25 +11,25 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="{StaticResource FrameMarginGridLengthDouble}" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="{StaticResource FrameMarginGridLengthDouble}" />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="{StaticResource FrameMarginGridLengthDouble}" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="1"
-                   TextTrimming="CharacterEllipsis"
+        <TextBlock TextTrimming="CharacterEllipsis"
                    TextWrapping="NoWrap"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Center"
                    Text="{Binding Source={StaticResource Strings}, Path=SimilarArtists}"
                    Style="{StaticResource SubheaderTextBlockStyle}" />
         <ListView x:Name="SimilarArtistsListView"
-                  Grid.Row="3"
+                  Grid.Row="2"
                   ItemsSource="{Binding CurrentArtist.OnlineRelatedArtists}"
                   ItemTemplate="{StaticResource SimilarArtistTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -50,14 +50,14 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        <TextBlock Grid.Row="5"
+        <TextBlock Grid.Row="4"
                    TextTrimming="CharacterEllipsis"
                    TextWrapping="NoWrap"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Center"
                    Text="{Binding Source={StaticResource Strings}, Path=Biography}"
                    Style="{StaticResource SubheaderTextBlockStyle}" />
-        <TextBlock Grid.Row="7"
+        <TextBlock Grid.Row="6"
                    Text="{Binding CurrentArtist.BiographyString}"
                    Style="{StaticResource BodyTextBlockStyle}"
                    TextTrimming="CharacterEllipsis"
@@ -65,7 +65,14 @@
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Top"
                    Margin="{StaticResource FrameMarginHorizontal}"
-                   MaxWidth="450"
+                   MaxWidth="700"
                    TextAlignment="Justify" />
+        <TextBlock Grid.Row="8"
+                   TextTrimming="CharacterEllipsis"
+                   TextWrapping="NoWrap"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   Text="{Binding Source={StaticResource Strings}, Path=UpcomingShows}"
+                   Style="{StaticResource SubheaderTextBlockStyle}" />
     </Grid>
 </UserControl>
