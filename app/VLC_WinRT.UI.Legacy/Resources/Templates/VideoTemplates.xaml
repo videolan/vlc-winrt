@@ -9,7 +9,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="PhoneCompactVideoTemplateFixedSize">
-        <userControls:CompactVideoItemControl Height="185"
+        <userControls:CompactVideoItemControl Height="180"
                                               Width="246"/>
     </DataTemplate>
     
