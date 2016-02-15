@@ -915,7 +915,7 @@
     <Style x:Key="VLCSlider"
            TargetType="Slider">
         <Setter Property="Background"
-                Value="{ThemeResource InvertedApplicationBackgroundQuarterTranslucentThemeBrush}" />
+                Value="{ThemeResource InvertedApplicationBackgroundSemiTranslucentThemeBrush}" />
         <Setter Property="BorderBrush"
                 Value="{ThemeResource SliderBorderThemeBrush}" />
         <Setter Property="BorderThickness"
