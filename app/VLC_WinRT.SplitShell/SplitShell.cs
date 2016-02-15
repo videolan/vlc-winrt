@@ -15,8 +15,7 @@ namespace VLC_WinRT.Controls
     public delegate void RightSidebarNavigated(object sender, EventArgs p);
     public delegate void RightSidebarClosed(object sender, EventArgs e);
     public delegate void ContentSizeChanged(double newWidth);
-
-    [TemplatePart(Name = TitleBarContentPresenterName, Type = typeof(ContentPresenter))]
+    
     [TemplatePart(Name = ContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = RightFlyoutContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = RightFlyoutFadeInName, Type = typeof(Storyboard))]
@@ -45,7 +44,6 @@ namespace VLC_WinRT.Controls
         };
 
         private const string ContentPresenterName = "ContentPresenter";
-        private const string TitleBarContentPresenterName = "TitleBarContentPresenter";
         private const string RightFlyoutContentPresenterName = "RightFlyoutContentPresenter";
         private const string RightFlyoutFadeInName = "RightFlyoutFadeIn";
         private const string RightFlyoutFadeOutName = "RightFlyoutFadeOut";
@@ -66,7 +64,6 @@ namespace VLC_WinRT.Controls
         private Grid _splitPaneEmptyGrid;
         private Grid _splitPaneOpenerGrid;
         private ContentPresenter _contentPresenter;
-        private ContentPresenter _titleBarContentPresenter;
         private ContentPresenter _rightFlyoutContentPresenter;
         private ContentPresenter _footerContentPresenter;
         private ContentPresenter _splitPaneContentPresenter;
@@ -78,7 +75,6 @@ namespace VLC_WinRT.Controls
         private Storyboard _topBarFadeIn;
         private Storyboard _sidePaneOpening;
         private Storyboard _sidePaneClosing;
-        private TextBlock _informationTextBlock;
 
         public async void SetContentPresenter(object contentPresenter)
         {
@@ -90,20 +86,6 @@ namespace VLC_WinRT.Controls
         {
             await TemplateApplied.Task;
             _splitPaneContentPresenter.Content = contentPresenter;
-        }
-
-        public async void SetTitleBarContentPresenter(object contentPresenter)
-        {
-            await TemplateApplied.Task;
-            _titleBarContentPresenter.Content = contentPresenter;
-        }
-
-        public async void SetTitleBarHeight(double h)
-        {
-            await TemplateApplied.Task;
-            if (h < 0)
-                h = 0;
-            _titleBarContentPresenter.Height = h;
         }
         
         public async void SetRightPaneContentPresenter(object content)
@@ -210,47 +192,6 @@ namespace VLC_WinRT.Controls
         }
         #endregion
         
-        #region TitleBar Property
-
-        public DependencyObject TitleBarContent
-        {
-            get { return (DependencyObject)GetValue(TitleBarContentProperty); }
-            set { SetValue(TitleBarContentProperty, value); }
-        }
-
-        public static readonly DependencyProperty TitleBarContentProperty = DependencyProperty.Register(
-            "TitleBarContent", typeof(DependencyObject), typeof(SplitShell), new PropertyMetadata(default(DependencyObject), TitleBarContentPropertyChangedCallback));
-
-
-        private static void TitleBarContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-#if WINDOWS_PHONE_APP
-            return;
-#endif
-            var that = (SplitShell)dependencyObject;
-            that.SetTitleBarContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
-        }
-        
-        public double TitleBarHeight
-        {
-            get { return (int)GetValue(TitleBarHeightProperty); }
-            set { SetValue(TitleBarHeightProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for TitleBarHeight.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TitleBarHeightProperty =
-            DependencyProperty.Register("TitleBarHeight", typeof(int), typeof(SplitShell), new PropertyMetadata(32, TitleBarHeightPropertyChangedCallback));
-
-        private static void TitleBarHeightPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-#if WINDOWS_PHONE_APP
-            return;
-#endif
-            var that = (SplitShell)dependencyObject;
-            that.SetTitleBarHeight((double)dependencyPropertyChangedEventArgs.NewValue);
-        }
-        #endregion
-
         public SplitShell()
         {
             DefaultStyleKey = typeof(SplitShell);
@@ -269,7 +210,6 @@ namespace VLC_WinRT.Controls
             _rightFlyoutGridContainer = (Grid)GetTemplateChild(RightFlyoutGridContainerName);
             _flyoutBackgroundGrid = (Grid)GetTemplateChild(FlyoutBackgroundGridName);
             _footerContentPresenter = (ContentPresenter)GetTemplateChild(FooterContentPresenterName);
-            _titleBarContentPresenter = (ContentPresenter)GetTemplateChild(TitleBarContentPresenterName);
             _splitPaneContentPresenter = (ContentPresenter)GetTemplateChild(SplitPaneContentPresenterName);
             _sidePaneOpening = (Storyboard)GetTemplateChild(SidePaneOpeningName);
             _sidePaneClosing = (Storyboard)GetTemplateChild(SidePaneClosingName);

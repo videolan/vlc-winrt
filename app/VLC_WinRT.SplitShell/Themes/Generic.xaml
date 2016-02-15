@@ -156,23 +156,16 @@
                                 </ObjectAnimationUsingKeyFrames>
                             </Storyboard>
                         </Grid.Resources>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <ContentPresenter x:Name="ContentPresenter"
-                                          Grid.Row="1">
+                        <ContentPresenter x:Name="ContentPresenter">
                             <ContentPresenter.RenderTransform>
                                 <TranslateTransform x:Name="ContentPresenterTranslateTransform" />
                             </ContentPresenter.RenderTransform>
                         </ContentPresenter>
                         <ContentPresenter x:Name="FooterContentPresenter"
-                                          Grid.Row="1"
                                           VerticalAlignment="Bottom"
                                           HorizontalAlignment="Stretch" />
 
                         <Grid x:Name="RightFlyoutGridContainer"
-                              Grid.Row="1"
                               Opacity="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -207,13 +200,11 @@
                         </Grid>
                         
                         <Grid x:Name="SplitPaneOpenerGrid"
-                              Grid.Row="1"
                               HorizontalAlignment="Left"
                               Width="16"
                               Background="Transparent"/>
-                        
+
                         <Grid x:Name="SplitPane"
-                              Grid.Row="1"
                               Visibility="Collapsed">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -248,9 +239,6 @@
                                   Grid.Column="2"
                                   Background="Transparent" />
                         </Grid>
-                        <ContentPresenter x:Name="TitleBarContentPresenter"
-                                          Grid.Row="0"
-                                          Grid.Column="0" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
