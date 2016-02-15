@@ -19,16 +19,10 @@
 
     <DataTemplate x:Key="AlbumItemTemplateFixedSize">
         <userControls:AlbumItem Album="{Binding}"
-                                Height="173"
-                                Width="173" />
+                                Height="203"
+                                Width="153" />
     </DataTemplate>
     
-    <DataTemplate x:Key="AlbumItemTemplateFixedSizeKeyBinding">
-        <userControls:AlbumItem Album="{Binding Group.Key}"
-                                Height="173"
-                                Width="173" />
-    </DataTemplate>
-
     <DataTemplate x:Key="AlbumResponsiveTemplate">
         <userControl:AlbumWithTracksResponsiveTemplate Album="{Binding Key}"/>
     </DataTemplate>
