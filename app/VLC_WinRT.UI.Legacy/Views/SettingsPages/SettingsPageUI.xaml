@@ -44,15 +44,6 @@
                                  Mode="TwoWay" />
                     </ToggleSwitch.IsOn>
                 </ToggleSwitch>
-                <ToggleSwitch  Header="{Binding Source={StaticResource Strings}, Path=TitleBar}"
-                               OffContent="{Binding Source={StaticResource Strings}, Path=BackgroundColor}"
-                               OnContent="{Binding Source={StaticResource Strings}, Path=AccentColor}">
-                    <ToggleSwitch.IsOn>
-                        <Binding Source="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
-                                 Path="AccentColorTitleBar"
-                                 Mode="TwoWay" />
-                    </ToggleSwitch.IsOn>
-                </ToggleSwitch>
 
                 <GridView DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                           ItemsSource="{Binding AccentColors}"
