@@ -86,7 +86,7 @@ namespace VLC_WinRT.Helpers
             // Backend file init
             _backendLogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("BackendLog.txt", CreationCollisionOption.OpenIfExists);
             await Locator.VLCService.PlayerInstanceReady.Task;
-            Locator.VLCService.Instance.logSet(LogBackendCallback);
+            Locator.VLCService.Instance?.logSet(LogBackendCallback);
         }
 
         public static async Task ResetBackendFile()
