@@ -223,6 +223,7 @@ namespace VLC_WinRT.Controls
             TemplateApplied.SetResult(true);
 
             _rightFlyoutGridContainer.Visibility = Visibility.Collapsed;
+            if (_flyoutBackgroundGrid != null)
             _flyoutBackgroundGrid.Tapped += RightFlyoutGridContainerOnTapped;
             _splitPaneEmptyGrid.Tapped += _splitPaneEmptyGrid_Tapped;
 
