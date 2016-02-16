@@ -107,7 +107,9 @@
             </SemanticZoom>
         </Grid>
 
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="2"
+              x:Name="ArtistInfoGrid"
+              x:DeferLoadStrategy="Lazy">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70" />
                 <RowDefinition />
@@ -139,7 +141,7 @@
                                        Text="{Binding Source={StaticResource Strings}, Path=SimilarArtists}" />
                         </StackPanel>
                     </PivotItem.Header>
-                    <local:ArtistInfoControl x:Name="ExtraInfoGrid" />
+                    <local:ArtistInfoControl />
                 </PivotItem>
             </Pivot>
         </Grid>
