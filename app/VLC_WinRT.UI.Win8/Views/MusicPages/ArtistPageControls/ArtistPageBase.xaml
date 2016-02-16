@@ -20,7 +20,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <local:MainArtistHeader Margin="{StaticResource FrameMarginBothSides}"
-                                IsBackButtonVisible="True"/>
+                                BackButtonVisibility="Visible"/>
 
         <local:ArtistAlbumsSemanticView Grid.Row="1"
                                         Grid.Column="0"

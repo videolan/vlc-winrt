@@ -12,13 +12,13 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
             this.Loaded += MainArtistHeader_Loaded;
         }
         
-        public bool IsBackButtonVisible
+        public Visibility BackButtonVisibility
         {
-            get { return (bool)GetValue(IsBackButtonVisibleProperty); }
-            set { SetValue(IsBackButtonVisibleProperty, value); }
+            get { return (Visibility)GetValue(BackButtonVisibilityProperty); }
+            set { SetValue(BackButtonVisibilityProperty, value); }
         }
 
-        public static readonly DependencyProperty IsBackButtonVisibleProperty = DependencyProperty.Register(nameof(IsBackButtonVisible), typeof(bool), typeof(MainArtistHeader), new PropertyMetadata(null, BackButtonPropertyChangedCallback));
+        public static readonly DependencyProperty BackButtonVisibilityProperty = DependencyProperty.Register(nameof(BackButtonVisibility), typeof(Visibility), typeof(MainArtistHeader), new PropertyMetadata(Visibility.Collapsed, BackButtonPropertyChangedCallback));
 
         private static void BackButtonPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -28,7 +28,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
 
         void UpdateBackButton()
         {
-            BackButton.Visibility = IsBackButtonVisible ? Visibility.Visible : Visibility.Collapsed;
+            BackButton.Visibility = BackButtonVisibility;
         }
 
         private void MainArtistHeader_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -36,6 +36,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
             this.Unloaded += MainArtistHeader_Unloaded;
             Window.Current.SizeChanged += Current_SizeChanged;
             Responsive();
+            UpdateBackButton();
         }
 
         private void MainArtistHeader_Unloaded(object sender, RoutedEventArgs e)

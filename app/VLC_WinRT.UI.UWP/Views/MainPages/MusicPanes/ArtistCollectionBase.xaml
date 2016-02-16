@@ -152,14 +152,14 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="ExtraInfoGrid.Visibility"
-                                Value="Visible" />
                         <Setter Target="ArtistsGrid.Visibility"
+                                Value="Visible" />
+                        <Setter Target="ArtistInfoGrid.Visibility"
                                 Value="Visible" />
                         <Setter Target="ArtistsGridColumnDefinition.Width"
                                 Value="1.2*" />
-                        <Setter Target="MainArtistHeader.IsBackButtonVisible"
-                                Value="False" />
+                        <Setter Target="MainArtistHeader.BackButtonVisibility"
+                                Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Medium">
@@ -168,14 +168,14 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="ExtraInfoGrid.Visibility"
-                                Value="Visible" />
                         <Setter Target="ArtistsGrid.Visibility"
+                                Value="Visible" />
+                        <Setter Target="ArtistInfoGrid.Visibility"
                                 Value="Visible" />
                         <Setter Target="ArtistsGridColumnDefinition.Width"
                                 Value="1.4*" />
-                        <Setter Target="MainArtistHeader.IsBackButtonVisible"
-                                Value="False" />
+                        <Setter Target="MainArtistHeader.BackButtonVisibility"
+                                Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

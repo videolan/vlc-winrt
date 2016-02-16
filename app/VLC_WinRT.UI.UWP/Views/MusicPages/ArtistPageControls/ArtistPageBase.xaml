@@ -17,7 +17,8 @@
         </Grid.RowDefinitions>
         <local:MainArtistHeader x:Name="MainArtistHeader"
                                 VerticalAlignment="Center"
-                                HorizontalAlignment="Left" />
+                                HorizontalAlignment="Left"
+                                BackButtonVisibility="Visible" />
         <Pivot Grid.Row="1"
                Style="{StaticResource TitlelessPivot}">
             <PivotItem>

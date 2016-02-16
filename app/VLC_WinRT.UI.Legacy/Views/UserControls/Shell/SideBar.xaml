@@ -20,7 +20,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid >
-            <shell:MenuDropdown />
+            <shell:MenuDropdown HorizontalAlignment="Left"/>
         </Grid>
         <StackPanel Grid.Row="1">
             <AppBarButton x:Name="SearchButton"
