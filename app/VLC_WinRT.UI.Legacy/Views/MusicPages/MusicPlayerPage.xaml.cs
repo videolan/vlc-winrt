@@ -38,7 +38,13 @@ namespace VLC_WinRT.Views.MusicPages
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
             Locator.MusicPlayerVM.PropertyChanged += MusicPlayerVM_PropertyChanged;
 #endif
-            Locator.Slideshow.SetTheme(true, true);
+            App.RootPage.SetBackground(true, true);
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            App.RootPage.SetBackground(false);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -51,7 +57,6 @@ namespace VLC_WinRT.Views.MusicPages
             Locator.MediaPlaybackViewModel.MouseService.OnMoved -= MouseMoved;
             Locator.MusicPlayerVM.PropertyChanged -= MusicPlayerVM_PropertyChanged;
 #endif
-            Locator.Slideshow.SetTheme(false);
         }
 
         private void MouseStateChanged()

@@ -97,7 +97,7 @@ namespace VLC_WinRT.Services.RunTime
             {
                 if (page != VLCPage.MusicPlayerPage && page != VLCPage.CurrentPlaylistPage)
                 {
-                    Locator.Slideshow.SetTheme(false);
+                    App.RootPage.SetBackground(false);
                 }
             }
         }

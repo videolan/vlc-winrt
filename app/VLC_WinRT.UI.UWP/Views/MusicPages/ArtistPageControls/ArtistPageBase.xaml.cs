@@ -15,5 +15,17 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
         {
             this.InitializeComponent();
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            App.SetShellDecoration(true, true);
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            App.SetShellDecoration(false);
+        }
     }
 }

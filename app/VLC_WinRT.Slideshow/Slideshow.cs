@@ -118,21 +118,5 @@ namespace Slide2D
         }
 
         public bool IsDarkTheme { get; set; }
-
-        public async void SetTheme(bool force, bool dark = false)
-        {
-            await IsLoaded.Task;
-            Debug.WriteLine($"Setting slideshow theme : Force ? {force} -- {dark}");
-            if (force)
-            {
-                IsDarkTheme = dark;
-                slideshow.SetTheme(dark);
-            }
-            else
-            {
-                IsDarkTheme = Locator.SettingsVM.ApplicationTheme == ApplicationTheme.Dark;
-                slideshow.SetTheme(IsDarkTheme);
-            }
-        }
     }
 }

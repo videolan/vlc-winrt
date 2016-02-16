@@ -272,12 +272,13 @@ namespace VLC_WinRT
             if (forceTemporaryAppTheme)
             {
                 RootPage.RequestedTheme = forceDark ? ElementTheme.Dark : ElementTheme.Light;
-                Locator.Slideshow.SetTheme(true, forceDark);
+                App.RootPage.SetBackground(forceTemporaryAppTheme, forceDark);
             }
             else
             {
-                Locator.Slideshow.SetTheme(false);
-                RootPage.RequestedTheme = (SettingsViewModel.GetApplicationTheme() == ApplicationTheme.Light) ? ElementTheme.Light : ElementTheme.Dark;
+                App.RootPage.SetBackground(false);
+                var appTheme = SettingsViewModel.GetApplicationTheme() == ApplicationTheme.Light;
+                RootPage.RequestedTheme = appTheme ? ElementTheme.Light : ElementTheme.Dark;
             }
             App.Current.Resources["MainColorBase"] = Locator.SettingsVM.AccentColor;
             App.Current.Resources["SystemAccentColor"] = Locator.SettingsVM.AccentColor;

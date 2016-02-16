@@ -44,10 +44,7 @@ namespace Slide2D.Images
         private bool fastChange;
         private bool clearSlideshow;
         private float blurAmount = MaximumBlur;
-
-        private Color backgroundColor;
-        private bool newColorIsDark;
-
+        
         public List<Txt> Texts = new List<Txt>();
         private int ImgIndex = 0;
 
@@ -55,7 +52,6 @@ namespace Slide2D.Images
         private List<Img> images = new List<Img>();
 
         private bool _richAnimations;
-        private bool changeBackgroundColor;
 
         public bool RichAnimations
         {
@@ -176,25 +172,6 @@ namespace Slide2D.Images
         {
             try
             {
-                if (changeBackgroundColor)
-                {
-                    backgroundColor.A = 255;
-                    if (newColorIsDark && backgroundColor.R > 0)
-                    {
-                        backgroundColor.R = backgroundColor.G = backgroundColor.B -= 15;
-                    }
-                    else if (!newColorIsDark && backgroundColor.R < 255)
-                    {
-                        backgroundColor.R = backgroundColor.G = backgroundColor.B += 15;
-                    }
-                    else
-                    {
-                        changeBackgroundColor = false;
-                        newColorIsDark = false;
-                    }
-
-                    Debug.WriteLine($"Setting slideshow theme : {backgroundColor.R}");
-                }
                 if (currentImg == null) return;
 
                 if (!currentImg.Loaded)
@@ -307,7 +284,6 @@ namespace Slide2D.Images
 
         public async void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            args.DrawingSession.Clear(backgroundColor);
             if (currentImg?.ScaleEffect != null)
             {
                 if (TextInSlideshowEnabled)
@@ -362,17 +338,7 @@ namespace Slide2D.Images
             frame = 0;
             blurAmount = MaximumBlur;
         }
-
-        public void SetTheme(bool dark)
-        {
-            var newColor = (dark) ? Colors.Black : Colors.White;
-            if (newColor != backgroundColor)
-            {
-                changeBackgroundColor = true;
-                newColorIsDark = dark;
-            }
-        }
-
+        
         void getNextImg()
         {
             Debug.WriteLine($"Choosing a picture out of {images.Count} pictures.");

@@ -36,6 +36,24 @@ namespace VLC_WinRT.Views.MainPages
             Locator.MediaPlaybackViewModel.SetMediaTransportControls(smtc);
         }
 
+        public void SetBackground(bool force = false, bool dark = false)
+        {
+            if (force)
+            {
+                if (dark)
+                    Dark.Begin();
+                else
+                    Light.Begin();
+            }
+            else
+            {
+                if (Locator.SettingsVM.ApplicationTheme == ApplicationTheme.Dark)
+                    Dark.Begin();
+                else
+                    Light.Begin();
+            }
+        }
+
         private void Slideshower_Loaded_1(object sender, RoutedEventArgs e)
         {
             Locator.Slideshow.Initialize(ref Slideshower);
