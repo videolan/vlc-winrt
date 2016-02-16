@@ -16,6 +16,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
                 <ColumnDefinition Width="36" />
@@ -24,6 +25,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <AppBarButton x:Name="BackButton" 
+                          Grid.Column="1"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           FontSize="20"
                           VerticalAlignment="Center"
@@ -35,7 +37,7 @@
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <TextBlock Grid.Column="1"
+            <TextBlock Grid.Column="2"
                        TextTrimming="CharacterEllipsis"
                        TextWrapping="NoWrap"
                        VerticalAlignment="Top"
@@ -44,7 +46,7 @@
                        Style="{StaticResource SubheaderTextBlockStyle}" 
                        FontSize="36"/>
 
-            <AppBarButton Grid.Column="3"
+            <AppBarButton Grid.Column="4"
                           x:Name="PlayButton"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Label="{Binding Source={StaticResource Strings}, Path=PlayAll}"
@@ -57,7 +59,7 @@
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Grid.Column="5"
+            <AppBarButton Grid.Column="6"
                           x:Name="PinButton"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Icon="{Binding CurrentArtist.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"

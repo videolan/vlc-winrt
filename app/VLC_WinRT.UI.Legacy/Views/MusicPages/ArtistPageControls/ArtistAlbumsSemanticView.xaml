@@ -28,7 +28,8 @@
                       ItemContainerStyle="{StaticResource ListViewItemBasic}"
                       ItemTemplate="{StaticResource AlbumTrackTemplateWithRightMargin}"
                       IsItemClickEnabled="True"
-                      SelectionMode="None">
+                      SelectionMode="None"
+                      Margin="{StaticResource FrameMarginLeft}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding AlbumTrackClickedCommand}"
