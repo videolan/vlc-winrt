@@ -15,7 +15,7 @@
           Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
           Width="250">
         <Grid.RowDefinitions>
-            <RowDefinition Height="64" />
+            <RowDefinition Height="50" />
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>

@@ -19,8 +19,8 @@
 
     <DataTemplate x:Key="AlbumItemTemplateFixedSize">
         <userControls:AlbumItem Album="{Binding}"
-                                Height="203"
-                                Width="153" />
+                                Height="173"
+                                Width="123" />
     </DataTemplate>
     
     <DataTemplate x:Key="AlbumResponsiveTemplate">

@@ -1386,13 +1386,13 @@
                             </StackPanel.Projection>
                             <Grid HorizontalAlignment="Left"
                                   VerticalAlignment="Center"
-                                  Height="64"
-                                  Width="64">
+                                  Height="50"
+                                  Width="50">
                                 <Grid x:Name="ContentRoot"
                                       Background="Transparent">
                                     <Viewbox Stretch="Uniform"
-                                             Height="32"
-                                             Width="32">
+                                             Height="25"
+                                             Width="25">
                                         <ContentPresenter x:Name="Content"
                                                           AutomationProperties.AccessibilityView="Raw"
                                                           Content="{TemplateBinding Icon}"

@@ -11,11 +11,11 @@
     <AppBarButton DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
                   VerticalAlignment="Center"
                   Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
-                  Command="{Binding DisplayMenuBarControlToggleCommand}">
+                  Command="{Binding DisplayMenuBarControlToggleCommand}"
+                  IsCompact="True">
         <AppBarButton.Icon>
             <FontIcon Glyph="{StaticResource MenuOpenRight}"
-                      FontFamily="{StaticResource VLCFont}"
-                      FontSize="28" />
+                      FontFamily="{StaticResource VLCFont}" />
         </AppBarButton.Icon>
     </AppBarButton>
 </UserControl>
