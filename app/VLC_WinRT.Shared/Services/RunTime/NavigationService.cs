@@ -252,7 +252,8 @@ namespace VLC_WinRT.Services.RunTime
                     break;
                 case VLCPage.ArtistPage:
 #if WINDOWS_UWP // On UWP, the ArtistPage is embedded in MainpageMusic and Artists MusicView, it is not the case on Windows 9.1
-                    if (CurrentPage != VLCPage.MainPageMusic || Locator.MusicLibraryVM.MusicView != Model.Music.MusicView.Artists)
+                    if (CurrentPage != VLCPage.MainPageMusic || Locator.MusicLibraryVM.MusicView != Model.Music.MusicView.Artists
+                        || (CurrentPage == VLCPage.MainPageMusic && Locator.MusicLibraryVM.MusicView == Model.Music.MusicView.Artists && Window.Current.Bounds.Width < 750))
 #endif
                     {
                         App.ApplicationFrame.Navigate(typeof(ArtistPageBase));
