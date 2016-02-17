@@ -72,6 +72,7 @@ namespace VLC_WinRT.Views.MainPages
 
         void Switch(VideoView view)
         {
+            PanelsListView.SelectedItem = view;
             switch (view)
             {
                 case VideoView.Videos:
@@ -87,6 +88,13 @@ namespace VLC_WinRT.Views.MainPages
                         MainPageVideoContentPresenter.Content = new CameraRollPivotItem();
                     break;
             }
+        }
+
+        private void PanelsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems == null || e.AddedItems.Count == 0) return;
+            var view = (VideoView)e.AddedItems[0];
+            Locator.VideoLibraryVM.VideoView = view;
         }
     }
 }

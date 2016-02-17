@@ -12,7 +12,7 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
              Visibility="{Binding IsMiniPlayerVisible}">
     <Grid x:Name="RootGrid"
-          Height="55"
+          Height="50"
           RequestedTheme="Dark"
           Background="{ThemeResource TranslucentMainColor}">
         <Grid.RowDefinitions>

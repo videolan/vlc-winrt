@@ -13,7 +13,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <ContentPresenter x:Name="MainPageMusicContentPresenter"
@@ -33,6 +33,7 @@
                       ItemsSource="{Binding MusicViewCollection}"
                       SelectedItem="{Binding MusicView, Mode=TwoWay}"
                       Style="{StaticResource VLCComboBox}"
+                      Margin="0,-8,0,0"
                       Visibility="Collapsed">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -54,7 +55,7 @@
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsStackPanel Orientation="Horizontal"
-                                         Height="50" />
+                                         Height="30" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemContainerTransitions>
@@ -67,62 +68,28 @@
                         <TextBlock x:Name="Title"
                                    Text="{Binding Converter={StaticResource MusicViewStringifyConverter}}"
                                    VerticalAlignment="Center"
-                                   FontSize="19"
-                                   FontWeight="SemiLight"
-                                   Width="90"
+                                   FontSize="16"
                                    TextTrimming="CharacterEllipsis"
-                                   TextWrapping="NoWrap" />
+                                   TextWrapping="NoWrap"
+                                   Margin="0,-22,16,0" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Grid Grid.Column="2">
+            <Grid Grid.Column="2"
+                  Margin="0,-8,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <musicPanesControls:AlbumsCollectionButtons Visibility="{Binding AlbumsCollectionsButtonVisible}" />
-                <AppBarButton x:Name="PlayAllButton"
-                              Grid.Column="1"
-                              Foreground="{ThemeResource MainColor}"
-                              Style="{StaticResource AppBarButtonStyleHorizontal}"
-                              Command="{Binding PlayAllSongsCommand}"
-                              MinWidth="50"
-                              HorizontalAlignment="Stretch"
-                              FontSize="15"
-                              FontWeight="SemiLight"
-                              Margin="0,0,6,0">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="{StaticResource PlaySymbol}"
-                                  FontFamily="{StaticResource VLCFont}" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
-                <AppBarButton x:Name="ShuffleButton"
-                              Grid.Column="3"
-                              Visibility="{Binding ShuffleButtonVisible}"
-                              Style="{StaticResource AppBarButtonStyleHorizontal}"
-                              Foreground="{ThemeResource MainColor}"
-                              Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}"
-                              MinWidth="50"
-                              HorizontalAlignment="Stretch"
-                              FontSize="15"
-                              FontWeight="SemiLight">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="{StaticResource ShuffleSymbol}"
-                                  FontFamily="{StaticResource VLCFont}" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
 
-                <AppBarButton Grid.Column="5"
+                <AppBarButton Grid.Column="1"
                               Label="{Binding Source={StaticResource Strings}, Path=NewPlaylist}"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Foreground="{ThemeResource MainColor}"
                               Command="{Binding ShowCreateNewPlaylistPaneCommand}"
-                              Margin="0,0,12,0"
                               VerticalAlignment="Center"
                               FontSize="15"
                               FontWeight="SemiLight"
@@ -149,16 +116,6 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayAllButton"
-                                                       Storyboard.TargetProperty="Label">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{Binding Source={StaticResource Strings}, Path=PlayAll}" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ShuffleButton"
-                                                       Storyboard.TargetProperty="Label">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{Binding Source={StaticResource Strings}, Path=Shuffle}" />
-                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Narrow">
@@ -172,16 +129,6 @@
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayAllButton"
-                                                       Storyboard.TargetProperty="Label">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ShuffleButton"
-                                                       Storyboard.TargetProperty="Label">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
