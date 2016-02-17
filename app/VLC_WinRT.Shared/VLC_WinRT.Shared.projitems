@@ -229,6 +229,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\DeezerApplats_RVB_Noir.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\circle-fab.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\circleShadow.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\icons.png" />
     <Content Include="$(MSBuildThisFileDirectory)backers.csv">
