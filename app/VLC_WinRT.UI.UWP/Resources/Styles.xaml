@@ -167,6 +167,10 @@
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
                                                          To="1" />
+                                        <DoubleAnimation Storyboard.TargetName="SelectionBackground"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="0"
+                                                         To="0" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="UnselectedPointerOver">
