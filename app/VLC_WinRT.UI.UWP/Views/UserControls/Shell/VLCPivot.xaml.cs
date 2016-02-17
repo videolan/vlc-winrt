@@ -34,10 +34,11 @@ namespace VLC_WinRT.Views.UserControls
 
         private void SplitShell_ContentSizeChanged(double newWidth)
         {
-            var pivotHeader = WinRTXamlToolkit.Controls.Extensions.VisualTreeHelperExtensions.GetFirstDescendantOfType<PivotHeaderPanel>(Pivot);
+            var pivotHeaderCollection = WinRTXamlToolkit.Controls.Extensions.VisualTreeHelperExtensions.GetDescendantsOfType<PivotHeaderPanel>(Pivot);
+            var currentPivotHeader = pivotHeaderCollection.FirstOrDefault(x => x.ActualWidth > 0);
 
             var rightOffset = CoreApplication.GetCurrentView().TitleBar.SystemOverlayRightInset;
-            var w = newWidth - MenuDropdown.ActualWidth - pivotHeader.ActualWidth - rightOffset;
+            var w = newWidth - MenuDropdown.ActualWidth - ((currentPivotHeader == null) ? 0 : currentPivotHeader.ActualWidth) - rightOffset;
             TitleBar.Width = w < 0 ? 0 : w;
             TitleBar.Margin = new Thickness(0, 0, rightOffset,0);
         }
