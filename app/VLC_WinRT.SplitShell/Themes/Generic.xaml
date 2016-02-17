@@ -13,7 +13,7 @@
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenterTranslateTransform"
                                                                Storyboard.TargetProperty="Y">
                                     <EasingDoubleKeyFrame KeyTime="0:0:0.6"
-                                                          Value="-60">
+                                                          Value="-55">
                                         <EasingDoubleKeyFrame.EasingFunction>
                                             <ExponentialEase EasingMode="EaseInOut"
                                                              Exponent="3" />
