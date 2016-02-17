@@ -252,15 +252,15 @@ namespace VLC_WinRT.Controls
 
         void Responsive()
         {
-            if (Window.Current.Bounds.Width < 600)
+            if (Window.Current.Bounds.Width < 700)
             {
                 _rightFlyoutContentPresenter.Height = Window.Current.Bounds.Height;
                 _rightFlyoutContentPresenter.Width = Window.Current.Bounds.Width;
             }
             else
             {
-                _rightFlyoutContentPresenter.Width = 600;
-                _rightFlyoutContentPresenter.Height = Window.Current.Bounds.Height < 800 ? Window.Current.Bounds.Height : Window.Current.Bounds.Height * 0.88;
+                _rightFlyoutContentPresenter.Width = 700;
+                _rightFlyoutContentPresenter.Height = Window.Current.Bounds.Height < 800 ? Window.Current.Bounds.Height : Window.Current.Bounds.Height * 0.8;
             }
             _windowResizerTimer.Stop();
             _windowResizerTimer.Start();
