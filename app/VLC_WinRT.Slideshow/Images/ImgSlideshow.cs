@@ -61,7 +61,6 @@ namespace Slide2D.Images
         
         public ImgSlideshow()
         {
-            backgroundColor.A = 255;
             Locator.MusicLibraryVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
             Locator.MusicPlayerVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
             Locator.NavigationService.ViewNavigated += ViewNavigated;
