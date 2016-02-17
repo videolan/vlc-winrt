@@ -33,6 +33,7 @@
               Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
             <ListView ItemsSource="{Binding Source={StaticResource StorageVMsGroupedByType}}"
                       SelectedItem="{Binding CurrentStorageVM}"
+                      SelectionMode="Single"
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyleNoSelectCheck}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="SelectionChanged">
