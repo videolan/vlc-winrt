@@ -31,7 +31,7 @@
                                    Text="{Binding Source={StaticResource Strings}, Path=Albums}" />
                     </StackPanel>
                 </PivotItem.Header>
-                <local:ArtistAlbumsSemanticView />
+                <local:ArtistAlbumsSemanticView x:Name="ArtistAlbumsSemanticView"/>
             </PivotItem>
             <PivotItem>
                 <PivotItem.Header>
@@ -46,5 +46,30 @@
                 <local:ArtistInfoControl x:Name="ExtraInfoGrid" />
             </PivotItem>
         </Pivot>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Tiny">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ArtistAlbumsSemanticView.FloatingActionButtonVisibility"
+                                Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Medium">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="650" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ArtistAlbumsSemanticView.FloatingActionButtonVisibility"
+                                Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

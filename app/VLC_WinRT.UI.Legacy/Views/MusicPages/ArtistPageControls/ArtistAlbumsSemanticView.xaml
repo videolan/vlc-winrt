@@ -1,5 +1,4 @@
-﻿<UserControl
-    x:Class="VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls.ArtistAlbumsSemanticView"
+﻿<Grid x:Class="VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls.ArtistAlbumsSemanticView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls"
@@ -10,12 +9,12 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
     
-    <UserControl.Resources>
+    <Grid.Resources>
         <CollectionViewSource x:Key="GroupAlbums"
                               x:Name="GroupAlbums"
                               IsSourceGrouped="True"
                               Source="{Binding CurrentArtist.AlbumsGrouped}" />
-    </UserControl.Resources>
+    </Grid.Resources>
 
     <SemanticZoom x:Name="AlbumsSemanticZoom"
                   Padding="0"
@@ -78,4 +77,25 @@
             </ListView>
         </SemanticZoom.ZoomedOutView>
     </SemanticZoom>
-</UserControl>
+
+    <AppBarButton x:Name="FloatingActionButton" 
+                  Style="{StaticResource CircleButtonStyle}"
+                  VerticalAlignment="Bottom"
+                  HorizontalAlignment="Right"
+                  Margin="{StaticResource FrameMarginHorizontalPlusFooter}">
+        <AppBarButton.Flyout>
+            <MenuFlyout Placement="Top">
+                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PlayAll}"
+                                Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayArtistAlbumsCommand}"
+                                CommandParameter="{Binding CurrentArtist}" />
+                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PinArtist}"
+                                Command="{Binding CurrentArtist.PinArtistCommand}"
+                                CommandParameter="{Binding CurrentArtist}" />
+            </MenuFlyout>
+        </AppBarButton.Flyout>
+        <AppBarButton.Content>
+            <FontIcon Glyph="{StaticResource MenuOpenRight}"
+                      FontFamily="{StaticResource VLCFont}" />
+        </AppBarButton.Content>
+    </AppBarButton>
+</Grid>

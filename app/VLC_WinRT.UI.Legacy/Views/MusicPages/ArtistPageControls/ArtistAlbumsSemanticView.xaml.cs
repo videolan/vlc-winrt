@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
 {
-    public sealed partial class ArtistAlbumsSemanticView : UserControl
+    public sealed partial class ArtistAlbumsSemanticView : Grid
     {
         public ArtistAlbumsSemanticView()
         {
@@ -76,6 +76,29 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
         private void SemanticZoom_ViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
         {
             AlbumsSemanticZoomZoomedOut.ItemsSource = GroupAlbums.View.CollectionGroups;
+        }
+
+
+
+        public Visibility FloatingActionButtonVisibility
+        {
+            get { return (Visibility)GetValue(FloatingActionButtonVisibilityProperty); }
+            set { SetValue(FloatingActionButtonVisibilityProperty, value); }
+        }
+
+        public static readonly DependencyProperty FloatingActionButtonVisibilityProperty =
+            DependencyProperty.Register(nameof(FloatingActionButtonVisibility), typeof(Visibility), typeof(ArtistAlbumsSemanticView), new PropertyMetadata(null, PropertyChangedCallback));
+
+
+        private static void PropertyChangedCallback(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var that = (ArtistAlbumsSemanticView)obj;
+            that.SetFabVisibility();
+        }
+
+        public void SetFabVisibility()
+        {
+            FloatingActionButton.Visibility = FloatingActionButtonVisibility;
         }
     }
 }

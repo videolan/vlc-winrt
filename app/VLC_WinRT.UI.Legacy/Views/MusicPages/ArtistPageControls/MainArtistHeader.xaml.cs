@@ -51,7 +51,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
 
         void Responsive()
         {
-            if (Window.Current.Bounds.Width < 600)
+            if (Window.Current.Bounds.Width < 650)
             {
                 VisualStateUtilities.GoToState(this, "Snap", false);
             }

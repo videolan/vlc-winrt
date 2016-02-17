@@ -102,5 +102,24 @@
                 </ListView>
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
+        <AppBarButton x:Name="MusicCollectionFloatingActionButton"
+                      Style="{StaticResource CircleButtonStyle}"
+                      VerticalAlignment="Bottom"
+                      HorizontalAlignment="Right"
+                      Margin="{StaticResource FrameMarginHorizontalPlusFooter}">
+            <AppBarButton.Content>
+                <FontIcon Glyph="{StaticResource PlaySymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Content>
+            <AppBarButton.Flyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PlayAll}"
+                                    Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllSongsCommand}"
+                                    CommandParameter="{Binding CurrentArtist}" />
+                    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Shuffle}"
+                                    Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}" />
+                </MenuFlyout>
+            </AppBarButton.Flyout>
+        </AppBarButton>
     </Grid>
 </Page>

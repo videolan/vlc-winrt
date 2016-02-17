@@ -10,11 +10,6 @@
              d:DesignWidth="400">
     <Grid x:Name="HeaderGrid"
           Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="Auto" />
@@ -65,48 +60,12 @@
                           Icon="{Binding CurrentArtist.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
                           VerticalAlignment="Center"
                           Command="{Binding CurrentArtist.PinArtistCommand}"
-                          CommandParameter="{Binding CurrentArtist}" />
-        </Grid>
-        <Grid Grid.Row="1"
-              x:Name="SnapCommandGrid"
-              Visibility="Collapsed"
-              Margin="{StaticResource FrameMarginTop}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="55" />
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <AppBarButton Grid.Column="1"
-                          Background="Red"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Label="{Binding Source={StaticResource Strings}, Path=PlayAll}"
-                          VerticalAlignment="Center"
-                          Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayArtistAlbumsCommand}"
-                          CommandParameter="{Binding CurrentArtist}"
-                          Foreground="{ThemeResource MainColor}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource PlaySymbol}"
-                              FontFamily="{StaticResource VLCFont}" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton Grid.Column="2"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Icon="{Binding CurrentArtist.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
-                          VerticalAlignment="Center"
-                          Command="{Binding CurrentArtist.PinArtistCommand}"
-                          CommandParameter="{Binding CurrentArtist}" />
-        </Grid>
-
+                      CommandParameter="{Binding CurrentArtist}" />
+        
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Snap">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SnapCommandGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayButton"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -121,11 +80,6 @@
                 </VisualState>
                 <VisualState x:Name="Wide">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SnapCommandGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayButton"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
