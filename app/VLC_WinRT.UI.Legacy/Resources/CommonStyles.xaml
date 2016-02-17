@@ -1122,12 +1122,10 @@
     <Style TargetType="MenuFlyoutPresenter">
         <Setter Property="BorderThickness"
                 Value="1" />
-        <Setter Property="RequestedTheme"
-                Value="Dark" />
         <Setter Property="Background"
-                Value="#cc000000" />
+                Value="{ThemeResource ApplicationOverlayTranslucentThemeBrush}" />
         <Setter Property="BorderBrush"
-                Value="#ff8800" />
+                Value="{ThemeResource MainColor}" />
     </Style>
 
     <ItemsPanelTemplate x:Key="WrapPanelTemplate">
