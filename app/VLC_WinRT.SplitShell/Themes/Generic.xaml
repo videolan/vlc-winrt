@@ -182,8 +182,7 @@
                                   Grid.ColumnSpan="3" />
                             <ContentPresenter x:Name="RightFlyoutContentPresenter"
                                               Grid.Column="1"
-                                              MinWidth="300" 
-                                              VerticalAlignment="Bottom"/>
+                                              VerticalAlignment="Center"/>
                         </Grid>
                         
                         <Grid x:Name="SplitPaneOpenerGrid"
