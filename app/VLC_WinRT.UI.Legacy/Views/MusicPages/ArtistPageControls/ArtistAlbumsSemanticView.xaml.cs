@@ -75,7 +75,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
 
         private void SemanticZoom_ViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
         {
-            AlbumsSemanticZoomZoomedOut.ItemsSource = GroupAlbums.View.CollectionGroups;
+            AlbumsSemanticZoomZoomedOut.ItemsSource = GroupAlbums?.View?.CollectionGroups;
         }
 
 
