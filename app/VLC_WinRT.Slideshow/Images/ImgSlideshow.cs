@@ -139,21 +139,29 @@ namespace Slide2D.Images
                 }
                 else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic)
                 {
-                    if (Locator.MusicLibraryVM.CurrentArtist == null) return;
-                    if (Locator.MusicLibraryVM.CurrentArtist.IsPictureLoaded)
+                    if (Locator.MusicLibraryVM.MusicView == VLC_WinRT.Model.Music.MusicView.Artists)
                     {
-                        images.Add(new Img(Locator.MusicLibraryVM.CurrentArtist.Picture));
-                        newPic = true;
-                    }
-
-                    var albums = await Locator.MusicLibraryVM.MusicLibrary.LoadAlbums(Locator.MusicLibraryVM.CurrentArtist.Id);
-                    foreach (var album in albums)
-                    {
-                        if (album.IsPictureLoaded)
+                        if (Locator.MusicLibraryVM.CurrentArtist == null) return;
+                        if (Locator.MusicLibraryVM.CurrentArtist.IsPictureLoaded)
                         {
-                            images.Add(new Img(album.AlbumCoverFullUri));
+                            images.Add(new Img(Locator.MusicLibraryVM.CurrentArtist.Picture));
                             newPic = true;
                         }
+
+                        var albums = await Locator.MusicLibraryVM.MusicLibrary.LoadAlbums(Locator.MusicLibraryVM.CurrentArtist.Id);
+                        foreach (var album in albums)
+                        {
+                            if (album.IsPictureLoaded)
+                            {
+                                images.Add(new Img(album.AlbumCoverFullUri));
+                                newPic = true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        newPic = true;
+                        clearSlideshow = true;
                     }
                 }
             }
