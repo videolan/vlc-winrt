@@ -63,6 +63,7 @@ namespace VLC_WinRT.Model.Video
                 wrapGrid.ItemWidth = width.Value/2;
             }
             else wrapGrid.ItemWidth = width.Value;
+            wrapGrid.ItemHeight = 35;
         }
     }
 }
