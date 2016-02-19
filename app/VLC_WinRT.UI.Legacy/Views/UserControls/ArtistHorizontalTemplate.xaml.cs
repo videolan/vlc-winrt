@@ -55,7 +55,20 @@ namespace VLC_WinRT.Views.UserControls
         {
             if (e.PropertyName == nameof(Artist.ArtistImage))
             {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => ArtistImageBrush.ImageSource = Artist.ArtistImage);
+                if (Artist == null) return;
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    FadeOutCover.Begin();
+                });
+            }
+        }
+
+        private void FadeOutCover_Completed(object sender, object e)
+        {
+            if (Artist != null && Artist.ArtistImage != null)
+            {
+                ArtistImageBrush.ImageSource = Artist.ArtistImage;
+                FadeInCover.Begin();
             }
         }
     }

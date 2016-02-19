@@ -75,6 +75,35 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
             FavoriteAppBarButton.Command = Album.FavoriteAlbum;
             FavoriteAppBarButton.CommandParameter = Album;
+
+            Album.PropertyChanged += Album_PropertyChanged;
+            var album = Album;
+            return Task.Run(async () =>
+            {
+                await album.ResetAlbumArt();
+            });
+        }
+
+        private async void Album_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Album.AlbumImage))
+            {
+                if (Album == null) return;
+                if (CoverImage.Source != null) return;
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    FadeOutCover.Begin();
+                });
+            }
+        }
+        
+        private void FadeOutCover_Completed(object sender, object e)
+        {
+            if (Album != null && Album.AlbumImage != null)
+            {
+                CoverImage.Source = Album.AlbumImage;
+                FadeInCover.Begin();
+            }
         }
     }
 }

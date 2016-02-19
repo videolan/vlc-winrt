@@ -9,7 +9,24 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-
+    <UserControl.Resources>
+        <Storyboard x:Name="FadeInCover">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Cover"
+                                           Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                      Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="FadeOutCover"
+                    Completed="FadeOutCover_Completed">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Cover"
+                                           Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4"
+                                      Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    
     <Grid FlyoutBase.AttachedFlyout="{StaticResource AlbumMenuFlyout}"
           Holding="RootAlbumItem_Holding"
           RightTapped="Grid_RightTapped">
@@ -68,7 +85,8 @@
                       Foreground="{ThemeResource MainColor}" />
         </Grid>
         <Image x:Name="Cover" 
-               Stretch="UniformToFill"/>
+               Stretch="UniformToFill"
+               Opacity="0"/>
         <Grid Grid.Row="1" 
               PointerExited="Cover_PointerExited"
               PointerEntered="Cover_PointerEntered">
