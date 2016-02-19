@@ -7,6 +7,7 @@ using VLC_WinRT.Utils;
 using Windows.UI.Xaml.Media.Imaging;
 using System;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
@@ -61,9 +62,9 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             await that.Init();
         }
 
-        public async Task Init()
+        public Task Init()
         {
-            if (Album == null) return;
+            if (Album == null) return null;
             NameTextBlock.Text = Strings.HumanizedAlbumName(Album.Name);
 
             PlayAppBarButton.Label = Strings.PlayAlbum;
