@@ -418,7 +418,6 @@ namespace VLC_WinRT.ViewModels
         public async Task PlayStream(string mrl)
         {
             mrl = mrl.Trim();
-            await Locator.VLCService.PlayerInstanceReady.Task;
             //TODO: pass MRL to vlc
             try
             {
