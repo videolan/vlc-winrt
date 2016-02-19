@@ -37,11 +37,11 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
         {
             if (this.ActualWidth > 900)
             {
-                CoverImage.Width = CoverImage.Height = HeaderGrid.Height = 150;
+                CoverImage.Width = CoverImage.Height = HeaderGrid.Height = 120;
             }
             else
             {
-                CoverImage.Width = CoverImage.Height = HeaderGrid.Height = 90;
+                CoverImage.Width = CoverImage.Height = HeaderGrid.Height = 70;
             }
         }
 

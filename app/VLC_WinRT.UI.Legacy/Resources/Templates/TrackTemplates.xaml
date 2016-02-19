@@ -38,7 +38,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"
                        Text="{Binding IndexString, Converter={StaticResource NullIntConverter}}"
-                       FontSize="20"
+                       FontSize="15"
                        FontWeight="SemiLight"
                        Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                        Style="{StaticResource TitleTextBlockStyle}"

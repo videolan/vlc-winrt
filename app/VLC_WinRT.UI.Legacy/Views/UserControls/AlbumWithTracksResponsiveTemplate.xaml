@@ -10,7 +10,7 @@
              d:DesignWidth="400">
 
     <Grid x:Name="HeaderGrid"
-          Height="90"
+          Height="75"
           Background="Transparent"
           Margin="{StaticResource FrameMarginBottom}">
         <Grid.ColumnDefinitions>

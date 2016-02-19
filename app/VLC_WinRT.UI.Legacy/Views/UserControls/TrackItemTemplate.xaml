@@ -28,14 +28,13 @@
                    x:Name="NameTextBlock"
                    TextWrapping="NoWrap"
                    TextTrimming="CharacterEllipsis"
-                   FontWeight="SemiLight"
                    Style="{StaticResource TitleTextBlockStyle}"
-                   FontSize="20"
+                   FontSize="15"
                    VerticalAlignment="Center"/>
         <TextBlock Grid.Column="1"
                    x:Name="DurationTextBlock"
                    FontWeight="Light"
-                   FontSize="19"
+                   FontSize="14"
                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center" />
