@@ -393,6 +393,12 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libflacsys_plugin.dll">
       <Link>plugins\demux\libflacsys_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libh264_plugin.dll">
+      <Link>plugins\demux\libh264_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libhevc_plugin.dll">
+      <Link>plugins\demux\libhevc_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libimage_plugin.dll">
       <Link>plugins\demux\libimage_plugin.dll</Link>
     </Content>
@@ -480,6 +486,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\meta_engine\libfolder_plugin.dll">
       <Link>plugins\meta_engine\libfolder_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\meta_engine\libtaglib_plugin.dll">
+      <Link>plugins\meta_engine\libtaglib_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\misc\libaddonsfsstorage_plugin.dll">
       <Link>plugins\misc\libaddonsfsstorage_plugin.dll</Link>
     </Content>
@@ -545,6 +554,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\librecord_plugin.dll">
       <Link>plugins\stream_filter\librecord_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\libsmooth_plugin.dll">
+      <Link>plugins\stream_filter\libsmooth_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\text_renderer\libfreetype_plugin.dll">
       <Link>plugins\text_renderer\libfreetype_plugin.dll</Link>
@@ -771,6 +783,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\modules\libaccess_winrt_plugin.UWP\libaccess_winrt_plugin.UWP.vcxproj">
+      <Project>{cc3931b9-6065-4a55-a444-5b5e9de3da44}</Project>
+      <Name>libaccess_winrt_plugin.UWP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\modules\libVLCX.UWP\libVLCX.UWP.vcxproj">
       <Project>{dc8bbfae-5203-44be-9a7c-b3273038d676}</Project>
       <Name>libVLCX.UWP</Name>
