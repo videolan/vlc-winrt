@@ -14,7 +14,7 @@
         <Storyboard x:Name="Dark">
             <ColorAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
                                           Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)">
-                <EasingColorKeyFrame KeyTime="0:0:1"
+                <EasingColorKeyFrame KeyTime="0:0:0.5"
                                      Value="#ff000000">
                     <EasingColorKeyFrame.EasingFunction>
                         <ExponentialEase EasingMode="EaseInOut"
@@ -26,7 +26,7 @@
         <Storyboard x:Name="Light">
             <ColorAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
                                           Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)">
-                <EasingColorKeyFrame KeyTime="0:0:1"
+                <EasingColorKeyFrame KeyTime="0:0:0.5"
                                      Value="#ffffffff">
                     <EasingColorKeyFrame.EasingFunction>
                         <ExponentialEase EasingMode="EaseInOut"
