@@ -120,6 +120,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\libaccess_mms_plugin.dll">
       <Link>plugins\access\libaccess_mms_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\libaccess_realrtsp_plugin.dll">
+      <Link>plugins\access\libaccess_realrtsp_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\libaccess_winrt_plugin.dll">
       <Link>plugins\access\libaccess_winrt_plugin.dll</Link>
     </Content>
@@ -132,6 +135,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\libftp_plugin.dll">
       <Link>plugins\access\libftp_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\libhttps_plugin.dll">
+      <Link>plugins\access\libhttps_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\libhttp_plugin.dll">
       <Link>plugins\access\libhttp_plugin.dll</Link>
     </Content>
@@ -140,6 +146,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\libimem_plugin.dll">
       <Link>plugins\access\libimem_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\liblive555_plugin.dll">
+      <Link>plugins\access\liblive555_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\librar_plugin.dll">
       <Link>plugins\access\librar_plugin.dll</Link>
@@ -219,6 +228,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_filter\libremap_plugin.dll">
       <Link>plugins\audio_filter\libremap_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_filter\libsamplerate_plugin.dll">
+      <Link>plugins\audio_filter\libsamplerate_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_filter\libscaletempo_plugin.dll">
       <Link>plugins\audio_filter\libscaletempo_plugin.dll</Link>
     </Content>
@@ -227,6 +239,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_filter\libspatializer_plugin.dll">
       <Link>plugins\audio_filter\libspatializer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_filter\libspeex_resampler_plugin.dll">
+      <Link>plugins\audio_filter\libspeex_resampler_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_filter\libstereo_widen_plugin.dll">
       <Link>plugins\audio_filter\libstereo_widen_plugin.dll</Link>
@@ -270,6 +285,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libaraw_plugin.dll">
       <Link>plugins\codec\libaraw_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libaribsub_plugin.dll">
+      <Link>plugins\codec\libaribsub_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libavcodec_plugin.dll">
       <Link>plugins\codec\libavcodec_plugin.dll</Link>
     </Content>
@@ -288,6 +306,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libddummy_plugin.dll">
       <Link>plugins\codec\libddummy_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libdmo_plugin.dll">
+      <Link>plugins\codec\libdmo_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libdts_plugin.dll">
       <Link>plugins\codec\libdts_plugin.dll</Link>
     </Content>
@@ -300,11 +321,20 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libkate_plugin.dll">
       <Link>plugins\codec\libkate_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\liblibass_plugin.dll">
+      <Link>plugins\codec\liblibass_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\liblpcm_plugin.dll">
       <Link>plugins\codec\liblpcm_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libmft_plugin.dll">
+      <Link>plugins\codec\libmft_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libmpeg_audio_plugin.dll">
       <Link>plugins\codec\libmpeg_audio_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libmpg123_plugin.dll">
+      <Link>plugins\codec\libmpg123_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libopus_plugin.dll">
       <Link>plugins\codec\libopus_plugin.dll</Link>
@@ -315,8 +345,14 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\librawvideo_plugin.dll">
       <Link>plugins\codec\librawvideo_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libscte18_plugin.dll">
+      <Link>plugins\codec\libscte18_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libscte27_plugin.dll">
       <Link>plugins\codec\libscte27_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libspeex_plugin.dll">
+      <Link>plugins\codec\libspeex_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libspudec_plugin.dll">
       <Link>plugins\codec\libspudec_plugin.dll</Link>
@@ -338,6 +374,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libsvcdsub_plugin.dll">
       <Link>plugins\codec\libsvcdsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libtheora_plugin.dll">
+      <Link>plugins\codec\libtheora_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libuleaddvaudio_plugin.dll">
       <Link>plugins\codec\libuleaddvaudio_plugin.dll</Link>
@@ -393,11 +432,8 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libflacsys_plugin.dll">
       <Link>plugins\demux\libflacsys_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libh264_plugin.dll">
-      <Link>plugins\demux\libh264_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libhevc_plugin.dll">
-      <Link>plugins\demux\libhevc_plugin.dll</Link>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libh26x_plugin.dll">
+      <Link>plugins\demux\libh26x_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libimage_plugin.dll">
       <Link>plugins\demux\libimage_plugin.dll</Link>
@@ -408,8 +444,14 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libmkv_plugin.dll">
       <Link>plugins\demux\libmkv_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libmod_plugin.dll">
+      <Link>plugins\demux\libmod_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libmp4_plugin.dll">
       <Link>plugins\demux\libmp4_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libmpc_plugin.dll">
+      <Link>plugins\demux\libmpc_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libmpgv_plugin.dll">
       <Link>plugins\demux\libmpgv_plugin.dll</Link>
@@ -453,6 +495,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libsubtitle_plugin.dll">
       <Link>plugins\demux\libsubtitle_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libts_plugin.dll">
+      <Link>plugins\demux\libts_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libtta_plugin.dll">
       <Link>plugins\demux\libtta_plugin.dll</Link>
     </Content>
@@ -476,6 +521,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libxa_plugin.dll">
       <Link>plugins\demux\libxa_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\keystore\libplaintext_keystore_plugin.dll">
+      <Link>plugins\keystore\libplaintext_keystore_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\logger\libconsole_logger_plugin.dll">
       <Link>plugins\logger\libconsole_logger_plugin.dll</Link>
@@ -503,6 +551,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\misc\libfingerprinter_plugin.dll">
       <Link>plugins\misc\libfingerprinter_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\misc\libgnutls_plugin.dll">
+      <Link>plugins\misc\libgnutls_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\misc\liblogger_plugin.dll">
       <Link>plugins\misc\liblogger_plugin.dll</Link>
@@ -549,14 +600,23 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\services_discovery\libsap_plugin.dll">
       <Link>plugins\services_discovery\libsap_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\libcache_block_plugin.dll">
+      <Link>plugins\stream_filter\libcache_block_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\libcache_read_plugin.dll">
+      <Link>plugins\stream_filter\libcache_read_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\libhds_plugin.dll">
       <Link>plugins\stream_filter\libhds_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\libinflate_plugin.dll">
+      <Link>plugins\stream_filter\libinflate_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\libprefetch_plugin.dll">
+      <Link>plugins\stream_filter\libprefetch_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\librecord_plugin.dll">
       <Link>plugins\stream_filter\librecord_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\libsmooth_plugin.dll">
-      <Link>plugins\stream_filter\libsmooth_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\text_renderer\libfreetype_plugin.dll">
       <Link>plugins\text_renderer\libfreetype_plugin.dll</Link>
@@ -635,6 +695,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libdeinterlace_plugin.dll">
       <Link>plugins\video_filter\libdeinterlace_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libedgedetection_plugin.dll">
+      <Link>plugins\video_filter\libedgedetection_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\liberase_plugin.dll">
       <Link>plugins\video_filter\liberase_plugin.dll</Link>
