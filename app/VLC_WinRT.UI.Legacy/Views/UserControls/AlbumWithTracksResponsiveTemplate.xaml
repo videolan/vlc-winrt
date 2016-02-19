@@ -8,6 +8,23 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
+    <UserControl.Resources>
+        <Storyboard x:Name="FadeInCover">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="CoverImage"
+                                           Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                      Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="FadeOutCover"
+                    Completed="FadeOutCover_Completed">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="CoverImage"
+                                           Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4"
+                                      Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
 
     <Grid x:Name="HeaderGrid"
           Height="75"
