@@ -199,7 +199,7 @@ namespace Slide2D.Images
                         }
                         else
                         {
-                            blurAmount = 3f;
+                            blurAmount = 4f;
                         }
                     }
 
