@@ -29,7 +29,7 @@
     <Grid x:Name="HeaderGrid"
           Height="75"
           Background="Transparent"
-          Margin="{StaticResource FrameMarginBottom}">
+          Margin="{StaticResource FrameMarginVertical}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="{StaticResource FrameMarginGridLengthDouble}" />
@@ -56,22 +56,20 @@
                Grid.RowSpan="2"
                Height="90"
                Width="90"
-               Stretch="UniformToFill"
-               Source="{Binding Key.AlbumImage}" />
+               Stretch="UniformToFill" />
 
         <TextBlock x:Name="NameTextBlock"
                    Grid.Row="0"
                    Grid.Column="2"
                    Grid.ColumnSpan="5"
                    TextTrimming="CharacterEllipsis"
-                   Style="{StaticResource SubheaderTextBlockStyle}"
                    Margin="0,0,6,0"
                    MaxLines="1" />
 
         <AppBarButton x:Name="PlayAppBarButton"
                       Grid.Row="1"
                       Grid.Column="2"
-                      Margin="-6,12,0,0"
+                      Margin="-6,0,0,0"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
                       Foreground="{ThemeResource MainColor}">
             <AppBarButton.Icon>
@@ -83,7 +81,7 @@
       <AppBarButton x:Name="PinAppBarButton"
                     Grid.Row="1"
                     Grid.Column="4"
-                    Margin="-6,12,0,0"
+                    Margin="-6,0,0,0"
                     Style="{StaticResource AppBarButtonStyleHorizontal}"
                     Icon="{Binding Key.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
                     VerticalAlignment="Center"
@@ -91,7 +89,7 @@
         <AppBarButton  x:Name="FavoriteAppBarButton"
                        Grid.Row="1"
                        Grid.Column="6"
-                       Margin="-6,12,0,0"
+                       Margin="-6,0,0,0"
                        Icon="{Binding Key.Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
                        Style="{StaticResource AppBarButtonStyleHorizontal}"
                        VerticalAlignment="Center"
