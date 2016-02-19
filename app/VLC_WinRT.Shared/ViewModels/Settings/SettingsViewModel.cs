@@ -159,7 +159,7 @@ namespace VLC_WinRT.ViewModels.Settings
         {
             get
             {
-                var continuePlaybackInBackground = ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground");
+                var continuePlaybackInBackground = ApplicationSettingsHelper.ReadSettingsValue(nameof(ContinueVideoPlaybackInBackground));
                 if (continuePlaybackInBackground == null)
                 {
                     _continueVideoPlaybackInBackground = true;
@@ -173,7 +173,7 @@ namespace VLC_WinRT.ViewModels.Settings
             set
             {
                 SetProperty(ref _continueVideoPlaybackInBackground, value);
-                ApplicationSettingsHelper.SaveSettingsValue("ContinueVideoPlaybackInBackground", value);
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(ContinueVideoPlaybackInBackground), value);
             }
         }
 #endif
