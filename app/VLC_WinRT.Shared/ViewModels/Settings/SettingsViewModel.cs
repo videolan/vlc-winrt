@@ -152,7 +152,9 @@ namespace VLC_WinRT.ViewModels.Settings
             return applicationTheme;
         }
 
-#if WINDOWS_APP
+#if WINDOWS_PHONE_APP
+        public bool ContinueVideoPlaybackInBackground { get; } = false;
+#else
         public bool ContinueVideoPlaybackInBackground
         {
             get
@@ -174,8 +176,6 @@ namespace VLC_WinRT.ViewModels.Settings
                 ApplicationSettingsHelper.SaveSettingsValue("ContinueVideoPlaybackInBackground", value);
             }
         }
-#else
-        public bool ContinueVideoPlaybackInBackground { get; } = false;
 #endif
         public List<KeyboardAction> KeyboardActions
         {
