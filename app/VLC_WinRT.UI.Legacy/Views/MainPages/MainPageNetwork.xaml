@@ -24,7 +24,7 @@
                           x:FieldModifier="public"
                           Margin="{StaticResource FrameMargin}" />
         <Grid Grid.Row="0"
-              Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
+              Background="{ThemeResource ApplicationChromeThemeBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition MinWidth="300" Width="3*"/>

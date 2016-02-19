@@ -2440,7 +2440,7 @@
                                             <CompositeTransform x:Name="PivotLayoutElementTranslateTransform" />
                                         </Grid.RenderTransform>
                                         <ContentPresenter x:Name="LeftHeaderPresenter"
-                                                          Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
+                                                          Background="{TemplateBinding Background}"
                                                           Content="{TemplateBinding LeftHeader}"
                                                           ContentTemplate="{TemplateBinding LeftHeaderTemplate}"
                                                           HorizontalAlignment="Stretch"

@@ -15,7 +15,7 @@
            HeaderTemplate="{StaticResource PivotHeaderDataTemplate}"
            SelectedItem="{Binding CurrentPanel, Mode=TwoWay}"
            Style="{StaticResource TitlelessPivot}"
-           Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
+           Background="{ThemeResource ApplicationChromeThemeBrush}">
         <Pivot.LeftHeader>
             <shell:MenuDropdown x:Name="MenuDropdown" />
         </Pivot.LeftHeader>

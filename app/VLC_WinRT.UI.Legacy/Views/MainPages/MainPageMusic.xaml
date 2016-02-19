@@ -21,7 +21,7 @@
                           Loaded="MusicPanesFrame_OnLoaded"/>
 
 
-        <Grid Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
+        <Grid Background="{ThemeResource ApplicationChromeThemeBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="*" />

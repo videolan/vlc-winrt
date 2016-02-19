@@ -31,7 +31,7 @@
               Grid.Column="0"
               Visibility="Collapsed"
               x:DeferLoadStrategy="Lazy"
-              Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
+              Background="{ThemeResource ApplicationChromeThemeBrush}"
               Padding="{StaticResource FrameMarginLeft}">
             <SemanticZoom x:Name="SemanticZoom"
                           Grid.Row="1"
@@ -81,7 +81,6 @@
                 </SemanticZoom.ZoomedInView>
                 <SemanticZoom.ZoomedOutView>
                     <ListView x:Name="ArtistsZoomedOutView"
-                              Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
                               VerticalContentAlignment="Center"
                               SelectionMode="None"
                               ItemContainerStyle="{StaticResource ListViewItemStyle}">

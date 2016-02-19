@@ -25,6 +25,9 @@
             <Color x:Key="TransparentApplicationThirdForegroundThemeColor">#00252525</Color>
             <Color x:Key="ApplicationOverlayTranslucentThemeColor">#e5151515</Color>
 
+
+            <SolidColorBrush x:Key="ApplicationChromeThemeBrush"
+                             Color="#AA202020"/>
             <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                              Color="{StaticResource ApplicationPageBackgroundThemeColor}" />
             <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
@@ -87,6 +90,8 @@
             <Color x:Key="TransparentApplicationThirdForegroundThemeColor">#00f5f5f5</Color>
             <Color x:Key="ApplicationOverlayTranslucentThemeColor">#F2F0F0F0</Color>
 
+            <SolidColorBrush x:Key="ApplicationChromeThemeBrush"
+                             Color="Transparent"/>
             <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                              Color="{StaticResource ApplicationPageBackgroundThemeColor}" />
             <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
