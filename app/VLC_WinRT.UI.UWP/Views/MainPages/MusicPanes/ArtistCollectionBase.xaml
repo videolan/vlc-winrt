@@ -50,7 +50,8 @@
                                                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
                                                          ItemTemplate="{StaticResource ArtistHorizontalTemplate}"
                                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                         ScrollViewer.HorizontalScrollMode="Disabled">
+                                                         ScrollViewer.HorizontalScrollMode="Disabled"
+                                                         SelectionChanged="ArtistListView_SelectionChanged">
                         <triggers:Interactions.Triggers>
                             <triggers:EventTrigger EventName="ItemClick">
                                 <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
