@@ -907,6 +907,8 @@
                 Value="True" />
         <Setter Property="Margin"
                 Value="0" />
+        <Setter Property="Padding"
+                Value="0" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Stretch" />
         <Setter Property="VerticalContentAlignment"
@@ -954,50 +956,16 @@
                             <VisualStateGroup x:Name="SelectionHintStates">
                                 <VisualState x:Name="VerticalSelectionHint">
                                     <Storyboard>
-                                        <SwipeHintThemeAnimation TargetName="SelectionBackground"
-                                                                 ToVerticalOffset="15"
-                                                                 ToHorizontalOffset="0" />
                                         <SwipeHintThemeAnimation TargetName="ContentBorder"
                                                                  ToVerticalOffset="15"
                                                                  ToHorizontalOffset="0" />
-                                        <SwipeHintThemeAnimation TargetName="SelectedBorder"
-                                                                 ToVerticalOffset="15"
-                                                                 ToHorizontalOffset="0" />
-                                        <SwipeHintThemeAnimation TargetName="SelectedCheckMark"
-                                                                 ToVerticalOffset="15"
-                                                                 ToHorizontalOffset="0" />
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HintGlyph"
-                                                                       Storyboard.TargetProperty="Opacity"
-                                                                       Duration="0:0:0.500">
-                                            <DiscreteDoubleKeyFrame Value="0.5"
-                                                                    KeyTime="0:0:0" />
-                                            <DiscreteDoubleKeyFrame Value="0"
-                                                                    KeyTime="0:0:0.500" />
-                                        </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="HorizontalSelectionHint">
                                     <Storyboard>
-                                        <SwipeHintThemeAnimation TargetName="SelectionBackground"
-                                                                 ToHorizontalOffset="-23"
-                                                                 ToVerticalOffset="0" />
                                         <SwipeHintThemeAnimation TargetName="ContentBorder"
                                                                  ToHorizontalOffset="-23"
                                                                  ToVerticalOffset="0" />
-                                        <SwipeHintThemeAnimation TargetName="SelectedBorder"
-                                                                 ToHorizontalOffset="-23"
-                                                                 ToVerticalOffset="0" />
-                                        <SwipeHintThemeAnimation TargetName="SelectedCheckMark"
-                                                                 ToHorizontalOffset="-23"
-                                                                 ToVerticalOffset="0" />
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HintGlyph"
-                                                                       Storyboard.TargetProperty="Opacity"
-                                                                       Duration="0:0:0.500">
-                                            <DiscreteDoubleKeyFrame Value="0.5"
-                                                                    KeyTime="0:0:0" />
-                                            <DiscreteDoubleKeyFrame Value="0"
-                                                                    KeyTime="0:0:0.500" />
-                                        </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="NoSelectionHint" />
@@ -1009,26 +977,14 @@
                             <VisualStateGroup x:Name="SelectionStates">
                                 <VisualState x:Name="Unselecting">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="HintGlyphBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Unselected">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="HintGlyphBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="UnselectedPointerOver">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="HintGlyphBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -1038,34 +994,10 @@
                                 </VisualState>
                                 <VisualState x:Name="UnselectedSwiping">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectingGlyph"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="0.5" />
-                                        <DoubleAnimation Storyboard.TargetName="HintGlyphBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Selecting">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectionBackground"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="SelectingGlyph"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="HintGlyphBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         SpeedRatio="3"
-                                                         To="1" />
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -1109,13 +1041,6 @@
                                 <VisualState x:Name="NotDragging" />
                                 <VisualState x:Name="Dragging">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="InnerDragContent"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="{StaticResource ListViewItemDragThemeOpacity}" />
-                                        <DragItemThemeAnimation TargetName="InnerDragContent" />
-                                        <FadeOutThemeAnimation TargetName="SelectedCheckMarkOuter" />
-                                        <FadeOutThemeAnimation TargetName="SelectedBorder" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="DraggingTarget">
@@ -1127,26 +1052,12 @@
                                     <Storyboard>
                                         <!-- These two Opacity animations are required - the FadeInThemeAnimations
                                          on the same elements animate an internal Opacity. -->
-                                        <DoubleAnimation Storyboard.TargetName="MultiArrangeOverlayBackground"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="MultiArrangeOverlayText"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
 
                                         <DoubleAnimation Storyboard.TargetName="ContentBorder"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
                                                          To="{StaticResource ListViewItemDragThemeOpacity}" />
-                                        <FadeInThemeAnimation TargetName="MultiArrangeOverlayBackground" />
-                                        <FadeInThemeAnimation TargetName="MultiArrangeOverlayText" />
                                         <DragItemThemeAnimation TargetName="ContentBorder" />
-                                        <FadeOutThemeAnimation TargetName="SelectionBackground" />
-                                        <FadeOutThemeAnimation TargetName="SelectedCheckMarkOuter" />
-                                        <FadeOutThemeAnimation TargetName="SelectedBorder" />
-                                        <FadeOutThemeAnimation TargetName="PointerOverBorder" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="MultipleDraggingSecondary">
@@ -1163,30 +1074,18 @@
                                 <VisualState x:Name="NoReorderHint" />
                                 <VisualState x:Name="BottomReorderHint">
                                     <Storyboard>
-                                        <DragOverThemeAnimation TargetName="ReorderHintContent"
-                                                                ToOffset="{StaticResource ListViewItemReorderHintThemeOffset}"
-                                                                Direction="Bottom" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="TopReorderHint">
                                     <Storyboard>
-                                        <DragOverThemeAnimation TargetName="ReorderHintContent"
-                                                                ToOffset="{StaticResource ListViewItemReorderHintThemeOffset}"
-                                                                Direction="Top" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="RightReorderHint">
                                     <Storyboard>
-                                        <DragOverThemeAnimation TargetName="ReorderHintContent"
-                                                                ToOffset="{StaticResource ListViewItemReorderHintThemeOffset}"
-                                                                Direction="Right" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="LeftReorderHint">
                                     <Storyboard>
-                                        <DragOverThemeAnimation TargetName="ReorderHintContent"
-                                                                ToOffset="{StaticResource ListViewItemReorderHintThemeOffset}"
-                                                                Direction="Left" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualStateGroup.Transitions>
@@ -1198,83 +1097,18 @@
                                 <VisualState x:Name="DataAvailable" />
                                 <VisualState x:Name="DataPlaceholder">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderTextBlock"
-                                                                       Storyboard.TargetProperty="Visibility"
-                                                                       Duration="0">
-                                            <DiscreteObjectKeyFrame KeyTime="0">
-                                                <DiscreteObjectKeyFrame.Value>
-                                                    <Visibility>Visible</Visibility>
-                                                </DiscreteObjectKeyFrame.Value>
-                                            </DiscreteObjectKeyFrame>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderRect"
-                                                                       Storyboard.TargetProperty="Visibility"
-                                                                       Duration="0">
-                                            <DiscreteObjectKeyFrame KeyTime="0">
-                                                <DiscreteObjectKeyFrame.Value>
-                                                    <Visibility>Visible</Visibility>
-                                                </DiscreteObjectKeyFrame.Value>
-                                            </DiscreteObjectKeyFrame>
-                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="ReorderHintContent"
                               Background="Transparent">
-                            <Path x:Name="SelectingGlyph"
-                                  Opacity="0"
-                                  Data="F1 M133.1,17.9 L137.2,13.2 L144.6,19.6 L156.4,5.8 L161.2,9.9 L145.6,28.4 z"
-                                  Fill="{StaticResource ListViewItemCheckSelectingThemeBrush}"
-                                  Height="13"
-                                  Stretch="Fill"
-                                  Width="15"
-                                  HorizontalAlignment="Right"
-                                  Margin="0,9.5,9.5,0"
-                                  VerticalAlignment="Top"
-                                  FlowDirection="LeftToRight" />
-                            <Border x:Name="HintGlyphBorder"
-                                    Height="40"
-                                    Width="40"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    Opacity="0"
-                                    Margin="4">
-                                <Path x:Name="HintGlyph"
-                                      Opacity="0"
-                                      Data="F1 M133.1,17.9 L137.2,13.2 L144.6,19.6 L156.4,5.8 L161.2,9.9 L145.6,28.4 z"
-                                      Fill="{StaticResource ListViewItemCheckHintThemeBrush}"
-                                      Height="13"
-                                      Stretch="Fill"
-                                      Width="15"
-                                      HorizontalAlignment="Right"
-                                      Margin="0,5.5,5.5,0"
-                                      VerticalAlignment="Top"
-                                      FlowDirection="LeftToRight" />
-                            </Border>
-                            <Border x:Name="ContentContainer">
-                                <Grid x:Name="InnerDragContent">
-                                    <Rectangle x:Name="PointerOverBorder"
-                                               IsHitTestVisible="False"
-                                               Opacity="0"
-                                               Fill="{StaticResource ListViewItemPointerOverBackgroundThemeBrush}"
-                                               Margin="1" />
-                                    <Rectangle x:Name="FocusVisual"
-                                               IsHitTestVisible="False"
-                                               Opacity="0"
-                                               StrokeThickness="2"
-                                               Stroke="{StaticResource ListViewItemFocusBorderThemeBrush}" />
-                                    <Rectangle x:Name="SelectionBackground"
-                                               Margin="4"
-                                               Fill="{ThemeResource SemiLightMainColor}"
-                                               Opacity="0" />
-                                    <Border x:Name="ContentBorder"
+                            <Border x:Name="ContentBorder"
                                             Background="{TemplateBinding Background}"
                                             BorderBrush="{TemplateBinding BorderBrush}"
                                             BorderThickness="{TemplateBinding BorderThickness}"
                                             Margin="0">
-                                        <Grid>
-                                            <ContentPresenter x:Name="contentPresenter"
+                                <ContentPresenter x:Name="contentPresenter"
                                                               ContentTransitions="{TemplateBinding ContentTransitions}"
                                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                                               Content="{TemplateBinding Content}"
@@ -1282,66 +1116,6 @@
                                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                               Margin="{TemplateBinding Padding}"
                                                               Foreground="{ThemeResource BasicForeground}" />
-                                            <!-- The 'Xg' text simulates the amount of space one line of text will occupy.
-                                             In the DataPlaceholder state, the Content is not loaded yet so we
-                                             approximate the size of the item using placeholder text. -->
-                                            <TextBlock x:Name="PlaceholderTextBlock"
-                                                       Opacity="0"
-                                                       Text="Xg"
-                                                       Foreground="{x:Null}"
-                                                       Margin="{TemplateBinding Padding}"
-                                                       IsHitTestVisible="False" />
-                                            <Rectangle x:Name="PlaceholderRect"
-                                                       Visibility="Collapsed"
-                                                       Fill="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}"
-                                                       IsHitTestVisible="False" />
-                                            <Rectangle x:Name="MultiArrangeOverlayBackground"
-                                                       IsHitTestVisible="False"
-                                                       Opacity="0"
-                                                       Fill="{StaticResource ListViewItemDragBackgroundThemeBrush}" />
-                                        </Grid>
-                                    </Border>
-                                    <Rectangle x:Name="SelectedBorder"
-                                               IsHitTestVisible="False"
-                                               Opacity="0"
-                                               Stroke="{ThemeResource SemiLightMainColor}"
-                                               StrokeThickness="{StaticResource ListViewItemSelectedBorderThemeThickness}"
-                                               Margin="4" />
-                                    <Border x:Name="SelectedCheckMarkOuter"
-                                            IsHitTestVisible="False"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Top"
-                                            Margin="4">
-                                        <Grid x:Name="SelectedCheckMark"
-                                              Opacity="0"
-                                              Height="40"
-                                              Width="40">
-                                            <Path x:Name="SelectedEarmark"
-                                                  Data="M0,0 L40,0 L40,40 z"
-                                                  Fill="{ThemeResource SemiLightMainColor}"
-                                                  Stretch="Fill" />
-                                            <Path Data="F1 M133.1,17.9 L137.2,13.2 L144.6,19.6 L156.4,5.8 L161.2,9.9 L145.6,28.4 z"
-                                                  Fill="{StaticResource ListViewItemCheckThemeBrush}"
-                                                  Height="13"
-                                                  Stretch="Fill"
-                                                  Width="15"
-                                                  HorizontalAlignment="Right"
-                                                  Margin="0,5.5,5.5,0"
-                                                  VerticalAlignment="Top"
-                                                  FlowDirection="LeftToRight" />
-                                        </Grid>
-                                    </Border>
-                                    <TextBlock x:Name="MultiArrangeOverlayText"
-                                               Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.DragItemsCount}"
-                                               Foreground="{StaticResource ListViewItemDragForegroundThemeBrush}"
-                                               FontFamily="{StaticResource ContentControlThemeFontFamily}"
-                                               FontSize="26.667"
-                                               IsHitTestVisible="False"
-                                               Opacity="0"
-                                               TextWrapping="Wrap"
-                                               TextTrimming="WordEllipsis"
-                                               Margin="18,9,0,0" />
-                                </Grid>
                             </Border>
                         </Grid>
                     </Border>
