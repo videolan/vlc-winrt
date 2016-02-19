@@ -48,7 +48,7 @@
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.GroupStyle>
-                    <GroupStyle HeaderTemplate="{StaticResource AlbumResponsiveTemplate}" />
+                    <GroupStyle HeaderTemplate="{StaticResource AlbumResponsiveTemplate}"/>
                 </ListView.GroupStyle>
             </ListView>
         </SemanticZoom.ZoomedInView>
