@@ -348,13 +348,14 @@ namespace VLC_WinRT.ViewModels.MusicVM
             {
                 MusicLibrary.Artists.CollectionChanged -= Artists_CollectionChanged;
                 MusicLibrary.Artists.Clear();
-                return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                {
-                    GroupedArtists = null;
-                    LoadingStateArtists = LoadingState.NotLoaded;
-                });
             }
-            return null;
+
+            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            {
+                GroupedArtists = null;
+                LoadingStateArtists = LoadingState.NotLoaded;
+                CurrentArtist = null;
+            });
         }
 
         public Task OnNavigatedFromAlbums()
