@@ -873,10 +873,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\build\VLC_WinRT.UI.Strings\VLC_WinRT.UI.Strings.csproj">
-      <Project>{9929d9e5-0325-4a30-8285-1ba357b7878a}</Project>
-      <Name>VLC_WinRT.UI.Strings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\modules\libVLCX.WindowsPhone\libVLCX.WindowsPhone.vcxproj">
       <Project>{5d78f68e-c377-449e-a508-5b8e706d0039}</Project>
       <Name>libVLCX.WindowsPhone</Name>
