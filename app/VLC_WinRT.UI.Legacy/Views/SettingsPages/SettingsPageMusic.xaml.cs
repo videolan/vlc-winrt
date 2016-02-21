@@ -46,7 +46,7 @@ namespace VLC_WinRT.UI.Legacy.Views.SettingsPages
             string pd = (string)ApplicationSettingsHelper.ReadSettingsValue("LastFmPassword");
 
             if (string.IsNullOrEmpty(pseudo) || string.IsNullOrEmpty(pd)) return;
-            ErrorConnectLastFmTextBox.Text = Strings.Connecting;
+            ErrorConnectLastFmTextBox.Text = Utils.Strings.Connecting;
             ErrorConnectLastFmTextBox.Visibility = Visibility.Visible;
             ErrorConnectLastFmTextBox.Foreground = new SolidColorBrush(Colors.Gray);
             var success = await lastFm.ConnectOperation(pseudo, pd);
@@ -59,7 +59,7 @@ namespace VLC_WinRT.UI.Legacy.Views.SettingsPages
             else
             {
                 ErrorConnectLastFmTextBox.Foreground = new SolidColorBrush(Colors.Red);
-                ErrorConnectLastFmTextBox.Text = Strings.CheckCredentials;
+                ErrorConnectLastFmTextBox.Text = Utils.Strings.CheckCredentials;
                 Locator.SettingsVM.LastFmIsConnected = false;
             }
         }

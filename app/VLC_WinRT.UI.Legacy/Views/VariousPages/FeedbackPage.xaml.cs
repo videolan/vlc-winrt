@@ -33,7 +33,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
             {
                 if (string.IsNullOrEmpty(BuildNumberTextBox.Text))
                 {
-                    StatusTextBox.Text = Strings.SpecifyBuild;
+                    StatusTextBox.Text = Utils.Strings.SpecifyBuild;
                     return;
                 }
                 int buildN;
@@ -43,7 +43,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
                 }
                 else
                 {
-                    StatusTextBox.Text = Strings.SpecifiedBuildIncorrect;
+                    StatusTextBox.Text = Utils.Strings.SpecifiedBuildIncorrect;
                     return;
                 }
             }
@@ -52,7 +52,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
             fbItem.Summary = SummaryTextBox.Text;
 
             var sendLogs = SendLogsCheckBox.IsChecked.HasValue && SendLogsCheckBox.IsChecked.Value;
-            StatusTextBox.Text = Strings.SendingFeedback;
+            StatusTextBox.Text = Utils.Strings.SendingFeedback;
             ProgressRing.IsActive = true;
             Task.Run(() => SendFeedbackItem(fbItem, sendLogs));
         }
@@ -68,11 +68,11 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
                     if (result.EnsureSuccessStatusCode().IsSuccessStatusCode)
                     {
                         Locator.NavigationService.Go(VLCPage.SettingsPage);
-                        ToastHelper.Basic(Strings.FeedbackThankYou);
+                        ToastHelper.Basic(Utils.Strings.FeedbackThankYou);
                     }
                     else
                     {
-                        StatusTextBox.Text = Strings.ErrorSendingFeedback;
+                        StatusTextBox.Text = Utils.Strings.ErrorSendingFeedback;
                         ProgressRing.IsActive = false;
 #if DEBUG
                         var md = new MessageDialog(result.ReasonPhrase + " - " + result.Content + " - " + result.StatusCode, "Bug in the Request");
@@ -85,7 +85,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                 {
-                    StatusTextBox.Text = Strings.ErrorSendingFeedback;
+                    StatusTextBox.Text = Utils.Strings.ErrorSendingFeedback;
                     ProgressRing.IsActive = false;
 #if DEBUG
                     var md = new MessageDialog(e.ToString(), "Bug");

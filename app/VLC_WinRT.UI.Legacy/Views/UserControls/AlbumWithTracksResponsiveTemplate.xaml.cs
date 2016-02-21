@@ -65,9 +65,9 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
         public Task Init()
         {
             if (Album == null) return null;
-            NameTextBlock.Text = Strings.HumanizedAlbumName(Album.Name);
+            NameTextBlock.Text = Utils.Strings.HumanizedAlbumName(Album.Name);
 
-            PlayAppBarButton.Label = Strings.PlayAlbum;
+            PlayAppBarButton.Label = Utils.Strings.PlayAlbum;
             PlayAppBarButton.Command = Locator.MusicLibraryVM.PlayAlbumCommand;
             PlayAppBarButton.CommandParameter = Album;
 

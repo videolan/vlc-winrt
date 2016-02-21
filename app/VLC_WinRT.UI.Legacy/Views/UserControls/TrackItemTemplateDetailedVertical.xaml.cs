@@ -49,7 +49,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
         {
             if (Track == null) return;
             NameTextBlock.Text = Track.Name;
-            ArtistAlbumNameTextBlock.Text = Track.ArtistName + Strings.Dash + Track.AlbumName;
+            ArtistAlbumNameTextBlock.Text = Track.ArtistName + Utils.Strings.Dash + Track.AlbumName;
             var trackItem = Track;
             Task.Run(async () =>
             {
