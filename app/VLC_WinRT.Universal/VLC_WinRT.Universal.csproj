@@ -103,6 +103,8 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <PRIResource Include="Strings\ja-JP\Resources.resw" />
+    <PRIResource Include="Strings\fr\Resources.resw" />
     <None Include="VLC_WinRT.Universal_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -861,6 +863,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\UserControls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en-US\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <XliffResource Include="MultilingualResources\VLC_WinRT.Universal.en-US.xlf" />
+    <XliffResource Include="MultilingualResources\VLC_WinRT.Universal.fr.xlf" />
+    <XliffResource Include="MultilingualResources\VLC_WinRT.Universal.ja-JP.xlf" />
   </ItemGroup>
   <Import Project="..\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems" Label="Shared" />

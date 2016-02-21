@@ -251,5 +251,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Services\Mocks\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Strings\de-DE\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Strings\ja-JP\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
   </ItemGroup>
 </Project>
