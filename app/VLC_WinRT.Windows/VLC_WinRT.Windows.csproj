@@ -106,11 +106,6 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Label="MultilingualAppToolkit">
-    <MultilingualAppToolkitVersion>3.0</MultilingualAppToolkitVersion>
-    <MakePriLog>$(Temp)\$(MSBuildProjectName)_Multilingual.prilog.xml</MakePriLog>
-    <AppxGenerateProjectPriFileAdditionalMakepriExeParameters>/IndexLog "$(MakePriLog)"</AppxGenerateProjectPriFileAdditionalMakepriExeParameters>
-  </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
@@ -927,16 +922,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="MultilingualResources\" />
     <Folder Include="plugins\lua\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="MultilingualResources\VLC_WinRT.Windows.en.xlf" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="MultilingualResources\VLC_WinRT.Windows.fr.xlf" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="MultilingualResources\VLC_WinRT.Windows.qps-ploc.xlf" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
@@ -948,7 +935,6 @@
   <Import Project="..\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.UI.Win8\VLC_WinRT.UI.Win8.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets" Label="MultilingualAppToolkit" />
   <Import Project="..\..\build\packages\Win2D.win81.1.11.0\build\win\Win2D.win81.targets" Condition="Exists('..\..\build\packages\Win2D.win81.1.11.0\build\win\Win2D.win81.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

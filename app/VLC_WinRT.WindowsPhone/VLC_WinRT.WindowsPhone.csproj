@@ -82,11 +82,6 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Label="MultilingualAppToolkit">
-    <MultilingualAppToolkitVersion>3.0</MultilingualAppToolkitVersion>
-    <MakePriLog>$(Temp)\$(MSBuildProjectName)_Multilingual.prilog.xml</MakePriLog>
-    <AppxGenerateProjectPriFileAdditionalMakepriExeParameters>/IndexLog "$(MakePriLog)"</AppxGenerateProjectPriFileAdditionalMakepriExeParameters>
-  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\UserControls\VLCPivot.xaml.cs">
@@ -908,7 +903,6 @@
     <Error Condition="!Exists('..\..\build\packages\Win2D.win81.1.14.0\build\wpa\Win2D.win81.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\build\packages\Win2D.win81.1.14.0\build\wpa\Win2D.win81.targets'))" />
   </Target>
   <Import Project="..\..\build\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\build\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets" Label="MultilingualAppToolkit" />
   <Import Project="..\..\build\packages\Win2D.win81.1.14.0\build\wpa\Win2D.win81.targets" Condition="Exists('..\..\build\packages\Win2D.win81.1.14.0\build\wpa\Win2D.win81.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
