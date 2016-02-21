@@ -15,7 +15,8 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{76F1466A-8B6D-4E39-A767-685A06062A39};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SynthesizeLinkMetadata>true</SynthesizeLinkMetadata>
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>arm</AppxBundlePlatforms>
   </PropertyGroup>
@@ -872,6 +873,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\build\VLC_WinRT.UI.Strings\VLC_WinRT.UI.Strings.csproj">
+      <Project>{9929d9e5-0325-4a30-8285-1ba357b7878a}</Project>
+      <Name>VLC_WinRT.UI.Strings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\modules\libVLCX.WindowsPhone\libVLCX.WindowsPhone.vcxproj">
       <Project>{5d78f68e-c377-449e-a508-5b8e706d0039}</Project>
       <Name>libVLCX.WindowsPhone</Name>

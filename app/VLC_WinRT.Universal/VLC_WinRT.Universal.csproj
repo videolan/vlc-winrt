@@ -850,6 +850,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\build\VLC_WinRT.UI.Strings\VLC_WinRT.UI.Strings.csproj">
+      <Project>{9929d9e5-0325-4a30-8285-1ba357b7878a}</Project>
+      <Name>VLC_WinRT.UI.Strings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\modules\libVLCX.UWP\libVLCX.UWP.vcxproj">
       <Project>{dc8bbfae-5203-44be-9a7c-b3273038d676}</Project>
       <Name>libVLCX.UWP</Name>

@@ -18,7 +18,8 @@
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>x86|arm</AppxBundlePlatforms>
     <AppxBundle>Always</AppxBundle>
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -915,6 +916,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\build\VLC_WinRT.UI.Strings\VLC_WinRT.UI.Strings.csproj">
+      <Project>{9929d9e5-0325-4a30-8285-1ba357b7878a}</Project>
+      <Name>VLC_WinRT.UI.Strings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\modules\libVLCX\libVLCX.vcxproj">
       <Project>{22532381-be8b-40e0-a881-22ce24342d5a}</Project>
       <Name>libVLCX</Name>
