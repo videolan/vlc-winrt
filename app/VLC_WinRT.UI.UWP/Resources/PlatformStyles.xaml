@@ -3,242 +3,258 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:VLC_WinRT.UI.UWP.Resources">
 
-  <Thickness x:Key="TitleMargin">0,32,0,0</Thickness>
+    <Thickness x:Key="TitleMargin">0,32,0,0</Thickness>
 
-  <Thickness x:Key="HorizontalListViewItemMargin">0,0,18,2</Thickness>
+    <Thickness x:Key="HorizontalListViewItemMargin">0,0,18,2</Thickness>
 
-  <Style x:Key="MenuFlyoutItemIconTemplate" TargetType="MenuFlyoutItem">
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="MenuFlyoutItem">
-          <Grid x:Name="LayoutRoot" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-            <VisualStateManager.VisualStateGroups>
-              <VisualStateGroup x:Name="CommonStates">
-                <VisualState x:Name="Normal" />
-                <VisualState x:Name="PointerOver">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListLowBrush}" />
+    <Style TargetType="MenuFlyoutItem">
+        <Setter Property="FontSize"
+                Value="13"/>
+    </Style>
 
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextBlock" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Pressed">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Background">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListMediumBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextBlock" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                    <PointerDownThemeAnimation Storyboard.TargetName="TextBlock" />
-                  </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Disabled">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextBlock" Storyboard.TargetProperty="Foreground">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
-                </VisualState>
-                <VisualStateGroup.Transitions>
-                  <VisualTransition From="Pressed" To="Normal">
-                    <Storyboard>
-                      <PointerUpThemeAnimation Storyboard.TargetName="TextBlock" />
-                    </Storyboard>
-                  </VisualTransition>
-                  <VisualTransition From="Pressed" To="PointerOver">
-                    <Storyboard>
-                      <PointerUpThemeAnimation Storyboard.TargetName="TextBlock" />
-                    </Storyboard>
-                  </VisualTransition>
-                </VisualStateGroup.Transitions>
-              </VisualStateGroup>
-              <VisualStateGroup x:Name="CheckPlaceholderStates">
-                <VisualState x:Name="NoPlaceholder" />
-                <VisualState x:Name="CheckPlaceholder">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextBlock" Storyboard.TargetProperty="Margin">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource MenuFlyoutItemPlaceholderThemeThickness}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
-                </VisualState>
-              </VisualStateGroup>
-              <VisualStateGroup x:Name="PaddingSizeStates">
-                <VisualState x:Name="DefaultPadding" />
-                <VisualState x:Name="NarrowPadding">
-                  <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Padding">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource MenuFlyoutItemThemePaddingNarrow}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
-                </VisualState>
-              </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-            <StackPanel Orientation="Horizontal">
-              <FontIcon FontFamily="{StaticResource VLCFont}"  Margin="0,0,12,0" x:Name="TextBlock" Glyph="{TemplateBinding Tag}" Height="16" Width="16" FontSize="16" />
-              <TextBlock  Text="{TemplateBinding Text}" TextTrimming="CharacterEllipsis" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+    <Style x:Key="MenuFlyoutItemIconTemplate" 
+         TargetType="MenuFlyoutItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="MenuFlyoutItem">
+                    <Grid x:Name="LayoutRoot" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListLowBrush}" />
 
-            </StackPanel>
-          </Grid>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextBlock" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListMediumBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextBlock" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <PointerDownThemeAnimation Storyboard.TargetName="TextBlock" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextBlock" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Pressed" To="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="TextBlock" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="Pressed" To="PointerOver">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="TextBlock" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckPlaceholderStates">
+                                <VisualState x:Name="NoPlaceholder" />
+                                <VisualState x:Name="CheckPlaceholder">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextBlock" Storyboard.TargetProperty="Margin">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource MenuFlyoutItemPlaceholderThemeThickness}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="PaddingSizeStates">
+                                <VisualState x:Name="DefaultPadding" />
+                                <VisualState x:Name="NarrowPadding">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Padding">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource MenuFlyoutItemThemePaddingNarrow}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon FontFamily="{StaticResource VLCFont}"
+                                      Margin="0,0,12,0" 
+                                      x:Name="TextBlock"
+                                      Glyph="{TemplateBinding Tag}"
+                                      Height="16"
+                                      Width="16"
+                                      FontSize="16" />
+                            <TextBlock Text="{TemplateBinding Text}" 
+                                       TextTrimming="CharacterEllipsis" 
+                                       Foreground="{TemplateBinding Foreground}" 
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                       FontSize="13"/>
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-  <Style TargetType="FlyoutPresenter">
-    <Setter Property="BorderThickness"
+    <Style TargetType="FlyoutPresenter">
+        <Setter Property="BorderThickness"
             Value="0" />
-    <Setter Property="Background"
+        <Setter Property="Background"
             Value="Transparent" />
-  </Style>
+    </Style>
 
-  <Style TargetType="FlyoutPresenter"
+    <Style TargetType="FlyoutPresenter"
          x:Key="BigFlyoutPresenter">
-    <Setter Property="BorderThickness"
+        <Setter Property="BorderThickness"
             Value="1" />
-    <Setter Property="Padding"
+        <Setter Property="Padding"
             Value="0" />
-    <Setter Property="MaxWidth"
+        <Setter Property="MaxWidth"
             Value="350" />
-    <Setter Property="Background"
+        <Setter Property="Background"
             Value="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
-    <Setter Property="VerticalContentAlignment"
+        <Setter Property="VerticalContentAlignment"
             Value="Top" />
-    <Setter Property="VerticalAlignment"
+        <Setter Property="VerticalAlignment"
             Value="Top" />
-    <Setter Property="ScrollViewer.HorizontalScrollMode"
+        <Setter Property="ScrollViewer.HorizontalScrollMode"
             Value="Disabled" />
-    <Setter Property="ScrollViewer.VerticalScrollMode"
+        <Setter Property="ScrollViewer.VerticalScrollMode"
             Value="Disabled" />
-  </Style>
-  <Style x:Key="SettingsFlyoutStyle"
+    </Style>
+    <Style x:Key="SettingsFlyoutStyle"
          TargetType="SettingsFlyout">
-    <Setter Property="RequestedTheme"
+        <Setter Property="RequestedTheme"
             Value="Light" />
-    <Setter Property="HeaderBackground"
+        <Setter Property="HeaderBackground"
             Value="{ThemeResource SettingsFlyoutHeaderBackgroundThemeBrush}" />
-    <Setter Property="HeaderForeground"
+        <Setter Property="HeaderForeground"
             Value="{ThemeResource SettingsFlyoutHeaderForegroundThemeBrush}" />
-    <Setter Property="Background"
+        <Setter Property="Background"
             Value="Transparent" />
-    <Setter Property="BorderThickness"
+        <Setter Property="BorderThickness"
             Value="0,0,0,0" />
-    <Setter Property="Padding"
+        <Setter Property="Padding"
             Value="0,50,0,0" />
-    <Setter Property="HorizontalContentAlignment"
+        <Setter Property="HorizontalContentAlignment"
             Value="Stretch" />
-    <Setter Property="VerticalContentAlignment"
+        <Setter Property="VerticalContentAlignment"
             Value="Stretch" />
-    <Setter Property="IsTabStop"
+        <Setter Property="IsTabStop"
             Value="False" />
-    <Setter Property="ScrollViewer.HorizontalScrollMode"
+        <Setter Property="ScrollViewer.HorizontalScrollMode"
             Value="Disabled" />
-    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
             Value="Disabled" />
-    <Setter Property="ScrollViewer.VerticalScrollMode"
+        <Setter Property="ScrollViewer.VerticalScrollMode"
             Value="Auto" />
-    <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
             Value="Auto" />
-    <Setter Property="ScrollViewer.ZoomMode"
+        <Setter Property="ScrollViewer.ZoomMode"
             Value="Disabled" />
-    <Setter Property="Width"
+        <Setter Property="Width"
             Value="320" />
-    <Setter Property="MinWidth"
+        <Setter Property="MinWidth"
             Value="320" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="SettingsFlyout">
-          <Border BorderBrush="{Binding TemplateSettings.BorderBrush, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="SettingsFlyout">
+                    <Border BorderBrush="{Binding TemplateSettings.BorderBrush, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                   BorderThickness="{Binding TemplateSettings.BorderThickness, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                   Background="{TemplateBinding Background}">
-            <Grid>
-              <ContentPresenter x:Name="ContentPresenter"
+                        <Grid>
+                            <ContentPresenter x:Name="ContentPresenter"
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                 ContentTransitions="{Binding TemplateSettings.ContentTransitions, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                 Content="{TemplateBinding Content}"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 Margin="{TemplateBinding Padding}"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-            </Grid>
-          </Border>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-  <Style TargetType="ScrollBar">
-    <Setter Property="MinWidth"
+    <Style TargetType="ScrollBar">
+        <Setter Property="MinWidth"
             Value="10" />
-    <Setter Property="MinHeight"
+        <Setter Property="MinHeight"
             Value="17" />
-    <Setter Property="Background"
+        <Setter Property="Background"
             Value="Transparent" />
-    <Setter Property="Foreground"
+        <Setter Property="Foreground"
             Value="Transparent" />
-    <Setter Property="BorderBrush"
+        <Setter Property="BorderBrush"
             Value="Transparent" />
-    <Setter Property="IsTabStop"
+        <Setter Property="IsTabStop"
             Value="False" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="ScrollBar">
-          <Grid x:Name="Root">
-            <Grid.Resources>
-              <ControlTemplate x:Key="RepeatButtonTemplate"
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollBar">
+                    <Grid x:Name="Root">
+                        <Grid.Resources>
+                            <ControlTemplate x:Key="RepeatButtonTemplate"
                                TargetType="RepeatButton">
-                <Grid x:Name="Root"
+                                <Grid x:Name="Root"
                       Background="Transparent">
-                  <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                      <VisualState x:Name="Normal" />
-                    </VisualStateGroup>
-                  </VisualStateManager.VisualStateGroups>
-                </Grid>
-              </ControlTemplate>
-              <ControlTemplate x:Key="HorizontalIncrementTemplate"
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Grid>
+                            </ControlTemplate>
+                            <ControlTemplate x:Key="HorizontalIncrementTemplate"
                                TargetType="RepeatButton">
-                <Grid x:Name="Root">
-                  <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                      <VisualState x:Name="Normal" />
-                      <VisualState x:Name="PointerOver">
-                        <Storyboard>
-                          <DoubleAnimation Duration="0"
+                                <Grid x:Name="Root">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="PointerOver">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0"
                                            To="1"
                                            Storyboard.TargetProperty="Opacity"
                                            Storyboard.TargetName="BackgroundPointerOver" />
-                          <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
                                                          Storyboard.TargetName="ArrowPointerOver">
-                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="{ThemeResource ScrollBarButtonPointerOverForegroundThemeBrush}" />
-                          </ObjectAnimationUsingKeyFrames>
-                        </Storyboard>
-                      </VisualState>
-                      <VisualState x:Name="Pressed">
-                        <Storyboard>
-                          <DoubleAnimation Duration="0"
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0"
                                            To="1"
                                            Storyboard.TargetProperty="Opacity"
                                            Storyboard.TargetName="BackgroundPressed" />
-                          <DoubleAnimation Duration="0"
+                                                    <DoubleAnimation Duration="0"
                                            To="1"
                                            Storyboard.TargetProperty="Opacity"
                                            Storyboard.TargetName="ArrowPressed" />
-                        </Storyboard>
-                      </VisualState>
-                      <VisualState x:Name="Disabled" />
-                    </VisualStateGroup>
-                  </VisualStateManager.VisualStateGroups>
-                  <Rectangle x:Name="BackgroundPointerOver"
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Disabled" />
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Rectangle x:Name="BackgroundPointerOver"
                              Fill="{ThemeResource ScrollBarButtonPointerOverBackgroundThemeBrush}"
                              Opacity="0"
                              Stroke="{ThemeResource ScrollBarButtonPointerOverBorderThemeBrush}"
                              StrokeThickness="1" />
-                  <Path x:Name="ArrowPointerOver"
+                                    <Path x:Name="ArrowPointerOver"
                         Data="M4.1183305,0 L9.6730003,5.4663525 L4.1183305,10.944 L0,10.881266 L5.5553346,5.4719901 L0,0.062734604 z"
                         Fill="{ThemeResource ScrollBarButtonForegroundThemeBrush}"
                         HorizontalAlignment="Left"
@@ -249,12 +265,12 @@
                         UseLayoutRounding="False"
                         VerticalAlignment="Center"
                         Width="9.673" />
-                  <Rectangle x:Name="BackgroundPressed"
+                                    <Rectangle x:Name="BackgroundPressed"
                              Fill="{ThemeResource ScrollBarButtonPressedBackgroundThemeBrush}"
                              Opacity="0"
                              Stroke="{ThemeResource ScrollBarButtonPressedBorderThemeBrush}"
                              StrokeThickness="1" />
-                  <Path x:Name="ArrowPressed"
+                                    <Path x:Name="ArrowPressed"
                         Data="M4.1183305,0 L9.6730003,5.4663525 L4.1183305,10.944 L0,10.881266 L5.5553346,5.4719901 L0,0.062734604 z"
                         Fill="{ThemeResource ScrollBarButtonPressedForegroundThemeBrush}"
                         HorizontalAlignment="Left"
@@ -266,48 +282,48 @@
                         UseLayoutRounding="False"
                         VerticalAlignment="Center"
                         Width="9.673" />
-                </Grid>
-              </ControlTemplate>
-              <ControlTemplate x:Key="HorizontalDecrementTemplate"
+                                </Grid>
+                            </ControlTemplate>
+                            <ControlTemplate x:Key="HorizontalDecrementTemplate"
                                TargetType="RepeatButton">
-                <Grid x:Name="Root">
-                  <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                      <VisualState x:Name="Normal" />
-                      <VisualState x:Name="PointerOver">
-                        <Storyboard>
-                          <DoubleAnimation Duration="0:0:0"
+                                <Grid x:Name="Root">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="PointerOver">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0"
                                            To="1"
                                            Storyboard.TargetProperty="Opacity"
                                            Storyboard.TargetName="BackgroundPointerOver" />
-                          <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
                                                          Storyboard.TargetName="ArrowPointerOver">
-                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="{ThemeResource ScrollBarButtonPointerOverForegroundThemeBrush}" />
-                          </ObjectAnimationUsingKeyFrames>
-                        </Storyboard>
-                      </VisualState>
-                      <VisualState x:Name="Pressed">
-                        <Storyboard>
-                          <DoubleAnimation Duration="0:0:0"
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0"
                                            To="1"
                                            Storyboard.TargetProperty="Opacity"
                                            Storyboard.TargetName="BackgroundPressed" />
-                          <DoubleAnimation Duration="0"
+                                                    <DoubleAnimation Duration="0"
                                            To="1"
                                            Storyboard.TargetProperty="Opacity"
                                            Storyboard.TargetName="ArrowPressed" />
-                        </Storyboard>
-                      </VisualState>
-                      <VisualState x:Name="Disabled" />
-                    </VisualStateGroup>
-                  </VisualStateManager.VisualStateGroups>
-                  <Rectangle x:Name="BackgroundPointerOver"
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Disabled" />
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Rectangle x:Name="BackgroundPointerOver"
                              Fill="{ThemeResource ScrollBarButtonPointerOverBackgroundThemeBrush}"
                              Opacity="0"
                              Stroke="{ThemeResource ScrollBarButtonPointerOverBorderThemeBrush}"
                              StrokeThickness="1" />
-                  <Path x:Name="ArrowPointerOver"
+                                    <Path x:Name="ArrowPointerOver"
                         Data="M5.5546699,0 L9.6730003,0.062734604 L4.1176658,5.4720101 L9.6730003,10.881266 L5.5546699,10.944 L0,5.4776478 z"
                         Fill="{ThemeResource ScrollBarButtonForegroundThemeBrush}"
                         HorizontalAlignment="Right"
@@ -318,12 +334,12 @@
                         UseLayoutRounding="False"
                         VerticalAlignment="Center"
                         Width="9.673" />
-                  <Rectangle x:Name="BackgroundPressed"
+                                    <Rectangle x:Name="BackgroundPressed"
                              Fill="{ThemeResource ScrollBarButtonPressedBackgroundThemeBrush}"
                              Opacity="0"
                              Stroke="{ThemeResource ScrollBarButtonPressedBorderThemeBrush}"
                              StrokeThickness="1" />
-                  <Path x:Name="ArrowPressed"
+                                    <Path x:Name="ArrowPressed"
                         Data="M5.5546699,0 L9.6730003,0.062734604 L4.1176658,5.4720101 L9.6730003,10.881266 L5.5546699,10.944 L0,5.4776478 z"
                         Fill="{ThemeResource ScrollBarButtonPressedForegroundThemeBrush}"
                         HorizontalAlignment="Right"
@@ -335,34 +351,34 @@
                         UseLayoutRounding="False"
                         VerticalAlignment="Center"
                         Width="9.673" />
-                </Grid>
-              </ControlTemplate>
-              <ControlTemplate x:Key="VerticalIncrementTemplate"
+                                </Grid>
+                            </ControlTemplate>
+                            <ControlTemplate x:Key="VerticalIncrementTemplate"
                                TargetType="RepeatButton">
-                <Grid x:Name="Root">
-                  <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                      <VisualState x:Name="Normal" />
-                      <VisualState x:Name="PointerOver">
-                        <Storyboard>
+                                <Grid x:Name="Root">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="PointerOver">
+                                                <Storyboard>
                                                     <DoubleAnimation Duration="0:0:0"
                                                                      To="1"
                                                                      Storyboard.TargetProperty="Opacity"
                                                                      Storyboard.TargetName="BackgroundPointerOver" />
                                                 </Storyboard>
-                      </VisualState>
-                      <VisualState x:Name="Pressed">
-                        <Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <Storyboard>
                                                     <DoubleAnimation Duration="0:0:0"
                                                                      To="1"
                                                                      Storyboard.TargetProperty="Opacity"
                                                                      Storyboard.TargetName="BackgroundPointerOver" />
                                                 </Storyboard>
-                      </VisualState>
-                      <VisualState x:Name="Disabled" />
-                    </VisualStateGroup>
-                  </VisualStateManager.VisualStateGroups>
-                  <Rectangle x:Name="BackgroundPointerOver"
+                                            </VisualState>
+                                            <VisualState x:Name="Disabled" />
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Rectangle x:Name="BackgroundPointerOver"
                              Fill="{ThemeResource ScrollBarButtonPointerOverBackgroundThemeBrush}"
                              Opacity="0"
                              StrokeThickness="0" />
@@ -378,33 +394,33 @@
                                           VerticalAlignment="Top"
                                           Width="7" />
                                 </Grid>
-              </ControlTemplate>
-              <ControlTemplate x:Key="VerticalDecrementTemplate"
+                            </ControlTemplate>
+                            <ControlTemplate x:Key="VerticalDecrementTemplate"
                                TargetType="RepeatButton">
-                <Grid x:Name="Root">
-                  <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                      <VisualState x:Name="Normal" />
-                      <VisualState x:Name="PointerOver">
-                        <Storyboard>
-                                                    <DoubleAnimation Duration="0:0:0"
-                                                                     To="1"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     Storyboard.TargetName="BackgroundPointerOver" />
-                                                </Storyboard>
-                      </VisualState>
-                      <VisualState x:Name="Pressed">
+                                <Grid x:Name="Root">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="PointerOver">
                                                 <Storyboard>
                                                     <DoubleAnimation Duration="0:0:0"
                                                                      To="1"
                                                                      Storyboard.TargetProperty="Opacity"
                                                                      Storyboard.TargetName="BackgroundPointerOver" />
                                                 </Storyboard>
-                      </VisualState>
-                      <VisualState x:Name="Disabled" />
-                    </VisualStateGroup>
-                  </VisualStateManager.VisualStateGroups>
-                  <Rectangle x:Name="BackgroundPointerOver"
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0"
+                                                                     To="1"
+                                                                     Storyboard.TargetProperty="Opacity"
+                                                                     Storyboard.TargetName="BackgroundPointerOver" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Disabled" />
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Rectangle x:Name="BackgroundPointerOver"
                              Fill="{ThemeResource ScrollBarButtonPointerOverBackgroundThemeBrush}"
                              Opacity="0"
                              StrokeThickness="0" />
@@ -420,14 +436,14 @@
                                           VerticalAlignment="Bottom"
                                           Width="7" />
                                 </Grid>
-              </ControlTemplate>
-              <ControlTemplate x:Key="VerticalThumbTemplate"
+                            </ControlTemplate>
+                            <ControlTemplate x:Key="VerticalThumbTemplate"
                                TargetType="Thumb">
-                <Grid>
-                  <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                      <VisualState x:Name="Normal" />
-                      <VisualState x:Name="PointerOver">
+                                <Grid>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="PointerOver">
                                                 <Storyboard>
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
                                                                                    Storyboard.TargetProperty="Background">
@@ -435,7 +451,7 @@
                                                                                 KeyTime="0"/>
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
-                      </VisualState>
+                                            </VisualState>
                                             <VisualState x:Name="Pressed">
                                                 <Storyboard>
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background"
@@ -445,199 +461,199 @@
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
-                      <VisualState x:Name="Disabled">
-                        <Storyboard>
-                          <DoubleAnimation Duration="0"
+                                            <VisualState x:Name="Disabled">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0"
                                            To="0"
                                            Storyboard.TargetProperty="Opacity"
                                            Storyboard.TargetName="ThumbVisual" />
-                        </Storyboard>
-                      </VisualState>
-                    </VisualStateGroup>
-                    <VisualStateGroup x:Name="FocusStates">
-                      <VisualState x:Name="Unfocused" />
-                      <VisualState x:Name="Focused" />
-                    </VisualStateGroup>
-                  </VisualStateManager.VisualStateGroups>
-                  <Grid x:Name="ThumbVisual"
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                        <VisualStateGroup x:Name="FocusStates">
+                                            <VisualState x:Name="Unfocused" />
+                                            <VisualState x:Name="Focused" />
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Grid x:Name="ThumbVisual"
                         Margin="0">
                                         <Grid x:Name="Background"
                                               CornerRadius="5"
                                               Background="{ThemeResource ApplicationThirdForegroundThemeBrush}" />
                                     </Grid>
-                </Grid>
-              </ControlTemplate>
-              <ControlTemplate x:Key="HorizontalThumbTemplate"
+                                </Grid>
+                            </ControlTemplate>
+                            <ControlTemplate x:Key="HorizontalThumbTemplate"
                                TargetType="Thumb">
-                <Grid>
-                  <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                      <VisualState x:Name="Normal" />
-                      <VisualState x:Name="PointerOver">
-                        <Storyboard>
-                          <DoubleAnimation Duration="0:0:0"
+                                <Grid>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="PointerOver">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0"
                                            To="1"
                                            Storyboard.TargetProperty="Opacity"
                                            Storyboard.TargetName="BackgroundPointerOver" />
-                          <DoubleAnimation Duration="0:0:0"
+                                                    <DoubleAnimation Duration="0:0:0"
                                            To="0"
                                            Storyboard.TargetProperty="Opacity"
                                            Storyboard.TargetName="Background" />
-                        </Storyboard>
-                      </VisualState>
-                      <VisualState x:Name="Pressed">
-                        <Storyboard>
-                          <DoubleAnimation Duration="0:0:0"
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0"
                                            To="1"
                                            Storyboard.TargetProperty="Opacity"
                                            Storyboard.TargetName="BackgroundPressed" />
-                          <DoubleAnimation Duration="0:0:0"
+                                                    <DoubleAnimation Duration="0:0:0"
                                            To="0"
                                            Storyboard.TargetProperty="Opacity"
                                            Storyboard.TargetName="Background" />
-                        </Storyboard>
-                      </VisualState>
-                      <VisualState x:Name="Disabled">
-                        <Storyboard>
-                          <DoubleAnimation Duration="0:0:0"
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Disabled">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0"
                                            To="0"
                                            Storyboard.TargetProperty="Opacity"
                                            Storyboard.TargetName="ThumbVisual" />
-                        </Storyboard>
-                      </VisualState>
-                    </VisualStateGroup>
-                  </VisualStateManager.VisualStateGroups>
-                  <Grid x:Name="ThumbVisual"
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Grid x:Name="ThumbVisual"
                         Margin="0">
-                    <Border x:Name="Background"
+                                        <Border x:Name="Background"
                             BorderBrush="{ThemeResource ScrollBarThumbBorderThemeBrush}"
                             BorderThickness="1"
                             Background="{ThemeResource ScrollBarThumbBackgroundThemeBrush}" />
-                    <Border x:Name="BackgroundPointerOver"
+                                        <Border x:Name="BackgroundPointerOver"
                             BorderBrush="{ThemeResource ScrollBarThumbPointerOverBorderThemeBrush}"
                             BorderThickness="1"
                             Background="{ThemeResource ScrollBarThumbPointerOverBackgroundThemeBrush}"
                             Opacity="0" />
-                    <Border x:Name="BackgroundPressed"
+                                        <Border x:Name="BackgroundPressed"
                             BorderBrush="{ThemeResource ScrollBarThumbPressedBorderThemeBrush}"
                             BorderThickness="1"
                             Background="{ThemeResource ScrollBarThumbPressedBackgroundThemeBrush}"
                             Opacity="0" />
-                  </Grid>
-                </Grid>
-              </ControlTemplate>
-            </Grid.Resources>
-            <VisualStateManager.VisualStateGroups>
-              <VisualStateGroup x:Name="CommonStates">
-                <VisualState x:Name="Normal" />
-                <VisualState x:Name="PointerOver" />
-                <VisualState x:Name="Disabled">
-                  <Storyboard>
-                    <DoubleAnimation Duration="0"
+                                    </Grid>
+                                </Grid>
+                            </ControlTemplate>
+                        </Grid.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver" />
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0"
                                      To="0.5"
                                      Storyboard.TargetProperty="Opacity"
                                      Storyboard.TargetName="Root" />
-                  </Storyboard>
-                </VisualState>
-              </VisualStateGroup>
-              <VisualStateGroup x:Name="ScrollingIndicatorStates">
-                <VisualState x:Name="TouchIndicator">
-                  <Storyboard>
-                    <FadeInThemeAnimation TargetName="HorizontalPanningRoot" />
-                    <FadeInThemeAnimation TargetName="VerticalPanningRoot" />
-                    <FadeOutThemeAnimation TargetName="HorizontalRoot" />
-                    <FadeOutThemeAnimation TargetName="VerticalRoot" />
-                    <ObjectAnimationUsingKeyFrames Duration="0"
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ScrollingIndicatorStates">
+                                <VisualState x:Name="TouchIndicator">
+                                    <Storyboard>
+                                        <FadeInThemeAnimation TargetName="HorizontalPanningRoot" />
+                                        <FadeInThemeAnimation TargetName="VerticalPanningRoot" />
+                                        <FadeOutThemeAnimation TargetName="HorizontalRoot" />
+                                        <FadeOutThemeAnimation TargetName="VerticalRoot" />
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
                                                    Storyboard.TargetProperty="Visibility"
                                                    Storyboard.TargetName="HorizontalRoot">
-                      <DiscreteObjectKeyFrame KeyTime="0">
-                        <DiscreteObjectKeyFrame.Value>
-                          <Visibility>Collapsed</Visibility>
-                        </DiscreteObjectKeyFrame.Value>
-                      </DiscreteObjectKeyFrame>
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Duration="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
                                                    Storyboard.TargetProperty="Visibility"
                                                    Storyboard.TargetName="VerticalRoot">
-                      <DiscreteObjectKeyFrame KeyTime="0">
-                        <DiscreteObjectKeyFrame.Value>
-                          <Visibility>Collapsed</Visibility>
-                        </DiscreteObjectKeyFrame.Value>
-                      </DiscreteObjectKeyFrame>
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
-                </VisualState>
-                <VisualState x:Name="MouseIndicator">
-                  <Storyboard>
-                    <FadeInThemeAnimation TargetName="HorizontalRoot" />
-                    <FadeInThemeAnimation TargetName="VerticalRoot" />
-                    <FadeOutThemeAnimation TargetName="HorizontalPanningRoot" />
-                    <ObjectAnimationUsingKeyFrames Duration="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseIndicator">
+                                    <Storyboard>
+                                        <FadeInThemeAnimation TargetName="HorizontalRoot" />
+                                        <FadeInThemeAnimation TargetName="VerticalRoot" />
+                                        <FadeOutThemeAnimation TargetName="HorizontalPanningRoot" />
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
                                                    Storyboard.TargetProperty="Visibility"
                                                    Storyboard.TargetName="HorizontalPanningRoot">
-                      <DiscreteObjectKeyFrame KeyTime="0">
-                        <DiscreteObjectKeyFrame.Value>
-                          <Visibility>Collapsed</Visibility>
-                        </DiscreteObjectKeyFrame.Value>
-                      </DiscreteObjectKeyFrame>
-                    </ObjectAnimationUsingKeyFrames>
-                    <FadeOutThemeAnimation TargetName="VerticalPanningRoot" />
-                    <ObjectAnimationUsingKeyFrames Duration="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <FadeOutThemeAnimation TargetName="VerticalPanningRoot" />
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
                                                    Storyboard.TargetProperty="Visibility"
                                                    Storyboard.TargetName="VerticalPanningRoot">
-                      <DiscreteObjectKeyFrame KeyTime="0">
-                        <DiscreteObjectKeyFrame.Value>
-                          <Visibility>Collapsed</Visibility>
-                        </DiscreteObjectKeyFrame.Value>
-                      </DiscreteObjectKeyFrame>
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible"
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible"
                                                    Storyboard.TargetName="HorizontalRoot">
-                      <DiscreteObjectKeyFrame KeyTime="0">
-                        <DiscreteObjectKeyFrame.Value>
-                          <x:Boolean>True</x:Boolean>
-                        </DiscreteObjectKeyFrame.Value>
-                      </DiscreteObjectKeyFrame>
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible"
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <x:Boolean>True</x:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible"
                                                    Storyboard.TargetName="VerticalRoot">
-                      <DiscreteObjectKeyFrame KeyTime="0">
-                        <DiscreteObjectKeyFrame.Value>
-                          <x:Boolean>True</x:Boolean>
-                        </DiscreteObjectKeyFrame.Value>
-                      </DiscreteObjectKeyFrame>
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
-                </VisualState>
-                <VisualState x:Name="NoIndicator">
-                  <Storyboard>
-                    <FadeOutThemeAnimation BeginTime="0"
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <x:Boolean>True</x:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="NoIndicator">
+                                    <Storyboard>
+                                        <FadeOutThemeAnimation BeginTime="0"
                                            TargetName="HorizontalPanningRoot" />
-                    <FadeOutThemeAnimation BeginTime="0"
+                                        <FadeOutThemeAnimation BeginTime="0"
                                            TargetName="VerticalPanningRoot" />
-                    <FadeOutThemeAnimation BeginTime="0"
+                                        <FadeOutThemeAnimation BeginTime="0"
                                            TargetName="HorizontalRoot" />
-                    <FadeOutThemeAnimation BeginTime="0"
+                                        <FadeOutThemeAnimation BeginTime="0"
                                            TargetName="VerticalRoot" />
-                  </Storyboard>
-                </VisualState>
-              </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-            <Grid x:Name="HorizontalRoot"
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid x:Name="HorizontalRoot"
                   IsHitTestVisible="False">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-              </Grid.ColumnDefinitions>
-              <Rectangle Grid.ColumnSpan="5"
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.ColumnSpan="5"
                          Fill="{ThemeResource ScrollBarTrackBackgroundThemeBrush}"
                          Margin="0"
                          Stroke="{ThemeResource ScrollBarTrackBorderThemeBrush}"
                          StrokeThickness="{ThemeResource ScrollBarTrackBorderThemeThickness}" />
-              <RepeatButton x:Name="HorizontalSmallDecrease"
+                            <RepeatButton x:Name="HorizontalSmallDecrease"
                             Grid.Column="0"
                             IsTabStop="False"
                             Interval="50"
@@ -646,7 +662,7 @@
                             Template="{StaticResource HorizontalDecrementTemplate}"
                             VerticalAlignment="Center"
                             Width="33" />
-              <RepeatButton x:Name="HorizontalLargeDecrease"
+                            <RepeatButton x:Name="HorizontalLargeDecrease"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             IsTabStop="False"
@@ -654,21 +670,21 @@
                             Template="{StaticResource RepeatButtonTemplate}"
                             VerticalAlignment="Stretch"
                             Width="0" />
-              <Thumb x:Name="HorizontalThumb"
+                            <Thumb x:Name="HorizontalThumb"
                      AutomationProperties.AccessibilityView="Raw"
                      Background="{TemplateBinding Background}"
                      Grid.Column="2"
                      Height="17"
                      MinWidth="48"
                      Template="{StaticResource HorizontalThumbTemplate}" />
-              <RepeatButton x:Name="HorizontalLargeIncrease"
+                            <RepeatButton x:Name="HorizontalLargeIncrease"
                             Grid.Column="3"
                             HorizontalAlignment="Stretch"
                             IsTabStop="False"
                             Interval="50"
                             Template="{StaticResource RepeatButtonTemplate}"
                             VerticalAlignment="Stretch" />
-              <RepeatButton x:Name="HorizontalSmallIncrease"
+                            <RepeatButton x:Name="HorizontalSmallIncrease"
                             Grid.Column="4"
                             IsTabStop="False"
                             Interval="50"
@@ -677,32 +693,32 @@
                             Template="{StaticResource HorizontalIncrementTemplate}"
                             VerticalAlignment="Center"
                             Width="33" />
-            </Grid>
-            <Grid x:Name="HorizontalPanningRoot"
+                        </Grid>
+                        <Grid x:Name="HorizontalPanningRoot"
                   HorizontalAlignment="Left"
                   MinWidth="66">
-              <Border x:Name="HorizontalPanningThumb"
+                            <Border x:Name="HorizontalPanningThumb"
                       BorderBrush="{ThemeResource ScrollBarPanningBorderThemeBrush}"
                       BorderThickness="{ThemeResource ScrollBarPanningBorderThemeThickness}"
                       Background="{ThemeResource ScrollBarPanningBackgroundThemeBrush}"
                       Height="4"
                       MinWidth="17" />
-            </Grid>
-            <Grid x:Name="VerticalRoot"
+                        </Grid>
+                        <Grid x:Name="VerticalRoot"
                   IsHitTestVisible="False">
-              <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-              </Grid.RowDefinitions>
-              <Rectangle Fill="{ThemeResource ScrollBarTrackBackgroundThemeBrush}"
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Fill="{ThemeResource ScrollBarTrackBackgroundThemeBrush}"
                          Margin="0"
                          Grid.RowSpan="5"
                          Stroke="{ThemeResource ScrollBarTrackBorderThemeBrush}"
                          StrokeThickness="{ThemeResource ScrollBarTrackBorderThemeThickness}" />
-              <RepeatButton x:Name="VerticalSmallDecrease"
+                            <RepeatButton x:Name="VerticalSmallDecrease"
                             HorizontalAlignment="Center"
                             Height="25"
                             IsTabStop="False"
@@ -711,7 +727,7 @@
                             MinWidth="10"
                             Grid.Row="0"
                             Template="{StaticResource VerticalDecrementTemplate}" />
-              <RepeatButton x:Name="VerticalLargeDecrease"
+                            <RepeatButton x:Name="VerticalLargeDecrease"
                             HorizontalAlignment="Stretch"
                             Height="0"
                             IsTabStop="False"
@@ -719,21 +735,21 @@
                             Grid.Row="1"
                             Template="{StaticResource RepeatButtonTemplate}"
                             VerticalAlignment="Stretch" />
-              <Thumb x:Name="VerticalThumb"
+                            <Thumb x:Name="VerticalThumb"
                      AutomationProperties.AccessibilityView="Raw"
                      Background="Transparent"
                      MinHeight="40"
                      Grid.Row="2"
                      Template="{StaticResource VerticalThumbTemplate}"
                      Width="9" />
-              <RepeatButton x:Name="VerticalLargeIncrease"
+                            <RepeatButton x:Name="VerticalLargeIncrease"
                             HorizontalAlignment="Stretch"
                             IsTabStop="False"
                             Interval="50"
                             Grid.Row="3"
                             Template="{StaticResource RepeatButtonTemplate}"
                             VerticalAlignment="Stretch" />
-              <RepeatButton x:Name="VerticalSmallIncrease"
+                            <RepeatButton x:Name="VerticalSmallIncrease"
                             HorizontalAlignment="Center"
                             Height="25"
                             IsTabStop="False"
@@ -742,25 +758,25 @@
                             MinWidth="10"
                             Grid.Row="4"
                             Template="{StaticResource VerticalIncrementTemplate}" />
-            </Grid>
-            <Grid x:Name="VerticalPanningRoot"
+                        </Grid>
+                        <Grid x:Name="VerticalPanningRoot"
                   MinHeight="66"
                   VerticalAlignment="Top">
-              <Border x:Name="VerticalPanningThumb"
+                            <Border x:Name="VerticalPanningThumb"
                       BorderBrush="{ThemeResource ScrollBarPanningBorderThemeBrush}"
                       BorderThickness="{ThemeResource ScrollBarPanningBorderThemeThickness}"
                       Background="{ThemeResource ScrollBarPanningBackgroundThemeBrush}"
                       MinHeight="17"
                       Width="4" />
-            </Grid>
-          </Grid>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-  <TransitionCollection x:Key="FrameTransitionCollectionStyle">
-    <EdgeUIThemeTransition Edge="Right"/>
-  </TransitionCollection>
+    <TransitionCollection x:Key="FrameTransitionCollectionStyle">
+        <EdgeUIThemeTransition Edge="Right"/>
+    </TransitionCollection>
 
 </ResourceDictionary>
