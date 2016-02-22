@@ -20,9 +20,9 @@ namespace VLC_WinRT.Services.RunTime
 {
     public class MouseService
     {
-#if WINDOWS_APP
-        private CoreCursor _oldCursor;
+#if WINDOWS_PHONE_APP
 #else
+        private CoreCursor _oldCursor;
 #endif
         private DispatcherTimer _cursorTimer;
         private const int CursorHiddenAfterSeconds = 4;
@@ -43,12 +43,12 @@ namespace VLC_WinRT.Services.RunTime
 
             if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
-#if WINDOWS_APP
+#if WINDOWS_PHONE_APP
+#else
                 if (Window.Current.CoreWindow.PointerCursor != null)
                     _oldCursor = Window.Current.CoreWindow.PointerCursor;
                 var mouse = MouseDevice.GetForCurrentView();
                 if (mouse != null) mouse.MouseMoved += MouseMoved;
-#else
 #endif
             }
         }
@@ -75,9 +75,9 @@ namespace VLC_WinRT.Services.RunTime
 
             if (isMouseVisible) return;
             isMouseVisible = true;
-#if WINDOWS_APP
-                Window.Current.CoreWindow.PointerCursor = _oldCursor;
+#if WINDOWS_PHONE_APP
 #else
+                Window.Current.CoreWindow.PointerCursor = _oldCursor;
 #endif
             OnMoved?.Invoke();
         }
@@ -89,7 +89,8 @@ namespace VLC_WinRT.Services.RunTime
                 return;
             if (App.OpenFilePickerReason != OpenFilePickerReason.Null) return;
             isMouseVisible = false;
-#if WINDOWS_APP
+#if WINDOWS_PHONE_APP
+#else
             if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage)
             {
                 if (IsCursorInWindow())
@@ -97,7 +98,6 @@ namespace VLC_WinRT.Services.RunTime
                     Window.Current.CoreWindow.PointerCursor = null;
                 }
             }
-#else
 #endif
             _cursorTimer.Stop();
             OnHidden?.Invoke();
@@ -121,7 +121,8 @@ namespace VLC_WinRT.Services.RunTime
             lock (this)
             {
                 _cursorTimer.Stop();
-#if WINDOWS_APP
+#if WINDOWS_PHONE_APP
+#else
                 Window.Current.CoreWindow.PointerCursor = _oldCursor;
 #endif
             }
