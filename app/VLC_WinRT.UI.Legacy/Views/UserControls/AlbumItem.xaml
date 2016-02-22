@@ -29,7 +29,9 @@
     
     <Grid FlyoutBase.AttachedFlyout="{StaticResource AlbumMenuFlyout}"
           Holding="RootAlbumItem_Holding"
-          RightTapped="Grid_RightTapped">
+          RightTapped="Grid_RightTapped"
+          PointerExited="Cover_PointerExited"
+          PointerEntered="Cover_PointerEntered">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Normal">
@@ -77,8 +79,7 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         
-        <Grid Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
-              PointerEntered="Cover_PointerEntered">
+        <Grid Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
             <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
                       FontFamily="{StaticResource VLCFont}"
                       FontSize="42"
@@ -87,9 +88,7 @@
         <Image x:Name="Cover" 
                Stretch="UniformToFill"
                Opacity="0"/>
-        <Grid Grid.Row="1" 
-              PointerExited="Cover_PointerExited"
-              PointerEntered="Cover_PointerEntered">
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
