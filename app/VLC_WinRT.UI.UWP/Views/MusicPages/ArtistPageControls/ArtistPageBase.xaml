@@ -12,14 +12,25 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <local:MainArtistHeader x:Name="MainArtistHeader"
-                                VerticalAlignment="Center"
+                                Grid.Column="0"
+                                VerticalAlignment="Stretch"
                                 HorizontalAlignment="Left"
                                 BackButtonVisibility="Visible" />
-        <Pivot Grid.Row="1"
+
+        <Grid x:Name="TitleBar"
+              Grid.Column="1"
+              Background="Transparent"/>
+        <Pivot Grid.Row="2"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
                Style="{StaticResource TitlelessPivot}">
             <PivotItem>
                 <PivotItem.Header>

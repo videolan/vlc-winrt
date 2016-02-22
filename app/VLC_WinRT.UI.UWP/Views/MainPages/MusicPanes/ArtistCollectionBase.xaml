@@ -22,7 +22,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="ArtistsGridColumnDefinition"
                               Width="Auto" />
-            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             <ColumnDefinition x:Name="ArtistGridColumnDefinition"
                               Width="5*" />
         </Grid.ColumnDefinitions>
@@ -130,12 +129,12 @@
               x:Name="ArtistInfoGrid"
               x:DeferLoadStrategy="Lazy">
             <Grid.RowDefinitions>
-                <RowDefinition Height="70" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <local:MainArtistHeader x:Name="MainArtistHeader"
-                                    VerticalAlignment="Center" 
-                                    HorizontalAlignment="Left"/>
+                                    VerticalAlignment="Stretch" 
+                                    HorizontalAlignment="Left" />
             <Pivot Grid.Row="1"
                    Style="{StaticResource TitlelessPivot}">
                 <PivotItem>
