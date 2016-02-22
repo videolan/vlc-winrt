@@ -106,7 +106,7 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="HeaderGrid"
-              Height="50"
+              Height="40"
               Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
             <Grid.RenderTransform>
                 <TranslateTransform />
@@ -116,8 +116,6 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition />
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button x:Name="GoBackButton"
                     Grid.Column="1"
@@ -125,12 +123,12 @@
                     Command="{Binding GoBack}">
                 <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
                           FontFamily="{StaticResource VLCFont}"
-                          FontSize="30" />
+                          FontSize="24" />
             </Button>
             <TextBlock Grid.Column="3"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
-                       FontSize="20"
+                       FontSize="16"
                        DataContext="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm}"
                        Text="{Binding CurrentVideo.Name}"
                        TextWrapping="NoWrap"
