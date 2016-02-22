@@ -11,7 +11,7 @@ namespace VLC_WinRT.Model.Video
 
     public static class TemplateSizer
     {
-        private const int tileSize = 180;
+        private const int tileSize = 160;
         private const double titlesGridHeight = 40;
         private const double titlesGridHeightAlbum = 50;
 
