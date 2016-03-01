@@ -24,7 +24,9 @@ namespace VLC_WinRT.Views.UserControls
 
         public ArtistItem Artist
         {
-            get { return (ArtistItem)GetValue(ArtistProperty); }
+            // Changed to being Soft cast because this is not always ArtistItem, causing music view to break
+            // TODO: Figure out why this is not always ArtistItem 
+            get { return GetValue(ArtistProperty) as ArtistItem; }
             set { SetValue(ArtistProperty, value); }
         }
 
@@ -39,6 +41,12 @@ namespace VLC_WinRT.Views.UserControls
         
         public void Init()
         {
+            // Related to change above, ArtistItem is not being set correctly
+            // Causing artist to be null.
+            // This "fixes" the issue, but needs a deep look into why it's happening.
+            if (Artist == null)
+                return;
+
             NameTextBlock.Text = Strings.HumanizedArtistName(Artist.Name);
             Artist.PropertyChanged += Artist_PropertyChanged;
             
