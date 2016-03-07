@@ -48,6 +48,7 @@
                          IsTabStop="False">
         <controls:SplitShell.Content>
             <Grid>
+                <TextBlock x:Name="DebugTextBlock"/>
                 <SwapChainPanel x:Name="SwapChainPanel"
                                 x:FieldModifier="public" />
                 <Frame x:Name="NavigationFrame"
