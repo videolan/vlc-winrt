@@ -8,6 +8,8 @@ using VLC_WinRT.ViewModels;
 using libVLCX;
 using VLC_WinRT.Database;
 using VLC_WinRT.Helpers;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml;
 
 namespace VLC_WinRT.Services.RunTime
 {
@@ -84,6 +86,11 @@ namespace VLC_WinRT.Services.RunTime
                     },
                     new KeyboardAction()
                     {
+                        Action = VLCAction.Back,
+                        MainKey = VirtualKey.Back
+                    },
+                    new KeyboardAction()
+                    {
                         Action = VLCAction.VolumeUp,
                         MainKey = VirtualKey.Control,
                         SecondKey = VirtualKey.Add,
@@ -120,6 +127,12 @@ namespace VLC_WinRT.Services.RunTime
                         Action = VLCAction.OpenNetwork,
                         MainKey = VirtualKey.Control,
                         SecondKey = VirtualKey.N
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.TabNext,
+                        MainKey = VirtualKey.Control,
+                        SecondKey = VirtualKey.Tab,
                     }
                 };
                 _keyboardActionDatabase.AddKeyboardActions(actionsToSet);
@@ -230,6 +243,9 @@ namespace VLC_WinRT.Services.RunTime
                     case VLCAction.Mute:
                         Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("mute");
                         break;
+                    case VLCAction.Back:
+                        Locator.NavigationService.GoBack_Specific();
+                        break;
                 }
             }
             else if (virtualKeys[2] == VirtualKey.None)
@@ -255,6 +271,11 @@ namespace VLC_WinRT.Services.RunTime
                             break;
                         case VLCAction.VolumeDown:
                             Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("lower");
+                            break;
+                        case VLCAction.TabNext:
+                            var pivotIndex = Locator.MainVM.Panels.IndexOf(Locator.MainVM.CurrentPanel);
+                            pivotIndex = (pivotIndex < Locator.MainVM.Panels.Count - 1) ? ++pivotIndex : 0;
+                            Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[pivotIndex];
                             break;
                     }
                 }
