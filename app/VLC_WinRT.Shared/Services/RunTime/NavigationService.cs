@@ -172,15 +172,12 @@ namespace VLC_WinRT.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.SettingsPageUI:
-                    GoBack_HideFlyout();
                     Go(VLCPage.SettingsPage);
                     break;
                 case VLCPage.SettingsPageMusic:
-                    GoBack_HideFlyout();
                     Go(VLCPage.SettingsPage);
                     break;
                 case VLCPage.SettingsPageVideo:
-                    GoBack_HideFlyout();
                     Go(VLCPage.SettingsPage);
                     break;
                 case VLCPage.VideoPlayerOptionsPanel:
