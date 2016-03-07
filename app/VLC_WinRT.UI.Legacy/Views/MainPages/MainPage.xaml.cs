@@ -21,6 +21,7 @@ using VLC_WinRT.Utils;
 using VLC_WinRT.Model;
 using System;
 using Windows.System;
+using System.Diagnostics;
 #if WINDOWS_APP
 using Windows.UI.ApplicationSettings;
 #endif
@@ -34,6 +35,17 @@ namespace VLC_WinRT.Views.MainPages
             InitializeComponent();
             var smtc = SystemMediaTransportControls.GetForCurrentView();
             Locator.MediaPlaybackViewModel.SetMediaTransportControls(smtc);
+            this.GotFocus += MainPage_GotFocus;
+        }
+
+        private void MainPage_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var el = e.OriginalSource as FrameworkElement;
+           
+            var output ="GOTFOCUS --" + e.OriginalSource.ToString() + "--" + el.Name;
+            DebugString(output);
+
+            Debug.WriteLine(output);
         }
 
         public void SetBackground(bool force = false, bool dark = false)
