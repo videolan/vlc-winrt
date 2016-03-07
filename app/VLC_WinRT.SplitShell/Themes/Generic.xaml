@@ -102,6 +102,11 @@
                                 </ObjectAnimationUsingKeyFrames>
                             </Storyboard>
                             <Storyboard x:Name="SidePaneOpening">
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SplitPaneContentPresenter"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="Visible" />
+                                </ObjectAnimationUsingKeyFrames>
                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SplitPane"
                                                                Storyboard.TargetProperty="Visibility">
                                     <DiscreteObjectKeyFrame KeyTime="0"
@@ -150,6 +155,11 @@
                                     </EasingDoubleKeyFrame>
                                 </DoubleAnimationUsingKeyFrames>
                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SplitPane"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.2"
+                                                            Value="Collapsed" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SplitPaneContentPresenter"
                                                                Storyboard.TargetProperty="Visibility">
                                     <DiscreteObjectKeyFrame KeyTime="0:0:0.2"
                                                             Value="Collapsed" />

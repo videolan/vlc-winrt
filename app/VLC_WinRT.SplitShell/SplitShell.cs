@@ -93,7 +93,6 @@ namespace VLC_WinRT.Controls
             await TemplateApplied.Task;
             _rightFlyoutContentPresenter.Content = content;
             ShowFlyout();
-            RightSidebarNavigated?.Invoke(null, new EventArgs());
         }
 
         public async void SetFooterContentPresenter(object content)
@@ -231,6 +230,19 @@ namespace VLC_WinRT.Controls
             _splitPaneOpenerGrid.ManipulationDelta += _splitPaneOpenerGrid_ManipulationDelta;
 
             _windowResizerTimer.Tick += _windowResizerTimer_Tick;
+
+            _rightFlyoutFadeOut.Completed += _rightFlyoutFadeOut_Completed;
+            _rightFlyoutFadeIn.Completed += _rightFlyoutFadeIn_Completed;
+        }
+
+        private void _rightFlyoutFadeIn_Completed(object sender, object e)
+        {
+            RightSidebarNavigated?.Invoke(null, new EventArgs());
+        }
+
+        private void _rightFlyoutFadeOut_Completed(object sender, object e)
+        {
+            _rightFlyoutContentPresenter.Content = null;
         }
 
         private void _splitPaneOpenerGrid_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
