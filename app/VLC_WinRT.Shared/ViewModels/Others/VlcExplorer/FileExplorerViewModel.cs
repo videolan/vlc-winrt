@@ -92,12 +92,12 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                     IsFolderEmpty = false;
                 });
                 IReadOnlyList<IStorageItem> items = null;
-#if WINDOWS_APP
+#if WINDOWS_PHONE_APP
+                items = await BackStack.Last().GetItemsAsync();
+#else
                 var queryOptions = new QueryOptions(CommonFileQuery.DefaultQuery, VLCFileExtensions.Supported);
                 var fileQuery = BackStack.Last().CreateItemQueryWithOptions(queryOptions);
                 items = await fileQuery.GetItemsAsync();
-#else
-                items = await BackStack.Last().GetItemsAsync();
 #endif
                 var vlcItems = new ObservableCollection<IVLCStorageItem>();
                 foreach (var storageItem in items)
