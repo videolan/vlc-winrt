@@ -71,7 +71,8 @@
                       Grid.Column="2"
                       Margin="-6,0,0,0"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Foreground="{ThemeResource MainColor}">
+                      Foreground="{ThemeResource MainColor}"
+                      IsTabStop="True">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource PlaySymbol}"
                           FontFamily="{StaticResource VLCFont}" />
@@ -85,7 +86,8 @@
                     Style="{StaticResource AppBarButtonStyleHorizontal}"
                     Icon="{Binding Key.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Left" />
+                    HorizontalAlignment="Left"
+                      IsTabStop="True"/>
         <AppBarButton  x:Name="FavoriteAppBarButton"
                        Grid.Row="1"
                        Grid.Column="6"
@@ -93,6 +95,7 @@
                        Icon="{Binding Key.Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
                        Style="{StaticResource AppBarButtonStyleHorizontal}"
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Left" />
+                       HorizontalAlignment="Left" 
+                       IsTabStop="True"/>
     </Grid>
 </UserControl>

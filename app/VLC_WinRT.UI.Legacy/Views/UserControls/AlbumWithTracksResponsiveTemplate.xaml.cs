@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Input;
 
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
@@ -26,7 +27,21 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
         private void AlbumWithTracksResponsiveTemplate_Loaded(object sender, RoutedEventArgs e)
         {
             this.SizeChanged += AlbumWithTracksResponsiveTemplate_SizeChanged;
+            this.KeyDown += AlbumWithTracksResponsiveTemplate_KeyDown;
             Responsive();
+            PlayAppBarButton.Focus(FocusState.Keyboard);
+        }
+
+        private void AlbumWithTracksResponsiveTemplate_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.OriginalKey == Windows.System.VirtualKey.GamepadLeftThumbstickRight)
+            {
+                (FocusManager.FindNextFocusableElement(FocusNavigationDirection.Right) as Control)?.Focus(FocusState.Keyboard);
+            }
+            else if (e.OriginalKey == Windows.System.VirtualKey.GamepadLeftThumbstickDown)
+            {
+                (FocusManager.FindNextFocusableElement(FocusNavigationDirection.Down) as Control)?.Focus(FocusState.Keyboard);
+            }
         }
 
         private void AlbumWithTracksResponsiveTemplate_SizeChanged(object sender, SizeChangedEventArgs e)
