@@ -130,7 +130,8 @@
 
         <Grid Grid.Column="2"
               x:Name="ArtistInfoGrid"
-              x:DeferLoadStrategy="Lazy">
+              x:DeferLoadStrategy="Lazy"
+              Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
