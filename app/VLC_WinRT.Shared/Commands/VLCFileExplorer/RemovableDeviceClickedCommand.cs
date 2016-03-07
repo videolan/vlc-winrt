@@ -10,12 +10,19 @@ namespace VLC_WinRT.Commands.VLCFileExplorer
     {
         public override void Execute(object parameter)
         {
-            if ((parameter as SelectionChangedEventArgs).AddedItems.Count != 0)
+            FileExplorerViewModel fileExplorer = null;
+            if (parameter is SelectionChangedEventArgs)
             {
-                FileExplorerViewModel fileExplorer = (parameter as SelectionChangedEventArgs).AddedItems[0] as FileExplorerViewModel;
-                Locator.FileExplorerVM.CurrentStorageVM = fileExplorer;
-                Task.Run(() => Locator.FileExplorerVM.CurrentStorageVM.GetFiles());
+                fileExplorer = (parameter as SelectionChangedEventArgs).AddedItems[0] as FileExplorerViewModel;
             }
+            else if (parameter is ItemClickEventArgs)
+            {
+                fileExplorer = (parameter as ItemClickEventArgs).ClickedItem as FileExplorerViewModel;
+            }
+
+            if (fileExplorer == null) return;
+            Locator.FileExplorerVM.CurrentStorageVM = fileExplorer;
+            Task.Run(() => Locator.FileExplorerVM.CurrentStorageVM.GetFiles());
         }
     }
 }
