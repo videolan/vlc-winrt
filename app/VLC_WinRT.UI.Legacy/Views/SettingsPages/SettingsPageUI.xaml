@@ -111,14 +111,15 @@
                            FontWeight="SemiLight" />
 
                 <ListView ItemsSource="{Binding KeyboardActions}"
-                          ItemContainerStyle="{StaticResource ListViewItemContainerStyleNoSelectCheck}"
                           SelectionMode="None"
-                          Margin="{StaticResource FrameMarginTop}">
+                          Margin="{StaticResource FrameMarginTop}"
+                          ItemContainerStyle="{StaticResource ListViewItemBasic}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Foreground="{ThemeResource BasicForeground}">
+                            <TextBlock Margin="{StaticResource FrameMarginBottom}" 
+                                       Foreground="{ThemeResource BasicForeground}">
                                 <Run Text="{Binding Action}"
-                                     FontSize="18" />
+                                     FontSize="15" />
                                 <LineBreak />
                                 <Run Text="{Binding KeyDescription}"
                                      FontWeight="Light"/>
