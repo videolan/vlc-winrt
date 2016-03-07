@@ -28,6 +28,11 @@ namespace VLC_WinRT.Views.MusicPages
             this.SizeChanged += OnSizeChanged;
             this.Unloaded += OnUnloaded;
         }
+        
+        private void Slideshower_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            //Locator.Slideshow.Initialize(ref Slideshower);
+        }
 
         #region layout
         protected override void OnNavigatedTo(NavigationEventArgs e)

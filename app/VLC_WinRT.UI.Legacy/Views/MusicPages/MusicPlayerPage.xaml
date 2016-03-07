@@ -124,6 +124,11 @@
             <RowDefinition x:Name="PlaylistRowDefinition" />
         </Grid.RowDefinitions>
 
+        <canvas:CanvasAnimatedControl x:Name="Slideshower"
+                                      Loaded="Slideshower_Loaded_1"
+                                      IsFixedTimeStep="False"
+                                      TargetElapsedTime="0:0:0.3" />
+        
         <musicNowPlayingControls:MusicNowPlaying x:Name="MusicNowPlaying"
                                                  Visibility="Collapsed">
             <musicNowPlayingControls:MusicNowPlaying.RenderTransform>

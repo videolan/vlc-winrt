@@ -65,11 +65,6 @@ namespace VLC_WinRT.Views.MainPages
                     Light.Begin();
             }
         }
-
-        private void Slideshower_Loaded_1(object sender, RoutedEventArgs e)
-        {
-            Locator.Slideshow.Initialize(ref Slideshower);
-        }
         
         private void SplitShell_FlyoutCloseRequested(object sender, System.EventArgs e)
         {
