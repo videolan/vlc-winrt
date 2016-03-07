@@ -36,14 +36,16 @@
                 <RowDefinition Height="12" />
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <AppBarButton Grid.Column="0"
+            <AppBarButton x:Name="BackButton" 
+                          Grid.Column="0"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Margin="{StaticResource FrameMarginLeft}"
                           VerticalAlignment="Top"
                           HorizontalAlignment="Stretch"
                           DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
                           Command="{Binding GoBackCommand}"
-                          Width="50">
+                          IsCompact="True"
+                          IsTabStop="True">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
                               Margin="0,3,0,0"
@@ -52,11 +54,11 @@
             </AppBarButton>
             <TextBlock Grid.Column="1"
                        Grid.Row="0"
-                       Margin="{StaticResource FrameMarginRight}"
+                       Margin="0,-3,0,0"
                        TextTrimming="CharacterEllipsis"
                        TextWrapping="NoWrap"
                        VerticalAlignment="Top"
-                       Style="{StaticResource SubheaderTextBlockStyle}" >
+                       Style="{StaticResource SubheaderTextBlockStyle}">
                 <Run Text="{Binding Artist, Converter={StaticResource AlbumStringConverter}}"/>
                 <LineBreak />
                 <Run Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
@@ -71,7 +73,8 @@
                           Label="{Binding Source={StaticResource Strings}, Path=ViewArtist}"
                           Command="{Binding ViewArtist}"
                           CommandParameter="{Binding ArtistId}"
-                          Foreground="{ThemeResource MainColor}">
+                          Foreground="{ThemeResource MainColor}"
+                          IsTabStop="True">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource BuddySymbol}"
                               FontFamily="{StaticResource VLCFont}" />
@@ -103,13 +106,15 @@
                 <ColumnDefinition Width="12" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <AppBarButton Grid.Column="1"
+            <AppBarButton x:Name="PlayAlbum" 
+                          Grid.Column="1"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
                           Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
                           Command="{Binding PlayAlbum}"
                           CommandParameter="{Binding}"
-                          Foreground="{ThemeResource MainColor}">
+                          Foreground="{ThemeResource MainColor}"
+                          IsTabStop="True">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PlaySymbol}"
                               FontFamily="{StaticResource VLCFont}" />
@@ -119,7 +124,8 @@
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
                           Label="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
-                          Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.OpenAddAlbumToPlaylistDialogCommand}">
+                          Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.OpenAddAlbumToPlaylistDialogCommand}"
+                          IsTabStop="True">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource AddSymbol}"
                               FontFamily="{StaticResource VLCFont}" />
@@ -130,14 +136,18 @@
                           Icon="{Binding IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
                           Command="{Binding PinAlbumCommand}"
                           CommandParameter="{Binding}"
-                          VerticalAlignment="Center" />
+                          VerticalAlignment="Center"
+                          IsTabStop="True"
+                          IsCompact="True" />
             <AppBarButton Grid.Column="7"
                           Icon="{Binding Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
                           Command="{Binding FavoriteAlbum}"
                           CommandParameter="{Binding}"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
-                          Margin="{StaticResource FrameMargin}" />
+                          Margin="{StaticResource FrameMargin}"
+                          IsTabStop="True"
+                          IsCompact="True" />
         </Grid>
     </Grid>
 </UserControl>
