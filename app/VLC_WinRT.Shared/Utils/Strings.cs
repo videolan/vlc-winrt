@@ -303,10 +303,14 @@ namespace VLC_WinRT.Utils
 
 
         public static string Settings => _resourcesLoader.GetString(nameof(Settings));
+        public static string SettingsUppercase => Settings.ToUpper();
         public static string License => _resourcesLoader.GetString(nameof(License));
         public static string UserInterface => _resourcesLoader.GetString(nameof(UserInterface));
+        public static string UserInterfaceUppercase => UserInterface.ToUpperFirstChar();
         public static string VideoSettings => _resourcesLoader.GetString(nameof(VideoSettings));
+        public static string VideoSettingsUppercase => VideoSettings.ToUpperFirstChar();
         public static string MusicSettings => _resourcesLoader.GetString(nameof(MusicSettings));
+        public static string MusicSettingsUppercase => MusicSettings.ToUpperFirstChar();    
         public static string AboutTheApp => _resourcesLoader.GetString(nameof(AboutTheApp));
         public static string Notifications => _resourcesLoader.GetString(nameof(Notifications));
         public static string NotificationWhenSongStarts => _resourcesLoader.GetString(nameof(NotificationWhenSongStarts));
