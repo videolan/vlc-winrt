@@ -33,10 +33,11 @@
               Background="{ThemeResource ApplicationChromeThemeBrush}">
             <ListView ItemsSource="{Binding Source={StaticResource StorageVMsGroupedByType}}"
                       SelectedItem="{Binding CurrentStorageVM}"
-                      SelectionMode="Single"
+                      SelectionMode="None"
+                      IsItemClickEnabled="True"
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyleNoSelectCheck}">
                 <triggers:Interactions.Triggers>
-                    <triggers:EventTrigger EventName="SelectionChanged">
+                    <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding RemovableDeviceClicked}"
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
