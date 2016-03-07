@@ -35,7 +35,8 @@
                                Text="{Binding Source={StaticResource Strings}, Path=Settings}"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                 </Grid>
-                <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=UserInterface}"
+                <AppBarButton x:Name="UserInterface" 
+                              Label="{Binding Source={StaticResource Strings}, Path=UserInterface}"
                               Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
                               Command="{Binding ChangeSettingsViewCommand}"
                               CommandParameter="0"
