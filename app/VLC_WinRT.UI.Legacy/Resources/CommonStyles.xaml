@@ -1360,16 +1360,21 @@
                 Value="14" />
         <Setter Property="Width"
                 Value="Auto" />
+        <Setter Property="UseSystemFocusVisuals"
+                Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="AppBarButton">
-                    <StackPanel x:Name="LayoutRoot"
-                                Orientation="Horizontal"
+                    <Grid x:Name="LayoutRoot"
                                 Background="Transparent">
-                        <StackPanel.Projection>
+                        <Grid.Projection>
                             <PlaneProjection x:Name="AppBarButtonPlaneProjection"
                                              LocalOffsetZ="0" />
-                        </StackPanel.Projection>
+                        </Grid.Projection>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ApplicationViewStates">
                                 <VisualState x:Name="FullSize" />
@@ -1383,7 +1388,12 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Width"
                                                                        Storyboard.TargetName="LayoutRoot">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="48" />
+                                                                    Value="30" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)"
+                                                                       Storyboard.TargetName="FocusVisual">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="1" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -1428,34 +1438,57 @@
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="FocusVisual"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1"
+                                                         Duration="0:0:0.5" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused" />
+                                <VisualState x:Name="PointerFocused" />
+                            </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid HorizontalAlignment="Left"
-                              Height="35"
-                              Width="35">
-                            <Grid x:Name="ContentRoot"
-                                  Background="Transparent">
-                                <Viewbox Stretch="Uniform"
-                                         Height="30"
-                                         Width="30">
-                                    <ContentPresenter x:Name="Content"
-                                                      AutomationProperties.AccessibilityView="Raw"
-                                                      Content="{TemplateBinding Icon}"
-                                                      Foreground="{TemplateBinding Foreground}"
-                                                      HorizontalAlignment="Stretch"
-                                                      VerticalAlignment="Center" />
-                                </Viewbox>
-                            </Grid>
+
+                        <Rectangle x:Name="FocusVisual"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   IsHitTestVisible="False"
+                                   Opacity="0"
+                                   StrokeThickness="1"
+                                   Stroke="{ThemeResource MainColor}"
+                                   Fill="{ThemeResource ApplicationThirdForegroundThemeBrush}" />
+                        <Grid x:Name="ContentRoot"
+                              Grid.Column="0"
+                              Background="Transparent"
+                              Height="30"
+                              Width="30">
+                            <ContentPresenter x:Name="Content"
+                                              AutomationProperties.AccessibilityView="Raw"
+                                              Content="{TemplateBinding Icon}"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Margin="0,2,0,0" />
                         </Grid>
-                        <TextBlock x:Name="TextLabel"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   FontSize="{TemplateBinding FontSize}"
-                                   FontFamily="{TemplateBinding FontFamily}"
-                                   Margin="6,-3,0,0"
-                                   TextAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   TextWrapping="Wrap"
-                                   Text="{TemplateBinding Label}" />
-                    </StackPanel>
+                        <Grid Grid.Column="1" 
+                              VerticalAlignment="Center"
+                              Margin="0,-4,5,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock x:Name="TextLabel"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       TextAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       Text="{TemplateBinding Label}" />
+                        </Grid>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -1478,6 +1511,8 @@
                 Value="15" />
         <Setter Property="Width"
                 Value="Auto" />
+        <Setter Property="UseSystemFocusVisuals"
+                Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="AppBarButton">
@@ -1487,34 +1522,46 @@
                             <StackPanel.Projection>
                                 <PlaneProjection x:Name="AppBarButtonPlaneProjection"
                                                  LocalOffsetZ="0" />
-                            </StackPanel.Projection>
-                            <Grid HorizontalAlignment="Left"
+                        </StackPanel.Projection>
+                        <Grid HorizontalAlignment="Left"
                                   VerticalAlignment="Center"
                                   Height="50"
                                   Width="50">
-                                <Grid x:Name="ContentRoot"
-                                      Background="Transparent">
-                                    <Viewbox Stretch="Uniform"
-                                             Height="25"
-                                             Width="25">
-                                        <ContentPresenter x:Name="Content"
-                                                          AutomationProperties.AccessibilityView="Raw"
-                                                          Content="{TemplateBinding Icon}"
-                                                          Foreground="{TemplateBinding Foreground}"
-                                                          HorizontalAlignment="Stretch"
-                                                          VerticalAlignment="Center" />
-                                    </Viewbox>
-                                </Grid>
+                            <Grid x:Name="ContentRoot"
+                                    Background="Transparent">
+                                <Viewbox Stretch="Uniform"
+                                            Height="25"
+                                            Width="25">
+                                    <ContentPresenter x:Name="Content"
+                                                        AutomationProperties.AccessibilityView="Raw"
+                                                        Content="{TemplateBinding Icon}"
+                                                        Foreground="{TemplateBinding Foreground}"
+                                                        HorizontalAlignment="Stretch"
+                                                        VerticalAlignment="Center" />
+                                </Viewbox>
                             </Grid>
+                        </Grid>
+                        <Grid VerticalAlignment="Center"
+                              Margin="6,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
                             <TextBlock x:Name="TextLabel"
-                                       Foreground="{TemplateBinding Foreground}"
-                                       FontSize="{TemplateBinding FontSize}"
-                                       FontFamily="{TemplateBinding FontFamily}"
-                                       Margin="6,0,0,0"
-                                       TextAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       TextWrapping="Wrap"
-                                   Text="{TemplateBinding Label}" />
+                                    Foreground="{TemplateBinding Foreground}"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    FontFamily="{TemplateBinding FontFamily}"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap"
+                                    Text="{TemplateBinding Label}" />
+                            <Rectangle x:Name="FocusVisual"
+                                       Grid.Row="1"
+                                       IsHitTestVisible="False"
+                                       Opacity="0"
+                                       StrokeThickness="0"
+                                       Height="2"
+                                       Fill="{ThemeResource ListViewItemFocusBorderThemeBrush}" />
+                        </Grid>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ApplicationViewStates">
                                 <VisualState x:Name="FullSize" />
@@ -1572,6 +1619,18 @@
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="FocusVisual"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1"
+                                                         Duration="0:0:0.5" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused" />
+                                <VisualState x:Name="PointerFocused" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                     </StackPanel>

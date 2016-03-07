@@ -1491,10 +1491,15 @@
                             <VisualStateGroup x:Name="FocusStates">
                                 <VisualState x:Name="Focused">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0"
-                                                         To="1"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="FocusVisual" />
+                                        <DoubleAnimation Storyboard.TargetName="ContentPresenterProjection"
+                                                         Storyboard.TargetProperty="LocalOffsetZ"
+                                                         SpeedRatio="6"
+                                                         To="-15">
+                                            <DoubleAnimation.EasingFunction>
+                                                <ExponentialEase EasingMode="EaseOut"
+                                                                 Exponent="4" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Unfocused" />
