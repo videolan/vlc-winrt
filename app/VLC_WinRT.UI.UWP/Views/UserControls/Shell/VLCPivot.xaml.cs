@@ -38,7 +38,7 @@ namespace VLC_WinRT.Views.UserControls
             var currentPivotHeader = pivotHeaderCollection.FirstOrDefault(x => x.ActualWidth > 0);
 
             var rightOffset = CoreApplication.GetCurrentView().TitleBar.SystemOverlayRightInset;
-            var w = newWidth - MenuDropdown.ActualWidth - ((currentPivotHeader == null) ? 0 : currentPivotHeader.ActualWidth) - rightOffset;
+            var w = this.ActualWidth - MenuDropdown.ActualWidth - ((currentPivotHeader == null) ? 0 : currentPivotHeader.ActualWidth) - rightOffset;
             TitleBar.Width = w < 0 ? 0 : w;
             TitleBar.Margin = new Thickness(0, 0, rightOffset,0);
         }
