@@ -36,8 +36,7 @@
                       IsItemClickEnabled="False"
                       SelectionMode="Single"
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
-                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                      Visibility="Collapsed">
+                      ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsStackPanel Orientation="Horizontal"
@@ -56,8 +55,7 @@
                                    VerticalAlignment="Center"
                                    FontSize="16"
                                    TextTrimming="CharacterEllipsis"
-                                   TextWrapping="NoWrap"
-                                   Margin="0,-22,16,0" />
+                                   TextWrapping="NoWrap" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -92,30 +90,10 @@
             <VisualStateGroup>
                 <VisualState x:Name="Wide">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PanelsListView"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicViewComboBox"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Narrow">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PanelsListView"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicViewComboBox"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
