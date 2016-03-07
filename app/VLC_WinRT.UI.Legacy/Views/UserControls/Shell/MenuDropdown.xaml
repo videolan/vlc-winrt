@@ -12,7 +12,8 @@
                   VerticalAlignment="Center"
                   Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
                   Command="{Binding DisplayMenuBarControlToggleCommand}"
-                  IsCompact="True">
+                  IsCompact="True"
+                  IsTabStop="False">
         <AppBarButton.Icon>
             <FontIcon Glyph="{StaticResource MenuOpenRight}"
                       FontFamily="{StaticResource VLCFont}" />
