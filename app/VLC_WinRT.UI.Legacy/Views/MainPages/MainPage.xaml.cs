@@ -112,5 +112,10 @@ namespace VLC_WinRT.Views.MainPages
             args.Request.ApplicationCommands.Add(license);
         }
 #endif
+
+        public void DebugString(string s)
+        {
+            DebugTextBlock.Text = s;
+        }
     }
 }
