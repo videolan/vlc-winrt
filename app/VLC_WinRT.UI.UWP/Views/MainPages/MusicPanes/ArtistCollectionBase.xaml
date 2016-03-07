@@ -117,9 +117,12 @@
                     <MenuFlyout>
                         <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PlayAll}"
                                         Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllSongsCommand}"
-                                        CommandParameter="{Binding CurrentArtist}" />
+                                        Style="{StaticResource MenuFlyoutItemIconTemplate}"
+                                        Tag="{StaticResource PlaySymbol}"/>
                         <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Shuffle}"
-                                        Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}" />
+                                        Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}" 
+                                        Style="{StaticResource MenuFlyoutItemIconTemplate}"
+                                        Tag="{StaticResource ShuffleSymbol}"/>
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
