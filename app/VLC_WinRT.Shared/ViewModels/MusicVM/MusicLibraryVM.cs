@@ -354,7 +354,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
             {
                 GroupedArtists = null;
                 LoadingStateArtists = LoadingState.NotLoaded;
-                CurrentArtist = null;
             });
         }
 
