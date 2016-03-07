@@ -176,13 +176,30 @@ namespace VLC_WinRT.Services.RunTime
                     Debug.WriteLine("Shift key was pressed, waiting another key ...");
                     break;
                 default:
-                    Debug.WriteLine("OneShot key was pressed");
-                    // look in the db for a match
-                    var action = await _keyboardActionDatabase.GetKeyboardAction(virtualKeys[0], virtualKeys[1]);
-                    if (action != null)
+                    Debug.WriteLine($"{args.VirtualKey} key was pressed");
+                    if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
                     {
-                        // if there's a match, get the ActionId
-                        await DoKeyboardAction(action);
+                        switch (args.VirtualKey)
+                        {
+                            case VirtualKey.GamepadB:
+                                Locator.NavigationService.GoBack_Specific();
+                                break;
+                            case VirtualKey.GamepadMenu:
+                                Locator.MainVM.DisplayMenuBarControlToggleCommand.Execute(null);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        // look in the db for a match
+                        var action = await _keyboardActionDatabase.GetKeyboardAction(virtualKeys[0], virtualKeys[1]);
+                        if (action != null)
+                        {
+                            // if there's a match, get the ActionId
+                            await DoKeyboardAction(action);
+                        }
                     }
                     break;
             }
