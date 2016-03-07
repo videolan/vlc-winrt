@@ -19,5 +19,8 @@
         ChangeSubtitle = 14,
         OpenFile = 15,
         OpenNetwork=16,
+        TabPrevious = 17,
+        TabNext = 18,
+        Back,
     }
 }
