@@ -97,10 +97,6 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\AlbumPageControls\MainAlbumHeader.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPageControls\ArtistAlbumsSemanticView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPageControls\ArtistInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -341,9 +337,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\AlbumPageControls\MainAlbumHeader.xaml.cs">
       <DependentUpon>MainAlbumHeader.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPageControls\ArtistAlbumsSemanticView.xaml.cs">
-      <DependentUpon>ArtistAlbumsSemanticView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPageControls\ArtistInfoControl.xaml.cs">
       <DependentUpon>ArtistInfoControl.xaml</DependentUpon>
