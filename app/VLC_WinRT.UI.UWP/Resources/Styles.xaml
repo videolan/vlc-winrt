@@ -88,10 +88,14 @@
                             <VisualStateGroup x:Name="FocusStates">
                                 <VisualState x:Name="Focused">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0"
-                                                         To="1"
+                                        <DoubleAnimation Storyboard.TargetName="PointerOverBorder"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="FocusVisual" />
+                                                         SpeedRatio="3"
+                                                         To="0.5" />
+                                        <DoubleAnimation Storyboard.TargetName="contentPresenter"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.7"
+                                                         SpeedRatio="4" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Unfocused" />
@@ -523,9 +527,9 @@
         <Setter Property="HorizontalContentAlignment"
                 Value="Stretch" />
         <Setter Property="VerticalContentAlignment"
-                Value="Stretch" />
+                Value="Top" />
         <Setter Property="UseSystemFocusVisuals"
-                Value="True" />
+                Value="False" />
         <Setter Property="MinWidth"
                 Value="12" />
         <Setter Property="Template">
