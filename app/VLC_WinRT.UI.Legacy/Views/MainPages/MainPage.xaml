@@ -44,7 +44,8 @@
 
     <controls:SplitShell x:Name="SplitShell"
                          x:FieldModifier="public"
-                         FlyoutCloseRequested="SplitShell_FlyoutCloseRequested">
+                         FlyoutCloseRequested="SplitShell_FlyoutCloseRequested"
+                         IsTabStop="False">
         <controls:SplitShell.Content>
             <Grid>
                 <SwapChainPanel x:Name="SwapChainPanel"
