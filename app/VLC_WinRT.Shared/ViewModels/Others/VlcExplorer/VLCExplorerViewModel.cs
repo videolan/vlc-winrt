@@ -124,6 +124,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
                 foreach (var dlnaFolder in dlnaFolders)
                 {
                     var folder = new FileExplorerViewModel(dlnaFolder, RootFolderType.Network);
+                    if (folder == null) continue;
                     await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                     {
                         StorageVMs.Add(folder);
