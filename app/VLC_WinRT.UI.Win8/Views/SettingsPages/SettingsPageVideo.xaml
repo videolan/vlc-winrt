@@ -28,7 +28,9 @@
                         </AppBarButton.Icon>
                     </AppBarButton>
                     <TextBlock Text="{Binding Source={StaticResource Strings}, Path=VideoSettings}"
-                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"/>
                 </StackPanel>
                 <TextBlock Text="{Binding Source={StaticResource Strings}, Path=VideoPlayback}"
                            FontSize="22"

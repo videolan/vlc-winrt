@@ -9,7 +9,6 @@ using VLC_WinRT.Model;
 using VLC_WinRT.UI.Legacy.Views.MainPages;
 using VLC_WinRT.UI.Legacy.Views.MusicPages;
 using VLC_WinRT.UI.Legacy.Views.MusicPages.TagEditorPages;
-using VLC_WinRT.UI.Legacy.Views.SettingsPages;
 using VLC_WinRT.UI.Legacy.Views.VariousPages;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;

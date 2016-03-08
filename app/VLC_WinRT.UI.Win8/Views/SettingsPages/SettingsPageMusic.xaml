@@ -28,7 +28,9 @@
                         </AppBarButton.Icon>
                     </AppBarButton>
                     <TextBlock Text="{Binding Source={StaticResource Strings}, Path=MusicSettings}"
-                               Style="{StaticResource SubheaderTextBlockStyle}"/>
+                               Style="{StaticResource SubtitleTextBlockStyle}"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"/>
                 </StackPanel>
                 
                 <TextBlock Tag="WindowsOnly"

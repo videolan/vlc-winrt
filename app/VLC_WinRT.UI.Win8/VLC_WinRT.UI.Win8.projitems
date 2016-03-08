@@ -24,6 +24,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPageMusic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPageUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPageVideo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\" />
@@ -37,6 +52,18 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPageControls\ArtistPageBase.xaml.cs">
       <DependentUpon>ArtistPageBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPageMusic.xaml.cs">
+      <DependentUpon>SettingsPageMusic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPageUI.xaml.cs">
+      <DependentUpon>SettingsPageUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPageVideo.xaml.cs">
+      <DependentUpon>SettingsPageVideo.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

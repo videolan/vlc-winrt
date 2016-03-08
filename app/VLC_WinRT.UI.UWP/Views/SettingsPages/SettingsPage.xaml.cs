@@ -1,0 +1,83 @@
+﻿using System;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Model;
+using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
+using VLC_WinRT.ViewModels;
+using Windows.System;
+using Windows.UI;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+
+namespace VLC_WinRT.UI.UWP.Views.SettingsPages
+{
+    public sealed partial class SettingsPage : Page
+    {
+        public SettingsPage()
+        {
+            this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            Locator.SettingsVM.OnNavigatedFrom(e);
+        }
+
+        public void Go(VLCPage desiredPage)
+        {
+
+        }
+
+
+        void FocusTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Locator.MainVM.KeyboardListenerService.CanListen = true;
+        }
+
+        void FocusTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Locator.MainVM.KeyboardListenerService.CanListen = false;
+        }
+
+        private async void ConnectToLastFM_Click(object sender, RoutedEventArgs e)
+        {
+            LastFMScrobbler lastFm = new LastFMScrobbler(App.ApiKeyLastFm, "bd9ad107438d9107296ef799703d478e");
+
+            string pseudo = (string)ApplicationSettingsHelper.ReadSettingsValue("LastFmUserName");
+            string pd = (string)ApplicationSettingsHelper.ReadSettingsValue("LastFmPassword");
+
+            if (string.IsNullOrEmpty(pseudo) || string.IsNullOrEmpty(pd)) return;
+            ErrorConnectLastFmTextBox.Text = Utils.Strings.Connecting;
+            ErrorConnectLastFmTextBox.Visibility = Visibility.Visible;
+            ErrorConnectLastFmTextBox.Foreground = new SolidColorBrush(Colors.Gray);
+            var success = await lastFm.ConnectOperation(pseudo, pd);
+            if (success)
+            {
+                ErrorConnectLastFmTextBox.Text = "";
+                ErrorConnectLastFmTextBox.Visibility = Visibility.Collapsed;
+                Locator.SettingsVM.LastFmIsConnected = true;
+            }
+            else
+            {
+                ErrorConnectLastFmTextBox.Foreground = new SolidColorBrush(Colors.Red);
+                ErrorConnectLastFmTextBox.Text = Utils.Strings.CheckCredentials;
+                Locator.SettingsVM.LastFmIsConnected = false;
+            }
+        }
+
+        private void VideoFolder_Tapped(object sender, RoutedEventArgs args)
+        {
+            Flyout.ShowAttachedFlyout(sender as FrameworkElement);
+        }
+
+
+
+        private void ApplyColorButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Launcher.LaunchUriAsync(new Uri($"vlc://goto/?page={nameof(VLCPage.SettingsPageUI)}"));
+            App.Current.Exit();
+        }
+    }
+}
