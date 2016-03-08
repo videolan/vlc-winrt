@@ -22,8 +22,6 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
         private void ArtistCollectionBase_Unloaded(object sender, RoutedEventArgs e)
         {
             Locator.MusicLibraryVM.OnNavigatedFromArtists();
-            if (Locator.NavigationService.CurrentPage != Model.VLCPage.ArtistPage)
-                App.SetShellDecoration(false);
         }
 
         void ArtistCollectionBase_Loaded(object sender, RoutedEventArgs e)
@@ -34,11 +32,6 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
         private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
         {
             ArtistsZoomedOutView.ItemsSource = GroupArtists.View.CollectionGroups;
-        }
-
-        private void ArtistListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            App.SetShellDecoration(true, true);
         }
     }
 }
