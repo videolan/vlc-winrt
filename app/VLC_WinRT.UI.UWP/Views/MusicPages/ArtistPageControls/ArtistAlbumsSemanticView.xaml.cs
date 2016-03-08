@@ -90,6 +90,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
         {
             if (AlbumsSemanticZoomZoomedOut == null) return;
             var wrapGridZoomedOut = AlbumsSemanticZoomZoomedOut.ItemsPanelRoot as ItemsWrapGrid;
+            if (wrapGridZoomedOut == null) return;
             TemplateSizer.ComputeAlbums(wrapGridZoomedOut, AlbumsSemanticZoomZoomedOut.ActualWidth - wrapGridZoomedOut.Margin.Left - wrapGridZoomedOut.Margin.Right);
         }
 
@@ -97,6 +98,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
         {
             if (AlbumsArtistsListView == null) return;
             var wrapGrid = AlbumsArtistsListView.ItemsPanelRoot as ItemsWrapGrid;
+            if (wrapGrid == null) return;
             TemplateSizer.ComputeAlbums(wrapGrid, AlbumsArtistsListView.ActualWidth - wrapGrid.Margin.Left - wrapGrid.Margin.Right);
         }
 
