@@ -799,7 +799,7 @@ namespace VLC_WinRT.ViewModels
                     PlayingType = PlayingType.NotPlaying;
                     if (!Locator.NavigationService.GoBack_Default())
                     {
-                        Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
+                        Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
                     }
                 });
             }

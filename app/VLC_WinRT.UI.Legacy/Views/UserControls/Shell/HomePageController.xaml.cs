@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using VLC_WinRT.Model;
 using VLC_WinRT.UI.Legacy.Views.MainPages;
+using VLC_WinRT.UI.Legacy.Views.UserControls.Shell;
 using VLC_WinRT.UI.Legacy.Views.VariousPages;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
@@ -59,7 +60,7 @@ namespace VLC_WinRT.Views.UserControls
                     var panel = (Model.Panel)this.DataContext;
                     if (panel.Target != page)
                     {
-                        HomePageContentPresenter.Content = new Grid();
+                        HomePageContentPresenter.Navigate(typeof(BlankPage));
                         return;
                     }
                 }
@@ -85,6 +86,13 @@ namespace VLC_WinRT.Views.UserControls
                     case VLCPage.SearchPage:
                         if (HomePageContentPresenter.Content is SearchPage) return;
                         HomePageContentPresenter.Navigate(typeof(SearchPage));
+                        break;
+                    case VLCPage.SettingsPage:
+                    case VLCPage.SettingsPageUI:
+                    case VLCPage.SettingsPageMusic:
+                    case VLCPage.SettingsPageVideo:
+                        if (HomePageContentPresenter.Content is UI.UWP.Views.SettingsPages.SettingsPage) return;
+                        HomePageContentPresenter.Navigate(typeof(UI.UWP.Views.SettingsPages.SettingsPage));
                         break;
                 }
             });

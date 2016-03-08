@@ -60,11 +60,7 @@ namespace VLC_WinRT.ViewModels
         public Panel CurrentPanel
         {
             get { return _currentPanel; }
-            set
-            {
-                SetProperty(ref _currentPanel, value);
-                Locator.NavigationService.Go(value.Target);
-            }
+            set { SetProperty(ref _currentPanel, value); }
         }
 
         public bool CanGoBack
@@ -101,15 +97,7 @@ namespace VLC_WinRT.ViewModels
 
         public ActionCommand GoToLicensePageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.LicensePage));
 
-        public ActionCommand GotoSearchPageCommand { get; } = new ActionCommand(() =>
-        {
-            if (Locator.MainVM.CurrentPanel.Target != VLCPage.SearchPage)
-            {
-                var searchPanel = new Panel(Strings.Search, VLCPage.SearchPage, App.Current.Resources["SearchSymbol"].ToString(), App.Current.Resources["SearchFilledSymbol"].ToString());
-                Locator.MainVM.Panels.Add(searchPanel);
-                Locator.MainVM.CurrentPanel = searchPanel;
-            }
-        });
+        public ActionCommand GotoSearchPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SearchPage));
 
         public ActionCommand GoToFeedbackPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.FeedbackPage));
         public ActionCommand GoToStreamPanel { get; } = new ActionCommand(() => Locator.MainVM.OpenStreamFlyout());
@@ -225,7 +213,7 @@ namespace VLC_WinRT.ViewModels
 
         public void OpenStreamFlyout()
         {
-            CurrentPanel = Panels.FirstOrDefault(x => x.Target == VLCPage.MainPageNetwork);
+            Locator.NavigationService.Go(VLCPage.MainPageNetwork);
         }
 
         public ObservableCollection<Panel> Panels

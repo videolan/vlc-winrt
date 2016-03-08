@@ -292,7 +292,7 @@ namespace VLC_WinRT.Services.RunTime
                         case VLCAction.TabNext:
                             var pivotIndex = Locator.MainVM.Panels.IndexOf(Locator.MainVM.CurrentPanel);
                             pivotIndex = (pivotIndex < Locator.MainVM.Panels.Count - 1) ? ++pivotIndex : 0;
-                            Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[pivotIndex];
+                            Locator.NavigationService.Go(Locator.MainVM.Panels[pivotIndex].Target);
                             break;
                     }
                 }

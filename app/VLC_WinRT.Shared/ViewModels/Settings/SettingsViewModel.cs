@@ -27,6 +27,7 @@ using Windows.UI.Core;
 using VLC_WinRT.Commands.Navigation;
 using VLC_WinRT.Commands.Settings;
 using VLC_WinRT.Utils;
+using Windows.UI.Xaml.Navigation;
 
 namespace VLC_WinRT.ViewModels.Settings
 {
@@ -557,5 +558,14 @@ namespace VLC_WinRT.ViewModels.Settings
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => VideoFolders = videosLib.Folders.ToList());
         }
 #endif
+
+        #region navigation
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            var settingsPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == VLCPage.SettingsPage);
+            if (settingsPanel != null)
+                Locator.MainVM.Panels.Remove(settingsPanel);
+        }
+        #endregion
     }
 }

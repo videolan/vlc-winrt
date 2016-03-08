@@ -22,9 +22,11 @@ using VLC_WinRT.Views.VideoPages;
 using VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls;
 using Windows.Foundation.Metadata;
 using VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls;
-#if WINDOWS_APP
+using VLC_WinRT.Utils;
+#if WINDOWS_UWP
+using VLC_WinRT.UI.UWP.Views.SettingsPages;
 #else
-using Windows.Phone.UI.Input;
+using VLC_WinRT.UI.Legacy.Views.SettingsPages;
 #endif
 
 namespace VLC_WinRT.Services.RunTime
@@ -126,8 +128,6 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MainPageMusic:
                 case VLCPage.MainPageFileExplorer:
                 case VLCPage.MainPageNetwork:
-                case VLCPage.SearchPage:
-                    break;
                 case VLCPage.AlbumPage:
                     GoBack_HideFlyout();
                     break;
@@ -169,7 +169,12 @@ namespace VLC_WinRT.Services.RunTime
                     break;
                 // Settings pages
                 case VLCPage.SettingsPage:
+                case VLCPage.SearchPage:
+#if WINDOWS_UWP
+                    Go(Locator.SettingsVM.HomePage);
+#else
                     GoBack_HideFlyout();
+#endif
                     break;
                 case VLCPage.SettingsPageUI:
                     Go(VLCPage.SettingsPage);
@@ -239,6 +244,30 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MainPageFileExplorer:
                 case VLCPage.MainPageNetwork:
                 case VLCPage.SearchPage:
+#if WINDOWS_UWP
+                case VLCPage.SettingsPage:
+                case VLCPage.SettingsPageUI:
+                case VLCPage.SettingsPageMusic:
+                case VLCPage.SettingsPageVideo:
+#endif
+                    if (Locator.MainVM.CurrentPanel?.Target != desiredPage)
+                    {
+                        switch (desiredPage)
+                        {
+                            case VLCPage.SearchPage:
+                                Locator.MainVM.Panels.Add(new Panel(Strings.Search, VLCPage.SearchPage, App.Current.Resources["SearchSymbol"].ToString(), App.Current.Resources["SearchFilledSymbol"].ToString()));
+                                break;
+                            case VLCPage.SettingsPage:
+                            case VLCPage.SettingsPageUI:
+                            case VLCPage.SettingsPageMusic:
+                            case VLCPage.SettingsPageVideo:
+                                Locator.MainVM.Panels.Add(new Panel(Strings.Settings, VLCPage.SettingsPage, App.Current.Resources["SettingsSymbol"].ToString(), App.Current.Resources["SettingsFilledSymbol"].ToString()));
+                                break;
+                        }
+                    }
+
+                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == desiredPage);
+
                     if (App.ApplicationFrame.CurrentSourcePageType != typeof(HomePage))
                         App.ApplicationFrame.Navigate(typeof(HomePage));
                     HomePageNavigated?.Invoke(null, desiredPage);
@@ -256,6 +285,22 @@ namespace VLC_WinRT.Services.RunTime
                         App.ApplicationFrame.Navigate(typeof(ArtistPageBase));
                     }
                     break;
+#if WINDOWS_UWP
+#else
+                // Settings pages
+                case VLCPage.SettingsPage:
+                    App.SplitShell.RightFlyoutContent = new SettingsPage();
+                    break;
+                case VLCPage.SettingsPageUI:
+                    App.SplitShell.RightFlyoutContent = new SettingsPageUI();
+                    break;
+                case VLCPage.SettingsPageMusic:
+                    App.SplitShell.RightFlyoutContent = new SettingsPageMusic();
+                    break;
+                case VLCPage.SettingsPageVideo:
+                    App.SplitShell.RightFlyoutContent = new SettingsPageVideo();
+                    break;
+#endif
                 case VLCPage.PlaylistPage:
                     App.SplitShell.RightFlyoutContent = new PlaylistPage();
                     break;
@@ -290,19 +335,6 @@ namespace VLC_WinRT.Services.RunTime
                     AppViewHelper.ResizeWindow(false, 400, 80 + AppViewHelper.TitleBarHeight);
                     App.SplitShell.FooterVisibility = Visibility.Collapsed;
                     App.ApplicationFrame.Navigate(typeof(MiniPlayerWindow));
-                    break;
-                // Settings pages
-                case VLCPage.SettingsPage:
-                    App.SplitShell.RightFlyoutContent = new SettingsPage();
-                    break;
-                case VLCPage.SettingsPageUI:
-                    App.SplitShell.RightFlyoutContent = new SettingsPageUI();
-                    break;
-                case VLCPage.SettingsPageMusic:
-                    App.SplitShell.RightFlyoutContent = new SettingsPageMusic();
-                    break;
-                case VLCPage.SettingsPageVideo:
-                    App.SplitShell.RightFlyoutContent = new SettingsPageVideo();
                     break;
                 case VLCPage.VideoPlayerOptionsPanel:
                     App.SplitShell.RightFlyoutContent = new VideoPlayerOptionsPanel();

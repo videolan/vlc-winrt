@@ -264,7 +264,7 @@ namespace VLC_WinRT
             Window.Current.Activate();
             Locator.MusicLibraryVM.MusicLibrary.DropTablesIfNeeded();
             VideoLibraryManagement.DropTablesIfNeeded();
-            Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
+            Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
         }
 
         public static void SetShellDecoration(bool forceTemporaryAppTheme = false, bool forceDark = false)

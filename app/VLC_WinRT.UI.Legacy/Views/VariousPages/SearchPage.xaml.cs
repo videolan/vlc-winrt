@@ -18,12 +18,12 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.Unloaded += SearchPage_Unloaded;
             Locator.SearchVM.OnNavigatedTo();
         }
 
-        private void SearchPage_Unloaded(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            base.OnNavigatedFrom(e);
             Locator.SearchVM.Dispose();
         }
         
