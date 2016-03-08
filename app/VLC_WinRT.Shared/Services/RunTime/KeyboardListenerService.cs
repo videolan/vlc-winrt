@@ -177,7 +177,14 @@ namespace VLC_WinRT.Services.RunTime
                     break;
                 default:
                     Debug.WriteLine($"{args.VirtualKey} key was pressed");
-                    if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+                    // look in the db for a match
+                    var action = await _keyboardActionDatabase.GetKeyboardAction(virtualKeys[0], virtualKeys[1]);
+                    if (action != null)
+                    {
+                        // if there's a match, get the ActionId
+                        await DoKeyboardAction(action);
+                    }
+                    else
                     {
                         switch (args.VirtualKey)
                         {
@@ -189,16 +196,6 @@ namespace VLC_WinRT.Services.RunTime
                                 break;
                             default:
                                 break;
-                        }
-                    }
-                    else
-                    {
-                        // look in the db for a match
-                        var action = await _keyboardActionDatabase.GetKeyboardAction(virtualKeys[0], virtualKeys[1]);
-                        if (action != null)
-                        {
-                            // if there's a match, get the ActionId
-                            await DoKeyboardAction(action);
                         }
                     }
                     break;
