@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.ViewModels.MusicVM;
@@ -23,6 +24,11 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
 
         private void ArtistAlbumsSemanticView_Loaded(object sender, RoutedEventArgs e)
         {
+            if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+                (FindName(nameof(AlbumsArtistsListView)) as FrameworkElement).Visibility = Visibility.Visible;
+            else
+                (FindName(nameof(AlbumsSemanticZoom)) as FrameworkElement).Visibility = Visibility.Visible;
+
             if (AlbumsListView != null)
                 AlbumsListView.SizeChanged += AlbumsListViewOnSizeChanged;
             Locator.MusicLibraryVM.PropertyChanged += MusicLibraryVM_PropertyChanged;

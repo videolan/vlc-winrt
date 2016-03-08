@@ -131,19 +131,4 @@
                       FontFamily="{StaticResource VLCFont}" />
         </AppBarButton.Content>
     </AppBarButton>
-
-    <VisualStateManager.VisualStateGroups>
-        <VisualStateGroup>
-            <VisualState x:Name="XBox">
-                <VisualState.StateTriggers>
-                    <helpers:DeviceStateTrigger DeviceType="Xbox"/>
-                </VisualState.StateTriggers>
-
-                <VisualState.Setters>
-                    <Setter Target="AlbumsArtistsListView.Visibility"
-                            Value="Visible"/>
-                </VisualState.Setters>
-            </VisualState>
-        </VisualStateGroup>
-    </VisualStateManager.VisualStateGroups>
 </Grid>
