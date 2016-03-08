@@ -50,10 +50,10 @@ namespace VLC_WinRT.Services.RunTime
 #if WINDOWS_APP
 #else
 #if WINDOWS_UWP
-            if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1,0))
+            if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
 #endif
             {
-                HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+                Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
             }
 #endif
             App.RootPage.NavigationFrame.Navigated += NavigationFrame_Navigated;
@@ -105,7 +105,7 @@ namespace VLC_WinRT.Services.RunTime
 
 #if WINDOWS_APP
 #else
-        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        private void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
         {
             e.Handled = true;
             if (App.SplitShell.IsLeftPaneOpen)
