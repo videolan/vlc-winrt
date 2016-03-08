@@ -21,9 +21,10 @@ using VLC_WinRT.Utils;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.FileExplorer;
 using Windows.UI.Core;
-
-#if WINDOWS_APP
 using Windows.Devices.Portable;
+
+#if WINDOWS_PHONE_APP
+#else
 #endif
 
 namespace VLC_WinRT.ViewModels.RemovableDevicesVM
@@ -74,13 +75,13 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             StorageVMs.Add(videoLibrary);
             CurrentStorageVM = StorageVMs[0];
             Task.Run(() => CurrentStorageVM?.GetFiles());
-#if WINDOWS_APP
+#if WINDOWS_PHONE_APP
+            Task.Run(() => InitializeSDCard());
+#else
             Task.Run(() => InitializeDLNA());
             _deviceService = App.Container.Resolve<ExternalDeviceService>();
             _deviceService.ExternalDeviceAdded += DeviceAdded;
             _deviceService.ExternalDeviceRemoved += DeviceRemoved;
-#else
-            Task.Run(() => InitializeSDCard());
 #endif
             OnPropertyChanged(nameof(StorageVMsGrouped));
         }
@@ -136,7 +137,8 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             }
         }
 
-#if WINDOWS_APP
+#if WINDOWS_PHONE_APP
+#else
         private async void DeviceAdded(object sender, string id)
         {
             await AddFolder(id);
@@ -144,6 +146,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 
         private async Task AddFolder(string newId)
         {
+            if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet) return;
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 try
