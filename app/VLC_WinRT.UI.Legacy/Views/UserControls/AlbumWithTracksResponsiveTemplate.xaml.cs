@@ -29,7 +29,6 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             this.SizeChanged += AlbumWithTracksResponsiveTemplate_SizeChanged;
             this.KeyDown += AlbumWithTracksResponsiveTemplate_KeyDown;
             Responsive();
-            PlayAppBarButton.Focus(FocusState.Keyboard);
         }
 
         private void AlbumWithTracksResponsiveTemplate_KeyDown(object sender, KeyRoutedEventArgs e)
