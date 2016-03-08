@@ -209,6 +209,10 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\StartSearchingSomething.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\BlankPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\HomePageController.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -430,6 +434,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\StartSearchingSomething.xaml.cs">
       <DependentUpon>StartSearchingSomething.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\BlankPage.xaml.cs">
+      <DependentUpon>BlankPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\HomePageController.xaml.cs">
       <DependentUpon>HomePageController.xaml</DependentUpon>
