@@ -31,7 +31,7 @@ namespace VLC_WinRT.Views.MusicPages
         
         private void Slideshower_Loaded_1(object sender, RoutedEventArgs e)
         {
-            //Locator.Slideshow.Initialize(ref Slideshower);
+            Locator.Slideshow.Initialize(ref Slideshower);
         }
 
         #region layout

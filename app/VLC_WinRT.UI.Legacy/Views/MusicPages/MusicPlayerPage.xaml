@@ -126,6 +126,8 @@
         </Grid.RowDefinitions>
 
         <canvas:CanvasAnimatedControl x:Name="Slideshower"
+                                      Grid.Row="0"
+                                      Grid.RowSpan="3"
                                       Loaded="Slideshower_Loaded_1"
                                       IsFixedTimeStep="False"
                                       TargetElapsedTime="0:0:0.3" />
