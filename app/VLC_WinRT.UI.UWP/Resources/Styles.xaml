@@ -858,11 +858,11 @@
                                               FontWeight="SemiLight"/>
                             <Rectangle x:Name="FocusVisual"
                                        Grid.Row="1"
-                                   IsHitTestVisible="False"
-                                   Opacity="0"
-                                   StrokeThickness="0"
+                                       IsHitTestVisible="False"
+                                       Opacity="0"
+                                       StrokeThickness="0"
                                        Height="2"
-                                   Fill="{ThemeResource ListViewItemFocusBorderThemeBrush}" />
+                                       Fill="{ThemeResource MainColor}" />
                         </Grid>
                         <!-- The 'Xg' text simulates the amount of space one line of text will occupy.
                             In the DataPlaceholder state, the Content is not loaded yet so we
@@ -1060,7 +1060,15 @@
                                                          To="1" /> 
                                     </Storyboard>
                                 </VisualState>
-                                <VisualState x:Name="Unfocused" />
+                                <VisualState x:Name="Unfocused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
+                                                                       Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource BasicForeground}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
                                 <VisualState x:Name="PointerFocused" />
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="SelectionHintStates">
@@ -1305,7 +1313,7 @@
                                                        IsHitTestVisible="False"
                                                        Opacity="0"
                                                        StrokeThickness="2"
-                                                       Stroke="{ThemeResource ListViewItemFocusBorderThemeBrush}" />
+                                                       Stroke="{ThemeResource SemiLightMainColor}" />
                                             
                                             <!-- The 'Xg' text simulates the amount of space one line of text will occupy.
                                              In the DataPlaceholder state, the Content is not loaded yet so we
