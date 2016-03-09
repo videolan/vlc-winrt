@@ -18,12 +18,14 @@
                 <EntranceThemeTransition />
             </TransitionCollection>
         </Grid.Transitions>
-        <ScrollWatcher:ListViewScrollWatcher ItemsSource="{Binding Videos}"
+        <ScrollWatcher:ListViewScrollWatcher x:Name="AllVideosListView" 
+                                             ItemsSource="{Binding Videos}"
                                              ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                                              ItemContainerStyle="{StaticResource ListViewItemStyle}"
                                              IsItemClickEnabled="True"
                                              SelectionMode="None"
-                                             IsSwipeEnabled="False">
+                                             IsSwipeEnabled="False"
+                                             ScrollViewer.BringIntoViewOnFocusChange="True">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding OpenVideo}"

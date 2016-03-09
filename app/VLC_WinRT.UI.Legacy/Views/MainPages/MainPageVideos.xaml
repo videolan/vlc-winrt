@@ -34,6 +34,7 @@
                       IsItemClickEnabled="False"
                       SelectionMode="Single"
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                      HorizontalAlignment="Center"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled"
                       Visibility="Collapsed"
                       SelectionChanged="PanelsListView_SelectionChanged">

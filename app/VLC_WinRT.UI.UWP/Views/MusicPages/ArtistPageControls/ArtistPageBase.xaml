@@ -22,7 +22,7 @@
         <local:MainArtistHeader x:Name="MainArtistHeader"
                                 Grid.Column="0"
                                 VerticalAlignment="Stretch"
-                                HorizontalAlignment="Left"
+                                HorizontalAlignment="Center"
                                 BackButtonVisibility="Visible" />
 
         <Grid x:Name="TitleBar"

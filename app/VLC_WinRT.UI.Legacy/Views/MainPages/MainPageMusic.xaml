@@ -23,18 +23,19 @@
 
         <Grid Background="{ThemeResource ApplicationChromeThemeBrush}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             </Grid.ColumnDefinitions>
-            <ListView Grid.Column="1"
+            <ListView Grid.Column="0"
+                      Grid.ColumnSpan="3"
                       x:Name="PanelsListView"
                       ItemsSource="{Binding MusicViewCollection}"
                       SelectedItem="{Binding MusicView, Mode=TwoWay}"
                       IsSwipeEnabled="False"
                       IsItemClickEnabled="False"
                       SelectionMode="Single"
+                      HorizontalAlignment="Center"
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>
@@ -60,7 +61,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Grid Grid.Column="2"
+            <Grid Grid.Column="1"
                   Margin="0,-8,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />

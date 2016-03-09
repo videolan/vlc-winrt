@@ -137,7 +137,7 @@
             </Grid.RowDefinitions>
             <local:MainArtistHeader x:Name="MainArtistHeader"
                                     VerticalAlignment="Stretch" 
-                                    HorizontalAlignment="Left" />
+                                    HorizontalAlignment="Center" />
             <Pivot Grid.Row="1"
                    Style="{StaticResource TitlelessPivot}">
                 <PivotItem>
