@@ -55,8 +55,8 @@
             <SolidColorBrush x:Key="InvertedApplicationBackgroundSemiTranslucentThemeBrush"
                              Color="#50EAEAEA" />
 
-            <Color x:Key="ShadowStartColor">#96151515</Color>
-            <Color x:Key="ShadowEndColor">#00101010</Color>
+            <Color x:Key="ShadowStartColor">#AA202020</Color>
+            <Color x:Key="ShadowEndColor">#00000000</Color>
 
             <!-- SDK Colors -->
             <SolidColorBrush x:Key="TextBoxBorderThemeBrush"
@@ -119,8 +119,8 @@
             <SolidColorBrush x:Key="InvertedApplicationBackgroundSemiTranslucentThemeBrush"
                              Color="#50353535" />
 
-            <Color x:Key="ShadowStartColor">#96F7F7F7</Color>
-            <Color x:Key="ShadowEndColor">#00F5F5F5</Color>
+            <Color x:Key="ShadowStartColor">White</Color>
+            <Color x:Key="ShadowEndColor">#00FFFFFF</Color>
 
             <!-- SDK Colors -->
             <SolidColorBrush x:Key="TextBoxBorderThemeBrush"

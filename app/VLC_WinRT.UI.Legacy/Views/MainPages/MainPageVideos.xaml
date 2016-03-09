@@ -19,6 +19,21 @@
                           Margin="{StaticResource FrameMargin}"
                           Grid.Row="1"
                           Loaded="MainPageVideoContentPresenter_OnLoaded" />
+        
+        <Rectangle Grid.Row="1"
+                   VerticalAlignment="Top"
+                   Height="8">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="1,0">
+                    <GradientStopCollection>
+                        <GradientStop Color="{ThemeResource ShadowEndColor}"
+                                      Offset="1" />
+                        <GradientStop Color="{ThemeResource ShadowStartColor}" />
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        
         <Grid Background="{ThemeResource ApplicationChromeThemeBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
