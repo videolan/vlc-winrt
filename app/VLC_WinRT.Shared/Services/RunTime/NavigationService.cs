@@ -57,7 +57,6 @@ namespace VLC_WinRT.Services.RunTime
             }
 #endif
             App.RootPage.NavigationFrame.Navigated += NavigationFrame_Navigated;
-            App.SplitShell.LeftSidebarClosed += SplitShell_LeftSidebarClosed;
             App.SplitShell.RightSidebarNavigated += SplitShell_RightSidebarNavigated;
             App.SplitShell.RightSidebarClosed += SplitShell_RightSidebarClosed;
             HomePageNavigated += NavigationService_HomePageNavigated;
@@ -76,10 +75,6 @@ namespace VLC_WinRT.Services.RunTime
         private void SplitShell_RightSidebarClosed(object sender, EventArgs e)
         {
             VLCPageNavigated(PageTypeToVLCPage(App.ApplicationFrame.CurrentSourcePageType));
-        }
-
-        private void SplitShell_LeftSidebarClosed(object sender, EventArgs e)
-        {
         }
 
         private void NavigationFrame_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
@@ -108,11 +103,6 @@ namespace VLC_WinRT.Services.RunTime
         private void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
         {
             e.Handled = true;
-            if (App.SplitShell.IsLeftPaneOpen)
-            {
-                App.SplitShell.CloseLeftPane();
-                return;
-            }
             if (Locator.NavigationService.IsPageAMainPage(CurrentPage))
                 e.Handled = false;
             GoBack_Specific();
@@ -226,18 +216,12 @@ namespace VLC_WinRT.Services.RunTime
         public void Go(VLCPage desiredPage)
         {
             if (!IsFlyout(desiredPage) && desiredPage == CurrentPage) return;
-            if (App.SplitShell.IsLeftPaneOpen)
-                App.SplitShell.CloseLeftPane();
 
             if (IsFlyout(desiredPage))
                 currentFlyout = desiredPage;
 
             switch (desiredPage)
             {
-                case VLCPage.LeftSidebar:
-                    App.SplitShell.OpenLeftPane();
-                    CurrentPage = desiredPage;
-                    break;
                 case VLCPage.MainPageVideo:
                 case VLCPage.MainPageMusic:
                 case VLCPage.MainPageFileExplorer:

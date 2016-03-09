@@ -27,6 +27,5 @@
         VideoPlayerOptionsPanel,
         TrackEditorPage,
         FeedbackPage,
-        LeftSidebar
     }
 }

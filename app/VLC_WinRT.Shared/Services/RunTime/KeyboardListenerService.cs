@@ -191,9 +191,6 @@ namespace VLC_WinRT.Services.RunTime
                             case VirtualKey.GamepadB:
                                 Locator.NavigationService.GoBack_Specific();
                                 break;
-                            case VirtualKey.GamepadMenu:
-                                Locator.MainVM.DisplayMenuBarControlToggleCommand.Execute(null);
-                                break;
                             default:
                                 break;
                         }

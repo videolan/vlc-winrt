@@ -16,9 +16,6 @@
            SelectedItem="{Binding CurrentPanel, Mode=TwoWay}"
            Style="{StaticResource TitlelessPivot}"
            Background="{ThemeResource ApplicationChromeThemeBrush}">
-        <Pivot.LeftHeader>
-            <shell:MenuDropdown x:Name="MenuDropdown" />
-        </Pivot.LeftHeader>
         <Pivot.RightHeader>
             <Grid x:Name="TitleBar"
                   Loaded="TitleBar_Loaded"
