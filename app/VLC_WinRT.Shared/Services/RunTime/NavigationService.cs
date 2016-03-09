@@ -227,24 +227,12 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MainPageFileExplorer:
                 case VLCPage.MainPageNetwork:
                 case VLCPage.SearchPage:
-#if WINDOWS_UWP
-                case VLCPage.SettingsPage:
-                case VLCPage.SettingsPageUI:
-                case VLCPage.SettingsPageMusic:
-                case VLCPage.SettingsPageVideo:
-#endif
                     if (Locator.MainVM.CurrentPanel?.Target != desiredPage)
                     {
                         switch (desiredPage)
                         {
                             case VLCPage.SearchPage:
                                 Locator.MainVM.Panels.Add(new Panel(Strings.Search, VLCPage.SearchPage, App.Current.Resources["SearchSymbol"].ToString(), App.Current.Resources["SearchFilledSymbol"].ToString()));
-                                break;
-                            case VLCPage.SettingsPage:
-                            case VLCPage.SettingsPageUI:
-                            case VLCPage.SettingsPageMusic:
-                            case VLCPage.SettingsPageVideo:
-                                Locator.MainVM.Panels.Add(new Panel(Strings.Settings, VLCPage.SettingsPage, App.Current.Resources["SettingsSymbol"].ToString(), App.Current.Resources["SettingsFilledSymbol"].ToString()));
                                 break;
                         }
                     }
@@ -269,6 +257,12 @@ namespace VLC_WinRT.Services.RunTime
                     }
                     break;
 #if WINDOWS_UWP
+                case VLCPage.SettingsPage:
+                case VLCPage.SettingsPageUI:
+                case VLCPage.SettingsPageMusic:
+                case VLCPage.SettingsPageVideo:
+                    App.ApplicationFrame.Navigate(typeof(SettingsPage));
+                    break;
 #else
                 // Settings pages
                 case VLCPage.SettingsPage:
