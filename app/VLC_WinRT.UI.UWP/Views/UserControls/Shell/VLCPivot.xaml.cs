@@ -18,7 +18,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace VLC_WinRT.Views.UserControls
 {
-    public sealed partial class VLCPivot : UserControl
+    public sealed partial class VLCPivot
     {
         public VLCPivot()
         {
@@ -34,13 +34,6 @@ namespace VLC_WinRT.Views.UserControls
 
         private void SplitShell_ContentSizeChanged(double newWidth)
         {
-            var pivotHeaderCollection = WinRTXamlToolkit.Controls.Extensions.VisualTreeHelperExtensions.GetDescendantsOfType<PivotHeaderPanel>(Pivot);
-            var currentPivotHeader = pivotHeaderCollection.FirstOrDefault(x => x.ActualWidth > 0);
-
-            var rightOffset = CoreApplication.GetCurrentView().TitleBar.SystemOverlayRightInset;
-            var w = this.ActualWidth - MenuDropdown.ActualWidth - ((currentPivotHeader == null) ? 0 : currentPivotHeader.ActualWidth) - rightOffset;
-            TitleBar.Width = w < 0 ? 0 : w;
-            TitleBar.Margin = new Thickness(0, 0, rightOffset,0);
         }
     }
 }
