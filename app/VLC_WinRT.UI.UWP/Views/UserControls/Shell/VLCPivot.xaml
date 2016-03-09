@@ -16,6 +16,15 @@
            SelectedItem="{Binding CurrentPanel, Mode=TwoWay}"
            Style="{StaticResource TitlelessPivot}"
            Background="{ThemeResource ApplicationChromeThemeBrush}">
+        <Pivot.LeftHeader>
+            <Grid Margin="{StaticResource FrameMarginLeft}">
+                <Button Style="{StaticResource TextBlockButtonStyle}"
+                        Content="{Binding Source={StaticResource Strings}, Path=SettingsUppercase}"
+                        Command="{Binding GoToSettingsPageCommand}"
+                        FontSize="14"
+                        Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"/>
+            </Grid>
+        </Pivot.LeftHeader>
         <Pivot.RightHeader>
             <Grid x:Name="TitleBar"
                   Loaded="TitleBar_Loaded"
