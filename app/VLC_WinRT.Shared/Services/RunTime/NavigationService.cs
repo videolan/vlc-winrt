@@ -60,13 +60,23 @@ namespace VLC_WinRT.Services.RunTime
             App.SplitShell.RightSidebarNavigated += SplitShell_RightSidebarNavigated;
             App.SplitShell.RightSidebarClosed += SplitShell_RightSidebarClosed;
             HomePageNavigated += NavigationService_HomePageNavigated;
+            Locator.MainVM.PropertyChanged += MainVM_PropertyChanged;
+            Go(Locator.SettingsVM.HomePage);
+        }
+
+        private void MainVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(MainVM.CurrentPanel))
+            {
+                Go(Locator.MainVM.CurrentPanel.Target);
+            }
         }
 
         private void NavigationService_HomePageNavigated(object sender, VLCPage homepage)
         {
             VLCPageNavigated(homepage);
         }
-        
+
         private void SplitShell_RightSidebarNavigated(object sender, EventArgs p)
         {
             VLCPageNavigated(currentFlyout);
@@ -89,13 +99,8 @@ namespace VLC_WinRT.Services.RunTime
             Debug.WriteLine(CurrentPage);
             ViewNavigated.Invoke(null, CurrentPage);
 
-            if (Locator.SettingsVM.ApplicationTheme == ApplicationTheme.Light && Locator.Slideshow.IsDarkTheme)
-            {
-                if (page != VLCPage.MusicPlayerPage && page != VLCPage.CurrentPlaylistPage)
-                {
-                    App.RootPage.SetBackground(false);
-                }
-            }
+            if (!App.SplitShell.IsTopBarOpen)
+                App.SplitShell.ShowTopBar();
         }
 
 #if WINDOWS_APP

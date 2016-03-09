@@ -186,6 +186,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
+                if (App.SplitShell.FooterContent == null)
+                    App.SplitShell.FooterContent = new Views.UserControls.BottomMiniPlayer();
                 Locator.MediaPlaybackViewModel.TrackCollection.IsRunning = true;
                 Locator.MediaPlaybackViewModel.TrackCollection.SetActiveTrackProperty();
                 OnPropertyChanged(nameof(TrackCollection));

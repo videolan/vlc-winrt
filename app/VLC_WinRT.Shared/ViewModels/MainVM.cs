@@ -45,15 +45,11 @@ namespace VLC_WinRT.ViewModels
         private KeyboardListenerService keyboardListenerService;
         private Panel _currentPanel;
         private bool _isInternet;
-        private string _searchTag = "";
         private bool _preventAppExit = false;
         private string _informationText;
         private bool _isBackground = false;
-        private Thickness _titleBarMargin;
 
         // Navigation props
-        private VLCPage currentPage;
-        private bool canGoBack;
         #endregion
 
         #region public props
@@ -62,22 +58,7 @@ namespace VLC_WinRT.ViewModels
             get { return _currentPanel; }
             set { SetProperty(ref _currentPanel, value); }
         }
-
-        public bool CanGoBack
-        {
-            get
-            {
-                return canGoBack;
-            }
-            set
-            {
-                SetProperty(ref canGoBack, value);
-                OnPropertyChanged(nameof(IsMainBackButtonVisible));
-            }
-        }
-
-        public bool IsMainBackButtonVisible => CanGoBack && !Locator.NavigationService.IsFlyout(currentPage);
-
+        
         public KeyboardListenerService KeyboardListenerService { get { return keyboardListenerService; } }
         public bool IsInternet
         {
@@ -140,25 +121,6 @@ namespace VLC_WinRT.ViewModels
             Panels.Add(new Panel(Strings.Network, VLCPage.MainPageNetwork, App.Current.Resources["StreamSymbol"].ToString(), App.Current.Resources["StreamFilledSymbol"].ToString()));
 
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
-            Locator.NavigationService.ViewNavigated += (sender, page) =>
-            {
-                var appView = ApplicationView.GetForCurrentView();
-                if (page != VLCPage.VideoPlayerPage)
-                {
-                    appView.Title = "";
-                }
-                else
-                {
-                    var title = Locator.VideoPlayerVm?.CurrentVideo?.Name;
-                    if (!string.IsNullOrEmpty(title))
-                        appView.Title = title;
-                }
-                if (!App.SplitShell.IsTopBarOpen)
-                    App.SplitShell.ShowTopBar();
-                if (App.SplitShell.FooterContent == null)
-                    App.SplitShell.FooterContent = new BottomMiniPlayer();
-                CanGoBack = Locator.NavigationService.CanGoBack();
-            };
             InitializeSlideshow();
         }
 

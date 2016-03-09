@@ -21,17 +21,6 @@ namespace VLC_WinRT.UI.Legacy.Views.MainPages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.SizeChanged += HomePage_SizeChanged;
-        }
-
-        private void HomePage_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
-        {
-            Responsive();
-        }
-
-        
-        void Responsive()
-        {
         }
     }
 }

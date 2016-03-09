@@ -31,24 +31,21 @@ namespace VLC_WinRT.Views.UserControls
             }
         }
 
-        private async void HomePageController_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void HomePageController_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             this.Unloaded += HomePageController_Unloaded;
-            Locator.MainVM.PropertyChanged += MainVM_PropertyChanged;
-            await Navigate(Locator.MainVM.CurrentPanel.Target);
+            Locator.NavigationService.ViewNavigated += ViewNavigated;
+            Navigate(Locator.NavigationService.CurrentPage);
         }
 
         private void HomePageController_Unloaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Locator.MainVM.PropertyChanged -= MainVM_PropertyChanged;
+            Locator.NavigationService.ViewNavigated -= ViewNavigated;
         }
 
-        private async void MainVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void ViewNavigated(object o, VLCPage p)
         {
-            if (e.PropertyName == nameof(MainVM.CurrentPanel))
-            {
-                await Navigate(Locator.MainVM.CurrentPanel.Target);
-            }
+            Navigate(p);
         }
 
         public Task Navigate(VLCPage page)
