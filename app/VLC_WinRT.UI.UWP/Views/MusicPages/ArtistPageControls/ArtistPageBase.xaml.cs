@@ -19,14 +19,12 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            App.SetShellDecoration(true, true);
             Window.Current.SetTitleBar(TitleBar);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
-            App.SetShellDecoration(false);
         }
     }
 }
