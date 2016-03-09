@@ -249,7 +249,11 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public ArtistItem CurrentArtist
         {
             get { return _currentArtist; }
-            set { SetProperty(ref _currentArtist, value); }
+            set
+            {
+                SetProperty(ref _currentArtist, value);
+                OnPropertyChanged(nameof(IsCurrentArtistExist));
+            }
         }
 
         public AlbumItem CurrentAlbum
@@ -273,7 +277,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
             get { return _currentTrackCollection; }
             set { SetProperty(ref _currentTrackCollection, value); }
         }
-
+        public bool IsCurrentArtistExist
+        {
+            get { return _currentArtist != null; }
+        }
         #endregion
 
         public void ResetLibrary()
