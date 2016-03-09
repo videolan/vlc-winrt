@@ -6,6 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:ScrollWatcher="using:ScrollWatcher"
+      xmlns:statetriggers="using:VLC_WinRT.Helpers.StateTriggers"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="400"
@@ -65,15 +66,17 @@
                         </ListView.GroupStyle>
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <ItemsStackPanel AreStickyGroupHeadersEnabled="False">
-                                    <ItemsStackPanel.ChildrenTransitions>
+                                <ItemsWrapGrid AreStickyGroupHeadersEnabled="False"
+                                               Orientation="Horizontal"
+                                               Loaded="ItemsWrapGrid_Loaded">
+                                    <ItemsWrapGrid.ChildrenTransitions>
                                         <TransitionCollection>
                                             <RepositionThemeTransition />
                                             <AddDeleteThemeTransition />
                                             <EntranceThemeTransition IsStaggeringEnabled="True" />
                                         </TransitionCollection>
-                                    </ItemsStackPanel.ChildrenTransitions>
-                                </ItemsStackPanel>
+                                    </ItemsWrapGrid.ChildrenTransitions>
+                                </ItemsWrapGrid>
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
                     </ScrollWatcher:ListViewScrollWatcher>
@@ -169,6 +172,36 @@
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <statetriggers:AdaptativeAndValuesStateTrigger MinWindowWidth="1000"
+                                                                       StateValue="{Binding IsCurrentArtistExist}" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ArtistsGrid.Visibility"
+                                Value="Visible" />
+                        <Setter Target="ArtistInfoGrid.Visibility"
+                                Value="Visible" />
+                        <Setter Target="ArtistsGridColumnDefinition.Width"
+                                Value="1.4*" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Medium">
+                    <VisualState.StateTriggers>
+                        <statetriggers:AdaptativeAndValuesStateTrigger MinWindowWidth="650"
+                                                                       StateValue="{Binding IsCurrentArtistExist}" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ArtistsGrid.Visibility"
+                                Value="Visible" />
+                        <Setter Target="ArtistInfoGrid.Visibility"
+                                Value="Visible" />
+                        <Setter Target="ArtistsGridColumnDefinition.Width"
+                                Value="2.5*" />
+                    </VisualState.Setters>
+                </VisualState>
                 <VisualState x:Name="Tiny">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
@@ -181,64 +214,6 @@
                                 Value="*" />
                         <Setter Target="ArtistGridColumnDefinition.Width"
                                 Value="0" />
-                        <Setter Target="ArtistAlbumsSemanticView.FloatingActionButtonVisibility"
-                                Value="Visible" />
-                        <Setter Target="ArtistsGrid.(Grid.ColumnSpan)"
-                                Value="2" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Medium">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="650" />
-                    </VisualState.StateTriggers>
-
-                    <VisualState.Setters>
-                        <Setter Target="ArtistsGrid.Visibility"
-                                Value="Visible" />
-                        <Setter Target="ArtistInfoGrid.Visibility"
-                                Value="Visible" />
-                        <Setter Target="ArtistsGridColumnDefinition.Width"
-                                Value="2.5*" />
-                        <Setter Target="MainArtistHeader.BackButtonVisibility"
-                                Value="Collapsed" />
-                        <Setter Target="ArtistAlbumsSemanticView.FloatingActionButtonVisibility"
-                                Value="Collapsed" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Wide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1000" />
-                    </VisualState.StateTriggers>
-
-                    <VisualState.Setters>
-                        <Setter Target="ArtistsGrid.Visibility"
-                                Value="Visible" />
-                        <Setter Target="ArtistInfoGrid.Visibility"
-                                Value="Visible" />
-                        <Setter Target="ArtistsGridColumnDefinition.Width"
-                                Value="1.4*" />
-                        <Setter Target="MainArtistHeader.BackButtonVisibility"
-                                Value="Collapsed" />
-                        <Setter Target="ArtistAlbumsSemanticView.FloatingActionButtonVisibility"
-                                Value="Collapsed" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="ExtraWide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1450" />
-                    </VisualState.StateTriggers>
-
-                    <VisualState.Setters>
-                        <Setter Target="ArtistsGrid.Visibility"
-                                Value="Visible" />
-                        <Setter Target="ArtistInfoGrid.Visibility"
-                                Value="Visible" />
-                        <Setter Target="ArtistsGridColumnDefinition.Width"
-                                Value="1.2*" />
-                        <Setter Target="MainArtistHeader.BackButtonVisibility"
-                                Value="Collapsed" />
-                        <Setter Target="ArtistAlbumsSemanticView.FloatingActionButtonVisibility"
-                                Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
