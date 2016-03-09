@@ -58,112 +58,45 @@ namespace Slide2D.Images
             get { return _richAnimations; }
             set { _richAnimations = value; }
         }
-        
+
         public ImgSlideshow()
         {
-            Locator.MusicLibraryVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
-            Locator.MusicPlayerVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
-            Locator.NavigationService.ViewNavigated += ViewNavigated;
+            Locator.MusicPlayerVM.PropertyChanged += MusicPlayerVM_PropertyChanged;
         }
 
-        private void ViewNavigated(object sender, VLCPage page)
+        private void MusicPlayerVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            Navigated(true);
-        }
-
-        private void MusicLibraryVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(MusicLibraryVM.CurrentArtist)
-                || e.PropertyName == nameof(MusicLibraryVM.CurrentAlbum))
+            if (e.PropertyName == nameof(MusicPlayerVM.CurrentTrack))
             {
-                Navigated(false);
+                Navigated();
             }
         }
 
-        async void Navigated(bool newPage)
+        async void Navigated()
         {
-            bool newPic = false;
-            if (newPage)
+            var newPic = false;
+            if (Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage)
             {
-                if (Locator.NavigationService.CurrentPage != VLCPage.AlbumPage
-                    && Locator.NavigationService.CurrentPage != VLCPage.ArtistPage
-                    && Locator.NavigationService.CurrentPage != VLCPage.MusicPlayerPage
-                    && Locator.NavigationService.CurrentPage != VLCPage.MainPageMusic)
+                if (Locator.MusicPlayerVM.CurrentArtist == null) return;
+                if (Locator.MusicPlayerVM.CurrentArtist.IsPictureLoaded)
                 {
+                    images.Add(new Img(Locator.MusicPlayerVM.CurrentArtist.Picture));
                     newPic = true;
-                    clearSlideshow = true;
+                }
+                var album = await Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(Locator.MusicPlayerVM.CurrentTrack.AlbumId);
+                if (album != null)
+                {
+                    if (album.IsPictureLoaded)
+                    {
+                        images.Add(new Img(album.AlbumCoverFullUri));
+                        newPic = true;
+                    }
                 }
             }
             else
             {
-                images.Clear();
-                clearSlideshow = false;
-                if (Locator.NavigationService.CurrentPage == VLCPage.AlbumPage ||
-                    Locator.NavigationService.CurrentPage == VLCPage.ArtistPage)
-                {
-                    if (Locator.MusicLibraryVM.CurrentArtist == null) return;
-                    if (Locator.MusicLibraryVM.CurrentArtist.IsPictureLoaded)
-                    {
-                        images.Add(new Img(Locator.MusicLibraryVM.CurrentArtist.Picture));
-                        newPic = true;
-                    }
-                    var albums = await Locator.MusicLibraryVM.MusicLibrary.LoadAlbums(Locator.MusicLibraryVM.CurrentArtist.Id);
-                    if (albums != null)
-                    {
-                        foreach (var albumItem in albums)
-                        {
-                            if (albumItem.IsPictureLoaded)
-                            {
-                                images.Add(new Img(albumItem.AlbumCoverFullUri));
-                            }
-                        }
-                    }
-                }
-                else if (Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage)
-                {
-                    if (Locator.MusicPlayerVM.CurrentArtist == null) return;
-                    if (Locator.MusicPlayerVM.CurrentArtist.IsPictureLoaded)
-                    {
-                        images.Add(new Img(Locator.MusicPlayerVM.CurrentArtist.Picture));
-                        newPic = true;
-                    }
-                    var album = await Locator.MusicLibraryVM.MusicLibrary.LoadAlbum(Locator.MusicPlayerVM.CurrentTrack.AlbumId);
-                    if (album != null)
-                    {
-                        if (album.IsPictureLoaded)
-                        {
-                            images.Add(new Img(album.AlbumCoverFullUri));
-                            newPic = true;
-                        }
-                    }
-                }
-                else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic)
-                {
-                    if (Locator.MusicLibraryVM.MusicView == VLC_WinRT.Model.Music.MusicView.Artists)
-                    {
-                        if (Locator.MusicLibraryVM.CurrentArtist == null) return;
-                        if (Locator.MusicLibraryVM.CurrentArtist.IsPictureLoaded)
-                        {
-                            images.Add(new Img(Locator.MusicLibraryVM.CurrentArtist.Picture));
-                            newPic = true;
-                        }
-
-                        var albums = await Locator.MusicLibraryVM.MusicLibrary.LoadAlbums(Locator.MusicLibraryVM.CurrentArtist.Id);
-                        foreach (var album in albums)
-                        {
-                            if (album.IsPictureLoaded)
-                            {
-                                images.Add(new Img(album.AlbumCoverFullUri));
-                                newPic = true;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        newPic = true;
-                        clearSlideshow = true;
-                    }
-                }
+                newPic = false;
+                clearSlideshow = true;
             }
 
             if (newPic)
