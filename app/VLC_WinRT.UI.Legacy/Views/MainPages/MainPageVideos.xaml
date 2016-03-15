@@ -33,12 +33,8 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        
+
         <Grid Background="{ThemeResource ApplicationChromeThemeBrush}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
             <videoPanesControls:VideoPaneComboBox x:Name="VideoViewComboBox" 
                                                   Grid.Column="1" />
 
