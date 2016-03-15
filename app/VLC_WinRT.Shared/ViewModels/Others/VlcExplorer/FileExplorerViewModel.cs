@@ -11,6 +11,7 @@ using Windows.Storage.Search;
 using VLC_WinRT.Commands.VLCFileExplorer;
 using VLC_WinRT.Model.FileExplorer;
 using VLC_WinRT.Utils;
+using Windows.UI.Xaml;
 
 namespace VLC_WinRT.ViewModels.Others.VlcExplorer
 {
@@ -18,6 +19,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
     {
         #region private props
         private bool _isFolderEmpty;
+        private bool _isLoadingFiles;
         private RootFolderType type;
         #endregion
 
@@ -32,14 +34,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
 
         public IStorageItemClickedCommand NavigateToCommand { get; } = new IStorageItemClickedCommand();
 
-        public GoUpperFolderCommand GoBackCommand { get; } = new GoUpperFolderCommand();
-
         public PlayFolderCommand PlayFolderCommand { get; } = new PlayFolderCommand();
-
-        public bool CanGoBack
-        {
-            get { return BackStack.Count > 1; }
-        }
 
         public bool IsFolderEmpty
         {
@@ -49,11 +44,41 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
 
         public string CurrentFolderName
         {
-            get { return BackStack.Last().Name; }
+            get
+            {
+                OnPropertyChanged(nameof(PreviousFolderName));
+                return BackStack.Last().Name;
+            }
+        }
+
+        public string PreviousFolderName
+        {
+            get
+            {
+                if (BackStack.Count > 1)
+                {
+                    return BackStack.ElementAt(BackStack.Count - 2).Name;
+                }
+                return Strings.Home;
+            }
         }
 
         public RootFolderType Type => type;
 
+        public bool IsLoadingFiles
+        {
+            get { return _isLoadingFiles; }
+            set
+            {
+                SetProperty(ref _isLoadingFiles, value);
+                OnPropertyChanged(nameof(LoadingBarVisibility));
+            }
+        }
+
+        public Visibility LoadingBarVisibility
+        {
+            get { return IsLoadingFiles ? Visibility.Visible : Visibility.Collapsed; }
+        }
         #endregion
 
         #region public fields
@@ -75,7 +100,6 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
         {
             type = ftype;
             NavigateToCommand = new IStorageItemClickedCommand();
-            GoBackCommand = new GoUpperFolderCommand();
             BackStack.Add(root);
             Name = root.DisplayName;
             if (id != null)
@@ -90,6 +114,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                 {
                     _storageItems.Clear();
                     IsFolderEmpty = false;
+                    IsLoadingFiles = true;
                 });
                 IReadOnlyList<IStorageItem> items = null;
 #if WINDOWS_PHONE_APP
@@ -116,18 +141,19 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
                     StorageItems = new ObservableCollection<IVLCStorageItem>(vlcItems);
-                    OnPropertyChanged("StorageItems");
+                    OnPropertyChanged(nameof(StorageItems));
+                    IsLoadingFiles = false;
                 });
             }
             catch (Exception exception)
             {
                 LogHelper.Log("Failed to index folders and files in " + BackStack.Last().DisplayName + "\n" + exception.ToString());
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    IsFolderEmpty = !StorageItems.Any();
+                    IsLoadingFiles = false;
+                });
             }
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-            {
-                OnPropertyChanged("CanGoBack");
-                IsFolderEmpty = !StorageItems.Any();
-            });
         }
 
         public async Task NavigateTo(IVLCStorageItem storageItem)
@@ -152,7 +178,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                     await Locator.MediaPlaybackViewModel.PlayVideoFile(file);
                 }
             }
-            OnPropertyChanged("CurrentFolderName");
+            OnPropertyChanged(nameof(CurrentFolderName));
         }
 
         public void GoBack()
@@ -161,8 +187,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
             {
                 BackStack.Remove(BackStack.Last());
                 Task.Run(() => GetFiles());
-                OnPropertyChanged("CanGoBack");
-                OnPropertyChanged("CurrentFolderName");
+                OnPropertyChanged(nameof(CurrentFolderName));
             }
         }
     }

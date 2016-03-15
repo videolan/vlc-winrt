@@ -22,6 +22,7 @@ using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.FileExplorer;
 using Windows.UI.Core;
 using Windows.Devices.Portable;
+using Windows.UI.Xaml;
 
 #if WINDOWS_PHONE_APP
 #else
@@ -37,12 +38,20 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
         #endregion
 
         #region private fields
-        private ObservableCollection<FileExplorerViewModel> _storageVMs;
+        private ObservableCollection<GroupItemList<FileExplorerViewModel>> _fileExplorersGrouped = new ObservableCollection<GroupItemList<FileExplorerViewModel>>();
         #endregion
 
         #region public props
+        private Visibility _rootFoldersVisibility;
+        private Visibility _fileExplorerVisibility;
 
         public RemovableDeviceClickedCommand RemovableDeviceClicked { get; } = new RemovableDeviceClickedCommand();
+        public GoUpperFolderCommand GoBackCommand { get; } = new GoUpperFolderCommand();
+
+        public bool CanGoBack
+        {
+            get { return CurrentStorageVM?.BackStack.Count > 1; }
+        }
 
         public FileExplorerViewModel CurrentStorageVM
         {
@@ -50,31 +59,46 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             {
                 return _currentStorageVM;
             }
-            set { SetProperty(ref _currentStorageVM, value); }
+            set
+            {
+                SetProperty(ref _currentStorageVM, value);
+                if (value != null)
+                {
+                    RootFoldersVisibility = Visibility.Collapsed;
+                    FileExplorerVisibility = Visibility.Visible;
+                }
+            }
         }
         #endregion
 
         #region public fields
-        public ObservableCollection<FileExplorerViewModel> StorageVMs
+        public ObservableCollection<GroupItemList<FileExplorerViewModel>> FileExplorersGrouped
         {
-            get { return _storageVMs; }
-            set { SetProperty(ref _storageVMs, value); }
+            get { return _fileExplorersGrouped; }
+            set { SetProperty(ref _fileExplorersGrouped, value); }
         }
 
-        public IEnumerable<IGrouping<RootFolderType, FileExplorerViewModel>> StorageVMsGrouped
+        public Visibility RootFoldersVisibility
         {
-            get { return _storageVMs?.GroupBy(x => x.Type); }
-        } 
+            get { return _rootFoldersVisibility; }
+            set { SetProperty(ref _rootFoldersVisibility, value); }
+        }
+
+
+        public Visibility FileExplorerVisibility
+        {
+            get { return _fileExplorerVisibility; }
+            set { SetProperty(ref _fileExplorerVisibility, value); }
+        }
         #endregion
         public void OnNavigatedTo()
         {
-            _storageVMs = new ObservableCollection<FileExplorerViewModel>();
-            var musicLibrary = new FileExplorerViewModel(KnownFolders.MusicLibrary, RootFolderType.Library);
-            StorageVMs.Add(musicLibrary);
-            var videoLibrary = new FileExplorerViewModel(KnownFolders.VideosLibrary, RootFolderType.Library);
-            StorageVMs.Add(videoLibrary);
-            CurrentStorageVM = StorageVMs[0];
-            Task.Run(() => CurrentStorageVM?.GetFiles());
+            Task.Run(async () =>
+            {
+                await AddFolder(new FileExplorerViewModel(KnownFolders.MusicLibrary, RootFolderType.Library));
+                await AddFolder(new FileExplorerViewModel(KnownFolders.VideosLibrary, RootFolderType.Library));
+                await AddFolder(new FileExplorerViewModel(KnownFolders.PicturesLibrary, RootFolderType.Library));
+            });
 #if WINDOWS_PHONE_APP
             Task.Run(() => InitializeSDCard());
 #else
@@ -83,7 +107,8 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             _deviceService.ExternalDeviceAdded += DeviceAdded;
             _deviceService.ExternalDeviceRemoved += DeviceRemoved;
 #endif
-            OnPropertyChanged(nameof(StorageVMsGrouped));
+            FileExplorerVisibility = Visibility.Collapsed;
+            RootFoldersVisibility = Visibility.Visible;
         }
 
         public void Dispose()
@@ -96,8 +121,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             _deviceService = null;
 #endif
             _currentStorageVM = null;
-            _storageVMs?.Clear();
-            _storageVMs = null;
+            _fileExplorersGrouped?.Clear();
             GC.Collect();
         }
 
@@ -108,11 +132,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             if (cards.Any())
             {
                 var external = new FileExplorerViewModel(cards[0], RootFolderType.ExternalDevice);
-                await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                {
-                    StorageVMs.Add(external);
-                    OnPropertyChanged(nameof(StorageVMsGrouped));
-                });
+                await AddFolder(external);
             }
         }
 
@@ -125,11 +145,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
                 {
                     var folder = new FileExplorerViewModel(dlnaFolder, RootFolderType.Network);
                     if (folder == null) continue;
-                    await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                    {
-                        StorageVMs.Add(folder);
-                        OnPropertyChanged(nameof(StorageVMsGrouped));
-                    });
+                    await AddFolder(folder);
                 }
             }
             catch
@@ -148,30 +164,20 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
         private async Task AddFolder(string newId)
         {
             if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet) return;
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            try
             {
-                try
-                {
-                    if (StorageVMs.All(vm => vm.Id != newId))
-                    {
-                        var external = new FileExplorerViewModel(StorageDevice.FromId(newId), RootFolderType.ExternalDevice, newId);
-                        StorageVMs.Add(external);
-                    }
-                    if (StorageVMs.Any())
-                    {
-                        CurrentStorageVM = StorageVMs[0];
-                    }
-                    OnPropertyChanged(nameof(StorageVMsGrouped));
-                }
-                catch { }
-            });
+                var external = new FileExplorerViewModel(StorageDevice.FromId(newId), RootFolderType.ExternalDevice, newId);
+                await AddFolder(external);
+            }
+            catch { }
         }
 
         private async void DeviceRemoved(object sender, string id)
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                FileExplorerViewModel removedViewModel = StorageVMs.FirstOrDefault(vm => vm.Id == id);
+
+                FileExplorerViewModel removedViewModel = FileExplorersGrouped.FirstOrDefault(x=> (RootFolderType)x.Key == RootFolderType.ExternalDevice)?.FirstOrDefault(vm => vm.Id == id);
                 if (removedViewModel != null)
                 {
                     if (CurrentStorageVM == removedViewModel)
@@ -179,12 +185,28 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
                         CurrentStorageVM.StorageItems.Clear();
                         CurrentStorageVM = null;
                     }
-                    StorageVMs.Remove(removedViewModel);
+                    FileExplorersGrouped.FirstOrDefault(x => x.Contains(removedViewModel)).Remove(removedViewModel);
                     GC.Collect();
                 }
-                OnPropertyChanged(nameof(StorageVMsGrouped));
             });
         }
 #endif
+
+        async Task AddFolder(FileExplorerViewModel fileEx)
+        {
+            var key = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == fileEx.Type);
+            if (key == null)
+            {
+                key = new GroupItemList<FileExplorerViewModel>(fileEx) { Key = fileEx.Type };
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => FileExplorersGrouped.Add(key));
+            }
+            else await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => key.Add(fileEx));
+        }
+
+        public void GoBackToRootFolders()
+        {
+            FileExplorerVisibility = Visibility.Collapsed;
+            RootFoldersVisibility = Visibility.Visible;
+        }
     }
 }

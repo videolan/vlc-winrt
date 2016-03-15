@@ -13,24 +13,89 @@
     <Page.Resources>
         <CollectionViewSource x:Key="StorageVMsGroupedByType"
                               IsSourceGrouped="True"
-                              Source="{Binding StorageVMsGrouped}" />
+                              Source="{Binding FileExplorersGrouped}" />
     </Page.Resources>
+    
     <Grid x:Name="RootGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid x:Name="SidebarListView"
-              Grid.Column="0"
-              Grid.RowSpan="4"
-              Width="250"
-              Background="{ThemeResource ApplicationChromeThemeBrush}">
+
+        <Grid x:Name="FileExplorerButtonsGrid"
+              Background="{ThemeResource ApplicationChromeThemeBrush}"
+              Visibility="{Binding FileExplorerVisibility}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            </Grid.ColumnDefinitions>
+            <AppBarButton x:Name="GoBackButton"
+                          Grid.Column="1"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Command="{Binding GoBackCommand}"
+                          Label="{Binding CurrentStorageVM.PreviousFolderName}"
+                          Margin="0,0,6,0">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                              FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Grid.Column="3"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          HorizontalAlignment="Right"
+                          Label="{Binding Source={StaticResource Strings}, Path=PlayFolder}"
+                          Foreground="{ThemeResource MainColor}"
+                          Command="{Binding CurrentStorageVM.PlayFolderCommand}"
+                          CommandParameter="{Binding CurrentStorageVM.StorageItems}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource PlaySymbol}"
+                              FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <TextBlock x:Name="CurrentFolder"
+                       Grid.Column="2"
+                       Text="{Binding CurrentStorageVM.CurrentFolderName}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="16"
+                       TextTrimming="CharacterEllipsis"
+                       TextWrapping="NoWrap" />
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Visibility="{Binding FileExplorerVisibility}">
+            <placeholder:NothingToSeeHere Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <ProgressBar IsIndeterminate="True"
+                         VerticalAlignment="Center"
+                         Visibility="{Binding CurrentStorageVM.LoadingBarVisibility}"/>
+            <ListView x:Name="StorageItemsListView"
+                      ItemsSource="{Binding CurrentStorageVM.StorageItems}"
+                      IsItemClickEnabled="True"
+                      SelectionMode="None"
+                      ItemTemplate="{StaticResource FolderDataTemplate}"
+                      IsSwipeEnabled="False"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                      ItemsPanel="{StaticResource WrapPanelTemplate}"
+                      Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
+                      Margin="{StaticResource FrameMargin}">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding CurrentStorageVM.NavigateToCommand}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                    <triggers:EventTrigger EventName="ScrollDetected">
+                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.ScrollDetectedCommand}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Visibility="{Binding RootFoldersVisibility}">
             <ListView ItemsSource="{Binding Source={StaticResource StorageVMsGroupedByType}}"
                       SelectedItem="{Binding CurrentStorageVM}"
                       SelectionMode="None"
@@ -46,7 +111,7 @@
                     <GroupStyle>
                         <GroupStyle.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Height="50" 
+                                <TextBlock Height="50"
                                            Text="{Binding Key, Converter={StaticResource RootFolderTypeToNameConverter}}"
                                            Style="{ThemeResource SubheaderTextBlockStyle}"
                                            Margin="{StaticResource FrameMarginLeft}"
@@ -58,7 +123,8 @@
                 </ListView.GroupStyle>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <ItemsStackPanel Margin="-2,0,-19,0"/>
+                        <ItemsWrapGrid Orientation="Horizontal"
+                                       ItemWidth="220" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
@@ -66,119 +132,11 @@
                         <TextBlock Text="{Binding Name}"
                                    Foreground="{ThemeResource BasicForeground}"
                                    FontSize="16"
-                                   Margin="20,6" />
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="NoWrap" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </Grid>
-        <Grid x:Name="ComboBoxSelector"
-              Grid.Row="0"
-              Grid.Column="1"
-              Height="50"
-              Background="{ThemeResource ApplicationChromeThemeBrush}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <ComboBox Grid.Column="1"
-                      Width="280"
-                      ItemsSource="{Binding StorageVMs}"
-                      SelectedItem="{Binding CurrentStorageVM}"
-                      Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
-                      Style="{StaticResource VLCComboBox}">
-                <triggers:Interactions.Triggers>
-                    <triggers:EventTrigger EventName="SelectionChanged">
-                        <triggers:InvokeCommandAction Command="{Binding RemovableDeviceClicked}"
-                                                      PassEventArgsToCommand="True" />
-                    </triggers:EventTrigger>
-                </triggers:Interactions.Triggers>
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </Grid>
-
-        <Grid x:Name="CurrentFolderNameNarrowGrid" 
-              Grid.Column="1"
-              Grid.Row="1"
-              Height="50"
-              Background="{ThemeResource ApplicationChromeThemeBrush}">
-            <TextBlock x:Name="CurrentFolderNameNarrowTextBlock"
-                       Text="{Binding CurrentStorageVM.CurrentFolderName}"
-                       Margin="16,-10,0,0"
-                       Style="{ThemeResource SubheaderTextBlockStyle}"
-                       VerticalAlignment="Center"/>
-        </Grid>
-
-        <Grid x:Name="FileExplorerButtonsGrid"
-              Grid.Column="1"
-              Grid.Row="2"
-              Background="{ThemeResource ApplicationChromeThemeBrush}"
-              Height="50">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-            </Grid.ColumnDefinitions>
-            <AppBarButton x:Name="GoBackButton"
-                          Grid.Column="1"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Command="{Binding CurrentStorageVM.GoBackCommand}"
-                          IsEnabled="{Binding CurrentStorageVM.CanGoBack}"
-                          IsCompact="True"
-                          Margin="0,0,6,0">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
-                              FontFamily="{StaticResource VLCFont}" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <TextBlock x:Name="CurrentFolderNameWideTextBlock"
-                       Grid.Column="2"
-                       Text="{Binding CurrentStorageVM.CurrentFolderName}"
-                       Margin="0,-10,0,0"
-                       Style="{StaticResource SubheaderTextBlockStyle}"
-                       VerticalAlignment="Center" />
-            <AppBarButton Grid.Column="3"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          HorizontalAlignment="Right"
-                          Label="{Binding Source={StaticResource Strings}, Path=PlayFolder}"
-                          Foreground="{ThemeResource MainColor}"
-                          Command="{Binding CurrentStorageVM.PlayFolderCommand}"
-                          CommandParameter="{Binding CurrentStorageVM.StorageItems}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource PlaySymbol}"
-                              FontFamily="{StaticResource VLCFont}" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-        </Grid>
-        <Grid Grid.Column="1"
-              Grid.Row="3">
-            <placeholder:NothingToSeeHere Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <ScrollWatcher:ListViewScrollWatcher x:Name="StorageItemsListView"
-                                                 ItemsSource="{Binding CurrentStorageVM.StorageItems}"
-                                                 IsItemClickEnabled="True"
-                                                 SelectionMode="None"
-                                                 ItemTemplate="{StaticResource FolderDataTemplate}"
-                                                 IsSwipeEnabled="False"
-                                                 ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                                                 ItemsPanel="{StaticResource WrapPanelTemplate}"
-                                                 Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
-                                                 Margin="{StaticResource FrameMargin}">
-                <triggers:Interactions.Triggers>
-                    <triggers:EventTrigger EventName="ItemClick">
-                        <triggers:InvokeCommandAction Command="{Binding CurrentStorageVM.NavigateToCommand}"
-                                                      PassEventArgsToCommand="True" />
-                    </triggers:EventTrigger>
-                    <triggers:EventTrigger EventName="ScrollDetected">
-                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.ScrollDetectedCommand}"
-                                                      PassEventArgsToCommand="True" />
-                    </triggers:EventTrigger>
-                </triggers:Interactions.Triggers>
-            </ScrollWatcher:ListViewScrollWatcher>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

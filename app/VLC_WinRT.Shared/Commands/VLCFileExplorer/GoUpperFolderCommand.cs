@@ -11,9 +11,12 @@ namespace VLC_WinRT.Commands.VLCFileExplorer
         {
             if (Locator.NavigationService.CurrentPage == VLCPage.MainPageFileExplorer)
             {
-                if (Locator.FileExplorerVM.CurrentStorageVM != null &&
-                    Locator.FileExplorerVM.CurrentStorageVM.CanGoBack)
+                if (Locator.FileExplorerVM.CurrentStorageVM != null && Locator.FileExplorerVM.CanGoBack)
                     Locator.FileExplorerVM.CurrentStorageVM.GoBack();
+                else
+                {
+                    Locator.FileExplorerVM.GoBackToRootFolders();
+                }
             }
         }
     }
