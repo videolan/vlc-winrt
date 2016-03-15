@@ -854,8 +854,8 @@
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                               Margin="{TemplateBinding Padding}"
-                                              Foreground="{ThemeResource BasicForeground}" 
-                                              FontWeight="SemiLight"/>
+                                              Foreground="{ThemeResource BasicForeground}"
+                                              FontWeight="SemiLight" />
                             <Rectangle x:Name="FocusVisual"
                                        Grid.Row="1"
                                        IsHitTestVisible="False"
@@ -1057,7 +1057,7 @@
                                         <DoubleAnimation Storyboard.TargetName="FocusVisual"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0:0:0.5"
-                                                         To="1" /> 
+                                                         To="1" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Unfocused">
@@ -1283,7 +1283,7 @@
                               Background="Transparent">
                             <Grid.Projection>
                                 <PlaneProjection x:Name="ContentPresenterProjection"
-                                                                     LocalOffsetZ="0" />
+                                                 LocalOffsetZ="0" />
                             </Grid.Projection>
                             <Border x:Name="ContentContainer">
                                 <Grid x:Name="InnerDragContent"
@@ -1307,14 +1307,14 @@
                                                               Content="{TemplateBinding Content}"
                                                               HorizontalAlignment="Stretch"
                                                               VerticalAlignment="Stretch"
-                                                              Margin="{TemplateBinding Padding}"/>
+                                                              Margin="{TemplateBinding Padding}" />
 
                                             <Rectangle x:Name="FocusVisual"
                                                        IsHitTestVisible="False"
                                                        Opacity="0"
                                                        StrokeThickness="2"
                                                        Stroke="{ThemeResource SemiLightMainColor}" />
-                                            
+
                                             <!-- The 'Xg' text simulates the amount of space one line of text will occupy.
                                              In the DataPlaceholder state, the Content is not loaded yet so we
                                              approximate the size of the item using placeholder text. -->
@@ -1560,18 +1560,18 @@
                         <Grid x:Name="ReorderHintContent"
                               Background="Transparent">
                             <Border x:Name="ContentBorder"
-                                            Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            Margin="0">
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Margin="0">
                                 <ContentPresenter x:Name="contentPresenter"
-                                                              ContentTransitions="{TemplateBinding ContentTransitions}"
-                                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                              Content="{TemplateBinding Content}"
-                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                              Margin="{TemplateBinding Padding}"
-                                                              Foreground="{ThemeResource BasicForeground}" />
+                                                  ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  Content="{TemplateBinding Content}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  Foreground="{ThemeResource BasicForeground}" />
                             </Border>
                         </Grid>
                     </Border>
