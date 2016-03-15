@@ -982,8 +982,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    <!-- Style for Windows.UI.Xaml.Controls.ListViewItem -->
     <Style TargetType="ListViewItem"
            x:Key="ListViewItemStyle">
         <Setter Property="FontFamily"
