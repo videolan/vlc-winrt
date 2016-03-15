@@ -408,25 +408,29 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         private async void Albums_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (MusicLibrary.Albums?.Count == 0 || MusicLibrary.Albums?.Count == 1)
+            try
             {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                if (MusicLibrary.Albums?.Count == 0 || MusicLibrary.Albums?.Count == 1)
                 {
-                    OnPropertyChanged(nameof(IsMusicLibraryEmpty));
-                    OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
-                });
-            }
-
-            if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems.Count > 0)
-            {
-                foreach (var newItem in e.NewItems)
-                {
-                    var album = (AlbumItem)newItem;
-                    await InsertIntoGroupAlbum(album);
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        OnPropertyChanged(nameof(IsMusicLibraryEmpty));
+                        OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
+                    });
                 }
+
+                if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems.Count > 0)
+                {
+                    foreach (var newItem in e.NewItems)
+                    {
+                        var album = (AlbumItem)newItem;
+                        await InsertIntoGroupAlbum(album);
+                    }
+                }
+                else
+                    await OrderAlbums();
             }
-            else
-                await OrderAlbums();
+            catch { }
         }
 
         public async Task OrderAlbums()
