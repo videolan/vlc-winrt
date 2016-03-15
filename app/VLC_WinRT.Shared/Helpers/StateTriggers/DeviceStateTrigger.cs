@@ -5,6 +5,7 @@ using Windows.UI.Xaml;
 
 namespace VLC_WinRT.Helpers
 {
+#if WINDOWS_UWP
     public class DeviceStateTrigger : StateTriggerBase
     {
         private DeviceTypeEnum _deviceType;
@@ -44,4 +45,5 @@ namespace VLC_WinRT.Helpers
             return DeviceType == DeviceTypeHelper.GetDeviceType();
         }
     }
+#endif
 }

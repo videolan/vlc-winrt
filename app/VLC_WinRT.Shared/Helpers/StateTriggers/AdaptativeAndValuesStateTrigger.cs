@@ -8,6 +8,7 @@ using WinRTXamlToolkit.Common;
 
 namespace VLC_WinRT.Helpers.StateTriggers
 {
+#if WINDOWS_UWP
     public class AdaptativeAndValuesStateTrigger : StateTriggerBase
     {
         #region state value
@@ -113,4 +114,5 @@ namespace VLC_WinRT.Helpers.StateTriggers
 
         #endregion ITriggerValue
     }
+#endif
 }

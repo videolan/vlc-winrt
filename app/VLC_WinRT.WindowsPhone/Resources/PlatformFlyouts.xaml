@@ -2,4 +2,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:VLC_WinRT.Resources"
                     xmlns:flyouts="using:VLC_WinRT.Views.UserControls.Flyouts">
+    <MenuFlyout x:Key="AlbumCollectionBaseFlyout">
+        <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PlayAll}"
+                        Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllSongsCommand}"
+                        Style="{StaticResource MenuFlyoutItemIconTemplate}"
+                        Tag="{StaticResource PlaySymbol}" />
+        <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Shuffle}"
+                        Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}"
+                        Style="{StaticResource MenuFlyoutItemIconTemplate}"
+                        Tag="{StaticResource ShuffleSymbol}" />
+    </MenuFlyout>
 </ResourceDictionary>

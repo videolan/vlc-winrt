@@ -56,7 +56,9 @@ namespace VLC_WinRT.Helpers
 
         public static void SetTitleBar(UIElement titleBar)
         {
+#if WINDOWS_UWP
             Window.Current.SetTitleBar(titleBar);
+#endif
         }
 
         public static void SetFullscreen()

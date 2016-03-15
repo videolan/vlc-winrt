@@ -140,36 +140,12 @@
                       Style="{StaticResource CircleButtonStyle}"
                       VerticalAlignment="Bottom"
                       HorizontalAlignment="Right"
-                      Margin="{StaticResource FrameMarginHorizontalPlusFooter}">
+                      Margin="{StaticResource FrameMarginHorizontalPlusFooter}"
+                      Flyout="{StaticResource AlbumCollectionBaseFlyout}">
             <AppBarButton.Content>
                 <FontIcon Glyph="{StaticResource PlaySymbol}"
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarButton.Content>
-            <AppBarButton.Flyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PlayAll}"
-                                        Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllSongsCommand}"
-                                        Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                                        Tag="{StaticResource PlaySymbol}"/>
-                    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Shuffle}"
-                                        Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}" 
-                                        Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                                        Tag="{StaticResource ShuffleSymbol}"/>
-                    <MenuFlyoutSeparator />
-                    <MenuFlyoutSubItem Text="Order by"
-                                       FontSize="13">
-                        <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OrderByArtist}"
-                                        Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                                        Tag="{StaticResource BuddySymbol}"/>
-                        <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OrderByAlbum}"
-                                        Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                                        Tag="{StaticResource AlbumDiscSymbol}"/>
-                        <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OrderByDate}"
-                                        Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                                        Tag="{StaticResource CalendarSymbol}"/>
-                    </MenuFlyoutSubItem>
-                </MenuFlyout>
-            </AppBarButton.Flyout>
         </AppBarButton>
     </Grid>
 </UserControl>

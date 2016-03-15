@@ -84,6 +84,7 @@ namespace VLC_WinRT.Views.UserControls
                         if (HomePageContentPresenter.Content is SearchPage) return;
                         HomePageContentPresenter.Navigate(typeof(SearchPage));
                         break;
+#if WINDOWS_UWP
                     case VLCPage.SettingsPage:
                     case VLCPage.SettingsPageUI:
                     case VLCPage.SettingsPageMusic:
@@ -91,6 +92,7 @@ namespace VLC_WinRT.Views.UserControls
                         if (HomePageContentPresenter.Content is UI.UWP.Views.SettingsPages.SettingsPage) return;
                         HomePageContentPresenter.Navigate(typeof(UI.UWP.Views.SettingsPages.SettingsPage));
                         break;
+#endif
                 }
             });
         }

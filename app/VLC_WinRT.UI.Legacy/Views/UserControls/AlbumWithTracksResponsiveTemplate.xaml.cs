@@ -33,6 +33,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
         private void AlbumWithTracksResponsiveTemplate_KeyDown(object sender, KeyRoutedEventArgs e)
         {
+#if WINDOWS_UWP
             if (e.OriginalKey == Windows.System.VirtualKey.GamepadLeftThumbstickRight)
             {
                 (FocusManager.FindNextFocusableElement(FocusNavigationDirection.Right) as Control)?.Focus(FocusState.Keyboard);
@@ -41,6 +42,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             {
                 (FocusManager.FindNextFocusableElement(FocusNavigationDirection.Down) as Control)?.Focus(FocusState.Keyboard);
             }
+#endif
         }
 
         private void AlbumWithTracksResponsiveTemplate_SizeChanged(object sender, SizeChangedEventArgs e)
