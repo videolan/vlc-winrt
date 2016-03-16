@@ -11,11 +11,6 @@ namespace VLC_WinRT.Commands.VideoPlayer
     {
         public override async void Execute(object parameter)
         {
-            if (Locator.MediaPlaybackViewModel.TrackCollection.IsRunning)
-            {
-                await Locator.MediaPlaybackViewModel.CleanViewModel();
-            }
-
             LogHelper.Log("PlayVideoCommand called");
 
             VideoItem videoVm = null;
@@ -37,6 +32,11 @@ namespace VLC_WinRT.Commands.VideoPlayer
 #endif
                 LogHelper.Log("PLAYVIDEO: VideoVm is null, returning");
                 return;
+            }
+
+            if (Locator.MediaPlaybackViewModel.TrackCollection.IsRunning)
+            {
+                await Locator.MediaPlaybackViewModel.CleanViewModel();
             }
 
             LogHelper.Log("PLAYVIDEO: VideoVm is not null, continuing");

@@ -263,8 +263,14 @@ namespace VLC_WinRT
 #endif
             Window.Current.Activate();
             Locator.MusicLibraryVM.MusicLibrary.DropTablesIfNeeded();
-            VideoLibraryManagement.DropTablesIfNeeded();
+            Locator.VideoLibrary.DropTablesIfNeeded();
             Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
+
+            await Task.Run(async () =>
+            {
+                await Locator.VideoLibrary.Initialize();
+                await Locator.MusicLibraryVM.MusicLibrary.Initialize();
+            });
         }
 
         public static void SetShellDecoration(bool forceTemporaryAppTheme = false, bool forceDark = false)

@@ -22,17 +22,14 @@ using VLC_WinRT.Utils;
 using VLC_WinRT.Commands.VideoPlayer;
 using VLC_WinRT.Commands.VideoLibrary;
 using System.Collections.Generic;
+using Autofac;
 
 namespace VLC_WinRT.ViewModels.VideoVM
 {
     public class VideoLibraryVM : BindableBase
     {
-        public VideoRepository VideoRepository = new VideoRepository();
+        public VideoLibrary VideoLibrary => Locator.VideoLibrary;
         #region private fields
-        private ObservableCollection<VideoItem> _videos;
-        private ObservableCollection<VideoItem> _viewedVideos;
-        private ObservableCollection<VideoItem> _cameraRoll;
-        private ObservableCollection<TvShow> _shows = new ObservableCollection<TvShow>();
         #endregion
 
         #region private props
@@ -53,29 +50,22 @@ namespace VLC_WinRT.ViewModels.VideoVM
 
         public ObservableCollection<VideoItem> Videos
         {
-            get { return _videos; }
-            set { SetProperty(ref _videos, value); }
+            get { return VideoLibrary.Videos; }
         }
 
         public ObservableCollection<VideoItem> ViewedVideos
         {
-            get { return _viewedVideos; }
-            set
-            {
-                SetProperty(ref _viewedVideos, value);
-            }
+            get { return VideoLibrary.ViewedVideos; }
         }
 
         public ObservableCollection<TvShow> Shows
         {
-            get { return _shows; }
-            set { SetProperty(ref _shows, value); }
+            get { return VideoLibrary.Shows; }
         }
 
         public ObservableCollection<VideoItem> CameraRoll
         {
-            get { return _cameraRoll; }
-            set { SetProperty(ref _cameraRoll, value); }
+            get { return VideoLibrary.CameraRoll; }
         }
         #endregion
 
@@ -123,7 +113,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
 
         public PlayNetworkMRLCommand PlayNetworkMRL { get; }=new PlayNetworkMRLCommand();
 
-        public StartVideoIndexingCommand StartVideoIndexingCommand { get; }=new StartVideoIndexingCommand();
+        public StartVideoIndexingCommand StartVideoIndexingCommand { get; }= new StartVideoIndexingCommand();
         
         public bool IsBusy
         {
@@ -139,10 +129,6 @@ namespace VLC_WinRT.ViewModels.VideoVM
         public void ResetLibrary()
         {
             LoadingState = LoadingState.NotLoaded;
-            Videos = new ObservableCollection<VideoItem>();
-            ViewedVideos = new ObservableCollection<VideoItem>();
-            CameraRoll = new ObservableCollection<VideoItem>();
-            Shows = new ObservableCollection<TvShow>();
             CurrentShow = null;
             GC.Collect();
         }
@@ -156,7 +142,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         {
             if (LoadingState == LoadingState.NotLoaded)
             {
-                Initialize();
+                //Initialize();
             }
         }
 
@@ -164,7 +150,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         {
             if (LoadingState == LoadingState.NotLoaded)
             {
-                InitializeCameraRollVideos();
+                //InitializeCameraRollVideos();
             }
         }
 
@@ -172,46 +158,10 @@ namespace VLC_WinRT.ViewModels.VideoVM
         {
             ResetLibrary();
         }
-
-        Task Initialize()
-        {
-            return Task.Run(async () =>
-            {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => LoadingState = LoadingState.Loading);
-                await VideoLibraryManagement.GetViewedVideos().ConfigureAwait(false);
-                await VideoLibraryManagement.GetVideos(VideoRepository).ConfigureAwait(false);
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                {
-                    Locator.MainVM.InformationText = "";
-                });
-            });
-        }
-
-        Task InitializeCameraRollVideos()
-        {
-            return Task.Run(async () => await VideoLibraryManagement.GetVideosFromCameraRoll(VideoRepository).ConfigureAwait(false));
-        }
-
+        
         #endregion
 
         #region methods
-        public async Task PerformRoutineCheckIfNotBusy()
-        {
-            // Routine check to add new files if there are new ones
-            if (!IsBusy)
-            {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                {
-                    IsBusy = true;
-                });
-                await Initialize();
-                await InitializeCameraRollVideos();
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                {
-                    IsBusy = false;
-                });
-            }
-        }
         #endregion
     }
 }

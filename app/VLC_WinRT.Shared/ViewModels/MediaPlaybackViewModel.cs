@@ -814,7 +814,7 @@ namespace VLC_WinRT.ViewModels
                             Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = 0;
                     });
                     if (Locator.VideoPlayerVm.CurrentVideo != null)
-                        await Locator.VideoLibraryVM.VideoRepository.Update(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
+                        await Locator.VideoLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
                     break;
                 case PlayingType.NotPlaying:
                     break;
@@ -873,7 +873,7 @@ namespace VLC_WinRT.ViewModels
             if (Locator.VideoPlayerVm.CurrentVideo != null)
             {
                 Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = (int)((double)Time / 1000); ;
-                await Locator.VideoLibraryVM.VideoRepository.Update(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
+                await Locator.VideoLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
             }
         }
 

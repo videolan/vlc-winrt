@@ -84,7 +84,7 @@ namespace VLC_WinRT.Model.Video
                 if (!HasThumbnail && _thumbnailLoadingState == LoadingState.NotLoaded)
                 {
                     _thumbnailLoadingState = LoadingState.Loading;
-                    Task.Run(() => VideoLibraryManagement.FetchVideoThumbnailOrWaitAsync(this));
+                    Task.Run(() => Locator.VideoLibrary.GenerateThumbnail(this));
                 }
                 else if (HasThumbnail)
                 {

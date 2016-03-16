@@ -21,6 +21,7 @@ using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.Utils;
 using Slide2D;
 using VLC_WinRT.ViewModels.Others;
+using VLC_WinRT.Helpers.VideoLibrary;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -30,11 +31,14 @@ namespace VLC_WinRT.ViewModels
     /// </summary>
     public class Locator
     {
+        private static VideoLibrary _videoLibrary;
+
+
         private static MainVM _main;
         private static MediaPlaybackViewModel _mediaPlayback;
         private static MusicPlayerVM _musicPlayer;
         private static MusicLibraryVM _musicLibrary;
-        private static VideoLibraryVM _videoLibrary;
+        private static VideoLibraryVM _videoLibraryVM;
         private static VideoPlayerVM _videoPlayer;
         private static VLCExplorerViewModel _vlcExplorer;
         private static StreamsViewModel _streams;
@@ -68,9 +72,10 @@ namespace VLC_WinRT.ViewModels
 
         public static MusicPlayerVM MusicPlayerVM => _musicPlayer ?? (_musicPlayer = App.Container.Resolve<MusicPlayerVM>()); 
 
-        public static MusicLibraryVM MusicLibraryVM => _musicLibrary ?? (_musicLibrary = App.Container.Resolve<MusicLibraryVM>()); 
+        public static MusicLibraryVM MusicLibraryVM => _musicLibrary ?? (_musicLibrary = App.Container.Resolve<MusicLibraryVM>());
 
-        public static VideoLibraryVM VideoLibraryVM => _videoLibrary ?? (_videoLibrary = App.Container.Resolve<VideoLibraryVM>()); 
+        public static VideoLibraryVM VideoLibraryVM => _videoLibraryVM ?? (_videoLibraryVM = App.Container.Resolve<VideoLibraryVM>());
+        public static VideoLibrary VideoLibrary => _videoLibrary ?? (_videoLibrary = App.Container.Resolve<VideoLibrary>());
 
         public static VideoPlayerVM VideoPlayerVm => _videoPlayer ?? (_videoPlayer = App.Container.Resolve<VideoPlayerVM>()); 
 

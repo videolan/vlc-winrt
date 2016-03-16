@@ -9,6 +9,7 @@
 
 using Autofac;
 using Slide2D;
+using VLC_WinRT.Helpers.VideoLibrary;
 using VLC_WinRT.Services.Interface;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels;
@@ -40,6 +41,9 @@ namespace VLC_WinRT.Utils
             }
             else
             {
+                builder.RegisterType<VideoLibrary>();
+
+
                 builder.RegisterType<MainVM>();
                 builder.RegisterType<MediaPlaybackViewModel>();
                 builder.RegisterType<MusicLibraryVM>();

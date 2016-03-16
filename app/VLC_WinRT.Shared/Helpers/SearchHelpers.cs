@@ -121,12 +121,12 @@ namespace VLC_WinRT.Helpers
 
         public static Task<List<VideoItem>> SearchVideoItems(string tag)
         {
-            return Locator.VideoLibraryVM.VideoRepository.Contains(nameof(VideoItem.Name), tag);
+            return Locator.VideoLibrary.ContainsVideo(nameof(VideoItem.Name), tag);
         }
 
         public static IEnumerable<VideoItem> SearchShowItems(string tag)
         {
-            return Locator.VideoLibraryVM.Shows.SelectMany(show => show.Episodes).Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+            return Locator.VideoLibrary.Shows.SelectMany(show => show.Episodes).Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
         }
     }
 }
