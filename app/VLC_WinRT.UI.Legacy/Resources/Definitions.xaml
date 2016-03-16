@@ -1,7 +1,9 @@
-﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:VLC_WinRT.UI.Legacy.Resources">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:VLC_WinRT.UI.Legacy.Resources"
+                    xmlns:utils="using:VLC_WinRT.Utils">
+
+    <utils:Strings x:Key="Strings" />
 
     <!-- DEFAULT MARGINS -->
     <Thickness x:Key="FrameMargin">16,0</Thickness>
