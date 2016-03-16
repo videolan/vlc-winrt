@@ -35,14 +35,6 @@ namespace VLC_WinRT.Views.MainPages
 
         private void Responsive()
         {
-            if (Window.Current.Bounds.Width < 550)
-            {
-                VisualStateUtilities.GoToState(this, "Narrow", false);
-            }
-            else
-            {
-                VisualStateUtilities.GoToState(this, "Wide", false);
-            }
         }
     }
 }
