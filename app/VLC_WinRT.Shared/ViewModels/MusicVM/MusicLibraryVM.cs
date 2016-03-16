@@ -304,7 +304,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public void OnNavigatedTo()
         {
             ResetLibrary();
-            Task.Run(() => MusicLibrary.Initialize());
         }
 
         public void OnNavigatedToArtists()
@@ -370,13 +369,12 @@ namespace VLC_WinRT.ViewModels.MusicVM
             {
                 MusicLibrary.Albums.CollectionChanged -= Albums_CollectionChanged;
                 MusicLibrary.Albums.Clear();
-                return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                {
-                    GroupedAlbums = null;
-                    LoadingStateAlbums = LoadingState.NotLoaded;
-                });
             }
-            return null;
+            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            {
+                GroupedAlbums = null;
+                LoadingStateAlbums = LoadingState.NotLoaded;
+            });
         }
 
         Task InitializeAlbums()

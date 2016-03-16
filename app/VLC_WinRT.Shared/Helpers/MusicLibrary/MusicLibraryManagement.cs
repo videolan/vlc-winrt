@@ -115,6 +115,81 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         #endregion
 
         #region Load Collections from DB
+        public void DropTablesIfNeeded()
+        {
+            if (!Numbers.NeedsToDrop()) return;
+            trackCollectionRepository.Drop();
+            tracklistItemRepository.Drop();
+            albumDatabase.Drop();
+            artistDatabase.Drop();
+            trackDatabase.Drop();
+            trackCollectionRepository.Initialize();
+            tracklistItemRepository.Initialize();
+            albumDatabase.Initialize();
+            artistDatabase.Initialize();
+            trackDatabase.Initialize();
+        }
+
+        public async Task PerformRoutineCheckIfNotBusy()
+        {
+            // Routine check to add new files if there are new ones
+            //if (!IsBusy)
+            //{
+            //    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            //    {
+            //        IsBusy = true;
+            //    });
+                   await StartIndexing();
+            //    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            //    {
+            //        IsBusy = false;
+            //        Locator.MainVM.InformationText = "";
+            //    });
+            //}
+        }
+
+        public async Task Initialize()
+        {
+            Artists = new SmartCollection<ArtistItem>();
+            Albums = new SmartCollection<AlbumItem>();
+            Tracks = new SmartCollection<TrackItem>();
+            TrackCollections = new SmartCollection<TrackCollection>();
+
+            if (_alreadyIndexedOnce) return;
+            _alreadyIndexedOnce = true;
+            // Doing full indexing from scratch if 0 tracks are found
+            if (await IsMusicDatabaseEmpty())
+            {
+                await StartIndexing();
+            }
+            else
+            {
+                // Else, perform a Routine Indexing (without dropping tables)
+                await PerformMusicLibraryIndexing();
+            }
+        }
+
+        async Task StartIndexing()
+        {
+            artistDatabase.DeleteAll();
+            albumDatabase.DeleteAll();
+            trackDatabase.DeleteAll();
+            trackCollectionRepository.DeleteAll();
+            tracklistItemRepository.DeleteAll();
+
+            artistDatabase.Initialize();
+            albumDatabase.Initialize();
+            trackDatabase.Initialize();
+            trackCollectionRepository.Initialize();
+            tracklistItemRepository.Initialize();
+
+            Artists?.Clear();
+            Albums?.Clear();
+            Tracks?.Clear();
+            TrackCollections?.Clear();
+            await PerformMusicLibraryIndexing();
+        }
+        
         public async Task LoadAlbumsFromDatabase()
         {
             try
@@ -243,34 +318,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         {
             try
             {
-                IReadOnlyList<StorageFile> files = null;
 #if WINDOWS_PHONE_APP
-                if (OSHelper.IsWindows10) // On Windows 10 Mobile devices, the API is present, but we need to use Reflection to use it
-                {
-                    var queryOptions = new QueryOptions { FolderDepth = FolderDepth.Deep };
-                    foreach (var type in VLCFileExtensions.Supported)
-                        queryOptions.FileTypeFilter.Add(type);
-                    var fileQueryResult = KnownFolders.MusicLibrary.CreateFileQueryWithOptions(queryOptions);
-                    var getFilesMethod = fileQueryResult.GetType()
-                                        .GetRuntimeMethods()?
-                                        .Where(x => x.Name == nameof(fileQueryResult.GetFilesAsync))?
-                                        .FirstOrDefault(x => !x.GetParameters().Any());
-                    if (getFilesMethod != null)
-                    {
-                        files = await ((IAsyncOperation<IReadOnlyList<StorageFile>>)getFilesMethod.Invoke(fileQueryResult, null));
-                    }
-                    else
-                    {
-                        await GetAllMusicFolders();
-                        return;
-                    }
-                }
-                else
-                {
-                    await GetAllMusicFolders();
-                    return;
-                }
+                await GetAllMusicFolders();
+                return;
 #else
+                IReadOnlyList<StorageFile> files = null;
                 var queryOptions = new QueryOptions { FolderDepth = FolderDepth.Deep };
                 foreach (var type in VLCFileExtensions.Supported)
                     queryOptions.FileTypeFilter.Add(type);
@@ -301,24 +353,18 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         async Task GetAllMusicFolders()
         {
+#if WINDOWS_PHONE_APP
             try
             {
-#if WINDOWS_APP
-                StorageLibrary musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
-                foreach (StorageFolder storageFolder in musicLibrary.Folders)
-                {
-                    await CreateDatabaseFromMusicFolder(storageFolder);
-                }
-#else
                 StorageFolder musicLibrary = KnownFolders.MusicLibrary;
                 LogHelper.Log("Searching for music from Phone MusicLibrary ...");
                 await CreateDatabaseFromMusicFolder(musicLibrary);
-#endif
             }
             catch (Exception e)
             {
                 LogHelper.Log(StringsHelper.ExceptionToString(e));
             }
+#endif
         }
 
         async Task CreateDatabaseFromMusicFolder(StorageFolder musicFolder)
@@ -443,7 +489,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         Genre = mP.Genre
                     };
                     await trackDatabase.Add(track);
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => AddTrack(track));
+                    AddTrack(track);
                 }
             }
             catch (Exception e)
@@ -931,81 +977,6 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         public Task<List<TrackItem>> LoadTracks()
         {
             return trackDatabase.LoadTracks();
-        }
-
-        public void DropTablesIfNeeded()
-        {
-            if (!Numbers.NeedsToDrop()) return;
-            trackCollectionRepository.Drop();
-            tracklistItemRepository.Drop();
-            albumDatabase.Drop();
-            artistDatabase.Drop();
-            trackDatabase.Drop();
-            trackCollectionRepository.Initialize();
-            tracklistItemRepository.Initialize();
-            albumDatabase.Initialize();
-            artistDatabase.Initialize();
-            trackDatabase.Initialize();
-        }
-
-        public async Task PerformRoutineCheckIfNotBusy()
-        {
-            // Routine check to add new files if there are new ones
-            //if (!IsBusy)
-            //{
-            //    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-            //    {
-            //        IsBusy = true;
-            //    });
-            await StartIndexing();
-            //    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-            //    {
-            //        IsBusy = false;
-            //        Locator.MainVM.InformationText = "";
-            //    });
-            //}
-        }
-
-        public async Task Initialize()
-        {
-            Artists = new SmartCollection<ArtistItem>();
-            Albums = new SmartCollection<AlbumItem>();
-            Tracks = new SmartCollection<TrackItem>();
-            TrackCollections = new SmartCollection<TrackCollection>();
-
-            if (_alreadyIndexedOnce) return;
-            _alreadyIndexedOnce = true;
-            // Doing full indexing from scratch if 0 tracks are found
-            if (await IsMusicDatabaseEmpty())
-            {
-                await StartIndexing();
-            }
-            else
-            {
-                // Else, perform a Routine Indexing (without dropping tables)
-                await PerformMusicLibraryIndexing();
-            }
-        }
-
-        async Task StartIndexing()
-        {
-            artistDatabase.DeleteAll();
-            albumDatabase.DeleteAll();
-            trackDatabase.DeleteAll();
-            trackCollectionRepository.DeleteAll();
-            tracklistItemRepository.DeleteAll();
-
-            artistDatabase.Initialize();
-            albumDatabase.Initialize();
-            trackDatabase.Initialize();
-            trackCollectionRepository.Initialize();
-            tracklistItemRepository.Initialize();
-
-            Artists?.Clear();
-            Albums?.Clear();
-            Tracks?.Clear();
-            TrackCollections?.Clear();
-            await PerformMusicLibraryIndexing();
         }
     }
 }
