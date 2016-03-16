@@ -33,7 +33,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 {
     public class MusicLibraryVM : BindableBase
     {
-        public MusicLibraryManagement MusicLibrary = new MusicLibraryManagement();
+        MusicLibrary MusicLibrary => Locator.MusicLibrary;
         #region private fields
         private ObservableCollection<GroupItemList<ArtistItem>> _groupedArtists;
         private ObservableCollection<ArtistItem> _topArtists = new ObservableCollection<ArtistItem>();

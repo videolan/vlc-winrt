@@ -33,7 +33,7 @@ using VLC_WinRT.Database;
 
 namespace VLC_WinRT.Helpers.MusicLibrary
 {
-    public class MusicLibraryManagement
+    public class MusicLibrary
     {
         #region properties
         private bool _alreadyIndexedOnce = false;
@@ -469,7 +469,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         AddAlbum(album);
                         await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                         {
-                            Locator.MainVM.InformationText = string.Format(Strings.AlbumsFound, Locator.MusicLibraryVM.MusicLibrary.Albums.Count);
+                            Locator.MainVM.InformationText = string.Format(Strings.AlbumsFound, Locator.MusicLibrary.Albums.Count);
                         });
                     }
 

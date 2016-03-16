@@ -14,7 +14,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
             var md = new MessageDialog(Strings.YourPlaylistWontBeAccessible, Strings.AreYouSure );
             md.Commands.Add(new UICommand("yes", async command =>
             {
-                await Locator.MusicLibraryVM.MusicLibrary.DeletePlaylist(Locator.MusicLibraryVM.CurrentTrackCollection);
+                await Locator.MusicLibrary.DeletePlaylist(Locator.MusicLibraryVM.CurrentTrackCollection);
                 Locator.MusicLibraryVM.CurrentTrackCollection = null;
                 Locator.NavigationService.GoBack_Specific();
             }));

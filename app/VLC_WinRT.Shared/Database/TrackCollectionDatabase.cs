@@ -55,10 +55,10 @@ namespace VLC_WinRT.Database
         public async Task Remove(TrackCollection trackCollection)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            var loadTracks = await Locator.MusicLibraryVM.MusicLibrary.LoadTracks(trackCollection);
+            var loadTracks = await Locator.MusicLibrary.LoadTracks(trackCollection);
             foreach (TracklistItem tracklistItem in loadTracks)
             {
-                await Locator.MusicLibraryVM.MusicLibrary.Remove(tracklistItem);
+                await Locator.MusicLibrary.Remove(tracklistItem);
             }
             await connection.DeleteAsync(trackCollection);
         }

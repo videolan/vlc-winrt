@@ -135,7 +135,7 @@ namespace VLC_WinRT
                                 if (file == null) return;
                                 var byteArray = await ConvertImage.ConvertImagetoByte(file);
                                 await Locator.MusicMetaService.SaveAlbumImageAsync(SelectedAlbumItem, byteArray);
-                                await Locator.MusicLibraryVM.MusicLibrary.Update(SelectedAlbumItem);
+                                await Locator.MusicLibrary.Update(SelectedAlbumItem);
                                 SelectedAlbumItem = null;
                                 break;
                         }
@@ -244,14 +244,14 @@ namespace VLC_WinRT
             AppViewHelper.SetAppView(true);
 #endif
             Window.Current.Activate();
-            Locator.MusicLibraryVM.MusicLibrary.DropTablesIfNeeded();
+            Locator.MusicLibrary.DropTablesIfNeeded();
             Locator.VideoLibrary.DropTablesIfNeeded();
             Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
 
             await Task.Run(async () =>
             {
                 await Locator.VideoLibrary.Initialize();
-                await Locator.MusicLibraryVM.MusicLibrary.Initialize();
+                await Locator.MusicLibrary.Initialize();
             });
         }
 

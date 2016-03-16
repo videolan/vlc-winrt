@@ -11,11 +11,11 @@ namespace VLC_WinRT.Commands.MusicLibrary
         {
             if (parameter is TrackItem)
             {
-                await Locator.MusicLibraryVM.MusicLibrary.AddToPlaylist(parameter as TrackItem);
+                await Locator.MusicLibrary.AddToPlaylist(parameter as TrackItem);
             }
             else if (parameter is AlbumItem)
             {
-                await Locator.MusicLibraryVM.MusicLibrary.AddToPlaylist(parameter as AlbumItem);
+                await Locator.MusicLibrary.AddToPlaylist(parameter as AlbumItem);
             }
         }
     }

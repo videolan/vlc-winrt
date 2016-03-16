@@ -292,7 +292,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             Playlist = new SmartCollection<IVLCMedia>();
             foreach (int trackId in trackIds)
             {
-                var trackItem = await Locator.MusicLibraryVM.MusicLibrary.LoadTrackById(trackId);
+                var trackItem = await Locator.MusicLibrary.LoadTrackById(trackId);
                 if (trackItem != null)
                     Playlist.Add(trackItem);
             }

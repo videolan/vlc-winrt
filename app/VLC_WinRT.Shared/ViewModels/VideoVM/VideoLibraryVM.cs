@@ -28,7 +28,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
 {
     public class VideoLibraryVM : BindableBase
     {
-        public VideoLibrary VideoLibrary => Locator.VideoLibrary;
+        VideoLibrary VideoLibrary => Locator.VideoLibrary;
         #region private fields
         #endregion
 

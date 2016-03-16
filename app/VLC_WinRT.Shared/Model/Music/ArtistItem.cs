@@ -121,7 +121,7 @@ namespace VLC_WinRT.Model.Music
                 if (!_isAlbumsLoaded)
                 {
                     _isAlbumsLoaded = true;
-                    Task.Run(async () => await Locator.MusicLibraryVM.MusicLibrary.PopulateAlbums(this));
+                    Task.Run(async () => await Locator.MusicLibrary.PopulateAlbums(this));
                 }
                 return _albumItems ?? (_albumItems = new ObservableCollection<AlbumItem>());
             }
@@ -138,7 +138,7 @@ namespace VLC_WinRT.Model.Music
                 if (!_isAlbumsLoaded)
                 {
                     _isAlbumsLoaded = true;
-                    Task.Run(async () => await Locator.MusicLibraryVM.MusicLibrary.PopulateAlbumsWithTracks(this));
+                    Task.Run(async () => await Locator.MusicLibrary.PopulateAlbumsWithTracks(this));
                 }
                 return _albumsGrouped;
             }

@@ -53,9 +53,9 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         async Task<ArtistItem> GetFirstArtist()
         {
-            var artistsCount = await Locator.MusicLibraryVM.MusicLibrary.ArtistCount();
+            var artistsCount = await Locator.MusicLibrary.ArtistCount();
             var random = new Random().Next(0, artistsCount - 1);
-            var firstArtist = await Locator.MusicLibraryVM.MusicLibrary.ArtistAt(random);
+            var firstArtist = await Locator.MusicLibrary.ArtistAt(random);
             return firstArtist;
         }
 
@@ -101,7 +101,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         static List<ArtistItem> InCollection(List<string> artistsName)
         {
-            var artists = artistsName.Select(artistName => Locator.MusicLibraryVM.MusicLibrary.LoadViaArtistName(artistName).Result).Where(artistItem => artistItem != null).ToList();
+            var artists = artistsName.Select(artistName => Locator.MusicLibrary.LoadViaArtistName(artistName).Result).Where(artistItem => artistItem != null).ToList();
             return artists;
         }
     }
