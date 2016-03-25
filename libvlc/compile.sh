@@ -126,7 +126,8 @@ export PKG_CONFIG_LIBDIR="`pwd`/contrib/${TARGET_TUPLE}/lib/pkgconfig"
 make fetch
 make $MAKEFLAGS
 
-cd ../.. && mkdir -p winrt && cd winrt
+BUILD_FOLDER=winrt-$1
+cd ../.. && mkdir -p ${BUILD_FOLDER} && cd ${BUILD_FOLDER}
 
 echo "Bootstraping"
 ../bootstrap
