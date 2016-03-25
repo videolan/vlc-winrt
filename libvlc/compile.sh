@@ -76,8 +76,9 @@ EXTRA_CPPFLAGS="-D_WIN32_WINNT=0x602 -DWINVER=0x602 -DWINSTORECOMPAT -D_UNICODE 
 EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat -lruntimeobject"
 
 echo "Building the contribs"
-mkdir -p contrib/winrt
-cd contrib/winrt
+CONTRIB_FOLDER=contrib/winrt-$1
+mkdir -p $CONTRIB_FOLDER
+cd $CONTRIB_FOLDER
 ../bootstrap --host=${TARGET_TUPLE} --disable-disc --disable-sout \
     --disable-sdl \
     --disable-schroedinger \
