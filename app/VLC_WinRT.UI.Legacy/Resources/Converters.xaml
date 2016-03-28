@@ -42,6 +42,7 @@
     <converters:VideoViewStringifyConverter x:Key="VideoViewStringifyConverter" />
     <converters:MusicViewStringifyConverter x:Key="MusicViewStringifyConverter" />
     <converters:VLCPageStringifyConverter x:Key="VLCPageStringifyConverter" />
+    <converters:LanguageStringifyConverter x:Key="LanguageStringifyConverter" />
     <converters:OrderTypeStringifyConverter x:Key="OrderTypeStringifyConverter" />
     <converters:VLCSurfaceZoomStringifyConverter x:Key="VLCSurfaceZoomStringifyConverter" />
 </ResourceDictionary>

@@ -97,6 +97,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EmptyTimeSpanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FavoriteLabelConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FavoriteSymbolConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\LanguageStringifyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MillisecondsStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MiniPlayerVisibilityFromPlayingTypeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MusicViewStringifyConverter.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\FileExplorer\RootFolderType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\FileExplorer\VLCStorageFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\KeyboardAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Languages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\LoadingState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\AlbumItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\ArtistItem.cs" />

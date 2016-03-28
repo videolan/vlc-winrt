@@ -699,4 +699,19 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Similar artists</value>
   </data>
+  <data name="EnglishLanguage" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="FrenchLanguage" xml:space="preserve">
+    <value>French</value>
+  </data>
+  <data name="JapaneseLanguage" xml:space="preserve">
+    <value>Japanese</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Languages</value>
+  </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>Select the language VLC will be displayed in</value>
+  </data>
 </root>

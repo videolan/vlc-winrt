@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources.Core;
 using Windows.System;
 using Windows.UI.Xaml;
 using VLC_WinRT.Database;
@@ -50,6 +51,7 @@ namespace VLC_WinRT.ViewModels.Settings
         private OrderListing _albumsOrderListing;
         private MusicView _musicView;
         private VLCPage _homePage;
+        private Languages _selectedLanguage;
         private string _lastFmUserName;
         private string _lastFmPassword;
         private string _subtitlesEncodingValue;
@@ -153,6 +155,16 @@ namespace VLC_WinRT.ViewModels.Settings
             return applicationTheme;
         }
 
+        public static Languages GetSelectedLanguage()
+        {
+            var language = ApplicationSettingsHelper.ReadSettingsValue("Languages", false);
+            if (language == null)
+            {
+                return Languages.English;
+            }
+            return (Languages)language;
+        }
+
 #if WINDOWS_PHONE_APP
         public bool ContinueVideoPlaybackInBackground { get; } = false;
 #else
@@ -248,6 +260,13 @@ namespace VLC_WinRT.ViewModels.Settings
             VLCPage.MainPageVideo,
             VLCPage.MainPageMusic,
             VLCPage.MainPageFileExplorer
+        };
+
+        public List<Languages> LanguageCollection { get; set; } = new List<Languages>()
+        {
+            Languages.English,
+            Languages.French,
+            Languages.Japanese
         };
 
         public List<OrderType> AlbumsOrderTypeCollection
@@ -494,6 +513,18 @@ namespace VLC_WinRT.ViewModels.Settings
             }
         }
 
+        public Languages SelectedLanguage
+        {
+            get { return GetSelectedLanguage(); }
+            set
+            {
+
+                ApplicationSettingsHelper.SaveSettingsValue("Languages", (int)value, false);
+                SwitchLanaguage(value);
+                SetProperty(ref _selectedLanguage, value);
+            }
+        }
+
         public VLCPage HomePage
         {
             get
@@ -543,6 +574,28 @@ namespace VLC_WinRT.ViewModels.Settings
         }
 
         public ChangeSettingsViewCommand ChangeSettingsViewCommand { get; } = new ChangeSettingsViewCommand();
+
+        public static void SwitchLanaguage(Languages language)
+        {
+            var currentCulture = "en-US";
+            switch (language)
+            {
+                case Languages.English:
+                    currentCulture = "en-US";
+                    break;
+                case Languages.Japanese:
+                    currentCulture = "ja-JP";
+                    break;
+                case Languages.French:
+                    currentCulture = "fr-FR";
+                    break;
+            }
+            var culture = new CultureInfo(currentCulture);
+            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = culture.Name;
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+            ResourceManager.Current.DefaultContext.Reset();
+        }
 
 #if WINDOWS_PHONE_APP
 #else

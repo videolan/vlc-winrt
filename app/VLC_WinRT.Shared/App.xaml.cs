@@ -237,6 +237,7 @@ namespace VLC_WinRT
             Dispatcher = Window.Current.Dispatcher;
             Window.Current.Content = new MainPage();
             await SplitShell.TemplateApplied.Task;
+            SetLanguage();
             SetShellDecoration();
 #if WINDOWS_PHONE_APP
             await StatusBarHelper.Initialize();
@@ -253,6 +254,12 @@ namespace VLC_WinRT
                 await Locator.VideoLibrary.Initialize();
                 await Locator.MusicLibrary.Initialize();
             });
+        }
+
+        public static void SetLanguage()
+        {
+            var language = SettingsViewModel.GetSelectedLanguage();
+            SettingsViewModel.SwitchLanaguage(language);
         }
 
         public static void SetShellDecoration(bool forceTemporaryAppTheme = false, bool forceDark = false)

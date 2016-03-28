@@ -329,6 +329,11 @@ namespace VLC_WinRT.Utils
 
         public static string Theme => _resourcesLoader.GetString(nameof(Theme));
         public static string AppTheme => _resourcesLoader.GetString(nameof(AppTheme));
+        public static string Languages => _resourcesLoader.GetString(nameof(Languages));
+        public static string SelectLanguageDescription => _resourcesLoader.GetString(nameof(SelectLanguageDescription));
+        public static string EnglishLanguage => _resourcesLoader.GetString(nameof(EnglishLanguage));
+        public static string FrenchLanguage => _resourcesLoader.GetString(nameof(FrenchLanguage));
+        public static string JapaneseLanguage => _resourcesLoader.GetString(nameof(JapaneseLanguage));
         public static string HomePage => _resourcesLoader.GetString(nameof(HomePage));
         public static string HomePageDescription => _resourcesLoader.GetString(nameof(HomePageDescription));
         public static string Animations => _resourcesLoader.GetString(nameof(Animations));

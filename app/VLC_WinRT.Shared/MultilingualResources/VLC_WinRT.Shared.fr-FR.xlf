@@ -782,6 +782,26 @@
           <source>Similar artists</source>
           <target state="new">Similar artists</target>
         </trans-unit>
+        <trans-unit id="EnglishLanguage" translate="yes" xml:space="preserve">
+          <source>English</source>
+          <target state="new">English</target>
+        </trans-unit>
+        <trans-unit id="FrenchLanguage" translate="yes" xml:space="preserve">
+          <source>French</source>
+          <target state="new">French</target>
+        </trans-unit>
+        <trans-unit id="JapaneseLanguage" translate="yes" xml:space="preserve">
+          <source>Japanese</source>
+          <target state="new">Japanese</target>
+        </trans-unit>
+        <trans-unit id="Languages" translate="yes" xml:space="preserve">
+          <source>Languages</source>
+          <target state="new">Languages</target>
+        </trans-unit>
+        <trans-unit id="SelectLanguageDescription" translate="yes" xml:space="preserve">
+          <source>Select the language VLC will be displayed in</source>
+          <target state="new">Select the language VLC will be displayed in</target>
+        </trans-unit>
       </group>
     </body>
   </file>
