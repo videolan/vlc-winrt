@@ -518,7 +518,6 @@ namespace VLC_WinRT.ViewModels.Settings
             get { return GetSelectedLanguage(); }
             set
             {
-
                 ApplicationSettingsHelper.SaveSettingsValue("Languages", (int)value, false);
                 SwitchLanaguage(value);
                 SetProperty(ref _selectedLanguage, value);

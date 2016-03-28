@@ -8,171 +8,171 @@
       <group id="VLC_WINRT.SHARED/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
         <trans-unit id="AboutTheApp" translate="yes" xml:space="preserve">
           <source>about the app</source>
-          <target state="new">about the app</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">アプリについて</target>
         </trans-unit>
         <trans-unit id="Add" translate="yes" xml:space="preserve">
           <source>add</source>
-          <target state="new">add</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">追加</target>
         </trans-unit>
         <trans-unit id="AddDetails" translate="yes" xml:space="preserve">
           <source>add details</source>
-          <target state="new">add details</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">詳細を追加します。</target>
         </trans-unit>
         <trans-unit id="AddFolder" translate="yes" xml:space="preserve">
           <source>add folder</source>
-          <target state="new">add folder</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">フォルダーを追加します。</target>
         </trans-unit>
         <trans-unit id="AddToCollection" translate="yes" xml:space="preserve">
           <source>add to collection</source>
-          <target state="new">add to collection</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">コレクションに追加</target>
         </trans-unit>
         <trans-unit id="AddToCurrentPlaylist" translate="yes" xml:space="preserve">
           <source>add to current playlist</source>
-          <target state="new">add to current playlist</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">現在のプレイリストに追加します。</target>
         </trans-unit>
         <trans-unit id="AddToPlaylist" translate="yes" xml:space="preserve">
           <source>add to playlist</source>
-          <target state="new">add to playlist</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">プレイリストに追加します。</target>
         </trans-unit>
         <trans-unit id="Albums" translate="yes" xml:space="preserve">
           <source>albums</source>
-          <target state="new">albums</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">アルバム</target>
         </trans-unit>
         <trans-unit id="AlbumsFound" translate="yes" xml:space="preserve">
           <source>albums found : {0}</source>
-          <target state="new">albums found : {0}</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">アルバムが見つかりました: {0}</target>
         </trans-unit>
         <trans-unit id="AllBackers" translate="yes" xml:space="preserve">
           <source>all backers</source>
-          <target state="new">all backers</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">すべての支持</target>
         </trans-unit>
         <trans-unit id="Animations" translate="yes" xml:space="preserve">
           <source>animations</source>
-          <target state="new">animations</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">アニメーション</target>
         </trans-unit>
         <trans-unit id="AppTheme" translate="yes" xml:space="preserve">
           <source>application theme</source>
-          <target state="new">application theme</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">アプリケーション テーマ</target>
         </trans-unit>
         <trans-unit id="Artists" translate="yes" xml:space="preserve">
           <source>artists</source>
-          <target state="new">artists</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">アーティスト</target>
         </trans-unit>
         <trans-unit id="Audio" translate="yes" xml:space="preserve">
           <source>audio</source>
-          <target state="new">audio</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">オーディオ</target>
         </trans-unit>
         <trans-unit id="AudioDelay" translate="yes" xml:space="preserve">
           <source>audio delay</source>
-          <target state="new">audio delay</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">オーディオ遅延</target>
         </trans-unit>
         <trans-unit id="AudioTracks" translate="yes" xml:space="preserve">
           <source>audio tracks</source>
-          <target state="new">audio tracks</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">オーディオ トラック</target>
         </trans-unit>
         <trans-unit id="Back" translate="yes" xml:space="preserve">
           <source>back</source>
-          <target state="new">back</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">戻る</target>
         </trans-unit>
         <trans-unit id="CameraRoll" translate="yes" xml:space="preserve">
           <source>camera roll</source>
-          <target state="new">camera roll</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">カメラ ロール</target>
         </trans-unit>
         <trans-unit id="ChangeAlbumCover" translate="yes" xml:space="preserve">
           <source>change album cover</source>
-          <target state="new">change album cover</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">アルバム カバーを変更します。</target>
         </trans-unit>
         <trans-unit id="Chapters" translate="yes" xml:space="preserve">
           <source>chapters</source>
-          <target state="new">chapters</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">章</target>
         </trans-unit>
         <trans-unit id="CheckCredentials" translate="yes" xml:space="preserve">
           <source>an error occured, please check your credentials</source>
-          <target state="new">an error occured, please check your credentials</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">エラーが発生しました、ユーザーの資格情報を確認してください。</target>
         </trans-unit>
         <trans-unit id="Connect" translate="yes" xml:space="preserve">
           <source>connect</source>
-          <target state="new">connect</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">接続</target>
         </trans-unit>
         <trans-unit id="ConnectedToLastFM" translate="yes" xml:space="preserve">
           <source>connected to Last.FM</source>
-          <target state="new">connected to Last.FM</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Last.FM に接続されています。</target>
         </trans-unit>
         <trans-unit id="Connecting" translate="yes" xml:space="preserve">
           <source>connecting</source>
-          <target state="new">connecting</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">接続中</target>
         </trans-unit>
         <trans-unit id="ConnectToLastFM" translate="yes" xml:space="preserve">
           <source>connect to Last.FM</source>
-          <target state="new">connect to Last.FM</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Last.FM への接続します。</target>
         </trans-unit>
         <trans-unit id="CrashReport" translate="yes" xml:space="preserve">
           <source>crash report</source>
-          <target state="new">crash report</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">クラッシュ レポート</target>
         </trans-unit>
         <trans-unit id="DecreaseSpeed" translate="yes" xml:space="preserve">
           <source>decrease speed</source>
-          <target state="new">decrease speed</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">速度を下げる</target>
         </trans-unit>
         <trans-unit id="DecreaseVolume" translate="yes" xml:space="preserve">
           <source>decrease volume</source>
-          <target state="new">decrease volume</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">音量を下げる</target>
         </trans-unit>
         <trans-unit id="DeletePlaylist" translate="yes" xml:space="preserve">
           <source>delete playlist</source>
-          <target state="new">delete playlist</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">プレイリストを削除します。</target>
         </trans-unit>
         <trans-unit id="DeleteSelected" translate="yes" xml:space="preserve">
           <source>delete selected</source>
-          <target state="new">delete selected</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">選択項目の削除</target>
         </trans-unit>
         <trans-unit id="EditMetadata" translate="yes" xml:space="preserve">
           <source>edit metadata</source>
-          <target state="new">edit metadata</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">メタデータを編集します。</target>
         </trans-unit>
         <trans-unit id="ElementsNotFound" translate="yes" xml:space="preserve">
           <source>we did not find elements in there</source>
-          <target state="new">we did not find elements in there</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">そこに要素が見つかりませんでした。</target>
         </trans-unit>
         <trans-unit id="EnterURL" translate="yes" xml:space="preserve">
           <source>enter a url</source>
-          <target state="new">enter a url</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">url を入力してください。</target>
         </trans-unit>
         <trans-unit id="Episode" translate="yes" xml:space="preserve">
           <source>episode</source>
-          <target state="new">episode</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">この回のタイトル|エピソード</target>
         </trans-unit>
         <trans-unit id="ErrorSendingFeedback" translate="yes" xml:space="preserve">
           <source>an error occured while sending the feedback</source>
-          <target state="new">an error occured while sending the feedback</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">フィードバックの送信中にエラーが発生しました。</target>
         </trans-unit>
         <trans-unit id="EvenIfBackground" translate="yes" xml:space="preserve">
           <source>even if the app is in background</source>
-          <target state="new">even if the app is in background</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">場合でも、アプリがバック グラウンドに</target>
         </trans-unit>
         <trans-unit id="EvenIfNotBackground" translate="yes" xml:space="preserve">
           <source>even if the app is not in background</source>
-          <target state="new">even if the app is not in background</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">アプリがバック グラウンドでない場合でも</target>
         </trans-unit>
         <trans-unit id="FailFilePlayBackground" translate="yes" xml:space="preserve">
           <source>This file may not play in the background</source>
-          <target state="new">This file may not play in the background</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">このファイルがバック グラウンドで再生されません。</target>
         </trans-unit>
         <trans-unit id="FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
           <source>VLC failed to navigate to the Video Player page</source>
-          <target state="new">VLC failed to navigate to the Video Player page</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC がビデオ プレーヤーのページに移動できませんでした。</target>
         </trans-unit>
         <trans-unit id="FailOpenVideo" translate="yes" xml:space="preserve">
           <source>VLC failed to open the video</source>
-          <target state="new">VLC failed to open the video</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC がビデオを開くに失敗しました</target>
         </trans-unit>
         <trans-unit id="FailStartVLCEngine" translate="yes" xml:space="preserve">
           <source>The app failed to start the VLC engine</source>
-          <target state="new">The app failed to start the VLC engine</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">アプリは、VLC のエンジンを開始できませんでした。</target>
         </trans-unit>
         <trans-unit id="FeedbackThankYou" translate="yes" xml:space="preserve">
           <source>feedback sent! thank you</source>
-          <target state="new">feedback sent! thank you</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">送られたフィードバック!ありがとう</target>
         </trans-unit>
         <trans-unit id="FileExplorer" translate="yes" xml:space="preserve">
           <source>files</source>
@@ -180,83 +180,83 @@
         </trans-unit>
         <trans-unit id="GoldPartners" translate="yes" xml:space="preserve">
           <source>gold partners</source>
-          <target state="new">gold partners</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ゴールド パートナー</target>
         </trans-unit>
         <trans-unit id="HardwareDecoding" translate="yes" xml:space="preserve">
           <source>hardware decoding</source>
-          <target state="new">hardware decoding</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ハードウェアのデコード</target>
         </trans-unit>
         <trans-unit id="HardwareDecodingDescription" translate="yes" xml:space="preserve">
           <source>Hardware decoding may not work on your device.</source>
-          <target state="new">Hardware decoding may not work on your device.</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ハードウェア デコードは、デバイスで動作しないかもしれない。</target>
         </trans-unit>
         <trans-unit id="HaveToSelectPlaylist" translate="yes" xml:space="preserve">
           <source>please select a playlist</source>
-          <target state="new">please select a playlist</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">再生リストを選択してください。</target>
         </trans-unit>
         <trans-unit id="Home" translate="yes" xml:space="preserve">
           <source>home</source>
-          <target state="new">home</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ホーム</target>
         </trans-unit>
         <trans-unit id="HomePage" translate="yes" xml:space="preserve">
           <source>home page</source>
-          <target state="new">home page</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ホーム ページ</target>
         </trans-unit>
         <trans-unit id="HomePageDescription" translate="yes" xml:space="preserve">
           <source>VLC will start on the selected page</source>
-          <target state="new">VLC will start on the selected page</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC は、選択したページに開始されます。</target>
         </trans-unit>
         <trans-unit id="HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
           <source>however you may find what you're looking for here</source>
-          <target state="new">however you may find what you're looking for here</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">しかしここで探しているものを見つける可能性があります。</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum1" translate="yes" xml:space="preserve">
           <source>to favorite an album, just press</source>
-          <target state="new">to favorite an album, just press</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">お気に入りのアルバムを押すだけ</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum2" translate="yes" xml:space="preserve">
           <source>and you'll get an instant access to it</source>
-          <target state="new">and you'll get an instant access to it</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">それに瞬時にアクセスを取得しますと</target>
         </trans-unit>
         <trans-unit id="ImportantSponsors" translate="yes" xml:space="preserve">
           <source>important sponsors</source>
-          <target state="new">important sponsors</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">重要なスポンサー</target>
         </trans-unit>
         <trans-unit id="IncreaseSpeed" translate="yes" xml:space="preserve">
           <source>increase speed</source>
-          <target state="new">increase speed</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">速度を上げる</target>
         </trans-unit>
         <trans-unit id="IncreaseVolume" translate="yes" xml:space="preserve">
           <source>increase volume</source>
-          <target state="new">increase volume</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">音量を上げる</target>
         </trans-unit>
         <trans-unit id="ItsEmpty" translate="yes" xml:space="preserve">
           <source>it's empty here</source>
-          <target state="new">it's empty here</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">それがここで空</target>
         </trans-unit>
         <trans-unit id="KeyboardShortcuts" translate="yes" xml:space="preserve">
           <source>keyboard shortcuts</source>
-          <target state="new">keyboard shortcuts</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">キーボード ショート カット</target>
         </trans-unit>
         <trans-unit id="Library" translate="yes" xml:space="preserve">
           <source>library</source>
-          <target state="new">library</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ライブラリ</target>
         </trans-unit>
         <trans-unit id="License" translate="yes" xml:space="preserve">
           <source>license</source>
-          <target state="new">license</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ライセンス</target>
         </trans-unit>
         <trans-unit id="Loading" translate="yes" xml:space="preserve">
           <source>loading</source>
-          <target state="new">loading</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">読み込み中</target>
         </trans-unit>
         <trans-unit id="LoadingMusic" translate="yes" xml:space="preserve">
           <source>loading music</source>
-          <target state="new">loading music</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">音楽を読み込む</target>
         </trans-unit>
         <trans-unit id="MostPlayedArtists" translate="yes" xml:space="preserve">
           <source>most played artists</source>
-          <target state="new">most played artists</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">最も演奏アーティスト</target>
         </trans-unit>
         <trans-unit id="Music" translate="yes" xml:space="preserve">
           <source>music</source>
@@ -264,27 +264,27 @@
         </trans-unit>
         <trans-unit id="MusicFolders" translate="yes" xml:space="preserve">
           <source>music folders</source>
-          <target state="new">music folders</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ミュージック フォルダ</target>
         </trans-unit>
         <trans-unit id="MusicFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search songs that are in your music library. You can add folders to your library here</source>
-          <target state="new">VLC will only search songs that are in your music library. You can add folders to your library here</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC は、あなたの音楽ライブラリにある曲をのみ検索されます。ここにあなたのライブラリにフォルダーを追加することができます。</target>
         </trans-unit>
         <trans-unit id="MusicSettings" translate="yes" xml:space="preserve">
           <source>music settings</source>
-          <target state="new">music settings</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">音楽の設定</target>
         </trans-unit>
         <trans-unit id="MusicShows" translate="yes" xml:space="preserve">
           <source>music shows</source>
-          <target state="new">music shows</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">音楽番組</target>
         </trans-unit>
         <trans-unit id="Mute" translate="yes" xml:space="preserve">
           <source>mute</source>
-          <target state="new">mute</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ミュート</target>
         </trans-unit>
         <trans-unit id="MyPlaylists" translate="yes" xml:space="preserve">
           <source>my playlists</source>
-          <target state="new">my playlists</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">私のプレイリスト</target>
         </trans-unit>
         <trans-unit id="Network" translate="yes" xml:space="preserve">
           <source>network</source>
@@ -292,375 +292,375 @@
         </trans-unit>
         <trans-unit id="NewFeedback" translate="yes" xml:space="preserve">
           <source>new feedback</source>
-          <target state="new">new feedback</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">新しいフィードバック</target>
         </trans-unit>
         <trans-unit id="NewFeedbackSubtitle" translate="yes" xml:space="preserve">
           <source>what's the problem?</source>
-          <target state="new">what's the problem?</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">何が問題ですか。</target>
         </trans-unit>
         <trans-unit id="NewPlaylist" translate="yes" xml:space="preserve">
           <source>new playlist</source>
-          <target state="new">new playlist</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">新しい再生リスト</target>
         </trans-unit>
         <trans-unit id="NewVideos" translate="yes" xml:space="preserve">
           <source>new videos</source>
-          <target state="new">new videos</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">新しい動画</target>
         </trans-unit>
         <trans-unit id="No" translate="yes" xml:space="preserve">
           <source>no</source>
-          <target state="new">no</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">いいえ</target>
         </trans-unit>
         <trans-unit id="NoBiographyFound" translate="yes" xml:space="preserve">
           <source>no bio found for this artist</source>
-          <target state="new">no bio found for this artist</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">このアーティストの発見ないバイオ</target>
         </trans-unit>
         <trans-unit id="NoCameraVideosFound" translate="yes" xml:space="preserve">
           <source>no camera videos found</source>
-          <target state="new">no camera videos found</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ないカメラの動画発見</target>
         </trans-unit>
         <trans-unit id="NoFavoriteAlbums" translate="yes" xml:space="preserve">
           <source>no favorite albums</source>
-          <target state="new">no favorite albums</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">好きなアルバム</target>
         </trans-unit>
         <trans-unit id="NoInternetConnection" translate="yes" xml:space="preserve">
           <source>no internet connection</source>
-          <target state="new">no internet connection</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">いいえ、インターネット接続</target>
         </trans-unit>
         <trans-unit id="NoPlaylists" translate="yes" xml:space="preserve">
           <source>no playlists</source>
-          <target state="new">no playlists</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">再生リストがありません。</target>
         </trans-unit>
         <trans-unit id="NoShowsFound" translate="yes" xml:space="preserve">
           <source>no shows found</source>
-          <target state="new">no shows found</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ないショーを発見</target>
         </trans-unit>
         <trans-unit id="NotableSponsors" translate="yes" xml:space="preserve">
           <source>notable sponsors</source>
-          <target state="new">notable sponsors</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">注目のスポンサー</target>
         </trans-unit>
         <trans-unit id="NothingToSeeHere" translate="yes" xml:space="preserve">
           <source>there's nothing to see here</source>
-          <target state="new">there's nothing to see here</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ここを参照してくださいすることはないです。</target>
         </trans-unit>
         <trans-unit id="Notifications" translate="yes" xml:space="preserve">
           <source>notifications</source>
-          <target state="new">notifications</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">通知</target>
         </trans-unit>
         <trans-unit id="NotificationWhenSongStarts" translate="yes" xml:space="preserve">
           <source>notifications= when the song starts</source>
-          <target state="new">notifications= when the song starts</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">通知 = 歌が始まるときに</target>
         </trans-unit>
         <trans-unit id="NoVideosFound" translate="yes" xml:space="preserve">
           <source>we did not find videos</source>
-          <target state="new">we did not find videos</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">我々 はビデオを見つけられませんでした。</target>
         </trans-unit>
         <trans-unit id="NowPlaying" translate="yes" xml:space="preserve">
           <source>now playing</source>
-          <target state="new">now playing</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">プレイ ビュー</target>
         </trans-unit>
         <trans-unit id="OpenFile" translate="yes" xml:space="preserve">
           <source>open file</source>
-          <target state="new">open file</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ファイルを開く</target>
         </trans-unit>
         <trans-unit id="OpenStream" translate="yes" xml:space="preserve">
           <source>open stream</source>
-          <target state="new">open stream</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ストリームを開く</target>
         </trans-unit>
         <trans-unit id="OpenSubtitle" translate="yes" xml:space="preserve">
           <source>open subtitle</source>
-          <target state="new">open subtitle</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">字幕を開く</target>
         </trans-unit>
         <trans-unit id="OrderAscending" translate="yes" xml:space="preserve">
           <source>ascending</source>
-          <target state="new">ascending</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">昇順</target>
         </trans-unit>
         <trans-unit id="OrderByAlbum" translate="yes" xml:space="preserve">
           <source>by album</source>
-          <target state="new">by album</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">アルバム別</target>
         </trans-unit>
         <trans-unit id="OrderByArtist" translate="yes" xml:space="preserve">
           <source>by artist</source>
-          <target state="new">by artist</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">アーティスト別</target>
         </trans-unit>
         <trans-unit id="OrderByDate" translate="yes" xml:space="preserve">
           <source>by date</source>
-          <target state="new">by date</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">日付順</target>
         </trans-unit>
         <trans-unit id="OrderDescending" translate="yes" xml:space="preserve">
           <source>descending</source>
-          <target state="new">descending</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">降順</target>
         </trans-unit>
         <trans-unit id="Password" translate="yes" xml:space="preserve">
           <source>password</source>
-          <target state="new">password</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">パスワード</target>
         </trans-unit>
         <trans-unit id="Pause" translate="yes" xml:space="preserve">
           <source>pause</source>
-          <target state="new">pause</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">一時停止</target>
         </trans-unit>
         <trans-unit id="PinAlbum" translate="yes" xml:space="preserve">
           <source>pin album</source>
-          <target state="new">pin album</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ピン アルバム</target>
         </trans-unit>
         <trans-unit id="PinArtist" translate="yes" xml:space="preserve">
           <source>pin artist</source>
-          <target state="new">pin artist</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ピン アーティスト</target>
         </trans-unit>
         <trans-unit id="Play" translate="yes" xml:space="preserve">
           <source>play</source>
-          <target state="new">play</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">再生</target>
         </trans-unit>
         <trans-unit id="PlayAlbum" translate="yes" xml:space="preserve">
           <source>play album</source>
-          <target state="new">play album</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">アルバムを再生</target>
         </trans-unit>
         <trans-unit id="PlayAll" translate="yes" xml:space="preserve">
           <source>play all</source>
-          <target state="new">play all</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">すべて再生</target>
         </trans-unit>
         <trans-unit id="Playback" translate="yes" xml:space="preserve">
           <source>playback</source>
-          <target state="new">playback</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">再生</target>
         </trans-unit>
         <trans-unit id="PlayerSettings" translate="yes" xml:space="preserve">
           <source>player settings</source>
-          <target state="new">player settings</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">プレーヤーの設定</target>
         </trans-unit>
         <trans-unit id="PlayFolder" translate="yes" xml:space="preserve">
           <source>play folder</source>
-          <target state="new">play folder</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">フォルダーを再生します。</target>
         </trans-unit>
         <trans-unit id="Playlist" translate="yes" xml:space="preserve">
           <source>playlist</source>
-          <target state="new">playlist</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">再生リスト</target>
         </trans-unit>
         <trans-unit id="PlaylistAlreadyExists" translate="yes" xml:space="preserve">
           <source>this playlist already exists</source>
-          <target state="new">this playlist already exists</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">この再生リストはすでに存在します。</target>
         </trans-unit>
         <trans-unit id="PlaylistNamePlaceholder" translate="yes" xml:space="preserve">
           <source>playlist name</source>
-          <target state="new">playlist name</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">プレイリストの名前</target>
         </trans-unit>
         <trans-unit id="Playlists" translate="yes" xml:space="preserve">
           <source>playlists</source>
-          <target state="new">playlists</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">再生リスト</target>
         </trans-unit>
         <trans-unit id="PlayTrack" translate="yes" xml:space="preserve">
           <source>play track</source>
-          <target state="new">play track</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">トラックを再生します。</target>
         </trans-unit>
         <trans-unit id="PlayVideo" translate="yes" xml:space="preserve">
           <source>play video</source>
-          <target state="new">play video</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ビデオを再生します。</target>
         </trans-unit>
         <trans-unit id="PremiumSponsors" translate="yes" xml:space="preserve">
           <source>premium sponsors</source>
-          <target state="new">premium sponsors</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">プレミアム スポンサー</target>
         </trans-unit>
         <trans-unit id="PrivacyStatement" translate="yes" xml:space="preserve">
           <source>privacy statement</source>
-          <target state="new">privacy statement</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">プライバシーに関する声明</target>
         </trans-unit>
         <trans-unit id="RecommendedForYou" translate="yes" xml:space="preserve">
           <source>recommended for you</source>
-          <target state="new">recommended for you</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">あなたのためをお勧めします</target>
         </trans-unit>
         <trans-unit id="RefreshMusicLibrary" translate="yes" xml:space="preserve">
           <source>refresh music library</source>
-          <target state="new">refresh music library</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">音楽ライブラリを更新します。</target>
         </trans-unit>
         <trans-unit id="RefreshVideoLibrary" translate="yes" xml:space="preserve">
           <source>refresh video library</source>
-          <target state="new">refresh video library</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ビデオ ライブラリを更新します。</target>
         </trans-unit>
         <trans-unit id="RemovableStorage" translate="yes" xml:space="preserve">
           <source>removable storage</source>
-          <target state="new">removable storage</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">リムーバブル ストレージ</target>
         </trans-unit>
         <trans-unit id="RemoveFolder" translate="yes" xml:space="preserve">
           <source>remove folder</source>
-          <target state="new">remove folder</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">フォルダーを削除します。</target>
         </trans-unit>
         <trans-unit id="RemoveMusicFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</source>
-          <target state="new">If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">あなたの音楽ライブラリでこのフォルダーをしたくない場合は、それを削除できます。それは VLC だけでなくすべてのアプリケーションに影響を与える</target>
         </trans-unit>
         <trans-unit id="RemoveVideoFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</source>
-          <target state="new">If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ビデオ ライブラリでこのフォルダーをしたくない場合は、それを削除できます。それは VLC だけでなくすべてのアプリケーションに影響を与える</target>
         </trans-unit>
         <trans-unit id="Reset" translate="yes" xml:space="preserve">
           <source>reset</source>
-          <target state="new">reset</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">リセット</target>
         </trans-unit>
         <trans-unit id="ResetMusicDatabase" translate="yes" xml:space="preserve">
           <source>reset music database</source>
-          <target state="new">reset music database</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">音楽データベースをリセットします。</target>
         </trans-unit>
         <trans-unit id="ResetSpeed" translate="yes" xml:space="preserve">
           <source>reset speed</source>
-          <target state="new">reset speed</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">速度をリセットします。</target>
         </trans-unit>
         <trans-unit id="RichAnimationsDescription" translate="yes" xml:space="preserve">
           <source>Use rich animations in the slideshows</source>
-          <target state="new">Use rich animations in the slideshows</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">豊富なアニメーションを使用して、スライド ショーで</target>
         </trans-unit>
         <trans-unit id="RunningInsiderBuild" translate="yes" xml:space="preserve">
           <source>are you running an Insider build?</source>
-          <target state="new">are you running an Insider build?</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">インサイダー ビルドを実行しているか。</target>
         </trans-unit>
         <trans-unit id="Search" translate="yes" xml:space="preserve">
           <source>search</source>
-          <target state="new">search</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">検索</target>
         </trans-unit>
         <trans-unit id="Season" translate="yes" xml:space="preserve">
           <source>season</source>
-          <target state="new">season</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">シーズン</target>
         </trans-unit>
         <trans-unit id="SendFeedback" translate="yes" xml:space="preserve">
           <source>send feedback</source>
-          <target state="new">send feedback</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">フィードバックを送信</target>
         </trans-unit>
         <trans-unit id="SendingFeedback" translate="yes" xml:space="preserve">
           <source>sending feedback</source>
-          <target state="new">sending feedback</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">フィードバックの送信</target>
         </trans-unit>
         <trans-unit id="SendLogs" translate="yes" xml:space="preserve">
           <source>send logs</source>
-          <target state="new">send logs</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ログを送信</target>
         </trans-unit>
         <trans-unit id="Settings" translate="yes" xml:space="preserve">
           <source>settings</source>
-          <target state="new">settings</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">設定</target>
         </trans-unit>
         <trans-unit id="ShowPlaylist" translate="yes" xml:space="preserve">
           <source>show playlist</source>
-          <target state="new">show playlist</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">再生リストを表示します。</target>
         </trans-unit>
         <trans-unit id="Shows" translate="yes" xml:space="preserve">
           <source>shows</source>
-          <target state="new">shows</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">示しています</target>
         </trans-unit>
         <trans-unit id="Shuffle" translate="yes" xml:space="preserve">
           <source>shuffle</source>
-          <target state="new">shuffle</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">シャッフル</target>
         </trans-unit>
         <trans-unit id="SilverPartners" translate="yes" xml:space="preserve">
           <source>silver partners</source>
-          <target state="new">silver partners</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">シルバー パートナー</target>
         </trans-unit>
         <trans-unit id="Songs" translate="yes" xml:space="preserve">
           <source>songs</source>
-          <target state="new">songs</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">曲</target>
         </trans-unit>
         <trans-unit id="SpecialThanks" translate="yes" xml:space="preserve">
           <source>special thanks</source>
-          <target state="new">special thanks</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">特別な感謝</target>
         </trans-unit>
         <trans-unit id="SpecifiedBuildIncorrect" translate="yes" xml:space="preserve">
           <source>the specified build number is incorrect</source>
-          <target state="new">the specified build number is incorrect</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">指定したビルド番号が正しくありません。</target>
         </trans-unit>
         <trans-unit id="SpecifyBuild" translate="yes" xml:space="preserve">
           <source>please specify you Windows 10 Insider build number</source>
-          <target state="new">please specify you Windows 10 Insider build number</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">あなたの Windows 10 インサイダーのビルド番号を指定してください。</target>
         </trans-unit>
         <trans-unit id="Speed" translate="yes" xml:space="preserve">
           <source>speed</source>
-          <target state="new">speed</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">速度</target>
         </trans-unit>
         <trans-unit id="Stop" translate="yes" xml:space="preserve">
           <source>stop</source>
-          <target state="new">stop</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">停止</target>
         </trans-unit>
         <trans-unit id="SubtitleDelay" translate="yes" xml:space="preserve">
           <source>subtitle delay</source>
-          <target state="new">subtitle delay</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">字幕の遅延</target>
         </trans-unit>
         <trans-unit id="Subtitles" translate="yes" xml:space="preserve">
           <source>subtitles</source>
-          <target state="new">subtitles</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">字幕</target>
         </trans-unit>
         <trans-unit id="SubtitlesEncoding" translate="yes" xml:space="preserve">
           <source>subtitles encoding</source>
-          <target state="new">subtitles encoding</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">字幕のエンコーディング</target>
         </trans-unit>
         <trans-unit id="Summary" translate="yes" xml:space="preserve">
           <source>summary</source>
-          <target state="new">summary</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">要約</target>
         </trans-unit>
         <trans-unit id="Theme" translate="yes" xml:space="preserve">
           <source>theme</source>
-          <target state="new">theme</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">テーマ</target>
         </trans-unit>
         <trans-unit id="TileRemoved" translate="yes" xml:space="preserve">
           <source>tile removed</source>
-          <target state="new">tile removed</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">タイルの削除</target>
         </trans-unit>
         <trans-unit id="TopVideos" translate="yes" xml:space="preserve">
           <source>top videos</source>
-          <target state="new">top videos</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">トップ動画</target>
         </trans-unit>
         <trans-unit id="TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
           <source>track added to the playlist</source>
-          <target state="new">track added to the playlist</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">トラックをプレイリストに追加</target>
         </trans-unit>
         <trans-unit id="TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
           <source>this track is already in that playlist</source>
-          <target state="new">this track is already in that playlist</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">このトラックは既にその再生リストです。</target>
         </trans-unit>
         <trans-unit id="Tracks" translate="yes" xml:space="preserve">
           <source>tracks</source>
-          <target state="new">tracks</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">トラック</target>
         </trans-unit>
         <trans-unit id="UnknownAlbum" translate="yes" xml:space="preserve">
           <source>Unknown album</source>
-          <target state="new">Unknown album</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">アルバム情報なし</target>
         </trans-unit>
         <trans-unit id="UnknownArtist" translate="yes" xml:space="preserve">
           <source>Unknown artist</source>
-          <target state="new">Unknown artist</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">アーティスト情報なし</target>
         </trans-unit>
         <trans-unit id="UnknownShow" translate="yes" xml:space="preserve">
           <source>Unknown show</source>
-          <target state="new">Unknown show</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">不明なショー</target>
         </trans-unit>
         <trans-unit id="UnknownTrack" translate="yes" xml:space="preserve">
           <source>Unknown track</source>
-          <target state="new">Unknown track</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">不明なトラック</target>
         </trans-unit>
         <trans-unit id="UpcomingShows" translate="yes" xml:space="preserve">
           <source>upcoming shows</source>
-          <target state="new">upcoming shows</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">今後の番組</target>
         </trans-unit>
         <trans-unit id="UserInterface" translate="yes" xml:space="preserve">
           <source>user interface</source>
-          <target state="new">user interface</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ユーザー インターフェイス</target>
         </trans-unit>
         <trans-unit id="Username" translate="yes" xml:space="preserve">
           <source>username</source>
-          <target state="new">username</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ユーザー名</target>
         </trans-unit>
         <trans-unit id="Video" translate="yes" xml:space="preserve">
           <source>video</source>
-          <target state="new">video</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ビデオ</target>
         </trans-unit>
         <trans-unit id="VideoFolders" translate="yes" xml:space="preserve">
           <source>video folders</source>
-          <target state="new">video folders</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ビデオ フォルダ</target>
         </trans-unit>
         <trans-unit id="VideoFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search songs that are in your video library. You can add folders to your library here</source>
-          <target state="new">VLC will only search songs that are in your video library. You can add folders to your library here</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC は、あなたのビデオのライブラリにある曲をのみ検索されます。ここにあなたのライブラリにフォルダーを追加することができます。</target>
         </trans-unit>
         <trans-unit id="VideoPlayback" translate="yes" xml:space="preserve">
           <source>video playback</source>
-          <target state="new">video playback</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ビデオの再生</target>
         </trans-unit>
         <trans-unit id="VideoPlaybackInBackground" translate="yes" xml:space="preserve">
           <source>play video in background</source>
-          <target state="new">play video in background</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">バック グラウンドでビデオを再生します。</target>
         </trans-unit>
         <trans-unit id="Videos" translate="yes" xml:space="preserve">
           <source>videos</source>
@@ -668,139 +668,147 @@
         </trans-unit>
         <trans-unit id="VideoSettings" translate="yes" xml:space="preserve">
           <source>video settings</source>
-          <target state="new">video settings</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ビデオの設定</target>
         </trans-unit>
         <trans-unit id="ViewAlbum" translate="yes" xml:space="preserve">
           <source>view album</source>
-          <target state="new">view album</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">アルバムを見る</target>
         </trans-unit>
         <trans-unit id="ViewArtist" translate="yes" xml:space="preserve">
           <source>view artist</source>
-          <target state="new">view artist</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ビュー アーティスト</target>
         </trans-unit>
         <trans-unit id="VLCTeamThankYou" translate="yes" xml:space="preserve">
           <source>The VLC team would like to thank all the people who made this app possible</source>
-          <target state="new">The VLC team would like to thank all the people who made this app possible</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC のチームがこのアプリを可能にしたすべての人々 に感謝したいと思います</target>
         </trans-unit>
         <trans-unit id="Volume" translate="yes" xml:space="preserve">
           <source>volume</source>
-          <target state="new">volume</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ボリューム</target>
         </trans-unit>
         <trans-unit id="Website" translate="yes" xml:space="preserve">
           <source>website</source>
-          <target state="new">website</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Web サイト</target>
         </trans-unit>
         <trans-unit id="WeNeedYourHelp" translate="yes" xml:space="preserve">
           <source>we need your help</source>
-          <target state="new">we need your help</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">私たちはあなたの助けを必要があります。</target>
         </trans-unit>
         <trans-unit id="WindowsBuildNumberPlaceholder" translate="yes" xml:space="preserve">
           <source>Windows 10 Insider build number</source>
-          <target state="new">Windows 10 Insider build number</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Windows 10 内部ビルド番号</target>
         </trans-unit>
         <trans-unit id="Yes" translate="yes" xml:space="preserve">
           <source>yes</source>
-          <target state="new">yes</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">はい</target>
         </trans-unit>
         <trans-unit id="YourMusic" translate="yes" xml:space="preserve">
           <source>your music</source>
-          <target state="new">your music</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">あなたの音楽</target>
         </trans-unit>
         <trans-unit id="AccentColor" translate="yes" xml:space="preserve">
           <source>accent color</source>
-          <target state="new">accent color</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">アクセント カラー</target>
         </trans-unit>
         <trans-unit id="BackgroundColor" translate="yes" xml:space="preserve">
           <source>background color</source>
-          <target state="new">background color</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">背景色</target>
         </trans-unit>
         <trans-unit id="Dark" translate="yes" xml:space="preserve">
           <source>dark</source>
-          <target state="new">dark</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">黒</target>
         </trans-unit>
         <trans-unit id="Light" translate="yes" xml:space="preserve">
           <source>light</source>
-          <target state="new">light</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">信号</target>
         </trans-unit>
         <trans-unit id="TitleBar" translate="yes" xml:space="preserve">
           <source>title bar</source>
-          <target state="new">title bar</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">タイトル バー</target>
         </trans-unit>
         <trans-unit id="NeedRestart" translate="yes" xml:space="preserve">
           <source>You need to restart the app to apply changes</source>
-          <target state="new">You need to restart the app to apply changes</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">変更を適用するアプリケーションを再起動する必要があります。</target>
         </trans-unit>
         <trans-unit id="Zoom" translate="yes" xml:space="preserve">
           <source>zoom</source>
-          <target state="new">zoom</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ズーム</target>
         </trans-unit>
         <trans-unit id="AreYouSure" translate="yes" xml:space="preserve">
           <source>are you sure?</source>
-          <target state="new">are you sure?</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">確かですか。</target>
         </trans-unit>
         <trans-unit id="MediaCantBeRead" translate="yes" xml:space="preserve">
           <source>the media can't be read</source>
-          <target state="new">the media can't be read</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">メディアを読み取ることができません。</target>
         </trans-unit>
         <trans-unit id="Sorry" translate="yes" xml:space="preserve">
           <source>we're sorry</source>
-          <target state="new">we're sorry</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">申し訳ありません。</target>
         </trans-unit>
         <trans-unit id="SURFACE_BEST_FIT" translate="yes" xml:space="preserve">
           <source>best fit</source>
-          <target state="new">best fit</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ベスト フィット</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_HORIZONTAL" translate="yes" xml:space="preserve">
           <source>horizontal cropping</source>
-          <target state="new">horizontal cropping</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">水平トリミング</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_VERTICAL" translate="yes" xml:space="preserve">
           <source>vertical cropping</source>
-          <target state="new">vertical cropping</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">垂直トリミング</target>
         </trans-unit>
         <trans-unit id="YourPlaylistWontBeAccessible" translate="yes" xml:space="preserve">
           <source>your playlist won't be accessible</source>
-          <target state="new">your playlist won't be accessible</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">あなたの再生リストはアクセスできません。</target>
         </trans-unit>
         <trans-unit id="NoArtistShowsFound" translate="yes" xml:space="preserve">
           <source>we didn't find shows for this artist</source>
-          <target state="new">we didn't find shows for this artist</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">我々 は、このアーティストのショーを見つけられませんでした。</target>
         </trans-unit>
         <trans-unit id="NoResults" translate="yes" xml:space="preserve">
           <source>no results</source>
-          <target state="new">no results</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">結果はありません。</target>
         </trans-unit>
         <trans-unit id="ForceLandscape" translate="yes" xml:space="preserve">
           <source>Force landscape</source>
-          <target state="new">Force landscape</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">力の風景</target>
         </trans-unit>
         <trans-unit id="SURFACE_STRETCH" translate="yes" xml:space="preserve">
           <source>stretch</source>
-          <target state="new">stretch</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ストレッチ</target>
         </trans-unit>
         <trans-unit id="SimilarArtists" translate="yes" xml:space="preserve">
           <source>Similar artists</source>
-          <target state="new">Similar artists</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">類似するアーティスト</target>
         </trans-unit>
         <trans-unit id="EnglishLanguage" translate="yes" xml:space="preserve">
           <source>English</source>
-          <target state="new">English</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">英語</target>
         </trans-unit>
         <trans-unit id="FrenchLanguage" translate="yes" xml:space="preserve">
           <source>French</source>
-          <target state="new">French</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">フランス語</target>
         </trans-unit>
         <trans-unit id="JapaneseLanguage" translate="yes" xml:space="preserve">
           <source>Japanese</source>
-          <target state="new">Japanese</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">日本語</target>
         </trans-unit>
         <trans-unit id="Languages" translate="yes" xml:space="preserve">
           <source>Languages</source>
-          <target state="new">Languages</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Languages</target>
         </trans-unit>
         <trans-unit id="SelectLanguageDescription" translate="yes" xml:space="preserve">
           <source>Select the language VLC will be displayed in</source>
-          <target state="new">Select the language VLC will be displayed in</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC がで表示される言語を選択します。</target>
+        </trans-unit>
+        <trans-unit id="ApplyAndRestart" translate="yes" xml:space="preserve">
+          <source>Apply And Restart</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">適用し、再起動</target>
+        </trans-unit>
+        <trans-unit id="RefreshLanguage" translate="yes" xml:space="preserve">
+          <source>Refresh Language</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">言語を更新します。</target>
         </trans-unit>
       </group>
     </body>

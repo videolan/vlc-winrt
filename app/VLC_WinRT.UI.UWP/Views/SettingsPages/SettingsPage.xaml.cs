@@ -72,7 +72,10 @@ namespace VLC_WinRT.UI.UWP.Views.SettingsPages
             Flyout.ShowAttachedFlyout(sender as FrameworkElement);
         }
 
-
+        private void ForceRefreshLanguage(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Locator.NavigationService.RefreshCurrentPage();
+        }
 
         private void ApplyColorButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {

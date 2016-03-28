@@ -699,6 +699,9 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Similar artists</value>
   </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Apply And Restart</value>
+  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>English</value>
   </data>
@@ -710,6 +713,9 @@
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Languages</value>
+  </data>
+  <data name="RefreshLanguage" xml:space="preserve">
+    <value>Refresh Language</value>
   </data>
   <data name="SelectLanguageDescription" xml:space="preserve">
     <value>Select the language VLC will be displayed in</value>

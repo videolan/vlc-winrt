@@ -20,8 +20,10 @@ using VLC_WinRT.Views.VariousPages;
 using VLC_WinRT.Views.VideoPages;
 using VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls;
 using Windows.Foundation.Metadata;
+using Windows.UI.Xaml.Controls;
 using VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls;
 using VLC_WinRT.Utils;
+using Panel = VLC_WinRT.Model.Panel;
 #if WINDOWS_UWP
 using VLC_WinRT.UI.UWP.Views.SettingsPages;
 #else
@@ -216,6 +218,18 @@ namespace VLC_WinRT.Services.RunTime
         public void GoBack_HideFlyout()
         {
             App.SplitShell.HideFlyout();
+        }
+
+        /// <summary>
+        /// Refreshes the current page the user is on.
+        /// Useful when switching settings such as language.
+        /// </summary>
+        public void RefreshCurrentPage()
+        {
+            var frame = App.ApplicationFrame;
+            if (frame?.Content == null) return;
+            frame.Navigate(frame.Content.GetType());
+            frame.GoBack();
         }
 
         public void Go(VLCPage desiredPage)
