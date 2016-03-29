@@ -180,7 +180,6 @@ sap
 panoramix
 netsync
 screen
-direct3d
 win_msg
 win_hotkeys
 crystalhd

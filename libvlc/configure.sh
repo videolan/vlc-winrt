@@ -2,7 +2,6 @@
 
 OPTIONS="
       --enable-winstore-app
-      --disable-directx
       --disable-vlc
       --enable-lua
       --disable-vlm --disable-sout
