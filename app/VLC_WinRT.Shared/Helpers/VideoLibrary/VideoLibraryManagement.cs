@@ -240,18 +240,36 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                 {
                     // TODO: Find a more efficient way to know if it's already in the list or not
                     if (CameraRoll.FirstOrDefault(x => x.Id == mediaVM.Id) == null)
-                        CameraRoll.Add(mediaVM);
+                    {
+                        // Must be run on the UI Thread, or else we'll get ui thread marshalling errors!
+                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                        {
+                            CameraRoll.Add(mediaVM);
+                        });
+                    }
                 }
                 else if (!mediaVM.IsTvShow)
                 {
                     if (Videos.FirstOrDefault(x => x.Id == mediaVM.Id) == null)
-                        Videos.Add(mediaVM);
+                    {
+                        // Must be run on the UI Thread, or else we'll get ui thread marshalling errors!
+                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                        {
+                            Videos.Add(mediaVM);
+                        });
+                    }
                 }
                 if (ViewedVideos.Count < 6 &&
                     ViewedVideos.FirstOrDefault(x => x.Path == mediaVM.Path && x.TimeWatched == TimeSpan.Zero) == null)
                 {
                     if (ViewedVideos.FirstOrDefault(x => x.Id == mediaVM.Id) == null)
-                        ViewedVideos.Add(mediaVM);
+                    {
+                        // Must be run on the UI Thread, or else we'll get ui thread marshalling errors!
+                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                        {
+                            ViewedVideos.Add(mediaVM);
+                        });
+                    }
                 }
             }
             catch (Exception e)
