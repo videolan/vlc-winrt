@@ -30,7 +30,6 @@ OPTIONS="
       --enable-mad
       --disable-a52
       --disable-libgcrypt
-      --disable-taglib
       --disable-dirac"
 
 sh ../configure ${OPTIONS} $*

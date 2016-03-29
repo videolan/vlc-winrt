@@ -93,7 +93,6 @@ cd $CONTRIB_FOLDER
     --disable-mpcdec \
     --disable-upnp \
     --disable-gme \
-    --disable-taglib \
     --disable-tremor \
     --enable-vorbis \
     --enable-mad \
