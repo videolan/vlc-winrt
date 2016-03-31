@@ -90,7 +90,6 @@ cd $CONTRIB_FOLDER
     --disable-zvbi \
     --disable-caca \
     --disable-gettext \
-    --disable-mpcdec \
     --disable-upnp \
     --disable-gme \
     --disable-tremor \
