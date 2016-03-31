@@ -419,8 +419,8 @@
     <Content Include="..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\control\libnetsync_plugin.dll">
       <Link>plugins\control\libnetsync_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libadaptative_plugin.dll">
-      <Link>plugins\demux\libadaptative_plugin.dll</Link>
+    <Content Include="..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libadaptive_plugin.dll">
+      <Link>plugins\demux\libadaptive_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libaiff_plugin.dll">
       <Link>plugins\demux\libaiff_plugin.dll</Link>
