@@ -455,11 +455,8 @@
     <Content Include="..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libflacsys_plugin.dll">
       <Link>plugins\demux\libflacsys_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libh264_plugin.dll">
-      <Link>plugins\demux\libh264_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libhevc_plugin.dll">
-      <Link>plugins\demux\libhevc_plugin.dll</Link>
+    <Content Include="..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libh26x_plugin.dll">
+      <Link>plugins\demux\libh26x_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libimage_plugin.dll">
       <Link>plugins\demux\libimage_plugin.dll</Link>
