@@ -27,7 +27,6 @@ OPTIONS="
       --disable-libcddb
       --disable-zvbi --disable-telx
       --enable-mad
-      --disable-a52
       --disable-libgcrypt
       --disable-dirac"
 

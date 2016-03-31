@@ -96,6 +96,7 @@ cd $CONTRIB_FOLDER
     --disable-tremor \
     --enable-vorbis \
     --enable-mad \
+    --enable-a52 \
     --disable-sidplay2 \
     --disable-samplerate \
     --disable-faad2 \
