@@ -623,9 +623,6 @@
     <Content Include="..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\librecord_plugin.dll">
       <Link>plugins\stream_filter\librecord_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\libsmooth_plugin.dll">
-      <Link>plugins\stream_filter\libsmooth_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\text_renderer\libfreetype_plugin.dll">
       <Link>plugins\text_renderer\libfreetype_plugin.dll</Link>
     </Content>
