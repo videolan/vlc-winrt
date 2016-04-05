@@ -15611,6 +15611,7 @@
     "": [
       "Autofac >= 3.5.2",
       "Inflatable.Lastfm >= 0.2.2.252",
+      "Microsoft.Net.Http >= 2.2.28",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "Newtonsoft.Json >= 8.0.2",
       "NotificationsExtensions.Win10 >= 10586.0.1",
