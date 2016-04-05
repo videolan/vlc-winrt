@@ -8,6 +8,6 @@
       mc:Ignorable="d">
 
     <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
-        <shellControls:VLCPivot />
+        <shellControls:VLCPivot x:Name="VLCPivot"/>
     </Grid>
 </Page>
