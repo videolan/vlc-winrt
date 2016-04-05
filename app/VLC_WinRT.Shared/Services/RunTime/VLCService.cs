@@ -340,7 +340,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public void SetVolume(int volume)
         {
-            MediaPlayer.setVolume(volume);
+            MediaPlayer?.setVolume(volume);
         }
 
 
