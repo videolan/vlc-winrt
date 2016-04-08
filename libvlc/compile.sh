@@ -161,7 +161,6 @@ cp -r _win32/lib/vlc/plugins tmp/
 find tmp -name "*.la" -exec rm -v {} \;
 find tmp -name "*.a" -exec rm -v {} \;
 blacklist="
-audiobargraph_a
 wingdi
 waveout
 dshow
@@ -178,9 +177,7 @@ quicktime
 atmo
 oldrc
 dmo
-sap
 panoramix
-netsync
 screen
 win_msg
 win_hotkeys
