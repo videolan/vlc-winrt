@@ -113,7 +113,10 @@ cd $CONTRIB_FOLDER
     --disable-qt \
     --disable-protobuf \
     --disable-aribb25 \
-    --disable-gpl
+    --disable-gpl \
+    --disable-libarchive \
+    --disable-ssh2 \
+    --disable-vncclient
 
 echo "EXTRA_CFLAGS=-DNDEBUG -DWINAPI_FAMILY=WINAPI_FAMILY_APP ${EXTRA_CPPFLAGS}" >> config.mak
 echo "EXTRA_LDFLAGS=${EXTRA_LDFLAGS}" >> config.mak
