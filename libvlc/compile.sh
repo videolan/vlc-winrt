@@ -99,7 +99,6 @@ cd $CONTRIB_FOLDER
     --disable-sidplay2 \
     --enable-samplerate \
     --disable-faad2 \
-    --disable-harfbuzz \
     --enable-iconv \
     --disable-goom \
     --disable-flac \
