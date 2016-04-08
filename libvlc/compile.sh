@@ -97,7 +97,7 @@ cd $CONTRIB_FOLDER
     --enable-mad \
     --enable-a52 \
     --disable-sidplay2 \
-    --disable-samplerate \
+    --enable-samplerate \
     --disable-faad2 \
     --disable-harfbuzz \
     --enable-iconv \
