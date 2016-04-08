@@ -121,7 +121,6 @@ echo "CC=${TARGET_TUPLE}-gcc -specs=$NEWSPECFILE" >> config.mak
 echo "CXX=${TARGET_TUPLE}-g++ -specs=$NEWSPECFILE" >> config.mak
 export PKG_CONFIG_LIBDIR="`pwd`/contrib/${TARGET_TUPLE}/lib/pkgconfig"
 
-make fetch
 make $MAKEFLAGS
 
 BUILD_FOLDER=winrt-$1
