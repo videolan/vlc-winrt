@@ -4,7 +4,7 @@ set -e
 
 usage()
 {
-    echo "Usage: compile [arch]"
+    echo "Usage: compile <arch> [TargetOS]"
     echo "archs: i686,x64_64,armv7"
 }
 
@@ -33,6 +33,20 @@ armv7)
    usage
    exit 1
    ;;
+esac
+
+case "$2" in
+    win10)
+        WINVER=0xA00
+        RUNTIME=-lmsvcr120_app
+        ;;
+    win81)
+        WINVER=0x602
+        RUNTIME=-lmsvcr120_app
+        ;;
+    *)
+        WINVER=0x602
+        RUNTIME=-lmsvcrt
 esac
 
 # 1/ libvlc, libvlccore and its plugins
@@ -69,10 +83,10 @@ fi
 
 TARGET_TUPLE=${1}-w64-mingw32
 
-${TARGET_TUPLE}-gcc -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lole32 -lruntimeobject/' -e 's/-lmsvcrt/-lmsvcr110/' > ../newspecfile
+${TARGET_TUPLE}-gcc -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lole32 -lruntimeobject/' -e "s/-lmsvcrt/$RUNTIME/" > ../newspecfile
 NEWSPECFILE="`pwd`/../newspecfile"
 
-EXTRA_CPPFLAGS="-D_WIN32_WINNT=0x602 -DWINVER=0x602 -DWINSTORECOMPAT -D_UNICODE -DUNICODE"
+EXTRA_CPPFLAGS="-D_WIN32_WINNT=$WINVER -DWINVER=$WINVER -DWINSTORECOMPAT -D_UNICODE -DUNICODE"
 EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat -lruntimeobject"
 
 echo "Building the contribs"
