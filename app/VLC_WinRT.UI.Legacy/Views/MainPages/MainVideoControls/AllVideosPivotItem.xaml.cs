@@ -17,6 +17,7 @@ namespace VLC_WinRT.Views.MainPages.MainVideoControls
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             Locator.VideoLibraryVM.OnNavigatedToAllVideos();
+            AllVideosListView.Focus(FocusState.Keyboard);
         }
         
         private void VideosWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
