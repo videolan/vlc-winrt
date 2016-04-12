@@ -1,5 +1,7 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Diagnostics;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 namespace VLC_WinRT.Views.MusicPages.AlbumPageControls
 {
