@@ -32,6 +32,7 @@ using VLC_WinRT.Views.UserControls;
 using VLC_WinRT.ViewModels.Settings;
 using WinRTXamlToolkit.IO.Serialization;
 using VLC_WinRT.Helpers.VideoLibrary;
+using Windows.System.Threading;
 
 namespace VLC_WinRT
 {
