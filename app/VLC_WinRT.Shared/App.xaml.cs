@@ -243,8 +243,6 @@ namespace VLC_WinRT
             SetShellDecoration();
 #if WINDOWS_PHONE_APP
             await StatusBarHelper.Initialize();
-#else
-            AppViewHelper.SetAppView(true);
 #endif
             Locator.MusicLibrary.DropTablesIfNeeded();
             Locator.VideoLibrary.DropTablesIfNeeded();
