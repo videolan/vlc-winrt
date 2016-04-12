@@ -236,6 +236,7 @@ namespace VLC_WinRT
         {
             Dispatcher = Window.Current.Dispatcher;
             Window.Current.Content = new MainPage();
+            Window.Current.Activate(); ;
             await SplitShell.TemplateApplied.Task;
             SetLanguage();
             SetShellDecoration();
@@ -244,16 +245,15 @@ namespace VLC_WinRT
 #else
             AppViewHelper.SetAppView(true);
 #endif
-            Window.Current.Activate();
             Locator.MusicLibrary.DropTablesIfNeeded();
             Locator.VideoLibrary.DropTablesIfNeeded();
-            Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
-
-            await Task.Run(async () =>
+            await ThreadPool.RunAsync(async (action) =>
             {
-                await Locator.VideoLibrary.Initialize();
+                // Prepare Libraries before going to the homepage
                 await Locator.MusicLibrary.Initialize();
+                await Locator.VideoLibrary.Initialize();
             });
+            Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
         }
 
         public static void SetLanguage()
