@@ -159,7 +159,7 @@
                         <Setter Target="ArtistInfoGrid.Visibility"
                                 Value="Visible" />
                         <Setter Target="ArtistsGridColumnDefinition.Width"
-                                Value="1.4*" />
+                                Value="1.9*" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Medium">
