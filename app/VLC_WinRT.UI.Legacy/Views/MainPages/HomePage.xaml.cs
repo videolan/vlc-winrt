@@ -21,6 +21,13 @@ namespace VLC_WinRT.UI.Legacy.Views.MainPages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            AppViewHelper.SetAppView(true);
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            AppViewHelper.SetAppView(false);
         }
     }
 }
