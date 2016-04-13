@@ -6,10 +6,8 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:musicNowPlayingControls="using:VLC_WinRT.Views.MusicPages.MusicNowPlayingControls"
       xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
-      xmlns:ScrollWatcher="using:ScrollWatcher"
       xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
       mc:Ignorable="d"
-      RequestedTheme="Dark"
       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
 
     <Grid>
