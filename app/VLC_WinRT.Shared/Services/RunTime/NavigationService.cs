@@ -347,9 +347,6 @@ namespace VLC_WinRT.Services.RunTime
                     App.SplitShell.RightFlyoutContent = new LicensePage();
                     break;
                 case VLCPage.MiniPlayerView:
-                    Locator.Slideshow.IsPaused = true;
-                    AppViewHelper.ResizeWindow(false, 400, 80);
-                    App.SplitShell.FooterVisibility = Visibility.Collapsed;
                     App.ApplicationFrame.Navigate(typeof(MiniPlayerWindow));
                     break;
                 case VLCPage.VideoPlayerOptionsPanel:

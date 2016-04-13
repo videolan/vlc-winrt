@@ -32,7 +32,11 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
             this.SizeChanged += MiniPlayerWindow_SizeChanged;
             Initialize();
             Responsive();
+#if WINDOWS_UWP
+            AppViewHelper.ResizeWindow(false, 400, 80);
+            AppViewHelper.SetAppView(true);
             AppViewHelper.SetTitleBar(DraggableGrid);
+#endif
         }
 
         private void MiniPlayerWindow_SizeChanged(object sender, SizeChangedEventArgs e)
