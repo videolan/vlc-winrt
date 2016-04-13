@@ -116,7 +116,5 @@ namespace Slide2D
             get { return slideshow.TextInSlideshowEnabled; }
             set { slideshow.TextInSlideshowEnabled = value; }
         }
-
-        public bool IsDarkTheme { get; set; }
     }
 }
