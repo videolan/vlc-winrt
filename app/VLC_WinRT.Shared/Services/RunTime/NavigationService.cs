@@ -328,7 +328,7 @@ namespace VLC_WinRT.Services.RunTime
                     break;
                 case VLCPage.MiniPlayerView:
                     Locator.Slideshow.IsPaused = true;
-                    AppViewHelper.ResizeWindow(false, 400, 80 + AppViewHelper.TitleBarHeight);
+                    AppViewHelper.ResizeWindow(false, 400, 80);
                     App.SplitShell.FooterVisibility = Visibility.Collapsed;
                     App.ApplicationFrame.Navigate(typeof(MiniPlayerWindow));
                     break;
@@ -398,6 +398,8 @@ namespace VLC_WinRT.Services.RunTime
                 return VLCPage.FeedbackPage;
             if (page == typeof(ArtistPageBase))
                 return VLCPage.ArtistPage;
+            if (page == typeof(MiniPlayerWindow))
+                return VLCPage.MiniPlayerView;
             return VLCPage.None;
         }
 

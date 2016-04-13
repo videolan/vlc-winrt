@@ -32,11 +32,13 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
             this.SizeChanged += MiniPlayerWindow_SizeChanged;
             Initialize();
             Responsive();
+            AppViewHelper.SetTitleBar(DraggableGrid);
         }
 
         private void MiniPlayerWindow_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             Responsive();
+            //TitleBarRowDefinition.Height = new GridLength(AppViewHelper.TitleBarHeight, GridUnitType.Pixel);
         }
 
         async void Initialize()
@@ -173,7 +175,6 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
 
         void SetTrackList()
         {
-            TracksListView.ItemsSource = Locator.MediaPlaybackViewModel.TrackCollection.Playlist;
         }
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
@@ -193,7 +194,6 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
 
         void Responsive()
         {
-            TracksListView.Visibility = (Window.Current.Bounds.Height > 150) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void ListViewBase_OnItemClick(object sender, ItemClickEventArgs e)

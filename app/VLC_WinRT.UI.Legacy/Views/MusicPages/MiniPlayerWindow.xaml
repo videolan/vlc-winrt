@@ -8,19 +8,16 @@
       mc:Ignorable="d">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid x:Name="DraggableGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80" />
-                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="8" />
                 <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Image x:Name="ImgCover"
                    Stretch="UniformToFill" />
@@ -42,8 +39,18 @@
                            FontWeight="Light"
                            TextTrimming="CharacterEllipsis" />
             </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1"
+              VerticalAlignment="Bottom"
+              Padding="{StaticResource FrameMarginBottom}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
             <Button x:Name="PreviousButton"
-                    Grid.Column="3"
                     Margin="6,0,14,0"
                     Style="{StaticResource TextBlockButtonStyle}"
                     Click="PreviousButton_Click">
@@ -52,7 +59,7 @@
                           FontFamily="{StaticResource VLCFont}" />
             </Button>
             <Grid x:Name="PlayPauseGrid"
-                  Grid.Column="4"
+                  Grid.Column="1"
                   VerticalAlignment="Center"
                   Margin="0,0,14,0">
                 <Button x:Name="PlayIcon"
@@ -71,7 +78,7 @@
                 </Button>
             </Grid>
             <Button x:Name="NextButton"
-                    Grid.Column="5"
+                    Grid.Column="2"
                     Style="{StaticResource TextBlockButtonStyle}"
                     Margin="0,0,10,0"
                     Click="NextButton_Click">
@@ -80,7 +87,7 @@
                           FontFamily="{StaticResource VLCFont}" />
             </Button>
             <Button x:Name="HomeButton"
-                    Grid.Column="6"
+                    Grid.Column="3"
                     Style="{StaticResource TextBlockButtonStyle}"
                     Click="ExpandWindow_Click"
                     Margin="0,0,6,0">
@@ -89,44 +96,5 @@
                           FontFamily="{StaticResource VLCFont}" />
             </Button>
         </Grid>
-        <ListView x:Name="TracksListView"
-                  Grid.Row="1"
-                  Margin="{StaticResource FrameMargin}"
-                  IsItemClickEnabled="True"
-                  SelectionMode="None"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  ItemClick="ListViewBase_OnItemClick">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsStackPanel Margin="{StaticResource FrameMarginTop}"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Column="0"
-                                   Grid.Row="0"
-                                   x:Name="NameTextBlock"
-                                   Text="{Binding Name}"
-                                   TextWrapping="NoWrap"
-                                   TextTrimming="CharacterEllipsis"
-                                   FontWeight="SemiLight"
-                                   Style="{StaticResource TitleTextBlockStyle}"
-                                   FontSize="20"
-                                   Margin="0,0,6,0" />
-                        <TextBlock Grid.Column="0"
-                                   Grid.Row="1"
-                                   Text="{Binding ArtistName, Converter={StaticResource ArtistStringConverter}}"
-                                   Style="{StaticResource BaseTextBlockStyle}"
-                                   Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                                   FontWeight="Light" />
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
     </Grid>
 </Page>
