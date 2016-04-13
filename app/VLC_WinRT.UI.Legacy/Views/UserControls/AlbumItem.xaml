@@ -26,8 +26,9 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
-    
-    <Grid FlyoutBase.AttachedFlyout="{StaticResource AlbumMenuFlyout}"
+
+    <Grid Background="Transparent"
+          FlyoutBase.AttachedFlyout="{StaticResource AlbumMenuFlyout}"
           Holding="RootAlbumItem_Holding"
           RightTapped="Grid_RightTapped"
           PointerExited="Cover_PointerExited"
