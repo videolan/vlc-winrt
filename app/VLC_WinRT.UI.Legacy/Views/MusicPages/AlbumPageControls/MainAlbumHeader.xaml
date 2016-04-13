@@ -12,7 +12,7 @@
              d:DesignWidth="400">
     <Grid x:Name="HeaderGrid"
           Background="Black"
-          Height="350">
+          Height="300">
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="Auto" />
