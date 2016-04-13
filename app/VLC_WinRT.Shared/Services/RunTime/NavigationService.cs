@@ -53,6 +53,11 @@ namespace VLC_WinRT.Services.RunTime
 #if WINDOWS_APP
 #else
 #if WINDOWS_UWP
+            SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
+            {
+                e.Handled = true;
+                GoBack_Specific();
+            };
             if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
 #endif
             {
@@ -104,6 +109,9 @@ namespace VLC_WinRT.Services.RunTime
 
             if (!App.SplitShell.IsTopBarOpen)
                 App.SplitShell.ShowTopBar();
+#if WINDOWS_UWP
+            ShowBackButtonIfCanGoBack();
+#endif
         }
 
 #if WINDOWS_APP
@@ -114,6 +122,14 @@ namespace VLC_WinRT.Services.RunTime
             if (Locator.NavigationService.IsPageAMainPage(CurrentPage))
                 e.Handled = false;
             GoBack_Specific();
+        }
+
+        public void ShowBackButtonIfCanGoBack()
+        {
+            if (CanGoBack())
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            else
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
 #endif
 
