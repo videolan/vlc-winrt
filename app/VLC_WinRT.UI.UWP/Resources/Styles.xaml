@@ -1318,7 +1318,7 @@
                             </Grid.Projection>
                             <Border x:Name="ContentContainer">
                                 <Grid x:Name="InnerDragContent"
-                                      Margin="0,0,13,13">
+                                      Margin="{StaticResource ListViewItemMargin}">
                                     <Rectangle x:Name="PointerOverBorder"
                                                IsHitTestVisible="False"
                                                Opacity="0"

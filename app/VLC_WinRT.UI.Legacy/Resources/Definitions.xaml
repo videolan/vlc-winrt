@@ -24,7 +24,8 @@
     <Thickness x:Key="FrameMarginAtTopAndFooterMarginAtBottom">0,16,0,60</Thickness>
     <Thickness x:Key="FrameMarginHorizontalPlusFooter">16,0,16,60</Thickness>
 
-
+    <Thickness x:Key="ListViewItemMargin">0,0,16,16</Thickness>
+    
     <!-- FRAMEWORK REDEFINITIONS -->
     <Thickness x:Key="TextControlThemePadding">10,3,10,5</Thickness>
     <x:Double x:Key="TextControlBorderThemeThickness">1</x:Double>
