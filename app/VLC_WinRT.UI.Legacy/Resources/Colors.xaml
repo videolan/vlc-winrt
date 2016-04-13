@@ -91,7 +91,7 @@
             <Color x:Key="ApplicationOverlayTranslucentThemeColor">#F2F0F0F0</Color>
 
             <SolidColorBrush x:Key="ApplicationChromeThemeBrush"
-                             Color="Transparent"/>
+                             Color="#AAF2F2F2" />
             <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                              Color="{StaticResource ApplicationPageBackgroundThemeColor}" />
             <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
