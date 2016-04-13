@@ -28,7 +28,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
         #region properties
         private bool _alreadyIndexedOnce;
 
-        static readonly IThumbnailService ThumbsService = App.Container.Resolve<IThumbnailService>();
+        IThumbnailService ThumbsService => App.Container.Resolve<IThumbnailService>();
         #endregion
         #region databases
         readonly VideoRepository VideoRepository = new VideoRepository();
