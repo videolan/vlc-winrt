@@ -111,24 +111,4 @@
             </ItemsPanelTemplate>
         </ListView.ItemsPanel>
     </ListView>
-    <AppBarButton x:Name="FloatingActionButton"
-                  Style="{StaticResource CircleButtonStyle}"
-                  VerticalAlignment="Bottom"
-                  HorizontalAlignment="Right"
-                  Margin="{StaticResource FrameMarginHorizontalPlusFooter}">
-        <AppBarButton.Flyout>
-            <MenuFlyout Placement="Top">
-                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PlayAll}"
-                                Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayArtistAlbumsCommand}"
-                                CommandParameter="{Binding CurrentArtist}" />
-                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PinArtist}"
-                                Command="{Binding CurrentArtist.PinArtistCommand}"
-                                CommandParameter="{Binding CurrentArtist}" />
-            </MenuFlyout>
-        </AppBarButton.Flyout>
-        <AppBarButton.Content>
-            <FontIcon Glyph="{StaticResource MenuOpenRight}"
-                      FontFamily="{StaticResource VLCFont}" />
-        </AppBarButton.Content>
-    </AppBarButton>
 </Grid>
