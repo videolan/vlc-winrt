@@ -106,28 +106,5 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
         {
             AlbumsSemanticZoomZoomedOut.ItemsSource = GroupAlbums?.View?.CollectionGroups;
         }
-
-
-
-        public Visibility FloatingActionButtonVisibility
-        {
-            get { return (Visibility)GetValue(FloatingActionButtonVisibilityProperty); }
-            set { SetValue(FloatingActionButtonVisibilityProperty, value); }
-        }
-
-        public static readonly DependencyProperty FloatingActionButtonVisibilityProperty =
-            DependencyProperty.Register(nameof(FloatingActionButtonVisibility), typeof(Visibility), typeof(ArtistAlbumsSemanticView), new PropertyMetadata(null, PropertyChangedCallback));
-
-
-        private static void PropertyChangedCallback(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            var that = (ArtistAlbumsSemanticView)obj;
-            that.SetFabVisibility();
-        }
-
-        public void SetFabVisibility()
-        {
-            FloatingActionButton.Visibility = FloatingActionButtonVisibility;
-        }
     }
 }
