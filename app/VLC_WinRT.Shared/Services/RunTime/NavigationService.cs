@@ -24,6 +24,7 @@ using Windows.UI.Xaml.Controls;
 using VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls;
 using VLC_WinRT.Utils;
 using Panel = VLC_WinRT.Model.Panel;
+using Windows.UI.Core;
 #if WINDOWS_UWP
 using VLC_WinRT.UI.UWP.Views.SettingsPages;
 #else
@@ -272,8 +273,11 @@ namespace VLC_WinRT.Services.RunTime
                         || (CurrentPage == VLCPage.MainPageMusic && Locator.MusicLibraryVM.MusicView == Model.Music.MusicView.Artists && Window.Current.Bounds.Width < 750))
 #endif
                     {
-                        App.ApplicationFrame.Navigate(typeof(ArtistPageBase));
+                        App.ApplicationFrame.Navigate(typeof(ArtistPageBase), desiredPage);
                     }
+                    break;
+                case VLCPage.ArtistInfoView:
+                    App.ApplicationFrame.Navigate(typeof(ArtistPageBase), desiredPage);
                     break;
 #if WINDOWS_UWP
                 case VLCPage.SettingsPage:

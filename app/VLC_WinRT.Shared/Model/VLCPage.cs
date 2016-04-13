@@ -9,6 +9,7 @@
         MainPageNetwork,
         AlbumPage,
         ArtistPage,
+        ArtistInfoView,
         PlaylistPage,
         CurrentPlaylistPage,
         VideoPlayerPage,

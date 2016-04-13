@@ -12,6 +12,7 @@ using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using System.Diagnostics;
+using VLC_WinRT.Commands;
 
 namespace VLC_WinRT.Model.Music
 {
@@ -200,13 +201,7 @@ namespace VLC_WinRT.Model.Music
             }
             set { SetProperty(ref _onlineRelatedArtists, value); }
         }
-
-        [Ignore]
-        public PinArtistCommand PinArtistCommand { get; } = new PinArtistCommand();
-
-        [Ignore]
-        public SeeArtistShowsCommand SeeArtistShowsCommand { get; } = new SeeArtistShowsCommand();
-
+        
         public bool IsPinned
         {
             get { return _isPinned; }
@@ -250,5 +245,16 @@ namespace VLC_WinRT.Model.Music
             get { return _playCount; }
             set { SetProperty(ref _playCount, value); }
         }
+
+        #region commands
+        [Ignore]
+        public PinArtistCommand PinArtistCommand { get; } = new PinArtistCommand();
+
+        [Ignore]
+        public SeeArtistShowsCommand SeeArtistShowsCommand { get; } = new SeeArtistShowsCommand();
+
+        [Ignore]
+        public static ActionCommand NavigateArtistInfoView => new ActionCommand(() => Locator.NavigationService.Go(VLCPage.ArtistInfoView));
+        #endregion
     }
 }
