@@ -43,7 +43,7 @@
 
         <Grid Grid.Column="1"
               VerticalAlignment="Bottom"
-              Padding="{StaticResource FrameMarginBottom}">
+              Margin="{StaticResource FrameMarginBottom}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
