@@ -134,6 +134,7 @@ namespace VLC_WinRT.Utils
         public static string MusicShows => _resourcesLoader.GetString(nameof(MusicShows));
 
         public static string SimilarArtists => _resourcesLoader.GetString(nameof(SimilarArtists));
+        public static string MoreInfo => "more";
 
         // MUSIC MICS
         public static string Audio => _resourcesLoader.GetString(nameof(Audio));
