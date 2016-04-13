@@ -139,35 +139,10 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <local:MainArtistHeader x:Name="MainArtistHeader"
-                                    VerticalAlignment="Stretch" 
+                                    VerticalAlignment="Stretch"
                                     HorizontalAlignment="Center" />
-            <Pivot Grid.Row="1"
-                   Style="{StaticResource TitlelessPivot}">
-                <PivotItem>
-                    <PivotItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
-                                      FontFamily="{StaticResource VLCFont}"
-                                      FontSize="30" />
-                            <TextBlock Margin="5,0,0,0"
-                                       Text="{Binding Source={StaticResource Strings}, Path=Albums}" />
-                        </StackPanel>
-                    </PivotItem.Header>
-                    <local:ArtistAlbumsSemanticView x:Name="ArtistAlbumsSemanticView"/>
-                </PivotItem>
-                <PivotItem>
-                    <PivotItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <FontIcon Glyph="{StaticResource BuddySymbol}"
-                                      FontFamily="{StaticResource VLCFont}"
-                                      FontSize="30" />
-                            <TextBlock Margin="5,0,0,0"
-                                       Text="{Binding Source={StaticResource Strings}, Path=SimilarArtists}" />
-                        </StackPanel>
-                    </PivotItem.Header>
-                    <local:ArtistInfoControl />
-                </PivotItem>
-            </Pivot>
+            <local:ArtistAlbumsSemanticView x:Name="ArtistAlbumsSemanticView"
+                                            Grid.Row="1" />
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
