@@ -1026,6 +1026,8 @@
                 Value="Stretch" />
         <Setter Property="VerticalContentAlignment"
                 Value="Top" />
+        <Setter Property="MinHeight"
+                Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
