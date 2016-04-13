@@ -88,7 +88,11 @@ namespace VLC_WinRT.Services.RunTime
             }
             await PlayerInstanceReady.Task;
 
-            if (!PlayerInstanceReady.Task.Result) return;
+            if (!PlayerInstanceReady.Task.Result)
+            {
+                LogHelper.Log($"Couldn't play media {media.Name} as VLC failed to init");
+                return;
+            }
 
             var mediaVLC = new Media(Instance, mrl_fromType.Item2, mrl_fromType.Item1);
             // Hardware decoding
