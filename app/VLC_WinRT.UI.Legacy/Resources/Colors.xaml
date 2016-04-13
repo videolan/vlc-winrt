@@ -119,7 +119,7 @@
             <SolidColorBrush x:Key="InvertedApplicationBackgroundSemiTranslucentThemeBrush"
                              Color="#50353535" />
 
-            <Color x:Key="ShadowStartColor">White</Color>
+            <Color x:Key="ShadowStartColor">#AAF2F2F2</Color>
             <Color x:Key="ShadowEndColor">#00FFFFFF</Color>
 
             <!-- SDK Colors -->
