@@ -15,22 +15,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
         <local:MainArtistHeader x:Name="MainArtistHeader"
-                                Grid.Column="0"
-                                VerticalAlignment="Stretch"
-                                HorizontalAlignment="Center"
-                                BackButtonVisibility="Visible" />
+                                VerticalAlignment="Stretch" />
 
-        <Grid x:Name="TitleBar"
-              Grid.Column="1"
-              Background="Transparent"/>
-        <Pivot Grid.Row="2"
-               Grid.Column="0"
-               Grid.ColumnSpan="2"
+        <Pivot x:Name="MainPivot"
+               Grid.Row="2"
                Style="{StaticResource TitlelessPivot}">
             <PivotItem>
                 <PivotItem.Header>

@@ -6,6 +6,7 @@ using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
 using Windows.UI.Xaml.Navigation;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
 {
@@ -19,7 +20,10 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            Window.Current.SetTitleBar(TitleBar);
+            if ((VLCPage)e.Parameter == VLCPage.ArtistInfoView)
+            {
+                MainPivot.SelectedIndex = 1;
+            }
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
