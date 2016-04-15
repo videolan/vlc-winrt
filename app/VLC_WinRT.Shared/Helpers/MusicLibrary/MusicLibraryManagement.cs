@@ -284,7 +284,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
         }
 
-        public Task<bool> IsMusicDatabaseEmpty()
+        Task<bool> IsMusicDatabaseEmpty()
         {
             return trackDatabase.IsEmpty();
         }
@@ -321,17 +321,10 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 #if WINDOWS_PHONE_APP
                 await GetAllMusicFolders();
                 return;
-#else
-                IReadOnlyList<StorageFile> files = null;
-                var queryOptions = new QueryOptions { FolderDepth = FolderDepth.Deep };
-                foreach (var type in VLCFileExtensions.Supported)
-                    queryOptions.FileTypeFilter.Add(type);
-                var fileQueryResult = KnownFolders.MusicLibrary.CreateFileQueryWithOptions(queryOptions);
-                files = await fileQueryResult.GetFilesAsync();
 #endif
                 var sw = new Stopwatch();
                 sw.Start();
-                foreach (var item in files)
+                foreach (var item in await MediaLibraryHelper.GetSupportedFiles(KnownFolders.MusicLibrary))
                 {
                     if (ContinueIndexing != null)
                     // We prevent indexing this file and upcoming files when a video is playing
@@ -884,6 +877,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             catch { }
         }
 
+        #region database operations
         public Task<List<TracklistItem>> LoadTracks(TrackCollection trackCollection)
         {
             return tracklistItemRepository.LoadTracks(trackCollection);
@@ -978,5 +972,6 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         {
             return trackDatabase.LoadTracks();
         }
+        #endregion
     }
 }
