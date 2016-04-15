@@ -137,6 +137,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DownloadAndSaveHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LoadImageToMemoryHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LogHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MediaLibraryHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MemoryUsageHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicFlow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicLibraryManagement.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\FileExplorer\VLCStorageFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\KeyboardAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Languages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Library\MediaLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\LoadingState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\AlbumItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\ArtistItem.cs" />
