@@ -23,6 +23,7 @@ using VLC_WinRT.Commands.VideoPlayer;
 using VLC_WinRT.Commands.VideoLibrary;
 using System.Collections.Generic;
 using Autofac;
+using System.Linq;
 
 namespace VLC_WinRT.ViewModels.VideoVM
 {
@@ -50,22 +51,22 @@ namespace VLC_WinRT.ViewModels.VideoVM
 
         public ObservableCollection<VideoItem> Videos
         {
-            get { return VideoLibrary.Videos; }
+            get { return VideoLibrary.Videos.ToObservable(); }
         }
 
         public ObservableCollection<VideoItem> ViewedVideos
         {
-            get { return VideoLibrary.ViewedVideos; }
+            get { return VideoLibrary.ViewedVideos.ToObservable(); }
         }
 
         public ObservableCollection<TvShow> Shows
         {
-            get { return VideoLibrary.Shows; }
+            get { return VideoLibrary.Shows.ToObservable(); }
         }
 
         public ObservableCollection<VideoItem> CameraRoll
         {
-            get { return VideoLibrary.CameraRoll; }
+            get { return VideoLibrary.CameraRoll.ToObservable(); }
         }
         #endregion
 
@@ -109,12 +110,12 @@ namespace VLC_WinRT.ViewModels.VideoVM
         public PlayVideoCommand OpenVideo { get; } = new PlayVideoCommand();
 
         [Ignore]
-        public CloseFlyoutAndPlayVideoCommand CloseFlyoutAndPlayVideoCommand { get; }=new CloseFlyoutAndPlayVideoCommand();
+        public CloseFlyoutAndPlayVideoCommand CloseFlyoutAndPlayVideoCommand { get; } = new CloseFlyoutAndPlayVideoCommand();
 
-        public PlayNetworkMRLCommand PlayNetworkMRL { get; }=new PlayNetworkMRLCommand();
+        public PlayNetworkMRLCommand PlayNetworkMRL { get; } = new PlayNetworkMRLCommand();
 
-        public StartVideoIndexingCommand StartVideoIndexingCommand { get; }= new StartVideoIndexingCommand();
-        
+        public StartVideoIndexingCommand StartVideoIndexingCommand { get; } = new StartVideoIndexingCommand();
+
         public bool IsBusy
         {
             get { return _isBusy; }
@@ -142,7 +143,15 @@ namespace VLC_WinRT.ViewModels.VideoVM
         {
             if (LoadingState == LoadingState.NotLoaded)
             {
-                //Initialize();
+                InitializeVideos();
+            }
+        }
+
+        public void OnNavigatedToShows()
+        {
+            if (LoadingState == LoadingState.NotLoaded)
+            {
+                InitializeShows();
             }
         }
 
@@ -150,7 +159,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         {
             if (LoadingState == LoadingState.NotLoaded)
             {
-                //InitializeCameraRollVideos();
+                InitializeCameraRollVideos();
             }
         }
 
@@ -158,7 +167,86 @@ namespace VLC_WinRT.ViewModels.VideoVM
         {
             ResetLibrary();
         }
-        
+
+        Task InitializeVideos()
+        {
+            return Task.Run(async () =>
+            {
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    Locator.MainVM.InformationText = Strings.Loading;
+                    LoadingState = LoadingState.Loading;
+                });
+
+                if (VideoLibrary.Videos != null)
+                    VideoLibrary.Videos.CollectionChanged += Videos_CollectionChanged;
+                await VideoLibrary.LoadVideosFromDatabase();
+                await VideoLibrary.LoadViewedVideosFromDatabase();
+
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    OnPropertyChanged(nameof(ViewedVideos));
+                    Locator.MainVM.InformationText = String.Empty;
+                    LoadingState = LoadingState.Loaded;
+                });
+            });
+        }
+
+        private async void Videos_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged(nameof(Videos));
+            });
+        }
+
+        Task InitializeShows()
+        {
+            return Task.Run(async () =>
+            {
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    Locator.MainVM.InformationText = Strings.Loading;
+                    LoadingState = LoadingState.Loading;
+                });
+
+                if (VideoLibrary.Shows != null)
+                    VideoLibrary.Shows.CollectionChanged += Shows_CollectionChanged;
+                await VideoLibrary.LoadShowsFromDatabase();
+            });
+        }
+
+        private async void Shows_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged(nameof(Shows));
+            });
+        }
+
+        Task InitializeCameraRollVideos()
+        {
+            return Task.Run(async () =>
+            {
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    Locator.MainVM.InformationText = Strings.Loading;
+                    LoadingState = LoadingState.Loading;
+                });
+
+                if (VideoLibrary.CameraRoll != null)
+                    VideoLibrary.CameraRoll.CollectionChanged += CameraRoll_CollectionChanged;
+                await VideoLibrary.LoadCameraRollFromDatabase();
+            });
+        }
+
+        private async void CameraRoll_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged(nameof(CameraRoll));
+            });
+        }
         #endregion
 
         #region methods

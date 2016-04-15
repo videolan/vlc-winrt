@@ -52,6 +52,19 @@ namespace VLC_WinRT.Database
             return res.FirstOrDefault();
         }
 
+        public async Task<List<VideoItem>> Load(Expression<Func<VideoItem, bool>> predicate)
+        {
+            var conn = new SQLiteAsyncConnection(DbPath);
+            if (predicate == null)
+            {
+                return await conn.Table<VideoItem>().ToListAsync();
+            }
+            else
+            {
+                return await conn.Table<VideoItem>().Where(predicate).ToListAsync();
+            }
+        }
+
         public Task Insert(VideoItem item)
         {
             var conn = new SQLiteAsyncConnection(DbPath);
@@ -70,12 +83,18 @@ namespace VLC_WinRT.Database
             var req = connection.Table<VideoItem>().Where(x => x.TimeWatchedSeconds > 0);
             return req.ToListAsync();
         }
-        
+
 
         public Task<List<VideoItem>> Contains(string column, string value)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
             return connection.QueryAsync<VideoItem>($"SELECT * FROM {nameof(VideoItem)} WHERE {column} LIKE '%{value}%';", new string[] { });
+        }
+
+        public async Task<bool> IsEmpty()
+        {
+            var connection = new SQLiteAsyncConnection(DbPath);
+            return await connection.Table<VideoItem>().CountAsync() == 0;
         }
     }
 }

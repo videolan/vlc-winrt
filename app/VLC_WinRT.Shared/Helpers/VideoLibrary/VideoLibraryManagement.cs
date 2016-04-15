@@ -20,6 +20,8 @@ using VLC_WinRT.Database;
 using VLC_WinRT.Services.Interface;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Model.Music;
+using Windows.UI.Xaml;
+using System.Linq.Expressions;
 
 namespace VLC_WinRT.Helpers.VideoLibrary
 {
@@ -31,7 +33,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
         IThumbnailService ThumbsService => App.Container.Resolve<IThumbnailService>();
         #endregion
         #region databases
-        readonly VideoRepository VideoRepository = new VideoRepository();
+        readonly VideoRepository videoDatabase = new VideoRepository();
         #endregion
         #region collections
         public SmartCollection<VideoItem> Videos { get; private set; }
@@ -50,7 +52,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
             {
                 var isChanged = await GenerateThumbnail(videoVm);
                 if (isChanged)
-                    await VideoRepository.Update(videoVm);
+                    await videoDatabase.Update(videoVm);
             }
             finally
             {
@@ -81,8 +83,8 @@ namespace VLC_WinRT.Helpers.VideoLibrary
         public void DropTablesIfNeeded()
         {
             if (!Numbers.NeedsToDrop()) return;
-            VideoRepository.Drop();
-            VideoRepository.Initialize();
+            videoDatabase.Drop();
+            videoDatabase.Initialize();
         }
 
         public Task PerformRoutineCheckIfNotBusy()
@@ -100,23 +102,50 @@ namespace VLC_WinRT.Helpers.VideoLibrary
             if (_alreadyIndexedOnce) return;
             _alreadyIndexedOnce = true;
 
-            await PerformVideoLibraryIndexing();
+            if (await IsVideoDatabaseEmpty())
+            {
+                await StartIndexing();
+            }
+            else
+            {
+                await PerformVideoLibraryIndexing();
+            }
+        }
+
+        Task<bool> IsVideoDatabaseEmpty()
+        {
+            return videoDatabase.IsEmpty();
         }
 
         async Task StartIndexing()
         {
-            throw new NotImplementedException();
+            videoDatabase.DeleteAll();
+
+            Videos?.Clear();
+            ViewedVideos?.Clear();
+            CameraRoll?.Clear();
+            Shows?.Clear();
+            await PerformVideoLibraryIndexing();
         }
 
-        public async Task GetViewedVideosFromDatabase()
+        public async Task LoadVideosFromDatabase()
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            try
             {
-                ViewedVideos = new SmartCollection<VideoItem>();
-                ViewedVideos?.Clear();
-            });
+                Videos?.Clear();
+                LogHelper.Log("Loading videos from VideoDB ...");
+                var videos = await LoadVideos(x => x.IsCameraRoll == false && x.IsTvShow == false);
+                LogHelper.Log($"Found {videos.Count} artists from VideoDB");
+                Videos.AddRange(videos.OrderBy(x => x.Name).ToObservable());
+            }
+            catch { }
+        }
 
-            var result = await VideoRepository.GetLastViewed();
+        public async Task LoadViewedVideosFromDatabase()
+        {
+            ViewedVideos?.Clear();
+
+            var result = await videoDatabase.GetLastViewed();
             var orderedResults = result.OrderByDescending(x => x.LastWatched).Take(6);
             foreach (VideoItem videoVm in orderedResults)
             {
@@ -127,10 +156,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                         StorageFile file = await StorageFile.GetFileFromPathAsync(videoVm.Path);
                         videoVm.File = file;
                     }
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                    {
-                        ViewedVideos.Add(videoVm);
-                    });
+                    ViewedVideos.Add(videoVm);
                 }
                 catch (Exception)
                 {
@@ -143,39 +169,42 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                 }
             }
         }
+
+        public async Task LoadShowsFromDatabase()
+        {
+            Shows?.Clear();
+            var shows = await LoadVideos(x => x.IsTvShow);
+            foreach (var item in shows)
+            {
+                await AddTvShow(item);
+            }
+        }
+        public async Task LoadCameraRollFromDatabase()
+        {
+            CameraRoll?.Clear();
+            var camVideos = await LoadVideos(x => x.IsCameraRoll);
+            CameraRoll.AddRange(camVideos.OrderBy(x => x.Name).ToObservable());
+        }
         #endregion
         #region Video Library Indexation Logic
         public async Task PerformVideoLibraryIndexing()
         {
 #if WINDOWS_PHONE_APP
             StorageFolder storageFolder = KnownFolders.VideosLibrary;
-#else
-            StorageLibrary videoLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Videos);
-            foreach (StorageFolder storageFolder in videoLibrary.Folders)
 #endif
+            var list = await MediaLibraryHelper.GetSupportedFiles(KnownFolders.VideosLibrary);
+            foreach (var item in list)
             {
-                try
-                {
-                    var files = await GetMediaFromFolder(storageFolder);
-                    foreach (var item in files)
-                    {
-                        await DiscoverVideoItemOrWaitAsync(item);
-                    }
-                }
-                catch
-                {
-                    LogHelper.Log("An error occured while indexing a video folder");
-                }
+                await DiscoverVideoItemOrWaitAsync(item);
             }
-
 
             try
             {
                 if (await KnownFolders.PicturesLibrary.ContainsFolderAsync("Camera Roll"))
                 {
                     var cameraRoll = await KnownFolders.PicturesLibrary.GetFolderAsync("Camera Roll");
-                    var files = await GetMediaFromFolder(cameraRoll);
-                    foreach (var item in files)
+                    list = await MediaLibraryHelper.GetSupportedFiles(cameraRoll);
+                    foreach (var item in list)
                     {
                         await DiscoverVideoItemOrWaitAsync(item, true);
                     }
@@ -193,7 +222,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
             {
                 // Check if we know the file:
                 //FIXME: We need to check if the files in DB still exist on disk
-                var mediaVM = await VideoRepository.GetFromPath(storageFile.Path).ConfigureAwait(false);
+                var mediaVM = await videoDatabase.GetFromPath(storageFile.Path).ConfigureAwait(false);
                 if (mediaVM != null)
                 {
                     mediaVM.File = storageFile;
@@ -233,7 +262,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                     {
                         await AddTvShow(mediaVM);
                     }
-                    await VideoRepository.Insert(mediaVM);
+                    await videoDatabase.Insert(mediaVM);
                 }
 
                 if (mediaVM.IsCameraRoll)
@@ -241,22 +270,14 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                     // TODO: Find a more efficient way to know if it's already in the list or not
                     if (CameraRoll.FirstOrDefault(x => x.Id == mediaVM.Id) == null)
                     {
-                        // Must be run on the UI Thread, or else we'll get ui thread marshalling errors!
-                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                        {
-                            CameraRoll.Add(mediaVM);
-                        });
+                        CameraRoll.Add(mediaVM);
                     }
                 }
                 else if (!mediaVM.IsTvShow)
                 {
                     if (Videos.FirstOrDefault(x => x.Id == mediaVM.Id) == null)
                     {
-                        // Must be run on the UI Thread, or else we'll get ui thread marshalling errors!
-                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                        {
-                            Videos.Add(mediaVM);
-                        });
+                        Videos.Add(mediaVM);
                     }
                 }
                 if (ViewedVideos.Count < 6 &&
@@ -264,11 +285,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                 {
                     if (ViewedVideos.FirstOrDefault(x => x.Id == mediaVM.Id) == null)
                     {
-                        // Must be run on the UI Thread, or else we'll get ui thread marshalling errors!
-                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                        {
-                            ViewedVideos.Add(mediaVM);
-                        });
+                        ViewedVideos.Add(mediaVM);
                     }
                 }
             }
@@ -330,17 +347,15 @@ namespace VLC_WinRT.Helpers.VideoLibrary
 
         public async Task AddTvShow(VideoItem episode)
         {
+            episode.IsTvShow = true;
             try
             {
                 TvShow show = Shows.FirstOrDefault(x => x.ShowTitle == episode.ShowTitle);
                 if (show == null)
                 {
                     show = new TvShow(episode.ShowTitle);
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-                    {
-                        show.Episodes.Add(episode);
-                        Shows.Add(show);
-                    });
+                    show.Episodes.Add(episode);
+                    Shows.Add(show);
                 }
                 else
                 {
@@ -415,15 +430,20 @@ namespace VLC_WinRT.Helpers.VideoLibrary
             return false;
         }
 
-        #region db operations
+        #region database operations
+        public Task<List<VideoItem>> LoadVideos(Expression<Func<VideoItem, bool>> predicate)
+        {
+            return videoDatabase.Load(predicate);
+        }
+
         public Task UpdateVideo(VideoItem video)
         {
-            return VideoRepository.Update(video);
+            return videoDatabase.Update(video);
         }
 
         public Task<List<VideoItem>> ContainsVideo(string column, string val)
         {
-            return VideoRepository.Contains(column, val);
+            return videoDatabase.Contains(column, val);
         }
         #endregion
     }

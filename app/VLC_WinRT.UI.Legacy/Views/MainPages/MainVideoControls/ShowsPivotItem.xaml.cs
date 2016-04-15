@@ -14,7 +14,7 @@ namespace VLC_WinRT.Views.MainPages.MainVideoControls
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
-            Locator.VideoLibraryVM.OnNavigatedToAllVideos();
+            Locator.VideoLibraryVM.OnNavigatedToShows();
         }
     }
 }
