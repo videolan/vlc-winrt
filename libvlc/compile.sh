@@ -38,16 +38,18 @@ esac
 case "$2" in
     win10)
         WINVER=0xA00
-        RUNTIME=-lmsvcr120_app
+        RUNTIME=msvcr120_app
         ;;
     win81)
         WINVER=0x602
-        RUNTIME=-lmsvcr120_app
+        RUNTIME=msvcr120
         ;;
     *)
         WINVER=0x602
-        RUNTIME=-lmsvcrt
+        RUNTIME=msvcrt
 esac
+
+echo Using runtime $RUNTIME
 
 # 1/ libvlc, libvlccore and its plugins
 TESTED_HASH=45df8a6415
@@ -83,14 +85,14 @@ fi
 
 TARGET_TUPLE=${1}-w64-mingw32
 
-${TARGET_TUPLE}-gcc -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lole32 -lruntimeobject/' -e "s/-lmsvcrt/$RUNTIME/" > ../newspecfile
+${TARGET_TUPLE}-gcc -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lole32 -lruntimeobject/' -e "s/-lmsvcrt/-l$RUNTIME/" > ../newspecfile
 NEWSPECFILE="`pwd`/../newspecfile"
 
 EXTRA_CPPFLAGS="-D_WIN32_WINNT=$WINVER -DWINVER=$WINVER -DWINSTORECOMPAT -D_UNICODE -DUNICODE"
 EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat -lruntimeobject"
 
 echo "Building the contribs"
-CONTRIB_FOLDER=contrib/winrt-$1
+CONTRIB_FOLDER=contrib/winrt-$1-$RUNTIME
 mkdir -p $CONTRIB_FOLDER
 cd $CONTRIB_FOLDER
 ../bootstrap --host=${TARGET_TUPLE} --disable-disc --disable-sout \
@@ -140,7 +142,7 @@ export PKG_CONFIG_LIBDIR="`pwd`/contrib/${TARGET_TUPLE}/lib/pkgconfig"
 
 make $MAKEFLAGS
 
-BUILD_FOLDER=winrt-$1
+BUILD_FOLDER=winrt-$1-$RUNTIME
 cd ../.. && mkdir -p ${BUILD_FOLDER} && cd ${BUILD_FOLDER}
 
 echo "Bootstraping"
