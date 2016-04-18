@@ -17,8 +17,9 @@ namespace VLC_WinRT.Views.MusicPages.AlbumPageControls
         {
             this.SizeChanged += OnSizeChanged;
             this.Unloaded += OnUnloaded;
+            PlayAlbum.Focus(FocusState.Keyboard);
         }
-
+        
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
         }

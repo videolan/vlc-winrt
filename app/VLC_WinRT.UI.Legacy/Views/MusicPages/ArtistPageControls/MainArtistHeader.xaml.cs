@@ -29,6 +29,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
         void UpdateBackButton()
         {
             BackButton.Visibility = BackButtonVisibility;
+            PlayButton.Focus(FocusState.Keyboard);
         }
 
         private void MainArtistHeader_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
