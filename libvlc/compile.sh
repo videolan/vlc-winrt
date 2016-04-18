@@ -88,7 +88,7 @@ TARGET_TUPLE=${1}-w64-mingw32
 ${TARGET_TUPLE}-gcc -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lole32 -lruntimeobject/' -e "s/-lmsvcrt/-l$RUNTIME/" > ../newspecfile
 NEWSPECFILE="`pwd`/../newspecfile"
 
-EXTRA_CPPFLAGS="-D_WIN32_WINNT=$WINVER -DWINVER=$WINVER -DWINSTORECOMPAT -D_UNICODE -DUNICODE"
+EXTRA_CPPFLAGS="-D_WIN32_WINNT=$WINVER -DWINVER=$WINVER -DWINSTORECOMPAT -D_UNICODE -DUNICODE -DWINAPI_FAMILY=WINAPI_FAMILY_APP"
 EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat -lruntimeobject"
 
 echo "Building the contribs"
@@ -133,7 +133,7 @@ cd $CONTRIB_FOLDER
     --disable-ssh2 \
     --disable-vncclient
 
-echo "EXTRA_CFLAGS=-DNDEBUG -DWINAPI_FAMILY=WINAPI_FAMILY_APP ${EXTRA_CPPFLAGS}" >> config.mak
+echo "EXTRA_CFLAGS=${EXTRA_CPPFLAGS}" >> config.mak
 echo "EXTRA_LDFLAGS=${EXTRA_LDFLAGS}" >> config.mak
 echo "HAVE_WINRT := 1" >> config.mak
 echo "CC=${TARGET_TUPLE}-gcc -specs=$NEWSPECFILE" >> config.mak

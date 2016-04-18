@@ -29,6 +29,11 @@ OPTIONS="
       --enable-mad
       --disable-a52
       --disable-libgcrypt
-      --disable-dirac"
+      --disable-dirac
+      --disable-dsm
+      --disable-smbclient
+      --disable-vcd
+      --disable-crystalhd
+      --disable-dxva2"
 
 sh ../configure ${OPTIONS} $*
