@@ -65,7 +65,7 @@
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid Orientation="Horizontal"
-                                       Margin="{StaticResource FooterMarginBottom}"
+                                       Margin="{StaticResource FrameMarginTop}"
                                        HorizontalAlignment="Center"
                                        Loaded="ZoomedOutItemsWrapGrid_Loaded">
                             <ItemsWrapGrid.ChildrenTransitions>
