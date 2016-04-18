@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xaml.Interactivity;
+using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
