@@ -5,7 +5,7 @@ set -e
 usage()
 {
     echo "Usage: compile <arch> [TargetOS]"
-    echo "archs: i686,x64_64,armv7"
+    echo "archs: i686,x86_64,armv7"
 }
 
 using()
