@@ -2714,7 +2714,6 @@
                                                     Grid.Column="0"
                                                     Grid.ColumnSpan="2"
                                                     UseSystemFocusVisuals="False"
-                                                    IsTabStop="False"
                                                     HorizontalContentAlignment="Center">
                                         <ContentControl.Clip>
                                             <RectangleGeometry x:Name="HeaderClipperGeometry" />
