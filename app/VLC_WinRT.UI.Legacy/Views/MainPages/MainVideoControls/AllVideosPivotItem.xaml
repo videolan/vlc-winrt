@@ -61,7 +61,6 @@
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                     <ListView x:Name="VideosListView"
                               Grid.Row="2"
-                              Height="180"
                               ItemsSource="{Binding ViewedVideos}"
                               ItemTemplate="{StaticResource PhoneCompactVideoTemplateFixedSize}"
                               ItemContainerStyle="{StaticResource ListViewItemStyle}"
