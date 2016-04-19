@@ -166,7 +166,6 @@ namespace VLC_WinRT.Views.VideoPages
         {
             isLocked = !isLocked;
             LockToggleIcon.Glyph = (isLocked) ? App.Current.Resources["LockedSymbol"].ToString() : App.Current.Resources["UnlockedSymbol"].ToString();
-            GoBackButton.Visibility = (isLocked) ? Visibility.Collapsed : Visibility.Visible;
             Slider.IsEnabled = !isLocked;
             SubtitlesButton.IsEnabled = !isLocked;
             PlayButton.IsEnabled = !isLocked;
