@@ -131,9 +131,8 @@ namespace VLC_WinRT.Views.MainPages
 
             var root = ElementCompositionPreview.GetElementVisual(RootGrid);
             _compositor = root.Compositor;
-
-            SplitShell.ContentSizeChanged += (s) => Animate();
             Animate();
+            SplitShell.ContentSizeChanged += (s) => Animate();
         }
         
         public async void StopCompositionAnimationOnSwapChain()
