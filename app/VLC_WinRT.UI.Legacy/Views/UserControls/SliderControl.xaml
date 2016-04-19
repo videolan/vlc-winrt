@@ -10,25 +10,30 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
-            <RowDefinition Height="22" />
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="1" Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0"
+                   Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}"
                    HorizontalAlignment="Left"
                    FontWeight="Light"
                    FontSize="18"
-                   Foreground="{ThemeResource BasicForeground}" />
-        <Slider Grid.Row="0"
+                   Foreground="{ThemeResource BasicForeground}" 
+                   Margin="{StaticResource FrameMarginRight}"/>
+        <Slider Grid.Column="1"
                 Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
                 Style="{StaticResource VLCSlider}"
                 Maximum="500"
+                Margin="0,3,0,0"
                 ThumbToolTipValueConverter="{StaticResource PositionToTimeStampStringConverter}" />
-        <TextBlock Grid.Row="1" 
+        <TextBlock Grid.Column="2"
                    Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
                    HorizontalAlignment="Right"
                    FontWeight="Light"
                    FontSize="18"
-                   Foreground="{ThemeResource BasicForeground}" />
+                   Foreground="{ThemeResource BasicForeground}" 
+                   Margin="{StaticResource FrameMarginLeft}"/>
     </Grid>
 </UserControl>
