@@ -106,7 +106,7 @@
             <Grid.RenderTransform>
                 <TranslateTransform />
             </Grid.RenderTransform>
-            <TextBlock HorizontalAlignment="Left"
+            <TextBlock HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        FontSize="16"
                        DataContext="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm}"
@@ -176,15 +176,15 @@
                             </AppBarToggleButton.Icon>
                         </AppBarToggleButton>
                         <AppBarButton Name="PiPButton"
+                                      Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.InitPiPCommand}"
                                       IsCompact="True"
                                       IsTabStop="False"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Stretch"
                                       Style="{StaticResource AppBarButtonStyleHuge}"
-                                      Margin="{StaticResource FrameMarginHorizontal}"
-                                      Click="PiPButton_Click">
+                                      Margin="{StaticResource FrameMarginHorizontal}">
                             <AppBarButton.Icon>
-                                <FontIcon Glyph="{StaticResource SettingsFilledSymbol}"
+                                <FontIcon Glyph="{StaticResource ReduceWindow}"
                                           FontFamily="{StaticResource VLCFont}"
                                           FontSize="22" />
                             </AppBarButton.Icon>
@@ -235,11 +235,17 @@
                             <AppBarButton.Flyout>
                                 <MenuFlyout>
                                     <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=AudioTracks}"
-                                                    Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerAudioTracksSettingsVisible}" />
+                                                    Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerAudioTracksSettingsVisible}"
+                                                    Tag="{StaticResource VolumeSymbol}"
+                                                    Style="{StaticResource MenuFlyoutItemIconTemplate}" />
                                     <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Subtitles}"
-                                                    Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerSubtitlesSettingsVisible}" />
+                                                    Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerSubtitlesSettingsVisible}"
+                                                    Tag="{StaticResource ConversationSymbol}"
+                                                    Style="{StaticResource MenuFlyoutItemIconTemplate}" />
                                     <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OpenSubtitle}"
-                                                    Command="{Binding OpenSubtitleCommand}" />
+                                                    Command="{Binding OpenSubtitleCommand}"
+                                                    Tag="{StaticResource FileExplorerSymbol}"
+                                                    Style="{StaticResource MenuFlyoutItemIconTemplate}" />
                                 </MenuFlyout>
                             </AppBarButton.Flyout>
                         </AppBarButton>
