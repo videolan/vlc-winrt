@@ -62,6 +62,12 @@ namespace VLC_WinRT.Helpers
 #endif
         }
 
+        public static void SetTitleBarTitle(string title = "")
+        {
+            var appView = ApplicationView.GetForCurrentView();
+            appView.Title = title;
+        }
+
         public static void SetFullscreen()
         {
 #if WINDOWS_UWP

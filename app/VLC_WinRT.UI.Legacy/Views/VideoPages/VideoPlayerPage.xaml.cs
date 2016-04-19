@@ -86,6 +86,7 @@ namespace VLC_WinRT.Views.VideoPages
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
+            AppViewHelper.SetTitleBarTitle();
             App.RootPage.SwapChainPanel.Visibility = Visibility.Collapsed;
             Locator.VideoPlayerVm.OnNavigatedFrom();
         }
