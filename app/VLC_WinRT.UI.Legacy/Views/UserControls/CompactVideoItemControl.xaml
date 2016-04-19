@@ -8,71 +8,67 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Border FlyoutBase.AttachedFlyout="{StaticResource VideoInformationFlyout}"
-            Holding="RootAlbumItem_Holding"
-            RightTapped="Grid_RightTapped">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="2" />
-                <RowDefinition Height="40" />
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0"
-                  Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
-                <FontIcon Glyph="{StaticResource FileFilledSymbol}"
-                          FontFamily="{StaticResource VLCFont}"
-                          FontSize="42"
-                          Foreground="{ThemeResource MainColor}" />
-            </Grid>
-            <Image Grid.Row="0"
-                   Source="{Binding ThumbnailPath}"
-                   Stretch="UniformToFill"
-                   Width="Auto"
-                   Height="Auto"
-                   HorizontalAlignment="Center" />
-            <ProgressBar Grid.Row="1"
-                         VerticalAlignment="Bottom"
-                         Style="{StaticResource ThinProgressBar}"
-                         Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
-                         Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
-                         Visibility="{Binding TimeWatched.TotalSeconds, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
-            <Grid Grid.Row="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.ColumnSpan="2"
-                           Text="{Binding Name}"
-                           TextWrapping="NoWrap"
-                           TextTrimming="CharacterEllipsis"
-                           FontSize="15"
-                           FontWeight="SemiBold"
-                           Margin="3,0,3,0" />
-                <TextBlock Grid.Row="1"
-                           Grid.Column="0"
-                           Visibility="{Binding HasBeenSeen, Converter={StaticResource BooleanToVisibilityConverter}}"
-                           Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                           TextWrapping="NoWrap"
-                           TextTrimming="CharacterEllipsis"
-                           FontSize="14"
-                           Margin="3,0,3,0">>
-                    <Run Text="{Binding TimeWatched, Converter={StaticResource TimeSpanShortStringConverter}}"/>
-                    <Run Text="-"/>
-                </TextBlock>
-                
-                <TextBlock Grid.Row="1"
-                           Grid.Column="1"
-                           Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"
-                           Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                           TextWrapping="NoWrap"
-                           TextTrimming="CharacterEllipsis"
-                           FontSize="14"
-                           Margin="1,0,3,0" />
-            </Grid>
+    <Grid FlyoutBase.AttachedFlyout="{StaticResource VideoInformationFlyout}"
+          Holding="RootAlbumItem_Holding"
+          RightTapped="Grid_RightTapped">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="2" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
+              Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+            <FontIcon Glyph="{StaticResource FileFilledSymbol}"
+                      FontFamily="{StaticResource VLCFont}"
+                      FontSize="42"
+                      Foreground="{ThemeResource MainColor}" />
         </Grid>
-    </Border>
+        <Image Grid.Row="0"
+               Source="{Binding ThumbnailPath}"
+               Stretch="UniformToFill"
+               HorizontalAlignment="Center" />
+        <ProgressBar Grid.Row="1"
+                     VerticalAlignment="Bottom"
+                     Style="{StaticResource ThinProgressBar}"
+                     Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
+                     Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
+                     Visibility="{Binding TimeWatched.TotalSeconds, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.ColumnSpan="2"
+                       Text="{Binding Name}"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"
+                       FontSize="15"
+                       FontWeight="SemiBold"
+                       Margin="3,0,3,0" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       Visibility="{Binding HasBeenSeen, Converter={StaticResource BooleanToVisibilityConverter}}"
+                       Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"
+                       FontSize="14"
+                       Margin="3,0,3,0">>
+                    <Run Text="{Binding TimeWatched, Converter={StaticResource TimeSpanShortStringConverter}}" />
+                    <Run Text="-" />
+            </TextBlock>
+
+            <TextBlock Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"
+                       Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"
+                       FontSize="14"
+                       Margin="1,0,3,0" />
+        </Grid>
+    </Grid>
 </UserControl>
