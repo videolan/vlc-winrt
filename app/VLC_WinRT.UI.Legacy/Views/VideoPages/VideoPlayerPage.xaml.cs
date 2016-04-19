@@ -317,5 +317,10 @@ namespace VLC_WinRT.Views.VideoPages
             menu.Commands.Add(new UICommand(Strings.Mute, command => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("mute")));
             await menu.ShowForSelectionAsync(new Rect(pos, pos), Placement.Right);
         }
+
+        private void PiPButton_Click(object sender, RoutedEventArgs e)
+        {
+            Locator.NavigationService.Go(Model.VLCPage.MainPageVideo);
+        }
     }
 }

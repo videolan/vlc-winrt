@@ -22,6 +22,10 @@ using VLC_WinRT.Model;
 using System;
 using Windows.System;
 using System.Diagnostics;
+using Windows.UI.Composition;
+using System.Numerics;
+using Windows.UI.Xaml.Hosting;
+using System.Threading.Tasks;
 #if WINDOWS_APP
 using Windows.UI.ApplicationSettings;
 #endif
@@ -110,7 +114,89 @@ namespace VLC_WinRT.Views.MainPages
 
         public void DebugString(string s)
         {
+#if DEBUG
             DebugTextBlock.Text = s;
+#endif
         }
+
+#if WINDOWS_UWP
+        private Compositor _compositor;
+        private bool _pipEnabled;
+        public void StartCompositionAnimationOnSwapChain(bool pipEnabled)
+        {
+            _pipEnabled = pipEnabled;
+            SwapChainPanel.Visibility = Visibility.Visible;
+
+            Canvas.SetZIndex(SwapChainPanel, _pipEnabled ? 1 : 0);
+
+            var root = ElementCompositionPreview.GetElementVisual(RootGrid);
+            _compositor = root.Compositor;
+
+            SplitShell.ContentSizeChanged += (s) => Animate();
+            Animate();
+        }
+        
+        public async void StopCompositionAnimationOnSwapChain()
+        {
+            _pipEnabled = false;
+            var target = ElementCompositionPreview.GetElementVisual(SwapChainPanel);
+            var opacityAnim = _compositor.CreateScalarKeyFrameAnimation();
+            opacityAnim.InsertKeyFrame(1f, 0f);
+
+            opacityAnim.Duration = TimeSpan.FromMilliseconds(500);
+            opacityAnim.IterationCount = 1;
+            target.StartAnimation(nameof(Visual.Opacity), opacityAnim);
+            await Task.Delay((int)opacityAnim.Duration.TotalMilliseconds);
+            SwapChainPanel.Visibility = Visibility.Collapsed;
+        }
+
+        void Animate()
+        {
+            var target = ElementCompositionPreview.GetElementVisual(SwapChainPanel);
+            if (!_pipEnabled) // Don't needlessly call composition APIs
+            {
+                if (target.Offset.X == 0f && target.Offset.Y == 0f && target.Opacity != 1f)
+                    return;
+            }
+
+            Locator.MediaPlaybackViewModel._mediaService.SetSizeVideoPlayer((uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualWidth), (uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualHeight));
+            Locator.VideoPlayerVm.ChangeSurfaceZoom(Locator.VideoPlayerVm.CurrentSurfaceZoom);
+
+
+            Debug.WriteLine($"swapWidth {SwapChainPanel.ActualWidth} -- winWidth {Window.Current.Bounds.Width}");
+            
+            // Position Animation
+            var posAnimation = _compositor.CreateVector3KeyFrameAnimation();
+            if (_pipEnabled)
+            {
+                posAnimation.InsertKeyFrame(1f, new Vector3((float)Window.Current.Bounds.Width * 0.7f,
+                                                              (float)Window.Current.Bounds.Height * 0.7f,
+                                                              1f));
+            }
+            else
+            {
+                posAnimation.InsertKeyFrame(1f, new Vector3(0f, 0f, 1f));
+            }
+
+            // Opacity animation
+            var opacityAnim = _compositor.CreateScalarKeyFrameAnimation();
+            opacityAnim.InsertKeyFrame(1f, 1f);
+
+            // Scale animation
+            var scaleAnimation = _compositor.CreateVector3KeyFrameAnimation();
+            if (_pipEnabled)
+                scaleAnimation.InsertKeyFrame(1f, new Vector3(0.3f, 0.3f, 1f));
+            else
+                scaleAnimation.InsertKeyFrame(1f, new Vector3(1f, 1f, 1f));
+
+            // Set animation properties
+            opacityAnim.Duration = scaleAnimation.Duration = posAnimation.Duration = TimeSpan.FromMilliseconds(500);
+            opacityAnim.IterationCount = scaleAnimation.IterationCount = posAnimation.IterationCount = 1;
+
+            target.StartAnimation("Offset", posAnimation);
+            target.StartAnimation("Scale", scaleAnimation);
+            target.StartAnimation("Opacity", opacityAnim);
+        }
+#endif
     }
 }

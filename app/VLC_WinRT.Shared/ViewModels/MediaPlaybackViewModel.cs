@@ -794,6 +794,7 @@ namespace VLC_WinRT.ViewModels
                 }
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
+                    App.RootPage.StopCompositionAnimationOnSwapChain();
                     TrackCollection.IsRunning = false;
                     IsPlaying = false;
                     PlayingType = PlayingType.NotPlaying;
