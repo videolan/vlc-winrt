@@ -12,12 +12,12 @@ namespace VLC_WinRT.Views.UserControls
 
         private void RootAlbumItem_Holding(object sender, HoldingRoutedEventArgs e)
         {
-            Flyout.ShowAttachedFlyout((Border)sender);
+            Flyout.ShowAttachedFlyout((Grid)sender);
         }
 
         private void Grid_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
-            Flyout.ShowAttachedFlyout((Border)sender);
+            Flyout.ShowAttachedFlyout((Grid)sender);
         }
     }
 }
