@@ -14,6 +14,9 @@ EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC_WinRT.Shared", "..\app\VLC_WinRT.Shared\VLC_WinRT.Shared.shproj", "{DB1DEA15-00B8-4707-8C70-53431C4FA754}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WinRT.Windows", "..\app\VLC_WinRT.Windows\VLC_WinRT.Windows.csproj", "{B1A5A4DC-2C9F-4343-AF3F-372944C4607D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A3345ED6-A13A-487B-9EF3-412FED4916D1} = {A3345ED6-A13A-487B-9EF3-412FED4916D1}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WinRT.WindowsPhone", "..\app\VLC_WinRT.WindowsPhone\VLC_WinRT.WindowsPhone.csproj", "{C8711A23-F511-4FA1-A3F5-F2578F820A5A}"
 EndProject
