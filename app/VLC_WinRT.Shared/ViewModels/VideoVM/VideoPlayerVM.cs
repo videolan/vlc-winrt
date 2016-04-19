@@ -125,6 +125,8 @@ namespace VLC_WinRT.ViewModels.VideoVM
         });
 
         public SurfaceZoomToggleCommand SurfaceZoomToggleCommand { get; } = new SurfaceZoomToggleCommand();
+
+        public InitPiPCommand InitPiPCommand => new InitPiPCommand();
         #endregion
 
         #region public fields
