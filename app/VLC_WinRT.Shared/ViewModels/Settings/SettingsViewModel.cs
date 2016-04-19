@@ -528,7 +528,7 @@ namespace VLC_WinRT.ViewModels.Settings
         {
             get
             {
-                var homePage = ApplicationSettingsHelper.ReadSettingsValue("Homepage", false);
+                var homePage = ApplicationSettingsHelper.ReadSettingsValue(nameof(HomePage), false);
                 if (homePage == null)
                 {
                     _homePage = VLCPage.MainPageVideo;
@@ -541,7 +541,7 @@ namespace VLC_WinRT.ViewModels.Settings
             }
             set
             {
-                ApplicationSettingsHelper.SaveSettingsValue("Homepage", (int)value, false);
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(HomePage), (int)value, false);
                 SetProperty(ref _homePage, value);
             }
         }
