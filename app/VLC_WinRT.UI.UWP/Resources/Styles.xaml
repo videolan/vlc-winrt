@@ -24,8 +24,6 @@
     <Style TargetType="MenuFlyoutPresenter">
         <Setter Property="BorderThickness"
                 Value="1" />
-        <Setter Property="Background"
-                Value="{StaticResource ApplicationOverlayTranslucentThemeBrush}" />
         <Setter Property="BorderBrush"
                 Value="{StaticResource MainColor}" />
     </Style>
