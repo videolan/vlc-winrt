@@ -55,7 +55,7 @@ namespace VLC_WinRT.Views.UserControls
             {
                 await artist.ResetArtistHeader();
                 var albumsCount = await Locator.MusicLibrary.LoadAlbumsCount(artist.Id);
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => AlbumsCountTextBlock.Text = albumsCount + " " + Strings.Albums);
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => AlbumsCountTextBlock.Text = Strings.Albums.ToUpperFirstChar() + Strings.Dash + albumsCount);
             });
         }
 
