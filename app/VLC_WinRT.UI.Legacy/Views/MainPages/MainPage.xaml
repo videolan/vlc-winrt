@@ -36,6 +36,8 @@
         </Storyboard>
     </Grid.Resources>
 
+    <SwapChainPanel x:Name="SwapChainPanel"
+                    x:FieldModifier="public" />
     <controls:SplitShell x:Name="SplitShell"
                          x:FieldModifier="public"
                          FlyoutCloseRequested="SplitShell_FlyoutCloseRequested"
@@ -43,8 +45,6 @@
         <controls:SplitShell.Content>
             <Grid>
                 <TextBlock x:Name="DebugTextBlock"/>
-                <SwapChainPanel x:Name="SwapChainPanel"
-                                x:FieldModifier="public" />
                 <Frame x:Name="NavigationFrame"
                        x:FieldModifier="public"
                        Background="Transparent"
