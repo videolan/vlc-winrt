@@ -61,11 +61,6 @@
                     <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                             Value="Visible" />
                 </ObjectAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
-                                               Storyboard.TargetProperty="Visibility">
-                    <DiscreteObjectKeyFrame KeyTime="0:0:0"
-                                            Value="Visible" />
-                </ObjectAnimationUsingKeyFrames>
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
                     <EasingDoubleKeyFrame KeyTime="0:0:0.7"
