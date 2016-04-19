@@ -69,6 +69,16 @@ namespace VLC_WinRT.Views.VideoPages
             {
                 VisualStateManager.GoToState(this, "Full", false);
             }
+
+            if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Tablet && AppViewHelper.GetFullscreen() == false)
+            {
+                VisualStateManager.GoToState(this, "WindowState", false);
+            }
+            else
+            {
+                VisualStateManager.GoToState(this, "FullscreenState", false);
+            }
+
             Locator.MediaPlaybackViewModel._mediaService.SetSizeVideoPlayer((uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualWidth), (uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualHeight));
             Locator.VideoPlayerVm.ChangeSurfaceZoom(Locator.VideoPlayerVm.CurrentSurfaceZoom);
         }

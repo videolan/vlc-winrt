@@ -106,32 +106,19 @@
 
         <Grid x:Name="HeaderGrid"
               Height="40"
-              Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+              Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+              Visibility="Collapsed">
             <Grid.RenderTransform>
                 <TranslateTransform />
             </Grid.RenderTransform>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Button x:Name="GoBackButton"
-                    Grid.Column="1"
-                    Style="{StaticResource TextBlockButtonStyle}"
-                    Command="{Binding GoBack}">
-                <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
-                          FontFamily="{StaticResource VLCFont}"
-                          FontSize="24" />
-            </Button>
-            <TextBlock Grid.Column="3"
-                       HorizontalAlignment="Left"
+            <TextBlock HorizontalAlignment="Left"
                        VerticalAlignment="Center"
                        FontSize="16"
                        DataContext="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm}"
                        Text="{Binding CurrentVideo.Name}"
                        TextWrapping="NoWrap"
-                       TextTrimming="CharacterEllipsis" />
+                       TextTrimming="CharacterEllipsis"
+                       Margin="{StaticResource FrameMarginHorizontal}" />
         </Grid>
 
         <Grid Grid.Row="1">
@@ -165,68 +152,57 @@
         <Border x:Name="ControlsGrid"
                 Grid.Row="2"
                 Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
-                Margin="24"
-                Padding="12"
+                Padding="{StaticResource FrameMarginBothSides}"
                 CornerRadius="6">
             <Border.RenderTransform>
                 <TranslateTransform />
             </Border.RenderTransform>
             <Grid>
                 <userControls:SliderControl x:Name="Slider" />
-                <Grid Margin="0,60,0,0"
-                      MaxWidth="750">
+                <Grid Margin="0,40,0,-10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}"
-                                        Grid.Column="0"
-                                        Name="LockToggleButton"
-                                        IsCompact="True"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Stretch"
-                                        Click="LockToggleButton_Click">
-                        <AppBarToggleButton.Icon>
-                            <FontIcon x:Name="LockToggleIcon"
-                                      Glyph="{StaticResource UnlockedSymbol}"
-                                      FontFamily="{StaticResource VLCFont}"
-                                      FontSize="27" />
-                        </AppBarToggleButton.Icon>
-                    </AppBarToggleButton>
-                    <AppBarButton x:Name="SubtitlesButton"
-                                  Grid.Column="1"
-                                  HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Stretch"
-                                  IsCompact="True"
-                                  Style="{StaticResource AppBarButtonStyleHuge}">
-                        <AppBarButton.Icon>
-                            <FontIcon Glyph="{StaticResource ConversationSymbol}"
-                                      FontFamily="{StaticResource VLCFont}"
-                                      FontSize="27" />
-                        </AppBarButton.Icon>
-                        <AppBarButton.Flyout>
-                            <MenuFlyout>
-                                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=AudioTracks}"
-                                                Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerAudioTracksSettingsVisible}" />
-                                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Subtitles}"
-                                                Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerSubtitlesSettingsVisible}" />
-                                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OpenSubtitle}"
-                                                Command="{Binding OpenSubtitleCommand}" />
-                            </MenuFlyout>
-                        </AppBarButton.Flyout>
-                    </AppBarButton>
+                    <StackPanel Orientation="Horizontal">
+                        <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}"
+                                            Grid.Column="0"
+                                            Name="LockToggleButton"
+                                            IsCompact="True"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            Click="LockToggleButton_Click">
+                            <AppBarToggleButton.Icon>
+                                <FontIcon x:Name="LockToggleIcon"
+                                          Glyph="{StaticResource UnlockedSymbol}"
+                                          FontFamily="{StaticResource VLCFont}"
+                                          FontSize="24" />
+                            </AppBarToggleButton.Icon>
+                        </AppBarToggleButton>
+                        <AppBarButton Name="PiPButton"
+                                      IsCompact="True"
+                                      IsTabStop="False"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch"
+                                      Style="{StaticResource AppBarButtonStyleHuge}"
+                                      Margin="{StaticResource FrameMarginHorizontal}"
+                                      Click="PiPButton_Click">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="{StaticResource SettingsFilledSymbol}"
+                                          FontFamily="{StaticResource VLCFont}"
+                                          FontSize="22" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                    </StackPanel>
                     <AppBarButton x:Name="PlayButton"
-                                  Grid.Column="2"
-                                  IsCompact="True"
+                                  Grid.Column="1"
+                                  Command="{Binding PlayOrPauseCommand}"
                                   Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
+                                  IsCompact="True"
                                   HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Stretch"
-                                  Command="{Binding PlayOrPauseCommand}"
-                                  Foreground="{ThemeResource MainColor}">
+                                  VerticalAlignment="Stretch">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PlaySymbol}"
                                       FontFamily="{StaticResource VLCFont}"
@@ -234,7 +210,7 @@
                         </AppBarButton.Icon>
                     </AppBarButton>
                     <AppBarButton x:Name="PauseButton"
-                                  Grid.Column="2"
+                                  Grid.Column="1"
                                   IsCompact="True"
                                   Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
@@ -248,38 +224,69 @@
                                       FontSize="42" />
                         </AppBarButton.Icon>
                     </AppBarButton>
-                    <AppBarButton Grid.Column="3"
-                                  Name="MenuButton"
-                                  Icon="More"
-                                  IsCompact="True"
-                                  IsTabStop="False"
-                                  HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Stretch"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
-                                  Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerOptionsPanelVisible}" />
-                    <Grid x:Name="VolumeGrid"
-                          Grid.Column="4">
-                        <Slider x:Name="VolumeSlider" 
-                                Value="{Binding Volume, Mode=TwoWay}"
-                                Maximum="100"
-                                Style="{StaticResource VLCSlider}"
-                                Margin="0,9,0,0" />
-                    </Grid>
-                    <AppBarButton x:Name="ZoomButton"
-                                  Grid.Column="4"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
-                                  HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Stretch"
-                                  DataContext="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm}"
-                                  Label="{Binding CurrentSurfaceZoom, Converter={StaticResource VLCSurfaceZoomStringifyConverter}}"
-                                  Command="{Binding SurfaceZoomToggleCommand}"
-                                  Width="100">
-                        <AppBarButton.Icon>
-                            <FontIcon Glyph="{StaticResource ExpandWindow}"
-                                      FontFamily="{StaticResource VLCFont}"
-                                      FontSize="27" />
-                        </AppBarButton.Icon>
-                    </AppBarButton>
+                    <StackPanel Grid.Column="2"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <AppBarButton x:Name="SubtitlesButton"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch"
+                                      IsCompact="True"
+                                      Style="{StaticResource AppBarButtonStyleHuge}">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="{StaticResource ConversationSymbol}"
+                                          FontFamily="{StaticResource VLCFont}"
+                                          FontSize="27" />
+                            </AppBarButton.Icon>
+                            <AppBarButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=AudioTracks}"
+                                                    Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerAudioTracksSettingsVisible}" />
+                                    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Subtitles}"
+                                                    Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerSubtitlesSettingsVisible}" />
+                                    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OpenSubtitle}"
+                                                    Command="{Binding OpenSubtitleCommand}" />
+                                </MenuFlyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
+                        <AppBarButton Name="MenuButton"
+                                      Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerOptionsPanelVisible}"
+                                      IsCompact="True"
+                                      IsTabStop="False"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch"
+                                      Style="{StaticResource AppBarButtonStyleHuge}"
+                                      Margin="{StaticResource FrameMarginHorizontal}">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="{StaticResource SettingsFilledSymbol}"
+                                          FontFamily="{StaticResource VLCFont}"
+                                          FontSize="22" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <Grid x:Name="VolumeGrid"
+                              HorizontalAlignment="Right"
+                              Margin="{StaticResource FrameMarginHorizontal}">
+                            <Slider x:Name="VolumeSlider"
+                                    Value="{Binding Volume, Mode=TwoWay}"
+                                    Maximum="100"
+                                    Style="{StaticResource VLCSlider}"
+                                    MinWidth="110"
+                                    Margin="0,12,0,0" />
+                        </Grid>
+                        <AppBarButton x:Name="ZoomButton"
+                                      Style="{StaticResource AppBarButtonStyleHuge}"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch"
+                                      DataContext="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm}"
+                                      Label="{Binding CurrentSurfaceZoom, Converter={StaticResource VLCSurfaceZoomStringifyConverter}}"
+                                      Command="{Binding SurfaceZoomToggleCommand}"
+                                      Width="100">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="{StaticResource ExpandWindow}"
+                                          FontFamily="{StaticResource VLCFont}"
+                                          FontSize="27" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                    </StackPanel>
                 </Grid>
             </Grid>
         </Border>
@@ -345,6 +352,26 @@
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="WindowingStates">
+                <VisualState x:Name="WindowState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="FullscreenState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
