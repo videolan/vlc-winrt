@@ -87,10 +87,12 @@ namespace VLC_WinRT.Views.VideoPages
         {
             base.OnNavigatedTo(e);
             App.RootPage.SwapChainPanel.Visibility = Visibility.Visible;
+            AppViewHelper.SetTitleBarTitle(Locator.VideoPlayerVm.CurrentVideo.Name);
             Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
             Locator.VideoPlayerVm.OnNavigatedTo();
             Responsive();
+            App.RootPage.StartCompositionAnimationOnSwapChain(false);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -99,6 +101,7 @@ namespace VLC_WinRT.Views.VideoPages
             AppViewHelper.SetTitleBarTitle();
             App.RootPage.SwapChainPanel.Visibility = Visibility.Collapsed;
             Locator.VideoPlayerVm.OnNavigatedFrom();
+            App.RootPage.StartCompositionAnimationOnSwapChain(true);
         }
 
         private void MouseMoved()
