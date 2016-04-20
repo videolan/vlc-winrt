@@ -2,6 +2,7 @@
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
+using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using Windows.System;
 using Windows.UI;
@@ -17,12 +18,14 @@ namespace VLC_WinRT.UI.UWP.Views.SettingsPages
         public SettingsPage()
         {
             this.InitializeComponent();
+            AppViewHelper.SetTitleBarTitle(Strings.Settings.ToUpperFirstChar());
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
             Locator.SettingsVM.OnNavigatedFrom(e);
+            AppViewHelper.SetTitleBarTitle();
         }
 
         public void Go(VLCPage desiredPage)

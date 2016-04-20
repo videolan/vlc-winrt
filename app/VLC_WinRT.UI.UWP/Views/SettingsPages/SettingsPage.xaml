@@ -8,7 +8,7 @@
       mc:Ignorable="d">
 
     <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
-        <Pivot Title="{Binding Source={StaticResource Strings}, Path=SettingsUppercase}">
+        <Pivot>
             <PivotItem Header="{Binding Source={StaticResource Strings}, Path=UserInterface}">
                 <Grid>
                     <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
