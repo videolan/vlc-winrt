@@ -44,8 +44,8 @@ namespace VLC_WinRT.ViewModels.Settings
         private bool _notificationOnNewSongForeground;
 #endif
         private ApplicationTheme applicationTheme;
-        private List<Color> _accentColors;
-        private Color _accentColor;
+        private List<VLCAccentColor> _accentColors = new List<VLCAccentColor>();
+        private VLCAccentColor _accentColor;
         private bool _continueVideoPlaybackInBackground;
         private OrderType _albumsOrderType;
         private OrderListing _albumsOrderListing;
@@ -76,62 +76,61 @@ namespace VLC_WinRT.ViewModels.Settings
             }
         }
 
-        public List<Color> AccentColors
+        public List<VLCAccentColor> AccentColors
         {
             get
             {
-                if (_accentColors != null && _accentColors.Any())
-                    return _accentColors;
-                _accentColors = new List<Color>()
+                if (!_accentColors.Any())
                 {
-                    Color.FromArgb(255, 0xff, 0x88, 0x00),
-                    Color.FromArgb(255, 241, 13, 162),
-                    Color.FromArgb(255, 240, 67, 98),
-                    Color.FromArgb(255, 239, 95, 65),
-                    Color.FromArgb(255, 46, 204, 113),
-                    Color.FromArgb(255, 52, 152, 219),
-                    Color.FromArgb(255, 155, 89, 182),
-                    Color.FromArgb(255, 52, 73, 94),
-                    Color.FromArgb(255, 22, 160, 133),
-                    Color.FromArgb(255, 39, 174, 96),
-                    Color.FromArgb(255, 41, 128, 185),
-                    Color.FromArgb(255, 142, 68, 173),
-                    Color.FromArgb(255, 44, 62, 80),
-                    Color.FromArgb(255, 241, 196, 15),
-                    Color.FromArgb(255, 230, 126, 34),
-                    Color.FromArgb(255, 231, 76, 60),
-                    Color.FromArgb(255, 243, 156, 18),
-                    Color.FromArgb(255, 211, 84, 0),
-                    Color.FromArgb(255, 192, 57, 43)
-                };
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 0xff, 0x88, 0x00)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 241, 13, 162)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 240, 67, 98)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 239, 95, 65)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 46, 204, 113)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 52, 152, 219)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 155, 89, 182)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 52, 73, 94)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 22, 160, 133)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 39, 174, 96)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 41, 128, 185)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 142, 68, 173)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 44, 62, 80)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 241, 196, 15)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 230, 126, 34)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 231, 76, 60)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 243, 156, 18)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 211, 84, 0)));
+                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 192, 57, 43)));
+                }
                 return _accentColors;
             }
         }
 
-        public Color AccentColor
+        public VLCAccentColor AccentColor
         {
             get
             {
                 var color = ApplicationSettingsHelper.ReadSettingsValue(nameof(AccentColor), false);
-                if (color == null || string.IsNullOrEmpty(color.ToString()))
+                if (color == null || string.IsNullOrEmpty(color.ToString()) || color.ToString() == "#00000000")
                 {
                     _accentColor = AccentColors[0];
                 }
                 else
                 {
                     var str = color.ToString();
-                    _accentColor = new Color();
-                    _accentColor.A = byte.Parse(str.Substring(1, 2), NumberStyles.AllowHexSpecifier);
-                    _accentColor.R = byte.Parse(str.Substring(3, 2), NumberStyles.AllowHexSpecifier);
-                    _accentColor.G = byte.Parse(str.Substring(5, 2), NumberStyles.AllowHexSpecifier);
-                    _accentColor.B = byte.Parse(str.Substring(7, 2), NumberStyles.AllowHexSpecifier);
+                    var c = new Color();
+                    c.A = byte.Parse(str.Substring(1, 2), NumberStyles.AllowHexSpecifier);
+                    c.R = byte.Parse(str.Substring(3, 2), NumberStyles.AllowHexSpecifier);
+                    c.G = byte.Parse(str.Substring(5, 2), NumberStyles.AllowHexSpecifier);
+                    c.B = byte.Parse(str.Substring(7, 2), NumberStyles.AllowHexSpecifier);
+                    _accentColor = AccentColors.FirstOrDefault(x => x.Color == c);
                 }
                 return _accentColor;
             }
             set
             {
-                if (_accentColor == value) return;
-                ApplicationSettingsHelper.SaveSettingsValue(nameof(AccentColor), value.ToString(), false);
+                if (_accentColor == value || value == null) return;
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(AccentColor), value.Color.ToString(), false);
                 SetProperty(ref _accentColor, value);
             }
         }
@@ -145,7 +144,7 @@ namespace VLC_WinRT.ViewModels.Settings
 #if WINDOWS_APP
                 applicationTheme = ApplicationTheme.Light;
 #else
-                    applicationTheme = App.Current.RequestedTheme;
+                applicationTheme = App.Current.RequestedTheme;
 #endif
             }
             else
@@ -486,7 +485,7 @@ namespace VLC_WinRT.ViewModels.Settings
                 }
                 else
                 {
-                    _forceLandscape = (bool) force;
+                    _forceLandscape = (bool)force;
                 }
                 return _forceLandscape;
             }
@@ -551,7 +550,7 @@ namespace VLC_WinRT.ViewModels.Settings
             get
             {
                 var subtitleEncodingValue = ApplicationSettingsHelper.ReadSettingsValue(nameof(SubtitleEncodingValue), false);
-                if (string.IsNullOrEmpty((string) subtitleEncodingValue))
+                if (string.IsNullOrEmpty((string)subtitleEncodingValue))
                 {
                     _subtitlesEncodingValue = "System";
                 }

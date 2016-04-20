@@ -183,6 +183,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideoVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideTemplateSizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VLCSurfaceZoom.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\VLCAccentColor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCChapterDescription.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFileExtensions.cs" />

@@ -28,27 +28,29 @@
                                 </ToggleSwitch.IsOn>
                             </ToggleSwitch>
 
-                            <GridView DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+                            <ComboBox DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                                       ItemsSource="{Binding AccentColors}"
-                                      SelectedItem="{Binding AccentColor, Mode=TwoWay}">
-                                <GridView.ItemTemplate>
+                                      SelectedItem="{Binding AccentColor, Mode=TwoWay}"
+                                      Width="170">
+                                <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Height="75"
-                                              Width="75">
-                                            <Grid.Background>
-                                                <SolidColorBrush Color="{Binding}" />
-                                            </Grid.Background>
-                                        </Grid>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Ellipse Height="30"
+                                                     Width="30"
+                                                     VerticalAlignment="Center">
+                                                <Ellipse.Fill>
+                                                    <SolidColorBrush Color="{Binding Color}" />
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+                                            <TextBlock Text="{Binding Name}"
+                                                       Margin="{StaticResource FrameMarginHorizontal}" 
+                                                       Style="{StaticResource BodyTextBlockStyle}"
+                                                       VerticalAlignment="Center"/>
+                                        </StackPanel>
                                     </DataTemplate>
-                                </GridView.ItemTemplate>
-                                <GridView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <ItemsWrapGrid Orientation="Horizontal"
-                                                       ItemHeight="75"
-                                                       ItemWidth="75" />
-                                    </ItemsPanelTemplate>
-                                </GridView.ItemsPanel>
-                            </GridView>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
                             <Button x:Name="ApplyColor"
                                     x:Uid="ApplyAndRestart"
                                     Click="ApplyColorButton_Click"

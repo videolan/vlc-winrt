@@ -273,18 +273,18 @@ namespace VLC_WinRT
                 var appTheme = SettingsViewModel.GetApplicationTheme() == ApplicationTheme.Light;
                 RootPage.RequestedTheme = appTheme ? ElementTheme.Light : ElementTheme.Dark;
             }
-            App.Current.Resources["MainColorBase"] = Locator.SettingsVM.AccentColor;
-            App.Current.Resources["SystemAccentColor"] = Locator.SettingsVM.AccentColor;
+            App.Current.Resources["MainColorBase"] = Locator.SettingsVM.AccentColor.Color;
+            App.Current.Resources["SystemAccentColor"] = Locator.SettingsVM.AccentColor.Color;
             App.Current.Resources["MainColor"] = new SolidColorBrush()
             {
-                Color = Locator.SettingsVM.AccentColor
+                Color = Locator.SettingsVM.AccentColor.Color
             };
             App.Current.Resources["TranslucentMainColor"] = new SolidColorBrush()
             {
-                Color = Locator.SettingsVM.AccentColor,
+                Color = Locator.SettingsVM.AccentColor.Color,
                 Opacity = 0.9
             };
-            var lightColor = Color.FromArgb(179, Locator.SettingsVM.AccentColor.R, Locator.SettingsVM.AccentColor.G, Locator.SettingsVM.AccentColor.B);
+            var lightColor = Color.FromArgb(179, Locator.SettingsVM.AccentColor.Color.R, Locator.SettingsVM.AccentColor.Color.G, Locator.SettingsVM.AccentColor.Color.B);
             App.Current.Resources["SemiLightMainColorBase"] = lightColor;
             App.Current.Resources["SemiLightMainColor"] = new SolidColorBrush() { Color = lightColor };
         }
