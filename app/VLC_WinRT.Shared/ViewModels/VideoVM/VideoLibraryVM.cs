@@ -106,10 +106,9 @@ namespace VLC_WinRT.ViewModels.VideoVM
             set { SetProperty(ref _hasNoMedia, value); }
         }
 
-        [Ignore]
+        
         public PlayVideoCommand OpenVideo { get; } = new PlayVideoCommand();
 
-        [Ignore]
         public CloseFlyoutAndPlayVideoCommand CloseFlyoutAndPlayVideoCommand { get; } = new CloseFlyoutAndPlayVideoCommand();
 
         public PlayNetworkMRLCommand PlayNetworkMRL { get; } = new PlayNetworkMRLCommand();
