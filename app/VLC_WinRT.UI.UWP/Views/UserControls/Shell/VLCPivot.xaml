@@ -17,20 +17,34 @@
            Style="{StaticResource TitlelessPivot}"
            Background="{ThemeResource ApplicationChromeThemeBrush}">
         <Pivot.LeftHeader>
-            <Grid x:Name="LeftHeaderGrid"
-                  Margin="{StaticResource FrameMarginLeft}">
-                <Button x:Name="SettingsButton"
-                        Style="{StaticResource TextBlockButtonStyle}"
-                        Content="{Binding Source={StaticResource Strings}, Path=SettingsUppercase}"
-                        Command="{Binding GoToSettingsPageCommand}"
-                        FontSize="14"
-                        Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}" />
+            <Grid x:Name="TitleBar"
+                  Loaded="TitleBar_Loaded"
+                  Background="Transparent">
+                <Path Data="{StaticResource VLCFlatPath}"
+                      Fill="{ThemeResource MainColor}"
+                      Stretch="Uniform"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      Height="20"
+                      Margin="{StaticResource FrameMarginLeft}"/>
             </Grid>
         </Pivot.LeftHeader>
         <Pivot.RightHeader>
-            <Grid x:Name="TitleBar"
-                  Loaded="TitleBar_Loaded"
-                  Background="Transparent" />
+            <Grid x:Name="RightHeaderGrid">
+                <Button x:Name="SettingsButton"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        Command="{Binding GoToSettingsPageCommand}"
+                        Foreground="DimGray"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top">
+                    <Button.Content>
+                        <FontIcon Glyph="{StaticResource SettingsSymbol}"
+                                  FontFamily="{StaticResource VLCFont}"
+                                  FontSize="17" 
+                                  Margin="0,8,0,0"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
         </Pivot.RightHeader>
         <Pivot.ItemTemplate>
             <DataTemplate>
@@ -46,7 +60,7 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="LeftHeaderGrid.Visibility"
+                        <Setter Target="RightHeaderGrid.Visibility"
                                 Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
@@ -56,7 +70,7 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="LeftHeaderGrid.Visibility"
+                        <Setter Target="RightHeaderGrid.Visibility"
                                 Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>

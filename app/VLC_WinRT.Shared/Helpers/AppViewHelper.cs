@@ -33,6 +33,18 @@ namespace VLC_WinRT.Helpers
             }
         }
 
+        public static double TitleBarRightOffset
+        {
+            get
+            {
+#if WINDOWS_UWP
+                return CoreApplication.GetCurrentView().TitleBar.SystemOverlayRightInset;
+#else
+                return 0;
+#endif
+            }
+        }
+
         static AppViewHelper()
         {
         }
