@@ -2248,12 +2248,15 @@
                      Color="#FF5F37BE" />
     <x:Double x:Key="ComboBoxBorderThemeThickness">0</x:Double>
 
+    <Style TargetType="ComboBox">
+        <Setter Property="Background"
+                Value="{ThemeResource ApplicationChromeThemeBrush}" />
+    </Style>
+    
     <Style x:Key="VLCComboBox"
            TargetType="ComboBox">
         <Setter Property="Foreground"
                 Value="{ThemeResource MainColor}" />
-        <Setter Property="Background"
-                Value="Transparent" />
         <Setter Property="FontSize"
                 Value="19" />
         <Setter Property="FontWeight"
