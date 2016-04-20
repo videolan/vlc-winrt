@@ -38,7 +38,7 @@ namespace VLC_WinRT.Helpers
             {
                 try
                 {
-                    await Locator.MusicLibrary.FetchAlbumCoverOrWaitAsync(item);
+                    await Locator.MediaLibrary.FetchAlbumCoverOrWaitAsync(item);
                 }
                 catch { }
             }
@@ -70,7 +70,7 @@ namespace VLC_WinRT.Helpers
             // Failed to get the artist image or no cover image. So go online and check
             // for a new one.
             if (!fileExists)
-                await Locator.MusicLibrary.FetchArtistPicOrWaitAsync(item);
+                await Locator.MediaLibrary.FetchArtistPicOrWaitAsync(item);
         }
 
         public static async Task LoadImageToMemory(TrackItem item)

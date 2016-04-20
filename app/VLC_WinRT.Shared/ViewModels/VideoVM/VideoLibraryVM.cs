@@ -24,12 +24,13 @@ using VLC_WinRT.Commands.VideoLibrary;
 using System.Collections.Generic;
 using Autofac;
 using System.Linq;
+using VLC_WinRT.Model.Library;
 
 namespace VLC_WinRT.ViewModels.VideoVM
 {
     public class VideoLibraryVM : BindableBase
     {
-        VideoLibrary VideoLibrary => Locator.VideoLibrary;
+        MediaLibrary VideoLibrary => Locator.MediaLibrary;
         #region private fields
         #endregion
 

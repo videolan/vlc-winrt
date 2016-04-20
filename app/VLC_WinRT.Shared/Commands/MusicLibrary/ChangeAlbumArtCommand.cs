@@ -50,7 +50,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
             if (file == null) return;
             var byteArray = await ConvertImage.ConvertImagetoByte(file);
             await Locator.MusicMetaService.SaveAlbumImageAsync(album, byteArray);
-            await Locator.MusicLibrary.Update(album);
+            await Locator.MediaLibrary.Update(album);
 #endif
         }
     }

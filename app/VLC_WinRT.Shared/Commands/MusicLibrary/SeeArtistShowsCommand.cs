@@ -14,7 +14,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
             var artistItem = parameter as ArtistItem;
             if (artistItem == null && parameter is int)
             {
-                artistItem = await Locator.MusicLibrary.LoadArtist((int)parameter);
+                artistItem = await Locator.MediaLibrary.LoadArtist((int)parameter);
                 if (artistItem == null) return;
             }
             Locator.MusicLibraryVM.CurrentArtist = artistItem;

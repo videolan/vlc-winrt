@@ -29,7 +29,7 @@ namespace VLC_WinRT.Commands.VLCFileExplorer
             {
                 if(VLCFileExtensions.AudioExtensions.Contains((file.StorageItem as StorageFile).FileType.ToLower()))
                 {
-                    var trackItem = await Locator.MusicLibrary.GetTrackItemFromFile(file.StorageItem as StorageFile);
+                    var trackItem = await Locator.MediaLibrary.GetTrackItemFromFile(file.StorageItem as StorageFile);
                     playlist.Add(trackItem);
                 }
                 else if(VLCFileExtensions.VideoExtensions.Contains((file.StorageItem as StorageFile).FileType.ToLower()))

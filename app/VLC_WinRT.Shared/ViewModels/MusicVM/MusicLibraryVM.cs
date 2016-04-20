@@ -28,12 +28,13 @@ using VLC_WinRT.Model.Search;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Commands.MusicPlayer;
 using Windows.UI.Xaml;
+using VLC_WinRT.Model.Library;
 
 namespace VLC_WinRT.ViewModels.MusicVM
 {
     public class MusicLibraryVM : BindableBase
     {
-        MusicLibrary MusicLibrary => Locator.MusicLibrary;
+        MediaLibrary MusicLibrary => Locator.MediaLibrary;
         #region private fields
         private ObservableCollection<GroupItemList<ArtistItem>> _groupedArtists;
         private ObservableCollection<ArtistItem> _topArtists = new ObservableCollection<ArtistItem>();

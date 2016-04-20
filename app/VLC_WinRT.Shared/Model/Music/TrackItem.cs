@@ -120,7 +120,7 @@ namespace VLC_WinRT.Model.Music
 
         public async Task<string> LoadThumbnail()
         {
-            return (await Locator.MusicLibrary.LoadAlbum(this.AlbumId))?.AlbumCoverFullUri;
+            return (await Locator.MediaLibrary.LoadAlbum(this.AlbumId))?.AlbumCoverFullUri;
         }
 
         [Ignore]

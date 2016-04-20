@@ -10,7 +10,7 @@ namespace VLC_WinRT.Commands.VideoLibrary
             // Reset the current in memory video library.
             // So if the user removed items, they will be removed in their video library
             // without having to restart VLC.
-            await Locator.VideoLibrary.PerformRoutineCheckIfNotBusy();
+            await Locator.MediaLibrary.PerformRoutineCheckIfNotBusy();
         }
     }
 }

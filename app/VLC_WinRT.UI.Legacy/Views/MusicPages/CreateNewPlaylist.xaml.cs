@@ -14,7 +14,7 @@ namespace VLC_WinRT.Views.MusicPages
 
         private async void AddToCollection_Click(object sender, RoutedEventArgs e)
         {
-            await Locator.MusicLibrary.AddNewPlaylist(playlistName.Text);
+            await Locator.MediaLibrary.AddNewPlaylist(playlistName.Text);
             Locator.NavigationService.GoBack_HideFlyout();
         }
     }

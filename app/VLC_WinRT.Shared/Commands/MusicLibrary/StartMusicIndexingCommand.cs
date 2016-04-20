@@ -10,9 +10,9 @@ namespace VLC_WinRT.Commands.MusicLibrary
         {
             if (parameter != null && parameter.ToString() == "True")
             {
-                await Locator.MusicLibrary.Initialize();
+                await Locator.MediaLibrary.Initialize();
             }
-            else await Locator.MusicLibrary.PerformRoutineCheckIfNotBusy();
+            else await Locator.MediaLibrary.PerformRoutineCheckIfNotBusy();
         }
     }
 }

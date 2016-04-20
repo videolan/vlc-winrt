@@ -136,7 +136,7 @@ namespace VLC_WinRT
                                 if (file == null) return;
                                 var byteArray = await ConvertImage.ConvertImagetoByte(file);
                                 await Locator.MusicMetaService.SaveAlbumImageAsync(SelectedAlbumItem, byteArray);
-                                await Locator.MusicLibrary.Update(SelectedAlbumItem);
+                                await Locator.MediaLibrary.Update(SelectedAlbumItem);
                                 SelectedAlbumItem = null;
                                 break;
                         }
@@ -246,10 +246,10 @@ namespace VLC_WinRT
 #endif
             await Task.Run(async () =>
             {
-                Locator.MusicLibrary.DropTablesIfNeeded();
-                Locator.VideoLibrary.DropTablesIfNeeded();
-                await Task.Factory.StartNew(async () => await Locator.VideoLibrary.Initialize()).ConfigureAwait(false);
-                await Task.Factory.StartNew(async () => await Locator.MusicLibrary.Initialize()).ConfigureAwait(false);
+                Locator.MediaLibrary.DropTablesIfNeeded();
+                Locator.MediaLibrary.DropTablesIfNeeded();
+                await Task.Factory.StartNew(async () => await Locator.MediaLibrary.Initialize()).ConfigureAwait(false);
+                await Task.Factory.StartNew(async () => await Locator.MediaLibrary.Initialize()).ConfigureAwait(false);
             });
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.NavigationService.Go(Locator.SettingsVM.HomePage));
         }

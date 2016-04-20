@@ -440,7 +440,7 @@ namespace VLC_WinRT.ViewModels
         public async Task PlayAudioFile(StorageFile file, string token = null)
         {
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
-            var trackItem = await Locator.MusicLibrary.GetTrackItemFromFile(file, token);
+            var trackItem = await Locator.MediaLibrary.GetTrackItemFromFile(file, token);
             await PlaylistHelper.PlayTrackFromFilePicker(trackItem);
         }
 
@@ -613,7 +613,7 @@ namespace VLC_WinRT.ViewModels
                     }
                     catch (Exception exception)
                     {
-                        await Locator.MusicLibrary.RemoveTrackFromCollectionAndDatabase(track);
+                        await Locator.MediaLibrary.RemoveTrackFromCollectionAndDatabase(track);
                         await Task.Delay(500);
 
                         if (TrackCollection.CanGoNext)
@@ -641,7 +641,7 @@ namespace VLC_WinRT.ViewModels
                             if (Locator.MusicPlayerVM.CurrentArtist != null)
                             {
                                 Locator.MusicPlayerVM.CurrentArtist.PlayCount++;
-                                await Locator.MusicLibrary.Update(Locator.MusicPlayerVM.CurrentArtist);
+                                await Locator.MediaLibrary.Update(Locator.MusicPlayerVM.CurrentArtist);
                             }
                         });
                     }
@@ -815,7 +815,7 @@ namespace VLC_WinRT.ViewModels
                             Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = 0;
                     });
                     if (Locator.VideoPlayerVm.CurrentVideo != null)
-                        await Locator.VideoLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
+                        await Locator.MediaLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
                     break;
                 case PlayingType.NotPlaying:
                     break;
@@ -874,7 +874,7 @@ namespace VLC_WinRT.ViewModels
             if (Locator.VideoPlayerVm.CurrentVideo != null)
             {
                 Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = (int)((double)Time / 1000); ;
-                await Locator.VideoLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
+                await Locator.MediaLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
             }
         }
 

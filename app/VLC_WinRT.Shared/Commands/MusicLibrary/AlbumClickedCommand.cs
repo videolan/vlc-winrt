@@ -25,13 +25,13 @@ namespace VLC_WinRT.Commands.MusicLibrary
             else if (parameter is int)
             {
                 var id = (int)parameter;
-                album = await Locator.MusicLibrary.LoadAlbum(id);
+                album = await Locator.MediaLibrary.LoadAlbum(id);
             }
             try
             {
                 if (album != null)
                 {
-                    Locator.MusicLibraryVM.CurrentArtist = await Locator.MusicLibrary.LoadArtist(album.ArtistId);
+                    Locator.MusicLibraryVM.CurrentArtist = await Locator.MediaLibrary.LoadArtist(album.ArtistId);
                     Locator.MusicLibraryVM.CurrentAlbum = album;
                 }
             }

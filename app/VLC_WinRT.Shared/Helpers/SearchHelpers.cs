@@ -111,22 +111,22 @@ namespace VLC_WinRT.Helpers
 
         public static Task<List<ArtistItem>> SearchArtistItems(string tag)
         {
-            return Locator.MusicLibrary.LoadArtists(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+            return Locator.MediaLibrary.LoadArtists(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public static Task<List<AlbumItem>> SearchAlbumItems(string tag)
         {
-            return Locator.MusicLibrary.Contains(nameof(AlbumItem.Name), tag);
+            return Locator.MediaLibrary.Contains(nameof(AlbumItem.Name), tag);
         }
 
         public static Task<List<VideoItem>> SearchVideoItems(string tag)
         {
-            return Locator.VideoLibrary.ContainsVideo(nameof(VideoItem.Name), tag);
+            return Locator.MediaLibrary.ContainsVideo(nameof(VideoItem.Name), tag);
         }
 
         public static IEnumerable<VideoItem> SearchShowItems(string tag)
         {
-            return Locator.VideoLibrary.Shows.SelectMany(show => show.Episodes).Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+            return Locator.MediaLibrary.Shows.SelectMany(show => show.Episodes).Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
         }
     }
 }

@@ -159,7 +159,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
             // If no playback was ever started, ContinueIndexing can be null
             // If we navigate back and forth to the main page, we also don't want to 
             // re-mark the task as completed.
-            Locator.MusicLibrary.ContinueIndexing = new TaskCompletionSource<bool>();
+            Locator.MediaLibrary.ContinueIndexing = new TaskCompletionSource<bool>();
             DisplayHelper.PrivateDisplayCall(true);
             Locator.Slideshow.IsPaused = true;
             if (Locator.SettingsVM.ForceLandscape)
@@ -170,9 +170,9 @@ namespace VLC_WinRT.ViewModels.VideoVM
 
         public void OnNavigatedFrom()
         {
-            if (Locator.MusicLibrary.ContinueIndexing != null && !Locator.MusicLibrary.ContinueIndexing.Task.IsCompleted)
+            if (Locator.MediaLibrary.ContinueIndexing != null && !Locator.MediaLibrary.ContinueIndexing.Task.IsCompleted)
             {
-                Locator.MusicLibrary.ContinueIndexing.SetResult(true);
+                Locator.MediaLibrary.ContinueIndexing.SetResult(true);
             }
             Locator.VideoPlayerVm.IsVideoPlayerAudioTracksSettingsVisible = false;
             Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible = false;

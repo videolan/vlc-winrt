@@ -23,7 +23,7 @@ namespace VLC_WinRT.Commands.MusicPlayer
             if (track == null)
                 return;
             track.Favorite = !track.Favorite;
-            await Locator.MusicLibrary.Update(track);
+            await Locator.MediaLibrary.Update(track);
         }
     }
 }

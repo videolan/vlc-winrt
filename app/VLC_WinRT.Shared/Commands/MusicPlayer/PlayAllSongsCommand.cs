@@ -13,7 +13,7 @@ namespace VLC_WinRT.Commands.MusicPlayer
     {
         public override async void Execute(object parameter)
         {
-            var tracks = await Locator.MusicLibrary.LoadTracks();
+            var tracks = await Locator.MediaLibrary.LoadTracks();
             if (tracks == null || !tracks.Any()) return;
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             var itemClickArgs = parameter as ItemClickEventArgs;

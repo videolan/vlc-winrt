@@ -83,7 +83,7 @@ namespace Slide2D.Images
                     images.Add(new Img(Locator.MusicPlayerVM.CurrentArtist.Picture));
                     newPic = true;
                 }
-                var album = await Locator.MusicLibrary.LoadAlbum(Locator.MusicPlayerVM.CurrentTrack.AlbumId);
+                var album = await Locator.MediaLibrary.LoadAlbum(Locator.MusicPlayerVM.CurrentTrack.AlbumId);
                 if (album != null)
                 {
                     if (album.IsPictureLoaded)
@@ -254,7 +254,7 @@ namespace Slide2D.Images
             if (frame < EndFrameThreshold)
                 return;
             // Resetting variables
-            var artistCount = await Locator.MusicLibrary.ArtistCount();
+            var artistCount = await Locator.MediaLibrary.ArtistCount();
             if (ImgIndex < artistCount - 1)
             {
                 ImgIndex++;
