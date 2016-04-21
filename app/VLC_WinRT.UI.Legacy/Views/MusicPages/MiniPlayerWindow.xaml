@@ -13,7 +13,8 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         
-        <Grid x:Name="DraggableGrid">
+        <Grid x:Name="DraggableGrid"
+              Background="Transparent">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80" />
                 <ColumnDefinition Width="8" />
