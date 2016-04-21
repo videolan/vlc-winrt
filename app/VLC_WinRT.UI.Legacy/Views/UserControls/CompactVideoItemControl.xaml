@@ -38,37 +38,32 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.ColumnSpan="2"
-                       Text="{Binding Name}"
+            <TextBlock Text="{Binding Name}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
                        FontSize="15"
                        FontWeight="SemiBold"
-                       Margin="3,0,3,0" />
-            <TextBlock Grid.Row="1"
-                       Grid.Column="0"
-                       Visibility="{Binding HasBeenSeen, Converter={StaticResource BooleanToVisibilityConverter}}"
-                       Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                       TextWrapping="NoWrap"
-                       TextTrimming="CharacterEllipsis"
-                       FontSize="14"
-                       Margin="3,0,3,0">>
+                       HorizontalAlignment="Center"
+                       Margin="0,0,3,0" />
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <TextBlock Visibility="{Binding HasBeenSeen, Converter={StaticResource BooleanToVisibilityConverter}}"
+                           Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                           TextWrapping="NoWrap"
+                           TextTrimming="CharacterEllipsis"
+                           FontSize="14">
                     <Run Text="{Binding TimeWatched, Converter={StaticResource TimeSpanShortStringConverter}}" />
                     <Run Text="-" />
-            </TextBlock>
+                </TextBlock>
 
-            <TextBlock Grid.Row="1"
-                       Grid.Column="1"
-                       Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"
-                       Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                       TextWrapping="NoWrap"
-                       TextTrimming="CharacterEllipsis"
-                       FontSize="14"
-                       Margin="1,0,3,0" />
+                <TextBlock Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"
+                           Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                           TextWrapping="NoWrap"
+                           TextTrimming="CharacterEllipsis"
+                           FontSize="14"
+                           Margin="1,0,0,0" />
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>
