@@ -108,10 +108,7 @@ namespace VLC_WinRT.Model.Library
             await MediaItemDiscovererSemaphoreSlim.WaitAsync();
             try
             {
-                if (!await trackDatabase.DoesTrackExist(storageItem.Path))
-                {
-                    await ParseMediaFile(storageItem, isCameraRoll);
-                }
+                await ParseMediaFile(storageItem, isCameraRoll);
             }
             catch (Exception e)
             {
@@ -274,6 +271,8 @@ namespace VLC_WinRT.Model.Library
             {
                 if (VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower()))
                 {
+                    if (await trackDatabase.DoesTrackExist(item.Path)) return;
+
                     var media = Locator.VLCService.GetMediaFromPath(item.Path);
                     var mP = Locator.VLCService.GetMusicProperties(media);
                     if (mP == null || (string.IsNullOrEmpty(mP.Artist) && string.IsNullOrEmpty(mP.Album) && (string.IsNullOrEmpty(mP.Title) || mP.Title == item.Name)))
