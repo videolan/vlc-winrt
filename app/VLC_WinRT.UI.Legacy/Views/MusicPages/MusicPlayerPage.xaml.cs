@@ -44,13 +44,11 @@ namespace VLC_WinRT.Views.MusicPages
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
             Locator.MusicPlayerVM.PropertyChanged += MusicPlayerVM_PropertyChanged;
 #endif
-            App.RootPage.SetBackground(true, true);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
-            App.RootPage.SetBackground(false);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
