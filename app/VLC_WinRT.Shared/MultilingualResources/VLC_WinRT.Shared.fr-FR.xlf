@@ -799,8 +799,9 @@
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Langages</target>
         </trans-unit>
         <trans-unit id="SelectLanguageDescription" translate="yes" xml:space="preserve">
-          <source>Select the language VLC will be displayed in</source>
+          <source>VLC will be displayed in</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Sélectionnez la langue qu'apparaît dans VLC</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="ApplyAndRestart" translate="yes" xml:space="preserve">
           <source>Apply And Restart</source>

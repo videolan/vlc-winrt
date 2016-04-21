@@ -718,6 +718,6 @@
     <value>Refresh Language</value>
   </data>
   <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>Select the language VLC will be displayed in</value>
+    <value>VLC will be displayed in</value>
   </data>
 </root>
