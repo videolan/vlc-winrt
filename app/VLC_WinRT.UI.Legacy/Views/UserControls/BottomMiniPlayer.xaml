@@ -80,7 +80,7 @@
                 </Grid.ColumnDefinitions>
                 <Button x:Name="PreviousButton"
                         Grid.Column="0"
-                        Margin="6,0,14,0"
+                        Margin="6,0,6,0"
                         Style="{StaticResource MiniPlayerButtons}"
                         Command="{Binding PlayPreviousCommand}"
                         IsEnabled="{Binding TrackCollection.CanGoPrevious}">
@@ -91,7 +91,7 @@
                 <Grid x:Name="PlayPauseGrid"
                       Grid.Column="1"
                       VerticalAlignment="Center"
-                      Margin="0,0,14,0">
+                      Margin="0,0,6,0">
                     <Button Style="{StaticResource MiniPlayerButtons}"
                             HorizontalAlignment="Left"
                             Command="{Binding PlayOrPauseCommand}"
