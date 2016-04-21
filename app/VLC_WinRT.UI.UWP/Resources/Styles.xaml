@@ -1026,6 +1026,8 @@
                 Value="Top" />
         <Setter Property="MinHeight"
                 Value="0" />
+        <Setter Property="UseSystemFocusVisuals"
+                Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
