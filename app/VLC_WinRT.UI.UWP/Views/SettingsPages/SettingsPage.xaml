@@ -31,21 +31,22 @@
                             <ComboBox DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                                       ItemsSource="{Binding AccentColors}"
                                       SelectedItem="{Binding AccentColor, Mode=TwoWay}"
-                                      Width="170">
+                                      Width="150"
+                                      Margin="{StaticResource FrameMarginVertical}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Ellipse Height="30"
-                                                     Width="30"
+                                            <Ellipse Height="24"
+                                                     Width="24"
                                                      VerticalAlignment="Center">
                                                 <Ellipse.Fill>
                                                     <SolidColorBrush Color="{Binding Color}" />
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                             <TextBlock Text="{Binding Name}"
-                                                       Margin="{StaticResource FrameMarginHorizontal}" 
+                                                       Margin="{StaticResource FrameMarginHorizontal}"
                                                        Style="{StaticResource BodyTextBlockStyle}"
-                                                       VerticalAlignment="Center"/>
+                                                       VerticalAlignment="Center" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
@@ -129,18 +130,20 @@
                                     <DataTemplate>
                                         <TextBlock Margin="{StaticResource FrameMarginBottom}"
                                                    Foreground="{ThemeResource BasicForeground}">
-                      <Run Text="{Binding Action}"
-                                            FontSize="15" />
-                      <LineBreak />
-                      <Run Text="{Binding KeyDescription}"
-                                            FontWeight="Light" />
+                                            <Run Text="{Binding Action}"
+                                                 FontSize="15"
+                                                 FontWeight="SemiBold" />
+                                            <LineBreak />
+                                            <Run Text="{Binding KeyDescription}"
+                                                 FontSize="14"
+                                                 FontWeight="Normal" />
                                         </TextBlock>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                                 <ListView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <ItemsWrapGrid ItemWidth="250" 
-                                                       Orientation="Horizontal"/>
+                                        <ItemsWrapGrid ItemWidth="250"
+                                                       Orientation="Horizontal" />
                                     </ItemsPanelTemplate>
                                 </ListView.ItemsPanel>
                             </ListView>
@@ -162,7 +165,7 @@
                                        Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
                                        Margin="0,-6,0,12">
                                 <Run Text="{Binding Source={StaticResource Strings}, Path=HardwareDecodingDescription}" />
-                                <Run Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}" />  
+                                <Run Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}" />
                             </TextBlock>
 
                             <ToggleSwitch Header="{Binding Source={StaticResource Strings}, Path=ForceLandscape}"

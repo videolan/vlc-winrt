@@ -2255,6 +2255,8 @@
     
     <Style x:Key="VLCComboBox"
            TargetType="ComboBox">
+        <Setter Property="Background"
+                Value="{ThemeResource ApplicationChromeThemeBrush}" />
         <Setter Property="Foreground"
                 Value="{ThemeResource MainColor}" />
         <Setter Property="FontSize"
