@@ -257,7 +257,7 @@ namespace VLC_WinRT
         public static void SetLanguage()
         {
             var language = SettingsViewModel.GetSelectedLanguage();
-            SettingsViewModel.SwitchLanaguage(language);
+            SettingsViewModel.SwitchLanguage(language);
         }
 
         public static void SetShellDecoration(bool forceTemporaryAppTheme = false, bool forceDark = false)

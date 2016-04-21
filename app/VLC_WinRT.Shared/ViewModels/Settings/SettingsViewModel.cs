@@ -518,7 +518,7 @@ namespace VLC_WinRT.ViewModels.Settings
             set
             {
                 ApplicationSettingsHelper.SaveSettingsValue("Languages", (int)value, false);
-                SwitchLanaguage(value);
+                SwitchLanguage(value);
                 SetProperty(ref _selectedLanguage, value);
             }
         }
@@ -573,7 +573,7 @@ namespace VLC_WinRT.ViewModels.Settings
 
         public ChangeSettingsViewCommand ChangeSettingsViewCommand { get; } = new ChangeSettingsViewCommand();
 
-        public static void SwitchLanaguage(Languages language)
+        public static void SwitchLanguage(Languages language)
         {
             var currentCulture = "en-US";
             switch (language)
