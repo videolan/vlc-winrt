@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WinRT.Views.UserControls"
+      xmlns:winControls="using:WinRTXamlToolkit.Controls"
       mc:Ignorable="d">
 
     <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
@@ -17,96 +18,120 @@
                                        FontSize="22"
                                        Style="{StaticResource SubheaderTextBlockStyle}"
                                        FontWeight="SemiLight" />
-                            <ToggleSwitch  Header="{Binding Source={StaticResource Strings}, Path=AppTheme}"
-                                           OffContent="{Binding Source={StaticResource Strings}, Path=Light}"
-                                           OnContent="{Binding Source={StaticResource Strings}, Path=Dark}">
-                                <ToggleSwitch.IsOn>
-                                    <Binding Source="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
-                                             Path="ApplicationTheme"
-                                             Converter="{StaticResource ApplicationThemeBooleanConverter}"
-                                             Mode="TwoWay" />
-                                </ToggleSwitch.IsOn>
-                            </ToggleSwitch>
+                            <winControls:WrapPanel Orientation="Horizontal">
+                                <ToggleSwitch OffContent="{Binding Source={StaticResource Strings}, Path=Light}"
+                                              OnContent="{Binding Source={StaticResource Strings}, Path=Dark}"
+                                              Margin="{StaticResource FrameMarginRight}"
+                                              VerticalAlignment="Center">
+                                    <ToggleSwitch.IsOn>
+                                        <Binding Source="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+                                                 Path="ApplicationTheme"
+                                                 Converter="{StaticResource ApplicationThemeBooleanConverter}"
+                                                 Mode="TwoWay" />
+                                    </ToggleSwitch.IsOn>
+                                </ToggleSwitch>
 
-                            <ComboBox DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
-                                      ItemsSource="{Binding AccentColors}"
-                                      SelectedItem="{Binding AccentColor, Mode=TwoWay}"
-                                      Width="150"
-                                      Margin="{StaticResource FrameMarginVertical}">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Ellipse Height="24"
-                                                     Width="24"
-                                                     VerticalAlignment="Center">
-                                                <Ellipse.Fill>
-                                                    <SolidColorBrush Color="{Binding Color}" />
-                                                </Ellipse.Fill>
-                                            </Ellipse>
-                                            <TextBlock Text="{Binding Name}"
-                                                       Margin="{StaticResource FrameMarginHorizontal}"
-                                                       Style="{StaticResource BodyTextBlockStyle}"
-                                                       VerticalAlignment="Center" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
+                                <ComboBox DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+                                          ItemsSource="{Binding AccentColors}"
+                                          SelectedItem="{Binding AccentColor, Mode=TwoWay}"
+                                          Width="150"
+                                          Margin="{StaticResource FrameMarginRight}"
+                                          VerticalAlignment="Center">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Ellipse Height="24"
+                                                         Width="24"
+                                                         VerticalAlignment="Center">
+                                                    <Ellipse.Fill>
+                                                        <SolidColorBrush Color="{Binding Color}" />
+                                                    </Ellipse.Fill>
+                                                </Ellipse>
+                                                <TextBlock Text="{Binding Name}"
+                                                           Margin="{StaticResource FrameMarginHorizontal}"
+                                                           Style="{StaticResource BodyTextBlockStyle}"
+                                                           VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <Button x:Name="ApplyColor"
+                                        x:Uid="ApplyAndRestart"
+                                        Click="ApplyColorButton_Click"
+                                        Content="Apply"
+                                        Margin="{StaticResource FrameMarginRight}" />
+                                <TextBlock Grid.Column="2"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
+                                           VerticalAlignment="Center">
+                                    <Run Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}" />
+                                </TextBlock>
+                            </winControls:WrapPanel>
 
-                            <Button x:Name="ApplyColor"
-                                    x:Uid="ApplyAndRestart"
-                                    Click="ApplyColorButton_Click"
-                                    Content="Apply and restart" />
-                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                       Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
-                                       Margin="0,0,0,12">
-                                <Run Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}" />
-                            </TextBlock>
 
                             <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Languages}"
                                        Margin="0,12,0,0"
                                        FontSize="22"
                                        Style="{StaticResource SubheaderTextBlockStyle}"
                                        FontWeight="SemiLight" />
-                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=SelectLanguageDescription}"
-                                       Margin="0,6,0,0"
-                                       Style="{StaticResource BodyTextBlockStyle}" />
-                            <ComboBox Margin="0,12,0,0"
-                                      ItemsSource="{Binding LanguageCollection}"
-                                      SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
-                                      Style="{StaticResource VLCLightComboBox}"
-                                      Width="160">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource LanguageStringifyConverter}}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
 
+                            <Grid Margin="0,12,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                                    <ColumnDefinition MaxWidth="300" />
+                                </Grid.ColumnDefinitions>
+                                <ComboBox ItemsSource="{Binding LanguageCollection}"
+                                          SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+                                          Style="{StaticResource VLCLightComboBox}"
+                                          Width="160">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Converter={StaticResource LanguageStringifyConverter}}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <TextBlock Grid.Column="2"
+                                           Text="{Binding Source={StaticResource Strings}, Path=SelectLanguageDescription}"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
+                                           VerticalAlignment="Center" />
+                            </Grid>
                             <Button x:Name="RefreshLanguage"
-                                    Margin="0,12,0,0"
                                     x:Uid="RefreshLanguage"
                                     Click="ForceRefreshLanguage"
-                                    Content="Refresh Language" />
+                                    Content="Refresh Language"
+                                    Margin="0,12,0,0" />
+
 
                             <TextBlock Text="{Binding Source={StaticResource Strings}, Path=HomePage}"
                                        Margin="0,12,0,0"
                                        FontSize="22"
                                        Style="{StaticResource SubheaderTextBlockStyle}"
                                        FontWeight="SemiLight" />
-                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=HomePageDescription}"
-                                       Margin="0,6,0,0"
-                                       Style="{StaticResource BodyTextBlockStyle}" />
-                            <ComboBox Margin="0,12,0,0"
-                                      ItemsSource="{Binding HomePageCollection}"
-                                      SelectedItem="{Binding HomePage, Mode=TwoWay}"
-                                      Style="{StaticResource VLCLightComboBox}"
-                                      Width="160">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource VLCPageStringifyConverter}}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
+
+                            <Grid Margin="0,12,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                                    <ColumnDefinition MaxWidth="300" />
+                                </Grid.ColumnDefinitions>
+                                <ComboBox ItemsSource="{Binding HomePageCollection}"
+                                          SelectedItem="{Binding HomePage, Mode=TwoWay}"
+                                          Style="{StaticResource VLCLightComboBox}"
+                                          Width="160">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Converter={StaticResource VLCPageStringifyConverter}}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <TextBlock Grid.Column="2"
+                                           Text="{Binding Source={StaticResource Strings}, Path=HomePageDescription}"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
+                                           VerticalAlignment="Center" />
+                            </Grid>
 
                             <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Animations}"
                                        FontSize="22"
