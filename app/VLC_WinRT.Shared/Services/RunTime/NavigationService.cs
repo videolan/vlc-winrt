@@ -69,7 +69,6 @@ namespace VLC_WinRT.Services.RunTime
             App.SplitShell.RightSidebarClosed += SplitShell_RightSidebarClosed;
             HomePageNavigated += NavigationService_HomePageNavigated;
             Locator.MainVM.PropertyChanged += MainVM_PropertyChanged;
-            Go(Locator.SettingsVM.HomePage);
         }
 
         private void MainVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
