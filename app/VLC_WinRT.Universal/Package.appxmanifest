@@ -26,6 +26,11 @@
             <uap:DisplayName>VLC</uap:DisplayName>
           </uap:Protocol>
         </uap:Extension>
+        <Extension Category="windows.backgroundTasks" EntryPoint="VLC_WinRT.App">
+          <BackgroundTasks>
+            <Task Type="audio" />
+          </BackgroundTasks>
+        </Extension>
       </Extensions>
     </Application>
   </Applications>
