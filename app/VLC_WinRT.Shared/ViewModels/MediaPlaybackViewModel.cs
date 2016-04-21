@@ -1097,9 +1097,7 @@ namespace VLC_WinRT.ViewModels
 
         public void SetMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
         {
-#if WINDOWS_APP
-            ForceMediaTransportControls(systemMediaTransportControls);
-#elif WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP
             if (BackgroundAudioHelper.Instance?.CurrentState == MediaPlayerState.Playing)
             {
 
@@ -1108,6 +1106,8 @@ namespace VLC_WinRT.ViewModels
             {
                 ForceMediaTransportControls(systemMediaTransportControls);
             }
+#else
+            ForceMediaTransportControls(systemMediaTransportControls);
 #endif
         }
 
@@ -1228,7 +1228,7 @@ namespace VLC_WinRT.ViewModels
             {
             }
         }
-        #endregion
+#endregion
 
         public void Pause()
         {
