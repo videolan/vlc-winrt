@@ -138,7 +138,7 @@
                   ManipulationCompleted="PlaceholderInteractionGrid_OnManipulationCompleted"
                   Tapped="PlaceholderInteractionGrid_OnTapped"
                   DoubleTapped="PlaceholderInteractionGrid_DoubleTapped"
-                  RightTapped="PlaceholderInteractionGrid_OnRightTapped" />
+                  Loaded="PlaceholderInteractionGrid_Loaded"/>
             <videoControls:AudioTracksSettings />
             <videoControls:SubtitlesSettings />
             <videoControls:VolumeSliderSettings />

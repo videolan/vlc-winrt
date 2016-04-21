@@ -23,6 +23,9 @@ using Windows.UI.Popups;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.Utils;
+using Windows.UI.Xaml.Controls.Primitives;
+using VLC_WinRT.Commands;
+using System.Linq;
 
 namespace VLC_WinRT.Views.VideoPages
 {
@@ -271,62 +274,136 @@ namespace VLC_WinRT.Views.VideoPages
             return newVol;
         }
 
-        private void PlaceholderInteractionGrid_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void PlaceholderInteractionGrid_Loaded(object sender, RoutedEventArgs args)
         {
-            PopMainMenu();
-        }
+            var menu = new MenuFlyout();
 
-        private async void PopMainMenu()
-        {
-            if (isLocked) return;
-            var pos = MouseService.GetPointerPosition();
-            var menu = new PopupMenu();
-            menu.Commands.Add(new UICommand(Locator.MediaPlaybackViewModel.IsPlaying ? Strings.Pause : Strings.Play, command => Locator.MediaPlaybackViewModel.Pause()));
-            menu.Commands.Add(new UICommand(Strings.Stop, command => Locator.MediaPlaybackViewModel.GoBack.Execute(null)));
-            menu.Commands.Add(new UICommandSeparator());
-            menu.Commands.Add(new UICommand(Strings.Audio, PopAudioMenu));
-            menu.Commands.Add(new UICommand(Strings.Video, PopVideoMenu));
-            menu.Commands.Add(new UICommand(Strings.Playback, PopPlaybackMenu));
-            await menu.ShowForSelectionAsync(new Rect(pos, pos), Placement.Right);
-        }
+            menu.Items.Add(new MenuFlyoutItem()
+            {
+                Name = "PlayPauseItem",
+                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.Pause())
+            });
 
-        private async void PopVideoMenu(IUICommand c)
-        {
-            var pos = MouseService.GetPointerPosition();
-            var menu = new PopupMenu();
-            menu.Commands.Add(new UICommand(Strings.Back, command => PopMainMenu()));
-            menu.Commands.Add(new UICommand("Fullscreen toggle", command => AppViewHelper.SetFullscreen()));
-            menu.Commands.Add(new UICommand(Strings.Zoom, command => Locator.VideoPlayerVm.ToggleIsVideoPlayerOptionsPanelVisible.Execute(null)));
-            menu.Commands.Add(new UICommandSeparator());
-            menu.Commands.Add(new UICommand(Strings.Subtitles, command => Locator.VideoPlayerVm.ToggleIsVideoPlayerSubtitlesSettingsVisible.Execute(null)));
-            await menu.ShowForSelectionAsync(new Rect(pos, pos), Placement.Right);
-        }
+            menu.Items.Add(new MenuFlyoutItem()
+            {
+                Text = Strings.Stop,
+                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.GoBack.Execute(null))
+            });
 
-        private async void PopPlaybackMenu(IUICommand c)
-        {
-            var pos = MouseService.GetPointerPosition();
-            var menu = new PopupMenu();
-            menu.Commands.Add(new UICommand(Strings.Back, command => PopMainMenu()));
-            menu.Commands.Add(new UICommand(Strings.Chapters, command => Locator.VideoPlayerVm.ToggleIsVideoPlayerOptionsPanelVisible.Execute(null)));
-            menu.Commands.Add(new UICommandSeparator());
-            menu.Commands.Add(new UICommand(Strings.IncreaseSpeed, command => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("faster")));
-            menu.Commands.Add(new UICommand(Strings.DecreaseSpeed, command => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("slower")));
-            menu.Commands.Add(new UICommand(Strings.ResetSpeed, command => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("reset")));
-            await menu.ShowForSelectionAsync(new Rect(pos, pos), Placement.Right);
+            menu.Items.Add(new MenuFlyoutSeparator());
 
-        }
+            var audioSubItem = new MenuFlyoutSubItem();
+            audioSubItem.Text = Strings.Audio;
+            audioSubItem.Name = "AudioSubItem";
 
-        private async void PopAudioMenu(IUICommand c)
-        {
-            var pos = MouseService.GetPointerPosition();
-            var menu = new PopupMenu();
-            menu.Commands.Add(new UICommand(Strings.Back, command => PopMainMenu()));
-            menu.Commands.Add(new UICommand(Strings.AudioTracks, command => Locator.VideoPlayerVm.ToggleIsVideoPlayerAudioTracksSettingsVisible.Execute(null)));
-            menu.Commands.Add(new UICommandSeparator());
-            menu.Commands.Add(new UICommand(Strings.IncreaseVolume, command => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("higher")));
-            menu.Commands.Add(new UICommand(Strings.DecreaseVolume, command => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("lower")));
-            menu.Commands.Add(new UICommand(Strings.Mute, command => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("mute")));
-            await menu.ShowForSelectionAsync(new Rect(pos, pos), Placement.Right);
+            var audioTracksSubItem = new MenuFlyoutSubItem()
+            {
+                Text = Strings.AudioTracks,
+                Name = "AudioTracksSubItem"
+            };
+            audioSubItem.Items.Add(audioTracksSubItem);
+
+            audioSubItem.Items.Add(new MenuFlyoutSeparator());
+            audioSubItem.Items.Add(new MenuFlyoutItem()
+            {
+                Text = Strings.IncreaseVolume,
+                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("higher"))
+            });
+            audioSubItem.Items.Add(new MenuFlyoutItem()
+            {
+                Text = Strings.DecreaseVolume,
+                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("lower"))
+            });
+            audioSubItem.Items.Add(new MenuFlyoutItem()
+            {
+                Text = Strings.Mute,
+                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("mute"))
+            });
+
+            menu.Items.Add(audioSubItem);
+
+            var videoSubItem = new MenuFlyoutSubItem();
+            videoSubItem.Text = Strings.Video;
+            videoSubItem.Name = "VideoSubItem";
+            videoSubItem.Items.Add(new MenuFlyoutItem()
+            {
+                Text = "Fullscreen toggle",
+                Command = new ActionCommand(() => AppViewHelper.SetFullscreen())
+            });
+            videoSubItem.Items.Add(new MenuFlyoutItem()
+            {
+                Text = Strings.Zoom,
+                Command = new ActionCommand(() => Locator.VideoPlayerVm.ToggleIsVideoPlayerOptionsPanelVisible.Execute(null))
+            });
+            videoSubItem.Items.Add(new MenuFlyoutSeparator());
+
+            var subtitlesSubItem = new MenuFlyoutSubItem()
+            {
+                Text = Strings.Subtitles,
+                Name = "SubtitlesSubItem"
+            };
+            videoSubItem.Items.Add(subtitlesSubItem);
+            menu.Items.Add(videoSubItem);
+
+            var playbackSubItem = new MenuFlyoutSubItem();
+            playbackSubItem.Text = Strings.Playback;
+            playbackSubItem.Items.Add(new MenuFlyoutItem()
+            {
+                Text = Strings.Chapters,
+                Command = new ActionCommand(() => Locator.VideoPlayerVm.ToggleIsVideoPlayerOptionsPanelVisible.Execute(null))
+            });
+            playbackSubItem.Items.Add(new MenuFlyoutSeparator());
+            playbackSubItem.Items.Add(new MenuFlyoutItem()
+            {
+                Text = Strings.IncreaseSpeed,
+                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("faster"))
+            });
+            playbackSubItem.Items.Add(new MenuFlyoutItem()
+            {
+                Text = Strings.DecreaseSpeed,
+                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("slower"))
+            });
+            playbackSubItem.Items.Add(new MenuFlyoutItem()
+            {
+                Text = Strings.ResetSpeed,
+                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("reset"))
+            });
+            menu.Items.Add(playbackSubItem);
+
+            menu.Opened += (s, e) =>
+            {
+                ((MenuFlyoutItem)menu.Items.FirstOrDefault(x => x.Name == "PlayPauseItem")).Text = Strings.Play + " " + Strings.Dash + " " + Strings.Pause;
+                var videoSubItemMenu = (MenuFlyoutSubItem)menu.Items.FirstOrDefault(x => x.Name == "VideoSubItem");
+                var subtitlesSubItemMenu = (MenuFlyoutSubItem)videoSubItemMenu.Items.FirstOrDefault(x => x.Name == "SubtitlesSubItem");
+                subtitlesSubItemMenu.Items.Clear();
+                foreach(var sub in Locator.MediaPlaybackViewModel.Subtitles)
+                {
+                    videoSubItemMenu.Items.Add(new MenuFlyoutItem()
+                    {
+                        Text = sub.Name,
+                    });
+                }
+                if (!Locator.MediaPlaybackViewModel.Subtitles.Any())
+                {
+                    subtitlesSubItemMenu.IsEnabled = false;
+                }
+
+                var audioSubItemMenu = (MenuFlyoutSubItem)menu.Items.FirstOrDefault(x => x.Name == "AudioSubItem");
+                var audioTracksSubItemMenu = (MenuFlyoutSubItem)audioSubItemMenu.Items.FirstOrDefault(x => x.Name == "AudioTracksSubItem");
+                audioTracksSubItemMenu.Items.Clear();
+                foreach(var audTrack in Locator.MediaPlaybackViewModel.AudioTracks)
+                {
+                    audioTracksSubItemMenu.Items.Add(new MenuFlyoutItem()
+                    {
+                        Text = audTrack.Name,
+                        Command = new ActionCommand(() =>
+                        {
+                            Locator.MediaPlaybackViewModel.CurrentAudioTrack = audTrack;
+                        })
+                    });
+                }
+            };
+            PlaceholderInteractionGrid.ContextFlyout = menu;
         }
     }
 }
