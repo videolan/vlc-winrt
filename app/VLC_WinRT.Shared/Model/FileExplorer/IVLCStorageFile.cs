@@ -28,7 +28,11 @@ namespace VLC_WinRT.Model
         async Task Initialize()
         {
             var props = await storageItem.GetBasicPropertiesAsync();
+#if WINDOWS_UWP
+            var size = await storageItem.GetSizeAsync();
+#else
             var size = await storageItem.GetSize();
+#endif
             var sizeString = "";
             if (size > 0)
                 sizeString = size.GetSizeString();

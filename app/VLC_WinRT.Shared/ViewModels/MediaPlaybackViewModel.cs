@@ -773,7 +773,11 @@ namespace VLC_WinRT.ViewModels
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                 {
                     var md = new MessageDialog(Strings.MediaCantBeRead, Strings.Sorry);
+#if WINDOWS_UWP
+                    await md.ShowQueuedAsync();
+#else
                     await md.ShowAsyncQueue();
+#endif
                     // ensure we call Stop so we unregister all events
                     Stop();
                 });

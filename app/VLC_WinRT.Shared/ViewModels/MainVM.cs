@@ -163,7 +163,11 @@ namespace VLC_WinRT.ViewModels
                     if (Locator.MediaPlaybackViewModel?.IsPlaying == true && Locator.MediaPlaybackViewModel.IsStream)
                     {
                         var lostStreamDialog = new MessageDialog(Strings.ConnectionLostPleaseCheck, Strings.Sorry);
+#if WINDOWS_UWP
+                        await lostStreamDialog.ShowQueuedAsync();
+#else
                         await lostStreamDialog.ShowAsyncQueue();
+#endif
                     }
                 }
             });
