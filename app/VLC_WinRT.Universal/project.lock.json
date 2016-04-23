@@ -11,7 +11,7 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
-      "Inflatable.Lastfm/0.2.2.252": {
+      "Inflatable.Lastfm/0.2.3.263": {
         "dependencies": {
           "Microsoft.Net.Http": "2.2.28",
           "Newtonsoft.Json": "6.0.5"
@@ -23,7 +23,7 @@
           "lib/portable-win8+net45+wp8+wpa81/IF.Lastfm.Core.dll": {}
         }
       },
-      "Microsoft.Bcl/1.1.9": {
+      "Microsoft.Bcl/1.1.10": {
         "dependencies": {
           "Microsoft.Bcl.Build": "1.0.14"
         },
@@ -61,9 +61,9 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Http/2.2.28": {
+      "Microsoft.Net.Http/2.2.29": {
         "dependencies": {
-          "Microsoft.Bcl": "1.1.9",
+          "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.14"
         },
         "compile": {
@@ -223,7 +223,14 @@
           }
         }
       },
-      "Microsoft.NETCore.Runtime/1.0.0": {},
+      "Microsoft.NETCore.Runtime/1.0.1": {
+        "dependencies": {
+          "Microsoft.NETCore.Runtime.CoreCLR": "1.0.1",
+          "Microsoft.NETCore.Runtime.Native": "1.0.1"
+        }
+      },
+      "Microsoft.NETCore.Runtime.CoreCLR/1.0.1": {},
+      "Microsoft.NETCore.Runtime.Native/1.0.1": {},
       "Microsoft.NETCore.Targets/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.0.0",
@@ -231,11 +238,11 @@
         }
       },
       "Microsoft.NETCore.Targets.UniversalWindowsPlatform/5.0.0": {},
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.0.0": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.1.0": {
         "dependencies": {
           "Microsoft.NETCore": "5.0.0",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.0",
-          "Microsoft.NETCore.Runtime": "1.0.0",
+          "Microsoft.NETCore.Runtime": "1.0.1",
           "Microsoft.Win32.Primitives": "4.0.0",
           "System.ComponentModel.EventBasedAsync": "4.0.10",
           "System.Data.Common": "4.0.0",
@@ -249,9 +256,9 @@
           "System.Numerics.Vectors.WindowsRuntime": "4.0.0",
           "System.Reflection.Context": "4.0.0",
           "System.Runtime.InteropServices.WindowsRuntime": "4.0.0",
-          "System.Runtime.Serialization.Json": "4.0.0",
-          "System.Runtime.Serialization.Primitives": "4.0.10",
-          "System.Runtime.Serialization.Xml": "4.0.10",
+          "System.Runtime.Serialization.Json": "4.0.1",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Runtime.Serialization.Xml": "4.1.0",
           "System.Runtime.WindowsRuntime": "4.0.10",
           "System.Runtime.WindowsRuntime.UI.Xaml": "4.0.0",
           "System.ServiceModel.Duplex": "4.0.0",
@@ -301,7 +308,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/8.0.2": {
+      "Newtonsoft.Json/8.0.3": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         },
@@ -309,7 +316,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.1": {
+      "NotificationsExtensions.Win10/14295.0.1": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -1022,38 +1029,9 @@
           "lib/dotnet/System.ObjectModel.dll": {}
         }
       },
-      "System.Private.DataContractSerialization/4.0.0": {
-        "dependencies": {
-          "System.Collections": "4.0.10",
-          "System.Globalization": "4.0.10",
-          "System.IO": "4.0.10",
-          "System.Linq": "4.0.0",
-          "System.Reflection": "4.0.10",
-          "System.Reflection.Extensions": "4.0.0",
-          "System.Reflection.Primitives": "4.0.0",
-          "System.Reflection.TypeExtensions": "4.0.0",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.20",
-          "System.Runtime.Extensions": "4.0.10",
-          "System.Runtime.Serialization.Primitives": "4.0.10",
-          "System.Text.Encoding": "4.0.10",
-          "System.Text.Encoding.Extensions": "4.0.10",
-          "System.Text.RegularExpressions": "4.0.10",
-          "System.Threading": "4.0.10",
-          "System.Xml.ReaderWriter": "4.0.10",
-          "System.Xml.XmlSerializer": "4.0.10"
-        },
+      "System.Private.DataContractSerialization/4.1.0": {
         "compile": {
           "ref/netcore50/_._": {}
-        },
-        "runtime": {
-          "lib/netcore50/System.Private.DataContractSerialization.dll": {}
-        },
-        "runtimeTargets": {
-          "runtimes/win8-aot/lib/netcore50/System.Private.DataContractSerialization.dll": {
-            "assetType": "runtime",
-            "rid": "win8-aot"
-          }
         }
       },
       "System.Private.Networking/4.0.0": {
@@ -1408,9 +1386,11 @@
           "lib/netcore50/System.Runtime.Numerics.dll": {}
         }
       },
-      "System.Runtime.Serialization.Json/4.0.0": {
+      "System.Runtime.Serialization.Json/4.0.1": {
         "dependencies": {
-          "System.Private.DataContractSerialization": "4.0.0"
+          "System.IO": "4.0.0",
+          "System.Private.DataContractSerialization": "4.1.0",
+          "System.Runtime": "4.0.0"
         },
         "compile": {
           "ref/netcore50/System.Runtime.Serialization.Json.dll": {}
@@ -1425,25 +1405,35 @@
           }
         }
       },
-      "System.Runtime.Serialization.Primitives/4.0.10": {
+      "System.Runtime.Serialization.Primitives/4.1.0": {
         "dependencies": {
           "System.Resources.ResourceManager": "4.0.0",
           "System.Runtime": "4.0.20"
         },
         "compile": {
-          "ref/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+          "ref/netcore50/System.Runtime.Serialization.Primitives.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+          "lib/netcore50/System.Runtime.Serialization.Primitives.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win8-aot/lib/netcore50/System.Runtime.Serialization.Primitives.dll": {
+            "assetType": "runtime",
+            "rid": "win8-aot"
+          }
         }
       },
-      "System.Runtime.Serialization.Xml/4.0.10": {
+      "System.Runtime.Serialization.Xml/4.1.0": {
         "dependencies": {
-          "System.Private.DataContractSerialization": "4.0.0",
-          "System.Runtime.Serialization.Primitives": "4.0.10"
+          "System.IO": "4.0.0",
+          "System.Private.DataContractSerialization": "4.1.0",
+          "System.Runtime": "4.0.0",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Text.Encoding": "4.0.0",
+          "System.Xml.ReaderWriter": "4.0.0"
         },
         "compile": {
-          "ref/dotnet/System.Runtime.Serialization.Xml.dll": {}
+          "ref/netcore50/System.Runtime.Serialization.Xml.dll": {}
         },
         "runtime": {
           "lib/netcore50/System.Runtime.Serialization.Xml.dll": {}
@@ -1858,7 +1848,7 @@
           }
         }
       },
-      "Win2D.uwp/1.15.0": {
+      "Win2D.uwp/1.17.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
@@ -1888,12 +1878,12 @@
           "lib/winrt45/WinRT.Triggers.dll": {}
         }
       },
-      "WinRTXamlToolkit/1.6.1.3": {
+      "WinRTXamlToolkit/2.0.0": {
         "compile": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/uap10.0/WinRTXamlToolkit.dll": {}
         },
         "runtime": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/uap10.0/WinRTXamlToolkit.dll": {}
         }
       }
     },
@@ -1906,7 +1896,7 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
-      "Inflatable.Lastfm/0.2.2.252": {
+      "Inflatable.Lastfm/0.2.3.263": {
         "dependencies": {
           "Microsoft.Net.Http": "2.2.28",
           "Newtonsoft.Json": "6.0.5"
@@ -1918,7 +1908,7 @@
           "lib/portable-win8+net45+wp8+wpa81/IF.Lastfm.Core.dll": {}
         }
       },
-      "Microsoft.Bcl/1.1.9": {
+      "Microsoft.Bcl/1.1.10": {
         "dependencies": {
           "Microsoft.Bcl.Build": "1.0.14"
         },
@@ -1956,9 +1946,9 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Http/2.2.28": {
+      "Microsoft.Net.Http/2.2.29": {
         "dependencies": {
-          "Microsoft.Bcl": "1.1.9",
+          "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.14"
         },
         "compile": {
@@ -2064,54 +2054,18 @@
           "lib/netcore50/System.dll": {}
         }
       },
-      "Microsoft.NETCore.Runtime/1.0.0": {
+      "Microsoft.NETCore.Runtime/1.0.1": {
         "dependencies": {
-          "Microsoft.NETCore.Runtime.CoreCLR-arm": "1.0.0"
+          "Microsoft.NETCore.Runtime.CoreCLR": "1.0.1",
+          "Microsoft.NETCore.Runtime.Native": "1.0.1"
         }
       },
-      "Microsoft.NETCore.Runtime.CoreCLR-arm/1.0.0": {
+      "Microsoft.NETCore.Runtime.CoreCLR/1.0.1": {
         "dependencies": {
-          "System.Collections": "[4.0.10]",
-          "System.Diagnostics.Contracts": "[4.0.0]",
-          "System.Diagnostics.Debug": "[4.0.10]",
-          "System.Diagnostics.StackTrace": "[4.0.0]",
-          "System.Diagnostics.Tools": "[4.0.0]",
-          "System.Diagnostics.Tracing": "[4.0.20]",
-          "System.Globalization": "[4.0.10]",
-          "System.Globalization.Calendars": "[4.0.0]",
-          "System.IO": "[4.0.10]",
-          "System.ObjectModel": "[4.0.10]",
-          "System.Private.Uri": "[4.0.0]",
-          "System.Reflection": "[4.0.10]",
-          "System.Reflection.Extensions": "[4.0.0]",
-          "System.Reflection.Primitives": "[4.0.0]",
-          "System.Resources.ResourceManager": "[4.0.0]",
-          "System.Runtime": "[4.0.20]",
-          "System.Runtime.Extensions": "[4.0.10]",
-          "System.Runtime.Handles": "[4.0.0]",
-          "System.Runtime.InteropServices": "[4.0.20]",
-          "System.Text.Encoding": "[4.0.10]",
-          "System.Text.Encoding.Extensions": "[4.0.10]",
-          "System.Threading": "[4.0.10]",
-          "System.Threading.Tasks": "[4.0.10]",
-          "System.Threading.Timer": "[4.0.0]"
-        },
-        "compile": {
-          "ref/dotnet/_._": {}
-        },
-        "runtime": {
-          "runtimes/win8-arm/lib/dotnet/mscorlib.ni.dll": {}
-        },
-        "native": {
-          "runtimes/win8-arm/native/clretwrc.dll": {},
-          "runtimes/win8-arm/native/coreclr.dll": {},
-          "runtimes/win8-arm/native/dbgshim.dll": {},
-          "runtimes/win8-arm/native/mscordaccore.dll": {},
-          "runtimes/win8-arm/native/mscordbi.dll": {},
-          "runtimes/win8-arm/native/mscorrc.debug.dll": {},
-          "runtimes/win8-arm/native/mscorrc.dll": {}
+          "runtime.win8-arm.Microsoft.NETCore.Runtime.CoreCLR": "1.0.1"
         }
       },
+      "Microsoft.NETCore.Runtime.Native/1.0.1": {},
       "Microsoft.NETCore.Targets/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.0.0",
@@ -2119,11 +2073,11 @@
         }
       },
       "Microsoft.NETCore.Targets.UniversalWindowsPlatform/5.0.0": {},
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.0.0": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.1.0": {
         "dependencies": {
           "Microsoft.NETCore": "5.0.0",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.0",
-          "Microsoft.NETCore.Runtime": "1.0.0",
+          "Microsoft.NETCore.Runtime": "1.0.1",
           "Microsoft.Win32.Primitives": "4.0.0",
           "System.ComponentModel.EventBasedAsync": "4.0.10",
           "System.Data.Common": "4.0.0",
@@ -2137,9 +2091,9 @@
           "System.Numerics.Vectors.WindowsRuntime": "4.0.0",
           "System.Reflection.Context": "4.0.0",
           "System.Runtime.InteropServices.WindowsRuntime": "4.0.0",
-          "System.Runtime.Serialization.Json": "4.0.0",
-          "System.Runtime.Serialization.Primitives": "4.0.10",
-          "System.Runtime.Serialization.Xml": "4.0.10",
+          "System.Runtime.Serialization.Json": "4.0.1",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Runtime.Serialization.Xml": "4.1.0",
           "System.Runtime.WindowsRuntime": "4.0.10",
           "System.Runtime.WindowsRuntime.UI.Xaml": "4.0.0",
           "System.ServiceModel.Duplex": "4.0.0",
@@ -2189,7 +2143,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/8.0.2": {
+      "Newtonsoft.Json/8.0.3": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         },
@@ -2197,12 +2151,62 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.1": {
+      "NotificationsExtensions.Win10/14295.0.1": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
+      "runtime.any.System.Private.DataContractSerialization/4.1.0": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Linq": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Emit.ILGeneration": "4.0.0",
+          "System.Reflection.Emit.Lightweight": "4.0.0",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Reflection.Primitives": "4.0.0",
+          "System.Reflection.TypeExtensions": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XmlDocument": "4.0.0",
+          "System.Xml.XmlSerializer": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/System.Private.DataContractSerialization.dll": {}
+        }
+      },
+      "runtime.win8-arm.Microsoft.NETCore.Runtime.CoreCLR/1.0.1": {
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "runtimes/win8-arm/lib/dotnet/mscorlib.ni.dll": {}
+        },
+        "native": {
+          "runtimes/win8-arm/native/clretwrc.dll": {},
+          "runtimes/win8-arm/native/coreclr.dll": {},
+          "runtimes/win8-arm/native/dbgshim.dll": {},
+          "runtimes/win8-arm/native/mscordaccore.dll": {},
+          "runtimes/win8-arm/native/mscordbi.dll": {},
+          "runtimes/win8-arm/native/mscorrc.debug.dll": {},
+          "runtimes/win8-arm/native/mscorrc.dll": {}
         }
       },
       "ScrollWatcher/1.0.5": {
@@ -2854,34 +2858,12 @@
           "lib/dotnet/System.ObjectModel.dll": {}
         }
       },
-      "System.Private.DataContractSerialization/4.0.0": {
+      "System.Private.DataContractSerialization/4.1.0": {
         "dependencies": {
-          "System.Collections": "4.0.10",
-          "System.Globalization": "4.0.10",
-          "System.IO": "4.0.10",
-          "System.Linq": "4.0.0",
-          "System.Reflection": "4.0.10",
-          "System.Reflection.Emit.ILGeneration": "4.0.0",
-          "System.Reflection.Emit.Lightweight": "4.0.0",
-          "System.Reflection.Extensions": "4.0.0",
-          "System.Reflection.Primitives": "4.0.0",
-          "System.Reflection.TypeExtensions": "4.0.0",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.20",
-          "System.Runtime.Extensions": "4.0.10",
-          "System.Runtime.Serialization.Primitives": "4.0.10",
-          "System.Text.Encoding": "4.0.10",
-          "System.Text.Encoding.Extensions": "4.0.10",
-          "System.Text.RegularExpressions": "4.0.10",
-          "System.Threading": "4.0.10",
-          "System.Xml.ReaderWriter": "4.0.10",
-          "System.Xml.XmlSerializer": "4.0.10"
+          "runtime.any.System.Private.DataContractSerialization": "4.1.0"
         },
         "compile": {
           "ref/netcore50/_._": {}
-        },
-        "runtime": {
-          "lib/netcore50/System.Private.DataContractSerialization.dll": {}
         }
       },
       "System.Private.Networking/4.0.0": {
@@ -3208,9 +3190,11 @@
           "lib/netcore50/System.Runtime.Numerics.dll": {}
         }
       },
-      "System.Runtime.Serialization.Json/4.0.0": {
+      "System.Runtime.Serialization.Json/4.0.1": {
         "dependencies": {
-          "System.Private.DataContractSerialization": "4.0.0"
+          "System.IO": "4.0.0",
+          "System.Private.DataContractSerialization": "4.1.0",
+          "System.Runtime": "4.0.0"
         },
         "compile": {
           "ref/netcore50/System.Runtime.Serialization.Json.dll": {}
@@ -3219,25 +3203,29 @@
           "lib/netcore50/System.Runtime.Serialization.Json.dll": {}
         }
       },
-      "System.Runtime.Serialization.Primitives/4.0.10": {
+      "System.Runtime.Serialization.Primitives/4.1.0": {
         "dependencies": {
           "System.Resources.ResourceManager": "4.0.0",
           "System.Runtime": "4.0.20"
         },
         "compile": {
-          "ref/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+          "ref/netcore50/System.Runtime.Serialization.Primitives.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+          "lib/netcore50/System.Runtime.Serialization.Primitives.dll": {}
         }
       },
-      "System.Runtime.Serialization.Xml/4.0.10": {
+      "System.Runtime.Serialization.Xml/4.1.0": {
         "dependencies": {
-          "System.Private.DataContractSerialization": "4.0.0",
-          "System.Runtime.Serialization.Primitives": "4.0.10"
+          "System.IO": "4.0.0",
+          "System.Private.DataContractSerialization": "4.1.0",
+          "System.Runtime": "4.0.0",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Text.Encoding": "4.0.0",
+          "System.Xml.ReaderWriter": "4.0.0"
         },
         "compile": {
-          "ref/dotnet/System.Runtime.Serialization.Xml.dll": {}
+          "ref/netcore50/System.Runtime.Serialization.Xml.dll": {}
         },
         "runtime": {
           "lib/netcore50/System.Runtime.Serialization.Xml.dll": {}
@@ -3606,7 +3594,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Win2D.uwp/1.15.0": {
+      "Win2D.uwp/1.17.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
@@ -3625,12 +3613,12 @@
           "lib/winrt45/WinRT.Triggers.dll": {}
         }
       },
-      "WinRTXamlToolkit/1.6.1.3": {
+      "WinRTXamlToolkit/2.0.0": {
         "compile": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/uap10.0/WinRTXamlToolkit.dll": {}
         },
         "runtime": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/uap10.0/WinRTXamlToolkit.dll": {}
         }
       }
     },
@@ -3643,7 +3631,7 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
-      "Inflatable.Lastfm/0.2.2.252": {
+      "Inflatable.Lastfm/0.2.3.263": {
         "dependencies": {
           "Microsoft.Net.Http": "2.2.28",
           "Newtonsoft.Json": "6.0.5"
@@ -3655,7 +3643,7 @@
           "lib/portable-win8+net45+wp8+wpa81/IF.Lastfm.Core.dll": {}
         }
       },
-      "Microsoft.Bcl/1.1.9": {
+      "Microsoft.Bcl/1.1.10": {
         "dependencies": {
           "Microsoft.Bcl.Build": "1.0.14"
         },
@@ -3693,9 +3681,9 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Http/2.2.28": {
+      "Microsoft.Net.Http/2.2.29": {
         "dependencies": {
-          "Microsoft.Bcl": "1.1.9",
+          "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.14"
         },
         "compile": {
@@ -3802,39 +3790,14 @@
           "runtimes/aot/lib/netcore50/mscorlib.dll": {}
         }
       },
-      "Microsoft.NETCore.Runtime/1.0.0": {
+      "Microsoft.NETCore.Runtime/1.0.1": {
         "dependencies": {
-          "Microsoft.NETCore.Runtime.Native": "1.0.0"
+          "Microsoft.NETCore.Runtime.CoreCLR": "1.0.1",
+          "Microsoft.NETCore.Runtime.Native": "1.0.1"
         }
       },
-      "Microsoft.NETCore.Runtime.Native/1.0.0": {
-        "dependencies": {
-          "System.Collections": "[4.0.10]",
-          "System.Diagnostics.Contracts": "[4.0.0]",
-          "System.Diagnostics.Debug": "[4.0.10]",
-          "System.Diagnostics.StackTrace": "[4.0.0]",
-          "System.Diagnostics.Tools": "[4.0.0]",
-          "System.Diagnostics.Tracing": "[4.0.20]",
-          "System.Globalization": "[4.0.10]",
-          "System.Globalization.Calendars": "[4.0.0]",
-          "System.IO": "[4.0.10]",
-          "System.ObjectModel": "[4.0.10]",
-          "System.Private.Uri": "[4.0.0]",
-          "System.Reflection": "[4.0.10]",
-          "System.Reflection.Extensions": "[4.0.0]",
-          "System.Reflection.Primitives": "[4.0.0]",
-          "System.Resources.ResourceManager": "[4.0.0]",
-          "System.Runtime": "[4.0.20]",
-          "System.Runtime.Extensions": "[4.0.10]",
-          "System.Runtime.Handles": "[4.0.0]",
-          "System.Runtime.InteropServices": "[4.0.20]",
-          "System.Text.Encoding": "[4.0.10]",
-          "System.Text.Encoding.Extensions": "[4.0.10]",
-          "System.Threading": "[4.0.10]",
-          "System.Threading.Tasks": "[4.0.10]",
-          "System.Threading.Timer": "[4.0.0]"
-        }
-      },
+      "Microsoft.NETCore.Runtime.CoreCLR/1.0.1": {},
+      "Microsoft.NETCore.Runtime.Native/1.0.1": {},
       "Microsoft.NETCore.Targets/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.0.0",
@@ -3842,11 +3805,11 @@
         }
       },
       "Microsoft.NETCore.Targets.UniversalWindowsPlatform/5.0.0": {},
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.0.0": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.1.0": {
         "dependencies": {
           "Microsoft.NETCore": "5.0.0",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.0",
-          "Microsoft.NETCore.Runtime": "1.0.0",
+          "Microsoft.NETCore.Runtime": "1.0.1",
           "Microsoft.Win32.Primitives": "4.0.0",
           "System.ComponentModel.EventBasedAsync": "4.0.10",
           "System.Data.Common": "4.0.0",
@@ -3860,9 +3823,9 @@
           "System.Numerics.Vectors.WindowsRuntime": "4.0.0",
           "System.Reflection.Context": "4.0.0",
           "System.Runtime.InteropServices.WindowsRuntime": "4.0.0",
-          "System.Runtime.Serialization.Json": "4.0.0",
-          "System.Runtime.Serialization.Primitives": "4.0.10",
-          "System.Runtime.Serialization.Xml": "4.0.10",
+          "System.Runtime.Serialization.Json": "4.0.1",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Runtime.Serialization.Xml": "4.1.0",
           "System.Runtime.WindowsRuntime": "4.0.10",
           "System.Runtime.WindowsRuntime.UI.Xaml": "4.0.0",
           "System.ServiceModel.Duplex": "4.0.0",
@@ -3912,7 +3875,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/8.0.2": {
+      "Newtonsoft.Json/8.0.3": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         },
@@ -3920,12 +3883,43 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.1": {
+      "NotificationsExtensions.Win10/14295.0.1": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
+      "runtime.aot.System.Private.DataContractSerialization/4.1.0": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Linq": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Reflection.Primitives": "4.0.0",
+          "System.Reflection.TypeExtensions": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XmlDocument": "4.0.0",
+          "System.Xml.XmlSerializer": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "runtimes/win8-aot/lib/netcore50/System.Private.DataContractSerialization.dll": {}
         }
       },
       "ScrollWatcher/1.0.5": {
@@ -4573,32 +4567,12 @@
           "lib/dotnet/System.ObjectModel.dll": {}
         }
       },
-      "System.Private.DataContractSerialization/4.0.0": {
+      "System.Private.DataContractSerialization/4.1.0": {
         "dependencies": {
-          "System.Collections": "4.0.10",
-          "System.Globalization": "4.0.10",
-          "System.IO": "4.0.10",
-          "System.Linq": "4.0.0",
-          "System.Reflection": "4.0.10",
-          "System.Reflection.Extensions": "4.0.0",
-          "System.Reflection.Primitives": "4.0.0",
-          "System.Reflection.TypeExtensions": "4.0.0",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.20",
-          "System.Runtime.Extensions": "4.0.10",
-          "System.Runtime.Serialization.Primitives": "4.0.10",
-          "System.Text.Encoding": "4.0.10",
-          "System.Text.Encoding.Extensions": "4.0.10",
-          "System.Text.RegularExpressions": "4.0.10",
-          "System.Threading": "4.0.10",
-          "System.Xml.ReaderWriter": "4.0.10",
-          "System.Xml.XmlSerializer": "4.0.10"
+          "runtime.aot.System.Private.DataContractSerialization": "4.1.0"
         },
         "compile": {
           "ref/netcore50/_._": {}
-        },
-        "runtime": {
-          "runtimes/win8-aot/lib/netcore50/System.Private.DataContractSerialization.dll": {}
         }
       },
       "System.Private.Networking/4.0.0": {
@@ -4909,9 +4883,11 @@
           "lib/netcore50/System.Runtime.Numerics.dll": {}
         }
       },
-      "System.Runtime.Serialization.Json/4.0.0": {
+      "System.Runtime.Serialization.Json/4.0.1": {
         "dependencies": {
-          "System.Private.DataContractSerialization": "4.0.0"
+          "System.IO": "4.0.0",
+          "System.Private.DataContractSerialization": "4.1.0",
+          "System.Runtime": "4.0.0"
         },
         "compile": {
           "ref/netcore50/System.Runtime.Serialization.Json.dll": {}
@@ -4920,25 +4896,29 @@
           "runtimes/win8-aot/lib/netcore50/System.Runtime.Serialization.Json.dll": {}
         }
       },
-      "System.Runtime.Serialization.Primitives/4.0.10": {
+      "System.Runtime.Serialization.Primitives/4.1.0": {
         "dependencies": {
           "System.Resources.ResourceManager": "4.0.0",
           "System.Runtime": "4.0.20"
         },
         "compile": {
-          "ref/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+          "ref/netcore50/System.Runtime.Serialization.Primitives.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+          "runtimes/win8-aot/lib/netcore50/System.Runtime.Serialization.Primitives.dll": {}
         }
       },
-      "System.Runtime.Serialization.Xml/4.0.10": {
+      "System.Runtime.Serialization.Xml/4.1.0": {
         "dependencies": {
-          "System.Private.DataContractSerialization": "4.0.0",
-          "System.Runtime.Serialization.Primitives": "4.0.10"
+          "System.IO": "4.0.0",
+          "System.Private.DataContractSerialization": "4.1.0",
+          "System.Runtime": "4.0.0",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Text.Encoding": "4.0.0",
+          "System.Xml.ReaderWriter": "4.0.0"
         },
         "compile": {
-          "ref/dotnet/System.Runtime.Serialization.Xml.dll": {}
+          "ref/netcore50/System.Runtime.Serialization.Xml.dll": {}
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Runtime.Serialization.Xml.dll": {}
@@ -5307,7 +5287,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Win2D.uwp/1.15.0": {
+      "Win2D.uwp/1.17.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
@@ -5326,12 +5306,12 @@
           "lib/winrt45/WinRT.Triggers.dll": {}
         }
       },
-      "WinRTXamlToolkit/1.6.1.3": {
+      "WinRTXamlToolkit/2.0.0": {
         "compile": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/uap10.0/WinRTXamlToolkit.dll": {}
         },
         "runtime": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/uap10.0/WinRTXamlToolkit.dll": {}
         }
       }
     },
@@ -5344,7 +5324,7 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
-      "Inflatable.Lastfm/0.2.2.252": {
+      "Inflatable.Lastfm/0.2.3.263": {
         "dependencies": {
           "Microsoft.Net.Http": "2.2.28",
           "Newtonsoft.Json": "6.0.5"
@@ -5356,7 +5336,7 @@
           "lib/portable-win8+net45+wp8+wpa81/IF.Lastfm.Core.dll": {}
         }
       },
-      "Microsoft.Bcl/1.1.9": {
+      "Microsoft.Bcl/1.1.10": {
         "dependencies": {
           "Microsoft.Bcl.Build": "1.0.14"
         },
@@ -5394,9 +5374,9 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Http/2.2.28": {
+      "Microsoft.Net.Http/2.2.29": {
         "dependencies": {
-          "Microsoft.Bcl": "1.1.9",
+          "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.14"
         },
         "compile": {
@@ -5502,55 +5482,18 @@
           "lib/netcore50/System.dll": {}
         }
       },
-      "Microsoft.NETCore.Runtime/1.0.0": {
+      "Microsoft.NETCore.Runtime/1.0.1": {
         "dependencies": {
-          "Microsoft.NETCore.Runtime.CoreCLR-x64": "1.0.0",
-          "Microsoft.NETCore.Windows.ApiSets-x64": "1.0.0"
+          "Microsoft.NETCore.Runtime.CoreCLR": "1.0.1",
+          "Microsoft.NETCore.Runtime.Native": "1.0.1"
         }
       },
-      "Microsoft.NETCore.Runtime.CoreCLR-x64/1.0.0": {
+      "Microsoft.NETCore.Runtime.CoreCLR/1.0.1": {
         "dependencies": {
-          "System.Collections": "[4.0.10]",
-          "System.Diagnostics.Contracts": "[4.0.0]",
-          "System.Diagnostics.Debug": "[4.0.10]",
-          "System.Diagnostics.StackTrace": "[4.0.0]",
-          "System.Diagnostics.Tools": "[4.0.0]",
-          "System.Diagnostics.Tracing": "[4.0.20]",
-          "System.Globalization": "[4.0.10]",
-          "System.Globalization.Calendars": "[4.0.0]",
-          "System.IO": "[4.0.10]",
-          "System.ObjectModel": "[4.0.10]",
-          "System.Private.Uri": "[4.0.0]",
-          "System.Reflection": "[4.0.10]",
-          "System.Reflection.Extensions": "[4.0.0]",
-          "System.Reflection.Primitives": "[4.0.0]",
-          "System.Resources.ResourceManager": "[4.0.0]",
-          "System.Runtime": "[4.0.20]",
-          "System.Runtime.Extensions": "[4.0.10]",
-          "System.Runtime.Handles": "[4.0.0]",
-          "System.Runtime.InteropServices": "[4.0.20]",
-          "System.Text.Encoding": "[4.0.10]",
-          "System.Text.Encoding.Extensions": "[4.0.10]",
-          "System.Threading": "[4.0.10]",
-          "System.Threading.Tasks": "[4.0.10]",
-          "System.Threading.Timer": "[4.0.0]"
-        },
-        "compile": {
-          "ref/dotnet/_._": {}
-        },
-        "runtime": {
-          "runtimes/win7-x64/lib/dotnet/mscorlib.ni.dll": {}
-        },
-        "native": {
-          "runtimes/win7-x64/native/clretwrc.dll": {},
-          "runtimes/win7-x64/native/coreclr.dll": {},
-          "runtimes/win7-x64/native/dbgshim.dll": {},
-          "runtimes/win7-x64/native/mscordaccore.dll": {},
-          "runtimes/win7-x64/native/mscordbi.dll": {},
-          "runtimes/win7-x64/native/mscorrc.debug.dll": {},
-          "runtimes/win7-x64/native/mscorrc.dll": {}
+          "runtime.win7-x64.Microsoft.NETCore.Runtime.CoreCLR": "1.0.1"
         }
       },
+      "Microsoft.NETCore.Runtime.Native/1.0.1": {},
       "Microsoft.NETCore.Targets/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.0.0",
@@ -5558,11 +5501,11 @@
         }
       },
       "Microsoft.NETCore.Targets.UniversalWindowsPlatform/5.0.0": {},
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.0.0": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.1.0": {
         "dependencies": {
           "Microsoft.NETCore": "5.0.0",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.0",
-          "Microsoft.NETCore.Runtime": "1.0.0",
+          "Microsoft.NETCore.Runtime": "1.0.1",
           "Microsoft.Win32.Primitives": "4.0.0",
           "System.ComponentModel.EventBasedAsync": "4.0.10",
           "System.Data.Common": "4.0.0",
@@ -5576,9 +5519,9 @@
           "System.Numerics.Vectors.WindowsRuntime": "4.0.0",
           "System.Reflection.Context": "4.0.0",
           "System.Runtime.InteropServices.WindowsRuntime": "4.0.0",
-          "System.Runtime.Serialization.Json": "4.0.0",
-          "System.Runtime.Serialization.Primitives": "4.0.10",
-          "System.Runtime.Serialization.Xml": "4.0.10",
+          "System.Runtime.Serialization.Json": "4.0.1",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Runtime.Serialization.Xml": "4.1.0",
           "System.Runtime.WindowsRuntime": "4.0.10",
           "System.Runtime.WindowsRuntime.UI.Xaml": "4.0.0",
           "System.ServiceModel.Duplex": "4.0.0",
@@ -5633,7 +5576,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/8.0.2": {
+      "Newtonsoft.Json/8.0.3": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         },
@@ -5641,12 +5584,65 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.1": {
+      "NotificationsExtensions.Win10/14295.0.1": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
+      "runtime.any.System.Private.DataContractSerialization/4.1.0": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Linq": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Emit.ILGeneration": "4.0.0",
+          "System.Reflection.Emit.Lightweight": "4.0.0",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Reflection.Primitives": "4.0.0",
+          "System.Reflection.TypeExtensions": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XmlDocument": "4.0.0",
+          "System.Xml.XmlSerializer": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/System.Private.DataContractSerialization.dll": {}
+        }
+      },
+      "runtime.win7-x64.Microsoft.NETCore.Runtime.CoreCLR/1.0.1": {
+        "dependencies": {
+          "Microsoft.NETCore.Windows.ApiSets-x64": "1.0.0"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "runtimes/win7-x64/lib/dotnet/mscorlib.ni.dll": {}
+        },
+        "native": {
+          "runtimes/win7-x64/native/clretwrc.dll": {},
+          "runtimes/win7-x64/native/coreclr.dll": {},
+          "runtimes/win7-x64/native/dbgshim.dll": {},
+          "runtimes/win7-x64/native/mscordaccore.dll": {},
+          "runtimes/win7-x64/native/mscordbi.dll": {},
+          "runtimes/win7-x64/native/mscorrc.debug.dll": {},
+          "runtimes/win7-x64/native/mscorrc.dll": {}
         }
       },
       "ScrollWatcher/1.0.5": {
@@ -6298,34 +6294,12 @@
           "lib/dotnet/System.ObjectModel.dll": {}
         }
       },
-      "System.Private.DataContractSerialization/4.0.0": {
+      "System.Private.DataContractSerialization/4.1.0": {
         "dependencies": {
-          "System.Collections": "4.0.10",
-          "System.Globalization": "4.0.10",
-          "System.IO": "4.0.10",
-          "System.Linq": "4.0.0",
-          "System.Reflection": "4.0.10",
-          "System.Reflection.Emit.ILGeneration": "4.0.0",
-          "System.Reflection.Emit.Lightweight": "4.0.0",
-          "System.Reflection.Extensions": "4.0.0",
-          "System.Reflection.Primitives": "4.0.0",
-          "System.Reflection.TypeExtensions": "4.0.0",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.20",
-          "System.Runtime.Extensions": "4.0.10",
-          "System.Runtime.Serialization.Primitives": "4.0.10",
-          "System.Text.Encoding": "4.0.10",
-          "System.Text.Encoding.Extensions": "4.0.10",
-          "System.Text.RegularExpressions": "4.0.10",
-          "System.Threading": "4.0.10",
-          "System.Xml.ReaderWriter": "4.0.10",
-          "System.Xml.XmlSerializer": "4.0.10"
+          "runtime.any.System.Private.DataContractSerialization": "4.1.0"
         },
         "compile": {
           "ref/netcore50/_._": {}
-        },
-        "runtime": {
-          "lib/netcore50/System.Private.DataContractSerialization.dll": {}
         }
       },
       "System.Private.Networking/4.0.0": {
@@ -6652,9 +6626,11 @@
           "lib/netcore50/System.Runtime.Numerics.dll": {}
         }
       },
-      "System.Runtime.Serialization.Json/4.0.0": {
+      "System.Runtime.Serialization.Json/4.0.1": {
         "dependencies": {
-          "System.Private.DataContractSerialization": "4.0.0"
+          "System.IO": "4.0.0",
+          "System.Private.DataContractSerialization": "4.1.0",
+          "System.Runtime": "4.0.0"
         },
         "compile": {
           "ref/netcore50/System.Runtime.Serialization.Json.dll": {}
@@ -6663,25 +6639,29 @@
           "lib/netcore50/System.Runtime.Serialization.Json.dll": {}
         }
       },
-      "System.Runtime.Serialization.Primitives/4.0.10": {
+      "System.Runtime.Serialization.Primitives/4.1.0": {
         "dependencies": {
           "System.Resources.ResourceManager": "4.0.0",
           "System.Runtime": "4.0.20"
         },
         "compile": {
-          "ref/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+          "ref/netcore50/System.Runtime.Serialization.Primitives.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+          "lib/netcore50/System.Runtime.Serialization.Primitives.dll": {}
         }
       },
-      "System.Runtime.Serialization.Xml/4.0.10": {
+      "System.Runtime.Serialization.Xml/4.1.0": {
         "dependencies": {
-          "System.Private.DataContractSerialization": "4.0.0",
-          "System.Runtime.Serialization.Primitives": "4.0.10"
+          "System.IO": "4.0.0",
+          "System.Private.DataContractSerialization": "4.1.0",
+          "System.Runtime": "4.0.0",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Text.Encoding": "4.0.0",
+          "System.Xml.ReaderWriter": "4.0.0"
         },
         "compile": {
-          "ref/dotnet/System.Runtime.Serialization.Xml.dll": {}
+          "ref/netcore50/System.Runtime.Serialization.Xml.dll": {}
         },
         "runtime": {
           "lib/netcore50/System.Runtime.Serialization.Xml.dll": {}
@@ -7050,7 +7030,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Win2D.uwp/1.15.0": {
+      "Win2D.uwp/1.17.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
@@ -7069,12 +7049,12 @@
           "lib/winrt45/WinRT.Triggers.dll": {}
         }
       },
-      "WinRTXamlToolkit/1.6.1.3": {
+      "WinRTXamlToolkit/2.0.0": {
         "compile": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/uap10.0/WinRTXamlToolkit.dll": {}
         },
         "runtime": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/uap10.0/WinRTXamlToolkit.dll": {}
         }
       }
     },
@@ -7087,7 +7067,7 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
-      "Inflatable.Lastfm/0.2.2.252": {
+      "Inflatable.Lastfm/0.2.3.263": {
         "dependencies": {
           "Microsoft.Net.Http": "2.2.28",
           "Newtonsoft.Json": "6.0.5"
@@ -7099,7 +7079,7 @@
           "lib/portable-win8+net45+wp8+wpa81/IF.Lastfm.Core.dll": {}
         }
       },
-      "Microsoft.Bcl/1.1.9": {
+      "Microsoft.Bcl/1.1.10": {
         "dependencies": {
           "Microsoft.Bcl.Build": "1.0.14"
         },
@@ -7137,9 +7117,9 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Http/2.2.28": {
+      "Microsoft.Net.Http/2.2.29": {
         "dependencies": {
-          "Microsoft.Bcl": "1.1.9",
+          "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.14"
         },
         "compile": {
@@ -7246,39 +7226,14 @@
           "runtimes/aot/lib/netcore50/mscorlib.dll": {}
         }
       },
-      "Microsoft.NETCore.Runtime/1.0.0": {
+      "Microsoft.NETCore.Runtime/1.0.1": {
         "dependencies": {
-          "Microsoft.NETCore.Runtime.Native": "1.0.0"
+          "Microsoft.NETCore.Runtime.CoreCLR": "1.0.1",
+          "Microsoft.NETCore.Runtime.Native": "1.0.1"
         }
       },
-      "Microsoft.NETCore.Runtime.Native/1.0.0": {
-        "dependencies": {
-          "System.Collections": "[4.0.10]",
-          "System.Diagnostics.Contracts": "[4.0.0]",
-          "System.Diagnostics.Debug": "[4.0.10]",
-          "System.Diagnostics.StackTrace": "[4.0.0]",
-          "System.Diagnostics.Tools": "[4.0.0]",
-          "System.Diagnostics.Tracing": "[4.0.20]",
-          "System.Globalization": "[4.0.10]",
-          "System.Globalization.Calendars": "[4.0.0]",
-          "System.IO": "[4.0.10]",
-          "System.ObjectModel": "[4.0.10]",
-          "System.Private.Uri": "[4.0.0]",
-          "System.Reflection": "[4.0.10]",
-          "System.Reflection.Extensions": "[4.0.0]",
-          "System.Reflection.Primitives": "[4.0.0]",
-          "System.Resources.ResourceManager": "[4.0.0]",
-          "System.Runtime": "[4.0.20]",
-          "System.Runtime.Extensions": "[4.0.10]",
-          "System.Runtime.Handles": "[4.0.0]",
-          "System.Runtime.InteropServices": "[4.0.20]",
-          "System.Text.Encoding": "[4.0.10]",
-          "System.Text.Encoding.Extensions": "[4.0.10]",
-          "System.Threading": "[4.0.10]",
-          "System.Threading.Tasks": "[4.0.10]",
-          "System.Threading.Timer": "[4.0.0]"
-        }
-      },
+      "Microsoft.NETCore.Runtime.CoreCLR/1.0.1": {},
+      "Microsoft.NETCore.Runtime.Native/1.0.1": {},
       "Microsoft.NETCore.Targets/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.0.0",
@@ -7286,11 +7241,11 @@
         }
       },
       "Microsoft.NETCore.Targets.UniversalWindowsPlatform/5.0.0": {},
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.0.0": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.1.0": {
         "dependencies": {
           "Microsoft.NETCore": "5.0.0",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.0",
-          "Microsoft.NETCore.Runtime": "1.0.0",
+          "Microsoft.NETCore.Runtime": "1.0.1",
           "Microsoft.Win32.Primitives": "4.0.0",
           "System.ComponentModel.EventBasedAsync": "4.0.10",
           "System.Data.Common": "4.0.0",
@@ -7304,9 +7259,9 @@
           "System.Numerics.Vectors.WindowsRuntime": "4.0.0",
           "System.Reflection.Context": "4.0.0",
           "System.Runtime.InteropServices.WindowsRuntime": "4.0.0",
-          "System.Runtime.Serialization.Json": "4.0.0",
-          "System.Runtime.Serialization.Primitives": "4.0.10",
-          "System.Runtime.Serialization.Xml": "4.0.10",
+          "System.Runtime.Serialization.Json": "4.0.1",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Runtime.Serialization.Xml": "4.1.0",
           "System.Runtime.WindowsRuntime": "4.0.10",
           "System.Runtime.WindowsRuntime.UI.Xaml": "4.0.0",
           "System.ServiceModel.Duplex": "4.0.0",
@@ -7356,7 +7311,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/8.0.2": {
+      "Newtonsoft.Json/8.0.3": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         },
@@ -7364,12 +7319,43 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.1": {
+      "NotificationsExtensions.Win10/14295.0.1": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
+      "runtime.aot.System.Private.DataContractSerialization/4.1.0": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Linq": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Reflection.Primitives": "4.0.0",
+          "System.Reflection.TypeExtensions": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XmlDocument": "4.0.0",
+          "System.Xml.XmlSerializer": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "runtimes/win8-aot/lib/netcore50/System.Private.DataContractSerialization.dll": {}
         }
       },
       "ScrollWatcher/1.0.5": {
@@ -8017,32 +8003,12 @@
           "lib/dotnet/System.ObjectModel.dll": {}
         }
       },
-      "System.Private.DataContractSerialization/4.0.0": {
+      "System.Private.DataContractSerialization/4.1.0": {
         "dependencies": {
-          "System.Collections": "4.0.10",
-          "System.Globalization": "4.0.10",
-          "System.IO": "4.0.10",
-          "System.Linq": "4.0.0",
-          "System.Reflection": "4.0.10",
-          "System.Reflection.Extensions": "4.0.0",
-          "System.Reflection.Primitives": "4.0.0",
-          "System.Reflection.TypeExtensions": "4.0.0",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.20",
-          "System.Runtime.Extensions": "4.0.10",
-          "System.Runtime.Serialization.Primitives": "4.0.10",
-          "System.Text.Encoding": "4.0.10",
-          "System.Text.Encoding.Extensions": "4.0.10",
-          "System.Text.RegularExpressions": "4.0.10",
-          "System.Threading": "4.0.10",
-          "System.Xml.ReaderWriter": "4.0.10",
-          "System.Xml.XmlSerializer": "4.0.10"
+          "runtime.aot.System.Private.DataContractSerialization": "4.1.0"
         },
         "compile": {
           "ref/netcore50/_._": {}
-        },
-        "runtime": {
-          "runtimes/win8-aot/lib/netcore50/System.Private.DataContractSerialization.dll": {}
         }
       },
       "System.Private.Networking/4.0.0": {
@@ -8353,9 +8319,11 @@
           "lib/netcore50/System.Runtime.Numerics.dll": {}
         }
       },
-      "System.Runtime.Serialization.Json/4.0.0": {
+      "System.Runtime.Serialization.Json/4.0.1": {
         "dependencies": {
-          "System.Private.DataContractSerialization": "4.0.0"
+          "System.IO": "4.0.0",
+          "System.Private.DataContractSerialization": "4.1.0",
+          "System.Runtime": "4.0.0"
         },
         "compile": {
           "ref/netcore50/System.Runtime.Serialization.Json.dll": {}
@@ -8364,25 +8332,29 @@
           "runtimes/win8-aot/lib/netcore50/System.Runtime.Serialization.Json.dll": {}
         }
       },
-      "System.Runtime.Serialization.Primitives/4.0.10": {
+      "System.Runtime.Serialization.Primitives/4.1.0": {
         "dependencies": {
           "System.Resources.ResourceManager": "4.0.0",
           "System.Runtime": "4.0.20"
         },
         "compile": {
-          "ref/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+          "ref/netcore50/System.Runtime.Serialization.Primitives.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+          "runtimes/win8-aot/lib/netcore50/System.Runtime.Serialization.Primitives.dll": {}
         }
       },
-      "System.Runtime.Serialization.Xml/4.0.10": {
+      "System.Runtime.Serialization.Xml/4.1.0": {
         "dependencies": {
-          "System.Private.DataContractSerialization": "4.0.0",
-          "System.Runtime.Serialization.Primitives": "4.0.10"
+          "System.IO": "4.0.0",
+          "System.Private.DataContractSerialization": "4.1.0",
+          "System.Runtime": "4.0.0",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Text.Encoding": "4.0.0",
+          "System.Xml.ReaderWriter": "4.0.0"
         },
         "compile": {
-          "ref/dotnet/System.Runtime.Serialization.Xml.dll": {}
+          "ref/netcore50/System.Runtime.Serialization.Xml.dll": {}
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Runtime.Serialization.Xml.dll": {}
@@ -8751,7 +8723,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Win2D.uwp/1.15.0": {
+      "Win2D.uwp/1.17.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
@@ -8770,12 +8742,12 @@
           "lib/winrt45/WinRT.Triggers.dll": {}
         }
       },
-      "WinRTXamlToolkit/1.6.1.3": {
+      "WinRTXamlToolkit/2.0.0": {
         "compile": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/uap10.0/WinRTXamlToolkit.dll": {}
         },
         "runtime": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/uap10.0/WinRTXamlToolkit.dll": {}
         }
       }
     },
@@ -8788,7 +8760,7 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
-      "Inflatable.Lastfm/0.2.2.252": {
+      "Inflatable.Lastfm/0.2.3.263": {
         "dependencies": {
           "Microsoft.Net.Http": "2.2.28",
           "Newtonsoft.Json": "6.0.5"
@@ -8800,7 +8772,7 @@
           "lib/portable-win8+net45+wp8+wpa81/IF.Lastfm.Core.dll": {}
         }
       },
-      "Microsoft.Bcl/1.1.9": {
+      "Microsoft.Bcl/1.1.10": {
         "dependencies": {
           "Microsoft.Bcl.Build": "1.0.14"
         },
@@ -8838,9 +8810,9 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Http/2.2.28": {
+      "Microsoft.Net.Http/2.2.29": {
         "dependencies": {
-          "Microsoft.Bcl": "1.1.9",
+          "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.14"
         },
         "compile": {
@@ -8946,55 +8918,18 @@
           "lib/netcore50/System.dll": {}
         }
       },
-      "Microsoft.NETCore.Runtime/1.0.0": {
+      "Microsoft.NETCore.Runtime/1.0.1": {
         "dependencies": {
-          "Microsoft.NETCore.Runtime.CoreCLR-x86": "1.0.0",
-          "Microsoft.NETCore.Windows.ApiSets-x86": "1.0.0"
+          "Microsoft.NETCore.Runtime.CoreCLR": "1.0.1",
+          "Microsoft.NETCore.Runtime.Native": "1.0.1"
         }
       },
-      "Microsoft.NETCore.Runtime.CoreCLR-x86/1.0.0": {
+      "Microsoft.NETCore.Runtime.CoreCLR/1.0.1": {
         "dependencies": {
-          "System.Collections": "[4.0.10]",
-          "System.Diagnostics.Contracts": "[4.0.0]",
-          "System.Diagnostics.Debug": "[4.0.10]",
-          "System.Diagnostics.StackTrace": "[4.0.0]",
-          "System.Diagnostics.Tools": "[4.0.0]",
-          "System.Diagnostics.Tracing": "[4.0.20]",
-          "System.Globalization": "[4.0.10]",
-          "System.Globalization.Calendars": "[4.0.0]",
-          "System.IO": "[4.0.10]",
-          "System.ObjectModel": "[4.0.10]",
-          "System.Private.Uri": "[4.0.0]",
-          "System.Reflection": "[4.0.10]",
-          "System.Reflection.Extensions": "[4.0.0]",
-          "System.Reflection.Primitives": "[4.0.0]",
-          "System.Resources.ResourceManager": "[4.0.0]",
-          "System.Runtime": "[4.0.20]",
-          "System.Runtime.Extensions": "[4.0.10]",
-          "System.Runtime.Handles": "[4.0.0]",
-          "System.Runtime.InteropServices": "[4.0.20]",
-          "System.Text.Encoding": "[4.0.10]",
-          "System.Text.Encoding.Extensions": "[4.0.10]",
-          "System.Threading": "[4.0.10]",
-          "System.Threading.Tasks": "[4.0.10]",
-          "System.Threading.Timer": "[4.0.0]"
-        },
-        "compile": {
-          "ref/dotnet/_._": {}
-        },
-        "runtime": {
-          "runtimes/win7-x86/lib/dotnet/mscorlib.ni.dll": {}
-        },
-        "native": {
-          "runtimes/win7-x86/native/clretwrc.dll": {},
-          "runtimes/win7-x86/native/coreclr.dll": {},
-          "runtimes/win7-x86/native/dbgshim.dll": {},
-          "runtimes/win7-x86/native/mscordaccore.dll": {},
-          "runtimes/win7-x86/native/mscordbi.dll": {},
-          "runtimes/win7-x86/native/mscorrc.debug.dll": {},
-          "runtimes/win7-x86/native/mscorrc.dll": {}
+          "runtime.win7-x86.Microsoft.NETCore.Runtime.CoreCLR": "1.0.1"
         }
       },
+      "Microsoft.NETCore.Runtime.Native/1.0.1": {},
       "Microsoft.NETCore.Targets/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.0.0",
@@ -9002,11 +8937,11 @@
         }
       },
       "Microsoft.NETCore.Targets.UniversalWindowsPlatform/5.0.0": {},
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.0.0": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.1.0": {
         "dependencies": {
           "Microsoft.NETCore": "5.0.0",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.0",
-          "Microsoft.NETCore.Runtime": "1.0.0",
+          "Microsoft.NETCore.Runtime": "1.0.1",
           "Microsoft.Win32.Primitives": "4.0.0",
           "System.ComponentModel.EventBasedAsync": "4.0.10",
           "System.Data.Common": "4.0.0",
@@ -9020,9 +8955,9 @@
           "System.Numerics.Vectors.WindowsRuntime": "4.0.0",
           "System.Reflection.Context": "4.0.0",
           "System.Runtime.InteropServices.WindowsRuntime": "4.0.0",
-          "System.Runtime.Serialization.Json": "4.0.0",
-          "System.Runtime.Serialization.Primitives": "4.0.10",
-          "System.Runtime.Serialization.Xml": "4.0.10",
+          "System.Runtime.Serialization.Json": "4.0.1",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Runtime.Serialization.Xml": "4.1.0",
           "System.Runtime.WindowsRuntime": "4.0.10",
           "System.Runtime.WindowsRuntime.UI.Xaml": "4.0.0",
           "System.ServiceModel.Duplex": "4.0.0",
@@ -9077,7 +9012,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/8.0.2": {
+      "Newtonsoft.Json/8.0.3": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         },
@@ -9085,12 +9020,65 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.1": {
+      "NotificationsExtensions.Win10/14295.0.1": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
+      "runtime.any.System.Private.DataContractSerialization/4.1.0": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Linq": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Emit.ILGeneration": "4.0.0",
+          "System.Reflection.Emit.Lightweight": "4.0.0",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Reflection.Primitives": "4.0.0",
+          "System.Reflection.TypeExtensions": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XmlDocument": "4.0.0",
+          "System.Xml.XmlSerializer": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/System.Private.DataContractSerialization.dll": {}
+        }
+      },
+      "runtime.win7-x86.Microsoft.NETCore.Runtime.CoreCLR/1.0.1": {
+        "dependencies": {
+          "Microsoft.NETCore.Windows.ApiSets-x86": "1.0.0"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "runtimes/win7-x86/lib/dotnet/mscorlib.ni.dll": {}
+        },
+        "native": {
+          "runtimes/win7-x86/native/clretwrc.dll": {},
+          "runtimes/win7-x86/native/coreclr.dll": {},
+          "runtimes/win7-x86/native/dbgshim.dll": {},
+          "runtimes/win7-x86/native/mscordaccore.dll": {},
+          "runtimes/win7-x86/native/mscordbi.dll": {},
+          "runtimes/win7-x86/native/mscorrc.debug.dll": {},
+          "runtimes/win7-x86/native/mscorrc.dll": {}
         }
       },
       "ScrollWatcher/1.0.5": {
@@ -9742,34 +9730,12 @@
           "lib/dotnet/System.ObjectModel.dll": {}
         }
       },
-      "System.Private.DataContractSerialization/4.0.0": {
+      "System.Private.DataContractSerialization/4.1.0": {
         "dependencies": {
-          "System.Collections": "4.0.10",
-          "System.Globalization": "4.0.10",
-          "System.IO": "4.0.10",
-          "System.Linq": "4.0.0",
-          "System.Reflection": "4.0.10",
-          "System.Reflection.Emit.ILGeneration": "4.0.0",
-          "System.Reflection.Emit.Lightweight": "4.0.0",
-          "System.Reflection.Extensions": "4.0.0",
-          "System.Reflection.Primitives": "4.0.0",
-          "System.Reflection.TypeExtensions": "4.0.0",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.20",
-          "System.Runtime.Extensions": "4.0.10",
-          "System.Runtime.Serialization.Primitives": "4.0.10",
-          "System.Text.Encoding": "4.0.10",
-          "System.Text.Encoding.Extensions": "4.0.10",
-          "System.Text.RegularExpressions": "4.0.10",
-          "System.Threading": "4.0.10",
-          "System.Xml.ReaderWriter": "4.0.10",
-          "System.Xml.XmlSerializer": "4.0.10"
+          "runtime.any.System.Private.DataContractSerialization": "4.1.0"
         },
         "compile": {
           "ref/netcore50/_._": {}
-        },
-        "runtime": {
-          "lib/netcore50/System.Private.DataContractSerialization.dll": {}
         }
       },
       "System.Private.Networking/4.0.0": {
@@ -10096,9 +10062,11 @@
           "lib/netcore50/System.Runtime.Numerics.dll": {}
         }
       },
-      "System.Runtime.Serialization.Json/4.0.0": {
+      "System.Runtime.Serialization.Json/4.0.1": {
         "dependencies": {
-          "System.Private.DataContractSerialization": "4.0.0"
+          "System.IO": "4.0.0",
+          "System.Private.DataContractSerialization": "4.1.0",
+          "System.Runtime": "4.0.0"
         },
         "compile": {
           "ref/netcore50/System.Runtime.Serialization.Json.dll": {}
@@ -10107,25 +10075,29 @@
           "lib/netcore50/System.Runtime.Serialization.Json.dll": {}
         }
       },
-      "System.Runtime.Serialization.Primitives/4.0.10": {
+      "System.Runtime.Serialization.Primitives/4.1.0": {
         "dependencies": {
           "System.Resources.ResourceManager": "4.0.0",
           "System.Runtime": "4.0.20"
         },
         "compile": {
-          "ref/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+          "ref/netcore50/System.Runtime.Serialization.Primitives.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+          "lib/netcore50/System.Runtime.Serialization.Primitives.dll": {}
         }
       },
-      "System.Runtime.Serialization.Xml/4.0.10": {
+      "System.Runtime.Serialization.Xml/4.1.0": {
         "dependencies": {
-          "System.Private.DataContractSerialization": "4.0.0",
-          "System.Runtime.Serialization.Primitives": "4.0.10"
+          "System.IO": "4.0.0",
+          "System.Private.DataContractSerialization": "4.1.0",
+          "System.Runtime": "4.0.0",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Text.Encoding": "4.0.0",
+          "System.Xml.ReaderWriter": "4.0.0"
         },
         "compile": {
-          "ref/dotnet/System.Runtime.Serialization.Xml.dll": {}
+          "ref/netcore50/System.Runtime.Serialization.Xml.dll": {}
         },
         "runtime": {
           "lib/netcore50/System.Runtime.Serialization.Xml.dll": {}
@@ -10494,7 +10466,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Win2D.uwp/1.15.0": {
+      "Win2D.uwp/1.17.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
@@ -10513,12 +10485,12 @@
           "lib/winrt45/WinRT.Triggers.dll": {}
         }
       },
-      "WinRTXamlToolkit/1.6.1.3": {
+      "WinRTXamlToolkit/2.0.0": {
         "compile": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/uap10.0/WinRTXamlToolkit.dll": {}
         },
         "runtime": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/uap10.0/WinRTXamlToolkit.dll": {}
         }
       }
     },
@@ -10531,7 +10503,7 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
-      "Inflatable.Lastfm/0.2.2.252": {
+      "Inflatable.Lastfm/0.2.3.263": {
         "dependencies": {
           "Microsoft.Net.Http": "2.2.28",
           "Newtonsoft.Json": "6.0.5"
@@ -10543,7 +10515,7 @@
           "lib/portable-win8+net45+wp8+wpa81/IF.Lastfm.Core.dll": {}
         }
       },
-      "Microsoft.Bcl/1.1.9": {
+      "Microsoft.Bcl/1.1.10": {
         "dependencies": {
           "Microsoft.Bcl.Build": "1.0.14"
         },
@@ -10581,9 +10553,9 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Http/2.2.28": {
+      "Microsoft.Net.Http/2.2.29": {
         "dependencies": {
-          "Microsoft.Bcl": "1.1.9",
+          "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.14"
         },
         "compile": {
@@ -10690,39 +10662,14 @@
           "runtimes/aot/lib/netcore50/mscorlib.dll": {}
         }
       },
-      "Microsoft.NETCore.Runtime/1.0.0": {
+      "Microsoft.NETCore.Runtime/1.0.1": {
         "dependencies": {
-          "Microsoft.NETCore.Runtime.Native": "1.0.0"
+          "Microsoft.NETCore.Runtime.CoreCLR": "1.0.1",
+          "Microsoft.NETCore.Runtime.Native": "1.0.1"
         }
       },
-      "Microsoft.NETCore.Runtime.Native/1.0.0": {
-        "dependencies": {
-          "System.Collections": "[4.0.10]",
-          "System.Diagnostics.Contracts": "[4.0.0]",
-          "System.Diagnostics.Debug": "[4.0.10]",
-          "System.Diagnostics.StackTrace": "[4.0.0]",
-          "System.Diagnostics.Tools": "[4.0.0]",
-          "System.Diagnostics.Tracing": "[4.0.20]",
-          "System.Globalization": "[4.0.10]",
-          "System.Globalization.Calendars": "[4.0.0]",
-          "System.IO": "[4.0.10]",
-          "System.ObjectModel": "[4.0.10]",
-          "System.Private.Uri": "[4.0.0]",
-          "System.Reflection": "[4.0.10]",
-          "System.Reflection.Extensions": "[4.0.0]",
-          "System.Reflection.Primitives": "[4.0.0]",
-          "System.Resources.ResourceManager": "[4.0.0]",
-          "System.Runtime": "[4.0.20]",
-          "System.Runtime.Extensions": "[4.0.10]",
-          "System.Runtime.Handles": "[4.0.0]",
-          "System.Runtime.InteropServices": "[4.0.20]",
-          "System.Text.Encoding": "[4.0.10]",
-          "System.Text.Encoding.Extensions": "[4.0.10]",
-          "System.Threading": "[4.0.10]",
-          "System.Threading.Tasks": "[4.0.10]",
-          "System.Threading.Timer": "[4.0.0]"
-        }
-      },
+      "Microsoft.NETCore.Runtime.CoreCLR/1.0.1": {},
+      "Microsoft.NETCore.Runtime.Native/1.0.1": {},
       "Microsoft.NETCore.Targets/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.0.0",
@@ -10730,11 +10677,11 @@
         }
       },
       "Microsoft.NETCore.Targets.UniversalWindowsPlatform/5.0.0": {},
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.0.0": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.1.0": {
         "dependencies": {
           "Microsoft.NETCore": "5.0.0",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.0",
-          "Microsoft.NETCore.Runtime": "1.0.0",
+          "Microsoft.NETCore.Runtime": "1.0.1",
           "Microsoft.Win32.Primitives": "4.0.0",
           "System.ComponentModel.EventBasedAsync": "4.0.10",
           "System.Data.Common": "4.0.0",
@@ -10748,9 +10695,9 @@
           "System.Numerics.Vectors.WindowsRuntime": "4.0.0",
           "System.Reflection.Context": "4.0.0",
           "System.Runtime.InteropServices.WindowsRuntime": "4.0.0",
-          "System.Runtime.Serialization.Json": "4.0.0",
-          "System.Runtime.Serialization.Primitives": "4.0.10",
-          "System.Runtime.Serialization.Xml": "4.0.10",
+          "System.Runtime.Serialization.Json": "4.0.1",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Runtime.Serialization.Xml": "4.1.0",
           "System.Runtime.WindowsRuntime": "4.0.10",
           "System.Runtime.WindowsRuntime.UI.Xaml": "4.0.0",
           "System.ServiceModel.Duplex": "4.0.0",
@@ -10800,7 +10747,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/8.0.2": {
+      "Newtonsoft.Json/8.0.3": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         },
@@ -10808,12 +10755,43 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.1": {
+      "NotificationsExtensions.Win10/14295.0.1": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
+      "runtime.aot.System.Private.DataContractSerialization/4.1.0": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Linq": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Reflection.Primitives": "4.0.0",
+          "System.Reflection.TypeExtensions": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XmlDocument": "4.0.0",
+          "System.Xml.XmlSerializer": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "runtimes/win8-aot/lib/netcore50/System.Private.DataContractSerialization.dll": {}
         }
       },
       "ScrollWatcher/1.0.5": {
@@ -11461,32 +11439,12 @@
           "lib/dotnet/System.ObjectModel.dll": {}
         }
       },
-      "System.Private.DataContractSerialization/4.0.0": {
+      "System.Private.DataContractSerialization/4.1.0": {
         "dependencies": {
-          "System.Collections": "4.0.10",
-          "System.Globalization": "4.0.10",
-          "System.IO": "4.0.10",
-          "System.Linq": "4.0.0",
-          "System.Reflection": "4.0.10",
-          "System.Reflection.Extensions": "4.0.0",
-          "System.Reflection.Primitives": "4.0.0",
-          "System.Reflection.TypeExtensions": "4.0.0",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.20",
-          "System.Runtime.Extensions": "4.0.10",
-          "System.Runtime.Serialization.Primitives": "4.0.10",
-          "System.Text.Encoding": "4.0.10",
-          "System.Text.Encoding.Extensions": "4.0.10",
-          "System.Text.RegularExpressions": "4.0.10",
-          "System.Threading": "4.0.10",
-          "System.Xml.ReaderWriter": "4.0.10",
-          "System.Xml.XmlSerializer": "4.0.10"
+          "runtime.aot.System.Private.DataContractSerialization": "4.1.0"
         },
         "compile": {
           "ref/netcore50/_._": {}
-        },
-        "runtime": {
-          "runtimes/win8-aot/lib/netcore50/System.Private.DataContractSerialization.dll": {}
         }
       },
       "System.Private.Networking/4.0.0": {
@@ -11797,9 +11755,11 @@
           "lib/netcore50/System.Runtime.Numerics.dll": {}
         }
       },
-      "System.Runtime.Serialization.Json/4.0.0": {
+      "System.Runtime.Serialization.Json/4.0.1": {
         "dependencies": {
-          "System.Private.DataContractSerialization": "4.0.0"
+          "System.IO": "4.0.0",
+          "System.Private.DataContractSerialization": "4.1.0",
+          "System.Runtime": "4.0.0"
         },
         "compile": {
           "ref/netcore50/System.Runtime.Serialization.Json.dll": {}
@@ -11808,25 +11768,29 @@
           "runtimes/win8-aot/lib/netcore50/System.Runtime.Serialization.Json.dll": {}
         }
       },
-      "System.Runtime.Serialization.Primitives/4.0.10": {
+      "System.Runtime.Serialization.Primitives/4.1.0": {
         "dependencies": {
           "System.Resources.ResourceManager": "4.0.0",
           "System.Runtime": "4.0.20"
         },
         "compile": {
-          "ref/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+          "ref/netcore50/System.Runtime.Serialization.Primitives.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+          "runtimes/win8-aot/lib/netcore50/System.Runtime.Serialization.Primitives.dll": {}
         }
       },
-      "System.Runtime.Serialization.Xml/4.0.10": {
+      "System.Runtime.Serialization.Xml/4.1.0": {
         "dependencies": {
-          "System.Private.DataContractSerialization": "4.0.0",
-          "System.Runtime.Serialization.Primitives": "4.0.10"
+          "System.IO": "4.0.0",
+          "System.Private.DataContractSerialization": "4.1.0",
+          "System.Runtime": "4.0.0",
+          "System.Runtime.Serialization.Primitives": "4.1.0",
+          "System.Text.Encoding": "4.0.0",
+          "System.Xml.ReaderWriter": "4.0.0"
         },
         "compile": {
-          "ref/dotnet/System.Runtime.Serialization.Xml.dll": {}
+          "ref/netcore50/System.Runtime.Serialization.Xml.dll": {}
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Runtime.Serialization.Xml.dll": {}
@@ -12195,7 +12159,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Win2D.uwp/1.15.0": {
+      "Win2D.uwp/1.17.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
@@ -12214,12 +12178,12 @@
           "lib/winrt45/WinRT.Triggers.dll": {}
         }
       },
-      "WinRTXamlToolkit/1.6.1.3": {
+      "WinRTXamlToolkit/2.0.0": {
         "compile": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/uap10.0/WinRTXamlToolkit.dll": {}
         },
         "runtime": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/uap10.0/WinRTXamlToolkit.dll": {}
         }
       }
     }
@@ -12239,38 +12203,23 @@
         "package/services/metadata/core-properties/14b288cae4b6435c88f25cef31d271e1.psmdcp"
       ]
     },
-    "Inflatable.Lastfm/0.2.2.252": {
-      "sha512": "180dDjYMTR12ZSiJt+oZ5l2Rc/sqBP1kaDeD5XEh/vTVYH0CciHNnYV6QcrT+uFpuQCylHctRYFOV5ukR4+Cdw==",
-      "type": "Package",
+    "Inflatable.Lastfm/0.2.3.263": {
+      "sha512": "G3l0XhpzI7SfDaYcym9TICz9qmxJpz/xZo5Iw0l9s+Y9KnoJwaGGCKptkS+8w6HDkF+4WoRIfvMqB58f9P5axQ==",
+      "type": "package",
       "files": [
+        "Inflatable.Lastfm.0.2.3.263.nupkg.sha512",
         "Inflatable.Lastfm.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/portable-win8+net45+wp8+wpa81/IF.Lastfm.Core.dll",
-        "package/services/metadata/core-properties/de58331b0ebf446cbaf45ed58a3265d8.psmdcp"
+        "lib/portable-win8+net45+wp8+wpa81/IF.Lastfm.Core.dll"
       ]
     },
-    "Microsoft.Bcl/1.1.9": {
-      "sha512": "USQ55innJy8K+tAXvVa1O8dUTp2s7pmJ5cJj6Tl02HtGc2xBDj0P2QH5620HbGXIWKWYhydoeQF8Rm/JRDBGhw==",
-      "type": "Package",
+    "Microsoft.Bcl/1.1.10": {
+      "sha512": "+tTqoh/M1pyL8El3qLy30EcwnAtyvFoDZJtdG9Cbg/WdFbh4N8kyrq198XHuEL7lnJbeD0DRO8jcX5IIOh05cQ==",
+      "type": "package",
       "files": [
         "License-Stable.rtf",
+        "Microsoft.Bcl.1.1.10.nupkg.sha512",
         "Microsoft.Bcl.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "content/monoandroid/_._",
-        "content/monotouch/_._",
-        "content/net45/_._",
-        "content/portable-net45+win8+wp8+wpa81/_._",
-        "content/portable-net45+win8+wpa81/_._",
-        "content/portable-net451+win81+wpa81/_._",
-        "content/portable-net451+win81/_._",
-        "content/portable-win81+wp81+wpa81/_._",
-        "content/sl4/_._",
-        "content/sl5/_._",
-        "content/win8/_._",
-        "content/wp8/_._",
-        "content/wpa81/_._",
+        "lib/Xamarin.iOS10/_._",
         "lib/monoandroid/_._",
         "lib/monotouch/_._",
         "lib/net40/System.IO.dll",
@@ -12349,8 +12298,7 @@
         "lib/sl5/System.Threading.Tasks.xml",
         "lib/win8/_._",
         "lib/wp8/_._",
-        "lib/wpa81/_._",
-        "package/services/metadata/core-properties/a2c2e4aac469425ea858153a6ad602c0.psmdcp"
+        "lib/wpa81/_._"
       ]
     },
     "Microsoft.Bcl.Build/1.0.14": {
@@ -12414,14 +12362,17 @@
         "ref/xamarinmac20/_._"
       ]
     },
-    "Microsoft.Net.Http/2.2.28": {
-      "sha512": "hPL9k+rPIpAj84RZSq3WtJkOD9uMStBovAIAz/0OQ+9hQIwQ2XqQlAhMqI4kw0XDxweJySIqNTMlkhRRuthcPQ==",
-      "type": "Package",
+    "Microsoft.Net.Http/2.2.29": {
+      "sha512": "fc4CPEewJ30Xgal+fSq1lYIBt582A7eKlAL7O4HXiYAiTp2VTnA4osSvk7T2n8aS4xTCPVJusQk3yKLT0XSpkg==",
+      "type": "package",
       "files": [
         "License-Stable.rtf",
+        "Microsoft.Net.Http.2.2.29.nupkg.sha512",
         "Microsoft.Net.Http.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
+        "lib/Xamarin.iOS10/System.Net.Http.Extensions.XML",
+        "lib/Xamarin.iOS10/System.Net.Http.Extensions.dll",
+        "lib/Xamarin.iOS10/System.Net.Http.Primitives.dll",
+        "lib/Xamarin.iOS10/System.Net.Http.Primitives.xml",
         "lib/monoandroid/System.Net.Http.Extensions.XML",
         "lib/monoandroid/System.Net.Http.Extensions.dll",
         "lib/monoandroid/System.Net.Http.Primitives.dll",
@@ -12474,8 +12425,7 @@
         "lib/wpa81/System.Net.Http.Extensions.XML",
         "lib/wpa81/System.Net.Http.Extensions.dll",
         "lib/wpa81/System.Net.Http.Primitives.dll",
-        "lib/wpa81/System.Net.Http.Primitives.xml",
-        "package/services/metadata/core-properties/c97ab158801448e9aeb07e2b039b0e1e.psmdcp"
+        "lib/wpa81/System.Net.Http.Primitives.xml"
       ]
     },
     "Microsoft.NETCore/5.0.0": {
@@ -12581,83 +12531,35 @@
         "runtimes/aot/lib/netcore50/mscorlib.dll"
       ]
     },
-    "Microsoft.NETCore.Runtime/1.0.0": {
-      "sha512": "AjaMNpXLW4miEQorIqyn6iQ+BZBId6qXkhwyeh1vl6kXLqosZusbwmLNlvj/xllSQrd3aImJbvlHusam85g+xQ==",
-      "type": "Package",
+    "Microsoft.NETCore.Runtime/1.0.1": {
+      "sha512": "WIblAPds88Mwvcu8OjmspmHLG9zyay//n1jMVxQlxikGzZBIeRDz/O7o9qBtOR+vDpfn+Y2EbzdCmPb3brMGRg==",
+      "type": "package",
       "files": [
+        "Microsoft.NETCore.Runtime.1.0.1.nupkg.sha512",
         "Microsoft.NETCore.Runtime.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "package/services/metadata/core-properties/f289de2ffef9428684eca0c193bc8765.psmdcp",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt"
+      ]
+    },
+    "Microsoft.NETCore.Runtime.CoreCLR/1.0.1": {
+      "sha512": "EQlk4pidS+VppUSjhCCMXYlw9mf/47BwyM5XIX/gQHp5/qedKG7jypSMy0SGwv80U5mr1juQC0YROqjr7j8nTA==",
+      "type": "package",
+      "files": [
+        "Microsoft.NETCore.Runtime.CoreCLR.1.0.1.nupkg.sha512",
+        "Microsoft.NETCore.Runtime.CoreCLR.nuspec",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
         "runtime.json"
       ]
     },
-    "Microsoft.NETCore.Runtime.CoreCLR-arm/1.0.0": {
-      "sha512": "hoJfIl981eXwn9Tz8onO/J1xaYApIfp/YrhjSh9rRhml1U5Wj80LBgyp/6n+KI3VlvcAraThhnHnCTp+M3Uh+w==",
-      "type": "Package",
+    "Microsoft.NETCore.Runtime.Native/1.0.1": {
+      "sha512": "VeZR/qn/+FRH5rd1htnwBFIzSBW6xiA7Yu2UzaHKKlyf9Ev9xVXIOitWnkvb/tJMTKdmiCzmfi2TsAMajUHNZA==",
+      "type": "package",
       "files": [
-        "Microsoft.NETCore.Runtime.CoreCLR-arm.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "package/services/metadata/core-properties/c1cbeaed81514106b6b7971ac193f132.psmdcp",
-        "ref/dotnet/_._",
-        "runtimes/win8-arm/lib/dotnet/mscorlib.ni.dll",
-        "runtimes/win8-arm/native/clretwrc.dll",
-        "runtimes/win8-arm/native/coreclr.dll",
-        "runtimes/win8-arm/native/dbgshim.dll",
-        "runtimes/win8-arm/native/mscordaccore.dll",
-        "runtimes/win8-arm/native/mscordbi.dll",
-        "runtimes/win8-arm/native/mscorrc.debug.dll",
-        "runtimes/win8-arm/native/mscorrc.dll"
-      ]
-    },
-    "Microsoft.NETCore.Runtime.CoreCLR-x64/1.0.0": {
-      "sha512": "DaY5Z13xCZpnVIGluC5sCo4/0wy1rl6mptBH7v3RYi3guAmG88aSeFoQzyZepo0H0jEixUxNFM0+MB6Jc+j0bw==",
-      "type": "Package",
-      "files": [
-        "Microsoft.NETCore.Runtime.CoreCLR-x64.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "package/services/metadata/core-properties/bd7bd26b6b8242179b5b8ca3d9ffeb95.psmdcp",
-        "ref/dotnet/_._",
-        "runtimes/win7-x64/lib/dotnet/mscorlib.ni.dll",
-        "runtimes/win7-x64/native/clretwrc.dll",
-        "runtimes/win7-x64/native/coreclr.dll",
-        "runtimes/win7-x64/native/dbgshim.dll",
-        "runtimes/win7-x64/native/mscordaccore.dll",
-        "runtimes/win7-x64/native/mscordbi.dll",
-        "runtimes/win7-x64/native/mscorrc.debug.dll",
-        "runtimes/win7-x64/native/mscorrc.dll"
-      ]
-    },
-    "Microsoft.NETCore.Runtime.CoreCLR-x86/1.0.0": {
-      "sha512": "2LDffu5Is/X01GVPVuye4Wmz9/SyGDNq1Opgl5bXG3206cwNiCwsQgILOtfSWVp5mn4w401+8cjhBy3THW8HQQ==",
-      "type": "Package",
-      "files": [
-        "Microsoft.NETCore.Runtime.CoreCLR-x86.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "package/services/metadata/core-properties/dd7e29450ade4bdaab9794850cd11d7a.psmdcp",
-        "ref/dotnet/_._",
-        "runtimes/win7-x86/lib/dotnet/mscorlib.ni.dll",
-        "runtimes/win7-x86/native/clretwrc.dll",
-        "runtimes/win7-x86/native/coreclr.dll",
-        "runtimes/win7-x86/native/dbgshim.dll",
-        "runtimes/win7-x86/native/mscordaccore.dll",
-        "runtimes/win7-x86/native/mscordbi.dll",
-        "runtimes/win7-x86/native/mscorrc.debug.dll",
-        "runtimes/win7-x86/native/mscorrc.dll"
-      ]
-    },
-    "Microsoft.NETCore.Runtime.Native/1.0.0": {
-      "sha512": "tMsWWrH1AJCguiM22zK/vr6COxqz62Q1F02B07IXAUN405R3HGk5SkD/DL0Hte+OTjNtW9LkKXpOggGBRwYFNg==",
-      "type": "Package",
-      "files": [
+        "Microsoft.NETCore.Runtime.Native.1.0.1.nupkg.sha512",
         "Microsoft.NETCore.Runtime.Native.nuspec",
-        "[Content_Types].xml",
-        "_._",
-        "_rels/.rels",
-        "package/services/metadata/core-properties/a985563978b547f984c16150ef73e353.psmdcp"
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt"
       ]
     },
     "Microsoft.NETCore.Targets/1.0.0": {
@@ -12682,15 +12584,14 @@
         "runtime.json"
       ]
     },
-    "Microsoft.NETCore.UniversalWindowsPlatform/5.0.0": {
-      "sha512": "D0nsAm+yTk0oSSC7E6PcmuuEewBAQbGgIXNcCnRqQ4qLPdQLMjMHg8cilGs3xZgwTRQmMtEn45TAatrU1otWPQ==",
-      "type": "Package",
+    "Microsoft.NETCore.UniversalWindowsPlatform/5.1.0": {
+      "sha512": "6xdZAZALSJB65rRfOAfB6+aVBBc42Oz8jr8Cqy8J7A34zWVBV9l612lwbEsf6KJ1YdtocJsNcA8sLId3vJL/FA==",
+      "type": "package",
       "files": [
+        "Microsoft.NETCore.UniversalWindowsPlatform.5.1.0.nupkg.sha512",
         "Microsoft.NETCore.UniversalWindowsPlatform.nuspec",
-        "[Content_Types].xml",
-        "_._",
-        "_rels/.rels",
-        "package/services/metadata/core-properties/5dffd3ce5b6640febe2db09251387062.psmdcp"
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt"
       ]
     },
     "Microsoft.NETCore.Windows.ApiSets-x64/1.0.0": {
@@ -13090,13 +12991,12 @@
         "ref/xamarinmac20/_._"
       ]
     },
-    "Newtonsoft.Json/8.0.2": {
-      "sha512": "e5yWmEfu68rmtG431zl9N/7PlNKQDIuiDW5MHlEFAZcecakcxrIGnKqrPAtWNILzK2oNanRB5cD150MYhECK3g==",
-      "type": "Package",
+    "Newtonsoft.Json/8.0.3": {
+      "sha512": "KGsYQdS2zLH+H8x2cZaSI7e+YZ4SFIbyy1YJQYl6GYBWjf5o4H1A68nxyq+WTyVSOJQ4GqS/DiPE+UseUizgMg==",
+      "type": "package",
       "files": [
+        "Newtonsoft.Json.8.0.3.nupkg.sha512",
         "Newtonsoft.Json.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
@@ -13109,17 +13009,15 @@
         "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
         "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll",
         "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.xml",
-        "package/services/metadata/core-properties/cc8c591d554640789c6a6ef6456f7772.psmdcp",
         "tools/install.ps1"
       ]
     },
-    "NotificationsExtensions.Win10/10586.0.1": {
-      "sha512": "V+80x83JYU4aN1oN9HB3OsCDmYkH38NW8V/WFY26ITTmvX6EetNhmfqI60pvmXZGiqYKMdIz2b0EBA+nSzGqFA==",
-      "type": "Package",
+    "NotificationsExtensions.Win10/14295.0.1": {
+      "sha512": "XFRE87hwcl7xIqoYQD+bpEZGCb7jqFOJK5YpcPKVD/pcMa7KajLvh7rUD6of1gnxM/iGVZg4D7LczeMH2D58aQ==",
+      "type": "package",
       "files": [
+        "NotificationsExtensions.Win10.14295.0.1.nupkg.sha512",
         "NotificationsExtensions.Win10.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
         "lib/dotnet/NotificationsExtensions.Win10.NETCore.XML",
         "lib/dotnet/NotificationsExtensions.Win10.NETCore.dll",
         "lib/dotnet/NotificationsExtensions.Win10.NETCore.pdb",
@@ -13130,8 +13028,90 @@
         "lib/uap10.0/NotificationsExtensions.pri",
         "lib/uap10.0/NotificationsExtensions.winmd",
         "lib/uap10.0/NotificationsExtensions.winmd.xml",
-        "lib/uap10.0/NotificationsExtensions.xml",
-        "package/services/metadata/core-properties/34e3622aed2a44d984729529672fd012.psmdcp"
+        "lib/uap10.0/NotificationsExtensions.xml"
+      ]
+    },
+    "runtime.any.System.Private.DataContractSerialization/4.1.0": {
+      "sha512": "nJ5sB6Q7vbOEZ+tm/L7XISxO0Az6tkMup5rhpgPboVpUKgMnsdWiDvSlzzpK/bsiYxMIJCJ4Xrt2abt8Z1beJw==",
+      "type": "package",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/DNXCore50/System.Private.DataContractSerialization.dll",
+        "lib/netcore50/System.Private.DataContractSerialization.dll",
+        "ref/dotnet/_._",
+        "runtime.any.System.Private.DataContractSerialization.4.1.0.nupkg.sha512",
+        "runtime.any.System.Private.DataContractSerialization.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.aot.System.Private.DataContractSerialization/4.1.0": {
+      "sha512": "0GKgzv1P8U+1x0grF5xg9xAjjVahzAZwGNF6ff8/CeXi+1isQYi7vZ/GhiyU7zDaQnKmSOj1/tTZqhOo5P4yTA==",
+      "type": "package",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "ref/dotnet/_._",
+        "runtime.aot.System.Private.DataContractSerialization.4.1.0.nupkg.sha512",
+        "runtime.aot.System.Private.DataContractSerialization.nuspec",
+        "runtimes/win8-aot/lib/netcore50/System.Private.DataContractSerialization.dll"
+      ]
+    },
+    "runtime.win7-x64.Microsoft.NETCore.Runtime.CoreCLR/1.0.1": {
+      "sha512": "RGzhZPvizLZVtpUAnRHdIlluBT+IBgj9YuJcpUzvE9X9sDfSIzKLmHoAYeuQDOKXjRiy1qWh6/qsgXF9K8LDrQ==",
+      "type": "package",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "ref/dotnet/_._",
+        "runtime.win7-x64.Microsoft.NETCore.Runtime.CoreCLR.1.0.1.nupkg.sha512",
+        "runtime.win7-x64.Microsoft.NETCore.Runtime.CoreCLR.nuspec",
+        "runtimes/win7-x64/lib/dotnet/mscorlib.ni.dll",
+        "runtimes/win7-x64/native/clretwrc.dll",
+        "runtimes/win7-x64/native/coreclr.dll",
+        "runtimes/win7-x64/native/dbgshim.dll",
+        "runtimes/win7-x64/native/mscordaccore.dll",
+        "runtimes/win7-x64/native/mscordbi.dll",
+        "runtimes/win7-x64/native/mscorrc.debug.dll",
+        "runtimes/win7-x64/native/mscorrc.dll"
+      ]
+    },
+    "runtime.win7-x86.Microsoft.NETCore.Runtime.CoreCLR/1.0.1": {
+      "sha512": "Sm4ZEOX0J7RLguqTTv/S1df8DHy+ndLPCg8qlth3icuO6awpSzkqte5gQMV4pSci5YduMed9mgRGcPe3EQ5l2w==",
+      "type": "package",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "ref/dotnet/_._",
+        "runtime.win7-x86.Microsoft.NETCore.Runtime.CoreCLR.1.0.1.nupkg.sha512",
+        "runtime.win7-x86.Microsoft.NETCore.Runtime.CoreCLR.nuspec",
+        "runtimes/win7-x86/lib/dotnet/mscorlib.ni.dll",
+        "runtimes/win7-x86/native/clretwrc.dll",
+        "runtimes/win7-x86/native/coreclr.dll",
+        "runtimes/win7-x86/native/dbgshim.dll",
+        "runtimes/win7-x86/native/mscordaccore.dll",
+        "runtimes/win7-x86/native/mscordbi.dll",
+        "runtimes/win7-x86/native/mscorrc.debug.dll",
+        "runtimes/win7-x86/native/mscorrc.dll"
+      ]
+    },
+    "runtime.win8-arm.Microsoft.NETCore.Runtime.CoreCLR/1.0.1": {
+      "sha512": "sO14C2owb6uCS+OuoCUO6baXQQrG4D3rfOtE6iL1RNsiTTe/rjQC7NZY0iWmUjzd7+g+5ejaEv4x3sM2KRAUSw==",
+      "type": "package",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "ref/dotnet/_._",
+        "runtime.win8-arm.Microsoft.NETCore.Runtime.CoreCLR.1.0.1.nupkg.sha512",
+        "runtime.win8-arm.Microsoft.NETCore.Runtime.CoreCLR.nuspec",
+        "runtimes/win8-arm/lib/dotnet/mscorlib.ni.dll",
+        "runtimes/win8-arm/native/clretwrc.dll",
+        "runtimes/win8-arm/native/coreclr.dll",
+        "runtimes/win8-arm/native/dbgshim.dll",
+        "runtimes/win8-arm/native/mscordaccore.dll",
+        "runtimes/win8-arm/native/mscordbi.dll",
+        "runtimes/win8-arm/native/mscorrc.debug.dll",
+        "runtimes/win8-arm/native/mscorrc.dll"
       ]
     },
     "ScrollWatcher/1.0.5": {
@@ -14451,20 +14431,17 @@
         "ref/xamarinmac20/_._"
       ]
     },
-    "System.Private.DataContractSerialization/4.0.0": {
-      "sha512": "uQvzoXHXHn/9YqUmPtgD8ZPJIlBuuL3QHegbuik97W/umoI28fOnGLnvjRHhju1VMWvFLRQoh7uZkBaoZ+KpVQ==",
-      "type": "Package",
+    "System.Private.DataContractSerialization/4.1.0": {
+      "sha512": "jihi0lC7TMGx8QtMuz3tRFoXdP0BHbceAdd3gvRbNnxM3W93jSRE/cocQyGf64wlC/1etjHKPwnwdu+PDJkjnA==",
+      "type": "package",
       "files": [
+        "System.Private.DataContractSerialization.4.1.0.nupkg.sha512",
         "System.Private.DataContractSerialization.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/DNXCore50/System.Private.DataContractSerialization.dll",
-        "lib/netcore50/System.Private.DataContractSerialization.dll",
-        "package/services/metadata/core-properties/124ac81dfe1e4d08942831c90a93a6ba.psmdcp",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
         "ref/dnxcore50/_._",
         "ref/netcore50/_._",
-        "runtime.json",
-        "runtimes/win8-aot/lib/netcore50/System.Private.DataContractSerialization.dll"
+        "runtime.json"
       ]
     },
     "System.Private.Networking/4.0.0": {
@@ -15039,101 +15016,180 @@
         "ref/wpa81/_._"
       ]
     },
-    "System.Runtime.Serialization.Json/4.0.0": {
-      "sha512": "emhWMQP3sdtkAhD0TOeP3FfjS57sfQMQ2sqA6f2Yj5Gd9jkHV4KsQ2TsoJjghca6d8fur7+REQ6ILBXVdGf/0g==",
-      "type": "Package",
+    "System.Runtime.Serialization.Json/4.0.1": {
+      "sha512": "MUqpQDHlwFAy3v+fVzLN26SMGCPW/J2n4vfsBfScPiut/+Kp77Pcy1nWX2FC83WskFMepvmjMcXwTYZ75FCK0Q==",
+      "type": "package",
       "files": [
+        "System.Runtime.Serialization.Json.4.0.1.nupkg.sha512",
         "System.Runtime.Serialization.Json.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
         "lib/DNXCore50/System.Runtime.Serialization.Json.dll",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
         "lib/net45/_._",
         "lib/netcore50/System.Runtime.Serialization.Json.dll",
         "lib/win8/_._",
         "lib/wp80/_._",
         "lib/wpa81/_._",
-        "package/services/metadata/core-properties/2c520ff333ad4bde986eb7a015ba6343.psmdcp",
-        "ref/dotnet/System.Runtime.Serialization.Json.dll",
-        "ref/dotnet/System.Runtime.Serialization.Json.xml",
-        "ref/dotnet/de/System.Runtime.Serialization.Json.xml",
-        "ref/dotnet/es/System.Runtime.Serialization.Json.xml",
-        "ref/dotnet/fr/System.Runtime.Serialization.Json.xml",
-        "ref/dotnet/it/System.Runtime.Serialization.Json.xml",
-        "ref/dotnet/ja/System.Runtime.Serialization.Json.xml",
-        "ref/dotnet/ko/System.Runtime.Serialization.Json.xml",
-        "ref/dotnet/ru/System.Runtime.Serialization.Json.xml",
-        "ref/dotnet/zh-hans/System.Runtime.Serialization.Json.xml",
-        "ref/dotnet/zh-hant/System.Runtime.Serialization.Json.xml",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/dotnet5.1/System.Runtime.Serialization.Json.dll",
+        "ref/dotnet5.1/System.Runtime.Serialization.Json.xml",
+        "ref/dotnet5.1/de/System.Runtime.Serialization.Json.xml",
+        "ref/dotnet5.1/es/System.Runtime.Serialization.Json.xml",
+        "ref/dotnet5.1/fr/System.Runtime.Serialization.Json.xml",
+        "ref/dotnet5.1/it/System.Runtime.Serialization.Json.xml",
+        "ref/dotnet5.1/ja/System.Runtime.Serialization.Json.xml",
+        "ref/dotnet5.1/ko/System.Runtime.Serialization.Json.xml",
+        "ref/dotnet5.1/ru/System.Runtime.Serialization.Json.xml",
+        "ref/dotnet5.1/zh-hans/System.Runtime.Serialization.Json.xml",
+        "ref/dotnet5.1/zh-hant/System.Runtime.Serialization.Json.xml",
         "ref/net45/_._",
         "ref/netcore50/System.Runtime.Serialization.Json.dll",
         "ref/netcore50/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/de/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/es/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/fr/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/it/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/ja/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/ko/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/ru/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/zh-hans/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/zh-hant/System.Runtime.Serialization.Json.xml",
         "ref/win8/_._",
         "ref/wp80/_._",
         "ref/wpa81/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
         "runtimes/win8-aot/lib/netcore50/System.Runtime.Serialization.Json.dll"
       ]
     },
-    "System.Runtime.Serialization.Primitives/4.0.10": {
-      "sha512": "NPc8DZIomf5tGjYtz/KTHI01IPcVlypfhCux32AbLPDjTotdvL8TpKRwMyQJ6Kh08yprRVH7uBD1PdJiuoFzag==",
-      "type": "Package",
+    "System.Runtime.Serialization.Primitives/4.1.0": {
+      "sha512": "2UBnpTwpEi5dzbNJ8KhbOZ7Te1XQNov9MrtJ+dcnqogjACPNzbOiGT2uU9XgZg+sdbPvr4VMvVjFwJ85uLLCuA==",
+      "type": "package",
       "files": [
+        "System.Runtime.Serialization.Primitives.4.1.0.nupkg.sha512",
         "System.Runtime.Serialization.Primitives.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
-        "lib/dotnet/System.Runtime.Serialization.Primitives.dll",
-        "lib/net46/_._",
+        "lib/dotnet5.4/System.Runtime.Serialization.Primitives.dll",
+        "lib/net45/_._",
+        "lib/net46/System.Runtime.Serialization.Primitives.dll",
+        "lib/netcore50/System.Runtime.Serialization.Primitives.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
         "lib/xamarinios10/_._",
         "lib/xamarinmac20/_._",
-        "package/services/metadata/core-properties/92e70054da8743d68462736e85fe5580.psmdcp",
         "ref/MonoAndroid10/_._",
         "ref/MonoTouch10/_._",
-        "ref/dotnet/System.Runtime.Serialization.Primitives.dll",
-        "ref/dotnet/System.Runtime.Serialization.Primitives.xml",
-        "ref/dotnet/de/System.Runtime.Serialization.Primitives.xml",
-        "ref/dotnet/es/System.Runtime.Serialization.Primitives.xml",
-        "ref/dotnet/fr/System.Runtime.Serialization.Primitives.xml",
-        "ref/dotnet/it/System.Runtime.Serialization.Primitives.xml",
-        "ref/dotnet/ja/System.Runtime.Serialization.Primitives.xml",
-        "ref/dotnet/ko/System.Runtime.Serialization.Primitives.xml",
-        "ref/dotnet/ru/System.Runtime.Serialization.Primitives.xml",
-        "ref/dotnet/zh-hans/System.Runtime.Serialization.Primitives.xml",
-        "ref/dotnet/zh-hant/System.Runtime.Serialization.Primitives.xml",
-        "ref/net46/_._",
+        "ref/dotnet5.1/System.Runtime.Serialization.Primitives.dll",
+        "ref/dotnet5.1/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/de/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/es/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/fr/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/it/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/ja/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/ko/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/ru/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/zh-hans/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/zh-hant/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/System.Runtime.Serialization.Primitives.dll",
+        "ref/dotnet5.4/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/de/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/es/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/fr/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/it/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/ja/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/ko/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/ru/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/zh-hans/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/zh-hant/System.Runtime.Serialization.Primitives.xml",
+        "ref/net45/_._",
+        "ref/net46/System.Runtime.Serialization.Primitives.dll",
+        "ref/netcore50/System.Runtime.Serialization.Primitives.dll",
+        "ref/netcore50/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/de/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/es/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/fr/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/it/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/ja/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/ko/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/ru/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/zh-hans/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/zh-hant/System.Runtime.Serialization.Primitives.xml",
+        "ref/win8/_._",
+        "ref/wp80/_._",
+        "ref/wpa81/_._",
         "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._"
+        "ref/xamarinmac20/_._",
+        "runtimes/win8-aot/lib/netcore50/System.Runtime.Serialization.Primitives.dll"
       ]
     },
-    "System.Runtime.Serialization.Xml/4.0.10": {
-      "sha512": "xsy7XbH8RTpKoDPNcibSGCOpujsmwUmOWAby3PssqkZFpLBXUbDO2s6JKITRjxejET2g0PK8t+mdIvu3xmUuKA==",
-      "type": "Package",
+    "System.Runtime.Serialization.Xml/4.1.0": {
+      "sha512": "7TvzeIeNvT2GLpmSy/3J1VIkT70MroNujIiBWBe0qeM6/QFPdCcF/1Zxx9Ohc/iZUPAANb1wMruCAiYY2HTTrg==",
+      "type": "package",
       "files": [
+        "System.Runtime.Serialization.Xml.4.1.0.nupkg.sha512",
         "System.Runtime.Serialization.Xml.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
         "lib/DNXCore50/System.Runtime.Serialization.Xml.dll",
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
-        "lib/net46/_._",
+        "lib/net45/_._",
+        "lib/net46/System.Runtime.Serialization.Xml.dll",
         "lib/netcore50/System.Runtime.Serialization.Xml.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
         "lib/xamarinios10/_._",
         "lib/xamarinmac20/_._",
-        "package/services/metadata/core-properties/7d99189e9ae248c9a98d9fc3ccdc5130.psmdcp",
         "ref/MonoAndroid10/_._",
         "ref/MonoTouch10/_._",
-        "ref/dotnet/System.Runtime.Serialization.Xml.dll",
-        "ref/dotnet/System.Runtime.Serialization.Xml.xml",
-        "ref/dotnet/de/System.Runtime.Serialization.Xml.xml",
-        "ref/dotnet/es/System.Runtime.Serialization.Xml.xml",
-        "ref/dotnet/fr/System.Runtime.Serialization.Xml.xml",
-        "ref/dotnet/it/System.Runtime.Serialization.Xml.xml",
-        "ref/dotnet/ja/System.Runtime.Serialization.Xml.xml",
-        "ref/dotnet/ko/System.Runtime.Serialization.Xml.xml",
-        "ref/dotnet/ru/System.Runtime.Serialization.Xml.xml",
-        "ref/dotnet/zh-hans/System.Runtime.Serialization.Xml.xml",
-        "ref/dotnet/zh-hant/System.Runtime.Serialization.Xml.xml",
-        "ref/net46/_._",
+        "ref/dotnet5.1/System.Runtime.Serialization.Xml.dll",
+        "ref/dotnet5.1/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.1/de/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.1/es/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.1/fr/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.1/it/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.1/ja/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.1/ko/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.1/ru/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.1/zh-hans/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.1/zh-hant/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.4/System.Runtime.Serialization.Xml.dll",
+        "ref/dotnet5.4/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.4/de/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.4/es/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.4/fr/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.4/it/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.4/ja/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.4/ko/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.4/ru/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.4/zh-hans/System.Runtime.Serialization.Xml.xml",
+        "ref/dotnet5.4/zh-hant/System.Runtime.Serialization.Xml.xml",
+        "ref/net45/_._",
+        "ref/net46/System.Runtime.Serialization.Xml.dll",
+        "ref/netcore50/System.Runtime.Serialization.Xml.dll",
+        "ref/netcore50/System.Runtime.Serialization.Xml.xml",
+        "ref/netcore50/de/System.Runtime.Serialization.Xml.xml",
+        "ref/netcore50/es/System.Runtime.Serialization.Xml.xml",
+        "ref/netcore50/fr/System.Runtime.Serialization.Xml.xml",
+        "ref/netcore50/it/System.Runtime.Serialization.Xml.xml",
+        "ref/netcore50/ja/System.Runtime.Serialization.Xml.xml",
+        "ref/netcore50/ko/System.Runtime.Serialization.Xml.xml",
+        "ref/netcore50/ru/System.Runtime.Serialization.Xml.xml",
+        "ref/netcore50/zh-hans/System.Runtime.Serialization.Xml.xml",
+        "ref/netcore50/zh-hant/System.Runtime.Serialization.Xml.xml",
+        "ref/win8/_._",
+        "ref/wp80/_._",
+        "ref/wpa81/_._",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "runtimes/win8-aot/lib/netcore50/System.Runtime.Serialization.Xml.dll"
@@ -15843,20 +15899,18 @@
         "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll"
       ]
     },
-    "Win2D.uwp/1.15.0": {
-      "sha512": "XRWV08p8DThX92CfTGdg6mrK1CoNIklme8R/i9rjZOvzAx+6lfTDNjMseweIZqaaIdL+8+gMiqvqu+etfj+0LA==",
-      "type": "Package",
+    "Win2D.uwp/1.17.0": {
+      "sha512": "G5rG8c4dBX4Aq1RKzjvmtjM3Q/us7GdzllyqF1rsiy65eQg3UE5Kc8R09ROSnHeptqf5l6W6GDZ7uJMKdHKP0Q==",
+      "type": "package",
       "files": [
+        "Win2D.uwp.1.17.0.nupkg.sha512",
         "Win2D.uwp.nuspec",
         "Win2d.githash.txt",
-        "[Content_Types].xml",
-        "_rels/.rels",
         "build/native/Win2D.uwp.targets",
         "include/Microsoft.Graphics.Canvas.h",
         "include/Microsoft.Graphics.Canvas.native.h",
         "lib/uap10.0/Microsoft.Graphics.Canvas.winmd",
         "lib/uap10.0/Microsoft.Graphics.Canvas.xml",
-        "package/services/metadata/core-properties/4c29eb45b89442779b2a0409ff1a16b0.psmdcp",
         "runtimes/win10-arm/native/Microsoft.Graphics.Canvas.dll",
         "runtimes/win10-x64/native/Microsoft.Graphics.Canvas.dll",
         "runtimes/win10-x86/native/Microsoft.Graphics.Canvas.dll"
@@ -15876,83 +15930,491 @@
         "package/services/metadata/core-properties/3ae6597efd3b450fa79bb189b3a68ad4.psmdcp"
       ]
     },
-    "WinRTXamlToolkit/1.6.1.3": {
-      "sha512": "ukFKkiEHe2phThICFcRb4Bw/2S5mLCp3YibYt+/rC28qxbUPQdmu3XMPiUF7yOKJpsdmLDJFuq5/hehjQtg9GA==",
-      "type": "Package",
+    "WinRTXamlToolkit/2.0.0": {
+      "sha512": "uShkcpJQYgNxvBuOgIphVJlO1T/c/Be5ynlrfDLr17z0n/HtTzJzEjTYRErQ5E1alRZHSCYNu66nvcbd7i3fjA==",
+      "type": "package",
       "files": [
+        "WinRTXamlToolkit.2.0.0.nupkg.sha512",
         "WinRTXamlToolkit.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/netcore45/WinRTXamlToolkit.dll",
-        "lib/netcore45/WinRTXamlToolkit.pri",
-        "lib/netcore45/WinRTXamlToolkit/Controls/AlternativeFrame/AlternativeFrame.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/AnimatingContainer/AnimatingContainer.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/CameraCaptureControl/CameraCaptureControl.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/CascadingImageControl/CascadingImageControl.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/CascadingTextBlock/CascadingTextBlock.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/ColorPicker/ColorPicker.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/CountdownControl/CountdownControl.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/CustomAppBar/CustomAppBar.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/CustomGridSplitter/CustomGridSplitter.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/DelayedLoadControl/DelayedLoadControl.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/ImageButton/ImageButton.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/ImageToggleButton/ImageToggleButton.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/InputDialog/InputDialog.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/ListItemButton/ListItemButton.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/NumericUpDown/NumericUpDown.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/ToolWindow/ToolWindow.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/TreeView/TreeView.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/TreeView/TreeViewItem.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/TreeView/TreeViewMouse.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/TreeView/TreeViewTouch.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/WatermarkPasswordBox/WatermarkPasswordBox.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/WatermarkTextBox/WatermarkTextBox.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/WebBrowser/WebBrowser.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Themes/Generic.xaml",
-        "lib/netcore451/WinRTXamlToolkit.dll",
-        "lib/netcore451/WinRTXamlToolkit.pri",
-        "lib/netcore451/WinRTXamlToolkit/Controls/AlternativeFrame/AlternativeFrame.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/AnimatingContainer/AnimatingContainer.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/CameraCaptureControl/CameraCaptureControl.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/CascadingImageControl/CascadingImageControl.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/CascadingTextBlock/CascadingTextBlock.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/ColorPicker/ColorPicker.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/CountdownControl/CountdownControl.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/CustomAppBar/CustomAppBar.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/CustomGridSplitter/CustomGridSplitter.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/DelayedLoadControl/DelayedLoadControl.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/FxContentControl/FxContentControl.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/ImageButton/ImageButton.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/ImageToggleButton/ImageToggleButton.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/InputDialog/InputDialog.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/ListItemButton/ListItemButton.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/NumericUpDown/NumericUpDown.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/ToolWindow/ToolWindow.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/TreeView/TreeView.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/TreeView/TreeViewItem.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/TreeView/TreeViewMouse.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/TreeView/TreeViewTouch.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/WatermarkPasswordBox/WatermarkPasswordBox.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/WatermarkTextBox/WatermarkTextBox.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/WebBrowser/WebBrowser.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Themes/Generic.xbf",
-        "lib/netcore451/WinRTXamlToolkit/WinRTXamlToolkit.xr.xml",
-        "package/services/metadata/core-properties/fa1b487cab1142b2bcf06a0c2aedd6c5.psmdcp"
+        "lib/uap10.0/WinRTXamlToolkit.dll",
+        "lib/uap10.0/WinRTXamlToolkit.pri",
+        "lib/uap10.0/WinRTXamlToolkit/Async/_._",
+        "lib/uap10.0/WinRTXamlToolkit/AwaitableUI/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Common/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/AlternativeFrame/AlternativeFrame.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/AlternativeFrame/AlternativeFrame.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/AnimatingContainer/AnimatingContainer.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/AnimatingContainer/AnimatingContainer.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/AutoCompleteTextBox/Algorithm/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/AutoCompleteTextBox/AutoCompleteTextBox.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/AutoCompleteTextBox/AutoCompleteTextBox.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/AutoOrientingStackPanel/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/Behaviors/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/CameraCaptureControl/CameraCaptureControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/CameraCaptureControl/CameraCaptureControl.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/CascadingImageControl/CascadingImageControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/CascadingImageControl/CascadingImageControl.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/CascadingTextBlock/CascadingTextBlock.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/CascadingTextBlock/CascadingTextBlock.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/ColorPicker/ColorPicker.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/ColorPicker/ColorPicker.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/Common/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/CountdownControl/CountdownControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/CountdownControl/CountdownControl.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/CustomAppBar/CustomAppBar.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/CustomAppBar/CustomAppBar.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/CustomGridSplitter/CustomGridSplitter.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/CustomGridSplitter/CustomGridSplitter.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/Data/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/DelayedLoadControl/DelayedLoadControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/DelayedLoadControl/DelayedLoadControl.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/DockPanel/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/Extensions/Forms/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/FocusVisualizer/FocusVisualizer.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/FocusVisualizer/FocusVisualizer.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/FxContentControl/FxContentControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/FxContentControl/FxContentControl.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/HeaderedItemsControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/ImageButton/ImageButton.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/ImageButton/ImageButton.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/ImageToggleButton/ImageToggleButton.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/ImageToggleButton/ImageToggleButton.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/InputDialog/InputDialog.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/InputDialog/InputDialog.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/LayoutTransformControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/ListItemButton/ListItemButton.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/ListItemButton/ListItemButton.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/NumericUpDown/NumericUpDown.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/NumericUpDown/NumericUpDown.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/PieSlice/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/RingSlice/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/SquareGrid/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/ToolStrip/ToolStrip.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/ToolStrip/ToolStrip.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/ToolWindow/ToolWindow.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/ToolWindow/ToolWindow.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/TreeView/TreeView.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/TreeView/TreeView.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/TreeView/TreeViewItem.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/TreeView/TreeViewItem.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/TreeView/TreeViewMouse.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/TreeView/TreeViewMouse.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/TreeView/TreeViewTouch.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/TreeView/TreeViewTouch.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/UniformGrid/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/WatermarkPasswordBox/WatermarkPasswordBox.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/WatermarkPasswordBox/WatermarkPasswordBox.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/WatermarkTextBox/WatermarkTextBox.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/WatermarkTextBox/WatermarkTextBox.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/WebBrowser/WebBrowser.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/WebBrowser/WebBrowser.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Controls/WrapPanel/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Converters/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Device/_._",
+        "lib/uap10.0/WinRTXamlToolkit/IO/Extensions/_._",
+        "lib/uap10.0/WinRTXamlToolkit/IO/Serialization/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Imaging/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Input/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Interactivity/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Licensing/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Net/_._",
+        "lib/uap10.0/WinRTXamlToolkit/Properties/WinRTXamlToolkit.UWP.rd.xml",
+        "lib/uap10.0/WinRTXamlToolkit/Themes/Generic.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/Themes/Generic.xbf",
+        "lib/uap10.0/WinRTXamlToolkit/Tools/_._",
+        "lib/uap10.0/WinRTXamlToolkit/WinRTXamlToolkit.xr.xml",
+        "lib/uap10.0/WinRTXamlToolkit/bin/ARM/Debug/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/ARM/Release/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Debug/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/AlternativeFrame/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/AnimatingContainer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/AutoCompleteTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/CameraCaptureControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/CascadingImageControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/CascadingTextBlock/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/ColorPicker/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/CountdownControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/CustomAppBar/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/CustomGridSplitter/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/DelayedLoadControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/FocusVisualizer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/FxContentControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/ImageButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/ImageToggleButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/InputDialog/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/ListItemButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/NumericUpDown/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/ToolStrip/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/ToolWindow/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/TreeView/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/WatermarkPasswordBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/WatermarkTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Controls/WebBrowser/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/Release/Themes/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/AlternativeFrame/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/AnimatingContainer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/AutoCompleteTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/CameraCaptureControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/CascadingImageControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/CascadingTextBlock/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/ColorPicker/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/CountdownControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/CustomAppBar/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/CustomGridSplitter/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/DelayedLoadControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/FocusVisualizer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/FxContentControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/ImageButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/ImageToggleButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/InputDialog/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/ListItemButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/NumericUpDown/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/ToolStrip/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/ToolWindow/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/TreeView/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/WatermarkPasswordBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/WatermarkTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Controls/WebBrowser/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Debug/Themes/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/AlternativeFrame/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/AnimatingContainer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/AutoCompleteTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/CameraCaptureControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/CascadingImageControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/CascadingTextBlock/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/ColorPicker/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/CountdownControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/CustomAppBar/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/CustomGridSplitter/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/DelayedLoadControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/FocusVisualizer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/FxContentControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/ImageButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/ImageToggleButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/InputDialog/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/ListItemButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/NumericUpDown/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/ToolStrip/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/ToolWindow/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/TreeView/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/WatermarkPasswordBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/WatermarkTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Controls/WebBrowser/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x64/Release/Themes/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/AlternativeFrame/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/AnimatingContainer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/AutoCompleteTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/CameraCaptureControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/CascadingImageControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/CascadingTextBlock/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/ColorPicker/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/CountdownControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/CustomAppBar/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/CustomGridSplitter/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/DelayedLoadControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/FocusVisualizer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/FxContentControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/ImageButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/ImageToggleButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/InputDialog/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/ListItemButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/NumericUpDown/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/ToolStrip/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/ToolWindow/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/TreeView/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/WatermarkPasswordBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/WatermarkTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Controls/WebBrowser/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Debug/Themes/_._",
+        "lib/uap10.0/WinRTXamlToolkit/bin/x86/Release/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/AlternativeFrame/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/AnimatingContainer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/AutoCompleteTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/CameraCaptureControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/CascadingImageControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/CascadingTextBlock/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/ColorPicker/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/CountdownControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/CustomAppBar/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/CustomGridSplitter/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/DelayedLoadControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/FocusVisualizer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/FxContentControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/ImageButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/ImageToggleButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/InputDialog/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/ListItemButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/NumericUpDown/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/ToolStrip/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/ToolWindow/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/TreeView/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/WatermarkPasswordBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/WatermarkTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Controls/WebBrowser/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/TempPE/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/Themes/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/ARM/Debug/intermediatexaml/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/AlternativeFrame/AlternativeFrame.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/AnimatingContainer/AnimatingContainer.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/AutoCompleteTextBox/AutoCompleteTextBox.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/CameraCaptureControl/CameraCaptureControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/CascadingImageControl/CascadingImageControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/CascadingTextBlock/CascadingTextBlock.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/ColorPicker/ColorPicker.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/CountdownControl/CountdownControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/CustomAppBar/CustomAppBar.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/CustomGridSplitter/CustomGridSplitter.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/DelayedLoadControl/DelayedLoadControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/FocusVisualizer/FocusVisualizer.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/FxContentControl/FxContentControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/ImageButton/ImageButton.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/ImageToggleButton/ImageToggleButton.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/InputDialog/InputDialog.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/ListItemButton/ListItemButton.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/NumericUpDown/NumericUpDown.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/ToolStrip/ToolStrip.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/ToolWindow/ToolWindow.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/TreeView/TreeView.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/TreeView/TreeViewItem.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/TreeView/TreeViewMouse.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/TreeView/TreeViewTouch.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/WatermarkPasswordBox/WatermarkPasswordBox.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/WatermarkTextBox/WatermarkTextBox.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Controls/WebBrowser/WebBrowser.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/Themes/Generic.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/AlternativeFrame/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/AnimatingContainer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/AutoCompleteTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/CameraCaptureControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/CascadingImageControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/CascadingTextBlock/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/ColorPicker/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/CountdownControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/CustomAppBar/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/CustomGridSplitter/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/DelayedLoadControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/FocusVisualizer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/FxContentControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/ImageButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/ImageToggleButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/InputDialog/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/ListItemButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/NumericUpDown/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/ToolStrip/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/ToolWindow/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/TreeView/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/WatermarkPasswordBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/WatermarkTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Controls/WebBrowser/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/WinRTXamlToolkit/Themes/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/Release/intermediatexaml/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/AlternativeFrame/AlternativeFrame.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/AnimatingContainer/AnimatingContainer.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/AutoCompleteTextBox/AutoCompleteTextBox.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/CameraCaptureControl/CameraCaptureControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/CascadingImageControl/CascadingImageControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/CascadingTextBlock/CascadingTextBlock.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/ColorPicker/ColorPicker.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/CountdownControl/CountdownControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/CustomAppBar/CustomAppBar.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/CustomGridSplitter/CustomGridSplitter.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/DelayedLoadControl/DelayedLoadControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/FocusVisualizer/FocusVisualizer.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/FxContentControl/FxContentControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/ImageButton/ImageButton.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/ImageToggleButton/ImageToggleButton.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/InputDialog/InputDialog.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/ListItemButton/ListItemButton.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/NumericUpDown/NumericUpDown.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/ToolStrip/ToolStrip.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/ToolWindow/ToolWindow.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/TreeView/TreeView.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/TreeView/TreeViewItem.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/TreeView/TreeViewMouse.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/TreeView/TreeViewTouch.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/WatermarkPasswordBox/WatermarkPasswordBox.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/WatermarkTextBox/WatermarkTextBox.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Controls/WebBrowser/WebBrowser.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/TempPE/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/Themes/Generic.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/AlternativeFrame/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/AnimatingContainer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/AutoCompleteTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/CameraCaptureControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/CascadingImageControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/CascadingTextBlock/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/ColorPicker/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/CountdownControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/CustomAppBar/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/CustomGridSplitter/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/DelayedLoadControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/FocusVisualizer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/FxContentControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/ImageButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/ImageToggleButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/InputDialog/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/ListItemButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/NumericUpDown/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/ToolStrip/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/ToolWindow/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/TreeView/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/WatermarkPasswordBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/WatermarkTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Controls/WebBrowser/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/WinRTXamlToolkit/Themes/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Debug/intermediatexaml/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/AlternativeFrame/AlternativeFrame.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/AnimatingContainer/AnimatingContainer.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/AutoCompleteTextBox/AutoCompleteTextBox.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/CameraCaptureControl/CameraCaptureControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/CascadingImageControl/CascadingImageControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/CascadingTextBlock/CascadingTextBlock.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/ColorPicker/ColorPicker.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/CountdownControl/CountdownControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/CustomAppBar/CustomAppBar.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/CustomGridSplitter/CustomGridSplitter.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/DelayedLoadControl/DelayedLoadControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/FocusVisualizer/FocusVisualizer.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/FxContentControl/FxContentControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/ImageButton/ImageButton.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/ImageToggleButton/ImageToggleButton.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/InputDialog/InputDialog.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/ListItemButton/ListItemButton.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/NumericUpDown/NumericUpDown.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/ToolStrip/ToolStrip.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/ToolWindow/ToolWindow.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/TreeView/TreeView.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/TreeView/TreeViewItem.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/TreeView/TreeViewMouse.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/TreeView/TreeViewTouch.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/WatermarkPasswordBox/WatermarkPasswordBox.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/WatermarkTextBox/WatermarkTextBox.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Controls/WebBrowser/WebBrowser.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/TempPE/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/Themes/Generic.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/AlternativeFrame/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/AnimatingContainer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/AutoCompleteTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/CameraCaptureControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/CascadingImageControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/CascadingTextBlock/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/ColorPicker/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/CountdownControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/CustomAppBar/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/CustomGridSplitter/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/DelayedLoadControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/FocusVisualizer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/FxContentControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/ImageButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/ImageToggleButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/InputDialog/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/ListItemButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/NumericUpDown/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/ToolStrip/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/ToolWindow/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/TreeView/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/WatermarkPasswordBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/WatermarkTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Controls/WebBrowser/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/WinRTXamlToolkit/Themes/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x64/Release/intermediatexaml/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/AlternativeFrame/AlternativeFrame.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/AnimatingContainer/AnimatingContainer.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/AutoCompleteTextBox/AutoCompleteTextBox.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/CameraCaptureControl/CameraCaptureControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/CascadingImageControl/CascadingImageControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/CascadingTextBlock/CascadingTextBlock.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/ColorPicker/ColorPicker.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/CountdownControl/CountdownControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/CustomAppBar/CustomAppBar.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/CustomGridSplitter/CustomGridSplitter.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/DelayedLoadControl/DelayedLoadControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/FocusVisualizer/FocusVisualizer.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/FxContentControl/FxContentControl.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/ImageButton/ImageButton.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/ImageToggleButton/ImageToggleButton.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/InputDialog/InputDialog.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/ListItemButton/ListItemButton.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/NumericUpDown/NumericUpDown.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/ToolStrip/ToolStrip.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/ToolWindow/ToolWindow.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/TreeView/TreeView.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/TreeView/TreeViewItem.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/TreeView/TreeViewMouse.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/TreeView/TreeViewTouch.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/WatermarkPasswordBox/WatermarkPasswordBox.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/WatermarkTextBox/WatermarkTextBox.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Controls/WebBrowser/WebBrowser.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/TempPE/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/Themes/Generic.xaml",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/AlternativeFrame/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/AnimatingContainer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/AutoCompleteTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/CameraCaptureControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/CascadingImageControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/CascadingTextBlock/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/ColorPicker/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/CountdownControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/CustomAppBar/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/CustomGridSplitter/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/DelayedLoadControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/FocusVisualizer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/FxContentControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/ImageButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/ImageToggleButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/InputDialog/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/ListItemButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/NumericUpDown/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/ToolStrip/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/ToolWindow/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/TreeView/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/WatermarkPasswordBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/WatermarkTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Controls/WebBrowser/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/WinRTXamlToolkit/Themes/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Debug/intermediatexaml/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/AlternativeFrame/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/AnimatingContainer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/AutoCompleteTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/CameraCaptureControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/CascadingImageControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/CascadingTextBlock/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/ColorPicker/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/CountdownControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/CustomAppBar/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/CustomGridSplitter/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/DelayedLoadControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/FocusVisualizer/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/FxContentControl/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/ImageButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/ImageToggleButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/InputDialog/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/ListItemButton/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/NumericUpDown/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/ToolStrip/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/ToolWindow/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/TreeView/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/WatermarkPasswordBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/WatermarkTextBox/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Controls/WebBrowser/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/TempPE/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/Themes/_._",
+        "lib/uap10.0/WinRTXamlToolkit/obj/x86/Release/intermediatexaml/_._"
       ]
     }
   },
   "projectFileDependencyGroups": {
     "": [
       "Autofac >= 3.5.2",
-      "Inflatable.Lastfm >= 0.2.2.252",
-      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
-      "Microsoft.Net.Http >= 2.2.28",
-      "Newtonsoft.Json >= 8.0.2",
-      "NotificationsExtensions.Win10 >= 10586.0.1",
+      "Inflatable.Lastfm >= 0.2.3.263",
+      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0",
+      "Microsoft.Net.Http >= 2.2.29",
+      "Newtonsoft.Json >= 8.0.3",
+      "NotificationsExtensions.Win10 >= 14295.0.1",
       "ScrollWatcher >= 1.0.5",
-      "Win2D.uwp >= 1.15.0",
+      "Win2D.uwp >= 1.17.0",
       "WinRTTriggers >= 1.6.0",
-      "WinRTXamlToolkit >= 1.6.1.3"
+      "WinRTXamlToolkit >= 2.0.0"
     ],
     "UAP,Version=v10.0": []
   }
