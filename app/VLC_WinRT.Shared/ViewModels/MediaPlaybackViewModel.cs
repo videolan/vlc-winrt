@@ -955,9 +955,9 @@ namespace VLC_WinRT.ViewModels
         {
             _mediaService.Stop();
         }
-        #endregion
+#endregion
 
-        #region Events
+#region Events
         private async void PlayerStateChanged(object sender, MediaState e)
         {
             try
@@ -1095,9 +1095,9 @@ namespace VLC_WinRT.ViewModels
                 OnPropertyChanged(nameof(CurrentChapter));
             });
         }
-        #endregion
+#endregion
 
-        #region MediaTransportControls
+#region MediaTransportControls
 
         public void SetMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
         {
