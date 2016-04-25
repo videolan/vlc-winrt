@@ -101,6 +101,7 @@ namespace VLC_WinRT.Services.RunTime
             MediaPlayer = new MediaPlayer(mediaVLC);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
             var em = MediaPlayer.eventManager();
+            em.OnOpening += Em_OnOpening;
             em.OnBuffering += EmOnOnBuffering;
             em.OnStopped += EmOnOnStopped;
             em.OnPlaying += OnPlaying;
@@ -371,6 +372,11 @@ namespace VLC_WinRT.Services.RunTime
         private void OnPlaying()
         {
             StatusChanged(this, MediaState.Playing);
+        }
+
+        private void Em_OnOpening()
+        {
+            StatusChanged(this, MediaState.Opening);
         }
 
         public void SetSizeVideoPlayer(uint x, uint y)
