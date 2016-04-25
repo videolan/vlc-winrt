@@ -90,7 +90,7 @@ namespace VLC_WinRT.Views.VideoPages
         {
             base.OnNavigatedTo(e);
             App.RootPage.SwapChainPanel.Visibility = Visibility.Visible;
-            AppViewHelper.SetTitleBarTitle(Locator.VideoPlayerVm.CurrentVideo.Name);
+            AppViewHelper.SetTitleBarTitle(Locator.VideoPlayerVm.CurrentVideo?.Name);
             Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
             Locator.VideoPlayerVm.OnNavigatedTo();
