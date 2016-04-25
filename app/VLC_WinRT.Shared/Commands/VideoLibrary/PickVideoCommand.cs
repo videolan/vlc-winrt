@@ -15,36 +15,13 @@ using System.Collections.Generic;
 using Windows.Storage;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.ViewModels;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Commands.VideoLibrary
 {
-    public class PickVideoCommand : ICommand
+    public class PickMediaCommand : AlwaysExecutableCommand
     {
-        private static readonly object Locker = new object();
-        private bool _canExecute = true;
-
-        static List<String> _allowedExtensions = new List<string>();
-        static PickVideoCommand()
-        {
-            foreach (string videoExtension in VLCFileExtensions.VideoExtensions)
-            {
-                _allowedExtensions.Add(videoExtension);
-            }
-            foreach (string audioExtension in VLCFileExtensions.AudioExtensions)
-            {
-                _allowedExtensions.Add(audioExtension);
-            }
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            lock (Locker)
-            {
-                return _canExecute;
-            }
-        }
-
-        public async void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             try
             {
@@ -54,9 +31,11 @@ namespace VLC_WinRT.Commands.VideoLibrary
                     ViewMode = PickerViewMode.List,
                     SuggestedStartLocation = PickerLocationId.VideosLibrary
                 };
-                foreach (var ext in _allowedExtensions)
-                    picker.FileTypeFilter.Add(ext);
 
+                foreach (var ext in VLCFileExtensions.VideoExtensions)
+                    picker.FileTypeFilter.Add(ext);
+                foreach (var ext in VLCFileExtensions.AudioExtensions)
+                    picker.FileTypeFilter.Add(ext);
 
 #if WINDOWS_PHONE_APP                
                 picker.PickSingleFileAndContinue();
@@ -77,6 +56,5 @@ namespace VLC_WinRT.Commands.VideoLibrary
             }
             catch { }
         }
-        public event EventHandler CanExecuteChanged;
     }
 }

@@ -241,7 +241,7 @@ namespace VLC_WinRT.ViewModels
 
         public SetAudioTrackCommand SetAudioTrackCommand { get; } = new SetAudioTrackCommand();
 
-        public PickVideoCommand PickVideoCommand { get; } = new PickVideoCommand();
+        public PickMediaCommand PickMediaCommand { get; } = new PickMediaCommand();
 
         public StopVideoCommand GoBack { get; } = new StopVideoCommand();
 
@@ -386,7 +386,6 @@ namespace VLC_WinRT.ViewModels
         public async Task OpenFile(StorageFile file)
         {
             if (file == null) return;
-            await Locator.VLCService.PlayerInstanceReady.Task;
             if (string.IsNullOrEmpty(file.Path))
             {
                 // It's definitely a stream since it doesn't add a proper path but a FolderRelativeId
