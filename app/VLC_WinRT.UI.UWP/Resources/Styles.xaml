@@ -940,18 +940,6 @@
                                       Visibility="Collapsed"
                                       Opacity="0" />
                         </Border>
-                        <TextBlock x:Name="MultiArrangeOverlayText"
-                                   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.DragItemsCount}"
-                                   Foreground="{ThemeResource ListViewItemDragForegroundThemeBrush}"
-                                   FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                                   FontSize="26.667"
-                                   IsHitTestVisible="False"
-                                   Opacity="0"
-                                   TextWrapping="Wrap"
-                                   TextTrimming="WordEllipsis"
-                                   Margin="18,9,0,0"
-                                   AutomationProperties.AccessibilityView="Raw"
-                                   Grid.ColumnSpan="2" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -1367,17 +1355,6 @@
                                                        Fill="{ThemeResource ListViewItemDragBackgroundThemeBrush}" />
                                         </Grid>
                                     </Border>
-                                    <TextBlock x:Name="MultiArrangeOverlayText"
-                                               Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.DragItemsCount}"
-                                               Foreground="{ThemeResource ListViewItemDragForegroundThemeBrush}"
-                                               FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                                               FontSize="26.667"
-                                               IsHitTestVisible="False"
-                                               Opacity="0"
-                                               TextWrapping="Wrap"
-                                               TextTrimming="WordEllipsis"
-                                               Margin="18,9,0,0"
-                                               AutomationProperties.AccessibilityView="Raw" />
                                 </Grid>
                             </Border>
                         </Grid>
