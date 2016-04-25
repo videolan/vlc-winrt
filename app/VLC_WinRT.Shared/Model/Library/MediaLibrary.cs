@@ -23,6 +23,7 @@ using Windows.Storage.FileProperties;
 using Windows.UI.Xaml.Media.Imaging;
 using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Helpers.VideoLibrary;
+using VLC_WinRT.Model.Stream;
 
 namespace VLC_WinRT.Model.Library
 {
@@ -40,25 +41,24 @@ namespace VLC_WinRT.Model.Library
         readonly AlbumDatabase albumDatabase = new AlbumDatabase();
         readonly TracklistItemRepository tracklistItemRepository = new TracklistItemRepository();
         readonly TrackCollectionRepository trackCollectionRepository = new TrackCollectionRepository();
-
-
+        
         readonly VideoRepository videoDatabase = new VideoRepository();
+        
+        readonly StreamsDatabase streamsDatabase = new StreamsDatabase();
         #endregion
 
         #region collections
         public SmartCollection<ArtistItem> Artists { get; private set; }
         public SmartCollection<AlbumItem> Albums { get; private set; }
         public SmartCollection<TrackItem> Tracks { get; private set; }
-        public SmartCollection<TrackCollection> TrackCollections
-        {
-            get; private set;
-        }
-
-
+        public SmartCollection<TrackCollection> TrackCollections { get; private set; }
+        
         public SmartCollection<VideoItem> Videos { get; private set; }
         public SmartCollection<VideoItem> ViewedVideos { get; private set; }
         public SmartCollection<VideoItem> CameraRoll { get; private set; }
         public SmartCollection<TvShow> Shows { get; private set; }
+
+        public SmartCollection<StreamMedia> Streams { get; private set; } = new SmartCollection<StreamMedia>();
         #endregion
         #region mutexes
         public TaskCompletionSource<bool> ContinueIndexing { get; set; }
@@ -486,6 +486,7 @@ namespace VLC_WinRT.Model.Library
 
         //============================================
         #region DataLogic
+        #region audio
         public ObservableCollection<GroupItemList<AlbumItem>> OrderAlbums(OrderType orderType, OrderListing orderListing)
         {
             if (Albums == null) return null;
@@ -750,7 +751,8 @@ namespace VLC_WinRT.Model.Library
                 LogHelper.Log("Error getting database.");
             }
         }
-
+        #endregion
+        #region video
         Task<bool> IsVideoDatabaseEmpty()
         {
             return videoDatabase.IsEmpty();
@@ -813,10 +815,29 @@ namespace VLC_WinRT.Model.Library
             var camVideos = await LoadVideos(x => x.IsCameraRoll);
             CameraRoll.AddRange(camVideos.OrderBy(x => x.Name).ToObservable());
         }
+        #endregion
+        #region streams
+        public async Task LoadStreamsFromDatabase()
+        {
+            Streams?.Clear();
+            var streams = await LoadStreams();
+            Streams.AddRange(streams);
+        }
 
+        public async Task<StreamMedia> LoadStreamFromDatabaseOrCreateOne(string mrl)
+        {
+            var stream = await LoadStream(mrl);
+            if (stream == null)
+            {
+                stream = new StreamMedia(mrl);
+                await streamsDatabase.Insert(stream);
+            }
+            return stream;
+        }
+        #endregion
         #endregion
 
-        #region STUFF???
+        #region TODO:STUFF???
         // Returns false is no snapshot generation was required, true otherwise
         public async Task<Boolean> GenerateThumbnail(VideoItem videoItem)
         {
@@ -1101,10 +1122,18 @@ namespace VLC_WinRT.Model.Library
             catch { }
         }
 
-
+        public Task RemoveStreamFromCollectionAndDatabase(StreamMedia stream)
+        {
+            var collectionStream = Streams?.FirstOrDefault(x => x.Path == stream.Path);
+            if (collectionStream != null)
+            {
+                Streams?.Remove(collectionStream);
+            }
+            return streamsDatabase.Delete(stream);
+        }
         #endregion
         #region database operations
-
+        #region audio
         public Task<List<TracklistItem>> LoadTracks(TrackCollection trackCollection)
         {
             return tracklistItemRepository.LoadTracks(trackCollection);
@@ -1199,7 +1228,8 @@ namespace VLC_WinRT.Model.Library
         {
             return trackDatabase.LoadTracks();
         }
-
+        #endregion
+        #region video
         public Task<List<VideoItem>> LoadVideos(Expression<Func<VideoItem, bool>> predicate)
         {
             return videoDatabase.Load(predicate);
@@ -1214,6 +1244,23 @@ namespace VLC_WinRT.Model.Library
         {
             return videoDatabase.Contains(column, val);
         }
+        #endregion
+        #region streams
+        private Task<List<StreamMedia>> LoadStreams()
+        {
+            return streamsDatabase.Load();
+        }
+    
+        private Task<StreamMedia> LoadStream(string mrl)
+        {
+            return streamsDatabase.Get(mrl);
+        }
+
+        private Task DeleteStream(StreamMedia media)
+        {
+            return streamsDatabase.Delete(media);
+        }
+        #endregion
         #endregion
     }
 }

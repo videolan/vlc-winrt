@@ -11,8 +11,7 @@ namespace VLC_WinRT.Commands.VideoLibrary
         {
             if (parameter is StreamMedia)
             {
-                await Locator.StreamsVM.StreamsDatabase.Delete(parameter as StreamMedia);
-                await Task.Run(async () => await Locator.StreamsVM.Initialize());
+                await Locator.MediaLibrary.RemoveStreamFromCollectionAndDatabase(parameter as StreamMedia);
             }
         }
     }

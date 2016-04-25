@@ -26,14 +26,14 @@ namespace VLC_WinRT.UI.Legacy.Views.MainPages
         {
             base.OnNavigatedFrom(e);
             CoreWindow.GetForCurrentThread().KeyDown -= KeyboardListenerService_KeyDown;
-            Locator.StreamsVM.Dispose();
+            Locator.StreamsVM.OnNavigatedFrom();
         }
 
-        private async void KeyboardListenerService_KeyDown(CoreWindow sender, KeyEventArgs args)
+        private void KeyboardListenerService_KeyDown(CoreWindow sender, KeyEventArgs args)
         {
             if (args.VirtualKey == VirtualKey.Enter)
             {
-                await Locator.MediaPlaybackViewModel.PlayStream(MrlTextBox.Text);
+                Locator.StreamsVM.PlayStreamCommand.Execute(MrlTextBox.Text);
             }
         }
     }

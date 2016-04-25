@@ -142,6 +142,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                 {
                     StorageItems = new ObservableCollection<IVLCStorageItem>(vlcItems);
                     OnPropertyChanged(nameof(StorageItems));
+                    IsFolderEmpty = !StorageItems.Any();
                     IsLoadingFiles = false;
                 });
             }

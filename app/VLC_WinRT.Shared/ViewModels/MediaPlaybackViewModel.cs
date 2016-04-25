@@ -415,13 +415,11 @@ namespace VLC_WinRT.ViewModels
         /// </summary>
         /// <param name="mrl">The stream MRL to be played</param>
         /// <returns></returns>
-        public async Task PlayStream(string mrl)
+        public async Task PlayStream(string streamMrl)
         {
-            mrl = mrl.Trim();
-            //TODO: pass MRL to vlc
             try
             {
-                var stream = new StreamMedia(mrl);
+                var stream = await Locator.MediaLibrary.LoadStreamFromDatabaseOrCreateOne(streamMrl);
                 await Locator.MediaPlaybackViewModel.SetMedia(stream);
             }
             catch (Exception e)
@@ -576,7 +574,7 @@ namespace VLC_WinRT.ViewModels
                         Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
                     });
                     var video = (VideoItem)media;
-                    await Locator.MediaPlaybackViewModel.InitializePlayback(video, autoPlay);
+                    await InitializePlayback(video, autoPlay);
                     await Locator.VideoPlayerVm.TryUseSubtitleFromFolder();
 
                     if (video.TimeWatched != TimeSpan.FromSeconds(0))
@@ -657,11 +655,7 @@ namespace VLC_WinRT.ViewModels
                         Locator.MediaPlaybackViewModel.PlayingType = PlayingType.Video;
                         IsStream = true;
                     });
-                    await Locator.MediaPlaybackViewModel.InitializePlayback(media, autoPlay);
-                    if (!await Locator.StreamsVM.StreamsDatabase.Contains(media as StreamMedia))
-                    {
-                        await Locator.StreamsVM.StreamsDatabase.Insert(media as StreamMedia);
-                    }
+                    await InitializePlayback(media, autoPlay);
                 }
             });
         }

@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WinRT.Views.UserControls"
+      xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
       xmlns:triggers="using:WinRT.Triggers"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=StreamsVM}">
@@ -20,9 +21,6 @@
             <RowDefinition Height="50" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <ContentPresenter x:Name="MainPageNetworkContentPresenter"
-                          x:FieldModifier="public"
-                          Margin="{StaticResource FrameMargin}" />
         <Grid Grid.Row="0"
               Background="{ThemeResource ApplicationChromeThemeBrush}">
             <Grid.ColumnDefinitions>
@@ -40,7 +38,7 @@
                     Style="{StaticResource TextBlockButtonStyle}"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PlayNetworkMRL}"
+                    Command="{Binding Source={StaticResource Locator}, Path=StreamsVM.PlayStreamCommand}"
                     CommandParameter="{Binding ElementName=MrlTextBox, Path=Text}">
                 <Button.Content>
                     <FontIcon Glyph="{StaticResource CheckSymbol}"
@@ -48,6 +46,8 @@
                 </Button.Content>
             </Button>
         </Grid>
+        <placeholder:NothingToSeeHere Grid.Row="1"
+                                      Visibility="{Binding IsCollectionEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <ListView Grid.Row="1"
                   ItemsSource="{Binding Source={StaticResource StreamsHistoryAndFavoritesGroupedResource}}"
                   IsItemClickEnabled="True"

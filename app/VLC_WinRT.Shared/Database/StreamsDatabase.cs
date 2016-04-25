@@ -57,10 +57,10 @@ namespace VLC_WinRT.Database
             return connection.UpdateAsync(stream);
         }
 
-        public Task<StreamMedia> Get(StreamMedia stream)
+        public Task<StreamMedia> Get(string media)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.FindAsync<StreamMedia>(x => x.Id == stream.Id);
+            return connection.FindAsync<StreamMedia>(x => x.Path == media);
         }
 
         public Task Delete(StreamMedia stream)
@@ -71,7 +71,7 @@ namespace VLC_WinRT.Database
 
         public async Task<bool> Contains(StreamMedia stream)
         {
-            return await Get(stream) != null;
+            return await Get(stream.Path) != null;
         }
     }
 }

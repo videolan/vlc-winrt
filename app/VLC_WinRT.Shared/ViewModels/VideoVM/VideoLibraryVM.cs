@@ -111,9 +111,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         public PlayVideoCommand OpenVideo { get; } = new PlayVideoCommand();
 
         public CloseFlyoutAndPlayVideoCommand CloseFlyoutAndPlayVideoCommand { get; } = new CloseFlyoutAndPlayVideoCommand();
-
-        public PlayNetworkMRLCommand PlayNetworkMRL { get; } = new PlayNetworkMRLCommand();
-
+        
         public StartVideoIndexingCommand StartVideoIndexingCommand { get; } = new StartVideoIndexingCommand();
 
         public bool IsBusy
