@@ -74,9 +74,11 @@ namespace VLC_WinRT.Helpers
 #endif
         }
 
-        public static void SetTitleBarTitle(string title = "")
+        public static void SetTitleBarTitle(string title = null)
         {
             var appView = ApplicationView.GetForCurrentView();
+            if (string.IsNullOrEmpty(title))
+                title = string.Empty;
             appView.Title = title;
         }
 
