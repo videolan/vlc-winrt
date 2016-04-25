@@ -10,6 +10,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Core;
@@ -48,6 +49,7 @@ namespace VLC_WinRT.ViewModels
         private bool _preventAppExit = false;
         private string _informationText;
         private bool _isBackground = false;
+        static bool? _isWindows10;
 
         // Navigation props
         #endregion
@@ -103,6 +105,20 @@ namespace VLC_WinRT.ViewModels
         {
             get { return _isBackground; }
             private set { SetProperty(ref _isBackground, value); }
+        }
+
+        public static bool IsWindows10 => (_isWindows10 ?? (_isWindows10 = IsWindows10Property())).Value;
+
+
+        static bool IsWindows10Property()
+        {
+            // Based on an SO answer. Try to figure out if the device we are on supports both APIs.
+            // If so, we are on 10. If not, we are on Desktop or Phone 8.1.
+            var isWindows81 = Package.Current.GetType().GetRuntimeProperties().Any(r => r.Name == "DisplayName");
+            var isWindowsPhone81 = Windows.Graphics.Display.DisplayInformation.GetForCurrentView().GetType().GetRuntimeProperties().Any(r => r.Name == "RawPixelsPerViewPixel");
+
+            var isWindows10 = isWindows81 && isWindowsPhone81;
+            return isWindows10;
         }
 
         #endregion
