@@ -647,30 +647,30 @@ namespace VLC_WinRT.Model.Library
             }
         }
 
-        public async Task<ObservableCollection<AlbumItem>> LoadRecommendedAlbumsFromDatabase()
+        public async Task<List<AlbumItem>> LoadRecommendedAlbumsFromDatabase()
         {
             try
             {
-                var favAlbums = await albumDatabase.LoadAlbums(x => x.Favorite).ToObservableAsync();
-                if (favAlbums?.Count < 3) // TODO : Magic number
+                var albums = await albumDatabase.LoadAlbums().ToObservableAsync();
+                var recommendedAlbums = albums?.Where(x => x.Favorite).ToList();
+                if (recommendedAlbums.Count() <= 10) // TODO : Magic number
                 {
-                    var nonfavAlbums = await albumDatabase.LoadAlbums(x => x.Favorite == false).ToObservableAsync();
-                    if (nonfavAlbums.Count > 1)
+                    var nonfavAlbums = albums.Where(x => !x.Favorite).Take(10);
+                    if (nonfavAlbums.Any())
                     {
-                        int total = nonfavAlbums.Count - 1;
-                        for (int i = 0; i < total; i++)
+                        foreach (var nonFavAlbum in nonfavAlbums)
                         {
-                            favAlbums.Add(nonfavAlbums[i]);
+                            recommendedAlbums.Add(nonFavAlbum);
                         }
                     }
                 }
-                return favAlbums;
+                return recommendedAlbums;
             }
             catch (Exception)
             {
                 LogHelper.Log("Error selecting random albums from database.");
             }
-            return new ObservableCollection<AlbumItem>();
+            return new List<AlbumItem>();
         }
 
 

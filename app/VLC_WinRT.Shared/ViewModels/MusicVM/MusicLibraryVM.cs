@@ -43,7 +43,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         private ObservableCollection<GroupItemList<AlbumItem>> _groupedAlbums;
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
-        private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
+        private List<AlbumItem> _randomAlbums = new List<AlbumItem>();
 
         #endregion
         #region private props
@@ -82,7 +82,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             set { SetProperty(ref _favoriteAlbums, value); }
         }
 
-        public ObservableCollection<AlbumItem> RandomAlbums
+        public List<AlbumItem> RandomAlbums
         {
             get { return _randomAlbums; }
             set { SetProperty(ref _randomAlbums, value); }
@@ -294,7 +294,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             RecommendedArtists = new ObservableCollection<ArtistItem>();
 
             RandomAlbums?.Clear();
-            RandomAlbums = new ObservableCollection<AlbumItem>();
+            RandomAlbums = new List<AlbumItem>();
             FavoriteAlbums?.Clear();
             FavoriteAlbums = new ObservableCollection<AlbumItem>();
 
