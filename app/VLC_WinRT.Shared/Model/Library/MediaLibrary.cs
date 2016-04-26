@@ -864,7 +864,7 @@ namespace VLC_WinRT.Model.Library
                 // If MF thumbnail generation failed or wasn't supported:
                 if (thumb == null)
                 {
-                    var res = await ThumbsService.GetScreenshot(videoItem.File).ConfigureAwait(false);
+                    var res = await ThumbsService.GetScreenshot(videoItem.File);
                     if (res == null)
                         return true;
                     image = res.Bitmap();
