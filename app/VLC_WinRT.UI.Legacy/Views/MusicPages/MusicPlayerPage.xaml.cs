@@ -11,6 +11,7 @@ using Microsoft.Graphics.Canvas.Text;
 using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.Slideshow.Texts;
 using VLC_WinRT.ViewModels;
+using VLC_WinRT.Helpers;
 
 namespace VLC_WinRT.Views.MusicPages
 {
@@ -27,6 +28,7 @@ namespace VLC_WinRT.Views.MusicPages
             Responsive();
             this.SizeChanged += OnSizeChanged;
             this.Unloaded += OnUnloaded;
+            AppViewHelper.SetTitleBarTitle("PREVIEW - WORK IN PROGRESS");
         }
         
         private void Slideshower_Loaded_1(object sender, RoutedEventArgs e)
