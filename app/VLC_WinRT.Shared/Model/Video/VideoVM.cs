@@ -155,8 +155,8 @@ namespace VLC_WinRT.Model.Video
             set
             {
                 SetProperty(ref _timeWatchedSeconds, value);
-                OnPropertyChanged("TimeWatched");
-                OnPropertyChanged("HasBeenSeen");
+                OnPropertyChanged(nameof(TimeWatched));
+                OnPropertyChanged(nameof(HasBeenSeen));
             }
         }
  
