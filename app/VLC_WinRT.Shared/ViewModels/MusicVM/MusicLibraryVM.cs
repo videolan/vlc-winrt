@@ -392,10 +392,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 if (MusicLibrary.Albums != null)
                     MusicLibrary.Albums.CollectionChanged += Albums_CollectionChanged;
                 await MusicLibrary.LoadAlbumsFromDatabase();
-                var randomAlbums = await MusicLibrary.LoadRandomAlbumsFromDatabase();
+                var recommendedAlbums = await MusicLibrary.LoadRecommendedAlbumsFromDatabase();
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    RandomAlbums = randomAlbums;
+                    RandomAlbums = recommendedAlbums;
 
                     Locator.MainVM.InformationText = String.Empty;
                     LoadingStateAlbums = LoadingState.Loaded;

@@ -647,7 +647,7 @@ namespace VLC_WinRT.Model.Library
             }
         }
 
-        public async Task<ObservableCollection<AlbumItem>> LoadRandomAlbumsFromDatabase()
+        public async Task<ObservableCollection<AlbumItem>> LoadRecommendedAlbumsFromDatabase()
         {
             try
             {
