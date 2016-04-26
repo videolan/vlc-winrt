@@ -121,7 +121,7 @@ namespace VLC_WinRT.Model.Library
             }
         }
 
-        async Task FetchVideoThumbnailOrWaitAsync(VideoItem videoVm)
+        public async Task FetchVideoThumbnailOrWaitAsync(VideoItem videoVm)
         {
             await VideoThumbnailFetcherSemaphoreSlim.WaitAsync();
             try
@@ -839,7 +839,7 @@ namespace VLC_WinRT.Model.Library
 
         #region TODO:STUFF???
         // Returns false is no snapshot generation was required, true otherwise
-        public async Task<Boolean> GenerateThumbnail(VideoItem videoItem)
+        private async Task<Boolean> GenerateThumbnail(VideoItem videoItem)
         {
             if (videoItem.HasThumbnail)
                 return false;
