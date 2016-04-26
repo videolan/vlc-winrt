@@ -38,8 +38,12 @@ namespace VLC_WinRT.Commands.VideoPlayer
                         ViewMode = PickerViewMode.List,
                         SuggestedStartLocation = PickerLocationId.VideosLibrary
                     };
-                    picker.FileTypeFilter.Add(".srt");
-                    picker.FileTypeFilter.Add(".ass");
+
+                    foreach (var item in VLCFileExtensions.SubtitleExtensions)
+                    {
+                        picker.FileTypeFilter.Add(item);
+                    }
+
 #if WINDOWS_PHONE_APP
                     picker.PickSingleFileAndContinue();
 #else

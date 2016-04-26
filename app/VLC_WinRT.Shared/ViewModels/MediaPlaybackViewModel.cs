@@ -399,13 +399,19 @@ namespace VLC_WinRT.ViewModels
             }
 
             var token = StorageApplicationPermissions.FutureAccessList.Add(file);
-            if (VLCFileExtensions.FileTypeHelper(file.FileType) == VLCFileExtensions.VLCFileType.Video)
+            var fileType = VLCFileExtensions.FileTypeHelper(file.FileType);
+            if (fileType == VLCFileExtensions.VLCFileType.Video)
             {
                 await PlayVideoFile(file, token);
             }
-            else
+            else if (fileType == VLCFileExtensions.VLCFileType.Audio)
             {
                 await PlayAudioFile(file, token);
+            }
+            else if (fileType == VLCFileExtensions.VLCFileType.Subtitle)
+            {
+                if (IsPlaying && PlayingType == PlayingType.Video)
+                    OpenSubtitleCommand.Execute(file);
             }
         }
 

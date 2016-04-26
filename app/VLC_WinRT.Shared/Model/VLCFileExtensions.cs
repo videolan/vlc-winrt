@@ -112,6 +112,11 @@ namespace VLC_WinRT.Model
 
                 ".voc", ".vqf", ".w64", ".wav", ".wma", ".wv", ".xa", ".xm" };
 
+        public static string[] SubtitleExtensions =
+        {
+            ".srt", ".ass"
+        };
+
         public enum VLCFileType
         {
             Audio,
@@ -129,6 +134,10 @@ namespace VLC_WinRT.Model
             else if (AudioExtensions.Contains(ext))
             {
                 return VLCFileType.Audio;
+            }
+            else if (SubtitleExtensions.Contains(ext))
+            {
+                return VLCFileType.Subtitle;
             }
             else
             {
