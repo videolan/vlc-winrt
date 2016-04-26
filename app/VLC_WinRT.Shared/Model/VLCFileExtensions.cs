@@ -86,29 +86,6 @@ namespace VLC_WinRT.Model
             ".mlp"
         };
 
-        public enum VLCFileType
-        {
-            Audio,
-            Video,
-            Other,
-        }
-
-        public static VLCFileType FileTypeHelper(string ext)
-        {
-            if (VideoExtensions.Contains(ext))
-            {
-                return VLCFileType.Video;
-            }
-            else if (AudioExtensions.Contains(ext))
-            {
-                return VLCFileType.Audio;
-            }
-            else
-            {
-                return VLCFileType.Other;
-            }
-        }
-
         public static string[] VideoExtensions = {
 
                 ".3g2", ".3gp", ".3gp2", ".3gpp", ".amv", ".asf", ".avi", ".divx", ".drc", ".dv",
@@ -134,5 +111,29 @@ namespace VLC_WinRT.Model
                 ".oga", ".ogg", ".oma", ".opus", ".ra", ".ram", ".rmi", ".s3m", ".spx", ".tta",
 
                 ".voc", ".vqf", ".w64", ".wav", ".wma", ".wv", ".xa", ".xm" };
+
+        public enum VLCFileType
+        {
+            Audio,
+            Video,
+            Subtitle,
+            Other,
+        }
+
+        public static VLCFileType FileTypeHelper(string ext)
+        {
+            if (VideoExtensions.Contains(ext))
+            {
+                return VLCFileType.Video;
+            }
+            else if (AudioExtensions.Contains(ext))
+            {
+                return VLCFileType.Audio;
+            }
+            else
+            {
+                return VLCFileType.Other;
+            }
+        }
     }
 }
