@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xaml.Interactivity;
+using VLC_WinRT.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 

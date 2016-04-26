@@ -53,7 +53,7 @@ namespace VLC_WinRT.Views.UserControls
             var artist = Artist;
             Task.Run(async () =>
             {
-                await artist.ResetArtistHeader();
+                await artist.ResetArtistPicture(true);
                 var albumsCount = await Locator.MediaLibrary.LoadAlbumsCount(artist.Id);
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => AlbumsCountTextBlock.Text = Strings.Albums.ToUpperFirstChar() + Strings.Dash + albumsCount);
             });
@@ -61,7 +61,7 @@ namespace VLC_WinRT.Views.UserControls
 
         private async void Artist_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Artist.ArtistImage))
+            if (e.PropertyName == nameof(Artist.ArtistImageThumbnail))
             {
                 if (Artist == null) return;
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
@@ -73,9 +73,9 @@ namespace VLC_WinRT.Views.UserControls
 
         private void FadeOutCover_Completed(object sender, object e)
         {
-            if (Artist != null && Artist.ArtistImage != null)
+            if (Artist != null && Artist.ArtistImageThumbnail != null)
             {
-                ArtistImageBrush.ImageSource = Artist.ArtistImage;
+                ArtistImageBrush.ImageSource = Artist.ArtistImageThumbnail;
                 FadeInCover.Begin();
             }
         }

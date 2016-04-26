@@ -44,7 +44,7 @@ namespace VLC_WinRT.Helpers
             }
         }
 
-        public static async Task LoadImageToMemory(ArtistItem item)
+        public static async Task LoadImageToMemory(ArtistItem item, bool thumbnail)
         {
             /*
             Normally, We would need more tight calls to try and make sure that the file
@@ -58,7 +58,16 @@ namespace VLC_WinRT.Helpers
             {
                 if (fileExists)
                 {
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => item.ArtistImage = new BitmapImage(new Uri(item.Picture)));
+                    ToastHelper.Basic("Loading " + item.Name);
+                    if (thumbnail)
+                    {
+                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => item.ArtistImageThumbnail = new BitmapImage(new Uri(item.PictureThumbnail)));
+                    }
+                    else
+                    {
+                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => item.ArtistImage = new BitmapImage(new Uri(item.Picture)));
+                    }
+                    
                     Debug.WriteLine($"Artist picture set : {item.Name}");
                 }
             }

@@ -38,8 +38,12 @@ namespace VLC_WinRT.Model.Music
         private bool _isUpcomingShowsLoading = false;
         private bool _isUpcomingShowsItemsLoaded = false;
         private bool _isPinned;
+
         private BitmapImage _artistImage;
         private LoadingState _artistImageLoadingState = LoadingState.NotLoaded;
+
+        private BitmapImage _artistThumbnail;
+        private LoadingState _artistThumbnailLoadingState = LoadingState.NotLoaded;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -80,7 +84,7 @@ namespace VLC_WinRT.Model.Music
                 if (_artistImage == null && _artistImageLoadingState == LoadingState.NotLoaded)
                 {
                     _artistImageLoadingState = LoadingState.Loading;
-                    ResetArtistHeader();
+                    ResetArtistPicture(false);
                 }
 
                 return _artistImage;
@@ -88,13 +92,32 @@ namespace VLC_WinRT.Model.Music
             set { SetProperty(ref _artistImage, value); }
         }
 
-        public Task ResetArtistHeader()
+        [Ignore]
+        public BitmapImage ArtistImageThumbnail
         {
-            return Task.Factory.StartNew(() => LoadImageToMemoryHelper.LoadImageToMemory(this));
+            get
+            {
+                if (_artistThumbnail == null && _artistThumbnailLoadingState == LoadingState.NotLoaded)
+                {
+                    _artistThumbnailLoadingState = LoadingState.Loading;
+                    ResetArtistPicture(true);
+                }
+
+                return _artistThumbnail;
+            }
+            set { SetProperty(ref _artistThumbnail, value); }
         }
 
+        public Task ResetArtistPicture(bool thumbnail)
+        {
+            return Task.Factory.StartNew(() => LoadImageToMemoryHelper.LoadImageToMemory(this, thumbnail));
+        }
+        
         [Ignore]
-        public string Picture => IsPictureLoaded ? string.Format("ms-appdata:///local/artistPic/{0}.jpg", Id) : null;
+        public string Picture => IsPictureLoaded ? string.Format("ms-appdata:///local/artistPic-fullsize/{0}.jpg", Id) : null;
+
+        [Ignore]
+        public string PictureThumbnail => IsPictureLoaded ? string.Format("ms-appdata:///local/artistPic-thumbnail/{0}.jpg", Id) : null;
 
         public bool IsPictureLoaded
         {

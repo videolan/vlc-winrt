@@ -10,6 +10,7 @@ using VLC_WinRT.MusicMetaFetcher;
 using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
+using VLC_WinRT.Helpers;
 
 namespace VLC_WinRT.Services.RunTime
 {
@@ -105,10 +106,17 @@ namespace VLC_WinRT.Services.RunTime
 
         public async Task<bool> SaveArtistImageAsync(ArtistItem artist, byte[] img)
         {
-            if (await SaveImage(artist.Id, "artistPic", img))
+            if (await SaveImage(artist.Id, "artistPic-original", img))
             {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => artist.IsPictureLoaded = true);
-                await artist.ResetArtistHeader();
+                // saving full hd max img
+                var stream = await ImageHelper.ResizedImage(img, 1920, 1080);
+                await SaveImage(artist.Id, "artistPic-fullsize", stream);
+
+                stream = await ImageHelper.ResizedImage(img, 250, 250);
+                await SaveImage(artist.Id, "artistPic-thumbnail", stream);
+
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => { artist.IsPictureLoaded = true; });
+                await artist.ResetArtistPicture(true);
                 return true;
             }
             return false;
