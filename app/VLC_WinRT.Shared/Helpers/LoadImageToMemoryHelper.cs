@@ -58,7 +58,6 @@ namespace VLC_WinRT.Helpers
             {
                 if (fileExists)
                 {
-                    ToastHelper.Basic("Loading " + item.Name);
                     if (thumbnail)
                     {
                         await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => item.ArtistImageThumbnail = new BitmapImage(new Uri(item.PictureThumbnail)));
