@@ -187,6 +187,8 @@ namespace VLC_WinRT.Controls
 
             _rightFlyoutFadeOut.Completed += _rightFlyoutFadeOut_Completed;
             _rightFlyoutFadeIn.Completed += _rightFlyoutFadeIn_Completed;
+
+            _topBarFadeIn.Completed += _topBarFadeIn_Completed;
         }
 
         private void _rightFlyoutFadeIn_Completed(object sender, object e)
@@ -248,6 +250,7 @@ namespace VLC_WinRT.Controls
         public void HideTopBar()
         {
             _topBarFadeOut.Begin();
+            _contentPresenter.Margin = new Thickness(0, 0, 0, - _footerContentPresenter.ActualHeight);
             IsTopBarOpen = false;
         }
 
@@ -255,6 +258,11 @@ namespace VLC_WinRT.Controls
         {
             _topBarFadeIn.Begin();
             IsTopBarOpen = true;
+        }
+        
+        private void _topBarFadeIn_Completed(object sender, object e)
+        {
+            _contentPresenter.Margin = new Thickness(0);
         }
 
         public bool IsRightFlyoutOpen { get; private set; }
