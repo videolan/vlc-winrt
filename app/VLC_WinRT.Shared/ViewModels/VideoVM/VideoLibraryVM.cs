@@ -30,7 +30,6 @@ namespace VLC_WinRT.ViewModels.VideoVM
 {
     public class VideoLibraryVM : BindableBase
     {
-        MediaLibrary VideoLibrary => Locator.MediaLibrary;
         #region private fields
         #endregion
 
@@ -52,22 +51,22 @@ namespace VLC_WinRT.ViewModels.VideoVM
 
         public ObservableCollection<VideoItem> Videos
         {
-            get { return VideoLibrary.Videos.ToObservable(); }
+            get { return Locator.MediaLibrary.Videos.ToObservable(); }
         }
 
         public ObservableCollection<VideoItem> ViewedVideos
         {
-            get { return VideoLibrary.ViewedVideos.ToObservable(); }
+            get { return Locator.MediaLibrary.ViewedVideos.ToObservable(); }
         }
 
         public ObservableCollection<TvShow> Shows
         {
-            get { return VideoLibrary.Shows.ToObservable(); }
+            get { return Locator.MediaLibrary.Shows.ToObservable(); }
         }
 
         public ObservableCollection<VideoItem> CameraRoll
         {
-            get { return VideoLibrary.CameraRoll.ToObservable(); }
+            get { return Locator.MediaLibrary.CameraRoll.ToObservable(); }
         }
         #endregion
 
@@ -176,10 +175,10 @@ namespace VLC_WinRT.ViewModels.VideoVM
                     LoadingState = LoadingState.Loading;
                 });
 
-                if (VideoLibrary.Videos != null)
-                    VideoLibrary.Videos.CollectionChanged += Videos_CollectionChanged;
-                await VideoLibrary.LoadVideosFromDatabase();
-                await VideoLibrary.LoadViewedVideosFromDatabase();
+                if (Locator.MediaLibrary.Videos != null)
+                    Locator.MediaLibrary.Videos.CollectionChanged += Videos_CollectionChanged;
+                await Locator.MediaLibrary.LoadVideosFromDatabase();
+                await Locator.MediaLibrary.LoadViewedVideosFromDatabase();
 
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
@@ -208,9 +207,9 @@ namespace VLC_WinRT.ViewModels.VideoVM
                     LoadingState = LoadingState.Loading;
                 });
 
-                if (VideoLibrary.Shows != null)
-                    VideoLibrary.Shows.CollectionChanged += Shows_CollectionChanged;
-                await VideoLibrary.LoadShowsFromDatabase();
+                if (Locator.MediaLibrary.Shows != null)
+                    Locator.MediaLibrary.Shows.CollectionChanged += Shows_CollectionChanged;
+                await Locator.MediaLibrary.LoadShowsFromDatabase();
             });
         }
 
@@ -232,9 +231,9 @@ namespace VLC_WinRT.ViewModels.VideoVM
                     LoadingState = LoadingState.Loading;
                 });
 
-                if (VideoLibrary.CameraRoll != null)
-                    VideoLibrary.CameraRoll.CollectionChanged += CameraRoll_CollectionChanged;
-                await VideoLibrary.LoadCameraRollFromDatabase();
+                if (Locator.MediaLibrary.CameraRoll != null)
+                    Locator.MediaLibrary.CameraRoll.CollectionChanged += CameraRoll_CollectionChanged;
+                await Locator.MediaLibrary.LoadCameraRollFromDatabase();
             });
         }
 

@@ -34,7 +34,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
 {
     public class MusicLibraryVM : BindableBase
     {
-        MediaLibrary MusicLibrary => Locator.MediaLibrary;
         #region private fields
         private ObservableCollection<GroupItemList<ArtistItem>> _groupedArtists;
         private ObservableCollection<ArtistItem> _topArtists = new ObservableCollection<ArtistItem>();
@@ -74,7 +73,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public ObservableCollection<TrackCollection> TrackCollections
         {
-            get { return MusicLibrary.TrackCollections; }
+            get { return Locator.MediaLibrary.TrackCollections; }
         }
 
         public ObservableCollection<AlbumItem> FavoriteAlbums
@@ -109,7 +108,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public IEnumerable<IGrouping<char, TrackItem>> GroupedTracks
         {
-            get { return MusicLibrary.OrderTracks(); }
+            get { return Locator.MediaLibrary.OrderTracks(); }
         }
 
         public ObservableCollection<GroupItemList<AlbumItem>> GroupedAlbums
@@ -198,7 +197,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             set { SetProperty(ref _isBusy, value); }
         }
 
-        public bool IsMusicLibraryEmpty => MusicLibrary.Artists?.Count == 0 && MusicLibrary.Albums?.Count == 0 && MusicLibrary.Tracks?.Count == 0;
+        public bool IsMusicLibraryEmpty => Locator.MediaLibrary.Artists?.Count == 0 && Locator.MediaLibrary.Albums?.Count == 0 && Locator.MediaLibrary.Tracks?.Count == 0;
 
         public StartMusicIndexingCommand StartMusicIndexingCommand { get; } = new StartMusicIndexingCommand();
 
@@ -351,10 +350,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public Task OnNavigatedFromArtists()
         {
-            if (MusicLibrary.Artists != null)
+            if (Locator.MediaLibrary.Artists != null)
             {
-                MusicLibrary.Artists.CollectionChanged -= Artists_CollectionChanged;
-                MusicLibrary.Artists.Clear();
+                Locator.MediaLibrary.Artists.CollectionChanged -= Artists_CollectionChanged;
+                Locator.MediaLibrary.Artists.Clear();
             }
 
             return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
@@ -366,10 +365,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public Task OnNavigatedFromAlbums()
         {
-            if (MusicLibrary.Albums != null)
+            if (Locator.MediaLibrary.Albums != null)
             {
-                MusicLibrary.Albums.CollectionChanged -= Albums_CollectionChanged;
-                MusicLibrary.Albums.Clear();
+                Locator.MediaLibrary.Albums.CollectionChanged -= Albums_CollectionChanged;
+                Locator.MediaLibrary.Albums.Clear();
             }
             return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
@@ -389,10 +388,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     GroupedAlbums = new ObservableCollection<GroupItemList<AlbumItem>>();
                 });
 
-                if (MusicLibrary.Albums != null)
-                    MusicLibrary.Albums.CollectionChanged += Albums_CollectionChanged;
-                await MusicLibrary.LoadAlbumsFromDatabase();
-                var recommendedAlbums = await MusicLibrary.LoadRecommendedAlbumsFromDatabase();
+                if (Locator.MediaLibrary.Albums != null)
+                    Locator.MediaLibrary.Albums.CollectionChanged += Albums_CollectionChanged;
+                await Locator.MediaLibrary.LoadAlbumsFromDatabase();
+                var recommendedAlbums = await Locator.MediaLibrary.LoadRecommendedAlbumsFromDatabase();
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     RandomAlbums = recommendedAlbums;
@@ -409,7 +408,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             try
             {
-                if (MusicLibrary.Albums?.Count == 0 || MusicLibrary.Albums?.Count == 1)
+                if (Locator.MediaLibrary.Albums?.Count == 0 || Locator.MediaLibrary.Albums?.Count == 1)
                 {
                     await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                     {
@@ -434,7 +433,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public async Task OrderAlbums()
         {
-            _groupedAlbums = MusicLibrary.OrderAlbums(Locator.SettingsVM.AlbumsOrderType, Locator.SettingsVM.AlbumsOrderListing);
+            _groupedAlbums = Locator.MediaLibrary.OrderAlbums(Locator.SettingsVM.AlbumsOrderType, Locator.SettingsVM.AlbumsOrderListing);
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
                 OnPropertyChanged(nameof(GroupedAlbums));
@@ -452,10 +451,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     GroupedArtists = new ObservableCollection<GroupItemList<ArtistItem>>();
                 });
 
-                if (MusicLibrary.Artists != null)
-                    MusicLibrary.Artists.CollectionChanged += Artists_CollectionChanged;
-                await MusicLibrary.LoadArtistsFromDatabase();
-                var recommendedArtists = await MusicLibrary.LoadRandomArtistsFromDatabase();
+                if (Locator.MediaLibrary.Artists != null)
+                    Locator.MediaLibrary.Artists.CollectionChanged += Artists_CollectionChanged;
+                await Locator.MediaLibrary.LoadArtistsFromDatabase();
+                var recommendedArtists = await Locator.MediaLibrary.LoadRandomArtistsFromDatabase();
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     RecommendedArtists = recommendedArtists;
@@ -470,7 +469,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         private async void Artists_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (MusicLibrary.Artists?.Count == 0 || MusicLibrary.Artists?.Count == 1)
+            if (Locator.MediaLibrary.Artists?.Count == 0 || Locator.MediaLibrary.Artists?.Count == 1)
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
@@ -493,7 +492,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         async Task OrderArtists()
         {
-            _groupedArtists = MusicLibrary.OrderArtists();
+            _groupedArtists = Locator.MediaLibrary.OrderArtists();
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
                 OnPropertyChanged(nameof(GroupedArtists));
@@ -510,7 +509,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     LoadingStateTracks = LoadingState.Loading;
                 });
 
-                await MusicLibrary.LoadTracksFromDatabase();
+                await Locator.MediaLibrary.LoadTracksFromDatabase();
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     Locator.MainVM.InformationText = String.Empty;
@@ -540,7 +539,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     LoadingStatePlaylists = LoadingState.Loading;
                 });
 
-                await MusicLibrary.LoadPlaylistsFromDatabase();
+                await Locator.MediaLibrary.LoadPlaylistsFromDatabase();
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     OnPropertyChanged(nameof(TrackCollections));
