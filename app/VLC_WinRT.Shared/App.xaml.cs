@@ -256,22 +256,7 @@ namespace VLC_WinRT
             });
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.NavigationService.Go(Locator.SettingsVM.HomePage));
         }
-
-        private async void Content_DragOver(object sender, DragEventArgs e)
-        {
-            e.AcceptedOperation = DataPackageOperation.Copy;
-            e.DragUIOverride.Caption = Strings.OpenFile;
-            e.DragUIOverride.IsGlyphVisible = false;
-        }
-
-        private async void Content_Drop(object sender, DragEventArgs e)
-        {
-            var storageItems = await e.DataView.GetStorageItemsAsync();
-            if (!storageItems.Any())
-                return;
-            await Locator.MediaPlaybackViewModel.OpenFile(storageItems[0] as StorageFile);
-        }
-
+        
         public static void SetLanguage()
         {
             var language = SettingsViewModel.GetSelectedLanguage();

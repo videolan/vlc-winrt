@@ -49,6 +49,9 @@
                        x:FieldModifier="public"
                        Background="Transparent"
                        Navigated="MainFrame_OnNavigated"
+                       AllowDrop="True"
+                       Drop="NavigationFrame_Drop"
+                       DragOver="NavigationFrame_DragOver"
                        Style="{StaticResource FrameStyle}" />
             </Grid>
         </controls:SplitShell.Content>

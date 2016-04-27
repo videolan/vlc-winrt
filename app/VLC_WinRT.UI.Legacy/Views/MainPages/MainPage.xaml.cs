@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Model;
 using System;
+using System.Linq;
 using Windows.System;
 using System.Diagnostics;
 using Windows.UI.Composition;
@@ -40,6 +41,9 @@ namespace VLC_WinRT.Views.MainPages
             var smtc = SystemMediaTransportControls.GetForCurrentView();
             Locator.MediaPlaybackViewModel.SetMediaTransportControls(smtc);
             this.GotFocus += MainPage_GotFocus;
+#if WINDOWS_UWP
+            this.Loaded += MainPage_Loaded;
+#endif
         }
 
         private void MainPage_GotFocus(object sender, RoutedEventArgs e)
@@ -120,6 +124,29 @@ namespace VLC_WinRT.Views.MainPages
         }
 
 #if WINDOWS_UWP
+
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigationFrame.AllowDrop = true;
+            NavigationFrame.DragOver += NavigationFrame_DragOver;
+            NavigationFrame.Drop += NavigationFrame_Drop;
+        }
+
+        private async void NavigationFrame_Drop(object sender, DragEventArgs e)
+        {
+            var storageItems = await e.DataView.GetStorageItemsAsync();
+            if (!storageItems.Any())
+                return;
+            await Locator.MediaPlaybackViewModel.OpenFile(storageItems[0] as Windows.Storage.StorageFile);
+        }
+
+        private void NavigationFrame_DragOver(object sender, DragEventArgs e)
+        {
+            e.AcceptedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Copy;
+            e.DragUIOverride.Caption = Strings.OpenFile;
+            e.DragUIOverride.IsGlyphVisible = false;
+        }
+
         private Compositor _compositor;
         private bool _pipEnabled;
         public void StartCompositionAnimationOnSwapChain(bool pipEnabled)
