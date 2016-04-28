@@ -42,7 +42,7 @@ case "$2" in
         ;;
     win81)
         WINVER=0x602
-        RUNTIME=msvcr120
+        RUNTIME=msvcr120_app
         ;;
     *)
         WINVER=0x602
