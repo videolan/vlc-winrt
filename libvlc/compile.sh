@@ -4,8 +4,9 @@ set -e
 
 usage()
 {
-    echo "Usage: compile <arch> [TargetOS]"
+    echo "Usage: compile <arch> <TargetOS>"
     echo "archs: i686,x86_64,armv7"
+    echo "os: win81,win10"
 }
 
 using()
@@ -45,8 +46,10 @@ case "$2" in
         RUNTIME=msvcr120_app
         ;;
     *)
-        WINVER=0x602
-        RUNTIME=msvcrt
+        echo "Unknown OS: $2"
+        usage
+        exit 1
+        ;;
 esac
 
 echo Using runtime $RUNTIME
