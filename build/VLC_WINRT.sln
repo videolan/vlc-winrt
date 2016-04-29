@@ -48,6 +48,9 @@ EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC_WinRT.Slideshow", "..\app\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.shproj", "{AD0C8B4F-7A03-42CC-B8DA-BF8D50DF822B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WinRT.Universal", "..\app\VLC_WinRT.Universal\VLC_WinRT.Universal.csproj", "{7B5C5B10-85F4-491A-94FA-755D253FF609}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44} = {CC3931B9-6065-4A55-A444-5B5E9DE3DA44}
+	EndProjectSection
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC_WinRT.UI.Win8", "..\app\VLC_WinRT.UI.Win8\VLC_WinRT.UI.Win8.shproj", "{EBDE65BA-6997-40F0-8076-0B03792E34BE}"
 EndProject
