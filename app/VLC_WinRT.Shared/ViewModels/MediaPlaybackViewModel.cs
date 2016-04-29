@@ -103,8 +103,6 @@ namespace VLC_WinRT.ViewModels
                 {
                     case PlayerEngine.VLC:
                         return Locator.VLCService;
-                    case PlayerEngine.MediaFoundation:
-                        return Locator.MFService;
 #if WINDOWS_PHONE_APP
                     case PlayerEngine.BackgroundMFPlayer:
                         return Locator.BGPlayerService;
