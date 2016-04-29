@@ -2260,7 +2260,7 @@
     </Style>
     <Style TargetType="PivotHeaderItem">
         <Setter Property="FontSize"
-                Value="{ThemeResource PivotHeaderItemFontSize}" />
+                Value="17" />
         <Setter Property="FontFamily"
                 Value="{ThemeResource PivotHeaderItemFontFamily}" />
         <Setter Property="FontWeight"
