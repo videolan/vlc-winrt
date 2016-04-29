@@ -64,17 +64,16 @@ namespace VLC_WinRT.Utils
                 // Register Services
                 builder.RegisterType<MetroSlideshow>();
                 builder.RegisterType<VLCService>();
-                builder.RegisterType<MFService>();
 #if WINDOWS_PHONE_APP
                 builder.RegisterType<BGPlayerService>();
 #endif
                 builder.RegisterType<NavigationService>();
                 builder.RegisterType<MusicMetaService>();
+                builder.RegisterType<VideoMetaService>();
+
                 builder.RegisterType<KeyboardListenerService>();
                 builder.RegisterType<NetworkListenerService>();
-
                 builder.RegisterType<MouseService>();
-
                 builder.RegisterType<ExternalDeviceService>().SingleInstance();
                 builder.RegisterType<SpecialThanksViewModel>();
                 builder.RegisterType<ThumbnailService>().As<IThumbnailService>();

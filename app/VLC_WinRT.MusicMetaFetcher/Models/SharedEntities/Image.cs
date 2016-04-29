@@ -9,7 +9,7 @@
 
 using VLC_WinRT.MusicMetaFetcher.Models.LastFm;
 
-namespace VLC_WinRT.MusicMetaFetcher.Models.MusicEntities
+namespace VLC_WinRT.MediaMetaFetcher.Models.SharedEntities
 {
     /// <summary>
     /// Entity for images. This may be expanded to use more than just Urls.
@@ -40,11 +40,16 @@ namespace VLC_WinRT.MusicMetaFetcher.Models.MusicEntities
         /// Map from LastFmClient.
         /// </summary>
         /// <param name="image">An image.</param>
-        public void MapFrom(LastFm.Image image)
+        public void MapFrom(MusicMetaFetcher.Models.LastFm.Image image)
         {
             this.Url = image.Text;
         }
 
-
+        public static Image MapFrom(MovieDB.MovieImagesInformation.Backdrop backdrop)
+        {
+            var i = new Image();
+            i.Url = backdrop.file_path;
+            return i;
+        }
     }
 }

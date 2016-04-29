@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml.Data;
-using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
+using VLC_WinRT.MediaMetaFetcher.Models.SharedEntities;
 
 namespace VLC_WinRT.Converters
 {

@@ -84,7 +84,8 @@ namespace VLC_WinRT.Utils
             return null;
         }
 
-        public static readonly string VideoPicFolderPath = "ms-appdata:///local/videoPic/";
+        public static readonly string VideoPicFolderPath = "ms-appdata:///local/videoPic";
+        public static readonly string MoviePicFolderPath = "ms-appdata:///local/moviePic";
 
         public static readonly string FeedbackMailAdress = "modernvlc@outlook.com";
 
@@ -405,6 +406,19 @@ namespace VLC_WinRT.Utils
             else
             {
                 return String.Format("{0:mm\\:ss}", time);
+            }
+        }
+
+        public static string HumanizedTimeSpan(TimeSpan ts)
+        {
+            if (ts.Hours > 0)
+            {
+
+                return String.Format("{0:hh\\:mm\\:ss}", ts);
+            }
+            else
+            {
+                return String.Format("{0:mm\\:ss}", ts);
             }
         }
     }

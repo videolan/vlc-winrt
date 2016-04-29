@@ -181,7 +181,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\GestureActionType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\TVShow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideoView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideoVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideTemplateSizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VLCSurfaceZoom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCAccentColor.cs" />
@@ -199,6 +199,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\KeyboardListenerService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MFService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\NavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\VideoMetaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\VLCService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MouseService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MusicMetaService.cs" />

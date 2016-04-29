@@ -34,8 +34,6 @@ namespace VLC_WinRT.ViewModels
     public class Locator
     {
         private static MediaLibrary _mediaLibrary;
-        private static VideoLibrary _videoLibrary;
-        private static MusicLibrary _musicLibrary;
 
 
         private static MainVM _main;
@@ -57,6 +55,7 @@ namespace VLC_WinRT.ViewModels
         private static BGPlayerService _bgPlayerService;
 #endif
         private static MusicMetaService _musicMetaService;
+        private static VideoMetaService _videoMetaService;
         private static MetroSlideshow _metroSlideshow;
 
         public Locator()
@@ -79,11 +78,9 @@ namespace VLC_WinRT.ViewModels
         public static MusicPlayerVM MusicPlayerVM => _musicPlayer ?? (_musicPlayer = App.Container.Resolve<MusicPlayerVM>()); 
 
         public static MusicLibraryVM MusicLibraryVM => _musicLibraryVM ?? (_musicLibraryVM = App.Container.Resolve<MusicLibraryVM>());
-        public static MusicLibrary MusicLibrary => _musicLibrary ?? (_musicLibrary = App.Container.Resolve<MusicLibrary>());
 
         public static VideoLibraryVM VideoLibraryVM => _videoLibraryVM ?? (_videoLibraryVM = App.Container.Resolve<VideoLibraryVM>());
-        public static VideoLibrary VideoLibrary => _videoLibrary ?? (_videoLibrary = App.Container.Resolve<VideoLibrary>());
-
+        
         public static VideoPlayerVM VideoPlayerVm => _videoPlayer ?? (_videoPlayer = App.Container.Resolve<VideoPlayerVM>()); 
 
         public static VLCExplorerViewModel FileExplorerVM => _vlcExplorer ?? (_vlcExplorer = App.Container.Resolve<VLCExplorerViewModel>());
@@ -95,11 +92,12 @@ namespace VLC_WinRT.ViewModels
 
         public static NavigationService NavigationService => _navigationService ?? (_navigationService = App.Container.Resolve<NavigationService>());
         public static VLCService VLCService => _vlcService ?? (_vlcService = App.Container.Resolve<VLCService>());
-        public static MFService MFService => _mfService ?? (_mfService = App.Container.Resolve<MFService>());
 #if WINDOWS_PHONE_APP
         public static BGPlayerService BGPlayerService => _bgPlayerService ?? (_bgPlayerService = App.Container.Resolve<BGPlayerService>());
 #endif
         public static MusicMetaService MusicMetaService => _musicMetaService ?? (_musicMetaService = App.Container.Resolve<MusicMetaService>());
+        public static VideoMetaService VideoMetaService => _videoMetaService ?? (_videoMetaService = App.Container.Resolve<VideoMetaService>());
+
         public static MetroSlideshow Slideshow => _metroSlideshow ?? (_metroSlideshow = App.Container.Resolve<MetroSlideshow>());
     }
 }

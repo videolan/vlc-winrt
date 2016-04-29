@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Windows.ApplicationModel.Resources;
 using VLC_WinRT.MusicMetaFetcher.Models.LastFm;
+using Image = VLC_WinRT.MediaMetaFetcher.Models.SharedEntities.Image;
 using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.MusicMetaFetcher.Models.MusicEntities

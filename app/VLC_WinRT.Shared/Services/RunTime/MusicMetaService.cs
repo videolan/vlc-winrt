@@ -11,6 +11,7 @@ using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Helpers;
+using VLC_WinRT.MediaMetaFetcher;
 
 namespace VLC_WinRT.Services.RunTime
 {
@@ -91,7 +92,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public async Task<bool> SaveAlbumImageAsync(AlbumItem album, byte[] img)
         {
-            if (await SaveImage(album.Id, "albumPic", img))
+            if (await FetcherHelpers.SaveImage(album.Id, "albumPic", img))
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
@@ -106,14 +107,14 @@ namespace VLC_WinRT.Services.RunTime
 
         public async Task<bool> SaveArtistImageAsync(ArtistItem artist, byte[] img)
         {
-            if (await SaveImage(artist.Id, "artistPic-original", img))
+            if (await FetcherHelpers.SaveImage(artist.Id, "artistPic-original", img))
             {
                 // saving full hd max img
                 var stream = await ImageHelper.ResizedImage(img, 1920, 1080);
-                await SaveImage(artist.Id, "artistPic-fullsize", stream);
+                await FetcherHelpers.SaveImage(artist.Id, "artistPic-fullsize", stream);
 
                 stream = await ImageHelper.ResizedImage(img, 250, 250);
-                await SaveImage(artist.Id, "artistPic-thumbnail", stream);
+                await FetcherHelpers.SaveImage(artist.Id, "artistPic-thumbnail", stream);
 
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => { artist.IsPictureLoaded = true; });
                 await artist.ResetArtistPicture(true);
@@ -136,46 +137,6 @@ namespace VLC_WinRT.Services.RunTime
                 if (shows == null) return; 
                 artist.UpcomingShows = shows;
             });
-        }
-
-        private async Task<bool> SaveImage(int id, String folderName, byte[] img)
-        {
-            String fileName = String.Format("{0}.jpg", id);
-            try
-            {
-                using (var streamWeb = new InMemoryRandomAccessStream())
-                {
-                    using (var writer = new DataWriter(streamWeb.GetOutputStreamAt(0)))
-                    {
-                        writer.WriteBytes(img);
-                        await writer.StoreAsync();
-                        var albumPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
-
-                        var file = await albumPic.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
-                        Debug.WriteLine("Writing file " + folderName + " " + id);
-                        using (var raStream = await file.OpenAsync(FileAccessMode.ReadWrite))
-                        {
-                            using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
-                            {
-                                using (var stream = raStream.GetOutputStreamAt(0))
-                                {
-                                    await RandomAccessStream.CopyAsync(thumbnailStream, stream);
-                                    await stream.FlushAsync();
-                                }
-                            }
-                            await raStream.FlushAsync();
-                        }
-                        await writer.FlushAsync();
-                    }
-                    await streamWeb.FlushAsync();
-                }
-                return true;
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("Error saving album art: " + e);
-                return false;
-            }
         }
     }
 }

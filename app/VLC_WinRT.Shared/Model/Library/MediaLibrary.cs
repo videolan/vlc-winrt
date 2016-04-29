@@ -126,9 +126,13 @@ namespace VLC_WinRT.Model.Library
             await VideoThumbnailFetcherSemaphoreSlim.WaitAsync();
             try
             {
-                var isChanged = await GenerateThumbnail(videoVm);
-                if (isChanged)
-                    await videoDatabase.Update(videoVm);
+                await GenerateThumbnail(videoVm);
+                await Locator.VideoMetaService.GetMoviePicture(videoVm).ConfigureAwait(false);
+            }
+            catch(Exception e)
+            {
+                LogHelper.Log(StringsHelper.ExceptionToString(e));
+                MediaItemDiscovererSemaphoreSlim.Release();
             }
             finally
             {
@@ -365,7 +369,6 @@ namespace VLC_WinRT.Model.Library
                     var mediaVM = await videoDatabase.GetFromPath(item.Path).ConfigureAwait(false);
                     if (mediaVM != null)
                     {
-                        mediaVM.File = item;
                         if (mediaVM.IsTvShow)
                         {
                             await AddTvShow(mediaVM);
@@ -841,7 +844,7 @@ namespace VLC_WinRT.Model.Library
         // Returns false is no snapshot generation was required, true otherwise
         private async Task<Boolean> GenerateThumbnail(VideoItem videoItem)
         {
-            if (videoItem.HasThumbnail)
+            if (videoItem.IsPictureLoaded)
                 return false;
             try
             {
@@ -857,9 +860,9 @@ namespace VLC_WinRT.Model.Library
                 WriteableBitmap image = null;
                 StorageItemThumbnail thumb = null;
                 // If file is a mkv, we save the thumbnail in a VideoPic folder so we don't consume CPU and resources each launch
-                if (VLCFileExtensions.MFSupported.Contains(videoItem.File?.FileType.ToLower()))
+                if (VLCFileExtensions.MFSupported.Contains(videoItem.Type.ToLower()))
                 {
-                    thumb = await ThumbsService.GetThumbnail(videoItem.File).ConfigureAwait(false);
+                    thumb = await ThumbsService.GetThumbnail(videoItem.File);
                 }
                 // If MF thumbnail generation failed or wasn't supported:
                 if (thumb == null)
@@ -882,12 +885,14 @@ namespace VLC_WinRT.Model.Library
                             await image.SetSourceAsync(thumb);
                         }
                         await DownloadAndSaveHelper.WriteableBitmapToStorageFile(image, videoItem.Id.ToString());
-                        videoItem.ThumbnailPath = String.Format("{0}{1}.jpg", Strings.VideoPicFolderPath, videoItem.Id);
+                        videoItem.IsPictureLoaded = true;
                         tcs.SetResult(true);
                     });
                     await tcs.Task;
                 }
-                videoItem.HasThumbnail = true;
+                videoItem.IsPictureLoaded = true;
+                await videoDatabase.Update(videoItem);
+                await videoItem.ResetVideoPicture();
                 return true;
             }
             catch (Exception ex)

@@ -20,6 +20,8 @@ using VLC_WinRT.ViewModels;
 using System.Diagnostics;
 using Windows.Storage.AccessCache;
 using libVLCX;
+using VLC_WinRT.Helpers;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace VLC_WinRT.Model.Video
 {
@@ -34,14 +36,18 @@ namespace VLC_WinRT.Model.Video
         private bool _favorite;
         private TimeSpan _duration;
         private int _timeWatchedSeconds;
-        private String _thumbnailPath = "";
-        private LoadingState _thumbnailLoadingState = LoadingState.NotLoaded;
         private StorageFile _file;
         private DateTime _lastWatched;
-        // TVShows related // Todo create a class ShowEpisodeItem that inherits from VideoItem
+
+        private BitmapImage _videoImage;
+        private LoadingState _videosImageLoadingState = LoadingState.NotLoaded;
+
+        
+        #region tvshows props // TVShows related // Todo create a class ShowEpisodeItem that inherits from VideoItem
         private string _showTitle;
         private int _season = -1;
         private int _episode;
+        #endregion
 
         #endregion
 
@@ -75,30 +81,55 @@ namespace VLC_WinRT.Model.Video
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
 
+        public string Name
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
+
         [Ignore]
-        public String ThumbnailPath
+        public BitmapImage VideoImage
         {
             get
             {
-                if (!HasThumbnail && _thumbnailLoadingState == LoadingState.NotLoaded)
+                if (_videoImage == null && _videosImageLoadingState == LoadingState.NotLoaded)
                 {
-                    _thumbnailLoadingState = LoadingState.Loading;
-                    Task.Run(() => Locator.MediaLibrary.FetchVideoThumbnailOrWaitAsync(this));
+                    _videosImageLoadingState = LoadingState.Loading;
+                    ResetVideoPicture();
                 }
-                else if (HasThumbnail)
-                {
-                    _thumbnailPath = String.Format("{0}{1}.jpg", Strings.VideoPicFolderPath, Id);
-                }
-                return _thumbnailPath;
+
+                return _videoImage;
             }
-            set { SetProperty(ref _thumbnailPath, value); }
+            set { SetProperty(ref _videoImage, value); }
         }
 
+        public Task ResetVideoPicture()
+        {
+            return Task.Factory.StartNew(() => LoadImageToMemoryHelper.LoadImageToMemory(this));
+        }
+
+        [Ignore]
+        public string PictureUri
+        {
+            get
+            {
+                if (HasMoviePicture)
+                {
+                    return $"{Strings.MoviePicFolderPath}/{Id}.jpg";
+                }
+                else if (IsPictureLoaded)
+                {
+                    return $"{Strings.VideoPicFolderPath}/{Id}.jpg";
+                }
+                return string.Empty;
+            }
+        }
+        
         [Ignore]
         public StorageFile File
         {
             get { return _file; }
-            set
+            private set
             {
                 SetProperty(ref _file, value);
             }
@@ -131,11 +162,6 @@ namespace VLC_WinRT.Model.Video
             set { SetProperty(ref _alphaKey, value); }
         }
 
-        public string Name
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
 
         public bool Favorite
         {
@@ -185,7 +211,9 @@ namespace VLC_WinRT.Model.Video
             set { SetProperty(ref _lastWatched, value); }
         }
 
-        public Boolean HasThumbnail { get; set; }
+        public Boolean IsPictureLoaded { get; set; }
+        public Boolean HasMoviePicture { get; set; }
+
 
         public Boolean IsCameraRoll { get; set; }
 
@@ -216,9 +244,9 @@ namespace VLC_WinRT.Model.Video
             if (storageFile != null)
             {
                 File = storageFile;
-                Name = (string.IsNullOrEmpty(storageFile.DisplayName)) ? "Unknown name" : storageFile.DisplayName;
+                Name = (string.IsNullOrEmpty(storageFile.DisplayName)) ? storageFile.Name : storageFile.DisplayName;
                 AlphaKey = Name.ToUpper()[0];
-                Type = storageFile.FileType.Replace(".", "").ToLower();
+                Type = storageFile.FileType.ToLower();
                 Path = storageFile.Path;
                 await GetTimeInformation();
             }
