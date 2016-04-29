@@ -216,7 +216,8 @@ namespace VLC_WinRT.Controls
             else
             {
                 _rightFlyoutContentPresenter.Width = 650;
-                _rightFlyoutContentPresenter.Height = Window.Current.Bounds.Height < 800 * 0.9 ? Window.Current.Bounds.Height : Window.Current.Bounds.Height * 0.9;
+                _rightFlyoutContentPresenter.Height = 
+                    Window.Current.Bounds.Height < 900 * 0.7 ? Window.Current.Bounds.Height : Window.Current.Bounds.Height * 0.7;
             }
             _windowResizerTimer.Stop();
             _windowResizerTimer.Start();
