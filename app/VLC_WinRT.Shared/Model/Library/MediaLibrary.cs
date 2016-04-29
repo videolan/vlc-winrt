@@ -787,7 +787,6 @@ namespace VLC_WinRT.Model.Library
                     if (videoVm.Path != null)
                     {
                         StorageFile file = await StorageFile.GetFileFromPathAsync(videoVm.Path);
-                        videoVm.File = file;
                     }
                     ViewedVideos.Add(videoVm);
                 }
@@ -798,7 +797,7 @@ namespace VLC_WinRT.Model.Library
                     // is now gone (and let them try and find it again, in case they moved it, so we can keep it in the DB)
                     // but that will require quite a bit of code work to make happen. So for now, we'll catch the error
                     // and not add it to the list.
-                    LogHelper.Log("File not found");
+                    LogHelper.Log($"File not found : {videoVm.Path}");
                 }
             }
         }
