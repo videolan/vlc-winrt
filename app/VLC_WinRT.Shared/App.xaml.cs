@@ -239,9 +239,6 @@ namespace VLC_WinRT
             Dispatcher = Window.Current.Dispatcher;
             Window.Current.Content = new MainPage();
             Window.Current.Activate();
-            Window.Current.Content.DragOver += Content_DragOver;
-            Window.Current.Content.AllowDrop = true;
-            Window.Current.Content.Drop += Content_Drop;
             await SplitShell.TemplateApplied.Task;
             SetLanguage();
             SetShellDecoration();
