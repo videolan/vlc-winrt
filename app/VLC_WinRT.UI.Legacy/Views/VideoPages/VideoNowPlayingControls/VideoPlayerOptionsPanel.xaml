@@ -15,7 +15,7 @@
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="{StaticResource FrameMarginGridLengthDouble}" />
+                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -46,24 +46,25 @@
                                   HorizontalAlignment="Stretch"
                                   DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
                                   Command="{Binding GoBackCommand}"
-                                  Width="50">
+                                  IsCompact="True"
+                                  Margin="{StaticResource FrameMarginRight}">
                         <AppBarButton.Icon>
-                            <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
-                                      Margin="0,3,0,0"
-                                      FontFamily="{StaticResource VLCFont}" />
+                            <FontIcon Glyph="{StaticResource SettingsSymbol}"
+                                      FontFamily="{StaticResource VLCFont}"
+                                      Foreground="{StaticResource MainColor}" />
                         </AppBarButton.Icon>
                     </AppBarButton>
                     <TextBlock Grid.Column="1"
                                Margin="{StaticResource FrameMarginRight}"
                                TextTrimming="CharacterEllipsis"
                                TextWrapping="NoWrap"
-                               VerticalAlignment="Top"
+                               VerticalAlignment="Center"
                                Text="{Binding Source={StaticResource Strings}, Path=PlayerSettings}"
-                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}" />
                 </Grid>
                 <TextBlock Grid.Row="2"
                            Foreground="{ThemeResource BasicForeground}"
-                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
                            FontWeight="SemiLight"
                            Text="{Binding Source={StaticResource Strings}, Path=Zoom}" />
                 <ComboBox Grid.Row="3"
@@ -83,7 +84,7 @@
                 <TextBlock Grid.Row="5"
                            Text="{Binding Source={StaticResource Strings}, Path=Speed}"
                            Foreground="{ThemeResource BasicForeground}"
-                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
                            FontWeight="SemiLight" />
                 <Button Grid.Row="5"
                         Content="{Binding Source={StaticResource Strings}, Path=Reset}"
@@ -105,29 +106,30 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="0.5x"
-                               Style="{StaticResource TitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}" />
                     <TextBlock Grid.Column="1"
                                Text="1x"
-                               Style="{StaticResource TitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}" />
                     <TextBlock Grid.Column="2"
                                Text="2x"
                                HorizontalAlignment="Right"
-                               Style="{StaticResource TitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}" />
                 </Grid>
 
                 <TextBlock Grid.Row="9"
                            Foreground="{ThemeResource BasicForeground}"
-                           Style="{StaticResource SubheaderTextBlockStyle}"
-                           FontWeight="SemiLight">
-                <Run Text="{Binding Source={StaticResource Strings}, Path=AudioDelay}" />
-                <Run Text="{Binding AudioDelay}"
-                     Foreground="{ThemeResource MainColor}"
-                     FontSize="26"
-                     FontWeight="Light" />
-                <Run Text="ms"
-                     Foreground="{ThemeResource MainColor}"
-                     FontSize="26"
-                     FontWeight="Light" />
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           FontWeight="SemiLight"
+                           VerticalAlignment="Center">
+                    <Run Text="{Binding Source={StaticResource Strings}, Path=AudioDelay}" />
+                    <Run Text="{Binding AudioDelay}"
+                         Foreground="{ThemeResource MainColor}"
+                         FontSize="26"
+                         FontWeight="Light" />
+                    <Run Text="ms"
+                         Foreground="{ThemeResource MainColor}"
+                         FontSize="26"
+                         FontWeight="Light" />
                 </TextBlock>
                 <StackPanel Grid.Row="9"
                             HorizontalAlignment="Right"
@@ -152,28 +154,28 @@
                         Maximum="3000" />
                 <Grid Grid.Row="11">
                     <TextBlock Text="-3s"
-                               Style="{StaticResource TitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}" />
                     <TextBlock Text="0"
                                HorizontalAlignment="Center"
-                               Style="{StaticResource TitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}" />
                     <TextBlock Text="3s"
                                HorizontalAlignment="Right"
-                               Style="{StaticResource TitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}" />
                 </Grid>
 
                 <TextBlock Grid.Row="13"
                            Foreground="{ThemeResource BasicForeground}"
-                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
                            FontWeight="SemiLight">
-                <Run Text="{Binding Source={StaticResource Strings}, Path=SubtitleDelay}" />
-                <Run Text="{Binding SpuDelay}"
-                     Foreground="{ThemeResource MainColor}"
-                     FontSize="26"
-                     FontWeight="Light" />
-                <Run Text="ms"
-                     Foreground="{ThemeResource MainColor}"
-                     FontSize="26"
-                     FontWeight="Light" />
+                    <Run Text="{Binding Source={StaticResource Strings}, Path=SubtitleDelay}" />
+                    <Run Text="{Binding SpuDelay}"
+                         Foreground="{ThemeResource MainColor}"
+                         FontSize="26"
+                         FontWeight="Light" />
+                    <Run Text="ms"
+                         Foreground="{ThemeResource MainColor}"
+                         FontSize="26"
+                         FontWeight="Light" />
                 </TextBlock>
                 <StackPanel Grid.Row="13"
                             HorizontalAlignment="Right"
@@ -198,26 +200,26 @@
                         Maximum="3000" />
                 <Grid Grid.Row="15">
                     <TextBlock Text="-3s"
-                               Style="{StaticResource TitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}" />
                     <TextBlock Text="0"
                                HorizontalAlignment="Center"
-                               Style="{StaticResource TitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}" />
                     <TextBlock Text="3s"
                                HorizontalAlignment="Right"
-                               Style="{StaticResource TitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}" />
                 </Grid>
 
 
 
                 <TextBlock Grid.Row="17"
                            Foreground="{ThemeResource BasicForeground}"
-                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
                            FontWeight="SemiLight">
-                <Run Text="{Binding Source={StaticResource Strings}, Path=Chapters}" />
-                <Run Text="{Binding Chapters.Count}"
-                     Foreground="{ThemeResource MainColor}"
-                     FontSize="26"
-                     FontWeight="Light" />
+                    <Run Text="{Binding Source={StaticResource Strings}, Path=Chapters}" />
+                    <Run Text="{Binding Chapters.Count}"
+                         Foreground="{ThemeResource MainColor}"
+                         FontSize="26"
+                         FontWeight="Light" />
                 </TextBlock>
                 <ListView Grid.Row="18"
                           DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
