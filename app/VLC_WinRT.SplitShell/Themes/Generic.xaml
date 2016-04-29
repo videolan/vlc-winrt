@@ -129,7 +129,7 @@
                                 <PlaneProjection x:Name="RightFlyoutPlaneProjection" />
                             </Grid.Projection>
                             <Grid x:Name="FlyoutBackgroundGrid"
-                                  Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}"
+                                  Background="#B3000000"
                                   HorizontalAlignment="Stretch"
                                   Grid.Column="0"
                                   Grid.ColumnSpan="3" />
