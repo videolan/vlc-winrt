@@ -33,8 +33,8 @@ namespace VLC_WinRT.MediaMetaFetcher
             catch (Exception e)
             {
                 Debug.WriteLine($"Error getting or saving movie: {movieName} picture from MovieDB");
-                return null;
             }
+            return null;
         }
 
         public async Task<byte[]> GetMovieCover(string movieName)
