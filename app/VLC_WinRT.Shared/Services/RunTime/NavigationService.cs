@@ -299,7 +299,8 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.SettingsPageUI:
                 case VLCPage.SettingsPageMusic:
                 case VLCPage.SettingsPageVideo:
-                    App.ApplicationFrame.Navigate(typeof(SettingsPage));
+                    //App.ApplicationFrame.Navigate(typeof(SettingsPage));
+                    App.SplitShell.RightFlyoutContent = new SettingsPage();
                     break;
 #else
                 // Settings pages
