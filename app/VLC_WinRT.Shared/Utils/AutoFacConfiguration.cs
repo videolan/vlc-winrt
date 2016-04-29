@@ -43,18 +43,15 @@ namespace VLC_WinRT.Utils
             }
             else
             {
-                builder.RegisterType<VideoLibrary>();
-                builder.RegisterType<MusicLibrary>();
-
                 builder.RegisterType<MainVM>();
                 builder.RegisterType<MediaPlaybackViewModel>();
-
                 builder.RegisterType<MediaLibrary>();
 
                 builder.RegisterType<MusicLibraryVM>();
                 builder.RegisterType<MusicPlayerVM>();
                 builder.RegisterType<VideoLibraryVM>();
                 builder.RegisterType<VideoPlayerVM>();
+
                 builder.RegisterType<StreamsViewModel>();
                 builder.RegisterType<SettingsViewModel>();
                 builder.RegisterType<SearchViewModel>();
