@@ -26,7 +26,7 @@
                     <StackPanel Orientation="Horizontal">
                         <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
                                   FontFamily="{StaticResource VLCFont}"
-                                  FontSize="30" />
+                                  FontSize="22" />
                         <TextBlock Margin="5,0,0,0"
                                    Text="{Binding Source={StaticResource Strings}, Path=Albums}" />
                     </StackPanel>
@@ -38,7 +38,7 @@
                     <StackPanel Orientation="Horizontal">
                         <FontIcon Glyph="{StaticResource BuddySymbol}"
                                   FontFamily="{StaticResource VLCFont}"
-                                  FontSize="30" />
+                                  FontSize="22" />
                         <TextBlock Margin="5,0,0,0"
                                    Text="{Binding Source={StaticResource Strings}, Path=SimilarArtists}" />
                     </StackPanel>
