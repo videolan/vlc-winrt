@@ -125,11 +125,6 @@ namespace VLC_WinRT.Model.Music
             set { SetProperty(ref _isPictureLoaded, value); }
         }
 
-        public Task LoadPicture()
-        {
-            return Locator.MusicMetaService.GetArtistPicture(this);
-        }
-
         public Task LoadBio()
         {
             if (string.IsNullOrEmpty(_biography))

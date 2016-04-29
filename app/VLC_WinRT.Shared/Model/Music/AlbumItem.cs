@@ -169,23 +169,6 @@ namespace VLC_WinRT.Model.Music
             set { SetProperty(ref _year, value); }
         }
 
-        public async Task LoadPicture()
-        {
-            try
-            {
-                if (IsPictureLoaded)
-                    return;
-                Debug.WriteLine("Searching online cover for " + Name);
-                await Locator.MusicMetaService.GetAlbumCover(this);
-            }
-            catch (Exception)
-            {
-                // TODO: Tell user we could not get their album art.
-                LogHelper.Log("Error getting album art...");
-            }
-        }
-
-
         public bool IsPinned
         {
             get { return _isPinned; }

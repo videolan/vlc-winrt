@@ -76,7 +76,7 @@ namespace VLC_WinRT.Model.Library
             await AlbumCoverFetcherSemaphoreSlim.WaitAsync();
             try
             {
-                await albumItem.LoadPicture();
+                await Locator.MusicMetaService.GetAlbumCover(albumItem);
             }
             finally
             {
@@ -90,7 +90,7 @@ namespace VLC_WinRT.Model.Library
             try
             {
                 Debug.WriteLine($"{DateTime.Now} -- loading pic : {artistItem.Name}");
-                await artistItem.LoadPicture();
+                await Locator.MusicMetaService.GetArtistPicture(artistItem);
                 Debug.WriteLine($"{DateTime.Now} -- loading operation DONE: {artistItem.Name}");
             }
             catch
