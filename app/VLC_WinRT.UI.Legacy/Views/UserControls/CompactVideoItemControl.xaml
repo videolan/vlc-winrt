@@ -8,6 +8,24 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
+    <UserControl.Resources>
+        <Storyboard x:Name="FadeInCover">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ThumbnailImage"
+                                           Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                      Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="FadeOutCover"
+                    Completed="FadeOutCover_Completed">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ThumbnailImage"
+                                           Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4"
+                                      Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    
     <Grid FlyoutBase.AttachedFlyout="{StaticResource VideoInformationFlyout}"
           Holding="RootAlbumItem_Holding"
           RightTapped="Grid_RightTapped">
@@ -23,22 +41,20 @@
                       FontSize="42"
                       Foreground="{ThemeResource MainColor}" />
         </Grid>
-        <Image Grid.Row="0"
-               Source="{Binding ThumbnailPath}"
+        <Image x:Name="ThumbnailImage"
+               Grid.Row="0"
                Stretch="UniformToFill"
                HorizontalAlignment="Center" />
-        <ProgressBar Grid.Row="1"
+        <ProgressBar x:Name="VideoProgressBar"
+                     Grid.Row="1"
                      VerticalAlignment="Bottom"
-                     Style="{StaticResource ThinProgressBar}"
-                     Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
-                     Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
-                     Visibility="{Binding TimeWatched.TotalSeconds, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
+                     Style="{StaticResource ThinProgressBar}" />
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Text="{Binding Name}"
+            <TextBlock x:Name="NameTextBlock"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
                        FontSize="15"
@@ -53,11 +69,11 @@
                            TextWrapping="NoWrap"
                            TextTrimming="CharacterEllipsis"
                            FontSize="14">
-                    <Run Text="{Binding TimeWatched, Converter={StaticResource TimeSpanShortStringConverter}}" />
+                    <Run x:Name="TimeWatchedTextBlock" />
                     <Run Text="-" />
                 </TextBlock>
 
-                <TextBlock Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"
+                <TextBlock x:Name="DurationTextBlock"
                            Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                            TextWrapping="NoWrap"
                            TextTrimming="CharacterEllipsis"

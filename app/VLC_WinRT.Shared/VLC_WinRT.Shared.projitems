@@ -116,8 +116,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SecondsStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StorageTypeToIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToUpperConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\TimeSpanSecondsDoubleConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\TimespanShortStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\VideoViewStringifyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\VLCPageStringifyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\VLCSurfaceZoomStringifyConverter.cs" />

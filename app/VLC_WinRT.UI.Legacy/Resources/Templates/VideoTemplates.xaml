@@ -5,11 +5,12 @@
                     xmlns:userControls="using:VLC_WinRT.Views.UserControls">
 
     <DataTemplate x:Key="PhoneCompactVideoTemplate">
-        <userControls:CompactVideoItemControl />
+        <userControls:CompactVideoItemControl Video="{Binding}" />
     </DataTemplate>
 
     <DataTemplate x:Key="PhoneCompactVideoTemplateFixedSize">
-        <userControls:CompactVideoItemControl Height="180"
+        <userControls:CompactVideoItemControl Video="{Binding}"
+                                              Height="180"
                                               Width="246"/>
     </DataTemplate>
     

@@ -10,14 +10,12 @@
     <converters:NegatedCountToVisibilityConverter x:Key="NegatedCountToVisibilityConverter" />
     <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
     <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
-    <converters:TimespanShortStringConverter x:Key="TimeSpanShortStringConverter" />
     <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:BooleanNegationConverter x:Key="BooleanNegationConverter" />
     <converters:NegatedBooleanToVisibilityConverter x:Key="NegatedBooleanToVisibilityConverter" />
     <converters:SecondsStringConverter x:Key="SecondsStringConverter" />
     <converters:MillisecondsStringConverter x:Key="MillisecondsStringConverter" />
-    <converters:TimeSpanSecondsDoubleConverter x:Key="TimeSpanSecondsDoubleConverter" />
     <converters:ElapsedTimeToPercentageConverter x:Key="ElapsedTimeToPercentageConverter" />
     <converters:BackgroundVisibilityConverter x:Key="BackgroundVisibilityConverter" />
     <converters:StorageTypeToIconConverter x:Key="StorageTypeToIconConverter" />
