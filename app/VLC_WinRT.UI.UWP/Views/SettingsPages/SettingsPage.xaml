@@ -1,4 +1,4 @@
-﻿<Page x:Class="VLC_WinRT.UI.UWP.Views.SettingsPages.SettingsPage"
+﻿<Grid x:Class="VLC_WinRT.UI.UWP.Views.SettingsPages.SettingsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:VLC_WinRT.UI.UWP.Views.SettingsPages"
@@ -6,155 +6,155 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WinRT.Views.UserControls"
       xmlns:winControls="using:WinRTXamlToolkit.Controls"
-      mc:Ignorable="d">
+      mc:Ignorable="d"
+      DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+      Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+    <Pivot>
+        <Pivot.LeftHeader>
+            <FontIcon Glyph="{StaticResource SettingsSymbol}"
+                      FontFamily="{StaticResource VLCFont}"
+                      FontSize="19"
+                      Margin="{StaticResource FrameMarginLeft}"
+                      Foreground="{StaticResource MainColor}"/>
+        </Pivot.LeftHeader>
+        <PivotItem Header="{Binding Source={StaticResource Strings}, Path=UserInterface}">
+            <Grid>
+                <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
+                    <StackPanel Margin="{StaticResource FrameMarginHorizontal}">
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Theme}"
+                                   FontSize="22"
+                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                   FontWeight="SemiLight" />
 
-    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
-        <Pivot>
-            <PivotItem Header="{Binding Source={StaticResource Strings}, Path=UserInterface}">
-                <Grid>
-                    <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
-                        <StackPanel Margin="{StaticResource FrameMarginHorizontal}">
-                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Theme}"
-                                       FontSize="22"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       FontWeight="SemiLight" />
-                            <winControls:WrapPanel Orientation="Horizontal">
-                                <ToggleSwitch OffContent="{Binding Source={StaticResource Strings}, Path=Light}"
-                                              OnContent="{Binding Source={StaticResource Strings}, Path=Dark}"
-                                              Margin="{StaticResource FrameMarginRight}"
-                                              VerticalAlignment="Center">
-                                    <ToggleSwitch.IsOn>
-                                        <Binding Source="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
-                                                 Path="ApplicationTheme"
-                                                 Converter="{StaticResource ApplicationThemeBooleanConverter}"
-                                                 Mode="TwoWay" />
-                                    </ToggleSwitch.IsOn>
-                                </ToggleSwitch>
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                   Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}" />
 
-                                <ComboBox DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
-                                          ItemsSource="{Binding AccentColors}"
-                                          SelectedItem="{Binding AccentColor, Mode=TwoWay}"
-                                          Width="150"
+                        <winControls:WrapPanel Orientation="Horizontal">
+                            <ToggleSwitch OffContent="{Binding Source={StaticResource Strings}, Path=Light}"
+                                          OnContent="{Binding Source={StaticResource Strings}, Path=Dark}"
                                           Margin="{StaticResource FrameMarginRight}"
                                           VerticalAlignment="Center">
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Ellipse Height="24"
-                                                         Width="24"
-                                                         VerticalAlignment="Center">
-                                                    <Ellipse.Fill>
-                                                        <SolidColorBrush Color="{Binding Color}" />
-                                                    </Ellipse.Fill>
-                                                </Ellipse>
-                                                <TextBlock Text="{Binding Name}"
-                                                           Margin="{StaticResource FrameMarginHorizontal}"
-                                                           Style="{StaticResource BodyTextBlockStyle}"
-                                                           VerticalAlignment="Center" />
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
-                                <Button x:Name="ApplyColor"
-                                        x:Uid="ApplyAndRestart"
-                                        Click="ApplyColorButton_Click"
-                                        Content="Apply"
-                                        Margin="{StaticResource FrameMarginRight}" />
-                                <TextBlock Grid.Column="2"
-                                           Style="{StaticResource BodyTextBlockStyle}"
-                                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
-                                           VerticalAlignment="Center">
-                                    <Run Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}" />
-                                </TextBlock>
-                            </winControls:WrapPanel>
+                                <ToggleSwitch.IsOn>
+                                    <Binding Source="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+                                             Path="ApplicationTheme"
+                                             Converter="{StaticResource ApplicationThemeBooleanConverter}"
+                                             Mode="TwoWay" />
+                                </ToggleSwitch.IsOn>
+                            </ToggleSwitch>
+
+                            <ComboBox DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+                                      ItemsSource="{Binding AccentColors}"
+                                      SelectedItem="{Binding AccentColor, Mode=TwoWay}"
+                                      Width="150"
+                                      Margin="{StaticResource FrameMarginRight}"
+                                      VerticalAlignment="Center">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Ellipse Height="24"
+                                                     Width="24"
+                                                     VerticalAlignment="Center">
+                                                <Ellipse.Fill>
+                                                    <SolidColorBrush Color="{Binding Color}" />
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+                                            <TextBlock Text="{Binding Name}"
+                                                       Margin="{StaticResource FrameMarginHorizontal}"
+                                                       Style="{StaticResource BodyTextBlockStyle}"
+                                                       VerticalAlignment="Center" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Button x:Name="ApplyColor"
+                                    x:Uid="ApplyAndRestart"
+                                    Click="ApplyColorButton_Click"
+                                    Content="Apply"
+                                    Margin="{StaticResource FrameMarginRight}" />
+                        </winControls:WrapPanel>
 
 
-                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Languages}"
-                                       Margin="0,12,0,0"
-                                       FontSize="22"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       FontWeight="SemiLight" />
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Languages}"
+                                   Margin="0,12,0,0"
+                                   FontSize="22"
+                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                   FontWeight="SemiLight" />
 
-                            <Grid Margin="0,12,0,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                                    <ColumnDefinition MaxWidth="300" />
-                                </Grid.ColumnDefinitions>
-                                <ComboBox ItemsSource="{Binding LanguageCollection}"
-                                          SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
-                                          Style="{StaticResource VLCLightComboBox}"
-                                          Width="160">
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Converter={StaticResource LanguageStringifyConverter}}" />
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
-                                <TextBlock Grid.Column="2"
-                                           Text="{Binding Source={StaticResource Strings}, Path=SelectLanguageDescription}"
-                                           Style="{StaticResource BodyTextBlockStyle}"
-                                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
-                                           VerticalAlignment="Center" />
-                            </Grid>
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=SelectLanguageDescription}"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
+                                   VerticalAlignment="Center" />
+
+                        <winControls:WrapPanel Margin="0,12,0,0"
+                                               Orientation="Horizontal">
+                            <ComboBox ItemsSource="{Binding LanguageCollection}"
+                                      SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+                                      Style="{StaticResource VLCLightComboBox}"
+                                      Width="160"
+                                      Margin="{StaticResource FrameMarginRight}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource LanguageStringifyConverter}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                             <Button x:Name="RefreshLanguage"
                                     x:Uid="RefreshLanguage"
                                     Click="ForceRefreshLanguage"
-                                    Content="Refresh Language"
-                                    Margin="0,12,0,0" />
+                                    Content="Refresh Language" />
+                        </winControls:WrapPanel>
 
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=HomePage}"
+                                   Margin="0,12,0,0"
+                                   FontSize="22"
+                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                   FontWeight="SemiLight" />
 
-                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=HomePage}"
-                                       Margin="0,12,0,0"
-                                       FontSize="22"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       FontWeight="SemiLight" />
+                        <TextBlock Grid.Column="2"
+                                   Text="{Binding Source={StaticResource Strings}, Path=HomePageDescription}"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
+                                   VerticalAlignment="Center" />
 
-                            <Grid Margin="0,12,0,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                                    <ColumnDefinition MaxWidth="300" />
-                                </Grid.ColumnDefinitions>
-                                <ComboBox ItemsSource="{Binding HomePageCollection}"
-                                          SelectedItem="{Binding HomePage, Mode=TwoWay}"
-                                          Style="{StaticResource VLCLightComboBox}"
-                                          Width="160">
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Converter={StaticResource VLCPageStringifyConverter}}" />
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
-                                <TextBlock Grid.Column="2"
-                                           Text="{Binding Source={StaticResource Strings}, Path=HomePageDescription}"
-                                           Style="{StaticResource BodyTextBlockStyle}"
-                                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
-                                           VerticalAlignment="Center" />
-                            </Grid>
+                        <ComboBox Margin="0,12,0,0"
+                                  ItemsSource="{Binding HomePageCollection}"
+                                  SelectedItem="{Binding HomePage, Mode=TwoWay}"
+                                  Style="{StaticResource VLCLightComboBox}"
+                                  Width="160">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource VLCPageStringifyConverter}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
 
-                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Animations}"
-                                       FontSize="22"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       Margin="0,12,0,0"
-                                       FontWeight="SemiLight" />
-                            <ToggleSwitch  Header="{Binding Source={StaticResource Strings}, Path=RichAnimationsDescription}"
-                                           IsOn="{Binding RichAnimations, Mode=TwoWay}" />
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Animations}"
+                                   FontSize="22"
+                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                   Margin="0,12,0,0"
+                                   FontWeight="SemiLight" />
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                   Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding Source={StaticResource Strings}, Path=RichAnimationsDescription}" />
+                        <ToggleSwitch IsOn="{Binding RichAnimations, Mode=TwoWay}" />
 
-                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}"
-                                       Margin="0,12,0,0"
-                                       FontSize="22"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       FontWeight="SemiLight" />
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}"
+                                   Margin="0,12,0,0"
+                                   FontSize="22"
+                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                   FontWeight="SemiLight" />
 
-                            <ListView ItemsSource="{Binding KeyboardActions}"
-                                      SelectionMode="None"
-                                      Margin="{StaticResource FrameMarginTop}"
-                                      ItemContainerStyle="{StaticResource ListViewItemBasic}">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Margin="{StaticResource FrameMarginBottom}"
-                                                   Foreground="{ThemeResource BasicForeground}">
+                        <ListView ItemsSource="{Binding KeyboardActions}"
+                                  SelectionMode="None"
+                                  Margin="{StaticResource FrameMarginTop}"
+                                  ItemContainerStyle="{StaticResource ListViewItemBasic}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Margin="{StaticResource FrameMarginBottom}"
+                                               Foreground="{ThemeResource BasicForeground}">
                                             <Run Text="{Binding Action}"
                                                  FontSize="15"
                                                  FontWeight="SemiBold" />
@@ -162,275 +162,273 @@
                                             <Run Text="{Binding KeyDescription}"
                                                  FontSize="14"
                                                  FontWeight="Normal" />
-                                        </TextBlock>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                                <ListView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <ItemsWrapGrid ItemWidth="250"
-                                                       Orientation="Horizontal" />
-                                    </ItemsPanelTemplate>
-                                </ListView.ItemsPanel>
-                            </ListView>
-                        </StackPanel>
-                    </ScrollViewer>
-                </Grid>
-            </PivotItem>
-            <PivotItem Header="{Binding Source={StaticResource Strings}, Path=VideoSettings}">
-                <Grid>
-                    <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
-                        <StackPanel Margin="{StaticResource FrameMarginHorizontal}">
-                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=VideoPlayback}"
-                                       FontSize="22"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       FontWeight="SemiLight" />
-                            <ToggleSwitch Header="{Binding Source={StaticResource Strings}, Path=HardwareDecoding}"
-                                          IsOn="{Binding HardwareAccelerationEnabled, Mode=TwoWay}" />
-                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                       Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
-                                       Margin="0,-6,0,12">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsWrapGrid ItemWidth="200"
+                                                   Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </PivotItem>
+        <PivotItem Header="{Binding Source={StaticResource Strings}, Path=VideoSettings}">
+            <Grid>
+                <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
+                    <StackPanel Margin="{StaticResource FrameMarginHorizontal}">
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=VideoPlayback}"
+                                   FontSize="22"
+                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                   FontWeight="SemiLight" />
+                        <ToggleSwitch Header="{Binding Source={StaticResource Strings}, Path=HardwareDecoding}"
+                                      IsOn="{Binding HardwareAccelerationEnabled, Mode=TwoWay}" />
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                   Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
+                                   Margin="0,-6,0,12">
                                 <Run Text="{Binding Source={StaticResource Strings}, Path=HardwareDecodingDescription}" />
                                 <Run Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}" />
-                            </TextBlock>
+                        </TextBlock>
 
-                            <ToggleSwitch Header="{Binding Source={StaticResource Strings}, Path=ForceLandscape}"
-                                          IsOn="{Binding ForceLandscape, Mode=TwoWay}" />
+                        <ToggleSwitch Header="{Binding Source={StaticResource Strings}, Path=ForceLandscape}"
+                                      IsOn="{Binding ForceLandscape, Mode=TwoWay}" />
 
-                            <ToggleSwitch Tag="WindowsOnly"
-                                          Header="{Binding Source={StaticResource Strings}, Path=VideoPlaybackInBackground}"
-                                          IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}" />
+                        <ToggleSwitch Tag="WindowsOnly"
+                                      Header="{Binding Source={StaticResource Strings}, Path=VideoPlaybackInBackground}"
+                                      IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}" />
 
-                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=SubtitlesEncoding}"
-                                       Margin="0,12,0,0"
-                                       FontSize="22"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       FontWeight="SemiLight" />
-                            <ComboBox Margin="0,12"
-                                      ItemsSource="{Binding SubtitlesEncodingValues}"
-                                      SelectedItem="{Binding SubtitleEncodingValue, Mode=TwoWay}"
-                                      Style="{StaticResource VLCLightComboBox}"
-                                      Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}"
-                                      Width="160">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding}" />
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=SubtitlesEncoding}"
+                                   Margin="0,12,0,0"
+                                   FontSize="22"
+                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                   FontWeight="SemiLight" />
+                        <ComboBox Margin="0,12"
+                                  ItemsSource="{Binding SubtitlesEncodingValues}"
+                                  SelectedItem="{Binding SubtitleEncodingValue, Mode=TwoWay}"
+                                  Style="{StaticResource VLCLightComboBox}"
+                                  Width="160">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
 
-                            <TextBlock Tag="WindowsOnly"
-                                       Text="{Binding Source={StaticResource Strings}, Path=VideoFolders}"
-                                       FontSize="22"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       FontWeight="SemiLight" />
-                            <TextBlock Tag="WindowsOnly"
-                                       Text="{Binding Source={StaticResource Strings}, Path=VideoFoldersDescription}"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
-                            <ListView Tag="WindowsOnly"
-                                      ItemsSource="{Binding VideoFolders}"
-                                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                                      SelectionMode="None"
-                                      IsItemClickEnabled="False">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid Background="Transparent">
-                                            <Grid.Resources>
-                                                <Flyout x:Key="RemoveFlyout">
-                                                    <Border RequestedTheme="Dark"
-                                                            Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
-                                                            BorderBrush="DimGray"
-                                                            BorderThickness="1"
-                                                            Padding="12">
-                                                        <Grid Width="250">
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="Auto" />
-                                                                <RowDefinition Height="12" />
-                                                                <RowDefinition Height="Auto" />
-                                                            </Grid.RowDefinitions>
-                                                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RemoveVideoFolderDescription}"
-                                                                       Style="{StaticResource BodyTextBlockStyle}" />
-                                                            <Button Grid.Row="2"
-                                                                    Content="{Binding Source={StaticResource Strings}, Path=RemoveFolder}"
-                                                                    Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.RemoveFolderFromVideoLibrary}"
-                                                                    CommandParameter="{Binding}" />
-                                                        </Grid>
-                                                    </Border>
-                                                </Flyout>
-                                            </Grid.Resources>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                                                <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
-                                            <FontIcon Glyph="{StaticResource FolderSymbol}"
-                                                      FontFamily="{StaticResource VLCFont}"
-                                                      Foreground="{StaticResource SemiLightMainColor}" />
-                                            <TextBlock Grid.Column="2"
-                                                       TextWrapping="Wrap"
-                                                       FlyoutBase.AttachedFlyout="{StaticResource RemoveFlyout}"
-                                                       Tapped="VideoFolder_Tapped"
-                                                       VerticalAlignment="Center">
-                        <Run Text="{Binding Path}"
-                                                FontSize="14"
-                                                Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
-                                            </TextBlock>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <Button Tag="WindowsOnly"
-                                    Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
-                                    Command="{Binding AddFolderToLibrary}"
-                                    CommandParameter="{Binding VideoLibraryId}"
-                                    Margin="{StaticResource FrameMarginTop}" />
-                        </StackPanel>
-                    </ScrollViewer>
-                </Grid>
-            </PivotItem>
-            <PivotItem Header="{Binding Source={StaticResource Strings}, Path=MusicSettings}">
-                <Grid>
-                    <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
-                        <StackPanel Margin="{StaticResource FrameMarginHorizontal}">
-                            <TextBlock Tag="WindowsOnly"
-                                       Text="{Binding Source={StaticResource Strings}, Path=MusicFolders}"
-                                       FontSize="22"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       FontWeight="SemiLight" />
-                            <TextBlock Tag="WindowsOnly"
-                                       Text="{Binding Source={StaticResource Strings}, Path=MusicFoldersDescription}"
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
-                            <ListView Tag="WindowsOnly"
-                                      ItemsSource="{Binding MusicFolders}"
-                                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                                      SelectionMode="None"
-                                      IsItemClickEnabled="False">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <Grid.Resources>
-                                                <Flyout x:Key="RemoveFlyout">
-                                                    <Border RequestedTheme="Dark"
-                                                            Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
-                                                            BorderBrush="DimGray"
-                                                            BorderThickness="1"
-                                                            Padding="12">
-                                                        <Grid Width="250">
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="Auto" />
-                                                                <RowDefinition Height="12" />
-                                                                <RowDefinition Height="Auto" />
-                                                            </Grid.RowDefinitions>
-                                                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RemoveMusicFolderDescription}"
-                                                                       Style="{StaticResource BodyTextBlockStyle}" />
-                                                            <Button Grid.Row="2"
-                                                                    Content="{Binding Source={StaticResource Strings}, Path=RemoveFolder}"
-                                                                    Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.RemoveFolderFromMusicLibrary}"
-                                                                    CommandParameter="{Binding}" />
-                                                        </Grid>
-                                                    </Border>
-                                                </Flyout>
-                                            </Grid.Resources>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                                                <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
-                                            <FontIcon Glyph="{StaticResource FolderSymbol}"
-                                                      FontFamily="{StaticResource VLCFont}"
-                                                      Foreground="{StaticResource SemiLightMainColor}" />
-                                            <TextBlock Grid.Column="2"
-                                                       TextWrapping="Wrap"
-                                                       FlyoutBase.AttachedFlyout="{StaticResource RemoveFlyout}"
-                                                       Tapped="VideoFolder_Tapped"
-                                                       VerticalAlignment="Center">
-                        <Run Text="{Binding Path}"
-                                                FontSize="14"
-                                                Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
-                                            </TextBlock>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <Button Tag="WindowsOnly"
-                                    Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
-                                    Command="{Binding AddFolderToLibrary}"
-                                    CommandParameter="{Binding MusicLibraryId}" />
-                            <TextBlock Tag="WindowsOnly"
-                                       Text="{Binding Source={StaticResource Strings}, Path=Notifications}"
-                                       FontSize="22"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       Margin="0,20,0,0"
-                                       FontWeight="SemiLight" />
-                            <ToggleSwitch  Tag="WindowsOnly"
-                                           Header="{Binding Source={StaticResource Strings}, Path=NotificationWhenSongStarts}"
-                                           IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}" />
-                            <ToggleSwitch  Tag="WindowsOnly"
-                                           Header="{Binding Source={StaticResource Strings}, Path=EvenIfNotBackground}"
-                                           IsOn="{Binding NotificationOnNewSongForeground, Mode=TwoWay}"
-                                           Visibility="{Binding NotificationOnNewSong, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=ConnectToLastFM}"
-                                       Margin="0,20,0,0"
-                                       FontSize="22"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       FontWeight="SemiLight" />
-                            <userControls:FocusTextBox Height="30"
-                                                       Width="250"
-                                                       Margin="0,12,0,12"
-                                                       FontSize="18"
-                                                       FontWeight="Light"
-                                                       Text="{Binding LastFmUserName, Mode=TwoWay}"
-                                                       PlaceholderText="{Binding Source={StaticResource Strings}, Path=Username}"
-                                                       HorizontalAlignment="Left" />
-                            <PasswordBox x:Name="PasswordBoxLastFm"
-                                         Height="30"
-                                         Width="250"
-                                         FontSize="18"
-                                         FontWeight="Light"
-                                         Password="{Binding LastFmPassword, Mode=TwoWay}"
-                                         PlaceholderText="{Binding Source={StaticResource Strings}, Path=Password}"
-                                         GotFocus="FocusTextBox_GotFocus"
-                                         LostFocus="FocusTextBox_LostFocus"
-                                         HorizontalAlignment="Left"
-                                         Style="{StaticResource FocusPasswordBox}" />
-                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=ConnectedToLastFM}"
-                                       Style="{StaticResource TitleTextBlockStyle}"
-                                       Foreground="{ThemeResource MainColor}"
-                                       Visibility="{Binding LastFmIsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                            <TextBlock x:Name="ErrorConnectLastFmTextBox"
-                                       Style="{StaticResource TitleTextBlockStyle}"
-                                       Visibility="Collapsed" />
-                            <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=Connect}"
-                                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                          Margin="0,6,0,0"
-                                          Click="ConnectToLastFM_Click">
-                                <AppBarButton.Icon>
-                                    <FontIcon Glyph="{StaticResource BuddySymbol}"
-                                              FontFamily="{StaticResource VLCFont}" />
-                                </AppBarButton.Icon>
-                            </AppBarButton>
+                        <TextBlock Tag="WindowsOnly"
+                                   Text="{Binding Source={StaticResource Strings}, Path=VideoFolders}"
+                                   FontSize="22"
+                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                   FontWeight="SemiLight" />
+                        <TextBlock Tag="WindowsOnly"
+                                   Text="{Binding Source={StaticResource Strings}, Path=VideoFoldersDescription}"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
+                        <ListView Tag="WindowsOnly"
+                                  ItemsSource="{Binding VideoFolders}"
+                                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="False">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="Transparent">
+                                        <Grid.Resources>
+                                            <Flyout x:Key="RemoveFlyout">
+                                                <Border RequestedTheme="Dark"
+                                                        Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+                                                        BorderBrush="DimGray"
+                                                        BorderThickness="1"
+                                                        Padding="12">
+                                                    <Grid Width="250">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="12" />
+                                                            <RowDefinition Height="Auto" />
+                                                        </Grid.RowDefinitions>
+                                                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RemoveVideoFolderDescription}"
+                                                                   Style="{StaticResource BodyTextBlockStyle}" />
+                                                        <Button Grid.Row="2"
+                                                                Content="{Binding Source={StaticResource Strings}, Path=RemoveFolder}"
+                                                                Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.RemoveFolderFromVideoLibrary}"
+                                                                CommandParameter="{Binding}" />
+                                                    </Grid>
+                                                </Border>
+                                            </Flyout>
+                                        </Grid.Resources>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Glyph="{StaticResource FolderSymbol}"
+                                                  FontFamily="{StaticResource VLCFont}"
+                                                  Foreground="{StaticResource SemiLightMainColor}" />
+                                        <TextBlock Grid.Column="2"
+                                                   TextWrapping="Wrap"
+                                                   FlyoutBase.AttachedFlyout="{StaticResource RemoveFlyout}"
+                                                   Tapped="VideoFolder_Tapped"
+                                                   VerticalAlignment="Center">
+                                            <Run Text="{Binding Path}"
+                                                 FontSize="14"
+                                                 Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
+                                        </TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Button Tag="WindowsOnly"
+                                Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
+                                Command="{Binding AddFolderToLibrary}"
+                                CommandParameter="{Binding VideoLibraryId}"
+                                Margin="{StaticResource FrameMarginTop}" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </PivotItem>
+        <PivotItem Header="{Binding Source={StaticResource Strings}, Path=MusicSettings}">
+            <Grid>
+                <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
+                    <StackPanel Margin="{StaticResource FrameMarginHorizontal}">
+                        <TextBlock Tag="WindowsOnly"
+                                   Text="{Binding Source={StaticResource Strings}, Path=MusicFolders}"
+                                   FontSize="22"
+                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                   FontWeight="SemiLight" />
+                        <TextBlock Tag="WindowsOnly"
+                                   Text="{Binding Source={StaticResource Strings}, Path=MusicFoldersDescription}"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
+                        <ListView Tag="WindowsOnly"
+                                  ItemsSource="{Binding MusicFolders}"
+                                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="False">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.Resources>
+                                            <Flyout x:Key="RemoveFlyout">
+                                                <Border RequestedTheme="Dark"
+                                                        Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+                                                        BorderBrush="DimGray"
+                                                        BorderThickness="1"
+                                                        Padding="12">
+                                                    <Grid Width="250">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="12" />
+                                                            <RowDefinition Height="Auto" />
+                                                        </Grid.RowDefinitions>
+                                                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RemoveMusicFolderDescription}"
+                                                                   Style="{StaticResource BodyTextBlockStyle}" />
+                                                        <Button Grid.Row="2"
+                                                                Content="{Binding Source={StaticResource Strings}, Path=RemoveFolder}"
+                                                                Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.RemoveFolderFromMusicLibrary}"
+                                                                CommandParameter="{Binding}" />
+                                                    </Grid>
+                                                </Border>
+                                            </Flyout>
+                                        </Grid.Resources>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Glyph="{StaticResource FolderSymbol}"
+                                                  FontFamily="{StaticResource VLCFont}"
+                                                  Foreground="{StaticResource SemiLightMainColor}" />
+                                        <TextBlock Grid.Column="2"
+                                                   TextWrapping="Wrap"
+                                                   FlyoutBase.AttachedFlyout="{StaticResource RemoveFlyout}"
+                                                   Tapped="VideoFolder_Tapped"
+                                                   VerticalAlignment="Center">
+                                            <Run Text="{Binding Path}"
+                                                 FontSize="14"
+                                                 Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
+                                        </TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Button Tag="WindowsOnly"
+                                Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
+                                Command="{Binding AddFolderToLibrary}"
+                                CommandParameter="{Binding MusicLibraryId}" />
+                        <TextBlock Tag="WindowsOnly"
+                                   Text="{Binding Source={StaticResource Strings}, Path=Notifications}"
+                                   FontSize="22"
+                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                   Margin="0,20,0,0"
+                                   FontWeight="SemiLight" />
+                        <ToggleSwitch  Tag="WindowsOnly"
+                                       Header="{Binding Source={StaticResource Strings}, Path=NotificationWhenSongStarts}"
+                                       IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}" />
+                        <ToggleSwitch  Tag="WindowsOnly"
+                                       Header="{Binding Source={StaticResource Strings}, Path=EvenIfNotBackground}"
+                                       IsOn="{Binding NotificationOnNewSongForeground, Mode=TwoWay}"
+                                       IsEnabled="{Binding NotificationOnNewSong}" />
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=ConnectToLastFM}"
+                                   Margin="0,20,0,0"
+                                   FontSize="22"
+                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                   FontWeight="SemiLight" />
+                        <userControls:FocusTextBox Height="30"
+                                                   Width="250"
+                                                   Margin="0,12,0,12"
+                                                   FontSize="18"
+                                                   FontWeight="Light"
+                                                   Text="{Binding LastFmUserName, Mode=TwoWay}"
+                                                   PlaceholderText="{Binding Source={StaticResource Strings}, Path=Username}"
+                                                   HorizontalAlignment="Left" />
+                        <PasswordBox x:Name="PasswordBoxLastFm"
+                                     Height="30"
+                                     Width="250"
+                                     FontSize="18"
+                                     FontWeight="Light"
+                                     Password="{Binding LastFmPassword, Mode=TwoWay}"
+                                     PlaceholderText="{Binding Source={StaticResource Strings}, Path=Password}"
+                                     GotFocus="FocusTextBox_GotFocus"
+                                     LostFocus="FocusTextBox_LostFocus"
+                                     HorizontalAlignment="Left"
+                                     Style="{StaticResource FocusPasswordBox}" />
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=ConnectedToLastFM}"
+                                   Style="{StaticResource TitleTextBlockStyle}"
+                                   Foreground="{ThemeResource MainColor}"
+                                   Visibility="{Binding LastFmIsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBlock x:Name="ErrorConnectLastFmTextBox"
+                                   Style="{StaticResource TitleTextBlockStyle}"
+                                   Visibility="Collapsed" />
+                        <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=Connect}"
+                                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                      Margin="0,6,0,0"
+                                      Click="ConnectToLastFM_Click">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="{StaticResource BuddySymbol}"
+                                          FontFamily="{StaticResource VLCFont}" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
 
 
-                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Reset}"
-                                       FontSize="22"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       Margin="0,20,0,0"
-                                       FontWeight="SemiLight" />
-                            <Button Content="{Binding Source={StaticResource Strings}, Path=ResetMusicDatabase}"
-                                    DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
-                                    Command="{Binding StartMusicIndexingCommand}"
-                                    CommandParameter="True"
-                                    Margin="0,6,0,0" />
-                            <TextBlock x:Uid="ResetMusicDbHelp"
-                                       Text="This will delete all the playlists made with VLC, and index the music library again."
-                                       Style="{StaticResource BodyTextBlockStyle}"
-                                       Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
-                        </StackPanel>
-                    </ScrollViewer>
-                </Grid>
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Reset}"
+                                   FontSize="22"
+                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                   Margin="0,20,0,0"
+                                   FontWeight="SemiLight" />
+                        <Button Content="{Binding Source={StaticResource Strings}, Path=ResetMusicDatabase}"
+                                DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                                Command="{Binding StartMusicIndexingCommand}"
+                                CommandParameter="True"
+                                Margin="0,6,0,0" />
+                        <TextBlock x:Uid="ResetMusicDbHelp"
+                                   Text="This will delete all the playlists made with VLC, and index the music library again."
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
 
-            </PivotItem>
-        </Pivot>
-    </Grid>
-</Page>
+        </PivotItem>
+    </Pivot>
+</Grid>

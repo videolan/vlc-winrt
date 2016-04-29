@@ -13,27 +13,13 @@ using Windows.UI.Xaml.Navigation;
 
 namespace VLC_WinRT.UI.UWP.Views.SettingsPages
 {
-    public sealed partial class SettingsPage : Page
+    public sealed partial class SettingsPage : Grid
     {
         public SettingsPage()
         {
             this.InitializeComponent();
-            AppViewHelper.SetTitleBarTitle(Strings.Settings.ToUpperFirstChar());
         }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-            Locator.SettingsVM.OnNavigatedFrom(e);
-            AppViewHelper.SetTitleBarTitle();
-        }
-
-        public void Go(VLCPage desiredPage)
-        {
-
-        }
-
-
+        
         void FocusTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             Locator.MainVM.KeyboardListenerService.CanListen = true;
