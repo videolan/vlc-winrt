@@ -87,9 +87,25 @@ MAKEFLAGS=-j`nproc`
 fi
 
 TARGET_TUPLE=${1}-w64-mingw32
+case "${1}" in
+    armv7)
+        COMPILER="clang -target armv7-windows-gnu"
+        COMPILERXX="clang++ -target armv7-windows-gnu"
+        # Clang will yield armv7-windows-gnu as build arch, which seems
+        # to confuse some configure scripts
+        BUILD_ARCH=x86_64-linux-gnu
+        ;;
+    *)
+        COMPILER=${TARGET_TUPLE}-gcc
+        COMPILERXX=${TARGET_TUPLE}-g++
+        ${COMPILER} -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lole32 -lruntimeobject/' -e "s/-lmsvcrt/-l$RUNTIME/" > ../newspecfile
+        NEWSPECFILE="`pwd`/../newspecfile"
+        COMPILER="${COMPILER} -specs=$NEWSPECFILE"
+        COMPILERXX="${COMPILERXX} -specs=$NEWSPECFILE"
+        BUILD_ARCH=`gcc -dumpmachine`
+        ;;
+esac
 
-${TARGET_TUPLE}-gcc -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lole32 -lruntimeobject/' -e "s/-lmsvcrt/-l$RUNTIME/" > ../newspecfile
-NEWSPECFILE="`pwd`/../newspecfile"
 
 EXTRA_CPPFLAGS="-D_WIN32_WINNT=$WINVER -DWINVER=$WINVER -DWINSTORECOMPAT -D_UNICODE -DUNICODE -DWINAPI_FAMILY=WINAPI_FAMILY_APP"
 EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat -lruntimeobject"
@@ -98,7 +114,7 @@ echo "Building the contribs"
 CONTRIB_FOLDER=contrib/winrt-$1-$RUNTIME
 mkdir -p $CONTRIB_FOLDER
 cd $CONTRIB_FOLDER
-../bootstrap --host=${TARGET_TUPLE} --disable-disc --disable-sout \
+../bootstrap --host=${TARGET_TUPLE} --build=$BUILD_ARCH --disable-disc --disable-sout \
     --disable-sdl \
     --disable-schroedinger \
     --disable-vncserver \
@@ -124,10 +140,9 @@ cd $CONTRIB_FOLDER
     --disable-fontconfig \
     --disable-gcrypt \
     --disable-gpg-error \
-    --disable-gnutls \
     --disable-projectM \
     --enable-ass \
-    --enable-lua \
+    --disable-lua \
     --disable-qt \
     --disable-protobuf \
     --disable-aribb25 \
@@ -139,8 +154,8 @@ cd $CONTRIB_FOLDER
 echo "EXTRA_CFLAGS=${EXTRA_CPPFLAGS}" >> config.mak
 echo "EXTRA_LDFLAGS=${EXTRA_LDFLAGS}" >> config.mak
 echo "HAVE_WINRT := 1" >> config.mak
-echo "CC=${TARGET_TUPLE}-gcc -specs=$NEWSPECFILE" >> config.mak
-echo "CXX=${TARGET_TUPLE}-g++ -specs=$NEWSPECFILE" >> config.mak
+echo "CC=${COMPILER}" >> config.mak
+echo "CXX=${COMPILERXX}" >> config.mak
 export PKG_CONFIG_LIBDIR="`pwd`/contrib/${TARGET_TUPLE}/lib/pkgconfig"
 
 make $MAKEFLAGS
@@ -154,8 +169,8 @@ echo "Bootstraping"
 echo "Configuring"
 CPPFLAGS="${EXTRA_CPPFLAGS}" \
 LDFLAGS="${EXTRA_LDFLAGS}" \
-CC="${TARGET_TUPLE}-gcc -specs=$NEWSPECFILE" \
-CXX="${TARGET_TUPLE}-g++ -specs=$NEWSPECFILE" \
+CC="${COMPILER}" \
+CXX="${COMPILERXX}" \
 ac_cv_search_connect="-lws2_32" \
 ../../configure.sh --host=${TARGET_TUPLE}
 
