@@ -61,3 +61,5 @@ build/ui/Package.StoreAssociation.xml
 
 #mac stuff
 .DS_Store
+
+project.lock.json
