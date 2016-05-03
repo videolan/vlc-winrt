@@ -27,6 +27,8 @@ using Windows.UI.Composition;
 using System.Numerics;
 using Windows.UI.Xaml.Hosting;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
+using Windows.Storage;
 #if WINDOWS_APP
 using Windows.UI.ApplicationSettings;
 #endif
@@ -125,12 +127,14 @@ namespace VLC_WinRT.Views.MainPages
 
 #if WINDOWS_UWP
 
-        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        private async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             NavigationFrame.AllowDrop = true;
             NavigationFrame.DragOver += NavigationFrame_DragOver;
             NavigationFrame.Drop += NavigationFrame_Drop;
         }
+
+
 
         private async void NavigationFrame_Drop(object sender, DragEventArgs e)
         {

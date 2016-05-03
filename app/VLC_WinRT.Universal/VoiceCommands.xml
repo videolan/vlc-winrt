@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+  <CommandSet xml:lang="en-us" Name="VLCCommandSet_en-us">
+    <CommandPrefix> VLC, </CommandPrefix>
+    <Example> Play my music </Example>
+
+    <Command Name="playartist">
+      <Example> play some Taylor Swift songs </Example>
+      <ListenFor> play [some] {artist} </ListenFor>
+      <Feedback> Playing {artist} </Feedback>
+      <Navigate Target="musicplayerpage"/>
+    </Command>
+
+    <PhraseList Label="artist">
+      <Item>Test</Item>
+    </PhraseList>
+    
+  </CommandSet>
+</VoiceCommands>

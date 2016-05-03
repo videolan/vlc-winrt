@@ -108,9 +108,15 @@ namespace VLC_WinRT
             {
                 await LaunchTheApp();
             }
-            if (args.Kind == ActivationKind.Protocol)
+
+            switch (args.Kind)
             {
-                await HandleProtocolActivation(args);
+                case ActivationKind.Protocol:
+                    await HandleProtocolActivation(args);
+                    break;
+                case ActivationKind.VoiceCommand:
+                    await CortanaHelper.HandleProtocolActivation(args);
+                    break;
             }
 
 #if WINDOWS_PHONE_APP
@@ -251,6 +257,7 @@ namespace VLC_WinRT
                 Locator.MediaLibrary.DropTablesIfNeeded();
                 await Task.Factory.StartNew(async () => await Locator.MediaLibrary.Initialize()).ConfigureAwait(false);
                 await Task.Factory.StartNew(async () => await Locator.MediaLibrary.Initialize()).ConfigureAwait(false);
+                await CortanaHelper.Initialize();
             });
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.NavigationService.Go(Locator.SettingsVM.HomePage));
         }
