@@ -35,9 +35,6 @@
         </Rectangle>
 
         <Grid Background="{ThemeResource ApplicationChromeThemeBrush}">
-            <videoPanesControls:VideoPaneComboBox x:Name="VideoViewComboBox" 
-                                                  Grid.Column="1" />
-
             <ListView Grid.Column="1"
                       x:Name="PanelsListView"
                       ItemsSource="{Binding VideoViewCollection}"
@@ -47,7 +44,6 @@
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
                       HorizontalAlignment="Center"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                      Visibility="Collapsed"
                       SelectionChanged="PanelsListView_SelectionChanged">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -72,37 +68,5 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="Wide">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PanelsListView"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VideoViewComboBox"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Narrow">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PanelsListView"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VideoViewComboBox"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

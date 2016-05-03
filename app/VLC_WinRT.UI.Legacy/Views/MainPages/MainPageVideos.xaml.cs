@@ -47,10 +47,6 @@ namespace VLC_WinRT.Views.MainPages
 
         void Responsive(double width)
         {
-            if (width <= 350)
-                VisualStateUtilities.GoToState(this, "Narrow", false);
-            else
-                VisualStateUtilities.GoToState(this, "Wide", false);
         }
 
         private void MainPageVideoContentPresenter_OnLoaded(object sender, RoutedEventArgs e)
