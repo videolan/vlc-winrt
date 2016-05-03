@@ -55,7 +55,7 @@
                   ItemContainerStyle="{StaticResource ListViewItemStyle}">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=StreamsVM.PlayNetworkMRL}"
+                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=StreamsVM.PlayStreamCommand}"
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
