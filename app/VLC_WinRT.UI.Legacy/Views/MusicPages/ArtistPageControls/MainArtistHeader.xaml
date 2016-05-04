@@ -19,7 +19,8 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Image Grid.ColumnSpan="7"
+
+        <Image Grid.ColumnSpan="6"
                Source="{Binding CurrentArtist.ArtistImage}"
                Opacity="0.5"
                Stretch="UniformToFill"
@@ -118,7 +119,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
                                                        Storyboard.TargetProperty="Height">
                             <DiscreteObjectKeyFrame Value="250"
-                                                  KeyTime="0" />
+                                                    KeyTime="0" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
@@ -127,7 +128,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
                                                        Storyboard.TargetProperty="Height">
                             <DiscreteObjectKeyFrame Value="125"
-                                                  KeyTime="0:0:1" />
+                                                    KeyTime="0" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>

@@ -6,6 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:helpers="using:VLC_WinRT.Helpers"
+      xmlns:scrollWatcher="using:ScrollWatcher"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="400">
@@ -25,25 +26,29 @@
                   x:DeferLoadStrategy="Lazy"
                   Visibility="Collapsed">
         <SemanticZoom.ZoomedInView>
-            <ListView x:Name="AlbumsListView"
-                      ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
-                      ItemContainerStyle="{StaticResource ListViewItemBasic}"
-                      ItemTemplate="{StaticResource AlbumTrackTemplateWithRightMargin}"
-                      IsItemClickEnabled="True"
-                      SelectionMode="None"
-                      Margin="{StaticResource FrameMarginLeft}">
+            <scrollWatcher:ListViewScrollWatcher x:Name="AlbumsListView"
+                                                 ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
+                                                 ItemContainerStyle="{StaticResource ListViewItemBasic}"
+                                                 ItemTemplate="{StaticResource AlbumTrackTemplateWithRightMargin}"
+                                                 IsItemClickEnabled="True"
+                                                 SelectionMode="None"
+                                                 Margin="{StaticResource FrameMarginLeft}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding AlbumTrackClickedCommand}"
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
+                    <triggers:EventTrigger EventName="ScrollDetected">
+                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.ScrollDetectedCommand}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>
-                <ListView.ItemContainerTransitions>
+                <scrollWatcher:ListViewScrollWatcher.ItemContainerTransitions>
                     <TransitionCollection>
                         <AddDeleteThemeTransition />
                         <EntranceThemeTransition IsStaggeringEnabled="True" />
                     </TransitionCollection>
-                </ListView.ItemContainerTransitions>
+                </scrollWatcher:ListViewScrollWatcher.ItemContainerTransitions>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid Orientation="Horizontal"
@@ -53,7 +58,7 @@
                 <ListView.GroupStyle>
                     <GroupStyle HeaderTemplate="{StaticResource AlbumResponsiveTemplate}" />
                 </ListView.GroupStyle>
-            </ListView>
+            </scrollWatcher:ListViewScrollWatcher>
         </SemanticZoom.ZoomedInView>
         <SemanticZoom.ZoomedOutView>
             <ListView x:Name="AlbumsSemanticZoomZoomedOut"
