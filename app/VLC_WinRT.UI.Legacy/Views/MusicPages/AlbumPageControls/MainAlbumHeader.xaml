@@ -101,7 +101,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="12" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="36" />
+                <ColumnDefinition Width="12" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="12" />
                 <ColumnDefinition Width="Auto" />
@@ -110,7 +110,7 @@
                           Grid.Column="1"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
-                          Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
+                          Label="{Binding Source={StaticResource Strings}, Path=Play}"
                           Command="{Binding PlayAlbum}"
                           CommandParameter="{Binding}"
                           Foreground="{ThemeResource MainColor}"

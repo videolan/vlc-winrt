@@ -19,7 +19,7 @@
                                 VerticalAlignment="Stretch" />
 
         <Pivot x:Name="MainPivot"
-               Grid.Row="2"
+               Grid.Row="1"
                Style="{StaticResource TitlelessPivot}">
             <PivotItem>
                 <PivotItem.Header>

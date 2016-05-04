@@ -10,8 +10,7 @@
              d:DesignWidth="400">
     <Grid x:Name="HeaderGrid"
           Background="{ThemeResource ApplicationPageBackgroundThemeColor}"
-          RequestedTheme="Dark"
-          Height="250">
+          RequestedTheme="Dark">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             <ColumnDefinition Width="Auto" />
@@ -20,7 +19,8 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Image Grid.ColumnSpan="7"
+
+        <Image Grid.ColumnSpan="6"
                Source="{Binding CurrentArtist.ArtistImage}"
                Opacity="0.5"
                Stretch="UniformToFill"
@@ -113,6 +113,26 @@
         </AppBarButton>
 
         <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Tall">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame Value="250"
+                                                    KeyTime="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Tiny">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame Value="125"
+                                                    KeyTime="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
             <VisualStateGroup>
                 <VisualState x:Name="Snap">
                     <Storyboard>
