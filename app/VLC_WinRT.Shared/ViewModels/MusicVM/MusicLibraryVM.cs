@@ -59,7 +59,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         private TrackCollection _currentTrackCollection;
         private bool _isLoaded = false;
         private bool _isBusy = false;
-        public MusicView _musicView;
+        private MusicView _musicView;
         #endregion
 
         #region public fields
