@@ -33,7 +33,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
             PlayButton.Focus(FocusState.Keyboard);
         }
 
-        private void MainArtistHeader_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void MainArtistHeader_Loaded(object sender, RoutedEventArgs e)
         {
             this.Unloaded += MainArtistHeader_Unloaded;
             Window.Current.SizeChanged += Current_SizeChanged;
