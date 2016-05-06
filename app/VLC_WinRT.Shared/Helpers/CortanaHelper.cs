@@ -66,6 +66,12 @@ namespace VLC_WinRT.Helpers
             }
         }
 
+        /// <summary>
+        /// It takes a VERY LONG TIME to set the phrase list, something like 10 seconds. This is too much
+        /// </summary>
+        /// <param name="phraseListName"></param>
+        /// <param name="names"></param>
+        /// <returns></returns>
         public static async Task SetPhraseList(string phraseListName, IEnumerable<string> names)
         {
 #if WINDOWS_UWP
