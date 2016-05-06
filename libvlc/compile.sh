@@ -140,6 +140,7 @@ cd $CONTRIB_FOLDER
     --disable-fontconfig \
     --disable-gcrypt \
     --disable-gpg-error \
+    --disable-gnutls \
     --disable-projectM \
     --enable-ass \
     --disable-lua \
