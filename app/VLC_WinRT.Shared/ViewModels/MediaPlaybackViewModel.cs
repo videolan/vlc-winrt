@@ -539,10 +539,10 @@ namespace VLC_WinRT.ViewModels
                 {
                     CurrentAudioTrack = null;
                     CurrentSubtitle = null;
-                    OnPropertyChanged("AudioTracks");
-                    OnPropertyChanged("Subtitles");
-                    OnPropertyChanged("CurrentAudioTrack");
-                    OnPropertyChanged("CurrentSubtitle");
+                    OnPropertyChanged(nameof(AudioTracks));
+                    OnPropertyChanged(nameof(Subtitles));
+                    OnPropertyChanged(nameof(CurrentAudioTrack));
+                    OnPropertyChanged(nameof(CurrentSubtitle));
                 });
             }
             else if (mediaService is MFService)
