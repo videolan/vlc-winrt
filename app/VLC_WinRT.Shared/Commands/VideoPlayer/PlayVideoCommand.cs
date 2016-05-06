@@ -48,7 +48,7 @@ namespace VLC_WinRT.Commands.VideoPlayer
                 // TODO: If user selectes a video from their favoites, and it has been moved or deleted, we should ask them if we want to remove it from their list
                 await videoVm.Play();
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
                 // TODO: Enhance error handling
                 // TODO: Remove hardcoded English
