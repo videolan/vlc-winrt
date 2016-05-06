@@ -252,21 +252,19 @@ namespace VLC_WinRT
 #if WINDOWS_PHONE_APP
             await StatusBarHelper.Initialize();
 #endif
-            await Task.Run(async () =>
-            {
-                Locator.MediaLibrary.DropTablesIfNeeded();
-                Locator.MediaLibrary.DropTablesIfNeeded();
-                await Task.Factory.StartNew(async () => await Locator.MediaLibrary.Initialize()).ConfigureAwait(false);
-                await Task.Factory.StartNew(async () => await Locator.MediaLibrary.Initialize()).ConfigureAwait(false);
-                await CortanaHelper.Initialize();
-            });
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
                 App.SplitShell.FooterContent = new CommandBarBottom();
+            }).ConfigureAwait(false);
+            await Task.Run(async () =>
+            {
+                Locator.MediaLibrary.DropTablesIfNeeded();
+                await Task.Factory.StartNew(async () => await Locator.MediaLibrary.Initialize()).ConfigureAwait(false);
+                await Task.Factory.StartNew(async () => await CortanaHelper.Initialize().ConfigureAwait(false));
             });
         }
-        
+
         public static void SetLanguage()
         {
             var language = SettingsViewModel.GetSelectedLanguage();
