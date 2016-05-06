@@ -9,7 +9,7 @@ using VLC_WinRT.Helpers;
 
 namespace VLC_WinRT.Views.UserControls
 {
-    public sealed partial class BottomMiniPlayer : CommandBar
+    public sealed partial class BottomMiniPlayer : UserControl
     {
         public BottomMiniPlayer()
         {

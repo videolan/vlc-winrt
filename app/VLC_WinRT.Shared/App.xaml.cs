@@ -33,6 +33,7 @@ using VLC_WinRT.ViewModels.Settings;
 using WinRTXamlToolkit.IO.Serialization;
 using VLC_WinRT.Helpers.VideoLibrary;
 using Windows.System.Threading;
+using VLC_WinRT.UI.Legacy.Views.UserControls;
 
 namespace VLC_WinRT
 {
@@ -259,7 +260,11 @@ namespace VLC_WinRT
                 await Task.Factory.StartNew(async () => await Locator.MediaLibrary.Initialize()).ConfigureAwait(false);
                 await CortanaHelper.Initialize();
             });
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.NavigationService.Go(Locator.SettingsVM.HomePage));
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
+                App.SplitShell.FooterContent = new CommandBarBottom();
+            });
         }
         
         public static void SetLanguage()
