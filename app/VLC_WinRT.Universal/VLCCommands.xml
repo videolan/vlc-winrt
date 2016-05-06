@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="en-us" Name="VlcCommandSet_en-us">
+    <AppName> VLC</AppName>
+    <Example> Play some music </Example>
+
+    <Command Name="playArtist">
+      <Example> Play Taylor Swift </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> play [songs] [by] {artistName} [songs]</ListenFor>
+      <Feedback> Playing {artistName} </Feedback>
+      <Navigate />
+    </Command>
+
+    <Command Name="showArtist">
+      <Example> Show Kanye West </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> show [songs] [by] {artistName} [songs]</ListenFor>
+      <Feedback> Showing {artistName} songs </Feedback>
+      <Navigate />
+    </Command>
+
+    <Command Name="playSongByArtist">
+      <Example> Play Monster by Rihanna </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> play {songName} by {artistName} </ListenFor>
+      <Feedback> Playing {songName} by {artistName} </Feedback>
+      <Navigate />
+    </Command>
+
+    <Command Name="shuffleLibrary">
+      <Example> Shuffle music library </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> play music randomly </ListenFor>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> shuffle my music </ListenFor>
+      <Feedback> Playing your music randomly </Feedback>
+      <Navigate />
+    </Command>    
+    
+    <!-- create playlist 
+    continue the last one
+    play me a song (random)
+    play something like rock
+    -->
+    <PhraseList Label="artistName"/>
+    <PhraseList Label="songName"/>
+  </CommandSet>
+</VoiceCommands>
