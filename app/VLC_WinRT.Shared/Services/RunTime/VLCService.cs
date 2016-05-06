@@ -37,16 +37,11 @@ namespace VLC_WinRT.Services.RunTime
         public event Action OnEndReached;
         public event Action<int> OnBuffering;
 
-        public TaskCompletionSource<bool> PlayerInstanceReady { get; set; }
+        public TaskCompletionSource<bool> PlayerInstanceReady { get; set; } = new TaskCompletionSource<bool>();
 
         public Instance Instance { get; private set; }
         public MediaPlayer MediaPlayer { get; private set; }
-
-        public VLCService()
-        {
-            PlayerInstanceReady = new TaskCompletionSource<bool>();
-        }
-
+        
         public Task Initialize(object o = null)
         {
             return DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
@@ -76,6 +71,11 @@ namespace VLC_WinRT.Services.RunTime
                 }
                 PlayerInstanceReady.TrySetResult(Instance != null);
             });
+        }
+
+        public void SetNullMediaPlayer()
+        {
+            MediaPlayer = null;
         }
 
         public async Task SetMediaFile(IVLCMedia media)
@@ -113,6 +113,7 @@ namespace VLC_WinRT.Services.RunTime
             em.OnLengthChanged += em_OnLengthChanged;
         }
 
+        #region events
         private void EmOnOnBuffering(float param0)
         {
             OnBuffering?.Invoke((int)param0);
@@ -139,16 +140,8 @@ namespace VLC_WinRT.Services.RunTime
             MediaFailed?.Invoke(this, new EventArgs());
         }
 
-        public void SetAudioDelay(long delay)
-        {
-            MediaPlayer.setAudioDelay(delay);
-        }
-
-        public void SetSpuDelay(long delay)
-        {
-            MediaPlayer.setSpuDelay(delay);
-        }
-
+        #endregion
+        #region file meta info
         public async Task<string> GetToken(string filePath)
         {
             if (string.IsNullOrEmpty(filePath)) return null;
@@ -272,6 +265,18 @@ namespace VLC_WinRT.Services.RunTime
             var durationLong = media.duration();
             return TimeSpan.FromMilliseconds(durationLong);
         }
+        #endregion
+        #region playback actions
+        public void SetAudioDelay(long delay)
+        {
+            MediaPlayer.setAudioDelay(delay);
+        }
+
+        public void SetSpuDelay(long delay)
+        {
+            MediaPlayer.setSpuDelay(delay);
+        }
+
 
         public void Play()
         {
@@ -293,10 +298,6 @@ namespace VLC_WinRT.Services.RunTime
             MediaPlayer?.stop();
         }
 
-        public void SetNullMediaPlayer()
-        {
-            MediaPlayer = null;
-        }
 
         public void FastForward()
         {
@@ -383,5 +384,44 @@ namespace VLC_WinRT.Services.RunTime
         {
             Instance?.UpdateSize(x, y);
         }
+        #endregion
+        #region Service Discoverer
+        public event Action<Media> OnSDItemAdded;
+        public async Task<bool> InitDiscoverer()
+        {
+            if (Instance == null)
+            {
+                await Initialize();
+            }
+            await PlayerInstanceReady.Task;
+            MediaDiscoverer discoverer = new MediaDiscoverer(Instance, "smb");
+            var mediaList = discoverer.mediaList();
+            if (mediaList == null)
+                return false;
+
+            var eventManager = mediaList.eventManager();
+            eventManager.onItemAdded += EventManager_onItemAdded;
+            discoverer.start();
+
+            return true;
+        }
+
+        void DiscoverMediaList(Media media)
+        {
+            var items = media.subItems();
+            var em = items.eventManager();
+
+            em.onItemAdded += EventManager_onItemAdded;
+            
+        }
+        
+        private void EventManager_onItemAdded(Media __param0, int __param1)
+        {
+            __param0.parseWithOptions(ParseFlags.FetchLocal | ParseFlags.FetchNetwork | ParseFlags.Local | ParseFlags.Network);
+            Debug.WriteLine(__param0.meta(MediaMeta.Title));
+            OnSDItemAdded?.Invoke(__param0);
+        }
+
+        #endregion
     }
 }

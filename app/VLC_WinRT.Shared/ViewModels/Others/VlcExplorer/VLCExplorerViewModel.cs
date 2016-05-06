@@ -109,6 +109,13 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 #endif
             FileExplorerVisibility = Visibility.Collapsed;
             RootFoldersVisibility = Visibility.Visible;
+            Task.Run(async () =>
+            {
+                if (await Locator.VLCService.InitDiscoverer())
+                {
+                    Locator.VLCService.OnSDItemAdded += VLCService_OnSDItemAdded;
+                }
+            });
         }
 
         public void Dispose()
@@ -191,6 +198,10 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             });
         }
 #endif
+        private void VLCService_OnSDItemAdded(libVLCX.Media media)
+        {
+
+        }
 
         async Task AddFolder(FileExplorerViewModel fileEx)
         {
