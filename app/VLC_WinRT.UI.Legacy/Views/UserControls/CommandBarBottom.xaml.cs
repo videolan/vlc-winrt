@@ -8,6 +8,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 namespace VLC_WinRT.UI.Legacy.Views.UserControls
 {
@@ -19,6 +20,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             this.Loaded += CommandBarBottom_Loaded;
         }
 
+        #region init
         private void CommandBarBottom_Loaded(object sender, RoutedEventArgs e)
         {
             UpdatePlayerVisibility();
@@ -32,7 +34,9 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
                 this.MiniPlayerVisibility = Locator.MusicPlayerVM.IsMiniPlayerVisible;
             }
         }
+        #endregion
 
+        #region properties
         public Visibility MiniPlayerVisibility
         {
             get { return (Visibility)GetValue(MiniPlayerVisibilityProperty); }
@@ -64,5 +68,14 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
                 MiniPlayerVisibility == Visibility.Visible ? 
                     AppBarClosedDisplayMode.Compact : AppBarClosedDisplayMode.Minimal;
         }
+
+        #endregion
+
+        #region interactions
+        private void RootMiniPlayer_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Locator.MusicPlayerVM.GoToMusicPlayerPage.Execute(null);
+        }
+        #endregion
     }
 }

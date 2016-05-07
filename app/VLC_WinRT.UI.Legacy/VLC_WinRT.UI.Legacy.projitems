@@ -146,9 +146,6 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\ArtistHorizontalTemplate.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\BottomMiniPlayer.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\BufferingControl.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -375,9 +372,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\ArtistHorizontalTemplate.xaml.cs">
       <DependentUpon>ArtistHorizontalTemplate.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\BottomMiniPlayer.xaml.cs">
-      <DependentUpon>BottomMiniPlayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\BufferingControl.xaml.cs">
       <DependentUpon>BufferingControl.xaml</DependentUpon>

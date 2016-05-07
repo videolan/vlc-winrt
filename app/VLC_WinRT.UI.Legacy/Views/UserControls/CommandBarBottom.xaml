@@ -15,10 +15,52 @@
             DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
             x:Name="RootCommandBar">
     <CommandBar.Content>
-        <StackPanel>
-            <userControls:BottomMiniPlayer Height="{ThemeResource AppBarThemeCompactHeight}" />
-            <userControl:SliderControlHorizontal Margin="{StaticResource FrameMarginVertical}" />
-        </StackPanel>
+        <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Button x:Name="NowPlayingArtistGrid"
+                    Height="{ThemeResource AppBarThemeCompactHeight}"
+                    MinWidth="230"
+                    Background="Transparent"
+                    Tapped="RootMiniPlayer_Tapped"
+                    Style="{StaticResource GrayedBackgroundButtonStyle}">
+                <Grid Margin="{StaticResource FrameMarginRight}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="12" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0"
+                           Grid.RowSpan="2"
+                           DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+                           Source="{Binding CurrentAlbum.AlbumImage}"
+                           Stretch="UniformToFill"
+                           Tapped="RootMiniPlayer_Tapped" />
+                    <TextBlock Grid.Column="2"
+                               Text="{Binding CurrentTrack.Name}"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"
+                               FontWeight="SemiBold"
+                               FontSize="15"
+                               VerticalAlignment="Bottom" />
+                    <TextBlock Grid.Column="2"
+                               Grid.Row="1"
+                               Text="{Binding CurrentTrack.ArtistName}"
+                               TextWrapping="NoWrap"
+                               FontWeight="SemiLight"
+                               TextTrimming="CharacterEllipsis"
+                               FontSize="13" />
+                </Grid>
+            </Button>
+            <userControl:SliderControlHorizontal Grid.Row="1"
+                                                 Margin="{StaticResource FrameMarginVertical}" />
+        </Grid>
     </CommandBar.Content>
     <CommandBar.PrimaryCommands>
         <AppBarButton x:Name="PlayPreviousButton"
