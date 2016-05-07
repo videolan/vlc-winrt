@@ -4,6 +4,7 @@
              xmlns:local="using:VLC_WinRT.Views.MainPages.MusicPanes.MusicPanesControls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:triggers="using:WinRT.Triggers"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -17,10 +18,16 @@
                   Height="40"
                   DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                   ItemsSource="{Binding AlbumsOrderTypeCollection}"
-                  SelectedItem="{Binding AlbumsOrderType, Mode=TwoWay}"
+                  SelectedItem="{Binding AlbumsOrderType}"
                   DropDownOpened="ComboBox_OnDropDownOpened"
                   DropDownClosed="ComboBox_OnDropDownClosed"
                   Style="{StaticResource VLCLightComboBox}">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="SelectionChanged">
+                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.SetAlbumViewOrder}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Margin="0,0,6,0"
