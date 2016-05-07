@@ -5,16 +5,104 @@
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:userControls="using:VLC_WinRT.Views.UserControls"
+            xmlns:userControl="using:VLC_WinRT.UI.Legacy.Views.UserControls"
             mc:Ignorable="d"
             d:DesignHeight="300"
             d:DesignWidth="400"
             RequestedTheme="Dark"
-            Background="{ThemeResource TranslucentMainColor}">
+            Background="{ThemeResource TranslucentMainColor}"
+            Style="{StaticResource VLCCommandBar}"
+            DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+            x:Name="RootCommandBar">
     <CommandBar.Content>
-        <Grid Background="Red"
-              Height="40"
-              Width="60">
-            <userControls:BottomMiniPlayer />
-        </Grid>
+        <StackPanel>
+            <userControls:BottomMiniPlayer Height="{ThemeResource AppBarThemeCompactHeight}" />
+            <userControl:SliderControlHorizontal Margin="{StaticResource FrameMarginVertical}" />
+        </StackPanel>
     </CommandBar.Content>
+    <CommandBar.PrimaryCommands>
+        <AppBarButton x:Name="PlayPreviousButton"
+                      Command="{Binding PlayPreviousCommand}"
+                      IsEnabled="{Binding TrackCollection.CanGoPrevious}"
+                      IsCompact="True">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource PreviousSymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <AppBarButton x:Name="PlayButton"
+                      Command="{Binding PlayOrPauseCommand}"
+                      IsCompact="True"
+                      Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource PlaySymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <AppBarButton x:Name="PauseButton"
+                      Command="{Binding PlayOrPauseCommand}"
+                      IsCompact="True"
+                      Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource PauseSymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <AppBarButton x:Name="PlayNextButton"
+                      Command="{Binding PlayNextCommand}"
+                      IsEnabled="{Binding TrackCollection.CanGoNext}"
+                      IsCompact="True">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource SkipNextSymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <AppBarToggleButton x:Name="ShuffleButton"
+                            Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.Shuffle}"
+                            IsChecked="{Binding TrackCollection.IsShuffled, Mode=TwoWay}"
+                            IsCompact="True">
+            <AppBarToggleButton.Icon>
+                <FontIcon Glyph="{StaticResource ShuffleSymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarToggleButton.Icon>
+        </AppBarToggleButton>
+        <AppBarToggleButton x:Name="RepeatButton"
+                            IsChecked="{Binding TrackCollection.Repeat, Mode=TwoWay}"
+                            IsCompact="True">
+            <AppBarToggleButton.Icon>
+                <FontIcon Glyph="{StaticResource RefreshSymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarToggleButton.Icon>
+        </AppBarToggleButton>
+    </CommandBar.PrimaryCommands>
+    <CommandBar.SecondaryCommands>
+        <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=Settings}"
+                      Command="{Binding GoToSettingsPageCommand}"
+                      Style="{StaticResource AppBarTextButtonStyle}"
+                      Width="{Binding ElementName=RootCommandBar, Path=CommandBarTemplateSettings.OverflowContentMinWidth}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource SettingsSymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <AppBarButton x:Name="ShuffleMiniButton"
+                      Label="{Binding Source={StaticResource Strings}, Path=Shuffle}"
+                      Style="{StaticResource AppBarTextButtonStyle}"
+                      Width="{Binding ElementName=RootCommandBar, Path=CommandBarTemplateSettings.OverflowContentMinWidth}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource ShuffleSymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <AppBarButton x:Name="MiniWindowButton"
+                      Label="miniplayer"
+                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.CreateMiniPlayerView}"
+                      Style="{StaticResource AppBarTextButtonStyle}"
+                      Width="{Binding ElementName=RootCommandBar, Path=CommandBarTemplateSettings.OverflowContentMinWidth}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource ReduceWindow}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+    </CommandBar.SecondaryCommands>
 </CommandBar>

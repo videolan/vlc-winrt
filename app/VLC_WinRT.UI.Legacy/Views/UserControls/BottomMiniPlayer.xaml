@@ -6,389 +6,46 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:musicNowPlayingControls="using:VLC_WinRT.Views.MusicPages.MusicNowPlayingControls"
              xmlns:userControls="using:VLC_WinRT.UI.Legacy.Views.UserControls"
-             mc:Ignorable="d"
-             d:DesignHeight="300"
-             d:DesignWidth="400"
-             DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-             Visibility="{Binding IsMiniPlayerVisible}">
-    <Grid x:Name="RootGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <userControls:SliderControlHorizontal x:Name="SliderControl"
-                                              Grid.Row="0"
-                                              VerticalAlignment="Center" />
-        <Grid Grid.Row="0">
+             mc:Ignorable="d">
+    <Button x:Name="NowPlayingArtistGrid"
+            Grid.Row="0"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            MinWidth="230"
+            Background="Transparent"
+            DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+            Tapped="RootMiniPlayer_Tapped"
+            Style="{StaticResource GrayedBackgroundButtonStyle}">
+        <Grid Margin="{StaticResource FrameMarginRight}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="12" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button x:Name="NowPlayingArtistGrid"
-                    Grid.Row="0"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Left"
-                    MinWidth="230"
-                    Background="Transparent"
-                    DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-                    Tapped="RootMiniPlayer_Tapped"
-                    Style="{StaticResource GrayedBackgroundButtonStyle}">
-                <Grid Margin="{StaticResource FrameMarginRight}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="12" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Image Grid.Row="0"
-                           Grid.RowSpan="2"
-                           DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-                           Source="{Binding CurrentAlbum.AlbumImage}"
-                           Stretch="UniformToFill"
-                           Tapped="RootMiniPlayer_Tapped" />
-                    <TextBlock Grid.Column="2"
-                               Text="{Binding CurrentTrack.Name}"
-                               TextWrapping="NoWrap"
-                               TextTrimming="CharacterEllipsis"
-                               FontWeight="SemiBold"
-                               FontSize="15"
-                               VerticalAlignment="Bottom" />
-                    <TextBlock Grid.Column="2"
-                               Grid.Row="1"
-                               Text="{Binding CurrentTrack.ArtistName}"
-                               TextWrapping="NoWrap"
-                               FontWeight="SemiLight"
-                               TextTrimming="CharacterEllipsis"
-                               FontSize="13" />
-                </Grid>
-            </Button>
-            <Grid Grid.Column="1"
-                  HorizontalAlignment="Right"
-                  DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Button x:Name="PreviousButton"
-                        Grid.Column="0"
-                        Margin="6,0,6,0"
-                        Style="{StaticResource MiniPlayerButtons}"
-                        Command="{Binding PlayPreviousCommand}"
-                        IsEnabled="{Binding TrackCollection.CanGoPrevious}">
-                    <FontIcon x:Name="PreviousIcon"
-                              Glyph="{StaticResource PreviousSymbol}"
-                              FontFamily="{StaticResource VLCFont}" />
-                </Button>
-                <Grid x:Name="PlayPauseGrid"
-                      Grid.Column="1"
-                      VerticalAlignment="Center"
-                      Margin="0,0,6,0">
-                    <Button Style="{StaticResource MiniPlayerButtons}"
-                            HorizontalAlignment="Left"
-                            Command="{Binding PlayOrPauseCommand}"
-                            Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
-                            Holding="PlayPauseHold">
-                        <FontIcon x:Name="PlayIcon"
-                                  Glyph="{StaticResource PlaySymbol}"
-                                  FontFamily="{StaticResource VLCFont}" />
-                    </Button>
-                    <Button Style="{StaticResource MiniPlayerButtons}"
-                            HorizontalAlignment="Left"
-                            Command="{Binding PlayOrPauseCommand}"
-                            Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            Holding="PlayPauseHold">
-                        <FontIcon x:Name="PauseIcon"
-                                  Glyph="{StaticResource PauseSymbol}"
-                                  FontFamily="{StaticResource VLCFont}" />
-                    </Button>
-                </Grid>
-                <Button x:Name="NextButton"
-                        Grid.Column="2"
-                        Style="{StaticResource MiniPlayerButtons}"
-                        Command="{Binding PlayNextCommand}"
-                        IsEnabled="{Binding TrackCollection.CanGoNext}"
-                        Margin="0,0,6,0">
-                    <FontIcon x:Name="NextIcon"
-                              Glyph="{StaticResource SkipNextSymbol}"
-                              FontFamily="{StaticResource VLCFont}" />
-                </Button>
-                <AppBarToggleButton x:Name="ShuffleButton"
-                                    Grid.Column="3"
-                                    Margin="0,6,0,0"
-                                    Style="{StaticResource MiniPlayerToggleButton}"
-                                    IsCompact="True"
-                                    IsChecked="{Binding TrackCollection.IsShuffled, Mode=TwoWay}"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Center"
-                                    Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.Shuffle}">
-                    <AppBarToggleButton.Icon>
-                        <FontIcon Glyph="{StaticResource ShuffleSymbol}"
-                                  FontFamily="{StaticResource VLCFont}"
-                                  x:Name="ShuffleFontIcon" />
-                    </AppBarToggleButton.Icon>
-                </AppBarToggleButton>
-                <AppBarToggleButton x:Name="RepeatButton"
-                                    Grid.Column="4"
-                                    Margin="0,6,0,0"
-                                    Style="{StaticResource MiniPlayerToggleButton}"
-                                    IsCompact="True"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Center"
-                                    IsChecked="{Binding TrackCollection.Repeat, Mode=TwoWay}">
-                    <AppBarToggleButton.Icon>
-                        <FontIcon Glyph="{StaticResource RefreshSymbol}"
-                                  FontFamily="{StaticResource VLCFont}"
-                                  x:Name="RepeatFontIcon" />
-                    </AppBarToggleButton.Icon>
-                </AppBarToggleButton>
-                <Button x:Name="ExpandWindowButton"
-                        Grid.Column="5"
-                        Style="{StaticResource MiniPlayerButtons}"
-                        Command="{Binding Source={StaticResource Locator}, Path=MainVM.CreateMiniPlayerView}"
-                        Margin="12,0,6,0">
-                    <FontIcon Glyph="{StaticResource ReduceWindow}"
-                              FontSize="22"
-                              FontFamily="{StaticResource VLCFont}" />
-                </Button>
-            </Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0"
+                   Grid.RowSpan="2"
+                   DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+                   Source="{Binding CurrentAlbum.AlbumImage}"
+                   Stretch="UniformToFill"
+                   Tapped="RootMiniPlayer_Tapped" />
+            <TextBlock Grid.Column="2"
+                       Text="{Binding CurrentTrack.Name}"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"
+                       FontWeight="SemiBold"
+                       FontSize="15"
+                       VerticalAlignment="Bottom" />
+            <TextBlock Grid.Column="2"
+                       Grid.Row="1"
+                       Text="{Binding CurrentTrack.ArtistName}"
+                       TextWrapping="NoWrap"
+                       FontWeight="SemiLight"
+                       TextTrimming="CharacterEllipsis"
+                       FontSize="13" />
         </Grid>
-
-
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="FullWindows">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpandWindowButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingArtistGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayPauseGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextIcon"
-                                                       Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="20" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PauseIcon"
-                                                       Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="20" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousIcon"
-                                                       Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="20" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayIcon"
-                                                       Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="20" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
-                                                       Storyboard.TargetProperty="HorizontalAlignment">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Center" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
-                                                       Storyboard.TargetProperty="Width">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="500" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Narrow">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpandWindowButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingArtistGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayPauseGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextIcon"
-                                                       Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="20" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PauseIcon"
-                                                       Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="20" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousIcon"
-                                                       Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="20" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayIcon"
-                                                       Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="20" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="ExtraNarrow">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpandWindowButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingArtistGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayPauseGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ShuffleButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RepeatButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextIcon"
-                                                       Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="28" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PauseIcon"
-                                                       Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="28" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousIcon"
-                                                       Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="28" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayIcon"
-                                                       Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="28" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Minimum">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpandWindowButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingArtistGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayPauseGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ShuffleButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RepeatButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-    </Grid>
+    </Button>
 </UserControl>
