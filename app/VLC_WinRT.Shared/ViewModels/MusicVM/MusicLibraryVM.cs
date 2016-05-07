@@ -240,6 +240,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public StartTrackMetaEdit StartTrackMetaEdit { get; } = new StartTrackMetaEdit();
 
+        public SetAlbumViewOrderCommand SetAlbumViewOrder => new SetAlbumViewOrderCommand();
+
         public ArtistItem FocusOnAnArtist // Music Flow recommandation
         {
             get { return _focusOnAnArtist; }

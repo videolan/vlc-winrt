@@ -356,7 +356,7 @@ namespace VLC_WinRT.ViewModels.Settings
         {
             get
             {
-                var albumsOrderType = ApplicationSettingsHelper.ReadSettingsValue("AlbumsOrderType", false);
+                var albumsOrderType = ApplicationSettingsHelper.ReadSettingsValue(nameof(AlbumsOrderType), false);
                 if (albumsOrderType == null)
                 {
                     _albumsOrderType = OrderType.ByAlbum;
@@ -369,7 +369,7 @@ namespace VLC_WinRT.ViewModels.Settings
             }
             set
             {
-                ApplicationSettingsHelper.SaveSettingsValue("AlbumsOrderType", (int)value, false);
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(AlbumsOrderType), (int)value, false);
                 if ((int)value == 0 || value != _albumsOrderType)
                     Task.Run(() => Locator.MusicLibraryVM.OrderAlbums()).ConfigureAwait(false);
                 SetProperty(ref _albumsOrderType, value);
