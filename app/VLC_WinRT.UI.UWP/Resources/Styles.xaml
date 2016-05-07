@@ -1879,14 +1879,6 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Ellipse Height="60"
-                                 Width="60"
-                                 Stretch="Fill"
-                                 Margin="8,16,0,0">
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="ms-appx:///Assets/Icons/circle-fab.png" />
-                            </Ellipse.Fill>
-                        </Ellipse>
                         <Ellipse x:Name="Ellipse"
                                  Height="60"
                                  Width="60"
