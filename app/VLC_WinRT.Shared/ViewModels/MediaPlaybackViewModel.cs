@@ -772,6 +772,16 @@ namespace VLC_WinRT.ViewModels
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                 {
+                    if (!Locator.MainVM.IsInternet && IsStream)
+                    {
+#if WINDOWS_UWP
+                        await DialogHelper.DisplayDialog(Strings.ConnectionLostPleaseCheck, Strings.Sorry);
+#else
+                        var lostStreamDialog = new MessageDialog(Strings.ConnectionLostPleaseCheck, Strings.Sorry);
+                        await lostStreamDialog.ShowAsyncQueue();
+#endif
+                    }
+
 #if WINDOWS_UWP
                     await DialogHelper.DisplayDialog(Strings.MediaCantBeRead, Strings.Sorry);
 #else
