@@ -16,6 +16,7 @@ using Windows.Storage.AccessCache;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Utils;
+using System.Diagnostics;
 
 namespace VLC_WinRT.Commands.VideoPlayer
 {
@@ -29,7 +30,6 @@ namespace VLC_WinRT.Commands.VideoPlayer
             }
             else
             {
-                String error;
                 try
                 {
                     App.OpenFilePickerReason = OpenFilePickerReason.OnOpeningSubtitle;
@@ -62,10 +62,8 @@ namespace VLC_WinRT.Commands.VideoPlayer
                 }
                 catch (Exception exception)
                 {
-                    error = exception.ToString();
+                    Debug.WriteLine("Failed to get the subtitle");
                 }
-                var dialog = new MessageDialog(error);
-                await dialog.ShowAsync();
             }
         }
 
