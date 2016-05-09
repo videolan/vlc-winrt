@@ -23,9 +23,11 @@ namespace VLC_WinRT.Helpers.UIHelpers
             await dialog.ShowAsync();
         }
 
-        public static async Task DisplayDialog(string title, string desc, Dialog d, uint questionType, string cancel, string action1, string action2)
+        public static async Task DisplayDialog(string title, string desc, Dialog d, Question questionType, string cancel, string action1, string action2)
         {
-
+            var dialog = new VLCDialog();
+            dialog.Initialize(title, desc, d, questionType, cancel, action1, action2);
+            await dialog.ShowAsync();
         }
     }
 }

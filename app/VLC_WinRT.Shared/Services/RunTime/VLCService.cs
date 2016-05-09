@@ -24,6 +24,7 @@ using libVLCX;
 using VLC_WinRT.Utils;
 using MediaPlayer = libVLCX.MediaPlayer;
 using VLC_WinRT.ViewModels;
+using VLC_WinRT.Helpers.UIHelpers;
 
 namespace VLC_WinRT.Services.RunTime
 {
@@ -68,6 +69,27 @@ namespace VLC_WinRT.Services.RunTime
                 {
                     LogHelper.Log("VLC Service : Couldn't create VLC Instance\n" + StringsHelper.ExceptionToString(e));
                     ToastHelper.Basic(Strings.FailStartVLCEngine);
+                }
+                finally
+                {
+                    Instance.setDialogHandlers(
+                        async (title, text) =>
+                        {
+                            await DialogHelper.DisplayDialog(title, text);
+                        },
+                        async (dialog, title, text, defaultUserName, askToStore) =>
+                        {
+                            await DialogHelper.DisplayDialog(title, text, dialog, defaultUserName, askToStore);
+                        },
+
+                        async (dialog, title, text, qType, cancel, action1, action2) =>
+                        {
+                            await DialogHelper.DisplayDialog(title, text, dialog, qType, cancel, action1, action2);
+                        },
+
+                        (dialog, title, text, intermidiate, position, cancel) => { },
+                        (dialog) => dialog.dismiss(),
+                        (dialog, position, text) => { });
                 }
                 PlayerInstanceReady.TrySetResult(Instance != null);
             });

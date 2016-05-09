@@ -43,13 +43,13 @@ namespace VLC_WinRT.UI.UWP.Views.UserControls.Shell
             this.PrimaryButtonText = "Submit";
             this.PrimaryButtonClick += (d, eventArgs) =>
             {
-                dialog.postLogin(TextBox1.Text, PasswordBox1.Password, StoreToggleSwitch.IsOn);
+                dialog?.postLogin(TextBox1.Text, PasswordBox1.Password, StoreToggleSwitch.IsOn);
             };
 
             this.SecondaryButtonText = "Cancel";
             this.SecondaryButtonClick += (d, eventArgs) =>
             {
-                dialog.dismiss();
+                dialog?.dismiss();
             };
         }
 
