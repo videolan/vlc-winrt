@@ -71,7 +71,7 @@ HRESULT MMDeviceLocator::ActivateCompleted(IActivateAudioInterfaceAsyncOperation
 			AudioClientProperties props = AudioClientProperties{
 				sizeof(props),
 				FALSE,
-				AudioCategory_Media,
+				(AUDIO_STREAM_CATEGORY)2,
 				AUDCLNT_STREAMOPTIONS_NONE
 			};
 #endif
