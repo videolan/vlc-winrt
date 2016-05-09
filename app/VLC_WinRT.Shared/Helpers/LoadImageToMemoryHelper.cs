@@ -121,7 +121,12 @@ namespace VLC_WinRT.Helpers
             {
                 if (fileExists)
                 {
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => item.VideoImage = new BitmapImage(new Uri(item.PictureUri)));
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                    {
+                        if (string.IsNullOrEmpty(item.PictureUri))
+                            return;
+                        item.VideoImage = new BitmapImage(new Uri(item.PictureUri));
+                    });
 
                     Debug.WriteLine($"Artist picture set : {item.Name}");
                 }

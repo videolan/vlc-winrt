@@ -12,7 +12,7 @@ namespace VLC_WinRT.Model
         TimeSpan Duration { get; set; }
         StorageFile File { get; }
         bool IsCurrentPlaying { get; set; }
-        Tuple<FromType, string> GetMrlAndFromType();
+        Tuple<FromType, string> GetMrlAndFromType(bool preferToken = false);
         string Token { get; set; }
     }
 }

@@ -183,7 +183,7 @@ namespace VLC_WinRT.Model.Music
             set { SetProperty(ref _file, value); }
         }
 
-        public Tuple<FromType, string> GetMrlAndFromType()
+        public Tuple<FromType, string> GetMrlAndFromType(bool preferToken = false)
         {
             if (!string.IsNullOrEmpty(_token))
             {

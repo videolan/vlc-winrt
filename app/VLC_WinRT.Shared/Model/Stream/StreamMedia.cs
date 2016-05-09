@@ -67,7 +67,7 @@ namespace VLC_WinRT.Model.Stream
             Path = mrl;
         }
 
-        public Tuple<FromType, string> GetMrlAndFromType()
+        public Tuple<FromType, string> GetMrlAndFromType(bool preferToken = false)
         {
             // Using a Mrl
             // FromLocation : 1

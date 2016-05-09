@@ -20,8 +20,6 @@ using VLC_WinRT.ViewModels.Others;
 using VLC_WinRT.ViewModels.RemovableDevicesVM;
 using VLC_WinRT.ViewModels.Settings;
 using VLC_WinRT.ViewModels.VideoVM;
-using DesignTime = VLC_WinRT.Services.DesignTime;
-using ThumbnailService = VLC_WinRT.Services.RunTime.ThumbnailService;
 
 namespace VLC_WinRT.Utils
 {
@@ -37,44 +35,38 @@ namespace VLC_WinRT.Utils
             var builder = new ContainerBuilder();
 
             // Register View Models
-            if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
-            {
-                builder.RegisterType<DesignTime.ThumbnailService>().As<IThumbnailService>();
-            }
-            else
-            {
-                builder.RegisterType<MainVM>();
-                builder.RegisterType<MediaPlaybackViewModel>();
-                builder.RegisterType<MediaLibrary>();
 
-                builder.RegisterType<MusicLibraryVM>();
-                builder.RegisterType<MusicPlayerVM>();
-                builder.RegisterType<VideoLibraryVM>();
-                builder.RegisterType<VideoPlayerVM>();
+            builder.RegisterType<MainVM>();
+            builder.RegisterType<MediaPlaybackViewModel>();
+            builder.RegisterType<MediaLibrary>();
 
-                builder.RegisterType<StreamsViewModel>();
-                builder.RegisterType<SettingsViewModel>();
-                builder.RegisterType<SearchViewModel>();
+            builder.RegisterType<MusicLibraryVM>();
+            builder.RegisterType<MusicPlayerVM>();
+            builder.RegisterType<VideoLibraryVM>();
+            builder.RegisterType<VideoPlayerVM>();
 
-                builder.RegisterType<VLCExplorerViewModel>();
+            builder.RegisterType<StreamsViewModel>();
+            builder.RegisterType<SettingsViewModel>();
+            builder.RegisterType<SearchViewModel>();
 
-                // Register Services
-                builder.RegisterType<MetroSlideshow>();
-                builder.RegisterType<VLCService>();
+            builder.RegisterType<VLCExplorerViewModel>();
+
+            // Register Services
+            builder.RegisterType<MetroSlideshow>();
+            builder.RegisterType<VLCService>();
 #if WINDOWS_PHONE_APP
                 builder.RegisterType<BGPlayerService>();
 #endif
-                builder.RegisterType<NavigationService>();
-                builder.RegisterType<MusicMetaService>();
-                builder.RegisterType<VideoMetaService>();
+            builder.RegisterType<NavigationService>();
+            builder.RegisterType<MusicMetaService>();
+            builder.RegisterType<VideoMetaService>();
 
-                builder.RegisterType<KeyboardListenerService>();
-                builder.RegisterType<NetworkListenerService>();
-                builder.RegisterType<MouseService>();
-                builder.RegisterType<ExternalDeviceService>().SingleInstance();
-                builder.RegisterType<SpecialThanksViewModel>();
-                builder.RegisterType<ThumbnailService>().As<IThumbnailService>();
-            }
+            builder.RegisterType<KeyboardListenerService>();
+            builder.RegisterType<NetworkListenerService>();
+            builder.RegisterType<MouseService>();
+            builder.RegisterType<ExternalDeviceService>().SingleInstance();
+            builder.RegisterType<SpecialThanksViewModel>();
+            builder.RegisterType<ThumbnailService>().SingleInstance();
 
             return builder.Build();
         }

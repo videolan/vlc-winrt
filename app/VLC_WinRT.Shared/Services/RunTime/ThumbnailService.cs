@@ -18,7 +18,7 @@ using libVLCX;
 
 namespace VLC_WinRT.Services.RunTime
 {
-    public class ThumbnailService : IThumbnailService, IDisposable
+    public class ThumbnailService : IDisposable
     {
         private Thumbnailer _thumbnailer => new Thumbnailer();
         private bool _disposed = false;
@@ -55,11 +55,12 @@ namespace VLC_WinRT.Services.RunTime
             _disposed = true;
         }
 
-        public async Task<PreparseResult> GetScreenshot(StorageFile file)
+        public async Task<PreparseResult> GetScreenshot(string token)
         {
-            if (file == null) return null;
-            string token = StorageApplicationPermissions.FutureAccessList.Add(file);
-            var res = await _thumbnailer.TakeScreenshot("winrt://" + token, 320, 200, 2500);
+            //if (file == null) return null;
+            //string token = StorageApplicationPermissions.FutureAccessList.Add(file);
+            //var res = await _thumbnailer.TakeScreenshot("winrt://" + token, 320, 200, 2500);
+            var res = await _thumbnailer.TakeScreenshot(token, 320, 200, 2500);
             return res;
         }
     }

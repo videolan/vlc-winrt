@@ -272,7 +272,7 @@ namespace VLC_WinRT.Model.Video
             if (_duration != TimeSpan.Zero) return;
             var media = Locator.VLCService.GetMediaFromPath(_filePath);
             var duration = Locator.VLCService.GetDuration(media);
-            if(duration == null || duration == TimeSpan.Zero)
+            if (duration == null || duration == TimeSpan.Zero)
             {
                 var mP = await File.Properties.GetVideoPropertiesAsync();
                 duration = mP.Duration;
@@ -284,14 +284,14 @@ namespace VLC_WinRT.Model.Video
             });
         }
 
-        public Tuple<FromType, string> GetMrlAndFromType()
+        public Tuple<FromType, string> GetMrlAndFromType(bool preferToken)
         {
             if (!string.IsNullOrEmpty(_token))
             {
                 // Using an already created token
                 return new Tuple<FromType, string>(FromType.FromLocation, "winrt://" + _token);
             }
-            if (File != null && string.IsNullOrEmpty(Path))
+            if (File != null && (string.IsNullOrEmpty(Path) || preferToken))
             {
                 // Using a Token
                 // FromLocation : 1
@@ -300,6 +300,22 @@ namespace VLC_WinRT.Model.Video
             if (!string.IsNullOrEmpty(Path))
                 return new Tuple<FromType, string>(FromType.FromPath, Path);
             return null;
+        }
+
+        public async Task<bool> LoadFileFromPath()
+        {
+            try
+            {
+                if (File == null)
+                {
+                    File = await StorageFile.GetFileFromPathAsync(Path);
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
         }
         #endregion
     }

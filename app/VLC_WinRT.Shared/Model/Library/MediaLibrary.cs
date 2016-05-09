@@ -24,6 +24,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Helpers.VideoLibrary;
 using VLC_WinRT.Model.Stream;
+using VLC_WinRT.Services.RunTime;
 
 namespace VLC_WinRT.Model.Library
 {
@@ -32,7 +33,7 @@ namespace VLC_WinRT.Model.Library
         #region properties
         private bool _alreadyIndexedOnce = false;
 
-        IThumbnailService ThumbsService => App.Container.Resolve<IThumbnailService>();
+        ThumbnailService ThumbsService => App.Container.Resolve<ThumbnailService>();
         #endregion
 
         #region databases
@@ -477,6 +478,9 @@ namespace VLC_WinRT.Model.Library
                 TvShow show = Shows.FirstOrDefault(x => x.ShowTitle == episode.ShowTitle);
                 if (show == null)
                 {
+                    // Generate a thumbnail for the show
+                    await episode.ResetVideoPicture();
+
                     show = new TvShow(episode.ShowTitle);
                     show.Episodes.Add(episode);
                     Shows.Add(show);
@@ -864,43 +868,58 @@ namespace VLC_WinRT.Model.Library
                 if (MemoryUsageHelper.PercentMemoryUsed() > MemoryUsageHelper.MaxRamForResourceIntensiveTasks)
                     return false;
 #endif
-                WriteableBitmap image = null;
-                StorageItemThumbnail thumb = null;
-                // If file is a mkv, we save the thumbnail in a VideoPic folder so we don't consume CPU and resources each launch
-                if (VLCFileExtensions.MFSupported.Contains(videoItem.Type.ToLower()))
+                var thumbnailTask = new TaskCompletionSource<bool>();
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                 {
-                    thumb = await ThumbsService.GetThumbnail(videoItem.File);
-                }
-                // If MF thumbnail generation failed or wasn't supported:
-                if (thumb == null)
-                {
-                    var res = await ThumbsService.GetScreenshot(videoItem.File);
-                    if (res == null)
-                        return true;
-                    image = res.Bitmap();
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => videoItem.Duration = TimeSpan.FromMilliseconds(res.Length()));
-                }
-                if (thumb != null || image != null)
-                {
-                    // RunAsync won't await on the lambda it receives, so we need to do it ourselves
-                    var tcs = new TaskCompletionSource<bool>();
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, async () =>
+                    WriteableBitmap image = null;
+                    StorageItemThumbnail thumb = null;
+                    // If file is a mkv, we save the thumbnail in a VideoPic folder so we don't consume CPU and resources each launch
+                    if (VLCFileExtensions.MFSupported.Contains(videoItem.Type.ToLower()))
                     {
-                        if (thumb != null)
+                        if (await videoItem.LoadFileFromPath())
+                            thumb = await ThumbsService.GetThumbnail(videoItem.File);
+                    }
+                    // If MF thumbnail generation failed or wasn't supported:
+                    if (thumb == null)
+                    {
+                        if (await videoItem.LoadFileFromPath() || !string.IsNullOrEmpty(videoItem.Token))
                         {
-                            image = new WriteableBitmap((int)thumb.OriginalWidth, (int)thumb.OriginalHeight);
-                            await image.SetSourceAsync(thumb);
+                            var res = await ThumbsService.GetScreenshot(videoItem.GetMrlAndFromType(true).Item2);
+                            if (res == null)
+                                return;
+                            image = res.Bitmap();
+                            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => videoItem.Duration = TimeSpan.FromMilliseconds(res.Length()));
                         }
-                        await DownloadAndSaveHelper.WriteableBitmapToStorageFile(image, videoItem.Id.ToString());
+                    }
+
+                    if (thumb != null || image != null)
+                    {
+                        // RunAsync won't await on the lambda it receives, so we need to do it ourselves
+                        var tcs = new TaskCompletionSource<bool>();
+                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, async () =>
+                        {
+                            if (thumb != null)
+                            {
+                                image = new WriteableBitmap((int)thumb.OriginalWidth, (int)thumb.OriginalHeight);
+                                await image.SetSourceAsync(thumb);
+                            }
+                            await DownloadAndSaveHelper.WriteableBitmapToStorageFile(image, videoItem.Id.ToString());
+                            videoItem.IsPictureLoaded = true;
+                            tcs.SetResult(true);
+                        });
+                        await tcs.Task;
+
                         videoItem.IsPictureLoaded = true;
-                        tcs.SetResult(true);
-                    });
-                    await tcs.Task;
-                }
-                videoItem.IsPictureLoaded = true;
-                await videoDatabase.Update(videoItem);
-                await videoItem.ResetVideoPicture();
-                return true;
+                        await videoDatabase.Update(videoItem);
+                        await videoItem.ResetVideoPicture();
+                        thumbnailTask.TrySetResult(true);
+                    }
+                    else
+                    {
+                        thumbnailTask.TrySetResult(false);
+                    }
+                });
+                return await thumbnailTask.Task;
             }
             catch (Exception ex)
             {
