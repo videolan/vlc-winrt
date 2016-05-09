@@ -36,7 +36,7 @@
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid ItemWidth="330"
-                                   ItemHeight="102"
+                                   ItemHeight="192"
                                    Orientation="Horizontal">
                         <ItemsWrapGrid.ChildrenTransitions>
                             <TransitionCollection>
