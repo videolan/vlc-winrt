@@ -115,7 +115,7 @@
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyleNoSelectCheck}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
-                        <triggers:InvokeCommandAction Command="{Binding RemovableDeviceClicked}"
+                        <triggers:InvokeCommandAction Command="{Binding RootFolderClicked}"
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>

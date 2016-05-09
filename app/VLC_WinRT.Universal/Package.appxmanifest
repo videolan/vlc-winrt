@@ -92,21 +92,13 @@
             </uap:SupportedFileTypes>
           </uap:FileTypeAssociation>
         </uap:Extension>
-        <uap:Extension Category="windows.protocol">
-          <uap:Protocol Name="vlc" DesiredView="useMore">
-            <uap:DisplayName>VLC</uap:DisplayName>
-          </uap:Protocol>
-        </uap:Extension>
-        <Extension Category="windows.backgroundTasks" EntryPoint="VLC_WinRT.App">
-          <BackgroundTasks>
-            <Task Type="audio" />
-          </BackgroundTasks>
-        </Extension>
       </Extensions>
     </Application>
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <Capability Name="privateNetworkClientServer" />
+    <Capability Name="internetClientServer" />
     <uap:Capability Name="musicLibrary" />
     <uap:Capability Name="videosLibrary" />
     <uap:Capability Name="removableStorage" />
