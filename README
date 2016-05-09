@@ -12,7 +12,7 @@ How to compile VLC for WinRT:
 
 You need:
 * Visual Studio 2015
-* Windows 8.1
+* Windows 8.1 for VLC WinRT 8.1 OR Windows 10 TH2 for VLC UWP
 
 If you are only on Windows, skip the step 0)
 
@@ -36,20 +36,15 @@ Run ./compile.sh and generate vlc.7z
 -----------------
 
 If you skipped step 0), take the most recent build, depending on your architecture.
-For Win32 version, builds are located in http://people.videolan.org/~jb/WinRT/
-For ARM version, builds are located in http://people.videolan.org/~hugo/
+- For x86 and 64 versions, builds are located in http://http://nightlies.videolan.org/build/winrt-i686/ 
+and http://nightlies.videolan.org/build/winrt-x86_64/ 
 
-Extract the libVLC contents from the archive to vlc/Windows/vlc-<platform>/<configuration>
+- For ARM version, builds are located in http://people.videolan.org/~hugo/
+
+Extract the libVLC contents from the archive to vlc/<os>/vlc-<platform>/<configuration>
+<os> is either Windows, Windows Phone or Universal (Universal *includes* W10M)
 <platform> is either ARM or x86
 <configuration>  is Debug or Release
-
-1a) Install Multilingual App Toolkit
-------------------------------------
-
-In order to open the solution, you must first install the Visual Studio Multilingual App Toolkit.
-If you don't, the solution will fail to load.
-
-You can download it at https://dev.windows.com/en-us/develop/multilingual-app-toolkit
 
 2) Build and package the front-end
 ----------------------------------
@@ -84,7 +79,7 @@ Finish
 
 4) Install libvlcpp
 -------------------
-"git submodule update --init" in the winrt/ folder.
+"git submodule update --init" in the vlc-winrt/ folder.
 
 4b) Alternately, if you wish to manually install:
 -------------------------------------------------
@@ -109,7 +104,7 @@ Enable-AppxDebug  9519ba58-7ad6-4c4e-97ed-bfc2135a0d19_1.0.0.0_x86__2c7ztm58ext6
  * Multilingual Toolkit for Visual Studio
 https://dev.windows.com/en-us/develop/multilingual-app-toolkit
 
- * SQLite for Windows 8.1 + SQlite for Windows Phone 8.1 + SQLite for Windows Universal
+ * SQLite libraries are available in VS -> Tools -> Extensions and Updates
 http://sqlite.org/download.html
 
 6) Build
