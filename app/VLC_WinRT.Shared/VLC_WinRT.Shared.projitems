@@ -132,7 +132,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Database\VideoDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ApplicationSettingsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AppViewHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\CortanaHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DeviceTypeHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DisplayHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DownloadAndSaveHelper.cs" />
@@ -150,7 +149,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StateTriggers\DeviceStateTrigger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StatusBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StringsHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ToastHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\UIHelpers\CortanaHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\UIHelpers\DialogHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\UIHelpers\ToastHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UpdateTileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoLibrary\TitleDecrapifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoLibrary\VideoLibraryManagement.cs" />
