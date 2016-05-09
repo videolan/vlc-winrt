@@ -53,6 +53,33 @@ namespace VLC_WinRT.UI.UWP.Views.UserControls.Shell
             };
         }
 
+        public void Initialize(string title, string desc, Dialog dialog, Question questionType, string cancel, string action1, string action2)
+        {
+            FillText(title, desc);
+
+            switch (questionType)
+            {
+                //case NORMAL:
+
+                //case WARNING:
+
+                //case CRITICAL:
+                default:
+                    break;
+            }
+
+            this.PrimaryButtonText = action1;
+            this.PrimaryButtonClick += (d, eventArgs) =>
+            {
+                dialog.postAction(1);
+            };
+            this.SecondaryButtonText = action2;
+            this.SecondaryButtonClick += (d, eventArgs) =>
+            {
+                dialog.postAction(2);
+            };
+        }
+
         private void FillText(string title, string desc)
         {
             TitleTextBlock.Text = title;
