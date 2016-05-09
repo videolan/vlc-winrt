@@ -13,6 +13,10 @@
                                               Height="180"
                                               Width="246"/>
     </DataTemplate>
+
+    <DataTemplate x:Key="ShowItemTemplate">
+        <userControls:ShowItemTemplate TVShow="{Binding}" />
+    </DataTemplate>
     
     <DataTemplate x:Key="PhoneShowTemplate">
         <Grid>

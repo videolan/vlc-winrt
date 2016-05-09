@@ -11,14 +11,6 @@
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
 
-    <Page.Resources>
-        <CollectionViewSource x:Key="ShowsGroupedByName"
-                              x:Name="ShowsGroupedByName"
-                              Source="{Binding Shows}"
-                              IsSourceGrouped="True"
-                              ItemsPath="Episodes" />
-    </Page.Resources>
-
     <Grid>
         <Grid.Transitions>
             <TransitionCollection>
@@ -26,8 +18,8 @@
             </TransitionCollection>
         </Grid.Transitions>
         <ScrollWatcher:ListViewScrollWatcher x:Name="EpisodesListView"
-                  ItemsSource="{Binding Source={StaticResource ShowsGroupedByName}}"
-                  ItemTemplate="{StaticResource PhoneShowTemplate}"
+                  ItemsSource="{Binding Shows}"
+                  ItemTemplate="{StaticResource ShowItemTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   IsItemClickEnabled="True"
                   SelectionMode="None">
@@ -38,20 +30,9 @@
                 </triggers:EventTrigger>
                 <triggers:EventTrigger EventName="ScrollDetected">
                     <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.ScrollDetectedCommand}"
-                                                    PassEventArgsToCommand="True" />
+                                                  PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
-            <ListView.GroupStyle>
-                <GroupStyle>
-                    <GroupStyle.HeaderTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding ShowTitle}"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       Foreground="{ThemeResource MainColor}" />
-                        </DataTemplate>
-                    </GroupStyle.HeaderTemplate>
-                </GroupStyle>
-            </ListView.GroupStyle>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid ItemWidth="330"
