@@ -45,6 +45,7 @@ using VLC_WinRT.Commands.VideoPlayer;
 using VLC_WinRT.Commands.VideoLibrary;
 using VLC_WinRT.SharedBackground.Database;
 using System.Linq;
+using VLC_WinRT.Helpers.UIHelpers;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -769,10 +770,10 @@ namespace VLC_WinRT.ViewModels
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                 {
-                    var md = new MessageDialog(Strings.MediaCantBeRead, Strings.Sorry);
 #if WINDOWS_UWP
-                    await md.ShowQueuedAsync();
+                    await DialogHelper.DisplayDialog(Strings.MediaCantBeRead, Strings.Sorry);
 #else
+                    var md = new MessageDialog(Strings.MediaCantBeRead, Strings.Sorry);
                     await md.ShowAsyncQueue();
 #endif
                     // ensure we call Stop so we unregister all events
