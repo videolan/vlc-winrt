@@ -1,4 +1,5 @@
-﻿using System;
+﻿using libVLCX;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Windows.Storage;
@@ -10,11 +11,11 @@ namespace VLC_WinRT.Model.FileExplorer
     public interface IVLCStorageItem
     {
         IStorageItem StorageItem { get; }
+        Media Media { get; }
         string Name { get; }
         string SizeHumanizedString { get; }
         bool SizeAvailable { get; }
         string LastModified { get; }
-        StorageItemThumbnail Thumbnail { get; }
 
     }
 }

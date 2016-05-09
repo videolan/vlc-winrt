@@ -7,12 +7,15 @@ using VLC_WinRT.Model.FileExplorer;
 using Windows.UI.Xaml.Media.Imaging;
 using VLC_WinRT.Utils;
 using WinRTXamlToolkit.IO.Extensions;
+using libVLCX;
 
 namespace VLC_WinRT.Model
 {
     public class VLCStorageFile : BindableBase, IVLCStorageItem
     {
         private StorageFile storageItem;
+        private Media media;
+
         private bool isLoading;
         private string name;
         private string lastModified;
@@ -23,6 +26,12 @@ namespace VLC_WinRT.Model
         {
             storageItem = folder;
             name = folder.Name;
+        }
+
+        public VLCStorageFile(Media media)
+        {
+            this.media = media;
+            this.name = media.meta(MediaMeta.Title);
         }
 
         async Task Initialize()
@@ -46,7 +55,6 @@ namespace VLC_WinRT.Model
                 OnPropertyChanged(nameof(SizeHumanizedString));
                 OnPropertyChanged(nameof(SizeAvailable));
             });
-            //var storage = await storageItem.GetThumbnailAsync(ThumbnailMode.ListView);
         }
 
         public string Name
@@ -71,10 +79,6 @@ namespace VLC_WinRT.Model
 
         public IStorageItem StorageItem => storageItem;
 
-        public StorageItemThumbnail Thumbnail
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
+        public Media Media => media;
     }
 }
