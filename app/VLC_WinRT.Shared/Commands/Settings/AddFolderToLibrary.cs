@@ -9,7 +9,8 @@ namespace VLC_WinRT.Commands.Settings
     {
         public override async void Execute(object parameter)
         {
-#if WINDOWS_APP
+#if WINDOWS_PHONE_APP
+#else
             KnownLibraryId id = (KnownLibraryId)parameter;
             var lib = await StorageLibrary.GetLibraryAsync(id);
             await lib.RequestAddFolderAsync();
