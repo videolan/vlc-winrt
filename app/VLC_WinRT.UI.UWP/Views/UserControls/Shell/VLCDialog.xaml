@@ -6,9 +6,10 @@
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                xmlns:userControls="using:VLC_WinRT.Views.UserControls"
                mc:Ignorable="d">
-    
+
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -22,12 +23,12 @@
             </Grid.ColumnDefinitions>
             <FontIcon Glyph="{StaticResource SettingsSymbol}"
                       FontFamily="{StaticResource VLCFont}" />
-            <TextBlock x:Name="Title"
+            <TextBlock x:Name="TitleTextBlock"
                        Grid.Column="2"
                        Text="This is the title"
                        Style="{StaticResource SubheaderTextBlockStyle}" />
         </Grid>
-        <TextBlock x:Name="Description"
+        <TextBlock x:Name="DescriptionTextBlock"
                    Grid.Row="1"
                    Text="My shitty description is so boring I could get the president of the Mars republic falling asleep"
                    Style="{StaticResource BodyTextBlockStyle}"
@@ -38,7 +39,8 @@
                                    PlaceholderText="{Binding Source={StaticResource Strings}, Path=Username}"
                                    Margin="{StaticResource FrameMarginTop}"
                                    MaxWidth="300"
-                                   HorizontalAlignment="Left"/>
+                                   HorizontalAlignment="Left"
+                                   Visibility="Collapsed" />
         <PasswordBox x:Name="PasswordBox1"
                      Grid.Row="3"
                      PlaceholderText="{Binding Source={StaticResource Strings}, Path=Password}"
@@ -47,7 +49,10 @@
                      MaxWidth="300"
                      HorizontalAlignment="Left"
                      GotFocus="PasswordBox1_GotFocus"
-                     LostFocus="PasswordBox1_LostFocus"/>
-
+                     LostFocus="PasswordBox1_LostFocus"
+                     Visibility="Collapsed" />
+        <ToggleSwitch x:Name="StoreToggleSwitch"
+                      Grid.Row="4"
+                      Visibility="Collapsed" />
     </Grid>
 </ContentDialog>
