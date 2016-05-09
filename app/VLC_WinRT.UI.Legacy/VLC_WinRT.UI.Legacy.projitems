@@ -180,9 +180,6 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoCameraVideos.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoData.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoFavoriteAlbumsControl.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -409,9 +406,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoCameraVideos.xaml.cs">
       <DependentUpon>NoCameraVideos.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoData.xaml.cs">
-      <DependentUpon>NoData.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoFavoriteAlbumsControl.xaml.cs">
       <DependentUpon>NoFavoriteAlbumsControl.xaml</DependentUpon>
