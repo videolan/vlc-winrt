@@ -183,9 +183,9 @@ namespace VLC_WinRT.Services.RunTime
         public string GetAlbumUrl(Media media)
         {
             if (media == null) return null;
-            if (!media.isParsed())
+            if (media.parseStatus() == libVLCX.ParseStatus.Init)
                 media.parse();
-            if (!media.isParsed())
+            if (media.parseStatus() == libVLCX.ParseStatus.Failed)
                 return null;
             var url = media.meta(MediaMeta.ArtworkURL);
             if (!string.IsNullOrEmpty(url))
@@ -196,9 +196,9 @@ namespace VLC_WinRT.Services.RunTime
         public MediaProperties GetVideoProperties(Media media)
         {
             if (media == null) return null;
-            if (!media.isParsed())
+            if (media.parseStatus() == libVLCX.ParseStatus.Init)
                 media.parse();
-            if (!media.isParsed())
+            if (media.parseStatus() == libVLCX.ParseStatus.Failed)
                 return null;
             var mP = new MediaProperties();
             mP.Title = media.meta(MediaMeta.Title);
@@ -236,9 +236,9 @@ namespace VLC_WinRT.Services.RunTime
         public MediaProperties GetMusicProperties(Media media)
         {
             if (media == null) return null;
-            if (!media.isParsed())
+            if (media.parseStatus() == libVLCX.ParseStatus.Init)
                 media.parse();
-            if (!media.isParsed())
+            if (media.parseStatus() == libVLCX.ParseStatus.Failed)
                 return null;
             var mP = new MediaProperties();
             mP.AlbumArtist = media.meta(MediaMeta.AlbumArtist);
@@ -282,7 +282,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             if (media == null) return TimeSpan.Zero;
             media.parse();
-            if (!media.isParsed())
+            if (media.parseStatus() != ParseStatus.Done)
                 return TimeSpan.Zero;
             var durationLong = media.duration();
             return TimeSpan.FromMilliseconds(durationLong);

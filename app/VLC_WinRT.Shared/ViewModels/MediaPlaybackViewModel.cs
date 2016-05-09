@@ -1072,8 +1072,11 @@ namespace VLC_WinRT.ViewModels
             }
         }
 
-        private async void Mem_OnParsedChanged(bool b)
+        private async void Mem_OnParsedStatus(ParseStatus parsedStatus)
         {
+            if (parsedStatus != ParseStatus.Done)
+                return;
+
             if (!(_mediaService is VLCService)) return;
             var vlcService = (VLCService)_mediaService;
             var mP = vlcService?.MediaPlayer;
