@@ -75,16 +75,16 @@ namespace VLC_WinRT.Services.RunTime
                     Instance.setDialogHandlers(
                         async (title, text) =>
                         {
-                            await DialogHelper.DisplayDialog(title, text);
+                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () => await DialogHelper.DisplayDialog(title, text));
                         },
                         async (dialog, title, text, defaultUserName, askToStore) =>
                         {
-                            await DialogHelper.DisplayDialog(title, text, dialog, defaultUserName, askToStore);
+                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () => await DialogHelper.DisplayDialog(title, text, dialog, defaultUserName, askToStore));
                         },
 
                         async (dialog, title, text, qType, cancel, action1, action2) =>
                         {
-                            await DialogHelper.DisplayDialog(title, text, dialog, qType, cancel, action1, action2);
+                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () => await DialogHelper.DisplayDialog(title, text, dialog, qType, cancel, action1, action2));
                         },
 
                         (dialog, title, text, intermidiate, position, cancel) => { },
