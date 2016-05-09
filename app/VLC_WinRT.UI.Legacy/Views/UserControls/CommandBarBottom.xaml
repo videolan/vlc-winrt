@@ -119,7 +119,7 @@
     </CommandBar.PrimaryCommands>
     <CommandBar.SecondaryCommands>
         <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=Settings}"
-                      Command="{Binding GoToSettingsPageCommand}"
+                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}"
                       Style="{StaticResource AppBarTextButtonStyle}"
                       Width="{Binding ElementName=RootCommandBar, Path=CommandBarTemplateSettings.OverflowContentMinWidth}">
             <AppBarButton.Icon>
