@@ -134,7 +134,7 @@ static WriteableBitmap^ CopyToBitmap(thumbnailer_sys_t* sys)
 /**
 * Thumbnailer vout unlock
 **/
-static void Unlock(void *opaque, void *picture, void *const *pixels){
+static void Unlock(void *opaque, void *){
     thumbnailer_sys_t* sys = (thumbnailer_sys_t*) opaque;
 
     int s = THUMB_SEEKED;
@@ -212,7 +212,7 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
         sys->mp = mp;
 
         libvlc_video_set_format(mp, "BGRA", sys->thumbWidth, sys->thumbHeight, pitch);
-        libvlc_video_set_callbacks(mp, Lock, Unlock, nullptr, (void*) sys);
+		libvlc_video_set_callbacks(mp, Lock, nullptr, Unlock, (void*)sys);
         sys->state = THUMB_SEEKING;
 
         // Create a local representation to allow it to be captured
