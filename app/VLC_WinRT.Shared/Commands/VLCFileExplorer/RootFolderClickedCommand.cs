@@ -6,18 +6,18 @@ using VLC_WinRT.ViewModels.Others.VlcExplorer;
 
 namespace VLC_WinRT.Commands.VLCFileExplorer
 {
-    public class RemovableDeviceClickedCommand : AlwaysExecutableCommand
+    public class RootFolderClickedCommand : AlwaysExecutableCommand
     {
         public override void Execute(object parameter)
         {
-            FileExplorerViewModel fileExplorer = null;
+            FileExplorer fileExplorer = null;
             if (parameter is SelectionChangedEventArgs)
             {
-                fileExplorer = (parameter as SelectionChangedEventArgs).AddedItems[0] as FileExplorerViewModel;
+                fileExplorer = (parameter as SelectionChangedEventArgs).AddedItems[0] as FileExplorer;
             }
             else if (parameter is ItemClickEventArgs)
             {
-                fileExplorer = (parameter as ItemClickEventArgs).ClickedItem as FileExplorerViewModel;
+                fileExplorer = (parameter as ItemClickEventArgs).ClickedItem as FileExplorer;
             }
 
             if (fileExplorer == null) return;
