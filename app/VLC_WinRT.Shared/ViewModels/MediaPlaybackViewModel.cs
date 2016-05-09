@@ -690,7 +690,9 @@ namespace VLC_WinRT.ViewModels
                     }
                     else
                     {
+#if WINDOWS_PHONE_APP
                         ToastHelper.Basic(Strings.FailFilePlayBackground, false, "background");
+#endif
                         _playerEngine = PlayerEngine.VLC;
                         _mediaService.Stop();
                     }
