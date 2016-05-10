@@ -54,7 +54,9 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
         public void UpdatePlayerVisibility()
         {
-            PlayPreviousButton.Visibility =
+            NowPlayingArtistGrid.Visibility =
+                SliderHorizontal.Visibility =
+                PlayPreviousButton.Visibility =
                 PlayButton.Visibility =
                 PauseButton.Visibility =
                 PlayNextButton.Visibility =

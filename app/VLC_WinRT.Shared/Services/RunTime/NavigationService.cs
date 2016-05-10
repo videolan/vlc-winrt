@@ -175,7 +175,6 @@ namespace VLC_WinRT.Services.RunTime
                     break;
                 case VLCPage.MiniPlayerView:
                     AppViewHelper.ResizeWindow(true);
-                    App.SplitShell.FooterVisibility = Visibility.Visible;
                     GoBack_Default();
                     Locator.Slideshow.IsPaused = false;
                     break;
