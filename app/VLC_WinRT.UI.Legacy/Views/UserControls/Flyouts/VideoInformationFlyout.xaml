@@ -8,7 +8,6 @@
 
     <Border RequestedTheme="Dark" 
             Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
-            BorderBrush="DimGray"
             BorderThickness="1"
             Loaded="Grid_Loaded">
         <Grid>
@@ -32,7 +31,7 @@
                 </Grid>
                 <Image Grid.Row="0"
                        Grid.RowSpan="2"
-                       Source="{Binding ThumbnailPath}"
+                       Source="{Binding VideoImage}"
                        Stretch="UniformToFill" />
                 <Grid Grid.Row="1"
                       VerticalAlignment="Bottom">
@@ -66,13 +65,13 @@
                 </Grid>
             </Grid>
             <StackPanel Grid.Row="1"
-                        Margin="12,0,0,0"
-                        VerticalAlignment="Center">
+                        Margin="{StaticResource FrameMarginTop}">
                 <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=PlayVideo}"
                               Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.CloseFlyoutAndPlayVideoCommand}"
                               CommandParameter="{Binding}"
                               Click="ActionButton_Click"
-                              Style="{StaticResource AppBarButtonStyleHorizontal}">
+                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              Margin="{StaticResource FrameMarginLeft}">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource PlaySymbol}"
                                   FontFamily="{StaticResource VLCFont}" />
@@ -80,10 +79,9 @@
                 </AppBarButton>
             </StackPanel>
             <TextBlock Grid.Row="2"
-                       Margin="12,0,12,12"
                        Text="{Binding Path}"
-                       Style="{StaticResource BodyTextBlockStyle}"
-                       Foreground="DimGray" />
+                       Margin="{StaticResource FrameMarginBothSides}"
+                       Style="{StaticResource BodyTextBlockStyle}"/>
         </Grid>
     </Border>
 </Flyout>
