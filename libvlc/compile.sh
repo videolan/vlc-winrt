@@ -149,7 +149,7 @@ cd $CONTRIB_FOLDER
     --disable-aribb25 \
     --disable-gpl \
     --disable-libarchive \
-    --disable-ssh2 \
+    --enable-ssh2 \
     --disable-vncclient
 
 echo "EXTRA_CFLAGS=${EXTRA_CPPFLAGS}" >> config.mak
