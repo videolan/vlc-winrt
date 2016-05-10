@@ -132,6 +132,8 @@ namespace VLC_WinRT.Views.MainPages
             NavigationFrame.AllowDrop = true;
             NavigationFrame.DragOver += NavigationFrame_DragOver;
             NavigationFrame.Drop += NavigationFrame_Drop;
+
+            SwapChainPanel.Tapped += SwapChainPanel_Tapped;
         }
 
 
@@ -226,6 +228,11 @@ namespace VLC_WinRT.Views.MainPages
             target.StartAnimation("Offset", posAnimation);
             target.StartAnimation("Scale", scaleAnimation);
             target.StartAnimation("Opacity", opacityAnim);
+        }
+
+        private void SwapChainPanel_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
         }
 #endif
     }
