@@ -90,6 +90,7 @@ namespace VLC_WinRT.Views.VideoPages
         {
             base.OnNavigatedTo(e);
             App.RootPage.SwapChainPanel.Visibility = Visibility.Visible;
+            App.SplitShell.FooterVisibility = Visibility.Collapsed;
             AppViewHelper.SetTitleBarTitle(Locator.VideoPlayerVm.CurrentVideo?.Name);
             Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
@@ -103,6 +104,7 @@ namespace VLC_WinRT.Views.VideoPages
             base.OnNavigatingFrom(e);
             AppViewHelper.SetTitleBarTitle();
             App.RootPage.SwapChainPanel.Visibility = Visibility.Collapsed;
+            App.SplitShell.FooterVisibility = Visibility.Visible;
             Locator.VideoPlayerVm.OnNavigatedFrom();
         }
 
@@ -407,6 +409,11 @@ namespace VLC_WinRT.Views.VideoPages
                 };
                 //PlaceholderInteractionGrid.ContextFlyout = menu; // RS1-only so this is commented
             }
+        }
+
+        private void FullscreenToggle_Click(object sender, RoutedEventArgs e)
+        {
+            AppViewHelper.SetFullscreen();
         }
     }
 }
