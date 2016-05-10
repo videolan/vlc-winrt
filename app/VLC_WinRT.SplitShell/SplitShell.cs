@@ -16,11 +16,11 @@ namespace VLC_WinRT.Controls
     public delegate void ContentSizeChanged(double newWidth);
     
     [TemplatePart(Name = ContentPresenterName, Type = typeof(ContentPresenter))]
-    [TemplatePart(Name = RightFlyoutContentPresenterName, Type = typeof(ContentPresenter))]
-    [TemplatePart(Name = RightFlyoutFadeInName, Type = typeof(Storyboard))]
-    [TemplatePart(Name = RightFlyoutFadeOutName, Type = typeof(Storyboard))]
-    [TemplatePart(Name = RightFlyoutPlaneProjectionName, Type = typeof(PlaneProjection))]
-    [TemplatePart(Name = RightFlyoutGridContainerName, Type = typeof(Grid))]
+    [TemplatePart(Name = FlyoutContentPresenterName, Type = typeof(Frame))]
+    [TemplatePart(Name = FlyoutFadeInName, Type = typeof(Storyboard))]
+    [TemplatePart(Name = FlyoutFadeOutName, Type = typeof(Storyboard))]
+    [TemplatePart(Name = FlyoutPlaneProjectionName, Type = typeof(PlaneProjection))]
+    [TemplatePart(Name = FlyoutGridContainerName, Type = typeof(Grid))]
     [TemplatePart(Name = FlyoutBackgroundGridName, Type = typeof(Grid))]
     [TemplatePart(Name = FooterContentPresenterName, Type = typeof(ContentPresenter))]
     public sealed class SplitShell : Control
@@ -37,25 +37,25 @@ namespace VLC_WinRT.Controls
         };
 
         private const string ContentPresenterName = "ContentPresenter";
-        private const string RightFlyoutContentPresenterName = "RightFlyoutContentPresenter";
-        private const string RightFlyoutFadeInName = "RightFlyoutFadeIn";
-        private const string RightFlyoutFadeOutName = "RightFlyoutFadeOut";
+        private const string FlyoutContentPresenterName = "FlyoutContentPresenter";
+        private const string FlyoutFadeInName = "FlyoutFadeIn";
+        private const string FlyoutFadeOutName = "FlyoutFadeOut";
         private const string TopBarFadeOutName = "TopBarFadeOut";
         private const string TopBarFadeInName = "TopBarFadeIn";
-        private const string RightFlyoutPlaneProjectionName = "RightFlyoutPlaneProjection";
-        private const string RightFlyoutGridContainerName = "RightFlyoutGridContainer";
+        private const string FlyoutPlaneProjectionName = "FlyoutPlaneProjection";
+        private const string FlyoutGridContainerName = "FlyoutGridContainer";
         private const string FlyoutBackgroundGridName = "FlyoutBackgroundGrid";
         private const string FooterContentPresenterName = "FooterContentPresenter";
 
-        private Grid _rightFlyoutGridContainer;
+        private Grid _flyoutGridContainer;
         private Grid _flyoutBackgroundGrid;
         private ContentPresenter _contentPresenter;
-        private ContentPresenter _rightFlyoutContentPresenter;
+        private Frame _flyoutContentPresenter;
         private ContentPresenter _footerContentPresenter;
 
-        private PlaneProjection _rightFlyoutPlaneProjection;
-        private Storyboard _rightFlyoutFadeIn;
-        private Storyboard _rightFlyoutFadeOut;
+        private PlaneProjection _flyoutPlaneProjection;
+        private Storyboard _flyoutFadeIn;
+        private Storyboard _flyoutFadeOut;
         private Storyboard _topBarFadeOut;
         private Storyboard _topBarFadeIn;
 
@@ -68,7 +68,7 @@ namespace VLC_WinRT.Controls
         public async void SetRightPaneContentPresenter(object content)
         {
             await TemplateApplied.Task;
-            _rightFlyoutContentPresenter.Content = content;
+            _flyoutContentPresenter.Navigate((Type)content);
             ShowFlyout();
         }
 
@@ -103,17 +103,17 @@ namespace VLC_WinRT.Controls
 
         #region RightPaneContent Property
 
-        public DependencyObject RightFlyoutContent
+        public Type FlyoutContent
         {
-            get { return (DependencyObject)GetValue(RightFlyoutContentProperty); }
-            set { SetValue(RightFlyoutContentProperty, value); }
+            get { return (Type)GetValue(FlyoutContentProperty); }
+            set { SetValue(FlyoutContentProperty, value); }
         }
 
-        public static readonly DependencyProperty RightFlyoutContentProperty = DependencyProperty.Register(
-            nameof(RightFlyoutContent), typeof(DependencyObject), typeof(SplitShell),
-            new PropertyMetadata(default(DependencyObject), RightFlyoutContentPropertyChangedCallback));
+        public static readonly DependencyProperty FlyoutContentProperty = DependencyProperty.Register(
+            nameof(FlyoutContent), typeof(Type), typeof(SplitShell),
+            new PropertyMetadata(default(Type), FlyoutContentPropertyChangedCallback));
 
-        private static void RightFlyoutContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        private static void FlyoutContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var that = (SplitShell)dependencyObject;
             that.SetRightPaneContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
@@ -163,13 +163,13 @@ namespace VLC_WinRT.Controls
         {
             base.OnApplyTemplate();
             _contentPresenter = (ContentPresenter)GetTemplateChild(ContentPresenterName);
-            _rightFlyoutContentPresenter = (ContentPresenter)GetTemplateChild(RightFlyoutContentPresenterName);
-            _rightFlyoutFadeIn = (Storyboard)GetTemplateChild(RightFlyoutFadeInName);
-            _rightFlyoutFadeOut = (Storyboard)GetTemplateChild(RightFlyoutFadeOutName);
+            _flyoutContentPresenter = (Frame)GetTemplateChild(FlyoutContentPresenterName);
+            _flyoutFadeIn = (Storyboard)GetTemplateChild(FlyoutFadeInName);
+            _flyoutFadeOut = (Storyboard)GetTemplateChild(FlyoutFadeOutName);
             _topBarFadeOut = (Storyboard)GetTemplateChild(TopBarFadeOutName);
             _topBarFadeIn = (Storyboard)GetTemplateChild(TopBarFadeInName);
-            _rightFlyoutPlaneProjection = (PlaneProjection)GetTemplateChild(RightFlyoutPlaneProjectionName);
-            _rightFlyoutGridContainer = (Grid)GetTemplateChild(RightFlyoutGridContainerName);
+            _flyoutPlaneProjection = (PlaneProjection)GetTemplateChild(FlyoutPlaneProjectionName);
+            _flyoutGridContainer = (Grid)GetTemplateChild(FlyoutGridContainerName);
             _flyoutBackgroundGrid = (Grid)GetTemplateChild(FlyoutBackgroundGridName);
             _footerContentPresenter = (ContentPresenter)GetTemplateChild(FooterContentPresenterName);
 
@@ -179,26 +179,26 @@ namespace VLC_WinRT.Controls
 
             TemplateApplied.SetResult(true);
 
-            _rightFlyoutGridContainer.Visibility = Visibility.Collapsed;
+            _flyoutGridContainer.Visibility = Visibility.Collapsed;
             if (_flyoutBackgroundGrid != null)
-            _flyoutBackgroundGrid.Tapped += RightFlyoutGridContainerOnTapped;
+            _flyoutBackgroundGrid.Tapped += FlyoutGridContainerOnTapped;
 
             _windowResizerTimer.Tick += _windowResizerTimer_Tick;
 
-            _rightFlyoutFadeOut.Completed += _rightFlyoutFadeOut_Completed;
-            _rightFlyoutFadeIn.Completed += _rightFlyoutFadeIn_Completed;
+            _flyoutFadeOut.Completed += _flyoutFadeOut_Completed;
+            _flyoutFadeIn.Completed += _flyoutFadeIn_Completed;
 
             _topBarFadeIn.Completed += _topBarFadeIn_Completed;
         }
 
-        private void _rightFlyoutFadeIn_Completed(object sender, object e)
+        private void _flyoutFadeIn_Completed(object sender, object e)
         {
             RightSidebarNavigated?.Invoke(null, new EventArgs());
         }
 
-        private void _rightFlyoutFadeOut_Completed(object sender, object e)
+        private void _flyoutFadeOut_Completed(object sender, object e)
         {
-            _rightFlyoutContentPresenter.Content = null;
+            _flyoutContentPresenter.Navigate(typeof(UI.Legacy.Views.UserControls.Shell.BlankPage));
         }
         
         private void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
@@ -210,13 +210,13 @@ namespace VLC_WinRT.Controls
         {
             if (Window.Current.Bounds.Width < 650)
             {
-                _rightFlyoutContentPresenter.Height = Window.Current.Bounds.Height;
-                _rightFlyoutContentPresenter.Width = Window.Current.Bounds.Width;
+                _flyoutContentPresenter.Height = Window.Current.Bounds.Height;
+                _flyoutContentPresenter.Width = Window.Current.Bounds.Width;
             }
             else
             {
-                _rightFlyoutContentPresenter.Width = 650;
-                _rightFlyoutContentPresenter.Height = 
+                _flyoutContentPresenter.Width = 650;
+                _flyoutContentPresenter.Height = 
                     Window.Current.Bounds.Height < 900 * 0.7 ? Window.Current.Bounds.Height : Window.Current.Bounds.Height * 0.7;
             }
             _windowResizerTimer.Stop();
@@ -230,21 +230,21 @@ namespace VLC_WinRT.Controls
             ContentSizeChanged?.Invoke(_contentPresenter.Width);
         }
 
-        private void RightFlyoutGridContainerOnTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
+        private void FlyoutGridContainerOnTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
         {
             FlyoutCloseRequested?.Invoke(null, new EventArgs());
         }
 
         void ShowFlyout()
         {
-            _rightFlyoutFadeIn.Begin();
-            IsRightFlyoutOpen = true;
+            _flyoutFadeIn.Begin();
+            IsFlyoutOpen = true;
         }
 
         public void HideFlyout()
         {
-            _rightFlyoutFadeOut.Begin();
-            IsRightFlyoutOpen = false;
+            _flyoutFadeOut.Begin();
+            IsFlyoutOpen = false;
             RightSidebarClosed?.Invoke(null, new EventArgs());
         }
 
@@ -266,7 +266,7 @@ namespace VLC_WinRT.Controls
             _contentPresenter.Margin = new Thickness(0);
         }
 
-        public bool IsRightFlyoutOpen { get; private set; }
+        public bool IsFlyoutOpen { get; private set; }
         public bool IsTopBarOpen { get; set; }
     }
 }

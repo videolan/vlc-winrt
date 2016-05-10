@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls.VideoPlayerOptionsPanel"
+﻿<Page x:Class="VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls.VideoPlayerOptionsPanel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:VLC_WinRT.Views.UserControls"
@@ -237,4 +237,4 @@
             </Grid>
         </ScrollViewer>
     </Border>
-</UserControl>
+</Page>

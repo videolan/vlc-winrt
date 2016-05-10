@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="VLC_WinRT.Views.MusicPages.PlaylistControls.AddAlbumToPlaylistBase"
+﻿<Page x:Class="VLC_WinRT.Views.MusicPages.PlaylistControls.AddAlbumToPlaylistBase"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:VLC_WinRT.Views.MusicPages.PlaylistControls"
@@ -132,4 +132,4 @@
                     HorizontalAlignment="Stretch" />
         </Grid>
     </Grid>
-</UserControl>
+</Page>

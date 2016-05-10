@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace VLC_WinRT.UI.UWP.Views.SettingsPages
 {
-    public sealed partial class SettingsPage : Grid
+    public sealed partial class SettingsPage
     {
         public SettingsPage()
         {

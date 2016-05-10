@@ -5,7 +5,7 @@ using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Views.MusicPages
 {
-    public sealed partial class CreateNewPlaylist : UserControl
+    public sealed partial class CreateNewPlaylist
     {
         public CreateNewPlaylist()
         {

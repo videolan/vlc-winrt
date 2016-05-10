@@ -3,7 +3,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace VLC_WinRT.Views.VariousPages
 {
-    public sealed partial class SpecialThanks : UserControl
+    public sealed partial class SpecialThanks
     {
         bool isSponsorsView = true;
         public SpecialThanks()

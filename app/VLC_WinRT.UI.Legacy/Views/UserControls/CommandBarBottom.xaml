@@ -58,7 +58,8 @@
                                FontSize="13" />
                 </Grid>
             </Button>
-            <userControl:SliderControlHorizontal Grid.Row="1"
+            <userControl:SliderControlHorizontal x:Name="SliderHorizontal"
+                                                 Grid.Row="1"
                                                  Margin="{StaticResource FrameMarginVertical}" />
         </Grid>
     </CommandBar.Content>

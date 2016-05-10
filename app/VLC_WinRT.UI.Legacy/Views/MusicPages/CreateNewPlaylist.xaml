@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="VLC_WinRT.Views.MusicPages.CreateNewPlaylist"
+﻿<Page x:Class="VLC_WinRT.Views.MusicPages.CreateNewPlaylist"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:VLC_WinRT.Views.MusicPages"
@@ -44,4 +44,4 @@
                 Content="{Binding Source={StaticResource Strings}, Path=AddToCollection}"
                 Click="AddToCollection_Click" />
     </Grid>
-</UserControl>
+</Page>

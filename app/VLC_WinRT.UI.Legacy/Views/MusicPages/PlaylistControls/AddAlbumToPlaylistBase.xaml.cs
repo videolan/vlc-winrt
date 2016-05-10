@@ -5,7 +5,7 @@ using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Views.MusicPages.PlaylistControls
 {
-    public sealed partial class AddAlbumToPlaylistBase : UserControl
+    public sealed partial class AddAlbumToPlaylistBase
     {
         public AddAlbumToPlaylistBase()
         {

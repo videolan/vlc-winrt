@@ -13,11 +13,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
-
 namespace VLC_WinRT.Views.VariousPages
 {
-    public sealed partial class LicensePage : UserControl
+    public sealed partial class LicensePage
     {
         public LicensePage()
         {

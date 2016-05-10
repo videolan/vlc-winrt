@@ -5,7 +5,7 @@ using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Views.MusicPages
 {
-    public sealed partial class PlaylistPage : UserControl
+    public sealed partial class PlaylistPage
     {
         public PlaylistPage()
         {
