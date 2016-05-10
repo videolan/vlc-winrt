@@ -141,7 +141,7 @@ namespace VLC_WinRT.Views.VideoPages
             {
                 ControlsGridFadeOut.Value = ControlsGrid.ActualHeight + ControlsGrid.Padding.Top +
                                             ControlsGrid.Padding.Bottom;
-                HeaderGridFadeOut.Value = -HeaderGrid.ActualHeight;
+                HeaderGridFadeOut.Value = - HeaderGrid.ActualHeight;
                 FadeOut.Begin();
             }
             else

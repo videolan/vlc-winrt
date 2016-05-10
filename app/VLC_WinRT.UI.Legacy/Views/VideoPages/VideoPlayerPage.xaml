@@ -49,11 +49,6 @@
                     <DiscreteObjectKeyFrame KeyTime="0:0:0.8"
                                             Value="Collapsed" />
                 </ObjectAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
-                                               Storyboard.TargetProperty="Visibility">
-                    <DiscreteObjectKeyFrame KeyTime="0:0:0.8"
-                                            Value="Collapsed" />
-                </ObjectAnimationUsingKeyFrames>
             </Storyboard>
             <Storyboard x:Name="FadeIn">
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"

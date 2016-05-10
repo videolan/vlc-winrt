@@ -56,12 +56,10 @@
                         </AppBarButton.Icon>
                     </AppBarButton>
                     <TextBlock Grid.Column="1"
-                               Margin="{StaticResource FrameMarginRight}"
                                TextTrimming="CharacterEllipsis"
                                TextWrapping="NoWrap"
                                VerticalAlignment="Center"
-                               Text="{Binding Source={StaticResource Strings}, Path=PlayerSettings}"
-                               Style="{StaticResource SubtitleTextBlockStyle}" />
+                               Text="{Binding Source={StaticResource Strings}, Path=PlayerSettings}"/>
                 </Grid>
                 <TextBlock Grid.Row="2"
                            Foreground="{ThemeResource BasicForeground}"
