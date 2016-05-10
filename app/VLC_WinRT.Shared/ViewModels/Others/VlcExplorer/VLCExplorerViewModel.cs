@@ -103,7 +103,6 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 #if WINDOWS_PHONE_APP
             Task.Run(() => InitializeSDCard());
 #else
-            Task.Run(() => InitializeDLNA());
             _deviceService = App.Container.Resolve<ExternalDeviceService>();
             _deviceService.ExternalDeviceAdded += DeviceAdded;
             _deviceService.ExternalDeviceRemoved += DeviceRemoved;
@@ -112,10 +111,12 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             RootFoldersVisibility = Visibility.Visible;
             Task.Run(async () =>
             {
-                Locator.VLCService.OnSDItemAdded += VLCService_OnSDItemAdded;
+                Locator.VLCService.MediaListItemAdded += VLCService_MediaListItemAdded;
+                Locator.VLCService.MediaListItemDeleted += VLCService_MediaListItemDeleted;
                 await Locator.VLCService.InitDiscoverer();
             });
         }
+
 
         public void Dispose()
         {
@@ -139,24 +140,6 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             {
                 var external = new LocalFileExplorerViewModel(cards[0], RootFolderType.ExternalDevice);
                 await AddFolder(external);
-            }
-        }
-
-        private async void InitializeDLNA()
-        {
-            try
-            {
-                var dlnaFolders = await KnownFolders.MediaServerDevices.GetFoldersAsync();
-                foreach (var dlnaFolder in dlnaFolders)
-                {
-                    var folder = new LocalFileExplorerViewModel(dlnaFolder, RootFolderType.Network);
-                    if (folder == null) continue;
-                    //await AddFolder(folder);
-                }
-            }
-            catch
-            {
-                LogHelper.Log("Failed to Get MediaServerDevices");
             }
         }
 
@@ -196,10 +179,9 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             });
         }
 #endif
-        private async void VLCService_OnSDItemAdded(libVLCX.Media media, bool isRoot)
+
+        private async void VLCService_MediaListItemAdded(libVLCX.Media media, int index)
         {
-            if (!isRoot)
-                return;
             try
             {
                 var localNetwork = new VLCFileExplorerViewModel(media, RootFolderType.Network);
@@ -209,6 +191,17 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             {
                 Debug.WriteLine(e);
             }
+        }
+
+        private async void VLCService_MediaListItemDeleted(libVLCX.Media media, int index)
+        {
+            var fileExType = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == RootFolderType.Network);
+            if (fileExType == null)
+                return;
+            var fileEx = fileExType.FirstOrDefault(x => x.Name == media.meta(libVLCX.MediaMeta.Title));
+            if (fileEx == null)
+                return;
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => fileExType.Remove(fileEx));
         }
 
         async Task AddFolder(FileExplorer fileEx)

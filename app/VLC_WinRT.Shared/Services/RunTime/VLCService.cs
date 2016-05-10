@@ -408,8 +408,9 @@ namespace VLC_WinRT.Services.RunTime
         }
         #endregion
         #region Service Discoverer
-        public event Action<Media, bool> OnSDItemAdded;
         MediaDiscoverer discoverer;
+        public event MediaListItemAdded MediaListItemAdded;
+        public event MediaListItemDeleted MediaListItemDeleted;
         public async Task<bool> InitDiscoverer()
         {
             if (Instance == null)
@@ -417,36 +418,33 @@ namespace VLC_WinRT.Services.RunTime
                 await Initialize();
             }
             await PlayerInstanceReady.Task;
-            discoverer = new MediaDiscoverer(Instance, "microdns");
+            discoverer = new MediaDiscoverer(Instance, "upnp");
             var mediaList = discoverer.mediaList();
             if (mediaList == null)
                 return false;
 
             var eventManager = mediaList.eventManager();
-            eventManager.onItemAdded += EventManager_onRootItemAdded;
+            eventManager.onItemAdded += MediaListItemAdded;
+            eventManager.onItemDeleted += MediaListItemDeleted;
 
             discoverer.start();
             return true;
         }
 
-        public void DiscoverMediaList(Media media)
+        public Task<MediaList> DiscoverMediaList(Media media)
         {
+            var tcs = new TaskCompletionSource<MediaList>();
+            if (media.parseStatus() == ParseStatus.Done)
+                tcs.TrySetResult(media.subItems());
             
-            if (media.parseStatus() == libVLCX.ParseStatus.Done)
-                return;
-            //media.eventManager().OnParsedStatus += (libVLCX.ParseStatus s) =>
-            //{
-            //    if (s != ParseStatus.Done)
-            //        return;
-            //    // do stuff
-            //    var items = media.subItems();
-            //};
+            media.eventManager().OnParsedStatus += (ParseStatus s) =>
+            {
+                if (s != ParseStatus.Done)
+                    return;
+                tcs.TrySetResult(media.subItems());
+            };
             media.parseWithOptions(ParseFlags.FetchLocal | ParseFlags.FetchNetwork | ParseFlags.Local | ParseFlags.Network);
-        }
-        
-        private void EventManager_onRootItemAdded(Media media, int __param1)
-        {
-            OnSDItemAdded?.Invoke(media, true);
+            return tcs.Task;
         }
 
         #endregion
