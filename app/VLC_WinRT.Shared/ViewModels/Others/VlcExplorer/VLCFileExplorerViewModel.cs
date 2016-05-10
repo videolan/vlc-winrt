@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using VLC_WinRT.Utils;
 using Windows.UI.Core;
 using System.Linq;
+using System.Diagnostics;
 
 namespace VLC_WinRT.ViewModels.Others.VlcExplorer
 {
