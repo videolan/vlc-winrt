@@ -44,10 +44,11 @@
                                   Style="{StaticResource AppBarButtonStyleHorizontal}"
                                   VerticalAlignment="Center"
                                   HorizontalAlignment="Stretch"
-                                  DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-                                  Command="{Binding GoBackCommand}"
                                   IsCompact="True"
-                                  Margin="{StaticResource FrameMarginRight}">
+                                  Margin="{StaticResource FrameMarginRight}"
+                                  Foreground="{ThemeResource BasicForeground}"
+                                  DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                                  Command="{Binding GoBackCommand}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource SettingsSymbol}"
                                       FontFamily="{StaticResource VLCFont}"
