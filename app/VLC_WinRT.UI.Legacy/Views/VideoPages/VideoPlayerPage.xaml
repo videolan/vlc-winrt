@@ -189,6 +189,20 @@
                                           FontSize="22" />
                             </AppBarButton.Icon>
                         </AppBarButton>
+                        <AppBarButton Name="FullscreenToggle"
+                                      IsCompact="True"
+                                      IsTabStop="False"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch"
+                                      Style="{StaticResource AppBarButtonStyleHuge}"
+                                      Margin="{StaticResource FrameMarginHorizontal}"
+                                      Click="FullscreenToggle_Click">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="{StaticResource ExpandWindow}"
+                                          FontFamily="{StaticResource VLCFont}"
+                                          FontSize="22" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
                     </StackPanel>
                     <AppBarButton x:Name="PlayButton"
                                   Grid.Column="1"
