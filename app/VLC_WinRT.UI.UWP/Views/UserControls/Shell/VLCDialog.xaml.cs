@@ -59,11 +59,12 @@ namespace VLC_WinRT.UI.UWP.Views.UserControls.Shell
 
             switch (questionType)
             {
-                //case NORMAL:
-
-                //case WARNING:
-
-                //case CRITICAL:
+                case Question.normal:
+                    break;
+                case Question.warning:
+                    break;
+                case Question.critical:
+                    break;
                 default:
                     break;
             }
