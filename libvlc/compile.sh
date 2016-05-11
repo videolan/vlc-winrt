@@ -143,7 +143,6 @@ cd $CONTRIB_FOLDER
     --disable-gnutls \
     --disable-projectM \
     --enable-ass \
-    --disable-lua \
     --disable-qt \
     --disable-protobuf \
     --disable-aribb25 \
