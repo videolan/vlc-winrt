@@ -12,7 +12,7 @@ namespace VLC_WinRT.Commands.Navigation
 {
     public class CreateMiniPlayerView : AlwaysExecutableCommand
     {
-        public override async void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             Locator.NavigationService.Go(VLCPage.MiniPlayerView);
         }

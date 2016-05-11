@@ -211,7 +211,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => CoreApplication.MainView.CoreWindow.Activate());
         }
 
-        private async void ExpandWindow_Click(object sender, RoutedEventArgs e)
+        private void ExpandWindow_Click(object sender, RoutedEventArgs e)
         {
             Locator.NavigationService.GoBack_Specific();
         }

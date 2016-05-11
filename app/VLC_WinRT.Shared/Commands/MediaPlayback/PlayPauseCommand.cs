@@ -15,7 +15,7 @@ namespace VLC_WinRT.Commands.MediaPlayback
 {
     public class PlayPauseCommand : AlwaysExecutableCommand
     {
-        public override async void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             if (Locator.MediaPlaybackViewModel.MediaState == MediaState.NothingSpecial)
             {

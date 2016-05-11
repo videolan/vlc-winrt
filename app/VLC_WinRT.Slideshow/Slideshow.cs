@@ -76,7 +76,7 @@ namespace Slide2D
             slideshow.Draw(sender, args);
         }
 
-        private async void Canvas_CreateResources(CanvasAnimatedControl sender,
+        private void Canvas_CreateResources(CanvasAnimatedControl sender,
             Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
         {
             IsLoaded.TrySetResult(true);

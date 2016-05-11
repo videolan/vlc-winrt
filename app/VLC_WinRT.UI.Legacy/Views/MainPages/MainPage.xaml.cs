@@ -127,7 +127,7 @@ namespace VLC_WinRT.Views.MainPages
 
 #if WINDOWS_UWP
 
-        private async void MainPage_Loaded(object sender, RoutedEventArgs e)
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             NavigationFrame.AllowDrop = true;
             NavigationFrame.DragOver += NavigationFrame_DragOver;
