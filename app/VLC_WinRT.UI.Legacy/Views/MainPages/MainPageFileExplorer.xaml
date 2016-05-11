@@ -44,7 +44,8 @@
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Grid.Column="3"
+            <AppBarButton x:Name="OpenFileButton"
+                          Grid.Column="3"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           HorizontalAlignment="Right"
                           Label="{Binding Source={StaticResource Strings}, Path=OpenFile}"
@@ -55,7 +56,8 @@
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Grid.Column="4"
+            <AppBarButton x:Name="PlayFolderButton"
+                          Grid.Column="4"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           HorizontalAlignment="Right"
                           Label="{Binding Source={StaticResource Strings}, Path=PlayFolder}"
@@ -74,7 +76,8 @@
                        HorizontalAlignment="Center"
                        FontSize="16"
                        TextTrimming="CharacterEllipsis"
-                       TextWrapping="NoWrap" />
+                       TextWrapping="NoWrap"
+                       Margin="0,-2,0,0"/>
         </Grid>
 
         <Grid Grid.Row="1"
