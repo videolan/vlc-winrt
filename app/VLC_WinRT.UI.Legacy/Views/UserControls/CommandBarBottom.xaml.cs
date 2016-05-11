@@ -57,8 +57,6 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             NowPlayingArtistGrid.Visibility =
                 SliderHorizontal.Visibility =
                 PlayPreviousButton.Visibility =
-                PlayButton.Visibility =
-                PauseButton.Visibility =
                 PlayNextButton.Visibility =
                 ShuffleButton.Visibility =
                 RepeatButton.Visibility =
