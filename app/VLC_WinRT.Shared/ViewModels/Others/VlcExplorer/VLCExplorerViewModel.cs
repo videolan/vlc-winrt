@@ -127,6 +127,8 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             _deviceService.Dispose();
             _deviceService = null;
 #endif
+            Locator.VLCService.MediaListItemAdded -= VLCService_MediaListItemAdded;
+            Locator.VLCService.MediaListItemDeleted -= VLCService_MediaListItemDeleted;
             _currentStorageVM = null;
             _fileExplorersGrouped?.Clear();
             GC.Collect();
