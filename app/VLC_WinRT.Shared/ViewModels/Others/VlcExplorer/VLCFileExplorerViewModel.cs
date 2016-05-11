@@ -51,6 +51,12 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                     if (storageItem == null) return;
                     await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => StorageItems.Add(storageItem));
                 }
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    OnPropertyChanged(nameof(StorageItems));
+                    IsFolderEmpty = !StorageItems.Any();
+                    IsLoadingFiles = false;
+                });
             }
             catch (Exception e)
             {
