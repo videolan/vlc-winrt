@@ -61,6 +61,8 @@ namespace VLC_WinRT.Model
         {
             get
             {
+                if (!string.IsNullOrEmpty(name))
+                    return name;
                 if (!isLoading)
                 {
                     isLoading = true;
