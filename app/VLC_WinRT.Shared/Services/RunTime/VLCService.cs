@@ -64,15 +64,7 @@ namespace VLC_WinRT.Services.RunTime
                 try
                 {
                     Instance = new Instance(param, App.RootPage.SwapChainPanel);
-                }
-                catch (Exception e)
-                {
-                    LogHelper.Log("VLC Service : Couldn't create VLC Instance\n" + StringsHelper.ExceptionToString(e));
-                    ToastHelper.Basic(Strings.FailStartVLCEngine);
-                }
-                finally
-                {
-                    Instance.setDialogHandlers(
+                    Instance?.setDialogHandlers(
                         async (title, text) =>
                         {
                             await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () => await DialogHelper.DisplayDialog(title, text));
@@ -90,6 +82,11 @@ namespace VLC_WinRT.Services.RunTime
                         (dialog, title, text, intermidiate, position, cancel) => { },
                         (dialog) => dialog.dismiss(),
                         (dialog, position, text) => { });
+                }
+                catch (Exception e)
+                {
+                    LogHelper.Log("VLC Service : Couldn't create VLC Instance\n" + StringsHelper.ExceptionToString(e));
+                    ToastHelper.Basic(Strings.FailStartVLCEngine);
                 }
                 PlayerInstanceReady.TrySetResult(Instance != null);
             });
