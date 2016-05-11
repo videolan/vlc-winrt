@@ -282,20 +282,6 @@
                                     MinWidth="110"
                                     Margin="0,12,0,0" />
                         </Grid>
-                        <AppBarButton x:Name="ZoomButton"
-                                      Style="{StaticResource AppBarButtonStyleHuge}"
-                                      HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Stretch"
-                                      DataContext="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm}"
-                                      Label="{Binding CurrentSurfaceZoom, Converter={StaticResource VLCSurfaceZoomStringifyConverter}}"
-                                      Command="{Binding SurfaceZoomToggleCommand}"
-                                      Width="100">
-                            <AppBarButton.Icon>
-                                <FontIcon Glyph="{StaticResource ExpandWindow}"
-                                          FontFamily="{StaticResource VLCFont}"
-                                          FontSize="27" />
-                            </AppBarButton.Icon>
-                        </AppBarButton>
                     </StackPanel>
                 </Grid>
             </Grid>
@@ -315,11 +301,6 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ZoomButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Medium">
@@ -333,11 +314,6 @@
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ZoomButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
@@ -357,11 +333,6 @@
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ZoomButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>

@@ -178,7 +178,6 @@ namespace VLC_WinRT.Views.VideoPages
             PlayButton.IsEnabled = !isLocked;
             PauseButton.IsEnabled = !isLocked;
             VolumeSlider.IsEnabled = !isLocked;
-            ZoomButton.IsEnabled = !isLocked;
             MenuButton.IsEnabled = !isLocked;
 
             if (Locator.SettingsVM.ForceLandscape)
