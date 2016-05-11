@@ -21,32 +21,42 @@ namespace VLC_WinRT.Model
         private bool isLoading;
         private string name;
         private string lastModified;
-        private string sizeHumanizedString;
+        private string sizeHumanizedString = "";
         private int filesCount;
 
         public VLCStorageFolder(StorageFolder folder)
         {
             storageItem = folder;
-            sizeHumanizedString = "";
         }
 
         public VLCStorageFolder(Media media)
         {
             this.media = media;
-            name = media.meta(MediaMeta.Title);
         }
 
         async Task Initialize()
         {
-            if (storageItem == null)
-                return;
-            var props = await storageItem.GetBasicPropertiesAsync();
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            if (storageItem != null)
             {
-                if (props.DateModified.Year == 1601) return;
-                lastModified = props.DateModified.ToString("dd/MM/yyyy hh:mm");
-                OnPropertyChanged(nameof(LastModified));
-            });
+                var props = await storageItem.GetBasicPropertiesAsync();
+                name = storageItem.Name;
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    OnPropertyChanged(nameof(Name));
+                    if (props.DateModified.Year == 1601) return;
+                    lastModified = props.DateModified.ToString("dd/MM/yyyy hh:mm");
+                    OnPropertyChanged(nameof(LastModified));
+                });
+            }
+            else if (media != null)
+            {
+                name = media.meta(MediaMeta.Title);
+
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    OnPropertyChanged(nameof(Name));
+                });
+            }
         }
 
         public string Name

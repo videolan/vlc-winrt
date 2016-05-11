@@ -30,32 +30,42 @@ namespace VLC_WinRT.Model
         public VLCStorageFile(Media media)
         {
             this.media = media;
-            this.name = media.meta(MediaMeta.Title);
         }
 
         async Task Initialize()
         {
-            if (storageItem == null)
-                return;
-            var props = await storageItem.GetBasicPropertiesAsync();
-#if WINDOWS_UWP
-            var size = await storageItem.GetSizeAsync();
-#else
-            var size = await storageItem.GetSize();
-#endif
-            var sizeString = "";
-            if (size > 0)
-                sizeString = size.GetSizeString();
-
-
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            if (storageItem != null)
             {
-                lastModified = props.DateModified.ToString("dd/MM/yyyy hh:mm");
-                sizeHumanizedString = sizeString;
-                OnPropertyChanged(nameof(LastModified));
-                OnPropertyChanged(nameof(SizeHumanizedString));
-                OnPropertyChanged(nameof(SizeAvailable));
-            });
+                var props = await storageItem.GetBasicPropertiesAsync();
+#if WINDOWS_UWP
+                var size = await storageItem.GetSizeAsync();
+#else
+                var size = await storageItem.GetSize();
+#endif
+                var sizeString = "";
+                if (size > 0)
+                    sizeString = size.GetSizeString();
+
+                name = storageItem.DisplayName;
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    lastModified = props.DateModified.ToString("dd/MM/yyyy hh:mm");
+                    sizeHumanizedString = sizeString;
+                    OnPropertyChanged(nameof(LastModified));
+                    OnPropertyChanged(nameof(SizeHumanizedString));
+                    OnPropertyChanged(nameof(SizeAvailable));
+                    OnPropertyChanged(nameof(Name));
+                });
+            }
+            else if (media != null)
+            {
+                this.name = media.meta(MediaMeta.Title);
+
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    OnPropertyChanged(nameof(Name));
+                });
+            }
         }
 
         public string Name
