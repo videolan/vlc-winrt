@@ -218,8 +218,10 @@ namespace VLC_WinRT.Model.Video
         public Boolean IsCameraRoll { get; set; }
 
         private string _filePath;
-        
+
         public bool IsCurrentPlaying { get; set; }
+
+        public Media VlcMedia { get; set; }
 
         #endregion
 
