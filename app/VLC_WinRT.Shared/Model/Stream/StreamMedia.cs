@@ -57,6 +57,7 @@ namespace VLC_WinRT.Model.Stream
 
         public static DeleteStreamCommand DeleteStream { get; } = new DeleteStreamCommand();
 
+        [Ignore]
         public Media VlcMedia { get; set; }
 
         public StreamMedia()

@@ -221,6 +221,7 @@ namespace VLC_WinRT.Model.Video
 
         public bool IsCurrentPlaying { get; set; }
 
+        [Ignore]
         public Media VlcMedia { get; set; }
 
         #endregion

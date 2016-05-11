@@ -183,6 +183,7 @@ namespace VLC_WinRT.Model.Music
             set { SetProperty(ref _file, value); }
         }
 
+        [Ignore]
         public Media VlcMedia
         {
             get
