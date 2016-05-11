@@ -1,0 +1,26 @@
+From 9f66661fb75ca8dc73ba4a5e71afec3f59e150e4 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
+Date: Wed, 11 May 2016 17:37:47 +0200
+Subject: [PATCH 3/3] gnutls: Set cannot_unload_broken_library for winrt
+
+---
+ modules/misc/gnutls.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/modules/misc/gnutls.c b/modules/misc/gnutls.c
+index 4a3d2d4..bbc05db 100644
+--- a/modules/misc/gnutls.c
++++ b/modules/misc/gnutls.c
+@@ -757,6 +757,9 @@ vlc_module_begin ()
+     add_string ("gnutls-priorities", "NORMAL", PRIORITIES_TEXT,
+                 PRIORITIES_LONGTEXT, false)
+         change_string_list (priorities_values, priorities_text)
++#if VLC_WINSTORE_APP
++    cannot_unload_broken_library();
++#endif
+ #ifdef ENABLE_SOUT
+     add_submodule ()
+         set_description( N_("GNU TLS server") )
+-- 
+2.8.1
+
