@@ -58,7 +58,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
             }
         }
         
-        public override Task NavigateTo(IVLCStorageItem storageItem)
+        public override async Task NavigateTo(IVLCStorageItem storageItem)
         {
             var item = storageItem as VLCStorageFolder;
             if (item != null)
@@ -75,7 +75,6 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                 await Locator.MediaPlaybackViewModel.PlayMedia(video);
             }
             OnPropertyChanged(nameof(CurrentFolderName));
-            return Task.FromResult(0);
         }
     }
 }
