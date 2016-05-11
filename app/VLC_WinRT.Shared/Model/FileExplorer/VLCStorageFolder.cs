@@ -38,6 +38,8 @@ namespace VLC_WinRT.Model
 
         async Task Initialize()
         {
+            if (storageItem == null)
+                return;
             var props = await storageItem.GetBasicPropertiesAsync();
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
