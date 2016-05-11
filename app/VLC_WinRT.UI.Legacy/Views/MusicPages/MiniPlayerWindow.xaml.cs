@@ -30,6 +30,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
         private void MiniPlayerWindow_Loaded(object sender, RoutedEventArgs e)
         {
             this.SizeChanged += MiniPlayerWindow_SizeChanged;
+            this.Unloaded += MiniPlayerWindow_Unloaded;
             Initialize();
             Responsive();
 #if WINDOWS_UWP
@@ -38,6 +39,11 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
             AppViewHelper.SetTitleBar(DraggableGrid);
 #endif
             App.SplitShell.FooterVisibility = Visibility.Collapsed;
+        }
+
+        private void MiniPlayerWindow_Unloaded(object sender, RoutedEventArgs e)
+        {
+            App.SplitShell.FooterVisibility = Visibility.Visible;
         }
 
         private void MiniPlayerWindow_SizeChanged(object sender, SizeChangedEventArgs e)
