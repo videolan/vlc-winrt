@@ -589,9 +589,7 @@ namespace VLC_WinRT.ViewModels
                     await Locator.VideoPlayerVm.TryUseSubtitleFromFolder();
 
                     if (video.TimeWatched != TimeSpan.FromSeconds(0))
-                        await
-                            DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal,
-                                () => Locator.MediaPlaybackViewModel.Time = (Int64)video.TimeWatched.TotalMilliseconds);
+                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.Time = (Int64)video.TimeWatched.TotalMilliseconds);
 #if WINDOWS_PHONE_APP
                     try
                     {
