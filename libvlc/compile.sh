@@ -125,7 +125,6 @@ cd $CONTRIB_FOLDER
     --disable-zvbi \
     --disable-caca \
     --disable-gettext \
-    --disable-upnp \
     --disable-gme \
     --disable-tremor \
     --enable-vorbis \
