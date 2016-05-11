@@ -38,7 +38,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                 {
                     var media = mediaList.itemAtIndex(i);
                     var storageItem = new VLCStorageFile(media);
-                    StorageItems.Add(storageItem);
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => StorageItems.Add(storageItem));
                 }
             }
             catch (Exception e)
