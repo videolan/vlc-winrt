@@ -28,7 +28,6 @@ namespace VLC_WinRT.Views.MusicPages
             Responsive();
             this.SizeChanged += OnSizeChanged;
             this.Unloaded += OnUnloaded;
-            AppViewHelper.SetTitleBarTitle("PREVIEW - WORK IN PROGRESS");
         }
         
         private void Slideshower_Loaded_1(object sender, RoutedEventArgs e)
