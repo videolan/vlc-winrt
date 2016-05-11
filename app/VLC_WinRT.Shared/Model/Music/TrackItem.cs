@@ -15,7 +15,7 @@ using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Model.Music
 {
-    public class TrackItem : BindableBase, IVLCMedia
+    public class TrackItem : BindableBase, IMediaItem
     {
         private string _artistName;
         private string _albumName;
@@ -181,6 +181,19 @@ namespace VLC_WinRT.Model.Music
         {
             get { return _file; }
             set { SetProperty(ref _file, value); }
+        }
+
+        public Media VlcMedia
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public Tuple<FromType, string> GetMrlAndFromType(bool preferToken = false)

@@ -27,7 +27,7 @@ namespace VLC_WinRT.Services.Interface
         /// Sets the path of the file to played.
         /// </summary>
         /// <param name="fileUri">The path of the file to be played.</param>
-        Task SetMediaFile(IVLCMedia media);
+        Task SetMediaFile(IMediaItem media);
 
         void Play();
         void Play(int trackId);

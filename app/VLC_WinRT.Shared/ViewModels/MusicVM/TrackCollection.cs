@@ -29,15 +29,15 @@ namespace VLC_WinRT.ViewModels.MusicVM
 {
     public class TrackCollection : BindableBase
     {
-        private SmartCollection<IVLCMedia> _tracksCollection;
-        private SmartCollection<IVLCMedia> _nonShuffledPlaylist;
+        private SmartCollection<IMediaItem> _tracksCollection;
+        private SmartCollection<IMediaItem> _nonShuffledPlaylist;
         private int _currentTrack;
         private bool _isRunning;
         private bool _isShuffled;
         private bool _repeat;
 
         // ui related management
-        private ObservableCollection<IVLCMedia> _selectedTracks;
+        private ObservableCollection<IMediaItem> _selectedTracks;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -120,23 +120,23 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         #region public fields
         [Ignore]
-        public SmartCollection<IVLCMedia> Playlist
+        public SmartCollection<IMediaItem> Playlist
         {
             get { return _tracksCollection; }
             private set { SetProperty(ref _tracksCollection, value); }
         }
 
         [Ignore]
-        public SmartCollection<IVLCMedia> NonShuffledPlaylist
+        public SmartCollection<IMediaItem> NonShuffledPlaylist
         {
             get { return _nonShuffledPlaylist; }
             set { SetProperty(ref _nonShuffledPlaylist, value); }
         }
 
         [Ignore]
-        public ObservableCollection<IVLCMedia> SelectedTracks
+        public ObservableCollection<IMediaItem> SelectedTracks
         {
-            get { return _selectedTracks ?? (_selectedTracks = new ObservableCollection<IVLCMedia>()); }
+            get { return _selectedTracks ?? (_selectedTracks = new ObservableCollection<IMediaItem>()); }
             set { SetProperty(ref _selectedTracks, value); }
         }
 
@@ -149,13 +149,13 @@ namespace VLC_WinRT.ViewModels.MusicVM
             {
                 RestorePlaylist();
             }
-            _tracksCollection = new SmartCollection<IVLCMedia>();
+            _tracksCollection = new SmartCollection<IMediaItem>();
             InitializePlaylist();
         }
 
         public TrackCollection()
         {
-            _tracksCollection = new SmartCollection<IVLCMedia>();
+            _tracksCollection = new SmartCollection<IMediaItem>();
             InitializePlaylist();
         }
         #endregion
@@ -203,9 +203,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
             }
         }
 
-        public async Task SetPlaylist(IEnumerable<IVLCMedia> tracks)
+        public async Task SetPlaylist(IEnumerable<IMediaItem> tracks)
         {
-            var playlist = new SmartCollection<IVLCMedia>(tracks);
+            var playlist = new SmartCollection<IMediaItem>(tracks);
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Playlist = playlist);
             var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Locator.MediaPlaybackViewModel.TrackCollection.Playlist.ToTrackItemPlaylist());
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
@@ -215,7 +215,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             if (IsShuffled)
             {
-                NonShuffledPlaylist = new SmartCollection<IVLCMedia>(Playlist);
+                NonShuffledPlaylist = new SmartCollection<IMediaItem>(Playlist);
                 Random r = new Random();
                 for (int i = 0; i < Playlist.Count; i++)
                 {
@@ -236,7 +236,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             await App.BackgroundAudioHelper.AddToPlaylist(backgorundTracks);
         }
 
-        public void Remove(IVLCMedia media)
+        public void Remove(IMediaItem media)
         {
             Playlist.Remove(media);
         }
@@ -289,7 +289,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 return;
             }
             var trackIds = playlist.Select(node => node.Id);
-            Playlist = new SmartCollection<IVLCMedia>();
+            Playlist = new SmartCollection<IMediaItem>();
             foreach (int trackId in trackIds)
             {
                 var trackItem = await Locator.MediaLibrary.LoadTrackById(trackId);

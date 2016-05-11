@@ -84,7 +84,7 @@ namespace VLC_WinRT.ViewModels
         
         public bool UseVlcLib { get; set; }
         
-        public IVLCMedia CurrentMedia
+        public IMediaItem CurrentMedia
         {
             get
             {
@@ -554,7 +554,7 @@ namespace VLC_WinRT.ViewModels
             mediaService.SetNullMediaPlayer();
         }
 
-        public Task SetMedia(IVLCMedia media, bool forceVlcLib = false, bool autoPlay = true)
+        public Task SetMedia(IMediaItem media, bool forceVlcLib = false, bool autoPlay = true)
         {
             return Task.Run(async () =>
             {
@@ -664,7 +664,7 @@ namespace VLC_WinRT.ViewModels
             });
         }
 
-        public async Task InitializePlayback(IVLCMedia media, bool autoPlay)
+        public async Task InitializePlayback(IMediaItem media, bool autoPlay)
         {
             // First set the player engine
             // For videos AND music, we have to try first with Microsoft own player

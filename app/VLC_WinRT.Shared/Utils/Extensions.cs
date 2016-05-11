@@ -26,12 +26,12 @@ namespace VLC_WinRT.Utils
             return new SmartCollection<T>(await source);
         }
 
-        public static ObservableCollection<IVLCMedia> ToPlaylist(this IEnumerable<TrackItem> source)
+        public static ObservableCollection<IMediaItem> ToPlaylist(this IEnumerable<TrackItem> source)
         {
-            return new ObservableCollection<IVLCMedia>(source);
+            return new ObservableCollection<IMediaItem>(source);
         }
 
-        public static List<TrackItem> ToTrackItemPlaylist(this IEnumerable<IVLCMedia> source)
+        public static List<TrackItem> ToTrackItemPlaylist(this IEnumerable<IMediaItem> source)
         {
             return source.OfType<TrackItem>().ToList();
         }

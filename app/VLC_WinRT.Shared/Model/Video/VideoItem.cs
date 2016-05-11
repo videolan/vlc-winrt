@@ -25,7 +25,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace VLC_WinRT.Model.Video
 {
-    public class VideoItem : BindableBase, IVLCMedia
+    public class VideoItem : BindableBase, IMediaItem
     {
         #region private props
         private char _alphaKey;

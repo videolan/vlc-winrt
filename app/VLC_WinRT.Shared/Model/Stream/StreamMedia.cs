@@ -9,7 +9,7 @@ using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Model.Stream
 {
-    public class StreamMedia : BindableBase, IVLCMedia
+    public class StreamMedia : BindableBase, IMediaItem
     {
         private string _filePath;
         private TimeSpan _duration;

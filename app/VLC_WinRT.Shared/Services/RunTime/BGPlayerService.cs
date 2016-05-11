@@ -181,7 +181,7 @@ namespace VLC_WinRT.Services.RunTime
             MediaFailed?.Invoke(this, new EventArgs());
         }
 
-        public async Task SetMediaFile(IVLCMedia media)
+        public async Task SetMediaFile(IMediaItem media)
         {
         }
 

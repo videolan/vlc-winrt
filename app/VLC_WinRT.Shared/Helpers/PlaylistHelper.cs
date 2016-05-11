@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using libVLCX;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using VLC_WinRT.Model;
@@ -122,7 +123,7 @@ namespace VLC_WinRT.Helpers
                 await PlayMusicTrack(trackItems[0].Id);
         }
 
-        public static Task AddTrackCollectionToPlaylistAndPlay(ObservableCollection<IVLCMedia> trackCollection, bool play = true, int? index = null)
+        public static Task AddTrackCollectionToPlaylistAndPlay(ObservableCollection<IMediaItem> trackCollection, bool play = true, int? index = null)
         {
             return Task.Run(async () =>
             {
