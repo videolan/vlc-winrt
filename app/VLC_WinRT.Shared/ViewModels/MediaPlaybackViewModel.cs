@@ -450,7 +450,6 @@ namespace VLC_WinRT.ViewModels
         /// <param name="token">Token is for files that are NOT in the sandbox, such as files taken from the filepicker from a sd card but not in the Video/Music folder.</param>
         public async Task PlayAudioFile(StorageFile file, string token = null)
         {
-            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             var trackItem = await Locator.MediaLibrary.GetTrackItemFromFile(file, token);
             await PlaylistHelper.PlayTrackFromFilePicker(trackItem);
         }
@@ -462,7 +461,6 @@ namespace VLC_WinRT.ViewModels
         /// <param name="token">Token is for files that are NOT in the sandbox, such as files taken from the filepicker from a sd card but not in the Video/Music folder.</param>
         public async Task PlayVideoFile(StorageFile file, string token = null)
         {
-            Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
             VideoItem videoVm = new VideoItem();
             await videoVm.Initialize(file);
             if (token != null)
