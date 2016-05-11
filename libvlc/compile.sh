@@ -137,7 +137,6 @@ cd $CONTRIB_FOLDER
     --disable-flac \
     --enable-dca \
     --disable-fontconfig \
-    --disable-gcrypt \
     --disable-gpg-error \
     --disable-projectM \
     --enable-ass \
