@@ -8,12 +8,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="..\libVLCX\MMDeviceLocator.cpp" />
-    <ClCompile Include="..\libVLCX\Thumbnailer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="..\libVLCX\MMDeviceLocator.h" />
-    <ClInclude Include="..\libVLCX\Thumbnailer.h" />
   </ItemGroup>
 </Project>
