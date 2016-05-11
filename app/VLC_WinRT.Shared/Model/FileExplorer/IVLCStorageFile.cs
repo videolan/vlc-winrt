@@ -25,7 +25,6 @@ namespace VLC_WinRT.Model
         public VLCStorageFile(StorageFile folder)
         {
             storageItem = folder;
-            name = folder.Name;
         }
 
         public VLCStorageFile(Media media)

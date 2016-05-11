@@ -27,7 +27,6 @@ namespace VLC_WinRT.Model
         public VLCStorageFolder(StorageFolder folder)
         {
             storageItem = folder;
-            name = folder.DisplayName;
             sizeHumanizedString = "";
         }
 
