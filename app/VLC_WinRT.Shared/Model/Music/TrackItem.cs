@@ -184,18 +184,7 @@ namespace VLC_WinRT.Model.Music
         }
 
         [Ignore]
-        public Media VlcMedia
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public Media VlcMedia { get; set; }
 
         public Tuple<FromType, string> GetMrlAndFromType(bool preferToken = false)
         {
