@@ -424,6 +424,12 @@ namespace VLC_WinRT.Services.RunTime
                 await Initialize();
             }
             await PlayerInstanceReady.Task;
+            if (discoverer != null)
+            {
+                Debug.WriteLine("Discoverer is already initiated");
+                return true;
+            }
+
             discoverer = new MediaDiscoverer(Instance, "upnp");
             var mediaList = discoverer.mediaList();
             if (mediaList == null)
