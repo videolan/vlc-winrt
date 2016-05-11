@@ -72,6 +72,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                 // TODO : Difference between audio and video, here ? Hint: i don't think so
                 var video = new StreamMedia();
                 video.Name = file.Name;
+                video.VlcMedia = file.Media;
                 await Locator.MediaPlaybackViewModel.PlayMedia(video);
             }
             OnPropertyChanged(nameof(CurrentFolderName));
