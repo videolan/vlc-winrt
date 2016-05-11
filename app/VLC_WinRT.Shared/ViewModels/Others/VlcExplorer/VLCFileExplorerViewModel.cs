@@ -9,6 +9,8 @@ using VLC_WinRT.Utils;
 using Windows.UI.Core;
 using System.Linq;
 using System.Diagnostics;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.Model.Stream;
 
 namespace VLC_WinRT.ViewModels.Others.VlcExplorer
 {
@@ -37,7 +39,16 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                 for (int i = 0; i < mediaList.count(); i++)
                 {
                     var media = mediaList.itemAtIndex(i);
-                    var storageItem = new VLCStorageFile(media);
+                    IVLCStorageItem storageItem = null;
+                    if (media.type() == MediaType.Directory)
+                    {
+                        storageItem = new VLCStorageFolder(media);
+                    }
+                    else if (media.type() == MediaType.File)
+                    {
+                        storageItem = new VLCStorageFile(media);
+                    }
+                    if (storageItem == null) return;
                     await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => StorageItems.Add(storageItem));
                 }
             }
@@ -57,7 +68,11 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
             }
             else
             {
-                throw new NotImplementedException();
+                var file = storageItem as VLCStorageFile;
+                // TODO : Difference between audio and video, here ? Hint: i don't think so
+                var video = new StreamMedia();
+                video.Name = file.Name;
+                await Locator.MediaPlaybackViewModel.PlayMedia(video);
             }
             OnPropertyChanged(nameof(CurrentFolderName));
             return Task.FromResult(0);

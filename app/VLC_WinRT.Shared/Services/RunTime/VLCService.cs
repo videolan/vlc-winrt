@@ -100,27 +100,36 @@ namespace VLC_WinRT.Services.RunTime
             MediaPlayer = null;
         }
 
-        public async Task SetMediaFile(IVLCMedia media)
+        public async Task SetMediaFile(IMediaItem media)
         {
-            var mrl_fromType = media.GetMrlAndFromType();
-            LogHelper.Log("SetMRL: " + mrl_fromType.Item2);
-            if (Instance == null)
+            Media vlcMedia = null;
+            if (media.VlcMedia != null)
             {
-                await Initialize();
+                vlcMedia = media.VlcMedia;
             }
-            await PlayerInstanceReady.Task;
-
-            if (!PlayerInstanceReady.Task.Result)
+            else
             {
-                LogHelper.Log($"Couldn't play media {media.Name} as VLC failed to init");
-                return;
+                var mrl_fromType = media.GetMrlAndFromType();
+                LogHelper.Log("SetMRL: " + mrl_fromType.Item2);
+                if (Instance == null)
+                {
+                    await Initialize();
+                }
+                await PlayerInstanceReady.Task;
+
+                if (!PlayerInstanceReady.Task.Result)
+                {
+                    LogHelper.Log($"Couldn't play media {media.Name} as VLC failed to init");
+                    return;
+                }
+
+                vlcMedia = new Media(Instance, mrl_fromType.Item2, mrl_fromType.Item1);
             }
 
-            var mediaVLC = new Media(Instance, mrl_fromType.Item2, mrl_fromType.Item1);
             // Hardware decoding
-            mediaVLC.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
+            vlcMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
 
-            MediaPlayer = new MediaPlayer(mediaVLC);
+            MediaPlayer = new MediaPlayer(vlcMedia);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
             var em = MediaPlayer.eventManager();
             em.OnOpening += Em_OnOpening;

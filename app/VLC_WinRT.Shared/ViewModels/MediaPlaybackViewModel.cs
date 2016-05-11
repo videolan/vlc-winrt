@@ -414,6 +414,15 @@ namespace VLC_WinRT.ViewModels
             }
         }
 
+        public async Task PlayMedia(IMediaItem mediaItem)
+        {
+            if (mediaItem is VideoItem || mediaItem is StreamMedia)
+            {
+                Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
+                await Locator.MediaPlaybackViewModel.SetMedia(mediaItem);
+            }
+        }
+
         /// <summary>
         /// Navigates to the Video Player with the request MRL as parameter
         /// </summary>
