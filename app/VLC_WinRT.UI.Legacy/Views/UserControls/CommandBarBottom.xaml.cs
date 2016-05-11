@@ -25,6 +25,12 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
         {
             UpdatePlayerVisibility();
             Locator.MusicPlayerVM.PropertyChanged += MusicPlayerVM_PropertyChanged;
+            App.SplitShell.ContentSizeChanged += SplitShell_ContentSizeChanged;
+        }
+
+        private void SplitShell_ContentSizeChanged(double newWidth)
+        {
+            Responsive();
         }
 
         private void MusicPlayerVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -60,12 +66,11 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
                 PlayNextButton.Visibility =
                 ShuffleButton.Visibility =
                 RepeatButton.Visibility =
-                ShuffleMiniButton.Visibility =
                 MiniWindowButton.Visibility =
                 MiniPlayerVisibility;
 
-            this.ClosedDisplayMode = 
-                MiniPlayerVisibility == Visibility.Visible ? 
+            this.ClosedDisplayMode =
+                MiniPlayerVisibility == Visibility.Visible ?
                     AppBarClosedDisplayMode.Compact : AppBarClosedDisplayMode.Minimal;
         }
 
@@ -77,5 +82,99 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             Locator.MusicPlayerVM.GoToMusicPlayerPage.Execute(null);
         }
         #endregion
+
+        void Responsive()
+        {
+            if (this.ActualWidth < 700)
+            {
+                bool addedSeparator = false;
+                foreach (var item in this.PrimaryCommands.ToList())
+                {
+                    if (((FrameworkElement)item).Tag?.ToString() == "sec")
+                    {
+                        if (!addedSeparator)
+                        {
+                            this.SecondaryCommands.Add(new AppBarSeparator());
+                            addedSeparator = true;
+                        }
+
+                        this.PrimaryCommands.Remove(item);
+                        if (item is AppBarButton)
+                        {
+                            var newButton = new AppBarButton();
+                            newButton.Tag = ((FrameworkElement)item).Tag;
+                            newButton.Name = ((FrameworkElement)item).Name;
+                            newButton.Label = ((AppBarButton)item).Label;
+                            newButton.Icon = ((AppBarButton)item).Icon;
+                            newButton.Style = App.Current.Resources["AppBarTextButtonStyle"] as Style;
+                            newButton.Command = ((AppBarButton)item).Command;
+                            newButton.CommandParameter = ((AppBarButton)item).CommandParameter;
+
+                            newButton.Width = 160;
+
+                            this.SecondaryCommands.Add(newButton);
+                        }
+                        else if (item is AppBarToggleButton)
+                        {
+                            var newButton = new AppBarToggleButton();
+                            newButton.Tag = ((FrameworkElement)item).Tag;
+                            newButton.Name = ((FrameworkElement)item).Name;
+                            newButton.Label = ((AppBarToggleButton)item).Label;
+                            newButton.Icon = ((AppBarToggleButton)item).Icon;
+                            newButton.Style = App.Current.Resources["AppBarToggleTextButtonStyle"] as Style;
+                            newButton.Command = ((AppBarToggleButton)item).Command;
+                            newButton.CommandParameter = ((AppBarToggleButton)item).CommandParameter;
+
+                            newButton.Width = 160;
+
+                            this.SecondaryCommands.Add(newButton);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                bool removedSeparator = false;
+                foreach (var item in this.SecondaryCommands.ToList())
+                {
+                    if (((FrameworkElement)item).Tag?.ToString() == "sec")
+                    {
+                        if (!removedSeparator)
+                        {
+                            this.SecondaryCommands.Remove(this.SecondaryCommands.FirstOrDefault(x => x is AppBarSeparator));
+                            removedSeparator = true;
+                        }
+
+                        this.SecondaryCommands.Remove(item);
+                        if (item is AppBarButton)
+                        {
+                            var newButton = new AppBarButton();
+                            newButton.Tag = ((FrameworkElement)item).Tag;
+                            newButton.Name = ((FrameworkElement)item).Name;
+                            newButton.Label = ((AppBarButton)item).Label;
+                            newButton.Icon = ((AppBarButton)item).Icon;
+                            newButton.Style = null;
+                            newButton.Command = ((AppBarButton)item).Command;
+                            newButton.CommandParameter = ((AppBarButton)item).CommandParameter;
+
+                            this.PrimaryCommands.Add(newButton);
+                        }
+                        else if (item is AppBarToggleButton)
+                        {
+                            var newButton = new AppBarToggleButton();
+                            newButton.Tag = ((FrameworkElement)item).Tag;
+                            newButton.Name = ((FrameworkElement)item).Name;
+                            newButton.Label = ((AppBarToggleButton)item).Label;
+                            newButton.Icon = ((AppBarToggleButton)item).Icon;
+                            newButton.Style = null;
+                            newButton.Command = ((AppBarToggleButton)item).Command;
+                            newButton.CommandParameter = ((AppBarToggleButton)item).CommandParameter;
+
+                            this.PrimaryCommands.Add(newButton);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

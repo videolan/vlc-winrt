@@ -102,21 +102,34 @@
         </AppBarButton>
         <AppBarToggleButton x:Name="ShuffleButton"
                             Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.Shuffle}"
+                            Label="{Binding Source={StaticResource Strings},Path=Shuffle}"
                             IsChecked="{Binding TrackCollection.IsShuffled, Mode=TwoWay}"
-                            IsCompact="True">
+                            IsCompact="True"
+                            Tag="sec">
             <AppBarToggleButton.Icon>
                 <FontIcon Glyph="{StaticResource ShuffleSymbol}"
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarToggleButton.Icon>
         </AppBarToggleButton>
         <AppBarToggleButton x:Name="RepeatButton"
+                            Label="repeat"
                             IsChecked="{Binding TrackCollection.Repeat, Mode=TwoWay}"
-                            IsCompact="True">
+                            IsCompact="True"
+                            Tag="sec">
             <AppBarToggleButton.Icon>
                 <FontIcon Glyph="{StaticResource RefreshSymbol}"
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarToggleButton.Icon>
         </AppBarToggleButton>
+        <AppBarButton x:Name="MiniWindowButton"
+                      Label="mini player"
+                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.CreateMiniPlayerView}"
+                      Tag="sec">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource ReduceWindow}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Icon>
+        </AppBarButton>
     </CommandBar.PrimaryCommands>
     <CommandBar.SecondaryCommands>
         <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=Settings}"
@@ -125,25 +138,6 @@
                       Width="{Binding ElementName=RootCommandBar, Path=CommandBarTemplateSettings.OverflowContentMinWidth}">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource SettingsSymbol}"
-                          FontFamily="{StaticResource VLCFont}" />
-            </AppBarButton.Icon>
-        </AppBarButton>
-        <AppBarButton x:Name="ShuffleMiniButton"
-                      Label="{Binding Source={StaticResource Strings}, Path=Shuffle}"
-                      Style="{StaticResource AppBarTextButtonStyle}"
-                      Width="{Binding ElementName=RootCommandBar, Path=CommandBarTemplateSettings.OverflowContentMinWidth}">
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource ShuffleSymbol}"
-                          FontFamily="{StaticResource VLCFont}" />
-            </AppBarButton.Icon>
-        </AppBarButton>
-        <AppBarButton x:Name="MiniWindowButton"
-                      Label="miniplayer"
-                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.CreateMiniPlayerView}"
-                      Style="{StaticResource AppBarTextButtonStyle}"
-                      Width="{Binding ElementName=RootCommandBar, Path=CommandBarTemplateSettings.OverflowContentMinWidth}">
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource ReduceWindow}"
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarButton.Icon>
         </AppBarButton>
