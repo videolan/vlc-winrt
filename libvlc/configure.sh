@@ -28,7 +28,6 @@ OPTIONS="
       --disable-zvbi --disable-telx
       --enable-mad
       --disable-a52
-      --disable-libgcrypt
       --disable-dirac
       --disable-dsm
       --disable-smbclient
