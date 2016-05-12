@@ -424,23 +424,25 @@ namespace VLC_WinRT.Services.RunTime
                 await Initialize();
             }
             await PlayerInstanceReady.Task;
-            if (discoverer != null)
+            if (discoverer == null)
             {
-                Debug.WriteLine("Discoverer is already initiated");
-                return true;
+                discoverer = new MediaDiscoverer(Instance, "upnp");
+                var mediaList = discoverer.mediaList();
+                if (mediaList == null)
+                    return false;
+
+                var eventManager = mediaList.eventManager();
+                eventManager.onItemAdded += MediaListItemAdded;
+                eventManager.onItemDeleted += MediaListItemDeleted;
             }
-
-            discoverer = new MediaDiscoverer(Instance, "upnp");
-            var mediaList = discoverer.mediaList();
-            if (mediaList == null)
-                return false;
-
-            var eventManager = mediaList.eventManager();
-            eventManager.onItemAdded += MediaListItemAdded;
-            eventManager.onItemDeleted += MediaListItemDeleted;
 
             discoverer.start();
             return true;
+        }
+
+        public void DisposeDiscoverer()
+        {
+            discoverer?.stop();
         }
 
         public Task<MediaList> DiscoverMediaList(Media media)
