@@ -107,7 +107,7 @@
             <AppBarButton Grid.Column="3"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
-                          Label="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
+                          ToolTipService.ToolTip="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
                           Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.OpenAddAlbumToPlaylistDialogCommand}"
                           IsTabStop="True">
                 <AppBarButton.Icon>
