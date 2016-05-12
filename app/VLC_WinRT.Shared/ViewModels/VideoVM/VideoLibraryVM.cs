@@ -51,22 +51,22 @@ namespace VLC_WinRT.ViewModels.VideoVM
 
         public ObservableCollection<VideoItem> Videos
         {
-            get { return Locator.MediaLibrary.Videos.ToObservable(); }
+            get { return Locator.MediaLibrary.Videos?.ToObservable(); }
         }
 
         public ObservableCollection<VideoItem> ViewedVideos
         {
-            get { return Locator.MediaLibrary.ViewedVideos.ToObservable(); }
+            get { return Locator.MediaLibrary.ViewedVideos?.ToObservable(); }
         }
 
         public ObservableCollection<TvShow> Shows
         {
-            get { return Locator.MediaLibrary.Shows.ToObservable(); }
+            get { return Locator.MediaLibrary.Shows?.ToObservable(); }
         }
 
         public ObservableCollection<VideoItem> CameraRoll
         {
-            get { return Locator.MediaLibrary.CameraRoll.ToObservable(); }
+            get { return Locator.MediaLibrary.CameraRoll?.ToObservable(); }
         }
         #endregion
 
