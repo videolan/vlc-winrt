@@ -14,7 +14,7 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Cover"
                                            Storyboard.TargetProperty="Opacity">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5"
-                                      Value="1"/>
+                                      Value="1" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Name="FadeOutCover"
@@ -22,7 +22,7 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Cover"
                                            Storyboard.TargetProperty="Opacity">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4"
-                                      Value="0"/>
+                                      Value="0" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
