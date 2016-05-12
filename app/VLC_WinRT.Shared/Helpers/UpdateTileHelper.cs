@@ -15,6 +15,7 @@ using Windows.UI.Xaml;
 using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Utils;
+using System.Threading.Tasks;
 #if WINDOWS_UWP
 using NotificationsExtensions.Tiles;
 #endif
@@ -300,7 +301,7 @@ namespace VLC_WinRT.Helpers
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
         }
 
-        public static async void CreateOrReplaceSecondaryTile(VLCItemType type, int id, string title)
+        public static async Task<bool> CreateOrReplaceSecondaryTile(VLCItemType type, int id, string title)
         {
             string tileId = "SecondaryTile-" + type.ToString() + "-" + id;
             if (!SecondaryTile.Exists(tileId))
@@ -325,13 +326,15 @@ namespace VLC_WinRT.Helpers
                 tileData.DisplayName = title;
                 tileData.VisualElements.Square150x150Logo =
                     new Uri("ms-appdata:///local/" + subfolder + "/" + id + ".jpg");
-                await tileData.RequestCreateAsync();
+                bool success = await tileData.RequestCreateAsync();
+                return success;
             }
             else
             {
                 SecondaryTile secondaryTile = new SecondaryTile(tileId);
                 await secondaryTile.RequestDeleteForSelectionAsync(Window.Current.Bounds, Placement.Default);
                 ToastHelper.Basic(Strings.TileRemoved);
+                return false;
             }
         }
 
