@@ -34,7 +34,7 @@ namespace VLC_WinRT.Views.UserControls
 
         private void SplitShell_ContentSizeChanged(double newWidth)
         {
-            SettingsButton.Margin = new Thickness(0, 0, AppViewHelper.TitleBarRightOffset, 0);
+            SettingsButton.Margin = new Thickness(0, 0, AppViewHelper.TitleBarRightOffset == 0 ? 12 : AppViewHelper.TitleBarRightOffset, 0);
         }
     }
 }
