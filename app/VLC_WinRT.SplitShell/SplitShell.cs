@@ -22,7 +22,6 @@ namespace VLC_WinRT.Controls
     [TemplatePart(Name = FlyoutPlaneProjectionName, Type = typeof(PlaneProjection))]
     [TemplatePart(Name = FlyoutGridContainerName, Type = typeof(Grid))]
     [TemplatePart(Name = FlyoutBackgroundGridName, Type = typeof(Grid))]
-    [TemplatePart(Name = FooterContentPresenterName, Type = typeof(ContentPresenter))]
     public sealed class SplitShell : Control
     {
         public event FlyoutCloseRequested FlyoutCloseRequested;
@@ -31,11 +30,9 @@ namespace VLC_WinRT.Controls
         public event ContentSizeChanged ContentSizeChanged;
         public TaskCompletionSource<bool> TemplateApplied = new TaskCompletionSource<bool>();
         
-        private DispatcherTimer _windowResizerTimer = new DispatcherTimer()
-        {
-            Interval = TimeSpan.FromMilliseconds(200)
-        };
+        private DispatcherTimer _windowResizerTimer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(200) };
 
+        private const string PageName = "Page";
         private const string ContentPresenterName = "ContentPresenter";
         private const string FlyoutContentPresenterName = "FlyoutContentPresenter";
         private const string FlyoutFadeInName = "FlyoutFadeIn";
@@ -45,13 +42,12 @@ namespace VLC_WinRT.Controls
         private const string FlyoutPlaneProjectionName = "FlyoutPlaneProjection";
         private const string FlyoutGridContainerName = "FlyoutGridContainer";
         private const string FlyoutBackgroundGridName = "FlyoutBackgroundGrid";
-        private const string FooterContentPresenterName = "FooterContentPresenter";
 
+        private Page _page;
         private Grid _flyoutGridContainer;
         private Grid _flyoutBackgroundGrid;
         private ContentPresenter _contentPresenter;
         private Frame _flyoutContentPresenter;
-        private ContentPresenter _footerContentPresenter;
 
         private PlaneProjection _flyoutPlaneProjection;
         private Storyboard _flyoutFadeIn;
@@ -75,12 +71,13 @@ namespace VLC_WinRT.Controls
         public async void SetFooterContentPresenter(object content)
         {
             await TemplateApplied.Task;
-            _footerContentPresenter.Content = content;
+            _page.BottomAppBar = content as CommandBar;
         }
+
         public async void SetFooterVisibility(object visibility)
         {
             await TemplateApplied.Task;
-            _footerContentPresenter.Visibility = (Visibility)visibility;
+            _page.BottomAppBar.Visibility = (Visibility)visibility;
         }
 
         #region Content Property
@@ -129,7 +126,7 @@ namespace VLC_WinRT.Controls
         }
 
         public static readonly DependencyProperty FooterVisibilityProperty = DependencyProperty.Register(
-            "FooterVisibility", typeof(Visibility), typeof(SplitShell), new PropertyMetadata(Visibility.Visible, FooterVisibilityPropertyChangedCallback));
+            nameof(FooterVisibility), typeof(Visibility), typeof(SplitShell), new PropertyMetadata(Visibility.Visible, FooterVisibilityPropertyChangedCallback));
 
         private static void FooterVisibilityPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -144,7 +141,7 @@ namespace VLC_WinRT.Controls
         }
 
         public static readonly DependencyProperty FooterContentProperty = DependencyProperty.Register(
-            "FooterContent", typeof(DependencyObject), typeof(SplitShell),
+            nameof(FooterContent), typeof(DependencyObject), typeof(SplitShell),
             new PropertyMetadata(default(DependencyObject), FooterContentPropertyChangedCallback));
 
         private static void FooterContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
@@ -162,6 +159,7 @@ namespace VLC_WinRT.Controls
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+            _page = (Page)GetTemplateChild(PageName);
             _contentPresenter = (ContentPresenter)GetTemplateChild(ContentPresenterName);
             _flyoutContentPresenter = (Frame)GetTemplateChild(FlyoutContentPresenterName);
             _flyoutFadeIn = (Storyboard)GetTemplateChild(FlyoutFadeInName);
@@ -171,7 +169,6 @@ namespace VLC_WinRT.Controls
             _flyoutPlaneProjection = (PlaneProjection)GetTemplateChild(FlyoutPlaneProjectionName);
             _flyoutGridContainer = (Grid)GetTemplateChild(FlyoutGridContainerName);
             _flyoutBackgroundGrid = (Grid)GetTemplateChild(FlyoutBackgroundGridName);
-            _footerContentPresenter = (ContentPresenter)GetTemplateChild(FooterContentPresenterName);
 
             Responsive();
             Window.Current.SizeChanged += Current_SizeChanged;

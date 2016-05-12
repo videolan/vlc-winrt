@@ -7,104 +7,96 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:SplitShell">
-                    <Grid>
-                        <Grid.Resources>
-                            <Storyboard x:Name="TopBarFadeOut">
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenterTranslateTransform"
-                                                               Storyboard.TargetProperty="Y">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.6"
-                                                          Value="-45">
-                                        <EasingDoubleKeyFrame.EasingFunction>
-                                            <ExponentialEase EasingMode="EaseInOut"
-                                                             Exponent="3" />
-                                        </EasingDoubleKeyFrame.EasingFunction>
-                                    </EasingDoubleKeyFrame>
-                                </DoubleAnimationUsingKeyFrames>
-                            </Storyboard>
-                            <Storyboard x:Name="TopBarFadeIn">
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenterTranslateTransform"
-                                                               Storyboard.TargetProperty="Y">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2"
-                                                          Value="0">
-                                        <EasingDoubleKeyFrame.EasingFunction>
-                                            <ExponentialEase EasingMode="EaseOut"
-                                                             Exponent="2" />
-                                        </EasingDoubleKeyFrame.EasingFunction>
-                                    </EasingDoubleKeyFrame>
-                                </DoubleAnimationUsingKeyFrames>
-                            </Storyboard>
-                            <Storyboard x:Name="FlyoutFadeIn">
-                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FlyoutGridContainer"
-                                                               Storyboard.TargetProperty="Visibility">
-                                    <DiscreteObjectKeyFrame KeyTime="0"
-                                                            Value="Visible" />
-                                </ObjectAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyoutGridContainer"
-                                                               Storyboard.TargetProperty="Opacity">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.4"
-                                                          Value="1">
-                                        <EasingDoubleKeyFrame.EasingFunction>
-                                            <ExponentialEase Exponent="4"
-                                                             EasingMode="EaseOut" />
-                                        </EasingDoubleKeyFrame.EasingFunction>
-                                    </EasingDoubleKeyFrame>
-                                </DoubleAnimationUsingKeyFrames>
-                            </Storyboard>
-                            <Storyboard x:Name="FlyoutFadeOut">
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyoutGridContainer"
-                                                               Storyboard.TargetProperty="Opacity">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.4"
-                                                          Value="0">
-                                        <EasingDoubleKeyFrame.EasingFunction>
-                                            <ExponentialEase Exponent="4"
-                                                             EasingMode="EaseOut" />
-                                        </EasingDoubleKeyFrame.EasingFunction>
-                                    </EasingDoubleKeyFrame>
-                                </DoubleAnimationUsingKeyFrames>
-                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FlyoutGridContainer"
-                                                               Storyboard.TargetProperty="Visibility">
-                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.4"
-                                                            Value="Collapsed" />
-                                </ObjectAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </Grid.Resources>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <ContentPresenter x:Name="ContentPresenter">
-                            <ContentPresenter.RenderTransform>
-                                <TranslateTransform x:Name="ContentPresenterTranslateTransform" />
-                            </ContentPresenter.RenderTransform>
-                        </ContentPresenter>
-                        <ContentPresenter x:Name="FooterContentPresenter"
-                                          Grid.Row="1"
-                                          VerticalAlignment="Bottom"
-                                          HorizontalAlignment="Stretch" />
+                    <Page x:Name="Page">
+                        <Grid>
+                            <Grid.Resources>
+                                <Storyboard x:Name="TopBarFadeOut">
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenterTranslateTransform"
+                                                                   Storyboard.TargetProperty="Y">
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.6"
+                                                              Value="-45">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <ExponentialEase EasingMode="EaseInOut"
+                                                                 Exponent="3" />
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                                <Storyboard x:Name="TopBarFadeIn">
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenterTranslateTransform"
+                                                                   Storyboard.TargetProperty="Y">
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.2"
+                                                              Value="0">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <ExponentialEase EasingMode="EaseOut"
+                                                                 Exponent="2" />
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                                <Storyboard x:Name="FlyoutFadeIn">
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FlyoutGridContainer"
+                                                                   Storyboard.TargetProperty="Visibility">
+                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                Value="Visible" />
+                                    </ObjectAnimationUsingKeyFrames>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyoutGridContainer"
+                                                                   Storyboard.TargetProperty="Opacity">
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.4"
+                                                              Value="1">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <ExponentialEase Exponent="4"
+                                                                 EasingMode="EaseOut" />
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                                <Storyboard x:Name="FlyoutFadeOut">
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyoutGridContainer"
+                                                                   Storyboard.TargetProperty="Opacity">
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.4"
+                                                              Value="0">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <ExponentialEase Exponent="4"
+                                                                 EasingMode="EaseOut" />
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                    </DoubleAnimationUsingKeyFrames>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FlyoutGridContainer"
+                                                                   Storyboard.TargetProperty="Visibility">
+                                        <DiscreteObjectKeyFrame KeyTime="0:0:0.4"
+                                                                Value="Collapsed" />
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </Grid.Resources>
+                            <ContentPresenter x:Name="ContentPresenter">
+                                <ContentPresenter.RenderTransform>
+                                    <TranslateTransform x:Name="ContentPresenterTranslateTransform" />
+                                </ContentPresenter.RenderTransform>
+                            </ContentPresenter>
 
-                        <Grid x:Name="FlyoutGridContainer"
-                              Opacity="0"
-                              Grid.Row="0"
-                              Grid.RowSpan="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Grid.Projection>
-                                <PlaneProjection x:Name="FlyoutPlaneProjection" />
-                            </Grid.Projection>
-                            <Grid x:Name="FlyoutBackgroundGrid"
-                                  Background="#B3000000"
-                                  HorizontalAlignment="Stretch"
-                                  Grid.Column="0"
-                                  Grid.ColumnSpan="3" />
-                            <Frame x:Name="FlyoutContentPresenter"
-                                   Grid.Column="1"
-                                   VerticalAlignment="Center"
-                                   Style="{StaticResource FrameStyle}" />
+                            <Grid x:Name="FlyoutGridContainer"
+                                  Opacity="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.Projection>
+                                    <PlaneProjection x:Name="FlyoutPlaneProjection" />
+                                </Grid.Projection>
+                                <Grid x:Name="FlyoutBackgroundGrid"
+                                      Background="#B3000000"
+                                      HorizontalAlignment="Stretch"
+                                      Grid.Column="0"
+                                      Grid.ColumnSpan="3" />
+                                <Frame x:Name="FlyoutContentPresenter"
+                                       Grid.Column="1"
+                                       VerticalAlignment="Center"
+                                       Style="{StaticResource FrameStyle}" />
+                            </Grid>
                         </Grid>
-                    </Grid>
+                    </Page>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
