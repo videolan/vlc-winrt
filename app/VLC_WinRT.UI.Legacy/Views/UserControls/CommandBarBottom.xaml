@@ -12,7 +12,6 @@
             RequestedTheme="Dark"
             Background="{ThemeResource TranslucentMainColor}"
             Style="{StaticResource VLCCommandBar}"
-            DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
             x:Name="RootCommandBar">
     <CommandBar.Content>
         <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
@@ -65,6 +64,7 @@
     </CommandBar.Content>
     <CommandBar.PrimaryCommands>
         <AppBarButton x:Name="PlayPreviousButton"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       Command="{Binding PlayPreviousCommand}"
                       IsEnabled="{Binding TrackCollection.CanGoPrevious}"
                       IsCompact="True">
@@ -74,6 +74,7 @@
             </AppBarButton.Icon>
         </AppBarButton>
         <AppBarButton x:Name="PlayButton"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       Command="{Binding PlayOrPauseCommand}"
                       IsCompact="True"
                       Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
@@ -83,6 +84,7 @@
             </AppBarButton.Icon>
         </AppBarButton>
         <AppBarButton x:Name="PauseButton"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       Command="{Binding PlayOrPauseCommand}"
                       IsCompact="True"
                       Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -92,6 +94,7 @@
             </AppBarButton.Icon>
         </AppBarButton>
         <AppBarButton x:Name="PlayNextButton"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       Command="{Binding PlayNextCommand}"
                       IsEnabled="{Binding TrackCollection.CanGoNext}"
                       IsCompact="True">
@@ -101,6 +104,7 @@
             </AppBarButton.Icon>
         </AppBarButton>
         <AppBarToggleButton x:Name="ShuffleButton"
+                            DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                             Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.Shuffle}"
                             Label="{Binding Source={StaticResource Strings},Path=Shuffle}"
                             IsChecked="{Binding TrackCollection.IsShuffled, Mode=TwoWay}"
@@ -113,6 +117,7 @@
         </AppBarToggleButton>
         <AppBarToggleButton x:Name="RepeatButton"
                             Label="repeat"
+                            DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                             IsChecked="{Binding TrackCollection.Repeat, Mode=TwoWay}"
                             IsCompact="True"
                             Tag="sec">
