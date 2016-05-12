@@ -74,30 +74,9 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Grid Grid.Column="1"
-                  Margin="0,-8,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <musicPanesControls:AlbumsCollectionButtons Visibility="{Binding AlbumsCollectionsButtonVisible}" />
-
-                <AppBarButton Grid.Column="1"
-                              Label="{Binding Source={StaticResource Strings}, Path=NewPlaylist}"
-                              Style="{StaticResource AppBarButtonStyleHorizontal}"
-                              Foreground="{ThemeResource MainColor}"
-                              Command="{Binding ShowCreateNewPlaylistPaneCommand}"
-                              VerticalAlignment="Center"
-                              FontSize="15"
-                              FontWeight="SemiLight"
-                              Visibility="{Binding PlaylistButtonsVisible}">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="{StaticResource AddSymbol}"
-                                  FontFamily="{StaticResource VLCFont}" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
-            </Grid>
+                <musicPanesControls:AlbumsCollectionButtons Grid.Column="1"
+                                                            Margin="0,-8,0,0"
+                                                            Visibility="{Binding AlbumsCollectionsButtonVisible}" />
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

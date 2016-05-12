@@ -40,5 +40,16 @@
             </triggers:Interactions.Triggers>
         </ScrollWatcher:ListViewScrollWatcher>
         <placeholder:NoPlaylistPlaceholder Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+        <AppBarButton x:Name="MusicPlaylistFloatingActionButton"
+                      Style="{StaticResource CircleButtonStyle}"
+                      VerticalAlignment="Bottom"
+                      HorizontalAlignment="Right"
+                      Margin="{StaticResource FrameMarginHorizontalPlusFooter}"
+                      Command="{Binding ShowCreateNewPlaylistPaneCommand}">
+            <AppBarButton.Content>
+                <FontIcon Glyph="{StaticResource AddSymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Content>
+        </AppBarButton>
     </Grid>
 </Page>
