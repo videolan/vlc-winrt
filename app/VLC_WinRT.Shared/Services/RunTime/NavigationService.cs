@@ -206,6 +206,9 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.FeedbackPage:
                     GoBack_HideFlyout();
                     break;
+                case VLCPage.TvShowView:
+                    GoBack_HideFlyout();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
