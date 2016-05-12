@@ -5,14 +5,60 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
-      DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
+      DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.CurrentShow}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="Black">
         <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="250" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <ListView Grid.Row="1"
-                  ItemsSource="{Binding CurrentShow.Episodes}" />
+        <Image Grid.RowSpan="2"
+               Source="{Binding ShowImage}"
+               Stretch="UniformToFill"
+               Opacity="0.4" />
+
+        <Grid Grid.Row="1"
+              RequestedTheme="Dark">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="12" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0"
+                       Grid.Row="0"
+                       Margin="0,-3,0,0"
+                       TextTrimming="CharacterEllipsis"
+                       TextWrapping="NoWrap"
+                       VerticalAlignment="Top"
+                       Style="{StaticResource SubheaderTextBlockStyle}">
+                <Run Text="{Binding ShowTitle, Converter={StaticResource AlbumStringConverter}}" />
+                <LineBreak />
+            </TextBlock>
+            <TextBlock Grid.Row="2"
+                       Grid.Column="0"
+                       Margin="{StaticResource FrameMarginRight}"
+                       TextTrimming="CharacterEllipsis"
+                       TextWrapping="NoWrap"
+                       FontSize="16"
+                       FontWeight="Light"
+                       Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}">
+                <Run Text="{Binding Source={StaticResource Strings}, Path=Episode}" />
+                <Run Text="{Binding Source={StaticResource Strings}, Path=Dash}" />
+                <Run Text="{Binding Episodes.Count}" />
+            </TextBlock>
+        </Grid>
+        <ListView Grid.Row="2"
+                  ItemsSource="{Binding Episodes}"
+                  ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal"
+                                   SizeChanged="VideosWrapGrid_SizeChanged"
+                                   Margin="{StaticResource FrameMarginTop}" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
     </Grid>
 </Page>

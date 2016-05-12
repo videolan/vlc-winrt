@@ -106,7 +106,8 @@ namespace VLC_WinRT.ViewModels.VideoVM
             set { SetProperty(ref _hasNoMedia, value); }
         }
 
-        
+
+        public static TVShowClickedCommand TVShowClickedCommand => new TVShowClickedCommand();
         public PlayVideoCommand OpenVideo { get; } = new PlayVideoCommand();
 
         public CloseFlyoutAndPlayVideoCommand CloseFlyoutAndPlayVideoCommand { get; } = new CloseFlyoutAndPlayVideoCommand();

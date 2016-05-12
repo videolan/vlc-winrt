@@ -28,5 +28,6 @@
         VideoPlayerOptionsPanel,
         TrackEditorPage,
         FeedbackPage,
+        TvShowView,
     }
 }

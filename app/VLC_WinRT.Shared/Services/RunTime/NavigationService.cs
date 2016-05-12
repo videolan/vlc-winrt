@@ -25,6 +25,7 @@ using VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls;
 using VLC_WinRT.Utils;
 using Panel = VLC_WinRT.Model.Panel;
 using Windows.UI.Core;
+using VLC_WinRT.UI.Legacy.Views.VideoPages.TVShowsViews;
 #if WINDOWS_UWP
 using VLC_WinRT.UI.UWP.Views.SettingsPages;
 #else
@@ -355,6 +356,9 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.FeedbackPage:
                     App.SplitShell.FlyoutContent = typeof(FeedbackPage);
                     break;
+                case VLCPage.TvShowView:
+                    App.SplitShell.FlyoutContent = typeof(ShowEpisodesView);
+                    break;
                 default:
                     break;
             }
@@ -377,7 +381,8 @@ namespace VLC_WinRT.Services.RunTime
                    page == VLCPage.SettingsPageVideo ||
                    page == VLCPage.SettingsPage ||
                    page == VLCPage.VideoPlayerOptionsPanel ||
-                   page == VLCPage.FeedbackPage;
+                   page == VLCPage.FeedbackPage ||
+                   page == VLCPage.TvShowView;
         }
 
         VLCPage PageTypeToVLCPage(Type page)

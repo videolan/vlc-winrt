@@ -25,7 +25,7 @@
                   SelectionMode="None">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
+                    <triggers:InvokeCommandAction Command="{Binding TVShowClickedCommand}"
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
                 <triggers:EventTrigger EventName="ScrollDetected">
@@ -37,7 +37,8 @@
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid ItemWidth="330"
                                    ItemHeight="192"
-                                   Orientation="Horizontal">
+                                   Orientation="Horizontal"
+                                   Margin="{StaticResource FrameMarginTop}">
                         <ItemsWrapGrid.ChildrenTransitions>
                             <TransitionCollection>
                                 <RepositionThemeTransition />
