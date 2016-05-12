@@ -65,8 +65,8 @@ namespace VLC_WinRT.Services.RunTime
             }
 #endif
             App.RootPage.NavigationFrame.Navigated += NavigationFrame_Navigated;
-            App.SplitShell.RightSidebarNavigated += SplitShell_RightSidebarNavigated;
-            App.SplitShell.RightSidebarClosed += SplitShell_RightSidebarClosed;
+            App.SplitShell.FlyoutNavigated += SplitShell_FlyoutNavigated;
+            App.SplitShell.FlyoutClosed += SplitShell_FlyoutClosed;
             HomePageNavigated += NavigationService_HomePageNavigated;
             Locator.MainVM.PropertyChanged += MainVM_PropertyChanged;
         }
@@ -84,12 +84,12 @@ namespace VLC_WinRT.Services.RunTime
             VLCPageNavigated(homepage);
         }
 
-        private void SplitShell_RightSidebarNavigated(object sender, EventArgs p)
+        private void SplitShell_FlyoutNavigated(object sender, EventArgs p)
         {
             VLCPageNavigated(currentFlyout);
         }
 
-        private void SplitShell_RightSidebarClosed(object sender, EventArgs e)
+        private void SplitShell_FlyoutClosed(object sender, EventArgs e)
         {
             VLCPageNavigated(PageTypeToVLCPage(App.ApplicationFrame.CurrentSourcePageType));
         }

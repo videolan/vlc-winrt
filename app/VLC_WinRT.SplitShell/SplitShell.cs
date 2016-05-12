@@ -11,8 +11,8 @@ using VLC_WinRT.Helpers;
 namespace VLC_WinRT.Controls
 {
     public delegate void FlyoutCloseRequested(object sender, EventArgs e);
-    public delegate void RightSidebarNavigated(object sender, EventArgs p);
-    public delegate void RightSidebarClosed(object sender, EventArgs e);
+    public delegate void FlyoutNavigated(object sender, EventArgs p);
+    public delegate void FlyoutClosed(object sender, EventArgs e);
     public delegate void ContentSizeChanged(double newWidth);
     
     [TemplatePart(Name = ContentPresenterName, Type = typeof(ContentPresenter))]
@@ -26,8 +26,8 @@ namespace VLC_WinRT.Controls
     public sealed class SplitShell : Control
     {
         public event FlyoutCloseRequested FlyoutCloseRequested;
-        public event RightSidebarNavigated RightSidebarNavigated;
-        public event RightSidebarClosed RightSidebarClosed;
+        public event FlyoutNavigated FlyoutNavigated;
+        public event FlyoutClosed FlyoutClosed;
         public event ContentSizeChanged ContentSizeChanged;
         public TaskCompletionSource<bool> TemplateApplied = new TaskCompletionSource<bool>();
         
@@ -193,7 +193,7 @@ namespace VLC_WinRT.Controls
 
         private void _flyoutFadeIn_Completed(object sender, object e)
         {
-            RightSidebarNavigated?.Invoke(null, new EventArgs());
+            FlyoutNavigated?.Invoke(null, new EventArgs());
         }
 
         private void _flyoutFadeOut_Completed(object sender, object e)
@@ -245,13 +245,13 @@ namespace VLC_WinRT.Controls
         {
             _flyoutFadeOut.Begin();
             IsFlyoutOpen = false;
-            RightSidebarClosed?.Invoke(null, new EventArgs());
+            FlyoutClosed?.Invoke(null, new EventArgs());
         }
 
         public void HideTopBar()
         {
             _topBarFadeOut.Begin();
-            _contentPresenter.Margin = new Thickness(0, 0, 0, - _footerContentPresenter.ActualHeight);
+            _contentPresenter.Margin = new Thickness(0, 0, 0, - _page.BottomAppBar.ActualHeight);
             IsTopBarOpen = false;
         }
 
