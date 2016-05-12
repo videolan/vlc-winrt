@@ -25,7 +25,8 @@
                Opacity="0.4" />
 
         <Grid Grid.Row="1"
-              RequestedTheme="Dark">
+              RequestedTheme="Dark"
+              Margin="{StaticResource FrameMarginLeft}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
