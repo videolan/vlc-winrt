@@ -32,6 +32,7 @@ namespace VLC_WinRT.Model.Library
     {
         #region properties
         private bool _alreadyIndexedOnce = false;
+        public bool AlreadyIndexedOnce => _alreadyIndexedOnce;
 
         ThumbnailService ThumbsService => App.Container.Resolve<ThumbnailService>();
         #endregion

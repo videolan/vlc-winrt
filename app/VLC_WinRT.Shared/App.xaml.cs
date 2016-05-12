@@ -62,11 +62,19 @@ namespace VLC_WinRT
         public static MainPage RootPage => Window.Current?.Content as MainPage;
 
         public static SplitShell SplitShell => RootPage.SplitShell;
-        
+
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
             if (Window.Current.Content == null)
             {
+#if WINDOWS_UWP
+                if (args.PrelaunchActivated)
+                {
+                    Window.Current.VisibilityChanged += Current_VisibilityChanged;
+                    await LaunchTheApp(true);
+                    return;
+                }
+#endif
                 await LaunchTheApp();
             }
             if (args.Arguments.Contains("SecondaryTile"))
@@ -101,7 +109,7 @@ namespace VLC_WinRT
                 LogHelper.Log("Failed to open from secondary tile : " + e.ToString());
             }
         }
-        
+
         protected async override void OnActivated(IActivatedEventArgs args)
         {
             base.OnActivated(args);
@@ -241,7 +249,7 @@ namespace VLC_WinRT
             }
         }
 
-        private async Task LaunchTheApp()
+        private async Task LaunchTheApp(bool disableConsumingTasks = false)
         {
             Dispatcher = Window.Current.Dispatcher;
             Window.Current.Content = new MainPage();
@@ -257,11 +265,29 @@ namespace VLC_WinRT
                 Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
                 App.SplitShell.FooterContent = new CommandBarBottom();
             }).ConfigureAwait(false);
-            await Task.Run(async () =>
+            await LoadLibraries(disableConsumingTasks);
+        }
+
+        private async void Current_VisibilityChanged(object sender, VisibilityChangedEventArgs e)
+        {
+            if (e.Visible)
             {
-                Locator.MediaLibrary.DropTablesIfNeeded();
-                await Task.Factory.StartNew(async () => await Locator.MediaLibrary.Initialize()).ConfigureAwait(false);
-                await Task.Factory.StartNew(async () => await CortanaHelper.Initialize().ConfigureAwait(false));
+                if (Locator.MediaLibrary.AlreadyIndexedOnce)
+                    return;
+                await LoadLibraries(false);
+            }
+        }
+
+        private Task LoadLibraries(bool disableConsumingTask)
+        {
+            return Task.Run(async () =>
+            {
+                if (!disableConsumingTask)
+                {
+                    Locator.MediaLibrary.DropTablesIfNeeded();
+                    await Task.Factory.StartNew(async () => await Locator.MediaLibrary.Initialize()).ConfigureAwait(false);
+                    await Task.Factory.StartNew(async () => await CortanaHelper.Initialize().ConfigureAwait(false));
+                }
             });
         }
 
