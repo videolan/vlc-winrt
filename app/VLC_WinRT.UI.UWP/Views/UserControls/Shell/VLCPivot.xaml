@@ -31,19 +31,6 @@
         </Pivot.LeftHeader>
         <Pivot.RightHeader>
             <Grid x:Name="RightHeaderGrid">
-                <Button x:Name="SettingsButton"
-                        Style="{StaticResource TextBlockButtonStyle}"
-                        Command="{Binding GoToSettingsPageCommand}"
-                        Foreground="DimGray"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top">
-                    <Button.Content>
-                        <FontIcon Glyph="{StaticResource SettingsSymbol}"
-                                  FontFamily="{StaticResource VLCFont}"
-                                  FontSize="17" 
-                                  Margin="0,8,0,0"/>
-                    </Button.Content>
-                </Button>
             </Grid>
         </Pivot.RightHeader>
         <Pivot.ItemTemplate>
@@ -60,8 +47,6 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="RightHeaderGrid.Visibility"
-                                Value="Collapsed" />
                         <Setter Target="TitleBar.Visibility"
                                 Value="Collapsed" />
                     </VisualState.Setters>
@@ -72,8 +57,6 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="RightHeaderGrid.Visibility"
-                                Value="Visible" />
                         <Setter Target="TitleBar.Visibility"
                                 Value="Visible" />
                     </VisualState.Setters>
