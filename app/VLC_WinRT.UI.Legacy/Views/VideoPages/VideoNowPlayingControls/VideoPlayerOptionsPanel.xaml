@@ -50,7 +50,7 @@
                                   DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
                                   Command="{Binding GoBackCommand}">
                         <AppBarButton.Icon>
-                            <FontIcon Glyph="{StaticResource SettingsSymbol}"
+                            <FontIcon Glyph="{StaticResource PlayerSettingsSymbol}"
                                       FontFamily="{StaticResource VLCFont}"
                                       Foreground="{StaticResource MainColor}" />
                         </AppBarButton.Icon>
