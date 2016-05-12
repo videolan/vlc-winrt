@@ -79,16 +79,17 @@
             <RowDefinition />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        
-        <Grid Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
+
+        <Grid x:Name="Placeholder"
+              Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
             <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
                       FontFamily="{StaticResource VLCFont}"
                       FontSize="42"
                       Foreground="{ThemeResource MainColor}" />
         </Grid>
-        <Image x:Name="Cover" 
+        <Image x:Name="Cover"
                Stretch="UniformToFill"
-               Opacity="0"/>
+               Opacity="0" />
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -105,7 +106,7 @@
                     <FontIcon Glyph="{StaticResource PlaySymbol}"
                               FontSize="24"
                               FontFamily="{StaticResource VLCFont}"
-                              Margin="0,0,6,0"/>
+                              Margin="0,0,6,0" />
                 </AppBarButton.Icon>
             </AppBarButton>
             <TextBlock x:Name="NameTextBlock"
