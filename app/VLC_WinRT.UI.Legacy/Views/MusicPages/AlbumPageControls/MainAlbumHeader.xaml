@@ -27,32 +27,15 @@
         <Grid Grid.Row="1"
               RequestedTheme="Dark">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="12" />
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <AppBarButton x:Name="BackButton" 
-                          Grid.Column="0"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Margin="{StaticResource FrameMarginLeft}"
-                          VerticalAlignment="Top"
-                          HorizontalAlignment="Stretch"
-                          DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-                          Command="{Binding GoBackCommand}"
-                          IsCompact="True"
-                          IsTabStop="True">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
-                              Margin="0,3,0,0"
-                              FontFamily="{StaticResource VLCFont}" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <TextBlock Grid.Column="1"
+            <TextBlock Grid.Column="0"
                        Grid.Row="0"
                        Margin="0,-3,0,0"
                        TextTrimming="CharacterEllipsis"
@@ -65,7 +48,7 @@
                      FontWeight="Light"
                      FontSize="21"/>
             </TextBlock>
-            <AppBarButton Grid.Column="2"
+            <AppBarButton Grid.Column="1"
                           Grid.Row="0"
                           VerticalAlignment="Top"
                           Margin="{StaticResource FrameMarginRight}"
@@ -81,7 +64,7 @@
                 </AppBarButton.Icon>
             </AppBarButton>
             <TextBlock Grid.Row="2"
-                       Grid.Column="1"
+                       Grid.Column="0"
                        Margin="{StaticResource FrameMarginRight}"
                        TextTrimming="CharacterEllipsis"
                        TextWrapping="NoWrap"
