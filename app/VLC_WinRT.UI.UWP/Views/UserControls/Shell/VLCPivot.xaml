@@ -68,7 +68,7 @@
                 </VisualState>
                 <VisualState x:Name="Wide">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="700" />
+                        <AdaptiveTrigger MinWindowWidth="790" />
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
