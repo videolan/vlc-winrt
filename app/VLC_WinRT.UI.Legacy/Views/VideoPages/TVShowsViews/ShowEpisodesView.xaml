@@ -55,7 +55,7 @@
                   ItemContainerStyle="{StaticResource ListViewItemStyle}">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
+                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.OpenVideo}"
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
