@@ -93,7 +93,7 @@
                           Grid.Column="1"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
-                          Label="{Binding Source={StaticResource Strings}, Path=Play}"
+                          Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
                           Command="{Binding PlayAlbum}"
                           CommandParameter="{Binding}"
                           Foreground="{ThemeResource MainColor}"
