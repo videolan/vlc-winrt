@@ -8,51 +8,53 @@
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.CurrentShow}">
 
-    <Grid Background="Black">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="250" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Image Grid.RowSpan="2"
-               Source="{Binding ShowImage}"
-               Stretch="UniformToFill"
-               Opacity="0.4" />
+        <Grid RequestedTheme="Dark"
+              Background="Black">
+            <Image Source="{Binding ShowImage}"
+                   Stretch="UniformToFill"
+                   Opacity="0.4" />
 
-        <Grid Grid.Row="1"
-              RequestedTheme="Dark">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="12" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Column="0"
-                       Grid.Row="0"
-                       Margin="0,-3,0,0"
-                       TextTrimming="CharacterEllipsis"
-                       TextWrapping="NoWrap"
-                       VerticalAlignment="Top"
-                       Style="{StaticResource SubheaderTextBlockStyle}">
-                <Run Text="{Binding ShowTitle, Converter={StaticResource AlbumStringConverter}}" />
-                <LineBreak />
-            </TextBlock>
-            <TextBlock Grid.Row="2"
-                       Grid.Column="0"
-                       Margin="{StaticResource FrameMarginRight}"
-                       TextTrimming="CharacterEllipsis"
-                       TextWrapping="NoWrap"
-                       FontSize="16"
-                       FontWeight="Light"
-                       Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}">
-                <Run Text="{Binding Source={StaticResource Strings}, Path=Episode}" />
-                <Run Text="{Binding Source={StaticResource Strings}, Path=Dash}" />
-                <Run Text="{Binding Episodes.Count}" />
-            </TextBlock>
+            <Grid Margin="{StaticResource FrameMarginLeft}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="1"
+                           TextTrimming="CharacterEllipsis"
+                           TextWrapping="NoWrap"
+                           VerticalAlignment="Top"
+                           Style="{StaticResource SubheaderTextBlockStyle}">
+                    <Run Text="{Binding ShowTitle, Converter={StaticResource AlbumStringConverter}}" />
+                </TextBlock>
+                <TextBlock Grid.Row="3"
+                           Grid.Column="0"
+                           Margin="{StaticResource FrameMarginRight}"
+                           TextTrimming="CharacterEllipsis"
+                           TextWrapping="NoWrap"
+                           FontSize="16"
+                           FontWeight="Light"
+                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}">
+                    <Run Text="{Binding Source={StaticResource Strings}, Path=Episode}" />
+                    <Run Text="{Binding Source={StaticResource Strings}, Path=Dash}" />
+                    <Run Text="{Binding Episodes.Count}" />
+                </TextBlock>
+            </Grid>
         </Grid>
-        <ListView Grid.Row="2"
+
+        <ListView Grid.Row="1"
                   ItemsSource="{Binding Episodes}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                  Padding="{StaticResource FrameMarginTop}"
+                  Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.OpenVideo}"
@@ -68,8 +70,9 @@
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
+                                   HorizontalAlignment="Center"
                                    SizeChanged="VideosWrapGrid_SizeChanged"
-                                   Margin="{StaticResource FrameMarginTop}" />
+                                   Margin="0,0,-14,0" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
