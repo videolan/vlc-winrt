@@ -21,9 +21,10 @@ namespace VLC_WinRT.Commands.MusicPlayer
             if (itemClickArgs != null)
             {
                 var selectedTrack = itemClickArgs.ClickedItem as TrackItem;
-                index = tracks.IndexOf(selectedTrack);
+                index = tracks.IndexOf(tracks.FirstOrDefault(x => x.Id == selectedTrack.Id));
             }
-            await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(tracks.ToPlaylist(), true, index);
+            if (index > -1)
+                await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(tracks.ToPlaylist(), true, index);
         }
     }
 }
