@@ -83,10 +83,10 @@ namespace VLC_WinRT.ViewModels
         public ActionCommand GotoSearchPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SearchPage));
 
         public ActionCommand GoToFeedbackPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.FeedbackPage));
-        public ActionCommand GoToStreamPanel { get; } = new ActionCommand(() => Locator.MainVM.OpenStreamFlyout());
-        
+        public ActionCommand GoToStreamPanel { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.MainPageNetwork));
+
         public CreateMiniPlayerView CreateMiniPlayerView { get; } = new CreateMiniPlayerView();
-        
+
         public ScrollDetectedCommand ScrollDetectedCommand { get; } = new ScrollDetectedCommand();
 
         public bool PreventAppExit

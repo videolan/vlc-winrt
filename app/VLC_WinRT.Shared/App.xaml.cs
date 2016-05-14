@@ -232,7 +232,7 @@ namespace VLC_WinRT
 #endif
                                 break;
                             case "useraction":
-                                Locator.MainVM.OpenStreamFlyout();
+                                Locator.NavigationService.Go(VLCPage.MainPageNetwork);
                                 break;
                             case "url":
                                 if (decoder[1]?.Name == "url")

@@ -276,7 +276,7 @@ namespace VLC_WinRT.Services.RunTime
                             break;
                         case VLCAction.OpenNetwork:
                             {
-                                Locator.MainVM.OpenStreamFlyout();
+                                Locator.NavigationService.Go(VLCPage.MainPageNetwork);
                             }
                             break;
                         case VLCAction.VolumeUp:
