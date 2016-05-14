@@ -166,7 +166,7 @@ namespace VLC_WinRT.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.AddAlbumToPlaylistDialog:
-                    GoBack_HideFlyout();
+                    Go(VLCPage.AlbumPage);
                     break;
                 case VLCPage.CreateNewPlaylistDialog:
                     GoBack_HideFlyout();
