@@ -166,19 +166,11 @@ namespace VLC_WinRT.ViewModels
         {
             await App.Dispatcher?.RunAsync(CoreDispatcherPriority.Normal, () => IsInternet = e.IsConnected);
         }
-
-        public void OpenStreamFlyout()
-        {
-            Locator.NavigationService.Go(VLCPage.MainPageNetwork);
-        }
-
+        
         public ObservableCollection<Panel> Panels
         {
             get { return _panels; }
-            set
-            {
-                SetProperty(ref _panels, value);
-            }
+            set { SetProperty(ref _panels, value); }
         }
     }
 }
