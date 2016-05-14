@@ -38,12 +38,12 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
             AppViewHelper.SetAppView(true);
             AppViewHelper.SetTitleBar(DraggableGrid);
 #endif
-            App.SplitShell.FooterVisibility = Visibility.Collapsed;
+            App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Hidden;
         }
 
         private void MiniPlayerWindow_Unloaded(object sender, RoutedEventArgs e)
         {
-            App.SplitShell.FooterVisibility = Visibility.Visible;
+            App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Compact;
         }
 
         private void MiniPlayerWindow_SizeChanged(object sender, SizeChangedEventArgs e)

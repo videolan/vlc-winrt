@@ -90,7 +90,7 @@ namespace VLC_WinRT.Views.VideoPages
         {
             base.OnNavigatedTo(e);
             App.RootPage.SwapChainPanel.Visibility = Visibility.Visible;
-            App.SplitShell.FooterVisibility = Visibility.Collapsed;
+            App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Hidden;
             AppViewHelper.SetTitleBarTitle(Locator.VideoPlayerVm.CurrentVideo?.Name);
             Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
@@ -104,7 +104,7 @@ namespace VLC_WinRT.Views.VideoPages
             base.OnNavigatingFrom(e);
             AppViewHelper.SetTitleBarTitle();
             App.RootPage.SwapChainPanel.Visibility = Visibility.Collapsed;
-            App.SplitShell.FooterVisibility = Visibility.Visible;
+            App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Minimal;
             Locator.VideoPlayerVm.OnNavigatedFrom();
         }
 

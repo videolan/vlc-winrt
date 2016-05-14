@@ -55,13 +55,15 @@ namespace VLC_WinRT.Controls
         private Storyboard _topBarFadeOut;
         private Storyboard _topBarFadeIn;
 
+        private AppBarClosedDisplayMode _previousAppBarClosedDisplayMode;
+
         public async void SetContentPresenter(object contentPresenter)
         {
             await TemplateApplied.Task;
             _contentPresenter.Content = contentPresenter;
         }
         
-        public async void SetRightPaneContentPresenter(object content)
+        public async void SetFlyoutContentPresenter(object content)
         {
             await TemplateApplied.Task;
             _flyoutContentPresenter.Navigate((Type)content);
@@ -72,12 +74,17 @@ namespace VLC_WinRT.Controls
         {
             await TemplateApplied.Task;
             _page.BottomAppBar = content as CommandBar;
+            _previousAppBarClosedDisplayMode = _page.BottomAppBar.ClosedDisplayMode;
         }
 
         public async void SetFooterVisibility(object visibility)
         {
             await TemplateApplied.Task;
+#if WINDOWS_UWP
+            _page.BottomAppBar.ClosedDisplayMode = (AppBarClosedDisplayMode)visibility;
+#else
             _page.BottomAppBar.Visibility = (Visibility)visibility;
+#endif
         }
 
         #region Content Property
@@ -113,20 +120,20 @@ namespace VLC_WinRT.Controls
         private static void FlyoutContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var that = (SplitShell)dependencyObject;
-            that.SetRightPaneContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
+            that.SetFlyoutContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
         }
         #endregion
 
         #region FooterContent Property
 
-        public Visibility FooterVisibility
+        public AppBarClosedDisplayMode FooterVisibility
         {
-            get { return (Visibility)GetValue(FooterVisibilityProperty); }
+            get { return (AppBarClosedDisplayMode)GetValue(FooterVisibilityProperty); }
             set { SetValue(FooterVisibilityProperty, value); }
         }
 
         public static readonly DependencyProperty FooterVisibilityProperty = DependencyProperty.Register(
-            nameof(FooterVisibility), typeof(Visibility), typeof(SplitShell), new PropertyMetadata(Visibility.Visible, FooterVisibilityPropertyChangedCallback));
+            nameof(FooterVisibility), typeof(AppBarClosedDisplayMode), typeof(SplitShell), new PropertyMetadata(AppBarClosedDisplayMode.Compact, FooterVisibilityPropertyChangedCallback));
 
         private static void FooterVisibilityPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
