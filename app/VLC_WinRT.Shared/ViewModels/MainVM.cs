@@ -130,20 +130,13 @@ namespace VLC_WinRT.ViewModels
             networkListenerService = App.Container.Resolve<NetworkListenerService>();
             networkListenerService.InternetConnectionChanged += networkListenerService_InternetConnectionChanged;
             _isInternet = NetworkListenerService.IsConnected;
-            
+
             Panels.Add(new Panel(Strings.Videos, VLCPage.MainPageVideo, App.Current.Resources["VideoSymbol"].ToString(), App.Current.Resources["VideoFilledSymbol"].ToString()));
             Panels.Add(new Panel(Strings.Music, VLCPage.MainPageMusic, App.Current.Resources["WaveSymbol"].ToString(), App.Current.Resources["WaveFilledSymbol"].ToString()));
             Panels.Add(new Panel(Strings.FileExplorer, VLCPage.MainPageFileExplorer, App.Current.Resources["FileExplorerSymbol"].ToString(), App.Current.Resources["FileExplorerFilledSymbol"].ToString()));
             Panels.Add(new Panel(Strings.Network, VLCPage.MainPageNetwork, App.Current.Resources["StreamSymbol"].ToString(), App.Current.Resources["StreamFilledSymbol"].ToString()));
 
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
-            InitializeSlideshow();
-        }
-
-        private async void InitializeSlideshow()
-        {
-            await Locator.Slideshow.IsLoaded.Task;
-            Locator.Slideshow.RichAnimations = Locator.SettingsVM.RichAnimations;
         }
 
         private void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)

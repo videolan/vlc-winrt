@@ -95,15 +95,7 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-
-                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Animations}"
-                           FontSize="22"
-                           Style="{StaticResource SubheaderTextBlockStyle}"
-                           Margin="0,12,0,0"
-                           FontWeight="SemiLight" />
-                <ToggleSwitch  Header="{Binding Source={StaticResource Strings}, Path=RichAnimationsDescription}"
-                               IsOn="{Binding RichAnimations, Mode=TwoWay}" />
-
+                
                 <TextBlock Text="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}"
                            Margin="0,12,0,0"
                            FontSize="22"

@@ -129,17 +129,6 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
 
-                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Animations}"
-                                   FontSize="22"
-                                   Style="{StaticResource SubheaderTextBlockStyle}"
-                                   Margin="0,12,0,0"
-                                   FontWeight="SemiLight" />
-                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                                   Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
-                                   VerticalAlignment="Center"
-                                   Text="{Binding Source={StaticResource Strings}, Path=RichAnimationsDescription}" />
-                        <ToggleSwitch IsOn="{Binding RichAnimations, Mode=TwoWay}" />
-
                         <TextBlock Text="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}"
                                    Margin="0,12,0,0"
                                    FontSize="22"

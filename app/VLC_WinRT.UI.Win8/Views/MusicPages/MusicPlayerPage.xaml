@@ -10,8 +10,9 @@
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
 
-    <Grid>
-        <Grid.Resources>
+    <Grid RequestedTheme="Dark"
+          Background="Black">
+        <Grid.Resources>    
             <Storyboard x:Name="FadeOut">
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ShowPlaylistButtonTranslateTransform"
                                                Storyboard.TargetProperty="Y">

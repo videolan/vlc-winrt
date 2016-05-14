@@ -58,7 +58,6 @@ namespace VLC_WinRT.ViewModels.Settings
         private bool _lastFmIsConnected = false;
         private bool _hardwareAcceleration;
         private bool _forceLandscape;
-        private bool _richAnimations;
         private List<KeyboardAction> _keyboardActions;
         private List<string> _subtitlesEncodingValues;
 
@@ -495,23 +494,7 @@ namespace VLC_WinRT.ViewModels.Settings
                 SetProperty(ref _forceLandscape, value);
             }
         }
-
-        public bool RichAnimations
-        {
-            get
-            {
-                var richAnims = ApplicationSettingsHelper.ReadSettingsValue("RichAnimationsEnabled");
-                _richAnimations = (richAnims is bool) ? (bool)richAnims : true;
-                return _richAnimations;
-            }
-            set
-            {
-                ApplicationSettingsHelper.SaveSettingsValue("RichAnimationsEnabled", value);
-                SetProperty(ref _richAnimations, value);
-                Locator.Slideshow.RichAnimations = value;
-            }
-        }
-
+        
         public Languages SelectedLanguage
         {
             get { return GetSelectedLanguage(); }

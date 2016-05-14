@@ -114,15 +114,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicNowPlayingControls\MusicNowPlaying.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicNowPlayingControls\SecondaryMusicPlayerButtons.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicPlayerPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicPlaylistPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -347,15 +338,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MiniPlayerWindow.xaml.cs">
       <DependentUpon>MiniPlayerWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicNowPlayingControls\MusicNowPlaying.xaml.cs">
-      <DependentUpon>MusicNowPlaying.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicNowPlayingControls\SecondaryMusicPlayerButtons.xaml.cs">
-      <DependentUpon>SecondaryMusicPlayerButtons.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicPlayerPage.xaml.cs">
-      <DependentUpon>MusicPlayerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicPlaylistPage.xaml.cs">
       <DependentUpon>MusicPlaylistPage.xaml</DependentUpon>
