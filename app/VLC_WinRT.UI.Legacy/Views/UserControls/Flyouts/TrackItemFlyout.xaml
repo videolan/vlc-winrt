@@ -86,7 +86,8 @@
                           CommandParameter="{Binding AlbumId}"
                           Click="ActionButton_Click">
                 <AppBarButton.Icon>
-                    <PathIcon Data="{StaticResource AlbumPathNarrow}" />
+                    <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
+                              FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton Grid.Row="2"
@@ -96,7 +97,8 @@
                           CommandParameter="{Binding ArtistId}"
                           Click="ActionButton_Click">
                 <AppBarButton.Icon>
-                    <PathIcon Data="{StaticResource UserPathNarrow}" />
+                    <FontIcon Glyph="{StaticResource BuddySymbol}"
+                              FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton Grid.Column="2"
