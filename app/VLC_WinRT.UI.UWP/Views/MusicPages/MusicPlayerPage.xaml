@@ -16,33 +16,28 @@
                                       Loaded="Slideshower_Loaded_1"
                                       IsFixedTimeStep="False"
                                       TargetElapsedTime="0:0:0.3" />
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+        <Grid x:Name="PlayerControls"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Center"
+              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.CurrentTrack}"
+              Margin="{StaticResource FrameMarginVertical}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                <RowDefinition />
+                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="{StaticResource FrameMarginGridLengthDouble}" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-            <Grid x:Name="PlayerControls"
-                  Grid.Column="1"
-                  VerticalAlignment="Center"
-                  DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.CurrentTrack}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="{StaticResource FrameMarginGridLengthDouble}" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <TextBlock TextAlignment="Center">
+            <TextBlock TextAlignment="Center">
                     <Run Text="{Binding Name}"
                          FontWeight="Medium" />
                     <LineBreak />
@@ -52,164 +47,178 @@
                          Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
                     <Run Text="{Binding AlbumName}"
                          Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
-                </TextBlock>
+            </TextBlock>
 
-                <Image Grid.Row="2"
-                       Source="{Binding Thumbnail}"
-                       Stretch="Uniform"
-                       MaxHeight="400"
-                       MaxWidth="400" />
+            <Image Grid.Row="2"
+                   Source="{Binding Thumbnail}"
+                   Stretch="Uniform"
+                   MaxHeight="400"
+                   MaxWidth="400" />
 
-                <userControls:SliderControl Grid.Row="4" />
+            <userControls:SliderControl Grid.Row="4" />
 
-                <Grid Grid.Row="6"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition MinWidth="65" />
-                        <ColumnDefinition MinWidth="65" />
-                        <ColumnDefinition MinWidth="65" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <AppBarToggleButton Grid.Column="0"
-                                        Style="{StaticResource VLCAppBarToggleButton}"
-                                        IsCompact="True"
-                                        DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
-                                        IsChecked="{Binding IsShuffled, Mode=TwoWay}"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.Shuffle}">
-                        <AppBarToggleButton.Icon>
-                            <FontIcon Glyph="{StaticResource ShuffleSymbol}"
-                                      FontFamily="{StaticResource VLCFont}"
-                                      FontSize="20"
-                                      x:Name="ShuffleFontIcon" />
-                        </AppBarToggleButton.Icon>
-                    </AppBarToggleButton>
-                    <AppBarButton Grid.Column="1"
-                                  IsCompact="True"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
-                                  Command="{Binding PlayPreviousCommand}"
-                                  IsEnabled="{Binding TrackCollection.CanGoPrevious}">
-                        <AppBarButton.Icon>
-                            <FontIcon Glyph="{StaticResource PreviousSymbol}"
-                                      FontFamily="{StaticResource VLCFont}"
-                                      FontSize="40" />
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                    <AppBarButton Grid.Column="2"
-                                  IsCompact="True"
-                                  Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
-                                  Command="{Binding PlayOrPauseCommand}"
-                                  Foreground="{ThemeResource MainColor}">
-                        <AppBarButton.Icon>
-                            <FontIcon Glyph="{StaticResource PlaySymbol}"
-                                      FontFamily="{StaticResource VLCFont}"
-                                      FontSize="40" />
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                    <AppBarButton Grid.Column="2"
-                                  IsCompact="True"
-                                  Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
-                                  Command="{Binding PlayOrPauseCommand}"
-                                  Foreground="{ThemeResource MainColor}">
-                        <AppBarButton.Icon>
-                            <FontIcon Glyph="{StaticResource PauseSymbol}"
-                                      FontFamily="{StaticResource VLCFont}"
-                                      FontSize="40" />
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                    <AppBarButton Grid.Column="3"
-                                  IsCompact="True"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
-                                  Command="{Binding PlayNextCommand}"
-                                  IsEnabled="{Binding TrackCollection.CanGoNext}">
-                        <AppBarButton.Icon>
-                            <FontIcon Glyph="{StaticResource SkipNextSymbol}"
-                                      FontFamily="{StaticResource VLCFont}"
-                                      FontSize="40" />
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                    <AppBarToggleButton Grid.Column="4"
-                                        Style="{StaticResource VLCAppBarToggleButton}"
-                                        IsCompact="True"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
-                                        IsChecked="{Binding Repeat, Mode=TwoWay}">
-                        <AppBarToggleButton.Icon>
-                            <FontIcon Glyph="{StaticResource RefreshSymbol}"
-                                      FontFamily="{StaticResource VLCFont}"
-                                      FontSize="20"
-                                      x:Name="RepeatFontIcon" />
-                        </AppBarToggleButton.Icon>
-                    </AppBarToggleButton>
-                </Grid>
-
-                <Grid Grid.Row="8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="70" />
-                        <ColumnDefinition Width="70" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <AppBarToggleButton Grid.Column="1"
-                                        Style="{StaticResource VLCAppBarToggleButton}"
-                                        IsCompact="True"
-                                        IsChecked="{Binding CurrentAlbum.Favorite}"
-                                        Command="{Binding CurrentAlbum.FavoriteAlbum}"
-                                        CommandParameter="{Binding CurrentAlbum}">
-                        <AppBarToggleButton.Icon>
-                            <FontIcon Glyph="{StaticResource FavoriteSymbol}"
-                                      FontFamily="{StaticResource VLCFont}"
-                                      FontSize="20"
-                                      x:Name="FavoriteFontIcon" />
-                        </AppBarToggleButton.Icon>
-                    </AppBarToggleButton>
-                    <AppBarButton Grid.Column="2"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
-                                  IsCompact="True"
-                                  DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-                                  Command="{Binding ShareNowPlayingMusicCommand}">
-                        <AppBarButton.Icon>
-                            <FontIcon Glyph="{StaticResource ShareSymbol}"
-                                      FontFamily="{StaticResource VLCFont}"
-                                      FontSize="20"
-                                      x:Name="ShareFontIcon" />
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                </Grid>
-                <Slider x:Name="VolumeSlider"
-                        Grid.Row="10"
-                        Value="{Binding Volume, Mode=TwoWay}"
-                        Maximum="100"
-                        Style="{StaticResource VLCSlider}"
-                        MaxWidth="250" />
+            <Grid Grid.Row="6"
+                  DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition MinWidth="60" />
+                    <ColumnDefinition MinWidth="60" />
+                    <ColumnDefinition MinWidth="60" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <AppBarToggleButton Grid.Column="0"
+                                    Style="{StaticResource VLCAppBarToggleButton}"
+                                    IsCompact="True"
+                                    DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
+                                    IsChecked="{Binding IsShuffled, Mode=TwoWay}"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.Shuffle}">
+                    <AppBarToggleButton.Icon>
+                        <FontIcon Glyph="{StaticResource ShuffleSymbol}"
+                                  FontFamily="{StaticResource VLCFont}"
+                                  FontSize="20"
+                                  x:Name="ShuffleFontIcon" />
+                    </AppBarToggleButton.Icon>
+                </AppBarToggleButton>
+                <AppBarButton Grid.Column="1"
+                              IsCompact="True"
+                              Style="{StaticResource AppBarButtonStyleHuge}"
+                              Command="{Binding PlayPreviousCommand}"
+                              IsEnabled="{Binding TrackCollection.CanGoPrevious}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource PreviousSymbol}"
+                                  FontFamily="{StaticResource VLCFont}"
+                                  FontSize="37" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Grid.Column="2"
+                              IsCompact="True"
+                              Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
+                              Style="{StaticResource AppBarButtonStyleHuge}"
+                              Command="{Binding PlayOrPauseCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource PlaySymbol}"
+                                  FontFamily="{StaticResource VLCFont}"
+                                  FontSize="37" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Grid.Column="2"
+                              IsCompact="True"
+                              Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              Style="{StaticResource AppBarButtonStyleHuge}"
+                              Command="{Binding PlayOrPauseCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource PauseSymbol}"
+                                  FontFamily="{StaticResource VLCFont}"
+                                  FontSize="37" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Grid.Column="3"
+                              IsCompact="True"
+                              Style="{StaticResource AppBarButtonStyleHuge}"
+                              Command="{Binding PlayNextCommand}"
+                              IsEnabled="{Binding TrackCollection.CanGoNext}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource SkipNextSymbol}"
+                                  FontFamily="{StaticResource VLCFont}"
+                                  FontSize="37" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarToggleButton Grid.Column="4"
+                                    Style="{StaticResource VLCAppBarToggleButton}"
+                                    IsCompact="True"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
+                                    IsChecked="{Binding Repeat, Mode=TwoWay}">
+                    <AppBarToggleButton.Icon>
+                        <FontIcon Glyph="{StaticResource RefreshSymbol}"
+                                  FontFamily="{StaticResource VLCFont}"
+                                  FontSize="20"
+                                  x:Name="RepeatFontIcon" />
+                    </AppBarToggleButton.Icon>
+                </AppBarToggleButton>
             </Grid>
 
-            <ListView Grid.Column="2"
-                      Margin="{StaticResource FrameMargin}"
-                      Height="{Binding ElementName=PlayerControls, Path=ActualHeight, UpdateSourceTrigger=Default}"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
-                      ItemsSource="{Binding TrackCollection.Playlist}"
-                      IsItemClickEnabled="True"
-                      SelectionMode="None"
-                      ItemTemplate="{StaticResource TrackItemTemplateDetailedVertical}"
-                      ItemContainerStyle="{StaticResource ListViewItemStyle}">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsStackPanel />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <triggers:Interactions.Triggers>
-                    <triggers:EventTrigger EventName="ItemClick">
-                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
-                                                      PassEventArgsToCommand="True" />
-                    </triggers:EventTrigger>
-                </triggers:Interactions.Triggers>
-            </ListView>
+            <Grid Grid.Row="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <AppBarToggleButton Grid.Column="1"
+                                    Style="{StaticResource VLCAppBarToggleButton}"
+                                    IsCompact="True"
+                                    IsChecked="{Binding CurrentAlbum.Favorite}"
+                                    Command="{Binding CurrentAlbum.FavoriteAlbum}"
+                                    CommandParameter="{Binding CurrentAlbum}">
+                    <AppBarToggleButton.Icon>
+                        <FontIcon Glyph="{StaticResource FavoriteSymbol}"
+                                  FontFamily="{StaticResource VLCFont}"
+                                  FontSize="20"
+                                  x:Name="FavoriteFontIcon" />
+                    </AppBarToggleButton.Icon>
+                </AppBarToggleButton>
+                <AppBarButton Grid.Column="2"
+                              Style="{StaticResource AppBarButtonStyleHuge}"
+                              IsCompact="True"
+                              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+                              Command="{Binding ShareNowPlayingMusicCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource ShareSymbol}"
+                                  FontFamily="{StaticResource VLCFont}"
+                                  FontSize="20"
+                                  x:Name="ShareFontIcon" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </Grid>
+            
+            <Slider x:Name="VolumeSlider"
+                    Grid.Row="10"
+                    Value="{Binding Volume, Mode=TwoWay}"
+                    Maximum="100"
+                    Style="{StaticResource VLCSlider}"
+                    MaxWidth="250" />
+
+
+            <AppBarButton x:Name="ShowPlaylistButton"
+                          Grid.Row="12"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Label="{Binding Source={StaticResource Strings}, Path=ShowPlaylist}"
+                          Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.GoToMusicPlaylistPageCommand}"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          FontSize="16">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource OrderedListSymbol}"
+                              FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
         </Grid>
+
+
+
+        <!--<ListView x:Name="PlaylistListView"
+                  HorizontalAlignment="Center"
+                  DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                  ItemsSource="{Binding TrackCollection.Playlist}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  ItemTemplate="{StaticResource TrackItemTemplateDetailedVertical}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+        </ListView>-->
     </Grid>
 </Page>
