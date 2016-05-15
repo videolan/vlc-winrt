@@ -53,6 +53,10 @@ namespace VLC_WinRT
         public App()
         {
             InitializeComponent();
+            if (string.IsNullOrEmpty(ApiKeyMovieDb))
+            {
+                throw new ArgumentNullException(nameof(ApiKeyMovieDb), "VLC needs a valid MovieDB Api Key");
+            }
             Suspending += OnSuspending;
             Container = AutoFacConfiguration.Configure();
         }
