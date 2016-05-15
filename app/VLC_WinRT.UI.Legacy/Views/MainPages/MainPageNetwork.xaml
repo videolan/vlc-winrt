@@ -62,7 +62,6 @@
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
-                                   ItemWidth="300"
                                    Margin="{StaticResource FrameMarginBothSides}"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
