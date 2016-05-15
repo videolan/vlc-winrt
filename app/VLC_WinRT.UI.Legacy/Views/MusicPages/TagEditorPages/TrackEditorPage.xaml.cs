@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System.Threading.Tasks;
+using VLC_WinRT.ViewModels;
+using Windows.UI.Xaml.Controls;
 
 namespace VLC_WinRT.UI.Legacy.Views.MusicPages.TagEditorPages
 {
@@ -7,6 +9,24 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.TagEditorPages
         public TrackEditorPage()
         {
             this.InitializeComponent();
+        }
+
+        public async Task SaveChanges()
+        {
+            if (TrackNameTextBox.Text != Locator.MusicLibraryVM.CurrentTrack.Name)
+            {
+                if (!string.IsNullOrEmpty(TrackNameTextBox.Text))
+                    Locator.MusicLibraryVM.CurrentTrack.Name = TrackNameTextBox.Text;
+
+                await Locator.MediaLibrary.Update(Locator.MusicLibraryVM.CurrentTrack);
+            }
+
+            Locator.NavigationService.GoBack_Specific();
+        }
+
+        private async void SaveChanges_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            await SaveChanges();
         }
     }
 }
