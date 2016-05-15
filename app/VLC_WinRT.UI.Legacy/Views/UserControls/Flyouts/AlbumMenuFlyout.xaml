@@ -24,11 +24,6 @@
                     CommandParameter="{Binding ArtistId}" 
                     Style="{StaticResource MenuFlyoutItemIconTemplate}"
                     Tag="{StaticResource BuddySymbol}"/>
-    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=UpcomingShows}"
-                    Command="{Binding SeeArtistShowsCommand}"
-                    CommandParameter="{Binding ArtistId}" 
-                    Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                    Tag="{StaticResource CalendarSymbol}"/>
     <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PinAlbum}"
                     Command="{Binding PinAlbumCommand}"
                     CommandParameter="{Binding}" 
