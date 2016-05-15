@@ -177,7 +177,6 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MiniPlayerView:
                     AppViewHelper.ResizeWindow(true);
                     GoBack_Default();
-                    Locator.Slideshow.IsPaused = false;
                     break;
                 // Settings pages
                 case VLCPage.SettingsPage:
