@@ -11,52 +11,65 @@
     <Grid x:Name="RootGrid"
           Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
           DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
             <StackPanel x:Name="RootPanel"
-                        Margin="{StaticResource FrameMarginBothSidesWithTitleMargin}">
+                        Margin="{StaticResource FrameMarginBothSides}">
                 <TextBlock Text="Tag Editor"
                            Style="{StaticResource SubheaderTextBlockStyle}" />
                 <TextBlock Text="Track name"
-                           Margin="0,20,0,0"
-                           FontSize="22"
-                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Margin="{StaticResource FrameMarginTop}"
                            FontWeight="SemiLight" />
-                <userControls:FocusTextBox Height="30"
+                <userControls:FocusTextBox x:Name="TrackNameTextBox"
+                                           Height="30"
                                            Width="250"
-                                           Margin="0,12,0,12"
-                                           FontSize="18"
+                                           Margin="{StaticResource FrameMarginTop}"
                                            FontWeight="Light"
                                            Text="{Binding CurrentTrack.Name}"
                                            PlaceholderText="track name"
                                            HorizontalAlignment="Left" />
 
                 <TextBlock Text="Artist name"
-                           Margin="0,20,0,0"
-                           FontSize="22"
-                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           Margin="{StaticResource FrameMarginTop}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
                            FontWeight="SemiLight" />
                 <userControls:FocusTextBox Height="30"
                                            Width="250"
-                                           Margin="0,12,0,12"
-                                           FontSize="18"
+                                           Margin="{StaticResource FrameMarginTop}"
                                            FontWeight="Light"
                                            Text="{Binding CurrentTrack.ArtistName}"
                                            PlaceholderText="artist name"
-                                           HorizontalAlignment="Left" />
+                                           HorizontalAlignment="Left" 
+                                           IsEnabled="False"/>
                 <TextBlock Text="Album name"
-                           Margin="0,20,0,0"
-                           FontSize="22"
-                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           Margin="{StaticResource FrameMarginTop}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
                            FontWeight="SemiLight" />
                 <userControls:FocusTextBox Height="30"
                                            Width="250"
-                                           Margin="0,12,0,12"
-                                           FontSize="18"
+                                           Margin="{StaticResource FrameMarginTop}"
                                            FontWeight="Light"
                                            Text="{Binding CurrentTrack.AlbumName}"
                                            PlaceholderText="album name"
-                                           HorizontalAlignment="Left" />
+                                           HorizontalAlignment="Left"
+                                           IsEnabled="False"/>
             </StackPanel>
         </ScrollViewer>
+
+        <CommandBar Grid.Row="1">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=EditMetadata}"
+                              Click="SaveChanges_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource CheckSymbol}"
+                                  FontFamily="{StaticResource VLCFont}" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
     </Grid>
 </Page>
