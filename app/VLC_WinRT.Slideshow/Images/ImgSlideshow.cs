@@ -159,9 +159,14 @@ namespace Slide2D.Images
                 // which you can't use to make vectors. So... we can't use this yet until we can figure out what's wrong here.
                 if (currentImg.GaussianBlurCache == null) return;
 
-                var scaleEffect = new ScaleEffect()
+                var saturationEffect = new SaturationEffect()
                 {
                     Source = currentImg.GaussianBlurCache,
+                    Saturation = 1f,
+                };
+                var scaleEffect = new ScaleEffect()
+                {
+                    Source = saturationEffect,
                     Scale = new System.Numerics.Vector2()
                     {
                         X = currentImg.Scale,
@@ -169,11 +174,7 @@ namespace Slide2D.Images
                     },
                 };
 
-                scaleEffect.CenterPoint = new System.Numerics.Vector2()
-                {
-                    X = 0,
-                    Y = 0
-                };
+                scaleEffect.CenterPoint = new System.Numerics.Vector2() { X = 0, Y = 0 };
 
                 currentImg.ScaleEffect = scaleEffect;
 
