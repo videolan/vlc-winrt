@@ -127,7 +127,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 var musicView = ApplicationSettingsHelper.ReadSettingsValue(nameof(MusicView), false);
                 if (musicView == null)
                 {
-                    _musicView = MusicView.Artists;
+                    _musicView = MusicView.Albums;
                 }
                 else
                 {
