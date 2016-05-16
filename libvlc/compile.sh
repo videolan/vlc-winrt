@@ -134,7 +134,6 @@ cd $CONTRIB_FOLDER
     --disable-faad2 \
     --enable-iconv \
     --disable-goom \
-    --disable-flac \
     --enable-dca \
     --disable-fontconfig \
     --disable-gpg-error \
