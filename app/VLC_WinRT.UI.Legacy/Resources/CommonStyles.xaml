@@ -912,18 +912,14 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Thumb">
-                                            <Rectangle Fill="{TemplateBinding BorderBrush}"
-                                                       Height="20"
-                                                       Width="2" />
+                                            <Ellipse Fill="White"
+                                                     Height="11"
+                                                     Width="11" />
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
                             </Style>
                         </Grid.Resources>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="20" />
-                        </Grid.RowDefinitions>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
@@ -986,102 +982,53 @@
                             <VisualStateGroup x:Name="FocusStates">
                                 <VisualState x:Name="Focused">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0"
-                                                         To="1"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="FocusVisualWhiteHorizontal" />
-                                        <DoubleAnimation Duration="0"
-                                                         To="1"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="FocusVisualBlackHorizontal" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Unfocused" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter x:Name="HeaderContentPresenter"
-                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                          Content="{TemplateBinding Header}"
-                                          Foreground="{ThemeResource SliderHeaderForegroundThemeBrush}"
-                                          FontWeight="{ThemeResource SliderHeaderThemeFontWeight}"
-                                          Margin="{ThemeResource SliderHeaderThemeMargin}" />
-                        <Grid x:Name="SliderContainer"
-                              Grid.Row="1">
-                            <Grid x:Name="HorizontalTemplate"
-                                  Height="20"
-                                  Background="Transparent">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="0" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="0" />
-                                </Grid.RowDefinitions>
-                                <Rectangle x:Name="HorizontalTrackRect"
-                                           Grid.ColumnSpan="3"
-                                           Fill="{TemplateBinding Background}"
-                                           Height="2"
-                                           Grid.Row="1" />
-                                <Rectangle x:Name="HorizontalDecreaseRect"
-                                           Fill="{ThemeResource BasicForeground}"
-                                           Height="2"
-                                           Grid.Row="1" />
-                                <TickBar x:Name="TopTickBar"
-                                         Grid.ColumnSpan="3"
-                                         Fill="{ThemeResource SliderTickmarkOutsideBackgroundThemeBrush}"
-                                         Height="{ThemeResource SliderOutsideTickBarThemeHeight}"
-                                         Margin="0,0,0,2"
-                                         Visibility="Collapsed"
-                                         VerticalAlignment="Bottom" />
-                                <TickBar x:Name="HorizontalInlineTickBar"
-                                         Grid.ColumnSpan="3"
-                                         Fill="{ThemeResource SliderTickMarkInlineBackgroundThemeBrush}"
-                                         Height="{ThemeResource SliderTrackThemeHeight}"
-                                         Grid.Row="1"
-                                         Visibility="Collapsed" />
-                                <TickBar x:Name="BottomTickBar"
-                                         Grid.ColumnSpan="3"
-                                         Fill="{ThemeResource SliderTickmarkOutsideBackgroundThemeBrush}"
-                                         Height="{ThemeResource SliderOutsideTickBarThemeHeight}"
-                                         Margin="0,2,0,0"
-                                         Grid.Row="2"
-                                         Visibility="Collapsed"
-                                         VerticalAlignment="Top" />
-                                <Thumb x:Name="HorizontalThumb"
-                                       Style="{StaticResource SliderThumbStyle}"
-                                       AutomationProperties.AccessibilityView="Raw"
-                                       Grid.Column="1"
-                                       DataContext="{TemplateBinding Value}"
-                                       Height="20"
-                                       Grid.Row="1"
-                                       Width="2" />
-                                <Rectangle x:Name="HorizontalBorder"
-                                           Grid.ColumnSpan="3"
-                                           Grid.Row="1"
-                                           Stroke="{TemplateBinding BorderBrush}"
-                                           StrokeThickness="{TemplateBinding BorderThickness}" />
-                                <Rectangle x:Name="FocusVisualWhiteHorizontal"
-                                           Grid.ColumnSpan="3"
-                                           IsHitTestVisible="False"
-                                           Opacity="0"
-                                           Grid.RowSpan="3"
-                                           StrokeDashOffset="1.5"
-                                           StrokeEndLineCap="Square"
-                                           Stroke="{ThemeResource FocusVisualWhiteStrokeThemeBrush}"
-                                           StrokeDashArray="1,1" />
-                                <Rectangle x:Name="FocusVisualBlackHorizontal"
-                                           Grid.ColumnSpan="3"
-                                           IsHitTestVisible="False"
-                                           Opacity="0"
-                                           Grid.RowSpan="3"
-                                           StrokeDashOffset="0.5"
-                                           StrokeEndLineCap="Square"
-                                           Stroke="{ThemeResource FocusVisualBlackStrokeThemeBrush}"
-                                           StrokeDashArray="1,1" />
-                            </Grid>
+                        <Grid x:Name="HorizontalTemplate"
+                              Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Rectangle x:Name="HorizontalTrackRect"
+                                       Grid.ColumnSpan="3"
+                                       Fill="{ThemeResource TranslucentMainColor}"
+                                       Height="1" />
+                            <Rectangle x:Name="HorizontalDecreaseRect"
+                                       Fill="{ThemeResource MainColor}"
+                                       Height="2" />
+                            <TickBar x:Name="TopTickBar"
+                                     Grid.ColumnSpan="3"
+                                     Fill="{ThemeResource SliderTickmarkOutsideBackgroundThemeBrush}"
+                                     Height="{ThemeResource SliderOutsideTickBarThemeHeight}"
+                                     Margin="0,0,0,2"
+                                     Visibility="Collapsed"
+                                     VerticalAlignment="Bottom" />
+                            <TickBar x:Name="HorizontalInlineTickBar"
+                                     Grid.ColumnSpan="3"
+                                     Fill="{ThemeResource SliderTickMarkInlineBackgroundThemeBrush}"
+                                     Height="{ThemeResource SliderTrackThemeHeight}"
+                                     Visibility="Collapsed" />
+                            <TickBar x:Name="BottomTickBar"
+                                     Grid.ColumnSpan="3"
+                                     Fill="{ThemeResource SliderTickmarkOutsideBackgroundThemeBrush}"
+                                     Height="{ThemeResource SliderOutsideTickBarThemeHeight}"
+                                     Margin="0,2,0,0"
+                                     Visibility="Collapsed"
+                                     VerticalAlignment="Top" />
+                            <Thumb x:Name="HorizontalThumb"
+                                   Style="{StaticResource SliderThumbStyle}"
+                                   AutomationProperties.AccessibilityView="Raw"
+                                   Grid.Column="1"
+                                   DataContext="{TemplateBinding Value}" />
+                            <Rectangle x:Name="HorizontalBorder"
+                                       Grid.ColumnSpan="3"
+                                       Stroke="{TemplateBinding BorderBrush}"
+                                       StrokeThickness="{TemplateBinding BorderThickness}" />
                         </Grid>
                     </Grid>
                 </ControlTemplate>
