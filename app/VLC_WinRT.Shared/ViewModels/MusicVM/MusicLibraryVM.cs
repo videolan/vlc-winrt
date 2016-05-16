@@ -200,9 +200,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public bool IsMusicLibraryEmpty => Locator.MediaLibrary.Artists?.Count == 0
                                         && Locator.MediaLibrary.Albums?.Count == 0
                                         && Locator.MediaLibrary.Tracks?.Count == 0
-                                        && LoadingStateArtists != LoadingState.Loaded
-                                        && LoadingStateAlbums != LoadingState.Loaded
-                                        && LoadingStateTracks != LoadingState.Loaded; 
+                                        && LoadingStateArtists == LoadingState.Loaded
+                                        && LoadingStateAlbums == LoadingState.Loaded
+                                        && LoadingStateTracks == LoadingState.Loaded; 
 
         public StartMusicIndexingCommand StartMusicIndexingCommand { get; } = new StartMusicIndexingCommand();
 
