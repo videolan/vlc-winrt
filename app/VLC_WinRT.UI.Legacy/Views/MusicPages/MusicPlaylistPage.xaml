@@ -15,8 +15,7 @@
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1"
-              RequestedTheme="Dark">
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
