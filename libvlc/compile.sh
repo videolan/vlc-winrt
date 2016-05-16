@@ -149,6 +149,7 @@ cd $CONTRIB_FOLDER
 
 echo "EXTRA_CFLAGS=${EXTRA_CPPFLAGS}" >> config.mak
 echo "EXTRA_LDFLAGS=${EXTRA_LDFLAGS}" >> config.mak
+echo "HAVE_WINSTORE := 1" >> config.mak
 echo "CC=${COMPILER}" >> config.mak
 echo "CXX=${COMPILERXX}" >> config.mak
 export PKG_CONFIG_LIBDIR="`pwd`/contrib/${TARGET_TUPLE}/lib/pkgconfig"
