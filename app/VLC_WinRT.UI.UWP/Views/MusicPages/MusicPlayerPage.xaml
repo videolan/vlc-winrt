@@ -8,8 +8,7 @@
       xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
       xmlns:userControls="using:VLC_WinRT.Views.UserControls"
       xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
-      mc:Ignorable="d"
-      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
+      mc:Ignorable="d">
 
     <Grid>
         <canvas:CanvasAnimatedControl x:Name="Slideshower"
@@ -29,9 +28,9 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="{StaticResource FrameMarginGridLengthDouble}" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                <RowDefinition Height="{StaticResource FrameMarginGridLengthHalf}" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                <RowDefinition Height="{StaticResource FrameMarginGridLengthHalf}" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                 <RowDefinition Height="Auto" />
@@ -141,7 +140,8 @@
                 </AppBarToggleButton>
             </Grid>
 
-            <Grid Grid.Row="8">
+            <Grid Grid.Row="8"
+                  DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="70" />
@@ -164,7 +164,6 @@
                 <AppBarButton Grid.Column="2"
                               Style="{StaticResource AppBarButtonStyleHuge}"
                               IsCompact="True"
-                              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
                               Command="{Binding ShareNowPlayingMusicCommand}">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource ShareSymbol}"
@@ -174,15 +173,27 @@
                     </AppBarButton.Icon>
                 </AppBarButton>
             </Grid>
-            
-            <Slider x:Name="VolumeSlider"
-                    Grid.Row="10"
-                    Value="{Binding Volume, Mode=TwoWay}"
-                    Maximum="100"
-                    Style="{StaticResource VLCSlider}"
-                    MaxWidth="250" />
 
 
+            <Grid Grid.Row="10"
+                  HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition MinWidth="200" />
+                </Grid.ColumnDefinitions>
+                <FontIcon Glyph="{StaticResource VolumeSymbol}"
+                          FontFamily="{StaticResource VLCFont}"
+                          FontSize="17"
+                          Margin="{StaticResource FrameMarginRight}"
+                          Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
+
+                <Slider x:Name="VolumeSlider"
+                        Grid.Column="1"
+                        DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                        Value="{Binding Volume, Mode=TwoWay}"
+                        Maximum="100"
+                        Style="{StaticResource VLCSlider}" />
+            </Grid>
             <AppBarButton x:Name="ShowPlaylistButton"
                           Grid.Row="12"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
@@ -197,28 +208,5 @@
                 </AppBarButton.Icon>
             </AppBarButton>
         </Grid>
-
-
-
-        <!--<ListView x:Name="PlaylistListView"
-                  HorizontalAlignment="Center"
-                  DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
-                  ItemsSource="{Binding TrackCollection.Playlist}"
-                  IsItemClickEnabled="True"
-                  SelectionMode="None"
-                  ItemTemplate="{StaticResource TrackItemTemplateDetailedVertical}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsStackPanel />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <triggers:Interactions.Triggers>
-                <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
-                                                  PassEventArgsToCommand="True" />
-                </triggers:EventTrigger>
-            </triggers:Interactions.Triggers>
-        </ListView>-->
     </Grid>
 </Page>
