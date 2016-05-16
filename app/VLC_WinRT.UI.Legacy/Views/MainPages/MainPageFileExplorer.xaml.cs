@@ -41,11 +41,10 @@ namespace VLC_WinRT.Views.MainPages
                 {
                     OpenFileButton.IsCompact = GoBackButton.IsCompact = true;
                 }
-                PlayFolderButton.IsCompact = true;
             }
             else
             {
-                OpenFileButton.IsCompact = GoBackButton.IsCompact = PlayFolderButton.IsCompact = false;
+                OpenFileButton.IsCompact = GoBackButton.IsCompact = false;
             }
         }
     }

@@ -29,8 +29,6 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             </Grid.ColumnDefinitions>
             <AppBarButton x:Name="GoBackButton"
                           Grid.Column="1"
@@ -53,19 +51,6 @@
                           Margin="{StaticResource FrameMarginRight}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource FileSymbol}"
-                              FontFamily="{StaticResource VLCFont}" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton x:Name="PlayFolderButton"
-                          Grid.Column="4"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          HorizontalAlignment="Right"
-                          Label="{Binding Source={StaticResource Strings}, Path=PlayFolder}"
-                          Foreground="{ThemeResource MainColor}"
-                          Command="{Binding CurrentStorageVM.PlayFolderCommand}"
-                          CommandParameter="{Binding CurrentStorageVM.StorageItems}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource PlaySymbol}"
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
@@ -107,6 +92,18 @@
                     </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>
             </ListView>
+            <AppBarButton x:Name="FloatingActionButton"
+                          Style="{StaticResource CircleButtonStyle}"
+                          VerticalAlignment="Bottom"
+                          HorizontalAlignment="Right"
+                          Margin="{StaticResource FrameMarginHorizontalPlusFooter}"
+                          Command="{Binding CurrentStorageVM.PlayFolderCommand}"
+                          CommandParameter="{Binding CurrentStorageVM.StorageItems}">
+                <AppBarButton.Content>
+                    <FontIcon Glyph="{StaticResource PlaySymbol}"
+                              FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Content>
+            </AppBarButton>
         </Grid>
 
         <Grid Grid.Row="1"
