@@ -892,9 +892,7 @@
       <Name>VLC_WinRT.ShareBackground</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\UserControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="..\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems" Label="Shared" />
