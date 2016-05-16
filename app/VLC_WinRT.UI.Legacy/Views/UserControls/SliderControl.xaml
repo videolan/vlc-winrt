@@ -18,22 +18,19 @@
         <TextBlock Grid.Column="0"
                    Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}"
                    HorizontalAlignment="Left"
-                   FontWeight="Light"
-                   FontSize="18"
-                   Foreground="{ThemeResource BasicForeground}" 
+                   FontSize="16"
+                   Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
                    Margin="{StaticResource FrameMarginRight}"/>
         <Slider Grid.Column="1"
                 Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
                 Style="{StaticResource VLCSlider}"
                 Maximum="500"
-                Margin="0,3,0,0"
                 ThumbToolTipValueConverter="{StaticResource PositionToTimeStampStringConverter}" />
         <TextBlock Grid.Column="2"
                    Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
                    HorizontalAlignment="Right"
-                   FontWeight="Light"
-                   FontSize="18"
-                   Foreground="{ThemeResource BasicForeground}" 
+                   FontSize="16"
+                   Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
                    Margin="{StaticResource FrameMarginLeft}"/>
     </Grid>
 </UserControl>
