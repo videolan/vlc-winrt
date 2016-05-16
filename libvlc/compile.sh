@@ -52,8 +52,6 @@ case "$2" in
         ;;
 esac
 
-echo Using runtime $RUNTIME
-
 # 1/ libvlc, libvlccore and its plugins
 TESTED_HASH=45df8a6415
 if [ ! -d "vlc" ]; then
