@@ -22,16 +22,17 @@ namespace VLC_WinRT.Model
         private string name;
         private string lastModified;
         private string sizeHumanizedString = "";
-        private int filesCount;
 
         public VLCStorageFolder(StorageFolder folder)
         {
             storageItem = folder;
+            name = storageItem.Name;
         }
 
         public VLCStorageFolder(Media media)
         {
             this.media = media;
+            name = media.meta(MediaMeta.Title);
         }
 
         async Task Initialize()
@@ -39,7 +40,6 @@ namespace VLC_WinRT.Model
             if (storageItem != null)
             {
                 var props = await storageItem.GetBasicPropertiesAsync();
-                name = storageItem.Name;
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
                     OnPropertyChanged(nameof(Name));
@@ -50,30 +50,23 @@ namespace VLC_WinRT.Model
             }
             else if (media != null)
             {
-                name = media.meta(MediaMeta.Title);
-
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                {
-                    OnPropertyChanged(nameof(Name));
-                });
             }
         }
 
-        public string Name
+        public string Name => name;
+
+        public string LastModified
         {
             get
             {
-                if (!string.IsNullOrEmpty(name))
-                    return name;
-                if (!isLoading)
+                if (string.IsNullOrEmpty(lastModified) && !isLoading)
                 {
                     isLoading = true;
                     Task.Run(() => Initialize());
                 }
-                return name;
+                return lastModified;
             }
         }
-        public string LastModified => lastModified;
 
         public string SizeHumanizedString => sizeHumanizedString;
         public bool SizeAvailable => false;
