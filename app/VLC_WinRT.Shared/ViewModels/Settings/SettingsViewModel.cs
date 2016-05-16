@@ -49,7 +49,6 @@ namespace VLC_WinRT.ViewModels.Settings
         private bool _continueVideoPlaybackInBackground;
         private OrderType _albumsOrderType;
         private OrderListing _albumsOrderListing;
-        private MusicView _musicView;
         private VLCPage _homePage;
         private Languages _selectedLanguage;
         private string _lastFmUserName;
