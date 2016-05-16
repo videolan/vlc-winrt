@@ -248,6 +248,11 @@ namespace VLC_WinRT.Services.RunTime
             if (frame?.Content == null) return;
             frame.Navigate(frame.Content.GetType());
             frame.GoBack();
+
+            if (currentFlyout != null && currentFlyout != VLCPage.None)
+            {
+                Go(currentFlyout);
+            }
         }
 
         public void Go(VLCPage desiredPage)
