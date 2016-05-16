@@ -148,7 +148,8 @@
                 <TranslateTransform />
             </Border.RenderTransform>
             <Grid>
-                <userControls:SliderControl x:Name="Slider" />
+                <userControls:SliderControl x:Name="Slider"
+                                            VerticalAlignment="Top"/>
                 <Grid Margin="0,40,0,-10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -279,8 +280,7 @@
                                     Value="{Binding Volume, Mode=TwoWay}"
                                     Maximum="100"
                                     Style="{StaticResource VLCSlider}"
-                                    MinWidth="110"
-                                    Margin="0,12,0,0" />
+                                    MinWidth="110" />
                         </Grid>
                     </StackPanel>
                 </Grid>
