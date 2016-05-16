@@ -274,9 +274,6 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_output\libamem_plugin.dll">
       <Link>plugins\audio_output\libamem_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_output\libdirectsound_plugin.dll">
-      <Link>plugins\audio_output\libdirectsound_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_output\libwasapi_plugin.dll">
       <Link>plugins\audio_output\libwasapi_plugin.dll</Link>
     </Content>
