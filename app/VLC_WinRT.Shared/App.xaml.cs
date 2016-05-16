@@ -53,10 +53,6 @@ namespace VLC_WinRT
         public App()
         {
             InitializeComponent();
-            if (string.IsNullOrEmpty(ApiKeyMovieDb))
-            {
-                throw new ArgumentNullException(nameof(ApiKeyMovieDb), "VLC needs a valid MovieDB Api Key");
-            }
             Suspending += OnSuspending;
             Container = AutoFacConfiguration.Configure();
         }
@@ -84,6 +80,11 @@ namespace VLC_WinRT
             if (args.Arguments.Contains("SecondaryTile"))
             {
                 await RedirectFromSecondaryTile(args.Arguments);
+            }
+
+            if (string.IsNullOrEmpty(ApiKeyMovieDb))
+            {
+                throw new ArgumentNullException(nameof(ApiKeyMovieDb), "VLC needs a valid MovieDB Api Key");
             }
         }
 
