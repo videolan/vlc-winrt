@@ -68,6 +68,11 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
                     RootFoldersVisibility = Visibility.Collapsed;
                     FileExplorerVisibility = Visibility.Visible;
                 }
+                else
+                {
+                    FileExplorerVisibility = Visibility.Collapsed;
+                    RootFoldersVisibility = Visibility.Visible;
+                }
             }
         }
         #endregion
@@ -220,8 +225,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 
         public void GoBackToRootFolders()
         {
-            FileExplorerVisibility = Visibility.Collapsed;
-            RootFoldersVisibility = Visibility.Visible;
+            CurrentStorageVM = null;
         }
     }
 }
