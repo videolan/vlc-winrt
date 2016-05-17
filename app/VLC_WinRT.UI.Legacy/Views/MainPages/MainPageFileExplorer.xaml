@@ -148,9 +148,13 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Image Source="{Binding ArtworkUrl}"
-                                   Height="30"
-                                   Width="30"
+                                   Height="36"
+                                   Width="36"
                                    Stretch="Uniform" />
+                            <FontIcon Foreground="{StaticResource SemiLightMainColor}"
+                                      FontFamily="{StaticResource VLCFont}"
+                                      Glyph="{Binding LogoGlyph}"
+                                      FontSize="32" />
                             <TextBlock Grid.Column="2"
                                        Text="{Binding Name}"
                                        Foreground="{ThemeResource BasicForeground}"
