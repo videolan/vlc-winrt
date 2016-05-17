@@ -47,6 +47,12 @@ namespace VLC_WinRT.Helpers.UIHelpers
             await DialogDisplaySemaphoreSlim.WaitAsync();
             try
             {
+                if (questionType == Question.warning)
+                {
+                    d.postAction(1);
+                    return;
+                }
+
                 var dialog = new VLCDialog();
                 dialog.Closed += Dialog_Closed;
                 dialog.Initialize(title, desc, d, questionType, cancel, action1, action2);
