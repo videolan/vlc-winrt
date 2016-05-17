@@ -105,14 +105,17 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="0.5x"
-                               Style="{StaticResource SubtitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}"
+                               Foreground="{ThemeResource BasicForeground}" />
                     <TextBlock Grid.Column="1"
                                Text="1x"
-                               Style="{StaticResource SubtitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}"
+                               Foreground="{ThemeResource BasicForeground}" />
                     <TextBlock Grid.Column="2"
                                Text="2x"
                                HorizontalAlignment="Right"
-                               Style="{StaticResource SubtitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}"
+                               Foreground="{ThemeResource BasicForeground}" />
                 </Grid>
 
                 <TextBlock Grid.Row="9"
@@ -153,13 +156,16 @@
                         Maximum="3000" />
                 <Grid Grid.Row="11">
                     <TextBlock Text="-3s"
-                               Style="{StaticResource SubtitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}"
+                               Foreground="{ThemeResource BasicForeground}" />
                     <TextBlock Text="0"
                                HorizontalAlignment="Center"
-                               Style="{StaticResource SubtitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}"
+                               Foreground="{ThemeResource BasicForeground}" />
                     <TextBlock Text="3s"
                                HorizontalAlignment="Right"
-                               Style="{StaticResource SubtitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}"
+                               Foreground="{ThemeResource BasicForeground}" />
                 </Grid>
 
                 <TextBlock Grid.Row="13"
@@ -199,16 +205,17 @@
                         Maximum="3000" />
                 <Grid Grid.Row="15">
                     <TextBlock Text="-3s"
-                               Style="{StaticResource SubtitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}"
+                               Foreground="{ThemeResource BasicForeground}" />
                     <TextBlock Text="0"
                                HorizontalAlignment="Center"
-                               Style="{StaticResource SubtitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}"
+                               Foreground="{ThemeResource BasicForeground}" />
                     <TextBlock Text="3s"
                                HorizontalAlignment="Right"
-                               Style="{StaticResource SubtitleTextBlockStyle}" />
+                               Style="{StaticResource SubtitleTextBlockStyle}"
+                               Foreground="{ThemeResource BasicForeground}" />
                 </Grid>
-
-
 
                 <TextBlock Grid.Row="17"
                            Foreground="{ThemeResource BasicForeground}"
