@@ -7,6 +7,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using VLC_WinRT.Helpers;
+using Windows.ApplicationModel.Core;
+using Windows.UI.ViewManagement;
 
 namespace VLC_WinRT.Controls
 {
@@ -210,18 +212,19 @@ namespace VLC_WinRT.Controls
             Responsive();
         }
 
-        void Responsive()
+        async void Responsive()
         {
+            var bottomBarHeight = (_page.BottomAppBar == null) ? 0 : _page.BottomAppBar.ActualHeight;
+            var navBarHeight = ApplicationView.GetForCurrentView().VisibleBounds.Height;
             if (Window.Current.Bounds.Width < 650)
             {
-                _flyoutContentPresenter.Height = Window.Current.Bounds.Height;
+                _flyoutContentPresenter.Height = navBarHeight;
                 _flyoutContentPresenter.Width = Window.Current.Bounds.Width;
             }
             else
             {
                 _flyoutContentPresenter.Width = 650;
-                _flyoutContentPresenter.Height = 
-                    Window.Current.Bounds.Height < 900 * 0.7 ? Window.Current.Bounds.Height : Window.Current.Bounds.Height * 0.7;
+                _flyoutContentPresenter.Height = navBarHeight < 900 * 0.7 ? navBarHeight : navBarHeight * 0.7;
             }
             _windowResizerTimer.Stop();
             _windowResizerTimer.Start();
