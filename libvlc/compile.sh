@@ -152,6 +152,7 @@ echo "CC=${COMPILER}" >> config.mak
 echo "CXX=${COMPILERXX}" >> config.mak
 export PKG_CONFIG_LIBDIR="`pwd`/contrib/${TARGET_TUPLE}/lib/pkgconfig"
 
+USE_FFMPEG=1 \
 make $MAKEFLAGS
 
 BUILD_FOLDER=winrt-$1-$RUNTIME
