@@ -449,13 +449,13 @@
         <Setter Property="Foreground"
                 Value="{ThemeResource MainColor}" />
         <Setter Property="Background"
-                Value="{StaticResource ProgressBarBackgroundThemeBrush}" />
+                Value="Transparent" />
         <Setter Property="BorderBrush"
                 Value="{StaticResource ProgressBarBorderThemeBrush}" />
         <Setter Property="Maximum"
                 Value="100" />
         <Setter Property="MinHeight"
-                Value="2" />
+                Value="4" />
         <Setter Property="IsTabStop"
                 Value="False" />
         <Setter Property="VerticalAlignment"
@@ -855,13 +855,13 @@
                         </Grid>
                         <Border x:Name="DeterminateRoot"
                                 Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                Height="{TemplateBinding MinHeight}">
-                            <Rectangle x:Name="ProgressBarIndicator"
-                                       Margin="{TemplateBinding Padding}"
-                                       Fill="{TemplateBinding Foreground}"
-                                       HorizontalAlignment="Left" />
-                        </Border>
+                                Height="{TemplateBinding MinHeight}" />
+
+                        <Rectangle x:Name="ProgressBarIndicator"
+                                   Margin="{TemplateBinding Padding}"
+                                   Fill="{TemplateBinding Foreground}"
+                                   Height="{TemplateBinding MinHeight}"
+                                   HorizontalAlignment="Left" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
