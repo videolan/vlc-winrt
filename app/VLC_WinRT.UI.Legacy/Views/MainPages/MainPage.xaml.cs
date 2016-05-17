@@ -52,7 +52,7 @@ namespace VLC_WinRT.Views.MainPages
         {
             var el = e.OriginalSource as FrameworkElement;
            
-            var output ="GOTFOCUS --" + e.OriginalSource.ToString() + "--" + el.Name;
+            var output ="GOTFOCUS --" + e.OriginalSource.ToString() + "--" + el.Name + el.BaseUri;
             DebugString(output);
 
             Debug.WriteLine(output);
