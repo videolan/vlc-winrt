@@ -20,5 +20,8 @@ namespace VLC_WinRT.Model.Music
         public int Episode { get; set; }
         public int Episodes { get; set; }
         public string ShowTitle { get; set; }
+
+        public uint Height { get; set; }
+        public uint Width { get; set; }
     }
 }

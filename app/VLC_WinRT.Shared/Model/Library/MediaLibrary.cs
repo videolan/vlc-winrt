@@ -401,10 +401,14 @@ namespace VLC_WinRT.Model.Library
                         // Analyse to see if it's a tv show
                         // if the file is from a tv show, we push it to this tvshow item
                         mediaVM = !isTvShow ? new VideoItem() : new VideoItem(videoProperties.ShowTitle, videoProperties.Season, videoProperties.Episode);
+                        mediaVM.Height = videoProperties.Height;
+                        mediaVM.Width = videoProperties.Width;
                         await mediaVM.Initialize(item);
                         mediaVM.IsCameraRoll = isCameraRoll;
+
                         if (string.IsNullOrEmpty(mediaVM.Name))
                             return;
+
                         VideoItem searchVideo = ViewedVideos.FirstOrDefault(x => x.Name == mediaVM.Name);
                         if (searchVideo != null)
                         {
