@@ -166,6 +166,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\libsdp_plugin.dll">
       <Link>plugins\access\libsdp_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\libsftp_plugin.dll">
+      <Link>plugins\access\libsftp_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\libshm_plugin.dll">
       <Link>plugins\access\libshm_plugin.dll</Link>
     </Content>
@@ -318,6 +321,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libdvbsub_plugin.dll">
       <Link>plugins\codec\libdvbsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libflac_plugin.dll">
+      <Link>plugins\codec\libflac_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libg711_plugin.dll">
       <Link>plugins\codec\libg711_plugin.dll</Link>
@@ -559,6 +565,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\misc\libfingerprinter_plugin.dll">
       <Link>plugins\misc\libfingerprinter_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\misc\libgnutls_plugin.dll">
+      <Link>plugins\misc\libgnutls_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\misc\liblogger_plugin.dll">
       <Link>plugins\misc\liblogger_plugin.dll</Link>
     </Content>
@@ -567,6 +576,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\misc\libxml_plugin.dll">
       <Link>plugins\misc\libxml_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\packetizer\libpacketizer_copy_plugin.dll">
+      <Link>plugins\packetizer\libpacketizer_copy_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\packetizer\libpacketizer_dirac_plugin.dll">
       <Link>plugins\packetizer\libpacketizer_dirac_plugin.dll</Link>
@@ -639,6 +651,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libgrey_yuv_plugin.dll">
       <Link>plugins\video_chroma\libgrey_yuv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi420_nv12_plugin.dll">
+      <Link>plugins\video_chroma\libi420_nv12_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi420_rgb_mmx_plugin.dll">
       <Link>plugins\video_chroma\libi420_rgb_mmx_plugin.dll</Link>
