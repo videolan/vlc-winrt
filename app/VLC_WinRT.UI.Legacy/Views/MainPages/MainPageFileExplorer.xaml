@@ -141,11 +141,24 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}"
-                                   Foreground="{ThemeResource BasicForeground}"
-                                   FontSize="16"
-                                   TextTrimming="CharacterEllipsis"
-                                   TextWrapping="NoWrap" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding ArtworkUrl}"
+                                   Height="30"
+                                   Width="30"
+                                   Stretch="Uniform" />
+                            <TextBlock Grid.Column="2"
+                                       Text="{Binding Name}"
+                                       Foreground="{ThemeResource BasicForeground}"
+                                       FontSize="16"
+                                       TextTrimming="CharacterEllipsis"
+                                       TextWrapping="NoWrap" 
+                                       VerticalAlignment="Center" />
+                        </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

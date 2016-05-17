@@ -321,7 +321,7 @@ namespace VLC_WinRT.Model.Library
                         AlbumItem album = await albumDatabase.LoadAlbumViaName(artist.Id, albumName);
                         if (album == null)
                         {
-                            var albumUrl = Locator.VLCService.GetAlbumUrl(media);
+                            var albumUrl = Locator.VLCService.GetArtworkUrl(media);
                             string albumSimplifiedUrl = null;
                             if (!string.IsNullOrEmpty(albumUrl) && albumUrl.StartsWith("file://"))
                             {

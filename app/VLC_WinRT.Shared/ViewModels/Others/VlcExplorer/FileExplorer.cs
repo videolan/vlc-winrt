@@ -28,6 +28,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
         #region public props
         public string Id;
         public string Name { get; set; }
+        public string ArtworkUrl { get; set; }
 
         public IStorageItemClickedCommand NavigateToCommand { get; } = new IStorageItemClickedCommand();
 

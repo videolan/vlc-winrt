@@ -186,7 +186,7 @@ namespace VLC_WinRT.Services.RunTime
             return new Media(Instance, filePath, FromType.FromPath);
         }
 
-        public string GetAlbumUrl(Media media)
+        public string GetArtworkUrl(Media media)
         {
             if (media == null) return null;
             if (media.parseStatus() == libVLCX.ParseStatus.Init)
