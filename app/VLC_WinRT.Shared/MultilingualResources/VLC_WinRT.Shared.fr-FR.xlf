@@ -175,7 +175,7 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">vos commentaires envoyés ! Merci</target>
         </trans-unit>
         <trans-unit id="FileExplorer" translate="yes" xml:space="preserve">
-          <source>files</source>
+          <source>browse</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">fichiers</target>
         </trans-unit>
         <trans-unit id="GoldPartners" translate="yes" xml:space="preserve">

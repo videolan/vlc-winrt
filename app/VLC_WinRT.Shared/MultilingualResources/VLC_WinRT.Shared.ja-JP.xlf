@@ -175,7 +175,7 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">送られたフィードバック!ありがとう</target>
         </trans-unit>
         <trans-unit id="FileExplorer" translate="yes" xml:space="preserve">
-          <source>files</source>
+          <source>browse</source>
           <target state="translated">ファイル</target>
         </trans-unit>
         <trans-unit id="GoldPartners" translate="yes" xml:space="preserve">
