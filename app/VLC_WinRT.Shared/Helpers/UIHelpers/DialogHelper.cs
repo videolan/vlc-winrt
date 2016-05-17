@@ -44,14 +44,15 @@ namespace VLC_WinRT.Helpers.UIHelpers
 
         public static async Task DisplayDialog(string title, string desc, Dialog d, Question questionType, string cancel, string action1, string action2)
         {
+            if (questionType == Question.warning)
+            {
+                d.postAction(1);
+                return;
+            }
+
             await DialogDisplaySemaphoreSlim.WaitAsync();
             try
             {
-                if (questionType == Question.warning)
-                {
-                    d.postAction(1);
-                    return;
-                }
 
                 var dialog = new VLCDialog();
                 dialog.Closed += Dialog_Closed;
