@@ -62,7 +62,7 @@
                        FontSize="16"
                        TextTrimming="CharacterEllipsis"
                        TextWrapping="NoWrap"
-                       Margin="0,-2,0,0"/>
+                       Margin="0,-2,0,0" />
         </Grid>
 
         <Grid Grid.Row="1"
@@ -70,7 +70,7 @@
             <placeholder:NothingToSeeHere Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <ProgressBar IsIndeterminate="True"
                          VerticalAlignment="Center"
-                         Visibility="{Binding CurrentStorageVM.LoadingBarVisibility}"/>
+                         Visibility="{Binding CurrentStorageVM.LoadingBarVisibility}" />
             <ListView x:Name="StorageItemsListView"
                       ItemsSource="{Binding CurrentStorageVM.StorageItems}"
                       IsItemClickEnabled="True"

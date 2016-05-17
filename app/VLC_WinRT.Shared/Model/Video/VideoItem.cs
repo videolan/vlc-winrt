@@ -86,7 +86,50 @@ namespace VLC_WinRT.Model.Video
             get { return _title; }
             set { SetProperty(ref _title, value); }
         }
+        public string Type
+        {
+            get { return _type; }
+            set { SetProperty(ref _type, value); }
+        }
+        public uint Width { get; set; }
+        public uint Height { get; set; }
 
+        public bool Favorite
+        {
+            get { return _favorite; }
+            set { SetProperty(ref _favorite, value); }
+        }
+        public TimeSpan Duration
+        {
+            get { return _duration; }
+            set { SetProperty(ref _duration, value); }
+        }
+
+        public DateTime LastWatched
+        {
+            get { return _lastWatched; }
+            set { SetProperty(ref _lastWatched, value); }
+        }
+
+        public Boolean IsPictureLoaded { get; set; }
+
+        public Boolean HasMoviePicture { get; set; }
+
+        public Boolean IsCameraRoll { get; set; }
+
+        public bool IsCurrentPlaying { get; set; }
+        
+        public int TimeWatchedSeconds
+        {
+            get { return _timeWatchedSeconds; }
+            set
+            {
+                SetProperty(ref _timeWatchedSeconds, value);
+                OnPropertyChanged(nameof(TimeWatched));
+                OnPropertyChanged(nameof(HasBeenSeen));
+            }
+        }
+        
         [Ignore]
         public BitmapImage VideoImage
         {
@@ -149,41 +192,17 @@ namespace VLC_WinRT.Model.Video
             set { SetProperty(ref _filePath, value); }
         }
 
-        public string Type
-        {
-            get { return _type; }
-            set { SetProperty(ref _type, value); }
-        }
-
         [Ignore]
         public char AlphaKey
         {
             get { return _alphaKey; }
             set { SetProperty(ref _alphaKey, value); }
         }
-
-
-        public bool Favorite
-        {
-            get { return _favorite; }
-            set { SetProperty(ref _favorite, value); }
-        }
-
+        
         [Ignore]
         public TimeSpan TimeWatched
         {
             get { return TimeSpan.FromSeconds(_timeWatchedSeconds); }
-        }
-
-        public int TimeWatchedSeconds
-        {
-            get { return _timeWatchedSeconds; }
-            set
-            {
-                SetProperty(ref _timeWatchedSeconds, value);
-                OnPropertyChanged(nameof(TimeWatched));
-                OnPropertyChanged(nameof(HasBeenSeen));
-            }
         }
  
         [Ignore]
@@ -194,32 +213,11 @@ namespace VLC_WinRT.Model.Video
                 return TimeWatched.Seconds > 0 && Duration.Seconds > 30 && ((double)TimeWatched.Seconds / Duration.Seconds) < 0.98;
             }
         }
-
-        public TimeSpan Duration
-        {
-            get { return _duration; }
-            set { SetProperty(ref _duration, value); }
-        }
-
+        
         [Ignore]
         public FavoriteVideoCommand FavoriteVideo { get; } = new FavoriteVideoCommand();
-
-
-        public DateTime LastWatched
-        {
-            get { return _lastWatched; }
-            set { SetProperty(ref _lastWatched, value); }
-        }
-
-        public Boolean IsPictureLoaded { get; set; }
-        public Boolean HasMoviePicture { get; set; }
-
-
-        public Boolean IsCameraRoll { get; set; }
-
+        
         private string _filePath;
-
-        public bool IsCurrentPlaying { get; set; }
 
         [Ignore]
         public Media VlcMedia { get; set; }
