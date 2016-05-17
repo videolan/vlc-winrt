@@ -785,13 +785,6 @@ namespace VLC_WinRT.ViewModels
                         await lostStreamDialog.ShowAsyncQueue();
 #endif
                     }
-
-#if WINDOWS_UWP
-                    await DialogHelper.DisplayDialog(Strings.MediaCantBeRead, Strings.Sorry);
-#else
-                    var md = new MessageDialog(Strings.MediaCantBeRead, Strings.Sorry);
-                    await md.ShowAsyncQueue();
-#endif
                     // ensure we call Stop so we unregister all events
                     Stop();
                 });
