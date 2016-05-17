@@ -287,8 +287,8 @@ namespace VLC_WinRT.Model.Library
                 {
                     if (await trackDatabase.DoesTrackExist(item.Path)) return;
 
-                    var media = Locator.VLCService.GetMediaFromPath(item.Path);
-                    var mP = Locator.VLCService.GetMusicProperties(media);
+                    var media = await Locator.VLCService.GetMediaFromPath(item.Path);
+                    var mP = await Locator.VLCService.GetMusicProperties(media);
                     if (mP == null || (string.IsNullOrEmpty(mP.Artist) && string.IsNullOrEmpty(mP.Album) && (string.IsNullOrEmpty(mP.Title) || mP.Title == item.Name)))
                     {
                         var props = await item.Properties.GetMusicPropertiesAsync();
@@ -392,7 +392,7 @@ namespace VLC_WinRT.Model.Library
                             videoProperties = TitleDecrapifier.tvShowEpisodeInfoFromString(item.DisplayName);
                             if (videoProperties == null)
                             {
-                                var mediaCam = Locator.VLCService.GetMediaFromPath(item.Path);
+                                var mediaCam = await Locator.VLCService.GetMediaFromPath(item.Path);
                                 videoProperties = Locator.VLCService.GetVideoProperties(mediaCam);
                             }
                         }

@@ -273,8 +273,8 @@ namespace VLC_WinRT.Model.Video
         private async Task GetTimeInformation()
         {
             if (_duration != TimeSpan.Zero) return;
-            var media = Locator.VLCService.GetMediaFromPath(_filePath);
-            var duration = Locator.VLCService.GetDuration(media);
+            var media = await Locator.VLCService.GetMediaFromPath(_filePath);
+            var duration = await Locator.VLCService.GetDuration(media);
             if (duration == null || duration == TimeSpan.Zero)
             {
                 var mP = await File.Properties.GetVideoPropertiesAsync();

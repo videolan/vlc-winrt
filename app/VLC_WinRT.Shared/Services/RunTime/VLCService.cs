@@ -178,9 +178,13 @@ namespace VLC_WinRT.Services.RunTime
             return StorageApplicationPermissions.FutureAccessList.Add(file);
         }
 
-        public Media GetMediaFromPath(string filePath)
+        public async Task<Media> GetMediaFromPath(string filePath)
         {
-            if (Instance == null) return null;
+            if (Instance == null)
+            {
+                await Initialize();
+            }
+            await PlayerInstanceReady.Task;
             if (string.IsNullOrEmpty(filePath))
                 return null;
             return new Media(Instance, filePath, FromType.FromPath);
@@ -189,9 +193,9 @@ namespace VLC_WinRT.Services.RunTime
         public string GetArtworkUrl(Media media)
         {
             if (media == null) return null;
-            if (media.parseStatus() == libVLCX.ParseStatus.Init)
+            if (media.parseStatus() == ParseStatus.Init)
                 media.parse();
-            if (media.parseStatus() == libVLCX.ParseStatus.Failed)
+            if (media.parseStatus() == ParseStatus.Failed)
                 return null;
             var url = media.meta(MediaMeta.ArtworkURL);
             if (!string.IsNullOrEmpty(url))
@@ -201,10 +205,11 @@ namespace VLC_WinRT.Services.RunTime
 
         public MediaProperties GetVideoProperties(Media media)
         {
-            if (media == null) return null;
-            if (media.parseStatus() == libVLCX.ParseStatus.Init)
+            if (media == null)
+                return null;
+            if (media.parseStatus() == ParseStatus.Init)
                 media.parse();
-            if (media.parseStatus() == libVLCX.ParseStatus.Failed)
+            if (media.parseStatus() == ParseStatus.Failed)
                 return null;
             var mP = new MediaProperties();
             mP.Title = media.meta(MediaMeta.Title);
@@ -236,11 +241,24 @@ namespace VLC_WinRT.Services.RunTime
             {
                 mP.Episodes = episodesTotal;
             }
+
+            var videoTrack = media.tracks().FirstOrDefault(x => x.type() == TrackType.Video);
+            if (videoTrack != null)
+            {
+                mP.Width = videoTrack.width();
+                mP.Height = videoTrack.height();
+            }
+
             return mP;
         }
 
-        public MediaProperties GetMusicProperties(Media media)
+        public async Task<MediaProperties> GetMusicProperties(Media media)
         {
+            if (Instance == null)
+            {
+                await Initialize();
+            }
+            await PlayerInstanceReady.Task;
             if (media == null) return null;
             if (media.parseStatus() == libVLCX.ParseStatus.Init)
                 media.parse();
@@ -284,8 +302,13 @@ namespace VLC_WinRT.Services.RunTime
             return mP;
         }
 
-        public TimeSpan GetDuration(Media media)
+        public async Task<TimeSpan> GetDuration(Media media)
         {
+            if (Instance == null)
+            {
+                await Initialize();
+            }
+            await PlayerInstanceReady.Task;
             if (media == null) return TimeSpan.Zero;
             media.parse();
             if (media.parseStatus() != ParseStatus.Done)
