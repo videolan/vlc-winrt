@@ -50,6 +50,8 @@
         </Grid>
 
         <ListView Grid.Row="1"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
                   ItemsSource="{Binding Episodes}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
