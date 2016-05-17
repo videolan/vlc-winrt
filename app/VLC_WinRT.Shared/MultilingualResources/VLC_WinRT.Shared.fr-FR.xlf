@@ -347,8 +347,8 @@
           <target state="needs-review-translation" state-qualifier="tm-suggestion">notifications</target>
         </trans-unit>
         <trans-unit id="NotificationWhenSongStarts" translate="yes" xml:space="preserve">
-          <source>notifications= when the song starts</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">notifications = au démarrage de la chanson</target>
+          <source>when the song starts</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">au démarrage de la chanson</target>
         </trans-unit>
         <trans-unit id="NoVideosFound" translate="yes" xml:space="preserve">
           <source>we did not find videos</source>
