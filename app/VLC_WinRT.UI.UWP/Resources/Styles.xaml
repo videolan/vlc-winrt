@@ -1613,7 +1613,7 @@
     <Style TargetType="AppBarToggleButton"
            x:Key="VLCAppBarToggleButton">
         <Setter Property="Foreground"
-                Value="White" />
+                Value="{ThemeResource AppBarItemForegroundThemeBrush}" />
         <Setter Property="VerticalAlignment"
                 Value="Top" />
         <Setter Property="HorizontalAlignment"
@@ -1687,6 +1687,11 @@
                                                                        Storyboard.TargetProperty="Fill">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{StaticResource SemiLightMainColor}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content"
+                                                                       Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="White" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>

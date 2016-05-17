@@ -168,7 +168,7 @@
                                 <FontIcon x:Name="LockToggleIcon"
                                           Glyph="{StaticResource UnlockedSymbol}"
                                           FontFamily="{StaticResource VLCFont}"
-                                          FontSize="24" />
+                                          FontSize="20" />
                             </AppBarToggleButton.Icon>
                         </AppBarToggleButton>
                         <AppBarButton Name="PiPButton"
