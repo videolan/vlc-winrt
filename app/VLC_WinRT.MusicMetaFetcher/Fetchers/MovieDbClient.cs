@@ -21,6 +21,9 @@ namespace VLC_WinRT.MediaMetaFetcher.Fetchers
         {
             try
             {
+                if (string.IsNullOrEmpty(VideoMDFetcher.TheMovieDbApiKey))
+                    return configured;
+
                 var client = new HttpClient();
 
                 var url = $"http://api.themoviedb.org/3/configuration?api_key={VideoMDFetcher.TheMovieDbApiKey}";
