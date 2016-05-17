@@ -16,7 +16,7 @@ namespace VLC_WinRT.Converters
                     case RootFolderType.ExternalDevice:
                         return Strings.RemovableStorage.ToUpperFirstChar();
                     case RootFolderType.Library:
-                        return Strings.Library.ToUpperFirstChar();
+                        return Strings.Local.ToUpperFirstChar();
                     case RootFolderType.Network:
                         return Strings.Network.ToUpperFirstChar();
                 }

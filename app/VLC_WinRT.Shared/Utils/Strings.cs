@@ -108,7 +108,7 @@ namespace VLC_WinRT.Utils
         public static string RemovableStorage => _resourcesLoader.GetString(nameof(RemovableStorage));
         public static string FileExplorer => _resourcesLoader.GetString(nameof(FileExplorer));
         public static string Network => _resourcesLoader.GetString(nameof(Network));
-        public static string Library => _resourcesLoader.GetString(nameof(Library));
+        public static string Local => _resourcesLoader.GetString(nameof(Local));
         public static string Search => _resourcesLoader.GetString(nameof(Search));
         
         public static string YourMusic => _resourcesLoader.GetString(nameof(YourMusic));

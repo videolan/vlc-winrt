@@ -291,8 +291,8 @@
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>keyboard shortcuts</value>
   </data>
-  <data name="Library" xml:space="preserve">
-    <value>library</value>
+  <data name="Local" xml:space="preserve">
+    <value>local</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>license</value>
