@@ -31,7 +31,7 @@
           RightTapped="Grid_RightTapped">
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="2" />
+            <RowDefinition Height="3" />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0"
@@ -47,7 +47,6 @@
                HorizontalAlignment="Center" />
         <ProgressBar x:Name="VideoProgressBar"
                      Grid.Row="1"
-                     VerticalAlignment="Bottom"
                      Style="{StaticResource ThinProgressBar}" />
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>

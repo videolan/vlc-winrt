@@ -2040,11 +2040,7 @@
                         </Grid>
                         <Grid Grid.Column="1"
                               VerticalAlignment="Center"
-                              Margin="0,-4,5,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                              Margin="2,-3,5,0">
                             <TextBlock x:Name="TextLabel"
                                        Foreground="{TemplateBinding Foreground}"
                                        FontSize="{TemplateBinding FontSize}"

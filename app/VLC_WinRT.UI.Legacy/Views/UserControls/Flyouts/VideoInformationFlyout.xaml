@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d">
 
-    <Border RequestedTheme="Dark" 
+    <Border RequestedTheme="Dark"
             Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
             BorderThickness="1"
             Loaded="Grid_Loaded">
@@ -46,12 +46,6 @@
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
-                    <TextBlock Grid.Column="1"
-                               Text="{Binding Type}"
-                               TextWrapping="Wrap"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               VerticalAlignment="Bottom"
-                               Margin="0,0,7,7" />
                     <Grid.Background>
                         <LinearGradientBrush StartPoint="0.5,0"
                                              EndPoint="0.5,1">
@@ -66,7 +60,7 @@
                 </Grid>
             </Grid>
             <StackPanel Grid.Row="1"
-                        Margin="{StaticResource FrameMarginTop}">
+                        Margin="{StaticResource FrameMarginVertical}">
                 <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=PlayVideo}"
                               Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.CloseFlyoutAndPlayVideoCommand}"
                               CommandParameter="{Binding}"
@@ -80,9 +74,19 @@
                 </AppBarButton>
             </StackPanel>
             <TextBlock Grid.Row="2"
+                       Margin="{StaticResource FrameMarginLeft}"
+                       Style="{StaticResource BodyTextBlockStyle}">
+                <Run Text="{Binding Type}" />
+                <Run Text="{Binding Source={StaticResource Strings}, Path=Dash}" />
+                <Run Text="{Binding Width}" />
+                <Run Text="x" />
+                <Run Text="{Binding Height}" />
+            </TextBlock>
+            <TextBlock Grid.Row="3"
                        Text="{Binding Path}"
+                       MaxLines="2"
                        Margin="{StaticResource FrameMarginBothSides}"
-                       Style="{StaticResource BodyTextBlockStyle}"/>
+                       Style="{StaticResource BodyTextBlockStyle}" />
         </Grid>
     </Border>
 </Flyout>

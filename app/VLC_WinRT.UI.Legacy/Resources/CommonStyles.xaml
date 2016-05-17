@@ -455,7 +455,7 @@
         <Setter Property="Maximum"
                 Value="100" />
         <Setter Property="MinHeight"
-                Value="4" />
+                Value="2" />
         <Setter Property="IsTabStop"
                 Value="False" />
         <Setter Property="VerticalAlignment"
