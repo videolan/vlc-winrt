@@ -7,7 +7,7 @@
     "Newtonsoft.Json": "8.0.3",
     "NotificationsExtensions.Win10": "14295.0.1",
     "ScrollWatcher": "1.0.5",
-    "Win2D.uwp": "1.17.0",
+    "Win2D.uwp": "1.18.0",
     "WinRTTriggers": "1.6.0",
     "WinRTXamlToolkit": "2.0.0"
   },
