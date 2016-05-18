@@ -600,7 +600,7 @@ namespace VLC_WinRT.ViewModels
                     {
                     }
 #else
-                    await SetMediaTransportControlsInfo(string.IsNullOrEmpty(video.Name) ? "Video" : video.Name);
+                    await SetMediaTransportControlsInfo(string.IsNullOrEmpty(video.Name) ? Strings.Video : video.Name);
 #endif
                     UpdateTileHelper.UpdateMediumTileWithVideoInfo();
                 }
