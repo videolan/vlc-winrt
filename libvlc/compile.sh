@@ -120,14 +120,14 @@ cd $CONTRIB_FOLDER
     --disable-modplug \
     --disable-SDL_image \
     --disable-fontconfig \
-    --disable-zvbi \
+    --enable-zvbi \
     --disable-caca \
     --disable-gettext \
-    --disable-gme \
+    --enable-gme \
     --disable-tremor \
     --enable-vorbis \
     --enable-mad \
-    --disable-sidplay2 \
+    --enable-sidplay2 \
     --enable-samplerate \
     --disable-faad2 \
     --enable-iconv \
@@ -143,7 +143,10 @@ cd $CONTRIB_FOLDER
     --disable-gpl \
     --disable-libarchive \
     --enable-ssh2 \
-    --disable-vncclient
+    --disable-vncclient \
+    --enable-jpeg \
+    --enable-postproc \
+    --enable-vpx
 
 echo "EXTRA_CFLAGS=${EXTRA_CPPFLAGS}" >> config.mak
 echo "EXTRA_LDFLAGS=${EXTRA_LDFLAGS}" >> config.mak

@@ -24,7 +24,7 @@ OPTIONS="
       --disable-skins2
       --enable-sse --enable-mmx
       --disable-libcddb
-      --disable-zvbi --disable-telx
+      --enable-zvbi --disable-telx
       --enable-mad
       --disable-a52
       --disable-dirac
@@ -32,6 +32,12 @@ OPTIONS="
       --disable-smbclient
       --disable-vcd
       --disable-crystalhd
-      --disable-dxva2"
+      --disable-dxva2
+      --enable-flac
+      --enable-jpeg
+      --enable-vpx
+      --enable-postproc
+      --enable-gme
+      --enable-sidplay2"
 
 sh ../configure ${OPTIONS} $*
