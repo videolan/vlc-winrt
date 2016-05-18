@@ -397,6 +397,15 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libvorbis_plugin.dll">
       <Link>plugins\codec\libvorbis_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libjpeg_plugin.dll">
+      <Link>plugins\codec\libjpeg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libvpx_plugin.dll">
+      <Link>plugins\codec\libvpx_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libzvbi_plugin.dll">
+      <Link>plugins\codec\libzvbi_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\control\libdummy_plugin.dll">
       <Link>plugins\control\libdummy_plugin.dll</Link>
     </Content>
@@ -531,6 +540,12 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libxa_plugin.dll">
       <Link>plugins\demux\libxa_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libgme_plugin.dll">
+      <Link>plugins\demux\libgme_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libsid_plugin.dll">
+      <Link>plugins\demux\libsid_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\keystore\libfile_keystore_plugin.dll">
       <Link>plugins\keystore\libfile_keystore_plugin.dll</Link>
@@ -837,6 +852,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libwave_plugin.dll">
       <Link>plugins\video_filter\libwave_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libpostproc_plugin.dll">
+      <Link>plugins\video_filter\libpostproc_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_output\libdirect3d11_plugin.dll">
       <Link>plugins\video_output\libdirect3d11_plugin.dll</Link>
