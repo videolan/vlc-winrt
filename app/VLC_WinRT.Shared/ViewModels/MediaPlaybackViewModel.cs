@@ -794,6 +794,25 @@ namespace VLC_WinRT.ViewModels
 
         async void OnEndReached()
         {
+            switch (PlayingType)
+            {
+                case PlayingType.Music:
+                    break;
+                case PlayingType.Video:
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                    {
+                        if (Locator.VideoPlayerVm.CurrentVideo != null)
+                            Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = 0;
+                    });
+                    if (Locator.VideoPlayerVm.CurrentVideo != null)
+                        await Locator.MediaLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
+                    break;
+                case PlayingType.NotPlaying:
+                    break;
+                default:
+                    break;
+            }
+
             bool canGoNext = TrackCollection.Playlist.Count > 0 && TrackCollection.CanGoNext;
             if (!canGoNext)
             {
@@ -816,26 +835,10 @@ namespace VLC_WinRT.ViewModels
                     }
                 });
             }
-            switch (PlayingType)
+            else
             {
-                case PlayingType.Music:
-                    break;
-                case PlayingType.Video:
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                    {
-                        if (Locator.VideoPlayerVm.CurrentVideo != null)
-                            Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = 0;
-                    });
-                    if (Locator.VideoPlayerVm.CurrentVideo != null)
-                        await Locator.MediaLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
-                    break;
-                case PlayingType.NotPlaying:
-                    break;
-                default:
-                    break;
-            }
-            if (canGoNext)
                 await PlayNext();
+            }
         }
 
         public async Task StartAgain()
