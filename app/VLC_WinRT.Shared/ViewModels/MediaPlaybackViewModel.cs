@@ -477,11 +477,11 @@ namespace VLC_WinRT.ViewModels
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
-                OnPropertyChanged("Time");
+                OnPropertyChanged(nameof(Time));
                 // Assume position also changes when time does.
                 // We could/should also watch OnPositionChanged event, but let's save us
                 // the cost of another dispatched call.
-                OnPropertyChanged("Position");
+                OnPropertyChanged(nameof(Position));
             });
         }
 
