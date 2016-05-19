@@ -202,9 +202,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
                                         && Locator.MediaLibrary.Tracks?.Count == 0
                                         && LoadingStateArtists == LoadingState.Loaded
                                         && LoadingStateAlbums == LoadingState.Loaded
-                                        && LoadingStateTracks == LoadingState.Loaded; 
-
-        public StartMusicIndexingCommand StartMusicIndexingCommand { get; } = new StartMusicIndexingCommand();
+                                        && LoadingStateTracks == LoadingState.Loaded;
+        public IndexMediaLibraryCommand IndexMediaLibraryCommand => new IndexMediaLibraryCommand();
 
         public AddToPlaylistCommand AddToPlaylistCommand { get; } = new AddToPlaylistCommand();
 
