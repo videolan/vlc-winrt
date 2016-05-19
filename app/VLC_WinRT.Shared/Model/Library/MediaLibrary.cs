@@ -140,9 +140,10 @@ namespace VLC_WinRT.Model.Library
             try
             {
                 await GenerateThumbnail(videoVm);
-                await Locator.VideoMetaService.GetMoviePicture(videoVm).ConfigureAwait(false);
+                if (videoVm.Type == ".mkv")
+                    await Locator.VideoMetaService.GetMoviePicture(videoVm).ConfigureAwait(false);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 LogHelper.Log(StringsHelper.ExceptionToString(e));
                 MediaItemDiscovererSemaphoreSlim.Release();
