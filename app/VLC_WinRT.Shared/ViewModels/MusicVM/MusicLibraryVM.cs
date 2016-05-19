@@ -29,6 +29,7 @@ using VLC_WinRT.Utils;
 using VLC_WinRT.Commands.MusicPlayer;
 using Windows.UI.Xaml;
 using VLC_WinRT.Model.Library;
+using VLC_WinRT.Commands.MediaLibrary;
 
 namespace VLC_WinRT.ViewModels.MusicVM
 {
