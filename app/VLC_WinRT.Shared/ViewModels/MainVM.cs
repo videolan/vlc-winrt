@@ -164,7 +164,7 @@ namespace VLC_WinRT.ViewModels
 
         async void networkListenerService_InternetConnectionChanged(object sender, Model.Events.InternetConnectionChangedEventArgs e)
         {
-            await App.Dispatcher?.RunAsync(CoreDispatcherPriority.Normal, () => IsInternet = e.IsConnected);
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => IsInternet = e.IsConnected);
         }
         
         public ObservableCollection<Panel> Panels
