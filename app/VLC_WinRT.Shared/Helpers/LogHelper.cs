@@ -98,6 +98,7 @@ namespace VLC_WinRT.Helpers
 
         public static void Log(string s, bool backend = false)
         {
+            return;
             if (string.IsNullOrEmpty(s)) return;
             try
             {
