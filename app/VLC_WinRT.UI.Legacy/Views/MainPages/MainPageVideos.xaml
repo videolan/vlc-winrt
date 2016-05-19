@@ -67,7 +67,7 @@
                                    VerticalAlignment="Center"
                                    FontSize="16"
                                    TextTrimming="CharacterEllipsis"
-                                   TextWrapping="NoWrap"/>
+                                   TextWrapping="NoWrap" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

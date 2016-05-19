@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
         <ContentPresenter x:Name="MainPageMusicContentPresenter"
                           Grid.Row="1"
-                          Loaded="MusicPanesFrame_OnLoaded"/>
+                          Loaded="MusicPanesFrame_OnLoaded" />
 
         <Rectangle Grid.Row="1"
                    VerticalAlignment="Top"
@@ -74,9 +74,9 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-                <musicPanesControls:AlbumsCollectionButtons Grid.Column="1"
-                                                            Margin="0,-8,0,0"
-                                                            Visibility="{Binding AlbumsCollectionsButtonVisible}" />
+            <musicPanesControls:AlbumsCollectionButtons Grid.Column="1"
+                                                        Margin="0,-8,0,0"
+                                                        Visibility="{Binding AlbumsCollectionsButtonVisible}" />
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
