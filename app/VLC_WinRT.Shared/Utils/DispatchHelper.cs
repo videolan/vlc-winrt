@@ -22,12 +22,5 @@ namespace VLC_WinRT.Utils
         {
             return CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action()).AsTask();
         }
-
-        // This should be avoided as much as possible as it will block a thread.
-        // Prefer the asynchronous version whenever possible
-        public static void Invoke(Action action)
-        {
-            InvokeAsync(CoreDispatcherPriority.Normal, action).Wait();
-        }
     }
 }
