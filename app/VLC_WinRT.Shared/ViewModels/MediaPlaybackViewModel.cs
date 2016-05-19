@@ -761,7 +761,7 @@ namespace VLC_WinRT.ViewModels
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 IsBuffered = f == 100;
-                OnPropertyChanged("BufferingProgress");
+                OnPropertyChanged(nameof(BufferingProgress));
             });
         }
 
@@ -899,7 +899,7 @@ namespace VLC_WinRT.ViewModels
             {
                 case PlayerEngine.VLC:
                     var vlcService = (VLCService)_mediaService;
-                    vlcService.MediaPlayer?.setSpu(i);
+                    vlcService.SetSubtitleTrack(i);
                     break;
                 case PlayerEngine.MediaFoundation:
                     break;
@@ -916,7 +916,7 @@ namespace VLC_WinRT.ViewModels
             {
                 case PlayerEngine.VLC:
                     var vlcService = (VLCService)_mediaService;
-                    vlcService.MediaPlayer?.setAudioTrack(i);
+                    vlcService.SetAudioTrack(i);
                     break;
                 case PlayerEngine.MediaFoundation:
                     break;
@@ -933,7 +933,7 @@ namespace VLC_WinRT.ViewModels
             {
                 case PlayerEngine.VLC:
                     var vlcService = (VLCService)_mediaService;
-                    vlcService.MediaPlayer?.setSubtitleFile(mrl);
+                    vlcService.SetSubtitleFile(mrl);
                     break;
                 case PlayerEngine.MediaFoundation:
                     break;

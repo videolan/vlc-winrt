@@ -318,17 +318,31 @@ namespace VLC_WinRT.Services.RunTime
         }
         #endregion
         #region playback actions
+        public void SetSubtitleFile(string mrl)
+        {
+            MediaPlayer?.setSubtitleFile(mrl);
+        }
+
+        public void SetSubtitleTrack(int i)
+        {
+            MediaPlayer?.setSpu(i);
+        }
+
+        public void SetAudioTrack(int i)
+        {
+            MediaPlayer?.setAudioTrack(i);
+        }
+
         public void SetAudioDelay(long delay)
         {
-            MediaPlayer.setAudioDelay(delay);
+            MediaPlayer?.setAudioDelay(delay);
         }
 
         public void SetSpuDelay(long delay)
         {
-            MediaPlayer.setSpuDelay(delay);
+            MediaPlayer?.setSpuDelay(delay);
         }
-
-
+        
         public void Play()
         {
             MediaPlayer?.play();
