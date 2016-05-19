@@ -52,10 +52,12 @@
                    MaxHeight="400"
                    MaxWidth="400" />
 
-            <userControls:SliderControl Grid.Row="4" />
+            <userControls:SliderControl Grid.Row="4"
+                                        MaxWidth="400" />
 
             <Grid Grid.Row="6"
-                  DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
+                  DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                  MaxWidth="400">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition MinWidth="60" />
@@ -139,7 +141,8 @@
             </Grid>
 
             <Grid Grid.Row="8"
-                  DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
+                  DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+                  MaxWidth="400">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="70" />
@@ -185,7 +188,8 @@
 
 
             <Grid Grid.Row="10"
-                  HorizontalAlignment="Center">
+                  HorizontalAlignment="Center"
+                  MaxWidth="400">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition MinWidth="200" />
