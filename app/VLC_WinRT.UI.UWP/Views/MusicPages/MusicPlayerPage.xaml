@@ -32,8 +32,6 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="{StaticResource FrameMarginGridLengthHalf}" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <TextBlock TextAlignment="Center">
@@ -146,6 +144,7 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="70" />
                     <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="70" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <AppBarToggleButton Grid.Column="1"
@@ -172,6 +171,16 @@
                                   x:Name="ShareFontIcon" />
                     </AppBarButton.Icon>
                 </AppBarButton>
+                <AppBarButton Grid.Column="3"
+                              Style="{StaticResource AppBarButtonStyleHuge}"
+                              IsCompact="True"
+                              Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.GoToMusicPlaylistPageCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource OrderedListSymbol}"
+                                  FontFamily="{StaticResource VLCFont}"
+                                  FontSize="20"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </Grid>
 
 
@@ -194,19 +203,6 @@
                         Maximum="100"
                         Style="{StaticResource VLCSlider}" />
             </Grid>
-            <AppBarButton x:Name="ShowPlaylistButton"
-                          Grid.Row="12"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Label="{Binding Source={StaticResource Strings}, Path=ShowPlaylist}"
-                          Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.GoToMusicPlaylistPageCommand}"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Center"
-                          FontSize="16">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource OrderedListSymbol}"
-                              FontFamily="{StaticResource VLCFont}" />
-                </AppBarButton.Icon>
-            </AppBarButton>
         </Grid>
     </Grid>
 </Page>
