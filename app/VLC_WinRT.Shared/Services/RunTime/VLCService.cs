@@ -190,9 +190,15 @@ namespace VLC_WinRT.Services.RunTime
             return new Media(Instance, filePath, FromType.FromPath);
         }
 
-        public string GetArtworkUrl(Media media)
+        public async Task<string> GetArtworkUrl(Media media)
         {
-            if (media == null) return null;
+            if (Instance == null)
+            {
+                await Initialize();
+            }
+            await PlayerInstanceReady.Task;
+            if (media == null)
+                return null;
             if (media.parseStatus() == ParseStatus.Init)
                 media.parse();
             if (media.parseStatus() == ParseStatus.Failed)
@@ -203,8 +209,13 @@ namespace VLC_WinRT.Services.RunTime
             return null;
         }
 
-        public MediaProperties GetVideoProperties(Media media)
+        public async Task<MediaProperties> GetVideoProperties(Media media)
         {
+            if (Instance == null)
+            {
+                await Initialize();
+            }
+            await PlayerInstanceReady.Task;
             if (media == null)
                 return null;
             if (media.parseStatus() == ParseStatus.Init)
@@ -260,9 +271,9 @@ namespace VLC_WinRT.Services.RunTime
             }
             await PlayerInstanceReady.Task;
             if (media == null) return null;
-            if (media.parseStatus() == libVLCX.ParseStatus.Init)
+            if (media.parseStatus() == ParseStatus.Init)
                 media.parse();
-            if (media.parseStatus() == libVLCX.ParseStatus.Failed)
+            if (media.parseStatus() == ParseStatus.Failed)
                 return null;
             var mP = new MediaProperties();
             mP.AlbumArtist = media.meta(MediaMeta.AlbumArtist);
@@ -309,10 +320,14 @@ namespace VLC_WinRT.Services.RunTime
                 await Initialize();
             }
             await PlayerInstanceReady.Task;
-            if (media == null) return TimeSpan.Zero;
+
+            if (media == null)
+                return TimeSpan.Zero;
             media.parse();
+
             if (media.parseStatus() != ParseStatus.Done)
                 return TimeSpan.Zero;
+
             var durationLong = media.duration();
             return TimeSpan.FromMilliseconds(durationLong);
         }
