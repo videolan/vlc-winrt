@@ -19,9 +19,12 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
         public VLCFileExplorerViewModel(Media media, RootFolderType ftype)
             : base(media.meta(MediaMeta.Title), ftype)
         {
-            var url = Locator.VLCService.GetArtworkUrl(media);
-            base.ArtworkUrl = url;
             BackStack.Add(new VLCStorageFolder(media));
+            Task.Run(async () =>
+            {
+                var url = await Locator.VLCService.GetArtworkUrl(media);
+                base.ArtworkUrl = url;
+            });
         }
 
         public override async Task GetFiles()
