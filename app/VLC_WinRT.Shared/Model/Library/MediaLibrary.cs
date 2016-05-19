@@ -35,6 +35,17 @@ namespace VLC_WinRT.Model.Library
         public bool AlreadyIndexedOnce => _alreadyIndexedOnce;
 
         ThumbnailService ThumbsService => App.Container.Resolve<ThumbnailService>();
+        private LoadingState _mediaLibraryIndexingState = LoadingState.NotLoaded;
+        public LoadingState MediaLibraryIndexingState
+        {
+            get { return _mediaLibraryIndexingState; }
+            private set
+            {
+                _mediaLibraryIndexingState = value;
+                OnIndexing?.Invoke(value);
+            }
+        }
+        public event Action<LoadingState> OnIndexing;
         #endregion
 
         #region databases
@@ -183,6 +194,7 @@ namespace VLC_WinRT.Model.Library
 
         public async Task Initialize()
         {
+            MediaLibraryIndexingState = LoadingState.Loading;
             Artists = new SmartCollection<ArtistItem>();
             Albums = new SmartCollection<AlbumItem>();
             Tracks = new SmartCollection<TrackItem>();
@@ -205,6 +217,7 @@ namespace VLC_WinRT.Model.Library
                 // Else, perform a Routine Indexing (without dropping tables)
                 await PerformMediaLibraryIndexing();
             }
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
         }
 
         async Task StartIndexing()

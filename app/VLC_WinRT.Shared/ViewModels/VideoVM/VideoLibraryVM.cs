@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using Autofac;
 using System.Linq;
 using VLC_WinRT.Model.Library;
+using Windows.UI.Xaml;
 
 namespace VLC_WinRT.ViewModels.VideoVM
 {
@@ -36,7 +37,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         #region private props
         private VideoView _videoView;
         private LoadingState _loadingState;
-        private bool _isBusy = false;
+        private bool _isIndexingLibrary = false;
         private bool _hasNoMedia = true;
         private TvShow _currentShow;
         #endregion
@@ -111,18 +112,20 @@ namespace VLC_WinRT.ViewModels.VideoVM
         public PlayVideoCommand OpenVideo { get; } = new PlayVideoCommand();
 
         public CloseFlyoutAndPlayVideoCommand CloseFlyoutAndPlayVideoCommand { get; } = new CloseFlyoutAndPlayVideoCommand();
-        
-        public StartVideoIndexingCommand StartVideoIndexingCommand { get; } = new StartVideoIndexingCommand();
-
-        public bool IsBusy
+        public Visibility IndexingLibraryVisibility
         {
-            get { return _isBusy; }
-            set { SetProperty(ref _isBusy, value); }
+            get { return Locator.MediaLibrary.MediaLibraryIndexingState == LoadingState.Loading ? Visibility.Visible : Visibility.Collapsed; }
         }
         #endregion
         #region contructors
         public VideoLibraryVM()
         {
+            Locator.MediaLibrary.OnIndexing += MediaLibrary_OnIndexing;
+        }
+
+        private void MediaLibrary_OnIndexing(LoadingState obj)
+        {
+            OnPropertyChanged(nameof(IndexingLibraryVisibility));
         }
 
         public void ResetLibrary()

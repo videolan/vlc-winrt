@@ -35,6 +35,10 @@
         </Rectangle>
 
         <Grid Background="{ThemeResource ApplicationChromeThemeBrush}">
+            <Grid Width="150"
+                  Height="30"
+                  Background="Red"
+                  Visibility="{Binding IndexingLibraryVisibility}" />
             <ListView Grid.Column="1"
                       x:Name="PanelsListView"
                       ItemsSource="{Binding VideoViewCollection}"
