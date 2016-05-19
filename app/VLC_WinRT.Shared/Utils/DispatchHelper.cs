@@ -23,15 +23,7 @@ namespace VLC_WinRT.Utils
             //for some reason this crashes the designer (so dont do it in design mode)
             if (!DesignMode.DesignModeEnabled)
             {
-                if (CoreApplication.MainView.CoreWindow == null || CoreApplication.MainView.CoreWindow.Dispatcher.HasThreadAccess)
-                {
-                    action();
-                    return Task.FromResult(true);
-                }
-                else
-                {
-                    return CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action()).AsTask();
-                }
+                return CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action()).AsTask();
             }
             return Task.FromResult(true);
         }
