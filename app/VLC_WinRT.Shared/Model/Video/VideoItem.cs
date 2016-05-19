@@ -22,16 +22,16 @@ using Windows.Storage.AccessCache;
 using libVLCX;
 using VLC_WinRT.Helpers;
 using Windows.UI.Xaml.Media.Imaging;
+using System.IO;
 
 namespace VLC_WinRT.Model.Video
 {
     public class VideoItem : BindableBase, IMediaItem
     {
         #region private props
-        private char _alphaKey;
+        private string _filePath;
         private string _token;
-        private string _type;
-        private string _title = string.Empty;
+        private string _name = string.Empty;
         private string _subtitle = string.Empty;
         private bool _favorite;
         private TimeSpan _duration;
@@ -83,14 +83,12 @@ namespace VLC_WinRT.Model.Video
 
         public string Name
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
+            get { return _name; }
+            set { SetProperty(ref _name, value); }
         }
-        public string Type
-        {
-            get { return _type; }
-            set { SetProperty(ref _type, value); }
-        }
+
+        public string Type => System.IO.Path.GetExtension(Path);
+
         public uint Width { get; set; }
         public uint Height { get; set; }
 
@@ -118,10 +116,15 @@ namespace VLC_WinRT.Model.Video
         public Boolean IsCameraRoll { get; set; }
 
         public bool IsCurrentPlaying { get; set; }
-        
+
         public int TimeWatchedSeconds
         {
-            get { return _timeWatchedSeconds; }
+            get
+            {
+                if (_timeWatchedSeconds == 0)
+                    _timeWatchedSeconds = (int)TimeWatched.TotalSeconds;
+                return _timeWatchedSeconds;
+            }
             set
             {
                 SetProperty(ref _timeWatchedSeconds, value);
@@ -193,18 +196,14 @@ namespace VLC_WinRT.Model.Video
         }
 
         [Ignore]
-        public char AlphaKey
-        {
-            get { return _alphaKey; }
-            set { SetProperty(ref _alphaKey, value); }
-        }
-        
+        public char AlphaKey => Name.ToUpper()[0];
+
         [Ignore]
         public TimeSpan TimeWatched
         {
             get { return TimeSpan.FromSeconds(_timeWatchedSeconds); }
         }
- 
+
         [Ignore]
         public bool HasBeenSeen
         {
@@ -213,11 +212,9 @@ namespace VLC_WinRT.Model.Video
                 return TimeWatched.Seconds > 0 && Duration.Seconds > 30 && ((double)TimeWatched.Seconds / Duration.Seconds) < 0.98;
             }
         }
-        
+
         [Ignore]
         public FavoriteVideoCommand FavoriteVideo { get; } = new FavoriteVideoCommand();
-        
-        private string _filePath;
 
         [Ignore]
         public Media VlcMedia { get; set; }
@@ -232,33 +229,24 @@ namespace VLC_WinRT.Model.Video
         public VideoItem()
         {
         }
-
-        public VideoItem(string showName, int season, int episode)
+        
+        public VideoItem(string name, string path, TimeSpan duration, string showTitle, int season, int episode)
         {
-            ShowTitle = showName;
-            Season = season;
-            Episode = episode;
-        }
+            this._name = name;
+            this._filePath = path;
+            this._duration = duration;
+            this._showTitle = showTitle;
+            this._season = season;
+            this._episode = episode;
 
-        public async Task Initialize(StorageFile storageFile)
-        {
-            if (storageFile != null)
-            {
-                File = storageFile;
-                Name = (string.IsNullOrEmpty(storageFile.DisplayName)) ? storageFile.Name : storageFile.DisplayName;
-                AlphaKey = Name.ToUpper()[0];
-                Type = storageFile.FileType.ToLower();
-                Path = storageFile.Path;
-                await GetTimeInformation();
-            }
+            IsTvShow = !string.IsNullOrEmpty(showTitle) && season >= 0 && episode >= 0;
         }
 
         public async Task InitializeFromFilePath()
         {
             try
             {
-                StorageFile file = await StorageFile.GetFileFromPathAsync(Path);
-                await Initialize(file);
+                File = await StorageFile.GetFileFromPathAsync(Path);
             }
             catch (Exception)
             {
@@ -268,23 +256,6 @@ namespace VLC_WinRT.Model.Video
         #endregion
 
         #region methods
-        private async Task GetTimeInformation()
-        {
-            if (_duration != TimeSpan.Zero) return;
-            var media = await Locator.VLCService.GetMediaFromPath(_filePath);
-            var duration = await Locator.VLCService.GetDuration(media);
-            if (duration == null || duration == TimeSpan.Zero)
-            {
-                var mP = await File.Properties.GetVideoPropertiesAsync();
-                duration = mP.Duration;
-            }
-
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                Duration = duration;
-            });
-        }
-
         public Tuple<FromType, string> GetMrlAndFromType(bool preferToken)
         {
             if (!string.IsNullOrEmpty(_token))

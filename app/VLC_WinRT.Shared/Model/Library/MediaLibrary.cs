@@ -285,7 +285,8 @@ namespace VLC_WinRT.Model.Library
             {
                 if (VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower()))
                 {
-                    if (await trackDatabase.DoesTrackExist(item.Path)) return;
+                    if (await trackDatabase.DoesTrackExist(item.Path))
+                        return;
 
                     var media = await Locator.VLCService.GetMediaFromPath(item.Path);
                     var mP = await Locator.VLCService.GetMusicProperties(media);
@@ -321,7 +322,7 @@ namespace VLC_WinRT.Model.Library
                         AlbumItem album = await albumDatabase.LoadAlbumViaName(artist.Id, albumName);
                         if (album == null)
                         {
-                            var albumUrl = Locator.VLCService.GetArtworkUrl(media);
+                            var albumUrl = await Locator.VLCService.GetArtworkUrl(media);
                             string albumSimplifiedUrl = null;
                             if (!string.IsNullOrEmpty(albumUrl) && albumUrl.StartsWith("file://"))
                             {
@@ -374,77 +375,24 @@ namespace VLC_WinRT.Model.Library
                 }
                 else if (VLCFileExtensions.VideoExtensions.Contains(item.FileType.ToLower()))
                 {
-                    // Check if we know the file:
-                    //FIXME: We need to check if the files in DB still exist on disk
-                    var mediaVM = await videoDatabase.GetFromPath(item.Path).ConfigureAwait(false);
-                    if (mediaVM != null)
+                    if (await videoDatabase.DoesMediaExist(item.Path))
+                        return;
+
+                    var video = await MediaLibraryHelper.GetVideoItem(item);
+                    
+                    await videoDatabase.Insert(video);
+
+                    if (video.IsTvShow)
                     {
-                        if (mediaVM.IsTvShow)
-                        {
-                            await AddTvShow(mediaVM);
-                        }
+                        await AddTvShow(video);
+                    }
+                    else if (video.IsCameraRoll)
+                    {
+                        CameraRoll.Add(video);
                     }
                     else
                     {
-                        MediaProperties videoProperties = null;
-                        if (!isCameraRoll)
-                        {
-                            videoProperties = TitleDecrapifier.tvShowEpisodeInfoFromString(item.DisplayName);
-                            if (videoProperties == null)
-                            {
-                                var mediaCam = await Locator.VLCService.GetMediaFromPath(item.Path);
-                                videoProperties = Locator.VLCService.GetVideoProperties(mediaCam);
-                            }
-                        }
-
-                        bool isTvShow = !string.IsNullOrEmpty(videoProperties?.ShowTitle) && videoProperties?.Season >= 0 && videoProperties?.Episode >= 0;
-                        // Analyse to see if it's a tv show
-                        // if the file is from a tv show, we push it to this tvshow item
-                        mediaVM = !isTvShow ? new VideoItem() : new VideoItem(videoProperties.ShowTitle, videoProperties.Season, videoProperties.Episode);
-                        mediaVM.Height = videoProperties.Height;
-                        mediaVM.Width = videoProperties.Width;
-                        await mediaVM.Initialize(item);
-                        mediaVM.IsCameraRoll = isCameraRoll;
-
-                        if (string.IsNullOrEmpty(mediaVM.Name))
-                            return;
-
-                        VideoItem searchVideo = ViewedVideos.FirstOrDefault(x => x.Name == mediaVM.Name);
-                        if (searchVideo != null)
-                        {
-                            mediaVM.TimeWatchedSeconds = searchVideo.TimeWatched.Seconds;
-                        }
-
-                        if (isTvShow)
-                        {
-                            // TODO : Shouldn't be necessary to call await if show.Episodes wasn't in Thread UI
-                            await AddTvShow(mediaVM);
-                        }
-                        await videoDatabase.Insert(mediaVM);
-                    }
-
-                    if (mediaVM.IsCameraRoll)
-                    {
-                        // TODO: Find a more efficient way to know if it's already in the list or not
-                        if (CameraRoll.FirstOrDefault(x => x.Id == mediaVM.Id) == null)
-                        {
-                            CameraRoll.Add(mediaVM);
-                        }
-                    }
-                    else if (!mediaVM.IsTvShow)
-                    {
-                        if (Videos.FirstOrDefault(x => x.Id == mediaVM.Id) == null)
-                        {
-                            Videos.Add(mediaVM);
-                        }
-                    }
-                    if (ViewedVideos.Count < 6 &&
-                        ViewedVideos.FirstOrDefault(x => x.Path == mediaVM.Path && x.TimeWatched == TimeSpan.Zero) == null)
-                    {
-                        if (ViewedVideos.FirstOrDefault(x => x.Id == mediaVM.Id) == null)
-                        {
-                            ViewedVideos.Add(mediaVM);
-                        }
+                        Videos.Add(video);
                     }
                 }
                 else
@@ -452,9 +400,11 @@ namespace VLC_WinRT.Model.Library
                     Debug.WriteLine($"{item.Path} is not a media file");
                 }
             }
-            catch
+            catch (Exception e)
             {
-
+#if DEBUG
+                throw e;
+#endif
             }
         }
 

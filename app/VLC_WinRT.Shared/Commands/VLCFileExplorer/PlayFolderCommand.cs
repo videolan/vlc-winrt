@@ -34,9 +34,8 @@ namespace VLC_WinRT.Commands.VLCFileExplorer
                 }
                 else if(VLCFileExtensions.VideoExtensions.Contains((file.StorageItem as StorageFile).FileType.ToLower()))
                 {
-                    var videoVm = new VideoItem();
-                    await videoVm.Initialize((file.StorageItem as StorageFile));
-                    playlist.Add(videoVm);
+                    var video = await MediaLibraryHelper.GetVideoItem(file.StorageItem as StorageFile);
+                    playlist.Add(video);
                 }
             }
             await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(playlist, true, 0);

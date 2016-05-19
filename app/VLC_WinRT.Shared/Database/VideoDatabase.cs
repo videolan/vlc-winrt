@@ -43,6 +43,11 @@ namespace VLC_WinRT.Database
                 db.DeleteAll<VideoItem>();
             }
         }
+        public async Task<bool> DoesMediaExist(String path)
+        {
+            var track = await GetFromPath(path);
+            return track != null;
+        }
 
         public async Task<VideoItem> GetFromPath(String path)
         {

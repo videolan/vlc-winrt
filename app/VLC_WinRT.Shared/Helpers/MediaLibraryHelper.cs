@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using VLC_WinRT.Helpers.VideoLibrary;
 using VLC_WinRT.Model;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.ViewModels;
 using Windows.Storage;
 using Windows.Storage.Search;
 
@@ -21,12 +24,35 @@ namespace VLC_WinRT.Helpers
                 var fileQueryResult = folder.CreateFileQueryWithOptions(queryOptions);
                 files = await fileQueryResult.GetFilesAsync();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
             }
             return files;
         }
 
+        public static async Task<VideoItem> GetVideoItem(StorageFile file)
+        {
+            var media = await Locator.VLCService.GetMediaFromPath(file.Path);
 
+            // get basic media properties
+            var mP = await Locator.VLCService.GetVideoProperties(media);
+            // use title decrapifier
+            if (string.IsNullOrEmpty(mP.ShowTitle))
+                mP = TitleDecrapifier.tvShowEpisodeInfoFromString(mP, file.DisplayName);
+
+            var duration = await Locator.VLCService.GetDuration(media);
+
+            var video = new VideoItem(
+                string.IsNullOrEmpty(file.DisplayName) ? file.Name : file.DisplayName,
+                file.Path,
+                duration,
+                mP.ShowTitle,
+                mP.Season,
+                mP.Episode
+                );
+
+            //File = item,
+            return video;
+        }
     }
 }

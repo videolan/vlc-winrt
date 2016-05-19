@@ -78,12 +78,11 @@ namespace VLC_WinRT.Helpers.VideoLibrary
             return false;
         }
 
-        public static MediaProperties tvShowEpisodeInfoFromString(string title)
+        public static MediaProperties tvShowEpisodeInfoFromString(MediaProperties mP, string title)
         {
             if (string.IsNullOrEmpty(title)) return null;
             title = title.ToLower();
             bool successfulSearch = false;
-            var mP = new MediaProperties();
             int stringLength = title.Length;
 
             if (stringLength < 6) return null;
@@ -198,7 +197,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                 }
             }
             catch { }
-            return successfulSearch ? mP : null;
+            return mP;
         }
 
         static bool isDigit(char c)

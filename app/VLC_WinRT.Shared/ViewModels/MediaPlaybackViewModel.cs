@@ -461,12 +461,11 @@ namespace VLC_WinRT.ViewModels
         /// <param name="token">Token is for files that are NOT in the sandbox, such as files taken from the filepicker from a sd card but not in the Video/Music folder.</param>
         public async Task PlayVideoFile(StorageFile file, string token = null)
         {
-            VideoItem videoVm = new VideoItem();
-            await videoVm.Initialize(file);
+            var video = await MediaLibraryHelper.GetVideoItem(file);
             if (token != null)
-                videoVm.Token = token;
-            Locator.VideoPlayerVm.CurrentVideo = videoVm;
-            await PlaylistHelper.Play(videoVm);
+                video.Token = token;
+            Locator.VideoPlayerVm.CurrentVideo = video;
+            await PlaylistHelper.Play(video);
         }
         
         private async void UpdateTime(Int64 time)
