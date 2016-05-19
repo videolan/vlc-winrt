@@ -151,6 +151,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             if (cards.Any())
             {
                 var external = new LocalFileExplorerViewModel(cards[0], RootFolderType.ExternalDevice);
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => external.LogoGlyph = App.Current.Resources["SDCardSymbol"] as string);
                 await AddFolder(external);
             }
         }
@@ -168,6 +169,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             try
             {
                 var external = new LocalFileExplorerViewModel(StorageDevice.FromId(newId), RootFolderType.ExternalDevice, newId);
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => external.LogoGlyph = App.Current.Resources["USBFilledSymbol"] as string);
                 await AddFolder(external);
             }
             catch { }
