@@ -33,13 +33,20 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        
+
         <Grid Background="{ThemeResource ApplicationChromeThemeBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             </Grid.ColumnDefinitions>
+            <ProgressBar Grid.Column="0"
+                         Grid.ColumnSpan="3"
+                         IsIndeterminate="True"
+                         IsEnabled="True"
+                         VerticalAlignment="Bottom"
+                         DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
+                         Visibility="{Binding IndexingLibraryVisibility}" />
             <ListView Grid.Column="0"
                       Grid.ColumnSpan="3"
                       x:Name="PanelsListView"
