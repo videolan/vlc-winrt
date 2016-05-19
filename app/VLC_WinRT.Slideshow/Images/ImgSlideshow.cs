@@ -131,13 +131,20 @@ namespace Slide2D.Images
 
                 if (computeBlurPic)
                 {
-                    if (currentImg.Bmp == null) return;
-                    currentImg.GaussianBlurCache = new GaussianBlurEffect()
+                    if (currentImg.Bmp == null)
+                        return;
+                    if (blurAmount < 10)
                     {
-                        Source = currentImg.Bmp,
-                        BlurAmount = blurAmount,
-                        Optimization = EffectOptimization.Speed
-                    };
+                        currentImg.GaussianBlurCache = new GaussianBlurEffect()
+                        {
+                            Source = currentImg.Bmp,
+                            BlurAmount = blurAmount,
+                            Optimization = EffectOptimization.Speed
+                        };
+                    }
+                    else
+                    {
+                    }
                 }
 
                 float screenRatio = (float)MetroSlideshow.WindowWidth / (float)MetroSlideshow.WindowHeight;
