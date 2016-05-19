@@ -406,7 +406,7 @@
                                    Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
                         <Button Content="{Binding Source={StaticResource Strings}, Path=ResetMusicDatabase}"
                                 DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
-                                Command="{Binding StartMusicIndexingCommand}"
+                                Command="{Binding IndexMediaLibraryCommand}"
                                 CommandParameter="True"
                                 Margin="{StaticResource FrameMarginVertical}" />
                     </StackPanel>
