@@ -15,7 +15,13 @@ namespace VLC_WinRT.Views.MainPages.MainVideoControls
 
         private void CameraRollPivotItem_Loaded(object sender, RoutedEventArgs e)
         {
+            this.Unloaded += CameraRollPivotItem_Unloaded;
             Locator.VideoLibraryVM.OnNavigatedToCameraRollVideos();
+        }
+
+        private async void CameraRollPivotItem_Unloaded(object sender, RoutedEventArgs e)
+        {
+            await Locator.VideoLibraryVM.OnNavigatedFromCamera();
         }
 
         private void VideosWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)

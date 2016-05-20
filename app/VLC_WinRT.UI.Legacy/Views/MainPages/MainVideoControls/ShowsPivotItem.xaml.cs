@@ -14,7 +14,13 @@ namespace VLC_WinRT.Views.MainPages.MainVideoControls
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
+            this.Unloaded += ShowsPivotItem_Unloaded;
             Locator.VideoLibraryVM.OnNavigatedToShows();
+        }
+
+        private async void ShowsPivotItem_Unloaded(object sender, RoutedEventArgs e)
+        {
+            await Locator.VideoLibraryVM.OnNavigatedFromCamera();
         }
     }
 }

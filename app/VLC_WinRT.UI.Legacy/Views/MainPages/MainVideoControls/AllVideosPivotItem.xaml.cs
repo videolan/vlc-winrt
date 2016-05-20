@@ -16,10 +16,16 @@ namespace VLC_WinRT.Views.MainPages.MainVideoControls
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
+            this.Unloaded += AllVideosPivotItem_Unloaded;
             Locator.VideoLibraryVM.OnNavigatedToAllVideos();
             AllVideosListView.Focus(FocusState.Keyboard);
         }
-        
+
+        private async void AllVideosPivotItem_Unloaded(object sender, RoutedEventArgs e)
+        {
+            await Locator.VideoLibraryVM.OnNavigatedFromAllVideos();
+        }
+
         private void VideosWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             TemplateSizer.ComputeCompactVideo(sender as ItemsWrapGrid, this.ActualWidth);
