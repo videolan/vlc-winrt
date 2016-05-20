@@ -170,6 +170,9 @@ namespace VLC_WinRT.Views.MainPages
         
         public async void StopCompositionAnimationOnSwapChain()
         {
+            if (_compositor == null)
+                return;
+
             _pipEnabled = false;
             var target = ElementCompositionPreview.GetElementVisual(SwapChainPanel);
             var opacityAnim = _compositor.CreateScalarKeyFrameAnimation();
