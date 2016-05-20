@@ -22,6 +22,7 @@
 
 #include <atomic>
 #include <memory>
+#include <concrt.h>
 
 using namespace libVLCX;
 #define FAST_COPY 0
@@ -217,14 +218,20 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
 
         // Create a local representation to allow it to be captured
 		// TODO: Does not work in UWP. Need to fix.
-#ifndef  WINAPI_FAMILY_UNIVERSAL_APP
+
 		auto sce = sys->screenshotCompleteEvent;
-		sys->cancellationTask = concurrency::create_task([sce, timeoutMs] {
-			concurrency::wait(timeoutMs);
-			if (!concurrency::is_task_cancellation_requested())
+#ifndef WINAPI_FAMILY_UNIVERSAL_APP)
+        sys->cancellationTask = concurrency::create_task([sce, timeoutMs] {
+            concurrency::wait(timeoutMs);
+            if (!concurrency::is_task_cancellation_requested())
 				sce.set(nullptr);
-		}, sys->timeoutCts.get_token());
+#else
+        sys->cancellationTask = concurrency::create_task([sce, timeoutMs, ct] {
+            concurrency::wait(timeoutMs);
+            if (!ct.is_canceled())
+                sce.set(nullptr);
 #endif
+		}, sys->timeoutCts.get_token());
         libvlc_media_player_play(mp);
         //TODO: Specify position
         libvlc_media_player_set_position(mp, SEEK_POSITION);
