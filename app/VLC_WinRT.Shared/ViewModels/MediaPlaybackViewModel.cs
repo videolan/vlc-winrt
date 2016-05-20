@@ -482,6 +482,7 @@ namespace VLC_WinRT.ViewModels
 
         public async Task CleanViewModel()
         {
+            var tcs = new TaskCompletionSource<bool>();
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 _mediaService.Stop();
@@ -504,7 +505,9 @@ namespace VLC_WinRT.ViewModels
 #endif
                 await TrackCollection.ResetCollection();
                 TrackCollection.IsRunning = false;
+                tcs.SetResult(true);
             });
+            await tcs.Task;
         }
         
         public async void OnLengthChanged(Int64 length)
