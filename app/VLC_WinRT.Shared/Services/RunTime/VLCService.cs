@@ -479,8 +479,6 @@ namespace VLC_WinRT.Services.RunTime
 
                 if (!discoverer.isRunning())
                     discoverer.start();
-
-                sdStarted = true;
             }
             return true;
         }
