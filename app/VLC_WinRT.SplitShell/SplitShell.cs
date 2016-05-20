@@ -215,7 +215,7 @@ namespace VLC_WinRT.Controls
         async void Responsive()
         {
             var bottomBarHeight = (_page.BottomAppBar == null) ? 0 : _page.BottomAppBar.ActualHeight;
-            var navBarHeight = ApplicationView.GetForCurrentView().VisibleBounds.Height;
+            var navBarHeight = ApplicationView.GetForCurrentView().VisibleBounds.Height - 16;
             if (Window.Current.Bounds.Width < 650)
             {
                 _flyoutContentPresenter.Height = navBarHeight;
