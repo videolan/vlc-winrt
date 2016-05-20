@@ -80,12 +80,14 @@ namespace VLC_WinRT.Helpers.VideoLibrary
 
         public static MediaProperties tvShowEpisodeInfoFromString(MediaProperties mP, string title)
         {
-            if (string.IsNullOrEmpty(title)) return null;
+            if (string.IsNullOrEmpty(title))
+                return mP;
             title = title.ToLower();
             bool successfulSearch = false;
             int stringLength = title.Length;
 
-            if (stringLength < 6) return null;
+            if (stringLength < 6)
+                return mP;
             try
             {
                 // Search for s01e10.
