@@ -260,6 +260,10 @@ namespace VLC_WinRT.Services.RunTime
                 mP.Height = videoTrack.height();
             }
 
+            var durationLong = media.duration();
+            var duration = TimeSpan.FromMilliseconds(durationLong);
+            mP.Duration = duration;
+
             return mP;
         }
 
@@ -310,26 +314,8 @@ namespace VLC_WinRT.Services.RunTime
 
             var genre = media.meta(MediaMeta.Genre);
             mP.Genre = genre;
+            
             return mP;
-        }
-
-        public async Task<TimeSpan> GetDuration(Media media)
-        {
-            if (Instance == null)
-            {
-                await Initialize();
-            }
-            await PlayerInstanceReady.Task;
-
-            if (media == null)
-                return TimeSpan.Zero;
-            media.parse();
-
-            if (media.parseStatus() != ParseStatus.Done)
-                return TimeSpan.Zero;
-
-            var durationLong = media.duration();
-            return TimeSpan.FromMilliseconds(durationLong);
         }
         #endregion
         #region playback actions

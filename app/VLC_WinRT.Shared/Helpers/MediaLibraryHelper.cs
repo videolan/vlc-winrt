@@ -40,12 +40,10 @@ namespace VLC_WinRT.Helpers
             if (string.IsNullOrEmpty(mP.ShowTitle))
                 mP = TitleDecrapifier.tvShowEpisodeInfoFromString(mP, file.DisplayName);
 
-            var duration = await Locator.VLCService.GetDuration(media);
-
             var video = new VideoItem(
                 string.IsNullOrEmpty(file.DisplayName) ? file.Name : file.DisplayName,
                 file.Path,
-                duration,
+                mP.Duration,
                 mP.ShowTitle,
                 mP.Season,
                 mP.Episode
