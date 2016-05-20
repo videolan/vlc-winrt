@@ -269,10 +269,12 @@ namespace VLC_WinRT.Model.Library
 
                 // Cortana gets all those artists, albums, songs names
                 var artists = await LoadArtists(null);
-                await CortanaHelper.SetPhraseList("artistName", artists.Select(x => x.Name).ToList());
+                if (artists != null)
+                    await CortanaHelper.SetPhraseList("artistName", artists.Select(x => x.Name).ToList());
 
                 var songs = await LoadTracks();
-                await CortanaHelper.SetPhraseList("songName", songs.Select(x => x.Name).ToList());
+                if (songs != null)
+                    await CortanaHelper.SetPhraseList("songName", songs.Select(x => x.Name).ToList());
             }
             catch (Exception e)
             {
