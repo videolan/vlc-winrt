@@ -618,11 +618,11 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     if (GroupedArtists == null) return;
                     int i = GroupedArtists.IndexOf(Locator.MusicLibraryVM.GroupedArtists.LastOrDefault(x => string.Compare((string)x.Key, (string)newChar.Key) < 0));
                     i++;
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.High, () => GroupedArtists.Insert(i, newChar));
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => GroupedArtists.Insert(i, newChar));
                 }
                 else
                 {
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.High, () => firstChar.Add(artist));
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => firstChar.Add(artist));
                 }
             }
             catch { }
