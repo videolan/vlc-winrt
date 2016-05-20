@@ -470,11 +470,6 @@ namespace VLC_WinRT.ViewModels
         
         private async void UpdateTime(Int64 time)
         {
-            await UpdateTimeFromUIThread();
-        }
-
-        private async Task UpdateTimeFromUIThread()
-        {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
                 OnPropertyChanged(nameof(Time));
