@@ -108,7 +108,8 @@
                           VerticalAlignment="Center"
                           ToolTipService.ToolTip="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
                           Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.OpenAddAlbumToPlaylistDialogCommand}"
-                          IsTabStop="True">
+                          IsTabStop="True"
+                          IsCompact="True">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource AddSymbol}"
                               FontFamily="{StaticResource VLCFont}" />
