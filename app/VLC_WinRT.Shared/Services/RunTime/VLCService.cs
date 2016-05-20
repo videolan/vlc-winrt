@@ -455,6 +455,7 @@ namespace VLC_WinRT.Services.RunTime
         MediaDiscoverer discoverer;
         public event MediaListItemAdded MediaListItemAdded;
         public event MediaListItemDeleted MediaListItemDeleted;
+        private object discovererLock = new object();
         public async Task<bool> InitDiscoverer()
         {
             if (Instance == null)
@@ -462,25 +463,35 @@ namespace VLC_WinRT.Services.RunTime
                 await Initialize();
             }
             await PlayerInstanceReady.Task;
-            if (discoverer == null)
+            lock (discovererLock)
             {
-                discoverer = new MediaDiscoverer(Instance, "upnp");
-                var mediaList = discoverer.mediaList();
-                if (mediaList == null)
-                    return false;
+                if (discoverer == null)
+                {
+                    discoverer = new MediaDiscoverer(Instance, "upnp");
+                    var mediaList = discoverer.mediaList();
+                    if (mediaList == null)
+                        return false;
 
-                var eventManager = mediaList.eventManager();
-                eventManager.onItemAdded += MediaListItemAdded;
-                eventManager.onItemDeleted += MediaListItemDeleted;
+                    var eventManager = mediaList.eventManager();
+                    eventManager.onItemAdded += MediaListItemAdded;
+                    eventManager.onItemDeleted += MediaListItemDeleted;
+                }
+
+                if (!discoverer.isRunning())
+                    discoverer.start();
+
+                sdStarted = true;
             }
-
-            discoverer.start();
             return true;
         }
 
         public void DisposeDiscoverer()
         {
-            discoverer?.stop();
+            lock (discovererLock)
+            {
+                if (discoverer.isRunning())
+                    discoverer.stop();
+            }
         }
 
         public Task<MediaList> DiscoverMediaList(Media media)
