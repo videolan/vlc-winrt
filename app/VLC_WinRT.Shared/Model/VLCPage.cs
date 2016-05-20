@@ -29,5 +29,6 @@
         TrackEditorPage,
         FeedbackPage,
         TvShowView,
+        AboutAppView,
     }
 }

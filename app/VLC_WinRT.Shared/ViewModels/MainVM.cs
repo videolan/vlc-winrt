@@ -73,7 +73,7 @@ namespace VLC_WinRT.ViewModels
         }
 
         public GoBackCommand GoBackCommand { get; } = new GoBackCommand();
-        
+        public ActionCommand GoToAboutViewCommand => new ActionCommand(() => Locator.NavigationService.Go(VLCPage.AboutAppView));
         public ActionCommand GoToSettingsPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SettingsPage));
 
         public ActionCommand GoToThanksPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SpecialThanksPage));

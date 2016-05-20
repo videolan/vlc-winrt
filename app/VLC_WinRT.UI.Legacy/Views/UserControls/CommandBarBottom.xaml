@@ -148,5 +148,15 @@
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarButton.Icon>
         </AppBarButton>
+        <AppBarButton x:Name="AboutAppButton"
+                      Label="{Binding Source={StaticResource Strings}, Path=AboutTheApp}"
+                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToAboutViewCommand}"
+                      Style="{StaticResource AppBarTextButtonStyle}"
+                      Width="{Binding ElementName=RootCommandBar, Path=CommandBarTemplateSettings.OverflowContentMinWidth}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource PlayerSettingsSymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Icon>
+        </AppBarButton>
     </CommandBar.SecondaryCommands>
 </CommandBar>

@@ -26,6 +26,7 @@ using VLC_WinRT.Utils;
 using Panel = VLC_WinRT.Model.Panel;
 using Windows.UI.Core;
 using VLC_WinRT.UI.Legacy.Views.VideoPages.TVShowsViews;
+using VLC_WinRT.UI.UWP.VariousPages;
 #if WINDOWS_UWP
 using VLC_WinRT.UI.UWP.Views.SettingsPages;
 #else
@@ -208,6 +209,9 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.TvShowView:
                     GoBack_HideFlyout();
                     break;
+                case VLCPage.AboutAppView:
+                    GoBack_HideFlyout();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -366,6 +370,11 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.TvShowView:
                     App.SplitShell.FlyoutContent = typeof(ShowEpisodesView);
                     break;
+                case VLCPage.AboutAppView:
+#if WINDOWS_UWP
+                    App.SplitShell.FlyoutContent = typeof(AboutPage);
+#endif
+                    break;
                 default:
                     break;
             }
@@ -390,7 +399,8 @@ namespace VLC_WinRT.Services.RunTime
                    page == VLCPage.VideoPlayerOptionsPanel ||
                    page == VLCPage.FeedbackPage ||
                    page == VLCPage.TvShowView ||
-                   page == VLCPage.TrackEditorPage;
+                   page == VLCPage.TrackEditorPage ||
+                   page == VLCPage.AboutAppView;
         }
 
         VLCPage PageTypeToVLCPage(Type page)
