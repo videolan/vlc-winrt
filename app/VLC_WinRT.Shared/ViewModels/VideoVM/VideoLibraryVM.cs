@@ -36,7 +36,9 @@ namespace VLC_WinRT.ViewModels.VideoVM
 
         #region private props
         private VideoView _videoView;
-        private LoadingState _loadingState;
+        private LoadingState _loadingStateAllVideos;
+        private LoadingState _loadingStateCamera;
+        private LoadingState _loadingStateShows;
         private bool _isIndexingLibrary = false;
         private bool _hasNoMedia = true;
         private TvShow _currentShow;
@@ -100,7 +102,10 @@ namespace VLC_WinRT.ViewModels.VideoVM
             set { SetProperty(ref _currentShow, value); }
         }
 
-        public LoadingState LoadingState { get { return _loadingState; } set { SetProperty(ref _loadingState, value); } }
+        public LoadingState LoadingStateAllVideos { get { return _loadingStateAllVideos; } private set { SetProperty(ref _loadingStateAllVideos, value); } }
+        public LoadingState LoadingStateShows { get { return _loadingStateShows; } private set { SetProperty(ref _loadingStateShows, value); } }
+        public LoadingState LoadingStateCamera { get { return _loadingStateCamera; } private set { SetProperty(ref _loadingStateCamera, value); } }
+
         public bool HasNoMedia
         {
             get { return _hasNoMedia; }
@@ -130,9 +135,8 @@ namespace VLC_WinRT.ViewModels.VideoVM
 
         public void ResetLibrary()
         {
-            LoadingState = LoadingState.NotLoaded;
+            LoadingStateAllVideos = LoadingStateCamera = LoadingStateShows = LoadingState.NotLoaded;
             CurrentShow = null;
-            GC.Collect();
         }
 
         public void OnNavigatedTo()
@@ -142,7 +146,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
 
         public void OnNavigatedToAllVideos()
         {
-            if (LoadingState == LoadingState.NotLoaded)
+            if (LoadingStateAllVideos == LoadingState.NotLoaded)
             {
                 InitializeVideos();
             }
@@ -150,7 +154,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
 
         public void OnNavigatedToShows()
         {
-            if (LoadingState == LoadingState.NotLoaded)
+            if (LoadingStateShows == LoadingState.NotLoaded)
             {
                 InitializeShows();
             }
@@ -158,10 +162,25 @@ namespace VLC_WinRT.ViewModels.VideoVM
 
         public void OnNavigatedToCameraRollVideos()
         {
-            if (LoadingState == LoadingState.NotLoaded)
+            if (LoadingStateCamera == LoadingState.NotLoaded)
             {
                 InitializeCameraRollVideos();
             }
+        }
+
+        public Task OnNavigatedFromAllVideos()
+        {
+            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => LoadingStateAllVideos = LoadingState.NotLoaded);
+        }
+
+        public Task OnNavigatedFromShows()
+        {
+            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => LoadingStateShows = LoadingState.NotLoaded);
+        }
+
+        public Task OnNavigatedFromCamera()
+        {
+            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => LoadingStateCamera = LoadingState.NotLoaded);
         }
 
         public void OnNavigatedFrom()
@@ -176,7 +195,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     Locator.MainVM.InformationText = Strings.Loading;
-                    LoadingState = LoadingState.Loading;
+                    LoadingStateAllVideos = LoadingState.Loading;
                 });
 
                 if (Locator.MediaLibrary.Videos != null)
@@ -188,7 +207,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
                 {
                     OnPropertyChanged(nameof(ViewedVideos));
                     Locator.MainVM.InformationText = String.Empty;
-                    LoadingState = LoadingState.Loaded;
+                    LoadingStateAllVideos = LoadingState.Loaded;
                 });
             });
         }
@@ -208,7 +227,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     Locator.MainVM.InformationText = Strings.Loading;
-                    LoadingState = LoadingState.Loading;
+                    LoadingStateShows = LoadingState.Loading;
                 });
 
                 if (Locator.MediaLibrary.Shows != null)
@@ -232,7 +251,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     Locator.MainVM.InformationText = Strings.Loading;
-                    LoadingState = LoadingState.Loading;
+                    LoadingStateCamera = LoadingState.Loading;
                 });
 
                 if (Locator.MediaLibrary.CameraRoll != null)
