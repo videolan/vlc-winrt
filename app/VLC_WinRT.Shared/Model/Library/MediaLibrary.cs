@@ -854,10 +854,7 @@ namespace VLC_WinRT.Model.Library
                         if (await videoItem.LoadFileFromPath() || !string.IsNullOrEmpty(videoItem.Token))
                         {
                             var res = await ThumbsService.GetScreenshot(videoItem.GetMrlAndFromType(true).Item2);
-                            if (res == null)
-                                return;
-                            image = res.Bitmap();
-                            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => videoItem.Duration = TimeSpan.FromMilliseconds(res.Length()));
+                            image = res?.Bitmap();
                         }
                     }
 
