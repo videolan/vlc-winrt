@@ -44,6 +44,8 @@ namespace VLC_WinRT.Helpers
                 string.IsNullOrEmpty(file.DisplayName) ? file.Name : file.DisplayName,
                 file.Path,
                 mP.Duration,
+                mP.Width,
+                mP.Height,
                 mP.ShowTitle,
                 mP.Season,
                 mP.Episode

@@ -230,7 +230,7 @@ namespace VLC_WinRT.Model.Video
         {
         }
         
-        public VideoItem(string name, string path, TimeSpan duration, string showTitle, int season, int episode)
+        public VideoItem(string name, string path, TimeSpan duration, uint width, uint height, string showTitle, int season, int episode)
         {
             this._name = name;
             this._filePath = path;
@@ -238,6 +238,8 @@ namespace VLC_WinRT.Model.Video
             this._showTitle = showTitle;
             this._season = season;
             this._episode = episode;
+            this.Height = height;
+            this.Width = width;
 
             IsTvShow = !string.IsNullOrEmpty(showTitle) && season >= 0 && episode >= 0;
         }
