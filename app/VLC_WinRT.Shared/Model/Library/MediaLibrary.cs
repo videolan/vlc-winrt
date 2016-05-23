@@ -255,9 +255,9 @@ namespace VLC_WinRT.Model.Library
                 await GetAllMusicFolders();
                 return;
 #endif
-                await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.MusicLibrary));
-                
                 await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.VideosLibrary));
+
+                await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.MusicLibrary));
 
                 if (await KnownFolders.PicturesLibrary.ContainsFolderAsync("Camera Roll"))
                 {
