@@ -7,6 +7,7 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:ScrollWatcher="using:ScrollWatcher"
       xmlns:statetriggers="using:VLC_WinRT.Helpers.StateTriggers"
+      xmlns:controls="using:VLC_WinRT.Views.UserControls.Placeholder"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="400"
@@ -33,6 +34,7 @@
               x:DeferLoadStrategy="Lazy"
               Background="{ThemeResource ApplicationChromeThemeBrush}"
               Padding="{StaticResource FrameMarginLeft}">
+            <controls:NothingToSeeHere Visibility="{Binding MusicLibraryEmptyVisible}" />
             <SemanticZoom x:Name="SemanticZoom"
                           Grid.Row="1"
                           Padding="0"
