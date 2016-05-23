@@ -126,7 +126,6 @@ namespace VLC_WinRT.Model.Library
             catch (Exception e)
             {
                 LogHelper.Log(StringsHelper.ExceptionToString(e));
-                MediaItemDiscovererSemaphoreSlim.Release();
             }
             finally
             {
@@ -146,7 +145,6 @@ namespace VLC_WinRT.Model.Library
             catch (Exception e)
             {
                 LogHelper.Log(StringsHelper.ExceptionToString(e));
-                MediaItemDiscovererSemaphoreSlim.Release();
             }
             finally
             {
