@@ -57,8 +57,7 @@ namespace VLC_WinRT.Services.RunTime
 #if WINDOWS_UWP
             SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
             {
-                e.Handled = true;
-                GoBack_Specific();
+                e.Handled = GoBack_Specific();
             };
             if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
 #endif
@@ -119,10 +118,7 @@ namespace VLC_WinRT.Services.RunTime
 #else
         private void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
         {
-            e.Handled = true;
-            if (Locator.NavigationService.IsPageAMainPage(CurrentPage))
-                e.Handled = false;
-            GoBack_Specific();
+            e.Handled = GoBack_Specific();
         }
 
         public void ShowBackButtonIfCanGoBack()
@@ -134,7 +130,7 @@ namespace VLC_WinRT.Services.RunTime
         }
 #endif
 
-        public void GoBack_Specific()
+        public bool GoBack_Specific()
         {
             switch (CurrentPage)
             {
@@ -142,6 +138,8 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MainPageMusic:
                 case VLCPage.MainPageFileExplorer:
                 case VLCPage.MainPageNetwork:
+                    return false;
+                    break;
                 case VLCPage.AlbumPage:
                     GoBack_HideFlyout();
                     break;
@@ -215,6 +213,7 @@ namespace VLC_WinRT.Services.RunTime
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            return true;
         }
 
         public bool CanGoBack()
