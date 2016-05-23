@@ -534,12 +534,16 @@ namespace VLC_WinRT.ViewModels
             if (mediaService is VLCService)
             {
                 var vlcService = (VLCService)mediaService;
-                var em = vlcService.MediaPlayer.eventManager();
-                em.OnTrackAdded -= OnTrackAdded;
-                em.OnTrackDeleted -= OnTrackDeleted;
+                if (vlcService.MediaPlayer != null)
+                {
+                    var em = vlcService.MediaPlayer.eventManager();
+                    em.OnTrackAdded -= OnTrackAdded;
+                    em.OnTrackDeleted -= OnTrackDeleted;
+                }
 
                 _audioTracks.Clear();
                 _subtitlesTracks.Clear();
+
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     CurrentAudioTrack = null;
