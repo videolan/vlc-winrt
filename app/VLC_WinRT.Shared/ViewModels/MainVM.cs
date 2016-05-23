@@ -72,22 +72,25 @@ namespace VLC_WinRT.ViewModels
             }
         }
 
-        public GoBackCommand GoBackCommand { get; } = new GoBackCommand();
-        public ActionCommand GoToAboutViewCommand => new ActionCommand(() => Locator.NavigationService.Go(VLCPage.AboutAppView));
-        public ActionCommand GoToSettingsPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SettingsPage));
+        public GoBackCommand GoBackCommand { get; private set; } = new GoBackCommand();
 
-        public ActionCommand GoToThanksPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SpecialThanksPage));
+        public ActionCommand GoToAboutViewCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.AboutAppView));
 
-        public ActionCommand GoToLicensePageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.LicensePage));
+        public ActionCommand GoToSettingsPageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SettingsPage));
 
-        public ActionCommand GotoSearchPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SearchPage));
+        public ActionCommand GoToThanksPageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SpecialThanksPage));
 
-        public ActionCommand GoToFeedbackPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.FeedbackPage));
-        public ActionCommand GoToStreamPanel { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.MainPageNetwork));
+        public ActionCommand GoToLicensePageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.LicensePage));
 
-        public CreateMiniPlayerView CreateMiniPlayerView { get; } = new CreateMiniPlayerView();
+        public ActionCommand GotoSearchPageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SearchPage));
 
-        public ScrollDetectedCommand ScrollDetectedCommand { get; } = new ScrollDetectedCommand();
+        public ActionCommand GoToFeedbackPageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.FeedbackPage));
+
+        public ActionCommand GoToStreamPanel { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.MainPageNetwork));
+
+        public CreateMiniPlayerView CreateMiniPlayerView { get; private set; } = new CreateMiniPlayerView();
+
+        public ScrollDetectedCommand ScrollDetectedCommand { get; private set; } = new ScrollDetectedCommand();
 
         public bool PreventAppExit
         {

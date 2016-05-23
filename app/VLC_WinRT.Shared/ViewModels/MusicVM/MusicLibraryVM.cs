@@ -198,54 +198,53 @@ namespace VLC_WinRT.ViewModels.MusicVM
             set { SetProperty(ref _isBusy, value); }
         }
 
-        public bool IsMusicLibraryEmpty => Locator.MediaLibrary.Artists?.Count == 0
-                                        && Locator.MediaLibrary.Albums?.Count == 0
-                                        && Locator.MediaLibrary.Tracks?.Count == 0
-                                        && LoadingStateArtists == LoadingState.Loaded
-                                        && LoadingStateAlbums == LoadingState.Loaded
-                                        && LoadingStateTracks == LoadingState.Loaded;
-        public IndexMediaLibraryCommand IndexMediaLibraryCommand => new IndexMediaLibraryCommand();
+        public bool IsMusicLibraryEmpty => (LoadingStateArtists == LoadingState.Loaded && Locator.MediaLibrary.Artists?.Count == 0)
+                                        || (LoadingStateAlbums == LoadingState.Loaded && Locator.MediaLibrary.Albums?.Count == 0)
+                                        || (LoadingStateTracks == LoadingState.Loaded && Locator.MediaLibrary.Tracks?.Count == 0);
 
-        public AddToPlaylistCommand AddToPlaylistCommand { get; } = new AddToPlaylistCommand();
+        public IndexMediaLibraryCommand IndexMediaLibraryCommand { get; private set; } = new IndexMediaLibraryCommand();
 
-        public TrackCollectionClickedCommand TrackCollectionClickedCommand { get; } = new TrackCollectionClickedCommand();
+        public AddToPlaylistCommand AddToPlaylistCommand { get; private set; } = new AddToPlaylistCommand();
 
-        public ShowCreateNewPlaylistPane ShowCreateNewPlaylistPaneCommand { get; } = new ShowCreateNewPlaylistPane();
+        public TrackCollectionClickedCommand TrackCollectionClickedCommand { get; private set; } = new TrackCollectionClickedCommand();
 
-        public ChangeAlbumArtCommand ChangeAlbumArtCommand { get; } = new ChangeAlbumArtCommand();
+        public ShowCreateNewPlaylistPane ShowCreateNewPlaylistPaneCommand { get; private set; } = new ShowCreateNewPlaylistPane();
 
-        public DownloadAlbumArtCommand DownloadAlbumArtCommand { get; } = new DownloadAlbumArtCommand();
+        public ChangeAlbumArtCommand ChangeAlbumArtCommand { get; private set; } = new ChangeAlbumArtCommand();
 
-        public AlbumClickedCommand AlbumClickedCommand { get; } = new AlbumClickedCommand();
+        public DownloadAlbumArtCommand DownloadAlbumArtCommand { get; private set; } = new DownloadAlbumArtCommand();
 
-        public ArtistClickedCommand ArtistClickedCommand { get; } = new ArtistClickedCommand();
+        public AlbumClickedCommand AlbumClickedCommand { get; private set; } = new AlbumClickedCommand();
 
-        public ResetCurrentArtistAndAlbumCommand ResetCurrentArtistAndAlbumCommand { get; } = new ResetCurrentArtistAndAlbumCommand();
+        public ArtistClickedCommand ArtistClickedCommand { get; private set; } = new ArtistClickedCommand();
 
-        public PlayArtistAlbumsCommand PlayArtistAlbumsCommand { get; } = new PlayArtistAlbumsCommand();
+        public ResetCurrentArtistAndAlbumCommand ResetCurrentArtistAndAlbumCommand { get; private set; } = new ResetCurrentArtistAndAlbumCommand();
 
-        public PlayAlbumCommand PlayAlbumCommand { get; } = new PlayAlbumCommand();
+        public PlayArtistAlbumsCommand PlayArtistAlbumsCommand { get; private set; } = new PlayArtistAlbumsCommand();
 
-        public TrackClickedCommand TrackClickedCommand { get; } = new TrackClickedCommand();
+        public PlayAlbumCommand PlayAlbumCommand { get; private set; } = new PlayAlbumCommand();
 
-        public AlbumTrackClickedCommand AlbumTrackClickedCommand { get; } = new AlbumTrackClickedCommand();
+        public TrackClickedCommand TrackClickedCommand { get; private set; } = new TrackClickedCommand();
 
-        public PlayAllRandomCommand PlayAllRandomCommand { get; } = new PlayAllRandomCommand();
+        public AlbumTrackClickedCommand AlbumTrackClickedCommand { get; private set; } = new AlbumTrackClickedCommand();
 
-        public PlayAllSongsCommand PlayAllSongsCommand { get; } = new PlayAllSongsCommand();
+        public PlayAllRandomCommand PlayAllRandomCommand { get; private set; } = new PlayAllRandomCommand();
 
-        public OpenAddAlbumToPlaylistDialog OpenAddAlbumToPlaylistDialogCommand { get; } = new OpenAddAlbumToPlaylistDialog();
+        public PlayAllSongsCommand PlayAllSongsCommand { get; private set; } = new PlayAllSongsCommand();
 
-        public BingLocationShowCommand BingLocationShowCommand { get; } = new BingLocationShowCommand();
+        public OpenAddAlbumToPlaylistDialog OpenAddAlbumToPlaylistDialogCommand { get; private set; } = new OpenAddAlbumToPlaylistDialog();
 
-        public DeletePlaylistCommand DeletePlaylistCommand { get; } = new DeletePlaylistCommand();
-        public DeletePlaylistTrackCommand DeletePlaylistTrackCommand { get; } = new DeletePlaylistTrackCommand();
+        public BingLocationShowCommand BingLocationShowCommand { get; private set; } = new BingLocationShowCommand();
 
-        public DeleteSelectedTracksInPlaylistCommand DeleteSelectedTracksInPlaylistCommand { get; } = new DeleteSelectedTracksInPlaylistCommand();
+        public DeletePlaylistCommand DeletePlaylistCommand { get; private set; } = new DeletePlaylistCommand();
 
-        public StartTrackMetaEdit StartTrackMetaEdit { get; } = new StartTrackMetaEdit();
+        public DeletePlaylistTrackCommand DeletePlaylistTrackCommand { get; private set; } = new DeletePlaylistTrackCommand();
 
-        public SetAlbumViewOrderCommand SetAlbumViewOrder => new SetAlbumViewOrderCommand();
+        public DeleteSelectedTracksInPlaylistCommand DeleteSelectedTracksInPlaylistCommand { get; private set; } = new DeleteSelectedTracksInPlaylistCommand();
+
+        public StartTrackMetaEdit StartTrackMetaEdit { get; private set; } = new StartTrackMetaEdit();
+
+        public SetAlbumViewOrderCommand SetAlbumViewOrder { get; private set; } = new SetAlbumViewOrderCommand();
 
         public ArtistItem FocusOnAnArtist // Music Flow recommandation
         {

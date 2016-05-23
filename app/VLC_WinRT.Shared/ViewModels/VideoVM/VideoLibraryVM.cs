@@ -113,10 +113,11 @@ namespace VLC_WinRT.ViewModels.VideoVM
         }
 
 
-        public static TVShowClickedCommand TVShowClickedCommand => new TVShowClickedCommand();
-        public PlayVideoCommand OpenVideo { get; } = new PlayVideoCommand();
+        public static TVShowClickedCommand TVShowClickedCommand { get; private set; } = new TVShowClickedCommand();
+        public PlayVideoCommand OpenVideo { get; private set; } = new PlayVideoCommand();
 
-        public CloseFlyoutAndPlayVideoCommand CloseFlyoutAndPlayVideoCommand { get; } = new CloseFlyoutAndPlayVideoCommand();
+        public CloseFlyoutAndPlayVideoCommand CloseFlyoutAndPlayVideoCommand { get; private set; } = new CloseFlyoutAndPlayVideoCommand();
+
         public Visibility IndexingLibraryVisibility
         {
             get { return Locator.MediaLibrary.MediaLibraryIndexingState == LoadingState.Loading ? Visibility.Visible : Visibility.Collapsed; }

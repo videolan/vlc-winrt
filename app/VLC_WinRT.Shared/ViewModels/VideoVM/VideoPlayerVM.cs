@@ -89,7 +89,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
             set { SetProperty(ref isVideoPlayerVolumeSettingsVisible, value); }
         }
 
-        public ActionCommand ToggleIsVideoPlayerOptionsPanelVisible { get; } = new ActionCommand(() =>
+        public ActionCommand ToggleIsVideoPlayerOptionsPanelVisible { get; private set; } = new ActionCommand(() =>
         {
             Locator.NavigationService.Go(VLCPage.VideoPlayerOptionsPanel);
             Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible = false;
@@ -99,7 +99,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         });
 
 
-        public ActionCommand ToggleIsVideoPlayerSubtitlesSettingsVisible { get; } = new ActionCommand(() =>
+        public ActionCommand ToggleIsVideoPlayerSubtitlesSettingsVisible { get; private set; } = new ActionCommand(() =>
         {
             Locator.VideoPlayerVm.IsVideoPlayerAudioTracksSettingsVisible = false;
             Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible = false;
@@ -107,7 +107,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoPlayerVm.IsVideoPlayerSubtitlesSettingsVisible = !Locator.VideoPlayerVm.IsVideoPlayerSubtitlesSettingsVisible;
         });
 
-        public ActionCommand ToggleIsVideoPlayerAudioTracksSettingsVisible { get; } = new ActionCommand(() =>
+        public ActionCommand ToggleIsVideoPlayerAudioTracksSettingsVisible { get; private set; } = new ActionCommand(() =>
         {
             Locator.VideoPlayerVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible = false;
@@ -116,7 +116,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         });
 
 
-        public ActionCommand ToggleIsVideoPlayerVolumeSettingsVisible { get; } = new ActionCommand(() =>
+        public ActionCommand ToggleIsVideoPlayerVolumeSettingsVisible { get; private set; } = new ActionCommand(() =>
         {
             Locator.VideoPlayerVm.IsVideoPlayerAudioTracksSettingsVisible = false;
             Locator.VideoPlayerVm.IsVideoPlayerSubtitlesSettingsVisible = false;
@@ -124,9 +124,9 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible = !Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible;
         });
 
-        public SurfaceZoomToggleCommand SurfaceZoomToggleCommand { get; } = new SurfaceZoomToggleCommand();
+        public SurfaceZoomToggleCommand SurfaceZoomToggleCommand { get; private set; } = new SurfaceZoomToggleCommand();
 
-        public InitPiPCommand InitPiPCommand => new InitPiPCommand();
+        public InitPiPCommand InitPiPCommand { get; private set; } = new InitPiPCommand();
         #endregion
 
         #region public fields
