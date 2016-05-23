@@ -20,7 +20,7 @@ namespace VLC_WinRT.Services.RunTime
 {
     public class ThumbnailService : IDisposable
     {
-        private Thumbnailer _thumbnailer => new Thumbnailer();
+        private Thumbnailer _thumbnailer = new Thumbnailer();
         private bool _disposed = false;
 
         public async Task<StorageItemThumbnail> GetThumbnail(StorageFile file)
