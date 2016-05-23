@@ -128,9 +128,9 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.MediaLibrary.OnIndexing += MediaLibrary_OnIndexing;
         }
 
-        private void MediaLibrary_OnIndexing(LoadingState obj)
+        private async void MediaLibrary_OnIndexing(LoadingState obj)
         {
-            OnPropertyChanged(nameof(IndexingLibraryVisibility));
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged(nameof(IndexingLibraryVisibility)));
         }
 
         public void ResetLibrary()
