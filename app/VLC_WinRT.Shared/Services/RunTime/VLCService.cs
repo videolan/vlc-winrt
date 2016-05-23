@@ -274,11 +274,13 @@ namespace VLC_WinRT.Services.RunTime
                 await Initialize();
             }
             await PlayerInstanceReady.Task;
-            if (media == null) return null;
+            if (media == null)
+                return null;
             if (media.parseStatus() == ParseStatus.Init)
                 media.parse();
             if (media.parseStatus() == ParseStatus.Failed)
                 return null;
+
             var mP = new MediaProperties();
             mP.AlbumArtist = media.meta(MediaMeta.AlbumArtist);
             mP.Artist = media.meta(MediaMeta.Artist);
