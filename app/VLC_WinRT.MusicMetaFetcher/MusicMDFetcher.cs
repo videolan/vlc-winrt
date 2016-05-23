@@ -189,7 +189,11 @@ namespace VLC_WinRT.MusicMetaFetcher
         {
             try
             {
-                if (string.IsNullOrEmpty(artistName)) return null;
+                if (string.IsNullOrEmpty(artistName))
+                    return null;
+
+                artistName = System.Net.WebUtility.UrlEncode(artistName);
+
                 var lastFmClient = new LastFmClient();
                 var similarArtists = await lastFmClient.GetSimilarArtists(artistName);
                 return similarArtists;
@@ -219,7 +223,11 @@ namespace VLC_WinRT.MusicMetaFetcher
 
         public async Task<string> GetArtistBiography(string artistName)
         {
-            if (string.IsNullOrEmpty(artistName)) return null;
+            if (string.IsNullOrEmpty(artistName))
+                return null;
+
+            artistName = System.Net.WebUtility.UrlEncode(artistName);
+
             var biography = string.Empty;
             try
             {
