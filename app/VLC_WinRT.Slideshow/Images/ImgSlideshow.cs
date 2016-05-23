@@ -45,7 +45,6 @@ namespace Slide2D.Images
         private int ImgIndex = 0;
 
         private Img currentImg;
-        private List<Img> images = new List<Img>();
 
         public ImgSlideshow()
         {
@@ -74,7 +73,7 @@ namespace Slide2D.Images
                 {
                     if (album.IsPictureLoaded)
                     {
-                        images.Add(new Img(album.AlbumCoverFullUri));
+                        currentImg = new Img(album.AlbumCoverFullUri);
                         newPic = true;
                     }
                 }
@@ -248,23 +247,8 @@ namespace Slide2D.Images
                 sender.Paused = true;
             }
 
-            // Choosing a new img to display in the next loop
-            getNextImg();
             frame = 0;
             blurAmount = MaximumBlur;
-        }
-        
-        void getNextImg()
-        {
-            Debug.WriteLine($"Choosing a picture out of {images.Count} pictures.");
-            if (images.Count == 0) return;
-            int nextImgIndex = 0;
-            if (images.Count > 2)
-                nextImgIndex = random.Next(0, images.Count - 1);
-            else if (images.Count > 1)
-                nextImgIndex = random.NextDouble() < 0.5 ? 0 : 1;
-            currentImg = images[nextImgIndex];
-            Debug.WriteLine($"Choose picture uri = {currentImg.Src}");
         }
     }
 }
