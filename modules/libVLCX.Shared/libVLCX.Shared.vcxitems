@@ -42,7 +42,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\MediaPlayerCX.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\PlatformHelpers.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\StructuresCX.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\vlc.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\vlc.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\common.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\Dialog.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\Equalizer.hpp" />

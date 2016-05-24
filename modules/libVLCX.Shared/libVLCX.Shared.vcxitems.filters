@@ -39,9 +39,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\DirectXManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\MMDeviceLocator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\Thumbnailer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\vlc.hpp">
-      <Filter>libvlcpp</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\DialogCX.hpp">
       <Filter>libvlcpp\cppcx</Filter>
     </ClInclude>
@@ -112,6 +109,9 @@
       <Filter>libvlcpp</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\Instance.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\vlc.hpp">
       <Filter>libvlcpp</Filter>
     </ClInclude>
   </ItemGroup>
