@@ -84,21 +84,16 @@ namespace VLC_WinRT.Helpers
 
         public static async Task LoadImageToMemory(TrackItem item)
         {
-            bool fileExists = !string.IsNullOrEmpty(item.Thumbnail);
+            var albumItem = await Locator.MediaLibrary.LoadAlbum(item.AlbumId);
             try
             {
-                if (fileExists)
+                if (albumItem.IsPictureLoaded)
                 {
-                    var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(item.Thumbnail));
-                    using (var stream = await file.OpenAsync(FileAccessMode.Read))
-                    {
-                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-                        {
-                            var image = new BitmapImage();
-                            image.SetSource(stream);
-                            item.AlbumImage = image;
-                        });
-                    }
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => item.AlbumImage = new BitmapImage(new Uri(albumItem.AlbumCoverFullUri)));
+                }
+                else
+                {
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => item.AlbumImage = null);
                 }
             }
             catch (Exception)

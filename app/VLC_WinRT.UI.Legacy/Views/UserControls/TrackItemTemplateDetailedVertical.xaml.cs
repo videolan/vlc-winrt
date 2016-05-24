@@ -12,6 +12,7 @@ using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.Views.UserControls;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 
 namespace VLC_WinRT.UI.Legacy.Views.UserControls
 {
@@ -37,7 +38,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
         // Using a DependencyProperty as the backing store for Track.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TrackProperty =
-            DependencyProperty.Register("Track", typeof(TrackItem), typeof(TrackItemTemplateDetailedVertical), new PropertyMetadata(null, PropertyChangedCallback));
+            DependencyProperty.Register(nameof(Track), typeof(TrackItem), typeof(TrackItemTemplateDetailedVertical), new PropertyMetadata(null, PropertyChangedCallback));
 
         private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -47,21 +48,33 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
         public void Init()
         {
-            if (Track == null) return;
+            if (Track == null)
+                return;
             NameTextBlock.Text = Track.Name;
-            ArtistAlbumNameTextBlock.Text = Track.ArtistName + Utils.Strings.Dash + Track.AlbumName;
+            ArtistAlbumNameTextBlock.Text = Track.ArtistName + Strings.Dash + Track.AlbumName;
+
+            Track.PropertyChanged += Track_PropertyChanged;
             var trackItem = Track;
             Task.Run(async () =>
             {
-                var uri = await trackItem.LoadThumbnail();
-                if (!string.IsNullOrEmpty(uri))
-                {
-                    await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () => CoverImage.Source = new BitmapImage(new Uri(uri)));
-                }
+                await trackItem.ResetAlbumArt();
             });
 
             Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged += TrackItemOnPropertyChanged;
             UpdateTrack();
+        }
+
+        private async void Track_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Track.AlbumImage))
+            {
+                if (Track == null)
+                    return;
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    CoverImage.Source = Track.AlbumImage;
+                });
+            }
         }
 
         private void TrackItemOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
@@ -74,7 +87,8 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
         void UpdateTrack()
         {
-            if (Track == null) return;
+            if (Track == null)
+                return;
             if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack == -1 || Locator.MediaPlaybackViewModel.TrackCollection.Playlist?.Count == 0) return;
             if (Track.Id == Locator.MediaPlaybackViewModel.TrackCollection.Playlist[Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack].Id)
             {
@@ -83,7 +97,8 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             }
             else
             {
-                if (previousBrush != null) NameTextBlock.Foreground = previousBrush;
+                if (previousBrush != null)
+                    NameTextBlock.Foreground = previousBrush;
             }
         }
     }

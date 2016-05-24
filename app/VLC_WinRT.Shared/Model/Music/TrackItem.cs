@@ -28,7 +28,6 @@ namespace VLC_WinRT.Model.Music
         private bool _favorite;
         private int _currentPosition;
         private bool _isCurrentPlaying;
-        private string _thumbnail;
         private string _genre;
         private StorageFile _file;
         private BitmapImage _albumImage;
@@ -99,30 +98,7 @@ namespace VLC_WinRT.Model.Music
             get { return _genre; }
             set { SetProperty(ref _genre, value); }
         }
-
-        [Ignore]
-        public string Thumbnail
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_thumbnail))
-                {
-                    Task.Run(async () =>
-                    {
-                        _thumbnail = await LoadThumbnail();
-                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => OnPropertyChanged(nameof(Thumbnail)));
-                    });
-                }
-                return _thumbnail;
-            }
-            set { SetProperty(ref _thumbnail, value); }
-        }
-
-        public async Task<string> LoadThumbnail()
-        {
-            return (await Locator.MediaLibrary.LoadAlbum(this.AlbumId))?.AlbumCoverFullUri;
-        }
-
+        
         [Ignore]
         public BitmapImage AlbumImage
         {

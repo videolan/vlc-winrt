@@ -47,7 +47,7 @@
             </TextBlock>
 
             <Image Grid.Row="2"
-                   Source="{Binding Thumbnail}"
+                   Source="{Binding AlbumImage}"
                    Stretch="Uniform"
                    MaxHeight="400"
                    MaxWidth="400" />
