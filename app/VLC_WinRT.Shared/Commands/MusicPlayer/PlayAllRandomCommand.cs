@@ -10,16 +10,17 @@ using WinRTXamlToolkit.Tools;
 
 namespace VLC_WinRT.Commands.MusicPlayer
 {
-    public class PlayAllRandomCommand : AttemptCommand
+    public class PlayAllRandomCommand : AlwaysExecutableCommand
     {
-        public override async Task<bool> Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             var tracks = await Locator.MediaLibrary.LoadTracks();
-            if (tracks == null || !tracks.Any()) return await Task.FromResult<bool>(false);
+            if (tracks == null || !tracks.Any())
+                return;
+
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             var shuffledTracks = tracks.Shuffle();
             await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(shuffledTracks.ToPlaylist());
-            return await Task.FromResult<bool>(false);
         }
     }
 }

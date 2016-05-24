@@ -58,7 +58,7 @@ namespace VLC_WinRT.Helpers
                         }
                         break;
                     case "shuffleLibrary":
-                        var success = Locator.MusicLibraryVM.PlayAllRandomCommand.Execute(null);
+                        Locator.MusicLibraryVM.PlayAllRandomCommand.Execute(null);
                         break;
                     default:
                         break;
