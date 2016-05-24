@@ -25,7 +25,7 @@ namespace VLC_WinRT.Utils
                 action();
                 return Task.FromResult(true);
             }
-            return Task.Run(() => CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action()).AsTask());
+            return Task.Run(() => CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action()).AsTask());
         }
     }
 }
