@@ -75,8 +75,10 @@ namespace VLC_WinRT.Views.UserControls
         {
             if (e.PropertyName == nameof(Album.AlbumImage))
             {
-                if (Album == null) return;
-                if (Album?.AlbumImage?.UriSource == (Cover.Source as BitmapImage)?.UriSource) return;
+                if (Album == null)
+                    return;
+                if (Album?.AlbumImage?.UriSource == (Cover.Source as BitmapImage)?.UriSource)
+                    return;
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
                     FadeOutCover.Begin();
