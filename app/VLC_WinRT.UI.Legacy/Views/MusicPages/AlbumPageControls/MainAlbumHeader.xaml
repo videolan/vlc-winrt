@@ -33,7 +33,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="12" />
+                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0"
@@ -82,11 +82,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <AppBarButton x:Name="PlayAlbum" 
