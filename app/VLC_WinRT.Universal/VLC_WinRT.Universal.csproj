@@ -400,9 +400,6 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libvpx_plugin.dll">
       <Link>plugins\codec\libvpx_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libzvbi_plugin.dll">
-      <Link>plugins\codec\libzvbi_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\control\libdummy_plugin.dll">
       <Link>plugins\control\libdummy_plugin.dll</Link>
     </Content>
