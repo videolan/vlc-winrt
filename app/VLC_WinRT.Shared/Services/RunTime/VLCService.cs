@@ -199,9 +199,9 @@ namespace VLC_WinRT.Services.RunTime
             await PlayerInstanceReady.Task;
             if (media == null)
                 return null;
-            if (media.parseStatus() == ParseStatus.Init)
+            if (media.parsedStatus() == ParsedStatus.Init)
                 media.parse();
-            if (media.parseStatus() == ParseStatus.Failed)
+            if (media.parsedStatus() == ParsedStatus.Failed)
                 return null;
             var url = media.meta(MediaMeta.ArtworkURL);
             if (!string.IsNullOrEmpty(url))
@@ -218,9 +218,9 @@ namespace VLC_WinRT.Services.RunTime
             await PlayerInstanceReady.Task;
             if (media == null)
                 return null;
-            if (media.parseStatus() == ParseStatus.Init)
+            if (media.parsedStatus() == ParsedStatus.Init)
                 media.parse();
-            if (media.parseStatus() == ParseStatus.Failed)
+            if (media.parsedStatus() == ParsedStatus.Failed)
                 return null;
             var mP = new MediaProperties();
             mP.Title = media.meta(MediaMeta.Title);
@@ -276,9 +276,9 @@ namespace VLC_WinRT.Services.RunTime
             await PlayerInstanceReady.Task;
             if (media == null)
                 return null;
-            if (media.parseStatus() == ParseStatus.Init)
+            if (media.parsedStatus() == ParsedStatus.Init)
                 media.parse();
-            if (media.parseStatus() == ParseStatus.Failed)
+            if (media.parsedStatus() == ParsedStatus.Failed)
                 return null;
 
             var mP = new MediaProperties();
@@ -497,12 +497,12 @@ namespace VLC_WinRT.Services.RunTime
         public Task<MediaList> DiscoverMediaList(Media media)
         {
             var tcs = new TaskCompletionSource<MediaList>();
-            if (media.parseStatus() == ParseStatus.Done)
+            if (media.parsedStatus() == ParsedStatus.Done)
                 tcs.TrySetResult(media.subItems());
             
-            media.eventManager().OnParsedStatus += (ParseStatus s) =>
+            media.eventManager().OnParsedChanged += (ParsedStatus s) =>
             {
-                if (s != ParseStatus.Done)
+                if (s != ParsedStatus.Done)
                     return;
                 tcs.TrySetResult(media.subItems());
             };

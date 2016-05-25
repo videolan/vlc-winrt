@@ -735,7 +735,7 @@ namespace VLC_WinRT.ViewModels
                     em.OnTrackAdded += Locator.MediaPlaybackViewModel.OnTrackAdded;
                     em.OnTrackDeleted += Locator.MediaPlaybackViewModel.OnTrackDeleted;
                     var mem = vlcService.MediaPlayer.media().eventManager();
-                    mem.OnParsedStatus += Mem_OnParsedStatus;
+                    mem.OnParsedChanged += Mem_OnParsedStatus;
                     if (!autoPlay) return;
                     vlcService.Play();
                     break;
@@ -1076,9 +1076,9 @@ namespace VLC_WinRT.ViewModels
             }
         }
 
-        private async void Mem_OnParsedStatus(ParseStatus parsedStatus)
+        private async void Mem_OnParsedStatus(ParsedStatus parsedStatus)
         {
-            if (parsedStatus != ParseStatus.Done)
+            if (parsedStatus != ParsedStatus.Done)
                 return;
 
             if (!(_mediaService is VLCService)) return;
