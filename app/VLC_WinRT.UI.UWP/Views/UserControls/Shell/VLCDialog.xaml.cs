@@ -87,11 +87,6 @@ namespace VLC_WinRT.UI.UWP.Views.UserControls.Shell
             DescriptionTextBlock.Text = desc;
         }
 
-        private void SetButtons()
-        {
-
-        }
-
         private void PasswordBox1_GotFocus(object sender, RoutedEventArgs e)
         {
             Locator.MainVM.KeyboardListenerService.CanListen = false;
