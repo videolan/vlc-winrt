@@ -34,7 +34,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TracksZoomedInView"
                                                        Storyboard.TargetProperty="ItemTemplate">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource WPTrackTemplateWONumber}"/>
+                                                    Value="{StaticResource TrackItemNoIndexTemplate}"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
@@ -58,7 +58,7 @@
                           SelectionMode="None"
                           IsItemClickEnabled="True"
                           ItemContainerStyle="{StaticResource ListViewItemContainerStyleNoSelectCheck}"
-                                                             ItemTemplate="{StaticResource WPTrackTemplateWONumber}"
+                                                             ItemTemplate="{StaticResource TrackItemNoIndexTemplate}"
                                                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                                              ScrollViewer.HorizontalScrollMode="Disabled">
                     <triggers:Interactions.Triggers>

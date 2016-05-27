@@ -102,7 +102,7 @@
                   Margin="0,12,0,0"
                   ItemsSource="{Binding TrackCollections}"
                   SelectedItem="{Binding CurrentTrackCollection, Mode=TwoWay}"
-                  ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
+                  ItemTemplate="{StaticResource PlaylistItemTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}">
         </ListView>
         <placeholder:NoPlaylistPlaceholder Grid.Row="7"

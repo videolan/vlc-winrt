@@ -4,11 +4,11 @@
                     xmlns:userControls="using:VLC_WinRT.Views.UserControls"
                     xmlns:userControls1="using:VLC_WinRT.UI.Legacy.Views.UserControls">
     
-    <DataTemplate x:Key="WPTrackTemplateWONumber">
+    <DataTemplate x:Key="TrackItemNoIndexTemplate">
         <userControls:TrackItemTemplate Track="{Binding}"/>
     </DataTemplate>
 
-    <DataTemplate x:Key="WPTrackTemplateWNumber">
+    <DataTemplate x:Key="TrackItemTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50" />

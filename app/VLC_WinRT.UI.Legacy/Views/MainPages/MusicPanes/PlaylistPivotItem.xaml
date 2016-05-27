@@ -23,7 +23,7 @@
         <ScrollWatcher:ListViewScrollWatcher x:Name="PlaylistListView"
                   ItemsSource="{Binding TrackCollections}"
                   IsItemClickEnabled="True"
-                  ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
+                  ItemTemplate="{StaticResource PlaylistItemTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                                                      ItemsPanel="{StaticResource WrapPanelTemplate}"
                                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"

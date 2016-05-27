@@ -22,7 +22,7 @@
                   ItemsSource="{Binding Tracks}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
-                  ItemTemplate="{StaticResource WPTrackTemplateWNumber}"
+                  ItemTemplate="{StaticResource TrackItemTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemBasic}"
                   ItemsPanel="{StaticResource StackPanelTemplate}"
                   Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
