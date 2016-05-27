@@ -61,19 +61,26 @@
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
                     <ListView.Header>
-                        <Grid Visibility="{Binding RandomAlbums.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+                        <Grid Visibility="{Binding RecommendedAlbums.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                             </Grid.RowDefinitions>
-                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RecommendedForYou}"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       Margin="{StaticResource FrameMargin}" />
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="{StaticResource FrameMargin}">
+                                <FontIcon Glyph="{StaticResource FavoriteSymbol}"
+                                          FontFamily="{StaticResource VLCFont}"
+                                          FontSize="20"
+                                          Margin="0,6,0,0"/>
+                                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RecommendedForYou}"
+                                           Style="{StaticResource SubheaderTextBlockStyle}"
+                                           Margin="{StaticResource FrameMarginLeft}" />
+                            </StackPanel>
                             <ListView x:Name="AlbumsListView"
                                       Grid.Row="2"
-                                      ItemsSource="{Binding RandomAlbums}"
+                                      ItemsSource="{Binding RecommendedAlbums}"
                                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                                       ItemTemplate="{StaticResource AlbumItemTemplateFixedSize}"
                                       IsItemClickEnabled="True"
