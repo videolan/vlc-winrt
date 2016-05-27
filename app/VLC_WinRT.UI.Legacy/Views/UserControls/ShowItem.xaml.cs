@@ -47,44 +47,5 @@ namespace VLC_WinRT.Views.UserControls
             ThumbnailImage.Source = TVShow.ShowImage;
             FadeInCover.Begin();
         }
-
-        //private async void Video_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-        //    if (e.PropertyName == nameof(Video.VideoImage))
-        //    {
-        //        if (Video == null) return;
-        //        await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-        //        {
-        //            FadeOutCover.Begin();
-        //        });
-        //    }
-        //    else if (e.PropertyName == nameof(Video.Duration) || e.PropertyName == nameof(Video.TimeWatched))
-        //    {
-        //        UpdateVideoDurations();
-        //    }
-        //}
-
-        //async void UpdateVideoDurations()
-        //{
-        //    await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-        //    {
-        //        TimeWatchedTextBlock.Text = Strings.HumanizedTimeSpan(Video.TimeWatched);
-        //        DurationTextBlock.Text = Strings.HumanizedTimeSpan(Video.Duration);
-
-        //        VideoProgressBar.Value = Video.TimeWatched.TotalSeconds;
-        //        VideoProgressBar.Maximum = Video.Duration.TotalSeconds;
-
-        //        VideoProgressBar.Visibility = Video.TimeWatched.TotalSeconds > 0 ? Visibility.Visible : Visibility.Collapsed;
-        //    });
-        //}
-
-        //private void FadeOutCover_Completed(object sender, object e)
-        //{
-        //    if (Video != null && Video.VideoImage != null)
-        //    {
-        //        ThumbnailImage.Source = Video.VideoImage;
-        //        FadeInCover.Begin();
-        //    }
-        //}
     }
 }
