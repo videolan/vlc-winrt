@@ -18,7 +18,6 @@ namespace VLC_WinRT.Views.MainPages.MainVideoControls
         {
             this.Unloaded += AllVideosPivotItem_Unloaded;
             Locator.VideoLibraryVM.OnNavigatedToAllVideos();
-            AllVideosListView.Focus(FocusState.Keyboard);
         }
 
         private async void AllVideosPivotItem_Unloaded(object sender, RoutedEventArgs e)
