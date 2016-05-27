@@ -191,6 +191,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
                     }
                 }
             }
+            UpdatePlayerVisibility();
         }
 
         private void PlayButton_RightTapped(object sender, RightTappedRoutedEventArgs e)
