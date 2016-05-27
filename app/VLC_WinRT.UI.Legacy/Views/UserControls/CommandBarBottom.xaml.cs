@@ -98,7 +98,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
         void Responsive()
         {
-            if (this.ActualWidth < 500)
+            if (this.ActualWidth < 420)
             {
                 TrackNameTextBlock.Visibility = ArtistNameTextBlock.Visibility = Visibility.Collapsed;
             }
