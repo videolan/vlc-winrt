@@ -18,6 +18,12 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
         {
             this.InitializeComponent();
             this.Loaded += CommandBarBottom_Loaded;
+            this.Opened += CommandBarBottom_Opened;
+        }
+
+        private void CommandBarBottom_Opened(object sender, object e)
+        {
+            UpdatePlayerVisibility();
         }
 
         #region init
