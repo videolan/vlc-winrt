@@ -1059,12 +1059,14 @@ namespace VLC_WinRT.ViewModels
             var vlcService = (VLCService)_mediaService;
             var mP = vlcService?.MediaPlayer;
             // Get chapters
+            _chapters.Clear();
             var chapters = mP?.chapterDescription(-1);
             foreach (var c in chapters)
             {
                 var vlcChapter = new VLCChapterDescription(c);
                 _chapters.Add(vlcChapter);
             }
+
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(Chapters));
