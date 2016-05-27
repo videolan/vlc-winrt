@@ -42,7 +42,6 @@ namespace VLC_WinRT.ViewModels
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         #endregion
         #region private props
-        private NetworkListenerService networkListenerService;
         private KeyboardListenerService keyboardListenerService;
         private Panel _currentPanel;
         private bool _isInternet;
@@ -130,8 +129,7 @@ namespace VLC_WinRT.ViewModels
         public MainVM()
         {
             keyboardListenerService = App.Container.Resolve<KeyboardListenerService>();
-            networkListenerService = App.Container.Resolve<NetworkListenerService>();
-            networkListenerService.InternetConnectionChanged += networkListenerService_InternetConnectionChanged;
+            App.Container.Resolve<NetworkListenerService>().InternetConnectionChanged += networkListenerService_InternetConnectionChanged;
             _isInternet = NetworkListenerService.IsConnected;
 
             Panels.Add(new Panel(Strings.Videos, VLCPage.MainPageVideo, App.Current.Resources["VideoSymbol"].ToString(), App.Current.Resources["VideoFilledSymbol"].ToString()));
