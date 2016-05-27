@@ -53,7 +53,7 @@
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemsSource="{Binding Episodes}"
-                  ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
+                  ItemTemplate="{StaticResource VideoItemTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   Padding="{StaticResource FrameMarginTop}"
                   Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">

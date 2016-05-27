@@ -115,7 +115,7 @@
             </StackPanel>
             <ListView Grid.Row="2"
                       ItemsSource="{Binding SearchResultsVideos}"
-                      ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
+                      ItemTemplate="{StaticResource VideoItemTemplate}"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"

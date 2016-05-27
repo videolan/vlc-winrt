@@ -18,7 +18,7 @@
         </Grid.Transitions>
         <ScrollWatcher:ListViewScrollWatcher x:Name="CameraRollListView"
                   ItemsSource="{Binding CameraRoll}"
-                  ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
+                  ItemTemplate="{StaticResource VideoItemTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   IsItemClickEnabled="True">
             <triggers:Interactions.Triggers>
