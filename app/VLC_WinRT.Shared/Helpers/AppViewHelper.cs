@@ -62,7 +62,7 @@ namespace VLC_WinRT.Helpers
 
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
-                Windows.UI.ViewManagement.StatusBar.GetForCurrentView().HideAsync();
+                StatusBar.GetForCurrentView().HideAsync();
             }
 #endif
         }
