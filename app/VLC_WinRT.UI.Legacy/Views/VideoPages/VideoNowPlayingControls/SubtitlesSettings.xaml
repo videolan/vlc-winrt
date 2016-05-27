@@ -48,7 +48,6 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"
-                                   Foreground="White"
                                    VerticalAlignment="Center" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
