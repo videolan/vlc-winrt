@@ -146,7 +146,8 @@ cd $CONTRIB_FOLDER
     --disable-vncclient \
     --enable-jpeg \
     --enable-postproc \
-    --enable-vpx
+    --enable-vpx \
+    --enable-libdsm
 
 echo "EXTRA_CFLAGS=${EXTRA_CPPFLAGS}" >> config.mak
 echo "EXTRA_LDFLAGS=${EXTRA_LDFLAGS}" >> config.mak

@@ -28,7 +28,7 @@ OPTIONS="
       --enable-mad
       --disable-a52
       --disable-dirac
-      --disable-dsm
+      --enable-dsm
       --disable-smbclient
       --disable-vcd
       --disable-crystalhd
