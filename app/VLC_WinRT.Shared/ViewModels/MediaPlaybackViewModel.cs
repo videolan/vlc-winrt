@@ -483,7 +483,7 @@ namespace VLC_WinRT.ViewModels
             var tcs = new TaskCompletionSource<bool>();
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
-                _mediaService.Stop();
+                Stop();
                 PlayingType = PlayingType.NotPlaying;
                 IsPlaying = false;
                 TimeTotal = TimeSpan.Zero;
