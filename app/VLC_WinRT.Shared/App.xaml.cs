@@ -131,6 +131,9 @@ namespace VLC_WinRT
                 case ActivationKind.VoiceCommand:
                     await CortanaHelper.HandleProtocolActivation(args);
                     break;
+                case ActivationKind.ToastNotification:
+                    await ToastHelper.HandleProtocolActivation(args);
+                    break;
             }
 
 #if WINDOWS_PHONE_APP

@@ -136,14 +136,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
             await Locator.MediaPlaybackViewModel.SetMediaTransportControlsInfo(artistName, albumName, trackName, picture);
 
-            var notificationOnNewSong = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong");
-            if (notificationOnNewSong != null && (bool)notificationOnNewSong)
+            if (Locator.SettingsVM.NotificationOnNewSong && Locator.MainVM.IsBackground)
             {
-                var notificationOnNewSongForeground = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
-                if (Locator.MainVM.IsBackground || (notificationOnNewSongForeground != null && (bool)notificationOnNewSongForeground))
-                {
-                    ToastHelper.ToastImageAndText04(trackName, albumName, artistName, (Locator.MusicPlayerVM.CurrentAlbum == null) ? null : Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri ?? null);
-                }
+                ToastHelper.ToastImageAndText04(trackName, albumName, artistName, (Locator.MusicPlayerVM.CurrentAlbum == null) ? null : Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri ?? null, "newsong");
             }
         }
 

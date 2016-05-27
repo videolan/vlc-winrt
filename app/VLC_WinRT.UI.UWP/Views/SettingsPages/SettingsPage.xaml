@@ -349,10 +349,7 @@
                         <ToggleSwitch  Header="{Binding Source={StaticResource Strings}, Path=NotificationWhenSongStarts}"
                                        IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}"
                                        Margin="{StaticResource FrameMarginTop}" />
-                        <ToggleSwitch  Header="{Binding Source={StaticResource Strings}, Path=EvenIfNotBackground}"
-                                       IsOn="{Binding NotificationOnNewSongForeground, Mode=TwoWay}"
-                                       IsEnabled="{Binding NotificationOnNewSong}" />
-                        
+
                         <TextBlock Text="{Binding Source={StaticResource Strings}, Path=ConnectToLastFM}"
                                    Margin="{StaticResource FrameMarginTop}"
                                    FontSize="22"

@@ -41,7 +41,6 @@ namespace VLC_WinRT.ViewModels.Settings
         private bool musicFoldersLoaded;
         private bool videoFoldersLoaded;
         private bool _notificationOnNewSong;
-        private bool _notificationOnNewSongForeground;
 #endif
         private ApplicationTheme applicationTheme;
         private List<VLCAccentColor> _accentColors = new List<VLCAccentColor>();
@@ -331,21 +330,6 @@ namespace VLC_WinRT.ViewModels.Settings
             {
                 ApplicationSettingsHelper.SaveSettingsValue("NotificationOnNewSong", value);
                 SetProperty(ref _notificationOnNewSong, value);
-            }
-        }
-
-        public bool NotificationOnNewSongForeground
-        {
-            get
-            {
-                var notificationOnNewSongForeground = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
-                _notificationOnNewSongForeground = notificationOnNewSongForeground as bool? ?? false;
-                return _notificationOnNewSongForeground;
-            }
-            set
-            {
-                ApplicationSettingsHelper.SaveSettingsValue("NotificationOnNewSongForeground", value);
-                SetProperty(ref _notificationOnNewSongForeground, value);
             }
         }
 #endif
