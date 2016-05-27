@@ -1086,23 +1086,19 @@ namespace VLC_WinRT.ViewModels
 
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                var destPage = VLCPage.None;
                 var videoTrack = vlcService.MediaPlayer.media()?.tracks()?.FirstOrDefault(x => x.type() == TrackType.Video);
                 if (videoTrack == null)
                 {
                     PlayingType = PlayingType.Music;
-                    destPage = VLCPage.MusicPlayerPage;
                 }
-
                 else
                 {
                     PlayingType = PlayingType.Video;
-                    destPage = VLCPage.VideoPlayerPage;
-                }
 
-                if (Locator.NavigationService.CurrentPage != destPage)
-                {
-                    Locator.NavigationService.Go(destPage);
+                    if (Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage)
+                    {
+                        Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
+                    }
                 }
 
                 if (CurrentMedia is StreamMedia)
