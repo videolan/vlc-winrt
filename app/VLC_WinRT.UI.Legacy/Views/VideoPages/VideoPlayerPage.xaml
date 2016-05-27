@@ -12,7 +12,7 @@
       Background="Transparent"
       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
 
-    <Grid>
+    <Grid x:Name="RootGrid">
         <Grid.Resources>
             <Storyboard x:Name="FadeOut">
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
