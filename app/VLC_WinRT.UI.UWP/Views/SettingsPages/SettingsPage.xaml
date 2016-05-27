@@ -299,6 +299,7 @@
 
                         <Grid DataContext="{Binding Equalizer}"
                               Height="120"
+                              IsHitTestVisible="False"
                               Margin="{StaticResource FrameMarginTop}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
