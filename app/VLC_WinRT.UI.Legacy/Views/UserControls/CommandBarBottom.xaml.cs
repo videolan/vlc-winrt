@@ -63,12 +63,22 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             NowPlayingArtistGrid.Visibility =
                 PlayPreviousButton.Visibility =
                 PlayNextButton.Visibility =
-                ShuffleButton.Visibility =
-                RepeatButton.Visibility =
-                MiniWindowButton.Visibility =
                 MiniPlayerVisibility;
 
-            this.ClosedDisplayMode = MiniPlayerVisibility == Visibility.Visible ? AppBarClosedDisplayMode.Compact : AppBarClosedDisplayMode.Minimal;
+            var shuffleButton = FindName(nameof(ShuffleButton)) as FrameworkElement;
+            if (shuffleButton != null)
+                shuffleButton.Visibility = MiniPlayerVisibility;
+
+            var repeatButton = FindName(nameof(RepeatButton)) as FrameworkElement;
+            if (repeatButton != null)
+                repeatButton.Visibility = MiniPlayerVisibility;
+
+            var miniWindowButton = FindName(nameof(MiniWindowButton)) as FrameworkElement;
+            if (miniWindowButton != null)
+                miniWindowButton.Visibility = MiniPlayerVisibility;
+
+            if (App.SplitShell.FooterVisibility != AppBarClosedDisplayMode.Hidden)
+                App.SplitShell.FooterVisibility = MiniPlayerVisibility == Visibility.Visible ? AppBarClosedDisplayMode.Compact : AppBarClosedDisplayMode.Minimal;
         }
 
         #endregion
