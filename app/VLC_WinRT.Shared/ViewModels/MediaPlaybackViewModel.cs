@@ -134,7 +134,7 @@ namespace VLC_WinRT.ViewModels
                 {
                     SetProperty(ref _isPlaying, value);
                 }
-                OnPropertyChanged("PlayingType");
+                OnPropertyChanged(nameof(PlayingType));
             }
         }
 
