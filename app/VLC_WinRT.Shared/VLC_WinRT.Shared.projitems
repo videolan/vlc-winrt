@@ -188,6 +188,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCAccentColor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCChapterDescription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\VLCEqualizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFileExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCItemType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\IMediaItem.cs" />

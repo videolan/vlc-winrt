@@ -716,7 +716,8 @@ namespace VLC_WinRT.ViewModels
                     em.OnTrackDeleted += Locator.MediaPlaybackViewModel.OnTrackDeleted;
                     var mem = vlcService.MediaPlayer.media().eventManager();
                     mem.OnParsedChanged += Mem_OnParsedStatus;
-                    if (!autoPlay) return;
+                    if (!autoPlay)
+                        return;
                     vlcService.Play();
                     break;
                 case PlayerEngine.MediaFoundation:

@@ -29,6 +29,8 @@ using VLC_WinRT.Commands.Navigation;
 using VLC_WinRT.Commands.Settings;
 using VLC_WinRT.Utils;
 using Windows.UI.Xaml.Navigation;
+using Autofac;
+using VLC_WinRT.Services.RunTime;
 
 namespace VLC_WinRT.ViewModels.Settings
 {
@@ -58,6 +60,8 @@ namespace VLC_WinRT.ViewModels.Settings
         private bool _forceLandscape;
         private List<KeyboardAction> _keyboardActions;
         private List<string> _subtitlesEncodingValues;
+        private VLCEqualizer _vlcEqualizer;
+        private IList<VLCEqualizer> _equalizerPresets;
 
         public ApplicationTheme ApplicationTheme
         {
@@ -191,6 +195,33 @@ namespace VLC_WinRT.ViewModels.Settings
             get
             {
                 return _keyboardActions ?? (_keyboardActions = Locator.MainVM.KeyboardListenerService._keyboardActionDatabase.GetAllKeyboardActions());
+            }
+        }
+
+        public IList<VLCEqualizer> Presets => _equalizerPresets ?? (_equalizerPresets = App.Container.Resolve<VLCService>().GetEqualizerPresets());
+
+        public VLCEqualizer Equalizer
+        {
+            get
+            {
+                var eq = ApplicationSettingsHelper.ReadSettingsValue(nameof(Equalizer));
+                if (eq == null)
+                {
+                    _vlcEqualizer = Presets[0];
+                }
+                else
+                {
+                    _vlcEqualizer = Presets[Convert.ToInt32((uint)eq)];
+                }
+                return _vlcEqualizer;
+            }
+            set
+            {
+                if (value == null)
+                    return;
+                SetProperty(ref _vlcEqualizer, value);
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(Equalizer), value.Index);
+                App.Container.Resolve<VLCService>().SetEqualizer(value);
             }
         }
 

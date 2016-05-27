@@ -180,7 +180,7 @@ namespace VLC_WinRT.Utils
         public static string IncreaseVolume => _resourcesLoader.GetString(nameof(IncreaseVolume));
         public static string DecreaseVolume => _resourcesLoader.GetString(nameof(DecreaseVolume));
         public static string Mute => _resourcesLoader.GetString(nameof(Mute));
-
+        public static string Equalizer => "Equalizer";
 
         public static string OrderAscending => _resourcesLoader.GetString(nameof(OrderAscending));
         public static string OrderDescending => _resourcesLoader.GetString(nameof(OrderDescending));
@@ -289,7 +289,6 @@ namespace VLC_WinRT.Utils
         public static string HowToFavoriteAlbum2 => _resourcesLoader.GetString(nameof(HowToFavoriteAlbum2));
         public static string NoArtistShowsFound => _resourcesLoader.GetString(nameof(NoArtistShowsFound));
 
-        // SETTINGS
 
         public static string PrivacyStatement => _resourcesLoader.GetString(nameof(PrivacyStatement));
         // SPECIAL THANKS
@@ -303,6 +302,7 @@ namespace VLC_WinRT.Utils
         public static string NotableSponsors => _resourcesLoader.GetString(nameof(NotableSponsors));
 
 
+        // SETTINGS
         public static string Settings => _resourcesLoader.GetString(nameof(Settings));
         public static string SettingsUppercase => Settings.ToUpper();
         public static string License => _resourcesLoader.GetString(nameof(License));

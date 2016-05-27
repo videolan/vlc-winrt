@@ -128,6 +128,7 @@ namespace VLC_WinRT.Services.RunTime
 
             MediaPlayer = new MediaPlayer(vlcMedia);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
+            SetEqualizer(Locator.SettingsVM.Equalizer);
             var em = MediaPlayer.eventManager();
             em.OnOpening += Em_OnOpening;
             em.OnBuffering += EmOnOnBuffering;
@@ -451,6 +452,23 @@ namespace VLC_WinRT.Services.RunTime
         public void SetSizeVideoPlayer(uint x, uint y)
         {
             Instance?.UpdateSize(x, y);
+        }
+
+        public IList<VLCEqualizer> GetEqualizerPresets()
+        {
+            var presetCount = Equalizer.presetCount();
+            var presets = new List<VLCEqualizer>();
+            for (uint i = 0; i < presetCount; i++)
+            {
+                presets.Add(new VLCEqualizer(i));
+            }
+            return presets;
+        }
+
+        public void SetEqualizer(VLCEqualizer vlcEq)
+        {
+            var eq = new Equalizer(vlcEq.Index);
+            MediaPlayer?.setEqualizer(eq);
         }
         #endregion
         #region Service Discoverer
