@@ -34,6 +34,9 @@ namespace VLC_WinRT.Views.UserControls
 
         private void SplitShell_ContentSizeChanged(double newWidth)
         {
+            if (AppViewHelper.TitleBarRightOffset == 0)
+                return;
+
             var pivotHeader = WinRTXamlToolkit.Controls.Extensions.VisualTreeHelperExtensions.GetFirstDescendantOfType<PivotHeaderPanel>(Pivot);
             if (pivotHeader == null)
                 return;
