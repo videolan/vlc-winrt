@@ -204,9 +204,7 @@ namespace VLC_WinRT.Views.MainPages
             var posAnimation = _compositor.CreateVector3KeyFrameAnimation();
             if (_pipEnabled)
             {
-                posAnimation.InsertKeyFrame(1f, new Vector3((float)Window.Current.Bounds.Width * 0.7f,
-                                                              (float)Window.Current.Bounds.Height * 0.7f,
-                                                              1f));
+                posAnimation.InsertKeyFrame(1f, new Vector3((float)Window.Current.Bounds.Width * 0.7f, (float)Window.Current.Bounds.Height * 0.7f, 1f));
             }
             else
             {
