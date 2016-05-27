@@ -4051,6 +4051,8 @@
                 Value="Normal" />
         <Setter Property="UseSystemFocusVisuals"
                 Value="True" />
+        <Setter Property="Width"
+                Value="NaN" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="AppBarButton">
@@ -4247,6 +4249,8 @@
                 Value="Normal" />
         <Setter Property="UseSystemFocusVisuals"
                 Value="True" />
+        <Setter Property="Width"
+                Value="NaN" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="AppBarToggleButton">

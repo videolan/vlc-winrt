@@ -131,9 +131,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
                             newButton.Style = App.Current.Resources["AppBarTextButtonStyle"] as Style;
                             newButton.Command = ((AppBarButton)item).Command;
                             newButton.CommandParameter = ((AppBarButton)item).CommandParameter;
-
-                            newButton.Width = 160;
-
+                            
                             this.SecondaryCommands.Add(newButton);
                         }
                         else if (item is AppBarToggleButton)
@@ -146,9 +144,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
                             newButton.Style = App.Current.Resources["AppBarToggleTextButtonStyle"] as Style;
                             newButton.Command = ((AppBarToggleButton)item).Command;
                             newButton.CommandParameter = ((AppBarToggleButton)item).CommandParameter;
-
-                            newButton.Width = 160;
-
+                            
                             this.SecondaryCommands.Add(newButton);
                         }
                     }
