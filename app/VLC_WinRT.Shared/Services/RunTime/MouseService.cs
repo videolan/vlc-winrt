@@ -39,26 +39,17 @@ namespace VLC_WinRT.Services.RunTime
         {
             _cursorTimer = new DispatcherTimer();
             _cursorTimer.Interval = TimeSpan.FromSeconds(CursorHiddenAfterSeconds);
-            _cursorTimer.Tick += HideCursor;
+            _cursorTimer.Tick += CursorDisappearanceTimer;
 
             if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
 #if WINDOWS_PHONE_APP
 #else
-                if (Window.Current.CoreWindow.PointerCursor != null)
-                    _oldCursor = Window.Current.CoreWindow.PointerCursor;
                 var mouse = MouseDevice.GetForCurrentView();
-                if (mouse != null) mouse.MouseMoved += MouseMoved;
+                if (mouse != null)
+                    mouse.MouseMoved += MouseMoved;
 #endif
             }
-        }
-
-        public void Content_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
-        {
-            if (!isMouseVisible)
-                InputDetected();
-            else
-                LostInput();
         }
 
         private void MouseMoved(MouseDevice sender, MouseEventArgs args)
@@ -73,59 +64,44 @@ namespace VLC_WinRT.Services.RunTime
             _cursorTimer.Stop();
             _cursorTimer.Start();
 
-            if (isMouseVisible) return;
-            isMouseVisible = true;
-#if WINDOWS_PHONE_APP
-#else
-                Window.Current.CoreWindow.PointerCursor = _oldCursor;
-#endif
             OnMoved?.Invoke();
         }
 
-        void LostInput()
+        void OnCursorDisappearance()
         {
-            if (Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage &&
-                Locator.NavigationService.CurrentPage != VLCPage.MusicPlayerPage)
-                return;
-            if (App.OpenFilePickerReason != OpenFilePickerReason.Null) return;
-            isMouseVisible = false;
-#if WINDOWS_PHONE_APP
-#else
-            if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage)
-            {
-                if (IsCursorInWindow())
-                {
-                    Window.Current.CoreWindow.PointerCursor = null;
-                }
-            }
-#endif
             _cursorTimer.Stop();
             OnHidden?.Invoke();
         }
 
-        private void HideCursor(object sender, object e)
+        private void CursorDisappearanceTimer(object sender, object e)
         {
-            LostInput();
+            OnCursorDisappearance();
         }
 
-        public void HideMouse()
+        public void HideCursor()
         {
-            lock (this)
-            {
-                _cursorTimer.Start();
-            }
-        }
-
-        public void RestoreMouse()
-        {
-            lock (this)
-            {
-                _cursorTimer.Stop();
+            if (!isMouseVisible)
+                return;
 #if WINDOWS_PHONE_APP
 #else
-                Window.Current.CoreWindow.PointerCursor = _oldCursor;
-#endif
+            if (IsCursorInWindow())
+            {
+                _oldCursor = Window.Current.CoreWindow.PointerCursor;
+                Window.Current.CoreWindow.PointerCursor = null;
+                isMouseVisible = false;
             }
+#endif
+        }
+
+        public void ShowCursor()
+        {
+            if (isMouseVisible)
+                return;
+            isMouseVisible = true;
+#if WINDOWS_PHONE_APP
+#else
+            Window.Current.CoreWindow.PointerCursor = _oldCursor;
+#endif
         }
 
         public static Point GetPointerPosition()

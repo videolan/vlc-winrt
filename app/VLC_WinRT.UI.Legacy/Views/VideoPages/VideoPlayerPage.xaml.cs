@@ -34,27 +34,10 @@ namespace VLC_WinRT.Views.VideoPages
         private bool isVisible = true;
         private bool isLocked = false;
         private GestureActionType currentGestureActionType;
+        private DispatcherTimer controlsTimer = new DispatcherTimer();
         public VideoPlayerPage()
         {
             InitializeComponent();
-            this.Loaded += VideoPlayerPage_Loaded;
-        }
-
-        void VideoPlayerPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.Unloaded += VideoPlayerPage_Unloaded;
-            this.SizeChanged += VideoPlayerPage_SizeChanged;
-            Responsive();
-        }
-
-        void VideoPlayerPage_Unloaded(object sender, RoutedEventArgs e)
-        {
-            this.SizeChanged -= VideoPlayerPage_SizeChanged;
-        }
-
-        void VideoPlayerPage_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Responsive();
         }
 
         void Responsive()
@@ -62,40 +45,55 @@ namespace VLC_WinRT.Views.VideoPages
             var width = Window.Current.Bounds.Width;
             if (width < 800)
             {
-                VisualStateManager.GoToState(this, "Narrow", false);
+                VisualStateManager.GoToState(this, nameof(Narrow), false);
             }
             else if (width < 1050)
             {
-                VisualStateManager.GoToState(this, "Medium", false);
+                VisualStateManager.GoToState(this, nameof(Medium), false);
             }
             else
             {
-                VisualStateManager.GoToState(this, "Full", false);
+                VisualStateManager.GoToState(this, nameof(Full), false);
             }
 
             if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Tablet && AppViewHelper.GetFullscreen() == false)
             {
-                VisualStateManager.GoToState(this, "WindowState", false);
+                VisualStateManager.GoToState(this, nameof(WindowState), false);
             }
             else
             {
-                VisualStateManager.GoToState(this, "FullscreenState", false);
+                VisualStateManager.GoToState(this, nameof(FullscreenState), false);
             }
 
             Locator.MediaPlaybackViewModel._mediaService.SetSizeVideoPlayer((uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualWidth), (uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualHeight));
             Locator.VideoPlayerVm.ChangeSurfaceZoom(Locator.VideoPlayerVm.CurrentSurfaceZoom);
+            DisplayOrHide(true);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            // Set UI Layout
             App.RootPage.SwapChainPanel.Visibility = Visibility.Visible;
             App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Hidden;
             AppViewHelper.SetTitleBarTitle(Locator.VideoPlayerVm.CurrentVideo?.Name);
-            Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
+
+            // UI interactions
+            Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseCursorHidden;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
+            RootGrid.Tapped += RootGrid_Tapped;
+            controlsTimer.Interval = TimeSpan.FromSeconds(4);
+            controlsTimer.Tick += ControlsTimer_Tick;
+            controlsTimer.Start();
+
+            // VM initialization
             Locator.VideoPlayerVm.OnNavigatedTo();
+
+            // Responsive design
+            this.SizeChanged += (s, args) => Responsive();
             Responsive();
+
+            // Swapchain animations
             App.RootPage.StartCompositionAnimationOnSwapChain(false);
         }
 
@@ -105,33 +103,54 @@ namespace VLC_WinRT.Views.VideoPages
             AppViewHelper.SetTitleBarTitle();
             App.RootPage.SwapChainPanel.Visibility = Visibility.Collapsed;
             App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Minimal;
+            
             Locator.VideoPlayerVm.OnNavigatedFrom();
+        }
+
+        private void ControlsTimer_Tick(object sender, object e)
+        {
+            if (e == null)
+                DisplayOrHide(false);
+            else
+                DisplayOrHide((bool)e);
+
+            controlsTimer.Stop();
+            controlsTimer.Start();
+        }
+
+        private void MouseCursorHidden()
+        {
+            ControlsTimer_Tick(null, false);
         }
 
         private void MouseMoved()
         {
-            Display();
+            ControlsTimer_Tick(null, true);
         }
 
-        private void MouseStateChanged()
+        private void RootGrid_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Hide();
+            if (e.PointerDeviceType != Windows.Devices.Input.PointerDeviceType.Touch)
+                return;
+
+            if ((e.OriginalSource as FrameworkElement)?.Name == nameof(PlaceholderInteractionGrid))
+            {
+                ControlsTimer_Tick(null, !isVisible);
+            }
+            else
+            {
+                ControlsTimer_Tick(null, true);
+            }
         }
 
-        void Display()
+        private void PlaceholderInteractionGrid_OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            isVisible = true;
-            DisplayOrHide();
         }
-
-        void Hide()
+        
+        void DisplayOrHide(bool mouseOrTouchPresent)
         {
-            isVisible = false;
-            DisplayOrHide();
-        }
+            isVisible = mouseOrTouchPresent;
 
-        void DisplayOrHide()
-        {
             if (Locator.VideoPlayerVm.IsVideoPlayerAudioTracksSettingsVisible ||
                 Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible ||
                 Locator.VideoPlayerVm.IsVideoPlayerSubtitlesSettingsVisible ||
@@ -141,19 +160,16 @@ namespace VLC_WinRT.Views.VideoPages
             {
                 ControlsGridFadeOut.Value = ControlsGrid.ActualHeight + ControlsGrid.Padding.Top +
                                             ControlsGrid.Padding.Bottom;
-                HeaderGridFadeOut.Value = - HeaderGrid.ActualHeight;
+                HeaderGridFadeOut.Value = -HeaderGrid.ActualHeight;
                 FadeOut.Begin();
+
+                Locator.MediaPlaybackViewModel.MouseService.HideCursor();
             }
             else
             {
                 FadeIn.Begin();
+                Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
             }
-        }
-
-        private void PlaceholderInteractionGrid_OnTapped(object sender, TappedRoutedEventArgs e)
-        {
-            if (e.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Touch)
-                Locator.MediaPlaybackViewModel.MouseService.Content_Tapped(sender, e);
         }
 
         private void PlaceholderInteractionGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
