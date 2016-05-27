@@ -34,6 +34,18 @@ namespace VLC_WinRT.Views.UserControls
 
         private void SplitShell_ContentSizeChanged(double newWidth)
         {
+            var pivotHeader = WinRTXamlToolkit.Controls.Extensions.VisualTreeHelperExtensions.GetFirstDescendantOfType<PivotHeaderPanel>(Pivot);
+            if (pivotHeader == null)
+                return;
+
+            if (newWidth < 850)
+            {
+                pivotHeader.Margin = new Thickness(0, 16, 0, 0);
+            }
+            else
+            {
+                pivotHeader.Margin = new Thickness();
+            }
         }
     }
 }
