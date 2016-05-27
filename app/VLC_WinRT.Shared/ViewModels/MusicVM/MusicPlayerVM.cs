@@ -128,7 +128,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public async Task UpdateWindows8UI()
         {
-            // Setting the info for windows 8 controls
             string artistName = CurrentTrack?.ArtistName ?? Strings.UnknownArtist;
             string albumName = CurrentTrack?.AlbumName ?? Strings.UnknownAlbum;
             string trackName = CurrentTrack?.Name ?? Strings.UnknownTrack;

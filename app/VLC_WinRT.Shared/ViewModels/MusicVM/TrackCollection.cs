@@ -24,6 +24,7 @@ using VLC_WinRT.Model.Video;
 using VLC_WinRT.Utils;
 using System.Diagnostics;
 using VLC_WinRT.Services.RunTime;
+using VLC_WinRT.Model.Stream;
 
 namespace VLC_WinRT.ViewModels.MusicVM
 {
@@ -241,29 +242,26 @@ namespace VLC_WinRT.ViewModels.MusicVM
             Playlist.Remove(media);
         }
 
-        public async Task Add(VideoItem videoItem, bool isPlayingPlaylist)
+        public async Task Add(IMediaItem media, bool isPlayingPlaylist)
         {
-            if (Playlist.FirstOrDefault(x => x.Path == videoItem.Path) != null) return;
+            if (Playlist.FirstOrDefault(x => x.Path == media.Path) != null)
+                return;
+
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                Playlist.Add(videoItem);
+                Playlist.Add(media);
                 OnPropertyChanged(nameof(CanGoNext));
             });
-        }
 
-        public async Task Add(TrackItem trackItem, bool isPlayingPlaylist)
-        {
-            if (Playlist.FirstOrDefault(x => x.Id == trackItem.Id) != null) return;
-            trackItem.Index = (uint)Playlist.Count;
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            var track = media as TrackItem;
+            if (track != null)
             {
-                Playlist.Add(trackItem);
-                OnPropertyChanged(nameof(CanGoNext));
-            });
-            var backgroundTrack = BackgroundTaskTools.CreateBackgroundTrackItem(trackItem);
-            await App.BackgroundAudioHelper.AddToPlaylist(backgroundTrack);
+                track.Index = (uint)Playlist.Count;
+                var backgroundTrack = BackgroundTaskTools.CreateBackgroundTrackItem(track);
+                await App.BackgroundAudioHelper.AddToPlaylist(backgroundTrack);
+            }
         }
-
+       
         public async Task Add(List<TrackItem> trackItems)
         {
             var count = (uint)Playlist.Count;

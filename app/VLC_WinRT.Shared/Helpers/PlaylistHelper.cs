@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
+using VLC_WinRT.Model.Stream;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
 using Windows.Storage.AccessCache;
@@ -13,22 +14,22 @@ namespace VLC_WinRT.Helpers
     public static class PlaylistHelper
     {
         #region Videos
-        public static async Task AddVideoToPlaylist(this VideoItem videoVm, bool resetPlaylist = true)
+        public static async Task AddVideoToPlaylist(this IMediaItem media, bool resetPlaylist = true)
         {
             if (resetPlaylist)
                 await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
-            await Locator.MediaPlaybackViewModel.TrackCollection.Add(videoVm, true);
+            await Locator.MediaPlaybackViewModel.TrackCollection.Add(media, true);
             await Locator.MediaPlaybackViewModel.TrackCollection.SetCurrentTrackPosition(0);
         }
 
-        public static async Task Play(this VideoItem videoVm, bool resetPlaylist = true)
+        public static async Task Play(this IMediaItem media, bool resetPlaylist = true)
         {
-            await videoVm.AddVideoToPlaylist(resetPlaylist);
+            await media.AddVideoToPlaylist(resetPlaylist);
             LogHelper.Log("PLAYVIDEO: Settings videoVm as Locator.VideoPlayerVm.CurrentVideo");
-            Locator.VideoPlayerVm.CurrentVideo = videoVm;
-            await Task.Run(() => Locator.MediaPlaybackViewModel.SetMedia(Locator.VideoPlayerVm.CurrentVideo, false));
+            if (media is VideoItem)
+                Locator.VideoPlayerVm.CurrentVideo = media as VideoItem;
+            await Task.Run(() => Locator.MediaPlaybackViewModel.SetMedia(media, false));
         }
-
         #endregion
 
         #region Music
@@ -138,7 +139,7 @@ namespace VLC_WinRT.Helpers
                     if (finalindex is TrackItem)
                         await PlayMusicTrack(finalindex.Id);
                     else if (finalindex is VideoItem)
-                        await((VideoItem)finalindex).Play(false);
+                        await ((VideoItem)finalindex).Play(false);
                 }
             });
         }
