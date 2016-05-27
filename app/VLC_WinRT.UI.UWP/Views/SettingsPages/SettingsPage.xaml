@@ -43,8 +43,7 @@
                                 </ToggleSwitch.IsOn>
                             </ToggleSwitch>
 
-                            <ComboBox DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
-                                      ItemsSource="{Binding AccentColors}"
+                            <ComboBox ItemsSource="{Binding AccentColors}"
                                       SelectedItem="{Binding AccentColor, Mode=TwoWay}"
                                       Width="150"
                                       Margin="{StaticResource FrameMarginRight}"
@@ -229,7 +228,7 @@
                         </ListView>
                         <Button Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
                                 Command="{Binding AddFolderToLibrary}"
-                                CommandParameter="{Binding VideoLibraryId}"/>
+                                CommandParameter="{Binding VideoLibraryId}" />
 
 
                         <TextBlock Text="{Binding Source={StaticResource Strings}, Path=VideoPlayback}"
