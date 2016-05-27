@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,36 @@ namespace VLC_WinRT.Helpers
             catch { }
 #endif
         }
+
+        /// <summary>
+        /// It takes a VERY LONG TIME to set the phrase list, something like 10 seconds. This is too much
+        /// </summary>
+        /// <param name="phraseListName"></param>
+        /// <param name="names"></param>
+        /// <returns></returns>
+        public static async Task SetPhraseList(string phraseListName, IEnumerable<string> names)
+        {
+#if WINDOWS_UWP
+            try
+            {
+                VoiceCommandDefinition commandSetEnUs;
+                var cortanaLanguageSet = "VlcCommandSet_en-us";
+                if (!VoiceCommandDefinitionManager.InstalledCommandDefinitions.TryGetValue(cortanaLanguageSet, out commandSetEnUs))
+                {
+                    await Initialize();
+                }
+                else if (commandSetEnUs != null || VoiceCommandDefinitionManager.InstalledCommandDefinitions.TryGetValue(cortanaLanguageSet, out commandSetEnUs))
+                {
+                    await commandSetEnUs.SetPhraseListAsync(phraseListName, names);
+                }
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine($"CortanaHelper: {e.ToString()}");
+            }
+#endif
+        }
+        
 
         public static async Task HandleProtocolActivation(IActivatedEventArgs args)
         {
@@ -64,23 +95,6 @@ namespace VLC_WinRT.Helpers
                         break;
                 }
             }
-        }
-
-        /// <summary>
-        /// It takes a VERY LONG TIME to set the phrase list, something like 10 seconds. This is too much
-        /// </summary>
-        /// <param name="phraseListName"></param>
-        /// <param name="names"></param>
-        /// <returns></returns>
-        public static async Task SetPhraseList(string phraseListName, IEnumerable<string> names)
-        {
-#if WINDOWS_UWP
-            VoiceCommandDefinition commandSetEnUs;
-            if (VoiceCommandDefinitionManager.InstalledCommandDefinitions.TryGetValue("VlcCommandSet_en-us", out commandSetEnUs))
-            {
-                await commandSetEnUs.SetPhraseListAsync(phraseListName, names);
-            }
-#endif
         }
     }
 }
