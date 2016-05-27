@@ -96,5 +96,13 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Grid Grid.Row="1"
+              Background="{ThemeResource ApplicationChromeThemeBrush}"
+              Visibility="{Binding NoInternetPlaceholderEnabled}">
+            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=NoInternetConnection}"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+        </Grid>
     </Grid>
 </Page>
