@@ -153,7 +153,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     if (milliseconds != null && milliseconds.HasValue && double.IsNaN(milliseconds.Value))
                         Locator.MediaPlaybackViewModel.OnLengthChanged((long)milliseconds);
 #endif
-                    if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack)) return;
+                    if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack))
+                        return;
                     var index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
                     if (Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Any())
                     {
@@ -218,7 +219,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 if (LastFMScrobbler == null)
                 {
                     // try to instanciate it
-                    LastFMScrobbler = new LastFMScrobbler("a8eba7d40559e6f3d15e7cca1bfeaa1c", "bd9ad107438d9107296ef799703d478e");
+                    LastFMScrobbler = new LastFMScrobbler(App.ApiKeyLastFm, App.ApiSecretLastFm);
                 }
 
                 if (!LastFMScrobbler.IsConnected)
