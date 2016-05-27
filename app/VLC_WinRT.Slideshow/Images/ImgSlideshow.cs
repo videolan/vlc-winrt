@@ -65,7 +65,7 @@ namespace Slide2D.Images
             var newPic = false;
             if (Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage)
             {
-                if (Locator.MusicPlayerVM.CurrentArtist == null)
+                if (Locator.MusicLibraryVM.CurrentTrack == null)
                     return;
 
                 var album = await Locator.MediaLibrary.LoadAlbum(Locator.MusicPlayerVM.CurrentTrack.AlbumId);
