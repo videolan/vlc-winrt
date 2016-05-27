@@ -483,6 +483,8 @@ namespace VLC_WinRT.Services.RunTime
                 await Initialize();
             }
             await PlayerInstanceReady.Task;
+            if (Instance == null)
+                return false;
             lock (discovererLock)
             {
                 if (discoverer == null)
