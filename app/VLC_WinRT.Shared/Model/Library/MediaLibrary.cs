@@ -400,8 +400,9 @@ namespace VLC_WinRT.Model.Library
                     {
                         await AddTvShow(video);
                     }
-                    else if (video.IsCameraRoll)
+                    else if (isCameraRoll)
                     {
+                        video.IsCameraRoll = true;
                         CameraRoll.Add(video);
                     }
                     else
