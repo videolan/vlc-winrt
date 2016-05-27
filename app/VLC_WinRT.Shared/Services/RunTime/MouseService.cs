@@ -100,7 +100,8 @@ namespace VLC_WinRT.Services.RunTime
             isMouseVisible = true;
 #if WINDOWS_PHONE_APP
 #else
-            Window.Current.CoreWindow.PointerCursor = _oldCursor;
+            if (_oldCursor != null)
+                Window.Current.CoreWindow.PointerCursor = _oldCursor;
 #endif
         }
 
