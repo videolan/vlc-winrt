@@ -212,13 +212,7 @@ namespace VLC_WinRT.ViewModels
                 }
             }
         }
-
-        public bool IsStream
-        {
-            get { return _isStream; }
-            set { SetProperty(ref _isStream, value); }
-        }
-
+        
         public TrackCollection TrackCollection
         {
             get
@@ -758,7 +752,7 @@ namespace VLC_WinRT.ViewModels
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                 {
-                    if (!Locator.MainVM.IsInternet && IsStream)
+                    if (!Locator.MainVM.IsInternet)
                     {
 #if WINDOWS_UWP
                         await DialogHelper.DisplayDialog(Strings.ConnectionLostPleaseCheck, Strings.Sorry);
@@ -1099,11 +1093,6 @@ namespace VLC_WinRT.ViewModels
                     {
                         Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
                     }
-                }
-
-                if (CurrentMedia is StreamMedia)
-                {
-                    IsStream = true;
                 }
             });
         }
