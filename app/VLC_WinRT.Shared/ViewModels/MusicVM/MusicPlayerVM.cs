@@ -188,7 +188,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 OnPropertyChanged(nameof(PlayingType));
                 OnPropertyChanged(nameof(CurrentTrack));
 #if WINDOWS_UWP
-                UpdateTileHelper.UpdateMusicTile();
+                TileHelper.UpdateMusicTile();
 #else
                 UpdateTileHelper.UpdateMediumTileWithMusicInfo();
 #endif

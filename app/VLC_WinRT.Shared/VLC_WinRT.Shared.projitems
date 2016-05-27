@@ -152,7 +152,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UIHelpers\CortanaHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UIHelpers\DialogHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UIHelpers\ToastHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\UpdateTileHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\TileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoLibrary\TitleDecrapifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoLibrary\VideoLibraryManagement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Events\InteretConnectionChangedEventArgs.cs" />

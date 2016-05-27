@@ -864,10 +864,6 @@ namespace VLC_WinRT.ViewModels
                     await Locator.MediaPlaybackViewModel.SetMedia(CurrentMedia, false);
                 });
             }
-            else
-            {
-                UpdateTileHelper.ClearTile();
-            }
         }
 
         public async Task PlayPrevious()
@@ -876,10 +872,6 @@ namespace VLC_WinRT.ViewModels
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => TrackCollection.CurrentTrack--);
                 await Locator.MediaPlaybackViewModel.SetMedia(CurrentMedia, false);
-            }
-            else
-            {
-                UpdateTileHelper.ClearTile();
             }
         }
 
@@ -968,6 +960,7 @@ namespace VLC_WinRT.ViewModels
         public void Stop()
         {
             _mediaService.Stop();
+            TileHelper.ClearTile();
         }
         #endregion
 

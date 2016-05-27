@@ -16,14 +16,14 @@ using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Utils;
 using System.Threading.Tasks;
+using System.Diagnostics;
 #if WINDOWS_UWP
 using NotificationsExtensions.Tiles;
 #endif
 namespace VLC_WinRT.Helpers
 {
-    public class UpdateTileHelper
+    public class TileHelper
     {
-        #region Windows UWP
 #if WINDOWS_UWP
         public static void UpdateMusicTile()
         {
@@ -93,7 +93,7 @@ namespace VLC_WinRT.Helpers
                                 {
                                    new TileText()
                                     {
-                                        Text = "Now Playing",
+                                        Text = Strings.NowPlaying,
                                         Style = TileTextStyle.Body,
                                     },
                                    new TileText()
@@ -204,8 +204,7 @@ namespace VLC_WinRT.Helpers
                 Content = bindingContent
             };
         }
-#endif
-        #endregion
+#else
         public static void UpdateMediumTileWithMusicInfo()
         {
             const TileTemplateType template = TileTemplateType.TileSquare150x150PeekImageAndText02;
@@ -261,7 +260,163 @@ namespace VLC_WinRT.Helpers
             var tileNotification = new TileNotification(tileXml);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
         }
+#endif
 
+#if WINDOWS_UWP
+        public static void UpdateVideoTile()
+        {
+            if (Locator.VideoPlayerVm.CurrentVideo == null)
+                return;
+            var content = new TileContent()
+            {
+                Visual = new TileVisual()
+                {
+                    TileMedium = CreateMediumVideoTileBinding(),
+                    TileWide = CreateWideVideoTileBinding(),
+                    TileLarge = CreateLargeVideoTileBinding()
+                }
+            };
+            var tileXml = content.GetXml();
+            var tileNotification = new TileNotification(tileXml);
+            TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
+        }
+
+        private static TileBinding CreateMediumVideoTileBinding()
+        {
+            var bindingContent = new TileBindingContentAdaptive()
+            {
+                Children =
+                {
+                    new TileText()
+                    {
+                        Text = Strings.NowPlaying,
+                        Style = TileTextStyle.Body,
+                    },
+                    new TileText()
+                    {
+                        Text = Locator.VideoPlayerVm.CurrentVideo.Name,
+                        Wrap = true,
+                        Style = TileTextStyle.CaptionSubtle
+                    }
+                }
+            };
+
+            if (!string.IsNullOrEmpty(Locator.VideoPlayerVm.CurrentVideo.PictureUri))
+            {
+                bindingContent.PeekImage = new TilePeekImage()
+                {
+                    Source = new TileImageSource(Locator.VideoPlayerVm.CurrentVideo.PictureUri)
+                };
+            }
+
+            return new TileBinding()
+            {
+                Branding = TileBranding.Logo,
+                Content = bindingContent
+            };
+        }
+
+        private static TileBinding CreateWideVideoTileBinding()
+        {
+            var bindingContent = new TileBindingContentAdaptive()
+            {
+                Children =
+                {
+                    new TileGroup()
+                    {
+                        Children =
+                        {
+                            new TileSubgroup()
+                            {
+                                Children =
+                                {
+                                   new TileText()
+                                    {
+                                        Text = Strings.NowPlaying,
+                                        Style = TileTextStyle.Body,
+                                    },
+                                   new TileText()
+                                    {
+                                    Text = Locator.VideoPlayerVm.CurrentVideo.Name,
+                                    Wrap = true,
+                                    Style = TileTextStyle.CaptionSubtle
+                                    }
+                                }
+                            }
+                        }
+                    },
+                }
+            };
+
+            if (!string.IsNullOrEmpty(Locator.VideoPlayerVm.CurrentVideo.PictureUri))
+            {
+                bindingContent.PeekImage = new TilePeekImage()
+                {
+                    Source = new TileImageSource(Locator.VideoPlayerVm.CurrentVideo.PictureUri)
+                };
+            }
+
+            return new TileBinding()
+            {
+                Branding = TileBranding.NameAndLogo,
+                Content = bindingContent
+            };
+        }
+
+        private static TileBinding CreateLargeVideoTileBinding()
+        {
+            var bindingContent = new TileBindingContentAdaptive()
+            {
+                Children =
+                {
+                    new TileGroup()
+                    {
+                        Children =
+                        {
+                            new TileSubgroup()
+                            {
+                              Weight = 1
+                            },
+                            new TileSubgroup()
+                            {
+                                Weight = 2,
+                            },
+                            new TileSubgroup()
+                            {
+                                Weight = 1
+                            }
+                        }
+                    },
+                    new TileText()
+                    {
+                        Text = Strings.NowPlaying,
+                        Style = TileTextStyle.Title,
+                        Align = TileTextAlign.Center
+                    },
+                    new TileText()
+                    {
+                        Text = Locator.VideoPlayerVm.CurrentVideo.Name,
+                        Wrap = true,
+                        Style = TileTextStyle.SubtitleSubtle,
+                        Align = TileTextAlign.Center
+                    }
+                }
+            };
+            if (!string.IsNullOrEmpty(Locator.VideoPlayerVm.CurrentVideo.PictureUri))
+            {
+                bindingContent.PeekImage = new TilePeekImage()
+                {
+                    Source = new TileImageSource(Locator.VideoPlayerVm.CurrentVideo.PictureUri)
+                };
+            }
+            
+            return new TileBinding()
+            {
+                Branding = TileBranding.NameAndLogo,
+                Content = bindingContent
+            };
+        }
+#else
         public static void UpdateMediumTileWithVideoInfo()
         {
             LogHelper.Log("PLAYVIDEO: Updating Live Tile");
@@ -300,6 +455,7 @@ namespace VLC_WinRT.Helpers
             var tileNotification = new TileNotification(tileXml);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
         }
+#endif
 
         public static async Task<bool> CreateOrReplaceSecondaryTile(VLCItemType type, int id, string title)
         {
@@ -350,8 +506,9 @@ namespace VLC_WinRT.Helpers
             {
                 TileUpdateManager.CreateTileUpdaterForApplication().Clear();
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine("Couldn't clear live tiles");
             }
         }
     }

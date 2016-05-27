@@ -13,7 +13,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
             if (parameter is AlbumItem)
             {
                 var album = parameter as AlbumItem;
-                if (await UpdateTileHelper.CreateOrReplaceSecondaryTile(VLCItemType.Album, album.Id, album.Name))
+                if (await TileHelper.CreateOrReplaceSecondaryTile(VLCItemType.Album, album.Id, album.Name))
                 {
                     album.IsPinned = !album.IsPinned;
                     await Locator.MediaLibrary.Update(album);
