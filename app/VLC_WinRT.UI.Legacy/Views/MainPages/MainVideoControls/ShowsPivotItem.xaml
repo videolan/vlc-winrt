@@ -19,7 +19,7 @@
         </Grid.Transitions>
         <ScrollWatcher:ListViewScrollWatcher x:Name="EpisodesListView"
                   ItemsSource="{Binding Shows}"
-                  ItemTemplate="{StaticResource ShowItemTemplate}"
+                  ItemTemplate="{StaticResource ShowItem}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   IsItemClickEnabled="True"
                   SelectionMode="None">

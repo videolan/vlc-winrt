@@ -16,9 +16,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace VLC_WinRT.Views.UserControls
 {
-    public sealed partial class ShowItemTemplate : UserControl
+    public sealed partial class ShowItem : UserControl
     {
-        public ShowItemTemplate()
+        public ShowItem()
         {
             this.InitializeComponent();
         }
@@ -30,11 +30,11 @@ namespace VLC_WinRT.Views.UserControls
         }
 
         public static readonly DependencyProperty TVShowProperty =
-            DependencyProperty.Register(nameof(TVShow), typeof(VideoItem), typeof(ShowItemTemplate), new PropertyMetadata(null, PropertyChangedCallback));
+            DependencyProperty.Register(nameof(TVShow), typeof(VideoItem), typeof(ShowItem), new PropertyMetadata(null, PropertyChangedCallback));
 
         private static void PropertyChangedCallback(DependencyObject dO, DependencyPropertyChangedEventArgs args)
         {
-            var that = (ShowItemTemplate)dO;
+            var that = (ShowItem)dO;
             that.Init();
         }
 
