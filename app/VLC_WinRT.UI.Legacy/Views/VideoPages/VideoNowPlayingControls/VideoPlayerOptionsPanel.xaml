@@ -231,7 +231,8 @@
                           DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                           ItemsSource="{Binding Chapters}"
                           SelectedItem="{Binding CurrentChapter, Mode=TwoWay}"
-                          ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          Margin="{StaticResource FrameMarginTop}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}"
