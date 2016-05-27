@@ -172,7 +172,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         {
             if (Locator.MediaLibrary.ContinueIndexing != null && !Locator.MediaLibrary.ContinueIndexing.Task.IsCompleted)
             {
-                Locator.MediaLibrary.ContinueIndexing.SetResult(true);
+                Locator.MediaLibrary.ContinueIndexing.TrySetResult(true);
             }
             Locator.VideoPlayerVm.IsVideoPlayerAudioTracksSettingsVisible = false;
             Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible = false;
