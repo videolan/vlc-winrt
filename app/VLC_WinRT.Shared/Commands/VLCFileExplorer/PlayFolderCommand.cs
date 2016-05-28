@@ -38,7 +38,7 @@ namespace VLC_WinRT.Commands.VLCFileExplorer
                     playlist.Add(video);
                 }
             }
-            await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(playlist, true, 0);
+            await Locator.MediaPlaybackViewModel.TrackCollection.Add(playlist, true, true, playlist[0]);
         }
     }
 }

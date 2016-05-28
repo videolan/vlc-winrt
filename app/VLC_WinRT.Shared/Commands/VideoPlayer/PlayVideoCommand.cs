@@ -4,6 +4,7 @@ using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Model;
 using VLC_WinRT.Utils;
+using System.Collections.Generic;
 
 namespace VLC_WinRT.Commands.VideoPlayer
 {
@@ -19,7 +20,7 @@ namespace VLC_WinRT.Commands.VideoPlayer
                 ItemClickEventArgs args = parameter as ItemClickEventArgs;
                 videoVm = args.ClickedItem as VideoItem;
             }
-            else if(parameter is VideoItem)
+            else if (parameter is VideoItem)
             {
                 videoVm = parameter as VideoItem;
             }
@@ -46,7 +47,8 @@ namespace VLC_WinRT.Commands.VideoPlayer
                 // their favorites list.) We need to make sure the whole app does not crash.
 
                 // TODO: If user selectes a video from their favoites, and it has been moved or deleted, we should ask them if we want to remove it from their list
-                await videoVm.Play();
+
+                await Locator.MediaPlaybackViewModel.TrackCollection.Add(new List<IMediaItem> { videoVm }, true, true, videoVm);
             }
             catch (System.Exception e)
             {

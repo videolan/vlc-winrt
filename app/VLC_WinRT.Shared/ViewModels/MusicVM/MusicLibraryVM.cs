@@ -53,10 +53,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
         private LoadingState _loadingStatePlaylists = LoadingState.NotLoaded;
 
         private ArtistItem _focusOnAnArtist; // recommended with MusicFlow
-        private TrackItem _currentTrack;
+        private TrackItem _currentMedia;
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArtist;
-        private TrackCollection _currentTrackCollection;
+        private TrackCollection _currentMediaCollection;
         private bool _isLoaded = false;
         private bool _isBusy = false;
         private MusicView _musicView;
@@ -267,14 +267,14 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public TrackItem CurrentTrack
         {
-            get { return _currentTrack; }
-            set { SetProperty(ref _currentTrack, value); }
+            get { return _currentMedia; }
+            set { SetProperty(ref _currentMedia, value); }
         }
 
         public TrackCollection CurrentTrackCollection
         {
-            get { return _currentTrackCollection; }
-            set { SetProperty(ref _currentTrackCollection, value); }
+            get { return _currentMediaCollection; }
+            set { SetProperty(ref _currentMediaCollection, value); }
         }
         public bool IsCurrentArtistExist
         {

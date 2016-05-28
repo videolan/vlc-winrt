@@ -24,7 +24,9 @@ namespace VLC_WinRT.Commands.MusicLibrary
                 // if the track is still null (for some reason), we need to break early.
                 return;
             }
-            await PlaylistHelper.AddAlbumToPlaylist(track.AlbumId, true, true, track);
+
+            var playlist = await Locator.MediaLibrary.LoadTracksByAlbumId(track.AlbumId);
+            await Locator.MediaPlaybackViewModel.TrackCollection.Add(playlist, true, true, track);
         }
     }
 }

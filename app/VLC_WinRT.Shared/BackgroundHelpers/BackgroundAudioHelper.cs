@@ -48,7 +48,7 @@ namespace VLC_WinRT.BackgroundHelpers
 #endif
         }
 
-        public async Task AddToPlaylist(List<BackgroundTrackItem> trackItems)
+        public async Task AddToPlaylist(IEnumerable<BackgroundTrackItem> trackItems)
         {
             var bgTracks = trackItems.Select(backgroundTrackItem => new BackgroundTrackItem(backgroundTrackItem.Id, backgroundTrackItem.AlbumId, backgroundTrackItem.ArtistId, backgroundTrackItem.ArtistName, backgroundTrackItem.AlbumName, backgroundTrackItem.Name, backgroundTrackItem.Path)).ToList();
             await Locator.MediaPlaybackViewModel.BackgroundTrackRepository.AddBunchTracks(bgTracks);

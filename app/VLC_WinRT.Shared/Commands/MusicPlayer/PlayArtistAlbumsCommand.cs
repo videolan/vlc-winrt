@@ -15,7 +15,8 @@ namespace VLC_WinRT.Commands.MusicPlayer
                 Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
                 var artist = parameter as ArtistItem;
                 var tracks = await Locator.MediaLibrary.LoadTracksByArtistId(artist.Id).ToObservableAsync();
-                await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(tracks.ToPlaylist());
+
+                await Locator.MediaPlaybackViewModel.TrackCollection.Add(tracks, false, true, tracks[0]);
             }
         }
     }

@@ -59,7 +59,7 @@ namespace VLC_WinRT.Views.UserControls
 
         private void TrackItemOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-            if (propertyChangedEventArgs.PropertyName == nameof(TrackCollection.CurrentTrack))
+            if (propertyChangedEventArgs.PropertyName == nameof(TrackCollection.CurrentMedia))
             {
                 UpdateTrack();
             }
@@ -67,8 +67,8 @@ namespace VLC_WinRT.Views.UserControls
 
         void UpdateTrack()
         {
-            if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack == -1 || Locator.MediaPlaybackViewModel.TrackCollection.Playlist?.Count == 0) return;
-            if (Track.Id == Locator.MediaPlaybackViewModel.TrackCollection.Playlist[Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack].Id)
+            if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.TrackCollection.Playlist?.Count == 0) return;
+            if (Track.Id == Locator.MediaPlaybackViewModel.TrackCollection.Playlist[Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia].Id)
             {
                 previousBrush = NameTextBlock.Foreground;
                 NameTextBlock.Foreground = (Brush)App.Current.Resources["MainColor"];

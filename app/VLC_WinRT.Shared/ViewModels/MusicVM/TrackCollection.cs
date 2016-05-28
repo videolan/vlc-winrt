@@ -30,9 +30,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
 {
     public class TrackCollection : BindableBase
     {
-        private SmartCollection<IMediaItem> _tracksCollection;
+        private SmartCollection<IMediaItem> _mediasCollection;
         private SmartCollection<IMediaItem> _nonShuffledPlaylist;
-        private int _currentTrack;
+        private int _currentMedia;
         private bool _isRunning;
         private bool _isShuffled;
         private bool _repeat;
@@ -45,15 +45,15 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public string Name { get; set; }
 
-        public int CurrentTrack
+        public int CurrentMedia
         {
             get
             {
-                return _currentTrack;
+                return _currentMedia;
             }
-            set
+            private set
             {
-                SetProperty(ref _currentTrack, value);
+                SetProperty(ref _currentMedia, value);
             }
         }
 
@@ -79,7 +79,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             get
             {
-                var previous = (CurrentTrack > 0);
+                var previous = (CurrentMedia > 0);
                 Locator.MediaPlaybackViewModel.SystemMediaTransportControlsBackPossible(previous);
                 return previous;
             }
@@ -90,7 +90,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             get
             {
-                var next = (Playlist.Count != 1) && (CurrentTrack < Playlist.Count - 1);
+                var next = (Playlist.Count != 1) && (CurrentMedia < Playlist.Count - 1);
                 Locator.MediaPlaybackViewModel.SystemMediaTransportControlsNextPossible(next);
                 return next;
             }
@@ -123,8 +123,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
         [Ignore]
         public SmartCollection<IMediaItem> Playlist
         {
-            get { return _tracksCollection; }
-            private set { SetProperty(ref _tracksCollection, value); }
+            get { return _mediasCollection; }
+            private set { SetProperty(ref _mediasCollection, value); }
         }
 
         [Ignore]
@@ -150,13 +150,13 @@ namespace VLC_WinRT.ViewModels.MusicVM
             {
                 RestorePlaylist();
             }
-            _tracksCollection = new SmartCollection<IMediaItem>();
+            _mediasCollection = new SmartCollection<IMediaItem>();
             InitializePlaylist();
         }
 
         public TrackCollection()
         {
-            _tracksCollection = new SmartCollection<IMediaItem>();
+            _mediasCollection = new SmartCollection<IMediaItem>();
             InitializePlaylist();
         }
         #endregion
@@ -165,7 +165,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public void InitializePlaylist()
         {
             Playlist.Clear();
-            CurrentTrack = -1;
+            CurrentMedia = -1;
         }
 
         public async Task ResetCollection()
@@ -174,7 +174,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Playlist.Clear();
-                CurrentTrack = -1;
+                CurrentMedia = -1;
                 NonShuffledPlaylist?.Clear();
                 IsShuffled = false;
             });
@@ -184,16 +184,16 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             try
             {
-                if (Playlist == null || !Playlist.Any() || _currentTrack == -1) return;
+                if (Playlist == null || !Playlist.Any() || _currentMedia == -1) return;
                 foreach (var trackItem in Playlist)
                 {
                     if (trackItem == null) continue;
                     trackItem.IsCurrentPlaying = false;
                 }
-                if (_currentTrack < Playlist?.Count && Playlist[_currentTrack] != null)
+                if (_currentMedia < Playlist?.Count && Playlist[_currentMedia] != null)
                 {
-                    Playlist[_currentTrack].IsCurrentPlaying = true;
-                    Debug.WriteLine(Playlist[_currentTrack].Path + " Is the active track");
+                    Playlist[_currentMedia].IsCurrentPlaying = true;
+                    Debug.WriteLine(Playlist[_currentMedia].Path + " Is the active track");
                 }
                 OnPropertyChanged("CanGoPrevious");
                 OnPropertyChanged("CanGoNext");
@@ -204,14 +204,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
             }
         }
 
-        public async Task SetPlaylist(IEnumerable<IMediaItem> tracks)
-        {
-            var playlist = new SmartCollection<IMediaItem>(tracks);
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Playlist = playlist);
-            var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Locator.MediaPlaybackViewModel.TrackCollection.Playlist.ToTrackItemPlaylist());
-            await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
-        }
-
         public async Task Shuffle()
         {
             if (IsShuffled)
@@ -220,21 +212,20 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 Random r = new Random();
                 for (int i = 0; i < Playlist.Count; i++)
                 {
-                    if (i > CurrentTrack)
+                    if (i > CurrentMedia)
                     {
                         int index1 = r.Next(i, Playlist.Count);
                         int index2 = r.Next(i, Playlist.Count);
                         Playlist.Move(index1, index2);
                     }
                 }
+                await Add(Playlist, true, false, null);
             }
             else
             {
-                await SetPlaylist(Locator.MediaPlaybackViewModel.TrackCollection.NonShuffledPlaylist);
+                Playlist.Clear();
+                await Add(NonShuffledPlaylist, true, false, null);
             }
-            await App.BackgroundAudioHelper.ResetCollection(ResetType.ShuffleReset);
-            var backgorundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Playlist.ToTrackItemPlaylist());
-            await App.BackgroundAudioHelper.AddToPlaylist(backgorundTracks);
         }
 
         public void Remove(IMediaItem media)
@@ -242,29 +233,15 @@ namespace VLC_WinRT.ViewModels.MusicVM
             Playlist.Remove(media);
         }
 
-        public async Task Add(IMediaItem media, bool isPlayingPlaylist)
+        public async Task Add(IEnumerable<IMediaItem> mediaItems, bool reset, bool play, IMediaItem media)
         {
-            if (Playlist.FirstOrDefault(x => x.Path == media.Path) != null)
-                return;
-
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            if (reset)
             {
-                Playlist.Add(media);
-                OnPropertyChanged(nameof(CanGoNext));
-            });
-
-            var track = media as TrackItem;
-            if (track != null)
-            {
-                track.Index = (uint)Playlist.Count;
-                var backgroundTrack = BackgroundTaskTools.CreateBackgroundTrackItem(track);
-                await App.BackgroundAudioHelper.AddToPlaylist(backgroundTrack);
+                await ResetCollection();
             }
-        }
-       
-        public async Task Add(List<TrackItem> trackItems)
-        {
+
             var count = (uint)Playlist.Count;
+            var trackItems = mediaItems.OfType<TrackItem>();
             foreach (var track in trackItems)
             {
                 track.Index = count;
@@ -272,11 +249,21 @@ namespace VLC_WinRT.ViewModels.MusicVM
             }
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
-                Playlist.AddRange(trackItems);
+                Playlist.AddRange(mediaItems);
                 OnPropertyChanged(nameof(CanGoNext));
             });
+
             var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems);
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
+
+            if (play)
+            {
+                var mediaInPlaylist = Playlist.FirstOrDefault(x => x.Path == media.Path);
+                var mediaIndex = Playlist.IndexOf(mediaInPlaylist);
+
+                await SetCurrentMediaPosition(mediaIndex);
+                await Task.Run(() => Locator.MediaPlaybackViewModel.SetMedia(mediaInPlaylist));
+            }
         }
 
         public async Task RestorePlaylist()
@@ -294,7 +281,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 if (trackItem != null)
                     Playlist.Add(trackItem);
             }
-            
+
             await Locator.MusicPlayerVM.UpdateTrackFromMF();
             App.BackgroundAudioHelper.RestorePlaylist();
             if (Locator.MusicPlayerVM.CurrentTrack != null)
@@ -306,12 +293,43 @@ namespace VLC_WinRT.ViewModels.MusicVM
         #endregion
 
         /// <summary>
-        /// Only this method should set the CurrentTrack property of TrackCollection.
+        /// Only this method should set the CurrentMedia property of TrackCollection.
         /// </summary>
         /// <param name="index"></param>
-        public Task SetCurrentTrackPosition(int index)
+        public Task SetCurrentMediaPosition(int index)
         {
-            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => CurrentTrack = index);
+            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => CurrentMedia = index);
+        }
+
+
+        public Task StartAgain()
+        {
+            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                CurrentMedia = 0;
+                await Locator.MediaPlaybackViewModel.SetMedia(Playlist[CurrentMedia], false);
+            });
+        }
+
+        public async Task PlayNext()
+        {
+            if (CanGoNext)
+            {
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
+                {
+                    CurrentMedia++;
+                    await Locator.MediaPlaybackViewModel.SetMedia(Playlist[CurrentMedia], false);
+                });
+            }
+        }
+
+        public async Task PlayPrevious()
+        {
+            if (CanGoPrevious)
+            {
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => CurrentMedia--);
+                await Locator.MediaPlaybackViewModel.SetMedia(Playlist[CurrentMedia], false);
+            }
         }
     }
 }

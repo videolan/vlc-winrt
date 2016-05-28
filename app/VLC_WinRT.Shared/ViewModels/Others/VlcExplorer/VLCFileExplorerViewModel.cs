@@ -84,7 +84,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                 var video = new StreamMedia();
                 video.Name = file.Name;
                 video.VlcMedia = file.Media;
-                await Locator.MediaPlaybackViewModel.PlayMedia(video);
+                await Locator.MediaPlaybackViewModel.TrackCollection.Add(new List<IMediaItem> { video }, true, true, video);
             }
             OnPropertyChanged(nameof(CurrentFolderName));
         }

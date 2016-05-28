@@ -143,7 +143,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicFlow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicLibraryManagement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\OSHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\PlaylistHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SearchHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StateTriggers\AdaptativeAndValuesStateTrigger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StateTriggers\DeviceStateTrigger.cs" />

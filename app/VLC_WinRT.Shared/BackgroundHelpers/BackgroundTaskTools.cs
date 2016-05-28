@@ -14,9 +14,9 @@ namespace VLC_WinRT.BackgroundHelpers
             return audiotrack;
         }
 
-        public static List<BackgroundTrackItem> CreateBackgroundTrackItemList(List<TrackItem> tracks)
+        public static IEnumerable<BackgroundTrackItem> CreateBackgroundTrackItemList(IEnumerable<TrackItem> tracks)
         {
-            return tracks.Select(CreateBackgroundTrackItem).ToList();
+            return tracks.Select(CreateBackgroundTrackItem);
         }
     }
 }

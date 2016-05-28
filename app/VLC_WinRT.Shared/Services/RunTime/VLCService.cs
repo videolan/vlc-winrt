@@ -210,7 +210,7 @@ namespace VLC_WinRT.Services.RunTime
             return null;
         }
 
-        public async Task<MediaProperties> GetVideoProperties(Media media)
+        public async Task<MediaProperties> GetVideoProperties(MediaProperties mP, Media media)
         {
             if (Instance == null)
             {
@@ -218,12 +218,11 @@ namespace VLC_WinRT.Services.RunTime
             }
             await PlayerInstanceReady.Task;
             if (media == null)
-                return null;
+                return mP;
             if (media.parsedStatus() == ParsedStatus.Init)
                 media.parse();
             if (media.parsedStatus() == ParsedStatus.Failed)
-                return null;
-            var mP = new MediaProperties();
+                return mP;
             mP.Title = media.meta(MediaMeta.Title);
 
             var showName = media.meta(MediaMeta.ShowName);

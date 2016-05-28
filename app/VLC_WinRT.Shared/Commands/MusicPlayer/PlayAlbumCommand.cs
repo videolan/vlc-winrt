@@ -33,7 +33,9 @@ namespace VLC_WinRT.Commands.MusicPlayer
             if (albumItem != null)
             {
                 Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
-                await PlaylistHelper.AddAlbumToPlaylist(albumItem.Id, true, true, null, 0);
+
+                var tracks = await Locator.MediaLibrary.LoadTracksByAlbumId(albumItem.Id);
+                await Locator.MediaPlaybackViewModel.TrackCollection.Add(tracks, false, true, tracks[0]);
             }
         }
     }

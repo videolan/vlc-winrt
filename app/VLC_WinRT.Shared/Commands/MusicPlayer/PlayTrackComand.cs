@@ -13,6 +13,7 @@ using VLC_WinRT.ViewModels;
 using VLC_WinRT.Model;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Helpers;
+using System.Collections.Generic;
 
 namespace VLC_WinRT.Commands.MusicPlayer
 {
@@ -38,7 +39,8 @@ namespace VLC_WinRT.Commands.MusicPlayer
                 // if the track is still null (for some reason), we need to break early.
                 return;
             }
-            await PlaylistHelper.AddTrackToPlaylist(track, false);
+
+            await Locator.MediaPlaybackViewModel.TrackCollection.Add(new List<IMediaItem> { track }, false, true, track);
         }
     }
 }

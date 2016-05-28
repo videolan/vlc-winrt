@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.MusicLibrary;
+using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Utils;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Commands.MusicPlayer
 {
@@ -15,14 +17,18 @@ namespace VLC_WinRT.Commands.MusicPlayer
             var trackItem = parameter as TrackItem;
             if (trackItem != null)
             {
-                await PlaylistHelper.AddTrackToPlaylist(trackItem, false, false);
+                var playlist = new List<IMediaItem>() { trackItem };
+
+                await Locator.MediaPlaybackViewModel.TrackCollection.Add(playlist, false, false, null);
             }
             else
             {
                 var albumItem = parameter as AlbumItem;
                 if (albumItem != null)
                 {
-                    await PlaylistHelper.AddAlbumToPlaylist(albumItem.Id, false, false);
+                    var playlist = await Locator.MediaLibrary.LoadTracksByAlbumId(albumItem.Id);
+
+                    await Locator.MediaPlaybackViewModel.TrackCollection.Add(playlist, false, false, null);
                 }
             }
         }

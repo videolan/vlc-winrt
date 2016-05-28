@@ -68,13 +68,12 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             get
             {
-                if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack == -1
-                    || Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack == Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Count)
+                if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia == -1
+                    || Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia == Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Count)
                     return null;
-                if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack > Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Count)
+                if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia > Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Count)
                 {
-                    DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = 0);
-                    return null;
+                    Locator.MediaPlaybackViewModel.TrackCollection.SetCurrentMediaPosition(0); return null;
                 }
                 var media = Locator.MediaPlaybackViewModel.CurrentMedia;
                 return (media is TrackItem) ? (TrackItem)media : null;
@@ -165,7 +164,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                             ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, 0);
                             index = 0;
                         }
-                        Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = index;
+                        await Locator.MediaPlaybackViewModel.TrackCollection.SetCurrentMediaPosition(index);
                         await SetCurrentArtist();
                         await SetCurrentAlbum();
                         await UpdatePlayingUI();

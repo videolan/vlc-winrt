@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VLC_WinRT.Helpers.VideoLibrary;
 using VLC_WinRT.Model;
+using VLC_WinRT.Model.Music;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
 using Windows.Storage;
@@ -35,9 +36,11 @@ namespace VLC_WinRT.Helpers
             var media = await Locator.VLCService.GetMediaFromPath(file.Path);
 
             // get basic media properties
-            var mP = await Locator.VLCService.GetVideoProperties(media);
+            var mP = new MediaProperties();
+            mP = await Locator.VLCService.GetVideoProperties(mP, media);
+
             // use title decrapifier
-            if (string.IsNullOrEmpty(mP.ShowTitle))
+            if (string.IsNullOrEmpty(mP?.ShowTitle))
                 mP = TitleDecrapifier.tvShowEpisodeInfoFromString(mP, file.DisplayName);
 
             var video = new VideoItem(

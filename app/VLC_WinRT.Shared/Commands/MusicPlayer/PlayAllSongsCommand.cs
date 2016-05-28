@@ -24,7 +24,9 @@ namespace VLC_WinRT.Commands.MusicPlayer
                 index = tracks.IndexOf(tracks.FirstOrDefault(x => x.Id == selectedTrack.Id));
             }
             if (index > -1)
-                await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(tracks.ToPlaylist(), true, index);
+            {
+                await Locator.MediaPlaybackViewModel.TrackCollection.Add(tracks, false, true, tracks[index]);
+            }
         }
     }
 }
