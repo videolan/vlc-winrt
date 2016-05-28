@@ -10,21 +10,21 @@ namespace VLC_WinRT.Commands.MusicPlayer
     {
         public override void Execute(object parameter)
         {
-            if (parameter is TrackCollection)
+            if (parameter is PlaylistItem)
             {
-                Locator.MusicLibraryVM.CurrentTrackCollection = parameter as TrackCollection;
+                Locator.MusicLibraryVM.CurrentTrackCollection = parameter as PlaylistItem;
                 Locator.NavigationService.Go(VLCPage.PlaylistPage);
             }
             else if (parameter is SelectionChangedEventArgs)
             {
                 Locator.MusicLibraryVM.CurrentTrackCollection =
-                    (parameter as SelectionChangedEventArgs).AddedItems[0] as TrackCollection;
+                    (parameter as SelectionChangedEventArgs).AddedItems[0] as PlaylistItem;
                 Locator.NavigationService.Go(VLCPage.PlaylistPage);
             }
             else if (parameter is ItemClickEventArgs)
             {
                 Locator.MusicLibraryVM.CurrentTrackCollection =
-                    (parameter as ItemClickEventArgs).ClickedItem as TrackCollection;
+                    (parameter as ItemClickEventArgs).ClickedItem as PlaylistItem;
                 Locator.NavigationService.Go(VLCPage.PlaylistPage);
             }
         }

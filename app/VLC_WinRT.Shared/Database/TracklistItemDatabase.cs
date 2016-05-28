@@ -41,7 +41,7 @@ namespace VLC_WinRT.Database
             }
         }
 
-        public Task<List<TracklistItem>> LoadTracks(TrackCollection trackCollection)
+        public Task<List<TracklistItem>> LoadTracks(PlaylistItem trackCollection)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
             return connection.Table<TracklistItem>().Where(x => x.TrackCollectionId == trackCollection.Id).ToListAsync();

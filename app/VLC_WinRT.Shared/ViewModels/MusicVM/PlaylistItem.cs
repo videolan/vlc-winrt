@@ -28,7 +28,7 @@ using VLC_WinRT.Model.Stream;
 
 namespace VLC_WinRT.ViewModels.MusicVM
 {
-    public class TrackCollection : BindableBase
+    public class PlaylistItem : BindableBase
     {
         private SmartCollection<IMediaItem> _mediasCollection;
         private SmartCollection<IMediaItem> _nonShuffledPlaylist;
@@ -144,7 +144,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         #endregion
 
         #region ctors
-        public TrackCollection(bool isRuntimePlaylist)
+        public PlaylistItem(bool isRuntimePlaylist)
         {
             if (isRuntimePlaylist)
             {
@@ -154,7 +154,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             InitializePlaylist();
         }
 
-        public TrackCollection()
+        public PlaylistItem()
         {
             _mediasCollection = new SmartCollection<IMediaItem>();
             InitializePlaylist();

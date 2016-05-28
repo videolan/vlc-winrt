@@ -22,7 +22,7 @@ namespace VLC_WinRT.Database
         {
             using (var db = new SQLiteConnection(DbPath))
             {
-                db.CreateTable<TrackCollection>();
+                db.CreateTable<PlaylistItem>();
             }
         }
 
@@ -30,29 +30,29 @@ namespace VLC_WinRT.Database
         {
             using (var db = new SQLiteConnection(DbPath))
             {
-                db.DeleteAll<TrackCollection>();
+                db.DeleteAll<PlaylistItem>();
             }
         }
 
-        public async Task<TrackCollection> LoadFromName(string name)
+        public async Task<PlaylistItem> LoadFromName(string name)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return await connection.Table<TrackCollection>().Where(x => x.Name == name).FirstOrDefaultAsync();
+            return await connection.Table<PlaylistItem>().Where(x => x.Name == name).FirstOrDefaultAsync();
         }
 
-        public async Task<List<TrackCollection>> LoadTrackCollections()
+        public async Task<List<PlaylistItem>> LoadTrackCollections()
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return await connection.Table<TrackCollection>().ToListAsync();
+            return await connection.Table<PlaylistItem>().ToListAsync();
         }
 
-        public Task Add(TrackCollection trackCollection)
+        public Task Add(PlaylistItem trackCollection)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
             return connection.InsertAsync(trackCollection);
         }
 
-        public async Task Remove(TrackCollection trackCollection)
+        public async Task Remove(PlaylistItem trackCollection)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
             var loadTracks = await Locator.MediaLibrary.LoadTracks(trackCollection);
@@ -67,7 +67,7 @@ namespace VLC_WinRT.Database
         {
             using (var db = new SQLiteConnection(DbPath))
             {
-                db.DropTable<TrackCollection>();
+                db.DropTable<PlaylistItem>();
             }
         }
     }

@@ -79,7 +79,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
         private void TrackItemOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-            if (propertyChangedEventArgs.PropertyName == nameof(TrackCollection.CurrentMedia))
+            if (propertyChangedEventArgs.PropertyName == nameof(PlaylistItem.CurrentMedia))
             {
                 UpdateTrack();
             }

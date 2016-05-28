@@ -58,12 +58,12 @@ namespace VLC_WinRT.ViewModels
         private bool _isPlaying;
         private MediaState _mediaState;
         private PlayingType _playingType;
-        private TrackCollection _trackCollection;
+        private PlaylistItem _trackCollection;
         private TimeSpan _timeTotal;
 
         private int _currentSubtitle;
         private int _currentAudioTrack;
-        
+
         private int _volume = 100;
         private int _speedRate;
         private long _audioDelay;
@@ -212,12 +212,12 @@ namespace VLC_WinRT.ViewModels
                 }
             }
         }
-        
-        public TrackCollection TrackCollection
+
+        public PlaylistItem TrackCollection
         {
             get
             {
-                _trackCollection = _trackCollection ?? new TrackCollection(true);
+                _trackCollection = _trackCollection ?? new PlaylistItem(true);
                 return _trackCollection;
             }
         }
@@ -563,9 +563,9 @@ namespace VLC_WinRT.ViewModels
 
                     if (video.TimeWatched != TimeSpan.FromSeconds(0))
                     {
-                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                       await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                        {
-                           Locator.MediaPlaybackViewModel.Time = (Int64)video.TimeWatched.TotalMilliseconds;
+                           Time = (Int64)video.TimeWatched.TotalMilliseconds;
                        });
                     }
                     await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.VideoPlayerVm.CurrentVideo = video);
