@@ -105,9 +105,12 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             var videoFolder = new LocalFileExplorerViewModel(KnownFolders.VideosLibrary, RootFolderType.Library);
             videoFolder.LogoGlyph = App.Current.Resources["VideoFilledSymbol"] as string;
             await AddFolder(videoFolder);
+#if STARTS
+#else
             var picFolder = new LocalFileExplorerViewModel(KnownFolders.PicturesLibrary, RootFolderType.Library);
             picFolder.LogoGlyph = App.Current.Resources["BuddySymbol"] as string;
             await AddFolder(picFolder);
+#endif
 
 #if WINDOWS_PHONE_APP
             Task.Run(() => InitializeSDCard());
