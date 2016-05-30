@@ -22,7 +22,7 @@ namespace VLC_WinRT.Database
         {
             using (var db = new SQLiteConnection(DbPath))
             {
-                db.CreateTable<PlaylistItem>();
+                db.CreateTable<PlaybackService>();
             }
         }
 
@@ -30,29 +30,29 @@ namespace VLC_WinRT.Database
         {
             using (var db = new SQLiteConnection(DbPath))
             {
-                db.DeleteAll<PlaylistItem>();
+                db.DeleteAll<PlaybackService>();
             }
         }
 
-        public async Task<PlaylistItem> LoadFromName(string name)
+        public async Task<PlaybackService> LoadFromName(string name)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return await connection.Table<PlaylistItem>().Where(x => x.Name == name).FirstOrDefaultAsync();
+            return await connection.Table<PlaybackService>().Where(x => x.Name == name).FirstOrDefaultAsync();
         }
 
-        public async Task<List<PlaylistItem>> LoadTrackCollections()
+        public async Task<List<PlaybackService>> LoadTrackCollections()
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return await connection.Table<PlaylistItem>().ToListAsync();
+            return await connection.Table<PlaybackService>().ToListAsync();
         }
 
-        public Task Add(PlaylistItem trackCollection)
+        public Task Add(PlaybackService trackCollection)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
             return connection.InsertAsync(trackCollection);
         }
 
-        public async Task Remove(PlaylistItem trackCollection)
+        public async Task Remove(PlaybackService trackCollection)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
             var loadTracks = await Locator.MediaLibrary.LoadTracks(trackCollection);
@@ -67,7 +67,7 @@ namespace VLC_WinRT.Database
         {
             using (var db = new SQLiteConnection(DbPath))
             {
-                db.DropTable<PlaylistItem>();
+                db.DropTable<PlaybackService>();
             }
         }
     }

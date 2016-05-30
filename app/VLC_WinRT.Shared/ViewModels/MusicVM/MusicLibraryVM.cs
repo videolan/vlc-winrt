@@ -40,7 +40,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         private ObservableCollection<ArtistItem> _topArtists = new ObservableCollection<ArtistItem>();
         private ObservableCollection<ArtistItem> _recommendedArtists = new ObservableCollection<ArtistItem>(); // recommanded with MusicFlow
 
-        private ObservableCollection<PlaylistItem> _trackCollections = new ObservableCollection<PlaylistItem>();
+        private ObservableCollection<PlaybackService> _trackCollections = new ObservableCollection<PlaybackService>();
 
         private ObservableCollection<GroupItemList<AlbumItem>> _groupedAlbums;
         private List<AlbumItem> _recommendedAlbums = new List<AlbumItem>();
@@ -56,7 +56,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         private TrackItem _currentMedia;
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArtist;
-        private PlaylistItem _currentMediaCollection;
+        private PlaybackService _currentMediaCollection;
         private bool _isLoaded = false;
         private bool _isBusy = false;
         private MusicView _musicView;
@@ -71,7 +71,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             MusicView.Playlists
         };
 
-        public ObservableCollection<PlaylistItem> TrackCollections
+        public ObservableCollection<PlaybackService> TrackCollections
         {
             get { return Locator.MediaLibrary.TrackCollections; }
         }
@@ -271,7 +271,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             set { SetProperty(ref _currentMedia, value); }
         }
 
-        public PlaylistItem CurrentTrackCollection
+        public PlaybackService CurrentTrackCollection
         {
             get { return _currentMediaCollection; }
             set { SetProperty(ref _currentMediaCollection, value); }

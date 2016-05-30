@@ -114,7 +114,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         private void MediaPlaybackViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(PlaylistItem.IsRunning))
+            if (e.PropertyName == nameof(PlaybackService.IsRunning))
             {
                 OnPropertyChanged(nameof(IsMiniPlayerVisible));
             }
@@ -183,7 +183,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             {
                 Locator.MediaPlaybackViewModel.TrackCollection.IsRunning = true;
                 Locator.MediaPlaybackViewModel.TrackCollection.SetActiveTrackProperty();
-                OnPropertyChanged(nameof(PlaylistItem));
+                OnPropertyChanged(nameof(PlaybackService));
                 OnPropertyChanged(nameof(PlayingType));
                 OnPropertyChanged(nameof(CurrentTrack));
 #if WINDOWS_UWP

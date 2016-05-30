@@ -58,7 +58,7 @@ namespace VLC_WinRT.ViewModels
         private bool _isPlaying;
         private MediaState _mediaState;
         private PlayingType _playingType;
-        private PlaylistItem _trackCollection;
+        private PlaybackService _trackCollection;
         private TimeSpan _timeTotal;
 
         private int _currentSubtitle;
@@ -213,11 +213,11 @@ namespace VLC_WinRT.ViewModels
             }
         }
 
-        public PlaylistItem TrackCollection
+        public PlaybackService TrackCollection
         {
             get
             {
-                _trackCollection = _trackCollection ?? new PlaylistItem(true);
+                _trackCollection = _trackCollection ?? new PlaybackService(true);
                 return _trackCollection;
             }
         }

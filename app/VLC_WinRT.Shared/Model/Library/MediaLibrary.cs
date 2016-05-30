@@ -64,7 +64,7 @@ namespace VLC_WinRT.Model.Library
         public SmartCollection<ArtistItem> Artists { get; private set; } = new SmartCollection<ArtistItem>();
         public SmartCollection<AlbumItem> Albums { get; private set; } = new SmartCollection<AlbumItem>();
         public SmartCollection<TrackItem> Tracks { get; private set; } = new SmartCollection<TrackItem>();
-        public SmartCollection<PlaylistItem> TrackCollections { get; private set; } = new SmartCollection<PlaylistItem>();
+        public SmartCollection<PlaybackService> TrackCollections { get; private set; } = new SmartCollection<PlaybackService>();
 
         public SmartCollection<VideoItem> Videos { get; private set; } = new SmartCollection<VideoItem>();
         public SmartCollection<VideoItem> ViewedVideos { get; private set; } = new SmartCollection<VideoItem>();
@@ -898,7 +898,7 @@ namespace VLC_WinRT.Model.Library
         public async Task AddNewPlaylist(string trackCollectionName)
         {
             if (string.IsNullOrEmpty(trackCollectionName)) return;
-            PlaylistItem trackCollection = null;
+            PlaybackService trackCollection = null;
             trackCollection = await trackCollectionRepository.LoadFromName(trackCollectionName);
             if (trackCollection != null)
             {
@@ -906,19 +906,19 @@ namespace VLC_WinRT.Model.Library
             }
             else
             {
-                trackCollection = new PlaylistItem();
+                trackCollection = new PlaybackService();
                 trackCollection.Name = trackCollectionName;
                 await trackCollectionRepository.Add(trackCollection);
                 TrackCollections.Add(trackCollection);
             }
         }
 
-        public Task DeletePlaylistTrack(TrackItem track, PlaylistItem trackCollection)
+        public Task DeletePlaylistTrack(TrackItem track, PlaybackService trackCollection)
         {
             return tracklistItemRepository.Remove(track.Id, trackCollection.Id);
         }
 
-        public async Task DeletePlaylist(PlaylistItem trackCollection)
+        public async Task DeletePlaylist(PlaybackService trackCollection)
         {
             await trackCollectionRepository.Remove(trackCollection);
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
@@ -961,7 +961,7 @@ namespace VLC_WinRT.Model.Library
             ToastHelper.Basic(string.Format(Strings.TrackAddedToYourPlaylist, albumItem.Name));
         }
 
-        public async Task UpdateTrackCollection(PlaylistItem trackCollection)
+        public async Task UpdateTrackCollection(PlaybackService trackCollection)
         {
             var loadTracks = await tracklistItemRepository.LoadTracks(trackCollection);
             foreach (TracklistItem tracklistItem in loadTracks)
@@ -1132,7 +1132,7 @@ namespace VLC_WinRT.Model.Library
         #endregion
         #region database operations
         #region audio
-        public Task<List<TracklistItem>> LoadTracks(PlaylistItem trackCollection)
+        public Task<List<TracklistItem>> LoadTracks(PlaybackService trackCollection)
         {
             return tracklistItemRepository.LoadTracks(trackCollection);
         }
