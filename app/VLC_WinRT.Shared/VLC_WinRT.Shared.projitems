@@ -197,6 +197,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\KeyboardListenerService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MFService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\NavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\PlaybackService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\VideoMetaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\VLCService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MouseService.cs" />
@@ -221,7 +222,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediaPlaybackViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicLibraryVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicPlayerVM.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\PlaybackService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\BackerCountryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\SearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\SpecialThanksViewModel.cs" />

@@ -112,7 +112,7 @@ namespace VLC_WinRT.ViewModels
             {
                 return _isPlaying;
             }
-            set
+            private set
             {
                 if (value != _isPlaying)
                 {

@@ -40,7 +40,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         private ObservableCollection<ArtistItem> _topArtists = new ObservableCollection<ArtistItem>();
         private ObservableCollection<ArtistItem> _recommendedArtists = new ObservableCollection<ArtistItem>(); // recommanded with MusicFlow
 
-        private ObservableCollection<PlaybackService> _trackCollections = new ObservableCollection<PlaybackService>();
+        private ObservableCollection<PlaylistItem> _trackCollections = new ObservableCollection<PlaylistItem>();
 
         private ObservableCollection<GroupItemList<AlbumItem>> _groupedAlbums;
         private List<AlbumItem> _recommendedAlbums = new List<AlbumItem>();

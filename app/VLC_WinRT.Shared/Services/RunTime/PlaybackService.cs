@@ -30,8 +30,9 @@ using Windows.Storage;
 using System.IO;
 using libVLCX;
 using VLC_WinRT.SharedBackground.Database;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WinRT.ViewModels.MusicVM
+namespace VLC_WinRT.Services.RunTime
 {
     public class PlaybackService
     {
@@ -788,6 +789,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         private async void OnEndReached()
         {
+            Playback_MediaEndReached?.Invoke();
             TileHelper.ClearTile();
             if (!CanGoNext())
             {
@@ -805,8 +807,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
             {
                 await PlayNext();
             }
-
-            Playback_MediaEndReached?.Invoke();
         }
 
         private void OnStopped(IMediaService mediaService)

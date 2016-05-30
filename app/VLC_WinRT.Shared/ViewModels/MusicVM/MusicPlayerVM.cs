@@ -145,15 +145,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 OnPropertyChanged(nameof(IsMiniPlayerVisible));
             });
         }
-
-        private void MediaPlaybackViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(PlaybackService.IsRunning))
-            {
-                OnPropertyChanged(nameof(IsMiniPlayerVisible));
-            }
-        }
-
+        
         private void ViewNavigated(object sender, VLCPage p)
         {
             OnPropertyChanged(nameof(IsMiniPlayerVisible));

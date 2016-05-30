@@ -160,6 +160,7 @@ namespace VLC_WinRT.Services.RunTime
 
         private void EmOnOnStopped()
         {
+            StatusChanged?.Invoke(this, MediaState.Stopped);
             OnStopped?.Invoke(this);
         }
 

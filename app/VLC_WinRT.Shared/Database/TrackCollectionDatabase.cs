@@ -68,7 +68,7 @@ namespace VLC_WinRT.Database
         {
             using (var db = new SQLiteConnection(DbPath))
             {
-                db.DropTable<PlaybackService>();
+                db.DropTable<PlaylistItem>();
             }
         }
     }
