@@ -36,10 +36,8 @@ namespace VLC_WinRT.Views.UserControls
             get { return (TrackItem)GetValue(TrackProperty); }
             set { SetValue(TrackProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for Track.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TrackProperty =
-            DependencyProperty.Register("Track", typeof(TrackItem), typeof(TrackItemTemplate), new PropertyMetadata(null, PropertyChangedCallback));
+        
+        public static readonly DependencyProperty TrackProperty = DependencyProperty.Register(nameof(Track), typeof(TrackItem), typeof(TrackItemTemplate), new PropertyMetadata(null, PropertyChangedCallback));
 
         private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -49,7 +47,9 @@ namespace VLC_WinRT.Views.UserControls
 
         public void Init()
         {
-            if (Track == null) return;
+            if (Track == null)
+                return;
+
             NameTextBlock.Text = Track.Name;
             DurationTextBlock.Text = Strings.HumanizeSeconds(Track.Duration.TotalSeconds);
 
@@ -67,15 +67,21 @@ namespace VLC_WinRT.Views.UserControls
 
         void UpdateTrack()
         {
-            if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.TrackCollection.Playlist?.Count == 0) return;
-            if (Track.Id == Locator.MediaPlaybackViewModel.TrackCollection.Playlist[Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia].Id)
+            if (Track == null)
+                return;
+
+            if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.TrackCollection.Playlist?.Count == 0)
+                return;
+
+            if (Track.IsCurrentPlaying())
             {
                 previousBrush = NameTextBlock.Foreground;
                 NameTextBlock.Foreground = (Brush)App.Current.Resources["MainColor"];
             }
             else
             {
-                if (previousBrush != null) NameTextBlock.Foreground = previousBrush;
+                if (previousBrush != null)
+                    NameTextBlock.Foreground = previousBrush;
             }
         }
     }

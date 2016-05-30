@@ -87,8 +87,10 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
         {
             if (Track == null)
                 return;
-            if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.TrackCollection.Playlist?.Count == 0) return;
-            if (Track.Id == Locator.MediaPlaybackViewModel.TrackCollection.Playlist[Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia].Id)
+            if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.TrackCollection.Playlist?.Count == 0)
+                return;
+
+            if (Track.IsCurrentPlaying())
             {
                 RootGrid.Background = (Brush)App.Current.Resources["MainColor"];
             }

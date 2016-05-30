@@ -52,9 +52,7 @@ namespace VLC_WinRT.Model.Stream
             }
             set { throw new NotImplementedException();}
         }
-
-        public bool IsCurrentPlaying { get; set; }
-
+        
         public static DeleteStreamCommand DeleteStream { get; } = new DeleteStreamCommand();
 
         [Ignore]
@@ -75,6 +73,11 @@ namespace VLC_WinRT.Model.Stream
             // Using a Mrl
             // FromLocation : 1
             return new Tuple<FromType, string>(FromType.FromLocation, Path);
+        }
+        
+        public bool IsCurrentPlaying()
+        {
+            throw new NotImplementedException();
         }
     }
 }

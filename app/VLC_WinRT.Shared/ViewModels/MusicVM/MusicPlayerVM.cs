@@ -182,8 +182,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Locator.MediaPlaybackViewModel.TrackCollection.IsRunning = true;
-                Locator.MediaPlaybackViewModel.TrackCollection.SetActiveTrackProperty();
-                OnPropertyChanged(nameof(PlaybackService));
                 OnPropertyChanged(nameof(PlayingType));
                 OnPropertyChanged(nameof(CurrentTrack));
 #if WINDOWS_UWP

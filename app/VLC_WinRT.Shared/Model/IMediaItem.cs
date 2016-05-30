@@ -10,11 +10,11 @@ namespace VLC_WinRT.Model
         string Path { get; set; }
         string Name { get; set; }
         TimeSpan Duration { get; set; }
-        bool IsCurrentPlaying { get; set; }
 
         StorageFile File { get; }
         Media VlcMedia { get; set; }
-        Tuple<FromType, string> GetMrlAndFromType(bool preferToken = false);
         string Token { get; set; }
+        Tuple<FromType, string> GetMrlAndFromType(bool preferToken = false);
+        bool IsCurrentPlaying();
     }
 }

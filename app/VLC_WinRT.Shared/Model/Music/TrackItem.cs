@@ -27,7 +27,6 @@ namespace VLC_WinRT.Model.Music
         private TimeSpan _duration;
         private bool _favorite;
         private int _currentPosition;
-        private bool _isCurrentPlaying;
         private string _genre;
         private StorageFile _file;
         private BitmapImage _albumImage;
@@ -125,17 +124,7 @@ namespace VLC_WinRT.Model.Music
             get { return _currentPosition; }
             set { SetProperty(ref _currentPosition, value); }
         }
-
-        [Ignore]
-        public bool IsCurrentPlaying
-        {
-            get
-            {
-                return _isCurrentPlaying;
-            }
-            set { SetProperty(ref _isCurrentPlaying, value); }
-        }
-
+        
         [Ignore]
         public String Token
         {
@@ -178,6 +167,11 @@ namespace VLC_WinRT.Model.Music
             if (!string.IsNullOrEmpty(Path))
                 return new Tuple<FromType, string>(FromType.FromPath, Path);
             return null;
+        }
+        
+        public bool IsCurrentPlaying()
+        {
+            return Id == Locator.MediaPlaybackViewModel.TrackCollection.Playlist[Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia].Id;
         }
     }
 }

@@ -179,31 +179,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 IsShuffled = false;
             });
         }
-
-        public void SetActiveTrackProperty()
-        {
-            try
-            {
-                if (Playlist == null || !Playlist.Any() || _currentMedia == -1) return;
-                foreach (var trackItem in Playlist)
-                {
-                    if (trackItem == null) continue;
-                    trackItem.IsCurrentPlaying = false;
-                }
-                if (_currentMedia < Playlist?.Count && Playlist[_currentMedia] != null)
-                {
-                    Playlist[_currentMedia].IsCurrentPlaying = true;
-                    Debug.WriteLine(Playlist[_currentMedia].Path + " Is the active track");
-                }
-                OnPropertyChanged("CanGoPrevious");
-                OnPropertyChanged("CanGoNext");
-            }
-            catch (Exception exception)
-            {
-
-            }
-        }
-
+        
         public async Task Shuffle()
         {
             if (IsShuffled)

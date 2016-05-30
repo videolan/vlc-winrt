@@ -50,12 +50,15 @@ namespace VLC_WinRT.Views.UserControls
 
         public void Init()
         {
-            if (Track == null) return;
+            if (Track == null)
+                return;
+
             NameTextBlock.Text = Track.Name;
             ArtistNameTextBlock.Text = Strings.HumanizedArtistName(Track.ArtistName);
             AlbumNameTextBlock.Text = Strings.HumanizedAlbumName(Track.AlbumName);
             DurationTextBlock.Text = Strings.HumanizeSeconds(Track.Duration.TotalSeconds);
-            Track.PropertyChanged += TrackItemOnPropertyChanged;
+
+            Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged += TrackItemOnPropertyChanged;
             UpdateTrack();
         }
 
@@ -73,12 +76,12 @@ namespace VLC_WinRT.Views.UserControls
         private void TrackItemTemplateDetailed_Unloaded(object sender, RoutedEventArgs e)
         {
             if (Track != null)
-            Track.PropertyChanged -= TrackItemOnPropertyChanged;
+                Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged -= TrackItemOnPropertyChanged;
         }
 
         private void TrackItemOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-            if (propertyChangedEventArgs.PropertyName == nameof(TrackItem.IsCurrentPlaying))
+            if (propertyChangedEventArgs.PropertyName == nameof(PlaybackService.CurrentMedia))
             {
                 UpdateTrack();
             }
@@ -86,7 +89,7 @@ namespace VLC_WinRT.Views.UserControls
 
         void UpdateTrack()
         {
-            if (Track.IsCurrentPlaying)
+            if (Track.IsCurrentPlaying())
             {
                 previousBrush = NameTextBlock.Foreground;
                 NameTextBlock.Foreground = (Brush)App.Current.Resources["MainColor"];
@@ -95,9 +98,11 @@ namespace VLC_WinRT.Views.UserControls
             else
             {
                 MusicLogo.Visibility = Visibility.Collapsed;
-                if (previousBrush != null) NameTextBlock.Foreground = previousBrush;
+                if (previousBrush != null)
+                    NameTextBlock.Foreground = previousBrush;
             }
         }
+
         private void Grid_Holding(object sender, HoldingRoutedEventArgs e)
         {
             if (IsFlyoutEnabled)

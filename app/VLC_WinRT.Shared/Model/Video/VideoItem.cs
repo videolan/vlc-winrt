@@ -114,9 +114,7 @@ namespace VLC_WinRT.Model.Video
         public Boolean HasMoviePicture { get; set; }
 
         public Boolean IsCameraRoll { get; set; }
-
-        public bool IsCurrentPlaying { get; set; }
-
+        
         public int TimeWatchedSeconds
         {
             get
@@ -274,6 +272,11 @@ namespace VLC_WinRT.Model.Video
             if (!string.IsNullOrEmpty(Path))
                 return new Tuple<FromType, string>(FromType.FromPath, Path);
             return null;
+        }
+
+        public bool IsCurrentPlaying()
+        {
+            return Path == Locator.MediaPlaybackViewModel.TrackCollection.Playlist[Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia].Path;
         }
 
         public async Task<bool> LoadFileFromPath()
