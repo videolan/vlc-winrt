@@ -13,12 +13,12 @@ using VLC_WinRT.Views.UserControls;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI;
 
 namespace VLC_WinRT.UI.Legacy.Views.UserControls
 {
     public sealed partial class TrackItemTemplateDetailedVertical : UserControl
     {
-        private Brush previousBrush = null;
         public TrackItemTemplateDetailedVertical()
         {
             this.InitializeComponent();
@@ -29,16 +29,14 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
         {
             Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged -= TrackItemOnPropertyChanged;
         }
-        
+
         public TrackItem Track
         {
             get { return (TrackItem)GetValue(TrackProperty); }
             set { SetValue(TrackProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for Track.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TrackProperty =
-            DependencyProperty.Register(nameof(Track), typeof(TrackItem), typeof(TrackItemTemplateDetailedVertical), new PropertyMetadata(null, PropertyChangedCallback));
+        
+        public static readonly DependencyProperty TrackProperty = DependencyProperty.Register(nameof(Track), typeof(TrackItem), typeof(TrackItemTemplateDetailedVertical), new PropertyMetadata(null, PropertyChangedCallback));
 
         private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -92,13 +90,11 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.TrackCollection.Playlist?.Count == 0) return;
             if (Track.Id == Locator.MediaPlaybackViewModel.TrackCollection.Playlist[Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia].Id)
             {
-                previousBrush = NameTextBlock.Foreground;
-                NameTextBlock.Foreground = (Brush)App.Current.Resources["MainColor"];
+                RootGrid.Background = (Brush)App.Current.Resources["MainColor"];
             }
             else
             {
-                if (previousBrush != null)
-                    NameTextBlock.Foreground = previousBrush;
+                RootGrid.Background = new SolidColorBrush(Colors.Transparent);
             }
         }
     }

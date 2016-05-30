@@ -11,7 +11,7 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Grid>
+    <Grid x:Name="RootGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60" />
             <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
