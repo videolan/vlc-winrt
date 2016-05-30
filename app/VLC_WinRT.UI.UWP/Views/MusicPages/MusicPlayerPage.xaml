@@ -84,7 +84,7 @@
                               IsCompact="True"
                               Style="{StaticResource AppBarButtonStyleHuge}"
                               Command="{Binding PlayPreviousCommand}"
-                              IsEnabled="{Binding TrackCollection.CanGoPrevious}">
+                              IsEnabled="{Binding CanGoPrevious}">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource PreviousSymbol}"
                                   FontFamily="{StaticResource VLCFont}"
@@ -117,7 +117,7 @@
                               IsCompact="True"
                               Style="{StaticResource AppBarButtonStyleHuge}"
                               Command="{Binding PlayNextCommand}"
-                              IsEnabled="{Binding TrackCollection.CanGoNext}">
+                              IsEnabled="{Binding CanGoNext}">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource SkipNextSymbol}"
                                   FontFamily="{StaticResource VLCFont}"

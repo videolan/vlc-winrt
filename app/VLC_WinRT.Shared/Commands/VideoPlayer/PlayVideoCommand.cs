@@ -35,11 +35,6 @@ namespace VLC_WinRT.Commands.VideoPlayer
                 return;
             }
 
-            if (Locator.MediaPlaybackViewModel.PlaybackService.IsRunning)
-            {
-                await Locator.MediaPlaybackViewModel.CleanViewModel();
-            }
-
             LogHelper.Log("PLAYVIDEO: VideoVm is not null, continuing");
             try
             {

@@ -13,6 +13,7 @@ using VLC_WinRT.Helpers;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
 using VLC_WinRT.Utils;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.UI.Legacy.Views.MusicPages
 {
@@ -22,7 +23,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
         {
             this.InitializeComponent();
             Locator.MusicPlayerVM.PropertyChanged += MusicPlayerVM_PropertyChanged;
-            //Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged += TrackCollection_PropertyChanged;
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet += Playback_MediaSet;
             Locator.MediaPlaybackViewModel.PropertyChanged += MediaPlaybackViewModel_PropertyChanged;
             this.Loaded += MiniPlayerWindow_Loaded;
         }
@@ -49,7 +50,6 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
         private void MiniPlayerWindow_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             Responsive();
-            //TitleBarRowDefinition.Height = new GridLength(AppViewHelper.TitleBarHeight, GridUnitType.Pixel);
         }
 
         async void Initialize()
@@ -62,11 +62,10 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
                 SetPreviousButton();
                 SetNextButton();
                 SetPlayPauseButtons();
-                SetTrackList();
                 await SetImgCover();
             });
         }
-        
+
         private async void MediaPlaybackViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             await this.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
@@ -80,22 +79,12 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
             });
         }
 
-        private async void TrackCollection_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private async void Playback_MediaSet(IMediaItem media)
         {
             await this.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
-                switch (e.PropertyName)
-                {
-                    case nameof(Locator.MediaPlaybackViewModel.PlaybackService.CanGoPrevious):
-                        SetPreviousButton();
-                        break;
-                    case nameof(Locator.MediaPlaybackViewModel.PlaybackService.CanGoNext):
-                        SetNextButton();
-                        break;
-                    case nameof(Locator.MediaPlaybackViewModel.PlaybackService.Playlist):
-                        SetTrackList();
-                        break;
-                }
+                SetPreviousButton();
+                SetNextButton();
             });
         }
 
@@ -143,7 +132,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
                 LogHelper.Log("Error getting album picture : " + Locator.MusicPlayerVM.CurrentAlbum.Name);
             }
         }
-        
+
         void SetAlbumName()
         {
             //AlbumName.Text = Locator.MusicPlayerVM.CurrentAlbum?.Name;
@@ -161,9 +150,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
 
         void SetPreviousButton()
         {
-            PreviousButton.Visibility = (Locator.MediaPlaybackViewModel.PlaybackService.CanGoPrevious())
-                ? Visibility.Visible
-                : Visibility.Collapsed;
+            PreviousButton.IsEnabled = Locator.MediaPlaybackViewModel.PlaybackService.CanGoPrevious();
         }
 
         void SetPlayPauseButtons()
@@ -179,13 +166,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
 
         void SetNextButton()
         {
-            NextButton.Visibility = (Locator.MediaPlaybackViewModel.PlaybackService.CanGoNext())
-                ? Visibility.Visible
-                : Visibility.Collapsed;
-        }
-
-        void SetTrackList()
-        {
+            NextButton.IsEnabled = Locator.MediaPlaybackViewModel.PlaybackService.CanGoNext();
         }
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)

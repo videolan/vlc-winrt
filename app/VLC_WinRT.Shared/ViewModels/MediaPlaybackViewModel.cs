@@ -52,11 +52,18 @@ namespace VLC_WinRT.ViewModels
         private long _audioDelay;
         private long _spuDelay;
         private int _bufferingProgress;
-        private bool _isBuffered;
         #endregion
 
-        #region private fields
-        #endregion
+        public PlaybackService PlaybackService
+        {
+            get
+            {
+                _playbackService = _playbackService ?? new PlaybackService();
+                return _playbackService;
+            }
+        }
+        public MouseService MouseService { get { return _mouseService; } }
+
 
         #region commands
 
@@ -84,7 +91,6 @@ namespace VLC_WinRT.ViewModels
         #endregion
 
         #region public props
-        public MouseService MouseService { get { return _mouseService; } }
 
         public bool UseVlcLib { get; set; }
 
@@ -112,9 +118,11 @@ namespace VLC_WinRT.ViewModels
                 {
                     SetProperty(ref _isPlaying, value);
                 }
-                OnPropertyChanged(nameof(PlayingType));
             }
         }
+
+        public bool CanGoNext => PlaybackService.CanGoNext();
+        public bool CanGoPrevious => PlaybackService.CanGoPrevious();
 
         public MediaState MediaState
         {
@@ -126,7 +134,6 @@ namespace VLC_WinRT.ViewModels
         {
             get
             {
-                _volume = PlaybackService.Volume;
                 return _volume;
             }
             set
@@ -186,15 +193,6 @@ namespace VLC_WinRT.ViewModels
             }
         }
 
-        public PlaybackService PlaybackService
-        {
-            get
-            {
-                _playbackService = _playbackService ?? new PlaybackService();
-                return _playbackService;
-            }
-        }
-
         public TimeSpan TimeTotal
         {
             get { return _timeTotal; }
@@ -203,11 +201,7 @@ namespace VLC_WinRT.ViewModels
 
         public int BufferingProgress => _bufferingProgress;
 
-        public bool IsBuffered
-        {
-            get { return _isBuffered; }
-            set { SetProperty(ref _isBuffered, value); }
-        }
+        public bool IsBuffered => _bufferingProgress == 100;
 
         /**
          * Elasped time in milliseconds
@@ -240,7 +234,7 @@ namespace VLC_WinRT.ViewModels
         {
             get
             {
-                return PlaybackService.GetSubtitleTrack();
+                return PlaybackService.GetCurrentSubtitleTrack();
             }
             set
             {
@@ -252,7 +246,7 @@ namespace VLC_WinRT.ViewModels
         {
             get
             {
-                return PlaybackService.GetAudioTrack();
+                return PlaybackService.GetCurrentAudioTrack();
             }
             set
             {
@@ -274,11 +268,11 @@ namespace VLC_WinRT.ViewModels
         #endregion
 
         #region public fields
-        public IEnumerable<DictionaryKeyValue> AudioTracks { get; set; }
+        public IEnumerable<DictionaryKeyValue> AudioTracks => PlaybackService.GetAudioTracks();
 
-        public IEnumerable<DictionaryKeyValue> Subtitles { get; set; }
+        public IEnumerable<DictionaryKeyValue> Subtitles => PlaybackService.GetSubtitleTracks();
 
-        public IEnumerable<VLCChapterDescription> Chapters { get; set; }
+        public IEnumerable<VLCChapterDescription> Chapters => PlaybackService.GetChapters();
 
         #endregion
 
@@ -286,13 +280,19 @@ namespace VLC_WinRT.ViewModels
         public MediaPlaybackViewModel()
         {
             _mouseService = App.Container.Resolve<MouseService>();
-            PlaybackService.Playback_LengthChanged += OnLengthChanged;
-            PlaybackService.Playback_MediaBuffering += MediaServiceOnOnBuffering;
-            PlaybackService.Playback_MediaEndReached += OnEndReached;
-            PlaybackService.Playback_StatusChanged += PlayerStateChanged;
-            PlaybackService.Playback_Stopped += OnStopped;
-            PlaybackService.Playback_TimeChanged += UpdateTime;
+            PlaybackService.Playback_StatusChanged += Playback_StatusChanged;
+            PlaybackService.Playback_MediaTimeChanged += Playback_MediaTimeChanged;
+            PlaybackService.Playback_MediaLengthChanged += Playback_MediaLengthChanged;
+            PlaybackService.Playback_MediaBuffering += Playback_MediaBuffering;
+            PlaybackService.Playback_MediaEndReached += Playback_MediaEndReach;
+            PlaybackService.Playback_MediaFailed += Playback_MediaFailed;
+            PlaybackService.Playback_MediaStopped += Playback_MediaStopped;
+            PlaybackService.Playback_MediaTracksUpdated += Playback_MediaTracksUpdated;
+            PlaybackService.Playback_MediaParsed += Playback_MediaParsed;
+
+            PlaybackService.Playback_MediaSet += PlaybackService_MediaSet;
         }
+
         #endregion
 
         #region methods
@@ -372,138 +372,7 @@ namespace VLC_WinRT.ViewModels
 
             await Locator.MediaPlaybackViewModel.PlaybackService.Add(new List<IMediaItem> { video }, true, true, video);
         }
-
-        private async void UpdateTime(Int64 time)
-        {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-            {
-                OnPropertyChanged(nameof(Time));
-                // Assume position also changes when time does.
-                // We could/should also watch OnPositionChanged event, but let's save us
-                // the cost of another dispatched call.
-                OnPropertyChanged(nameof(Position));
-            });
-        }
-
-        public async Task CleanViewModel()
-        {
-            //            var tcs = new TaskCompletionSource<bool>();
-            //            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
-            //            {
-            //                Stop();
-            //                PlayingType = PlayingType.NotPlaying;
-            //                IsPlaying = false;
-            //                TimeTotal = TimeSpan.Zero;
-            //#if WINDOWS_PHONE_APP
-            //                try
-            //                {
-            //                    // music clean
-            //                    if (BackgroundAudioHelper.Instance?.CurrentState != MediaPlayerState.Stopped)
-            //                    {
-            //                        BackgroundAudioHelper.Instance?.Pause();
-            //                        await App.BackgroundAudioHelper.ResetCollection(ResetType.NormalReset);
-            //                    }
-            //                }
-            //                catch
-            //                {
-            //                }
-            //#endif
-            //                await PlaybackService.ResetCollection();
-            //                PlaybackService.IsRunning = false;
-            //                tcs.SetResult(true);
-            //            });
-            //            await tcs.Task;
-        }
-
-        public async void OnLengthChanged(Int64 length)
-        {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                if (length < 0) return;
-                TimeTotal = TimeSpan.FromMilliseconds(length);
-            });
-        }
-
-        private async void OnStopped(IMediaService mediaService)
-        {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                CurrentAudioTrack = null;
-                CurrentSubtitle = null;
-                OnPropertyChanged(nameof(AudioTracks));
-                OnPropertyChanged(nameof(Subtitles));
-                OnPropertyChanged(nameof(CurrentAudioTrack));
-                OnPropertyChanged(nameof(CurrentSubtitle));
-            });
-        }
-
-        private async void MediaServiceOnOnBuffering(int f)
-        {
-            _bufferingProgress = f;
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                IsBuffered = f == 100;
-                OnPropertyChanged(nameof(BufferingProgress));
-            });
-        }
-
-        async void _mediaService_MediaFailed(object sender, EventArgs e)
-        {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                if (!Locator.MainVM.IsInternet)
-                {
-#if WINDOWS_UWP
-                    await DialogHelper.DisplayDialog(Strings.ConnectionLostPleaseCheck, Strings.Sorry);
-#else
-                                    var lostStreamDialog = new MessageDialog(Strings.ConnectionLostPleaseCheck, Strings.Sorry);
-                                    await lostStreamDialog.ShowAsyncQueue();
-#endif
-                }
-            });
-        }
-
-
-        async void OnEndReached()
-        {
-            switch (PlaybackService.PlayingType)
-            {
-                case PlayingType.Music:
-                    break;
-                case PlayingType.Video:
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                    {
-                        if (Locator.VideoPlayerVm.CurrentVideo != null)
-                            Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = 0;
-                    });
-                    if (Locator.VideoPlayerVm.CurrentVideo != null)
-                        await Locator.MediaLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
-                    break;
-                case PlayingType.NotPlaying:
-                    break;
-                default:
-                    break;
-            }
-
-            if (!PlaybackService.CanGoNext())
-            {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                {
-                    if (PlaybackService.PlayingType == PlayingType.Video)
-                    {
-                        App.RootPage.StopCompositionAnimationOnSwapChain();
-                    }
-                    IsPlaying = false;
-                    if (!Locator.NavigationService.GoBack_Default())
-                    {
-                        Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
-                    }
-                });
-            }
-        }
-
-
-
+        
         public async Task UpdatePosition()
         {
             if (Locator.VideoPlayerVm.CurrentVideo != null)
@@ -517,7 +386,7 @@ namespace VLC_WinRT.ViewModels
         #endregion
 
         #region Events
-        private async void PlayerStateChanged(object sender, MediaState e)
+        private async void Playback_StatusChanged(object sender, MediaState e)
         {
             try
             {
@@ -556,7 +425,104 @@ namespace VLC_WinRT.ViewModels
             catch { }
         }
 
-        public async void MediaTracksUpdated(TrackType type, int trackId)
+        private async void Playback_MediaTimeChanged(long time)
+        {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            {
+                OnPropertyChanged(nameof(Time));
+                // Assume position also changes when time does.
+                // We could/should also watch OnPositionChanged event, but let's save us
+                // the cost of another dispatched call.
+                OnPropertyChanged(nameof(Position));
+            });
+        }
+
+        private async void Playback_MediaLengthChanged(long length)
+        {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (length < 0)
+                    return;
+                TimeTotal = TimeSpan.FromMilliseconds(length);
+            });
+        }
+
+        private async void Playback_MediaStopped(IMediaService mediaService)
+        {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged(nameof(AudioTracks));
+                OnPropertyChanged(nameof(Subtitles));
+                OnPropertyChanged(nameof(CurrentAudioTrack));
+                OnPropertyChanged(nameof(CurrentSubtitle));
+            });
+        }
+
+        private async void Playback_MediaBuffering(int f)
+        {
+            _bufferingProgress = f;
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged(nameof(BufferingProgress));
+                OnPropertyChanged(nameof(IsBuffered));
+            });
+        }
+
+        private async void Playback_MediaFailed(object sender, EventArgs e)
+        {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                if (!Locator.MainVM.IsInternet)
+                {
+#if WINDOWS_UWP
+                    await DialogHelper.DisplayDialog(Strings.ConnectionLostPleaseCheck, Strings.Sorry);
+#else
+                                    var lostStreamDialog = new MessageDialog(Strings.ConnectionLostPleaseCheck, Strings.Sorry);
+                                    await lostStreamDialog.ShowAsyncQueue();
+#endif
+                }
+            });
+        }
+
+        private async void Playback_MediaEndReach()
+        {
+            switch (PlaybackService.PlayingType)
+            {
+                case PlayingType.Music:
+                    break;
+                case PlayingType.Video:
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                    {
+                        if (Locator.VideoPlayerVm.CurrentVideo != null)
+                            Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = 0;
+                    });
+                    if (Locator.VideoPlayerVm.CurrentVideo != null)
+                        await Locator.MediaLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
+                    break;
+                case PlayingType.NotPlaying:
+                    break;
+                default:
+                    break;
+            }
+
+            if (!PlaybackService.CanGoNext())
+            {
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    if (PlaybackService.PlayingType == PlayingType.Video)
+                    {
+                        App.RootPage.StopCompositionAnimationOnSwapChain();
+                    }
+                    IsPlaying = false;
+                    if (!Locator.NavigationService.GoBack_Default())
+                    {
+                        Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
+                    }
+                });
+            }
+        }
+
+        private async void Playback_MediaTracksUpdated(TrackType type, int trackId)
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -565,7 +531,7 @@ namespace VLC_WinRT.ViewModels
             });
         }
 
-        private async void Mem_OnParsedStatus(ParsedStatus parsedStatus)
+        private async void Playback_MediaParsed(ParsedStatus parsedStatus)
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -579,11 +545,12 @@ namespace VLC_WinRT.ViewModels
             });
         }
 
-        public async void UpdateCurrentChapter()
+        private async void PlaybackService_MediaSet(IMediaItem obj)
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                OnPropertyChanged(nameof(CurrentChapter));
+                OnPropertyChanged(nameof(CanGoPrevious));
+                OnPropertyChanged(nameof(CanGoNext));
             });
         }
         #endregion

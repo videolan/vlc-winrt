@@ -35,14 +35,14 @@ namespace VLC_WinRT.ViewModels.MusicVM
 {
     public class PlaybackService
     {
-        public event Action<IMediaItem> Playback_MediaSet;
-        public event Action<ParsedStatus> Playback_Parsed;
-        public event Action<TrackType, int> Playback_MediaTracksUpdated;
         public event EventHandler<MediaState> Playback_StatusChanged;
-        public event TimeChanged Playback_TimeChanged;
+        public event Action<IMediaItem> Playback_MediaSet;
+        public event Action<ParsedStatus> Playback_MediaParsed;
+        public event Action<TrackType, int> Playback_MediaTracksUpdated;
+        public event TimeChanged Playback_MediaTimeChanged;
         public event EventHandler Playback_MediaFailed;
-        public event Action<IMediaService> Playback_Stopped;
-        public event Action<long> Playback_LengthChanged;
+        public event Action<IMediaService> Playback_MediaStopped;
+        public event Action<long> Playback_MediaLengthChanged;
         public event Action Playback_MediaEndReached;
         public event Action<int> Playback_MediaBuffering;
 
@@ -56,7 +56,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         private SmartCollection<IMediaItem> _mediasCollection;
         private SmartCollection<IMediaItem> _nonShuffledPlaylist;
-        private int _currentMedia;
         private bool _isRunning;
         private bool _isShuffled;
         private bool _repeat;
@@ -84,17 +83,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public bool UseVlcLib;
 
-        public int CurrentMedia
-        {
-            get
-            {
-                return _currentMedia;
-            }
-            private set
-            {
-                _currentMedia = value;
-            }
-        }
+        public int CurrentMedia { get; private set; }
 
         public PlayingType PlayingType { get; set; }
 
@@ -105,9 +94,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
             {
                 _repeat = value;
 #if WINDOWS_PHONE_APP
-                if (Locator.MediaPlaybackViewModel._mediaService is BGPlayerService)
+                if (_mediaService is BGPlayerService)
                 {
-                    ((BGPlayerService)Locator.MediaPlaybackViewModel._mediaService).SetRepeat(value);
+                    ((BGPlayerService)_mediaService).SetRepeat(value);
                 }
 #endif
             }
@@ -124,6 +113,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             var next = (Playlist.Count != 1) && (CurrentMedia < Playlist.Count - 1);
             Locator.MediaPlaybackViewModel.SystemMediaTransportControlsNextPossible(next);
+            Debug.WriteLine("Can go next:" + next);
             return next;
         }
 
@@ -245,7 +235,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     return false;
 
                 SetCurrentMediaPosition(mediaIndex);
-                await Task.Run(() => SetMedia(mediaInPlaylist, true, play));
+                await SetMedia(mediaInPlaylist, true, play);
             }
             return true;
         }
@@ -481,12 +471,13 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public void SetCurrentMediaPosition(int index)
         {
             CurrentMedia = index;
+            Playback_MediaSet.Invoke(Playlist[index]);
         }
 
 
         public async Task StartAgain()
         {
-            CurrentMedia = 0;
+            SetCurrentMediaPosition(0);
             await Add(null, false, true, Playlist[CurrentMedia]);
         }
 
@@ -494,7 +485,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             if (CanGoNext())
             {
-                CurrentMedia++;
+                SetCurrentMediaPosition(CurrentMedia + 1);
                 await Add(null, false, true, Playlist[CurrentMedia]);
             }
         }
@@ -503,7 +494,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             if (CanGoPrevious())
             {
-                CurrentMedia--;
+                SetCurrentMediaPosition(CurrentMedia - 1);
                 await Add(null, false, true, Playlist[CurrentMedia]);
             }
         }
@@ -647,7 +638,12 @@ namespace VLC_WinRT.ViewModels.MusicVM
             }
         }
 
-        public DictionaryKeyValue GetAudioTrack()
+        public IEnumerable<VLCChapterDescription> GetChapters()
+        {
+            return _chapters;
+        }
+
+        public DictionaryKeyValue GetCurrentAudioTrack()
         {
             if (_currentAudioTrack == -1 || _currentAudioTrack >= _audioTracks.Count)
                 return null;
@@ -668,7 +664,12 @@ namespace VLC_WinRT.ViewModels.MusicVM
             }
         }
 
-        public DictionaryKeyValue GetSubtitleTrack()
+        public IEnumerable<DictionaryKeyValue> GetAudioTracks()
+        {
+            return _audioTracks;
+        }
+        
+        public DictionaryKeyValue GetCurrentSubtitleTrack()
         {
             if (_currentSubtitle < 0 || _currentSubtitle >= _subtitlesTracks.Count)
                 return null;
@@ -686,6 +687,11 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 var vlcService = (VLCService)_mediaService;
                 vlcService.SetSubtitleTrack(subTrack.Id);
             }
+        }
+
+        public IEnumerable<DictionaryKeyValue> GetSubtitleTracks()
+        {
+            return _subtitlesTracks;
         }
 
         public void Stop()
@@ -750,7 +756,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 PlayingType = PlayingType.Video;
             }
 
-            Playback_Parsed?.Invoke(parsedStatus);
+            Playback_MediaParsed?.Invoke(parsedStatus);
         }
 
         private void OnTrackDeleted(TrackType type, int trackId)
@@ -868,9 +874,11 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     em.OnTrackDeleted -= OnTrackDeleted;
                 }
 
+                _currentAudioTrack = -1;
+                _currentSubtitle = -1;
+                
                 _audioTracks.Clear();
                 _subtitlesTracks.Clear();
-
             }
             else if (mediaService is MFService)
             {
@@ -879,17 +887,17 @@ namespace VLC_WinRT.ViewModels.MusicVM
             }
             mediaService.SetNullMediaPlayer();
 
-            Playback_Stopped?.Invoke(mediaService);
+            Playback_MediaStopped?.Invoke(mediaService);
         }
 
         private void OnLengthChanged(long length)
         {
-            Playback_LengthChanged?.Invoke(length);
+            Playback_MediaLengthChanged?.Invoke(length);
         }
 
         private void UpdateTime(long time)
         {
-            Playback_TimeChanged?.Invoke(time);
+            Playback_MediaTimeChanged?.Invoke(time);
         }
 
         private void PlayerStateChanged(object sender, MediaState e)

@@ -26,7 +26,6 @@ namespace VLC_WinRT.Commands.VideoPlayer
             }
             else if (!Locator.NavigationService.GoBack_Default())
                 Locator.NavigationService.Go(VLCPage.MainPageVideo);
-            await Locator.MediaPlaybackViewModel.CleanViewModel();
             Locator.MediaPlaybackViewModel.IsPlaying = false;
         }
     }
