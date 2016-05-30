@@ -25,6 +25,7 @@ using Windows.Graphics.Display;
 using Windows.UI.Xaml.Media;
 using VLC_WinRT.Commands.VideoPlayer;
 using VLC_WinRT.Model;
+using Windows.UI.Core;
 
 namespace VLC_WinRT.ViewModels.VideoVM
 {
@@ -151,6 +152,10 @@ namespace VLC_WinRT.ViewModels.VideoVM
         #endregion
 
         #region constructors
+        public VideoPlayerVM()
+        {
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet += PlaybackService_Playback_MediaSet;
+        }
         #endregion
 
         #region methods
@@ -325,6 +330,20 @@ namespace VLC_WinRT.ViewModels.VideoVM
             //}
             //App.RootPage.SwapChainPanel.RenderTransform = scaleTransform;
         }
+        #endregion
+
+        #region events
+
+        private async void PlaybackService_Playback_MediaSet(IMediaItem media)
+        {
+            if (!(media is VideoItem))
+                return;
+
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.VideoPlayerVm.CurrentVideo = media as VideoItem);
+
+            await TryUseSubtitleFromFolder();
+        }
+
         #endregion
     }
 }

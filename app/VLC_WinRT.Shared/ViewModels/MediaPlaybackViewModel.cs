@@ -545,7 +545,7 @@ namespace VLC_WinRT.ViewModels
             });
         }
 
-        private async void PlaybackService_MediaSet(IMediaItem obj)
+        private async void PlaybackService_MediaSet(IMediaItem media)
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {

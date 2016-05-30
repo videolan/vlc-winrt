@@ -45,6 +45,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public event Action<long> Playback_MediaLengthChanged;
         public event Action Playback_MediaEndReached;
         public event Action<int> Playback_MediaBuffering;
+        public event Action<IMediaItem> Playback_MediaFileNotFound;
 
         private PlayerEngine _playerEngine;
 
@@ -56,8 +57,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         private SmartCollection<IMediaItem> _mediasCollection;
         private SmartCollection<IMediaItem> _nonShuffledPlaylist;
-        private bool _isRunning;
-        private bool _isShuffled;
         private bool _repeat;
 
         public BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
@@ -117,23 +116,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
             return next;
         }
 
-        public bool IsRunning
-        {
-            get
-            {
-                return _isRunning;
-            }
-            set
-            {
-                _isRunning = value;
-            }
-        }
+        public bool IsRunning { get; set; }
 
-        public bool IsShuffled
-        {
-            get { return _isShuffled; }
-            set { _isShuffled = value; }
-        }
+        public bool IsShuffled { get; set; }
 
         #region public fields
         public SmartCollection<IMediaItem> Playlist
@@ -220,6 +205,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
                 var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems);
                 await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
+
+                IsRunning = true;
             }
 
             if (media != null && Playlist.Any())
@@ -279,7 +266,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
             }
 
             App.BackgroundAudioHelper.RestorePlaylist();
-            IsRunning = true;
             await Add(null, false, false, Playlist[CurrentMedia]);
         }
 
@@ -299,8 +285,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 {
                     SetTime((long)video.TimeWatched.TotalMilliseconds);
                 }
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.VideoPlayerVm.CurrentVideo = video);
-                await Locator.VideoPlayerVm.TryUseSubtitleFromFolder();
 #if WINDOWS_PHONE_APP
                     try
                     {
@@ -331,39 +315,12 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 }
                 catch (Exception exception)
                 {
-                    await Locator.MediaLibrary.RemoveTrackFromCollectionAndDatabase(track);
-                    await Task.Delay(500);
-
-                    if (CanGoNext())
-                    {
-                        await PlayNext();
-                    }
-                    else
-                    {
-                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => Locator.NavigationService.GoBack_Specific());
-                    }
+                    Playback_MediaFileNotFound?.Invoke(media);
                     return;
                 }
+
                 await InitializePlayback(track, autoPlay);
-                if (_playerEngine != PlayerEngine.BackgroundMFPlayer)
-                {
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
-                    {
-                        await Locator.MusicPlayerVM.SetCurrentArtist();
-                        await Locator.MusicPlayerVM.SetCurrentAlbum();
-                        await Locator.MusicPlayerVM.UpdatePlayingUI();
-                        await Locator.MusicPlayerVM.Scrobble();
-#if WINDOWS_PHONE_APP
-#else
-                        await Locator.MusicPlayerVM.UpdateWindows8UI();
-#endif
-                        if (Locator.MusicPlayerVM.CurrentArtist != null)
-                        {
-                            Locator.MusicPlayerVM.CurrentArtist.PlayCount++;
-                            await Locator.MediaLibrary.Update(Locator.MusicPlayerVM.CurrentArtist);
-                        }
-                    });
-                }
+
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, CurrentMedia);
             }
             else if (media is StreamMedia)

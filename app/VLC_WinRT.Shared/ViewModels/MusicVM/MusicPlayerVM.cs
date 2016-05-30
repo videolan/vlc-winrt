@@ -108,9 +108,17 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public MusicPlayerVM()
         {
-            //Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged += MediaPlaybackViewModel_PropertyChanged;
             Locator.NavigationService.ViewNavigated += ViewNavigated;
             Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet += Playback_MediaSet;
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaFileNotFound += PlaybackService_Playback_MediaFileNotFound;
+        }
+
+        private async void PlaybackService_Playback_MediaFileNotFound(IMediaItem media)
+        {
+            if (!(media is TrackItem))
+                return;
+
+            await Locator.MediaLibrary.RemoveTrackFromCollectionAndDatabase(media as TrackItem);
         }
 
         private async void Playback_MediaSet(IMediaItem media)
@@ -123,6 +131,18 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 await SetCurrentArtist();
                 await SetCurrentAlbum();
                 await UpdatePlayingUI();
+                await Locator.MusicPlayerVM.Scrobble();
+#if WINDOWS_PHONE_APP
+#else
+                await Locator.MusicPlayerVM.UpdateWindows8UI();
+#endif
+                if (Locator.MusicPlayerVM.CurrentArtist != null)
+                {
+                    Locator.MusicPlayerVM.CurrentArtist.PlayCount++;
+                    await Locator.MediaLibrary.Update(Locator.MusicPlayerVM.CurrentArtist);
+                }
+
+                OnPropertyChanged(nameof(IsMiniPlayerVisible));
             });
         }
 
