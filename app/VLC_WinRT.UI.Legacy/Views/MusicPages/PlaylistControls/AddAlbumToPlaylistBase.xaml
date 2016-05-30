@@ -127,7 +127,7 @@
                     Content="{Binding Source={StaticResource Strings}, Path=AddToCurrentPlaylist}"
                     Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.AddToPlayingPlaylist}"
                     CommandParameter="{Binding CurrentAlbum}"
-                    Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlaybackService.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"
                     HorizontalAlignment="Stretch" />
         </Grid>
     </Grid>

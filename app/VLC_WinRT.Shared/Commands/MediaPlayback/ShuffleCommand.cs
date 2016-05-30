@@ -8,11 +8,11 @@ namespace VLC_WinRT.Commands.MediaPlayback
     {
         public override async void Execute(object parameter)
         {
-            if (Locator.MediaPlaybackViewModel.TrackCollection == null
-                || Locator.MediaPlaybackViewModel.TrackCollection.Playlist == null
-                || !Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Any()
-                || Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Count < 3) return;
-            await Locator.MediaPlaybackViewModel.TrackCollection.Shuffle();
+            if (Locator.MediaPlaybackViewModel.PlaybackService == null
+                || Locator.MediaPlaybackViewModel.PlaybackService.Playlist == null
+                || !Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Any()
+                || Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Count < 3) return;
+            await Locator.MediaPlaybackViewModel.PlaybackService.Shuffle();
         }
     }
 }

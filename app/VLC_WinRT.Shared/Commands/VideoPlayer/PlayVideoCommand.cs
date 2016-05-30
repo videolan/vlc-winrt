@@ -35,7 +35,7 @@ namespace VLC_WinRT.Commands.VideoPlayer
                 return;
             }
 
-            if (Locator.MediaPlaybackViewModel.TrackCollection.IsRunning)
+            if (Locator.MediaPlaybackViewModel.PlaybackService.IsRunning)
             {
                 await Locator.MediaPlaybackViewModel.CleanViewModel();
             }
@@ -48,7 +48,7 @@ namespace VLC_WinRT.Commands.VideoPlayer
 
                 // TODO: If user selectes a video from their favoites, and it has been moved or deleted, we should ask them if we want to remove it from their list
 
-                await Locator.MediaPlaybackViewModel.TrackCollection.Add(new List<IMediaItem> { videoVm }, true, true, videoVm);
+                await Locator.MediaPlaybackViewModel.PlaybackService.Add(new List<IMediaItem> { videoVm }, true, true, videoVm);
             }
             catch (System.Exception e)
             {

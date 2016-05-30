@@ -22,7 +22,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
         {
             this.InitializeComponent();
             Locator.MusicPlayerVM.PropertyChanged += MusicPlayerVM_PropertyChanged;
-            Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged += TrackCollection_PropertyChanged;
+            Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged += TrackCollection_PropertyChanged;
             Locator.MediaPlaybackViewModel.PropertyChanged += MediaPlaybackViewModel_PropertyChanged;
             this.Loaded += MiniPlayerWindow_Loaded;
         }
@@ -86,13 +86,13 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
             {
                 switch (e.PropertyName)
                 {
-                    case nameof(Locator.MediaPlaybackViewModel.TrackCollection.CanGoPrevious):
+                    case nameof(Locator.MediaPlaybackViewModel.PlaybackService.CanGoPrevious):
                         SetPreviousButton();
                         break;
-                    case nameof(Locator.MediaPlaybackViewModel.TrackCollection.CanGoNext):
+                    case nameof(Locator.MediaPlaybackViewModel.PlaybackService.CanGoNext):
                         SetNextButton();
                         break;
-                    case nameof(Locator.MediaPlaybackViewModel.TrackCollection.Playlist):
+                    case nameof(Locator.MediaPlaybackViewModel.PlaybackService.Playlist):
                         SetTrackList();
                         break;
                 }
@@ -161,7 +161,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
 
         void SetPreviousButton()
         {
-            PreviousButton.Visibility = (Locator.MediaPlaybackViewModel.TrackCollection.CanGoPrevious)
+            PreviousButton.Visibility = (Locator.MediaPlaybackViewModel.PlaybackService.CanGoPrevious)
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }
@@ -179,7 +179,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
 
         void SetNextButton()
         {
-            NextButton.Visibility = (Locator.MediaPlaybackViewModel.TrackCollection.CanGoNext)
+            NextButton.Visibility = (Locator.MediaPlaybackViewModel.PlaybackService.CanGoNext)
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }

@@ -27,7 +27,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
         private void TrackItemTemplate_Unloaded(object sender, RoutedEventArgs e)
         {
-            Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged -= TrackItemOnPropertyChanged;
+            Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged -= TrackItemOnPropertyChanged;
         }
 
         public TrackItem Track
@@ -58,7 +58,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
                 await trackItem.ResetAlbumArt();
             });
 
-            Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged += TrackItemOnPropertyChanged;
+            Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged += TrackItemOnPropertyChanged;
             UpdateTrack();
         }
 
@@ -87,7 +87,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
         {
             if (Track == null)
                 return;
-            if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.TrackCollection.Playlist?.Count == 0)
+            if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.PlaybackService.Playlist?.Count == 0)
                 return;
 
             if (Track.IsCurrentPlaying())

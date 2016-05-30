@@ -42,11 +42,11 @@ namespace VLC_WinRT.Commands.MusicPlayer
             if (Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage
                 || Locator.NavigationService.CurrentPage == VLCPage.CurrentPlaylistPage)
             {
-                var success = await Locator.MediaPlaybackViewModel.TrackCollection.Add(null, false, true, track);
+                var success = await Locator.MediaPlaybackViewModel.PlaybackService.Add(null, false, true, track);
             }
             else
             {
-                var success = await Locator.MediaPlaybackViewModel.TrackCollection.Add(new List<IMediaItem> { track }, false, true, track);
+                var success = await Locator.MediaPlaybackViewModel.PlaybackService.Add(new List<IMediaItem> { track }, false, true, track);
                 if (success)
                 {
                     Locator.NavigationService.Go(VLCPage.MusicPlayerPage);

@@ -68,12 +68,12 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             get
             {
-                if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia == -1
-                    || Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia == Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Count)
+                if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == -1
+                    || Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Count)
                     return null;
-                if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia > Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Count)
+                if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia > Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Count)
                 {
-                    Locator.MediaPlaybackViewModel.TrackCollection.SetCurrentMediaPosition(0); return null;
+                    Locator.MediaPlaybackViewModel.PlaybackService.SetCurrentMediaPosition(0); return null;
                 }
                 var media = Locator.MediaPlaybackViewModel.CurrentMedia;
                 return (media is TrackItem) ? (TrackItem)media : null;
@@ -92,7 +92,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             get
             {
-                if (Locator.MediaPlaybackViewModel.TrackCollection.IsRunning &&
+                if (Locator.MediaPlaybackViewModel.PlaybackService.IsRunning &&
                     Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music &&
                     (Locator.NavigationService.CurrentPage != VLCPage.CurrentPlaylistPage &&
                      Locator.NavigationService.CurrentPage != VLCPage.MusicPlayerPage &&
@@ -108,7 +108,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public MusicPlayerVM()
         {
-            Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged += MediaPlaybackViewModel_PropertyChanged;
+            Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged += MediaPlaybackViewModel_PropertyChanged;
             Locator.NavigationService.ViewNavigated += ViewNavigated;
         }
 
@@ -155,7 +155,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack))
                         return;
                     var index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
-                    if (Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Any())
+                    if (Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Any())
                     {
                         if (index == -1)
                         {
@@ -164,7 +164,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                             ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, 0);
                             index = 0;
                         }
-                        await Locator.MediaPlaybackViewModel.TrackCollection.SetCurrentMediaPosition(index);
+                        await Locator.MediaPlaybackViewModel.PlaybackService.SetCurrentMediaPosition(index);
                         await SetCurrentArtist();
                         await SetCurrentAlbum();
                         await UpdatePlayingUI();
@@ -181,7 +181,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                Locator.MediaPlaybackViewModel.TrackCollection.IsRunning = true;
+                Locator.MediaPlaybackViewModel.PlaybackService.IsRunning = true;
                 OnPropertyChanged(nameof(PlayingType));
                 OnPropertyChanged(nameof(CurrentTrack));
 #if WINDOWS_UWP

@@ -22,7 +22,7 @@ namespace VLC_WinRT.Views.UserControls
 
         private void TrackItemTemplate_Unloaded(object sender, RoutedEventArgs e)
         {
-            Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged -= TrackItemOnPropertyChanged;
+            Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged -= TrackItemOnPropertyChanged;
         }
 
         private void Grid_RightTapped(object sender, RightTappedRoutedEventArgs e)
@@ -53,7 +53,7 @@ namespace VLC_WinRT.Views.UserControls
             NameTextBlock.Text = Track.Name;
             DurationTextBlock.Text = Strings.HumanizeSeconds(Track.Duration.TotalSeconds);
 
-            Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged += TrackItemOnPropertyChanged;
+            Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged += TrackItemOnPropertyChanged;
             UpdateTrack();
         }
 
@@ -70,7 +70,7 @@ namespace VLC_WinRT.Views.UserControls
             if (Track == null)
                 return;
 
-            if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.TrackCollection.Playlist?.Count == 0)
+            if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.PlaybackService.Playlist?.Count == 0)
                 return;
 
             if (Track.IsCurrentPlaying())

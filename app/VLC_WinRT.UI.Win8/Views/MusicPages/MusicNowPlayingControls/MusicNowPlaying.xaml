@@ -44,7 +44,7 @@
         <FlipView x:Name="MusicNowPlayingFlipView"
                   Grid.Row="1"
                   Grid.Column="0"
-                  ItemsSource="{Binding TrackCollection.Playlist}"
+                  ItemsSource="{Binding PlaybackService.Playlist}"
                   Loaded="MusicNowPlaying_OnLoaded"
                   VerticalAlignment="Top">
             <FlipView.ItemTemplate>
@@ -112,7 +112,7 @@
                                   Height="50"
                                   Width="50"
                                   Command="{Binding PlayPreviousCommand}"
-                                  IsEnabled="{Binding TrackCollection.CanGoPrevious}">
+                                  IsEnabled="{Binding PlaybackService.CanGoPrevious}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PreviousSymbol}"
                                       FontFamily="{StaticResource VLCFont}"
@@ -155,7 +155,7 @@
                                   Height="50"
                                   Width="50"
                                   Command="{Binding PlayNextCommand}"
-                                  IsEnabled="{Binding TrackCollection.CanGoNext}">
+                                  IsEnabled="{Binding PlaybackService.CanGoNext}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource SkipNextSymbol}"
                                       FontFamily="{StaticResource VLCFont}"

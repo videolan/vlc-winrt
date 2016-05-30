@@ -58,7 +58,7 @@ namespace VLC_WinRT.Views.UserControls
             AlbumNameTextBlock.Text = Strings.HumanizedAlbumName(Track.AlbumName);
             DurationTextBlock.Text = Strings.HumanizeSeconds(Track.Duration.TotalSeconds);
 
-            Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged += TrackItemOnPropertyChanged;
+            Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged += TrackItemOnPropertyChanged;
             UpdateTrack();
         }
 
@@ -76,7 +76,7 @@ namespace VLC_WinRT.Views.UserControls
         private void TrackItemTemplateDetailed_Unloaded(object sender, RoutedEventArgs e)
         {
             if (Track != null)
-                Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged -= TrackItemOnPropertyChanged;
+                Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged -= TrackItemOnPropertyChanged;
         }
 
         private void TrackItemOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)

@@ -64,7 +64,7 @@
         <AppBarButton x:Name="PlayPreviousButton"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       Command="{Binding PlayPreviousCommand}"
-                      IsEnabled="{Binding TrackCollection.CanGoPrevious}"
+                      IsEnabled="{Binding PlaybackService.CanGoPrevious}"
                       IsCompact="True">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource PreviousSymbol}"
@@ -96,7 +96,7 @@
         <AppBarButton x:Name="PlayNextButton"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       Command="{Binding PlayNextCommand}"
-                      IsEnabled="{Binding TrackCollection.CanGoNext}"
+                      IsEnabled="{Binding PlaybackService.CanGoNext}"
                       IsCompact="True">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource SkipNextSymbol}"
@@ -107,7 +107,7 @@
                             DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                             Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.Shuffle}"
                             Label="{Binding Source={StaticResource Strings},Path=Shuffle}"
-                            IsChecked="{Binding TrackCollection.IsShuffled, Mode=TwoWay}"
+                            IsChecked="{Binding PlaybackService.IsShuffled, Mode=TwoWay}"
                             IsCompact="True"
                             Tag="sec">
             <AppBarToggleButton.Icon>
@@ -118,7 +118,7 @@
         <AppBarToggleButton x:Name="RepeatButton"
                             Label="repeat"
                             DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
-                            IsChecked="{Binding TrackCollection.Repeat, Mode=TwoWay}"
+                            IsChecked="{Binding PlaybackService.Repeat, Mode=TwoWay}"
                             IsCompact="True"
                             Tag="sec">
             <AppBarToggleButton.Icon>

@@ -996,8 +996,8 @@ namespace VLC_WinRT.Model.Library
                         albumDatabase.Remove(album);
                         artist.Albums.Remove(artistalbum);
                     }
-                    var playingTrack = Locator.MediaPlaybackViewModel.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackItem.Id);
-                    if (playingTrack != null) Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Remove(playingTrack);
+                    var playingTrack = Locator.MediaPlaybackViewModel.PlaybackService.Playlist.FirstOrDefault(x => x.Id == trackItem.Id);
+                    if (playingTrack != null) Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Remove(playingTrack);
                 }
                 catch
                 {

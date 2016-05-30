@@ -276,7 +276,7 @@ namespace VLC_WinRT.Model.Video
 
         public bool IsCurrentPlaying()
         {
-            return Path == Locator.MediaPlaybackViewModel.TrackCollection.Playlist[Locator.MediaPlaybackViewModel.TrackCollection.CurrentMedia].Path;
+            return Path == Locator.MediaPlaybackViewModel.PlaybackService.Playlist[Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia].Path;
         }
 
         public async Task<bool> LoadFileFromPath()

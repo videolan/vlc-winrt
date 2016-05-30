@@ -68,7 +68,7 @@
                 <AppBarToggleButton Grid.Column="0"
                                     Style="{StaticResource VLCAppBarToggleButton}"
                                     IsCompact="True"
-                                    DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
+                                    DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlaybackService}"
                                     IsChecked="{Binding IsShuffled, Mode=TwoWay}"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"
@@ -129,7 +129,7 @@
                                     IsCompact="True"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"
-                                    DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
+                                    DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlaybackService}"
                                     IsChecked="{Binding Repeat, Mode=TwoWay}">
                     <AppBarToggleButton.Icon>
                         <FontIcon Glyph="{StaticResource RefreshSymbol}"
