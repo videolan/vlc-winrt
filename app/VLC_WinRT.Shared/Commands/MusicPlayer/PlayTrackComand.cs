@@ -21,8 +21,6 @@ namespace VLC_WinRT.Commands.MusicPlayer
     {
         public async override void Execute(object parameter)
         {
-            if (Locator.NavigationService.CurrentPage != VLCPage.MusicPlayerPage && Locator.NavigationService.CurrentPage != VLCPage.CurrentPlaylistPage)
-                Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             TrackItem track = null;
             if (parameter is ItemClickEventArgs)
             {
@@ -40,7 +38,20 @@ namespace VLC_WinRT.Commands.MusicPlayer
                 return;
             }
 
-            await Locator.MediaPlaybackViewModel.TrackCollection.Add(new List<IMediaItem> { track }, false, true, track);
+
+            if (Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage
+                || Locator.NavigationService.CurrentPage == VLCPage.CurrentPlaylistPage)
+            {
+                var success = await Locator.MediaPlaybackViewModel.TrackCollection.Add(null, false, true, track);
+            }
+            else
+            {
+                var success = await Locator.MediaPlaybackViewModel.TrackCollection.Add(new List<IMediaItem> { track }, false, true, track);
+                if (success)
+                {
+                    Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
+                }
+            }
         }
     }
 }

@@ -33,7 +33,7 @@
             </ListView.ItemContainerTransitions>
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding TrackClicked}"
+                    <triggers:InvokeCommandAction Command="{Binding AlbumTrackClickedCommand}"
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>

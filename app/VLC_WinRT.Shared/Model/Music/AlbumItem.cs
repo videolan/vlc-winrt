@@ -80,7 +80,7 @@ namespace VLC_WinRT.Model.Music
         public FavoriteAlbumCommand FavoriteAlbum { get; } = new FavoriteAlbumCommand();
 
         [Ignore]
-        public AlbumTrackClickedCommand TrackClicked { get; } = new AlbumTrackClickedCommand();
+        public AlbumTrackClickedCommand AlbumTrackClickedCommand { get; } = new AlbumTrackClickedCommand();
 
         [Ignore]
         public PinAlbumCommand PinAlbumCommand { get; } = new PinAlbumCommand();

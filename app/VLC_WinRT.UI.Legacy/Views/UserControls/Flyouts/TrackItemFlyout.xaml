@@ -70,7 +70,7 @@
                           Label="{Binding Source={StaticResource Strings}, Path=PlayTrack}"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Foreground="{ThemeResource MainColor}"
-                          Command="{Binding TrackClicked}"
+                          Command="{Binding TrackClickedCommand}"
                           CommandParameter="{Binding}"
                           Click="ActionButton_Click">
                 <AppBarButton.Icon>

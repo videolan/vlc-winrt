@@ -144,7 +144,7 @@ namespace VLC_WinRT.Model.Music
         }
 
         [Ignore]
-        public TrackClickedCommand TrackClicked { get; } = new TrackClickedCommand();
+        public TrackClickedCommand TrackClickedCommand { get; } = new TrackClickedCommand();
 
         [Ignore]
         public ArtistClickedCommand ViewArtist { get; } = new ArtistClickedCommand();

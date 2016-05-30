@@ -233,37 +233,48 @@ namespace VLC_WinRT.ViewModels.MusicVM
             Playlist.Remove(media);
         }
 
-        public async Task Add(IEnumerable<IMediaItem> mediaItems, bool reset, bool play, IMediaItem media)
+        public async Task<bool> Add(IEnumerable<IMediaItem> mediaItems, bool reset, bool play, IMediaItem media)
         {
             if (reset)
             {
                 await ResetCollection();
             }
 
-            var count = (uint)Playlist.Count;
-            var trackItems = mediaItems.OfType<TrackItem>();
-            foreach (var track in trackItems)
+            if (mediaItems != null)
             {
-                track.Index = count;
-                count++;
+                var count = (uint)Playlist.Count;
+                var trackItems = mediaItems.OfType<TrackItem>();
+                foreach (var track in trackItems)
+                {
+                    track.Index = count;
+                    count++;
+                }
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    Playlist.AddRange(mediaItems);
+                    OnPropertyChanged(nameof(CanGoNext));
+                });
+
+                var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems);
+                await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
             }
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-            {
-                Playlist.AddRange(mediaItems);
-                OnPropertyChanged(nameof(CanGoNext));
-            });
 
-            var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems);
-            await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
-
-            if (play)
+            if (media != null && Playlist.Any())
             {
                 var mediaInPlaylist = Playlist.FirstOrDefault(x => x.Path == media.Path);
+
+                if (mediaInPlaylist == null)
+                    return false;
+
                 var mediaIndex = Playlist.IndexOf(mediaInPlaylist);
 
+                if (mediaIndex < 0)
+                    return false;
+
                 await SetCurrentMediaPosition(mediaIndex);
-                await Task.Run(() => Locator.MediaPlaybackViewModel.SetMedia(mediaInPlaylist));
+                await Task.Run(() => Locator.MediaPlaybackViewModel.SetMedia(mediaInPlaylist, true, play));
             }
+            return true;
         }
 
         public async Task RestorePlaylist()
@@ -287,7 +298,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             if (Locator.MusicPlayerVM.CurrentTrack != null)
             {
                 IsRunning = true;
-                await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false, false);
+                await Add(null, false, false, Locator.MusicPlayerVM.CurrentTrack);
             }
         }
         #endregion
@@ -307,7 +318,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 CurrentMedia = 0;
-                await Locator.MediaPlaybackViewModel.SetMedia(Playlist[CurrentMedia], false);
+                await Add(null, false, true, Playlist[CurrentMedia]);
             });
         }
 
@@ -318,7 +329,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                 {
                     CurrentMedia++;
-                    await Locator.MediaPlaybackViewModel.SetMedia(Playlist[CurrentMedia], false);
+                    await Add(null, false, true, Playlist[CurrentMedia]);
                 });
             }
         }
@@ -328,7 +339,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             if (CanGoPrevious)
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => CurrentMedia--);
-                await Locator.MediaPlaybackViewModel.SetMedia(Playlist[CurrentMedia], false);
+                await Add(null, false, true, Playlist[CurrentMedia]);
             }
         }
     }
