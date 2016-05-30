@@ -29,7 +29,7 @@
             </Grid.ColumnDefinitions>
             <Image Grid.Column="0"
                    Grid.RowSpan="3"
-                   Source="{Binding Thumbnail}"
+                   Source="{Binding AlbumImage}"
                    MaxHeight="60"
                    MaxWidth="60"
                    Stretch="UniformToFill" />
