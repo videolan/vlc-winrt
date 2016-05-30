@@ -21,7 +21,7 @@ namespace VLC_WinRT.Commands.MusicPlayer
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             var shuffledTracks = tracks.Shuffle();
 
-            await Locator.MediaPlaybackViewModel.PlaybackService.Add(shuffledTracks, true, true, shuffledTracks[0]);
+            await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(shuffledTracks, true, true, shuffledTracks[0]);
         }
     }
 }

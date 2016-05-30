@@ -18,17 +18,17 @@ namespace VLC_WinRT.Commands.MusicPlayer
 
             if (parameter is int)
             {
-                await Locator.MediaPlaybackViewModel.PlaybackService.Add(trackCollection.Playlist, false, true, trackCollection.Playlist[(int)parameter]);
+                await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(trackCollection.Playlist, false, true, trackCollection.Playlist[(int)parameter]);
             }
             else if (parameter is ItemClickEventArgs)
             {
                 var track = (TrackItem)((ItemClickEventArgs)parameter).ClickedItem;
 
-                await Locator.MediaPlaybackViewModel.PlaybackService.Add(trackCollection.Playlist, true, true, track);
+                await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(trackCollection.Playlist, true, true, track);
             }
             else
             {
-                await Locator.MediaPlaybackViewModel.PlaybackService.Add(trackCollection.Playlist, false, true, trackCollection.Playlist[0]);
+                await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(trackCollection.Playlist, false, true, trackCollection.Playlist[0]);
             }
         }
     }

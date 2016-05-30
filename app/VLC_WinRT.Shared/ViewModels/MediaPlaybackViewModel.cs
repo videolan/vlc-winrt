@@ -338,7 +338,7 @@ namespace VLC_WinRT.ViewModels
             try
             {
                 var stream = await Locator.MediaLibrary.LoadStreamFromDatabaseOrCreateOne(streamMrl);
-                await Locator.MediaPlaybackViewModel.PlaybackService.Add(new List<IMediaItem> { stream }, true, true, stream);
+                await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(new List<IMediaItem> { stream }, true, true, stream);
             }
             catch (Exception e)
             {
@@ -356,7 +356,7 @@ namespace VLC_WinRT.ViewModels
         {
             var trackItem = await Locator.MediaLibrary.GetTrackItemFromFile(file, token);
 
-            await Locator.MediaPlaybackViewModel.PlaybackService.Add(new List<IMediaItem> { trackItem }, true, true, trackItem);
+            await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(new List<IMediaItem> { trackItem }, true, true, trackItem);
         }
 
         /// <summary>
@@ -370,7 +370,7 @@ namespace VLC_WinRT.ViewModels
             if (token != null)
                 video.Token = token;
 
-            await Locator.MediaPlaybackViewModel.PlaybackService.Add(new List<IMediaItem> { video }, true, true, video);
+            await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(new List<IMediaItem> { video }, true, true, video);
         }
         
         public async Task UpdatePosition()

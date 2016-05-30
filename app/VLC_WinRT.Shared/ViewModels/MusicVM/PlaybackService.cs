@@ -175,16 +175,16 @@ namespace VLC_WinRT.ViewModels.MusicVM
                         Playlist.Move(index1, index2);
                     }
                 }
-                await Add(Playlist, true, false, null);
+                await SetPlaylist(Playlist, true, false, null);
             }
             else
             {
                 Playlist.Clear();
-                await Add(NonShuffledPlaylist, true, false, null);
+                await SetPlaylist(NonShuffledPlaylist, true, false, null);
             }
         }
 
-        public async Task<bool> Add(IEnumerable<IMediaItem> mediaItems, bool reset, bool play, IMediaItem media)
+        public async Task<bool> SetPlaylist(IEnumerable<IMediaItem> mediaItems, bool reset, bool play, IMediaItem media)
         {
             if (reset)
             {
@@ -266,7 +266,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             }
 
             App.BackgroundAudioHelper.RestorePlaylist();
-            await Add(null, false, false, Playlist[CurrentMedia]);
+            await SetPlaylist(null, false, false, Playlist[CurrentMedia]);
         }
 
         private async Task SetMedia(IMediaItem media, bool forceVlcLib = false, bool autoPlay = true)
@@ -435,7 +435,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public async Task StartAgain()
         {
             SetCurrentMediaPosition(0);
-            await Add(null, false, true, Playlist[CurrentMedia]);
+            await SetPlaylist(null, false, true, Playlist[CurrentMedia]);
         }
 
         public async Task PlayNext()
@@ -443,7 +443,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             if (CanGoNext())
             {
                 SetCurrentMediaPosition(CurrentMedia + 1);
-                await Add(null, false, true, Playlist[CurrentMedia]);
+                await SetPlaylist(null, false, true, Playlist[CurrentMedia]);
             }
         }
 
@@ -452,7 +452,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             if (CanGoPrevious())
             {
                 SetCurrentMediaPosition(CurrentMedia - 1);
-                await Add(null, false, true, Playlist[CurrentMedia]);
+                await SetPlaylist(null, false, true, Playlist[CurrentMedia]);
             }
         }
 
