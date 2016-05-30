@@ -31,6 +31,7 @@
             <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Subtitles}"
                        Style="{StaticResource BaselineTextStyle}"
                        Foreground="{ThemeResource BasicForeground}"
+                       FontWeight="SemiBold"
                        VerticalAlignment="Center"
                        Margin="0,-12,0,0" />
             <Button Style="{StaticResource TextBlockButtonStyle}"
