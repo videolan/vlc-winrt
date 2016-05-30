@@ -19,9 +19,9 @@ namespace VLC_WinRT.Commands.MediaPlayback
         {
             if (Locator.MediaPlaybackViewModel.MediaState == MediaState.NothingSpecial)
             {
-                Locator.MediaPlaybackViewModel._mediaService.Play();
+                Locator.MediaPlaybackViewModel.PlaybackService.Play();
             }
-            Locator.MediaPlaybackViewModel.Pause();
+            Locator.MediaPlaybackViewModel.PlaybackService.Pause();
         }
     }
 }

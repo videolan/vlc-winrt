@@ -6,6 +6,7 @@ using VLC_WinRT.ViewModels.MusicVM;
 using System.Collections.Generic;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Database
 {
@@ -22,7 +23,7 @@ namespace VLC_WinRT.Database
         {
             using (var db = new SQLiteConnection(DbPath))
             {
-                db.CreateTable<PlaybackService>();
+                db.CreateTable<PlaylistItem>();
             }
         }
 
@@ -30,29 +31,29 @@ namespace VLC_WinRT.Database
         {
             using (var db = new SQLiteConnection(DbPath))
             {
-                db.DeleteAll<PlaybackService>();
+                db.DeleteAll<PlaylistItem>();
             }
         }
 
-        public async Task<PlaybackService> LoadFromName(string name)
+        public async Task<PlaylistItem> LoadFromName(string name)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return await connection.Table<PlaybackService>().Where(x => x.Name == name).FirstOrDefaultAsync();
+            return await connection.Table<PlaylistItem>().Where(x => x.Name == name).FirstOrDefaultAsync();
         }
 
-        public async Task<List<PlaybackService>> LoadTrackCollections()
+        public async Task<List<PlaylistItem>> LoadTrackCollections()
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return await connection.Table<PlaybackService>().ToListAsync();
+            return await connection.Table<PlaylistItem>().ToListAsync();
         }
 
-        public Task Add(PlaybackService trackCollection)
+        public Task Add(PlaylistItem trackCollection)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
             return connection.InsertAsync(trackCollection);
         }
 
-        public async Task Remove(PlaybackService trackCollection)
+        public async Task Remove(PlaylistItem trackCollection)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
             var loadTracks = await Locator.MediaLibrary.LoadTracks(trackCollection);

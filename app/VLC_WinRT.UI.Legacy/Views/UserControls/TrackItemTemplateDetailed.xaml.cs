@@ -11,6 +11,7 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.ViewModels.MusicVM;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Views.UserControls
 {
@@ -30,7 +31,7 @@ namespace VLC_WinRT.Views.UserControls
 
         // Using a DependencyProperty as the backing store for IsFlyoutEnabled.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IsFlyoutEnabledProperty =
-            DependencyProperty.Register("IsFlyoutEnabled", typeof(bool), typeof(TrackItemTemplateDetailed), new PropertyMetadata(true));
+            DependencyProperty.Register(nameof(IsFlyoutEnabled), typeof(bool), typeof(TrackItemTemplateDetailed), new PropertyMetadata(true));
         
         public TrackItem Track
         {
@@ -40,7 +41,7 @@ namespace VLC_WinRT.Views.UserControls
 
         // Using a DependencyProperty as the backing store for Track.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TrackProperty =
-            DependencyProperty.Register("Track", typeof(TrackItem), typeof(TrackItemTemplateDetailed), new PropertyMetadata(null, PropertyChangedCallback));
+            DependencyProperty.Register(nameof(Track), typeof(TrackItem), typeof(TrackItemTemplateDetailed), new PropertyMetadata(null, PropertyChangedCallback));
 
         private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -58,8 +59,8 @@ namespace VLC_WinRT.Views.UserControls
             AlbumNameTextBlock.Text = Strings.HumanizedAlbumName(Track.AlbumName);
             DurationTextBlock.Text = Strings.HumanizeSeconds(Track.Duration.TotalSeconds);
 
-            Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged += TrackItemOnPropertyChanged;
-            UpdateTrack();
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet += UpdateTrack;
+            UpdateTrack(Track);
         }
 
         private void Grid_RightTapped(object sender, RightTappedRoutedEventArgs e)
@@ -76,18 +77,11 @@ namespace VLC_WinRT.Views.UserControls
         private void TrackItemTemplateDetailed_Unloaded(object sender, RoutedEventArgs e)
         {
             if (Track != null)
-                Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged -= TrackItemOnPropertyChanged;
+                Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet -= UpdateTrack;
         }
+        
 
-        private void TrackItemOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
-        {
-            if (propertyChangedEventArgs.PropertyName == nameof(PlaybackService.CurrentMedia))
-            {
-                UpdateTrack();
-            }
-        }
-
-        void UpdateTrack()
+        void UpdateTrack(IMediaItem media)
         {
             if (Track.IsCurrentPlaying())
             {

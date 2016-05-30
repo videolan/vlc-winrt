@@ -70,7 +70,7 @@ namespace VLC_WinRT.Commands.VideoPlayer
         void OpenSubtitleFile(StorageFile file)
         {
             string mrl = "winrt://" + StorageApplicationPermissions.FutureAccessList.Add(file);
-            Locator.MediaPlaybackViewModel.OpenSubtitleMrl(mrl);
+            Locator.MediaPlaybackViewModel.PlaybackService.OpenSubtitleMrl(mrl);
         }
     }
 }

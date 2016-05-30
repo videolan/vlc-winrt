@@ -235,94 +235,95 @@ namespace VLC_WinRT.ViewModels.VideoVM
 
         public void ChangeSurfaceZoom(VLCSurfaceZoom desiredZoom)
         {
-            if (!(Locator.MediaPlaybackViewModel._mediaService is VLCService)) return;
+            //if (!(Locator.MediaPlaybackViewModel._mediaService is VLCService))
+            //    return;
 
-            var screenWidth = App.RootPage.SwapChainPanel.ActualWidth;
-            var screenHeight = App.RootPage.SwapChainPanel.ActualHeight;
+            //var screenWidth = App.RootPage.SwapChainPanel.ActualWidth;
+            //var screenHeight = App.RootPage.SwapChainPanel.ActualHeight;
 
-            var vlcService = (VLCService)Locator.MediaPlaybackViewModel._mediaService;
-            var videoTrack = vlcService.MediaPlayer?.media()?.tracks()?.FirstOrDefault(x => x.type() == TrackType.Video);
-            if (videoTrack == null) return;
-            var videoHeight = videoTrack.height();
-            var videoWidth = videoTrack.width();
+            //var vlcService = (VLCService)Locator.MediaPlaybackViewModel._mediaService;
+            //var videoTrack = vlcService.MediaPlayer?.media()?.tracks()?.FirstOrDefault(x => x.type() == TrackType.Video);
+            //if (videoTrack == null) return;
+            //var videoHeight = videoTrack.height();
+            //var videoWidth = videoTrack.width();
 
-            var sarDen = videoTrack.sarDen();
-            var sarNum = videoTrack.sarNum();
+            //var sarDen = videoTrack.sarDen();
+            //var sarNum = videoTrack.sarNum();
 
-            double var = 0, displayedVideoWidth;
-            if (sarDen == sarNum)
-            {
-                // Assuming it's 1:1 pixel
-                var = (float)videoWidth / videoHeight;
-            }
-            else
-            {
-                var = (videoWidth * (double)sarNum / sarDen) / videoHeight;
-            }
+            //double var = 0, displayedVideoWidth;
+            //if (sarDen == sarNum)
+            //{
+            //    // Assuming it's 1:1 pixel
+            //    var = (float)videoWidth / videoHeight;
+            //}
+            //else
+            //{
+            //    var = (videoWidth * (double)sarNum / sarDen) / videoHeight;
+            //}
 
-            var screenar = (float)screenWidth / screenHeight;
-            double displayedVideoHeight = 0;
-            if (var > screenar)
-            {
-                displayedVideoHeight = screenWidth * ((float)videoHeight / videoWidth);
-                displayedVideoWidth = screenWidth;
-            }
-            else
-            {
-                displayedVideoHeight = screenHeight;
-                displayedVideoWidth = displayedVideoHeight * var;
-            }
+            //var screenar = (float)screenWidth / screenHeight;
+            //double displayedVideoHeight = 0;
+            //if (var > screenar)
+            //{
+            //    displayedVideoHeight = screenWidth * ((float)videoHeight / videoWidth);
+            //    displayedVideoWidth = screenWidth;
+            //}
+            //else
+            //{
+            //    displayedVideoHeight = screenHeight;
+            //    displayedVideoWidth = displayedVideoHeight * var;
+            //}
 
-            double bandesNoiresVertical = screenHeight - displayedVideoHeight;
-            double bandesNoiresHorizontal = screenWidth - displayedVideoWidth;
+            //double bandesNoiresVertical = screenHeight - displayedVideoHeight;
+            //double bandesNoiresHorizontal = screenWidth - displayedVideoWidth;
 
-            var scaleTransform = new ScaleTransform();
-            var verticalScale = Math.Abs(displayedVideoHeight / (displayedVideoHeight - bandesNoiresVertical));
-            var horizontalScale = Math.Abs(displayedVideoWidth / (displayedVideoWidth - bandesNoiresHorizontal));
+            //var scaleTransform = new ScaleTransform();
+            //var verticalScale = Math.Abs(displayedVideoHeight / (displayedVideoHeight - bandesNoiresVertical));
+            //var horizontalScale = Math.Abs(displayedVideoWidth / (displayedVideoWidth - bandesNoiresHorizontal));
 
-            scaleTransform.CenterX = screenWidth / 2;
-            scaleTransform.CenterY = screenHeight / 2;
-            switch (desiredZoom)
-            {
-                case VLCSurfaceZoom.SURFACE_BEST_FIT:
-                    scaleTransform.ScaleX = scaleTransform.ScaleY = 1;
-                    break;
-                case VLCSurfaceZoom.SURFACE_FIT_HORIZONTAL:
-                    scaleTransform.ScaleX = horizontalScale;
-                    scaleTransform.ScaleY = horizontalScale;
-                    scaleTransform.CenterX = screenWidth / 2;
-                    scaleTransform.CenterY = screenHeight / 2;
-                    break;
-                case VLCSurfaceZoom.SURFACE_FIT_VERTICAL:
-                    scaleTransform.ScaleX = verticalScale;
-                    scaleTransform.ScaleY = verticalScale;
-                    break;
-                case VLCSurfaceZoom.SURFACE_STRETCH:
-                    if (bandesNoiresVertical > 0)
-                    {
-                        scaleTransform.ScaleX = 1;
-                        scaleTransform.ScaleY = verticalScale;
-                    }
-                    else if (bandesNoiresHorizontal > 0)
-                    {
-                        scaleTransform.ScaleX = horizontalScale;
-                        scaleTransform.ScaleY = 1;
-                    }
-                    break;
-                //case VLCSurfaceZoom.SURFACE_FILL:
-                //    break;
-                //case VLCSurfaceZoom.SURFACE_16_9:
-                //    break;
-                //case VLCSurfaceZoom.SURFACE_4_3:
-                //    break;
-                //case VLCSurfaceZoom.SURFACE_ORIGINAL:
-                //    break;
-                //case VLCSurfaceZoom.SURFACE_CUSTOM_ZOOM:
-                //    break;
-                default:
-                    break;
-            }
-            App.RootPage.SwapChainPanel.RenderTransform = scaleTransform;
+            //scaleTransform.CenterX = screenWidth / 2;
+            //scaleTransform.CenterY = screenHeight / 2;
+            //switch (desiredZoom)
+            //{
+            //    case VLCSurfaceZoom.SURFACE_BEST_FIT:
+            //        scaleTransform.ScaleX = scaleTransform.ScaleY = 1;
+            //        break;
+            //    case VLCSurfaceZoom.SURFACE_FIT_HORIZONTAL:
+            //        scaleTransform.ScaleX = horizontalScale;
+            //        scaleTransform.ScaleY = horizontalScale;
+            //        scaleTransform.CenterX = screenWidth / 2;
+            //        scaleTransform.CenterY = screenHeight / 2;
+            //        break;
+            //    case VLCSurfaceZoom.SURFACE_FIT_VERTICAL:
+            //        scaleTransform.ScaleX = verticalScale;
+            //        scaleTransform.ScaleY = verticalScale;
+            //        break;
+            //    case VLCSurfaceZoom.SURFACE_STRETCH:
+            //        if (bandesNoiresVertical > 0)
+            //        {
+            //            scaleTransform.ScaleX = 1;
+            //            scaleTransform.ScaleY = verticalScale;
+            //        }
+            //        else if (bandesNoiresHorizontal > 0)
+            //        {
+            //            scaleTransform.ScaleX = horizontalScale;
+            //            scaleTransform.ScaleY = 1;
+            //        }
+            //        break;
+            //    //case VLCSurfaceZoom.SURFACE_FILL:
+            //    //    break;
+            //    //case VLCSurfaceZoom.SURFACE_16_9:
+            //    //    break;
+            //    //case VLCSurfaceZoom.SURFACE_4_3:
+            //    //    break;
+            //    //case VLCSurfaceZoom.SURFACE_ORIGINAL:
+            //    //    break;
+            //    //case VLCSurfaceZoom.SURFACE_CUSTOM_ZOOM:
+            //    //    break;
+            //    default:
+            //        break;
+            //}
+            //App.RootPage.SwapChainPanel.RenderTransform = scaleTransform;
         }
         #endregion
     }

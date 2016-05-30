@@ -22,7 +22,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
         {
             this.InitializeComponent();
             Locator.MusicPlayerVM.PropertyChanged += MusicPlayerVM_PropertyChanged;
-            Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged += TrackCollection_PropertyChanged;
+            //Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged += TrackCollection_PropertyChanged;
             Locator.MediaPlaybackViewModel.PropertyChanged += MediaPlaybackViewModel_PropertyChanged;
             this.Loaded += MiniPlayerWindow_Loaded;
         }
@@ -161,7 +161,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
 
         void SetPreviousButton()
         {
-            PreviousButton.Visibility = (Locator.MediaPlaybackViewModel.PlaybackService.CanGoPrevious)
+            PreviousButton.Visibility = (Locator.MediaPlaybackViewModel.PlaybackService.CanGoPrevious())
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }
@@ -179,7 +179,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
 
         void SetNextButton()
         {
-            NextButton.Visibility = (Locator.MediaPlaybackViewModel.PlaybackService.CanGoNext)
+            NextButton.Visibility = (Locator.MediaPlaybackViewModel.PlaybackService.CanGoNext())
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }

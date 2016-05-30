@@ -65,7 +65,7 @@ namespace VLC_WinRT.Views.VideoPages
                 VisualStateManager.GoToState(this, nameof(FullscreenState), false);
             }
 
-            Locator.MediaPlaybackViewModel._mediaService.SetSizeVideoPlayer((uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualWidth), (uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualHeight));
+            Locator.MediaPlaybackViewModel.PlaybackService.SetSizeVideoPlayer((uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualWidth), (uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualHeight));
             Locator.VideoPlayerVm.ChangeSurfaceZoom(Locator.VideoPlayerVm.CurrentSurfaceZoom);
             DisplayOrHide(true);
         }
@@ -300,7 +300,7 @@ namespace VLC_WinRT.Views.VideoPages
                 menu.Items.Add(new MenuFlyoutItem()
                 {
                     Name = "PlayPauseItem",
-                    Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.Pause())
+                    Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.PlaybackService.Pause())
                 });
 
                 menu.Items.Add(new MenuFlyoutItem()

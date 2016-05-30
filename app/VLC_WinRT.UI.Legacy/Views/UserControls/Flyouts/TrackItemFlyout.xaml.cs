@@ -4,6 +4,7 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.ViewModels.MusicVM;
 using Windows.UI.Xaml.Controls.Primitives;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Views.UserControls.Flyouts
 {
@@ -19,8 +20,9 @@ namespace VLC_WinRT.Views.UserControls.Flyouts
 
         private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count == 0) return;
-            Locator.MusicLibraryVM.CurrentTrackCollection = e.AddedItems[0] as PlaybackService;
+            if (e.AddedItems.Count == 0)
+                return;
+            Locator.MusicLibraryVM.CurrentTrackCollection = e.AddedItems[0] as PlaylistItem;
             Locator.MusicLibraryVM.AddToPlaylistCommand.Execute((this.Content as FrameworkElement).DataContext as TrackItem);
             (sender as ListView).SelectedIndex = -1;
         }

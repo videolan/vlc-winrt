@@ -148,12 +148,12 @@ namespace VLC_WinRT.ViewModels
                 if (Locator.MediaPlaybackViewModel.CurrentMedia == null) return;
                 if (!Locator.MediaPlaybackViewModel.IsPlaying) return;
                 // If we're playing a video, just pause.
-                if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Video)
+                if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Video)
                 {
                     // TODO: Route Video Player calls through Media Service
                     if (!Locator.SettingsVM.ContinueVideoPlaybackInBackground)
                     {
-                        Locator.MediaPlaybackViewModel._mediaService.Pause();
+                        Locator.MediaPlaybackViewModel.PlaybackService.Pause();
                     }
                 }
             }

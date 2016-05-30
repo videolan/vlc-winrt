@@ -220,26 +220,26 @@ namespace VLC_WinRT.Services.RunTime
                         if (Locator.MediaPlaybackViewModel.MediaState == MediaState.Paused
                             || Locator.MediaPlaybackViewModel.MediaState == MediaState.Playing)
                         {
-                            Locator.MediaPlaybackViewModel._mediaService.Pause();
+                            Locator.MediaPlaybackViewModel.PlaybackService.Pause();
                         }
                         break;
                     case VLCAction.Quit:
                         App.Current.Exit();
                         break;
                     case VLCAction.Stop:
-                        if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Video)
+                        if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Video)
                         {
                             Locator.MediaPlaybackViewModel.GoBack.Execute(null);
                         }
                         break;
                     case VLCAction.Previous:
-                        if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music)
+                        if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music)
                         {
                             await Locator.MediaPlaybackViewModel.PlaybackService.PlayPrevious();
                         }
                         break;
                     case VLCAction.Next:
-                        if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music)
+                        if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music)
                         {
                             await Locator.MediaPlaybackViewModel.PlaybackService.PlayNext();
                         }

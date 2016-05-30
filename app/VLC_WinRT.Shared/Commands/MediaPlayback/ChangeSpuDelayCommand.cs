@@ -8,7 +8,9 @@ namespace VLC_WinRT.Commands.MediaPlayback
     {
         public override void Execute(object parameter)
         {
-            if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.NotPlaying) return;
+            if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.NotPlaying)
+                return;
+
             var request = parameter.ToString();
             switch (request)
             {

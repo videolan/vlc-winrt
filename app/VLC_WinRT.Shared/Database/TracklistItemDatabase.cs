@@ -5,6 +5,7 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels.MusicVM;
 using System.Collections.Generic;
 using VLC_WinRT.Utils;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Database
 {
@@ -41,7 +42,7 @@ namespace VLC_WinRT.Database
             }
         }
 
-        public Task<List<TracklistItem>> LoadTracks(PlaybackService trackCollection)
+        public Task<List<TracklistItem>> LoadTracks(PlaylistItem trackCollection)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
             return connection.Table<TracklistItem>().Where(x => x.TrackCollectionId == trackCollection.Id).ToListAsync();

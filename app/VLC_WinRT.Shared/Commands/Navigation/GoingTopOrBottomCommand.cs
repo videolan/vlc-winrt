@@ -13,7 +13,7 @@ namespace VLC_WinRT.Commands.Navigation
             if (lv.ScrollDirection == ScrollDirection.Bottom)
             {
                 if ((Locator.MediaPlaybackViewModel.PlaybackService.IsRunning 
-                    && Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music)
+                    && Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music)
                     || Locator.NavigationService.CurrentPage == VLCPage.ArtistPage
                     || Locator.NavigationService.CurrentPage == VLCPage.ArtistInfoView)
                 {

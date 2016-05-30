@@ -46,14 +46,15 @@ namespace VLC_WinRT.Helpers
             ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
 
-        public static void ToastImageAndText04(string t1, string t2, string t3, string imgsrc, string toastId, string imgalt = "")
+        public static void ToastImageAndText04(string title, string t1, string t2, string t3, string imgsrc, string toastId, string imgalt = "", string uri = "")
         {
 #if WINDOWS_UWP
             var toastContent = new ToastContent();
-            toastContent.Launch = "musicplayerview";
+            if (!string.IsNullOrEmpty(uri))
+                toastContent.Launch = uri;
             toastContent.Visual = new ToastVisual()
             {
-                TitleText = new ToastText() { Text = $"VLC {Strings.Dash} {Strings.NowPlaying}" },
+                TitleText = new ToastText() { Text = title },
                 BodyTextLine1 = new ToastText() { Text = t1 },
                 BodyTextLine2 = new ToastText() { Text = t3 },
             };
@@ -61,6 +62,10 @@ namespace VLC_WinRT.Helpers
             {
                 Source = new ToastImageSource(imgsrc),
             });
+            toastContent.Audio = new ToastAudio()
+            {
+                Silent = true,
+            };
             ToastNotificationManager.CreateToastNotifier().Show(new ToastNotification(toastContent.GetXml()));
 #else
             ToastTemplateType toastTemplate = ToastTemplateType.ToastImageAndText04;

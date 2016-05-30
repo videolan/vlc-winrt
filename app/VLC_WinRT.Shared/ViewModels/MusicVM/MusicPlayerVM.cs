@@ -93,7 +93,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             get
             {
                 if (Locator.MediaPlaybackViewModel.PlaybackService.IsRunning &&
-                    Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music &&
+                    Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music &&
                     (Locator.NavigationService.CurrentPage != VLCPage.CurrentPlaylistPage &&
                      Locator.NavigationService.CurrentPage != VLCPage.MusicPlayerPage &&
                      Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage &&
@@ -108,8 +108,22 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public MusicPlayerVM()
         {
-            Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged += MediaPlaybackViewModel_PropertyChanged;
+            //Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged += MediaPlaybackViewModel_PropertyChanged;
             Locator.NavigationService.ViewNavigated += ViewNavigated;
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet += Playback_MediaSet;
+        }
+
+        private async void Playback_MediaSet(IMediaItem media)
+        {
+            if (!(media is TrackItem))
+                return;
+
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                await SetCurrentArtist();
+                await SetCurrentAlbum();
+                await UpdatePlayingUI();
+            });
         }
 
         private void MediaPlaybackViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -136,45 +150,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
             if (Locator.SettingsVM.NotificationOnNewSong && Locator.MainVM.IsBackground)
             {
-                ToastHelper.ToastImageAndText04(trackName, albumName, artistName, (Locator.MusicPlayerVM.CurrentAlbum == null) ? null : Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri ?? null, "newsong");
+                ToastHelper.ToastImageAndText04($"VLC {Strings.Dash} {Strings.NowPlaying}", trackName, albumName, artistName, (Locator.MusicPlayerVM.CurrentAlbum == null) ? null : Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri ?? null, "newsong", "", "musicplayerview");
             }
-        }
-
-        public async Task UpdateTrackFromMF()
-        {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                try
-                {
-#if WINDOWS_PHONE_APP
-                    // TODO : this shouldn't be here
-                    var milliseconds = BackgroundAudioHelper.Instance?.NaturalDuration.TotalMilliseconds;
-                    if (milliseconds != null && milliseconds.HasValue && double.IsNaN(milliseconds.Value))
-                        Locator.MediaPlaybackViewModel.OnLengthChanged((long)milliseconds);
-#endif
-                    if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack))
-                        return;
-                    var index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
-                    if (Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Any())
-                    {
-                        if (index == -1)
-                        {
-                            // Background Audio was terminated
-                            // We need to reset the playlist, or set the current track 0.
-                            ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, 0);
-                            index = 0;
-                        }
-                        await Locator.MediaPlaybackViewModel.PlaybackService.SetCurrentMediaPosition(index);
-                        await SetCurrentArtist();
-                        await SetCurrentAlbum();
-                        await UpdatePlayingUI();
-                    }
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine(nameof(MusicPlayerVM) + " " + nameof(UpdateTrackFromMF) + " Exception : " + e);
-                }
-            });
         }
 
         public async Task UpdatePlayingUI()

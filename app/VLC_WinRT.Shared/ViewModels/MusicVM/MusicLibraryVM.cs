@@ -56,7 +56,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         private TrackItem _currentMedia;
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArtist;
-        private PlaybackService _currentMediaCollection;
+        private PlaylistItem _currentMediaCollection;
         private bool _isLoaded = false;
         private bool _isBusy = false;
         private MusicView _musicView;
@@ -71,7 +71,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             MusicView.Playlists
         };
 
-        public ObservableCollection<PlaybackService> TrackCollections
+        public ObservableCollection<PlaylistItem> TrackCollections
         {
             get { return Locator.MediaLibrary.TrackCollections; }
         }
@@ -271,7 +271,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             set { SetProperty(ref _currentMedia, value); }
         }
 
-        public PlaybackService CurrentTrackCollection
+        public PlaylistItem CurrentTrackCollection
         {
             get { return _currentMediaCollection; }
             set { SetProperty(ref _currentMediaCollection, value); }

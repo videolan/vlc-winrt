@@ -8,6 +8,7 @@ using VLC_WinRT.Utils;
 using System.ComponentModel;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.ViewModels.MusicVM;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Views.UserControls
 {
@@ -22,7 +23,7 @@ namespace VLC_WinRT.Views.UserControls
 
         private void TrackItemTemplate_Unloaded(object sender, RoutedEventArgs e)
         {
-            Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged -= TrackItemOnPropertyChanged;
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet -= UpdateTrack;
         }
 
         private void Grid_RightTapped(object sender, RightTappedRoutedEventArgs e)
@@ -53,19 +54,11 @@ namespace VLC_WinRT.Views.UserControls
             NameTextBlock.Text = Track.Name;
             DurationTextBlock.Text = Strings.HumanizeSeconds(Track.Duration.TotalSeconds);
 
-            Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged += TrackItemOnPropertyChanged;
-            UpdateTrack();
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet += UpdateTrack;
+            UpdateTrack(Track);
         }
 
-        private void TrackItemOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
-        {
-            if (propertyChangedEventArgs.PropertyName == nameof(PlaybackService.CurrentMedia))
-            {
-                UpdateTrack();
-            }
-        }
-
-        void UpdateTrack()
+        void UpdateTrack(IMediaItem media)
         {
             if (Track == null)
                 return;

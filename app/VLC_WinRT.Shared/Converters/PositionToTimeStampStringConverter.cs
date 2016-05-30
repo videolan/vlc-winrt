@@ -13,16 +13,9 @@ namespace VLC_WinRT.Converters
             var pos = 0.0;
             var totalMs = 0.0;
 
-            if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music)
-            {
-                pos = Locator.MediaPlaybackViewModel.Position * maxPos;
-                totalMs = Locator.MediaPlaybackViewModel.TimeTotal.TotalMilliseconds;
-            }
-            else if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Video)
-            {
-                pos = Locator.MediaPlaybackViewModel.Position * maxPos;
-                totalMs = Locator.MediaPlaybackViewModel.TimeTotal.TotalMilliseconds;
-            }
+            pos = Locator.MediaPlaybackViewModel.Position * maxPos;
+            totalMs = Locator.MediaPlaybackViewModel.TimeTotal.TotalMilliseconds;
+
             var milliSeconds = (long)((pos / maxPos) * totalMs);
             return new MillisecondsStringConverter().Convert(milliSeconds, null, null, null);
         }

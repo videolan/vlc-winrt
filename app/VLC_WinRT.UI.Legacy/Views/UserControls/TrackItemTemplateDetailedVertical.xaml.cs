@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.UI.Legacy.Views.UserControls
 {
@@ -27,15 +28,15 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
         private void TrackItemTemplate_Unloaded(object sender, RoutedEventArgs e)
         {
-            Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged -= TrackItemOnPropertyChanged;
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet -= UpdateTrack;
         }
 
         public TrackItem Track
         {
-            get { return (TrackItem)GetValue(TrackProperty); }
+            get { return GetValue(TrackProperty) as TrackItem; }
             set { SetValue(TrackProperty, value); }
         }
-        
+
         public static readonly DependencyProperty TrackProperty = DependencyProperty.Register(nameof(Track), typeof(TrackItem), typeof(TrackItemTemplateDetailedVertical), new PropertyMetadata(null, PropertyChangedCallback));
 
         private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
@@ -58,8 +59,8 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
                 await trackItem.ResetAlbumArt();
             });
 
-            Locator.MediaPlaybackViewModel.PlaybackService.PropertyChanged += TrackItemOnPropertyChanged;
-            UpdateTrack();
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet += UpdateTrack;
+            UpdateTrack(Track);
         }
 
         private async void Track_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -75,15 +76,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             }
         }
 
-        private void TrackItemOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
-        {
-            if (propertyChangedEventArgs.PropertyName == nameof(PlaybackService.CurrentMedia))
-            {
-                UpdateTrack();
-            }
-        }
-
-        void UpdateTrack()
+        void UpdateTrack(IMediaItem media)
         {
             if (Track == null)
                 return;

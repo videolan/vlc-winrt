@@ -198,7 +198,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
         private void PlayButton_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
-            Locator.MediaPlaybackViewModel.Stop();
+            Locator.MediaPlaybackViewModel.PlaybackService.Stop();
         }
     }
 }
