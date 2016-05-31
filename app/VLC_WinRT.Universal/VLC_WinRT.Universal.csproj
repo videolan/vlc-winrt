@@ -187,6 +187,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\access\libzip_plugin.dll">
       <Link>plugins\access\libzip_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\access\libdsm_plugin.dll">
+      <Link>plugins\access\libdsm_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\audio_filter\liba52tospdif_plugin.dll">
       <Link>plugins\audio_filter\liba52tospdif_plugin.dll</Link>
     </Content>
