@@ -52,10 +52,14 @@ namespace VLC_WinRT.ViewModels.Others
             get { return _searchTag; }
             set
             {
-                if (MusicSearchEnabled && !string.IsNullOrEmpty(value) && value.Length > 1)
-                    Task.Run(() => SearchAlbums(value));
-                else if (VideoSearchEnabled && !string.IsNullOrEmpty(value) && value.Length > 1)
-                    Task.Run(() => SearchVideos(value));
+                if (!string.IsNullOrEmpty(value) && value.Length > 1)
+                {
+                    Task.Run(async () =>
+                   {
+                       await SearchAlbums(value).ConfigureAwait(false);
+                       await SearchVideos(value).ConfigureAwait(false);
+                   });
+                }
                 SetProperty(ref _searchTag, value);
             }
         }
@@ -68,7 +72,7 @@ namespace VLC_WinRT.ViewModels.Others
                 SetProperty(ref _musicSearchEnabled, value);
                 _videoSearchEnabled = !value;
                 _searchResultsVideos?.Clear();
-                OnPropertyChanged("VideoSearchEnabled");
+                OnPropertyChanged(nameof(VideoSearchEnabled));
                 if (value && !string.IsNullOrEmpty(SearchTag))
                 {
                     Task.Run(() => SearchAlbums(SearchTag));
@@ -84,7 +88,7 @@ namespace VLC_WinRT.ViewModels.Others
                 SetProperty(ref _videoSearchEnabled, value);
                 _musicSearchEnabled = !value;
                 _searchResultsAlbums?.Clear();
-                OnPropertyChanged("MusicSearchEnabled");
+                OnPropertyChanged(nameof(MusicSearchEnabled));
                 if (value && !string.IsNullOrEmpty(SearchTag))
                 {
                     Task.Run(() => SearchVideos(SearchTag));
@@ -115,7 +119,7 @@ namespace VLC_WinRT.ViewModels.Others
                 {
                     VideoSearchEnabled = true;
                 }
-                Locator.MainVM.GotoSearchPageCommand.Execute(null);
+                Locator.MainVM.GoToSearchPageCommand.Execute(null);
             }
             else if (string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(SearchTag))
             {

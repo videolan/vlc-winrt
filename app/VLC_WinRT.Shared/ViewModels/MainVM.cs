@@ -81,7 +81,7 @@ namespace VLC_WinRT.ViewModels
 
         public ActionCommand GoToLicensePageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.LicensePage));
 
-        public ActionCommand GotoSearchPageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SearchPage));
+        public ActionCommand GoToSearchPageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SearchPage));
 
         public ActionCommand GoToFeedbackPageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.FeedbackPage));
 

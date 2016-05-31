@@ -271,16 +271,6 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MainPageMusic:
                 case VLCPage.MainPageFileExplorer:
                 case VLCPage.MainPageNetwork:
-                case VLCPage.SearchPage:
-                    if (Locator.MainVM.CurrentPanel?.Target != desiredPage)
-                    {
-                        switch (desiredPage)
-                        {
-                            case VLCPage.SearchPage:
-                                Locator.MainVM.Panels.Add(new Panel(Strings.Search, VLCPage.SearchPage, App.Current.Resources["SearchSymbol"].ToString(), App.Current.Resources["SearchFilledSymbol"].ToString()));
-                                break;
-                        }
-                    }
 
                     Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == desiredPage);
 
@@ -301,6 +291,10 @@ namespace VLC_WinRT.Services.RunTime
                         App.ApplicationFrame.Navigate(typeof(ArtistPageBase), desiredPage);
                     }
                     break;
+
+                case VLCPage.SearchPage:
+                    App.SplitShell.FlyoutContent = typeof(SearchPage);
+                    break;
                 case VLCPage.ArtistInfoView:
                     App.ApplicationFrame.Navigate(typeof(ArtistPageBase), desiredPage);
                     break;
@@ -309,7 +303,6 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.SettingsPageUI:
                 case VLCPage.SettingsPageMusic:
                 case VLCPage.SettingsPageVideo:
-                    //App.ApplicationFrame.Navigate(typeof(SettingsPage));
                     App.SplitShell.FlyoutContent = typeof(SettingsPage);
                     break;
 #else
@@ -399,7 +392,8 @@ namespace VLC_WinRT.Services.RunTime
                    page == VLCPage.FeedbackPage ||
                    page == VLCPage.TvShowView ||
                    page == VLCPage.TrackEditorPage ||
-                   page == VLCPage.AboutAppView;
+                   page == VLCPage.AboutAppView ||
+                   page == VLCPage.SearchPage;
         }
 
         VLCPage PageTypeToVLCPage(Type page)

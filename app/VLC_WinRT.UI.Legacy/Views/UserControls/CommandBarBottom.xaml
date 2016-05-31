@@ -137,6 +137,13 @@
         </AppBarButton>
     </CommandBar.PrimaryCommands>
     <CommandBar.SecondaryCommands>
+        <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=Search}"
+                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSearchPageCommand}"
+                      Style="{StaticResource AppBarTextButtonStyle}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource SearchSymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Icon></AppBarButton>
         <AppBarButton x:Name="SettingsButton"
                       Label="{Binding Source={StaticResource Strings}, Path=Settings}"
                       Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}"
