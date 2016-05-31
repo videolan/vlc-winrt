@@ -96,7 +96,7 @@ case "${1}" in
     *)
         COMPILER=${TARGET_TUPLE}-gcc
         COMPILERXX=${TARGET_TUPLE}-g++
-        ${COMPILER} -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lole32 -lruntimeobject/' -e "s/-lmsvcrt/-l$RUNTIME/" > ../newspecfile
+        ${COMPILER} -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lole32 -lruntimeobject -lsynchronization/' -e "s/-lmsvcrt/-l$RUNTIME/" > ../newspecfile
         NEWSPECFILE="`pwd`/../newspecfile"
         COMPILER="${COMPILER} -specs=$NEWSPECFILE"
         COMPILERXX="${COMPILERXX} -specs=$NEWSPECFILE"
