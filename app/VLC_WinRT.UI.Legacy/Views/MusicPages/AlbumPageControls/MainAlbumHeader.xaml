@@ -77,7 +77,7 @@
         </Grid>
 
         <Grid Grid.Row="3"
-              Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+              Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
               Height="50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
