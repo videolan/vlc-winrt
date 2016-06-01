@@ -9,6 +9,8 @@ namespace VLC_WinRT.Model
 {
     public class PlaylistItem : BindableBase
     {
+        private SmartCollection<IMediaItem> _playlist = new SmartCollection<IMediaItem>();
+        
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
 
@@ -17,7 +19,11 @@ namespace VLC_WinRT.Model
         public int CurrentMedia { get; set; }
 
         [Ignore]
-        public SmartCollection<IMediaItem> Playlist { get; private set; }
+        public SmartCollection<IMediaItem> Playlist
+        {
+            get { return _playlist; }
+            set { SetProperty(ref _playlist, value); }
+        }
 
         [Ignore]
         public SmartCollection<IMediaItem> SelectedTracks { get; private set; }
