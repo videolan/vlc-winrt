@@ -710,6 +710,20 @@ namespace VLC_WinRT.Services.RunTime
         {
             _mediaService?.SetSizeVideoPlayer(x, y);
         }
+
+        void SetPlaybackTypeFromTracks()
+        {
+            var videoTrack = Locator.VLCService.MediaPlayer.media().tracks().FirstOrDefault(x => x.type() == TrackType.Video);
+
+            if (videoTrack == null)
+            {
+                PlayingType = PlayingType.Music;
+            }
+            else
+            {
+                PlayingType = PlayingType.Video;
+            }
+        }
         #endregion
 
         #region Playback events callbacks
@@ -741,16 +755,7 @@ namespace VLC_WinRT.Services.RunTime
             if (vlcService.MediaPlayer == null)
                 return;
 
-            var videoTrack = vlcService.MediaPlayer.media()?.tracks()?.FirstOrDefault(x => x.type() == TrackType.Video);
-
-            if (videoTrack == null)
-            {
-                PlayingType = PlayingType.Music;
-            }
-            else
-            {
-                PlayingType = PlayingType.Video;
-            }
+            SetPlaybackTypeFromTracks();
 
             Playback_MediaParsed?.Invoke(parsedStatus);
         }
@@ -782,8 +787,14 @@ namespace VLC_WinRT.Services.RunTime
 
         private void OnTrackAdded(TrackType type, int trackId)
         {
-            if (type == TrackType.Unknown || type == TrackType.Video)
+            if (type == TrackType.Unknown)
                 return;
+
+            if (type == TrackType.Video)
+            {
+                PlayingType = PlayingType.Video;
+            }
+
             List<DictionaryKeyValue> target;
             IList<TrackDescription> source;
             if (type == TrackType.Audio)

@@ -522,6 +522,14 @@ namespace VLC_WinRT.ViewModels
             {
                 OnPropertyChanged(nameof(CurrentSubtitle));
                 OnPropertyChanged(nameof(CurrentAudioTrack));
+
+                if (type == TrackType.Video)
+                {
+                    if (PlaybackService.PlayingType == PlayingType.Video && Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage)
+                    {
+                        Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
+                    }
+                }
             });
         }
 
@@ -531,11 +539,6 @@ namespace VLC_WinRT.ViewModels
             {
                 OnPropertyChanged(nameof(Chapters));
                 OnPropertyChanged(nameof(CurrentChapter));
-
-                if (PlaybackService.PlayingType == PlayingType.Video && Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage)
-                {
-                    Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
-                }
             });
         }
 
