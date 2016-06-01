@@ -128,7 +128,9 @@ namespace VLC_WinRT.ViewModels.VideoVM
         {
             Locator.MediaLibrary.OnIndexing += MediaLibrary_OnIndexing;
         }
+        #endregion
 
+        #region methods
         private async void MediaLibrary_OnIndexing(LoadingState obj)
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged(nameof(IndexingLibraryVisibility)));
@@ -268,9 +270,6 @@ namespace VLC_WinRT.ViewModels.VideoVM
                 OnPropertyChanged(nameof(CameraRoll));
             });
         }
-        #endregion
-
-        #region methods
         #endregion
     }
 }
