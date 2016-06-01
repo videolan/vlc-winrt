@@ -210,6 +210,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     OnPropertyChanged(nameof(ViewedVideos));
+                    OnPropertyChanged(nameof(Videos));
                     Locator.MainVM.InformationText = String.Empty;
                     LoadingStateAllVideos = LoadingState.Loaded;
                 });
