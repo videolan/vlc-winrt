@@ -90,7 +90,7 @@
                 <AppBarButton Grid.Column="1"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Label="{Binding Source={StaticResource Strings}, Path=PlayAll}"
-                              Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayTrackCollCommand}"
+                              Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayTrackCollCommand}"
                               CommandParameter="0">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource PlaySymbol}"
