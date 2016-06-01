@@ -46,7 +46,7 @@ namespace VLC_WinRT.ViewModels.Others
             Dispose();
         }
 
-        public async Task Initialize()
+        async Task Initialize()
         {
             App.Container.Resolve<NetworkListenerService>().InternetConnectionChanged += StreamsViewModel_InternetConnectionChanged;
             Locator.MediaLibrary.Streams.CollectionChanged += Streams_CollectionChanged;
