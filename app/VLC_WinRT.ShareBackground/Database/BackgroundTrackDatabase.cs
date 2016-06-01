@@ -49,11 +49,8 @@ namespace VLC_WinRT.SharedBackground.Database
 
         public List<BackgroundTrackItem> LoadPlaylist()
         {
-            using (var c = new SQLiteConnection(platform, DbPath))
-            {
-                var list = new List<BackgroundTrackItem>(c.Table<BackgroundTrackItem>().ToList());
-                return list;
-            }
+            var connection = new SQLiteConnection(platform, DbPath);
+            return connection.Table<BackgroundTrackItem>().ToList();
         }
 
 
