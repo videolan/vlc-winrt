@@ -206,7 +206,7 @@ namespace VLC_WinRT.Utils
         public static string Yes => _resourcesLoader.GetString(nameof(Yes));
         public static string No => _resourcesLoader.GetString(nameof(No));
         public static string AreYouSure => _resourcesLoader.GetString(nameof(AreYouSure));
-
+        public static string Others => "Others";
 
         // ACTIONS
         public static string Back => _resourcesLoader.GetString(nameof(Back));
@@ -234,6 +234,10 @@ namespace VLC_WinRT.Utils
         // DELETE
         public static string DeleteSelected => _resourcesLoader.GetString(nameof(DeleteSelected));
         public static string DeletePlaylist => _resourcesLoader.GetString(nameof(DeletePlaylist));
+
+        // FAVORITE
+        public static string Favorite => "Favorite";
+
 
         // PIN ...
         public static string PinAlbum => _resourcesLoader.GetString(nameof(PinAlbum));
