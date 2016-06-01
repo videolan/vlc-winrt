@@ -103,8 +103,10 @@ namespace VLC_WinRT.Views.VideoPages
             AppViewHelper.SetTitleBarTitle();
             App.RootPage.SwapChainPanel.Visibility = Visibility.Collapsed;
             App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Minimal;
-            
+
             Locator.VideoPlayerVm.OnNavigatedFrom();
+            if (AppViewHelper.GetFullscreen())
+                AppViewHelper.SetFullscreen();
         }
 
         private void ControlsTimer_Tick(object sender, object e)
