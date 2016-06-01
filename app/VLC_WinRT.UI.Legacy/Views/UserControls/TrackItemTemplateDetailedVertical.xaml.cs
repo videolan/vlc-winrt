@@ -76,21 +76,26 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             }
         }
 
-        void UpdateTrack(IMediaItem media)
+        async void UpdateTrack(IMediaItem media)
         {
             if (Track == null)
                 return;
-            if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.PlaybackService.Playlist?.Count == 0)
-                return;
 
-            if (Track.IsCurrentPlaying())
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
-                RootGrid.Background = (Brush)App.Current.Resources["MainColor"];
-            }
-            else
-            {
-                RootGrid.Background = new SolidColorBrush(Colors.Transparent);
-            }
+
+                if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.PlaybackService.Playlist?.Count == 0)
+                    return;
+
+                if (Track.IsCurrentPlaying())
+                {
+                    RootGrid.Background = (Brush)App.Current.Resources["MainColor"];
+                }
+                else
+                {
+                    RootGrid.Background = new SolidColorBrush(Colors.Transparent);
+                }
+            });
         }
     }
 }

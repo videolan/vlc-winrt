@@ -58,7 +58,7 @@ namespace VLC_WinRT.Views.UserControls
             UpdateTrack(Track);
         }
 
-        void UpdateTrack(IMediaItem media)
+        async void UpdateTrack(IMediaItem media)
         {
             if (Track == null)
                 return;
@@ -66,16 +66,19 @@ namespace VLC_WinRT.Views.UserControls
             if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.PlaybackService.Playlist?.Count == 0)
                 return;
 
-            if (Track.IsCurrentPlaying())
+            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () =>
             {
-                previousBrush = NameTextBlock.Foreground;
-                NameTextBlock.Foreground = (Brush)App.Current.Resources["MainColor"];
-            }
-            else
-            {
-                if (previousBrush != null)
-                    NameTextBlock.Foreground = previousBrush;
-            }
+                if (Track.IsCurrentPlaying())
+                {
+                    previousBrush = NameTextBlock.Foreground;
+                    NameTextBlock.Foreground = (Brush)App.Current.Resources["MainColor"];
+                }
+                else
+                {
+                    if (previousBrush != null)
+                        NameTextBlock.Foreground = previousBrush;
+                }
+            });
         }
     }
 }

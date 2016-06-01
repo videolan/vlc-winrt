@@ -81,20 +81,23 @@ namespace VLC_WinRT.Views.UserControls
         }
         
 
-        void UpdateTrack(IMediaItem media)
+        async void UpdateTrack(IMediaItem media)
         {
-            if (Track.IsCurrentPlaying())
+            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () =>
             {
-                previousBrush = NameTextBlock.Foreground;
-                NameTextBlock.Foreground = (Brush)App.Current.Resources["MainColor"];
-                MusicLogo.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                MusicLogo.Visibility = Visibility.Collapsed;
-                if (previousBrush != null)
-                    NameTextBlock.Foreground = previousBrush;
-            }
+                if (Track.IsCurrentPlaying())
+                {
+                    previousBrush = NameTextBlock.Foreground;
+                    NameTextBlock.Foreground = (Brush)App.Current.Resources["MainColor"];
+                    MusicLogo.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    MusicLogo.Visibility = Visibility.Collapsed;
+                    if (previousBrush != null)
+                        NameTextBlock.Foreground = previousBrush;
+                }
+            });
         }
 
         private void Grid_Holding(object sender, HoldingRoutedEventArgs e)
