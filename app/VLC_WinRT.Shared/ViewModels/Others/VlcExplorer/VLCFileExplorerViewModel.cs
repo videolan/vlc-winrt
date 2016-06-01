@@ -11,6 +11,7 @@ using System.Linq;
 using System.Diagnostics;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.Model.Stream;
+using VLC_WinRT.Helpers;
 
 namespace VLC_WinRT.ViewModels.Others.VlcExplorer
 {
@@ -81,9 +82,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
             {
                 var file = storageItem as VLCStorageFile;
                 // TODO : Difference between audio and video, here ? Hint: i don't think so
-                var video = new StreamMedia();
-                video.Name = file.Name;
-                video.VlcMedia = file.Media;
+                var video = await MediaLibraryHelper.GetStreamItem(file);
                 await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(new List<IMediaItem> { video }, true, true, video);
             }
             OnPropertyChanged(nameof(CurrentFolderName));
