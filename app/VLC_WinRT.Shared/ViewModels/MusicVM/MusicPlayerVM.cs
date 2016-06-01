@@ -131,15 +131,15 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 await SetCurrentArtist();
                 await SetCurrentAlbum();
                 await UpdatePlayingUI();
-                await Locator.MusicPlayerVM.Scrobble();
+                await Scrobble();
 #if WINDOWS_PHONE_APP
 #else
-                await Locator.MusicPlayerVM.UpdateWindows8UI();
+                await UpdateWindows8UI();
 #endif
-                if (Locator.MusicPlayerVM.CurrentArtist != null)
+                if (CurrentArtist != null)
                 {
-                    Locator.MusicPlayerVM.CurrentArtist.PlayCount++;
-                    await Locator.MediaLibrary.Update(Locator.MusicPlayerVM.CurrentArtist);
+                    CurrentArtist.PlayCount++;
+                    await Locator.MediaLibrary.Update(CurrentArtist);
                 }
 
                 OnPropertyChanged(nameof(IsMiniPlayerVisible));
