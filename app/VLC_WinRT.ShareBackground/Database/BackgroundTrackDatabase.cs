@@ -22,9 +22,8 @@ namespace VLC_WinRT.SharedBackground.Database
 
         public void Initialize()
         {
-            connectionLock = new SQLiteConnectionWithLock(platform, new SQLiteConnectionString(DbPath, false));
-            var connection = new SQLiteAsyncConnection(() => connectionLock);
-            connection.CreateTableAsync<BackgroundTrackItem>();
+            var connection = new SQLiteConnection(platform, DbPath);
+            connection.CreateTable<BackgroundTrackItem>();
         }
 
         public void Drop()
