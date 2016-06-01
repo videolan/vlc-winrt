@@ -1,10 +1,12 @@
-﻿using System;
+﻿using libVLCX;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using VLC_WinRT.Helpers.VideoLibrary;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
+using VLC_WinRT.Model.Stream;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
 using Windows.Storage;

@@ -13,7 +13,7 @@
     <Page.Resources>
         <CollectionViewSource x:Key="StreamsHistoryAndFavoritesGroupedResource"
                               Source="{Binding StreamsHistoryAndFavoritesGrouped}"
-                              IsSourceGrouped="True" />
+                              IsSourceGrouped="False" />
     </Page.Resources>
 
     <Grid>
@@ -25,7 +25,8 @@
               Background="{ThemeResource ApplicationChromeThemeBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition MinWidth="300" Width="3*"/>
+                <ColumnDefinition MinWidth="300"
+                                  Width="3*" />
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
@@ -62,7 +63,7 @@
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
-                                   Margin="{StaticResource FrameMarginBothSides}"/>
+                                   Margin="{StaticResource FrameMarginBothSides}" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
@@ -71,26 +72,35 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding Path}"
                                    TextTrimming="CharacterEllipsis"
-                                   Margin="0,-3,0,0"
-                                   VerticalAlignment="Center"/>
-                        <Button Grid.Column="2" 
+                                   VerticalAlignment="Center" />
+                        <AppBarButton Grid.Column="2"
+                                      Icon="{Binding Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
+                                      Command="{Binding FavoriteStream}"
+                                      CommandParameter="{Binding}"
+                                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                      VerticalAlignment="Center"
+                                      IsTabStop="True"
+                                      IsCompact="True" />
+                        <Button Grid.Column="4"
                                 Content="{StaticResource HorizontalDotsSymbol}"
                                 Style="{StaticResource TextBlockButtonStyle}"
                                 Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
                                 VerticalAlignment="Center"
                                 FontFamily="Segoe UI Symbol">
-                          <Button.Flyout>
-                            <MenuFlyout>
-                              <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=DeleteSelected}" 
-                                              Command="{Binding DeleteStream}"
-                                              CommandParameter="{Binding}"/>
-                            </MenuFlyout>
-                          </Button.Flyout>
+                            <Button.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=DeleteSelected}"
+                                                    Command="{Binding DeleteStream}"
+                                                    CommandParameter="{Binding}" />
+                                </MenuFlyout>
+                            </Button.Flyout>
                         </Button>
                     </Grid>
                 </DataTemplate>
@@ -102,7 +112,7 @@
             <TextBlock Text="{Binding Source={StaticResource Strings}, Path=NoInternetConnection}"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Center"/>
+                       HorizontalAlignment="Center" />
         </Grid>
     </Grid>
 </Page>

@@ -3,7 +3,7 @@ using VLC_WinRT.Model.Stream;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 
-namespace VLC_WinRT.Commands.VideoLibrary
+namespace VLC_WinRT.Commands.StreamsLibrary
 {
     public class DeleteStreamCommand : AlwaysExecutableCommand
     {

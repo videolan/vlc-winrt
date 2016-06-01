@@ -62,12 +62,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\PinArtistCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\SeeArtistShowsCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\ShowCreateNewPlaylistPane.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayNetworkMRLCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Settings\AddFolderToLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Settings\RemoveFolderFromMusicLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Settings\RemoveFolderFromVideoLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\StreamsLibrary\DeleteStreamCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\StreamsLibrary\FavoriteStreamCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\StreamsLibrary\PlayNetworkMRLCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\CloseFlyoutAndPlayVideoCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\DeleteStreamCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\FavoriteVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\PickMediaCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\TVShowClickedCommand.cs" />

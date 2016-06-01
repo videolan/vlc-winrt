@@ -10,16 +10,17 @@ using VLC_WinRT.Commands;
 using Windows.UI.Xaml;
 using Autofac;
 using VLC_WinRT.Services.RunTime;
+using VLC_WinRT.Commands.StreamsLibrary;
 
 namespace VLC_WinRT.ViewModels.Others
 {
     public class StreamsViewModel : BindableBase, IDisposable
     {
         private Visibility _noInternetPlaceholderEnabled = Visibility.Collapsed;
-        
-        public IEnumerable<IGrouping<string, StreamMedia>> StreamsHistoryAndFavoritesGrouped
+
+        public IEnumerable<StreamMedia> StreamsHistoryAndFavoritesGrouped
         {
-            get { return Locator.MediaLibrary.Streams?.GroupBy(x => x.Id.ToString()); }
+            get { return Locator.MediaLibrary.Streams?.OrderBy(x => x.Order); }
         }
 
         public bool IsCollectionEmpty

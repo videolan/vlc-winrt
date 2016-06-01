@@ -6,6 +6,7 @@ using libVLCX;
 using VLC_WinRT.Commands;
 using VLC_WinRT.Commands.VideoLibrary;
 using VLC_WinRT.ViewModels;
+using VLC_WinRT.Commands.StreamsLibrary;
 
 namespace VLC_WinRT.Model.Stream
 {
@@ -54,6 +55,8 @@ namespace VLC_WinRT.Model.Stream
         }
         
         public static DeleteStreamCommand DeleteStream { get; } = new DeleteStreamCommand();
+
+        public static FavoriteStreamCommand FavoriteStream { get; } = new FavoriteStreamCommand();
 
         [Ignore]
         public Media VlcMedia { get; set; }

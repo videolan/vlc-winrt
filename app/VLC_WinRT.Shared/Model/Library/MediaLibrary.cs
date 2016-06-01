@@ -818,6 +818,11 @@ namespace VLC_WinRT.Model.Library
             }
             return stream;
         }
+
+        public Task Update(StreamMedia stream)
+        {
+            return streamsDatabase.Update(stream);
+        }
         #endregion
         #endregion
 
