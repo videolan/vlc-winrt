@@ -31,8 +31,15 @@
       <ListenFor RequireAppName="BeforeOrAfterPhrase"> shuffle my music </ListenFor>
       <Feedback> Playing your music randomly </Feedback>
       <Navigate />
-    </Command>    
-    
+    </Command>
+
+    <Command Name="createArtistPlaylist">
+      <Example> Create a Linkin Park playlist </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> create a {artistName} playlist </ListenFor>
+      <Feedback> Creating a playlist with {artistName} songs </Feedback>
+      <Navigate />
+    </Command>
+
     <!-- create playlist 
     continue the last one
     play me a song (random)

@@ -900,9 +900,10 @@ namespace VLC_WinRT.Model.Library
             return false;
         }
 
-        public async Task AddNewPlaylist(string trackCollectionName)
+        public async Task<PlaylistItem> AddNewPlaylist(string trackCollectionName)
         {
-            if (string.IsNullOrEmpty(trackCollectionName)) return;
+            if (string.IsNullOrEmpty(trackCollectionName))
+                return null;
             PlaylistItem trackCollection = null;
             trackCollection = await trackCollectionRepository.LoadFromName(trackCollectionName);
             if (trackCollection != null)
@@ -916,6 +917,7 @@ namespace VLC_WinRT.Model.Library
                 await trackCollectionRepository.Add(trackCollection);
                 TrackCollections.Add(trackCollection);
             }
+            return trackCollection;
         }
 
         public Task DeletePlaylistTrack(TrackItem track, PlaylistItem trackCollection)
@@ -954,16 +956,36 @@ namespace VLC_WinRT.Model.Library
         {
             if (Locator.MusicLibraryVM.CurrentTrackCollection == null) return;
             var playlistId = Locator.MusicLibraryVM.CurrentTrackCollection.Id;
+            Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.AddRange(albumItem.Tracks);
             foreach (TrackItem trackItem in albumItem.Tracks)
             {
-                Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Add(trackItem);
+                await tracklistItemRepository.Add(new TracklistItem()
+                {
+                    TrackId = trackItem.Id,
+                    TrackCollectionId = playlistId,
+                }).ConfigureAwait(false);
+            }
+            ToastHelper.Basic(string.Format(Strings.TrackAddedToYourPlaylist, albumItem.Name), false, string.Empty, "playlistview");
+        }
+
+        public async Task AddToPlaylist(ArtistItem artistItem)
+        {
+            if (Locator.MusicLibraryVM.CurrentTrackCollection == null) return;
+            var playlistId = Locator.MusicLibraryVM.CurrentTrackCollection.Id;
+
+            var songs = await Locator.MediaLibrary.LoadTracksByArtistId(artistItem.Id);
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.AddRange(songs));
+
+            foreach (TrackItem trackItem in songs)
+            {
                 await tracklistItemRepository.Add(new TracklistItem()
                 {
                     TrackId = trackItem.Id,
                     TrackCollectionId = playlistId,
                 });
             }
-            ToastHelper.Basic(string.Format(Strings.TrackAddedToYourPlaylist, albumItem.Name), false, string.Empty, "playlistview");
+
+            ToastHelper.Basic(string.Format(Strings.TrackAddedToYourPlaylist, artistItem.Name), false, string.Empty, "playlistview");
         }
 
         public async Task UpdateTrackCollection(PlaylistItem trackCollection)

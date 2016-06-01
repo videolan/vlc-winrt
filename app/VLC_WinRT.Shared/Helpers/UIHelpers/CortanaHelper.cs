@@ -68,6 +68,7 @@ namespace VLC_WinRT.Helpers
                     case "playArtist":
                     case "showArtist":
                     case "playSongByArtist":
+                    case "createArtistPlaylist":
                         var artistName = voiceArgs.Result.SemanticInterpretation.Properties["artistName"].FirstOrDefault();
                         var artistItem = await Locator.MediaLibrary.LoadViaArtistName(artistName);
                         switch (commandName)
@@ -83,6 +84,16 @@ namespace VLC_WinRT.Helpers
                                 var tracks = await Locator.MediaLibrary.LoadTracksByArtistId(artistItem.Id);
                                 var trackItem = tracks.FirstOrDefault(x => x.Name == songName);
                                 Locator.MusicLibraryVM.TrackClickedCommand.Execute(trackItem);
+                                break;
+                            case "createArtistPlaylist":
+                                Locator.NavigationService.Go(Model.VLCPage.MainPageMusic);
+                                Locator.MusicLibraryVM.MusicView = Model.Music.MusicView.Playlists;
+                                var playlist = await Locator.MediaLibrary.AddNewPlaylist(artistItem.Name);
+                                if (playlist == null)
+                                    return;
+                                Locator.MusicLibraryVM.CurrentTrackCollection = playlist;
+                                await Locator.MediaLibrary.AddToPlaylist(artistItem);
+                                Locator.NavigationService.Go(Model.VLCPage.PlaylistPage);
                                 break;
                             default:
                                 break;
