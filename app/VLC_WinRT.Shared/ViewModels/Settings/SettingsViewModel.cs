@@ -353,13 +353,13 @@ namespace VLC_WinRT.ViewModels.Settings
         {
             get
             {
-                var notificationOnNewSong = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong");
-                _notificationOnNewSong = notificationOnNewSong as bool? ?? false;
+                var notificationOnNewSong = ApplicationSettingsHelper.ReadSettingsValue(nameof(NotificationOnNewSong));
+                _notificationOnNewSong = notificationOnNewSong as bool? ?? true;
                 return _notificationOnNewSong;
             }
             set
             {
-                ApplicationSettingsHelper.SaveSettingsValue("NotificationOnNewSong", value);
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(NotificationOnNewSong), value);
                 SetProperty(ref _notificationOnNewSong, value);
             }
         }
