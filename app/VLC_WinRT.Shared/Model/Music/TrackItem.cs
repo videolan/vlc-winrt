@@ -171,6 +171,8 @@ namespace VLC_WinRT.Model.Music
         
         public bool IsCurrentPlaying()
         {
+            if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == -1)
+                return false;
             return Id == Locator.MediaPlaybackViewModel.PlaybackService.Playlist[Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia].Id;
         }
     }
