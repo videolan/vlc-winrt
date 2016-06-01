@@ -123,8 +123,21 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         private async void Playback_MediaSet(IMediaItem media)
         {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged(nameof(IsMiniPlayerVisible));
+                OnPropertyChanged(nameof(CurrentTrack));
+            });
+
             if (!(media is TrackItem))
+            {
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    CurrentAlbum = null;
+                    CurrentArtist = null;
+                });
                 return;
+            }
 
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
@@ -141,11 +154,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     CurrentArtist.PlayCount++;
                     await Locator.MediaLibrary.Update(CurrentArtist);
                 }
-
-                OnPropertyChanged(nameof(IsMiniPlayerVisible));
             });
         }
-        
+
         private void ViewNavigated(object sender, VLCPage p)
         {
             OnPropertyChanged(nameof(IsMiniPlayerVisible));
@@ -171,7 +182,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Locator.MediaPlaybackViewModel.PlaybackService.IsRunning = true;
-                OnPropertyChanged(nameof(PlayingType));
                 OnPropertyChanged(nameof(CurrentTrack));
 #if WINDOWS_UWP
                 TileHelper.UpdateMusicTile();
