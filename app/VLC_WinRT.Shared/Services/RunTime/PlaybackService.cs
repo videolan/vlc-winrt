@@ -654,7 +654,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public void Stop()
         {
-            _mediaService.Stop();
+            Task.Run(() => _mediaService.Stop());
             TileHelper.ClearTile();
         }
 
