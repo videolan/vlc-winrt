@@ -4,6 +4,7 @@ namespace VLC_WinRT.Model.Music
 {
     public class MediaProperties
     {
+        public string Path { get; set; }
         public string Album { get; set; }
         public string Artist { get; set; }
         public string AlbumArtist { get; set; }

@@ -36,18 +36,23 @@ namespace VLC_WinRT.Helpers
         public static async Task<VideoItem> GetVideoItem(StorageFile file)
         {
             var media = await Locator.VLCService.GetMediaFromPath(file.Path);
+            var video = await GetVideoItem(media, string.IsNullOrEmpty(file.DisplayName) ? file.Name : file.DisplayName, string.Empty);
+            return video;
+        }
 
+        public static async Task<VideoItem> GetVideoItem(Media media, string name, string path)
+        {
             // get basic media properties
             var mP = new MediaProperties();
             mP = await Locator.VLCService.GetVideoProperties(mP, media);
 
             // use title decrapifier
             if (string.IsNullOrEmpty(mP?.ShowTitle))
-                mP = TitleDecrapifier.tvShowEpisodeInfoFromString(mP, file.DisplayName);
+                mP = TitleDecrapifier.tvShowEpisodeInfoFromString(mP, name);
 
             var video = new VideoItem(
-                string.IsNullOrEmpty(file.DisplayName) ? file.Name : file.DisplayName,
-                file.Path,
+                name,
+                path,
                 mP.Duration,
                 mP.Width,
                 mP.Height,
@@ -56,7 +61,16 @@ namespace VLC_WinRT.Helpers
                 mP.Episode
                 );
 
-            //File = item,
+            return video;
+        }
+
+        public static async Task<StreamMedia> GetStreamItem(VLCStorageFile file)
+        {
+            var video = new StreamMedia();
+            video.Name = file.Name;
+            video.VlcMedia = file.Media;
+            video.Path = file.Media.mrl();
+
             return video;
         }
     }
