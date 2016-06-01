@@ -50,7 +50,8 @@ namespace VLC_WinRT.Views.UserControls
 
         public Task Navigate(VLCPage page)
         {
-            if (!Locator.NavigationService.IsPageAMainPage(page)) return Task.FromResult<bool>(true);
+            if (!Locator.NavigationService.IsPageAMainPage(page))
+                return Task.FromResult(true);
             return DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
                 if (IsPivotItem)
