@@ -161,6 +161,8 @@ namespace VLC_WinRT.Services.RunTime
             CurrentMedia = -1;
             NonShuffledPlaylist?.Clear();
             IsShuffled = false;
+            Playback_MediaSet(null);
+            IsRunning = false;
         }
 
         public async Task Shuffle()

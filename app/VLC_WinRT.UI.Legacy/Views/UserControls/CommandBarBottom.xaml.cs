@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using VLC_WinRT.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -196,9 +197,20 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             UpdatePlayerVisibility();
         }
 
-        private void PlayButton_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        private async void PlayButton_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            await StopPlayback();
+        }
+
+        private async void PauseButton_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            await StopPlayback();
+        }
+
+        public async Task StopPlayback()
         {
             Locator.MediaPlaybackViewModel.PlaybackService.Stop();
+            await Locator.MediaPlaybackViewModel.PlaybackService.ResetCollection();
         }
     }
 }

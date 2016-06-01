@@ -76,7 +76,8 @@
                       Command="{Binding PlayOrPauseCommand}"
                       IsCompact="True"
                       Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
-                      RightTapped="PlayButton_RightTapped">
+                      RightTapped="PlayButton_RightTapped"
+                      Holding="PauseButton_Holding">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource PlaySymbol}"
                           FontFamily="{StaticResource VLCFont}" />
@@ -87,7 +88,8 @@
                       Command="{Binding PlayOrPauseCommand}"
                       IsCompact="True"
                       Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
-                      RightTapped="PlayButton_RightTapped">
+                      RightTapped="PlayButton_RightTapped"
+                      Holding="PauseButton_Holding">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource PauseSymbol}"
                           FontFamily="{StaticResource VLCFont}" />
