@@ -126,7 +126,6 @@ namespace VLC_WinRT.ViewModels.VideoVM
         #region contructors
         public VideoLibraryVM()
         {
-            Locator.MediaLibrary.OnIndexing += MediaLibrary_OnIndexing;
         }
         #endregion
 
@@ -145,6 +144,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         public void OnNavigatedTo()
         {
             ResetLibrary();
+            Locator.MediaLibrary.OnIndexing += MediaLibrary_OnIndexing;
         }
 
         public void OnNavigatedToAllVideos()
@@ -189,6 +189,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         public void OnNavigatedFrom()
         {
             ResetLibrary();
+            Locator.MediaLibrary.OnIndexing -= MediaLibrary_OnIndexing;
         }
 
         Task InitializeVideos()
