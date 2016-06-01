@@ -1,4 +1,5 @@
 ﻿using NotificationsExtensions.Toasts;
+using System;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -20,11 +21,33 @@ namespace VLC_WinRT.Helpers
                 case "musicplayerview":
                     Locator.NavigationService.Go(Model.VLCPage.MusicPlayerPage);
                     break;
+                case "playlistview":
+                    Locator.NavigationService.Go(Model.VLCPage.MainPageMusic);
+                    Locator.MusicLibraryVM.MusicView = Model.Music.MusicView.Playlists;
+                    break;
             }
         }
 
-        public static void Basic(string msg, bool playJingle = false, string toastId = "")
+        public static void Basic(string msg, bool playJingle = false, string toastId = "", string uri = "")
         {
+#if WINDOWS_UWP
+            var toastContent = new ToastContent();
+            if (!string.IsNullOrEmpty(uri))
+                toastContent.Launch = uri;
+
+            toastContent.Visual = new ToastVisual()
+            {
+                TitleText = new ToastText() { Text = "VLC" },
+                BodyTextLine1 = new ToastText() { Text = msg }
+            };
+
+            toastContent.Audio = new ToastAudio() { Silent = !playJingle };
+
+            ToastNotificationManager.CreateToastNotifier().Show(new ToastNotification(toastContent.GetXml())
+            {
+                ExpirationTime = DateTimeOffset.Now.AddSeconds(15),
+            });
+#else
             ToastTemplateType toastTemplate = ToastTemplateType.ToastText01;
             XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(toastTemplate);
             XmlNodeList toastTextElements = toastXml.GetElementsByTagName("text");
@@ -44,6 +67,7 @@ namespace VLC_WinRT.Helpers
                 nameProperty.SetValue(toast, toastId);
             }
             ToastNotificationManager.CreateToastNotifier().Show(toast);
+#endif
         }
 
         public static void ToastImageAndText04(string title, string t1, string t2, string t3, string imgsrc, string toastId, string imgalt = "", string uri = "")
