@@ -947,7 +947,7 @@ namespace VLC_WinRT.Model.Library
                 TrackCollectionId = Locator.MusicLibraryVM.CurrentTrackCollection.Id,
             });
             if (displayToastNotif)
-                ToastHelper.Basic(string.Format(Strings.TrackAddedToYourPlaylist, trackItem.Name));
+                ToastHelper.Basic(string.Format(Strings.TrackAddedToYourPlaylist, trackItem.Name), false, string.Empty, "playlistview");
         }
 
         public async Task AddToPlaylist(AlbumItem albumItem)
@@ -963,7 +963,7 @@ namespace VLC_WinRT.Model.Library
                     TrackCollectionId = playlistId,
                 });
             }
-            ToastHelper.Basic(string.Format(Strings.TrackAddedToYourPlaylist, albumItem.Name));
+            ToastHelper.Basic(string.Format(Strings.TrackAddedToYourPlaylist, albumItem.Name), false, string.Empty, "playlistview");
         }
 
         public async Task UpdateTrackCollection(PlaylistItem trackCollection)
