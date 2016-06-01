@@ -7,7 +7,7 @@
       xmlns:userControls="using:VLC_WinRT.Views.UserControls"
       xmlns:triggers="using:WinRT.Triggers"
       mc:Ignorable="d"
-      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.CurrentTrackCollection}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -27,7 +27,7 @@
             </Grid.RowDefinitions>
 
             <Image Grid.RowSpan="4"
-                   Source="{Binding CurrentTrackCollection.Playlist[0].Thumbnail}"
+                   Source="{Binding Playlist[0].AlbumImage}"
                    Stretch="UniformToFill"
                    Opacity="0.4" />
 
@@ -63,7 +63,7 @@
                            TextWrapping="NoWrap"
                            VerticalAlignment="Top"
                            Style="{StaticResource SubheaderTextBlockStyle}">
-                        <Run Text="{Binding CurrentTrackCollection.Name, Converter={StaticResource AlbumStringConverter}}" />
+                        <Run Text="{Binding Name, Converter={StaticResource AlbumStringConverter}}" />
                 </TextBlock>
                 <TextBlock Grid.Row="2"
                            Grid.Column="1"
@@ -73,7 +73,7 @@
                            FontSize="16"
                            FontWeight="Light"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}">
-                <Run Text="{Binding CurrentTrackCollection.Playlist.Count}" />
+                <Run Text="{Binding Playlist.Count}" />
                 <Run Text="{Binding Source={StaticResource Strings}, Path=Tracks}" />
                 </TextBlock>
             </Grid>
@@ -90,7 +90,7 @@
                 <AppBarButton Grid.Column="1"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Label="{Binding Source={StaticResource Strings}, Path=PlayAll}"
-                              Command="{Binding CurrentTrackCollection.PlayTrackCollCommand}"
+                              Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayTrackCollCommand}"
                               CommandParameter="0">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource PlaySymbol}"
@@ -100,7 +100,7 @@
                 <AppBarButton Grid.Column="0"
                               Label="{Binding Source={StaticResource Strings}, Path=DeleteSelected}"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
-                              Visibility="{Binding CurrentTrackCollection.SelectedTracks.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
+                              Visibility="{Binding IsTracksSelectedVisibility}"
                               Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.DeletePlaylistTrackCommand}">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource DeleteRowSymbol}"
@@ -123,7 +123,7 @@
         <ListView x:Name="PlayListView"
                   Grid.Row="1"
                   SelectionMode="Multiple"
-                  ItemsSource="{Binding CurrentTrackCollection.Playlist}"
+                  ItemsSource="{Binding Playlist}"
                   ItemTemplate="{StaticResource TrackTemplateDetailedNoFlyout}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   ItemsPanel="{StaticResource StackPanelTemplate}"
