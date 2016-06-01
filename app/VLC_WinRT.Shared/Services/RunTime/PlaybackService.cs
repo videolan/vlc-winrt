@@ -656,7 +656,41 @@ namespace VLC_WinRT.Services.RunTime
 
         public void Stop()
         {
-            Task.Run(() => _mediaService.Stop());
+            _mediaService.MediaFailed -= MediaFailed;
+            _mediaService.StatusChanged -= PlayerStateChanged;
+            _mediaService.TimeChanged -= UpdateTime;
+
+            _mediaService.OnLengthChanged -= OnLengthChanged;
+            _mediaService.OnStopped -= OnStopped;
+            _mediaService.OnEndReached -= OnEndReached;
+            _mediaService.OnBuffering -= OnBuffering;
+
+            if (_mediaService is VLCService)
+            {
+                var vlcService = (VLCService)_mediaService;
+                if (vlcService.MediaPlayer != null)
+                {
+                    var em = vlcService.MediaPlayer.eventManager();
+                    em.OnTrackAdded -= OnTrackAdded;
+                    em.OnTrackDeleted -= OnTrackDeleted;
+                }
+
+                _currentAudioTrack = -1;
+                _currentSubtitle = -1;
+
+                _audioTracks.Clear();
+                _subtitlesTracks.Clear();
+            }
+            else if (_mediaService is MFService)
+            {
+                var mfService = (MFService)_mediaService;
+                mfService.Instance.Source = null;
+            }
+
+            if (PlayerState != MediaState.Stopped)
+            {
+                _mediaService.Stop();
+            }
             TileHelper.ClearTile();
         }
 
@@ -815,37 +849,8 @@ namespace VLC_WinRT.Services.RunTime
         private void OnStopped(IMediaService mediaService)
         {
             Debug.WriteLine("OnStopped event called from " + mediaService);
-            mediaService.MediaFailed -= MediaFailed;
-            mediaService.StatusChanged -= PlayerStateChanged;
-            mediaService.TimeChanged -= UpdateTime;
-
-            mediaService.OnLengthChanged -= OnLengthChanged;
-            mediaService.OnStopped -= OnStopped;
-            mediaService.OnEndReached -= OnEndReached;
-            mediaService.OnBuffering -= OnBuffering;
-
-            if (mediaService is VLCService)
-            {
-                var vlcService = (VLCService)mediaService;
-                if (vlcService.MediaPlayer != null)
-                {
-                    var em = vlcService.MediaPlayer.eventManager();
-                    em.OnTrackAdded -= OnTrackAdded;
-                    em.OnTrackDeleted -= OnTrackDeleted;
-                }
-
-                _currentAudioTrack = -1;
-                _currentSubtitle = -1;
-                
-                _audioTracks.Clear();
-                _subtitlesTracks.Clear();
-            }
-            else if (mediaService is MFService)
-            {
-                var mfService = (MFService)mediaService;
-                mfService.Instance.Source = null;
-            }
-
+            
+            PlayerState = MediaState.Stopped;
             Playback_MediaStopped?.Invoke(mediaService);
         }
 
