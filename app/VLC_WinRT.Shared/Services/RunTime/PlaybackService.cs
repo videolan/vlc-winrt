@@ -842,7 +842,6 @@ namespace VLC_WinRT.Services.RunTime
                 var mfService = (MFService)mediaService;
                 mfService.Instance.Source = null;
             }
-            mediaService.SetNullMediaPlayer();
 
             Playback_MediaStopped?.Invoke(mediaService);
         }
