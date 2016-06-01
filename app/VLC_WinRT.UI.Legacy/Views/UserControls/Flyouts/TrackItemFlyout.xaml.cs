@@ -16,6 +16,12 @@ namespace VLC_WinRT.Views.UserControls.Flyouts
 #if WINDOWS_PHONE_APP
             this.Placement = FlyoutPlacementMode.Full;
 #endif
+            this.Opened += TrackItemFlyout_Opened;
+        }
+
+        private void TrackItemFlyout_Opened(object sender, object e)
+        {
+            Locator.MusicLibraryVM.OnNavigatedToPlaylists();
         }
 
         private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
