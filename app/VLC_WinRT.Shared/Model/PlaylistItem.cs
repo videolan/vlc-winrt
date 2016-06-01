@@ -7,7 +7,7 @@ using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Model
 {
-    public class PlaylistItem
+    public class PlaylistItem : BindableBase
     {
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -20,7 +20,7 @@ namespace VLC_WinRT.Model
         public SmartCollection<IMediaItem> Playlist { get; private set; }
 
         [Ignore]
-        public ObservableCollection<IMediaItem> SelectedTracks { get; private set; }
+        public SmartCollection<IMediaItem> SelectedTracks { get; private set; }
 
         public void Remove(IMediaItem media)
         {
