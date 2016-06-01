@@ -223,6 +223,7 @@ namespace VLC_WinRT.Services.RunTime
                     return false;
 
                 SetCurrentMediaPosition(mediaIndex);
+                Playback_MediaSet.Invoke(mediaInPlaylist);
                 await SetMedia(mediaInPlaylist, true, play);
             }
             return true;
@@ -429,7 +430,6 @@ namespace VLC_WinRT.Services.RunTime
         public void SetCurrentMediaPosition(int index)
         {
             CurrentMedia = index;
-            Playback_MediaSet.Invoke(Playlist[index]);
         }
 
 
