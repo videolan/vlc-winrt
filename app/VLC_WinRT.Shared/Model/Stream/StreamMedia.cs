@@ -15,6 +15,7 @@ namespace VLC_WinRT.Model.Stream
         private string _filePath;
         private TimeSpan _duration;
         private string _title;
+        private bool _favorite;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -36,6 +37,14 @@ namespace VLC_WinRT.Model.Stream
             get { return _duration; }
             set { SetProperty(ref _duration, value); }
         }
+
+        public bool Favorite
+        {
+            get { return _favorite; }
+            set { SetProperty(ref _favorite, value); }
+        }
+
+        public int Order => Favorite ? 0 : 1; // TODO : nopenopenope
 
         [Ignore]
         public StorageFile File
