@@ -102,6 +102,8 @@ namespace VLC_WinRT.Services.RunTime
             }
         }
 
+        public MediaState PlayerState { get; private set; }
+
         public bool CanGoPrevious()
         {
             var previous = (CurrentMedia > 0);
@@ -791,6 +793,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             Playback_MediaEndReached?.Invoke();
             TileHelper.ClearTile();
+            PlayerState = MediaState.Stopped;
             if (!CanGoNext())
             {
                 // Playlist is finished
@@ -859,6 +862,7 @@ namespace VLC_WinRT.Services.RunTime
         private void PlayerStateChanged(object sender, MediaState e)
         {
             Playback_StatusChanged?.Invoke(sender, e);
+            PlayerState = e;
         }
 
         private void MediaFailed(object sender, EventArgs e)

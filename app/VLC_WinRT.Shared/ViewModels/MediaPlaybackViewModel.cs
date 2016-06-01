@@ -43,7 +43,6 @@ namespace VLC_WinRT.ViewModels
         private MouseService _mouseService;
         private SystemMediaTransportControls _systemMediaTransportControls;
         private bool _isPlaying;
-        private MediaState _mediaState;
         private PlaybackService _playbackService;
         private TimeSpan _timeTotal;
 
@@ -124,11 +123,7 @@ namespace VLC_WinRT.ViewModels
         public bool CanGoNext => PlaybackService.CanGoNext();
         public bool CanGoPrevious => PlaybackService.CanGoPrevious();
 
-        public MediaState MediaState
-        {
-            get { return _mediaState; }
-            set { SetProperty(ref _mediaState, value); }
-        }
+        public MediaState MediaState => PlaybackService.PlayerState;
 
         public int Volume
         {
@@ -393,7 +388,6 @@ namespace VLC_WinRT.ViewModels
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
                     IsPlaying = e == MediaState.Playing || e == MediaState.Buffering;
-                    MediaState = e;
 
                     switch (MediaState)
                     {
