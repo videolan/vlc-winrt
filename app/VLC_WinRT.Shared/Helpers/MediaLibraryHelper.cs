@@ -36,7 +36,7 @@ namespace VLC_WinRT.Helpers
         public static async Task<VideoItem> GetVideoItem(StorageFile file)
         {
             var media = await Locator.VLCService.GetMediaFromPath(file.Path);
-            var video = await GetVideoItem(media, string.IsNullOrEmpty(file.DisplayName) ? file.Name : file.DisplayName, string.Empty);
+            var video = await GetVideoItem(media, string.IsNullOrEmpty(file.DisplayName) ? file.Name : file.DisplayName, file.Path);
             return video;
         }
 
