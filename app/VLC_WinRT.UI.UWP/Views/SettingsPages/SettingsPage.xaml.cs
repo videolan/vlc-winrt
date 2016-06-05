@@ -71,5 +71,10 @@ namespace VLC_WinRT.UI.UWP.Views.SettingsPages
             Launcher.LaunchUriAsync(new Uri($"vlc://goto/?page={nameof(VLCPage.SettingsPageUI)}"));
             App.Current.Exit();
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Locator.SettingsVM.Equalizer = e.AddedItems[0] as VLCEqualizer;
+        }
     }
 }

@@ -144,6 +144,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\MusicControls\Equalizer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\VideoItem.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -358,6 +362,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\CommandBarBottom.xaml.cs">
       <DependentUpon>CommandBarBottom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\MusicControls\Equalizer.xaml.cs">
+      <DependentUpon>Equalizer.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\VideoItem.xaml.cs">
       <DependentUpon>VideoItem.xaml</DependentUpon>

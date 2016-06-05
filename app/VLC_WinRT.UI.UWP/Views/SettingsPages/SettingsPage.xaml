@@ -6,6 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WinRT.Views.UserControls"
       xmlns:winControls="using:WinRTXamlToolkit.Controls"
+      xmlns:musicControls="using:VLC_WinRT.UI.Legacy.Views.UserControls.MusicControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
     <Pivot Background="{ThemeResource ApplicationThirdForegroundThemeBrush}">
@@ -284,7 +285,8 @@
                         <ComboBox ItemsSource="{Binding Presets}"
                                   SelectedItem="{Binding Equalizer, Mode=TwoWay}"
                                   Width="200"
-                                  Margin="{StaticResource FrameMarginTop}">
+                                  Margin="{StaticResource FrameMarginTop}"
+                                  SelectionChanged="ComboBox_SelectionChanged">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -297,73 +299,8 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
 
-                        <Grid DataContext="{Binding Equalizer}"
-                              Height="120"
-                              IsHitTestVisible="False"
-                              Margin="{StaticResource FrameMarginTop}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Slider Style="{StaticResource VLCSliderVertical}"
-                                    Maximum="20"
-                                    Minimum="-20"
-                                    Value="{Binding Amps[0]}" />
-                            <Slider Grid.Column="1"
-                                    Style="{StaticResource VLCSliderVertical}"
-                                    Maximum="20"
-                                    Minimum="-20"
-                                    Value="{Binding Amps[1]}" />
-                            <Slider Grid.Column="2"
-                                    Style="{StaticResource VLCSliderVertical}"
-                                    Maximum="20"
-                                    Minimum="-20"
-                                    Value="{Binding Amps[2]}" />
-                            <Slider Grid.Column="3"
-                                    Style="{StaticResource VLCSliderVertical}"
-                                    Maximum="20"
-                                    Minimum="-20"
-                                    Value="{Binding Amps[3]}" />
-                            <Slider Grid.Column="4"
-                                    Style="{StaticResource VLCSliderVertical}"
-                                    Maximum="20"
-                                    Minimum="-20"
-                                    Value="{Binding Amps[4]}" />
-                            <Slider Grid.Column="5"
-                                    Style="{StaticResource VLCSliderVertical}"
-                                    Maximum="20"
-                                    Minimum="-20"
-                                    Value="{Binding Amps[5]}" />
-                            <Slider Grid.Column="6"
-                                    Style="{StaticResource VLCSliderVertical}"
-                                    Maximum="20"
-                                    Minimum="-20"
-                                    Value="{Binding Amps[6]}" />
-                            <Slider Grid.Column="7"
-                                    Style="{StaticResource VLCSliderVertical}"
-                                    Maximum="20"
-                                    Minimum="-20"
-                                    Value="{Binding Amps[7]}" />
-                            <Slider Grid.Column="8"
-                                    Style="{StaticResource VLCSliderVertical}"
-                                    Maximum="20"
-                                    Minimum="-20"
-                                    Value="{Binding Amps[8]}" />
-                            <Slider Grid.Column="9"
-                                    Style="{StaticResource VLCSliderVertical}"
-                                    Maximum="20"
-                                    Minimum="-20"
-                                    Value="{Binding Amps[9]}" />
-                        </Grid>
-
+                        <musicControls:Equalizer EqualizerValue="{Binding Equalizer}"/>
+                        
                         <TextBlock Text="{Binding Source={StaticResource Strings}, Path=MusicFolders}"
                                    FontSize="22"
                                    Style="{StaticResource SubheaderTextBlockStyle}"
