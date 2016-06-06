@@ -201,7 +201,7 @@ namespace VLC_WinRT.Services.RunTime
             await PlayerInstanceReady.Task;
             if (media == null)
                 return null;
-            if (media.parsedStatus() == ParsedStatus.Init)
+            if (media.parsedStatus() != ParsedStatus.Done && media.parsedStatus() != ParsedStatus.Skipped)
                 media.parse();
             if (media.parsedStatus() == ParsedStatus.Failed)
                 return null;
@@ -220,7 +220,7 @@ namespace VLC_WinRT.Services.RunTime
             await PlayerInstanceReady.Task;
             if (media == null)
                 return mP;
-            if (media.parsedStatus() == ParsedStatus.Init)
+            if (media.parsedStatus() != ParsedStatus.Done && media.parsedStatus() != ParsedStatus.Skipped)
                 media.parse();
             if (media.parsedStatus() == ParsedStatus.Failed)
                 return mP;
@@ -277,7 +277,7 @@ namespace VLC_WinRT.Services.RunTime
             await PlayerInstanceReady.Task;
             if (media == null)
                 return null;
-            if (media.parsedStatus() == ParsedStatus.Init)
+            if (media.parsedStatus() != ParsedStatus.Done && media.parsedStatus() != ParsedStatus.Skipped)
                 media.parse();
             if (media.parsedStatus() == ParsedStatus.Failed)
                 return null;
@@ -324,7 +324,7 @@ namespace VLC_WinRT.Services.RunTime
         #region playback actions
         public void SetSubtitleFile(string mrl)
         {
-            MediaPlayer?.setSubtitleFile(mrl);
+            MediaPlayer?.addSlave(SlaveType.Subtitle, mrl);
         }
 
         public void SetSubtitleTrack(int i)
@@ -489,7 +489,7 @@ namespace VLC_WinRT.Services.RunTime
             {
                 if (discoverer == null)
                 {
-                    discoverer = new MediaDiscoverer(Instance, "upnp");
+                    discoverer = new MediaDiscoverer(Instance, "microdns");
                     var mediaList = discoverer.mediaList();
                     if (mediaList == null)
                         return false;
@@ -526,7 +526,7 @@ namespace VLC_WinRT.Services.RunTime
                     return;
                 tcs.TrySetResult(media.subItems());
             };
-            media.parseWithOptions(ParseFlags.FetchLocal | ParseFlags.FetchNetwork | ParseFlags.Local | ParseFlags.Network);
+            media.parseWithOptions(ParseFlags.FetchLocal | ParseFlags.FetchNetwork | ParseFlags.Local | ParseFlags.Network, 5000);
             return tcs.Task;
         }
 
