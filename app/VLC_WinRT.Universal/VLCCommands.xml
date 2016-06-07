@@ -5,7 +5,7 @@
     <Example> Play some music </Example>
 
     <Command Name="playArtist">
-      <Example> Play Taylor Swift </Example>
+      <Example> Play Coldplay </Example>
       <ListenFor RequireAppName="BeforeOrAfterPhrase"> play [songs] [by] {artistName} [songs]</ListenFor>
       <Feedback> Playing {artistName} </Feedback>
       <Navigate />
@@ -18,17 +18,17 @@
       <Navigate />
     </Command>
 
-    <Command Name="playSongByArtist">
-      <Example> Play Monster by Rihanna </Example>
-      <ListenFor RequireAppName="BeforeOrAfterPhrase"> play {songName} by {artistName} </ListenFor>
-      <Feedback> Playing {songName} by {artistName} </Feedback>
+    <Command Name="playAlbumByArtist">
+      <Example> Play 1989 by Taylor Swift </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> play {albumName} by {artistName} </ListenFor>
+      <Feedback> Playing {albumName} by {artistName} </Feedback>
       <Navigate />
     </Command>
 
     <Command Name="shuffleLibrary">
       <Example> Shuffle music library </Example>
-      <ListenFor RequireAppName="BeforeOrAfterPhrase"> play music randomly </ListenFor>
-      <ListenFor RequireAppName="BeforeOrAfterPhrase"> shuffle my music </ListenFor>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> play music [randomly] </ListenFor>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> shuffle [my] music </ListenFor>
       <Feedback> Playing your music randomly </Feedback>
       <Navigate />
     </Command>
@@ -46,6 +46,6 @@
     play something like rock
     -->
     <PhraseList Label="artistName"/>
-    <PhraseList Label="songName"/>
+    <PhraseList Label="albumName"/>
   </CommandSet>
 </VoiceCommands>
