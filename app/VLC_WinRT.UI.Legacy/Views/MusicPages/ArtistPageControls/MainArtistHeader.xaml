@@ -101,13 +101,13 @@
                                     Command="{Binding CurrentArtist.NavigateArtistInfoView}"
                                     Style="{StaticResource MenuFlyoutItemIconTemplate}"
                                     Tag="{StaticResource BuddySymbol}"
-                                    RequestedTheme="Light" />
+                                    Foreground="White" />
                     <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PinArtist}"
                                     Command="{Binding CurrentArtist.PinArtistCommand}"
                                     CommandParameter="{Binding CurrentArtist}"
                                     Style="{StaticResource MenuFlyoutItemIconTemplate}"
                                     Tag="{StaticResource PinSymbol}"
-                                    RequestedTheme="Light" />
+                                    Foreground="White" />
                 </MenuFlyout>
             </AppBarButton.Flyout>
         </AppBarButton>
