@@ -113,6 +113,7 @@ namespace VLC_WinRT.Views.VideoPages
             Locator.MediaPlaybackViewModel.MouseService.OnMoved -= MouseMoved;
             controlsTimer.Tick -= ControlsTimer_Tick;
             controlsTimer.Stop();
+            Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
         }
 
         private void ControlsTimer_Tick(object sender, object e)
