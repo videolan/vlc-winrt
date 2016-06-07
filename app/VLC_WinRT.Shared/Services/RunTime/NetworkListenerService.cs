@@ -11,16 +11,18 @@ namespace VLC_WinRT.Services.RunTime
         public NetworkListenerService()
         {
             NetworkInformation.NetworkStatusChanged += NetworkInformation_NetworkStatusChanged;
+            NotifyNetworkChanged();
         }
 
         void NetworkInformation_NetworkStatusChanged(object sender)
         {
-            if (InternetConnectionChanged == null) return;
             NotifyNetworkChanged();
         }
 
         void NotifyNetworkChanged()
         {
+            if (InternetConnectionChanged == null)
+                return;
             var arg = new InternetConnectionChangedEventArgs(IsConnected);
             InternetConnectionChanged(null, arg);
         }
@@ -30,8 +32,7 @@ namespace VLC_WinRT.Services.RunTime
             get
             {
                 var profile = NetworkInformation.GetInternetConnectionProfile();
-                var isConnected = (profile != null && profile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess);
-                return isConnected;
+                return (profile != null && profile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess);
             }
         }
     }

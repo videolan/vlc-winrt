@@ -16,8 +16,6 @@ namespace VLC_WinRT.ViewModels.Others
 {
     public class StreamsViewModel : BindableBase, IDisposable
     {
-        private Visibility _noInternetPlaceholderEnabled = Visibility.Collapsed;
-
         public IEnumerable<StreamMedia> StreamsHistoryAndFavoritesGrouped
         {
             get { return Locator.MediaLibrary.Streams?.OrderBy(x => x.Order); }
@@ -28,11 +26,7 @@ namespace VLC_WinRT.ViewModels.Others
             get { return !Locator.MediaLibrary.Streams.Any(); }
         }
 
-        public Visibility NoInternetPlaceholderEnabled
-        {
-            get { return _noInternetPlaceholderEnabled; }
-            set { SetProperty(ref _noInternetPlaceholderEnabled, value); }
-        }
+        public Visibility NoInternetPlaceholderEnabled => NetworkListenerService.IsConnected ? Visibility.Collapsed : Visibility.Visible;
 
         public PlayNetworkMRLCommand PlayStreamCommand { get; } = new PlayNetworkMRLCommand();
 
@@ -55,7 +49,7 @@ namespace VLC_WinRT.ViewModels.Others
 
         private async void StreamsViewModel_InternetConnectionChanged(object sender, Model.Events.InternetConnectionChangedEventArgs e)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => NoInternetPlaceholderEnabled = e.IsConnected ? Visibility.Collapsed : Visibility.Visible);
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged(nameof(NoInternetPlaceholderEnabled)));
         }
 
         private async void Streams_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

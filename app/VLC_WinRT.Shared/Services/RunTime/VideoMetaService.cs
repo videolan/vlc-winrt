@@ -19,7 +19,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public async Task<bool> GetMovieSubtitle(VideoItem video)
         {
-            if (Locator.MainVM.IsInternet && !string.IsNullOrEmpty(video.Path))
+            if (NetworkListenerService.IsConnected && !string.IsNullOrEmpty(video.Path))
             {
                 var bytes = await videoMdFetcher.GetMovieSubtitle(video);
                 
@@ -60,7 +60,7 @@ namespace VLC_WinRT.Services.RunTime
         
         public async Task<bool> GetMoviePicture(VideoItem video)
         {
-            if (Locator.MainVM.IsInternet && !string.IsNullOrEmpty(video.Name))
+            if (NetworkListenerService.IsConnected && !string.IsNullOrEmpty(video.Name))
             {
                 var bytes = await videoMdFetcher.GetMovieCover(video.Name);
 

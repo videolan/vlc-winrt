@@ -54,7 +54,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public async Task<bool> GetAlbumCover(AlbumItem album)
         {
-            if (Locator.MainVM.IsInternet && !string.IsNullOrEmpty(album.Name))
+            if (NetworkListenerService.IsConnected && !string.IsNullOrEmpty(album.Name))
             {
                 var bytes = await musicMdFetcher.GetAlbumPictureFromInternet(album.Name, album.Artist);
                 if (bytes == null)
@@ -73,7 +73,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public async Task<bool> GetArtistPicture(ArtistItem artist)
         {
-            if (Locator.MainVM.IsInternet && !string.IsNullOrEmpty(artist.Name))
+            if (NetworkListenerService.IsConnected && !string.IsNullOrEmpty(artist.Name))
             {
                 var bytes = await musicMdFetcher.GetArtistPicture(artist.Name);
                 if (bytes == null)
