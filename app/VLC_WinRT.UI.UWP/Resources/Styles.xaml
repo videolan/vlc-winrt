@@ -2666,7 +2666,7 @@
                                         VerticalAlignment="Stretch">
                                 <Grid x:Name="PivotLayoutElement">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="48" />
+                                        <RowDefinition Height="Auto" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     
