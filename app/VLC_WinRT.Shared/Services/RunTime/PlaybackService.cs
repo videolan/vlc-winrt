@@ -692,7 +692,10 @@ namespace VLC_WinRT.Services.RunTime
             {
                 _mediaService.Stop();
             }
+#if STARTS
+#else
             TileHelper.ClearTile();
+#endif
         }
 
         public void Pause()
