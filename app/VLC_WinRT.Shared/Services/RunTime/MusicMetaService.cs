@@ -92,7 +92,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public async Task<bool> SaveAlbumImageAsync(AlbumItem album, byte[] img)
         {
-            if (await FetcherHelpers.SaveImage(album.Id, "albumPic", img))
+            if (await FetcherHelpers.SaveBytes(album.Id, "albumPic", img, "jpg", false))
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
@@ -107,14 +107,14 @@ namespace VLC_WinRT.Services.RunTime
 
         public async Task<bool> SaveArtistImageAsync(ArtistItem artist, byte[] img)
         {
-            if (await FetcherHelpers.SaveImage(artist.Id, "artistPic-original", img))
+            if (await FetcherHelpers.SaveBytes(artist.Id, "artistPic-original", img, "jpg", false))
             {
                 // saving full hd max img
                 var stream = await ImageHelper.ResizedImage(img, 1920, 1080);
-                await FetcherHelpers.SaveImage(artist.Id, "artistPic-fullsize", stream);
+                await FetcherHelpers.SaveBytes(artist.Id, "artistPic-fullsize", stream, "jpg", false);
 
                 stream = await ImageHelper.ResizedImage(img, 250, 250);
-                await FetcherHelpers.SaveImage(artist.Id, "artistPic-thumbnail", stream);
+                await FetcherHelpers.SaveBytes(artist.Id, "artistPic-thumbnail", stream, "jpg", false);
 
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => { artist.IsPictureLoaded = true; });
                 await artist.ResetArtistPicture(true);

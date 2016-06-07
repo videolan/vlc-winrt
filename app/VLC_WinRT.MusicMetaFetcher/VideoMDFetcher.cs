@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VLC_WinRT.MediaMetaFetcher.Fetchers;
 using System.Diagnostics;
+using VLC_WinRT.Model.Video;
 
 namespace VLC_WinRT.MediaMetaFetcher
 {
@@ -12,6 +13,7 @@ namespace VLC_WinRT.MediaMetaFetcher
     {
         public static string TheMovieDbApiKey;
         MovieDbClient movieDbClient = new MovieDbClient();
+        OpenSubtitleClient openSubClient = new OpenSubtitleClient();
 
         public VideoMDFetcher(string movieDbKey)
         {
@@ -40,6 +42,23 @@ namespace VLC_WinRT.MediaMetaFetcher
         public async Task<byte[]> GetMovieCover(string movieName)
         {
             return await DownloadMovieCoverFromMovieDB(movieName);
+        }
+
+        public async Task<byte[]> GetMovieSubtitle(VideoItem video)
+        {
+            try
+            {
+                var movieSub = await openSubClient.GetSubtitleUrl(video);
+                if (!string.IsNullOrEmpty(movieSub))
+                {
+                    return await openSubClient.DownloadSubtitle(video, movieSub);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error getting or saving movie: {video.Name} subtitle from opensubtitle");
+            }
+            return null;
         }
     }
 }

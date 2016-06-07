@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.IO.Compression;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VLC_WinRT.Utils;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
@@ -10,9 +14,9 @@ namespace VLC_WinRT.MediaMetaFetcher
 {
     public static class FetcherHelpers
     {
-        public static async Task<bool> SaveImage(int id, String folderName, byte[] img)
+        public static async Task<bool> SaveBytes(int id, String folderName, byte[] img, string extension, bool isTemp)
         {
-            String fileName = String.Format("{0}.jpg", id);
+            String fileName = String.Format("{0}.{1}", id, extension);
             try
             {
                 using (var streamWeb = new InMemoryRandomAccessStream())
@@ -21,9 +25,14 @@ namespace VLC_WinRT.MediaMetaFetcher
                     {
                         writer.WriteBytes(img);
                         await writer.StoreAsync();
-                        var albumPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
 
-                        var file = await albumPic.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
+                        StorageFolder folder;
+                        if (isTemp)
+                            folder = ApplicationData.Current.TemporaryFolder;
+                        else
+                            folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
+
+                        var file = await folder.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
                         Debug.WriteLine("Writing file " + folderName + " " + id);
                         using (var raStream = await file.OpenAsync(FileAccessMode.ReadWrite))
                         {
@@ -45,9 +54,30 @@ namespace VLC_WinRT.MediaMetaFetcher
             }
             catch (Exception e)
             {
-                Debug.WriteLine("Error saving album art: " + e);
+                Debug.WriteLine("Error saving bytes: " + e);
                 return false;
             }
+        }
+
+        public static async Task<string> ExtractFromArchive(int id, string archivePath)
+        {
+            try
+            {
+                var subFile = ZipFile.OpenRead(archivePath)?.Entries?.FirstOrDefault(x => x.FullName.EndsWith("srt") || x.FullName.EndsWith("ass"));
+                var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("movieSub", CreationCollisionOption.OpenIfExists);
+                
+                if (subFile != null)
+                {
+                    var ext = Path.GetExtension(subFile.FullName);
+                    subFile.ExtractToFile($"{folder.Path}\\{id}{ext}", true);
+                    return ext;
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Failed to extract srt from zip archive");
+            }
+            return string.Empty;
         }
     }
 }

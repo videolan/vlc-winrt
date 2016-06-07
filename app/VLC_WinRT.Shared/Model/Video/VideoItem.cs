@@ -110,7 +110,8 @@ namespace VLC_WinRT.Model.Video
         }
 
         public Boolean IsPictureLoaded { get; set; }
-
+        public bool IsSubtitlePreLoaded { get; set; }
+        
         public Boolean HasMoviePicture { get; set; }
 
         public Boolean IsCameraRoll { get; set; }
@@ -169,6 +170,21 @@ namespace VLC_WinRT.Model.Video
             }
         }
         
+        [Ignore]
+        public string SubtitleUri
+        {
+            get
+            {
+                if (IsSubtitlePreLoaded)
+                {
+                    return $"{Strings.MovieSubFolderPath}/{Id}{SubtitleExtension}";
+                }
+                return string.Empty;
+            }
+        }
+
+        public string SubtitleExtension { get; set; }
+
         [Ignore]
         public StorageFile File
         {

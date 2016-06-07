@@ -34,6 +34,8 @@ using VLC_WinRT.SharedBackground.Database;
 using System.Linq;
 using VLC_WinRT.Helpers.UIHelpers;
 using VLC_WinRT.Commands.MusicPlayer;
+using VLC_WinRT.MediaMetaFetcher.Fetchers;
+using VLC_WinRT.Model.Video;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -362,12 +364,13 @@ namespace VLC_WinRT.ViewModels
         public async Task PlayVideoFile(StorageFile file, string token = null)
         {
             var video = await MediaLibraryHelper.GetVideoItem(file);
+            video.Id = -1;
             if (token != null)
                 video.Token = token;
 
             await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(new List<IMediaItem> { video }, true, true, video);
         }
-        
+
         public async Task UpdatePosition()
         {
             if (Locator.VideoPlayerVm.CurrentVideo != null)
@@ -529,6 +532,25 @@ namespace VLC_WinRT.ViewModels
                     {
                         Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
                     }
+                    Task.Run(async () =>
+                    {
+                        if (CurrentMedia is VideoItem)
+                        {
+                            var video = CurrentMedia as VideoItem;
+
+                            var success = false;
+                            if (video.IsSubtitlePreLoaded)
+                                success = true;
+                            else
+                                success = await Locator.VideoMetaService.GetMovieSubtitle(video);
+
+                            if (success)
+                            {
+                                var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(video.SubtitleUri));
+                                OpenSubtitleCommand.Execute(file);
+                            }
+                        }
+                    });
                 }
             });
         }

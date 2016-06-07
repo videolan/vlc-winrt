@@ -86,6 +86,8 @@ namespace VLC_WinRT.Utils
 
         public static readonly string VideoPicFolderPath = "ms-appdata:///local/videoPic";
         public static readonly string MoviePicFolderPath = "ms-appdata:///local/moviePic";
+        public static readonly string MovieSubFolderPath = "ms-appdata:///local/movieSub";
+        public static readonly string TemporaryFolderPath = "ms-appdata:///temp";
 
         public static readonly string FeedbackMailAdress = "modernvlc@outlook.com";
 

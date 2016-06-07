@@ -259,20 +259,16 @@ namespace VLC_WinRT.Model.Library
 
                 await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.MusicLibrary));
 
-                if (await KnownFolders.PicturesLibrary.ContainsFolderAsync("Camera Roll"))
-                {
-                    var cameraRoll = await KnownFolders.PicturesLibrary.GetFolderAsync("Camera Roll");
-                    await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(cameraRoll), true);
-                }
+                await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.CameraRoll), true);
 
                 // Cortana gets all those artists, albums, songs names
                 var artists = await LoadArtists(null);
                 if (artists != null)
-                    await CortanaHelper.SetPhraseList("artistName", artists.Select(x => x.Name).ToList());
+                    await CortanaHelper.SetPhraseList("artistName", artists.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
 
-                var songs = await LoadTracks();
-                if (songs != null)
-                    await CortanaHelper.SetPhraseList("songName", songs.Select(x => x.Name).ToList());
+                var albums = await LoadAlbums(null);
+                if (albums != null)
+                    await CortanaHelper.SetPhraseList("albumName", albums.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
             }
             catch (Exception e)
             {

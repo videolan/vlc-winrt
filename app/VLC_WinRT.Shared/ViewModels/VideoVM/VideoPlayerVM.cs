@@ -26,6 +26,7 @@ using Windows.UI.Xaml.Media;
 using VLC_WinRT.Commands.VideoPlayer;
 using VLC_WinRT.Model;
 using Windows.UI.Core;
+using VLC_WinRT.MediaMetaFetcher.Fetchers;
 
 namespace VLC_WinRT.ViewModels.VideoVM
 {
