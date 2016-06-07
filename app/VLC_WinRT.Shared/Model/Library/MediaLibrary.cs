@@ -390,8 +390,6 @@ namespace VLC_WinRT.Model.Library
 
                     var video = await MediaLibraryHelper.GetVideoItem(item);
                     
-                    await videoDatabase.Insert(video);
-
                     if (video.IsTvShow)
                     {
                         await AddTvShow(video);
@@ -405,6 +403,7 @@ namespace VLC_WinRT.Model.Library
                     {
                         Videos.Add(video);
                     }
+                    await videoDatabase.Insert(video);
                 }
                 else
                 {
