@@ -139,7 +139,6 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
 
         void SetAlbumName()
         {
-            //AlbumName.Text = Locator.MusicPlayerVM.CurrentAlbum?.Name;
         }
 
         void SetArtistName()
