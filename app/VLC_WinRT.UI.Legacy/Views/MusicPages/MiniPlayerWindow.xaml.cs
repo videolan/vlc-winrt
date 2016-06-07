@@ -126,6 +126,10 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
                         });
                     }
                 }
+                else
+                {
+                    await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => ImgCover.Source = null);
+                }
             }
             catch (Exception)
             {
