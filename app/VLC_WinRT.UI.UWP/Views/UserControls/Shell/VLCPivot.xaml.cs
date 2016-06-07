@@ -44,10 +44,12 @@ namespace VLC_WinRT.Views.UserControls
             if (newWidth < 850)
             {
                 pivotHeader.Margin = new Thickness(0, 16, 0, 0);
+                VLCIcon.Visibility = Visibility.Collapsed;
             }
             else
             {
                 pivotHeader.Margin = new Thickness();
+                VLCIcon.Visibility = Visibility.Visible;
             }
         }
     }

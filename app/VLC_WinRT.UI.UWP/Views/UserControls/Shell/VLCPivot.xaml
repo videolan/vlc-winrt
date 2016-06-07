@@ -20,7 +20,8 @@
             <Grid x:Name="TitleBar"
                   Loaded="TitleBar_Loaded"
                   Background="Transparent">
-                <Path Data="{StaticResource VLCFlatPath}"
+                <Path x:Name="VLCIcon"
+                      Data="{StaticResource VLCFlatPath}"
                       Fill="{ThemeResource MainColor}"
                       Stretch="Uniform"
                       HorizontalAlignment="Left"
