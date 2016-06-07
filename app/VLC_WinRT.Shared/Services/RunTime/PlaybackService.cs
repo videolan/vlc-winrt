@@ -279,7 +279,6 @@ namespace VLC_WinRT.Services.RunTime
         {
             if (media == null)
                 throw new ArgumentNullException(nameof(media), "Media is missing. Can't play");
-            Stop();
             UseVlcLib = forceVlcLib;
 
             if (media is VideoItem)
