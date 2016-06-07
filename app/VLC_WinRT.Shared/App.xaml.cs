@@ -294,7 +294,6 @@ namespace VLC_WinRT
                 {
                     Locator.MediaLibrary.DropTablesIfNeeded();
                     await Task.Factory.StartNew(async () => await Locator.MediaLibrary.Initialize()).ConfigureAwait(false);
-                    await Task.Factory.StartNew(async () => await CortanaHelper.Initialize().ConfigureAwait(false));
                 }
             });
         }
