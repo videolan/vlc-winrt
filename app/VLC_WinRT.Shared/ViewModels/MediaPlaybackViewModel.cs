@@ -36,6 +36,8 @@ using VLC_WinRT.Helpers.UIHelpers;
 using VLC_WinRT.Commands.MusicPlayer;
 using VLC_WinRT.MediaMetaFetcher.Fetchers;
 using VLC_WinRT.Model.Video;
+using VLC_WinRT.Model.Stream;
+using Windows.UI.Popups;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -288,6 +290,20 @@ namespace VLC_WinRT.ViewModels
             PlaybackService.Playback_MediaParsed += Playback_MediaParsed;
 
             PlaybackService.Playback_MediaSet += PlaybackService_MediaSet;
+            App.Container.Resolve<NetworkListenerService>().InternetConnectionChanged += MediaPlaybackViewModel_InternetConnectionChanged;
+        }
+
+        private async void MediaPlaybackViewModel_InternetConnectionChanged(object sender, Model.Events.InternetConnectionChangedEventArgs e)
+        {
+            if (!e.IsConnected && IsPlaying && CurrentMedia is StreamMedia)
+            {
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
+                {
+                    GoBack.Execute(null);
+                    var dialog = new MessageDialog(Strings.MediaCantBeRead.ToUpperFirstChar(), Strings.NoInternetConnection.ToUpperFirstChar());
+                    await dialog.ShowAsync();
+                });
+            }
         }
 
         #endregion
