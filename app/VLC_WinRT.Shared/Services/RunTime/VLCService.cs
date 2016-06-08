@@ -324,7 +324,7 @@ namespace VLC_WinRT.Services.RunTime
         #region playback actions
         public void SetSubtitleFile(string mrl)
         {
-            MediaPlayer?.addSlave(SlaveType.Subtitle, mrl);
+            MediaPlayer?.addSlave(SlaveType.Subtitle, mrl, true);
         }
 
         public void SetSubtitleTrack(int i)
