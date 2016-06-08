@@ -577,9 +577,6 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\misc\libfingerprinter_plugin.dll">
       <Link>plugins\misc\libfingerprinter_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\misc\libgnutls_plugin.dll">
-      <Link>plugins\misc\libgnutls_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\misc\liblogger_plugin.dll">
       <Link>plugins\misc\liblogger_plugin.dll</Link>
     </Content>
