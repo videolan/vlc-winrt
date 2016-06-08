@@ -76,9 +76,12 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     Locator.MediaPlaybackViewModel.PlaybackService.SetCurrentMediaPosition(0); return null;
                 }
                 var media = Locator.MediaPlaybackViewModel.CurrentMedia;
+                OnPropertyChanged(nameof(CurrentMediaTitle));
                 return (media is TrackItem) ? (TrackItem)media : null;
             }
         }
+
+        public string CurrentMediaTitle => (CurrentTrack == null) ? Locator.MediaPlaybackViewModel.CurrentMedia?.Name : CurrentTrack.Name;
 
         public GoToMusicPlayerPage GoToMusicPlayerPage { get; } = new GoToMusicPlayerPage();
 

@@ -42,7 +42,7 @@
                            Tapped="RootMiniPlayer_Tapped" />
                     <TextBlock x:Name="TrackNameTextBlock"
                                Grid.Column="2"
-                               Text="{Binding CurrentTrack.Name}"
+                               Text="{Binding CurrentMediaTitle}"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                FontWeight="SemiBold"

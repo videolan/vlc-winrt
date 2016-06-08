@@ -110,6 +110,9 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
 
         async Task SetImgCover()
         {
+            if (Locator.MusicPlayerVM.CurrentAlbum == null)
+                return;
+
             bool fileExists = Locator.MusicPlayerVM.CurrentAlbum.IsPictureLoaded;
             try
             {
@@ -143,12 +146,12 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
 
         void SetArtistName()
         {
-            ArtistName.Text = Locator.MusicPlayerVM.CurrentArtist?.Name;
+            ArtistName.Text = (Locator.MusicPlayerVM.CurrentAlbum == null) ? Strings.NowPlaying : Locator.MusicPlayerVM.CurrentArtist?.Name;
         }
 
         private void SetTrackName()
         {
-            TrackName.Text = Locator.MusicPlayerVM.CurrentTrack?.Name;
+            TrackName.Text = string.IsNullOrEmpty(Locator.MusicPlayerVM.CurrentMediaTitle) ? string.Empty : Locator.MusicPlayerVM.CurrentMediaTitle;
         }
 
         void SetPreviousButton()
