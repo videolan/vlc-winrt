@@ -1,0 +1,33 @@
+From b05bd97cd1ba36e0ddf9a1e9690c664f1eed3692 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
+Date: Wed, 8 Jun 2016 10:44:21 +0200
+Subject: [PATCH] contribs: Update libdsm version
+
+---
+ contrib/src/libdsm/SHA512SUMS | 2 +-
+ contrib/src/libdsm/rules.mak  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/contrib/src/libdsm/SHA512SUMS b/contrib/src/libdsm/SHA512SUMS
+index 5ac98e9..bbd3042 100644
+--- a/contrib/src/libdsm/SHA512SUMS
++++ b/contrib/src/libdsm/SHA512SUMS
+@@ -1 +1 @@
+-8c18d2d808113f6127318cb9c76d1819e741b17f0e7206f9f4ac8d7abb5dd33a49d2aa38bf4d22a5382bc48acd3dd7d61d32493d5f99c8048c75836655a83294  libdsm-0.2.4.tar.gz
++eb300686254ac221102587631f29a865fdc9990f796ec88ae31639ba2c9404e07dab924fbfbfd23a33abae044269351499852d103dbda564f5584722e86d7aaf  libdsm-0.2.5.tar.gz
+diff --git a/contrib/src/libdsm/rules.mak b/contrib/src/libdsm/rules.mak
+index 1fba7c7..bf42e44 100644
+--- a/contrib/src/libdsm/rules.mak
++++ b/contrib/src/libdsm/rules.mak
+@@ -1,7 +1,7 @@
+ # libdsm
+ 
+ #LIBDSM_GITURL := git://github.com/videolabs/libdsm.git
+-LIBDSM_VERSION := 0.2.4
++LIBDSM_VERSION := 0.2.5
+ LIBDSM_URL := https://github.com/videolabs/libdsm/releases/download/v$(LIBDSM_VERSION)/libdsm-$(LIBDSM_VERSION).tar.gz
+ 
+ ifeq ($(call need_pkg,"libdsm >= 0.2.0"),)
+-- 
+2.8.1
+
