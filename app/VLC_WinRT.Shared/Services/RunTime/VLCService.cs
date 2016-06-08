@@ -192,7 +192,7 @@ namespace VLC_WinRT.Services.RunTime
             return new Media(Instance, filePath, FromType.FromPath);
         }
 
-        public async Task<string> GetArtworkUrl(Media media)
+        public async Task<string> GetArtworkUrl(Media media, bool shouldParse = true)
         {
             if (Instance == null)
             {
@@ -201,8 +201,13 @@ namespace VLC_WinRT.Services.RunTime
             await PlayerInstanceReady.Task;
             if (media == null)
                 return null;
-            if (media.parsedStatus() != ParsedStatus.Done && media.parsedStatus() != ParsedStatus.Skipped)
-                media.parse();
+
+            if (shouldParse)
+            {
+                if (media.parsedStatus() != ParsedStatus.Done && media.parsedStatus() != ParsedStatus.Skipped)
+                    media.parse();
+            }
+
             if (media.parsedStatus() == ParsedStatus.Failed)
                 return null;
             var url = media.meta(MediaMeta.ArtworkURL);

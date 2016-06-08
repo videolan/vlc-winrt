@@ -23,7 +23,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
             BackStack.Add(new VLCStorageFolder(media));
             Task.Run(async () =>
             {
-                var url = await Locator.VLCService.GetArtworkUrl(media);
+                var url = await Locator.VLCService.GetArtworkUrl(media, false);
                 base.ArtworkUrl = url;
             });
         }
