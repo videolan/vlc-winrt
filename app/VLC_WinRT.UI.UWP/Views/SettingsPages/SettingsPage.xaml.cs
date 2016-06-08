@@ -74,7 +74,8 @@ namespace VLC_WinRT.UI.UWP.Views.SettingsPages
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Locator.SettingsVM.Equalizer = e.AddedItems[0] as VLCEqualizer;
+            if (e.AddedItems.Any())
+                Locator.SettingsVM.Equalizer = e.AddedItems[0] as VLCEqualizer;
         }
     }
 }
