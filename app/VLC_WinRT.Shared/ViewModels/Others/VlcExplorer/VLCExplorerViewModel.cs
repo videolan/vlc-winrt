@@ -130,7 +130,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
         }
 
 
-        public void Dispose()
+        public async void Dispose()
         {
 #if WINDOWS_PHONE_APP
 #elif WINDOWS_APP
@@ -141,7 +141,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 #endif
             Locator.VLCService.MediaListItemAdded -= VLCService_MediaListItemAdded;
             Locator.VLCService.MediaListItemDeleted -= VLCService_MediaListItemDeleted;
-            Locator.VLCService.DisposeDiscoverer();
+            await Locator.VLCService.DisposeDiscoverer();
             _currentStorageVM = null;
             _fileExplorersGrouped?.Clear();
             GC.Collect();
@@ -227,9 +227,9 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             if (key == null)
             {
                 key = new GroupItemList<FileExplorer>(fileEx) { Key = fileEx.Type };
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => FileExplorersGrouped.Add(key));
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => FileExplorersGrouped.Add(key));
             }
-            else await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => key.Add(fileEx));
+            else await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => key.Add(fileEx));
         }
 
         public void GoBackToRootFolders()

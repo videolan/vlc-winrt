@@ -477,7 +477,7 @@ namespace VLC_WinRT.Services.RunTime
         }
         #endregion
         #region Service Discoverer
-        MediaDiscoverer discoverer;
+        Dictionary<string, MediaDiscoverer> discoverers;
         public event MediaListItemAdded MediaListItemAdded;
         public event MediaListItemDeleted MediaListItemDeleted;
         private object discovererLock = new object();
@@ -490,33 +490,57 @@ namespace VLC_WinRT.Services.RunTime
             await PlayerInstanceReady.Task;
             if (Instance == null)
                 return false;
-            lock (discovererLock)
+
+            var tcs = new TaskCompletionSource<bool>();
+            await Task.Run(() =>
             {
-                if (discoverer == null)
+                lock (discovererLock)
                 {
-                    discoverer = new MediaDiscoverer(Instance, "microdns");
-                    var mediaList = discoverer.mediaList();
-                    if (mediaList == null)
-                        return false;
+                    if (discoverers == null)
+                    {
+                        discoverers = new Dictionary<string, MediaDiscoverer>();
+                        var discoverersDesc = Instance.mediaDiscoverers(MediaDiscovererCategory.Lan);
+                        foreach (var discDesc in discoverersDesc)
+                        {
+                            var discoverer = new MediaDiscoverer(Instance, discDesc.name());
 
-                    var eventManager = mediaList.eventManager();
-                    eventManager.onItemAdded += MediaListItemAdded;
-                    eventManager.onItemDeleted += MediaListItemDeleted;
+                            var mediaList = discoverer.mediaList();
+                            if (mediaList == null)
+                                tcs.TrySetResult(false);
+
+                            var eventManager = mediaList.eventManager();
+                            eventManager.onItemAdded += MediaListItemAdded;
+                            eventManager.onItemDeleted += MediaListItemDeleted;
+
+                            discoverers.Add(discDesc.name(), discoverer);
+                        }
+                    }
+
+                    foreach (var discoverer in discoverers)
+                    {
+                        if (!discoverer.Value.isRunning())
+                            discoverer.Value.start();
+                    }
+                    tcs.TrySetResult(true);
                 }
-
-                if (!discoverer.isRunning())
-                    discoverer.start();
-            }
-            return true;
+            });
+            await tcs.Task;
+            return tcs.Task.Result;
         }
 
-        public void DisposeDiscoverer()
+        public async Task DisposeDiscoverer()
         {
-            lock (discovererLock)
+            await Task.Run(() =>
             {
-                if (discoverer.isRunning())
-                    discoverer.stop();
-            }
+                lock (discovererLock)
+                {
+                    foreach (var discoverer in discoverers)
+                    {
+                        if (discoverer.Value.isRunning())
+                            discoverer.Value.stop();
+                    }
+                }
+            });
         }
 
         public Task<MediaList> DiscoverMediaList(Media media)
