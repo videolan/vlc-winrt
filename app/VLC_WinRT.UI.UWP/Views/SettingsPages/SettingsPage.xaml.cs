@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
