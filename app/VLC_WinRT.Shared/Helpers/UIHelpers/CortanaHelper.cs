@@ -18,12 +18,16 @@ namespace VLC_WinRT.Helpers
 #if WINDOWS_UWP
             try
             {
+#if STARTS
+                var vcdStorageFile = await Package.Current.InstalledLocation.GetFileAsync(@"VLCCommandsFRonly.xml");
+#else
                 var vcdStorageFile = await Package.Current.InstalledLocation.GetFileAsync(@"VLCCommands.xml");
+#endif
                 await VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(vcdStorageFile);
             }
             catch { }
 #endif
-        }
+            }
 
         /// <summary>
         /// It takes a VERY LONG TIME to set the phrase list, something like 10 seconds. This is too much
