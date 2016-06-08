@@ -350,6 +350,7 @@ namespace VLC_WinRT.ViewModels
         {
             try
             {
+                streamMrl = streamMrl.Trim();
                 var stream = await Locator.MediaLibrary.LoadStreamFromDatabaseOrCreateOne(streamMrl);
                 await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(new List<IMediaItem> { stream }, true, true, stream);
             }
