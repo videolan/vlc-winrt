@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="en-us" Name="VlcCommandSet_en-us">
+    <AppName> VLC</AppName>
+    <Example> Jouer de la musique </Example>
+
+    <Command Name="playArtist">
+      <Example> Lire Coldplay </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> Jouer [des] [chansons] [de] {artistName}</ListenFor>
+      <Feedback> Lecture de {artistName} </Feedback>
+      <Navigate />
+    </Command>
+
+    <Command Name="showArtist">
+      <Example> Afficher Kanye West </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> Afficher [les] [chansons] [de] {artistName}</ListenFor>
+      <Feedback> Affichage de {artistName} </Feedback>
+      <Navigate />
+    </Command>
+
+    <Command Name="playAlbumByArtist">
+      <Example> Lire 1989 de Taylor Swift </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> Lire {albumName} de {artistName} </ListenFor>
+      <Feedback> Lecture de {albumName} par {artistName} </Feedback>
+      <Navigate />
+    </Command>
+
+    <Command Name="shuffleLibrary">
+      <Example> Lire ma musique en aléatoire </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> Lire ma musique en aléatoire </ListenFor>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> Jouer [ma] musique en aléatoire </ListenFor>
+      <Feedback> Lecture aléatoire de la musique </Feedback>
+      <Navigate />
+    </Command>
+
+    <Command Name="createArtistPlaylist">
+      <Example> Créer une playlist Linkin Park </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> Créer une playlist [de] [avec] {artistName} </ListenFor>
+      <Feedback> Création d'une playlist [avec] {artistName} </Feedback>
+      <Navigate />
+    </Command>
+
+    <!-- create playlist 
+    continue the last one
+    play me a song (random)
+    play something like rock
+    -->
+    <PhraseList Label="artistName"/>
+    <PhraseList Label="albumName"/>
+  </CommandSet>
+</VoiceCommands>
