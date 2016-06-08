@@ -874,6 +874,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\visualization\libvisual_plugin.dll">
       <Link>plugins\visualization\libvisual_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-amd64\Debug\plugins\access\libdsm_plugin.dll">
+      <Link>plugins\access\libdsm_plugin.dll</Link>
+    </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
