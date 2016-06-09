@@ -1,0 +1,53 @@
+From 9359a2976bfada327425a14b050b2020322b05ef Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
+Date: Wed, 18 May 2016 20:28:19 +0200
+Subject: [PATCH] modules: bank: Save the cache if it was empty
+
+This aims at fixing an issue with some libvlc issues, that wouldn't have
+a plugin cache if they don't rely on a VLC player installation (since we
+generate the cache upon install time)
+---
+ src/modules/bank.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+diff --git a/src/modules/bank.c b/src/modules/bank.c
+index 19292e6..4455c94 100644
+--- a/src/modules/bank.c
++++ b/src/modules/bank.c
+@@ -374,11 +374,13 @@ static void AllocatePluginPath (vlc_object_t *p_this, const char *path,
+     module_bank_t bank;
+     module_cache_t *cache = NULL;
+     size_t count = 0;
++    bool b_has_cache = false;
+ 
+     switch( mode )
+     {
+         case CACHE_USE:
+             count = CacheLoad( p_this, path, &cache );
++            b_has_cache = count != 0;
+             break;
+         case CACHE_RESET:
+             CacheDelete( p_this, path );
+@@ -410,10 +412,15 @@ static void AllocatePluginPath (vlc_object_t *p_this, const char *path,
+                    vlc_module_destroy (cache[i].p_module);
+                 free (cache[i].path);
+             }
+-            free( cache );
+-            for (size_t i = 0; i < bank.i_cache; i++)
+-                free (bank.cache[i].path);
+-            free (bank.cache);
++            if (b_has_cache == false)
++                CacheSave (p_this, path, bank.cache, bank.i_cache);
++            else
++            {
++                free( cache );
++                for (size_t i = 0; i < bank.i_cache; i++)
++                    free (bank.cache[i].path);
++                free (bank.cache);
++            }
+             break;
+         case CACHE_RESET:
+             CacheSave (p_this, path, bank.cache, bank.i_cache);
+-- 
+2.8.1
+
