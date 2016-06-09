@@ -136,6 +136,10 @@ namespace VLC_WinRT.ViewModels
         {
             if (e.WindowActivationState == CoreWindowActivationState.Deactivated)
             {
+                IsBackground = true;
+                if (Locator.MediaPlaybackViewModel.CurrentMedia == null) return;
+                if (!Locator.MediaPlaybackViewModel.IsPlaying) return;
+
                 extendedSession = new ExtendedExecutionSession();
                 extendedSession.Reason = ExtendedExecutionReason.LocationTracking;
                 extendedSession.Description = "Windows background audio for VLC";
@@ -148,20 +152,9 @@ namespace VLC_WinRT.ViewModels
                 }
                 else
                 {
+                    ToastHelper.Basic(Strings.FailFilePlayBackground, true);
                 }
 
-                //Geolocator locator = new Geolocator();
-                //locator.DesiredAccuracyInMeters = 0;
-                //locator.MovementThreshold = 500;
-                //locator.DesiredAccuracy = PositionAccuracy.High;
-                //locator.PositionChanged += (tt,ttt) =>
-                //{
-
-                //};
-
-                IsBackground = true;
-                if (Locator.MediaPlaybackViewModel.CurrentMedia == null) return;
-                if (!Locator.MediaPlaybackViewModel.IsPlaying) return;
                 // If we're playing a video, just pause.
                 if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Video)
                 {
