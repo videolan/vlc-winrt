@@ -682,6 +682,8 @@ namespace VLC_WinRT.ViewModels
             switch (args.Button)
             {
                 case SystemMediaTransportControlsButton.Pause:
+                    PlaybackService.Pause();
+                    break;
                 case SystemMediaTransportControlsButton.Play:
                     PlaybackService.Play();
                     break;
