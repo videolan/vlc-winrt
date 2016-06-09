@@ -25,12 +25,14 @@ using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Helpers.VideoLibrary;
 using VLC_WinRT.Model.Stream;
 using VLC_WinRT.Services.RunTime;
+using libVLCX;
 
 namespace VLC_WinRT.Model.Library
 {
     public class MediaLibrary
     {
         #region properties
+        private object discovererLock = new object();
         private bool _alreadyIndexedOnce = false;
         public bool AlreadyIndexedOnce => _alreadyIndexedOnce;
 
@@ -72,6 +74,11 @@ namespace VLC_WinRT.Model.Library
         public SmartCollection<TvShow> Shows { get; private set; } = new SmartCollection<TvShow>();
 
         public SmartCollection<StreamMedia> Streams { get; private set; } = new SmartCollection<StreamMedia>();
+
+
+        Dictionary<string, MediaDiscoverer> discoverers;
+        public event MediaListItemAdded MediaListItemAdded;
+        public event MediaListItemDeleted MediaListItemDeleted;
         #endregion
         #region mutexes
         public TaskCompletionSource<bool> ContinueIndexing { get; set; }
@@ -444,6 +451,87 @@ namespace VLC_WinRT.Model.Library
             }
         }
 
+        public async Task<bool> InitDiscoverer()
+        {
+            if (Locator.VLCService.Instance == null)
+            {
+                await Initialize();
+            }
+            await Locator.VLCService.PlayerInstanceReady.Task;
+            if (Locator.VLCService.Instance == null)
+                return false;
+
+            await MediaItemDiscovererSemaphoreSlim.WaitAsync();
+            var tcs = new TaskCompletionSource<bool>();
+            await Task.Run(() =>
+            {
+                lock (discovererLock)
+                {
+                    if (discoverers == null)
+                    {
+                        discoverers = new Dictionary<string, MediaDiscoverer>();
+                        var discoverersDesc = Locator.VLCService.Instance.mediaDiscoverers(MediaDiscovererCategory.Lan);
+                        foreach (var discDesc in discoverersDesc)
+                        {
+                            var discoverer = new MediaDiscoverer(Locator.VLCService.Instance, discDesc.name());
+
+                            var mediaList = discoverer.mediaList();
+                            if (mediaList == null)
+                                tcs.TrySetResult(false);
+
+                            var eventManager = mediaList.eventManager();
+                            eventManager.onItemAdded += MediaListItemAdded;
+                            eventManager.onItemDeleted += MediaListItemDeleted;
+
+                            discoverers.Add(discDesc.name(), discoverer);
+                        }
+                    }
+
+                    foreach (var discoverer in discoverers)
+                    {
+                        if (!discoverer.Value.isRunning())
+                            discoverer.Value.start();
+                    }
+                    tcs.TrySetResult(true);
+                }
+            });
+            await tcs.Task;
+            MediaItemDiscovererSemaphoreSlim.Release();
+            return tcs.Task.Result;
+        }
+
+        public async Task DisposeDiscoverer()
+        {
+            await Task.Run(() =>
+            {
+                lock (discovererLock)
+                {
+                    foreach (var discoverer in discoverers)
+                    {
+                        if (discoverer.Value.isRunning())
+                            discoverer.Value.stop();
+                    }
+                }
+            });
+        }
+
+        public async Task<MediaList> DiscoverMediaList(Media media)
+        {
+            var tcs = new TaskCompletionSource<MediaList>();
+            if (media.parsedStatus() == ParsedStatus.Done)
+                tcs.TrySetResult(media.subItems());
+
+            media.eventManager().OnParsedChanged += (ParsedStatus s) =>
+            {
+                if (s != ParsedStatus.Done)
+                    return;
+                tcs.TrySetResult(media.subItems());
+            };
+            await MediaItemDiscovererSemaphoreSlim.WaitAsync();
+            media.parseWithOptions(ParseFlags.FetchLocal | ParseFlags.FetchNetwork | ParseFlags.Local | ParseFlags.Network, 5000);
+            MediaItemDiscovererSemaphoreSlim.Release();
+            return tcs.Task.Result;
+        }
         #endregion
 
         //============================================

@@ -123,9 +123,9 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             RootFoldersVisibility = Visibility.Visible;
             await Task.Run(async () =>
             {
-                Locator.VLCService.MediaListItemAdded += VLCService_MediaListItemAdded;
-                Locator.VLCService.MediaListItemDeleted += VLCService_MediaListItemDeleted;
-                await Locator.VLCService.InitDiscoverer();
+                Locator.MediaLibrary.MediaListItemAdded += VLCService_MediaListItemAdded;
+                Locator.MediaLibrary.MediaListItemDeleted += VLCService_MediaListItemDeleted;
+                await Locator.MediaLibrary.InitDiscoverer();
             });
         }
 
@@ -139,9 +139,9 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             _deviceService.Dispose();
             _deviceService = null;
 #endif
-            Locator.VLCService.MediaListItemAdded -= VLCService_MediaListItemAdded;
-            Locator.VLCService.MediaListItemDeleted -= VLCService_MediaListItemDeleted;
-            await Locator.VLCService.DisposeDiscoverer();
+            Locator.MediaLibrary.MediaListItemAdded -= VLCService_MediaListItemAdded;
+            Locator.MediaLibrary.MediaListItemDeleted -= VLCService_MediaListItemDeleted;
+            await Locator.MediaLibrary.DisposeDiscoverer();
             _currentStorageVM = null;
             _fileExplorersGrouped?.Clear();
             GC.Collect();

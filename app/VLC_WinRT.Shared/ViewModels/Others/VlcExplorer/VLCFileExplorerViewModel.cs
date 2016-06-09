@@ -41,7 +41,7 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                 var currentMedia = BackStack.Last().Media;
                 if (currentMedia == null)
                     return;
-                var mediaList = await Locator.VLCService.DiscoverMediaList(currentMedia);
+                var mediaList = await Locator.MediaLibrary.DiscoverMediaList(currentMedia);
                 for (int i = 0; i < mediaList.count(); i++)
                 {
                     var media = mediaList.itemAtIndex(i);
