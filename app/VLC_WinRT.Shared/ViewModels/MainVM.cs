@@ -33,6 +33,8 @@ using VLC_WinRT.Views.MusicPages;
 using System.Threading.Tasks;
 using Windows.UI.ViewManagement;
 using VLC_WinRT.UI.Legacy.Views.UserControls;
+using Windows.ApplicationModel.ExtendedExecution;
+using Windows.Devices.Geolocation;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -49,6 +51,7 @@ namespace VLC_WinRT.ViewModels
         private bool _isBackground = false;
         static bool? _isWindows10;
 
+        private ExtendedExecutionSession extendedSession;
         // Navigation props
         #endregion
 
@@ -129,10 +132,33 @@ namespace VLC_WinRT.ViewModels
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
         }
 
-        private void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)
+        private async void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)
         {
             if (e.WindowActivationState == CoreWindowActivationState.Deactivated)
             {
+                extendedSession = new ExtendedExecutionSession();
+                extendedSession.Reason = ExtendedExecutionReason.LocationTracking;
+                extendedSession.Description = "Windows background audio for VLC";
+                extendedSession.Revoked += ExtendedSession_Revoked;
+                ExtendedExecutionResult result = await extendedSession.RequestExtensionAsync();
+
+                if (result == ExtendedExecutionResult.Allowed)
+                {
+
+                }
+                else
+                {
+                }
+
+                //Geolocator locator = new Geolocator();
+                //locator.DesiredAccuracyInMeters = 0;
+                //locator.MovementThreshold = 500;
+                //locator.DesiredAccuracy = PositionAccuracy.High;
+                //locator.PositionChanged += (tt,ttt) =>
+                //{
+
+                //};
+
                 IsBackground = true;
                 if (Locator.MediaPlaybackViewModel.CurrentMedia == null) return;
                 if (!Locator.MediaPlaybackViewModel.IsPlaying) return;
@@ -149,9 +175,42 @@ namespace VLC_WinRT.ViewModels
             else
             {
                 IsBackground = false;
+
+                ClearExtendedExecution();
             }
         }
-                
+
+        private async void ExtendedSession_Revoked(object sender, ExtendedExecutionRevokedEventArgs args)
+        {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                switch (args.Reason)
+                {
+                    case ExtendedExecutionRevokedReason.Resumed:
+                        break;
+                    case ExtendedExecutionRevokedReason.SystemPolicy:
+                        if (Locator.MediaPlaybackViewModel.IsPlaying)
+                        {
+                            Locator.MediaPlaybackViewModel.PlaybackService.Stop();
+                        }
+                        break;
+                }
+                ClearExtendedExecution();
+            });
+        }
+
+        void ClearExtendedExecution()
+        {
+            if (extendedSession != null)
+            {
+                extendedSession.Revoked -= ExtendedSession_Revoked;
+                extendedSession.Dispose();
+                extendedSession = null;
+            }
+        }
+
+
+
         public ObservableCollection<Panel> Panels
         {
             get { return _panels; }
