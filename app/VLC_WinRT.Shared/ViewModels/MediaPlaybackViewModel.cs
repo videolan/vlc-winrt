@@ -689,10 +689,10 @@ namespace VLC_WinRT.ViewModels
                     PlaybackService.Stop();
                     break;
                 case SystemMediaTransportControlsButton.Previous:
-                    await PlaybackService.PlayPrevious();
+                    await PlaybackService.PlayPrevious(true);
                     break;
                 case SystemMediaTransportControlsButton.Next:
-                    await PlaybackService.PlayNext();
+                    await PlaybackService.PlayNext(true);
                     break;
             }
         }

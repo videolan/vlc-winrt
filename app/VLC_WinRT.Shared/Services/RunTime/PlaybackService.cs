@@ -442,8 +442,13 @@ namespace VLC_WinRT.Services.RunTime
             await SetPlaylist(null, false, true, Playlist[CurrentMedia]);
         }
 
-        public async Task PlayNext()
+        public async Task PlayNext(bool stopCurrentMedia)
         {
+            if (stopCurrentMedia)
+            {
+                Stop();
+            }
+
             if (CanGoNext())
             {
                 SetCurrentMediaPosition(CurrentMedia + 1);
@@ -451,8 +456,13 @@ namespace VLC_WinRT.Services.RunTime
             }
         }
 
-        public async Task PlayPrevious()
+        public async Task PlayPrevious(bool stopCurrentMedia)
         {
+            if (stopCurrentMedia)
+            {
+                Stop();
+            }
+
             if (CanGoPrevious())
             {
                 SetCurrentMediaPosition(CurrentMedia - 1);
@@ -857,7 +867,7 @@ namespace VLC_WinRT.Services.RunTime
             }
             else
             {
-                await PlayNext();
+                await PlayNext(false);
             }
         }
 
