@@ -172,25 +172,7 @@ namespace VLC_WinRT.Model.Library
             videoDatabase.Drop();
             videoDatabase.Initialize();
         }
-
-        public async Task PerformRoutineCheckIfNotBusy()
-        {
-            // Routine check to add new files if there are new ones
-            //if (!IsBusy)
-            //{
-            //    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-            //    {
-            //        IsBusy = true;
-            //    });
-            await StartIndexing();
-            //    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-            //    {
-            //        IsBusy = false;
-            //        Locator.MainVM.InformationText = "";
-            //    });
-            //}
-        }
-
+        
         public async Task Initialize()
         {
             MediaLibraryIndexingState = LoadingState.Loading;

@@ -12,10 +12,6 @@ namespace VLC_WinRT.Commands.MediaLibrary
             {
                 await Locator.MediaLibrary.Initialize();
             }
-            else
-            {
-                await Locator.MediaLibrary.PerformRoutineCheckIfNotBusy();
-            }
         }
     }
 }
