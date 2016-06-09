@@ -220,7 +220,7 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
 		// TODO: Does not work in UWP. Need to fix.
 
 		auto sce = sys->screenshotCompleteEvent;
-#ifndef WINAPI_FAMILY_UNIVERSAL_APP)
+#ifndef WINAPI_FAMILY_UNIVERSAL_APP
         sys->cancellationTask = concurrency::create_task([sce, timeoutMs] {
             concurrency::wait(timeoutMs);
             if (!concurrency::is_task_cancellation_requested())
