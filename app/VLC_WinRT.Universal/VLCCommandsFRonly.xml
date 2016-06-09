@@ -36,7 +36,7 @@
     <Command Name="createArtistPlaylist">
       <Example> Créer une playlist Linkin Park </Example>
       <ListenFor RequireAppName="BeforeOrAfterPhrase"> Créer une playlist [de] [avec] {artistName} </ListenFor>
-      <Feedback> Création d'une playlist [avec] {artistName} </Feedback>
+      <Feedback> Création d'une playlist avec {artistName} </Feedback>
       <Navigate />
     </Command>
 
