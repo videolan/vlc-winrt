@@ -140,19 +140,22 @@ namespace VLC_WinRT.ViewModels
                 if (Locator.MediaPlaybackViewModel.CurrentMedia == null) return;
                 if (!Locator.MediaPlaybackViewModel.IsPlaying) return;
 
-                extendedSession = new ExtendedExecutionSession();
-                extendedSession.Reason = ExtendedExecutionReason.LocationTracking;
-                extendedSession.Description = "Windows background audio for VLC";
-                extendedSession.Revoked += ExtendedSession_Revoked;
-                ExtendedExecutionResult result = await extendedSession.RequestExtensionAsync();
-
-                if (result == ExtendedExecutionResult.Allowed)
+                if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Phone)
                 {
+                    extendedSession = new ExtendedExecutionSession();
+                    extendedSession.Reason = ExtendedExecutionReason.LocationTracking;
+                    extendedSession.Description = "Windows background audio for VLC";
+                    extendedSession.Revoked += ExtendedSession_Revoked;
+                    ExtendedExecutionResult result = await extendedSession.RequestExtensionAsync();
 
-                }
-                else
-                {
-                    ToastHelper.Basic(Strings.FailFilePlayBackground, true);
+                    if (result == ExtendedExecutionResult.Allowed)
+                    {
+
+                    }
+                    else
+                    {
+                        ToastHelper.Basic(Strings.FailFilePlayBackground, true);
+                    }
                 }
 
                 // If we're playing a video, just pause.
