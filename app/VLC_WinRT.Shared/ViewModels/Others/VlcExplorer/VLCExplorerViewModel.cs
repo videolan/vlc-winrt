@@ -200,7 +200,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             try
             {
                 var localNetwork = new VLCFileExplorerViewModel(media, RootFolderType.Network);
-                await AddFolder(localNetwork);
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () => await AddFolder(localNetwork));
             }
             catch (Exception e)
             {
