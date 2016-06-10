@@ -31,7 +31,7 @@ using System.Diagnostics;
 
 namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 {
-    public class VLCExplorerViewModel : BindableBase, IDisposable
+    public class VLCExplorerViewModel : BindableBase
     {
         #region private props
         private ExternalDeviceService _deviceService;
@@ -136,22 +136,6 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             });
         }
 
-
-        public async void Dispose()
-        {
-#if WINDOWS_PHONE_APP
-#elif WINDOWS_APP
-            _deviceService.ExternalDeviceAdded -= DeviceAdded;
-            _deviceService.ExternalDeviceRemoved -= DeviceRemoved;
-            _deviceService.Dispose();
-            _deviceService = null;
-#endif
-            Locator.MediaLibrary.MediaListItemAdded -= VLCService_MediaListItemAdded;
-            Locator.MediaLibrary.MediaListItemDeleted -= VLCService_MediaListItemDeleted;
-            await Locator.MediaLibrary.DisposeDiscoverer();
-            _currentStorageVM = null;
-            FileExplorersGrouped?.Clear();
-        }
 
         private async Task InitializeSDCard()
         {

@@ -29,7 +29,6 @@ namespace VLC_WinRT.Views.MainPages
 
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
         {
-            Locator.FileExplorerVM.Dispose();
             this.SizeChanged -= OnSizeChanged;
         }
 
