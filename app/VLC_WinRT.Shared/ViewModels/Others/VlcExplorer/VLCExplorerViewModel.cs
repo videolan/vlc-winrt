@@ -115,7 +115,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 #else
                 var picFolder = new LocalFileExplorerViewModel(KnownFolders.PicturesLibrary, RootFolderType.Library);
                 picFolder.LogoGlyph = App.Current.Resources["BuddySymbol"] as string;
-                await AddFolder(picFolder);
+                await AddToFolder(picFolder);
 #endif
 
 #if WINDOWS_PHONE_APP
