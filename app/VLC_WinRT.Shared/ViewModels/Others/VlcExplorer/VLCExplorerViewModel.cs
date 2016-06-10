@@ -144,7 +144,6 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             await Locator.MediaLibrary.DisposeDiscoverer();
             _currentStorageVM = null;
             _fileExplorersGrouped?.Clear();
-            GC.Collect();
         }
 
         private async Task InitializeSDCard()
@@ -191,7 +190,6 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
                         CurrentStorageVM = null;
                     }
                     FileExplorersGrouped.FirstOrDefault(x => x.Contains(removedViewModel)).Remove(removedViewModel);
-                    GC.Collect();
                 }
             });
         }

@@ -294,8 +294,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
             RecommendedAlbums?.Clear();
             RecommendedAlbums = new List<AlbumItem>();
-
-            GC.Collect();
         }
 
         public void OnNavigatedTo()
