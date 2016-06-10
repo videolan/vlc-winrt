@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
-  <CommandSet xml:lang="en-us" Name="VlcCommandSet_en-us">
+  <CommandSet xml:lang="fr-fr" Name="VlcCommandSet_fr-fr">
     <AppName> VLC</AppName>
     <Example> Jouer de la musique </Example>
 

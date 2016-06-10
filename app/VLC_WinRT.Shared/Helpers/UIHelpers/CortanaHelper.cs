@@ -41,7 +41,11 @@ namespace VLC_WinRT.Helpers
             try
             {
                 VoiceCommandDefinition commandSetEnUs;
+#if STARTS
+                var cortanaLanguageSet = "VlcCommandSet_fr-fr";
+#else
                 var cortanaLanguageSet = "VlcCommandSet_en-us";
+#endif
                 if (!VoiceCommandDefinitionManager.InstalledCommandDefinitions.TryGetValue(cortanaLanguageSet, out commandSetEnUs))
                 {
                     await Initialize();
