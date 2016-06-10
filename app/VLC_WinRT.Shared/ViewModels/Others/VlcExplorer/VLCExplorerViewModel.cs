@@ -143,7 +143,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             Locator.MediaLibrary.MediaListItemDeleted -= VLCService_MediaListItemDeleted;
             await Locator.MediaLibrary.DisposeDiscoverer();
             _currentStorageVM = null;
-            _fileExplorersGrouped?.Clear();
+            FileExplorersGrouped?.Clear();
         }
 
         private async Task InitializeSDCard()
