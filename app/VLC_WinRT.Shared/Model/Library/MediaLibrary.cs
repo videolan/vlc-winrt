@@ -455,7 +455,7 @@ namespace VLC_WinRT.Model.Library
         {
             if (Locator.VLCService.Instance == null)
             {
-                await Initialize();
+                await Locator.VLCService.Initialize();
             }
             await Locator.VLCService.PlayerInstanceReady.Task;
             if (Locator.VLCService.Instance == null)
