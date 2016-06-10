@@ -17,11 +17,6 @@ namespace VLC_WinRT.Utils
         {
         }
 
-        public SmartCollection(List<T> list)
-            : base(list)
-        {
-        }
-
         public void AddRange(IEnumerable<T> range)
         {
             foreach (var item in range)
