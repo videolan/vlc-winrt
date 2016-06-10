@@ -224,10 +224,10 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             var key = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == fileEx.Type);
             if (key == null)
             {
-                key = new GroupItemList<FileExplorer>(fileEx) { Key = fileEx.Type };
+                key = new GroupItemList<FileExplorer>() { Key = fileEx.Type };
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => FileExplorersGrouped.Add(key));
             }
-            else await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => key.Add(fileEx));
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => key.Add(fileEx));
         }
 
         public void GoBackToRootFolders()
