@@ -23,10 +23,8 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
-                <RowDefinition Height="*" 
-                               MaxHeight="200"/>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"
+                               MaxHeight="200" />
             </Grid.RowDefinitions>
             <TextBlock Text="{Binding Source={StaticResource Strings}, Path=AudioTracks}"
                        Style="{StaticResource BaselineTextStyle}"
@@ -42,19 +40,18 @@
                     Margin="0,-3,0,0"
                     HorizontalAlignment="Right"
                     Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerAudioTracksSettingsVisible}" />
-            <ListView Grid.Row="1"
+            <ComboBox Grid.Row="1"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       ItemsSource="{Binding AudioTracks}"
-                      SelectedItem="{Binding CurrentAudioTrack, Mode=TwoWay}"
-                      ItemContainerStyle="{StaticResource ListViewItemStyle}">
-                <ListView.ItemTemplate>
+                      SelectedItem="{Binding CurrentAudioTrack, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"
                                    Foreground="{ThemeResource BasicForeground}"
                                    VerticalAlignment="Center"/>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </Grid>
     </Border>
 </UserControl>

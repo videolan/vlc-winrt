@@ -242,7 +242,8 @@ namespace VLC_WinRT.ViewModels
             }
             set
             {
-                PlaybackService.SetSubtitleTrack(value);
+                if (value != null)
+                    PlaybackService.SetSubtitleTrack(value);
             }
         }
 
@@ -254,7 +255,8 @@ namespace VLC_WinRT.ViewModels
             }
             set
             {
-                PlaybackService.SetAudioTrack(value);
+                if (value != null)
+                    PlaybackService.SetAudioTrack(value);
             }
         }
 
@@ -266,17 +268,18 @@ namespace VLC_WinRT.ViewModels
             }
             set
             {
-                PlaybackService.SetCurrentChapter(value);
+                if (value != null)
+                    PlaybackService.SetCurrentChapter(value);
             }
         }
         #endregion
 
         #region public fields
-        public IEnumerable<DictionaryKeyValue> AudioTracks => PlaybackService.GetAudioTracks();
+        public List<DictionaryKeyValue> AudioTracks => PlaybackService.GetAudioTracks();
 
-        public IEnumerable<DictionaryKeyValue> Subtitles => PlaybackService.GetSubtitleTracks();
+        public List<DictionaryKeyValue> Subtitles => PlaybackService.GetSubtitleTracks();
 
-        public IEnumerable<VLCChapterDescription> Chapters => PlaybackService.GetChapters();
+        public List<VLCChapterDescription> Chapters => PlaybackService.GetChapters();
 
         #endregion
 
@@ -537,6 +540,8 @@ namespace VLC_WinRT.ViewModels
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
+                OnPropertyChanged(nameof(AudioTracks));
+                OnPropertyChanged(nameof(Subtitles));
                 OnPropertyChanged(nameof(CurrentSubtitle));
                 OnPropertyChanged(nameof(CurrentAudioTrack));
 

@@ -616,9 +616,9 @@ namespace VLC_WinRT.Services.RunTime
             }
         }
 
-        public IEnumerable<VLCChapterDescription> GetChapters()
+        public List<VLCChapterDescription> GetChapters()
         {
-            return _chapters;
+            return _chapters.ToList();
         }
 
         public DictionaryKeyValue GetCurrentAudioTrack()
@@ -642,9 +642,9 @@ namespace VLC_WinRT.Services.RunTime
             }
         }
 
-        public IEnumerable<DictionaryKeyValue> GetAudioTracks()
+        public List<DictionaryKeyValue> GetAudioTracks()
         {
-            return _audioTracks;
+            return _audioTracks.ToList();
         }
         
         public DictionaryKeyValue GetCurrentSubtitleTrack()
@@ -667,9 +667,9 @@ namespace VLC_WinRT.Services.RunTime
             }
         }
 
-        public IEnumerable<DictionaryKeyValue> GetSubtitleTracks()
+        public List<DictionaryKeyValue> GetSubtitleTracks()
         {
-            return _subtitlesTracks;
+            return _subtitlesTracks.ToList();
         }
 
         public void Stop()
