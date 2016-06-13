@@ -120,7 +120,7 @@
                     </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>
                 <ListView.GroupStyle>
-                    <GroupStyle>
+                    <GroupStyle HidesIfEmpty="True">
                         <GroupStyle.HeaderTemplate>
                             <DataTemplate>
                                 <TextBlock Height="50"
