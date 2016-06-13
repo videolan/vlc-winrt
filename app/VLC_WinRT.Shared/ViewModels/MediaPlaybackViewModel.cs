@@ -39,6 +39,7 @@ using VLC_WinRT.MediaMetaFetcher.Fetchers;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.Model.Stream;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -122,8 +123,11 @@ namespace VLC_WinRT.ViewModels
                 {
                     SetProperty(ref _isPlaying, value);
                 }
+                OnPropertyChanged(nameof(PlayButtonVisible));
             }
         }
+
+        public Visibility PlayButtonVisible => PlaybackService.IsRunning && !IsPlaying ? Visibility.Visible : Visibility.Collapsed;
 
         public bool CanGoNext => PlaybackService.CanGoNext();
         public bool CanGoPrevious => PlaybackService.CanGoPrevious();

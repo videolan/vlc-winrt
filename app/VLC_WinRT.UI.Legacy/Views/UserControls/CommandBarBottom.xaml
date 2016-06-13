@@ -75,7 +75,7 @@
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       Command="{Binding PlayOrPauseCommand}"
                       IsCompact="True"
-                      Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
+                      Visibility="{Binding PlayButtonVisible}"
                       RightTapped="PlayButton_RightTapped"
                       Holding="PauseButton_Holding">
             <AppBarButton.Icon>
