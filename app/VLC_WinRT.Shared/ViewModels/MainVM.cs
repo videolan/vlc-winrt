@@ -33,8 +33,6 @@ using VLC_WinRT.Views.MusicPages;
 using System.Threading.Tasks;
 using Windows.UI.ViewManagement;
 using VLC_WinRT.UI.Legacy.Views.UserControls;
-using Windows.ApplicationModel.ExtendedExecution;
-using Windows.Devices.Geolocation;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -50,9 +48,7 @@ namespace VLC_WinRT.ViewModels
         private string _informationText;
         private bool _isBackground = false;
         static bool? _isWindows10;
-
-        private ExtendedExecutionSession extendedSession;
-        // Navigation props
+        
         #endregion
 
         #region public props
@@ -139,25 +135,7 @@ namespace VLC_WinRT.ViewModels
                 IsBackground = true;
                 if (Locator.MediaPlaybackViewModel.CurrentMedia == null) return;
                 if (!Locator.MediaPlaybackViewModel.IsPlaying) return;
-
-                if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Phone)
-                {
-                    extendedSession = new ExtendedExecutionSession();
-                    extendedSession.Reason = ExtendedExecutionReason.LocationTracking;
-                    extendedSession.Description = "Windows background audio for VLC";
-                    extendedSession.Revoked += ExtendedSession_Revoked;
-                    ExtendedExecutionResult result = await extendedSession.RequestExtensionAsync();
-
-                    if (result == ExtendedExecutionResult.Allowed)
-                    {
-
-                    }
-                    else
-                    {
-                        ToastHelper.Basic(Strings.FailFilePlayBackground, true);
-                    }
-                }
-
+                
                 // If we're playing a video, just pause.
                 if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Video)
                 {
@@ -171,42 +149,9 @@ namespace VLC_WinRT.ViewModels
             else
             {
                 IsBackground = false;
-
-                ClearExtendedExecution();
             }
         }
-
-        private async void ExtendedSession_Revoked(object sender, ExtendedExecutionRevokedEventArgs args)
-        {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                switch (args.Reason)
-                {
-                    case ExtendedExecutionRevokedReason.Resumed:
-                        break;
-                    case ExtendedExecutionRevokedReason.SystemPolicy:
-                        if (Locator.MediaPlaybackViewModel.IsPlaying)
-                        {
-                            Locator.MediaPlaybackViewModel.PlaybackService.Stop();
-                        }
-                        break;
-                }
-                ClearExtendedExecution();
-            });
-        }
-
-        void ClearExtendedExecution()
-        {
-            if (extendedSession != null)
-            {
-                extendedSession.Revoked -= ExtendedSession_Revoked;
-                extendedSession.Dispose();
-                extendedSession = null;
-            }
-        }
-
-
-
+        
         public ObservableCollection<Panel> Panels
         {
             get { return _panels; }
