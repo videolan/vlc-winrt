@@ -166,7 +166,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         #endregion
 
         #region methods
-        public void OnNavigatedTo()
+        public async Task OnNavigatedTo()
         {
             // If no playback was ever started, ContinueIndexing can be null
             // If we navigate back and forth to the main page, we also don't want to 
@@ -178,6 +178,9 @@ namespace VLC_WinRT.ViewModels.VideoVM
             {
                 DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
             }
+
+            if (Locator.MediaPlaybackViewModel.CurrentMedia is VideoItem)
+                await Task.Run(async () => await UpdateCurrentVideo(Locator.MediaPlaybackViewModel.CurrentMedia as VideoItem));
         }
 
         public void OnNavigatedFrom()
@@ -344,8 +347,12 @@ namespace VLC_WinRT.ViewModels.VideoVM
             if (!(media is VideoItem))
                 return;
 
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.VideoPlayerVm.CurrentVideo = media as VideoItem);
+            await UpdateCurrentVideo(media as VideoItem);
+        }
 
+        async Task UpdateCurrentVideo(VideoItem video)
+        {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.VideoPlayerVm.CurrentVideo = video);
             await TryUseSubtitleFromFolder();
         }
 

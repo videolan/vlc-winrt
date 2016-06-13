@@ -70,7 +70,7 @@ namespace VLC_WinRT.Views.VideoPages
             DisplayOrHide(true);
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             // Set UI Layout
@@ -87,7 +87,7 @@ namespace VLC_WinRT.Views.VideoPages
             controlsTimer.Start();
 
             // VM initialization
-            Locator.VideoPlayerVm.OnNavigatedTo();
+            await Locator.VideoPlayerVm.OnNavigatedTo();
 
             // Responsive design
             this.SizeChanged += (s, args) => Responsive();
