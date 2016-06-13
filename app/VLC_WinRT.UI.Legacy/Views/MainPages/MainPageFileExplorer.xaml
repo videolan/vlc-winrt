@@ -139,7 +139,7 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid MaxWidth="250">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
@@ -162,8 +162,9 @@
                                        Foreground="{ThemeResource BasicForeground}"
                                        FontSize="16"
                                        TextTrimming="CharacterEllipsis"
-                                       TextWrapping="NoWrap" 
-                                       VerticalAlignment="Center" />
+                                       TextWrapping="NoWrap"
+                                       VerticalAlignment="Center"
+                                       MaxWidth="250" />
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
