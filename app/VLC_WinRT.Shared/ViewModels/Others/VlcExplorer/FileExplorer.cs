@@ -30,7 +30,10 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
         public string Name { get; set; }
         public string LogoGlyph { get; set; }
         public string ArtworkUrl { get; set; }
+        public string RootMediaType { get; set; }
 
+        public Visibility RootMediaTypeVisible => string.IsNullOrEmpty(LogoGlyph) && string.IsNullOrEmpty(ArtworkUrl) 
+                                                    ? Visibility.Visible : Visibility.Collapsed;
         public IStorageItemClickedCommand NavigateToCommand { get; } = new IStorageItemClickedCommand();
 
         public PlayFolderCommand PlayFolderCommand { get; } = new PlayFolderCommand();

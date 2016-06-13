@@ -12,6 +12,7 @@ using System.Diagnostics;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.Model.Stream;
 using VLC_WinRT.Helpers;
+using Windows.Foundation;
 
 namespace VLC_WinRT.ViewModels.Others.VlcExplorer
 {
@@ -26,6 +27,9 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                 var url = await Locator.VLCService.GetArtworkUrl(media, false);
                 base.ArtworkUrl = url;
             });
+
+            var uri = new Uri(media.mrl());
+            base.RootMediaType = uri?.Scheme;
         }
 
         public override async Task GetFiles()

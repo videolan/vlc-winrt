@@ -135,13 +135,12 @@
                 </ListView.GroupStyle>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <ItemsWrapGrid Orientation="Horizontal"
-                                       ItemWidth="220" />
+                        <ItemsWrapGrid Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid MaxWidth="250">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
@@ -155,6 +154,10 @@
                                       FontFamily="{StaticResource VLCFont}"
                                       Glyph="{Binding LogoGlyph}"
                                       FontSize="32" />
+                            <TextBlock Text="{Binding RootMediaType}"
+                                       FontWeight="Bold"
+                                       FontSize="14"
+                                       Visibility="{Binding RootMediaTypeVisible}"/>
                             <TextBlock Grid.Column="2"
                                        Text="{Binding Name}"
                                        Foreground="{ThemeResource BasicForeground}"
