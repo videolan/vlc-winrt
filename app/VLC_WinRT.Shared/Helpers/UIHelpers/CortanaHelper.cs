@@ -89,8 +89,9 @@ namespace VLC_WinRT.Helpers
                                 break;
                             case "playAlbumByArtist":
                                 var albumName = voiceArgs.Result.SemanticInterpretation.Properties["albumName"].FirstOrDefault();
-                                var albumItem = await Locator.MediaLibrary.LoadAlbums(x=>x.Artist == artistItem.Name && x.Name == albumName);
-                                if (albumItem?.FirstOrDefault() != null)
+                                var albumItems = await Locator.MediaLibrary.LoadAlbums(x=>x.Artist == artistItem.Name && x.Name == albumName);
+                                var albumItem = albumItems?.FirstOrDefault();
+                                if (albumItem != null)
                                 {
                                     Locator.MusicLibraryVM.AlbumClickedCommand.Execute(albumItem);
                                 }
