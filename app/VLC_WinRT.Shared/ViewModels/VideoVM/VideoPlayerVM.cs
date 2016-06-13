@@ -42,6 +42,8 @@ namespace VLC_WinRT.ViewModels.VideoVM
         private bool isVideoPlayerVolumeSettingsVisible;
         private List<VLCSurfaceZoom> zooms;
 
+        private bool _isLoadingSubtitle;
+        private string _loadingSubtitleText;
         #endregion
 
         #region private fields
@@ -129,6 +131,10 @@ namespace VLC_WinRT.ViewModels.VideoVM
         public SurfaceZoomToggleCommand SurfaceZoomToggleCommand { get; private set; } = new SurfaceZoomToggleCommand();
 
         public InitPiPCommand InitPiPCommand { get; private set; } = new InitPiPCommand();
+
+        public DownloadSubtitleCommand DownloadSubtitleCommand { get; private set; } = new DownloadSubtitleCommand();
+        public bool IsLoadingSubtitle { get { return _isLoadingSubtitle; } set { SetProperty(ref _isLoadingSubtitle, value); } }
+        public string LoadingSubtitleText { get { return _loadingSubtitleText; } set { SetProperty(ref _loadingSubtitleText, value); } }
         #endregion
 
         #region public fields

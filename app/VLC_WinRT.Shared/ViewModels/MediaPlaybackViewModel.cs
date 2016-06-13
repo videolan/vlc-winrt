@@ -546,25 +546,6 @@ namespace VLC_WinRT.ViewModels
                     {
                         Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
                     }
-                    Task.Run(async () =>
-                    {
-                        if (CurrentMedia is VideoItem)
-                        {
-                            var video = CurrentMedia as VideoItem;
-
-                            var success = false;
-                            if (video.IsSubtitlePreLoaded)
-                                success = true;
-                            else
-                                success = await Locator.VideoMetaService.GetMovieSubtitle(video);
-
-                            if (success)
-                            {
-                                var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(video.SubtitleUri));
-                                OpenSubtitleCommand.Execute(file);
-                            }
-                        }
-                    });
                 }
             });
         }

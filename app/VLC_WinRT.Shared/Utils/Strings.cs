@@ -118,6 +118,7 @@ namespace VLC_WinRT.Utils
         public static string RecommendedForYou => _resourcesLoader.GetString(nameof(RecommendedForYou));
         public static string Loading => _resourcesLoader.GetString(nameof(Loading));
         public static string LoadingMusic => _resourcesLoader.GetString(nameof(LoadingMusic));
+        public static string Download => "Download";
         public static string NoInternetConnection => _resourcesLoader.GetString(nameof(NoInternetConnection));
         public static string Website => _resourcesLoader.GetString(nameof(Website));
 
