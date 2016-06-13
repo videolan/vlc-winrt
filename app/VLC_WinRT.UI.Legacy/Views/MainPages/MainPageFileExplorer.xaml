@@ -79,7 +79,6 @@
                       IsSwipeEnabled="False"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       ItemsPanel="{StaticResource WrapPanelTemplate}"
-                      Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
                       Margin="{StaticResource FrameMargin}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
