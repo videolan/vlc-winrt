@@ -1,0 +1,25 @@
+From f392da520418ccdeef9f7f8e5defd6afd273e954 Mon Sep 17 00:00:00 2001
+From: Thomas Nigro <thomas@videolabs.io>
+Date: Mon, 13 Jun 2016 14:27:40 +0200
+Subject: [PATCH] W10M TH2 only: Enable Two Process Background Audio
+
+---
+ app/VLC_WinRT.Universal/Package.appxmanifest | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/app/VLC_WinRT.Universal/Package.appxmanifest b/app/VLC_WinRT.Universal/Package.appxmanifest
+index 216b889..0cd7286 100644
+--- a/app/VLC_WinRT.Universal/Package.appxmanifest
++++ b/app/VLC_WinRT.Universal/Package.appxmanifest
+@@ -21,7 +21,7 @@
+         <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="white" />
+       </uap:VisualElements>
+       <Extensions>
+-        <Extension Category="windows.backgroundTasks" EntryPoint="VLC_WinRT.App">
++        <Extension Category="windows.backgroundTasks" EntryPoint="VLC_WinRT.BackgroundAudioPlayer.BackgroundPlayer">
+           <BackgroundTasks>
+             <Task Type="audio" />
+           </BackgroundTasks>
+-- 
+2.7.0
+
