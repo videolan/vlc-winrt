@@ -23,8 +23,21 @@ namespace VLC_WinRT.Views.UserControls
         public VLCPivot()
         {
             this.InitializeComponent();
+            this.SizeChanged += VLCPivot_SizeChanged;
         }
-        
+
+        private void VLCPivot_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.NewSize.Width < 850)
+            {
+                VLCIcon.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                VLCIcon.Visibility = Visibility.Visible;
+            }
+        }
+
         private void TitleBar_Loaded(object sender, RoutedEventArgs e)
         {
             AppViewHelper.SetTitleBar(TitleBar);
@@ -44,12 +57,10 @@ namespace VLC_WinRT.Views.UserControls
             if (newWidth < 850)
             {
                 pivotHeader.Margin = new Thickness(0, 16, 0, 0);
-                VLCIcon.Visibility = Visibility.Collapsed;
             }
             else
             {
                 pivotHeader.Margin = new Thickness();
-                VLCIcon.Visibility = Visibility.Visible;
             }
         }
     }
