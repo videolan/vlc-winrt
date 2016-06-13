@@ -31,6 +31,10 @@ using System.IO;
 using libVLCX;
 using VLC_WinRT.SharedBackground.Database;
 using VLC_WinRT.ViewModels;
+#if TWO_PROCESS_BGA
+using Windows.Foundation.Collections;
+using Windows.Media.Playback;
+#endif
 
 namespace VLC_WinRT.Services.RunTime
 {
@@ -69,7 +73,7 @@ namespace VLC_WinRT.Services.RunTime
                 {
                     case PlayerEngine.VLC:
                         return Locator.VLCService;
-#if WINDOWS_PHONE_APP
+#if TWO_PROCESS_BGA
                     case PlayerEngine.BackgroundMFPlayer:
                         return Locator.BGPlayerService;
 #endif
@@ -93,7 +97,7 @@ namespace VLC_WinRT.Services.RunTime
             set
             {
                 _repeat = value;
-#if WINDOWS_PHONE_APP
+#if TWO_PROCESS_BGA
                 if (_mediaService is BGPlayerService)
                 {
                     ((BGPlayerService)_mediaService).SetRepeat(value);
@@ -250,9 +254,9 @@ namespace VLC_WinRT.Services.RunTime
                     Playlist.Add(trackItem);
             }
 
-#if WINDOWS_PHONE_APP
-                    // TODO : this shouldn't be here
-                    var milliseconds = BackgroundAudioHelper.Instance?.NaturalDuration.TotalMilliseconds;
+#if TWO_PROCESS_BGA
+            // TODO : this shouldn't be here
+            var milliseconds = BackgroundAudioHelper.Instance?.NaturalDuration.TotalMilliseconds;
                     if (milliseconds != null && milliseconds.HasValue && double.IsNaN(milliseconds.Value))
                         OnLengthChanged((long)milliseconds);
 #endif
@@ -290,9 +294,9 @@ namespace VLC_WinRT.Services.RunTime
                 {
                     SetTime((long)video.TimeWatched.TotalMilliseconds);
                 }
-#if WINDOWS_PHONE_APP
-                    try
-                    {
+#if TWO_PROCESS_BGA
+                try
+                {
                         var messageDictionary = new ValueSet();
                         messageDictionary.Add(BackgroundAudioConstants.ClearUVC, "");
                         BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
@@ -324,6 +328,9 @@ namespace VLC_WinRT.Services.RunTime
                     return;
                 }
 
+#if TWO_PROCESS_BGA
+                UseVlcLib = false;
+#endif
                 await InitializePlayback(track, autoPlay);
 
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, CurrentMedia);
@@ -353,7 +360,7 @@ namespace VLC_WinRT.Services.RunTime
                 {
                     if (VLCFileExtensions.MFSupported.Contains(path.ToLower()))
                     {
-#if WINDOWS_PHONE_APP
+#if TWO_PROCESS_BGA
                         _playerEngine = PlayerEngine.BackgroundMFPlayer;
 #else
                         _playerEngine = PlayerEngine.VLC;
@@ -361,7 +368,7 @@ namespace VLC_WinRT.Services.RunTime
                     }
                     else
                     {
-#if WINDOWS_PHONE_APP
+#if TWO_PROCESS_BGA
                         ToastHelper.Basic(Strings.FailFilePlayBackground, false, "background");
 #endif
                         _playerEngine = PlayerEngine.VLC;

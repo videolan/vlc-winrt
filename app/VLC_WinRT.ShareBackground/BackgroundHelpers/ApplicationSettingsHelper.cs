@@ -12,7 +12,7 @@ using Windows.Storage;
 
 namespace VLC_WinRT.BackgroundAudioPlayer
 {
-    static class ApplicationSettingsHelper
+    public static class ApplicationSettingsHelper
     {
         /// <summary>
         /// Function that checks if the entry exists in Application settings

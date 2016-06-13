@@ -62,32 +62,36 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX.UWP", "..\modules\l
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libaccess_winrt_plugin.UWP", "..\modules\libaccess_winrt_plugin.UWP\libaccess_winrt_plugin.UWP.vcxproj", "{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VLC_WinRT.Background", "VLC_WinRT.Background", "{31E27A57-A8C9-4A1E-BCFA-9EA018157917}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WinRT.UniversalBackgroundAudioPlayer", "..\app\VLC_WinRT.UniversalBackgroundAudioPlayer\VLC_WinRT.UniversalBackgroundAudioPlayer.csproj", "{A9BCC539-E818-4097-87B3-C2035D1CA4A4}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\app\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems*{db1dea15-00b8-4707-8c70-53431c4fa754}*SharedItemsImports = 13
 		..\app\VLC_WinRT.UI.Win8\VLC_WinRT.UI.Win8.projitems*{ebde65ba-6997-40f0-8076-0b03792e34be}*SharedItemsImports = 13
-		..\app\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
-		..\app\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
-		..\app\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
 		..\app\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
-		..\app\VLC_WinRT.UI.UWP\VLC_WinRT.UI.UWP.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
+		..\app\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
 		..\app\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
-		..\app\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
-		..\app\VLC_WinRT.UI.Win8\VLC_WinRT.UI.Win8.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
-		..\app\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
-		..\app\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
+		..\app\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
+		..\app\VLC_WinRT.UI.UWP\VLC_WinRT.UI.UWP.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
+		..\app\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
 		..\app\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
+		..\app\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
 		..\app\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
+		..\app\VLC_WinRT.UI.Win8\VLC_WinRT.UI.Win8.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
+		..\app\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
+		..\app\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{544ebd72-c9e2-4c3f-9038-36683f843241}*SharedItemsImports = 4
 		..\app\VLC_WinRT.UI.UWP\VLC_WinRT.UI.UWP.projitems*{8ca1e6d0-4829-4864-b405-7a1122e9edd5}*SharedItemsImports = 13
 		..\modules\libVLCX.Shared\libVLCX.Shared.vcxitems*{22532381-be8b-40e0-a881-22ce24342d5a}*SharedItemsImports = 4
 		..\modules\libVLCX.Shared\libVLCX.Shared.vcxitems*{5d78f68e-c377-449e-a508-5b8e706d0039}*SharedItemsImports = 4
-		..\app\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
-		..\app\VLC_WinRT.UI.Win8\VLC_WinRT.UI.Win8.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
-		..\app\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
-		..\app\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
 		..\app\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
+		..\app\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
 		..\app\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
+		..\app\VLC_WinRT.UI.Win8\VLC_WinRT.UI.Win8.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
+		..\app\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
+		..\app\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
 		..\app\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{c3f84118-8e3d-4b19-a300-9cb6f7ae0e87}*SharedItemsImports = 13
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{90a8a6a5-091d-4d4e-a8cd-4ec09ddb1047}*SharedItemsImports = 9
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{cc3931b9-6065-4a55-a444-5b5e9de3da44}*SharedItemsImports = 4
@@ -465,6 +469,46 @@ Global
 		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|x64.Build.0 = Release|x64
 		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|x86.ActiveCfg = Release|Win32
 		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|x86.Build.0 = Release|Win32
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|ARM.ActiveCfg = Debug|ARM
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|ARM.Build.0 = Debug|ARM
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|Universal-ARM.ActiveCfg = Debug|ARM
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|Universal-ARM.Build.0 = Debug|ARM
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|Universal-x64.ActiveCfg = Debug|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|Universal-x64.Build.0 = Debug|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|Universal-x86.ActiveCfg = Debug|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|Universal-x86.Build.0 = Debug|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|WindowsPhone-ARM.ActiveCfg = Debug|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|WindowsPhone-ARM.Build.0 = Debug|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|WinRT-ARM.ActiveCfg = Debug|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|WinRT-ARM.Build.0 = Debug|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|WinRT-x86.ActiveCfg = Debug|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|WinRT-x86.Build.0 = Debug|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|x64.ActiveCfg = Debug|x64
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|x64.Build.0 = Debug|x64
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|x86.ActiveCfg = Debug|x86
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Debug|x86.Build.0 = Debug|x86
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|ARM.ActiveCfg = Release|ARM
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|ARM.Build.0 = Release|ARM
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|Universal-ARM.ActiveCfg = Release|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|Universal-ARM.Build.0 = Release|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|Universal-x64.ActiveCfg = Release|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|Universal-x64.Build.0 = Release|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|Universal-x86.ActiveCfg = Release|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|Universal-x86.Build.0 = Release|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|WindowsPhone-ARM.ActiveCfg = Release|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|WindowsPhone-ARM.Build.0 = Release|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|WinRT-ARM.ActiveCfg = Release|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|WinRT-ARM.Build.0 = Release|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|WinRT-x86.ActiveCfg = Release|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|WinRT-x86.Build.0 = Release|Any CPU
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|x64.ActiveCfg = Release|x64
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|x64.Build.0 = Release|x64
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|x86.ActiveCfg = Release|x86
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -479,11 +523,11 @@ Global
 		{5D78F68E-C377-449E-A508-5B8E706D0039} = {8B17BE9D-3E88-497F-8BA3-BA2E6905069E}
 		{90A8A6A5-091D-4D4E-A8CD-4EC09DDB1047} = {3E3BE90F-16D8-4D61-BA9D-E760D34492B5}
 		{544EBD72-C9E2-4C3F-9038-36683F843241} = {3E3BE90F-16D8-4D61-BA9D-E760D34492B5}
-		{6BDABA8A-B559-4007-A17F-42125D3AA7A3} = {492C16E2-63FB-49B4-843A-095DB095F15D}
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3} = {31E27A57-A8C9-4A1E-BCFA-9EA018157917}
 		{C3F84118-8E3D-4B19-A300-9CB6F7AE0E87} = {492C16E2-63FB-49B4-843A-095DB095F15D}
 		{ADCB4C5D-450D-40F5-B60A-9DD96FF17DD6} = {23A01350-FA37-457D-8184-082E8BA49F9A}
 		{D499D5A2-B899-4664-94E8-65C8114582DE} = {23A01350-FA37-457D-8184-082E8BA49F9A}
-		{B1E774A5-87A6-4D23-BEC1-AD157333F69F} = {492C16E2-63FB-49B4-843A-095DB095F15D}
+		{B1E774A5-87A6-4D23-BEC1-AD157333F69F} = {31E27A57-A8C9-4A1E-BCFA-9EA018157917}
 		{AD0C8B4F-7A03-42CC-B8DA-BF8D50DF822B} = {23A01350-FA37-457D-8184-082E8BA49F9A}
 		{7B5C5B10-85F4-491A-94FA-755D253FF609} = {492C16E2-63FB-49B4-843A-095DB095F15D}
 		{EBDE65BA-6997-40F0-8076-0B03792E34BE} = {23A01350-FA37-457D-8184-082E8BA49F9A}
@@ -491,5 +535,7 @@ Global
 		{23A01350-FA37-457D-8184-082E8BA49F9A} = {492C16E2-63FB-49B4-843A-095DB095F15D}
 		{DC8BBFAE-5203-44BE-9A7C-B3273038D676} = {8B17BE9D-3E88-497F-8BA3-BA2E6905069E}
 		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44} = {3E3BE90F-16D8-4D61-BA9D-E760D34492B5}
+		{31E27A57-A8C9-4A1E-BCFA-9EA018157917} = {492C16E2-63FB-49B4-843A-095DB095F15D}
+		{A9BCC539-E818-4097-87B3-C2035D1CA4A4} = {31E27A57-A8C9-4A1E-BCFA-9EA018157917}
 	EndGlobalSection
 EndGlobal

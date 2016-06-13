@@ -916,8 +916,12 @@
       <Name>libVLCX.UWP</Name>
     </ProjectReference>
     <ProjectReference Include="..\VLC_WinRT.ShareBackground\VLC_WinRT.ShareBackground.csproj">
-      <Project>{b1e774a5-87a6-4d23-bec1-ad157333f69f}</Project>
+      <Project>{B1E774A5-87A6-4D23-BEC1-AD157333F69F}</Project>
       <Name>VLC_WinRT.ShareBackground</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VLC_WinRT.UniversalBackgroundAudioPlayer\VLC_WinRT.UniversalBackgroundAudioPlayer.csproj">
+      <Project>{a9bcc539-e818-4097-87b3-c2035d1ca4a4}</Project>
+      <Name>VLC_WinRT.UniversalBackgroundAudioPlayer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

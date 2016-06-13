@@ -1,4 +1,4 @@
-﻿#if WINDOWS_PHONE_APP
+﻿#if TWO_PROCESS_BGA
 using System;
 using VLC_WinRT.Services.Interface;
 using System.Threading.Tasks;
@@ -73,7 +73,7 @@ namespace VLC_WinRT.Services.RunTime
                     {
                         await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                         {
-                            Locator.MediaPlaybackViewModel.IsPlaying = true;
+                            Locator.MediaPlaybackViewModel.PlaybackService.IsRunning = true;
                             Instance_CurrentStateChanged(null, new RoutedEventArgs());
                         });
                     }
@@ -116,12 +116,12 @@ namespace VLC_WinRT.Services.RunTime
                         case BackgroundAudioConstants.BackgroundTaskCancelled:
                             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                             {
-                                Locator.MediaPlaybackViewModel.IsPlaying = false;
+                                Locator.MediaPlaybackViewModel.PlaybackService.IsRunning = false;
                             });
                             break;
                         case BackgroundAudioConstants.MFFailed:
                             LogHelper.Log("VLC process is aware MF Background Media Player failed to open the file : " + e.Data[key]);
-                            await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, true);
+                            await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(null, false, true, Locator.MusicPlayerVM.CurrentTrack);
                             MediaFailed?.Invoke(this, new EventArgs());
                             break;
                     }
@@ -156,13 +156,13 @@ namespace VLC_WinRT.Services.RunTime
         async void Instance_BufferingProgressChanged(object sender, RoutedEventArgs e)
         {
             OnBuffering?.Invoke((int)(Instance?.BufferingProgress * 100));
-            await Locator.MusicPlayerVM.UpdateTrackFromMF();
+            //await Locator.MusicPlayerVM.UpdateTrackFromMF();
         }
 
         void Instance_MediaOpened(object sender, RoutedEventArgs e)
         {
             OnLengthChanged?.Invoke((long)GetLength());
-            Locator.MusicPlayerVM.UpdateTrackFromMF();
+            //Locator.MusicPlayerVM.UpdateTrackFromMF();
         }
 
         private void Instance_MediaEnded(object sender, RoutedEventArgs e)
@@ -241,7 +241,7 @@ namespace VLC_WinRT.Services.RunTime
                 {
                     case MediaPlayerState.Closed:
                         // If MediaPlayer was closed, run it agaain
-                        await Locator.MediaPlaybackViewModel.SetMedia(Locator.MediaPlaybackViewModel.CurrentMedia, false);
+                        await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(null, false, false, Locator.MediaPlaybackViewModel.CurrentMedia);
                         break;
                     case MediaPlayerState.Playing:
                         Instance?.Pause();

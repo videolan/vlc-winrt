@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using VLC_WinRT.BackgroundAudioPlayer;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
 using VLC_WinRT.ViewModels;
 using Windows.Foundation.Collections;
-#if WINDOWS_PHONE_APP
+#if TWO_PROCESS_BGA
 using Windows.Media.Playback;
 #endif
 namespace VLC_WinRT.BackgroundHelpers
@@ -15,7 +14,7 @@ namespace VLC_WinRT.BackgroundHelpers
     public class BackgroundAudioHelper
     {
 
-#if WINDOWS_PHONE_APP
+#if TWO_PROCESS_BGA
         private static MediaPlayer _instance;
         public static MediaPlayer Instance
         {
@@ -35,7 +34,7 @@ namespace VLC_WinRT.BackgroundHelpers
 
         public void RestorePlaylist()
         {
-#if WINDOWS_PHONE_APP
+#if TWO_PROCESS_BGA
             try
             {
                 var msgDictionanary = new ValueSet();
@@ -52,7 +51,7 @@ namespace VLC_WinRT.BackgroundHelpers
         {
             var bgTracks = trackItems.Select(backgroundTrackItem => new BackgroundTrackItem(backgroundTrackItem.Id, backgroundTrackItem.AlbumId, backgroundTrackItem.ArtistId, backgroundTrackItem.ArtistName, backgroundTrackItem.AlbumName, backgroundTrackItem.Name, backgroundTrackItem.Path)).ToList();
             await Locator.MediaPlaybackViewModel.PlaybackService.BackgroundTrackRepository.AddBunchTracks(bgTracks);
-#if WINDOWS_PHONE_APP
+#if TWO_PROCESS_BGA
             try
             {
                 var msgDictionary = new ValueSet();
@@ -80,7 +79,7 @@ namespace VLC_WinRT.BackgroundHelpers
         public async Task ResetCollection(ResetType resetType)
         {
             Locator.MediaPlaybackViewModel.PlaybackService.BackgroundTrackRepository.Clear();
-#if WINDOWS_PHONE_APP
+#if TWO_PROCESS_BGA
             try
             {
                 ValueSet messageDictionary = new ValueSet();

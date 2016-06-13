@@ -23,7 +23,7 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
 using VLC_WinRT.Utils;
 using System.Linq;
-#if WINDOWS_PHONE_APP
+#if TWO_PROCESS_BGA
 
 #endif
 
@@ -148,7 +148,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 await SetCurrentAlbum();
                 await UpdatePlayingUI();
                 await Scrobble();
-#if WINDOWS_PHONE_APP
+#if TWO_PROCESS_BGA
 #else
                 await UpdateWindows8UI();
 #endif
