@@ -235,13 +235,13 @@ namespace VLC_WinRT.Services.RunTime
                     case VLCAction.Previous:
                         if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music)
                         {
-                            await Locator.MediaPlaybackViewModel.PlaybackService.PlayPrevious(true);
+                            await Locator.MediaPlaybackViewModel.PlaybackService.PlayPrevious();
                         }
                         break;
                     case VLCAction.Next:
                         if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music)
                         {
-                            await Locator.MediaPlaybackViewModel.PlaybackService.PlayNext(true);
+                            await Locator.MediaPlaybackViewModel.PlaybackService.PlayNext();
                         }
                         break;
                     case VLCAction.Faster:

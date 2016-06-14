@@ -291,6 +291,11 @@ namespace VLC_WinRT.Services.RunTime
             if (media == null)
                 throw new ArgumentNullException(nameof(media), "Media is missing. Can't play");
             UseVlcLib = forceVlcLib;
+            
+            if (PlayerState == MediaState.Playing || PlayerState == MediaState.Paused || PlayerState == MediaState.Opening)
+            {
+                Stop();
+            }
 
             if (media is VideoItem)
             {
@@ -468,13 +473,8 @@ namespace VLC_WinRT.Services.RunTime
             await SetPlaylist(null, false, true, Playlist[CurrentMedia]);
         }
 
-        public async Task PlayNext(bool stopCurrentMedia)
+        public async Task PlayNext()
         {
-            if (stopCurrentMedia)
-            {
-                Stop();
-            }
-
             if (CanGoNext())
             {
                 SetCurrentMediaPosition(CurrentMedia + 1);
@@ -482,13 +482,8 @@ namespace VLC_WinRT.Services.RunTime
             }
         }
 
-        public async Task PlayPrevious(bool stopCurrentMedia)
+        public async Task PlayPrevious()
         {
-            if (stopCurrentMedia)
-            {
-                Stop();
-            }
-
             if (CanGoPrevious())
             {
                 SetCurrentMediaPosition(CurrentMedia - 1);
@@ -900,7 +895,7 @@ namespace VLC_WinRT.Services.RunTime
             }
             else
             {
-                await PlayNext(false);
+                await PlayNext();
             }
         }
 

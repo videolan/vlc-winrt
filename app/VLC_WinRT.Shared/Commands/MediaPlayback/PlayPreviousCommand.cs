@@ -16,7 +16,7 @@ namespace VLC_WinRT.Commands.MediaPlayback
     {
         public override async void Execute(object parameter)
         {
-            await Locator.MediaPlaybackViewModel.PlaybackService.PlayPrevious(true);
+            await Locator.MediaPlaybackViewModel.PlaybackService.PlayPrevious();
         }
     }
 }
