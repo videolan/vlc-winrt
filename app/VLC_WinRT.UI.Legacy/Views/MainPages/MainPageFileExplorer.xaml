@@ -134,7 +134,8 @@
                 </ListView.GroupStyle>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <ItemsWrapGrid Orientation="Horizontal"/>
+                        <ItemsWrapGrid Orientation="Horizontal"
+                                       ItemWidth="300" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
@@ -156,15 +157,14 @@
                             <TextBlock Text="{Binding RootMediaType}"
                                        FontWeight="Bold"
                                        FontSize="14"
-                                       Visibility="{Binding RootMediaTypeVisible}"/>
+                                       Visibility="{Binding RootMediaTypeVisible}" />
                             <TextBlock Grid.Column="2"
                                        Text="{Binding Name}"
                                        Foreground="{ThemeResource BasicForeground}"
                                        FontSize="16"
                                        TextTrimming="CharacterEllipsis"
                                        TextWrapping="NoWrap"
-                                       VerticalAlignment="Center"
-                                       MaxWidth="250" />
+                                       VerticalAlignment="Center" />
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
