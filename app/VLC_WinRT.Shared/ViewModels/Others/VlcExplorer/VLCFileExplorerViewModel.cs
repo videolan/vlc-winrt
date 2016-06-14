@@ -30,8 +30,11 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
 
             var mrl = media.mrl();
             var schemeEnd = mrl.IndexOf("://");
-            var scheme = mrl.Substring(0, schemeEnd);
-            base.RootMediaType = scheme;
+            if (schemeEnd > -1)
+            {
+                var scheme = mrl.Substring(0, schemeEnd);
+                base.RootMediaType = scheme;
+            }
         }
 
         public override async Task GetFiles()
