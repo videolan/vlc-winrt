@@ -429,11 +429,13 @@ namespace VLC_WinRT.Services.RunTime
                     _mediaService.Play();
                     break;
                 case PlayerEngine.BackgroundMFPlayer:
+#if TWO_PROCESS_BGA
                     var bgService = (BGPlayerService)_mediaService;
                     bgService.MediaSet_FromBackground += BgService_MediaSet_FromBackground;
                     if (!autoPlay)
                         return;
                     _mediaService.Play(Playlist[CurrentMedia].Id);
+#endif
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -721,11 +723,13 @@ namespace VLC_WinRT.Services.RunTime
                 var mfService = (MFService)_mediaService;
                 mfService.Instance.Source = null;
             }
+#if TWO_PROCESS_BGA
             else if (_mediaService is BGPlayerService)
             {
                 var bgService = (BGPlayerService)_mediaService;
                 bgService.MediaSet_FromBackground -= BgService_MediaSet_FromBackground;
             }
+#endif
 
             if (PlayerState != MediaState.Stopped)
             {
