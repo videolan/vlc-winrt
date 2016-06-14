@@ -48,43 +48,46 @@ namespace VLC_WinRT.Services.RunTime
         public BGPlayerService()
         {
             PlayerInstanceReady = new TaskCompletionSource<bool>();
-            Initialize(null);
+            Task.Run(() => Initialize(null));
         }
 
-        public async Task Initialize(object mediaElement = null)
+        public Task Initialize(object mediaElement = null)
         {
-            ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.AppState, BackgroundAudioConstants.ForegroundAppActive);
-
-            AddMediaPlayerEventHandlers();
-            
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
-                dispatchTimer = new DispatcherTimer()
-                {
-                    Interval = TimeSpan.FromSeconds(1),
-                };
-                dispatchTimer.Tick += dispatchTimer_Tick;
-            });
+                ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.AppState, BackgroundAudioConstants.ForegroundAppActive);
 
-            try
-            {
-                if (Instance?.CurrentState == MediaPlayerState.Playing)
+                AddMediaPlayerEventHandlers();
+
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    if (!dispatchTimer.IsEnabled)
+                    dispatchTimer = new DispatcherTimer()
                     {
-                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                        Interval = TimeSpan.FromSeconds(1),
+                    };
+                    dispatchTimer.Tick += dispatchTimer_Tick;
+                });
+
+                try
+                {
+                    if (Instance?.CurrentState == MediaPlayerState.Playing)
+                    {
+                        if (!dispatchTimer.IsEnabled)
                         {
-                            Locator.MediaPlaybackViewModel.PlaybackService.IsRunning = true;
-                            Instance_CurrentStateChanged(null, new RoutedEventArgs());
-                        });
+                            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                            {
+                                Locator.MediaPlaybackViewModel.PlaybackService.IsRunning = true;
+                                Instance_CurrentStateChanged(null, new RoutedEventArgs());
+                            });
+                        }
                     }
+                    if (Instance != null && PlayerInstanceReady.Task?.Status != TaskStatus.RanToCompletion)
+                        PlayerInstanceReady.SetResult(true);
                 }
-                if (Instance != null && PlayerInstanceReady.Task?.Status != TaskStatus.RanToCompletion)
-                    PlayerInstanceReady.SetResult(true);
-            }
-            catch
-            {
-            }
+                catch
+                {
+                }
+            });
         }
 
         /// <summary>
