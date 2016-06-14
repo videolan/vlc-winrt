@@ -248,12 +248,12 @@ namespace VLC_WinRT.Services.RunTime
                 }
 
                 var trackIds = playlist.Select(node => node.Id);
-                Playlist = new SmartCollection<IMediaItem>();
+                var restoredplaylist = new SmartCollection<IMediaItem>();
                 foreach (int trackId in trackIds)
                 {
                     var trackItem = await Locator.MediaLibrary.LoadTrackById(trackId);
                     if (trackItem != null)
-                        Playlist.Add(trackItem);
+                        restoredplaylist.Add(trackItem);
                 }
 
 #if TWO_PROCESS_BGA
@@ -265,7 +265,7 @@ namespace VLC_WinRT.Services.RunTime
                 if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack))
                     return;
                 var index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
-                if (Playlist.Any())
+                if (restoredplaylist.Any())
                 {
                     if (index == -1)
                     {
@@ -278,7 +278,7 @@ namespace VLC_WinRT.Services.RunTime
                 }
 
                 App.BackgroundAudioHelper.RestorePlaylist();
-                await SetPlaylist(null, false, false, Playlist[CurrentMedia]);
+                await SetPlaylist(restoredplaylist, true, false, restoredplaylist[CurrentMedia]);
             }
             catch (Exception e)
             {
