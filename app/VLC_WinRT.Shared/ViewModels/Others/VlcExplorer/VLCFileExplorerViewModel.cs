@@ -28,8 +28,10 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                 base.ArtworkUrl = url;
             });
 
-            var uri = new Uri(media.mrl());
-            base.RootMediaType = uri?.Scheme;
+            var mrl = media.mrl();
+            var schemeEnd = mrl.IndexOf("://");
+            var scheme = mrl.Substring(0, schemeEnd);
+            base.RootMediaType = scheme;
         }
 
         public override async Task GetFiles()
