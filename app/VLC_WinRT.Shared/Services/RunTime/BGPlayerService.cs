@@ -30,6 +30,7 @@ namespace VLC_WinRT.Services.RunTime
         public event Action<long> OnLengthChanged;
         public event Action OnEndReached;
         public event Action<int> OnBuffering;
+        public event Action<int> MediaSet_FromBackground;
 
         public event EventHandler<MediaState> StatusChanged;
         public event TimeChanged TimeChanged;
@@ -156,13 +157,23 @@ namespace VLC_WinRT.Services.RunTime
         async void Instance_BufferingProgressChanged(object sender, RoutedEventArgs e)
         {
             OnBuffering?.Invoke((int)(Instance?.BufferingProgress * 100));
-            //await Locator.MusicPlayerVM.UpdateTrackFromMF();
+
+            if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack))
+                return;
+
+            int index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+            MediaSet_FromBackground?.Invoke(index);
         }
 
         void Instance_MediaOpened(object sender, RoutedEventArgs e)
         {
             OnLengthChanged?.Invoke((long)GetLength());
-            //Locator.MusicPlayerVM.UpdateTrackFromMF();
+
+            if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack))
+                return;
+
+            int index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+            MediaSet_FromBackground?.Invoke(index);
         }
 
         private void Instance_MediaEnded(object sender, RoutedEventArgs e)

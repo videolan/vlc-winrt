@@ -239,44 +239,51 @@ namespace VLC_WinRT.Services.RunTime
 
         private async Task RestorePlaylist()
         {
-            var playlist = BackgroundTrackRepository.LoadPlaylist();
-            if (!playlist.Any())
+            try
             {
-                return;
-            }
+                var playlist = BackgroundTrackRepository.LoadPlaylist();
+                if (!playlist.Any())
+                {
+                    return;
+                }
 
-            var trackIds = playlist.Select(node => node.Id);
-            Playlist = new SmartCollection<IMediaItem>();
-            foreach (int trackId in trackIds)
-            {
-                var trackItem = await Locator.MediaLibrary.LoadTrackById(trackId);
-                if (trackItem != null)
-                    Playlist.Add(trackItem);
-            }
+                var trackIds = playlist.Select(node => node.Id);
+                Playlist = new SmartCollection<IMediaItem>();
+                foreach (int trackId in trackIds)
+                {
+                    var trackItem = await Locator.MediaLibrary.LoadTrackById(trackId);
+                    if (trackItem != null)
+                        Playlist.Add(trackItem);
+                }
 
 #if TWO_PROCESS_BGA
-            // TODO : this shouldn't be here
-            var milliseconds = BackgroundAudioHelper.Instance?.NaturalDuration.TotalMilliseconds;
-                    if (milliseconds != null && milliseconds.HasValue && double.IsNaN(milliseconds.Value))
-                        OnLengthChanged((long)milliseconds);
+                // TODO : this shouldn't be here
+                var milliseconds = BackgroundAudioHelper.Instance?.NaturalDuration.TotalMilliseconds;
+                if (milliseconds != null && milliseconds.HasValue && double.IsNaN(milliseconds.Value))
+                    OnLengthChanged((long)milliseconds);
 #endif
-            if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack))
-                return;
-            var index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
-            if (Playlist.Any())
-            {
-                if (index == -1)
+                if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack))
+                    return;
+                var index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+                if (Playlist.Any())
                 {
-                    // Background Audio was terminated
-                    // We need to reset the playlist, or set the current track 0.
-                    ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, 0);
-                    index = 0;
+                    if (index == -1)
+                    {
+                        // Background Audio was terminated
+                        // We need to reset the playlist, or set the current track 0.
+                        ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, 0);
+                        index = 0;
+                    }
+                    SetCurrentMediaPosition(index);
                 }
-                SetCurrentMediaPosition(index);
-            }
 
-            App.BackgroundAudioHelper.RestorePlaylist();
-            await SetPlaylist(null, false, false, Playlist[CurrentMedia]);
+                App.BackgroundAudioHelper.RestorePlaylist();
+                await SetPlaylist(null, false, false, Playlist[CurrentMedia]);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Failed to restore the playlist");
+            }
         }
 
         private async Task SetMedia(IMediaItem media, bool forceVlcLib = false, bool autoPlay = true)
@@ -417,17 +424,27 @@ namespace VLC_WinRT.Services.RunTime
                     var mfService = (MFService)_mediaService;
                     if (mfService == null) return;
 
-                    if (!autoPlay) return;
+                    if (!autoPlay)
+                        return;
                     _mediaService.Play();
                     break;
                 case PlayerEngine.BackgroundMFPlayer:
-                    if (!autoPlay) return;
+                    var bgService = (BGPlayerService)_mediaService;
+                    bgService.MediaSet_FromBackground += BgService_MediaSet_FromBackground;
+                    if (!autoPlay)
+                        return;
                     _mediaService.Play(Playlist[CurrentMedia].Id);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
             SetSpeedRate(1);
+        }
+
+        private void BgService_MediaSet_FromBackground(int currentTrackIndex)
+        {
+            SetCurrentMediaPosition(currentTrackIndex);
+            Playback_MediaSet?.Invoke(Playlist[CurrentMedia]);
         }
 
         #endregion
@@ -703,6 +720,11 @@ namespace VLC_WinRT.Services.RunTime
             {
                 var mfService = (MFService)_mediaService;
                 mfService.Instance.Source = null;
+            }
+            else if (_mediaService is BGPlayerService)
+            {
+                var bgService = (BGPlayerService)_mediaService;
+                bgService.MediaSet_FromBackground -= BgService_MediaSet_FromBackground;
             }
 
             if (PlayerState != MediaState.Stopped)
