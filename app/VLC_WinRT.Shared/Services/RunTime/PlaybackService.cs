@@ -699,14 +699,6 @@ namespace VLC_WinRT.Services.RunTime
 
             if (_mediaService is VLCService)
             {
-                var vlcService = (VLCService)_mediaService;
-                if (vlcService.MediaPlayer != null)
-                {
-                    var em = vlcService.MediaPlayer.eventManager();
-                    em.OnTrackAdded -= OnTrackAdded;
-                    em.OnTrackDeleted -= OnTrackDeleted;
-                }
-
                 _currentAudioTrack = -1;
                 _currentSubtitle = -1;
 
