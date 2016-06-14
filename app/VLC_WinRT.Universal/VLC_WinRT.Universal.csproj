@@ -190,8 +190,8 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\access\libdsm_plugin.dll">
       <Link>plugins\access\libdsm_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\audio_filter\liba52tospdif_plugin.dll">
-      <Link>plugins\audio_filter\liba52tospdif_plugin.dll</Link>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\audio_filter\libtospdif_plugin.dll">
+      <Link>plugins\audio_filter\libtospdif_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\audio_filter\libaudiobargraph_a_plugin.dll">
       <Link>plugins\audio_filter\libaudiobargraph_a_plugin.dll</Link>
@@ -210,9 +210,6 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\audio_filter\libdtstofloat32_plugin.dll">
       <Link>plugins\audio_filter\libdtstofloat32_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\audio_filter\libdtstospdif_plugin.dll">
-      <Link>plugins\audio_filter\libdtstospdif_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\audio_filter\libequalizer_plugin.dll">
       <Link>plugins\audio_filter\libequalizer_plugin.dll</Link>
