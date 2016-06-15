@@ -166,7 +166,7 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
 {
     if (!p_instance)
         return nullptr;
-    return concurrency::create_async([&] (concurrency::cancellation_token ct) {
+    return concurrency::create_async([=] (concurrency::cancellation_token ct) {
         thumbnailer_sys_t *sys = new thumbnailer_sys_t();
         auto completionTask = concurrency::create_task(sys->screenshotCompleteEvent, ct);
         size_t len2 = WideCharToMultiByte( CP_UTF8, 0, mrl->Data(), -1, nullptr, 0, nullptr, nullptr );
