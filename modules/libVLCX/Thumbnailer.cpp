@@ -179,7 +179,6 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
         if (m == nullptr)
         {
             sys->screenshotCompleteEvent.set(nullptr);
-            delete sys;
             return completionTask;
         }
 
@@ -196,7 +195,6 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
         if (mp == nullptr)
         {
             sys->screenshotCompleteEvent.set(nullptr);
-            delete sys;
             return completionTask;
         }
         sys->eventMgr = libvlc_media_player_event_manager(mp);
