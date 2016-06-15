@@ -76,7 +76,11 @@ Thumbnailer::Thumbnailer()
 static void CancelPreparse(const libvlc_event_t*, void* data)
 {
     auto sys = reinterpret_cast<thumbnailer_sys_t*>(data);
-    sys->state = THUMB_CANCELLED;
+    // Don't cancel if we managed to seek; that would indicate that we are
+    // about to render a thumbnail
+    int s = THUMB_SEEKING;
+    if (sys->state.compare_exchange_strong(s, THUMB_CANCELLED) == false)
+        return;
     sys->screenshotCompleteEvent.set(nullptr);
 }
 
