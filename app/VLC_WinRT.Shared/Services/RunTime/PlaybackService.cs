@@ -278,6 +278,10 @@ namespace VLC_WinRT.Services.RunTime
                 }
 
                 App.BackgroundAudioHelper.RestorePlaylist();
+
+                if (CurrentMedia >= restoredplaylist.Count)
+                    CurrentMedia = 0;
+
                 await SetPlaylist(restoredplaylist, true, false, restoredplaylist[CurrentMedia]);
             }
             catch (Exception e)
