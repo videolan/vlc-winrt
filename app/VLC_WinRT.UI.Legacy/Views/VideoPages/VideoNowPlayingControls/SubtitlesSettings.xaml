@@ -63,6 +63,8 @@
                 </Grid.ColumnDefinitions>
                 <Button Style="{StaticResource TextBlockButtonStyle}"
                         VerticalAlignment="Center"
+                        Foreground="{ThemeResource MainColor}"
+                        FontSize="14"
                         ToolTipService.ToolTip="{Binding Source={StaticResource Strings}, Path=Download}"
                         Content="{Binding Source={StaticResource Strings}, Path=Download}"
                         Command="{Binding DownloadSubtitleCommand}" />
@@ -70,7 +72,8 @@
                               IsActive="{Binding IsLoadingSubtitle}"/>
                 <TextBlock Grid.Column="4"
                            Text="{Binding LoadingSubtitleText}"
-                           TextWrapping="Wrap"/>
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Center"/>
             </Grid>
         </Grid>
     </Border>
