@@ -166,7 +166,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         #endregion
 
         #region methods
-        public async Task OnNavigatedTo()
+        public void OnNavigatedTo()
         {
             // If no playback was ever started, ContinueIndexing can be null
             // If we navigate back and forth to the main page, we also don't want to 
@@ -180,7 +180,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
             }
 
             if (Locator.MediaPlaybackViewModel.CurrentMedia is VideoItem)
-                await Task.Run(async () => await UpdateCurrentVideo(Locator.MediaPlaybackViewModel.CurrentMedia as VideoItem));
+                Task.Run(async () => await UpdateCurrentVideo(Locator.MediaPlaybackViewModel.CurrentMedia as VideoItem));
         }
 
         public void OnNavigatedFrom()
