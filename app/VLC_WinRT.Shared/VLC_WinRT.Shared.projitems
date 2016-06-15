@@ -240,6 +240,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoPlayerVM.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Aileron-Regular.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\DeezerApplats_RVB_Noir.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\circle-fab.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\circleShadow.png" />
@@ -262,7 +263,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Video.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="$(MSBuildThisFileDirectory)segoeui.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Services\Mocks\" />
