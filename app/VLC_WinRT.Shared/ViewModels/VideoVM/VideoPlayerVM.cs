@@ -196,6 +196,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.Slideshow.IsPaused = false;
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
             DisplayHelper.PrivateDisplayCall(false);
+            LoadingSubtitleText = string.Empty;
         }
 
         public async Task<bool> TryUseSubtitleFromFolder()
