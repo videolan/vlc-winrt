@@ -28,7 +28,18 @@ namespace VLC_WinRT.Views.UserControls
 
         private void VLCPivot_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (e.NewSize.Width < 850)
+            Responsive();
+        }
+
+        private void TitleBar_Loaded(object sender, RoutedEventArgs e)
+        {
+            AppViewHelper.SetTitleBar(TitleBar);
+            Responsive();
+        }
+
+        private void Responsive()
+        {
+            if (Window.Current.Bounds.Width < 850)
             {
                 VLCIcon.Visibility = Visibility.Collapsed;
             }
@@ -36,17 +47,8 @@ namespace VLC_WinRT.Views.UserControls
             {
                 VLCIcon.Visibility = Visibility.Visible;
             }
-        }
 
-        private void TitleBar_Loaded(object sender, RoutedEventArgs e)
-        {
-            AppViewHelper.SetTitleBar(TitleBar);
-            App.SplitShell.ContentSizeChanged += SplitShell_ContentSizeChanged;
-            SplitShell_ContentSizeChanged(Window.Current.Bounds.Width);
-        }
 
-        private void SplitShell_ContentSizeChanged(double newWidth)
-        {
             if (AppViewHelper.TitleBarRightOffset == 0)
                 return;
 
@@ -54,7 +56,7 @@ namespace VLC_WinRT.Views.UserControls
             if (pivotHeader == null)
                 return;
 
-            if (newWidth < 850)
+            if (Window.Current.Bounds.Width < 850)
             {
                 pivotHeader.Margin = new Thickness(0, 16, 0, 0);
             }
