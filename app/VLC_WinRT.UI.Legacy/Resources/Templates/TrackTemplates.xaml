@@ -11,7 +11,7 @@
     <DataTemplate x:Key="TrackItemTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="35" />
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
@@ -22,7 +22,7 @@
                        Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                        Style="{StaticResource TitleTextBlockStyle}"
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Center" />
+                       HorizontalAlignment="Left" />
             <userControls:TrackItemTemplate Grid.Column="2" 
                                             Track="{Binding}"/>
         </Grid>
