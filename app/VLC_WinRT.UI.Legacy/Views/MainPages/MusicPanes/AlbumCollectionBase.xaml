@@ -98,13 +98,7 @@
                                 <ListView.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <ItemsStackPanel Orientation="Horizontal"
-                                                         Margin="{StaticResource FrameMarginLeft}">
-                                            <ItemsStackPanel.ChildrenTransitions>
-                                                <TransitionCollection>
-                                                    <EntranceThemeTransition IsStaggeringEnabled="True" />
-                                                </TransitionCollection>
-                                            </ItemsStackPanel.ChildrenTransitions>
-                                        </ItemsStackPanel>
+                                                         Margin="{StaticResource FrameMarginLeft}" />
                                     </ItemsPanelTemplate>
                                 </ListView.ItemsPanel>
                             </ListView>
