@@ -65,6 +65,7 @@ Thumbnailer::Thumbnailer()
         "--aout=none",
         "--no-video-title-show",
         "--no-stats",
+        "--input-fast-seek",
     };
     p_instance = libvlc_new(sizeof(argv) / sizeof(*argv), argv);
     if (!p_instance) {
