@@ -216,18 +216,11 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
         // Create a local representation to allow it to be captured
 		// TODO: Does not work in UWP. Need to fix.
 
-		auto sce = sys->screenshotCompleteEvent;
-#ifndef WINAPI_FAMILY_UNIVERSAL_APP
-        sys->cancellationTask = concurrency::create_task([sce, timeoutMs, sys] {
+		auto tcs = sys->timeoutCts;
+        sys->cancellationTask = concurrency::create_task([tcs, timeoutMs, sys] {
             concurrency::wait(timeoutMs);
-            if (!concurrency::is_task_cancellation_requested())
+            if (!tcs.get_token().is_canceled())
                 CancelPreparse(nullptr, sys);
-#else
-        sys->cancellationTask = concurrency::create_task([sce, timeoutMs, ct, sys] {
-            concurrency::wait(timeoutMs);
-            if (!ct.is_canceled())
-                CancelPreparse(nullptr, sys);
-#endif
 		}, sys->timeoutCts.get_token());
         libvlc_media_player_play(mp);
         //TODO: Specify position
