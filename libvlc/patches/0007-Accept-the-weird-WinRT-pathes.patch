@@ -1,7 +1,7 @@
-From 8dc770f87307aaa48b41bbfa47b9223d1d418ec7 Mon Sep 17 00:00:00 2001
+From 4379139b3d116eafa0a8948bd79093f87b2cda47 Mon Sep 17 00:00:00 2001
 From: Jean-Baptiste Kempf <jb@videolan.org>
 Date: Wed, 12 Mar 2014 00:11:26 +0100
-Subject: [PATCH] Accept the weird WinRT pathes
+Subject: [PATCH 7/9] Accept the weird WinRT pathes
 
 ---
  src/text/url.c | 5 +++++
@@ -23,3 +23,6 @@ index 27db5e7..4c22b6f 100644
      if (!strncmp (path, "\\\\", 2))
      {   /* Windows UNC paths */
          /* \\host\share\path -> file://host/share/path */
+-- 
+2.8.1
+

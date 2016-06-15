@@ -1,7 +1,7 @@
-From 23f88753b11e22228c380efe0f57ceee1acce875 Mon Sep 17 00:00:00 2001
+From 7d775059d4417687e6a5bcff677fad5fe61dac27 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Feb 2015 11:58:54 +0100
-Subject: [PATCH 2/3] wasapi: Don't fail if the client is already initialized
+Subject: [PATCH 3/9] wasapi: Don't fail if the client is already initialized
 
 ---
  modules/audio_output/wasapi.c | 2 +-
