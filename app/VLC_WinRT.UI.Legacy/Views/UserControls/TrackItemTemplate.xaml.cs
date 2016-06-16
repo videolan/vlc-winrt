@@ -60,14 +60,14 @@ namespace VLC_WinRT.Views.UserControls
 
         async void UpdateTrack(IMediaItem media)
         {
-            if (Track == null)
-                return;
-
-            if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.PlaybackService.Playlist?.Count == 0)
-                return;
-
             await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () =>
             {
+                if (Track == null)
+                    return;
+
+                if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.PlaybackService.Playlist?.Count == 0)
+                    return;
+
                 if (Track.IsCurrentPlaying())
                 {
                     previousBrush = NameTextBlock.Foreground;

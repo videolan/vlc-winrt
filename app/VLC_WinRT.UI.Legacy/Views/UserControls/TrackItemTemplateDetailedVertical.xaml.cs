@@ -78,11 +78,10 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
         async void UpdateTrack(IMediaItem media)
         {
-            if (Track == null)
-                return;
-
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
+                if (Track == null)
+                    return;
 
                 if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.PlaybackService.Playlist?.Count == 0)
                     return;
