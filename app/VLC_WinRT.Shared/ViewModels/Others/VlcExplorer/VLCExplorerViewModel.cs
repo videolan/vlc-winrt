@@ -126,8 +126,11 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             _deviceService.ExternalDeviceAdded += DeviceAdded;
             _deviceService.ExternalDeviceRemoved += DeviceRemoved;
 #endif
-            FileExplorerVisibility = Visibility.Collapsed;
-            RootFoldersVisibility = Visibility.Visible;
+            if (CurrentStorageVM == null)
+            {
+                FileExplorerVisibility = Visibility.Collapsed;
+                RootFoldersVisibility = Visibility.Visible;
+            }
             await Task.Run(async () =>
             {
                 Locator.MediaLibrary.MediaListItemAdded += VLCService_MediaListItemAdded;
