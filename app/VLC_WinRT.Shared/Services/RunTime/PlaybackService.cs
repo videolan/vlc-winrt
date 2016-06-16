@@ -636,6 +636,18 @@ namespace VLC_WinRT.Services.RunTime
 
         public List<VLCChapterDescription> GetChapters()
         {
+            if (!(_mediaService is VLCService))
+                return null;
+
+            var vlcService = (VLCService)_mediaService;
+            var mP = vlcService?.MediaPlayer;
+            _chapters.Clear();
+            var chapters = mP?.chapterDescription(-1);
+            foreach (var c in chapters)
+            {
+                var vlcChapter = new VLCChapterDescription(c);
+                _chapters.Add(vlcChapter);
+            }
             return _chapters.ToList();
         }
 
@@ -773,13 +785,7 @@ namespace VLC_WinRT.Services.RunTime
             var vlcService = (VLCService)_mediaService;
             var mP = vlcService?.MediaPlayer;
             // Get chapters
-            _chapters.Clear();
-            var chapters = mP?.chapterDescription(-1);
-            foreach (var c in chapters)
-            {
-                var vlcChapter = new VLCChapterDescription(c);
-                _chapters.Add(vlcChapter);
-            }
+            GetChapters();
 
             // Get subtitle delay etc
             if (mP != null)
