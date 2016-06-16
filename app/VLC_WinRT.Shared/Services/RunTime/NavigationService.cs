@@ -136,9 +136,14 @@ namespace VLC_WinRT.Services.RunTime
             {
                 case VLCPage.MainPageVideo:
                 case VLCPage.MainPageMusic:
-                case VLCPage.MainPageFileExplorer:
                 case VLCPage.MainPageNetwork:
                     return false;
+
+                case VLCPage.MainPageFileExplorer:
+                    if (Locator.FileExplorerVM.CurrentStorageVM != null || Locator.FileExplorerVM.CanGoBack)
+                        Locator.FileExplorerVM.GoBackCommand.Execute(null);
+                    else
+                        return false;
                     break;
                 case VLCPage.AlbumPage:
                     GoBack_HideFlyout();
