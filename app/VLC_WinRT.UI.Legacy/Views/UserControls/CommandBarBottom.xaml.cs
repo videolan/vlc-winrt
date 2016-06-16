@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using VLC_WinRT.Helpers;
 using VLC_WinRT.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -88,7 +89,14 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
 
             var miniWindowButton = FindName(nameof(MiniWindowButton)) as FrameworkElement;
             if (miniWindowButton != null)
-                miniWindowButton.Visibility = MiniPlayerVisibility;
+            {
+                if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
+                {
+                    miniWindowButton.Visibility = Visibility.Collapsed;
+                }
+                else
+                    miniWindowButton.Visibility = MiniPlayerVisibility;
+            }
 
             if (App.SplitShell.FooterVisibility != AppBarClosedDisplayMode.Hidden)
                 App.SplitShell.FooterVisibility = MiniPlayerVisibility == Visibility.Visible ? AppBarClosedDisplayMode.Compact : AppBarClosedDisplayMode.Minimal;
