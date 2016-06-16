@@ -420,6 +420,7 @@ namespace VLC_WinRT.ViewModels
                 {
                     IsPlaying = e == MediaState.Playing || e == MediaState.Buffering;
 
+                    LoadingMedia = Visibility.Collapsed;
                     switch (MediaState)
                     {
                         case MediaState.NothingSpecial:
@@ -432,7 +433,6 @@ namespace VLC_WinRT.ViewModels
                             if (_systemMediaTransportControls != null)
                                 _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
 
-                            LoadingMedia = Visibility.Collapsed;
                             break;
                         case MediaState.Paused:
                             if (_systemMediaTransportControls != null)
