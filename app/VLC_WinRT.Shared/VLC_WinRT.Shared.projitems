@@ -240,7 +240,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoPlayerVM.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Aileron-Regular.otf" />
+    <Content Include="$(MSBuildThisFileDirectory)NotoSans-Regular.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\DeezerApplats_RVB_Noir.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\circle-fab.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\circleShadow.png" />
