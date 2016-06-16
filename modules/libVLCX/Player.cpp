@@ -96,7 +96,7 @@ void Player::InitializeVLC()
 
     Windows::ApplicationModel::Package^ currentPackage = Windows::ApplicationModel::Package::Current;
     ToCharArray(currentPackage->InstalledLocation->Path, packagePath, 128);
-    sprintf_s(fontstring, "--freetype-font=%s\\segoeui.ttf", packagePath);
+    sprintf_s(fontstring, "--freetype-font=%s\\NotoSans-Regular.ttf", packagePath);
 
     /* Don't add any invalid options, otherwise it causes LibVLC to fail */
     const char *argv[] = {
