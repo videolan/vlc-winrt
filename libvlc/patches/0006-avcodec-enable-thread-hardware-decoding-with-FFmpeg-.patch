@@ -1,7 +1,7 @@
-From 5742a23ecd7756a6d19b275ee70a76443b79bd7c Mon Sep 17 00:00:00 2001
+From f73384fb28f0cb448f5b13ceced5e4c80b3af5ba Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 8 Jun 2016 17:40:34 +0200
-Subject: [PATCH 6/9] avcodec: enable thread hardware decoding with FFmpeg on
+Subject: [PATCH 06/11] avcodec: enable thread hardware decoding with FFmpeg on
  Windows
 
 ---
