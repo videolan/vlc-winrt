@@ -82,13 +82,13 @@ namespace VLC_WinRT.Services.RunTime
                         (dialog, title, text, intermidiate, position, cancel) => { },
                         (dialog) => dialog.dismiss(),
                         (dialog, position, text) => { });
+                    PlayerInstanceReady.TrySetResult(Instance != null);
                 }
                 catch (Exception e)
                 {
                     LogHelper.Log("VLC Service : Couldn't create VLC Instance\n" + StringsHelper.ExceptionToString(e));
                     ToastHelper.Basic(Strings.FailStartVLCEngine);
                 }
-                PlayerInstanceReady.TrySetResult(Instance != null);
             });
         }
 
