@@ -114,5 +114,16 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center" />
         </Grid>
+        <Grid Grid.Row="1"
+              DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+              Background="{ThemeResource ApplicationChromeThemeBrush}"
+              Visibility="{Binding LoadingMedia}">
+            <ProgressRing IsActive="True"
+                          IsEnabled="True"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          Height="100"
+                          Width="100" />
+        </Grid>
     </Grid>
 </Page>
