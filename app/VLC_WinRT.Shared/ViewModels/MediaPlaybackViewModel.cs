@@ -98,8 +98,6 @@ namespace VLC_WinRT.ViewModels
 
         #region public props
 
-        public bool UseVlcLib { get; set; }
-
         public IMediaItem CurrentMedia
         {
             get
