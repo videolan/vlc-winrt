@@ -20,11 +20,6 @@ namespace VLC_WinRT.Utils
     {
         public static Task InvokeAsync(CoreDispatcherPriority priority, Action action)
         {
-            if (CoreApplication.MainView.Dispatcher.HasThreadAccess)
-            {
-                action();
-                return Task.FromResult(true);
-            }
             return Task.Run(() => CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action()).AsTask());
         }
     }
