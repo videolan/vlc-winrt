@@ -627,7 +627,12 @@ namespace VLC_WinRT.Services.RunTime
 
             if (chapter == GetCurrentChapter())
                 return;
-            var index = _chapters.IndexOf(chapter);
+
+            var selectCh = _chapters.FirstOrDefault(x => x.Duration == chapter.Duration && x.Name == chapter.Name && x.StarTime == chapter.StarTime);
+            if (selectCh == null)
+                return;
+
+            var index = _chapters.IndexOf(selectCh);
             if (index > -1)
             {
                 vlcService.MediaPlayer.setChapter(index);
