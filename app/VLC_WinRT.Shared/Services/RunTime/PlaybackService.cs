@@ -295,11 +295,9 @@ namespace VLC_WinRT.Services.RunTime
             if (media == null)
                 throw new ArgumentNullException(nameof(media), "Media is missing. Can't play");
             UseVlcLib = forceVlcLib;
-            
-            if (PlayerState == MediaState.Playing || PlayerState == MediaState.Paused || PlayerState == MediaState.Opening)
-            {
+
+            if (Playlist.ElementAt(CurrentMedia) != null)
                 Stop();
-            }
 
             if (media is VideoItem)
             {
@@ -739,7 +737,7 @@ namespace VLC_WinRT.Services.RunTime
             }
 #endif
 
-            if (PlayerState != MediaState.Stopped)
+            if (PlayerState != MediaState.Ended && PlayerState != MediaState.Stopped && PlayerState != MediaState.NothingSpecial)
             {
                 _mediaService.Stop();
             }
