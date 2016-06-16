@@ -901,6 +901,9 @@
       <HintPath>..\..\build\packages\Microsoft.Net.Http.2.2.29\lib\win8\System.Net.Http.Primitives.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Windows.Foundation.UniversalApiContract">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Windows Kits\10\References\Windows.Foundation.UniversalApiContract\2.0.0.0\Windows.Foundation.UniversalApiContract.winmd</HintPath>
+    </Reference>
     <Reference Include="WinRT.Triggers">
       <HintPath>..\..\build\packages\WinRTTriggers.1.6.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
     </Reference>
