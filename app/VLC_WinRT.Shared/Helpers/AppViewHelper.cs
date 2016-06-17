@@ -53,6 +53,8 @@ namespace VLC_WinRT.Helpers
         public static void SetAppView(bool extend)
         {
 #if WINDOWS_UWP
+            if (Numbers.OSVersion <= 10586)
+                return;
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = extend;
             var appView = ApplicationView.GetForCurrentView();
             var titleBar = appView.TitleBar;
