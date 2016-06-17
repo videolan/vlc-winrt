@@ -737,7 +737,7 @@ namespace VLC_WinRT.Services.RunTime
             }
 #endif
 
-            if (PlayerState != MediaState.Ended && PlayerState != MediaState.Stopped && PlayerState != MediaState.NothingSpecial)
+            if (PlayerState != MediaState.Ended && PlayerState != MediaState.NothingSpecial)
             {
                 _mediaService.Stop();
             }
@@ -885,7 +885,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             Playback_MediaEndReached?.Invoke();
             TileHelper.ClearTile();
-            PlayerState = MediaState.Stopped;
+            PlayerState = MediaState.Ended;
             if (!CanGoNext())
             {
                 // Playlist is finished
