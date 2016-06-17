@@ -13,6 +13,7 @@ using VLC_WinRT.ViewModels;
 using Windows.Foundation.Metadata;
 using VLC_WinRT.UI.Legacy.Views.UserControls;
 using VLC_WinRT.Views.UserControls;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Helpers
 {
@@ -70,6 +71,8 @@ namespace VLC_WinRT.Helpers
         public static void SetTitleBar(UIElement titleBar)
         {
 #if WINDOWS_UWP
+            if (Numbers.OSVersion <= 10586)
+                return;
             Window.Current.SetTitleBar(titleBar);
 #endif
         }
