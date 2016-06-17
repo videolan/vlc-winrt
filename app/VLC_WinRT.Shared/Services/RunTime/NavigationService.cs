@@ -158,6 +158,9 @@ namespace VLC_WinRT.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.VideoPlayerPage:
+                    if (currentFlyout == VLCPage.VideoPlayerOptionsPanel)
+                        GoBack_HideFlyout();
+
                     Locator.MediaPlaybackViewModel.GoBack.Execute(null);
                     break;
                 case VLCPage.MusicPlayerPage:
