@@ -79,6 +79,7 @@ namespace VLC_WinRT.Views.VideoPages
             AppViewHelper.SetTitleBarTitle(Locator.VideoPlayerVm.CurrentVideo?.Name);
 
             // UI interactions
+            Locator.MediaPlaybackViewModel.MouseService.Start();
             Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseCursorHidden;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
             RootGrid.Tapped += RootGrid_Tapped;
@@ -108,7 +109,7 @@ namespace VLC_WinRT.Views.VideoPages
             if (AppViewHelper.GetFullscreen())
                 AppViewHelper.SetFullscreen();
 
-
+            Locator.MediaPlaybackViewModel.MouseService.Stop();
             Locator.MediaPlaybackViewModel.MouseService.OnHidden -= MouseCursorHidden;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved -= MouseMoved;
             controlsTimer.Tick -= ControlsTimer_Tick;
