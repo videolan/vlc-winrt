@@ -311,13 +311,13 @@ namespace VLC_WinRT.Services.RunTime
 #if TWO_PROCESS_BGA
                 try
                 {
-                        var messageDictionary = new ValueSet();
-                        messageDictionary.Add(BackgroundAudioConstants.ClearUVC, "");
-                        BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
-                    }
-                    catch
-                    {
-                    }
+                    var messageDictionary = new ValueSet();
+                    messageDictionary.Add(BackgroundAudioConstants.ClearUVC, "");
+                    BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
+                }
+                catch
+                {
+                }
 #else
 
                 //await SetMediaTransportControlsInfo(string.IsNullOrEmpty(video.Name) ? Strings.Video : video.Name);
