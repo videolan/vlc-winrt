@@ -775,9 +775,9 @@ namespace VLC_WinRT.Services.RunTime
                 PlayingType = PlayingType.Video;
             }
         }
-#endregion
+        #endregion
 
-#region Playback events callbacks
+        #region Playback events callbacks
 
         private void OnParsedStatus(ParsedStatus parsedStatus)
         {
@@ -933,6 +933,6 @@ namespace VLC_WinRT.Services.RunTime
             Stop();
             Playback_MediaFailed?.Invoke(sender, e);
         }
-#endregion
+        #endregion
     }
 }
