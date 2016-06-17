@@ -1,4 +1,5 @@
 ﻿using VLC_WinRT.Helpers;
+using Windows.System.Profile;
 
 namespace VLC_WinRT.Utils
 {
@@ -25,6 +26,20 @@ namespace VLC_WinRT.Utils
                 ApplicationSettingsHelper.SaveSettingsValue(Strings.DatabaseVersion, Numbers.DbVersion);
                 ApplicationSettingsHelper.SaveSettingsValue(Strings.AlreadyLaunched, true);
                 return true;
+            }
+        }
+
+        public static ulong OSVersion
+        {
+            get
+            {
+#if WINDOWS_UWP
+                string sv = AnalyticsInfo.VersionInfo.DeviceFamilyVersion;
+                ulong v = ulong.Parse(sv);
+                return (v & 0x00000000FFFF0000L) >> 16;
+#else
+                return 9600;
+#endif
             }
         }
     }
