@@ -53,8 +53,11 @@ namespace VLC_WinRT.Helpers
         public static void SetAppView(bool extend)
         {
 #if WINDOWS_UWP
+            if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
+                return;
             if (Numbers.OSVersion <= 10586)
                 return;
+            
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = extend;
             var appView = ApplicationView.GetForCurrentView();
             var titleBar = appView.TitleBar;
@@ -73,6 +76,8 @@ namespace VLC_WinRT.Helpers
         public static void SetTitleBar(UIElement titleBar)
         {
 #if WINDOWS_UWP
+            if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
+                return;
             if (Numbers.OSVersion <= 10586)
                 return;
             Window.Current.SetTitleBar(titleBar);
