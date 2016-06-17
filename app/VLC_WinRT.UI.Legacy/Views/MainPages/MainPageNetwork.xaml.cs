@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels;
+using Windows.UI.Xaml.Media;
 
 namespace VLC_WinRT.UI.Legacy.Views.MainPages
 {
@@ -35,6 +36,11 @@ namespace VLC_WinRT.UI.Legacy.Views.MainPages
             {
                 Locator.StreamsVM.PlayStreamCommand.Execute(MrlTextBox.Text);
             }
+        }
+
+        private void MrlTextBox_Paste(object sender, TextControlPasteEventArgs e)
+        {
+            MrlTextBox.Foreground = App.Current.Resources["MainColor"] as SolidColorBrush;
         }
     }
 }
