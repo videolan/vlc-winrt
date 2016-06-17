@@ -1,16 +1,19 @@
-From 1a287d63967c9cc8bb82da8deb708cc404abd33a Mon Sep 17 00:00:00 2001
+From e1bc5474d6061191b68ce4734248c19609a214a0 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 19:14:48 +0200
-Subject: [PATCH 10/11] upnp: lookup the best interface to use libupnp with
+Subject: [PATCH] upnp: lookup the best interface to use libupnp with
 
 libupnp cannot handle more than one interface/IP at a time, so we need to make
 sure we use an appropriate one.
+
+--
+replaces https://patches.videolan.org/patch/13719/ with better lookup
 ---
- modules/services_discovery/upnp.cpp | 55 +++++++++++++++++++++++++++++++++++--
- 1 file changed, 53 insertions(+), 2 deletions(-)
+ modules/services_discovery/upnp.cpp | 115 +++++++++++++++++++++++++++++++++++-
+ 1 file changed, 113 insertions(+), 2 deletions(-)
 
 diff --git a/modules/services_discovery/upnp.cpp b/modules/services_discovery/upnp.cpp
-index ff86868..2a07ad2 100644
+index ff86868..a428333 100644
 --- a/modules/services_discovery/upnp.cpp
 +++ b/modules/services_discovery/upnp.cpp
 @@ -32,6 +32,7 @@
@@ -21,67 +24,131 @@ index ff86868..2a07ad2 100644
  
  #include <assert.h>
  #include <limits.h>
-@@ -1280,8 +1281,58 @@ UpnpInstanceWrapper *UpnpInstanceWrapper::get(vlc_object_t *p_obj, services_disc
+@@ -1253,6 +1254,114 @@ UpnpInstanceWrapper::~UpnpInstanceWrapper()
+     UpnpFinish();
+ }
+ 
++static char *getIpv4ForMulticast()
++{
++# ifdef _WIN32
++#  if !VLC_WINSTORE_APP || _WIN32_WINNT >= 0x0A00
++    ULONG addrSize;
++    IP_ADAPTER_UNICAST_ADDRESS *p_best_ip = NULL;
++    wchar_t psz_uri[32];
++    DWORD strSize;
++    const ULONG queryFlags = GAA_FLAG_INCLUDE_GATEWAYS|GAA_FLAG_SKIP_ANYCAST|GAA_FLAG_SKIP_DNS_SERVER|GAA_FLAG_SKIP_FRIENDLY_NAME;
++
++    ULONG erraddr = GetAdaptersAddresses( AF_INET, queryFlags, NULL, NULL, &addrSize );
++    if (erraddr != ERROR_BUFFER_OVERFLOW)
++        return NULL;
++    IP_ADAPTER_ADDRESSES *addresses = (IP_ADAPTER_ADDRESSES*) malloc(addrSize);
++    if (addresses == NULL)
++        return NULL;
++    erraddr = GetAdaptersAddresses( AF_INET, queryFlags, NULL, addresses, &addrSize );
++    if (erraddr != ERROR_SUCCESS)
++        goto err;
++
++    unsigned long i_broadcast_ip = inet_addr("239.255.255.250");
++    IP_ADAPTER_ADDRESSES *p_adapter = addresses;
++
++    /* find one with multicast capabilities */
++    while (p_adapter != NULL)
++    {
++        if (p_adapter->OperStatus == IfOperStatusUp && p_adapter->FirstGatewayAddress && p_adapter->Ipv4Enabled)
++        {
++            /* make sure it supports 239.255.255.250 */
++            IP_ADAPTER_MULTICAST_ADDRESS *p_multicast = p_adapter->FirstMulticastAddress;
++            while (p_multicast != NULL)
++            {
++                if (((struct sockaddr_in *)p_multicast->Address.lpSockaddr)->sin_addr.S_un.S_addr == i_broadcast_ip)
++                    break;
++                p_multicast = p_multicast->Next;
++            }
++            if (p_multicast != NULL)
++            {
++                /* get an IPv4 address */
++                IP_ADAPTER_UNICAST_ADDRESS *p_unicast = p_adapter->FirstUnicastAddress;
++                while (p_unicast != NULL)
++                {
++                    strSize = sizeof( psz_uri ) / sizeof( wchar_t );
++                    if( WSAAddressToString( p_unicast->Address.lpSockaddr,
++                                            p_unicast->Address.iSockaddrLength,
++                                            NULL, psz_uri, &strSize ) == 0 )
++                    {
++                        if ( p_best_ip == NULL ||
++                             p_best_ip->ValidLifetime > p_unicast->ValidLifetime )
++                        {
++                            p_best_ip = p_unicast;
++                        }
++                    }
++                    p_unicast = p_unicast->Next;
++                }
++            }
++        }
++        p_adapter = p_adapter->Next;
++    }
++
++    if ( p_best_ip != NULL )
++        goto done;
++
++    p_adapter = addresses;
++    /* find any with IPv4 */
++    while (p_adapter != NULL)
++    {
++        if (p_adapter->OperStatus == IfOperStatusUp && p_adapter->FirstGatewayAddress && p_adapter->Ipv4Enabled)
++        {
++            /* get an IPv4 address */
++            IP_ADAPTER_UNICAST_ADDRESS *p_unicast = p_adapter->FirstUnicastAddress;
++            while (p_unicast != NULL)
++            {
++                strSize = sizeof( psz_uri ) / sizeof( wchar_t );
++                if( WSAAddressToString( p_unicast->Address.lpSockaddr,
++                                        p_unicast->Address.iSockaddrLength,
++                                        NULL, psz_uri, &strSize ) == 0 )
++                {
++                    if ( p_best_ip == NULL ||
++                         p_best_ip->ValidLifetime > p_unicast->ValidLifetime )
++                    {
++                        p_best_ip = p_unicast;
++                    }
++                }
++                p_unicast = p_unicast->Next;
++            }
++        }
++        p_adapter = p_adapter->Next;
++    }
++
++done:
++    if (p_best_ip != NULL)
++    {
++        strSize = sizeof( psz_uri ) / sizeof( wchar_t );
++        WSAAddressToString( p_best_ip->Address.lpSockaddr,
++                            p_best_ip->Address.iSockaddrLength,
++                            NULL, psz_uri, &strSize );
++        free(addresses);
++        return FromWide( psz_uri );
++    }
++
++err:
++    free(addresses);
++#  endif /* GetAdaptersAddresses available */
++# endif /* _WIN32 */
++    return NULL;
++}
++
+ UpnpInstanceWrapper *UpnpInstanceWrapper::get(vlc_object_t *p_obj, services_discovery_t *p_sd)
+ {
+     SD::MediaServerList *p_server_list = NULL;
+@@ -1280,8 +1389,10 @@ UpnpInstanceWrapper *UpnpInstanceWrapper::get(vlc_object_t *p_obj, services_disc
          free( psz_miface );
      #else
          /* If UpnpInit2 isnt available, initialize on first IPv4-capable interface */
 -        int i_res = UpnpInit( 0, 0 );
 -    #endif
-+        char *psz_hostip = NULL;
-+# ifdef _WIN32
-+#  if !VLC_WINSTORE_APP || _WIN32_WINNT >= 0x0A00
-+        IP_ADAPTER_ADDRESSES addresses[16];
-+        ULONG addrSize = sizeof(addresses);
-+        unsigned long i_broadcast_ip = inet_addr("239.255.255.250");
-+        if (GetAdaptersAddresses(AF_INET, GAA_FLAG_INCLUDE_GATEWAYS|GAA_FLAG_SKIP_FRIENDLY_NAME, NULL, addresses, &addrSize) == ERROR_SUCCESS)
-+        {
-+            IP_ADAPTER_ADDRESSES *p_addr = addresses;
-+            do
-+            {
-+                if( p_addr->OperStatus == IfOperStatusUp && p_addr->FirstGatewayAddress != NULL && p_addr->Ipv4Enabled)
-+                {
-+                    /* make sure it supports 239.255.255.250 */
-+                    IP_ADAPTER_MULTICAST_ADDRESS *p_multicast = p_addr->FirstMulticastAddress;
-+                    while (p_multicast != NULL)
-+                    {
-+                        if (p_multicast->Address.lpSockaddr->sa_family == AF_INET)
-+                        {
-+                            if (((struct sockaddr_in *)p_multicast->Address.lpSockaddr)->sin_addr.S_un.S_addr == i_broadcast_ip)
-+                                break;
-+                        }
-+                        p_multicast = p_multicast->Next;
-+                    }
-+                    if (p_multicast != NULL)
-+                    {
-+                        /* get an IPv4 address */
-+                        IP_ADAPTER_UNICAST_ADDRESS *p_unicast = p_addr->FirstUnicastAddress;
-+                        while (p_unicast != NULL && psz_hostip == NULL)
-+                        {
-+                            if (p_unicast->Address.lpSockaddr->sa_family == AF_INET )
-+                            {
-+                                wchar_t psz_uri[1026];
-+                                DWORD strSize = sizeof( psz_uri ) / sizeof( wchar_t );
-+                                if( WSAAddressToString( p_unicast->Address.lpSockaddr,
-+                                                        p_unicast->Address.iSockaddrLength,
-+                                                        NULL, psz_uri, &strSize ) == 0 )
-+                                    psz_hostip = FromWide( psz_uri );
-+                            }
-+                            p_unicast = p_unicast->Next;
-+                        }
-+                    }
-+                }
-+                p_addr = p_addr->Next;
-+            } while( p_addr != NULL && psz_hostip == NULL );
-+        }
-+#  endif /* GetAdaptersAddresses available */
-+# endif /* _WIN32 */
-+
++        char *psz_hostip = getIpv4ForMulticast();
 +        int i_res = UpnpInit( psz_hostip, 0 );
 +        free(psz_hostip);
 +    #endif /* UPNP_ENABLE_IPV6 */
          if( i_res != UPNP_E_SUCCESS )
          {
              msg_Err( p_obj, "Initialization failed: %s", UpnpGetErrorMessage( i_res ) );
--- 
-2.8.1
-
