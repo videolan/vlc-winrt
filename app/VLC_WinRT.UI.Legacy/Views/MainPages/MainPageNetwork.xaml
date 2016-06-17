@@ -34,7 +34,8 @@
             <userControls:FocusTextBox x:Name="MrlTextBox"
                                        Grid.Column="1"
                                        PlaceholderText="{Binding Source={StaticResource Strings}, Path=EnterURL}"
-                                       InputScope="Url" />
+                                       InputScope="Url"
+                                       Paste="MrlTextBox_Paste"/>
             <Button Grid.Column="3"
                     Style="{StaticResource TextBlockButtonStyle}"
                     HorizontalAlignment="Stretch"
