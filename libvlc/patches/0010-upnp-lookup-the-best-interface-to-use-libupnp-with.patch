@@ -1,7 +1,7 @@
-From 1ddc14b570dc4f8a7e36d3b510b131f6365164db Mon Sep 17 00:00:00 2001
+From 41c7ddbd8c969dca3f37d360279c3d7af2e91ceb Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 19:14:48 +0200
-Subject: [PATCH 1/2] upnp: lookup the best interface to use libupnp with
+Subject: [PATCH] upnp: lookup the best interface to use libupnp with
 
 libupnp cannot handle more than one interface/IP at a time, so we need to make
 sure we use an appropriate one.
@@ -9,11 +9,11 @@ sure we use an appropriate one.
 --
 replaces https://patches.videolan.org/patch/13719/ with better lookup
 ---
- modules/services_discovery/upnp.cpp | 116 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 114 insertions(+), 2 deletions(-)
+ modules/services_discovery/upnp.cpp | 115 +++++++++++++++++++++++++++++++++++-
+ 1 file changed, 113 insertions(+), 2 deletions(-)
 
 diff --git a/modules/services_discovery/upnp.cpp b/modules/services_discovery/upnp.cpp
-index ff86868..67ee860 100644
+index ff86868..52096b8 100644
 --- a/modules/services_discovery/upnp.cpp
 +++ b/modules/services_discovery/upnp.cpp
 @@ -32,6 +32,7 @@
@@ -24,7 +24,7 @@ index ff86868..67ee860 100644
  
  #include <assert.h>
  #include <limits.h>
-@@ -1253,6 +1254,115 @@ UpnpInstanceWrapper::~UpnpInstanceWrapper()
+@@ -1253,6 +1254,114 @@ UpnpInstanceWrapper::~UpnpInstanceWrapper()
      UpnpFinish();
  }
  
@@ -38,7 +38,7 @@ index ff86868..67ee860 100644
 +    DWORD strSize;
 +    const ULONG queryFlags = GAA_FLAG_INCLUDE_GATEWAYS|GAA_FLAG_SKIP_ANYCAST|GAA_FLAG_SKIP_DNS_SERVER|GAA_FLAG_SKIP_FRIENDLY_NAME;
 +    unsigned long i_broadcast_ip = inet_addr("239.255.255.250");
-+    IP_ADAPTER_ADDRESSES *p_adapter = NULL;
++    IP_ADAPTER_ADDRESSES *p_adapter;
 +
 +    ULONG erraddr = GetAdaptersAddresses( AF_INET, queryFlags, NULL, NULL, &addrSize );
 +    if (erraddr != ERROR_BUFFER_OVERFLOW)
@@ -50,9 +50,8 @@ index ff86868..67ee860 100644
 +    if (erraddr != ERROR_SUCCESS)
 +        goto err;
 +
-+    p_adapter = addresses;
-+
 +    /* find one with multicast capabilities */
++    p_adapter = addresses;
 +    while (p_adapter != NULL)
 +    {
 +        if (p_adapter->OperStatus == IfOperStatusUp && p_adapter->FirstGatewayAddress && p_adapter->Ipv4Enabled)
@@ -92,8 +91,8 @@ index ff86868..67ee860 100644
 +    if ( p_best_ip != NULL )
 +        goto done;
 +
-+    p_adapter = addresses;
 +    /* find any with IPv4 */
++    p_adapter = addresses;
 +    while (p_adapter != NULL)
 +    {
 +        if (p_adapter->OperStatus == IfOperStatusUp && p_adapter->FirstGatewayAddress && p_adapter->Ipv4Enabled)
@@ -140,7 +139,7 @@ index ff86868..67ee860 100644
  UpnpInstanceWrapper *UpnpInstanceWrapper::get(vlc_object_t *p_obj, services_discovery_t *p_sd)
  {
      SD::MediaServerList *p_server_list = NULL;
-@@ -1280,8 +1390,10 @@ UpnpInstanceWrapper *UpnpInstanceWrapper::get(vlc_object_t *p_obj, services_disc
+@@ -1280,8 +1389,10 @@ UpnpInstanceWrapper *UpnpInstanceWrapper::get(vlc_object_t *p_obj, services_disc
          free( psz_miface );
      #else
          /* If UpnpInit2 isnt available, initialize on first IPv4-capable interface */
@@ -153,6 +152,3 @@ index ff86868..67ee860 100644
          if( i_res != UPNP_E_SUCCESS )
          {
              msg_Err( p_obj, "Initialization failed: %s", UpnpGetErrorMessage( i_res ) );
--- 
-2.8.1
-
