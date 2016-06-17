@@ -474,12 +474,13 @@ namespace VLC_WinRT.ViewModels
 
         private async void Playback_MediaStopped(IMediaService mediaService)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 OnPropertyChanged(nameof(AudioTracks));
                 OnPropertyChanged(nameof(Subtitles));
                 OnPropertyChanged(nameof(CurrentAudioTrack));
                 OnPropertyChanged(nameof(CurrentSubtitle));
+                await ClearMediaTransportControls();
             });
         }
 
@@ -663,6 +664,24 @@ namespace VLC_WinRT.ViewModels
                     //TODO: add full thumbnail suport
                     updater.Thumbnail = null;
                     updater.Update();
+                }
+                catch (Exception e)
+                {
+                    LogHelper.Log(StringsHelper.ExceptionToString(e));
+                }
+            });
+        }
+
+        public async Task ClearMediaTransportControls()
+        {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                try
+                {
+                    if (_systemMediaTransportControls == null) return;
+                    LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
+                    SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
+                    updater.ClearAll();
                 }
                 catch (Exception e)
                 {

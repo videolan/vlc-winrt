@@ -349,6 +349,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
                 return;
 
             await UpdateCurrentVideo(media as VideoItem);
+            await Locator.MediaPlaybackViewModel.SetMediaTransportControlsInfo(CurrentVideo.Name);
         }
 
         async Task UpdateCurrentVideo(VideoItem video)
