@@ -53,6 +53,11 @@ namespace VLC_WinRT.Helpers
         public static void SetAppView(bool extend)
         {
 #if WINDOWS_UWP
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                StatusBar.GetForCurrentView().HideAsync();
+            }
+
             if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
                 return;
             if (Numbers.OSVersion <= 10586)
@@ -65,11 +70,6 @@ namespace VLC_WinRT.Helpers
             titleBar.ButtonForegroundColor = Colors.DimGray;
             titleBar.ButtonBackgroundColor = Colors.Transparent;
             titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-                StatusBar.GetForCurrentView().HideAsync();
-            }
 #endif
         }
 
