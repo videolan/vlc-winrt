@@ -69,7 +69,8 @@ namespace VLC_WinRT.Services.RunTime
 
         void InputDetected()
         {
-            if (!IsCursorInWindow()) return;
+            if (!IsCursorInWindow())
+                return;
 
             _cursorTimer.Stop();
             _cursorTimer.Start();
