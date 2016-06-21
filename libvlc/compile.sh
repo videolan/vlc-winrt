@@ -112,7 +112,7 @@ echo "Building the contribs"
 CONTRIB_FOLDER=contrib/winrt-$1-$RUNTIME
 mkdir -p $CONTRIB_FOLDER
 cd $CONTRIB_FOLDER
-../bootstrap --host=${TARGET_TUPLE} --build=$BUILD_ARCH --disable-disc --disable-sout \
+../bootstrap --host=${TARGET_TUPLE} --build=$BUILD_ARCH --disable-disc \
     --disable-sdl \
     --disable-schroedinger \
     --disable-vncserver \
@@ -124,12 +124,10 @@ cd $CONTRIB_FOLDER
     --disable-caca \
     --disable-gettext \
     --enable-gme \
-    --disable-tremor \
     --enable-vorbis \
     --enable-mad \
     --enable-sidplay2 \
     --enable-samplerate \
-    --disable-faad2 \
     --enable-iconv \
     --disable-goom \
     --enable-dca \
