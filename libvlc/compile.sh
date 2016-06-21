@@ -114,6 +114,7 @@ mkdir -p $CONTRIB_FOLDER
 cd $CONTRIB_FOLDER
 ../bootstrap --host=${TARGET_TUPLE} --build=$BUILD_ARCH --disable-disc --disable-sout \
     --disable-sdl \
+    --disable-schroedinger \
     --disable-vncserver \
     --disable-chromaprint \
     --disable-modplug \
