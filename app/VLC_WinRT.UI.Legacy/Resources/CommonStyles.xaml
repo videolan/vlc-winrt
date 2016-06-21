@@ -1277,7 +1277,7 @@
         <Setter Property="MinHeight"
                 Value="{ThemeResource TextControlThemeMinHeight}" />
         <Setter Property="Foreground"
-                Value="{ThemeResource TextBoxForegroundThemeBrush}" />
+                Value="{ThemeResource BasicForeground}" />
         <Setter Property="Background"
                 Value="{ThemeResource TextBoxBackgroundThemeBrush}" />
         <Setter Property="BorderBrush"
@@ -1475,7 +1475,7 @@
                                       IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
                                       IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
                                       Margin="{TemplateBinding BorderThickness}"
-                                      Foreground="{ThemeResource BasicForeground}"
+                                      Foreground="{TemplateBinding Foreground}"
                                       Padding="{TemplateBinding Padding}"
                                       IsTabStop="False"
                                       AutomationProperties.AccessibilityView="Raw"
