@@ -23,6 +23,9 @@
                         <TextBlock Margin="{StaticResource FrameMarginTop}"
                                    TextWrapping="Wrap"
                                    FontSize="14">
+                            <Run Text="Version" />
+                            <Run Text="{Binding Source={StaticResource Strings}, Path=AppVersion}" />
+                            <LineBreak />
                             <Run Text="Copyleft 1994-2016 VideoLAN, VLC Authors" />
                             <LineBreak />
                             <LineBreak />
