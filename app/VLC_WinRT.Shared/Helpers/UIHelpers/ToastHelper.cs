@@ -30,6 +30,10 @@ namespace VLC_WinRT.Helpers
 
         public static void Basic(string msg, bool playJingle = false, string toastId = "", string uri = "")
         {
+#if STARTS
+            if (!Locator.MainVM.IsBackground)
+                return;
+#endif
 #if WINDOWS_UWP
             var toastContent = new ToastContent();
             if (!string.IsNullOrEmpty(uri))
