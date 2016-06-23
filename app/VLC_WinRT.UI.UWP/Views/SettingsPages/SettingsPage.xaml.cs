@@ -19,8 +19,32 @@ namespace VLC_WinRT.UI.UWP.Views.SettingsPages
         public SettingsPage()
         {
             this.InitializeComponent();
+            this.Loaded += SettingsPage_Loaded;
         }
-        
+
+        private void SettingsPage_Loaded(object sender, RoutedEventArgs e)
+        {
+#if STARTS
+            if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
+            {
+                foreach (var element in MusicSettingsPanel.Children)
+                {
+                    if ((string)((FrameworkElement)element).Tag == "STARTS")
+                    {
+                        element.Visibility = Visibility.Collapsed;
+                    }
+                }
+                foreach (var element in VideoSettingsPanel.Children)
+                {
+                    if ((string)((FrameworkElement)element).Tag == "STARTS")
+                    {
+                        element.Visibility = Visibility.Collapsed;
+                    }
+                }
+            }
+#endif
+        }
+
         void FocusTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             Locator.MainVM.KeyboardListenerService.CanListen = true;

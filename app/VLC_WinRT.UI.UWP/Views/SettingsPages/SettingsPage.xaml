@@ -167,15 +167,19 @@
         <PivotItem Header="{Binding Source={StaticResource Strings}, Path=VideoSettings}">
             <Grid>
                 <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
-                    <StackPanel Margin="{StaticResource FrameMarginHorizontal}">
-                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=VideoFolders}"
+                    <StackPanel x:Name="VideoSettingsPanel"
+                                Margin="{StaticResource FrameMarginHorizontal}">
+                        <TextBlock Tag="STARTS"
+                                   Text="{Binding Source={StaticResource Strings}, Path=VideoFolders}"
                                    FontSize="22"
                                    Style="{StaticResource SubheaderTextBlockStyle}"
                                    FontWeight="SemiLight" />
-                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=VideoFoldersDescription}"
+                        <TextBlock Tag="STARTS"
+                                   Text="{Binding Source={StaticResource Strings}, Path=VideoFoldersDescription}"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
-                        <ListView ItemsSource="{Binding VideoFolders}"
+                        <ListView Tag="STARTS"
+                                  ItemsSource="{Binding VideoFolders}"
                                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                                   SelectionMode="None"
                                   IsItemClickEnabled="False"
@@ -227,7 +231,8 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                        <Button Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
+                        <Button Tag="STARTS"
+                                Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
                                 Command="{Binding AddFolderToLibrary}"
                                 CommandParameter="{Binding VideoLibraryId}" />
 
@@ -277,7 +282,8 @@
         <PivotItem Header="{Binding Source={StaticResource Strings}, Path=MusicSettings}">
             <Grid>
                 <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
-                    <StackPanel Margin="{StaticResource FrameMarginHorizontal}">
+                    <StackPanel x:Name="MusicSettingsPanel"
+                                Margin="{StaticResource FrameMarginHorizontal}">
                         <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Equalizer}"
                                    FontSize="22"
                                    Style="{StaticResource SubheaderTextBlockStyle}"
@@ -299,17 +305,20 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
 
-                        <musicControls:Equalizer EqualizerValue="{Binding Equalizer}"/>
-                        
-                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=MusicFolders}"
+                        <musicControls:Equalizer EqualizerValue="{Binding Equalizer}" />
+
+                        <TextBlock Tag="STARTS"
+                                   Text="{Binding Source={StaticResource Strings}, Path=MusicFolders}"
                                    FontSize="22"
                                    Style="{StaticResource SubheaderTextBlockStyle}"
                                    FontWeight="SemiLight"
                                    Margin="{StaticResource FrameMarginTop}" />
-                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=MusicFoldersDescription}"
+                        <TextBlock Tag="STARTS"
+                                   Text="{Binding Source={StaticResource Strings}, Path=MusicFoldersDescription}"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
-                        <ListView ItemsSource="{Binding MusicFolders}"
+                        <ListView Tag="STARTS"
+                                  ItemsSource="{Binding MusicFolders}"
                                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                                   SelectionMode="None"
                                   IsItemClickEnabled="False"
@@ -361,10 +370,11 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                        <Button Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
+                        <Button Tag="STARTS"
+                                Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
                                 Command="{Binding AddFolderToLibrary}"
                                 CommandParameter="{Binding MusicLibraryId}" />
-                        
+
                         <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Notifications}"
                                    FontSize="22"
                                    Style="{StaticResource SubheaderTextBlockStyle}"
