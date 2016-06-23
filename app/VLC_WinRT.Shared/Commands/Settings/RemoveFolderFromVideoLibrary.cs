@@ -10,7 +10,7 @@ namespace VLC_WinRT.Commands.Settings
         public override async void Execute(object parameter)
         {
             var lib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Videos);
-            lib.RequestRemoveFolderAsync(parameter as StorageFolder);
+            await lib.RequestRemoveFolderAsync(parameter as StorageFolder);
             await Locator.SettingsVM.GetVideoLibraryFolders();
         }
     }
