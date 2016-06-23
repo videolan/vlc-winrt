@@ -85,6 +85,8 @@ namespace VLC_WinRT.Views.UserControls
         {
             await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () =>
             {
+                if (Track == null)
+                    return;
                 if (Track.IsCurrentPlaying())
                 {
                     previousBrush = NameTextBlock.Foreground;
