@@ -356,10 +356,20 @@ namespace VLC_WinRT.ViewModels
         /// <returns></returns>
         public async Task PlayStream(string streamMrl)
         {
+            Uri uri;
             try
             {
-                streamMrl = streamMrl.Trim();
-                var stream = await Locator.MediaLibrary.LoadStreamFromDatabaseOrCreateOne(streamMrl);
+                uri = new Uri(streamMrl);
+            }
+            catch(UriFormatException ex)
+            {
+                var md = new MessageDialog(string.Format("{0} is invalid ({1})", streamMrl, ex.Message), "Invalid URI");
+                await md.ShowAsync();
+                return;
+            }
+            try
+            {
+                var stream = await Locator.MediaLibrary.LoadStreamFromDatabaseOrCreateOne(uri.ToString());
                 LoadingMedia = Visibility.Visible;
                 await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(new List<IMediaItem> { stream }, true, true, stream);
             }
