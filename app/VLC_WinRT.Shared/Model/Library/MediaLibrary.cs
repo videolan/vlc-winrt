@@ -1219,7 +1219,7 @@ namespace VLC_WinRT.Model.Library
             {
                 Streams?.Remove(collectionStream);
             }
-            return streamsDatabase.Delete(stream);
+            return DeleteStream(stream);
         }
         #endregion
         #region database operations

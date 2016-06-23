@@ -496,8 +496,12 @@ namespace VLC_WinRT.ViewModels
 
         private async void Playback_MediaFailed(object sender, EventArgs e)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
+                if (CurrentMedia is StreamMedia)
+                {
+                    await Locator.MediaLibrary.RemoveStreamFromCollectionAndDatabase(CurrentMedia as StreamMedia);
+                }
                 GoBack.Execute(null);
             });
         }

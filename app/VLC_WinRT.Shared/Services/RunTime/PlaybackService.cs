@@ -930,7 +930,6 @@ namespace VLC_WinRT.Services.RunTime
 
         private void MediaFailed(object sender, EventArgs e)
         {
-            Stop();
             Playback_MediaFailed?.Invoke(sender, e);
         }
         #endregion
