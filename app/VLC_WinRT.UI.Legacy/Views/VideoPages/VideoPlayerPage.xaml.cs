@@ -91,7 +91,7 @@ namespace VLC_WinRT.Views.VideoPages
             Locator.VideoPlayerVm.OnNavigatedTo();
 
             // Responsive design
-            this.SizeChanged += (s, args) => Responsive();
+            this.SizeChanged += OnSizeChanged;
             Responsive();
 
             // Swapchain animations
@@ -108,6 +108,8 @@ namespace VLC_WinRT.Views.VideoPages
             Locator.VideoPlayerVm.OnNavigatedFrom();
             if (AppViewHelper.GetFullscreen())
                 AppViewHelper.SetFullscreen();
+            
+            this.SizeChanged -= OnSizeChanged;
 
             Locator.MediaPlaybackViewModel.MouseService.Stop();
             Locator.MediaPlaybackViewModel.MouseService.OnHidden -= MouseCursorHidden;
@@ -115,6 +117,11 @@ namespace VLC_WinRT.Views.VideoPages
             controlsTimer.Tick -= ControlsTimer_Tick;
             controlsTimer.Stop();
             Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
+        }
+
+        void OnSizeChanged(object sender, SizeChangedEventArgs args)
+        {
+            Responsive();
         }
 
         private void ControlsTimer_Tick(object sender, object e)
