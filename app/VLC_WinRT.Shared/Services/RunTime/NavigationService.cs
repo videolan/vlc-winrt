@@ -26,8 +26,8 @@ using VLC_WinRT.Utils;
 using Panel = VLC_WinRT.Model.Panel;
 using Windows.UI.Core;
 using VLC_WinRT.UI.Legacy.Views.VideoPages.TVShowsViews;
-using VLC_WinRT.UI.UWP.VariousPages;
 #if WINDOWS_UWP
+using VLC_WinRT.UI.UWP.VariousPages;
 using VLC_WinRT.UI.UWP.Views.SettingsPages;
 #else
 using VLC_WinRT.UI.Legacy.Views.SettingsPages;
