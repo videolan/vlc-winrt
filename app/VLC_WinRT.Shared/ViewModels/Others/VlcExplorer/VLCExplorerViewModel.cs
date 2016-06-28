@@ -120,8 +120,9 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 
 #if WINDOWS_PHONE_APP
                 await InitializeSDCard();
-#else
+#endif
             }
+#if !WINDOWS_PHONE_APP
             _deviceService = App.Container.Resolve<ExternalDeviceService>();
             _deviceService.ExternalDeviceAdded += DeviceAdded;
             _deviceService.ExternalDeviceRemoved += DeviceRemoved;
