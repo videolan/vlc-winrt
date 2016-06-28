@@ -18,16 +18,12 @@ namespace VLC_WinRT.Helpers
 #if WINDOWS_UWP
             try
             {
-#if STARTS
-                var vcdStorageFile = await Package.Current.InstalledLocation.GetFileAsync(@"VLCCommandsFRonly.xml");
-#else
                 var vcdStorageFile = await Package.Current.InstalledLocation.GetFileAsync(@"VLCCommands.xml");
-#endif
                 await VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(vcdStorageFile);
             }
             catch { }
 #endif
-            }
+        }
 
         /// <summary>
         /// It takes a VERY LONG TIME to set the phrase list, something like 10 seconds. This is too much
@@ -40,19 +36,15 @@ namespace VLC_WinRT.Helpers
 #if WINDOWS_UWP
             try
             {
-                VoiceCommandDefinition commandSetEnUs;
-#if STARTS
-                var cortanaLanguageSet = "VlcCommandSet_fr-fr";
-#else
-                var cortanaLanguageSet = "VlcCommandSet_en-us";
-#endif
-                if (!VoiceCommandDefinitionManager.InstalledCommandDefinitions.TryGetValue(cortanaLanguageSet, out commandSetEnUs))
+                VoiceCommandDefinition commandSet;
+                var cortanaLanguageSet = "VlcCommandSet";
+                if (!VoiceCommandDefinitionManager.InstalledCommandDefinitions.TryGetValue(cortanaLanguageSet, out commandSet))
                 {
                     await Initialize();
                 }
-                else if (commandSetEnUs != null || VoiceCommandDefinitionManager.InstalledCommandDefinitions.TryGetValue(cortanaLanguageSet, out commandSetEnUs))
+                else if (commandSet != null || VoiceCommandDefinitionManager.InstalledCommandDefinitions.TryGetValue(cortanaLanguageSet, out commandSet))
                 {
-                    await commandSetEnUs.SetPhraseListAsync(phraseListName, names);
+                    await commandSet.SetPhraseListAsync(phraseListName, names);
                 }
             }
             catch(Exception e)
