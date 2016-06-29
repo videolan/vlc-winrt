@@ -118,6 +118,5 @@
     <uap:Capability Name="videosLibrary" />
     <uap:Capability Name="removableStorage" />
     <uap:Capability Name="picturesLibrary" />
-    <DeviceCapability Name="location" />
   </Capabilities>
 </Package>
