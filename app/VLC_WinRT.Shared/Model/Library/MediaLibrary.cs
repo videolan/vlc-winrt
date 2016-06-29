@@ -528,7 +528,7 @@ namespace VLC_WinRT.Model.Library
                 tcs.TrySetResult(media.subItems());
             };
             await MediaItemDiscovererSemaphoreSlim.WaitAsync();
-            media.parseWithOptions(ParseFlags.FetchLocal | ParseFlags.FetchNetwork | ParseFlags.Local | ParseFlags.Network, 5000);
+            media.parseWithOptions(ParseFlags.Local | ParseFlags.Network | ParseFlags.Interact, 5000);
             MediaItemDiscovererSemaphoreSlim.Release();
             return tcs.Task.Result;
         }
