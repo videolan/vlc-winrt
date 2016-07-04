@@ -287,6 +287,12 @@ namespace VLC_WinRT.Model.Library
                     if (await trackDatabase.DoesTrackExist(item.Path))
                         return;
 
+                    // Groove Music puts its cache into this folder in Music.
+                    // If the file is in this folder or subfolder, don't add it to the collection,
+                    // since we can't play it anyway because of the DRM.
+                    if (item.Path.Contains("Music Cache"))
+                        return;
+
                     var media = await Locator.VLCService.GetMediaFromPath(item.Path);
                     var mP = await Locator.VLCService.GetMusicProperties(media);
                     if (mP == null || (string.IsNullOrEmpty(mP.Artist) && string.IsNullOrEmpty(mP.Album) && (string.IsNullOrEmpty(mP.Title) || mP.Title == item.Name)))
