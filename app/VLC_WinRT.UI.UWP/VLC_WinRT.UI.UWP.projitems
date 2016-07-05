@@ -71,6 +71,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\BackDrop.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\VLCDialog.xaml.cs">
       <DependentUpon>VLCDialog.xaml</DependentUpon>
     </Compile>
