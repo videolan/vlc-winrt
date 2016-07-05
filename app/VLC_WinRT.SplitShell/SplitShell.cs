@@ -97,7 +97,7 @@ namespace VLC_WinRT.Controls
 #endif
         }
 
-        #region Content Property
+#region Content Property
         public DependencyObject Content
         {
             get { return (DependencyObject)GetValue(ContentProperty); }
@@ -113,9 +113,9 @@ namespace VLC_WinRT.Controls
             var that = (SplitShell)dependencyObject;
             that.SetContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
         }
-        #endregion
+#endregion
 
-        #region RightPaneContent Property
+#region RightPaneContent Property
 
         public Type FlyoutContent
         {
@@ -132,9 +132,9 @@ namespace VLC_WinRT.Controls
             var that = (SplitShell)dependencyObject;
             that.SetFlyoutContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
         }
-        #endregion
+#endregion
 
-        #region FooterContent Property
+#region FooterContent Property
 
         public AppBarClosedDisplayMode FooterVisibility
         {
@@ -166,7 +166,7 @@ namespace VLC_WinRT.Controls
             var that = (SplitShell)dependencyObject;
             that.SetFooterContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
         }
-        #endregion
+#endregion
         
         public SplitShell()
         {
