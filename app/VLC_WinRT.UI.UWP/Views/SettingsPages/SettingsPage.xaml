@@ -129,6 +129,9 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
 
+                        <ToggleSwitch Header="Media Center mode"
+                                      IsOn="{Binding MediaCenterMode, Mode=TwoWay}"/>
+                        
                         <TextBlock Text="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}"
                                    Margin="0,12,0,0"
                                    FontSize="22"

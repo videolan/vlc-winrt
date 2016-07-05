@@ -45,6 +45,7 @@ namespace VLC_WinRT.ViewModels.Settings
         private bool _notificationOnNewSong;
 #endif
         private ApplicationTheme applicationTheme;
+        private bool _mediaCenterMode;
         private List<VLCAccentColor> _accentColors = new List<VLCAccentColor>();
         private VLCAccentColor _accentColor;
         private bool _continueVideoPlaybackInBackground;
@@ -133,6 +134,28 @@ namespace VLC_WinRT.ViewModels.Settings
                 if (_accentColor == value || value == null) return;
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(AccentColor), value.Color.ToString(), false);
                 SetProperty(ref _accentColor, value);
+            }
+        }
+
+        public bool MediaCenterMode
+        {
+            get
+            {
+                var mediaCenter = ApplicationSettingsHelper.ReadSettingsValue(nameof(MediaCenterMode), true);
+                if (mediaCenter == null)
+                {
+                    _mediaCenterMode = false;
+                }
+                else
+                {
+                    _mediaCenterMode = (bool)mediaCenter;
+                }
+                return _mediaCenterMode;
+            }
+            set
+            {
+                SetProperty(ref _mediaCenterMode, value);
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(MediaCenterMode), value, true);
             }
         }
 

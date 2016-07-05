@@ -58,12 +58,23 @@ namespace VLC_WinRT.Helpers
                 StatusBar.GetForCurrentView().HideAsync();
             }
 
+            if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+            {
+                ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+                bool result = ApplicationViewScaling.TrySetDisableLayoutScaling(true);
+            }
+
             if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
                 return;
             if (Numbers.OSVersion <= 10586)
                 return;
-            
-            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = extend;
+
+            var coreAppViewTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            if (!Locator.SettingsVM.MediaCenterMode)
+                coreAppViewTitleBar.ExtendViewIntoTitleBar = extend;
+            else
+                coreAppViewTitleBar.ExtendViewIntoTitleBar = false;
+
             var appView = ApplicationView.GetForCurrentView();
             var titleBar = appView.TitleBar;
             titleBar.BackgroundColor = Colors.Transparent;

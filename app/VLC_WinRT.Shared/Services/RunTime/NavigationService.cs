@@ -134,16 +134,30 @@ namespace VLC_WinRT.Services.RunTime
         {
             switch (CurrentPage)
             {
+                case VLCPage.None:
+                    break;
                 case VLCPage.MainPageVideo:
                 case VLCPage.MainPageMusic:
                 case VLCPage.MainPageNetwork:
-                    return false;
-
+                    if (Locator.SettingsVM.MediaCenterMode)
+                    {
+                        GoBack_Default();
+                    }
+                    else
+                        return false;
+                    break;
                 case VLCPage.MainPageFileExplorer:
                     if (Locator.FileExplorerVM.CurrentStorageVM != null || Locator.FileExplorerVM.CanGoBack)
                         Locator.FileExplorerVM.GoBackCommand.Execute(null);
                     else
-                        return false;
+                    {
+                        if (Locator.SettingsVM.MediaCenterMode)
+                        {
+                            GoBack_Default();
+                        }
+                        else
+                            return false;
+                    }
                     break;
                 case VLCPage.AlbumPage:
                     GoBack_HideFlyout();
@@ -228,7 +242,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             if (IsFlyout(CurrentPage))
                 return true;
-            if (IsCurrentPageAMainPage())
+            if (IsCurrentPageAMainPage() && !Locator.SettingsVM.MediaCenterMode)
                 return false;
             return App.ApplicationFrame.CanGoBack;
         }
@@ -275,15 +289,26 @@ namespace VLC_WinRT.Services.RunTime
 
             switch (desiredPage)
             {
+                case VLCPage.MainPageXBOX:
+                    App.SplitShell.FlyoutContent = typeof(MainPageXBOX);
+                    break;
                 case VLCPage.MainPageVideo:
                 case VLCPage.MainPageMusic:
                 case VLCPage.MainPageFileExplorer:
                 case VLCPage.MainPageNetwork:
-
                     Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == desiredPage);
 
-                    if (App.ApplicationFrame.CurrentSourcePageType != typeof(HomePage))
-                        App.ApplicationFrame.Navigate(typeof(HomePage));
+                    if (Locator.SettingsVM.MediaCenterMode)
+                    {
+                        if (App.ApplicationFrame.CurrentSourcePageType != VLCPageToPageType(desiredPage))
+                            App.ApplicationFrame.Navigate(VLCPageToPageType(desiredPage));
+                    }
+                    else
+                    {
+                        if (App.ApplicationFrame.CurrentSourcePageType != typeof(HomePage))
+                            App.ApplicationFrame.Navigate(typeof(HomePage));
+                    }
+
                     HomePageNavigated?.Invoke(null, desiredPage);
                     currentHomePage = desiredPage;
                     break;
@@ -401,7 +426,76 @@ namespace VLC_WinRT.Services.RunTime
                    page == VLCPage.TvShowView ||
                    page == VLCPage.TrackEditorPage ||
                    page == VLCPage.AboutAppView ||
-                   page == VLCPage.SearchPage;
+                   page == VLCPage.SearchPage ||
+                   page == VLCPage.MainPageXBOX;
+        }
+
+        Type VLCPageToPageType(VLCPage p)
+        {
+            switch (p)
+            {
+                case VLCPage.None:
+                    break;
+                case VLCPage.MainPageVideo:
+                    return typeof(MainPageVideos);
+                case VLCPage.MainPageMusic:
+                    return typeof(MainPageMusic);
+                case VLCPage.MainPageFileExplorer:
+                    return typeof(MainPageFileExplorer);
+                case VLCPage.MainPageNetwork:
+                    return typeof(MainPageNetwork);
+                case VLCPage.AlbumPage:
+                    break;
+                case VLCPage.ArtistPage:
+                    break;
+                case VLCPage.ArtistInfoView:
+                    break;
+                case VLCPage.PlaylistPage:
+                    break;
+                case VLCPage.CurrentPlaylistPage:
+                    break;
+                case VLCPage.VideoPlayerPage:
+                    break;
+                case VLCPage.MusicPlayerPage:
+                    break;
+                case VLCPage.SettingsPage:
+                    break;
+                case VLCPage.SpecialThanksPage:
+                    break;
+                case VLCPage.ArtistShowsPage:
+                    break;
+                case VLCPage.AddAlbumToPlaylistDialog:
+                    break;
+                case VLCPage.CreateNewPlaylistDialog:
+                    break;
+                case VLCPage.LicensePage:
+                    break;
+                case VLCPage.SearchPage:
+                    break;
+                case VLCPage.MiniPlayerView:
+                    break;
+                case VLCPage.SettingsPageUI:
+                    break;
+                case VLCPage.SettingsPageMusic:
+                    break;
+                case VLCPage.SettingsPageVideo:
+                    break;
+                case VLCPage.VideoPlayerOptionsPanel:
+                    break;
+                case VLCPage.TrackEditorPage:
+                    break;
+                case VLCPage.FeedbackPage:
+                    break;
+                case VLCPage.TvShowView:
+                    break;
+                case VLCPage.AboutAppView:
+                    break;
+                case VLCPage.MainPageXBOX:
+                    break;
+                default:
+                    break;
+            }
+            return null;
         }
 
         VLCPage PageTypeToVLCPage(Type page)

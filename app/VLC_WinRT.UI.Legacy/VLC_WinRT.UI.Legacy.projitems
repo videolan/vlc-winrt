@@ -67,6 +67,10 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageVideos.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageXBOX.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\AllVideosPivotItem.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -290,6 +294,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageVideos.xaml.cs">
       <DependentUpon>MainPageVideos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageXBOX.xaml.cs">
+      <DependentUpon>MainPageXBOX.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\AllVideosPivotItem.xaml.cs">
       <DependentUpon>AllVideosPivotItem.xaml</DependentUpon>

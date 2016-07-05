@@ -55,6 +55,11 @@ namespace VLC_WinRT
             InitializeComponent();
             Suspending += OnSuspending;
             Container = AutoFacConfiguration.Configure();
+            if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+            {
+                this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
+                Locator.SettingsVM.MediaCenterMode = true;
+            }
         }
 
         public static Frame ApplicationFrame => RootPage?.NavigationFrame;
@@ -272,7 +277,9 @@ namespace VLC_WinRT
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
-                App.SplitShell.FooterContent = new CommandBarBottom();
+
+                if (!Locator.SettingsVM.MediaCenterMode)
+                    App.SplitShell.FooterContent = new CommandBarBottom();
             }).ConfigureAwait(false);
         }
 

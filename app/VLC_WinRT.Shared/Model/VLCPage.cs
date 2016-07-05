@@ -30,5 +30,6 @@
         FeedbackPage,
         TvShowView,
         AboutAppView,
+        MainPageXBOX,
     }
 }
