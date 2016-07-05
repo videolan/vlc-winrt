@@ -221,7 +221,7 @@ namespace VLC_WinRT.Controls
             Responsive();
         }
 
-        async void Responsive()
+        void Responsive()
         {
             var bottomBarHeight = (_page.BottomAppBar == null) ? 0 : _page.BottomAppBar.ActualHeight;
             var navBarHeight = ApplicationView.GetForCurrentView().VisibleBounds.Height - 16;
