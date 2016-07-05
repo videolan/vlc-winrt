@@ -543,122 +543,46 @@ namespace VLC_WinRT.Model.Library
         //============================================
         #region DataLogic
         #region audio
-        public ObservableCollection<GroupItemList<AlbumItem>> OrderAlbums(OrderType orderType, OrderListing orderListing)
+        public SmartCollection<AlbumItem> OrderAlbums(OrderType orderType, OrderListing orderListing)
         {
-            if (Albums == null) return null;
-            var groupedAlbums = new ObservableCollection<GroupItemList<AlbumItem>>();
+            if (Albums == null)
+                return null;
+
             if (orderType == OrderType.ByArtist)
             {
                 if (orderListing == OrderListing.Ascending)
                 {
-                    var groupQuery = from album in Albums
-                                     group album by Strings.HumanizedArtistName(album.Artist) into a
-                                     orderby a.Key
-                                     select new { GroupName = a.Key, Items = a };
-                    foreach (var g in groupQuery)
-                    {
-                        GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
-                        albums.Key = g.GroupName;
-                        foreach (var album in g.Items)
-                        {
-                            albums.Add(album);
-                        }
-                        groupedAlbums.Add(albums);
-                    }
+                    return Albums.OrderBy(x => x.Artist).ToObservable();
                 }
                 else if (orderListing == OrderListing.Descending)
                 {
-                    var groupQuery = from album in Albums
-                                     group album by Strings.HumanizedArtistName(album.Artist) into a
-                                     orderby a.Key descending
-                                     select new { GroupName = a.Key, Items = a };
-                    foreach (var g in groupQuery)
-                    {
-                        GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
-                        albums.Key = g.GroupName;
-                        foreach (var album in g.Items)
-                        {
-                            albums.Add(album);
-                        }
-                        groupedAlbums.Add(albums);
-                    }
+                    return Albums.OrderByDescending(x => x.Artist).ToObservable();
                 }
             }
             else if (orderType == OrderType.ByDate)
             {
                 if (orderListing == OrderListing.Ascending)
                 {
-                    var groupQuery = from album in Albums
-                                     orderby album.Year
-                                     group album by Strings.HumanizedYear(album.Year) into a
-                                     select new { GroupName = a.Key, Items = a };
-                    foreach (var g in groupQuery)
-                    {
-                        GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
-                        albums.Key = g.GroupName;
-                        foreach (var album in g.Items)
-                        {
-                            albums.Add(album);
-                        }
-                        groupedAlbums.Add(albums);
-                    }
+                    return Albums.OrderBy(x => x.Year).ToObservable();
                 }
                 else if (orderListing == OrderListing.Descending)
                 {
-                    var groupQuery = from album in Albums
-                                     orderby album.Year descending
-                                     group album by Strings.HumanizedYear(album.Year) into a
-                                     select new { GroupName = a.Key, Items = a };
-                    foreach (var g in groupQuery)
-                    {
-                        GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
-                        albums.Key = g.GroupName;
-                        foreach (var album in g.Items)
-                        {
-                            albums.Add(album);
-                        }
-                        groupedAlbums.Add(albums);
-                    }
+                    return Albums.OrderByDescending(x => x.Year).ToObservable();
                 }
             }
             else if (orderType == OrderType.ByAlbum)
             {
                 if (orderListing == OrderListing.Ascending)
                 {
-                    var groupQuery = from album in Albums
-                                     group album by Strings.HumanizedAlbumFirstLetter(album.Name) into a
-                                     orderby a.Key
-                                     select new { GroupName = a.Key, Items = a };
-                    foreach (var g in groupQuery)
-                    {
-                        GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
-                        albums.Key = g.GroupName;
-                        foreach (var album in g.Items)
-                        {
-                            albums.Add(album);
-                        }
-                        groupedAlbums.Add(albums);
-                    }
+                    return Albums.OrderBy(x => x.Name).ToObservable();
                 }
                 else if (orderListing == OrderListing.Descending)
                 {
-                    var groupQuery = from album in Albums
-                                     group album by Strings.HumanizedAlbumFirstLetter(album.Name) into a
-                                     orderby a.Key descending
-                                     select new { GroupName = a.Key, Items = a };
-                    foreach (var g in groupQuery)
-                    {
-                        GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
-                        albums.Key = g.GroupName;
-                        foreach (var album in g.Items)
-                        {
-                            albums.Add(album);
-                        }
-                        groupedAlbums.Add(albums);
-                    }
+                    return Albums.OrderByDescending(x => x.Name).ToObservable();
                 }
             }
-            return groupedAlbums;
+
+            return null;
         }
 
         public ObservableCollection<GroupItemList<ArtistItem>> OrderArtists()

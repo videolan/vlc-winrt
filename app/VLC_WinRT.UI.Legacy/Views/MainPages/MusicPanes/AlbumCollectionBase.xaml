@@ -13,7 +13,7 @@
     <UserControl.Resources>
         <CollectionViewSource x:Key="GroupAlbums"
                               x:Name="GroupAlbums"
-                              IsSourceGrouped="True"
+                              IsSourceGrouped="False"
                               Source="{Binding GroupedAlbums}" />
     </UserControl.Resources>
     <Grid>
