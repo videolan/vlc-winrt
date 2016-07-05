@@ -41,31 +41,11 @@
                                         <DiscreteObjectKeyFrame KeyTime="0"
                                                                 Value="Visible" />
                                     </ObjectAnimationUsingKeyFrames>
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyoutGridContainer"
-                                                                   Storyboard.TargetProperty="Opacity">
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.4"
-                                                              Value="1">
-                                            <EasingDoubleKeyFrame.EasingFunction>
-                                                <ExponentialEase Exponent="4"
-                                                                 EasingMode="EaseOut" />
-                                            </EasingDoubleKeyFrame.EasingFunction>
-                                        </EasingDoubleKeyFrame>
-                                    </DoubleAnimationUsingKeyFrames>
                                 </Storyboard>
                                 <Storyboard x:Name="FlyoutFadeOut">
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyoutGridContainer"
-                                                                   Storyboard.TargetProperty="Opacity">
-                                        <EasingDoubleKeyFrame KeyTime="0:0:0.4"
-                                                              Value="0">
-                                            <EasingDoubleKeyFrame.EasingFunction>
-                                                <ExponentialEase Exponent="4"
-                                                                 EasingMode="EaseOut" />
-                                            </EasingDoubleKeyFrame.EasingFunction>
-                                        </EasingDoubleKeyFrame>
-                                    </DoubleAnimationUsingKeyFrames>
                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FlyoutGridContainer"
                                                                    Storyboard.TargetProperty="Visibility">
-                                        <DiscreteObjectKeyFrame KeyTime="0:0:0.4"
+                                        <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                 Value="Collapsed" />
                                     </ObjectAnimationUsingKeyFrames>
                                 </Storyboard>
@@ -76,8 +56,7 @@
                                 </ContentPresenter.RenderTransform>
                             </ContentPresenter>
 
-                            <Grid x:Name="FlyoutGridContainer"
-                                  Opacity="0">
+                            <Grid x:Name="FlyoutGridContainer">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
                                     <ColumnDefinition Width="Auto" />
@@ -87,7 +66,7 @@
                                     <PlaneProjection x:Name="FlyoutPlaneProjection" />
                                 </Grid.Projection>
                                 <Grid x:Name="FlyoutBackgroundGrid"
-                                      Background="#B3000000"
+                                      Background="Transparent"
                                       HorizontalAlignment="Stretch"
                                       Grid.Column="0"
                                       Grid.ColumnSpan="3"/>
