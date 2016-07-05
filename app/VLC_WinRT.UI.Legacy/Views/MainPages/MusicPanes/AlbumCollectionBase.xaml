@@ -10,12 +10,6 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-    <UserControl.Resources>
-        <CollectionViewSource x:Key="GroupAlbums"
-                              x:Name="GroupAlbums"
-                              IsSourceGrouped="False"
-                              Source="{Binding GroupedAlbums}" />
-    </UserControl.Resources>
     <Grid>
         <Grid.Transitions>
             <TransitionCollection>
@@ -29,7 +23,7 @@
                       ScrollViewer.HorizontalScrollMode="Disabled">
             <SemanticZoom.ZoomedInView>
                 <ScrollWatcher:ListViewScrollWatcher x:Name="AlbumsZoomedInView"
-                                                     ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
+                                                     ItemsSource="{Binding GroupedAlbums}"
                                                      ItemTemplate="{StaticResource AlbumItemTemplate}"
                                                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
                                                      IsItemClickEnabled="True"
