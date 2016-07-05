@@ -304,6 +304,23 @@ namespace VLC_WinRT.Services.RunTime
                 var video = (VideoItem)media;
                 await InitializePlayback(video, autoPlay);
 
+                var roamFile = await ApplicationData.Current.RoamingFolder.TryGetItemAsync("roamVideo.txt");
+                if (roamFile != null)
+                {
+                    var roamVideos = await FileIO.ReadLinesAsync(roamFile as StorageFile);
+                    if (roamVideos.Any())
+                    {
+                        if (roamVideos[0] == media.Name)
+                        {
+                            int leftTime = 0;
+                            if (int.TryParse(roamVideos[1], out leftTime))
+                            {
+                                video.TimeWatchedSeconds = leftTime;
+                            }
+                        }
+                    }
+                }
+
                 if (video.TimeWatched != TimeSpan.FromSeconds(0))
                 {
                     SetTime((long)video.TimeWatched.TotalMilliseconds);

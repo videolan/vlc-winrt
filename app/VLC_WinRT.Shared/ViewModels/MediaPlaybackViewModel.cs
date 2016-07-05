@@ -413,6 +413,13 @@ namespace VLC_WinRT.ViewModels
             {
                 Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = (int)((double)Time / 1000); ;
                 await Locator.MediaLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
+
+                var file = await ApplicationData.Current.RoamingFolder.CreateFileAsync("roamVideo.txt", CreationCollisionOption.ReplaceExisting);
+                await FileIO.WriteLinesAsync(file, new string[]
+                {
+                    Locator.VideoPlayerVm.CurrentVideo.Name,
+                    Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds.ToString()
+                });
             }
         }
 
