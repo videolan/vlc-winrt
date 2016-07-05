@@ -36,6 +36,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
             Locator.MusicPlayerVM.PropertyChanged += MusicPlayerVM_PropertyChanged;
             this.SizeChanged += CommandBarBottom_SizeChanged;
             App.SplitShell.ContentSizeChanged += SplitShell_ContentSizeChanged;
+            Responsive();
         }
 
         private void CommandBarBottom_SizeChanged(object sender, SizeChangedEventArgs e)
