@@ -256,13 +256,17 @@ namespace VLC_WinRT.Controls
             _flyoutFadeIn.Begin();
             IsFlyoutOpen = true;
 #if RS1
-            _backdrop.Show();
+            _backdrop.Show(6);
 #endif
         }
 
         public void HideFlyout()
         {
+#if RS1
+            _backdrop.Hide();
+#endif
             _flyoutFadeOut.Begin();
+            _flyoutContentPresenter.Navigate(typeof(BlankPage));
             IsFlyoutOpen = false;
             FlyoutClosed?.Invoke(null, new EventArgs());
         }
