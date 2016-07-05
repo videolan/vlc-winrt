@@ -85,7 +85,7 @@
         <ResourceDictionary x:Key="Light">
             <Color x:Key="SystemAccentColor">#ff8800</Color>
             <Color x:Key="ApplicationPageBackgroundThemeColor">White</Color>
-            <Color x:Key="ApplicationThirdForegroundThemeColor">#e3e3e3</Color>
+            <Color x:Key="ApplicationThirdForegroundThemeColor">#f0f0f0</Color>
             <Color x:Key="ApplicationFourthForegroundThemeColor">#e0e0e0</Color>
             <Color x:Key="TransparentApplicationThirdForegroundThemeColor">#00f5f5f5</Color>
             <Color x:Key="ApplicationOverlayTranslucentThemeColor">#F3FAFAFA</Color>
