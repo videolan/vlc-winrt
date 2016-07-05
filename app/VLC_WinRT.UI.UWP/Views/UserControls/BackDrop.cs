@@ -130,9 +130,17 @@ namespace VLC_WinRT.UI.UWP.Views.UserControls
             }
         }
         
-        public void Show()
+        public void Show(double blur)
         {
+            newBlurAmount = (float)blur;
             oldBlurAmount = 0;
+            RefreshBlur();
+        }
+
+        public void Hide()
+        {
+            oldBlurAmount = newBlurAmount;
+            newBlurAmount = 0f;
             RefreshBlur();
         }
 
