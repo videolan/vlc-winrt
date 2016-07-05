@@ -9,7 +9,7 @@
       xmlns:musicControls="using:VLC_WinRT.UI.Legacy.Views.UserControls.MusicControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
-    <Pivot Background="{ThemeResource ApplicationThirdForegroundThemeBrush}">
+    <Pivot Background="{ThemeResource ApplicationOverlayTranslucentThemeColor}">
         <Pivot.LeftHeader>
             <FontIcon Glyph="{StaticResource SettingsSymbol}"
                       FontFamily="{StaticResource VLCFont}"
