@@ -274,7 +274,7 @@ namespace VLC_WinRT.Controls
         public void HideTopBar()
         {
             _topBarFadeOut.Begin();
-            _contentPresenter.Margin = new Thickness(0, 0, 0, - _page.BottomAppBar.ActualHeight);
+            _contentPresenter.Margin = new Thickness(0, 0, 0, - _page.BottomAppBar?.ActualHeight ?? 0);
             IsTopBarOpen = false;
         }
 
