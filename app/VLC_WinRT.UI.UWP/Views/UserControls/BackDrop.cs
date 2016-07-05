@@ -85,7 +85,7 @@ namespace VLC_WinRT.UI.UWP.Views.UserControls
         }
 
 
-        private void OnSizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
+        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (m_blurVisual != null)
             {
