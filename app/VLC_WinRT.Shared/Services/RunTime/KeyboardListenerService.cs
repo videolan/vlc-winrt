@@ -193,7 +193,9 @@ namespace VLC_WinRT.Services.RunTime
                                 Locator.NavigationService.GoBack_Specific();
                                 break;
                             case VirtualKey.GamepadMenu:
-                                Locator.NavigationService.Go(VLCPage.MainPageXBOX);
+                            case VirtualKey.F1:
+                                if (Locator.SettingsVM.MediaCenterMode)
+                                    Locator.NavigationService.Go(VLCPage.MainPageXBOX);
                                 break;
                             default:
                                 break;
