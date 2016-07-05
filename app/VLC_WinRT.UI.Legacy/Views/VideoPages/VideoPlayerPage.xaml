@@ -15,12 +15,12 @@
     <Grid x:Name="RootGrid">
         <Grid.Resources>
             <Storyboard x:Name="FadeOut">
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ControlsBorder"
                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
                     <EasingDoubleKeyFrame x:Name="ControlsGridFadeOut"
                                           KeyTime="0:0:0.7">
                         <EasingDoubleKeyFrame.EasingFunction>
-                            <ExponentialEase EasingMode="EaseInOut"
+                            <ExponentialEase EasingMode="EaseIn"
                                              Exponent="3" />
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
@@ -44,24 +44,24 @@
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
-                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsBorder"
                                                Storyboard.TargetProperty="Visibility">
                     <DiscreteObjectKeyFrame KeyTime="0:0:0.8"
                                             Value="Collapsed" />
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
             <Storyboard x:Name="FadeIn">
-                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsBorder"
                                                Storyboard.TargetProperty="Visibility">
                     <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                             Value="Visible" />
                 </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ControlsBorder"
                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
                     <EasingDoubleKeyFrame KeyTime="0:0:0.7"
                                           Value="0">
                         <EasingDoubleKeyFrame.EasingFunction>
-                            <ExponentialEase EasingMode="EaseInOut"
+                            <ExponentialEase EasingMode="EaseOut"
                                              Exponent="3" />
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
