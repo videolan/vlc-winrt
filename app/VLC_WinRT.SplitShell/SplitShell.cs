@@ -9,6 +9,12 @@ using Windows.UI.Xaml.Media.Animation;
 using VLC_WinRT.Helpers;
 using Windows.ApplicationModel.Core;
 using Windows.UI.ViewManagement;
+#if RS1
+using Microsoft.Graphics.Canvas.Effects;
+using Windows.UI.Composition;
+using Windows.UI.Xaml.Hosting;
+#endif
+using VLC_WinRT.UI.UWP.Views.UserControls;
 
 namespace VLC_WinRT.Controls
 {
@@ -44,12 +50,14 @@ namespace VLC_WinRT.Controls
         private const string FlyoutPlaneProjectionName = "FlyoutPlaneProjection";
         private const string FlyoutGridContainerName = "FlyoutGridContainer";
         private const string FlyoutBackgroundGridName = "FlyoutBackgroundGrid";
+        private const string BackdropGridName = "backDrop";
 
         private Page _page;
         private Grid _flyoutGridContainer;
         private Grid _flyoutBackgroundGrid;
         private ContentPresenter _contentPresenter;
         private Frame _flyoutContentPresenter;
+        private BackDrop _backdrop;
 
         private PlaneProjection _flyoutPlaneProjection;
         private Storyboard _flyoutFadeIn;
@@ -178,6 +186,7 @@ namespace VLC_WinRT.Controls
             _flyoutPlaneProjection = (PlaneProjection)GetTemplateChild(FlyoutPlaneProjectionName);
             _flyoutGridContainer = (Grid)GetTemplateChild(FlyoutGridContainerName);
             _flyoutBackgroundGrid = (Grid)GetTemplateChild(FlyoutBackgroundGridName);
+            _backdrop = (BackDrop)GetTemplateChild(BackdropGridName);
 
             Responsive();
             Window.Current.SizeChanged += Current_SizeChanged;
@@ -246,6 +255,9 @@ namespace VLC_WinRT.Controls
         {
             _flyoutFadeIn.Begin();
             IsFlyoutOpen = true;
+#if RS1
+            _backdrop.Show();
+#endif
         }
 
         public void HideFlyout()
