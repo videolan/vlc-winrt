@@ -12,10 +12,7 @@ namespace VLC_WinRT.Views.UserControls
 {
     public sealed partial class HomePageController : UserControl
     {
-        public VLCPage CurrentHomePage
-        {
-            get; private set;
-        }
+        private VLCPage CurrentHomePage;
 
         public HomePageController()
         {
