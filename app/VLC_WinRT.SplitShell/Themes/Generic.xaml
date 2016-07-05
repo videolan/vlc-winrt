@@ -38,14 +38,14 @@
                                 <Storyboard x:Name="FlyoutFadeIn">
                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FlyoutGridContainer"
                                                                    Storyboard.TargetProperty="Visibility">
-                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                        <DiscreteObjectKeyFrame KeyTime="0:0"
                                                                 Value="Visible" />
                                     </ObjectAnimationUsingKeyFrames>
                                 </Storyboard>
                                 <Storyboard x:Name="FlyoutFadeOut">
                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FlyoutGridContainer"
                                                                    Storyboard.TargetProperty="Visibility">
-                                        <DiscreteObjectKeyFrame KeyTime="0:0:0"
+                                        <DiscreteObjectKeyFrame KeyTime="0:0:1"
                                                                 Value="Collapsed" />
                                     </ObjectAnimationUsingKeyFrames>
                                 </Storyboard>
