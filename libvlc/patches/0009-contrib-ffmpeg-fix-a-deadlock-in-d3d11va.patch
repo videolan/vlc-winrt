@@ -1,7 +1,7 @@
-From 1be7637b8b9da0ba69ce4cbfe91fbf249a9237d7 Mon Sep 17 00:00:00 2001
+From 334730bca68fb9a80eeaa5e33562e304d8b05997 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 09:33:36 +0200
-Subject: [PATCH 09/11] contrib: ffmpeg: fix a deadlock in d3d11va
+Subject: [PATCH 09/12] contrib: ffmpeg: fix a deadlock in d3d11va
 
 ---
  ...-t-keep-the-context-lock-while-waiting-fo.patch | 40 ++++++++++++++++++++++
@@ -56,13 +56,13 @@ index 0000000..35a64fa
 +2.7.2.windows.1
 +
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index 3030742..bd0d8a8 100644
+index 37b7871..d826390 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
-@@ -200,6 +200,7 @@ ffmpeg: ffmpeg-$(HASH).tar.xz .sum-ffmpeg
- 	rm -Rf $@ $@-$(HASH)
- 	mkdir -p $@-$(HASH)
- 	$(XZCAT) "$<" | (cd $@-$(HASH) && tar xv --strip-components=1)
+@@ -200,6 +200,7 @@ ffmpeg: ffmpeg-$(FFMPEG_HASH).tar.xz .sum-ffmpeg
+ 	rm -Rf $@ $@-$(FFMPEG_HASH)
+ 	mkdir -p $@-$(FFMPEG_HASH)
+ 	$(XZCAT) "$<" | (cd $@-$(FFMPEG_HASH) && tar xv --strip-components=1)
 +	$(APPLY) $(SRC)/ffmpeg/0001-d3d11va-don-t-keep-the-context-lock-while-waiting-fo.patch
  	$(MOVE)
  

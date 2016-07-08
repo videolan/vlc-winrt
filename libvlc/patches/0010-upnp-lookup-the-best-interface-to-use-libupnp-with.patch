@@ -1,7 +1,7 @@
-From 41c7ddbd8c969dca3f37d360279c3d7af2e91ceb Mon Sep 17 00:00:00 2001
+From 9d446a9957f3ff3ca8d8c7e533de0011ccb758d4 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 19:14:48 +0200
-Subject: [PATCH] upnp: lookup the best interface to use libupnp with
+Subject: [PATCH 10/12] upnp: lookup the best interface to use libupnp with
 
 libupnp cannot handle more than one interface/IP at a time, so we need to make
 sure we use an appropriate one.
@@ -13,7 +13,7 @@ replaces https://patches.videolan.org/patch/13719/ with better lookup
  1 file changed, 113 insertions(+), 2 deletions(-)
 
 diff --git a/modules/services_discovery/upnp.cpp b/modules/services_discovery/upnp.cpp
-index ff86868..52096b8 100644
+index 9f4c2f9..df34a5c 100644
 --- a/modules/services_discovery/upnp.cpp
 +++ b/modules/services_discovery/upnp.cpp
 @@ -32,6 +32,7 @@
@@ -152,3 +152,6 @@ index ff86868..52096b8 100644
          if( i_res != UPNP_E_SUCCESS )
          {
              msg_Err( p_obj, "Initialization failed: %s", UpnpGetErrorMessage( i_res ) );
+-- 
+2.8.1
+

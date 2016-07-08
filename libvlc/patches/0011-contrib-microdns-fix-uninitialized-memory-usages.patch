@@ -1,7 +1,7 @@
-From 60252b20bf03203827bd9ff0e1f36f2d7c439489 Mon Sep 17 00:00:00 2001
+From 46b0696d9e2df8d041a3afa3f17ec74cb8a61805 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 15:23:12 +0200
-Subject: [PATCH 11/11] contrib: microdns: fix uninitialized memory usages
+Subject: [PATCH 11/12] contrib: microdns: fix uninitialized memory usages
 
 ---
  ...o-not-return-freed-memory-in-case-of-erro.patch | 24 ++++++++++++++++++++++
@@ -72,7 +72,7 @@ index 0000000..516aa02
 +2.7.2.windows.1
 +
 diff --git a/contrib/src/microdns/rules.mak b/contrib/src/microdns/rules.mak
-index a1ec73b..987a85d 100644
+index f3bef5b..df2605b 100644
 --- a/contrib/src/microdns/rules.mak
 +++ b/contrib/src/microdns/rules.mak
 @@ -17,6 +17,8 @@ $(TARBALLS)/microdns-$(LIBMICRODNS_VERSION).tar.gz:
