@@ -12,7 +12,7 @@
              Loaded="AlbumPageBase_OnLoaded"
              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.CurrentAlbum}">
 
-    <Grid>
+    <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -24,8 +24,7 @@
                   SelectionMode="None"
                   ItemTemplate="{StaticResource TrackItemTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemBasic}"
-                  ItemsPanel="{StaticResource StackPanelTemplate}"
-                  Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+                  ItemsPanel="{StaticResource StackPanelTemplate}">
             <ListView.ItemContainerTransitions>
                 <TransitionCollection>
                     <AddDeleteThemeTransition />
