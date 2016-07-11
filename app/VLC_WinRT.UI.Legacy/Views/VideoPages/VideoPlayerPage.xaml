@@ -8,6 +8,7 @@
       xmlns:userControls="using:VLC_WinRT.Views.UserControls"
       xmlns:videoControls="using:VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls"
       xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
+      xmlns:uC="using:VLC_WinRT.UI.UWP.Views.UserControls"
       mc:Ignorable="d"
       Background="Transparent"
       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
