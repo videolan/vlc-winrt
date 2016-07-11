@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Media.Animation;
 using VLC_WinRT.Helpers;
 using Windows.ApplicationModel.Core;
 using Windows.UI.ViewManagement;
+using VLC_WinRT.UI.Legacy.Views.UserControls.Shell;
 #if RS1
 using Microsoft.Graphics.Canvas.Effects;
 using Windows.UI.Composition;
