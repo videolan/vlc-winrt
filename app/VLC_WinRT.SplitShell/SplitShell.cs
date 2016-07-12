@@ -242,15 +242,26 @@ namespace VLC_WinRT.Controls
         {
             var bottomBarHeight = (_page.BottomAppBar == null) ? 0 : _page.BottomAppBar.ActualHeight;
             var navBarHeight = ApplicationView.GetForCurrentView().VisibleBounds.Height - 16;
-            if (Window.Current.Bounds.Width < 650)
+
+            if (FlyoutAsHeader)
             {
-                _flyoutContentPresenter.Height = navBarHeight - bottomBarHeight;
+                _flyoutContentPresenter.VerticalAlignment = VerticalAlignment.Top;
+                _flyoutContentPresenter.Height = double.NaN;
                 _flyoutContentPresenter.Width = Window.Current.Bounds.Width;
             }
             else
             {
-                _flyoutContentPresenter.Width = 650;
-                _flyoutContentPresenter.Height = (navBarHeight < 900 * 0.7 ? navBarHeight : navBarHeight * 0.7) - bottomBarHeight;
+                _flyoutContentPresenter.VerticalAlignment = VerticalAlignment.Center;
+                if (Window.Current.Bounds.Width < 650)
+                {
+                    _flyoutContentPresenter.Height = navBarHeight - bottomBarHeight;
+                    _flyoutContentPresenter.Width = Window.Current.Bounds.Width;
+                }
+                else
+                {
+                    _flyoutContentPresenter.Width = 650;
+                    _flyoutContentPresenter.Height = (navBarHeight < 900 * 0.7 ? navBarHeight : navBarHeight * 0.7) - bottomBarHeight;
+                }
             }
             _windowResizerTimer.Stop();
             _windowResizerTimer.Start();
