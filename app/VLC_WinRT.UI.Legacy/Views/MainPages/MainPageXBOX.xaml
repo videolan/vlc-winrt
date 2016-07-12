@@ -8,7 +8,7 @@
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="Auto" />
@@ -31,9 +31,8 @@
         </StackPanel>
         <ListView x:Name="PanelsListView"
                   Grid.Row="3"
-                  ItemsSource="{Binding Panels}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  SelectionMode="None"
+                  SelectionMode="Single"
                   IsItemClickEnabled="True"
                   ItemClick="ListView_ItemClick">
             <ListView.ItemTemplate>
@@ -63,14 +62,27 @@
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    ItemHeight="173"
-                                   ItemWidth="173" />
+                                   ItemWidth="173"
+                                   Loaded="ItemsWrapGrid_Loaded"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
 
-        <Grid Grid.Row="5">
-            <Button Content="Settings"
-                    Command="{Binding GoToSettingsPageCommand}"/>
+        <Grid Grid.Row="5"
+              Margin="{StaticResource FrameMarginBottom}">
+            <AppBarButton Grid.Column="3"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          VerticalAlignment="Center"
+                          Label="{Binding Source={StaticResource Strings}, Path=Settings}"
+                          ToolTipService.ToolTip="{Binding Source={StaticResource Strings}, Path=Settings}"
+                          Command="{Binding GoToSettingsPageCommand}"
+                          IsTabStop="True"
+                          HorizontalAlignment="Center">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource SettingsSymbol}"
+                              FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
         </Grid>
     </Grid>
 </Page>
