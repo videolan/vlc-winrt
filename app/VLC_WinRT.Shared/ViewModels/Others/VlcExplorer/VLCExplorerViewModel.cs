@@ -118,9 +118,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
                 await AddToFolder(picFolder);
 #endif
 
-#if WINDOWS_PHONE_APP
                 await InitializeSDCard();
-#endif
             }
 #if !WINDOWS_PHONE_APP
             _deviceService = App.Container.Resolve<ExternalDeviceService>();
@@ -144,11 +142,15 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
         private async Task InitializeSDCard()
         {
             var devices = KnownFolders.RemovableDevices;
-            var cards = await devices.GetFoldersAsync();
-            if (cards.Any())
+            IReadOnlyList<StorageFolder> rootFolders = await devices.GetFoldersAsync();
+            foreach (StorageFolder rootFolder in rootFolders)
             {
-                var external = new LocalFileExplorerViewModel(cards[0], RootFolderType.ExternalDevice);
+                var external = new LocalFileExplorerViewModel(rootFolder, RootFolderType.ExternalDevice);
+#if WINDOWS_PHONE_APP
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => external.LogoGlyph = App.Current.Resources["SDCardSymbol"] as string);
+#else
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => external.LogoGlyph = App.Current.Resources["USBFilledSymbol"] as string);
+#endif
                 await AddToFolder(external);
             }
         }
@@ -157,7 +159,10 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 #else
         private async void DeviceAdded(object sender, string id)
         {
+            await InitializeSDCard();
+#if defined(OLD_STORAGE)
             await AddFolder(id);
+#endif
         }
 
         private async Task AddFolder(string newId)
@@ -176,6 +181,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
+#if defined(OLD_STORAGE)
                 LocalFileExplorerViewModel removedViewModel = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == RootFolderType.ExternalDevice)?.FirstOrDefault(vm => vm.Id == id) as LocalFileExplorerViewModel;
                 if (removedViewModel != null)
                 {
@@ -186,7 +192,14 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
                     }
                     FileExplorersGrouped.FirstOrDefault(x => x.Contains(removedViewModel)).Remove(removedViewModel);
                 }
+#endif
+                var key = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == RootFolderType.ExternalDevice);
+                if (key != null)
+                {
+                    key.Clear();
+                }
             });
+            await InitializeSDCard();
         }
 #endif
 
@@ -225,8 +238,25 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 
         async Task AddToFolder(FileExplorer fileEx)
         {
+#if defined(OLD_STORAGE)
             var key = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == fileEx.Type);
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => key.Add(fileEx));
+#endif
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                var key = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == fileEx.Type);
+                if (key != null)
+                {
+                    foreach (FileExplorer k in key)
+                    {
+                        if (k.Name == fileEx.Name)
+                            return;
+                    }
+                }
+                key.Add(fileEx);
+            }
+            );
+
         }
 
         public void GoBackToRootFolders()
