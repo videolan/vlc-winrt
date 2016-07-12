@@ -76,7 +76,6 @@
                                              Grid.ColumnSpan="3" />
                                 <Frame x:Name="FlyoutContentPresenter"
                                        Grid.Column="1"
-                                       VerticalAlignment="Center"
                                        Style="{StaticResource FrameStyle}" />
                             </Grid>
                         </Grid>
