@@ -133,9 +133,25 @@ namespace VLC_WinRT.Controls
             var that = (SplitShell)dependencyObject;
             that.SetFlyoutContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
         }
-#endregion
 
-#region FooterContent Property
+        public bool FlyoutAsHeader
+        {
+            get { return (bool)GetValue(FlyoutAsHeaderProperty); }
+            set { SetValue(FlyoutAsHeaderProperty, value); }
+        }
+
+        public static readonly DependencyProperty FlyoutAsHeaderProperty = DependencyProperty.Register(
+            nameof(FlyoutAsHeader), typeof(bool), typeof(SplitShell),
+            new PropertyMetadata(default(bool), FlyoutAsHeaderPropertyChangedCallback));
+
+        private static void FlyoutAsHeaderPropertyChangedCallback(DependencyObject dO, DependencyPropertyChangedEventArgs args)
+        {
+            var that = (SplitShell)dO;
+            that.Responsive();
+        }
+        #endregion
+
+        #region FooterContent Property
 
         public AppBarClosedDisplayMode FooterVisibility
         {
