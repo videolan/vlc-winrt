@@ -361,7 +361,7 @@ namespace VLC_WinRT.ViewModels
             {
                 uri = new Uri(streamMrl);
             }
-            catch(UriFormatException ex)
+            catch (UriFormatException ex)
             {
                 var md = new MessageDialog(string.Format("{0} is invalid ({1})", streamMrl, ex.Message), "Invalid URI");
                 await md.ShowAsync();

@@ -98,7 +98,7 @@ namespace VLC_WinRT.Controls
 #endif
         }
 
-#region Content Property
+        #region Content Property
         public DependencyObject Content
         {
             get { return (DependencyObject)GetValue(ContentProperty); }
@@ -114,9 +114,9 @@ namespace VLC_WinRT.Controls
             var that = (SplitShell)dependencyObject;
             that.SetContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
         }
-#endregion
+        #endregion
 
-#region RightPaneContent Property
+        #region RFlyoutContent Property
 
         public Type FlyoutContent
         {
@@ -183,8 +183,8 @@ namespace VLC_WinRT.Controls
             var that = (SplitShell)dependencyObject;
             that.SetFooterContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
         }
-#endregion
-        
+        #endregion
+
         public SplitShell()
         {
             DefaultStyleKey = typeof(SplitShell);
@@ -213,7 +213,7 @@ namespace VLC_WinRT.Controls
 
             _flyoutGridContainer.Visibility = Visibility.Collapsed;
             if (_flyoutBackgroundGrid != null)
-            _flyoutBackgroundGrid.Tapped += FlyoutGridContainerOnTapped;
+                _flyoutBackgroundGrid.Tapped += FlyoutGridContainerOnTapped;
 
             _windowResizerTimer.Tick += _windowResizerTimer_Tick;
 
@@ -302,7 +302,7 @@ namespace VLC_WinRT.Controls
         public void HideTopBar()
         {
             _topBarFadeOut.Begin();
-            _contentPresenter.Margin = new Thickness(0, 0, 0, - _page.BottomAppBar?.ActualHeight ?? 0);
+            _contentPresenter.Margin = new Thickness(0, 0, 0, -_page.BottomAppBar?.ActualHeight ?? 0);
             IsTopBarOpen = false;
         }
 
