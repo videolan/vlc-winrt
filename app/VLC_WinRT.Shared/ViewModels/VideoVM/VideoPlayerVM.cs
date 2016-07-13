@@ -174,7 +174,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.MediaLibrary.ContinueIndexing = new TaskCompletionSource<bool>();
             DisplayHelper.PrivateDisplayCall(true);
             Locator.Slideshow.IsPaused = true;
-            if (Locator.SettingsVM.ForceLandscape)
+            if (Locator.SettingsVM.ForceLandscape && DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Xbox)
             {
                 DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
             }

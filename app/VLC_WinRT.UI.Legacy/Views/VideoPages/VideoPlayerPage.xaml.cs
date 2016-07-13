@@ -212,7 +212,7 @@ namespace VLC_WinRT.Views.VideoPages
             VolumeSlider.IsEnabled = !isLocked;
             MenuButton.IsEnabled = !isLocked;
 
-            if (Locator.SettingsVM.ForceLandscape)
+            if (Locator.SettingsVM.ForceLandscape && DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Xbox)
             {
                 DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
             }
