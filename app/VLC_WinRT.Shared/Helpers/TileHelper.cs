@@ -62,7 +62,7 @@ namespace VLC_WinRT.Helpers
                 }
             };
             
-            if (!string.IsNullOrEmpty(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri))
+            if (!string.IsNullOrEmpty(Locator.MusicPlayerVM.CurrentAlbum?.AlbumCoverFullUri))
             {
                 bindingContent.PeekImage = new TilePeekImage()
                 {
