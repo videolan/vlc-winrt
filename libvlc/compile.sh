@@ -40,10 +40,14 @@ case "$2" in
     win10)
         WINVER=0xA00
         RUNTIME=msvcr120_app
+        LIBKERNEL32='-lwindowsapp'
+        LIBLOLE32=
         ;;
     win81)
         WINVER=0x602
         RUNTIME=msvcr120_app
+        LIBKERNEL32=-lkernel32
+        LIBLOLE32=-lole32
         ;;
     *)
         echo "Unknown OS: $2"
@@ -96,7 +100,7 @@ case "${1}" in
     *)
         COMPILER=${TARGET_TUPLE}-gcc
         COMPILERXX=${TARGET_TUPLE}-g++
-        ${COMPILER} -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lole32 -lruntimeobject -lsynchronization/' -e "s/-lmsvcrt/-l$RUNTIME/" > ../newspecfile
+        ${COMPILER} -dumpspecs | sed -e "s/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat $LIBLOLE32 -lruntimeobject -lsynchronization/" -e "s/-lmsvcrt/-l$RUNTIME/" -e "s/-lkernel32/$LIBKERNEL32/" > ../newspecfile
         NEWSPECFILE="`pwd`/../newspecfile"
         COMPILER="${COMPILER} -specs=$NEWSPECFILE"
         COMPILERXX="${COMPILERXX} -specs=$NEWSPECFILE"
