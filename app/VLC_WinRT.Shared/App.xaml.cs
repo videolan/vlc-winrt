@@ -55,13 +55,11 @@ namespace VLC_WinRT
             InitializeComponent();
             Suspending += OnSuspending;
             Container = AutoFacConfiguration.Configure();
-#if RS1
             if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
             {
                 this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
                 Locator.SettingsVM.MediaCenterMode = true;
             }
-#endif
         }
 
         public static Frame ApplicationFrame => RootPage?.NavigationFrame;

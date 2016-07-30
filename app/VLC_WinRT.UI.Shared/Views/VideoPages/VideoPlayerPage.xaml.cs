@@ -438,9 +438,7 @@ namespace VLC_WinRT.Views.VideoPages
                         });
                     }
                 };
-#if RS1
                 PlaceholderInteractionGrid.ContextFlyout = menu;
-#endif
             }
         }
 

@@ -10,11 +10,9 @@ using VLC_WinRT.Helpers;
 using Windows.ApplicationModel.Core;
 using Windows.UI.ViewManagement;
 using VLC_WinRT.UI.Legacy.Views.UserControls.Shell;
-#if RS1
 using Microsoft.Graphics.Canvas.Effects;
 using Windows.UI.Composition;
 using Windows.UI.Xaml.Hosting;
-#endif
 using VLC_WinRT.UI.UWP.Views.UserControls;
 
 namespace VLC_WinRT.Controls
@@ -283,16 +281,12 @@ namespace VLC_WinRT.Controls
         {
             _flyoutFadeIn.Begin();
             IsFlyoutOpen = true;
-#if RS1
             _backdrop.Show(6);
-#endif
         }
 
         public void HideFlyout()
         {
-#if RS1
             _backdrop.Hide();
-#endif
             _flyoutFadeOut.Begin();
             _flyoutContentPresenter.Navigate(typeof(BlankPage));
             IsFlyoutOpen = false;

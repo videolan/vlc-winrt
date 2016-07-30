@@ -60,10 +60,8 @@ namespace VLC_WinRT.Helpers
 
             if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
             {
-#if RS1
                 ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
                 bool result = ApplicationViewScaling.TrySetDisableLayoutScaling(true);
-#endif
             }
 
                 if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet)

@@ -15,20 +15,16 @@ namespace VLC_WinRT.UI.UWP.Views.UserControls
             get
             {
                 float value = 0;
-#if RS1
                 m_rootVisual.Properties.TryGetScalar(BlurAmountProperty, out value);
-#endif
                 return value;
             }
             set
             {
-#if RS1
                 newBlurAmount = (float)value;
                 RefreshBlur();
-#endif
             }
         }
-#if RS1
+
         Compositor m_compositor;
         SpriteVisual m_blurVisual;
         CompositionBrush m_blurBrush;
@@ -163,6 +159,5 @@ namespace VLC_WinRT.UI.UWP.Views.UserControls
             this.VisualProperties.StartAnimation(BackDrop.BlurAmountProperty, blurAnim);
             oldBlurAmount = newBlurAmount;
         }
-#endif
     }
 }
