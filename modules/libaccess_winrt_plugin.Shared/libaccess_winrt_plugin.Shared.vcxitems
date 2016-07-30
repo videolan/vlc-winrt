@@ -16,7 +16,4 @@
   <ItemGroup>
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)libaccess_winrt_plugin.cpp" />
-  </ItemGroup>
 </Project>

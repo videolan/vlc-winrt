@@ -76,9 +76,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Label="Shared">
-    <Import Project="..\libVLCX.Shared\libVLCX.Shared.vcxitems" Label="Shared" />
-  </ImportGroup>
+  <ImportGroup Label="Shared" />
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -244,9 +242,49 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\libvlcpp\cppcx\DialogCX.hpp" />
+    <ClInclude Include="..\libvlcpp\cppcx\EqualizerCX.hpp" />
+    <ClInclude Include="..\libvlcpp\cppcx\EventManagerCX.hpp" />
+    <ClInclude Include="..\libvlcpp\cppcx\InstanceCX.hpp" />
+    <ClInclude Include="..\libvlcpp\cppcx\MediaCX.hpp" />
+    <ClInclude Include="..\libvlcpp\cppcx\MediaDiscovererCX.hpp" />
+    <ClInclude Include="..\libvlcpp\cppcx\MediaListCX.hpp" />
+    <ClInclude Include="..\libvlcpp\cppcx\MediaPlayerCX.hpp" />
+    <ClInclude Include="..\libvlcpp\cppcx\PlatformHelpers.hpp" />
+    <ClInclude Include="..\libvlcpp\cppcx\StructuresCX.hpp" />
+    <ClInclude Include="..\libvlcpp\vlcpp\common.hpp" />
+    <ClInclude Include="..\libvlcpp\vlcpp\Dialog.hpp" />
+    <ClInclude Include="..\libvlcpp\vlcpp\Equalizer.hpp" />
+    <ClInclude Include="..\libvlcpp\vlcpp\EventManager.hpp" />
+    <ClInclude Include="..\libvlcpp\vlcpp\Instance.hpp" />
+    <ClInclude Include="..\libvlcpp\vlcpp\Internal.hpp" />
+    <ClInclude Include="..\libvlcpp\vlcpp\Media.hpp" />
+    <ClInclude Include="..\libvlcpp\vlcpp\MediaDiscoverer.hpp" />
+    <ClInclude Include="..\libvlcpp\vlcpp\MediaLibrary.hpp" />
+    <ClInclude Include="..\libvlcpp\vlcpp\MediaList.hpp" />
+    <ClInclude Include="..\libvlcpp\vlcpp\MediaListPlayer.hpp" />
+    <ClInclude Include="..\libvlcpp\vlcpp\MediaPlayer.hpp" />
+    <ClInclude Include="..\libvlcpp\vlcpp\structures.hpp" />
+    <ClInclude Include="..\libvlcpp\vlcpp\vlc.hpp" />
+    <ClInclude Include="..\libVLCX\DirectXManager.h" />
+    <ClInclude Include="..\libVLCX\MMDeviceLocator.h" />
+    <ClInclude Include="..\libVLCX\Thumbnailer.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\libvlcpp\cppcx\DialogCX.cpp" />
+    <ClCompile Include="..\libvlcpp\cppcx\EqualizerCX.cpp" />
+    <ClCompile Include="..\libvlcpp\cppcx\EventManagerCX.cpp" />
+    <ClCompile Include="..\libvlcpp\cppcx\InstanceCX.cpp" />
+    <ClCompile Include="..\libvlcpp\cppcx\MediaCX.cpp" />
+    <ClCompile Include="..\libvlcpp\cppcx\MediaDiscovererCX.cpp" />
+    <ClCompile Include="..\libvlcpp\cppcx\MediaListCX.cpp" />
+    <ClCompile Include="..\libvlcpp\cppcx\MediaPlayerCX.cpp" />
+    <ClCompile Include="..\libvlcpp\cppcx\PlatformHelpers.cpp" />
+    <ClCompile Include="..\libvlcpp\cppcx\StructuresCX.cpp" />
+    <ClCompile Include="..\libVLCX\DirectXManager.cpp" />
+    <ClCompile Include="..\libVLCX\MMDeviceLocator.cpp" />
+    <ClCompile Include="..\libVLCX\Thumbnailer.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
