@@ -37,9 +37,6 @@ namespace VLC_WinRT.Commands.VideoLibrary
                 foreach (var ext in VLCFileExtensions.AudioExtensions)
                     picker.FileTypeFilter.Add(ext);
 
-#if WINDOWS_PHONE_APP                
-                picker.PickSingleFileAndContinue();
-#else
                 StorageFile file = null;
                 file = await picker.PickSingleFileAsync();
                 if (file != null)
@@ -52,7 +49,6 @@ namespace VLC_WinRT.Commands.VideoLibrary
                     LogHelper.Log("Cancelled");
                 }
                 App.OpenFilePickerReason = OpenFilePickerReason.Null;
-#endif
             }
             catch { }
         }

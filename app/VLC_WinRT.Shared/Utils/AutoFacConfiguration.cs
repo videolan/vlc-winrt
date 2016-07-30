@@ -54,9 +54,6 @@ namespace VLC_WinRT.Utils
             // Register Services
             builder.RegisterType<MetroSlideshow>();
             builder.RegisterType<VLCService>();
-#if TWO_PROCESS_BGA
-            builder.RegisterType<BGPlayerService>();
-#endif
             builder.RegisterType<NavigationService>();
             builder.RegisterType<MusicMetaService>();
             builder.RegisterType<VideoMetaService>();

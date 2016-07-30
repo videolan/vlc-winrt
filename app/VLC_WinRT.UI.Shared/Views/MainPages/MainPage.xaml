@@ -48,7 +48,6 @@
                 <Frame x:Name="NavigationFrame"
                        x:FieldModifier="public"
                        Background="Transparent"
-                       Navigated="MainFrame_OnNavigated"
                        AllowDrop="True"
                        Style="{StaticResource FrameStyle}" />
             </Grid>

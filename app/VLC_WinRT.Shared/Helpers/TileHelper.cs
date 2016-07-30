@@ -17,14 +17,12 @@ using VLC_WinRT.ViewModels;
 using VLC_WinRT.Utils;
 using System.Threading.Tasks;
 using System.Diagnostics;
-#if WINDOWS_UWP
 using NotificationsExtensions.Tiles;
-#endif
+
 namespace VLC_WinRT.Helpers
 {
     public class TileHelper
     {
-#if WINDOWS_UWP
         public static void UpdateMusicTile()
         {
             if (Locator.MusicPlayerVM.CurrentTrack == null) return;
@@ -204,65 +202,7 @@ namespace VLC_WinRT.Helpers
                 Content = bindingContent
             };
         }
-#else
-        public static void UpdateMediumTileWithMusicInfo()
-        {
-            const TileTemplateType template = TileTemplateType.TileSquare150x150PeekImageAndText02;
-            var tileXml = TileUpdateManager.GetTemplateContent(template);
 
-            var tileTextAttributes = tileXml.GetElementsByTagName("text");
-            tileTextAttributes[0].InnerText = Strings.NowPlaying;
-            if (Locator.MusicPlayerVM.CurrentTrack != null)
-            {
-                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.CurrentTrack.ArtistName;
-
-                var tileImgAttribues = tileXml.GetElementsByTagName("image");
-                if (Locator.MusicPlayerVM.CurrentAlbum != null)
-                    tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri;
-            }
-
-            var tileNotification = new TileNotification(tileXml);
-            TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
-            UpdateBigTileWithMusicInfo();
-        }
-
-        public static void UpdateBigTileWithMusicInfo()
-        {
-            const TileTemplateType template = TileTemplateType.TileWide310x150PeekImage05;
-            var tileXml = TileUpdateManager.GetTemplateContent(template);
-
-            var tileTextAttributes = tileXml.GetElementsByTagName("text");
-#if WINDOWS_APP
-            tileTextAttributes[0].InnerText = Strings.NowPlaying;
-#endif
-            if (Locator.MusicPlayerVM.CurrentTrack != null)
-            {
-#if WINDOWS_APP
-                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.CurrentTrack.ArtistName;
-#else
-                tileTextAttributes[0].InnerText = Locator.MusicPlayerVM.CurrentTrack.Name ?? "";
-                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentTrack.AlbumName;
-                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentTrack.ArtistName;
-#endif
-                var tileImgAttribues = tileXml.GetElementsByTagName("image");
-#if WINDOWS_APP
-                if (Locator.MusicPlayerVM.CurrentArtist != null)
-                    tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentArtist.Picture;
-                
-                if (Locator.MusicPlayerVM.CurrentAlbum != null)
-                    tileImgAttribues[1].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri;
-#else
-                if (Locator.MusicPlayerVM.CurrentAlbum != null)
-                    tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri;
-#endif
-            }
-
-            var tileNotification = new TileNotification(tileXml);
-            TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
-        }
-#endif
-
-#if WINDOWS_UWP
         public static void UpdateVideoTile()
         {
             if (Locator.VideoPlayerVm.CurrentVideo == null)
@@ -416,46 +356,6 @@ namespace VLC_WinRT.Helpers
                 Content = bindingContent
             };
         }
-#else
-        public static void UpdateMediumTileWithVideoInfo()
-        {
-            LogHelper.Log("PLAYVIDEO: Updating Live Tile");
-            const TileTemplateType template = TileTemplateType.TileSquare150x150PeekImageAndText02;
-            var tileXml = TileUpdateManager.GetTemplateContent(template);
-            var tileTextAttributes = tileXml.GetElementsByTagName("text");
-            tileTextAttributes[0].InnerText = Strings.NowPlaying;
-            if (Locator.VideoPlayerVm.CurrentVideo != null)
-            {
-                tileTextAttributes[1].InnerText = Locator.VideoPlayerVm.CurrentVideo.Name;
-
-                var tileImgAttribues = tileXml.GetElementsByTagName("image");
-                if (Locator.VideoPlayerVm.CurrentVideo != null)
-                    tileImgAttribues[0].Attributes[1].NodeValue = Strings.VideoPicFolderPath + Locator.VideoPlayerVm.CurrentVideo.Id + ".jpg";
-            }
-            var tileNotification = new TileNotification(tileXml);
-            TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
-            UpdateBigTileWithVideoInfo();
-        }
-
-        public static void UpdateBigTileWithVideoInfo()
-        {
-            const TileTemplateType template = TileTemplateType.TileWide310x150PeekImage05;
-            var tileXml = TileUpdateManager.GetTemplateContent(template);
-            var tileTextAttributes = tileXml.GetElementsByTagName("text");
-#if WINDOWS_APP
-            tileTextAttributes[0].InnerText = Strings.NowPlaying;
-#endif
-            if (Locator.VideoPlayerVm.CurrentVideo != null)
-            {
-                tileTextAttributes[0].InnerText = Locator.VideoPlayerVm.CurrentVideo.Name;
-                var tileImgAttribues = tileXml.GetElementsByTagName("image");
-                if (Locator.VideoPlayerVm.CurrentVideo != null)
-                    tileImgAttribues[0].Attributes[1].NodeValue = Strings.VideoPicFolderPath + Locator.VideoPlayerVm.CurrentVideo.Id + ".jpg";
-            }
-            var tileNotification = new TileNotification(tileXml);
-            TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
-        }
-#endif
 
         public static async Task<bool> CreateOrReplaceSecondaryTile(VLCItemType type, int id, string title)
         {

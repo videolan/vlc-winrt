@@ -20,10 +20,7 @@ namespace VLC_WinRT.Services.RunTime
 {
     public class MouseService
     {
-#if WINDOWS_PHONE_APP
-#else
         private CoreCursor _oldCursor;
-#endif
         private DispatcherTimer _cursorTimer;
         private const int CursorHiddenAfterSeconds = 4;
         private bool isMouseVisible = true;
@@ -43,12 +40,9 @@ namespace VLC_WinRT.Services.RunTime
 
             if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
-#if WINDOWS_PHONE_APP
-#else
                 var mouse = MouseDevice.GetForCurrentView();
                 if (mouse != null)
                     mouse.MouseMoved += MouseMoved;
-#endif
             }
         }
 
@@ -93,15 +87,13 @@ namespace VLC_WinRT.Services.RunTime
         {
             if (!isMouseVisible)
                 return;
-#if WINDOWS_PHONE_APP
-#else
+
             if (IsCursorInWindow())
             {
                 _oldCursor = Window.Current.CoreWindow.PointerCursor;
                 Window.Current.CoreWindow.PointerCursor = null;
                 isMouseVisible = false;
             }
-#endif
         }
 
         public void ShowCursor()
@@ -109,11 +101,8 @@ namespace VLC_WinRT.Services.RunTime
             if (isMouseVisible)
                 return;
             isMouseVisible = true;
-#if WINDOWS_PHONE_APP
-#else
             if (_oldCursor != null)
                 Window.Current.CoreWindow.PointerCursor = _oldCursor;
-#endif
         }
 
         public static Point GetPointerPosition()

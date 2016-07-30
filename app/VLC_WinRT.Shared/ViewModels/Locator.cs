@@ -50,10 +50,6 @@ namespace VLC_WinRT.ViewModels
 
         private static NavigationService _navigationService;
         private static VLCService _vlcService;
-        private static MFService _mfService;
-#if TWO_PROCESS_BGA
-        private static BGPlayerService _bgPlayerService;
-#endif
         private static MusicMetaService _musicMetaService;
         private static VideoMetaService _videoMetaService;
         private static MetroSlideshow _metroSlideshow;
@@ -92,9 +88,7 @@ namespace VLC_WinRT.ViewModels
 
         public static NavigationService NavigationService => _navigationService ?? (_navigationService = App.Container.Resolve<NavigationService>());
         public static VLCService VLCService => _vlcService ?? (_vlcService = App.Container.Resolve<VLCService>());
-#if TWO_PROCESS_BGA
-        public static BGPlayerService BGPlayerService => _bgPlayerService ?? (_bgPlayerService = App.Container.Resolve<BGPlayerService>());
-#endif
+
         public static MusicMetaService MusicMetaService => _musicMetaService ?? (_musicMetaService = App.Container.Resolve<MusicMetaService>());
         public static VideoMetaService VideoMetaService => _videoMetaService ?? (_videoMetaService = App.Container.Resolve<VideoMetaService>());
 

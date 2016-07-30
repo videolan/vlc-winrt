@@ -22,29 +22,9 @@ namespace VLC_WinRT.Helpers
     {
         public static double PreviousWindowHeight;
         public static double PreviousWindowsWidth;
-        public static double TitleBarHeight
-        {
-            get
-            {
-#if WINDOWS_UWP
-                return CoreApplication.GetCurrentView().TitleBar.Height;
-#else
-                return 32;
-#endif
-            }
-        }
+        public static double TitleBarHeight => CoreApplication.GetCurrentView().TitleBar.Height;
 
-        public static double TitleBarRightOffset
-        {
-            get
-            {
-#if WINDOWS_UWP
-                return CoreApplication.GetCurrentView().TitleBar.SystemOverlayRightInset;
-#else
-                return 0;
-#endif
-            }
-        }
+        public static double TitleBarRightOffset => CoreApplication.GetCurrentView().TitleBar.SystemOverlayRightInset;
 
         static AppViewHelper()
         {
@@ -52,7 +32,6 @@ namespace VLC_WinRT.Helpers
 
         public static void SetAppView(bool extend)
         {
-#if WINDOWS_UWP
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
                 StatusBar.GetForCurrentView().HideAsync();
@@ -64,7 +43,7 @@ namespace VLC_WinRT.Helpers
                 bool result = ApplicationViewScaling.TrySetDisableLayoutScaling(true);
             }
 
-                if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
+            if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
                 return;
             if (Numbers.OSVersion <= 10586)
                 return;
@@ -81,18 +60,15 @@ namespace VLC_WinRT.Helpers
             titleBar.ButtonForegroundColor = Colors.DimGray;
             titleBar.ButtonBackgroundColor = Colors.Transparent;
             titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-#endif
         }
 
         public static void SetTitleBar(UIElement titleBar)
         {
-#if WINDOWS_UWP
             if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
                 return;
             if (Numbers.OSVersion <= 10586)
                 return;
             Window.Current.SetTitleBar(titleBar);
-#endif
         }
 
         public static void SetTitleBarTitle(string title = null)
@@ -105,7 +81,6 @@ namespace VLC_WinRT.Helpers
 
         public static void SetFullscreen()
         {
-#if WINDOWS_UWP
             var v = ApplicationView.GetForCurrentView();
 
             if (v.IsFullScreenMode)
@@ -116,22 +91,16 @@ namespace VLC_WinRT.Helpers
             {
                 v.TryEnterFullScreenMode();
             }
-#endif
         }
 
         public static bool GetFullscreen()
         {
             var v = ApplicationView.GetForCurrentView();
-#if WINDOWS_UWP
             return v.IsFullScreenMode;
-#else
-            return true;
-#endif
         }
 
         public static async Task CreateNewWindow(Type view, double width, double height)
         {
-#if WINDOWS_UWP
             var newCoreAppView = CoreApplication.CreateNewView();
             var appView = ApplicationView.GetForCurrentView();
             await newCoreAppView.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, async () =>
@@ -164,12 +133,10 @@ namespace VLC_WinRT.Helpers
                     });
                 }
             });
-#endif
         }
 
         public static async void ResizeWindow(bool restoPreviousSize, double width = 0, double height = 0)
         {
-#if WINDOWS_UWP
             var appView = ApplicationView.GetForCurrentView();
             var allMethods = appView.GetType().GetRuntimeMethods();
             var setPrefferedMinSize = allMethods.FirstOrDefault(x => x.Name == "SetPreferredMinSize");
@@ -211,7 +178,6 @@ namespace VLC_WinRT.Helpers
                     PreviousWindowsWidth = Window.Current.Bounds.Width;
                 }
             }
-#endif
         }
     }
 }

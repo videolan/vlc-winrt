@@ -16,11 +16,6 @@ using VLC_WinRT.ViewModels;
 using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.Helpers;
-#if WINDOWS_UWP
-#else
-// This namespace only works on Windows/Windows Phone 8.1 apps.
-using Microsoft.Graphics.Canvas.Numerics;
-#endif
 
 namespace Slide2D.Images
 {

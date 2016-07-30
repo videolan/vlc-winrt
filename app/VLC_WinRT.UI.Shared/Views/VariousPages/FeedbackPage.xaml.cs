@@ -76,11 +76,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
                         ProgressRing.IsActive = false;
 #if DEBUG
                         var md = new MessageDialog(result.ReasonPhrase + " - " + result.Content + " - " + result.StatusCode, "Bug in the Request");
-#if WINDOWS_UWP
                         await md.ShowQueuedAsync();
-#else
-                        await md.ShowAsyncQueue();
-#endif
 #endif
                     }
                 });
@@ -93,11 +89,7 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
                     ProgressRing.IsActive = false;
 #if DEBUG
                     var md = new MessageDialog(e.ToString(), "Bug");
-#if WINDOWS_UWP
                     await md.ShowQueuedAsync();
-#else
-                    await md.ShowAsyncQueue();
-#endif
 #endif
                 });
             }

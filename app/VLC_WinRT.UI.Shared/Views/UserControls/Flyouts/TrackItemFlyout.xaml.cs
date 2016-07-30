@@ -13,9 +13,6 @@ namespace VLC_WinRT.Views.UserControls.Flyouts
         public TrackItemFlyout()
         {
             this.InitializeComponent();
-#if WINDOWS_PHONE_APP
-            this.Placement = FlyoutPlacementMode.Full;
-#endif
             this.Opened += TrackItemFlyout_Opened;
         }
 
@@ -47,13 +44,8 @@ namespace VLC_WinRT.Views.UserControls.Flyouts
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             var root = sender as FrameworkElement;
-#if WINDOWS_PHONE_APP
-            root.MaxHeight = 500;
-            root.Margin = new Thickness(24,0,24,0);
-#else
             root.MaxHeight = 600;
             root.MaxWidth = 400;
-#endif
         }
     }
 }

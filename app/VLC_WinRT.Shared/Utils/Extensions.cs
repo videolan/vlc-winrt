@@ -46,18 +46,5 @@ namespace VLC_WinRT.Utils
             a[0] = char.ToUpper(a[0]);
             return new string(a);
         }
-
-        public static void HideWindowsOnlyElements(Windows.UI.Xaml.Controls.Panel panel)
-        {
-            foreach (var element in panel.Children)
-            {
-#if WINDOWS_PHONE_APP
-                if ((string)((FrameworkElement)element).Tag == "WindowsOnly")
-                {
-                    element.Visibility = Visibility.Collapsed;
-                }
-#endif
-            }
-        }
     }
 }

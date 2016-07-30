@@ -8,7 +8,6 @@ namespace VLC_WinRT.Helpers
     {
         public static DeviceTypeEnum GetDeviceType()
         {
-#if WINDOWS_UWP
             switch (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily)
             {
                 case "Windows.Desktop":
@@ -24,11 +23,6 @@ namespace VLC_WinRT.Helpers
                 default:
                     return DeviceTypeEnum.Other;
             }
-#elif WINDOWS_PHONE_APP
-            return DeviceTypeEnum.Phone;
-#elif WINDOWS_APP
-            return DeviceTypeEnum.Tablet;
-#endif
         }
     }
 

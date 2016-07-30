@@ -33,13 +33,9 @@ namespace VLC_WinRT.Utils
         {
             get
             {
-#if WINDOWS_UWP
                 string sv = AnalyticsInfo.VersionInfo.DeviceFamilyVersion;
                 ulong v = ulong.Parse(sv);
                 return (v & 0x00000000FFFF0000L) >> 16;
-#else
-                return 9600;
-#endif
             }
         }
     }

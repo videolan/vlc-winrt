@@ -56,27 +56,12 @@ namespace VLC_WinRT.Helpers.VideoLibrary
 
         private async Task<List<StorageFile>> GetMediaFromFolder(StorageFolder folder)
         {
-#if WINDOWS_PHONE_APP
-            var videoFiles = new List<StorageFile>();
-            try
-            {
-                await GetFilesFromSubFolders(folder, videoFiles);
-                return videoFiles;
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Log("exception listing files");
-                LogHelper.Log(ex.ToString());
-            }
-            return null;
-#else
             var queryOptions = new QueryOptions { FolderDepth = FolderDepth.Deep };
             foreach (var type in VLCFileExtensions.VideoExtensions)
                 queryOptions.FileTypeFilter.Add(type);
             var fileQueryResult = KnownFolders.VideosLibrary.CreateFileQueryWithOptions(queryOptions);
             var files = await fileQueryResult.GetFilesAsync();
             return files.ToList();
-#endif
         }
 
 

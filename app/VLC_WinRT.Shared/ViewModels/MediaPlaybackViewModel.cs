@@ -23,10 +23,6 @@ using Windows.Storage.Streams;
 using Autofac;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels.MusicVM;
-#if TWO_PROCESS_BGA
-using Windows.Media.Playback;
-using VLC_WinRT.BackgroundHelpers;
-#endif
 using libVLCX;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Commands.VideoPlayer;
@@ -603,18 +599,7 @@ namespace VLC_WinRT.ViewModels
 
         public void SetMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
         {
-#if TWO_PROCESS_BGA
-            if (BackgroundAudioHelper.Instance?.CurrentState == MediaPlayerState.Playing)
-            {
-
-            }
-            else
-            {
-                ForceMediaTransportControls(systemMediaTransportControls);
-            }
-#else
             ForceMediaTransportControls(systemMediaTransportControls);
-#endif
         }
 
         void ForceMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)

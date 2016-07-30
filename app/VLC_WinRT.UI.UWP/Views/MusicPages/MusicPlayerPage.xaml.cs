@@ -40,10 +40,7 @@ namespace VLC_WinRT.Views.MusicPages
         {
             base.OnNavigatedTo(e);
             App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Hidden;
-#if WINDOWS_PHONE_APP
-#else
             Locator.MusicPlayerVM.PropertyChanged += MusicPlayerVM_PropertyChanged;
-#endif
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -55,10 +52,7 @@ namespace VLC_WinRT.Views.MusicPages
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-#if WINDOWS_PHONE_APP
-#else
             Locator.MusicPlayerVM.PropertyChanged -= MusicPlayerVM_PropertyChanged;
-#endif
         }
 
         private void MusicPlayerVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

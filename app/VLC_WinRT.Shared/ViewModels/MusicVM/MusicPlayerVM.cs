@@ -23,9 +23,6 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
 using VLC_WinRT.Utils;
 using System.Linq;
-#if TWO_PROCESS_BGA
-
-#endif
 
 namespace VLC_WinRT.ViewModels.MusicVM
 {
@@ -148,10 +145,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 await SetCurrentAlbum();
                 await UpdatePlayingUI();
                 await Scrobble();
-#if TWO_PROCESS_BGA
-#else
                 await UpdateWindows8UI();
-#endif
                 if (CurrentArtist != null)
                 {
                     CurrentArtist.PlayCount++;
@@ -186,11 +180,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             {
                 Locator.MediaPlaybackViewModel.PlaybackService.IsRunning = true;
                 OnPropertyChanged(nameof(CurrentTrack));
-#if WINDOWS_UWP
                 TileHelper.UpdateMusicTile();
-#else
-                UpdateTileHelper.UpdateMediumTileWithMusicInfo();
-#endif
             });
         }
 

@@ -44,9 +44,6 @@ namespace VLC_WinRT.Commands.VideoPlayer
                         picker.FileTypeFilter.Add(item);
                     }
 
-#if WINDOWS_PHONE_APP
-                    picker.PickSingleFileAndContinue();
-#else
                     StorageFile file = await picker.PickSingleFileAsync();
                     if (file != null)
                     {
@@ -57,7 +54,6 @@ namespace VLC_WinRT.Commands.VideoPlayer
                         LogHelper.Log("Cancelled Opening subtitle");
                     }
                     App.OpenFilePickerReason = OpenFilePickerReason.Null;
-#endif
                     return;
                 }
                 catch (Exception exception)

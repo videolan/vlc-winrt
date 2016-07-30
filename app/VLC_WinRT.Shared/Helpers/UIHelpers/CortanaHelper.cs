@@ -15,14 +15,12 @@ namespace VLC_WinRT.Helpers
     {
         public static async Task Initialize()
         {
-#if WINDOWS_UWP
             try
             {
                 var vcdStorageFile = await Package.Current.InstalledLocation.GetFileAsync(@"VLCCommands.xml");
                 await VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(vcdStorageFile);
             }
             catch { }
-#endif
         }
 
         /// <summary>
@@ -33,7 +31,6 @@ namespace VLC_WinRT.Helpers
         /// <returns></returns>
         public static async Task SetPhraseList(string phraseListName, IEnumerable<string> names)
         {
-#if WINDOWS_UWP
             try
             {
                 VoiceCommandDefinition commandSet;
@@ -51,7 +48,6 @@ namespace VLC_WinRT.Helpers
             {
                 Debug.WriteLine($"CortanaHelper: {e.ToString()}");
             }
-#endif
         }
         
 

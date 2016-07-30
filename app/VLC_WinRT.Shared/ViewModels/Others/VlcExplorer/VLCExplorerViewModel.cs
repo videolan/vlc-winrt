@@ -25,10 +25,6 @@ using Windows.Devices.Portable;
 using Windows.UI.Xaml;
 using System.Diagnostics;
 
-#if WINDOWS_PHONE_APP
-#else
-#endif
-
 namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 {
     public class VLCExplorerViewModel : BindableBase
@@ -111,22 +107,15 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
                 var videoFolder = new LocalFileExplorerViewModel(KnownFolders.VideosLibrary, RootFolderType.Library);
                 videoFolder.LogoGlyph = App.Current.Resources["VideoFilledSymbol"] as string;
                 await AddToFolder(videoFolder);
-#if STARTS
-#else
                 var picFolder = new LocalFileExplorerViewModel(KnownFolders.PicturesLibrary, RootFolderType.Library);
                 picFolder.LogoGlyph = App.Current.Resources["BuddySymbol"] as string;
                 await AddToFolder(picFolder);
-#endif
-
-#if WINDOWS_PHONE_APP
-                await InitializeSDCard();
-#endif
             }
-#if !WINDOWS_PHONE_APP
+
             _deviceService = App.Container.Resolve<ExternalDeviceService>();
             _deviceService.ExternalDeviceAdded += DeviceAdded;
             _deviceService.ExternalDeviceRemoved += DeviceRemoved;
-#endif
+
             if (CurrentStorageVM == null)
             {
                 FileExplorerVisibility = Visibility.Collapsed;
@@ -153,8 +142,6 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             }
         }
 
-#if WINDOWS_PHONE_APP
-#else
         private async void DeviceAdded(object sender, string id)
         {
             await AddFolder(id);
@@ -188,7 +175,6 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
                 }
             });
         }
-#endif
 
         private async void VLCService_MediaListItemAdded(libVLCX.Media media, int index)
         {

@@ -36,14 +36,11 @@ namespace VLC_WinRT.ViewModels.Settings
 {
     public class SettingsViewModel : BindableBase
     {
-#if WINDOWS_PHONE_APP
-#else
         private List<StorageFolder> _musicFolders;
         private List<StorageFolder> _videoFolders;
         private bool musicFoldersLoaded;
         private bool videoFoldersLoaded;
         private bool _notificationOnNewSong;
-#endif
         private ApplicationTheme applicationTheme;
         private bool _mediaCenterMode;
         private List<VLCAccentColor> _accentColors = new List<VLCAccentColor>();
@@ -165,11 +162,7 @@ namespace VLC_WinRT.ViewModels.Settings
             ApplicationTheme applicationTheme;
             if (appTheme == null)
             {
-#if WINDOWS_APP
-                applicationTheme = ApplicationTheme.Light;
-#else
                 applicationTheme = App.Current.RequestedTheme;
-#endif
             }
             else
             {
@@ -188,9 +181,6 @@ namespace VLC_WinRT.ViewModels.Settings
             return (Languages)language;
         }
 
-#if WINDOWS_PHONE_APP
-        public bool ContinueVideoPlaybackInBackground { get; } = false;
-#else
         public bool ContinueVideoPlaybackInBackground
         {
             get
@@ -212,7 +202,7 @@ namespace VLC_WinRT.ViewModels.Settings
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(ContinueVideoPlaybackInBackground), value);
             }
         }
-#endif
+
         public List<KeyboardAction> KeyboardActions
         {
             get
@@ -336,8 +326,6 @@ namespace VLC_WinRT.ViewModels.Settings
             OrderListing.Descending
         };
 
-#if WINDOWS_PHONE_APP
-#else
         public List<StorageFolder> MusicFolders
         {
             get
@@ -386,7 +374,6 @@ namespace VLC_WinRT.ViewModels.Settings
                 SetProperty(ref _notificationOnNewSong, value);
             }
         }
-#endif
 
         public OrderType AlbumsOrderType
         {
@@ -615,8 +602,6 @@ namespace VLC_WinRT.ViewModels.Settings
             ResourceManager.Current.DefaultContext.Reset();
         }
 
-#if WINDOWS_PHONE_APP
-#else
         public async Task GetMusicLibraryFolders()
         {
             var musicLib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
@@ -628,7 +613,6 @@ namespace VLC_WinRT.ViewModels.Settings
             var videosLib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Videos);
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => VideoFolders = videosLib.Folders.ToList());
         }
-#endif
 
         #region navigation
         public void OnNavigatedFrom(NavigationEventArgs e)

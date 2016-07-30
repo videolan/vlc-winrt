@@ -89,11 +89,7 @@ namespace VLC_WinRT.Controls
         public async void SetFooterVisibility(object visibility)
         {
             await TemplateApplied.Task;
-#if WINDOWS_UWP
             _page.BottomAppBar.ClosedDisplayMode = (AppBarClosedDisplayMode)visibility;
-#else
-            _page.BottomAppBar.Visibility = (Visibility)visibility;
-#endif
         }
 
         #region Content Property

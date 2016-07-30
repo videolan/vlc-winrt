@@ -41,17 +41,11 @@ namespace VLC_WinRT.Commands.MusicLibrary
             openPicker.FileTypeFilter.Add(".gif");
             // Windows Phone launches the picker, then freezes the app. We need
             // to pick it up again on OnActivated.
-#if WINDOWS_PHONE_APP
-            App.OpenFilePickerReason = OpenFilePickerReason.OnPickingAlbumArt;
-            App.SelectedAlbumItem = album;
-            openPicker.PickSingleFileAndContinue();
-#else
             var file = await openPicker.PickSingleFileAsync();
             if (file == null) return;
             var byteArray = await ConvertImage.ConvertImagetoByte(file);
             await Locator.MusicMetaService.SaveAlbumImageAsync(album, byteArray);
             await Locator.MediaLibrary.Update(album);
-#endif
         }
     }
 }

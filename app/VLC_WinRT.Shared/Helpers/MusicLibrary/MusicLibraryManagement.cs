@@ -37,7 +37,6 @@ namespace VLC_WinRT.Helpers.MusicLibrary
     {
         async Task GetAllMusicFolders()
         {
-#if WINDOWS_PHONE_APP
             try
             {
                 StorageFolder musicLibrary = KnownFolders.MusicLibrary;
@@ -48,7 +47,6 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             {
                 LogHelper.Log(StringsHelper.ExceptionToString(e));
             }
-#endif
         }
 
         async Task CreateDatabaseFromMusicFolder(StorageFolder musicFolder)

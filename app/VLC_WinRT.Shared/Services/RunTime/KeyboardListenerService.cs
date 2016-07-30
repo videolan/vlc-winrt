@@ -188,7 +188,6 @@ namespace VLC_WinRT.Services.RunTime
                     {
                         switch (args.VirtualKey)
                         {
-#if WINDOWS_UWP
                             case VirtualKey.GamepadB:
                                 Locator.NavigationService.GoBack_Specific();
                                 break;
@@ -199,7 +198,6 @@ namespace VLC_WinRT.Services.RunTime
                                 break;
                             default:
                                 break;
-#endif
                         }
                     }
                     break;

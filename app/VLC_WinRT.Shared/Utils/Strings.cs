@@ -47,16 +47,12 @@ namespace VLC_WinRT.Utils
         {
             get
             {
-#if WINDOWS_APP
-                return "Unknown";
-#else
                 var deviceInfo = new EasClientDeviceInformation();
                 if (string.IsNullOrEmpty(deviceInfo.SystemFirmwareVersion))
                 {
                     return "Unknown";
                 }
                 return deviceInfo.SystemFirmwareVersion;
-#endif
             }
         }
 
@@ -67,7 +63,6 @@ namespace VLC_WinRT.Utils
         /// </summary>
         public static string MemoryUsage()
         {
-#if WINDOWS_PHONE_APP
             try
             {
                 // Gets the app's current memory usage    
@@ -80,7 +75,6 @@ namespace VLC_WinRT.Utils
                 return "UsedRAM : " + AppMemoryUsageUlong + " - MaxRAM : " + AppMemoryUsageLimitUlong;
             }
             catch { }
-#endif
             return null;
         }
 

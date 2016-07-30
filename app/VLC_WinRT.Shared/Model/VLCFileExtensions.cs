@@ -14,9 +14,7 @@ namespace VLC_WinRT.Model
             ".mp3",
             ".wma",
             ".m4a",
-#if WINDOWS_UWP
-            ".flac",
-#endif
+            ".flac"
         };
 
         public static List<string> Supported = new List<string>()

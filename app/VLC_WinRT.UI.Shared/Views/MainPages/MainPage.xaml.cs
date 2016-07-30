@@ -29,9 +29,6 @@ using Windows.UI.Xaml.Hosting;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Storage;
-#if WINDOWS_APP
-using Windows.UI.ApplicationSettings;
-#endif
 
 namespace VLC_WinRT.Views.MainPages
 {
@@ -43,9 +40,7 @@ namespace VLC_WinRT.Views.MainPages
             var smtc = SystemMediaTransportControls.GetForCurrentView();
             Locator.MediaPlaybackViewModel.SetMediaTransportControls(smtc);
             this.GotFocus += MainPage_GotFocus;
-#if WINDOWS_UWP
             this.Loaded += MainPage_Loaded;
-#endif
         }
 
         private void MainPage_GotFocus(object sender, RoutedEventArgs e)
@@ -81,51 +76,13 @@ namespace VLC_WinRT.Views.MainPages
             Locator.NavigationService.GoBack_HideFlyout();
         }
         
-        private void MainFrame_OnNavigated(object sender, NavigationEventArgs e)
-        {
-#if WINDOWS_APP
-            SettingsPane pane = SettingsPane.GetForCurrentView();
-            pane.CommandsRequested += SettingsCommandRequested;
-#endif
-        }
-
-#if WINDOWS_APP
-        private void SettingsCommandRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
-        {
-            var privacyCommand = new SettingsCommand("privacy", Strings.PrivacyStatement,
-                async h => await Launcher.LaunchUriAsync(new Uri("http://videolan.org/vlc/privacy.html")));
-
-            var specialThanks = new SettingsCommand("specialThanks", Strings.SpecialThanks,
-                command =>
-                {
-                    Locator.NavigationService.Go(VLCPage.SpecialThanksPage);
-                });
-
-            var settings = new SettingsCommand("settings", Strings.Settings,
-                command =>
-                {
-                    Locator.NavigationService.Go(VLCPage.SettingsPage);
-                });
-            var license = new SettingsCommand("license", Strings.License, command =>
-            {
-                Locator.NavigationService.Go(VLCPage.LicensePage);
-            });
-            args.Request.ApplicationCommands.Clear();
-            args.Request.ApplicationCommands.Add(privacyCommand);
-            args.Request.ApplicationCommands.Add(specialThanks);
-            args.Request.ApplicationCommands.Add(settings);
-            args.Request.ApplicationCommands.Add(license);
-        }
-#endif
-
         public void DebugString(string s)
         {
 #if DEBUG
             DebugTextBlock.Text = s;
 #endif
         }
-
-#if WINDOWS_UWP
+        
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
@@ -235,6 +192,5 @@ namespace VLC_WinRT.Views.MainPages
         {
             Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
         }
-#endif
     }
 }

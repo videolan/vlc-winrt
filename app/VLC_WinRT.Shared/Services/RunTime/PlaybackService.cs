@@ -31,10 +31,6 @@ using System.IO;
 using libVLCX;
 using VLC_WinRT.SharedBackground.Database;
 using VLC_WinRT.ViewModels;
-#if TWO_PROCESS_BGA
-using Windows.Foundation.Collections;
-using Windows.Media.Playback;
-#endif
 
 namespace VLC_WinRT.Services.RunTime
 {
@@ -52,8 +48,6 @@ namespace VLC_WinRT.Services.RunTime
         public event Action<int> Playback_MediaBuffering;
         public event Action<IMediaItem> Playback_MediaFileNotFound;
 
-        private PlayerEngine _playerEngine;
-
         private List<DictionaryKeyValue> _subtitlesTracks = new List<DictionaryKeyValue>();
         private List<DictionaryKeyValue> _audioTracks = new List<DictionaryKeyValue>();
         private List<VLCChapterDescription> _chapters = new List<VLCChapterDescription>();
@@ -65,27 +59,7 @@ namespace VLC_WinRT.Services.RunTime
         private bool _repeat;
 
         public BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
-        private IMediaService _mediaService
-        {
-            get
-            {
-                switch (_playerEngine)
-                {
-                    case PlayerEngine.VLC:
-                        return Locator.VLCService;
-#if TWO_PROCESS_BGA
-                    case PlayerEngine.BackgroundMFPlayer:
-                        return Locator.BGPlayerService;
-#endif
-                    default:
-                        //todo : Implement properly BackgroundPlayerService 
-                        //todo : so we get rid ASAP of this default switch
-                        return Locator.VLCService;
-                }
-            }
-        }
-
-        public bool UseVlcLib;
+        private VLCService _mediaService => Locator.VLCService;
 
         public int CurrentMedia { get; private set; }
 
@@ -97,12 +71,6 @@ namespace VLC_WinRT.Services.RunTime
             set
             {
                 _repeat = value;
-#if TWO_PROCESS_BGA
-                if (_mediaService is BGPlayerService)
-                {
-                    ((BGPlayerService)_mediaService).SetRepeat(value);
-                }
-#endif
             }
         }
 
@@ -232,7 +200,7 @@ namespace VLC_WinRT.Services.RunTime
 
                 SetCurrentMediaPosition(mediaIndex);
                 Playback_MediaSet.Invoke(mediaInPlaylist);
-                await SetMedia(mediaInPlaylist, true, play);
+                await SetMedia(mediaInPlaylist, play);
             }
             return true;
         }
@@ -256,12 +224,6 @@ namespace VLC_WinRT.Services.RunTime
                         restoredplaylist.Add(trackItem);
                 }
 
-#if TWO_PROCESS_BGA
-                // TODO : this shouldn't be here
-                var milliseconds = BackgroundAudioHelper.Instance?.NaturalDuration.TotalMilliseconds;
-                if (milliseconds != null && milliseconds.HasValue && double.IsNaN(milliseconds.Value))
-                    OnLengthChanged((long)milliseconds);
-#endif
                 if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack))
                     return;
                 var index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
@@ -277,8 +239,6 @@ namespace VLC_WinRT.Services.RunTime
                     SetCurrentMediaPosition(index);
                 }
 
-                App.BackgroundAudioHelper.RestorePlaylist();
-
                 if (CurrentMedia >= restoredplaylist.Count)
                     CurrentMedia = 0;
 
@@ -290,11 +250,10 @@ namespace VLC_WinRT.Services.RunTime
             }
         }
 
-        private async Task SetMedia(IMediaItem media, bool forceVlcLib = false, bool autoPlay = true)
+        private async Task SetMedia(IMediaItem media, bool autoPlay = true)
         {
             if (media == null)
                 throw new ArgumentNullException(nameof(media), "Media is missing. Can't play");
-            UseVlcLib = forceVlcLib;
 
             if (Playlist.ElementAt(CurrentMedia) != null)
                 Stop();
@@ -325,25 +284,8 @@ namespace VLC_WinRT.Services.RunTime
                 {
                     SetTime((long)video.TimeWatched.TotalMilliseconds);
                 }
-#if TWO_PROCESS_BGA
-                try
-                {
-                    var messageDictionary = new ValueSet();
-                    messageDictionary.Add(BackgroundAudioConstants.ClearUVC, "");
-                    BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
-                }
-                catch
-                {
-                }
-#else
 
-                //await SetMediaTransportControlsInfo(string.IsNullOrEmpty(video.Name) ? Strings.Video : video.Name);
-#endif
-#if WINDOWS_UWP
                 TileHelper.UpdateVideoTile();
-#else
-                TileHelper.UpdateMediumTileWithVideoInfo();
-#endif
             }
             else if (media is TrackItem)
             {
@@ -359,16 +301,12 @@ namespace VLC_WinRT.Services.RunTime
                     return;
                 }
 
-#if TWO_PROCESS_BGA
-                UseVlcLib = false;
-#endif
                 await InitializePlayback(track, autoPlay);
 
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, CurrentMedia);
             }
             else if (media is StreamMedia)
             {
-                UseVlcLib = true;
                 await InitializePlayback(media, autoPlay);
             }
         }
@@ -378,40 +316,6 @@ namespace VLC_WinRT.Services.RunTime
             // First set the player engine
             // For videos AND music, we have to try first with Microsoft own player
             // Then we register to Failed callback. If it doesn't work, we set ForceVlcLib to true
-            if (UseVlcLib)
-                _playerEngine = PlayerEngine.VLC;
-            else
-            {
-                var path = "";
-                if (!string.IsNullOrEmpty(media.Path))
-                    path = Path.GetExtension(media.Path);
-                else if (media.File != null)
-                    path = media.File.FileType;
-                if (media is TrackItem)
-                {
-                    if (VLCFileExtensions.MFSupported.Contains(path.ToLower()))
-                    {
-#if TWO_PROCESS_BGA
-                        _playerEngine = PlayerEngine.BackgroundMFPlayer;
-#else
-                        _playerEngine = PlayerEngine.VLC;
-#endif
-                    }
-                    else
-                    {
-#if TWO_PROCESS_BGA
-                        ToastHelper.Basic(Strings.FailFilePlayBackground, false, "background");
-#endif
-                        _playerEngine = PlayerEngine.VLC;
-                        Stop();
-                    }
-                }
-                else
-                {
-                    _playerEngine = PlayerEngine.VLC;
-                }
-            }
-
             _mediaService.MediaFailed += MediaFailed;
             _mediaService.StatusChanged += PlayerStateChanged;
             _mediaService.TimeChanged += UpdateTime;
@@ -430,40 +334,16 @@ namespace VLC_WinRT.Services.RunTime
             _mediaService.OnEndReached += OnEndReached;
             _mediaService.OnBuffering += OnBuffering;
 
-            switch (_playerEngine)
-            {
-                case PlayerEngine.VLC:
-                    var vlcService = (VLCService)_mediaService;
-                    if (vlcService.MediaPlayer == null) return;
-                    var em = vlcService.MediaPlayer.eventManager();
-                    em.OnTrackAdded += OnTrackAdded;
-                    em.OnTrackDeleted += OnTrackDeleted;
-                    var mem = vlcService.MediaPlayer.media().eventManager();
-                    mem.OnParsedChanged += OnParsedStatus;
-                    if (!autoPlay)
-                        return;
-                    vlcService.Play();
-                    break;
-                case PlayerEngine.MediaFoundation:
-                    var mfService = (MFService)_mediaService;
-                    if (mfService == null) return;
+            if (_mediaService.MediaPlayer == null) return;
+            var em = _mediaService.MediaPlayer.eventManager();
+            em.OnTrackAdded += OnTrackAdded;
+            em.OnTrackDeleted += OnTrackDeleted;
+            var mem = _mediaService.MediaPlayer.media().eventManager();
+            mem.OnParsedChanged += OnParsedStatus;
+            if (!autoPlay)
+                return;
+            _mediaService.Play();
 
-                    if (!autoPlay)
-                        return;
-                    _mediaService.Play();
-                    break;
-                case PlayerEngine.BackgroundMFPlayer:
-#if TWO_PROCESS_BGA
-                    var bgService = (BGPlayerService)_mediaService;
-                    bgService.MediaSet_FromBackground += BgService_MediaSet_FromBackground;
-                    if (!autoPlay)
-                        return;
-                    _mediaService.Play(Playlist[CurrentMedia].Id);
-#endif
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
             SetSpeedRate(1);
         }
 
@@ -518,52 +398,22 @@ namespace VLC_WinRT.Services.RunTime
 
         public void SetSubtitleTrack(int i)
         {
-            switch (_playerEngine)
-            {
-                case PlayerEngine.VLC:
-                    var vlcService = (VLCService)_mediaService;
-                    vlcService.SetSubtitleTrack(i);
-                    break;
-                case PlayerEngine.MediaFoundation:
-                    break;
-                case PlayerEngine.BackgroundMFPlayer:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            _mediaService.SetSubtitleTrack(i);
         }
 
         public void SetAudioTrack(int i)
         {
-            switch (_playerEngine)
-            {
-                case PlayerEngine.VLC:
-                    var vlcService = (VLCService)_mediaService;
-                    vlcService.SetAudioTrack(i);
-                    break;
-                case PlayerEngine.MediaFoundation:
-                    break;
-                case PlayerEngine.BackgroundMFPlayer:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            _mediaService.SetAudioTrack(i);
         }
 
         public void SetAudioDelay(long delay)
         {
-            if (_mediaService is VLCService)
-            {
-                (_mediaService as VLCService).SetAudioDelay(delay * 1000);
-            }
+            _mediaService.SetAudioDelay(delay * 1000);
         }
 
         public void SetSpuDelay(long delay)
         {
-            if (_mediaService is VLCService)
-            {
-                (_mediaService as VLCService).SetSpuDelay(delay * 1000);
-            }
+            _mediaService.SetSpuDelay(delay * 1000);
         }
 
         public void SetTime(long time)
@@ -588,44 +438,17 @@ namespace VLC_WinRT.Services.RunTime
 
         public void OpenSubtitleMrl(string mrl)
         {
-            switch (_playerEngine)
-            {
-                case PlayerEngine.VLC:
-                    var vlcService = (VLCService)_mediaService;
-                    vlcService.SetSubtitleFile(mrl);
-                    break;
-                case PlayerEngine.MediaFoundation:
-                    break;
-                case PlayerEngine.BackgroundMFPlayer:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            _mediaService.SetSubtitleFile(mrl);
         }
 
         public void SetSpeedRate(float rate)
         {
-            switch (_playerEngine)
-            {
-                case PlayerEngine.VLC:
-                    _mediaService.SetSpeedRate(rate);
-                    break;
-                case PlayerEngine.MediaFoundation:
-                    _mediaService.SetSpeedRate(rate);
-                    break;
-                case PlayerEngine.BackgroundMFPlayer:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            _mediaService.SetSpeedRate(rate);
         }
 
         public VLCChapterDescription GetCurrentChapter()
         {
-            if (!(_mediaService is VLCService))
-                return null;
-            var vlcService = (VLCService)_mediaService;
-            var currentChapter = vlcService.MediaPlayer?.chapter();
+            var currentChapter = _mediaService.MediaPlayer?.chapter();
             if (_chapters?.Count > 0 && currentChapter.HasValue)
             {
                 return _chapters[currentChapter.Value];
@@ -635,11 +458,6 @@ namespace VLC_WinRT.Services.RunTime
 
         public void SetCurrentChapter(VLCChapterDescription chapter)
         {
-            if (!(_mediaService is VLCService))
-                return;
-
-            var vlcService = (VLCService)_mediaService;
-
             if (chapter == GetCurrentChapter())
                 return;
 
@@ -650,17 +468,13 @@ namespace VLC_WinRT.Services.RunTime
             var index = _chapters.IndexOf(selectCh);
             if (index > -1)
             {
-                vlcService.MediaPlayer.setChapter(index);
+                _mediaService.MediaPlayer.setChapter(index);
             }
         }
 
         public List<VLCChapterDescription> GetChapters()
         {
-            if (!(_mediaService is VLCService))
-                return null;
-
-            var vlcService = (VLCService)_mediaService;
-            var mP = vlcService?.MediaPlayer;
+            var mP = _mediaService?.MediaPlayer;
             _chapters.Clear();
             var chapters = mP?.chapterDescription(-1);
             foreach (var c in chapters)
@@ -681,14 +495,10 @@ namespace VLC_WinRT.Services.RunTime
 
         public void SetAudioTrack(DictionaryKeyValue audioTrack)
         {
-            if (!(_mediaService is VLCService))
-                return;
-
             _currentAudioTrack = _audioTracks.IndexOf(audioTrack);
             if (audioTrack != null)
             {
-                var vlcService = (VLCService)_mediaService;
-                vlcService.SetAudioTrack(audioTrack.Id);
+                _mediaService.SetAudioTrack(audioTrack.Id);
             }
         }
 
@@ -696,7 +506,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             return _audioTracks.ToList();
         }
-        
+
         public DictionaryKeyValue GetCurrentSubtitleTrack()
         {
             if (_currentSubtitle < 0 || _currentSubtitle >= _subtitlesTracks.Count)
@@ -706,14 +516,10 @@ namespace VLC_WinRT.Services.RunTime
 
         public void SetSubtitleTrack(DictionaryKeyValue subTrack)
         {
-            if (!(_mediaService is VLCService))
-                return;
-
             _currentSubtitle = _subtitlesTracks.IndexOf(subTrack);
             if (subTrack != null)
             {
-                var vlcService = (VLCService)_mediaService;
-                vlcService.SetSubtitleTrack(subTrack.Id);
+                _mediaService.SetSubtitleTrack(subTrack.Id);
             }
         }
 
@@ -733,35 +539,18 @@ namespace VLC_WinRT.Services.RunTime
             _mediaService.OnEndReached -= OnEndReached;
             _mediaService.OnBuffering -= OnBuffering;
 
-            if (_mediaService is VLCService)
-            {
-                _currentAudioTrack = -1;
-                _currentSubtitle = -1;
 
-                _audioTracks.Clear();
-                _subtitlesTracks.Clear();
-            }
-            else if (_mediaService is MFService)
-            {
-                var mfService = (MFService)_mediaService;
-                mfService.Instance.Source = null;
-            }
-#if TWO_PROCESS_BGA
-            else if (_mediaService is BGPlayerService)
-            {
-                var bgService = (BGPlayerService)_mediaService;
-                bgService.MediaSet_FromBackground -= BgService_MediaSet_FromBackground;
-            }
-#endif
+            _currentAudioTrack = -1;
+            _currentSubtitle = -1;
+
+            _audioTracks.Clear();
+            _subtitlesTracks.Clear();
 
             if (PlayerState != MediaState.Ended && PlayerState != MediaState.NothingSpecial)
             {
                 _mediaService.Stop();
             }
-#if STARTS
-#else
             TileHelper.ClearTile();
-#endif
         }
 
         public void Pause()
@@ -781,7 +570,7 @@ namespace VLC_WinRT.Services.RunTime
 
         void SetPlaybackTypeFromTracks()
         {
-            var videoTrack = Locator.VLCService.MediaPlayer.media().tracks().FirstOrDefault(x => x.type() == TrackType.Video);
+            var videoTrack = _mediaService.MediaPlayer.media().tracks().FirstOrDefault(x => x.type() == TrackType.Video);
 
             if (videoTrack == null)
             {
@@ -800,10 +589,8 @@ namespace VLC_WinRT.Services.RunTime
         {
             if (parsedStatus != ParsedStatus.Done)
                 return;
-
-            if (!(_mediaService is VLCService)) return;
-            var vlcService = (VLCService)_mediaService;
-            var mP = vlcService?.MediaPlayer;
+            
+            var mP = _mediaService?.MediaPlayer;
             // Get chapters
             GetChapters();
 
@@ -814,7 +601,7 @@ namespace VLC_WinRT.Services.RunTime
                 SetSpuDelay(mP.spuDelay());
             }
 
-            if (vlcService.MediaPlayer == null)
+            if (_mediaService.MediaPlayer == null)
                 return;
 
             SetPlaybackTypeFromTracks();
@@ -862,12 +649,12 @@ namespace VLC_WinRT.Services.RunTime
             if (type == TrackType.Audio)
             {
                 target = _audioTracks;
-                source = ((VLCService)_mediaService).MediaPlayer?.audioTrackDescription();
+                source = _mediaService.MediaPlayer?.audioTrackDescription();
             }
             else
             {
                 target = _subtitlesTracks;
-                source = ((VLCService)_mediaService).MediaPlayer?.spuDescription();
+                source = _mediaService.MediaPlayer?.spuDescription();
             }
 
             target?.Clear();
@@ -924,7 +711,7 @@ namespace VLC_WinRT.Services.RunTime
         private void OnStopped(IMediaService mediaService)
         {
             Debug.WriteLine("OnStopped event called from " + mediaService);
-            
+
             PlayerState = MediaState.Stopped;
             Playback_MediaStopped?.Invoke(mediaService);
         }

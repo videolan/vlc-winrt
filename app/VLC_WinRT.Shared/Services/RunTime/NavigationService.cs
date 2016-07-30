@@ -26,12 +26,9 @@ using VLC_WinRT.Utils;
 using Panel = VLC_WinRT.Model.Panel;
 using Windows.UI.Core;
 using VLC_WinRT.UI.Legacy.Views.VideoPages.TVShowsViews;
-#if WINDOWS_UWP
 using VLC_WinRT.UI.UWP.VariousPages;
 using VLC_WinRT.UI.UWP.Views.SettingsPages;
-#else
-using VLC_WinRT.UI.Legacy.Views.SettingsPages;
-#endif
+
 
 namespace VLC_WinRT.Services.RunTime
 {
@@ -52,19 +49,16 @@ namespace VLC_WinRT.Services.RunTime
         private event HomePageNavigated HomePageNavigated;
         public NavigationService()
         {
-#if WINDOWS_APP
-#else
-#if WINDOWS_UWP
             SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
             {
                 e.Handled = GoBack_Specific();
             };
+
             if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
-#endif
             {
                 Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
             }
-#endif
+
             App.RootPage.NavigationFrame.Navigated += NavigationFrame_Navigated;
             App.SplitShell.FlyoutNavigated += SplitShell_FlyoutNavigated;
             App.SplitShell.FlyoutClosed += SplitShell_FlyoutClosed;
@@ -109,13 +103,9 @@ namespace VLC_WinRT.Services.RunTime
 
             if (!App.SplitShell.IsTopBarOpen)
                 App.SplitShell.ShowTopBar();
-#if WINDOWS_UWP
             ShowBackButtonIfCanGoBack();
-#endif
         }
 
-#if WINDOWS_APP
-#else
         private void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
         {
             e.Handled = GoBack_Specific();
@@ -128,7 +118,7 @@ namespace VLC_WinRT.Services.RunTime
             else
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
-#endif
+
 
         public bool GoBack_Specific()
         {
@@ -202,11 +192,7 @@ namespace VLC_WinRT.Services.RunTime
                 // Settings pages
                 case VLCPage.SettingsPage:
                 case VLCPage.SearchPage:
-#if WINDOWS_UWP
                     Go(Locator.SettingsVM.HomePage);
-#else
-                    GoBack_HideFlyout();
-#endif
                     break;
                 case VLCPage.SettingsPageUI:
                     Go(VLCPage.SettingsPage);
@@ -316,10 +302,8 @@ namespace VLC_WinRT.Services.RunTime
                     App.SplitShell.FlyoutContent = typeof(AlbumPageBase);
                     break;
                 case VLCPage.ArtistPage:
-#if WINDOWS_UWP // On UWP, the ArtistPage is embedded in MainpageMusic and Artists MusicView, it is not the case on Windows 9.1
                     if (CurrentPage != VLCPage.MainPageMusic || Locator.MusicLibraryVM.MusicView != Model.Music.MusicView.Artists
                         || (CurrentPage == VLCPage.MainPageMusic && Locator.MusicLibraryVM.MusicView == Model.Music.MusicView.Artists && Window.Current.Bounds.Width < 750))
-#endif
                     {
                         App.ApplicationFrame.Navigate(typeof(ArtistPageBase), desiredPage);
                     }
@@ -331,28 +315,12 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.ArtistInfoView:
                     App.ApplicationFrame.Navigate(typeof(ArtistPageBase), desiredPage);
                     break;
-#if WINDOWS_UWP
                 case VLCPage.SettingsPage:
                 case VLCPage.SettingsPageUI:
                 case VLCPage.SettingsPageMusic:
                 case VLCPage.SettingsPageVideo:
                     App.SplitShell.FlyoutContent = typeof(SettingsPage);
                     break;
-#else
-                // Settings pages
-                case VLCPage.SettingsPage:
-                    App.SplitShell.FlyoutContent = typeof(SettingsPage);
-                    break;
-                case VLCPage.SettingsPageUI:
-                    App.SplitShell.FlyoutContent = typeof(SettingsPageUI);
-                    break;
-                case VLCPage.SettingsPageMusic:
-                    App.SplitShell.FlyoutContent = typeof(SettingsPageMusic);
-                    break;
-                case VLCPage.SettingsPageVideo:
-                    App.SplitShell.FlyoutContent = typeof(SettingsPageVideo);
-                    break;
-#endif
                 case VLCPage.PlaylistPage:
                     App.SplitShell.FlyoutContent = typeof(PlaylistPage);
                     break;
@@ -396,9 +364,7 @@ namespace VLC_WinRT.Services.RunTime
                     App.SplitShell.FlyoutContent = typeof(ShowEpisodesView);
                     break;
                 case VLCPage.AboutAppView:
-#if WINDOWS_UWP
                     App.SplitShell.FlyoutContent = typeof(AboutPage);
-#endif
                     break;
                 default:
                     break;

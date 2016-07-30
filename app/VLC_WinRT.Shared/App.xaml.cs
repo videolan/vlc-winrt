@@ -72,14 +72,12 @@ namespace VLC_WinRT
         {
             if (Window.Current.Content == null)
             {
-#if WINDOWS_UWP
                 if (args.PrelaunchActivated)
                 {
                     Window.Current.VisibilityChanged += Current_VisibilityChanged;
                     await LaunchTheApp(true);
                     return;
                 }
-#endif
                 await LaunchTheApp();
             }
             if (args.Arguments.Contains("SecondaryTile"))
@@ -141,43 +139,6 @@ namespace VLC_WinRT
                     break;
             }
 
-#if WINDOWS_PHONE_APP
-            if (args.Kind == ActivationKind.FileOpenPicker)
-            {
-                try
-                {
-                    var continueArgs = args as FileOpenPickerContinuationEventArgs;
-                    if (continueArgs != null && continueArgs.Files.Any())
-                    {
-                        switch (OpenFilePickerReason)
-                        {
-                            case OpenFilePickerReason.OnOpeningVideo: 
-                                await Locator.MediaPlaybackViewModel.OpenFile(continueArgs.Files[0]);
-                                break;
-                            case OpenFilePickerReason.OnOpeningSubtitle:
-                                {
-                                    Locator.MediaPlaybackViewModel.OpenSubtitleCommand.Execute(continueArgs.Files[0]);
-                                }
-                                break;
-                            case OpenFilePickerReason.OnPickingAlbumArt:
-                                if (continueArgs.Files == null) return;
-                                var file = continueArgs.Files.First();
-                                if (file == null) return;
-                                var byteArray = await ConvertImage.ConvertImagetoByte(file);
-                                await Locator.MusicMetaService.SaveAlbumImageAsync(SelectedAlbumItem, byteArray);
-                                await Locator.MediaLibrary.Update(SelectedAlbumItem);
-                                SelectedAlbumItem = null;
-                                break;
-                        }
-                    }
-                    OpenFilePickerReason = OpenFilePickerReason.Null;
-                }
-                catch (Exception e)
-                {
-                    LogHelper.Log(StringsHelper.ExceptionToString(e));
-                }
-            }
-#endif
         }
         
         private void OnSuspending(object sender, SuspendingEventArgs e)
@@ -223,8 +184,6 @@ namespace VLC_WinRT
                         switch (decoder[0]?.Value)
                         {
                             case "clipboard":
-#if WINDOWS_PHONE_APP
-#else
                                 await Task.Delay(1000);
                                 var dataPackage = Clipboard.GetContent();
                                 Uri url = null;
@@ -242,7 +201,6 @@ namespace VLC_WinRT
                                 }
                                 if (url != null)
                                     await Locator.MediaPlaybackViewModel.PlayStream(url.AbsoluteUri);
-#endif
                                 break;
                             case "useraction":
                                 Locator.NavigationService.Go(VLCPage.MainPageNetwork);
@@ -270,9 +228,6 @@ namespace VLC_WinRT
             await SplitShell.TemplateApplied.Task;
             SetLanguage();
             SetShellDecoration();
-#if WINDOWS_PHONE_APP
-            await StatusBarHelper.Initialize();
-#endif
             await LoadLibraries(disableConsumingTasks).ConfigureAwait(false);
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {

@@ -37,13 +37,9 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
                     IsLoadingFiles = true;
                 });
                 IReadOnlyList<IStorageItem> items = null;
-#if WINDOWS_PHONE_APP
-                items = await BackStack.Last().GetItemsAsync();
-#else
                 var queryOptions = new QueryOptions(CommonFileQuery.DefaultQuery, VLCFileExtensions.Supported);
                 var fileQuery = (BackStack.Last().StorageItem as StorageFolder).CreateItemQueryWithOptions(queryOptions);
                 items = await fileQuery.GetItemsAsync();
-#endif
                 var vlcItems = new ObservableCollection<IVLCStorageItem>();
                 foreach (var storageItem in items)
                 {

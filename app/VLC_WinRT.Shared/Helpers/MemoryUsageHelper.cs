@@ -5,7 +5,6 @@ namespace VLC_WinRT.Helpers
 {
     public static class MemoryUsageHelper
     {
-#if WINDOWS_PHONE_APP
         public static ulong MaxRamForResourceIntensiveTasks
         {
             get
@@ -48,13 +47,5 @@ namespace VLC_WinRT.Helpers
                 return 0;
             }
         }
-#else
-        // Just mock it on WinRT
-        public static ulong MaxRamForResourceIntensiveTasks { get { return 100; } }
-        public static ulong PercentMemoryUsed()
-        {
-            return 0;
-        }
-#endif
     }
 }

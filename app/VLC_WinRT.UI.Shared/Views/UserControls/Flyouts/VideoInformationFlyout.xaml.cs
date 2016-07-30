@@ -9,9 +9,6 @@ namespace VLC_WinRT.Views.UserControls.Flyouts
         public VideoInformationFlyout()
         {
             this.InitializeComponent();
-#if WINDOWS_PHONE_APP
-            this.Placement = FlyoutPlacementMode.Full;
-#endif
         }
 
         private void ActionButton_Click(object sender, RoutedEventArgs e)
@@ -30,9 +27,6 @@ namespace VLC_WinRT.Views.UserControls.Flyouts
             var RootGrid = sender as Border;
             RootGrid.MaxWidth = 400;
             RootGrid.MaxHeight = 400;
-#if WINDOWS_PHONE_APP
-            RootGrid.Margin = new Thickness(40, 0, 40, 0);
-#endif
         }
     }
 }

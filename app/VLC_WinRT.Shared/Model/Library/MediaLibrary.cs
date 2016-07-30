@@ -240,10 +240,6 @@ namespace VLC_WinRT.Model.Library
         {
             try
             {
-#if WINDOWS_PHONE_APP
-                await GetAllMusicFolders();
-                return;
-#endif
                 await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.VideosLibrary));
 
                 await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.MusicLibrary));
@@ -834,10 +830,7 @@ namespace VLC_WinRT.Model.Library
                     await ContinueIndexing.Task;
                     ContinueIndexing = null;
                 }
-#if WINDOWS_PHONE_APP
-                if (MemoryUsageHelper.PercentMemoryUsed() > MemoryUsageHelper.MaxRamForResourceIntensiveTasks)
-                    return false;
-#endif
+
                 var thumbnailTask = new TaskCompletionSource<bool>();
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                 {
@@ -1031,17 +1024,10 @@ namespace VLC_WinRT.Model.Library
         {
             if (Locator.MusicLibraryVM.CurrentTrackCollection == null)
             {
-#if WINDOWS_PHONE_APP
-                if (args is ContentDialogButtonClickEventArgs)
-                    ((ContentDialogButtonClickEventArgs)args).Cancel = true;
-#endif
                 ToastHelper.Basic(Strings.HaveToSelectPlaylist, false, "selectplaylist");
                 return false;
             }
-#if WINDOWS_APP
-            var flyout = ((AddAlbumToPlaylistBase)args).GetFirstDescendantOfType<SettingsFlyout>();
-            flyout?.Hide();
-#endif
+
             Locator.MusicLibraryVM.AddToPlaylistCommand.Execute(Locator.MusicLibraryVM.CurrentAlbum);
             return true;
         }
