@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VLC_WinRT", "VLC_WinRT", "{
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC_WinRT.Shared", "..\app\VLC_WinRT.Shared\VLC_WinRT.Shared.shproj", "{DB1DEA15-00B8-4707-8C70-53431C4FA754}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WinRT.WindowsPhone", "..\app\VLC_WinRT.WindowsPhone\VLC_WinRT.WindowsPhone.csproj", "{C8711A23-F511-4FA1-A3F5-F2578F820A5A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libVLCX", "libVLCX", "{8B17BE9D-3E88-497F-8BA3-BA2E6905069E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX.Shared", "..\modules\libVLCX.Shared\libVLCX.Shared.vcxitems", "{2783FE22-06AE-457B-A8B3-626AA52290C1}"
@@ -79,12 +77,6 @@ Global
 		..\app\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{ad0c8b4f-7a03-42cc-b8da-bf8d50df822b}*SharedItemsImports = 13
 		..\app\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems*{adcb4c5d-450d-40f5-b60a-9dd96ff17dd6}*SharedItemsImports = 13
 		..\app\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{c3f84118-8e3d-4b19-a300-9cb6f7ae0e87}*SharedItemsImports = 13
-		..\app\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
-		..\app\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
-		..\app\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
-		..\app\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
-		..\app\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
-		..\app\VLC_WinRT.UI.Win8\VLC_WinRT.UI.Win8.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{cc3931b9-6065-4a55-a444-5b5e9de3da44}*SharedItemsImports = 4
 		..\app\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{d499d5a2-b899-4664-94e8-65c8114582de}*SharedItemsImports = 13
 		..\app\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems*{db1dea15-00b8-4707-8c70-53431c4fa754}*SharedItemsImports = 13
@@ -174,32 +166,6 @@ Global
 		{22532381-BE8B-40E0-A881-22CE24342D5A}.Release|x64.Build.0 = Release|x64
 		{22532381-BE8B-40E0-A881-22CE24342D5A}.Release|x86.ActiveCfg = Release|Win32
 		{22532381-BE8B-40E0-A881-22CE24342D5A}.Release|x86.Build.0 = Release|Win32
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|ARM.ActiveCfg = Debug|ARM
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Universal-ARM.ActiveCfg = Debug|ARM
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Universal-x64.ActiveCfg = Debug|x86
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Universal-x86.ActiveCfg = Debug|x86
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|WindowsPhone-ARM.ActiveCfg = Debug|ARM
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|WindowsPhone-ARM.Build.0 = Debug|ARM
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|WindowsPhone-ARM.Deploy.0 = Debug|ARM
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|WinRT-ARM.ActiveCfg = Debug|ARM
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|WinRT-x86.ActiveCfg = Debug|x86
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|x64.ActiveCfg = Debug|x86
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|x86.ActiveCfg = Debug|x86
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Any CPU.ActiveCfg = Release|x86
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|ARM.ActiveCfg = Release|ARM
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Universal-ARM.ActiveCfg = Release|ARM
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Universal-x64.ActiveCfg = Release|Any CPU
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Universal-x86.ActiveCfg = Release|x86
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|WindowsPhone-ARM.ActiveCfg = Release|ARM
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|WindowsPhone-ARM.Build.0 = Release|ARM
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|WindowsPhone-ARM.Deploy.0 = Release|ARM
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|WinRT-ARM.ActiveCfg = Release|ARM
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|WinRT-x86.ActiveCfg = Release|x86
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|x64.ActiveCfg = Release|Any CPU
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|x64.Build.0 = Release|Any CPU
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|x64.Deploy.0 = Release|Any CPU
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|x86.ActiveCfg = Release|x86
 		{5D78F68E-C377-449E-A508-5B8E706D0039}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{5D78F68E-C377-449E-A508-5B8E706D0039}.Debug|ARM.ActiveCfg = Debug|ARM
 		{5D78F68E-C377-449E-A508-5B8E706D0039}.Debug|ARM.Build.0 = Debug|ARM
@@ -478,7 +444,6 @@ Global
 		{A3345ED6-A13A-487B-9EF3-412FED4916D1} = {3E3BE90F-16D8-4D61-BA9D-E760D34492B5}
 		{22532381-BE8B-40E0-A881-22CE24342D5A} = {8B17BE9D-3E88-497F-8BA3-BA2E6905069E}
 		{DB1DEA15-00B8-4707-8C70-53431C4FA754} = {492C16E2-63FB-49B4-843A-095DB095F15D}
-		{C8711A23-F511-4FA1-A3F5-F2578F820A5A} = {492C16E2-63FB-49B4-843A-095DB095F15D}
 		{2783FE22-06AE-457B-A8B3-626AA52290C1} = {8B17BE9D-3E88-497F-8BA3-BA2E6905069E}
 		{5D78F68E-C377-449E-A508-5B8E706D0039} = {8B17BE9D-3E88-497F-8BA3-BA2E6905069E}
 		{90A8A6A5-091D-4D4E-A8CD-4EC09DDB1047} = {3E3BE90F-16D8-4D61-BA9D-E760D34492B5}
