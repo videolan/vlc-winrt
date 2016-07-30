@@ -1,4 +1,4 @@
-﻿namespace VLC_WinRT.Model.Music
+﻿namespace VLC.Model.Music
 {
     public enum MusicView
     {

@@ -1,11 +1,11 @@
 ﻿using Windows.Storage;
 using Windows.UI.Xaml.Controls;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.FileExplorer;
-using VLC_WinRT.Utils;
+using VLC.ViewModels;
+using VLC.Model;
+using VLC.Model.FileExplorer;
+using VLC.Utils;
 
-namespace VLC_WinRT.Commands.VLCFileExplorer
+namespace VLC.Commands.VLCFileExplorer
 {
     public class IStorageItemClickedCommand : AlwaysExecutableCommand
     {

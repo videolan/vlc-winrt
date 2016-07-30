@@ -5,18 +5,18 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.MusicVM;
-using VLC_WinRT.Views.UserControls;
+using VLC.Model.Music;
+using VLC.Utils;
+using VLC.ViewModels;
+using VLC.ViewModels.MusicVM;
+using VLC.Views.UserControls;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI;
-using VLC_WinRT.Model;
+using VLC.Model;
 
-namespace VLC_WinRT.UI.Legacy.Views.UserControls
+namespace VLC.UI.Legacy.Views.UserControls
 {
     public sealed partial class TrackItemTemplateDetailedVertical : UserControl
     {

@@ -1,9 +1,9 @@
-﻿using VLC_WinRT.Model;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Views.MainPages;
+﻿using VLC.Model;
+using VLC.Utils;
+using VLC.ViewModels;
+using VLC.Views.MainPages;
 
-namespace VLC_WinRT.Commands.VLCFileExplorer
+namespace VLC.Commands.VLCFileExplorer
 {
     public class GoUpperFolderCommand : AlwaysExecutableCommand
     {

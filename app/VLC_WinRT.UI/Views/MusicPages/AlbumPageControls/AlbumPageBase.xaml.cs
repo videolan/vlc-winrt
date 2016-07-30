@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC_WinRT.Views.MusicPages.AlbumPageControls
+namespace VLC.Views.MusicPages.AlbumPageControls
 {
     public sealed partial class AlbumPageBase
     {

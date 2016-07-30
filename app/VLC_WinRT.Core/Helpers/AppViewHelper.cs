@@ -9,13 +9,13 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WinRT.ViewModels;
+using VLC.ViewModels;
 using Windows.Foundation.Metadata;
-using VLC_WinRT.UI.Legacy.Views.UserControls;
-using VLC_WinRT.Views.UserControls;
-using VLC_WinRT.Utils;
+using VLC.UI.Legacy.Views.UserControls;
+using VLC.Views.UserControls;
+using VLC.Utils;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
 
     public static class AppViewHelper

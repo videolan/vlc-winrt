@@ -1,10 +1,10 @@
 ﻿using System;
 using Windows.System;
 using Windows.UI.Xaml.Controls;
-using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
-using VLC_WinRT.Utils;
+using VLC.MusicMetaFetcher.Models.MusicEntities;
+using VLC.Utils;
 
-namespace VLC_WinRT.Commands.MusicLibrary
+namespace VLC.Commands.MusicLibrary
 {
     public class BingLocationShowCommand : AlwaysExecutableCommand
     {

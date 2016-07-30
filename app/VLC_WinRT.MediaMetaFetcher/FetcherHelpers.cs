@@ -6,11 +6,11 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
-namespace VLC_WinRT.MediaMetaFetcher
+namespace VLC.MediaMetaFetcher
 {
     public static class FetcherHelpers
     {

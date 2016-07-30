@@ -1,8 +1,8 @@
 ﻿using Windows.UI.Xaml.Controls;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Utils;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Commands.VideoLibrary
+namespace VLC.Commands.VideoLibrary
 {
     public class CloseFlyoutAndPlayVideoCommand : AlwaysExecutableCommand
     {

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI.ViewManagement;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
     public static class OSHelper
     {

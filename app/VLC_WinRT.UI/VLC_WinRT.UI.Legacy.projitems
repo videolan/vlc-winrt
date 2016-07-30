@@ -6,7 +6,7 @@
     <SharedGUID>d499d5a2-b899-4664-94e8-65c8114582de</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>VLC_WinRT.UI.Legacy</Import_RootNamespace>
+    <Import_RootNamespace>VLC.UI</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Resources\Colors.xaml">

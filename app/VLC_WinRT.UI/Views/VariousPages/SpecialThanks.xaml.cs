@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC_WinRT.Views.VariousPages
+namespace VLC.Views.VariousPages
 {
     public sealed partial class SpecialThanks
     {

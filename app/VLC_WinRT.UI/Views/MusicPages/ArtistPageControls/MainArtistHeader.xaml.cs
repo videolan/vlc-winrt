@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xaml.Interactivity;
-using VLC_WinRT.ViewModels;
+using VLC.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
+namespace VLC.UI.Legacy.Views.MusicPages.ArtistPageControls
 {
     public sealed partial class MainArtistHeader : UserControl
     {

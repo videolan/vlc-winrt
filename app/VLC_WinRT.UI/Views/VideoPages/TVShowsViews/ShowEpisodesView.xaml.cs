@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using VLC_WinRT.Model.Video;
+using VLC.Model.Video;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC_WinRT.UI.Legacy.Views.VideoPages.TVShowsViews
+namespace VLC.UI.Legacy.Views.VideoPages.TVShowsViews
 {
     public sealed partial class ShowEpisodesView : Page
     {

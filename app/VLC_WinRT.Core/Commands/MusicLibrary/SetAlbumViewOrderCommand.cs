@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Utils;
+using VLC.ViewModels;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC_WinRT.Commands.MusicLibrary
+namespace VLC.Commands.MusicLibrary
 {
     public class SetAlbumViewOrderCommand : AlwaysExecutableCommand
     {

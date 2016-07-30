@@ -9,10 +9,10 @@
 
 using System;
 using System.Threading.Tasks;
-using VLC_WinRT.Model;
+using VLC.Model;
 using libVLCX;
 
-namespace VLC_WinRT.Services.Interface
+namespace VLC.Services.Interface
 {
     public interface IMediaService
     {

@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.System.Threading;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 using Windows.UI.Core;
 
-namespace VLC_WinRT.ViewModels.RemovableDevicesVM
+namespace VLC.ViewModels.RemovableDevicesVM
 {
     public class SpecialThanksViewModel : BindableBase
     {

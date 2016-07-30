@@ -8,9 +8,9 @@
  **********************************************************************/
 
 using System;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 
-namespace VLC_WinRT.Commands
+namespace VLC.Commands
 {
     public class ActionCommand : AlwaysExecutableCommand
     {

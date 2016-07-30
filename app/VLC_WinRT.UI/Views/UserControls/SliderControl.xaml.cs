@@ -1,6 +1,6 @@
-﻿using VLC_WinRT.ViewModels;
+﻿using VLC.ViewModels;
 using Windows.UI.Xaml.Controls;
-namespace VLC_WinRT.Views.UserControls
+namespace VLC.Views.UserControls
 {
     public sealed partial class SliderControl : UserControl
     {

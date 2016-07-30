@@ -1,7 +1,7 @@
-﻿using VLC_WinRT.Helpers;
+﻿using VLC.Helpers;
 using Windows.System.Profile;
 
-namespace VLC_WinRT.Utils
+namespace VLC.Utils
 {
     /// <summary>
     /// Magic numbers belong here

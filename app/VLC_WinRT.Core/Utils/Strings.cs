@@ -2,12 +2,12 @@
 using System.IO;
 using System.Linq;
 using Windows.ApplicationModel;
-using VLC_WinRT.Model.Music;
+using VLC.Model.Music;
 using Windows.ApplicationModel.Resources;
 using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.Storage;
 
-namespace VLC_WinRT.Utils
+namespace VLC.Utils
 {
     /// <summary>
     /// Magic strings belong here

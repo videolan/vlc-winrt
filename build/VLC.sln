@@ -1,0 +1,185 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VLC", "VLC", "{492C16E2-63FB-49B4-843A-095DB095F15D}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC.Core", "..\app\VLC_WinRT.Core\VLC.Core.shproj", "{DB1DEA15-00B8-4707-8C70-53431C4FA754}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC.MediaMetaFetcher", "..\app\VLC_WinRT.MediaMetaFetcher\VLC.MediaMetaFetcher.shproj", "{C3F84118-8E3D-4B19-A300-9CB6F7AE0E87}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC.SplitShell", "..\app\VLC_WinRT.SplitShell\VLC.SplitShell.shproj", "{ADCB4C5D-450D-40F5-B60A-9DD96FF17DD6}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC.UI", "..\app\VLC_WinRT.UI\VLC.UI.shproj", "{D499D5A2-B899-4664-94E8-65C8114582DE}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC.Slideshow", "..\app\VLC_WinRT.Slideshow\VLC.Slideshow.shproj", "{AD0C8B4F-7A03-42CC-B8DA-BF8D50DF822B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC.Universal", "..\app\VLC_WinRT.Universal\VLC.Universal.csproj", "{7B5C5B10-85F4-491A-94FA-755D253FF609}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44} = {CC3931B9-6065-4A55-A444-5B5E9DE3DA44}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VLC.Components", "VLC.Components", "{23A01350-FA37-457D-8184-082E8BA49F9A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX.UWP", "..\modules\libVLCX.UWP\libVLCX.UWP.vcxproj", "{DC8BBFAE-5203-44BE-9A7C-B3273038D676}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libaccess_winrt_plugin.UWP", "..\modules\libaccess_winrt_plugin.UWP\libaccess_winrt_plugin.UWP.vcxproj", "{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\app\VLC_WinRT.Core\VLC_WinRT.Shared.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
+		..\app\VLC_WinRT.MediaMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
+		..\app\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
+		..\app\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
+		..\app\VLC_WinRT.UI\VLC_WinRT.UI.Legacy.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
+		..\app\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{ad0c8b4f-7a03-42cc-b8da-bf8d50df822b}*SharedItemsImports = 13
+		..\app\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems*{adcb4c5d-450d-40f5-b60a-9dd96ff17dd6}*SharedItemsImports = 13
+		..\app\VLC_WinRT.MediaMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{c3f84118-8e3d-4b19-a300-9cb6f7ae0e87}*SharedItemsImports = 13
+		..\app\VLC_WinRT.UI\VLC_WinRT.UI.Legacy.projitems*{d499d5a2-b899-4664-94e8-65c8114582de}*SharedItemsImports = 13
+		..\app\VLC_WinRT.Core\VLC_WinRT.Shared.projitems*{db1dea15-00b8-4707-8c70-53431c4fa754}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|Universal-ARM = Debug|Universal-ARM
+		Debug|Universal-x64 = Debug|Universal-x64
+		Debug|Universal-x86 = Debug|Universal-x86
+		Debug|WindowsPhone-ARM = Debug|WindowsPhone-ARM
+		Debug|WinRT-ARM = Debug|WinRT-ARM
+		Debug|WinRT-x86 = Debug|WinRT-x86
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|Universal-ARM = Release|Universal-ARM
+		Release|Universal-x64 = Release|Universal-x64
+		Release|Universal-x86 = Release|Universal-x86
+		Release|WindowsPhone-ARM = Release|WindowsPhone-ARM
+		Release|WinRT-ARM = Release|WinRT-ARM
+		Release|WinRT-x86 = Release|WinRT-x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|ARM.ActiveCfg = Debug|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|ARM.Build.0 = Debug|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|ARM.Deploy.0 = Debug|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Universal-ARM.ActiveCfg = Debug|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Universal-ARM.Build.0 = Debug|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Universal-ARM.Deploy.0 = Debug|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Universal-x64.ActiveCfg = Debug|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Universal-x64.Build.0 = Debug|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Universal-x64.Deploy.0 = Debug|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Universal-x86.ActiveCfg = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Universal-x86.Build.0 = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|Universal-x86.Deploy.0 = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|WindowsPhone-ARM.ActiveCfg = Debug|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|WinRT-ARM.ActiveCfg = Debug|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|WinRT-x86.ActiveCfg = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|x64.ActiveCfg = Debug|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|x64.Build.0 = Debug|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|x64.Deploy.0 = Debug|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|x86.ActiveCfg = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|x86.Build.0 = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Debug|x86.Deploy.0 = Debug|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Any CPU.ActiveCfg = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|ARM.ActiveCfg = Release|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|ARM.Build.0 = Release|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|ARM.Deploy.0 = Release|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Universal-ARM.ActiveCfg = Release|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Universal-ARM.Build.0 = Release|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Universal-ARM.Deploy.0 = Release|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Universal-x64.ActiveCfg = Release|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Universal-x64.Build.0 = Release|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Universal-x64.Deploy.0 = Release|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Universal-x86.ActiveCfg = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Universal-x86.Build.0 = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|Universal-x86.Deploy.0 = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|WindowsPhone-ARM.ActiveCfg = Release|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|WinRT-ARM.ActiveCfg = Release|ARM
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|WinRT-x86.ActiveCfg = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|x64.ActiveCfg = Release|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|x64.Build.0 = Release|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|x64.Deploy.0 = Release|x64
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|x86.ActiveCfg = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|x86.Build.0 = Release|x86
+		{7B5C5B10-85F4-491A-94FA-755D253FF609}.Release|x86.Deploy.0 = Release|x86
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|ARM.ActiveCfg = Debug|ARM
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|ARM.Build.0 = Debug|ARM
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|Universal-ARM.ActiveCfg = Debug|ARM
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|Universal-ARM.Build.0 = Debug|ARM
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|Universal-x64.ActiveCfg = Debug|x64
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|Universal-x64.Build.0 = Debug|x64
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|Universal-x86.ActiveCfg = Debug|Win32
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|Universal-x86.Build.0 = Debug|Win32
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|WindowsPhone-ARM.ActiveCfg = Debug|Win32
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|WinRT-ARM.ActiveCfg = Debug|Win32
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|WinRT-x86.ActiveCfg = Debug|Win32
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|x64.ActiveCfg = Debug|x64
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|x64.Build.0 = Debug|x64
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|x86.ActiveCfg = Debug|Win32
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Debug|x86.Build.0 = Debug|Win32
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|Any CPU.ActiveCfg = Release|Win32
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|ARM.ActiveCfg = Release|ARM
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|ARM.Build.0 = Release|ARM
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|Universal-ARM.ActiveCfg = Release|ARM
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|Universal-ARM.Build.0 = Release|ARM
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|Universal-x64.ActiveCfg = Release|x64
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|Universal-x64.Build.0 = Release|x64
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|Universal-x86.ActiveCfg = Release|Win32
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|Universal-x86.Build.0 = Release|Win32
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|WindowsPhone-ARM.ActiveCfg = Release|Win32
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|WinRT-ARM.ActiveCfg = Release|Win32
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|WinRT-x86.ActiveCfg = Release|Win32
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|x64.ActiveCfg = Release|x64
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|x64.Build.0 = Release|x64
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|x86.ActiveCfg = Release|Win32
+		{DC8BBFAE-5203-44BE-9A7C-B3273038D676}.Release|x86.Build.0 = Release|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|ARM.ActiveCfg = Debug|ARM
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|ARM.Build.0 = Debug|ARM
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|Universal-ARM.ActiveCfg = Debug|ARM
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|Universal-ARM.Build.0 = Debug|ARM
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|Universal-x64.ActiveCfg = Debug|x64
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|Universal-x64.Build.0 = Debug|x64
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|Universal-x86.ActiveCfg = Debug|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|Universal-x86.Build.0 = Debug|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|WindowsPhone-ARM.ActiveCfg = Debug|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|WinRT-ARM.ActiveCfg = Debug|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|WinRT-x86.ActiveCfg = Debug|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|x64.ActiveCfg = Debug|x64
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|x64.Build.0 = Debug|x64
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|x86.ActiveCfg = Debug|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Debug|x86.Build.0 = Debug|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|Any CPU.ActiveCfg = Release|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|ARM.ActiveCfg = Release|ARM
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|ARM.Build.0 = Release|ARM
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|Universal-ARM.ActiveCfg = Release|ARM
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|Universal-ARM.Build.0 = Release|ARM
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|Universal-x64.ActiveCfg = Release|x64
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|Universal-x64.Build.0 = Release|x64
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|Universal-x86.ActiveCfg = Release|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|Universal-x86.Build.0 = Release|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|WindowsPhone-ARM.ActiveCfg = Release|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|WinRT-ARM.ActiveCfg = Release|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|WinRT-x86.ActiveCfg = Release|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|x64.ActiveCfg = Release|x64
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|x64.Build.0 = Release|x64
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|x86.ActiveCfg = Release|Win32
+		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DB1DEA15-00B8-4707-8C70-53431C4FA754} = {492C16E2-63FB-49B4-843A-095DB095F15D}
+		{C3F84118-8E3D-4B19-A300-9CB6F7AE0E87} = {23A01350-FA37-457D-8184-082E8BA49F9A}
+		{ADCB4C5D-450D-40F5-B60A-9DD96FF17DD6} = {23A01350-FA37-457D-8184-082E8BA49F9A}
+		{D499D5A2-B899-4664-94E8-65C8114582DE} = {492C16E2-63FB-49B4-843A-095DB095F15D}
+		{AD0C8B4F-7A03-42CC-B8DA-BF8D50DF822B} = {23A01350-FA37-457D-8184-082E8BA49F9A}
+		{7B5C5B10-85F4-491A-94FA-755D253FF609} = {492C16E2-63FB-49B4-843A-095DB095F15D}
+		{23A01350-FA37-457D-8184-082E8BA49F9A} = {492C16E2-63FB-49B4-843A-095DB095F15D}
+	EndGlobalSection
+EndGlobal

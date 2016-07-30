@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
     public static class StringsHelper
     {

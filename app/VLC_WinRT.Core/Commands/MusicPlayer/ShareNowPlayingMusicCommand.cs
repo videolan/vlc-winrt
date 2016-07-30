@@ -3,11 +3,11 @@ using Windows.Foundation;
 using System;
 using System.Collections.Generic;
 using Windows.Storage;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Utils;
+using VLC.ViewModels;
 using WinRTXamlToolkit.IO.Extensions;
 
-namespace VLC_WinRT.Commands.MusicPlayer
+namespace VLC.Commands.MusicPlayer
 {
     public class ShareNowPlayingMusicCommand : AlwaysExecutableCommand
     {

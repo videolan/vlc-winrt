@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
-using VLC_WinRT.Database;
-using VLC_WinRT.Model.Stream;
-using VLC_WinRT.Utils;
-using VLC_WinRT.Commands;
+using VLC.Database;
+using VLC.Model.Stream;
+using VLC.Utils;
+using VLC.Commands;
 using Windows.UI.Xaml;
 using Autofac;
-using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.Commands.StreamsLibrary;
+using VLC.Services.RunTime;
+using VLC.Commands.StreamsLibrary;
 
-namespace VLC_WinRT.ViewModels.Others
+namespace VLC.ViewModels.Others
 {
     public class StreamsViewModel : BindableBase, IDisposable
     {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.ViewModels;
+using VLC.Helpers;
+using VLC.ViewModels;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
-namespace VLC_WinRT.UI.Legacy.Views.MainPages
+namespace VLC.UI.Legacy.Views.MainPages
 {
     public sealed partial class MainPageXBOX
     {

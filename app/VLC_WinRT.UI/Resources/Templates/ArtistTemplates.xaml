@@ -1,9 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="using:VLC_WinRT.Resources.Templates"
+                    xmlns:local="using:VLC.Resources.Templates"
                     xmlns:triggers="using:WinRT.Triggers"
                     xmlns:winrtext="using:WinRTXamlToolkit.Controls.Extensions"
-                    xmlns:userControls="using:VLC_WinRT.Views.UserControls">
+                    xmlns:userControls="using:VLC.Views.UserControls">
 
     <DataTemplate x:Key="ArtistHorizontalTemplate">
         <userControls:ArtistHorizontalTemplate Artist="{Binding}"/>

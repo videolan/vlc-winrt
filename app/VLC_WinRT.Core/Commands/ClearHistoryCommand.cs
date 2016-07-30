@@ -7,10 +7,10 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using VLC_WinRT.Utils;
+using VLC.Utils;
 
 
-namespace VLC_WinRT.Commands
+namespace VLC.Commands
 {
     public class ClearHistoryCommand : AlwaysExecutableCommand
     {

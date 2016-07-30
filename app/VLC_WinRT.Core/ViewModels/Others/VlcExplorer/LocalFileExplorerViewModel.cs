@@ -5,16 +5,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Core;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
+using VLC.Helpers;
+using VLC.Model;
 using Windows.Storage.Search;
-using VLC_WinRT.Commands.VLCFileExplorer;
-using VLC_WinRT.Model.FileExplorer;
-using VLC_WinRT.Utils;
+using VLC.Commands.VLCFileExplorer;
+using VLC.Model.FileExplorer;
+using VLC.Utils;
 using Windows.UI.Xaml;
 using libVLCX;
 
-namespace VLC_WinRT.ViewModels.Others.VlcExplorer
+namespace VLC.ViewModels.Others.VlcExplorer
 {
     public class LocalFileExplorerViewModel : FileExplorer
     {

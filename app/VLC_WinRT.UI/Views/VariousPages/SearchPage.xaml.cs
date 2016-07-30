@@ -1,11 +1,11 @@
-﻿using VLC_WinRT.Model.Video;
+﻿using VLC.Model.Video;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Xaml.Interactivity;
-using VLC_WinRT.ViewModels;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.UI.Legacy.Views.VariousPages
+namespace VLC.UI.Legacy.Views.VariousPages
 {
     public sealed partial class SearchPage : Page
     {

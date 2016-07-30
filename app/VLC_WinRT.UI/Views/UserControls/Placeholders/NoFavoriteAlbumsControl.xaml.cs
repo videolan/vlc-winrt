@@ -1,5 +1,5 @@
 ﻿using Windows.UI.Xaml.Controls;
-namespace VLC_WinRT.Controls
+namespace VLC.Controls
 {
     public sealed partial class NoFavoriteAlbumsControl : UserControl
     {

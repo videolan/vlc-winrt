@@ -1,12 +1,12 @@
 ﻿using Windows.UI.Xaml.Controls;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Model;
-using VLC_WinRT.Utils;
+using VLC.Helpers;
+using VLC.Model.Video;
+using VLC.ViewModels;
+using VLC.Model;
+using VLC.Utils;
 using System.Collections.Generic;
 
-namespace VLC_WinRT.Commands.VideoPlayer
+namespace VLC.Commands.VideoPlayer
 {
     public class PlayVideoCommand : AlwaysExecutableCommand
     {

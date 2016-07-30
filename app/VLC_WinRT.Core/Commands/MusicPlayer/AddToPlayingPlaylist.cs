@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Helpers.MusicLibrary;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Helpers;
+using VLC.Helpers.MusicLibrary;
+using VLC.Model;
+using VLC.Model.Music;
+using VLC.Utils;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Commands.MusicPlayer
+namespace VLC.Commands.MusicPlayer
 {
     public class AddToPlayingPlaylist : AlwaysExecutableCommand
     {

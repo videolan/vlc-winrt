@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using VLC_WinRT.Model;
-using VLC_WinRT.Utils;
+using VLC.Model;
+using VLC.Utils;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 
-namespace VLC_WinRT.UI.Legacy.Views.UserControls.MusicControls
+namespace VLC.UI.Legacy.Views.UserControls.MusicControls
 {
     public sealed partial class Equalizer : UserControl
     {

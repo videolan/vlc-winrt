@@ -1,14 +1,14 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 using SQLite;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.ViewModels.MusicVM;
+using VLC.Model.Music;
+using VLC.ViewModels.MusicVM;
 using System.Collections.Generic;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Model;
+using VLC.Utils;
+using VLC.ViewModels;
+using VLC.Model;
 
-namespace VLC_WinRT.Database
+namespace VLC.Database
 {
     public class TrackCollectionRepository : IDatabase
     {

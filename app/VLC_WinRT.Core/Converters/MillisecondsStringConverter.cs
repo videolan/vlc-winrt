@@ -10,9 +10,9 @@
 using System;
 using System.Diagnostics;
 using Windows.UI.Xaml.Data;
-using VLC_WinRT.Helpers;
+using VLC.Helpers;
 
-namespace VLC_WinRT.Converters
+namespace VLC.Converters
 {
     public class MillisecondsStringConverter : IValueConverter
     {

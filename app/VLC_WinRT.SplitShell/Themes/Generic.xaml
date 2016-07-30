@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="using:VLC_WinRT.Controls.Themes"
-                    xmlns:controls="using:VLC_WinRT.Controls"
-                    xmlns:uC="using:VLC_WinRT.UI.UWP.Views.UserControls">
+                    xmlns:local="using:VLC.Controls.Themes"
+                    xmlns:controls="using:VLC.Controls"
+                    xmlns:uC="using:VLC.UI.UWP.Views.UserControls">
 
     <Style TargetType="controls:SplitShell">
         <Setter Property="Template">

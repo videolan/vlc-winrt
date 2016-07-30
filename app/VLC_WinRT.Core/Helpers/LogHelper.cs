@@ -12,14 +12,14 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.Web.Http;
-using VLC_WinRT.Model;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Model;
+using VLC.Utils;
+using VLC.ViewModels;
 using WinRTXamlToolkit.IO.Extensions;
 using HttpClient = Windows.Web.Http.HttpClient;
 using Windows.Web.Http.Headers;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
     public static class LogHelper
     {

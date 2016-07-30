@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.System;
 using SQLite;
-using VLC_WinRT.Model;
-using VLC_WinRT.Utils;
+using VLC.Model;
+using VLC.Utils;
 
-namespace VLC_WinRT.Database
+namespace VLC.Database
 {
     public class KeyboardActionDatabase : IDatabase
     {

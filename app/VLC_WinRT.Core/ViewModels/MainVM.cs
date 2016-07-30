@@ -16,25 +16,25 @@ using Windows.ApplicationModel.Resources;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Autofac;
-using VLC_WinRT.Commands.Navigation;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Commands;
-using VLC_WinRT.Model.Search;
-using VLC_WinRT.Services.RunTime;
-using Panel = VLC_WinRT.Model.Panel;
+using VLC.Commands.Navigation;
+using VLC.Helpers;
+using VLC.Commands;
+using VLC.Model.Search;
+using VLC.Services.RunTime;
+using Panel = VLC.Model.Panel;
 using Windows.UI.Popups;
-using VLC_WinRT.Model;
+using VLC.Model;
 using libVLCX;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 using WinRTXamlToolkit.Controls.Extensions;
-using VLC_WinRT.Views.UserControls;
+using VLC.Views.UserControls;
 using Windows.UI.Xaml;
-using VLC_WinRT.Views.MusicPages;
+using VLC.Views.MusicPages;
 using System.Threading.Tasks;
 using Windows.UI.ViewManagement;
-using VLC_WinRT.UI.Legacy.Views.UserControls;
+using VLC.UI.Legacy.Views.UserControls;
 
-namespace VLC_WinRT.ViewModels
+namespace VLC.ViewModels
 {
     public class MainVM : BindableBase
     {

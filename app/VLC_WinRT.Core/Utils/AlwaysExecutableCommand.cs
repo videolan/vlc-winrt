@@ -10,7 +10,7 @@
 using System;
 using System.Windows.Input;
 
-namespace VLC_WinRT.Utils
+namespace VLC.Utils
 {
     public abstract class AlwaysExecutableCommand : ICommand
     {

@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 
-namespace VLC_WinRT.Utils
+namespace VLC.Utils
 {
     public class SmartCollection<T> : ObservableCollection<T>
     {

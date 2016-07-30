@@ -2,9 +2,9 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Xaml.Interactivity;
-using VLC_WinRT.ViewModels;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Views.MainPages
+namespace VLC.Views.MainPages
 {
     public sealed partial class MainPageFileExplorer : Page
     {

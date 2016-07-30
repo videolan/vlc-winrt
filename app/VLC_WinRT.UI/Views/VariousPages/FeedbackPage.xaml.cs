@@ -10,13 +10,13 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.Web.Http;
 using Windows.Web.Http.Headers;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Helpers;
+using VLC.Model;
+using VLC.Utils;
+using VLC.ViewModels;
 using WinRTXamlToolkit.Controls.Extensions;
 
-namespace VLC_WinRT.UI.Legacy.Views.VariousPages
+namespace VLC.UI.Legacy.Views.VariousPages
 {
     public sealed partial class FeedbackPage
     {

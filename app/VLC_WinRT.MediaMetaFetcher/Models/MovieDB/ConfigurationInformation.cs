@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VLC_WinRT.MediaMetaFetcher.Models.MovieDB
+namespace VLC.MediaMetaFetcher.Models.MovieDB
 {
     public class ConfigurationInformation
     {

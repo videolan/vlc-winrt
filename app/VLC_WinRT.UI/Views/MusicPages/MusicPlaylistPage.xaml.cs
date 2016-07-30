@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml.Controls;
 
-namespace VLC_WinRT.Views.MusicPages
+namespace VLC.Views.MusicPages
 {
     public sealed partial class MusicPlaylistPage
     {

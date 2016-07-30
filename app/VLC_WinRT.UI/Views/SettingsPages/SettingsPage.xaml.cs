@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
-using VLC_WinRT.Helpers.MusicPlayer;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Helpers;
+using VLC.Model;
+using VLC.Helpers.MusicPlayer;
+using VLC.Utils;
+using VLC.ViewModels;
 using Windows.System;
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace VLC_WinRT.UI.UWP.Views.SettingsPages
+namespace VLC.UI.UWP.Views.SettingsPages
 {
     public sealed partial class SettingsPage
     {

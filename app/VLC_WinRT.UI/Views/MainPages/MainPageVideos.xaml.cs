@@ -10,13 +10,13 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using VLC_WinRT.ViewModels;
+using VLC.ViewModels;
 using Microsoft.Xaml.Interactivity;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Views.MainPages.MainVideoControls;
-using VLC_WinRT.ViewModels.VideoVM;
+using VLC.Model.Video;
+using VLC.Views.MainPages.MainVideoControls;
+using VLC.ViewModels.VideoVM;
 
-namespace VLC_WinRT.Views.MainPages
+namespace VLC.Views.MainPages
 {
     public sealed partial class MainPageVideos : Page
     {

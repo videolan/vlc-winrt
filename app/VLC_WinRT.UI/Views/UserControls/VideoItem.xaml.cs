@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Utils;
+using VLC.Model.Video;
+using VLC.Utils;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace VLC_WinRT.Views.UserControls
+namespace VLC.Views.UserControls
 {
     public sealed partial class VideoItem : UserControl
     {

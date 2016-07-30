@@ -4,13 +4,13 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
-using VLC_WinRT.Helpers.MusicLibrary;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Utils;
-using VLC_WinRT.Model.Video;
+using VLC.Helpers.MusicLibrary;
+using VLC.Model.Music;
+using VLC.ViewModels;
+using VLC.Utils;
+using VLC.Model.Video;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
     public class LoadImageToMemoryHelper
     {

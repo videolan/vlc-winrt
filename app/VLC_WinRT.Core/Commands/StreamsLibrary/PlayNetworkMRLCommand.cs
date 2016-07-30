@@ -9,13 +9,13 @@
 
 using System;
 using Windows.UI.Xaml.Controls;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model.Stream;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Model;
-using VLC_WinRT.Utils;
+using VLC.Helpers;
+using VLC.Model.Stream;
+using VLC.ViewModels;
+using VLC.Model;
+using VLC.Utils;
 
-namespace VLC_WinRT.Commands.StreamsLibrary
+namespace VLC.Commands.StreamsLibrary
 {
     public class PlayNetworkMRLCommand : AlwaysExecutableCommand
     {

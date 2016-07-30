@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VLC_WinRT.Model
+namespace VLC.Model
 {
     public enum Languages
     {

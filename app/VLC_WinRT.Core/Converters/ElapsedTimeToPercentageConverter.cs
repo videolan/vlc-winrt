@@ -1,8 +1,8 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
-using VLC_WinRT.Model.Video;
+using VLC.Model.Video;
 
-namespace VLC_WinRT.Converters
+namespace VLC.Converters
 {
     public class ElapsedTimeToPercentageConverter : IValueConverter
     {

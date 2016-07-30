@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.MusicMetaFetcher;
-using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.MediaMetaFetcher;
+using VLC.Model.Music;
+using VLC.MusicMetaFetcher;
+using VLC.MusicMetaFetcher.Models.MusicEntities;
+using VLC.Utils;
+using VLC.ViewModels;
+using VLC.Helpers;
+using VLC.MediaMetaFetcher;
 
-namespace VLC_WinRT.Services.RunTime
+namespace VLC.Services.RunTime
 {
     public sealed class MusicMetaService
     {

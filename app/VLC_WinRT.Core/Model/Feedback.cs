@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 
-namespace VLC_WinRT.Model
+namespace VLC.Model
 {
     [DataContract]
     public class Feedback

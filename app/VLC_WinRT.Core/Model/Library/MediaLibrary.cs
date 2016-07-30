@@ -6,28 +6,28 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
-using VLC_WinRT.Database;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Services.Interface;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels.MusicVM;
+using VLC.Database;
+using VLC.Helpers;
+using VLC.Model.Music;
+using VLC.Model.Video;
+using VLC.Services.Interface;
+using VLC.Utils;
+using VLC.ViewModels.MusicVM;
 using Windows.Storage;
 using WinRTXamlToolkit.IO.Extensions;
-using VLC_WinRT.ViewModels;
+using VLC.ViewModels;
 using Windows.UI.Core;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using Windows.Storage.FileProperties;
 using Windows.UI.Xaml.Media.Imaging;
-using VLC_WinRT.Helpers.MusicLibrary;
-using VLC_WinRT.Helpers.VideoLibrary;
-using VLC_WinRT.Model.Stream;
-using VLC_WinRT.Services.RunTime;
+using VLC.Helpers.MusicLibrary;
+using VLC.Helpers.VideoLibrary;
+using VLC.Model.Stream;
+using VLC.Services.RunTime;
 using libVLCX;
 
-namespace VLC_WinRT.Model.Library
+namespace VLC.Model.Library
 {
     public class MediaLibrary
     {
@@ -333,7 +333,7 @@ namespace VLC_WinRT.Model.Library
                                 if (indexStart != -1)
                                 {
                                     albumSimplifiedUrl = albumUrl.Substring(indexStart, albumUrl.Length - indexStart);
-                                    Debug.WriteLine("VLC_WinRT : found album cover with TagLib - " + albumName);
+                                    Debug.WriteLine("VLC : found album cover with TagLib - " + albumName);
                                 }
                             }
 

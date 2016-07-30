@@ -1,9 +1,9 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
-using VLC_WinRT.Model;
+using VLC.Model;
 
-namespace VLC_WinRT.Converters
+namespace VLC.Converters
 {
     public class MiniPlayerVisibilityFromPlayingTypeConverter: IValueConverter
     {

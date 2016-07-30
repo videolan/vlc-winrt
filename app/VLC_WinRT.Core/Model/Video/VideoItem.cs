@@ -13,18 +13,18 @@ using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Core;
 using SQLite;
-using VLC_WinRT.Commands.VideoLibrary;
-using VLC_WinRT.Helpers.VideoLibrary;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Commands.VideoLibrary;
+using VLC.Helpers.VideoLibrary;
+using VLC.Utils;
+using VLC.ViewModels;
 using System.Diagnostics;
 using Windows.Storage.AccessCache;
 using libVLCX;
-using VLC_WinRT.Helpers;
+using VLC.Helpers;
 using Windows.UI.Xaml.Media.Imaging;
 using System.IO;
 
-namespace VLC_WinRT.Model.Video
+namespace VLC.Model.Video
 {
     public class VideoItem : BindableBase, IMediaItem
     {

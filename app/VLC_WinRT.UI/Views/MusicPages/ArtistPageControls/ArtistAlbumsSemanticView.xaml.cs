@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.MusicVM;
+using VLC.Helpers;
+using VLC.Model.Video;
+using VLC.ViewModels;
+using VLC.ViewModels.MusicVM;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
+namespace VLC.UI.Legacy.Views.MusicPages.ArtistPageControls
 {
     public sealed partial class ArtistAlbumsSemanticView : Grid
     {

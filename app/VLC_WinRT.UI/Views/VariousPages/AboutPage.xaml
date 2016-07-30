@@ -1,10 +1,10 @@
-﻿<Page x:Class="VLC_WinRT.UI.UWP.VariousPages.AboutPage"
+﻿<Page x:Class="VLC.UI.UWP.VariousPages.AboutPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:VLC_WinRT.UI.UWP.VariousPages"
+      xmlns:local="using:VLC.UI.UWP.VariousPages"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:userControls="using:VLC_WinRT.Views.UserControls"
+      xmlns:userControls="using:VLC.Views.UserControls"
       xmlns:winControls="using:WinRTXamlToolkit.Controls"
       mc:Ignorable="d">
 

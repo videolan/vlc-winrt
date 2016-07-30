@@ -1,4 +1,4 @@
-﻿namespace VLC_WinRT.Database
+﻿namespace VLC.Database
 {
     interface IDatabase
     {

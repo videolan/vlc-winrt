@@ -7,10 +7,10 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Utils;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Commands.MediaPlayback
+namespace VLC.Commands.MediaPlayback
 {
     public class PlayPreviousCommand : AlwaysExecutableCommand
     {

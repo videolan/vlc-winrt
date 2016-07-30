@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Windows.Storage;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 using System.Xml.Serialization;
 using System.IO;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Video;
+using VLC.Model;
+using VLC.Model.Video;
 using Windows.Data.Xml.Dom;
 
-namespace VLC_WinRT.MediaMetaFetcher.Fetchers
+namespace VLC.MediaMetaFetcher.Fetchers
 {
     public class OpenSubtitleClient
     {

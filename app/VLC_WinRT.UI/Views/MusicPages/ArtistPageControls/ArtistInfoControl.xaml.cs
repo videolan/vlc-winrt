@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
+namespace VLC.UI.Legacy.Views.MusicPages.ArtistPageControls
 {
     public sealed partial class ArtistInfoControl : UserControl
     {

@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.ViewModels;
+using VLC.Helpers;
+using VLC.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.ViewManagement;
@@ -13,7 +13,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace VLC_WinRT.UI.Legacy.Views.UserControls
+namespace VLC.UI.Legacy.Views.UserControls
 {
     public sealed partial class CommandBarBottom : CommandBar
     {

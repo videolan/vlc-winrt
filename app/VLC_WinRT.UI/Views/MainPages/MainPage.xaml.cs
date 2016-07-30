@@ -11,14 +11,14 @@ using Windows.Media;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Autofac;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.ViewModels;
+using VLC.Helpers;
+using VLC.Services.RunTime;
+using VLC.ViewModels;
 using Windows.UI.ViewManagement;
 using Slide2D;
 using Windows.UI.Xaml.Navigation;
-using VLC_WinRT.Utils;
-using VLC_WinRT.Model;
+using VLC.Utils;
+using VLC.Model;
 using System;
 using System.Linq;
 using Windows.System;
@@ -30,7 +30,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Storage;
 
-namespace VLC_WinRT.Views.MainPages
+namespace VLC.Views.MainPages
 {
     public sealed partial class MainPage
     {

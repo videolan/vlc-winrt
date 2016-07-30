@@ -9,11 +9,11 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Graphics.Canvas.Text;
 using Microsoft.Xaml.Interactivity;
-using VLC_WinRT.Slideshow.Texts;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Helpers;
+using VLC.Slideshow.Texts;
+using VLC.ViewModels;
+using VLC.Helpers;
 
-namespace VLC_WinRT.Views.MusicPages
+namespace VLC.Views.MusicPages
 {
     public sealed partial class MusicPlayerPage : Page
     {

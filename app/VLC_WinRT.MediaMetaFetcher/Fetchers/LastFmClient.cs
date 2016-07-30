@@ -14,11 +14,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.Web.Http;
 using Newtonsoft.Json;
-using VLC_WinRT.MusicMetaFetcher.Models.LastFm;
-using Album = VLC_WinRT.MusicMetaFetcher.Models.MusicEntities.Album;
-using Artist = VLC_WinRT.MusicMetaFetcher.Models.MusicEntities.Artist;
+using VLC.MusicMetaFetcher.Models.LastFm;
+using Album = VLC.MusicMetaFetcher.Models.MusicEntities.Album;
+using Artist = VLC.MusicMetaFetcher.Models.MusicEntities.Artist;
 
-namespace VLC_WinRT.MusicMetaFetcher.Fetchers
+namespace VLC.MusicMetaFetcher.Fetchers
 {
     public class LastFmClient : IMusicMetaFetcher
     {

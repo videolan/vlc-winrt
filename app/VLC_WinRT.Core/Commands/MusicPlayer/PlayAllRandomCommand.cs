@@ -1,14 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Helpers;
+using VLC.Model;
+using VLC.Model.Music;
+using VLC.Utils;
+using VLC.ViewModels;
 using WinRTXamlToolkit.Tools;
 
-namespace VLC_WinRT.Commands.MusicPlayer
+namespace VLC.Commands.MusicPlayer
 {
     public class PlayAllRandomCommand : AlwaysExecutableCommand
     {

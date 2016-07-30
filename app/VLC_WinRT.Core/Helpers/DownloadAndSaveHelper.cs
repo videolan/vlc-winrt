@@ -17,7 +17,7 @@ using Windows.Graphics.Imaging;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
     public class DownloadAndSaveHelper
     {

@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Windows.UI;
-using VLC_WinRT.Helpers;
+using VLC.Helpers;
 
-namespace VLC_WinRT.Slideshow.Texts
+namespace VLC.Slideshow.Texts
 {
     public class Txt
     {

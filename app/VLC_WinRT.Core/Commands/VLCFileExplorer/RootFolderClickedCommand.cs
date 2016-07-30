@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.Others.VlcExplorer;
+using VLC.Utils;
+using VLC.ViewModels;
+using VLC.ViewModels.Others.VlcExplorer;
 
-namespace VLC_WinRT.Commands.VLCFileExplorer
+namespace VLC.Commands.VLCFileExplorer
 {
     public class RootFolderClickedCommand : AlwaysExecutableCommand
     {

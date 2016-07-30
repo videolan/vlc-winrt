@@ -1,4 +1,4 @@
-﻿namespace VLC_WinRT.Model.FileExplorer
+﻿namespace VLC.Model.FileExplorer
 {
     public enum RootFolderType
     {

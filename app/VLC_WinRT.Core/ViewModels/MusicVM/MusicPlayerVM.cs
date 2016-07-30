@@ -13,16 +13,16 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using VLC_WinRT.Commands.MediaPlayback;
-using VLC_WinRT.Commands.MusicPlayer;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Utils;
+using VLC.Commands.MediaPlayback;
+using VLC.Commands.MusicPlayer;
+using VLC.Helpers;
+using VLC.Model;
+using VLC.Model.Music;
+using VLC.Utils;
 using System.Linq;
-using VLC_WinRT.Helpers.MusicPlayer;
+using VLC.Helpers.MusicPlayer;
 
-namespace VLC_WinRT.ViewModels.MusicVM
+namespace VLC.ViewModels.MusicVM
 {
     public class MusicPlayerVM : BindableBase
     {

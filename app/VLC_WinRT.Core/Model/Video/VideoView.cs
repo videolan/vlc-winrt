@@ -1,4 +1,4 @@
-﻿namespace VLC_WinRT.Model.Video
+﻿namespace VLC.Model.Video
 {
     public enum VideoView
     {

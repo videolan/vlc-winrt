@@ -9,24 +9,24 @@
 
 using Autofac;
 using Slide2D;
-using VLC_WinRT.Helpers.MusicLibrary;
-using VLC_WinRT.Helpers.VideoLibrary;
-using VLC_WinRT.Model.Library;
-using VLC_WinRT.Services.Interface;
-using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.MusicVM;
-using VLC_WinRT.ViewModels.Others;
-using VLC_WinRT.ViewModels.RemovableDevicesVM;
-using VLC_WinRT.ViewModels.Settings;
-using VLC_WinRT.ViewModels.VideoVM;
+using VLC.Helpers.MusicLibrary;
+using VLC.Helpers.VideoLibrary;
+using VLC.Model.Library;
+using VLC.Services.Interface;
+using VLC.Services.RunTime;
+using VLC.ViewModels;
+using VLC.ViewModels.MusicVM;
+using VLC.ViewModels.Others;
+using VLC.ViewModels.RemovableDevicesVM;
+using VLC.ViewModels.Settings;
+using VLC.ViewModels.VideoVM;
 
-namespace VLC_WinRT.Utils
+namespace VLC.Utils
 {
     public static class AutoFacConfiguration
     {
         /// <summary>
-        /// Configures the AutoFac IoC Container for VLC_WINRT.
+        /// Configures the AutoFac IoC Container for VLC.
         /// </summary>
         /// <returns>Built container with all the </returns>
         /// TODO: Make a design time and a runtime configure?

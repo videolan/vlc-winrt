@@ -7,13 +7,13 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Model;
-using VLC_WinRT.Utils;
+using VLC.Helpers;
+using VLC.Model.Music;
+using VLC.ViewModels;
+using VLC.Model;
+using VLC.Utils;
 
-namespace VLC_WinRT.Commands.MusicPlayer
+namespace VLC.Commands.MusicPlayer
 {
     public class PlayAlbumCommand : AlwaysExecutableCommand
     {

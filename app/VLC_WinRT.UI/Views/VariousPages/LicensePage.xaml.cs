@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace VLC_WinRT.Views.VariousPages
+namespace VLC.Views.VariousPages
 {
     public sealed partial class LicensePage
     {

@@ -11,9 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml.Data;
-using VLC_WinRT.MediaMetaFetcher.Models.SharedEntities;
+using VLC.MediaMetaFetcher.Models.SharedEntities;
 
-namespace VLC_WinRT.Converters
+namespace VLC.Converters
 {
     public class AlbumImageConverter : IValueConverter
     {

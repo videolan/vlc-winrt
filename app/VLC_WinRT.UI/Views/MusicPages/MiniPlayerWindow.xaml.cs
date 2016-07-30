@@ -8,14 +8,14 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media.Imaging;
-using VLC_WinRT.Controls;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Views.MainPages;
-using VLC_WinRT.Utils;
-using VLC_WinRT.Model;
+using VLC.Controls;
+using VLC.Helpers;
+using VLC.ViewModels;
+using VLC.Views.MainPages;
+using VLC.Utils;
+using VLC.Model;
 
-namespace VLC_WinRT.UI.Legacy.Views.MusicPages
+namespace VLC.UI.Legacy.Views.MusicPages
 {
     public sealed partial class MiniPlayerWindow : Page
     {

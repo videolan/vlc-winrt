@@ -2,19 +2,19 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.FileExplorer;
+using VLC.Model;
+using VLC.Model.FileExplorer;
 using System.Threading.Tasks;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 using Windows.UI.Core;
 using System.Linq;
 using System.Diagnostics;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Model.Stream;
-using VLC_WinRT.Helpers;
+using VLC.Model.Video;
+using VLC.Model.Stream;
+using VLC.Helpers;
 using Windows.Foundation;
 
-namespace VLC_WinRT.ViewModels.Others.VlcExplorer
+namespace VLC.ViewModels.Others.VlcExplorer
 {
     public class VLCFileExplorerViewModel : FileExplorer
     {

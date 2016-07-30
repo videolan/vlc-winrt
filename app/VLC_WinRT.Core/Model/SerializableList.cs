@@ -5,7 +5,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace VLC_WinRT.Model
+namespace VLC.Model
 {
     public class SerializableList<T> : List<T>, IXmlSerializable
     {

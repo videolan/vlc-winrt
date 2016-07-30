@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Model.Video;
+using VLC.Utils;
+using VLC.ViewModels;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC_WinRT.Commands.VideoLibrary
+namespace VLC.Commands.VideoLibrary
 {
     public class TVShowClickedCommand : AlwaysExecutableCommand
     {

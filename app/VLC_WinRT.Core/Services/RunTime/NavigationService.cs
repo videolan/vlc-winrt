@@ -4,33 +4,33 @@ using System.Linq;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Documents;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
-using VLC_WinRT.UI.Legacy.Views.MainPages;
-using VLC_WinRT.UI.Legacy.Views.MusicPages;
-using VLC_WinRT.UI.Legacy.Views.MusicPages.TagEditorPages;
-using VLC_WinRT.UI.Legacy.Views.VariousPages;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Views.MainPages;
-using VLC_WinRT.Views.MusicPages;
-using VLC_WinRT.Views.MusicPages.AlbumPageControls;
-using VLC_WinRT.Views.MusicPages.ArtistPages;
-using VLC_WinRT.Views.MusicPages.PlaylistControls;
-using VLC_WinRT.Views.VariousPages;
-using VLC_WinRT.Views.VideoPages;
-using VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls;
+using VLC.Helpers;
+using VLC.Model;
+using VLC.UI.Legacy.Views.MainPages;
+using VLC.UI.Legacy.Views.MusicPages;
+using VLC.UI.Legacy.Views.MusicPages.TagEditorPages;
+using VLC.UI.Legacy.Views.VariousPages;
+using VLC.ViewModels;
+using VLC.Views.MainPages;
+using VLC.Views.MusicPages;
+using VLC.Views.MusicPages.AlbumPageControls;
+using VLC.Views.MusicPages.ArtistPages;
+using VLC.Views.MusicPages.PlaylistControls;
+using VLC.Views.VariousPages;
+using VLC.Views.VideoPages;
+using VLC.UI.Legacy.Views.VideoPages.VideoNowPlayingControls;
 using Windows.Foundation.Metadata;
 using Windows.UI.Xaml.Controls;
-using VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls;
-using VLC_WinRT.Utils;
-using Panel = VLC_WinRT.Model.Panel;
+using VLC.UI.Legacy.Views.MusicPages.ArtistPageControls;
+using VLC.Utils;
+using Panel = VLC.Model.Panel;
 using Windows.UI.Core;
-using VLC_WinRT.UI.Legacy.Views.VideoPages.TVShowsViews;
-using VLC_WinRT.UI.UWP.VariousPages;
-using VLC_WinRT.UI.UWP.Views.SettingsPages;
+using VLC.UI.Legacy.Views.VideoPages.TVShowsViews;
+using VLC.UI.UWP.VariousPages;
+using VLC.UI.UWP.Views.SettingsPages;
 
 
-namespace VLC_WinRT.Services.RunTime
+namespace VLC.Services.RunTime
 {
     public delegate void HomePageNavigated(object sender, VLCPage homepage);
     public class NavigationService

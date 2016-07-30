@@ -2,11 +2,11 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using VLC_WinRT.Utils;
-using VLC_WinRT.Model.Music;
+using VLC.Utils;
+using VLC.Model.Music;
 using SQLite;
 
-namespace VLC_WinRT.Database
+namespace VLC.Database
 {
     public class BackgroundTrackDatabase
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Utils;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Commands.VideoPlayer
+namespace VLC.Commands.VideoPlayer
 {
     public class InitPiPCommand : AlwaysExecutableCommand
     {

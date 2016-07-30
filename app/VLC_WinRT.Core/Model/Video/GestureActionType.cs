@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VLC_WinRT.Model.Video
+namespace VLC.Model.Video
 {
     public enum GestureActionType
     {

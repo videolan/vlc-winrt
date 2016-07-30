@@ -3,16 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using VLC_WinRT.Helpers.VideoLibrary;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Model.Stream;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.ViewModels;
+using VLC.Helpers.VideoLibrary;
+using VLC.Model;
+using VLC.Model.Music;
+using VLC.Model.Stream;
+using VLC.Model.Video;
+using VLC.ViewModels;
 using Windows.Storage;
 using Windows.Storage.Search;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
     public static class MediaLibraryHelper
     {

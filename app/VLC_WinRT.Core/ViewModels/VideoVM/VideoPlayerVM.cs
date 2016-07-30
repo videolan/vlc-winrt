@@ -11,11 +11,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
-using VLC_WinRT.Commands;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.Utils;
+using VLC.Commands;
+using VLC.Helpers;
+using VLC.Model.Video;
+using VLC.Services.RunTime;
+using VLC.Utils;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.UI.Xaml;
@@ -23,12 +23,12 @@ using libVLCX;
 using System.Diagnostics;
 using Windows.Graphics.Display;
 using Windows.UI.Xaml.Media;
-using VLC_WinRT.Commands.VideoPlayer;
-using VLC_WinRT.Model;
+using VLC.Commands.VideoPlayer;
+using VLC.Model;
 using Windows.UI.Core;
-using VLC_WinRT.MediaMetaFetcher.Fetchers;
+using VLC.MediaMetaFetcher.Fetchers;
 
-namespace VLC_WinRT.ViewModels.VideoVM
+namespace VLC.ViewModels.VideoVM
 {
     public class VideoPlayerVM : BindableBase
     {

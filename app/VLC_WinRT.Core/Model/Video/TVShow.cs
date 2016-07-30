@@ -1,10 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using VLC_WinRT.Commands.VideoLibrary;
-using VLC_WinRT.Utils;
+using VLC.Commands.VideoLibrary;
+using VLC.Utils;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace VLC_WinRT.Model.Video
+namespace VLC.Model.Video
 {
     public class TvShow : BindableBase
     {

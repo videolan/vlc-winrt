@@ -1,8 +1,8 @@
-﻿using VLC_WinRT.Model;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+﻿using VLC.Model;
+using VLC.Utils;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Commands.MusicPlayer
+namespace VLC.Commands.MusicPlayer
 {
     public class GoToMusicPlayerPage : AlwaysExecutableCommand
     {

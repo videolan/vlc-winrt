@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xaml.Interactivity;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Views.MainPages;
+using VLC.Helpers;
+using VLC.Model;
+using VLC.ViewModels;
+using VLC.Views.MainPages;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace VLC_WinRT.UI.Legacy.Views.MainPages
+namespace VLC.UI.Legacy.Views.MainPages
 {
     public sealed partial class HomePage : Page
     {

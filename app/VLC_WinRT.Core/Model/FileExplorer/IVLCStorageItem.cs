@@ -6,7 +6,7 @@ using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace VLC_WinRT.Model.FileExplorer
+namespace VLC.Model.FileExplorer
 {
     public interface IVLCStorageItem
     {

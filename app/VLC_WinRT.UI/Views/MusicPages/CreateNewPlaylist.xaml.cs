@@ -1,9 +1,9 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WinRT.Helpers.MusicLibrary;
-using VLC_WinRT.ViewModels;
+using VLC.Helpers.MusicLibrary;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Views.MusicPages
+namespace VLC.Views.MusicPages
 {
     public sealed partial class CreateNewPlaylist
     {

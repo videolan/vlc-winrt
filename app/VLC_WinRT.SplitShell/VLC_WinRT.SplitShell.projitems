@@ -6,7 +6,7 @@
     <SharedGUID>adcb4c5d-450d-40f5-b60a-9dd96ff17dd6</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>VLC_WinRT.SplitShell</Import_RootNamespace>
+    <Import_RootNamespace>VLC.SplitShell</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)SplitShell.cs" />

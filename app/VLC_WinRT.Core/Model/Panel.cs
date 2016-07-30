@@ -7,9 +7,9 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
  
-using VLC_WinRT.Utils;
+using VLC.Utils;
 
-namespace VLC_WinRT.Model
+namespace VLC.Model
 {
     public class Panel
     {

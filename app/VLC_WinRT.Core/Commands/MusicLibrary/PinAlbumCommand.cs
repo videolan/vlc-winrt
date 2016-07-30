@@ -1,10 +1,10 @@
-﻿using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+﻿using VLC.Helpers;
+using VLC.Model;
+using VLC.Model.Music;
+using VLC.Utils;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Commands.MusicLibrary
+namespace VLC.Commands.MusicLibrary
 {
     public class PinAlbumCommand : AlwaysExecutableCommand
     {

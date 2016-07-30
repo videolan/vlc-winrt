@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.System;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
     public static class MemoryUsageHelper
     {

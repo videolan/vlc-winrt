@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using VLC_WinRT.Model;
+using VLC.Model;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace VLC_WinRT.Converters
+namespace VLC.Converters
 {
     public class PageToVisibilityConverter : IValueConverter
     {

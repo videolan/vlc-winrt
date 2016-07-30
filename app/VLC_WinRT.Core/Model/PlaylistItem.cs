@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 using Windows.UI.Xaml;
 
-namespace VLC_WinRT.Model
+namespace VLC.Model
 {
     public class PlaylistItem : BindableBase
     {

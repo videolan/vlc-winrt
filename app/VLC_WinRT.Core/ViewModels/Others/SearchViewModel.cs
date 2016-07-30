@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Utils;
+using VLC.Helpers;
+using VLC.Model;
+using VLC.Model.Music;
+using VLC.Model.Video;
+using VLC.Utils;
 
-namespace VLC_WinRT.ViewModels.Others
+namespace VLC.ViewModels.Others
 {
     public class SearchViewModel : BindableBase, IDisposable
     {

@@ -10,11 +10,11 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Utils;
+using VLC.Model.Music;
+using VLC.Utils;
 using Windows.ApplicationModel.Resources;
 
-namespace VLC_WinRT.Helpers.VideoLibrary
+namespace VLC.Helpers.VideoLibrary
 {
     public static class TitleDecrapifier
     {

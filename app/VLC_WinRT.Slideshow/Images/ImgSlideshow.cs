@@ -6,16 +6,16 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VLC_WinRT.Slideshow.Texts;
+using VLC.Slideshow.Texts;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Microsoft.Graphics.Canvas.Brushes;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Model;
-using VLC_WinRT.ViewModels.MusicVM;
-using VLC_WinRT.Helpers;
+using VLC.ViewModels;
+using VLC.Model;
+using VLC.ViewModels.MusicVM;
+using VLC.Helpers;
 
 namespace Slide2D.Images
 {

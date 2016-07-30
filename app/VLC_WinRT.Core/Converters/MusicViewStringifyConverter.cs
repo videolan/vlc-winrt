@@ -1,10 +1,10 @@
 ﻿using System;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Data;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Utils;
+using VLC.Model.Music;
+using VLC.Utils;
 
-namespace VLC_WinRT.Converters
+namespace VLC.Converters
 {
     public class MusicViewStringifyConverter : IValueConverter
     {

@@ -7,7 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-namespace VLC_WinRT.Model
+namespace VLC.Model
 {
     public class DictionaryKeyValue
     {

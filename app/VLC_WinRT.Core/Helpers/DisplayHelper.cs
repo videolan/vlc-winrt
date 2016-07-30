@@ -2,7 +2,7 @@
 using Windows.Graphics.Display;
 using Windows.System.Display;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
     public static class DisplayHelper
     {

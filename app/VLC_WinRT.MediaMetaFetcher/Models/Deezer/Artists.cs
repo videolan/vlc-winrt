@@ -9,7 +9,7 @@
 
 using Newtonsoft.Json;
 
-namespace VLC_WinRT.MusicMetaFetcher.Models.Deezer
+namespace VLC.MusicMetaFetcher.Models.Deezer
 {
     public class Artists
     {

@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="using:VLC_WinRT.Resources"
-                    xmlns:flyouts="using:VLC_WinRT.Views.UserControls.Flyouts">
+                    xmlns:local="using:VLC.Resources"
+                    xmlns:flyouts="using:VLC.Views.UserControls.Flyouts">
 
     <MenuFlyout x:Key="ArtistMenuFlyout">
         <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PinArtist}"

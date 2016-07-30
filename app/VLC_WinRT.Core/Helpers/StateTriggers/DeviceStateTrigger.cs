@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Windows.UI.Xaml;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
     public class DeviceStateTrigger : StateTriggerBase
     {

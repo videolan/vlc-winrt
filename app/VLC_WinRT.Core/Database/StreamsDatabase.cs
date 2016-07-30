@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
-using VLC_WinRT.Model.Stream;
-using VLC_WinRT.Utils;
+using VLC.Model.Stream;
+using VLC.Utils;
 
-namespace VLC_WinRT.Database
+namespace VLC.Database
 {
     public class StreamsDatabase : IDatabase
     {

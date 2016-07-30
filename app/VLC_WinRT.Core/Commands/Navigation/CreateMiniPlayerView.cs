@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using Windows.UI.Xaml;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
-using VLC_WinRT.UI.Legacy.Views.MusicPages;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Helpers;
+using VLC.Model;
+using VLC.UI.Legacy.Views.MusicPages;
+using VLC.Utils;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Commands.Navigation
+namespace VLC.Commands.Navigation
 {
     public class CreateMiniPlayerView : AlwaysExecutableCommand
     {

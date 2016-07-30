@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using System.Net.Http;
 
 using Newtonsoft.Json;
-using VLC_WinRT.MediaMetaFetcher.Models.MovieDB;
-using VLC_WinRT.MediaMetaFetcher.Models.VideoEntities;
+using VLC.MediaMetaFetcher.Models.MovieDB;
+using VLC.MediaMetaFetcher.Models.VideoEntities;
 using System.Diagnostics;
 
-namespace VLC_WinRT.MediaMetaFetcher.Fetchers
+namespace VLC.MediaMetaFetcher.Fetchers
 {
     public class MovieDbClient
     {

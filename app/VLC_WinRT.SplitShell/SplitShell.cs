@@ -6,16 +6,16 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
-using VLC_WinRT.Helpers;
+using VLC.Helpers;
 using Windows.ApplicationModel.Core;
 using Windows.UI.ViewManagement;
-using VLC_WinRT.UI.Legacy.Views.UserControls.Shell;
+using VLC.UI.Legacy.Views.UserControls.Shell;
 using Microsoft.Graphics.Canvas.Effects;
 using Windows.UI.Composition;
 using Windows.UI.Xaml.Hosting;
-using VLC_WinRT.UI.UWP.Views.UserControls;
+using VLC.UI.UWP.Views.UserControls;
 
-namespace VLC_WinRT.Controls
+namespace VLC.Controls
 {
     public delegate void FlyoutCloseRequested(object sender, EventArgs e);
     public delegate void FlyoutNavigated(object sender, EventArgs p);

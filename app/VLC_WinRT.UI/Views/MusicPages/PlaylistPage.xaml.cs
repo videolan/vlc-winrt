@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using Windows.UI.Xaml.Controls;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.ViewModels;
+using VLC.Model.Music;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Views.MusicPages
+namespace VLC.Views.MusicPages
 {
     public sealed partial class PlaylistPage
     {

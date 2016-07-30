@@ -1,14 +1,14 @@
 ﻿using System;
 using Windows.Storage;
 using SQLite;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 using libVLCX;
-using VLC_WinRT.Commands;
-using VLC_WinRT.Commands.VideoLibrary;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Commands.StreamsLibrary;
+using VLC.Commands;
+using VLC.Commands.VideoLibrary;
+using VLC.ViewModels;
+using VLC.Commands.StreamsLibrary;
 
-namespace VLC_WinRT.Model.Stream
+namespace VLC.Model.Stream
 {
     public class StreamMedia : BindableBase, IMediaItem
     {

@@ -3,15 +3,15 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Core;
-using VLC_WinRT.Model;
-using VLC_WinRT.ViewModels;
+using VLC.Model;
+using VLC.ViewModels;
 using libVLCX;
-using VLC_WinRT.Database;
-using VLC_WinRT.Helpers;
+using VLC.Database;
+using VLC.Helpers;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml;
 
-namespace VLC_WinRT.Services.RunTime
+namespace VLC.Services.RunTime
 {
     public class KeyboardListenerService
     {

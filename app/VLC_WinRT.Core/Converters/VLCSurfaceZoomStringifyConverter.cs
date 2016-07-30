@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using Windows.UI.Xaml.Data;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Utils;
+using VLC.Model;
+using VLC.Model.Video;
+using VLC.Utils;
 
-namespace VLC_WinRT.Converters
+namespace VLC.Converters
 {
     public class VLCSurfaceZoomStringifyConverter : IValueConverter
     {

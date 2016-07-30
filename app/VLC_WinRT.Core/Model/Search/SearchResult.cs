@@ -1,4 +1,4 @@
-﻿namespace VLC_WinRT.Model.Search
+﻿namespace VLC.Model.Search
 {
     public class SearchResult
     {

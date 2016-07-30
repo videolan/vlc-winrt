@@ -6,7 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
 
-namespace VLC_WinRT.UI.UWP.Views.UserControls
+namespace VLC.UI.UWP.Views.UserControls
 {
     public class BackDrop : Control
     {

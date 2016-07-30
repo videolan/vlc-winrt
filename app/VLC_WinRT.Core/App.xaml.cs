@@ -1,4 +1,4 @@
-﻿using VLC_WinRT.Model.Music;
+﻿using VLC.Model.Music;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -11,12 +11,12 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Autofac;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
-using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Views.MainPages;
-using VLC_WinRT.ViewModels.MusicVM;
+using VLC.Helpers;
+using VLC.Model;
+using VLC.Services.RunTime;
+using VLC.ViewModels;
+using VLC.Views.MainPages;
+using VLC.ViewModels.MusicVM;
 using System.Linq;
 using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
@@ -25,16 +25,16 @@ using Windows.Storage.AccessCache;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Media;
-using VLC_WinRT.Utils;
-using VLC_WinRT.Controls;
-using VLC_WinRT.Views.UserControls;
-using VLC_WinRT.ViewModels.Settings;
+using VLC.Utils;
+using VLC.Controls;
+using VLC.Views.UserControls;
+using VLC.ViewModels.Settings;
 using WinRTXamlToolkit.IO.Serialization;
-using VLC_WinRT.Helpers.VideoLibrary;
+using VLC.Helpers.VideoLibrary;
 using Windows.System.Threading;
-using VLC_WinRT.UI.Legacy.Views.UserControls;
+using VLC.UI.Legacy.Views.UserControls;
 
-namespace VLC_WinRT
+namespace VLC
 {
     public sealed partial class App : Application
     {

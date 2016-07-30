@@ -13,7 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.Devices.Enumeration;
 
-namespace VLC_WinRT.Services.RunTime
+namespace VLC.Services.RunTime
 {
     public class ExternalDeviceService : IDisposable
     {

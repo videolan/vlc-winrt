@@ -3,13 +3,13 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Utils;
+using VLC.ViewModels;
 using Windows.ApplicationModel.Activation;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
     public static class ToastHelper
     {

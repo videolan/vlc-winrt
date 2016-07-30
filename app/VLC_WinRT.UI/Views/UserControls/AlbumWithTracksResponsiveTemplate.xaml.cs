@@ -1,16 +1,16 @@
-﻿using VLC_WinRT.Model.Video;
+﻿using VLC.Model.Video;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Utils;
+using VLC.ViewModels;
+using VLC.Model.Music;
+using VLC.Utils;
 using Windows.UI.Xaml.Media.Imaging;
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Input;
 
-namespace VLC_WinRT.UI.Legacy.Views.UserControls
+namespace VLC.UI.Legacy.Views.UserControls
 {
     public sealed partial class AlbumWithTracksResponsiveTemplate : UserControl
     {

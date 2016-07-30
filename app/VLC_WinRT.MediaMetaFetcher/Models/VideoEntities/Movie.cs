@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using VLC_WinRT.MediaMetaFetcher.Models.MovieDB;
-using VLC_WinRT.MediaMetaFetcher.Models.SharedEntities;
+using VLC.MediaMetaFetcher.Models.MovieDB;
+using VLC.MediaMetaFetcher.Models.SharedEntities;
 using System.Linq;
-namespace VLC_WinRT.MediaMetaFetcher.Models.VideoEntities
+namespace VLC.MediaMetaFetcher.Models.VideoEntities
 {
     public class Movie
     {

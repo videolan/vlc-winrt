@@ -14,7 +14,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 
-namespace VLC_WinRT.Utils
+namespace VLC.Utils
 {
     public class DispatchHelper
     {

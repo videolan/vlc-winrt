@@ -4,12 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VLC_WinRT.ViewModels;
+using VLC.ViewModels;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.VoiceCommands;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
     public static class CortanaHelper
     {

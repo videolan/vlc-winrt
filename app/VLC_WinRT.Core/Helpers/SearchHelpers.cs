@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Model.Search;
+using VLC.Model;
+using VLC.Model.Music;
+using VLC.Model.Video;
+using VLC.ViewModels;
+using VLC.Model.Search;
 using Windows.Storage;
 using System.Collections.ObjectModel;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
     public static class SearchHelpers
     {        

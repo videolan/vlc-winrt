@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using VLC_WinRT.Model.Stream;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Model.Stream;
+using VLC.Utils;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Commands.StreamsLibrary
+namespace VLC.Commands.StreamsLibrary
 {
     public class DeleteStreamCommand : AlwaysExecutableCommand
     {

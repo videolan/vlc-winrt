@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Utils;
+using VLC.ViewModels;
 using Windows.Storage;
 
-namespace VLC_WinRT.Commands.VideoPlayer
+namespace VLC.Commands.VideoPlayer
 {
     public class DownloadSubtitleCommand : AlwaysExecutableCommand
     {

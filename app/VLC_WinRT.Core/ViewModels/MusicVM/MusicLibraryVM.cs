@@ -18,20 +18,20 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
-using VLC_WinRT.Database;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Helpers.MusicLibrary;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Commands.MusicLibrary;
-using VLC_WinRT.Model.Search;
-using VLC_WinRT.Utils;
-using VLC_WinRT.Commands.MusicPlayer;
+using VLC.Database;
+using VLC.Helpers;
+using VLC.Helpers.MusicLibrary;
+using VLC.Model;
+using VLC.Model.Music;
+using VLC.Commands.MusicLibrary;
+using VLC.Model.Search;
+using VLC.Utils;
+using VLC.Commands.MusicPlayer;
 using Windows.UI.Xaml;
-using VLC_WinRT.Model.Library;
-using VLC_WinRT.Commands.MediaLibrary;
+using VLC.Model.Library;
+using VLC.Commands.MediaLibrary;
 
-namespace VLC_WinRT.ViewModels.MusicVM
+namespace VLC.ViewModels.MusicVM
 {
     public class MusicLibraryVM : BindableBase
     {

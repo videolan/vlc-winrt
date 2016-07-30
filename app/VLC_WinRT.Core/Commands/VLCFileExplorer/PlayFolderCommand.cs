@@ -2,16 +2,16 @@
 using System.Collections.ObjectModel;
 using Windows.Storage;
 using System.Collections.Generic;
-using VLC_WinRT.Model;
-using VLC_WinRT.Helpers.MusicLibrary;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Utils;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model.FileExplorer;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Model.Stream;
+using VLC.Model;
+using VLC.Helpers.MusicLibrary;
+using VLC.Model.Video;
+using VLC.Utils;
+using VLC.Helpers;
+using VLC.Model.FileExplorer;
+using VLC.ViewModels;
+using VLC.Model.Stream;
 
-namespace VLC_WinRT.Commands.VLCFileExplorer
+namespace VLC.Commands.VLCFileExplorer
 {
     public class PlayFolderCommand : AlwaysExecutableCommand
     {

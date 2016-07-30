@@ -1,7 +1,7 @@
-﻿using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+﻿using VLC.Utils;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Commands.Navigation
+namespace VLC.Commands.Navigation
 {
     public class GoBackCommand : AlwaysExecutableCommand
     {

@@ -13,19 +13,19 @@
 */
 
 using Autofac;
-using VLC_WinRT.ViewModels.RemovableDevicesVM;
-using VLC_WinRT.ViewModels.Settings;
-using VLC_WinRT.ViewModels.MusicVM;
-using VLC_WinRT.ViewModels.VideoVM;
-using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.Utils;
+using VLC.ViewModels.RemovableDevicesVM;
+using VLC.ViewModels.Settings;
+using VLC.ViewModels.MusicVM;
+using VLC.ViewModels.VideoVM;
+using VLC.Services.RunTime;
+using VLC.Utils;
 using Slide2D;
-using VLC_WinRT.ViewModels.Others;
-using VLC_WinRT.Helpers.VideoLibrary;
-using VLC_WinRT.Helpers.MusicLibrary;
-using VLC_WinRT.Model.Library;
+using VLC.ViewModels.Others;
+using VLC.Helpers.VideoLibrary;
+using VLC.Helpers.MusicLibrary;
+using VLC.Model.Library;
 
-namespace VLC_WinRT.ViewModels
+namespace VLC.ViewModels
 {
     /// <summary>
     ///     This class contains static references to all the view models in the

@@ -9,9 +9,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.Graphics.Imaging;
 using System.Runtime.InteropServices.WindowsRuntime;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
     public class ImageHelper
     {

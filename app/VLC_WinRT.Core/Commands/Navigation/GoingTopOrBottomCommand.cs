@@ -1,9 +1,9 @@
 ﻿using ScrollWatcher;
-using VLC_WinRT.Model;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Model;
+using VLC.Utils;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Commands.Navigation
+namespace VLC.Commands.Navigation
 {
     public class ScrollDetectedCommand : AlwaysExecutableCommand
     {

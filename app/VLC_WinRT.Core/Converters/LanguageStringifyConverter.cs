@@ -1,9 +1,9 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
-using VLC_WinRT.Model;
-using VLC_WinRT.Utils;
+using VLC.Model;
+using VLC.Utils;
 
-namespace VLC_WinRT.Converters
+namespace VLC.Converters
 {
     public class LanguageStringifyConverter : IValueConverter
     {

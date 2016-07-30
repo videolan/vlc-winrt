@@ -3,11 +3,11 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.ViewModels;
+using VLC.Services.RunTime;
+using VLC.ViewModels;
 using Windows.UI.Xaml.Media;
 
-namespace VLC_WinRT.UI.Legacy.Views.MainPages
+namespace VLC.UI.Legacy.Views.MainPages
 {
     public sealed partial class MainPageNetwork : Page
     {

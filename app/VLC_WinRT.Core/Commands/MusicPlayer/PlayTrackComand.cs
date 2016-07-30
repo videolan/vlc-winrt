@@ -8,14 +8,14 @@
  **********************************************************************/
 
 using Windows.UI.Xaml.Controls;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Model;
-using VLC_WinRT.Utils;
-using VLC_WinRT.Helpers;
+using VLC.Model.Music;
+using VLC.ViewModels;
+using VLC.Model;
+using VLC.Utils;
+using VLC.Helpers;
 using System.Collections.Generic;
 
-namespace VLC_WinRT.Commands.MusicPlayer
+namespace VLC.Commands.MusicPlayer
 {
     public class TrackClickedCommand : AlwaysExecutableCommand
     {

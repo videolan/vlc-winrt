@@ -1,9 +1,9 @@
 ﻿using System;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 using Windows.UI.Xaml.Data;
-using VLC_WinRT.Model.FileExplorer;
+using VLC.Model.FileExplorer;
 
-namespace VLC_WinRT.Converters
+namespace VLC.Converters
 {
     public class RootFolderTypeToNameConverter : IValueConverter
     {

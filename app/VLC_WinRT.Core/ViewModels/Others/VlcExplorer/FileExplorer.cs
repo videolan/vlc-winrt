@@ -4,13 +4,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VLC_WinRT.Commands.VLCFileExplorer;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.FileExplorer;
-using VLC_WinRT.Utils;
+using VLC.Commands.VLCFileExplorer;
+using VLC.Model;
+using VLC.Model.FileExplorer;
+using VLC.Utils;
 using Windows.UI.Xaml;
 
-namespace VLC_WinRT.ViewModels.Others.VlcExplorer
+namespace VLC.ViewModels.Others.VlcExplorer
 {
     public abstract class FileExplorer : BindableBase
     {

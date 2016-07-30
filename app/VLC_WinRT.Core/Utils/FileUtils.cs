@@ -8,7 +8,7 @@ using Windows.Security.Cryptography.Core;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
-namespace VLC_WinRT.Utils
+namespace VLC.Utils
 {
     public static class FileUtils
     {

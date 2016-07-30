@@ -9,9 +9,9 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
+using VLC.MusicMetaFetcher.Models.MusicEntities;
 
-namespace VLC_WinRT.MusicMetaFetcher.Fetchers
+namespace VLC.MusicMetaFetcher.Fetchers
 {
     public interface IMusicMetaFetcher
     {

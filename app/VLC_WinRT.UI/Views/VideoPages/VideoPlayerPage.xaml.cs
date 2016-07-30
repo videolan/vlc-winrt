@@ -11,23 +11,23 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Foundation;
-using VLC_WinRT.ViewModels;
+using VLC.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using VLC_WinRT.Helpers;
+using VLC.Helpers;
 using Windows.Graphics.Display;
 using Windows.UI.Input;
 using Windows.UI.Popups;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.Utils;
+using VLC.Model.Video;
+using VLC.Services.RunTime;
+using VLC.Utils;
 using Windows.UI.Xaml.Controls.Primitives;
-using VLC_WinRT.Commands;
+using VLC.Commands;
 using System.Linq;
 
-namespace VLC_WinRT.Views.VideoPages
+namespace VLC.Views.VideoPages
 {
     public sealed partial class VideoPlayerPage : Page
     {

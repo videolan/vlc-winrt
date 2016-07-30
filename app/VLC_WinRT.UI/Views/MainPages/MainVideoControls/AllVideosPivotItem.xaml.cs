@@ -1,10 +1,10 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.ViewModels;
+using VLC.Model.Video;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Views.MainPages.MainVideoControls
+namespace VLC.Views.MainPages.MainVideoControls
 {
     public sealed partial class AllVideosPivotItem : Page
     {

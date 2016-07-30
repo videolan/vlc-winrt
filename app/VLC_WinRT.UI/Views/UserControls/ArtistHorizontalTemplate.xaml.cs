@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Model.Music;
+using VLC.Utils;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Views.UserControls
+namespace VLC.Views.UserControls
 {
     public sealed partial class ArtistHorizontalTemplate : UserControl
     {

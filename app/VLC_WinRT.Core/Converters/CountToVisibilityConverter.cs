@@ -11,7 +11,7 @@ using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace VLC_WinRT.Converters
+namespace VLC.Converters
 {
     public class CountToVisibilityConverter : IValueConverter
     {

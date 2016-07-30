@@ -1,5 +1,5 @@
 ﻿using Windows.UI.Xaml.Controls;
-namespace VLC_WinRT.Views.UserControls.Flyouts
+namespace VLC.Views.UserControls.Flyouts
 {
     public sealed partial class AlbumMenuFlyout : MenuFlyout
     {

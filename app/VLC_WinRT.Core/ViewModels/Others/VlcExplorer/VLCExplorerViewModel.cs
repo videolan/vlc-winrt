@@ -12,20 +12,20 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.Storage;
-using VLC_WinRT.Commands.VLCFileExplorer;
-using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.ViewModels.Others.VlcExplorer;
+using VLC.Commands.VLCFileExplorer;
+using VLC.Services.RunTime;
+using VLC.ViewModels.Others.VlcExplorer;
 using System.Threading.Tasks;
 using Autofac;
-using VLC_WinRT.Utils;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model.FileExplorer;
+using VLC.Utils;
+using VLC.Helpers;
+using VLC.Model.FileExplorer;
 using Windows.UI.Core;
 using Windows.Devices.Portable;
 using Windows.UI.Xaml;
 using System.Diagnostics;
 
-namespace VLC_WinRT.ViewModels.RemovableDevicesVM
+namespace VLC.ViewModels.RemovableDevicesVM
 {
     public class VLCExplorerViewModel : BindableBase
     {

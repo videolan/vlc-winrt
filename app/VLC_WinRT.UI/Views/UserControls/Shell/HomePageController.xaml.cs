@@ -1,14 +1,14 @@
 ﻿using System.Threading.Tasks;
-using VLC_WinRT.Model;
-using VLC_WinRT.UI.Legacy.Views.MainPages;
-using VLC_WinRT.UI.Legacy.Views.UserControls.Shell;
-using VLC_WinRT.UI.Legacy.Views.VariousPages;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Views.MainPages;
+using VLC.Model;
+using VLC.UI.Legacy.Views.MainPages;
+using VLC.UI.Legacy.Views.UserControls.Shell;
+using VLC.UI.Legacy.Views.VariousPages;
+using VLC.Utils;
+using VLC.ViewModels;
+using VLC.Views.MainPages;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC_WinRT.Views.UserControls
+namespace VLC.Views.UserControls
 {
     public sealed partial class HomePageController : UserControl
     {

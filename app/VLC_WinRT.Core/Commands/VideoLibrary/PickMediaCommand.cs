@@ -10,14 +10,14 @@
 using System;
 using System.Windows.Input;
 using Windows.Storage.Pickers;
-using VLC_WinRT.Model;
+using VLC.Model;
 using System.Collections.Generic;
 using Windows.Storage;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Utils;
+using VLC.Helpers;
+using VLC.ViewModels;
+using VLC.Utils;
 
-namespace VLC_WinRT.Commands.VideoLibrary
+namespace VLC.Commands.VideoLibrary
 {
     public class PickMediaCommand : AlwaysExecutableCommand
     {

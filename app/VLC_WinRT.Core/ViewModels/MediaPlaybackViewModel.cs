@@ -14,29 +14,29 @@ using System.Diagnostics;
 using Windows.Storage;
 using System;
 using Windows.UI.Core;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
-using VLC_WinRT.Services.Interface;
-using VLC_WinRT.Commands.MediaPlayback;
+using VLC.Helpers;
+using VLC.Model;
+using VLC.Services.Interface;
+using VLC.Commands.MediaPlayback;
 using System.Threading.Tasks;
 using Windows.Storage.Streams;
 using Autofac;
-using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.ViewModels.MusicVM;
+using VLC.Services.RunTime;
+using VLC.ViewModels.MusicVM;
 using libVLCX;
-using VLC_WinRT.Utils;
-using VLC_WinRT.Commands.VideoPlayer;
-using VLC_WinRT.Commands.VideoLibrary;
+using VLC.Utils;
+using VLC.Commands.VideoPlayer;
+using VLC.Commands.VideoLibrary;
 using System.Linq;
-using VLC_WinRT.Helpers.UIHelpers;
-using VLC_WinRT.Commands.MusicPlayer;
-using VLC_WinRT.MediaMetaFetcher.Fetchers;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Model.Stream;
+using VLC.Helpers.UIHelpers;
+using VLC.Commands.MusicPlayer;
+using VLC.MediaMetaFetcher.Fetchers;
+using VLC.Model.Video;
+using VLC.Model.Stream;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 
-namespace VLC_WinRT.ViewModels
+namespace VLC.ViewModels
 {
     public sealed class MediaPlaybackViewModel : BindableBase, IDisposable
     {

@@ -2,7 +2,7 @@
 using System;
 using Windows.Storage;
 
-namespace VLC_WinRT.Model
+namespace VLC.Model
 {
     public interface IMediaItem
     {

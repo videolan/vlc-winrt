@@ -12,25 +12,25 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using SQLite;
-using VLC_WinRT.Commands.MusicPlayer;
-using VLC_WinRT.Model.Music;
+using VLC.Commands.MusicPlayer;
+using VLC.Model.Music;
 using System.Collections.Generic;
 using System.Linq;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Utils;
+using VLC.Helpers;
+using VLC.Model;
+using VLC.Model.Video;
+using VLC.Utils;
 using System.Diagnostics;
-using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.Model.Stream;
-using VLC_WinRT.Services.Interface;
+using VLC.Services.RunTime;
+using VLC.Model.Stream;
+using VLC.Services.Interface;
 using Windows.Storage;
 using System.IO;
 using libVLCX;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Database;
+using VLC.ViewModels;
+using VLC.Database;
 
-namespace VLC_WinRT.Services.RunTime
+namespace VLC.Services.RunTime
 {
     public class PlaybackService
     {

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
-using VLC_WinRT.MediaMetaFetcher.Fetchers;
+using VLC.MediaMetaFetcher.Fetchers;
 using System.Diagnostics;
-using VLC_WinRT.Model.Video;
+using VLC.Model.Video;
 
-namespace VLC_WinRT.MediaMetaFetcher
+namespace VLC.MediaMetaFetcher
 {
     public class VideoMDFetcher
     {

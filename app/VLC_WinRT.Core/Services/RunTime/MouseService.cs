@@ -11,12 +11,12 @@ using System;
 using Windows.Devices.Input;
 using Windows.Foundation;
 using Windows.UI.Xaml;
-using VLC_WinRT.Model;
-using VLC_WinRT.ViewModels;
+using VLC.Model;
+using VLC.ViewModels;
 using Windows.UI.Core;
-using VLC_WinRT.Helpers;
+using VLC.Helpers;
 
-namespace VLC_WinRT.Services.RunTime
+namespace VLC.Services.RunTime
 {
     public class MouseService
     {

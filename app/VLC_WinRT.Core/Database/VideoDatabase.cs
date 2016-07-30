@@ -6,10 +6,10 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Utils;
+using VLC.Model.Video;
+using VLC.Utils;
 
-namespace VLC_WinRT.Database
+namespace VLC.Database
 {
     public class VideoRepository : IDatabase
     {

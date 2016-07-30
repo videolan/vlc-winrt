@@ -4,10 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Music;
+using VLC.Model;
+using VLC.Model.Music;
 
-namespace VLC_WinRT.Utils
+namespace VLC.Utils
 {
     public static class Extensions
     {

@@ -12,22 +12,22 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using SQLite;
-using VLC_WinRT.Commands;
-using VLC_WinRT.Database;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Helpers.VideoLibrary;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Utils;
-using VLC_WinRT.Commands.VideoPlayer;
-using VLC_WinRT.Commands.VideoLibrary;
+using VLC.Commands;
+using VLC.Database;
+using VLC.Helpers;
+using VLC.Helpers.VideoLibrary;
+using VLC.Model;
+using VLC.Model.Video;
+using VLC.Utils;
+using VLC.Commands.VideoPlayer;
+using VLC.Commands.VideoLibrary;
 using System.Collections.Generic;
 using Autofac;
 using System.Linq;
-using VLC_WinRT.Model.Library;
+using VLC.Model.Library;
 using Windows.UI.Xaml;
 
-namespace VLC_WinRT.ViewModels.VideoVM
+namespace VLC.ViewModels.VideoVM
 {
     public class VideoLibraryVM : BindableBase
     {

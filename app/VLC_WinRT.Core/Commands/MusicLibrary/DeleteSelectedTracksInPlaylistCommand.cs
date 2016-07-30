@@ -1,11 +1,11 @@
 ﻿using System;
 using Windows.UI.Core;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Helpers;
+using VLC.Model.Music;
+using VLC.Utils;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Commands.MusicLibrary
+namespace VLC.Commands.MusicLibrary
 {
     public class DeleteSelectedTracksInPlaylistCommand : AlwaysExecutableCommand
     {

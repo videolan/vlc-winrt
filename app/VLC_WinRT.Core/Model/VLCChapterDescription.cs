@@ -1,7 +1,7 @@
 ﻿using libVLCX;
 using System;
 
-namespace VLC_WinRT.Model
+namespace VLC.Model
 {
     public class VLCChapterDescription
     {

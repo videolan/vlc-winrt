@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using libVLCX;
-using VLC_WinRT.UI.UWP.Views.UserControls.Shell;
+using VLC.UI.UWP.Views.UserControls.Shell;
 using System.Threading.Tasks;
 using System.Threading;
 
-namespace VLC_WinRT.Helpers.UIHelpers
+namespace VLC.Helpers.UIHelpers
 {
     public static class DialogHelper
     {

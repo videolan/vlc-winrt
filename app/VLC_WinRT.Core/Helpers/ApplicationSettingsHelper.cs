@@ -11,7 +11,7 @@ using System;
 using System.Diagnostics;
 using Windows.Storage;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
     static class ApplicationSettingsHelper
     {

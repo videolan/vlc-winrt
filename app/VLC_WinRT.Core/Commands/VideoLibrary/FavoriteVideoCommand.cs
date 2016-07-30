@@ -7,10 +7,10 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Utils;
+using VLC.Model.Video;
+using VLC.Utils;
 
-namespace VLC_WinRT.Commands.VideoLibrary
+namespace VLC.Commands.VideoLibrary
 {
     public class FavoriteVideoCommand : AlwaysExecutableCommand
     {

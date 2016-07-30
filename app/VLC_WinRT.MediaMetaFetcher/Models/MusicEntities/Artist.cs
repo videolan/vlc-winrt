@@ -12,11 +12,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Windows.ApplicationModel.Resources;
-using VLC_WinRT.MusicMetaFetcher.Models.LastFm;
-using Image = VLC_WinRT.MediaMetaFetcher.Models.SharedEntities.Image;
-using VLC_WinRT.Utils;
+using VLC.MusicMetaFetcher.Models.LastFm;
+using Image = VLC.MediaMetaFetcher.Models.SharedEntities.Image;
+using VLC.Utils;
 
-namespace VLC_WinRT.MusicMetaFetcher.Models.MusicEntities
+namespace VLC.MusicMetaFetcher.Models.MusicEntities
 {
     public class Artist
     {

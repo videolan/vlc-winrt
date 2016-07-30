@@ -12,14 +12,14 @@ using Windows.UI.Notifications;
 using Windows.UI.Popups;
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
-using VLC_WinRT.Model;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Utils;
+using VLC.Model;
+using VLC.ViewModels;
+using VLC.Utils;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using NotificationsExtensions.Tiles;
 
-namespace VLC_WinRT.Helpers
+namespace VLC.Helpers
 {
     public class TileHelper
     {

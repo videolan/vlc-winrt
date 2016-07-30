@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace VLC_WinRT.Database
+namespace VLC.Database
 {
     public static class MusicDatabase
     {

@@ -1,8 +1,8 @@
 ﻿using System;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Utils;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Commands.MediaLibrary
+namespace VLC.Commands.MediaLibrary
 {
     public class IndexMediaLibraryCommand : AlwaysExecutableCommand
     {

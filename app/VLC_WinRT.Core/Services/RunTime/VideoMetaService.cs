@@ -4,14 +4,14 @@ using System.IO.Compression;
 using System.Text;
 using System.Xml.Linq;
 using System.Threading.Tasks;
-using VLC_WinRT.MediaMetaFetcher;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.MediaMetaFetcher;
+using VLC.Model.Video;
+using VLC.Utils;
+using VLC.ViewModels;
 using Windows.Storage;
 using System.Linq;
 
-namespace VLC_WinRT.Services.RunTime
+namespace VLC.Services.RunTime
 {
     public sealed class VideoMetaService
     {

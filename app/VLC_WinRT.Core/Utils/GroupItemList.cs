@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace VLC_WinRT.Utils
+namespace VLC.Utils
 {
     public class GroupItemList<T> : SmartCollection<T>
     {

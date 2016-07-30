@@ -4,10 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.ViewModels;
+using VLC.Model.Music;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Helpers.MusicLibrary
+namespace VLC.Helpers.MusicLibrary
 {
     public class MusicFlow
     {

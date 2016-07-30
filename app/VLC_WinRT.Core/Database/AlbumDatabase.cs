@@ -4,12 +4,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using SQLite;
-using VLC_WinRT.Model.Music;
+using VLC.Model.Music;
 using System.Collections.Generic;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+using VLC.Utils;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Database
+namespace VLC.Database
 {
     public class AlbumDatabase : IDatabase
     {

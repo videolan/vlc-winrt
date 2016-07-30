@@ -7,13 +7,13 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.MusicVM;
-using VLC_WinRT.Model;
+using VLC.Model.Music;
+using VLC.Utils;
+using VLC.ViewModels;
+using VLC.ViewModels.MusicVM;
+using VLC.Model;
 
-namespace VLC_WinRT.Views.UserControls
+namespace VLC.Views.UserControls
 {
     public sealed partial class TrackItemTemplateDetailed : UserControl
     {

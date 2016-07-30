@@ -3,17 +3,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
 using SQLite;
-using VLC_WinRT.Commands.MusicLibrary;
-using VLC_WinRT.Commands.MusicPlayer;
-using VLC_WinRT.Utils;
+using VLC.Commands.MusicLibrary;
+using VLC.Commands.MusicPlayer;
+using VLC.Utils;
 using Windows.Storage.AccessCache;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
 using libVLCX;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.ViewModels;
+using VLC.Helpers;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Model.Music
+namespace VLC.Model.Music
 {
     public class TrackItem : BindableBase, IMediaItem
     {

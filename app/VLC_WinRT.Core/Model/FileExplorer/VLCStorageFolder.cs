@@ -5,13 +5,13 @@ using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Core;
 using SQLite;
-using VLC_WinRT.Model.FileExplorer;
+using VLC.Model.FileExplorer;
 using Windows.UI.Xaml.Media.Imaging;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 using WinRTXamlToolkit.IO.Extensions;
 using libVLCX;
 
-namespace VLC_WinRT.Model
+namespace VLC.Model
 {
     public class VLCStorageFolder : BindableBase, IVLCStorageItem
     {

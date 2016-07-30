@@ -10,23 +10,23 @@
 using System;
 using System.Threading.Tasks;
 using Windows.Storage.AccessCache;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
-using VLC_WinRT.Services.Interface;
+using VLC.Helpers;
+using VLC.Model;
+using VLC.Services.Interface;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Model.Stream;
+using VLC.Model.Music;
+using VLC.Model.Stream;
 using libVLCX;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 using MediaPlayer = libVLCX.MediaPlayer;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Helpers.UIHelpers;
+using VLC.ViewModels;
+using VLC.Helpers.UIHelpers;
 
-namespace VLC_WinRT.Services.RunTime
+namespace VLC.Services.RunTime
 {
     public sealed class VLCService : IMediaService
     {

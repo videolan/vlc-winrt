@@ -6,7 +6,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using WinRTXamlToolkit.Common;
 
-namespace VLC_WinRT.Helpers.StateTriggers
+namespace VLC.Helpers.StateTriggers
 {
     public class AdaptativeAndValuesStateTrigger : StateTriggerBase
     {

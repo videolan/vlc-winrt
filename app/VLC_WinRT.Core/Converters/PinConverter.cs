@@ -2,9 +2,9 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 
-namespace VLC_WinRT.Converters
+namespace VLC.Converters
 {
     public class PinConverter : IValueConverter
     {

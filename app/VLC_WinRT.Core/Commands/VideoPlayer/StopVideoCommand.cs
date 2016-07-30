@@ -8,11 +8,11 @@
  **********************************************************************/
 
 using System;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Model;
-using VLC_WinRT.Utils;
+using VLC.ViewModels;
+using VLC.Model;
+using VLC.Utils;
 
-namespace VLC_WinRT.Commands.VideoPlayer
+namespace VLC.Commands.VideoPlayer
 {
     public class StopVideoCommand : AlwaysExecutableCommand
     {

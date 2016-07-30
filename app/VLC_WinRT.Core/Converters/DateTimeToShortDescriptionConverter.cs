@@ -2,7 +2,7 @@
 using System.Globalization;
 using Windows.UI.Xaml.Data;
 
-namespace VLC_WinRT.Converters
+namespace VLC.Converters
 {
     public class DateTimeToDayOfMonthConverter : IValueConverter
     {

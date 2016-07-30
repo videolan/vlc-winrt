@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Threading.Tasks;
 using SQLite;
-using VLC_WinRT.Model.Music;
+using VLC.Model.Music;
 using System.Collections.Generic;
-using VLC_WinRT.Utils;
+using VLC.Utils;
 using System.Linq.Expressions;
 using System;
 
-namespace VLC_WinRT.Database
+namespace VLC.Database
 {
     public class ArtistDatabase : IDatabase
     {

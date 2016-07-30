@@ -1,10 +1,10 @@
 ﻿using Windows.UI.Xaml.Controls;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.MusicVM;
-using VLC_WinRT.Model;
-using VLC_WinRT.Utils;
+using VLC.ViewModels;
+using VLC.ViewModels.MusicVM;
+using VLC.Model;
+using VLC.Utils;
 
-namespace VLC_WinRT.Commands.MusicPlayer
+namespace VLC.Commands.MusicPlayer
 {
     public class TrackCollectionClickedCommand : AlwaysExecutableCommand
     {

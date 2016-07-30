@@ -11,17 +11,17 @@ using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Core;
 using Autofac;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.MusicVM;
+using VLC.Model;
+using VLC.Model.Music;
+using VLC.Services.RunTime;
+using VLC.ViewModels;
+using VLC.ViewModels.MusicVM;
 using WinRTXamlToolkit.IO.Extensions;
 using Windows.Storage.Search;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
-using VLC_WinRT.Utils;
-using VLC_WinRT.Views.MusicPages.PlaylistControls;
+using VLC.Utils;
+using VLC.Views.MusicPages.PlaylistControls;
 using WinRTXamlToolkit.Controls.Extensions;
 using System.Collections.Generic;
 using libVLCX;
@@ -29,9 +29,9 @@ using System.Collections;
 using System.Linq.Expressions;
 using System.Reflection;
 using Windows.Foundation;
-using VLC_WinRT.Database;
+using VLC.Database;
 
-namespace VLC_WinRT.Helpers.MusicLibrary
+namespace VLC.Helpers.MusicLibrary
 {
     public class MusicLibrary
     {

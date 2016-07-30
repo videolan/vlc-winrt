@@ -1,8 +1,8 @@
 ﻿using System;
 using Windows.Networking.Connectivity;
-using VLC_WinRT.Model.Events;
+using VLC.Model.Events;
 
-namespace VLC_WinRT.Services.RunTime
+namespace VLC.Services.RunTime
 {
     class NetworkListenerService
     {

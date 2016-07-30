@@ -1,8 +1,8 @@
-﻿using VLC_WinRT.Helpers;
-using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
+﻿using VLC.Helpers;
+using VLC.Utils;
+using VLC.ViewModels;
 
-namespace VLC_WinRT.Commands.VideoPlayer
+namespace VLC.Commands.VideoPlayer
 {
     public class SurfaceZoomToggleCommand : AlwaysExecutableCommand
     {

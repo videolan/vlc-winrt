@@ -12,18 +12,18 @@ using Windows.Storage.Search;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
 using Autofac;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Video;
-using VLC_WinRT.ViewModels;
+using VLC.Model;
+using VLC.Model.Video;
+using VLC.ViewModels;
 using WinRTXamlToolkit.IO.Extensions;
-using VLC_WinRT.Database;
-using VLC_WinRT.Services.Interface;
-using VLC_WinRT.Utils;
-using VLC_WinRT.Model.Music;
+using VLC.Database;
+using VLC.Services.Interface;
+using VLC.Utils;
+using VLC.Model.Music;
 using Windows.UI.Xaml;
 using System.Linq.Expressions;
 
-namespace VLC_WinRT.Helpers.VideoLibrary
+namespace VLC.Helpers.VideoLibrary
 {
     public class VideoLibrary
     {

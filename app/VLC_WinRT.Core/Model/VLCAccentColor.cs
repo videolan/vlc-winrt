@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Windows.UI;
 
-namespace VLC_WinRT.Model
+namespace VLC.Model
 {
     public class VLCAccentColor
     {

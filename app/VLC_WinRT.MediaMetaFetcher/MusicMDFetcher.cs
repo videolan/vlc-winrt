@@ -14,10 +14,10 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
-using VLC_WinRT.MusicMetaFetcher.Fetchers;
-using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
+using VLC.MusicMetaFetcher.Fetchers;
+using VLC.MusicMetaFetcher.Models.MusicEntities;
 
-namespace VLC_WinRT.MusicMetaFetcher
+namespace VLC.MusicMetaFetcher
 {
     public class MusicMDFetcher
     {
