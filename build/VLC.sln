@@ -4,17 +4,17 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VLC", "VLC", "{492C16E2-63FB-49B4-843A-095DB095F15D}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC.Core", "..\app\VLC_WinRT.Core\VLC.Core.shproj", "{DB1DEA15-00B8-4707-8C70-53431C4FA754}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC.Core", "..\app\VLC.Core\VLC.Core.shproj", "{DB1DEA15-00B8-4707-8C70-53431C4FA754}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC.MediaMetaFetcher", "..\app\VLC_WinRT.MediaMetaFetcher\VLC.MediaMetaFetcher.shproj", "{C3F84118-8E3D-4B19-A300-9CB6F7AE0E87}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC.MediaMetaFetcher", "..\app\VLC.MediaMetaFetcher\VLC.MediaMetaFetcher.shproj", "{C3F84118-8E3D-4B19-A300-9CB6F7AE0E87}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC.SplitShell", "..\app\VLC_WinRT.SplitShell\VLC.SplitShell.shproj", "{ADCB4C5D-450D-40F5-B60A-9DD96FF17DD6}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC.SplitShell", "..\app\VLC.SplitShell\VLC.SplitShell.shproj", "{ADCB4C5D-450D-40F5-B60A-9DD96FF17DD6}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC.UI", "..\app\VLC_WinRT.UI\VLC.UI.shproj", "{D499D5A2-B899-4664-94E8-65C8114582DE}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC.UI", "..\app\VLC.UI\VLC.UI.shproj", "{D499D5A2-B899-4664-94E8-65C8114582DE}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC.Slideshow", "..\app\VLC_WinRT.Slideshow\VLC.Slideshow.shproj", "{AD0C8B4F-7A03-42CC-B8DA-BF8D50DF822B}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC.Slideshow", "..\app\VLC.Slideshow\VLC.Slideshow.shproj", "{AD0C8B4F-7A03-42CC-B8DA-BF8D50DF822B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC.Universal", "..\app\VLC_WinRT.Universal\VLC.Universal.csproj", "{7B5C5B10-85F4-491A-94FA-755D253FF609}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC.Universal", "..\app\VLC.Universal\VLC.Universal.csproj", "{7B5C5B10-85F4-491A-94FA-755D253FF609}"
 	ProjectSection(ProjectDependencies) = postProject
 		{CC3931B9-6065-4A55-A444-5B5E9DE3DA44} = {CC3931B9-6065-4A55-A444-5B5E9DE3DA44}
 	EndProjectSection
