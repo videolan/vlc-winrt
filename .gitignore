@@ -44,13 +44,11 @@ build/VLC_WINRT.sln.DotSettings
 build/ui/plugins/access/libaccess_winrt_plugin.dll
 build/ui/plugins/video_output/libdirect2d_winrt_plugin.dll
 build/ui/plugins/audio_output/libxaudio2_winrt_plugin.dll
-universal/VLC_WinRT.Windows/BundleArtifacts
-universal/VLC_WinRT.Windows/Package.StoreAssociation.xml
-universal/VLC_WinRT.WindowsPhone/ApplicationInsights.config
-universal/VLC_WinRT.WindowsPhone/BundleArtifacts
-universal/VLC_WinRT.WindowsPhone/Package.StoreAssociation.xml
+universal/VLC.Universal/BundleArtifacts
+universal/VLC.Universal/Package.StoreAssociation.xml
+universal/VLC.Universal/ApplicationInsights.config
 universal/packages/
-
+build/VLC.VC.db
 
 # VLC files
 vlc/plugins/
