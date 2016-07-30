@@ -27,7 +27,6 @@ using libVLCX;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Commands.VideoPlayer;
 using VLC_WinRT.Commands.VideoLibrary;
-using VLC_WinRT.SharedBackground.Database;
 using System.Linq;
 using VLC_WinRT.Helpers.UIHelpers;
 using VLC_WinRT.Commands.MusicPlayer;

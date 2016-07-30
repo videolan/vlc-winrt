@@ -25,7 +25,6 @@ using Windows.Storage.AccessCache;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Media;
-using VLC_WinRT.BackgroundHelpers;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Controls;
 using VLC_WinRT.Views.UserControls;
@@ -48,7 +47,6 @@ namespace VLC_WinRT
         public static OpenFilePickerReason OpenFilePickerReason = OpenFilePickerReason.Null;
         public static Model.Music.AlbumItem SelectedAlbumItem;
         public static IContainer Container;
-        public static BackgroundAudioHelper BackgroundAudioHelper = new BackgroundAudioHelper();
         
         public App()
         {

@@ -13,16 +13,14 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using VLC_WinRT.BackgroundAudioPlayer.Model;
-using VLC_WinRT.BackgroundHelpers;
 using VLC_WinRT.Commands.MediaPlayback;
 using VLC_WinRT.Commands.MusicPlayer;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
-using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
 using VLC_WinRT.Utils;
 using System.Linq;
+using VLC_WinRT.Helpers.MusicPlayer;
 
 namespace VLC_WinRT.ViewModels.MusicVM
 {

@@ -12,9 +12,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)BackgroundHelpers\BackgroundAudioConstants.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BackgroundHelpers\BackgroundAudioHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BackgroundHelpers\BackgroundTaskTools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ActionCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ClearHistoryCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaLibrary\IndexMediaLibraryCommand.cs" />
@@ -122,6 +119,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\VLCSurfaceZoomStringifyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\AlbumDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\ArtistDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\BackgroundTrackDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\IDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\KeyboardActionDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\MusicDatabase.cs" />
@@ -142,6 +140,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MemoryUsageHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicFlow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicLibraryManagement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicPlayer\LastFMScrobbler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\OSHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SearchHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StateTriggers\AdaptativeAndValuesStateTrigger.cs" />

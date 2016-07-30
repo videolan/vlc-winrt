@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Foundation;
 
-namespace VLC_WinRT.SharedBackground.Helpers.MusicPlayer
+namespace VLC_WinRT.Helpers.MusicPlayer
 {
     public sealed class LastFMScrobbler
     {

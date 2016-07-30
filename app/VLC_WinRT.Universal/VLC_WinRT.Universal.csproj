@@ -901,10 +901,6 @@
       <Project>{dc8bbfae-5203-44be-9a7c-b3273038d676}</Project>
       <Name>libVLCX.UWP</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VLC_WinRT.ShareBackground\VLC_WinRT.ShareBackground.csproj">
-      <Project>{B1E774A5-87A6-4D23-BEC1-AD157333F69F}</Project>
-      <Name>VLC_WinRT.ShareBackground</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="..\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems" Label="Shared" />
@@ -912,7 +908,6 @@
   <Import Project="..\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.UI.Shared\VLC_WinRT.UI.Legacy.projitems" Label="Shared" />
-  <Import Project="..\VLC_WinRT.UI.UWP\VLC_WinRT.UI.UWP.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

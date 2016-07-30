@@ -2,7 +2,7 @@
 using System.Linq;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
-using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
+using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using Windows.System;

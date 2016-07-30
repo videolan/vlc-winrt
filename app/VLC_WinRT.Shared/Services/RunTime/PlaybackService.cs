@@ -16,8 +16,6 @@ using VLC_WinRT.Commands.MusicPlayer;
 using VLC_WinRT.Model.Music;
 using System.Collections.Generic;
 using System.Linq;
-using VLC_WinRT.BackgroundHelpers;
-using VLC_WinRT.BackgroundAudioPlayer.Model;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Video;
@@ -29,8 +27,8 @@ using VLC_WinRT.Services.Interface;
 using Windows.Storage;
 using System.IO;
 using libVLCX;
-using VLC_WinRT.SharedBackground.Database;
 using VLC_WinRT.ViewModels;
+using VLC_WinRT.Database;
 
 namespace VLC_WinRT.Services.RunTime
 {
@@ -128,7 +126,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public async Task ResetCollection()
         {
-            await App.BackgroundAudioHelper.ResetCollection(ResetType.NormalReset);
+            await Locator.MediaPlaybackViewModel.PlaybackService.BackgroundTrackRepository.Clear();
             Playlist.Clear();
             CurrentMedia = -1;
             NonShuffledPlaylist?.Clear();
@@ -180,8 +178,7 @@ namespace VLC_WinRT.Services.RunTime
 
                 Playlist.AddRange(mediaItems);
 
-                var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems);
-                await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
+                await Locator.MediaPlaybackViewModel.PlaybackService.BackgroundTrackRepository.Add(trackItems);
 
                 IsRunning = true;
             }
@@ -209,7 +206,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             try
             {
-                var playlist = BackgroundTrackRepository.LoadPlaylist();
+                var playlist = await BackgroundTrackRepository.LoadPlaylist();
                 if (!playlist.Any())
                 {
                     return;
@@ -224,16 +221,16 @@ namespace VLC_WinRT.Services.RunTime
                         restoredplaylist.Add(trackItem);
                 }
 
-                if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack))
+                if (!ApplicationSettingsHelper.Contains(nameof(CurrentMedia)))
                     return;
-                var index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+                var index = (int)ApplicationSettingsHelper.ReadSettingsValue(nameof(CurrentMedia));
                 if (restoredplaylist.Any())
                 {
                     if (index == -1)
                     {
                         // Background Audio was terminated
                         // We need to reset the playlist, or set the current track 0.
-                        ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, 0);
+                        ApplicationSettingsHelper.SaveSettingsValue(nameof(CurrentMedia), 0);
                         index = 0;
                     }
                     SetCurrentMediaPosition(index);
@@ -303,7 +300,7 @@ namespace VLC_WinRT.Services.RunTime
 
                 await InitializePlayback(track, autoPlay);
 
-                ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, CurrentMedia);
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(CurrentMedia), CurrentMedia);
             }
             else if (media is StreamMedia)
             {

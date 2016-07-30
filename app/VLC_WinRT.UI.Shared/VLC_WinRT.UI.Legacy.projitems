@@ -12,7 +12,7 @@
     <Page Include="$(MSBuildThisFileDirectory)Resources\Colors.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Resources\CommonStyles.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Resources\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -86,6 +86,9 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\AlbumCollectionBase.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\ArtistCollectionBase.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicPanesControls\AlbumsCollectionButtons.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -101,7 +104,15 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\AlbumPageControls\MainAlbumHeader.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPageControls\ArtistAlbumsSemanticView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPageControls\ArtistInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPageControls\ArtistPageBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -118,6 +129,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicPlayerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicPlaylistPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -128,6 +142,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\TagEditorPages\TrackEditorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,6 +167,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\MusicControls\Equalizer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\VLCDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\VLCPivot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -214,14 +240,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\MenuDropdown.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\TopBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\ShowItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -246,12 +264,20 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\VLCLogoWithGradient.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\VariousPages\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\VariousPages\FeedbackPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\VariousPages\LicensePage.xaml">
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\VariousPages\SearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\VariousPages\SpecialThanks.xaml">
       <SubType>Designer</SubType>
@@ -313,6 +339,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\AlbumCollectionBase.xaml.cs">
       <DependentUpon>AlbumCollectionBase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\ArtistCollectionBase.xaml.cs">
+      <DependentUpon>ArtistCollectionBase.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicPanesControls\AlbumsCollectionButtons.xaml.cs">
       <DependentUpon>AlbumsCollectionButtons.xaml</DependentUpon>
     </Compile>
@@ -328,8 +357,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\AlbumPageControls\MainAlbumHeader.xaml.cs">
       <DependentUpon>MainAlbumHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPageControls\ArtistAlbumsSemanticView.xaml.cs">
+      <DependentUpon>ArtistAlbumsSemanticView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPageControls\ArtistInfoControl.xaml.cs">
       <DependentUpon>ArtistInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPageControls\ArtistPageBase.xaml.cs">
+      <DependentUpon>ArtistPageBase.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPageControls\MainArtistHeader.xaml.cs">
       <DependentUpon>MainArtistHeader.xaml</DependentUpon>
@@ -343,6 +378,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MiniPlayerWindow.xaml.cs">
       <DependentUpon>MiniPlayerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicPlayerPage.xaml.cs">
+      <DependentUpon>MusicPlayerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicPlaylistPage.xaml.cs">
       <DependentUpon>MusicPlaylistPage.xaml</DependentUpon>
     </Compile>
@@ -355,6 +393,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\TagEditorPages\TrackEditorPage.xaml.cs">
       <DependentUpon>TrackEditorPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\AlbumItem.xaml.cs">
       <DependentUpon>AlbumItem.xaml</DependentUpon>
     </Compile>
@@ -364,6 +405,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\ArtistHorizontalTemplate.xaml.cs">
       <DependentUpon>ArtistHorizontalTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\BackDrop.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\BufferingControl.xaml.cs">
       <DependentUpon>BufferingControl.xaml</DependentUpon>
     </Compile>
@@ -372,6 +414,12 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\MusicControls\Equalizer.xaml.cs">
       <DependentUpon>Equalizer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\VLCDialog.xaml.cs">
+      <DependentUpon>VLCDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\VLCPivot.xaml.cs">
+      <DependentUpon>VLCPivot.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\VideoItem.xaml.cs">
       <DependentUpon>VideoItem.xaml</DependentUpon>
@@ -433,12 +481,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\HomePageController.xaml.cs">
       <DependentUpon>HomePageController.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\MenuDropdown.xaml.cs">
-      <DependentUpon>MenuDropdown.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Shell\TopBar.xaml.cs">
-      <DependentUpon>TopBar.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\ShowItem.xaml.cs">
       <DependentUpon>ShowItem.xaml</DependentUpon>
     </Compile>
@@ -460,11 +502,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\VLCLogoWithGradient.xaml.cs">
       <DependentUpon>VLCLogoWithGradient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VariousPages\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\VariousPages\FeedbackPage.xaml.cs">
       <DependentUpon>FeedbackPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\VariousPages\LicensePage.xaml.cs">
       <DependentUpon>LicensePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VariousPages\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\VariousPages\SpecialThanks.xaml.cs">
       <DependentUpon>SpecialThanks.xaml</DependentUpon>

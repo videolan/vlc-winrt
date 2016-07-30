@@ -22,7 +22,7 @@
                 <RowDefinition Height="40" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Style="{StaticResource BaselineTextStyle}"
+            <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
                        Foreground="{ThemeResource BasicForeground}"
                        VerticalAlignment="Center"
                        Margin="0,-12,0,0">
