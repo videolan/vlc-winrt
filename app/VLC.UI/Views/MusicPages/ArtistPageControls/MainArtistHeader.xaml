@@ -20,24 +20,23 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <Image Grid.ColumnSpan="6"
+        <Image x:Name="BackgroundImage"
+               Grid.ColumnSpan="6"
                Source="{Binding CurrentArtist.ArtistImage}"
                Opacity="0.5"
                Stretch="UniformToFill"
                VerticalAlignment="Center" />
-        <AppBarButton x:Name="BackButton"
-                      Grid.Column="1"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      FontSize="20"
-                      VerticalAlignment="Center"
-                      HorizontalAlignment="Stretch"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-                      Command="{Binding GoBackCommand}">
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
-                          FontFamily="{StaticResource VLCFont}" />
-            </AppBarButton.Icon>
-        </AppBarButton>
+
+        <Ellipse Grid.Column="1"
+                 Width="120"
+                 Height="120"
+                 VerticalAlignment="Bottom"
+                 Margin="{StaticResource FrameMarginBottom}">
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="{Binding CurrentArtist.ArtistImage}"
+                            Stretch="UniformToFill"/>
+            </Ellipse.Fill>
+        </Ellipse>
 
         <TextBlock Grid.Column="2"
                    TextTrimming="CharacterEllipsis"
