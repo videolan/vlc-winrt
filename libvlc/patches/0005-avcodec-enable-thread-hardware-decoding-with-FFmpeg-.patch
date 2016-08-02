@@ -1,7 +1,7 @@
-From 211e220f1a5c610b3f08702d6689f9509bb83428 Mon Sep 17 00:00:00 2001
+From c089109564b8f2ee968851ff04f01ac483e9af18 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 8 Jun 2016 17:40:34 +0200
-Subject: [PATCH 06/12] avcodec: enable thread hardware decoding with FFmpeg on
+Subject: [PATCH 05/11] avcodec: enable thread hardware decoding with FFmpeg on
  Windows
 
 ---
@@ -9,7 +9,7 @@ Subject: [PATCH 06/12] avcodec: enable thread hardware decoding with FFmpeg on
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/modules/codec/avcodec/video.c b/modules/codec/avcodec/video.c
-index a97fec2..130148c 100644
+index 0c10f9e..61455e4 100644
 --- a/modules/codec/avcodec/video.c
 +++ b/modules/codec/avcodec/video.c
 @@ -1233,7 +1233,7 @@ static enum PixelFormat ffmpeg_GetFormat( AVCodecContext *p_context,

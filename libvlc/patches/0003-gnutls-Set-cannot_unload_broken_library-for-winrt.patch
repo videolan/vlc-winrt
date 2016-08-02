@@ -1,17 +1,17 @@
-From f587805692157bf7f9c57ef75b0a1a6e2ff9f2dc Mon Sep 17 00:00:00 2001
+From 04d2e22fac17c7b1751752badf100ea13103f35e Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Wed, 11 May 2016 17:37:47 +0200
-Subject: [PATCH 04/12] gnutls: Set cannot_unload_broken_library for winrt
+Subject: [PATCH 03/11] gnutls: Set cannot_unload_broken_library for winrt
 
 ---
  modules/misc/gnutls.c | 3 +++
  1 file changed, 3 insertions(+)
 
 diff --git a/modules/misc/gnutls.c b/modules/misc/gnutls.c
-index 4a3d2d4..bbc05db 100644
+index 1b9c315..f3adf36 100644
 --- a/modules/misc/gnutls.c
 +++ b/modules/misc/gnutls.c
-@@ -757,6 +757,9 @@ vlc_module_begin ()
+@@ -759,6 +759,9 @@ vlc_module_begin ()
      add_string ("gnutls-priorities", "NORMAL", PRIORITIES_TEXT,
                  PRIORITIES_LONGTEXT, false)
          change_string_list (priorities_values, priorities_text)

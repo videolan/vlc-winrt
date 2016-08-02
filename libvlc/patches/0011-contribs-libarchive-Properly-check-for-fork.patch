@@ -1,7 +1,7 @@
-From 07c88cec5fbe5e4d280456749fad35507be42385 Mon Sep 17 00:00:00 2001
+From 99e590cea72cc53daa4cd438805554c277943368 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 21 Jun 2016 11:07:05 +0200
-Subject: [PATCH 12/12] contribs: libarchive: Properly check for fork()
+Subject: [PATCH 11/11] contribs: libarchive: Properly check for fork()
 
 ---
  contrib/src/libarchive/properly-check-fork.patch | 17 +++++++++++++++++

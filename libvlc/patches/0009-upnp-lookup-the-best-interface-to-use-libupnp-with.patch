@@ -1,7 +1,7 @@
-From 9d446a9957f3ff3ca8d8c7e533de0011ccb758d4 Mon Sep 17 00:00:00 2001
+From 356223239cdb05a305bed8121dfcffbca95a7f79 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 19:14:48 +0200
-Subject: [PATCH 10/12] upnp: lookup the best interface to use libupnp with
+Subject: [PATCH 09/11] upnp: lookup the best interface to use libupnp with
 
 libupnp cannot handle more than one interface/IP at a time, so we need to make
 sure we use an appropriate one.
@@ -13,10 +13,10 @@ replaces https://patches.videolan.org/patch/13719/ with better lookup
  1 file changed, 113 insertions(+), 2 deletions(-)
 
 diff --git a/modules/services_discovery/upnp.cpp b/modules/services_discovery/upnp.cpp
-index 9f4c2f9..df34a5c 100644
+index b465932..e47e051 100644
 --- a/modules/services_discovery/upnp.cpp
 +++ b/modules/services_discovery/upnp.cpp
-@@ -32,6 +32,7 @@
+@@ -30,6 +30,7 @@
  #include <vlc_plugin.h>
  #include <vlc_interrupt.h>
  #include <vlc_services_discovery.h>
@@ -24,7 +24,7 @@ index 9f4c2f9..df34a5c 100644
  
  #include <assert.h>
  #include <limits.h>
-@@ -1253,6 +1254,114 @@ UpnpInstanceWrapper::~UpnpInstanceWrapper()
+@@ -1254,6 +1255,114 @@ UpnpInstanceWrapper::~UpnpInstanceWrapper()
      UpnpFinish();
  }
  
@@ -139,7 +139,7 @@ index 9f4c2f9..df34a5c 100644
  UpnpInstanceWrapper *UpnpInstanceWrapper::get(vlc_object_t *p_obj, services_discovery_t *p_sd)
  {
      SD::MediaServerList *p_server_list = NULL;
-@@ -1280,8 +1389,10 @@ UpnpInstanceWrapper *UpnpInstanceWrapper::get(vlc_object_t *p_obj, services_disc
+@@ -1281,8 +1390,10 @@ UpnpInstanceWrapper *UpnpInstanceWrapper::get(vlc_object_t *p_obj, services_disc
          free( psz_miface );
      #else
          /* If UpnpInit2 isnt available, initialize on first IPv4-capable interface */
