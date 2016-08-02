@@ -60,7 +60,7 @@ using namespace Windows::Foundation;
 static int                    Open(vlc_object_t *);
 static void                   Close(vlc_object_t *);
 
-static ssize_t                Read(access_t *access, uint8_t *buffer, size_t size);
+static ssize_t                Read(access_t *access, void *buffer, size_t size);
 static int                    Seek(access_t *access, uint64_t position);
 static int                    Control(access_t *access, int query, va_list args);
 
@@ -83,6 +83,7 @@ struct access_sys_t
     IRandomAccessStream^   readStream;
     DataReader^            dataReader;
     uint64_t               i_pos;
+    bool                   b_eof;
 };
 
 
@@ -183,13 +184,13 @@ int Open(vlc_object_t *object)
     String^ futureAccesToken;
     int (*pf_open)(access_sys_t *, String^);
 
-    if (strncmp(access->psz_access, "winrt", 5) == 0) {
+    if (strncmp(access->psz_name, "winrt", 5) == 0) {
         futureAccesToken = GetString(access->psz_location);
         if(!IsTokenValid(futureAccesToken))
             return VLC_EGENERIC;
         pf_open = OpenFileAsyncWithToken;
     }
-    else if (strncmp(access->psz_access, "file", 4) == 0) {
+    else if (strncmp(access->psz_name, "file", 4) == 0) {
         char* pos = strstr(access->psz_filepath, "winrt:\\\\");
         if (pos && strlen(pos) > 8) {
             futureAccesToken = GetString(pos + 8);
@@ -206,7 +207,8 @@ int Open(vlc_object_t *object)
     else
         return VLC_EGENERIC;
 
-    access_sys_t *p_sys = access->p_sys = new(std::nothrow) access_sys_t();
+    access_sys_t *p_sys = new(std::nothrow) access_sys_t();
+    access->p_sys = p_sys;
     if (p_sys == nullptr)
         return VLC_EGENERIC;
 
@@ -228,7 +230,7 @@ int Open(vlc_object_t *object)
 void Close(vlc_object_t *object)
 {
     access_t     *access = (access_t *) object;
-    access_sys_t *p_sys = access->p_sys;
+    access_sys_t *p_sys = reinterpret_cast<access_sys_t*>( access->p_sys );
     if( p_sys->dataReader != nullptr ){
         delete p_sys->dataReader;
         p_sys->dataReader = nullptr;
@@ -241,7 +243,7 @@ void Close(vlc_object_t *object)
 }
 
 /* */
-ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
+ssize_t Read(access_t *access, void *buffer, size_t size)
 {
     if( buffer == NULL )
     {
@@ -250,13 +252,13 @@ ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
         return 0;
     }
 
-    access_sys_t *p_sys = access->p_sys;
+    access_sys_t *p_sys = reinterpret_cast<access_sys_t*>( access->p_sys );
 
     unsigned int totalRead = 0;
 
     auto readTask = create_task(p_sys->dataReader->LoadAsync(size)).then([&totalRead, buffer, p_sys](unsigned int numBytesLoaded)
     {
-        p_sys->dataReader->ReadBytes( Platform::ArrayReference<uint8_t>( buffer, numBytesLoaded ) );
+        p_sys->dataReader->ReadBytes( Platform::ArrayReference<uint8_t>( reinterpret_cast<uint8_t*>( buffer ), numBytesLoaded ) );
         totalRead = numBytesLoaded;
     });
 
@@ -278,8 +280,8 @@ ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
     }
 
     p_sys->i_pos += totalRead;
-    access->info.b_eof = p_sys->readStream->Position >= p_sys->readStream->Size;
-    if( access->info.b_eof ){
+    p_sys->b_eof = p_sys->readStream->Position >= p_sys->readStream->Size;
+    if( p_sys->b_eof ){
         OutputDebugString(L"End of file reached\n");
     }
 
@@ -289,13 +291,13 @@ ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
 /* */
 int Seek(access_t *access, uint64_t position)
 {
-    access_sys_t *p_sys = access->p_sys;
+    access_sys_t *p_sys = reinterpret_cast<access_sys_t*>( access->p_sys );
 
     try
     {
         p_sys->readStream->Seek(position);
         p_sys->i_pos = position;
-        access->info.b_eof = p_sys->readStream->Position >= p_sys->readStream->Size;
+        p_sys->b_eof = p_sys->readStream->Position >= p_sys->readStream->Size;
     }
     catch( int ex )
     {
@@ -309,29 +311,31 @@ int Seek(access_t *access, uint64_t position)
 /* */
 int Control(access_t *access, int query, va_list args)
 {
+    auto p_sys = reinterpret_cast<access_sys_t*>(access->p_sys);
+
     VLC_UNUSED(access);
     switch( query )
     {
-    case ACCESS_CAN_FASTSEEK:
-    case ACCESS_CAN_PAUSE:
-    case ACCESS_CAN_SEEK:
-    case ACCESS_CAN_CONTROL_PACE: {
+    case STREAM_CAN_FASTSEEK:
+    case STREAM_CAN_PAUSE:
+    case STREAM_CAN_SEEK:
+    case STREAM_CAN_CONTROL_PACE: {
         bool *b = va_arg(args, bool*);
         *b = true;
         return VLC_SUCCESS;
     }
 
-    case ACCESS_GET_PTS_DELAY: {
+    case STREAM_GET_PTS_DELAY: {
         int64_t *d = va_arg(args, int64_t *);
         *d = DEFAULT_PTS_DELAY;
         return VLC_SUCCESS;
     }
 
-    case ACCESS_SET_PAUSE_STATE:
+    case STREAM_SET_PAUSE_STATE:
         return VLC_SUCCESS;
 
-    case ACCESS_GET_SIZE: {
-        *va_arg(args, uint64_t *) = access->p_sys->readStream->Size;
+    case STREAM_GET_SIZE: {
+        *va_arg(args, uint64_t *) = p_sys->readStream->Size;
         return VLC_SUCCESS;
     }
     default:
