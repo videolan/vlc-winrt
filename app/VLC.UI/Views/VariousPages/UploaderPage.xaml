@@ -1,0 +1,34 @@
+﻿<Page x:Class="VLC.UI.Views.VariousPages.UploaderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VLC.UI.Views.VariousPages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      DataContext="{Binding Source={StaticResource Locator}, Path=UploaderVM}">
+
+    <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="File transfer"
+                   Style="{StaticResource SubheaderTextBlockStyle}" />
+
+        <StackPanel Grid.Row="2">
+            <TextBox Header="Destination"
+                     PlaceholderText="IP adress. ex: http://192.168.1.142" />
+            <TextBlock Margin="{StaticResource FrameMarginTop}"
+                       Text="File to upload"
+                       Style="{StaticResource FlyoutPickerTitleTextBlockStyle}" />
+            <Button Content="Select"
+                    Command="{Binding SelectFileToUploadCommand}"/>
+        </StackPanel>
+
+        <Button Content="Upload"
+                Command="{Binding BeginUploadCommand}" />
+    </Grid>
+</Page>

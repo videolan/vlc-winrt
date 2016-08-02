@@ -53,6 +53,7 @@ namespace VLC.ViewModels
         private static MusicMetaService _musicMetaService;
         private static VideoMetaService _videoMetaService;
         private static MetroSlideshow _metroSlideshow;
+        private static UploaderViewModel _uploaderVM;
 
         public Locator()
         {
@@ -91,7 +92,7 @@ namespace VLC.ViewModels
 
         public static MusicMetaService MusicMetaService => _musicMetaService ?? (_musicMetaService = App.Container.Resolve<MusicMetaService>());
         public static VideoMetaService VideoMetaService => _videoMetaService ?? (_videoMetaService = App.Container.Resolve<VideoMetaService>());
-
+        public static UploaderViewModel UploaderVM => _uploaderVM ?? (_uploaderVM = App.Container.Resolve<UploaderViewModel>());
         public static MetroSlideshow Slideshow => _metroSlideshow ?? (_metroSlideshow = App.Container.Resolve<MetroSlideshow>());
     }
 }
