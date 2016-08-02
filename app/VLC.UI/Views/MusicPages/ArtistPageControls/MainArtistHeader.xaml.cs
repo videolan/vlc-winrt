@@ -13,26 +13,6 @@ namespace VLC.UI.Legacy.Views.MusicPages.ArtistPageControls
             this.Loaded += MainArtistHeader_Loaded;
         }
         
-        public Visibility BackButtonVisibility
-        {
-            get { return (Visibility)GetValue(BackButtonVisibilityProperty); }
-            set { SetValue(BackButtonVisibilityProperty, value); }
-        }
-
-        public static readonly DependencyProperty BackButtonVisibilityProperty = DependencyProperty.Register(nameof(BackButtonVisibility), typeof(Visibility), typeof(MainArtistHeader), new PropertyMetadata(Visibility.Collapsed, BackButtonPropertyChangedCallback));
-
-        private static void BackButtonPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var that = (MainArtistHeader)dependencyObject;
-            that.UpdateBackButton();
-        }
-
-        void UpdateBackButton()
-        {
-            BackButton.Visibility = BackButtonVisibility;
-            PlayButton.Focus(FocusState.Keyboard);
-        }
-
         private void MainArtistHeader_Loaded(object sender, RoutedEventArgs e)
         {
             this.Unloaded += MainArtistHeader_Unloaded;
