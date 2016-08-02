@@ -32,7 +32,8 @@
                                    Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}" />
 
                         <winControls:WrapPanel Orientation="Horizontal">
-                            <ToggleSwitch OffContent="{Binding Source={StaticResource Strings}, Path=Light}"
+                            <ToggleSwitch x:Name="AppThemeSwitch"
+                                          OffContent="{Binding Source={StaticResource Strings}, Path=Light}"
                                           OnContent="{Binding Source={StaticResource Strings}, Path=Dark}"
                                           Margin="{StaticResource FrameMarginRight}"
                                           VerticalAlignment="Center">

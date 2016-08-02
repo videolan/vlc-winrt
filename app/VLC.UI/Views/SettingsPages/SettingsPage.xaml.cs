@@ -11,6 +11,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Input;
 
 namespace VLC.UI.UWP.Views.SettingsPages
 {
@@ -43,6 +44,7 @@ namespace VLC.UI.UWP.Views.SettingsPages
                 }
             }
 #endif
+            AppThemeSwitch.Focus(FocusState.Programmatic);
         }
 
         void FocusTextBox_LostFocus(object sender, RoutedEventArgs e)
