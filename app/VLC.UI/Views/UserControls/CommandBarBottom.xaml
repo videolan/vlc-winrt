@@ -12,7 +12,8 @@
             RequestedTheme="Dark"
             Background="{ThemeResource TranslucentMainColor}"
             Style="{StaticResource VLCCommandBar}"
-            x:Name="RootCommandBar">
+            x:Name="RootCommandBar"
+            IsDynamicOverflowEnabled="True">
     <CommandBar.Content>
         <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
             <Grid.RowDefinitions>
