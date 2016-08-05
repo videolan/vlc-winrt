@@ -126,6 +126,9 @@ namespace VLC.Services.RunTime
             {
                 case VLCPage.None:
                     break;
+                case VLCPage.MainPageXBOX:
+                    GoBack_HideFlyout();
+                    break;
                 case VLCPage.MainPageVideo:
                 case VLCPage.MainPageMusic:
                 case VLCPage.MainPageNetwork:
