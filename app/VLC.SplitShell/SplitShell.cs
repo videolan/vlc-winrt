@@ -89,7 +89,8 @@ namespace VLC.Controls
         public async void SetFooterVisibility(object visibility)
         {
             await TemplateApplied.Task;
-            _page.BottomAppBar.ClosedDisplayMode = (AppBarClosedDisplayMode)visibility;
+            if (_page.BottomAppBar != null)
+                _page.BottomAppBar.ClosedDisplayMode = (AppBarClosedDisplayMode)visibility;
         }
 
         #region Content Property
