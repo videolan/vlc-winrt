@@ -64,7 +64,7 @@ namespace VLC.Helpers
             {
                 bindingContent.PeekImage = new TilePeekImage()
                 {
-                    Source = new TileImageSource(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri)
+                    Source = Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri
                 };
             }
             
@@ -111,7 +111,7 @@ namespace VLC.Helpers
             {
                 bindingContent.PeekImage = new TilePeekImage()
                 {
-                    Source = new TileImageSource(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri)
+                    Source = Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri,                    
                 };
             }
 
@@ -183,7 +183,7 @@ namespace VLC.Helpers
             {
                 bindingContent.PeekImage = new TilePeekImage()
                 {
-                    Source = new TileImageSource(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri)
+                    Source = Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri
                 };
             }
 
@@ -245,7 +245,7 @@ namespace VLC.Helpers
             {
                 bindingContent.PeekImage = new TilePeekImage()
                 {
-                    Source = new TileImageSource(Locator.VideoPlayerVm.CurrentVideo.PictureUri)
+                    Source = Locator.VideoPlayerVm.CurrentVideo.PictureUri
                 };
             }
 
@@ -292,7 +292,7 @@ namespace VLC.Helpers
             {
                 bindingContent.PeekImage = new TilePeekImage()
                 {
-                    Source = new TileImageSource(Locator.VideoPlayerVm.CurrentVideo.PictureUri)
+                    Source = Locator.VideoPlayerVm.CurrentVideo.PictureUri
                 };
             }
 
@@ -346,7 +346,7 @@ namespace VLC.Helpers
             {
                 bindingContent.PeekImage = new TilePeekImage()
                 {
-                    Source = new TileImageSource(Locator.VideoPlayerVm.CurrentVideo.PictureUri)
+                    Source = Locator.VideoPlayerVm.CurrentVideo.PictureUri
                 };
             }
             
