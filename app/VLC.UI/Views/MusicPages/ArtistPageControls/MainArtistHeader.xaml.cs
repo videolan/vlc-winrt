@@ -18,7 +18,7 @@ namespace VLC.UI.Legacy.Views.MusicPages.ArtistPageControls
             this.Unloaded += MainArtistHeader_Unloaded;
             Window.Current.SizeChanged += Current_SizeChanged;
             Responsive();
-            UpdateBackButton();
+            //UpdateBackButton();
         }
 
         private void MainArtistHeader_Unloaded(object sender, RoutedEventArgs e)
