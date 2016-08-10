@@ -125,6 +125,7 @@ namespace VLC.Services.RunTime
 
             // Hardware decoding
             vlcMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
+            vlcMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-threads=0" : ":avcodec-threads=1");
 
             MediaPlayer = new MediaPlayer(vlcMedia);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
