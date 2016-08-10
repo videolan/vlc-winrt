@@ -652,6 +652,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_chroma\libgrey_yuv_plugin.dll">
       <Link>plugins\video_chroma\libgrey_yuv_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_chroma\libi420_10_p010_plugin.dll">
+      <Link>plugins\video_chroma\libi420_10_p010_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_chroma\libi420_nv12_plugin.dll">
       <Link>plugins\video_chroma\libi420_nv12_plugin.dll</Link>
     </Content>
