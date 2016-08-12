@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using VLC.Commands;
 using VLC.Helpers;
 using VLC.Model;
@@ -9,6 +10,7 @@ using VLC.Services.RunTime;
 using VLC.Utils;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 
 namespace VLC.ViewModels.Others
 {
@@ -77,7 +79,7 @@ namespace VLC.ViewModels.Others
 
         public ActionCommand BeginUploadCommand = new ActionCommand(async () =>
         {
-            Locator.UploaderVM.server = new HttpServer(8080);
+            Locator.UploaderVM.server = new HttpServer();
 
             var prepareClient = new HttpClient();
             
@@ -91,26 +93,8 @@ namespace VLC.ViewModels.Others
 
         public void InitializeAsReceiver()
         {
-            server = new HttpServer(8080);
-            server.UploadRequestCallback += UploadRequest;
-        }
-
-        async void UploadRequest(object source, string remoteAdress)
-        {
-            var httpClient = new HttpClient();
-            var stream = await httpClient.GetByteArrayAsync(new Uri($"http://{remoteAdress}:8080/fileRequest", UriKind.RelativeOrAbsolute));
-            
-            var testFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("testFile.mp4", CreationCollisionOption.ReplaceExisting);
-            var writeStream = await testFile.OpenAsync(FileAccessMode.ReadWrite);
-            using (var outputStream = writeStream.GetOutputStreamAt(0))
-            {
-                using (var dataWriter = new Windows.Storage.Streams.DataWriter(outputStream))
-                {
-                    dataWriter.WriteBytes(stream);
-                }
-            }
-
-            writeStream.Dispose(); // Or use the stream variable (see previous code snippet) with a using statement as well.
+            server = new HttpServer();
+            server.bind(8080);
         }
     }
 }
