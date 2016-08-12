@@ -5,14 +5,9 @@ using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
-using VLC.Helpers;
-using VLC.ViewModels;
-using Windows.Foundation;
 using Windows.Networking.Sockets;
-using Windows.Security.Cryptography;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using Windows.Web.Http;
 
 namespace VLC.Services.RunTime
 {
