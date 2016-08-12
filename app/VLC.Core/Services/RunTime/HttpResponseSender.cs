@@ -36,6 +36,16 @@ public class HttpResponseSender
         await send(header + msg);
     }
 
+    public async Task error400()
+    {
+        string msg = "Bad Request\r\n";
+        string header = String.Format("HTTP/1.1 400 Bad Request\r\n" +
+                            "Content-Length: {0}\r\n" +
+                            "Connection: close\r\n" +
+                            "\r\n", msg.Length);
+        await send(header + msg);
+    }
+
     public async Task error404()
     {
         string msg = "Not Found\r\n";
