@@ -59,7 +59,7 @@ namespace VLC.Services.RunTime
                     UploadFileStream uploadFileStream = null;
 
                     RequestParameters requestParameters = null;
-                    bool hasHeader = false;
+                    bool headerParsed = false;
                     ulong payloadLengthReceived = 0;
                     while (true)
                     {
@@ -68,7 +68,7 @@ namespace VLC.Services.RunTime
                         if (buffer.Length == 0)
                             break; // Connection closed.
 
-                        if (hasHeader)
+                        if (headerParsed)
                         {
                             if (uploadFileStream != null)
                                 await uploadFileStream.WriteAsync(buffer);
@@ -77,34 +77,71 @@ namespace VLC.Services.RunTime
                         else
                         {
                             await headerStream.WriteAsync(buffer.ToArray(), 0, (int)buffer.Length);
-                            hasHeader = parseHeader(headerStream.ToArray(), out requestParameters);
-                            Debug.WriteLine("hasHeader: " + hasHeader);
+                            headerParsed = parseHeader(headerStream.ToArray(), out requestParameters);
+                            Debug.WriteLine("hasHeader: " + headerParsed);
 
-                            if (hasHeader)
+                            if (headerParsed)
                             {
-                                uploadFileStream = new UploadFileStream(requestParameters.boundary);
-                                ulong length = buffer.Length - requestParameters.payloadOffset;
-                                if (length > 0)
+                                uploadFileStream = handleRequest(requestParameters);
+                                if (uploadFileStream != null)
                                 {
-                                    IBuffer tempPayloadBuffer = headerStream.ToArray().AsBuffer((int)requestParameters.payloadOffset, (int)length);
-                                    await uploadFileStream.WriteAsync(tempPayloadBuffer);
-                                    payloadLengthReceived += length;
+                                    ulong length = buffer.Length - requestParameters.payloadOffset;
+                                    if (length > 0)
+                                    {
+                                        IBuffer tempPayloadBuffer = headerStream.ToArray().AsBuffer(
+                                            (int)requestParameters.payloadOffset, (int)length);
+                                        await uploadFileStream.WriteAsync(tempPayloadBuffer);
+                                        payloadLengthReceived += length;
+                                    }
                                 }
                             }
                         }
 
                         Debug.WriteLine("received: " + payloadLengthReceived);
+
+                        // End of request with a payload upload
                         if (requestParameters != null
                             && payloadLengthReceived == requestParameters.payloadLength)
+                        {
+                            await responseSender.simpleOK();
+                            break;
+                        }
+
+                        // End of request without required payload
+                        if (requestParameters == null && headerParsed)
                             break;
                     }
                 }
-                await responseSender.simpleOK();
+            }
+            catch (Http400Exception)
+            {
+                await responseSender.error400();
+            }
+            catch (Http404Exception)
+            {
+                await responseSender.error404();
             }
             catch
             {
                 await responseSender.error500();
             }
+        }
+
+
+        private UploadFileStream handleRequest(RequestParameters requestParameters)
+        {
+            UploadFileStream ret = null;
+
+            if (requestParameters.endPoint == "/upload")
+            {
+                if (requestParameters.method != "POST")
+                    throw new Http400Exception();
+                ret = new UploadFileStream(requestParameters.boundary);
+            }
+            else
+                throw new Http404Exception();
+
+            return ret;
         }
 
 
@@ -280,8 +317,16 @@ namespace VLC.Services.RunTime
 
     public class HttpServerException : System.Exception
     {
-        public HttpServerException() : base() { }
         public HttpServerException(string message) : base(message) { }
-        public HttpServerException(string message, System.Exception inner) : base(message, inner) { }
+    }
+
+    public class Http400Exception : System.Exception
+    {
+        public Http400Exception() : base() { }
+    }
+
+    public class Http404Exception : System.Exception
+    {
+        public Http404Exception() : base() { }
     }
 }
