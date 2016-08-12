@@ -46,6 +46,8 @@ namespace VLC.Services.RunTime
 
         private async void ProcessRequestAsync(StreamSocket socket)
         {
+            HttpResponseSender responseSender = new HttpResponseSender(socket);
+
             try
             {
                 using (IInputStream input = socket.InputStream)
@@ -97,11 +99,11 @@ namespace VLC.Services.RunTime
                             break;
                     }
                 }
-                await answerSimpleOK(socket);
+                await responseSender.simpleOK();
             }
             catch
             {
-                await answerError500(socket);
+                await responseSender.error500();
             }
         }
 
@@ -273,38 +275,6 @@ namespace VLC.Services.RunTime
                     ret[pParts[0]] = pParts[1].Trim('"');
             }
             return ret;
-        }
-
-        private async Task answerSimpleOK(StreamSocket socket)
-        {
-            using (IOutputStream output = socket.OutputStream)
-            {
-                string msg = "OK\r\n";
-                string header = String.Format("HTTP/1.1 200 OK\r\n" +
-                                    "Content-Length: {0}\r\n" +
-                                    "Connection: close\r\n" +
-                                    "\r\n", msg.Length);
-
-                byte[] headerArray = Encoding.ASCII.GetBytes(header + msg);
-                IBuffer buffer = headerArray.AsBuffer();
-                await output.WriteAsync(buffer);
-            }
-        }
-
-        private async Task answerError500(StreamSocket socket)
-        {
-            using (IOutputStream output = socket.OutputStream)
-            {
-                string msg = "Internal Server Error\r\n";
-                string header = String.Format("HTTP/1.1 500 Internal Server Error\r\n" +
-                                    "Content-Length: {0}\r\n" +
-                                    "Connection: close\r\n" +
-                                    "\r\n", msg.Length);
-
-                byte[] headerArray = Encoding.ASCII.GetBytes(header + msg);
-                IBuffer buffer = headerArray.AsBuffer();
-                await output.WriteAsync(buffer);
-            }
         }
     }
 

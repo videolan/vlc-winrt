@@ -196,6 +196,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IMediaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\ExternalDeviceService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\HttpServer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\HttpResponseSender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\KeyboardListenerService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\PlaybackService.cs" />
