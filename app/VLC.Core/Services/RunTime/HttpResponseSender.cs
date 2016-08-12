@@ -18,47 +18,39 @@ public class HttpResponseSender
 
     public async Task simpleOK()
     {
-        using (IOutputStream output = socket.OutputStream)
-        {
-            string msg = "OK\r\n";
-            string header = String.Format("HTTP/1.1 200 OK\r\n" +
-                                "Content-Length: {0}\r\n" +
-                                "Connection: close\r\n" +
-                                "\r\n", msg.Length);
-
-            byte[] headerArray = Encoding.ASCII.GetBytes(header + msg);
-            IBuffer buffer = headerArray.AsBuffer();
-            await output.WriteAsync(buffer);
-        }
+        string msg = "OK\r\n";
+        string header = String.Format("HTTP/1.1 200 OK\r\n" +
+                            "Content-Length: {0}\r\n" +
+                            "Connection: close\r\n" +
+                            "\r\n", msg.Length);
+        await send(header + msg);
     }
 
     public async Task error500()
     {
-        using (IOutputStream output = socket.OutputStream)
-        {
-            string msg = "Internal Server Error\r\n";
-            string header = String.Format("HTTP/1.1 500 Internal Server Error\r\n" +
-                                "Content-Length: {0}\r\n" +
-                                "Connection: close\r\n" +
-                                "\r\n", msg.Length);
-
-            byte[] headerArray = Encoding.ASCII.GetBytes(header + msg);
-            IBuffer buffer = headerArray.AsBuffer();
-            await output.WriteAsync(buffer);
-        }
+        string msg = "Internal Server Error\r\n";
+        string header = String.Format("HTTP/1.1 500 Internal Server Error\r\n" +
+                            "Content-Length: {0}\r\n" +
+                            "Connection: close\r\n" +
+                            "\r\n", msg.Length);
+        await send(header + msg);
     }
 
     public async Task error404()
     {
+        string msg = "Not Found\r\n";
+        string header = String.Format("HTTP/1.1 404 Not Found\r\n" +
+                            "Content-Length: {0}\r\n" +
+                            "Connection: close\r\n" +
+                            "\r\n", msg.Length);
+        await send(header + msg);
+    }
+
+    private async Task send(string answer)
+    {
         using (IOutputStream output = socket.OutputStream)
         {
-            string msg = "Not Found\r\n";
-            string header = String.Format("HTTP/1.1 404 Not Found\r\n" +
-                                "Content-Length: {0}\r\n" +
-                                "Connection: close\r\n" +
-                                "\r\n", msg.Length);
-
-            byte[] headerArray = Encoding.ASCII.GetBytes(header + msg);
+            byte[] headerArray = Encoding.ASCII.GetBytes(answer);
             IBuffer buffer = headerArray.AsBuffer();
             await output.WriteAsync(buffer);
         }
