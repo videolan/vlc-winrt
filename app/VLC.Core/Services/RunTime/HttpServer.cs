@@ -100,7 +100,7 @@ namespace VLC.Services.RunTime
                         Debug.WriteLine("received: " + payloadLengthReceived);
 
                         // End of request with a payload upload
-                        if (requestParameters != null
+                        if (uploadFileStream != null
                             && payloadLengthReceived == requestParameters.payloadLength)
                         {
                             await responseSender.simpleOK();
@@ -108,7 +108,7 @@ namespace VLC.Services.RunTime
                         }
 
                         // End of request without required payload
-                        if (requestParameters == null && headerParsed)
+                        if (uploadFileStream == null && headerParsed)
                             break;
                     }
                 }
