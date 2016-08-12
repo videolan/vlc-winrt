@@ -82,7 +82,7 @@ namespace VLC.Services.RunTime
 
                             if (headerParsed)
                             {
-                                uploadFileStream = handleRequest(requestParameters);
+                                uploadFileStream = await handleRequest(requestParameters, responseSender);
                                 if (uploadFileStream != null)
                                 {
                                     ulong length = buffer.Length - requestParameters.payloadOffset;
@@ -128,7 +128,8 @@ namespace VLC.Services.RunTime
         }
 
 
-        private UploadFileStream handleRequest(RequestParameters requestParameters)
+        private async Task<UploadFileStream> handleRequest(RequestParameters requestParameters,
+                                                           HttpResponseSender responseSender)
         {
             UploadFileStream ret = null;
 
@@ -138,6 +139,8 @@ namespace VLC.Services.RunTime
                     throw new Http400Exception();
                 ret = new UploadFileStream(requestParameters.boundary);
             }
+            else if (requestParameters.method == "GET")
+                await responseSender.serveStaticFile(requestParameters.endPoint);
             else
                 throw new Http404Exception();
 
