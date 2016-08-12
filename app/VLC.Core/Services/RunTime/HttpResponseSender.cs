@@ -47,4 +47,20 @@ public class HttpResponseSender
             await output.WriteAsync(buffer);
         }
     }
+
+    public async Task error404()
+    {
+        using (IOutputStream output = socket.OutputStream)
+        {
+            string msg = "Not Found\r\n";
+            string header = String.Format("HTTP/1.1 404 Not Found\r\n" +
+                                "Content-Length: {0}\r\n" +
+                                "Connection: close\r\n" +
+                                "\r\n", msg.Length);
+
+            byte[] headerArray = Encoding.ASCII.GetBytes(header + msg);
+            IBuffer buffer = headerArray.AsBuffer();
+            await output.WriteAsync(buffer);
+        }
+    }
 }
