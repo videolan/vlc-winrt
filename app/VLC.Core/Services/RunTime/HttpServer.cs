@@ -121,6 +121,10 @@ namespace VLC.Services.RunTime
             {
                 await responseSender.error404();
             }
+            catch (System.IO.FileNotFoundException)
+            {
+                await responseSender.error404();
+            }
             catch
             {
                 await responseSender.error500();
