@@ -1,0 +1,546 @@
+/* YUI CSS Reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,nav,header,footer{margin:0;padding:0;} table{border-collapse:collapse;border-spacing:0;} fieldset,img{border:0;} address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;} ol,ul{list-style:none;} caption,th{text-align:left;} h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;} q:before,q:after{content:'';} abbr,acronym{border:0;}
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), url("Raleway.woff") format('woff');
+}
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Clearfix */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  font: 14px/22px "Helvetica Neue","Helvetica", Arial, sans-serif;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  background-color: rgb(31,31,31);
+  background-position: 0 88px;
+}
+
+div.main {
+  border: 2px solid transparent;
+  position: absolute;
+  top: 88px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+div.main.drop {
+  border: 2px solid yellow;
+}
+
+#header {
+  text-align: center;
+  height: 88px;
+  background-color: rgb(255, 132, 0);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 132, 0)), to(rgb(255, 100, 0)));
+  background-image: -webkit-linear-gradient(top, rgb(255, 132, 0), rgb(255, 100, 0));
+  background-image: -moz-linear-gradient(top, rgb(255, 132, 0), rgb(255, 100, 0));
+  background-image: -ms-linear-gradient(top, rgb(255, 132, 0), rgb(255, 100, 0));
+  background-image: -o-linear-gradient(top, rgb(255, 132, 0), rgb(255, 100, 0));
+  background-image: linear-gradient(top, rgb(255, 132, 0), rgb(255, 100, 0));
+
+}
+
+.nav {
+  height: 88px;
+  padding: 14px;
+}
+
+.nav:before {
+  content: "%%WEBINTF_TITLE%%";
+  font-family: "Raleway", "Helvetica Neue";
+  font-size: 36px;
+  line-height: 60px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: transparent;
+
+  color: white;
+  font-size: 1.3em;
+  font-weight: bold;
+  line-height: 52px;
+
+  text-align: center;
+  padding: 0 12px;  
+  height: 58px;
+  min-width: 140px;
+  cursor: pointer;  
+}
+.btn:hover{
+  opacity: 0.5;
+}
+.btn:active{
+  opacity: 0.25;
+}
+
+.linkBtn {
+  float: left;
+  width: 82px;
+}
+.linkBtn .icon {
+  height: 60px;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAAN\
+  SUhEUgAAACYAAAAqCAYAAADf/ynVAAAEMElEQVRYw82YbUhTURjHLbPUMkojQ\
+  7Awh4rh28ygQCR6ISg/hIj4gkQmFvjNUszYFyXKan5JIqQMihTRRCkzzWmGgS\
+  0T8q10rmEiNjXNmpJTb/9Hzmxd3bzb1c0H/nC455zn/u55ec5zrgPHcQ5iBHO\
+  HAiApFMrK7qL9ioTaxIDCeaJnjvYEc6+rq7s6OTnZNT8//2d2dlZH5fr6+hyx\
+  oyYKLCkpSQogPcczepaQkBBqFzDYhsbGxhzOhCkUimxqYw+w7cPDw/WmwIaGh\
+  l6hjZvNwaRSqQRT9ssUGOom/P39fWwOVl1dncatYOXl5edtCgZzwVQ9RjkBio\
+  WuQTegW5AMSoQuDQ4OPkJbZ1uC7dHr9V9QdjHTbufMzIyK2toMrLCwMBox68V\
+  K7dDmTUFBwWmbgFG07+3tLUD5ooD2GT09PXLqYwswj+npaSXK3gLa+01NTSmp\
+  z5qDpaWlHdTpdN0UxwR8xA6AqVNTUyPWFIwieXNzswzT85Ad1iGQBNoLeTF5Q\
+  76sLryvr+8J9bH0FLAUzA3R/jVG4WtZWVm6q6trxDKZxYKorqqqKgM7cwR9Go\
+  SMsNVgQUFB+7HTfhsCKELGj5GRkbdqtbqsu7v7QWdnZ1F/f3+JVqtVoG7M0I7\
+  6UN81A6uoqEjhrDT0vbAmYBTBVSrVU2vBqK8lp4AlYJ4IEwPWgqHvN/Kx6mBy\
+  ufwUJ9KYj9UDo/y9q6srXywYNki+0LuA4NweIeIdyjUiuF6RD6F3AUFg8fHxw\
+  XNzc5RN0NdmQeMWAE1B16kvQsgn3BNCrAaj4YZ20WKlaN7U1HQFYLeN2m\yFz\
+  kJ3oOfQB+gzbT6oHaKU+y50DlocIfi4ibtAJjshPNk7HC0B8zOO4qOjo5V4Hi\
+  X2EgsdQ0Cu4p0SfoLAYFsiIyOjWlpa8tra2uRY9PdxrGjYNIoFc8Yp8J18km9\
+  6B70L79wsB\MxzfHy8zXiRYMRq8XzjKvxOcJqYmGg19j02NvYez3evCJabm3u\
+  cv3o7Ojrusel1EgHlAh2gc5XvXyaTHTULRplme3u7nN8R+Zc6ICDgCOrDWFrj\
+  JiSNoVGmrALyof8ZcXFxJ+ng5/tXKpVL4tuSeIWh/rjcnqchj42NPcH7cRLIc\
+  q99DNiblX1Z3eIPl7y8vDjEMY0J3638+PYfWHJychguqnOmAhK2uw6HcUlxcX\
+  Gqh4fHIVO5mEESieRwaWlpOq56NfA7a+ZyrI+JiQleFoymBvEqW2jUhLMZTHE\
+  fcq/GgYGBSsoeSBqN5hkSQwXqVOZg+NbQ0JBlvDyMwbbhy2o5Oxne/ZIYloB5\
+  eXl5I8b8tBcYvZsYloBhLSRydjbG8A+MtipSkiJ7gxGDIWws/uvCL8pOe4MRg\
+  +E2tQCWkpIiMRcmbGXEQCyLYDjxz3DrxMASbbz4M7n1Y5eNwQIh7TqA0jIWh7\
+  9sCR/uX\PB8PQAAAABJRU5ErkJggg==');
+  background-position: 36px 6px;
+  background-repeat: no-repeat;
+}
+.uploadBtn {
+  float: right;
+  position: relative;
+  overflow: hidden;
+  font-family: "Helvetica Neue";
+  font-weight: lighter;
+  font-size: 54px;
+}
+
+#fileupload {
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 1000px !important;
+  cursor: pointer;
+}
+
+.messageUpload {
+  margin: 80px 0px;
+}
+.messageUpload h1 {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 1px 1px 2px black;
+  line-height: 60px;
+}
+.messageUpload p {
+  text-align: center;
+  text-shadow: 1px 1px 2px black;
+}
+
+.messageDownload {
+  margin: 50px 0px;
+}
+.messageDownload h1 {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 1px 1px 2px black;
+  line-height: 60px;
+}
+.messageDownload p {
+  text-align: center;
+  text-shadow: 1px 1px 2px black;
+}
+
+.files {
+  text-align: left;
+  margin-left: 20px;
+  text-shadow: 1px 1px 2px black;
+  line-height: 30px;
+}
+
+.uploads li {
+  height: 80px;
+  padding: 0 20px;
+  position: relative;
+}
+.uploads li:nth-child(2n),
+.downloads li:nth-child(odd) {
+  background-color: rgba(0,0,0,0.2);
+}
+
+.uploads .filename {
+  font-size: 20px;
+  line-height: 50px;
+  text-align: left;
+  height: 40px;
+  padding: 0 20px;
+  position: relative;
+  margin: 10px auto;
+}
+
+.downloads li {
+  font-size: 20px;
+  line-height: 50px;
+  text-align: left;
+  height: 100%;
+  width: 100%;
+  padding: 0 20px;
+  margin: 5px;
+}
+
+.downloads li:hover,
+.downloads lu:hover {
+  background-color: rgb(255, 132, 0);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 132, 0)), to(rgb(255, 100, 0)));
+  background-image: -webkit-linear-gradient(top, rgb(255, 132, 0), rgb(255, 100, 0));
+  background-image: -moz-linear-gradient(top, rgb(255, 132, 0), rgb(255, 100, 0));
+  background-image: -ms-linear-gradient(top, rgb(255, 132, 0), rgb(255, 100, 0));
+  background-image: -o-linear-gradient(top, rgb(255, 132, 0), rgb(255, 100, 0));
+  background-image: linear-gradient(top, rgb(255, 132, 0), rgb(255, 100, 0));
+}
+
+/*.downloads img {
+    width: 80px;
+    height: 45px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    vertical-align: middle;
+}*/
+
+.downloads {
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+  position: relative;
+}
+
+@media (max-width: 960px) {
+  .downloads {
+    width: 100%;
+  }
+}
+
+.downloads > div {
+  width: 25%;
+  /*height: 300px;*/
+  float: left;
+  display: inline-block;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+
+.main.downloads > div .content {
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  .main.downloads > div {
+    width: 33.33333%;
+  }
+}
+
+@media (max-width: 960px) {
+  .main.downloads > div {
+    width: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .main.downloads > div {
+    width: 100%;
+  }
+}
+
+
+.downloads .inner {
+  display: block;
+  background-image: url("gradient-cell-ios7~ipad.png");
+  background-position: bottom center;
+  background-repeat: repeat-x;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.downloads a.inner {
+  color:white;
+}
+
+.downloads a.inner:hover .icon {
+  opacity:.7;
+}
+
+.downloads a.inner:hover .infos {
+  opacity: 0;
+}
+
+.downloads .inner .icon {
+  opacity: 0;
+  -webkit-transition: opacity .2s;
+  -o-transition: opacity .2s;
+  transition: opacity .2s;
+  background-color: black;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+}
+
+.downloads .inner .icon.bgz {
+  -webkit-background-size: 40%;
+  background-size: 40%;
+}
+
+.downloads .inner .down.icon {
+  background-image: url(web-download-fixed.png);
+}
+
+.downloads .inner .open.icon {
+  background-image: url(web-open-fixed.png);
+}
+
+.downloads .inner .down.icon.bgz {
+  background-image: url(web-download.png);
+}
+
+.downloads .inner .open.icon.bgz {
+  background-image: url(web-open.png);
+}
+
+.downloads .inner .infos {
+  width: 100%;
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  -webkit-transition: opacity .2s;
+  -o-transition: opacity .2s;
+  transition: opacity .2s;
+}
+
+.downloads .inner .infos span {
+  width: 100%;
+  /*background:red;*/
+  padding:3px 10px 0 13px;
+  white-space: nowrap;
+  overflow-y: hidden;
+  display: inline-block;
+  text-shadow: 0 2px 0 rgba(0,0,0,0.5);
+}
+
+.downloads .inner .infos span.first-line {
+  font-size: 1.7em;
+}
+
+.downloads .inner .infos span.second-line {
+  font-size: 1em;
+}
+
+#overlay {
+  position: absolute;
+  display: none;
+  opacity:0;
+  background:black;
+  background:rgba(0,0,0,.8);
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+#overlay.shown {
+  opacity: 1;
+  display: block;
+}
+
+#overlay #modal {
+  position: absolute;
+  background:rgb(31,31,31);
+  width: 50%;
+  height: 50%;
+  top: 25%;
+  left: 25%;
+}
+
+#overlay #modal .downloads {
+  width: 100%;
+}
+
+#overlay #modal .downloads > div {
+  width: 50%;
+}
+
+@media (min-width: 1280px) {
+  #overlay #modal .downloads > div {
+    width: 25%;
+  }
+}
+
+@media (max-width: 1280px) {
+  #overlay #modal .downloads > div {
+    width: 50%;
+  }
+}
+
+#menu ul li ul {
+ display:none;
+}
+
+#menu ul li:hover ul {
+ display:block;
+ background-color: rgb(42,42,42);
+}
+
+.uploads .progress {
+  height: 20px;
+  border: 0px solid white;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  padding: 2px;
+}
+.uploads .progress .barWrapper {
+  position: absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  background-color: rgb(42,42,42);
+}
+.uploads .progress .bar {
+  background-color: white;
+  position: absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  border-radius:20px;
+  color:#1F1F1F;
+  text-align:center;
+}
+
+.uploads li.fail .progress .bar {
+  background-image: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.uploads .progress .dots {
+  padding: 0 8px;
+  line-height: 0px;
+  font-size: 20px;
+  font-weight: bold;
+  float: left;
+  color: rgb(255, 132, 0);
+}
+.uploads .progress .dots:before {
+  content: "uploading ";
+  color: white;
+  line-height: 12px;
+  font-size: 12px;
+}
+
+.uploads li.fail .progress:before,
+.uploads li.done .progress .bar:before {
+  line-height: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0 12px;
+  float: right;
+}
+.uploads li.fail .progress:before {
+  content: "File transfer failed";
+  color: rgb(255, 132, 0);
+}
+.uploads li.done .progress .bar:before {
+  content: "File transfer complete";
+  color: white;
+}
+.uploads li:hover .stop {
+  display: block;
+}
+.uploads li.done:hover .stop,
+.uploads li.fail:hover .stop {
+  display: none;
+}
+.uploads .stop {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #ff3b30;
+
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  display: none;
+}
+.uploads .stop:before {
+  content: "-";
+  font-size: 44px;
+  text-align: center;
+  line-height: 18px;
+  width: 100%;
+  padding-left: 4px;
+}
+
+#footer {
+  font-size: .9em;
+  line-height: 1.3em;
+  margin-top: 40px;
+  padding-bottom: 8px; 
+  text-align: center;
+  color: rgb(120, 120, 120);
+  text-shadow: 1px 1px 2px black;
+  width: 100%;
+}
+#footer a{
+  color: rgb(255, 132, 0);
+}

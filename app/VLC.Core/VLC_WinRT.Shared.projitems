@@ -285,6 +285,14 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\StoreLogo.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\StoreLogo.scale-400.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\jquery-1.10.1.min.jstxt" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\jquery.fileupload.jstxt" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\jquery.iframe-transport.jstxt" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\jquery.ui.widget.jstxt" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\libMediaVLC.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\main.jstxt" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\Raleway.woff" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\style.css" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Wide310x150Logo.scale-150.png" />

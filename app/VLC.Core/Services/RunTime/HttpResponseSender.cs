@@ -16,7 +16,13 @@ public class HttpResponseSender
     private readonly Dictionary<string, string> contentTypes = new Dictionary<string, string>
     {
         { "html", "text/html; charset=UTF-8" },
-        { "css", "text/css; charset=UTF-8" }
+        { "css", "text/css; charset=UTF-8" },
+        /* Javascript files have a "jstxt" extension to prevent being
+         * removed from the Assets folder by the build system.
+         * TODO: check why? */
+        { "jstxt", "application/javascript; charset=UTF-8" },
+        { "woff", "application/font-woff" }
+    };
     };
 
     public HttpResponseSender(StreamSocket s)
