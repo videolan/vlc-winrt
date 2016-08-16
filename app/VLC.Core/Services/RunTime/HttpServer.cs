@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using VLC.ViewModels;
 using Windows.Networking.Sockets;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -104,6 +105,9 @@ namespace VLC.Services.RunTime
                             && payloadLengthReceived == requestParameters.payloadLength)
                         {
                             await responseSender.simpleOK();
+                            // TODO: remove the file if it cannot be indexed?
+                            await Locator.MediaLibrary.DiscoverMediaItemOrWaitAsync(
+                                uploadFileStream.getStorageFile(), false);
                             break;
                         }
 
@@ -137,7 +141,7 @@ namespace VLC.Services.RunTime
         {
             UploadFileStream ret = null;
 
-            if (requestParameters.endPoint == "/upload")
+            if (requestParameters.endPoint == "/upload.json")
             {
                 if (requestParameters.method != "POST")
                     throw new Http400Exception();
@@ -155,6 +159,7 @@ namespace VLC.Services.RunTime
         private class UploadFileStream
         {
             private IOutputStream payloadOutputStream;
+            private StorageFile file;
             private bool hasHeader = false;
             MemoryStream headerStream;
 
@@ -245,9 +250,14 @@ namespace VLC.Services.RunTime
 
             private async Task<IOutputStream> getUploadOutputStream()
             {
-                var testFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
-                var writeStream = await testFile.OpenAsync(FileAccessMode.ReadWrite);
+                file = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+                var writeStream = await file.OpenAsync(FileAccessMode.ReadWrite);
                 return writeStream;
+            }
+
+            public StorageFile getStorageFile()
+            {
+                return file;
             }
         }
 

@@ -123,7 +123,7 @@ namespace VLC.Model.Library
             }
         }
 
-        async Task DiscoverMediaItemOrWaitAsync(StorageFile storageItem, bool isCameraRoll)
+        public async Task DiscoverMediaItemOrWaitAsync(StorageFile storageItem, bool isCameraRoll)
         {
             await MediaItemDiscovererSemaphoreSlim.WaitAsync();
             try
