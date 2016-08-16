@@ -720,4 +720,19 @@
   <data name="SelectLanguageDescription" xml:space="preserve">
     <value>VLC will be displayed in</value>
   </data>
+  <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
+    <value>Download Files</value>
+  </data>
+  <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
+    <value>Just click the file you want to download from your Xbox.</value>
+  </data>
+  <data name="WEBINTF_DROPFILES" xml:space="preserve">
+    <value>Drop Files</value>
+  </data>
+  <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
+    <value>Drop files in the window to add them to your Xbox.&lt;br&gt;Or click on the "+" button to use the file picker dialog.</value>
+  </data>
+  <data name="WEBINTF_TITLE" xml:space="preserve">
+    <value>Sharing via WiFi</value>
+  </data>
 </root>

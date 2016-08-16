@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Networking.Sockets;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -23,6 +24,14 @@ public class HttpResponseSender
         { "jstxt", "application/javascript; charset=UTF-8" },
         { "woff", "application/font-woff" }
     };
+
+    private readonly String[] HTMLStrings =
+    {
+        "WEBINTF_TITLE",
+        "WEBINTF_DROPFILES",
+        "WEBINTF_DROPFILES_LONG",
+        "WEBINTF_DOWNLOADFILES",
+        "WEBINTF_DOWNLOADFILES_LONG"
     };
 
     public HttpResponseSender(StreamSocket s)
@@ -58,6 +67,10 @@ public class HttpResponseSender
         StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(appUri);
         IBuffer fileBuffer = await FileIO.ReadBufferAsync(file);
 
+        // Translate files if needed.
+        if (ext == "html" || ext == "css")
+            fileBuffer = translateBuffer(fileBuffer);
+
         string header = String.Format("HTTP/1.1 200 OK\r\n" +
                             "Content-Type: {0}\r\n" +
                             "Content-Length: {1}\r\n" +
@@ -70,6 +83,16 @@ public class HttpResponseSender
             await output.WriteAsync(buffer);
             await output.WriteAsync(fileBuffer);
         }
+    }
+
+    IBuffer translateBuffer(IBuffer fileBuffer)
+    {
+        var res = new ResourceLoader();
+        var fileStr = Encoding.UTF8.GetString(fileBuffer.ToArray());
+        foreach (string key in HTMLStrings)
+            fileStr = fileStr.Replace("%%" + key + "%%", res.GetString(key));
+
+        return Encoding.UTF8.GetBytes(fileStr).AsBuffer();
     }
 
     public async Task simpleOK()
