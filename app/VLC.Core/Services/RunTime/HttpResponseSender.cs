@@ -74,8 +74,9 @@ public class HttpResponseSender
 
     public async Task simpleOK()
     {
-        string msg = "OK\r\n";
+        string msg = "\"OK\"\r\n";
         string header = String.Format("HTTP/1.1 200 OK\r\n" +
+                            "Content-Type: application/json\r\n" +
                             "Content-Length: {0}\r\n" +
                             "Connection: close\r\n" +
                             "\r\n", msg.Length);
