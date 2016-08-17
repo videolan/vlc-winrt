@@ -1234,11 +1234,17 @@ namespace VLC.Model.Library
         {
             return trackDatabase.LoadTracks();
         }
+
         #endregion
         #region video
         public Task<List<VideoItem>> LoadVideos(Expression<Func<VideoItem, bool>> predicate)
         {
             return videoDatabase.Load(predicate);
+        }
+
+        public Task<VideoItem> LoadVideoById(int id)
+        {
+            return videoDatabase.LoadVideo(id);
         }
 
         public Task UpdateVideo(VideoItem video)
