@@ -147,6 +147,9 @@ namespace VLC.Services.RunTime
                     throw new Http400Exception();
                 ret = new UploadFileStream(requestParameters.boundary);
             }
+            else if (requestParameters.method == "GET"
+                && requestParameters.endPoint.StartsWith("/downloads/"))
+                await responseSender.serveMediaFile(requestParameters.endPoint);
             else if (requestParameters.method == "GET")
                 await responseSender.serveStaticFile(requestParameters.endPoint);
             else

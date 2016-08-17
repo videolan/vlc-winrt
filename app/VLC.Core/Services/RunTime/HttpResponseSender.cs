@@ -15,6 +15,7 @@ using Windows.Storage.Streams;
 
 public class HttpResponseSender
 {
+    private const uint BufferSize = 8192;
     private StreamSocket socket;
 
     private readonly Dictionary<string, string> contentTypes = new Dictionary<string, string>
@@ -106,6 +107,64 @@ public class HttpResponseSender
         }
     }
 
+
+    public async Task serveMediaFile(string path)
+    {
+        var decomp = path.Substring(1).Split('/');
+        string localPath;
+        if (decomp[1] == "track")
+        {
+            TrackItem track = await Locator.MediaLibrary.LoadTrackById(int.Parse(decomp[4]));
+            localPath = track.Path;
+        }
+        else if (decomp[1] == "video")
+        {
+            VideoItem video = await Locator.MediaLibrary.LoadVideoById(int.Parse(decomp[3]));
+            localPath = video.Path;
+        }
+        else
+            throw new System.IO.FileNotFoundException();
+
+        string fileName = GetFileName(localPath);
+        StorageFile file = await StorageFile.GetFileFromPathAsync(localPath);
+
+        using (var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.ReadWrite))
+        {
+            using (IOutputStream output = socket.OutputStream)
+            {
+                {
+                    // Send the header.
+                    string header = String.Format("HTTP/1.1 200 OK\r\n" +
+                            "Content-Type: application/octet-stream\r\n" +
+                            "Content-Disposition: attachment; filename=\"{1}\";\r\n" +
+                            "Content-Length: {0}\r\n" +
+                            "Connection: close\r\n" +
+                            "\r\n", stream.Size, fileName);
+
+                    byte[] headerArray = Encoding.ASCII.GetBytes(header);
+                    IBuffer buffer = headerArray.AsBuffer();
+                    await output.WriteAsync(buffer);
+                }
+
+                {
+                    // Send the file.
+                    byte[] data = new byte[BufferSize];
+                    IBuffer buffer = data.AsBuffer();
+
+                    while (true)
+                    {
+                        buffer = await stream.ReadAsync(buffer, BufferSize, InputStreamOptions.Partial);
+
+                        if (buffer.Length == 0)
+                            break; // Connection closed.
+
+                        await output.WriteAsync(buffer);
+                    }
+                }
+            }
+        }
+    }
+
     async Task<IBuffer> fillMediaList(IBuffer fileBuffer)
     {
         var fileStr = Encoding.UTF8.GetString(fileBuffer.ToArray());
@@ -115,25 +174,32 @@ public class HttpResponseSender
         foreach (VideoItem v in videos)
         {
             mediaList += String.Format("<div style='background-image: url(\"/thumbnails/video/{1}/{2}/art.jpg\"); height: 174px;'>"
-                + "<a href='' class='inner'><div class='down icon bgz'></div><div class='infos'>"
+                + "<a href='/downloads/video/{1}/{2}/{3}' class='inner'><div class='down icon bgz'></div><div class='infos'>"
                 + "<span class='first-line'>{0}</span><span class='second-line'>00:12 - 1.28 MB</span>"
                 + "</div></a></div>",
-                v.Name, Uri.EscapeDataString(v.Name), v.Id);
+                v.Name, Uri.EscapeDataString(v.Name), v.Id,
+                Uri.EscapeDataString(GetFileName(v.Path)));
         }
 
         List<TrackItem> tracks = await Locator.MediaLibrary.LoadTracks();
         foreach (TrackItem t in tracks)
         {
             mediaList += String.Format("<div style='background-image: url(\"/thumbnails/track/{2}/{3}/{4}/art.jpg\"); height: 174px;'>"
-                + "<a href='' class='inner'><div class='down icon bgz'></div><div class='infos'>"
+                + "<a href='/downloads/track/{2}/{3}/{4}/{5}' class='inner'><div class='down icon bgz'></div><div class='infos'>"
                 + "<span class='first-line'>{0} - {1}</span><span class='second-line'>00:12 - 1.28 MB</span>"
                 + "</div></a></div>",
-                t.ArtistName, t.Name, Uri.EscapeDataString(t.ArtistName), Uri.EscapeDataString(t.Name), t.Id);
+                t.ArtistName, t.Name, Uri.EscapeDataString(t.ArtistName), Uri.EscapeDataString(t.Name), t.Id,
+                Uri.EscapeDataString(GetFileName(t.Path)));
         }
 
         fileStr = fileStr.Replace("%%FILES%%", mediaList);
 
         return Encoding.UTF8.GetBytes(fileStr).AsBuffer();
+    }
+
+    string GetFileName(string path)
+    {
+        return path.Substring(path.LastIndexOf('\\') + 1);
     }
 
     async Task<Uri> getThumbnail(string path)
