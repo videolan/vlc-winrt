@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using VLC.Helpers;
+using VLC.Model.Music;
+using VLC.Model.Video;
+using VLC.ViewModels;
 using Windows.ApplicationModel.Resources;
 using Windows.Networking.Sockets;
 using Windows.Storage;
 using Windows.Storage.Streams;
-
 
 public class HttpResponseSender
 {
@@ -22,7 +25,9 @@ public class HttpResponseSender
          * removed from the Assets folder by the build system.
          * TODO: check why? */
         { "jstxt", "application/javascript; charset=UTF-8" },
-        { "woff", "application/font-woff" }
+        { "woff", "application/font-woff" },
+        { "jpg", "image/jpeg" },
+        { "png", "image/png" },
     };
 
     private readonly String[] HTMLStrings =
@@ -63,13 +68,29 @@ public class HttpResponseSender
             throw new System.IO.FileNotFoundException();
         }
 
-        Uri appUri = new Uri("ms-appx:///Assets/WebInterface" + path);
-        StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(appUri);
+        Uri uri;
+        try
+        {
+            if (path.StartsWith("/thumbnails/"))
+                uri = await getThumbnail(path);
+            else
+                uri = new Uri("ms-appx:///Assets/WebInterface" + path);
+        }
+        catch
+        {
+            throw new System.IO.FileNotFoundException();
+        }
+
+        StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(uri);
         IBuffer fileBuffer = await FileIO.ReadBufferAsync(file);
 
         // Translate files if needed.
         if (ext == "html" || ext == "css")
             fileBuffer = translateBuffer(fileBuffer);
+
+        // Fill media list if we serve the main page.
+        if (path == "/index.html")
+            fileBuffer = await fillMediaList(fileBuffer);
 
         string header = String.Format("HTTP/1.1 200 OK\r\n" +
                             "Content-Type: {0}\r\n" +
@@ -83,6 +104,57 @@ public class HttpResponseSender
             await output.WriteAsync(buffer);
             await output.WriteAsync(fileBuffer);
         }
+    }
+
+    async Task<IBuffer> fillMediaList(IBuffer fileBuffer)
+    {
+        var fileStr = Encoding.UTF8.GetString(fileBuffer.ToArray());
+        var mediaList = "";
+
+        List<VideoItem> videos = await Locator.MediaLibrary.LoadVideos(x => true);
+        foreach (VideoItem v in videos)
+        {
+            mediaList += String.Format("<div style='background-image: url(\"/thumbnails/video/{1}/{2}/art.jpg\"); height: 174px;'>"
+                + "<a href='' class='inner'><div class='down icon bgz'></div><div class='infos'>"
+                + "<span class='first-line'>{0}</span><span class='second-line'>00:12 - 1.28 MB</span>"
+                + "</div></a></div>",
+                v.Name, Uri.EscapeDataString(v.Name), v.Id);
+        }
+
+        List<TrackItem> tracks = await Locator.MediaLibrary.LoadTracks();
+        foreach (TrackItem t in tracks)
+        {
+            mediaList += String.Format("<div style='background-image: url(\"/thumbnails/track/{2}/{3}/{4}/art.jpg\"); height: 174px;'>"
+                + "<a href='' class='inner'><div class='down icon bgz'></div><div class='infos'>"
+                + "<span class='first-line'>{0} - {1}</span><span class='second-line'>00:12 - 1.28 MB</span>"
+                + "</div></a></div>",
+                t.ArtistName, t.Name, Uri.EscapeDataString(t.ArtistName), Uri.EscapeDataString(t.Name), t.Id);
+        }
+
+        fileStr = fileStr.Replace("%%FILES%%", mediaList);
+
+        return Encoding.UTF8.GetBytes(fileStr).AsBuffer();
+    }
+
+    async Task<Uri> getThumbnail(string path)
+    {
+        Uri ret = null;
+        var decomp = path.Substring(1).Split('/');
+        if (decomp[1] == "track")
+        {
+            TrackItem track = await Locator.MediaLibrary.LoadTrackById(int.Parse(decomp[4]));
+            AlbumItem album = await Locator.MediaLibrary.LoadAlbum(track.AlbumId);
+            ret = new Uri(album.AlbumCoverFullUri);
+        }
+        else if (decomp[1] == "video")
+        {
+            VideoItem video = await Locator.MediaLibrary.LoadVideoById(int.Parse(decomp[3]));
+            ret = new Uri(video.PictureUri);
+        }
+        else
+            throw new ArgumentException("Wrong URL path");
+
+        return ret;
     }
 
     IBuffer translateBuffer(IBuffer fileBuffer)
