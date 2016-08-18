@@ -180,7 +180,7 @@ namespace VLC.Services.RunTime
             {
                 if (hasHeader)
                 {
-                    writeUntilEnd(buffer);
+                    await writeUntilFileEnd(buffer);
                 }
                 else
                 {
@@ -193,12 +193,12 @@ namespace VLC.Services.RunTime
                         payloadOutputStream = await getUploadOutputStream();
                         ulong lenToWrite = buffer.Length - payloadOffset;
                         if (lenToWrite > 0)
-                            writeUntilEnd(buffer.ToArray().AsBuffer((int)payloadOffset, (int)lenToWrite));
+                            await writeUntilFileEnd(buffer.ToArray().AsBuffer((int)payloadOffset, (int)lenToWrite));
                     }
                 }
             }
 
-            private async void writeUntilEnd(IBuffer buffer)
+            private async Task writeUntilFileEnd(IBuffer buffer)
             {
                 var lenToWrite = buffer.Length;
                 var fileData = Encoding.ASCII.GetString(buffer.ToArray());
