@@ -30,7 +30,6 @@ namespace VLC.ViewModels.RemovableDevicesVM
     public class VLCExplorerViewModel : BindableBase
     {
         #region private props
-        private ExternalDeviceService _deviceService;
         private FileExplorer _currentStorageVM;
         #endregion
 
@@ -136,9 +135,13 @@ namespace VLC.ViewModels.RemovableDevicesVM
             var cards = await devices.GetFoldersAsync();
             if (cards.Any())
             {
-                var external = new LocalFileExplorerViewModel(cards[0], RootFolderType.ExternalDevice);
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => external.LogoGlyph = App.Current.Resources["SDCardSymbol"] as string);
-                await AddToFolder(external);
+                await CleanAllFromType(RootFolderType.ExternalDevice);
+                foreach (var card in cards)
+                {
+                    var external = new LocalFileExplorerViewModel(card, RootFolderType.ExternalDevice);
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => external.LogoGlyph = App.Current.Resources["SDCardSymbol"] as string);
+                    await AddToFolder(external);
+                }
             }
         }
 
@@ -152,7 +155,8 @@ namespace VLC.ViewModels.RemovableDevicesVM
             if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet) return;
             try
             {
-                var external = new LocalFileExplorerViewModel(StorageDevice.FromId(newId), RootFolderType.ExternalDevice, newId);
+                var folder = StorageDevice.FromId(newId);
+                var external = new LocalFileExplorerViewModel(folder, RootFolderType.ExternalDevice, newId);
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => external.LogoGlyph = App.Current.Resources["USBFilledSymbol"] as string);
                 await AddToFolder(external);
             }
@@ -213,6 +217,12 @@ namespace VLC.ViewModels.RemovableDevicesVM
         {
             var key = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == fileEx.Type);
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => key.Add(fileEx));
+        }
+
+        async Task CleanAllFromType(RootFolderType type)
+        {
+            var key = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == type);
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => { key.Clear(); });
         }
 
         public void GoBackToRootFolders()

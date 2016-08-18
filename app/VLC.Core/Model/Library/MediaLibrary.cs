@@ -26,11 +26,25 @@ using VLC.Helpers.VideoLibrary;
 using VLC.Model.Stream;
 using VLC.Services.RunTime;
 using libVLCX;
+using Windows.Devices.Portable;
+using Windows.Storage.AccessCache;
 
 namespace VLC.Model.Library
 {
     public class MediaLibrary
     {
+        public MediaLibrary()
+        {
+            Locator.ExternalDeviceService.ExternalDeviceAdded += ExternalDeviceService_ExternalDeviceAdded;
+        }
+
+        private async void ExternalDeviceService_ExternalDeviceAdded(object sender, string id)
+        {
+            var folder = StorageDevice.FromId(id);
+            if (!StorageApplicationPermissions.FutureAccessList.CheckAccess(folder))
+                StorageApplicationPermissions.FutureAccessList.Add(folder);
+            await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder));
+        }
         #region properties
         private object discovererLock = new object();
         private bool _alreadyIndexedOnce = false;
