@@ -55,6 +55,7 @@
                    TextWrapping="NoWrap"
                    VerticalAlignment="Bottom"
                    HorizontalAlignment="Left"
+                   Padding="{StaticResource FrameMarginLeft}"
                    Margin="{StaticResource FrameMarginBottom}"
                    Text="{Binding CurrentArtist.Name, Converter={StaticResource ArtistStringConverter}}"
                    Style="{StaticResource SubheaderTextBlockStyle}"
