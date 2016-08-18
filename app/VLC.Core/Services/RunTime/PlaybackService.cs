@@ -241,10 +241,11 @@ namespace VLC.Services.RunTime
                     SetCurrentMediaPosition(index);
                 }
 
-                if (CurrentMedia >= restoredplaylist.Count)
+                if (CurrentMedia >= restoredplaylist.Count || CurrentMedia == -1)
                     CurrentMedia = 0;
 
-                await SetPlaylist(restoredplaylist, true, false, restoredplaylist[CurrentMedia]);
+                if (restoredplaylist.Any())
+                    await SetPlaylist(restoredplaylist, true, false, restoredplaylist[CurrentMedia]);
             }
             catch (Exception e)
             {
