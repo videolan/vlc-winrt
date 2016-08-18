@@ -32,6 +32,7 @@ namespace VLC.UI.Legacy.Views.MusicPages.ArtistPageControls
 
         void Responsive()
         {
+            BackgroundEffect.StartAnimation();
             if (Window.Current.Bounds.Width < 650)
             {
                 VisualStateUtilities.GoToState(this, "Snap", false);
