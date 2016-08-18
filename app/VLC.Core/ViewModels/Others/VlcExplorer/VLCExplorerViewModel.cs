@@ -111,10 +111,9 @@ namespace VLC.ViewModels.RemovableDevicesVM
                 await AddToFolder(picFolder);
             }
 
-            _deviceService = App.Container.Resolve<ExternalDeviceService>();
-            _deviceService.ExternalDeviceAdded += DeviceAdded;
-            _deviceService.ExternalDeviceRemoved += DeviceRemoved;
-
+            Locator.ExternalDeviceService.ExternalDeviceAdded += DeviceAdded;
+            Locator.ExternalDeviceService.ExternalDeviceRemoved += DeviceRemoved;
+            
             if (CurrentStorageVM == null)
             {
                 FileExplorerVisibility = Visibility.Collapsed;
