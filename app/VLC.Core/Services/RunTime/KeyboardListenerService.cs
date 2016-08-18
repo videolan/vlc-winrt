@@ -196,6 +196,10 @@ namespace VLC.Services.RunTime
                                 if (Locator.SettingsVM.MediaCenterMode)
                                     Locator.NavigationService.Go(VLCPage.MainPageXBOX);
                                 break;
+                            case VirtualKey.GamepadA:
+                                if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage)
+                                    Locator.VideoPlayerVm.RequestChangeControlBarVisibility();
+                                break;
                             default:
                                 break;
                         }

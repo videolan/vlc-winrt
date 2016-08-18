@@ -32,6 +32,9 @@ namespace VLC.ViewModels.VideoVM
 {
     public class VideoPlayerVM : BindableBase
     {
+        #region events
+        public event EventHandler PlayerControlVisibilityChangeRequested;
+        #endregion
         #region private props
         private VideoItem _currentVideo;
 
@@ -338,6 +341,11 @@ namespace VLC.ViewModels.VideoVM
                     break;
             }
             App.RootPage.SwapChainPanel.RenderTransform = scaleTransform;
+        }
+
+        public void RequestChangeControlBarVisibility()
+        {
+            PlayerControlVisibilityChangeRequested?.Invoke(this, new EventArgs());
         }
         #endregion
 

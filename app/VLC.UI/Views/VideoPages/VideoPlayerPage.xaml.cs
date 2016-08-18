@@ -89,6 +89,7 @@ namespace VLC.Views.VideoPages
 
             // VM initialization
             Locator.VideoPlayerVm.OnNavigatedTo();
+            Locator.VideoPlayerVm.PlayerControlVisibilityChangeRequested += VideoPlayerVm_PlayerControlVisibilityChangeRequested;
 
             // Responsive design
             this.SizeChanged += OnSizeChanged;
@@ -96,6 +97,11 @@ namespace VLC.Views.VideoPages
 
             // Swapchain animations
             App.RootPage.StartCompositionAnimationOnSwapChain(false);
+        }
+
+        private void VideoPlayerVm_PlayerControlVisibilityChangeRequested(object sender, EventArgs e)
+        {
+            DisplayOrHide(!isVisible);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -106,6 +112,9 @@ namespace VLC.Views.VideoPages
             App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Minimal;
 
             Locator.VideoPlayerVm.OnNavigatedFrom();
+
+            Locator.VideoPlayerVm.PlayerControlVisibilityChangeRequested -= VideoPlayerVm_PlayerControlVisibilityChangeRequested;
+
             if (AppViewHelper.GetFullscreen())
                 AppViewHelper.SetFullscreen();
 
