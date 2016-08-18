@@ -1,0 +1,1267 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Toolkit.Uwp.UI.Controls</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock">
+            <summary>
+            Defines a control for providing a header for read-only text.
+            </summary>
+            <summary>
+            Defines the properties for the <see cref="T:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock"/> control.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.OnApplyTemplate">
+            <summary>
+            Called when applying the control template.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.HeaderStyleProperty">
+            <summary>
+            Defines the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.HeaderStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.TextStyleProperty">
+            <summary>
+            Defines the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.TextStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.HeaderProperty">
+            <summary>
+            Defines the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.Header"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.TextProperty">
+            <summary>
+            Defines the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.Text"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.OrientationProperty">
+            <summary>
+            Defines the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.Orientation"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.HideTextIfEmptyProperty">
+            <summary>
+            Defines the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.HideTextIfEmpty"/> dependency property. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.HeaderStyle">
+            <summary>
+            Gets or sets the header style.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.TextStyle">
+            <summary>
+            Gets or sets the text style.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.Header">
+            <summary>
+            Gets or sets the header.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.Text">
+            <summary>
+            Gets or sets the text.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.Orientation">
+            <summary>
+            Gets or sets the orientation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HeaderedTextBlock.HideTextIfEmpty">
+            <summary>
+            Gets or sets a value indicating whether the Text TextBlock is hidden if its value is empty
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu">
+            <summary>
+            The HamburgerMenu is based on a SplitView control. By default it contains a HamburgerButton and a ListView to display menu items.
+            </summary>
+            <summary>
+            The HamburgerMenu is based on a SplitView control. By default it contains a HamburgerButton and a ListView to display menu items.
+            </summary>
+            <summary>
+            The HamburgerMenu is based on a SplitView control. By default it contains a HamburgerButton and a ListView to display menu items.
+            </summary>
+            <summary>
+            The HamburgerMenu is based on a SplitView control. By default it contains a HamburgerButton and a ListView to display menu items.
+            </summary>
+            <summary>
+            The HamburgerMenu is based on a SplitView control. By default it contains a HamburgerButton and a ListView to display menu items.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.OptionsItemsSourceProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.OptionsItemsSource"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.OptionsItemTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.OptionsItemTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.OptionsVisibilityProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.OptionsVisibility"/> dependency property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.OptionsItemsSource">
+            <summary>
+                Gets or sets an object source used to generate the content of the options.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.OptionsItemTemplate">
+            <summary>
+            Gets or sets the DataTemplate used to display each item in the options.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.OptionsVisibility">
+            <summary>
+            Gets or sets options' visibility.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.HamburgerWidthProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.HamburgerWidth"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.HamburgerHeightProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.HamburgerHeight"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.HamburgerMarginProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.HamburgerMargin"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.HamburgerMenuTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.HamburgerMenuTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.HamburgerMenuTemplate">
+            <summary>
+            Gets or sets the hamburger icon.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.HamburgerWidth">
+            <summary>
+            Gets or sets main button's width
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.HamburgerHeight">
+            <summary>
+            Gets or sets main button's height
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.HamburgerMargin">
+            <summary>
+            Gets or sets main button's margin
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.OpenPaneLengthProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.OpenPaneLength"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.PanePlacementProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.PanePlacement"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.DisplayModeProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.DisplayMode"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.CompactPaneLengthProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.CompactPaneLength"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.PaneBackgroundProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.PaneBackground"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.IsPaneOpenProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.IsPaneOpen"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.ItemsSourceProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.ItemsSource"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.ItemTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.ItemTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.OpenPaneLength">
+            <summary>
+            Gets or sets the width of the pane when it's fully expanded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.PanePlacement">
+            <summary>
+            Gets or sets a value that specifies whether the pane is shown on the right or left side of the control.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.DisplayMode">
+            <summary>
+            Gets or sets gets of sets a value that specifies how the pane and content areas are shown.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.CompactPaneLength">
+            <summary>
+            Gets or sets the width of the pane in its compact display mode.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.PaneBackground">
+            <summary>
+            Gets or sets the Brush to apply to the background of the Pane area of the control.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.IsPaneOpen">
+            <summary>
+            Gets or sets a value indicating whether gets or sets a value that specifies whether the pane is expanded to its full width.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.ItemsSource">
+            <summary>
+            Gets or sets an object source used to generate the content of the menu.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.ItemTemplate">
+            <summary>
+            Gets or sets the DataTemplate used to display each item.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.ItemClick">
+            <summary>
+            Event raised when an item is clicked
+            </summary>
+        </member>
+        <member name="E:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.OptionsItemClick">
+            <summary>
+            Event raised when an options' item is clicked
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.HamburgerMenu.OnApplyTemplate">
+            <summary>
+            Override default OnApplyTemplate to capture children controls
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx">
+            <summary>
+            The ImageEx control extends the default Image platform control improving the performance and responsiveness of your Apps.
+            Source images are downloaded asynchronously showing a load indicator while in progress.
+            Once downloaded, the source image is stored in the App local cache to preserve resources and load time next time the image needs to be displayed.
+            </summary>
+            <summary>
+            The ImageEx control extends the default Image platform control improving the performance and responsiveness of your Apps.
+            Source images are downloaded asynchronously showing a load indicator while in progress.
+            Once downloaded, the source image is stored in the App local cache to preserve resources and load time next time the image needs to be displayed.
+            </summary>
+            <summary>
+            The ImageEx control extends the default Image platform control improving the performance and responsiveness of your Apps.
+            Source images are downloaded asynchronously showing a load indicator while in progress.
+            Once downloaded, the source image is stored in the App local cache to preserve resources and load time next time the image needs to be displayed.
+            </summary>
+            <summary>
+            The ImageEx control extends the default Image platform control improving the performance and responsiveness of your Apps.
+            Source images are downloaded asynchronously showing a load indicator while in progress.
+            Once downloaded, the source image is stored in the App local cache to preserve resources and load time next time the image needs to be displayed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.OnApplyTemplate">
+            <summary>
+            Update the visual state of the control when its template is changed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.MeasureOverride(Windows.Foundation.Size)">
+            <summary>
+            Measures the size in layout required for child elements and determines a size for the control.
+            </summary>
+            <param name="availableSize">The available size that this element can give to child elements. Infinity can be specified as a value to indicate that the element will size to whatever content is available.</param>
+            <returns>The size that this element determines it needs during layout, based on its calculations of child element sizes.</returns>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.NineGridProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.NineGrid"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.StretchProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.Stretch"/> dependency property.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.ImageFailed">
+            <summary>
+            Event raised if the image failed loading.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.ImageOpened">
+            <summary>
+            Event raised when the image is successfully loaded and opened.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.Stretch">
+            <summary>
+            Gets or sets the stretch of the image.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.NineGrid">
+            <summary>
+            Gets or sets the nine-grid used by the image.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.GetAsCastingSource">
+            <summary>
+            Returns the image as a <see cref="T:Windows.Media.Casting.CastingSource"/>.
+            </summary>
+            <returns>The image as a <see cref="T:Windows.Media.Casting.CastingSource"/>.</returns>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.IsCacheEnabled">
+            <summary>
+            Gets or sets a value indicating whether gets or sets cache state
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.PlaceholderSourceProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.PlaceholderSource"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.PlaceholderStretchProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.PlaceholderStretch"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.PlaceholderAnimationDurationProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.PlaceholderAnimationDuration"/> dependency property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.PlaceholderSource">
+            <summary>
+            Gets or sets the placeholder source.
+            </summary>
+            <value>
+            The placeholder source.
+            </value>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.PlaceholderStretch">
+            <summary>
+            Gets or sets the placeholder stretch.
+            </summary>
+            <value>
+            The placeholder stretch.
+            </value>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.PlaceholderAnimationDuration">
+            <summary>
+            Gets or sets the placeholder animation duration.
+            </summary>
+            <value>
+            The placeholder animation duration.
+            </value>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.SourceProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.Source"/> dependency property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.ImageEx.Source">
+            <summary>
+            Gets or sets get or set the source used by the image
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile">
+            <summary>
+            An items control that presents enumerable content similar to the live tiles on the
+            start menu.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.ItemsSourceProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.ItemsSource"/> property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.ItemTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.ItemTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.RotateDirectionProperty">
+            <summary>
+            Identifies the <see cref="T:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.RotateDirection"/> property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.CurrentItemProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.CurrentItem"/> property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.OnApplyTemplate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.Timer_Tick(System.Object,System.Object)">
+            <summary>
+            Triggered when it's time to flip to the next live tile.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.ItemsSource">
+            <summary>
+            Gets or sets the ItemsSource
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.CurrentItem">
+            <summary>
+            Gets or sets the currently selected visible item
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.ItemTemplate">
+            <summary>
+            Gets or sets the item template
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.Direction">
+            <summary>
+            Gets or sets the direction the tile slides in.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.RotateDirection">
+            <summary>
+            Tile Slide Direction
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.RotateDirection.Up">
+            <summary>Up</summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RotatorTile.RotateDirection.Left">
+            <summary>Left</summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView">
+            <summary>
+            Extension of ListView that allows "Pull To Refresh" on touch devices
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.OverscrollLimitProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.OverscrollLimit"/> property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.PullThresholdProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.PullThreshold"/> property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.RefreshCommandProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.RefreshCommand"/> property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.RefreshIndicatorContentProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.RefreshIndicatorContent"/> property.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.RefreshRequested">
+            <summary>
+            Occurs when the user has requested content to be refreshed
+            </summary>
+        </member>
+        <member name="E:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.PullProgressChanged">
+            <summary>
+            Occurs when listview overscroll distance is changed
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.RefreshableListView_SizeChanged(System.Object,Windows.UI.Xaml.SizeChangedEventArgs)">
+            <summary>
+            Handler for SizeChanged event, handles cliping
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.OnApplyTemplate">
+            <summary>
+            Invoked whenever application code or internal processes (such as a rebuilding
+            layout pass) call <see cref="M:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.OnApplyTemplate"/>. In simplest terms, this means the method
+            is called just before a UI element displays in an application. Override this
+            method to influence the default post-template logic of a class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.OverscrollLimit">
+            <summary>
+            Gets or sets the Overscroll Limit. Value between 0 and 1 where 1 is the height of the control. Default is 0.3
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.PullThreshold">
+            <summary>
+            Gets or sets the PullThreshold in pixels for when Refresh should be Requested. Default is 100
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.RefreshCommand">
+            <summary>
+            Gets or sets the Command that will be invoked when Refresh is requested
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.PullToRefreshListView.RefreshIndicatorContent">
+            <summary>
+            Gets or sets the Content of the Refresh Indicator
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Uwp.UI.Controls.RefreshProgressEventArgs">
+            <summary>
+            Event args for Refresh Progress changed event
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RefreshProgressEventArgs.PullProgress">
+            <summary>
+            Gets or sets value from 0.0 to 1.0 where 1.0 is active
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge">
+            <summary>
+            A Modern UI Radial Gauge using XAML and Composition API.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.MinimumProperty">
+            <summary>
+            Identifies the Minimum dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.MaximumProperty">
+            <summary>
+            Identifies the Maximum dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ScaleWidthProperty">
+            <summary>
+            Identifies the ScaleWidth dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.NeedleBrushProperty">
+            <summary>
+            Identifies the NeedleBrush dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ValueProperty">
+            <summary>
+            Identifies the Value dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.UnitProperty">
+            <summary>
+            Identifies the Unit dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.TrailBrushProperty">
+            <summary>
+            Identifies the TrailBrush dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ScaleBrushProperty">
+            <summary>
+            Identifies the ScaleBrush dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ScaleTickBrushProperty">
+            <summary>
+            Identifies the ScaleTickBrush dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.TickBrushProperty">
+            <summary>
+            Identifies the TickBrush dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ValueBrushProperty">
+            <summary>
+            Identifies the ValueBrush dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.UnitBrushProperty">
+            <summary>
+            Identifies the UnitBrush dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ValueStringFormatProperty">
+            <summary>
+            Identifies the ValueStringFormat dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.TickSpacingProperty">
+            <summary>
+            Identifies the TickSpacing dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.NeedleLengthProperty">
+            <summary>
+            Identifies the NeedleLength dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.NeedleWidthProperty">
+            <summary>
+            Identifies the NeedleWidth dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ScalePaddingProperty">
+            <summary>
+            Identifies the ScalePadding dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ScaleTickWidthProperty">
+            <summary>
+            Identifies the ScaleTickWidth dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.TickWidthProperty">
+            <summary>
+            Identifies the TickWidth dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.TickLengthProperty">
+            <summary>
+            Identifies the TickLength dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.MinAngleProperty">
+            <summary>
+            Identifies the MinAngle dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.MaxAngleProperty">
+            <summary>
+            Identifies the MaxAngle dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ValueAngleProperty">
+            <summary>
+            Identifies the ValueAngle dependency property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge"/> class.
+            Create a default radial gauge control.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.Minimum">
+            <summary>
+            Gets or sets the minimum on the scale.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.Maximum">
+            <summary>
+            Gets or sets the maximum on the scale.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ScaleWidth">
+            <summary>
+            Gets or sets the width of the scale.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.Value">
+            <summary>
+            Gets or sets the current value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.Unit">
+            <summary>
+            Gets or sets the unit measure.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.NeedleBrush">
+            <summary>
+            Gets or sets the needle brush.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.TrailBrush">
+            <summary>
+            Gets or sets the trail brush.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ScaleBrush">
+            <summary>
+            Gets or sets the scale brush.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ScaleTickBrush">
+            <summary>
+            Gets or sets the scale tick brush.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.TickBrush">
+            <summary>
+            Gets or sets the outer tick brush.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ValueBrush">
+            <summary>
+            Gets or sets the value brush.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.UnitBrush">
+            <summary>
+            Gets or sets the unit brush.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ValueStringFormat">
+            <summary>
+            Gets or sets the value string format.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.TickSpacing">
+            <summary>
+            Gets or sets the tick spacing, in units.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.NeedleLength">
+            <summary>
+            Gets or sets the needle length, in percentage of the gauge radius.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.NeedleWidth">
+            <summary>
+            Gets or sets the needle width, in percentage of the gauge radius.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ScalePadding">
+            <summary>
+            Gets or sets the distance of the scale from the outside of the control, in percentage of the gauge radius.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ScaleTickWidth">
+            <summary>
+            Gets or sets the width of the scale ticks, in percentage of the gauge radius.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.TickLength">
+            <summary>
+            Gets or sets the length of the ticks, in percentage of the gauge radius.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.TickWidth">
+            <summary>
+            Gets or sets the width of the ticks, in percentage of the gauge radius.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.MinAngle">
+            <summary>
+            Gets or sets the angle for the Minimum value, in degrees.
+            </summary>
+            <remarks>Proposed value range: -180 to 0. Probably requires retemplating the control.</remarks>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.MaxAngle">
+            <summary>
+            Gets or sets the angle for the Maximum value, in degrees.
+            </summary>
+            <remarks>Proposed value range: 0 to 180. Probably requires retemplating the control.</remarks>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.ValueAngle">
+            <summary>
+            Gets or sets the angle of the needle.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.RadialGauge.OnApplyTemplate">
+            <summary>
+            Update the visual state of the control when its template is changed.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Uwp.UI.Controls.RangeChangedEventArgs">
+            <summary>
+            Event args for a value changing event
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RangeChangedEventArgs.OldValue">
+            <summary>
+            Gets the old value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RangeChangedEventArgs.NewValue">
+            <summary>
+            Gets the new value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RangeChangedEventArgs.ChangedRangeProperty">
+            <summary>
+            Gets the range property that triggered the event
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.RangeChangedEventArgs.#ctor(System.Double,System.Double,Microsoft.Toolkit.Uwp.UI.Controls.RangeSelectorProperty)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Uwp.UI.Controls.RangeChangedEventArgs"/> class.
+            </summary>
+            <param name="oldValue">The old value</param>
+            <param name="newValue">The new value</param>
+            <param name="changedRangeProperty">The changed range property</param>
+        </member>
+        <member name="T:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelectorProperty">
+            <summary>
+            Enumeration used to determine what value triggered ValueChanged event on the
+            RangeSelector
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelectorProperty.MinimumValue">
+            <summary>
+            Minimum value was changed
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelectorProperty.MaximumValue">
+            <summary>
+            Maximum value was changed
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelector">
+            <summary>
+            RangeSelector is a "double slider" control for range values.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelector.MinimumProperty">
+            <summary>
+            Identifies the Minimum dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelector.MaximumProperty">
+            <summary>
+            Identifies the Maximum dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelector.RangeMinProperty">
+            <summary>
+            Identifies the RangeMin dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelector.RangeMaxProperty">
+            <summary>
+            Identifies the RangeMax dependency property.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelector.ValueChanged">
+            <summary>
+            Event raised when lower or upper range values are changed.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelector.ThumbDragStarted">
+            <summary>
+            Event raised when lower or upper range thumbs start being dragged.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelector.ThumbDragCompleted">
+            <summary>
+            Event raised when lower or upper range thumbs end being dragged.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelector.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelector"/> class.
+            Create a default range selector control.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelector.OnApplyTemplate">
+            <summary>
+            Update the visual state of the control when its template is changed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelector.Minimum">
+            <summary>
+            Gets or sets the minimum value of the range.
+            </summary>
+            <value>
+            The minimum.
+            </value>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelector.Maximum">
+            <summary>
+            Gets or sets the maximum value of the range.
+            </summary>
+            <value>
+            The maximum.
+            </value>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelector.RangeMin">
+            <summary>
+            Gets or sets the current lower limit value of the range.
+            </summary>
+            <value>
+            The current lower limit.
+            </value>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.RangeSelector.RangeMax">
+            <summary>
+            Gets or sets the current upper limit value of the range.
+            </summary>
+            <value>
+            The current upper limit.
+            </value>
+        </member>
+        <member name="T:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem">
+            <summary>
+            ContentControl providing functionality for sliding left or right to expose functions
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.ActivationWidthProperty">
+            <summary>
+            Indetifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.ActivationWidth"/> property
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftIconProperty">
+            <summary>
+            Indeifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftIcon"/> property
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightIconProperty">
+            <summary>
+            Indetifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightIcon"/> property
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftLabelProperty">
+            <summary>
+            Indetifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftLabel"/> property
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightLabelProperty">
+            <summary>
+            Indetifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightLabel"/> property
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftForegroundProperty">
+            <summary>
+            Indetifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftForeground"/> property
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightForegroundProperty">
+            <summary>
+            Indetifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightForeground"/> property
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftBackgroundProperty">
+            <summary>
+            Indetifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftBackground"/> property
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightBackgroundProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightBackground"/> property
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.MouseSlidingEnabledProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.MouseSlidingEnabled"/> property
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftCommandProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftCommand"/> property
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightCommandProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightCommand"/> property
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem"/> class.
+            Creates a new instance of <see cref="T:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem"/>
+            </summary>
+        </member>
+        <member name="E:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightCommandRequested">
+            <summary>
+            Occurs when the user swipes to the left to activate the right action
+            </summary>
+        </member>
+        <member name="E:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftCommandRequested">
+            <summary>
+            Occurs when the user swipes to the right to activate the left action
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.OnApplyTemplate">
+            <summary>
+            Invoked whenever application code or internal processes (such as a rebuilding
+            layout pass) call <see cref="M:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.OnApplyTemplate"/>. In simplest terms, this means the method
+            is called just before a UI element displays in an application. Override this
+            method to influence the default post-template logic of a class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.ContentGrid_ManipulationCompleted(System.Object,Windows.UI.Xaml.Input.ManipulationCompletedRoutedEventArgs)">
+            <summary>
+            Handler for when slide manipulation is complete
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.ContentGrid_ManipulationDelta(System.Object,Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs)">
+            <summary>
+            Handler for when slide manipulation is underway
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.ActivationWidth">
+            <summary>
+            Gets or sets the amount of pixels the content needs to be swiped for an
+            action to be requested
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftIcon">
+            <summary>
+            Gets or sets the left icon symbol
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightIcon">
+            <summary>
+            Gets or sets the right icon symbol
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftLabel">
+            <summary>
+            Gets or sets the left label
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightLabel">
+            <summary>
+            Gets or sets the right label
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftForeground">
+            <summary>
+            Gets or sets the left foreground color
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightForeground">
+            <summary>
+            Gets or sets the right foreground color
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftBackground">
+            <summary>
+            Gets or sets the left background color
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightBackground">
+            <summary>
+            Gets or sets the right background color
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.MouseSlidingEnabled">
+            <summary>
+            Gets or sets a value indicating whether it has the ability to slide the control with the mouse. False by default
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.LeftCommand">
+            <summary>
+            Gets or sets the ICommand for left command request
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.SlidableListItem.RightCommand">
+            <summary>
+            Gets or sets the ICommand for right command request
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView">
+            <summary>
+            The AdaptiveGridView control allows to present information within a Grid View perfectly adjusting the
+            total display available space. It reacts to changes in the layout as well as the content so it can adapt
+            to different form factors automatically.
+            </summary>
+            <remarks>
+            The number and the width of items are calculated based on the
+            screen resolution in order to fully leverage the available screen space. The property ItemsHeight define
+            the items fixed height and the property DesiredWidth sets the minimum width for the elements to add a
+            new column.</remarks>
+            <summary>
+            The AdaptiveGridView control allows to present information within a Grid View perfectly adjusting the
+            total display available space. It reacts to changes in the layout as well as the content so it can adapt
+            to different form factors automatically.
+            </summary>
+            <remarks>
+            The number and the width of items are calculated based on the
+            screen resolution in order to fully leverage the available screen space. The property ItemsHeight define
+            the items fixed height and the property DesiredWidth sets the minimum width for the elements to add a
+            new column.</remarks>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.ItemClickCommandProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.ItemClickCommand"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.ItemsSourceProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.ItemsSource"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.ItemTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.ItemTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.ItemHeightProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.ItemHeight"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.OneRowModeEnabledProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.OneRowModeEnabled"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.VerticalScrollModeProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.VerticalScrollMode"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.ItemWidthProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.ItemWidth"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.DesiredWidthProperty">
+            <summary>
+            Identifies the <see cref="P:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.DesiredWidth"/> dependency property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.DesiredWidth">
+            <summary>
+            Gets or sets the desired width of each item
+            </summary>
+            <value>The width of the desired.</value>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.ItemClickCommand">
+            <summary>
+            Gets or sets the command to execute when an item is clicked.
+            </summary>
+            <value>The item click command.</value>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.ItemHeight">
+            <summary>
+            Gets or sets the height of each item in the grid.
+            </summary>
+            <value>The height of the item.</value>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.ItemsSource">
+            <summary>
+            Gets or sets an object source used to generate the content of the grid.
+            </summary>
+            <value>The object that is used to generate the content of the ItemsControl. The default is null</value>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.ItemTemplate">
+            <summary>
+            Gets or sets the DataTemplate used to display each item.
+            </summary>
+            <value>The template that specifies the visualization of the data objects. The default is null.</value>
+        </member>
+        <member name="P:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.OneRowModeEnabled">
+            <summary>
+            Gets or sets a value indicating whether only one row should be displayed.
+            </summary>
+            <value><c>true</c> if only one row is displayed; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="E:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.ItemClick">
+            <summary>
+            Event raised when an item is clicked
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView.OnApplyTemplate">
+            <summary>
+            Invoked whenever application code or internal processes (such as a rebuilding layout pass) call
+            ApplyTemplate. In simplest terms, this means the method is called just before a UI element displays
+            in your app. Override this method to influence the default post-template logic of a class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.Microsoft_Toolkit_Uwp_UI_Controls_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.Microsoft_Toolkit_Uwp_UI_Controls_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.UI.Controls.Microsoft_Toolkit_Uwp_UI_Controls_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Uwp.ControlHelpers">
+            <summary>
+            Internal class used to provide helpers for controls
+            </summary>
+            <summary>
+            Internal class used to provide helpers for controls
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.ControlHelpers.GetVisual(Windows.UI.Xaml.UIElement)">
+            <summary>
+            Get the visual associated with an UIElement
+            </summary>
+            <param name="element">Source UIElement</param>
+            <returns>ContainerVisual associated with the element</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.ControlHelpers.Mod(System.Int32,System.Int32)">
+            <summary>
+            Gets the positive modulo of an integer
+            </summary>
+            <param name="value">Value to use</param>
+            <param name="module">Module to use</param>
+            <returns>Positive modulo</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.ControlHelpers.IncMod(System.Int32,System.Int32)">
+            <summary>
+            Gets modulo of value + 1
+            </summary>
+            <param name="value">Value to use</param>
+            <param name="module">Module to use</param>
+            <returns>Modulo of value + 1</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.ControlHelpers.DecMod(System.Int32,System.Int32)">
+            <summary>
+            Gets modulo of value - 1
+            </summary>
+            <param name="value">Value to use</param>
+            <param name="module">Module to use</param>
+            <returns>Modulo of value - 1</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Uwp.ControlHelpers.Mod(System.Double,System.Double)">
+            <summary>
+            Gets the positive modulo of a double
+            </summary>
+            <param name="value">Value to use</param>
+            <param name="module">Module to use</param>
+            <returns>Positive modulo</returns>
+        </member>
+    </members>
+</doc>
