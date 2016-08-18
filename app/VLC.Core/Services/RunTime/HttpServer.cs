@@ -25,9 +25,9 @@ namespace VLC.Services.RunTime
             this.listener.ConnectionReceived += (s, e) => ProcessRequestAsync(e.Socket);
         }
 
-        public async void bind(int port)
+        public void bind(int port)
         {
-            await this.listener.BindServiceNameAsync(port.ToString());
+            this.listener.BindServiceNameAsync(port.ToString()).AsTask().ConfigureAwait(false);
         }
 
         public void Dispose()

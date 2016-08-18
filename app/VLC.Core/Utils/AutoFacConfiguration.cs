@@ -66,6 +66,7 @@ namespace VLC.Utils
             builder.RegisterType<ExternalDeviceService>().SingleInstance();
             builder.RegisterType<SpecialThanksViewModel>();
             builder.RegisterType<ThumbnailService>().SingleInstance();
+            builder.RegisterType<HttpServer>().SingleInstance();
 
             return builder.Build();
         }
