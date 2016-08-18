@@ -114,12 +114,8 @@
 
                         <ToggleSwitch IsOn="{Binding MediaCenterMode, Mode=TwoWay}" />
 
-                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}"
-                                   Margin="{StaticResource FrameMarginTop}"
-                                   FontSize="22"
-                                   Style="{StaticResource SubheaderTextBlockStyle}"
-                                   FontWeight="SemiLight" />
-
+                        <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                                                           Header="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}" />
                         <ListView ItemsSource="{Binding KeyboardActions}"
                                   SelectionMode="None"
                                   Margin="{StaticResource FrameMarginTop}"
@@ -226,11 +222,8 @@
                                       Header="{Binding Source={StaticResource Strings}, Path=VideoPlaybackInBackground}"
                                       IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}" />
 
-                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=SubtitlesEncoding}"
-                                   Margin="{StaticResource FrameMarginTop}"
-                                   FontSize="22"
-                                   Style="{StaticResource SubheaderTextBlockStyle}"
-                                   FontWeight="SemiLight" />
+                        <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                                                           Header="{Binding Source={StaticResource Strings}, Path=SubtitlesEncoding}" />
                         <ComboBox Margin="0,12"
                                   ItemsSource="{Binding SubtitlesEncodingValues}"
                                   SelectedItem="{Binding SubtitleEncodingValue, Mode=TwoWay}"
@@ -251,10 +244,8 @@
                 <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
                     <StackPanel x:Name="MusicSettingsPanel"
                                 Margin="{StaticResource FrameMarginHorizontal}">
-                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Equalizer}"
-                                   FontSize="22"
-                                   Style="{StaticResource SubheaderTextBlockStyle}"
-                                   FontWeight="SemiLight" />
+                        <toolkitControls:HeaderedTextBlock Header="{Binding Source={StaticResource Strings}, Path=Equalizer}" />
+
                         <ComboBox ItemsSource="{Binding Presets}"
                                   SelectedItem="{Binding Equalizer, Mode=TwoWay}"
                                   Width="200"
@@ -339,8 +330,7 @@
                                                                Header="{Binding Source={StaticResource Strings}, Path=Notifications}"
                                                                Text="{Binding Source={StaticResource Strings}, Path=NotificationWhenSongStarts}" />
 
-                            <ToggleSwitch  IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}"
-                                           Margin="{StaticResource FrameMarginTop}" />
+                            <ToggleSwitch  IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}" />
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            Header="{Binding Source={StaticResource Strings}, Path=ConnectToLastFM}"/>
