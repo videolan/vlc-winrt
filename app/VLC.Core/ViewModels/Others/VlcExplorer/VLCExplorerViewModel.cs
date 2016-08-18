@@ -98,7 +98,7 @@ namespace VLC.ViewModels.RemovableDevicesVM
             if (FileExplorersGrouped.Any() == false)
             {
                 var categories = Enum.GetValues(typeof(RootFolderType)).Cast<RootFolderType>();
-                foreach ( var c in categories )
+                foreach (var c in categories)
                     await CreateFolderCategory(c);
                 var musicFolder = new LocalFileExplorerViewModel(KnownFolders.MusicLibrary, RootFolderType.Library);
                 musicFolder.LogoGlyph = App.Current.Resources["MusicFilledSymbol"] as string;
