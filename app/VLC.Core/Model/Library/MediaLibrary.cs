@@ -992,27 +992,41 @@ namespace VLC.Model.Library
 
         public async Task RemoveTrackFromCollectionAndDatabase(TrackItem trackItem)
         {
+            if (trackItem == null)
+                return;
+
+            var trackDB = await LoadTrackById(trackItem.Id);
+            if (trackDB == null)
+                return;
+            await trackDatabase.Remove(trackDB);
+
+            var albumDB = await LoadAlbum(trackItem.AlbumId);
+            if (albumDB == null)
+                return;
+            var albumTracks = await LoadTracksByAlbumId(albumDB.Id);
+            if (!albumTracks.Any())
+            {
+                albumDatabase.Remove(albumDB);
+            }
+
+            var artistDB = await LoadArtist(trackItem.ArtistId);
+            if (artistDB == null)
+                return;
+            var artistAlbums = await LoadAlbums(artistDB.Id);
+            if (!artistAlbums.Any())
+            {
+                await artistDatabase.Remove(artistDB);
+            }
+
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 try
                 {
-                    trackDatabase.Remove(Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
-                    Tracks.Remove(Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
-                    var album = Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId);
-                    album?.Tracks.Remove(album.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
-
-                    var artist = Artists.FirstOrDefault(x => x.Id == trackItem.ArtistId);
-                    var artistalbum = artist?.Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId);
-                    artistalbum?.Tracks.Remove(artistalbum.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
-                    if (album.Tracks.Count == 0)
-                    {
-                        // We should remove the album as a whole
-                        Albums.Remove(album);
-                        albumDatabase.Remove(album);
-                        artist.Albums.Remove(artistalbum);
-                    }
+                    Tracks?.Remove(Tracks?.FirstOrDefault(x => x.Path == trackItem.Path));
+                    
                     var playingTrack = Locator.MediaPlaybackViewModel.PlaybackService.Playlist.FirstOrDefault(x => x.Id == trackItem.Id);
-                    if (playingTrack != null) Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Remove(playingTrack);
+                    if (playingTrack != null)
+                        Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Remove(playingTrack);
                 }
                 catch
                 {

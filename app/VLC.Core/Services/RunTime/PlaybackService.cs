@@ -170,15 +170,20 @@ namespace VLC.Services.RunTime
             {
                 var count = (uint)Playlist.Count;
                 var trackItems = mediaItems.OfType<TrackItem>();
+                var backgroundTrackItems = new List<BackgroundTrackItem>();
                 foreach (var track in trackItems)
                 {
+                    backgroundTrackItems.Add(new BackgroundTrackItem()
+                    {
+                        TrackId = track.Id
+                    });
                     track.Index = count;
                     count++;
                 }
 
                 Playlist.AddRange(mediaItems);
 
-                await Locator.MediaPlaybackViewModel.PlaybackService.BackgroundTrackRepository.Add(trackItems);
+                await Locator.MediaPlaybackViewModel.PlaybackService.BackgroundTrackRepository.Add(backgroundTrackItems);
 
                 IsRunning = true;
             }
@@ -212,7 +217,7 @@ namespace VLC.Services.RunTime
                     return;
                 }
 
-                var trackIds = playlist.Select(node => node.Id);
+                var trackIds = playlist.Select(node => node.TrackId);
                 var restoredplaylist = new SmartCollection<IMediaItem>();
                 foreach (int trackId in trackIds)
                 {

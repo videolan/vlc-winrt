@@ -21,7 +21,7 @@ namespace VLC.Database
         {
             using (var db = new SQLiteConnection(DbPath))
             {
-                db.CreateTable<TrackItem>();
+                db.CreateTable<BackgroundTrackItem>();
             }
         }
 
@@ -29,7 +29,7 @@ namespace VLC.Database
         {
             using (var db = new SQLiteConnection(DbPath))
             {
-                db.DropTable<TrackItem>();
+                db.DropTable<BackgroundTrackItem>();
             }
         }
 
@@ -37,11 +37,11 @@ namespace VLC.Database
         {
             using (var db = new SQLiteConnection(DbPath))
             {
-                db.DeleteAll<TrackItem>();
+                db.DeleteAll<BackgroundTrackItem>();
             }
         }
 
-        public async Task Add(TrackItem track)
+        public async Task Add(BackgroundTrackItem track)
         {
             await MusicDatabase.DatabaseOperation.WaitAsync();
             try
@@ -55,7 +55,7 @@ namespace VLC.Database
             }
         }
 
-        public async Task Add(IEnumerable<TrackItem> tracks)
+        public async Task Add(IEnumerable<BackgroundTrackItem> tracks)
         {
             await MusicDatabase.DatabaseOperation.WaitAsync();
             try
@@ -69,13 +69,13 @@ namespace VLC.Database
             }
         }
 
-        public async Task<List<TrackItem>> LoadPlaylist()
+        public async Task<List<BackgroundTrackItem>> LoadPlaylist()
         {
             await MusicDatabase.DatabaseOperation.WaitAsync();
             try
             {
                 var connection = new SQLiteAsyncConnection(DbPath);
-                var query = connection.Table<TrackItem>().OrderBy(x => x.Name);
+                var query = connection.Table<BackgroundTrackItem>();
                 var tracks = await query.ToListAsync();
                 return tracks;
             }
@@ -86,7 +86,7 @@ namespace VLC.Database
         }
 
 
-        public async Task Remove(TrackItem track)
+        public async Task Remove(BackgroundTrackItem track)
         {
             await MusicDatabase.DatabaseOperation.WaitAsync();
             try
