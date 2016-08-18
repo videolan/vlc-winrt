@@ -6,83 +6,70 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:userControls="using:VLC.Views.UserControls"
              xmlns:albumPageControls="using:VLC.Views.MusicPages.AlbumPageControls"
+             xmlns:toolkitControls="using:Microsoft.Toolkit.Uwp.UI.Controls"
              xmlns:ext="using:WinRTXamlToolkit.Controls.Extensions"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
     <Grid x:Name="HeaderGrid"
-          Margin="{StaticResource FrameMarginHorizontal}">
+          Margin="{StaticResource FrameMarginHorizontal}"
+          Padding="{StaticResource FrameMarginTop}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MaxWidth="180" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-            <RowDefinition />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
         </Grid.RowDefinitions>
+        <Image Grid.Column="0"
+               Grid.RowSpan="3"
+               Source="{Binding AlbumImage}"
+               Stretch="UniformToFill" />
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition MaxWidth="180" />
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Image Grid.Column="0"
-                   Grid.RowSpan="3"
-                   Source="{Binding AlbumImage}"
-                   Stretch="UniformToFill" />
-            <TextBlock Grid.Column="2"
-                       Grid.Row="0"
-                       TextTrimming="CharacterEllipsis"
-                       TextWrapping="NoWrap"
-                       VerticalAlignment="Top"
-                       Style="{StaticResource SubheaderTextBlockStyle}"
-                       Text="{Binding Artist, Converter={StaticResource AlbumStringConverter}}" />
-            <TextBlock Grid.Column="2"
-                       Grid.ColumnSpan="2"
-                       Grid.Row="1"
-                       TextTrimming="CharacterEllipsis"
-                       TextWrapping="NoWrap"
-                       VerticalAlignment="Top"
-                       Style="{StaticResource SubheaderTextBlockStyle}"
-                       Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
-                     FontWeight="Light"
-                     FontSize="21" />
-            <AppBarButton Grid.Column="3"
-                          Grid.Row="0"
-                          VerticalAlignment="Top"
-                          Margin="{StaticResource FrameMarginRight}"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Label="{Binding Source={StaticResource Strings}, Path=ViewArtist}"
-                          Command="{Binding ViewArtist}"
-                          CommandParameter="{Binding ArtistId}"
-                          IsTabStop="True">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource BuddySymbol}"
-                              FontFamily="{StaticResource VLCFont}" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <TextBlock Grid.Row="3"
-                       Grid.Column="2"
-                       Margin="{StaticResource FrameMarginRight}"
-                       TextTrimming="CharacterEllipsis"
-                       TextWrapping="NoWrap"
-                       FontSize="16"
-                       FontWeight="Light"
-                       Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}">
+        <toolkitControls:HeaderedTextBlock Grid.Column="2"
+                                           Grid.Row="0"
+                                           Grid.RowSpan="2"
+                                           Header="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
+                                           Text="{Binding Artist, Converter={StaticResource ArtistStringConverter}}" />
+
+        <AppBarButton Grid.Column="3"
+                      Grid.Row="0"
+                      VerticalAlignment="Top"
+                      Margin="{StaticResource FrameMarginRight}"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Label="{Binding Source={StaticResource Strings}, Path=ViewArtist}"
+                      Command="{Binding ViewArtist}"
+                      CommandParameter="{Binding ArtistId}"
+                      IsTabStop="True">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource BuddySymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+
+        <TextBlock Grid.Column="2"
+                   Grid.Row="2"
+                   Margin="{StaticResource FrameMarginRight}"
+                   TextTrimming="CharacterEllipsis"
+                   TextWrapping="NoWrap"
+                   FontSize="16"
+                   FontWeight="Light"
+                   Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
+                   HorizontalAlignment="Left">
                 <Run Text="{Binding Tracks.Count}" />
                 <Run Text="{Binding Source={StaticResource Strings}, Path=Tracks}" />
-            </TextBlock>
-        </Grid>
-
-        <Grid Grid.Row="2"
-              Height="50">
+        </TextBlock>
+        <Grid Grid.Column="2"
+              Grid.ColumnSpan="2"
+              Grid.Row="2"
+              Height="50"
+              VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="Auto" />
@@ -91,8 +78,8 @@
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <AppBarButton x:Name="PlayAlbum" 
-                          Grid.Column="1"
+            <AppBarButton x:Name="PlayAlbum"
+                          Grid.Column="0"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
                           Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
@@ -105,7 +92,7 @@
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Grid.Column="3"
+            <AppBarButton Grid.Column="2"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
                           ToolTipService.ToolTip="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
@@ -117,7 +104,7 @@
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Grid.Column="5"
+            <AppBarButton Grid.Column="4"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Icon="{Binding IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
                           Command="{Binding PinAlbumCommand}"
@@ -125,13 +112,12 @@
                           VerticalAlignment="Center"
                           IsTabStop="True"
                           IsCompact="True" />
-            <AppBarButton Grid.Column="7"
+            <AppBarButton Grid.Column="6"
                           Icon="{Binding Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
                           Command="{Binding FavoriteAlbum}"
                           CommandParameter="{Binding}"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
-                          Margin="{StaticResource FrameMargin}"
                           IsTabStop="True"
                           IsCompact="True" />
         </Grid>
