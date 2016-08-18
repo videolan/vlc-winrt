@@ -22,7 +22,8 @@
             <Grid>
                 <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
                     <StackPanel Margin="{StaticResource FrameMarginHorizontal}">
-                        <toolkitControls:HeaderedTextBlock Header="{Binding Source={StaticResource Strings}, Path=Theme}"
+                        <toolkitControls:HeaderedTextBlock HideTextIfEmpty="True"
+                                                           Header="{Binding Source={StaticResource Strings}, Path=Theme}"
                                                            Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}" />
 
                         <winControls:WrapPanel Orientation="Horizontal">
@@ -70,6 +71,7 @@
                         </winControls:WrapPanel>
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=Languages}"
                                                            Text="{Binding Source={StaticResource Strings}, Path=SelectLanguageDescription}" />
 
@@ -93,6 +95,7 @@
                         </winControls:WrapPanel>
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=HomePage}"
                                                            Text="{Binding Source={StaticResource Strings}, Path=HomePageDescription}" />
 
@@ -109,12 +112,14 @@
                         </ComboBox>
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                                                           HideTextIfEmpty="True"
                                                            Header="Media Center mode"
                                                            Text="Requires an XBOX One gamepad" />
 
                         <ToggleSwitch IsOn="{Binding MediaCenterMode, Mode=TwoWay}" />
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}" />
                         <ListView ItemsSource="{Binding KeyboardActions}"
                                   SelectionMode="None"
@@ -151,6 +156,7 @@
                     <StackPanel x:Name="VideoSettingsPanel"
                                 Margin="{StaticResource FrameMarginHorizontal}">
                         <toolkitControls:HeaderedTextBlock Header="{Binding Source={StaticResource Strings}, Path=VideoFolders}"
+                                                           HideTextIfEmpty="True"
                                                            Text="{Binding Source={StaticResource Strings}, Path=VideoFoldersDescription}" />
                         <ListView Tag="STARTS"
                                   ItemsSource="{Binding VideoFolders}"
@@ -211,6 +217,7 @@
                                 CommandParameter="{Binding VideoLibraryId}" />
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=HardwareDecoding}"
                                                            Text="{Binding Source={StaticResource Strings}, Path=HardwareDecodingDescription}" />
                         <ToggleSwitch IsOn="{Binding HardwareAccelerationEnabled, Mode=TwoWay}" />
@@ -222,7 +229,8 @@
                                       Header="{Binding Source={StaticResource Strings}, Path=VideoPlaybackInBackground}"
                                       IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}" />
 
-                        <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                        <toolkitControls:HeaderedTextBlock HideTextIfEmpty="True"
+                                                           Margin="{StaticResource FrameMarginTop}"
                                                            Header="{Binding Source={StaticResource Strings}, Path=SubtitlesEncoding}" />
                         <ComboBox Margin="0,12"
                                   ItemsSource="{Binding SubtitlesEncodingValues}"
@@ -244,7 +252,8 @@
                 <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
                     <StackPanel x:Name="MusicSettingsPanel"
                                 Margin="{StaticResource FrameMarginHorizontal}">
-                        <toolkitControls:HeaderedTextBlock Header="{Binding Source={StaticResource Strings}, Path=Equalizer}" />
+                        <toolkitControls:HeaderedTextBlock HideTextIfEmpty="True"
+                                                           Header="{Binding Source={StaticResource Strings}, Path=Equalizer}" />
 
                         <ComboBox ItemsSource="{Binding Presets}"
                                   SelectedItem="{Binding Equalizer, Mode=TwoWay}"
@@ -266,6 +275,7 @@
                         <musicControls:Equalizer EqualizerValue="{Binding Equalizer}" />
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=MusicFolders}"
                                                            Text="{Binding Source={StaticResource Strings}, Path=MusicFoldersDescription}" />
                         <ListView Tag="STARTS"
@@ -320,65 +330,68 @@
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-                            </ListView>
-                            <Button Tag="STARTS"
-                                    Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
-                                    Command="{Binding AddFolderToLibrary}"
-                                    CommandParameter="{Binding MusicLibraryId}" />
-
-                            <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
-                                                               Header="{Binding Source={StaticResource Strings}, Path=Notifications}"
-                                                               Text="{Binding Source={StaticResource Strings}, Path=NotificationWhenSongStarts}" />
-
-                            <ToggleSwitch  IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}" />
+                        </ListView>
+                        <Button Tag="STARTS"
+                                Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
+                                Command="{Binding AddFolderToLibrary}"
+                                CommandParameter="{Binding MusicLibraryId}" />
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
-                                                           Header="{Binding Source={StaticResource Strings}, Path=ConnectToLastFM}"/>
+                                                           HideTextIfEmpty="True"
+                                                           Header="{Binding Source={StaticResource Strings}, Path=Notifications}"
+                                                           Text="{Binding Source={StaticResource Strings}, Path=NotificationWhenSongStarts}" />
+
+                        <ToggleSwitch  IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}" />
+
+                        <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                                                           HideTextIfEmpty="True"
+                                                           Header="{Binding Source={StaticResource Strings}, Path=ConnectToLastFM}" />
                         <userControls:FocusTextBox Height="30"
-                                                       Width="250"
-                                                       Margin="0,12,0,12"
-                                                       FontSize="18"
-                                                       FontWeight="Light"
-                                                       Text="{Binding LastFmUserName, Mode=TwoWay}"
-                                                       PlaceholderText="{Binding Source={StaticResource Strings}, Path=Username}"
-                                                       HorizontalAlignment="Left" />
-                            <PasswordBox x:Name="PasswordBoxLastFm"
-                                         Height="30"
-                                         Width="250"
-                                         FontSize="18"
-                                         FontWeight="Light"
-                                         Password="{Binding LastFmPassword, Mode=TwoWay}"
-                                         PlaceholderText="{Binding Source={StaticResource Strings}, Path=Password}"
-                                         GotFocus="FocusTextBox_GotFocus"
-                                         LostFocus="FocusTextBox_LostFocus"
-                                         HorizontalAlignment="Left"
-                                         Style="{StaticResource FocusPasswordBox}" />
-                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=ConnectedToLastFM}"
-                                       Style="{StaticResource SubtitleTextBlockStyle}"
-                                       Foreground="{ThemeResource MainColor}"
-                                       Visibility="{Binding LastFmIsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                            <TextBlock x:Name="ErrorConnectLastFmTextBox"
-                                       Style="{StaticResource SubtitleTextBlockStyle}"
-                                       Visibility="Collapsed" />
-                            <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=Connect}"
-                                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                          Margin="0,6,0,0"
-                                          Click="ConnectToLastFM_Click">
-                                <AppBarButton.Icon>
-                                    <FontIcon Glyph="{StaticResource BuddySymbol}"
-                                              FontFamily="{StaticResource VLCFont}" />
-                                </AppBarButton.Icon>
-                            </AppBarButton>
+                                                   Width="250"
+                                                   Margin="0,12,0,12"
+                                                   FontSize="18"
+                                                   FontWeight="Light"
+                                                   Text="{Binding LastFmUserName, Mode=TwoWay}"
+                                                   PlaceholderText="{Binding Source={StaticResource Strings}, Path=Username}"
+                                                   HorizontalAlignment="Left" />
+                        <PasswordBox x:Name="PasswordBoxLastFm"
+                                     Height="30"
+                                     Width="250"
+                                     FontSize="18"
+                                     FontWeight="Light"
+                                     Password="{Binding LastFmPassword, Mode=TwoWay}"
+                                     PlaceholderText="{Binding Source={StaticResource Strings}, Path=Password}"
+                                     GotFocus="FocusTextBox_GotFocus"
+                                     LostFocus="FocusTextBox_LostFocus"
+                                     HorizontalAlignment="Left"
+                                     Style="{StaticResource FocusPasswordBox}" />
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=ConnectedToLastFM}"
+                                   Style="{StaticResource SubtitleTextBlockStyle}"
+                                   Foreground="{ThemeResource MainColor}"
+                                   Visibility="{Binding LastFmIsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBlock x:Name="ErrorConnectLastFmTextBox"
+                                   Style="{StaticResource SubtitleTextBlockStyle}"
+                                   Visibility="Collapsed" />
+                        <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=Connect}"
+                                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                      Margin="0,6,0,0"
+                                      Click="ConnectToLastFM_Click">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="{StaticResource BuddySymbol}"
+                                          FontFamily="{StaticResource VLCFont}" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
 
-                            <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
-                                                               Header="{Binding Source={StaticResource Strings}, Path=Reset}"
-                                                               Text="This will delete all the playlists made with VLC, and index the music library again." />
+                        <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                                                           HideTextIfEmpty="True"
+                                                           Header="{Binding Source={StaticResource Strings}, Path=Reset}"
+                                                           Text="This will delete all the playlists made with VLC, and index the music library again." />
 
-                            <Button Content="{Binding Source={StaticResource Strings}, Path=ResetMusicDatabase}"
-                                    DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
-                                    Command="{Binding IndexMediaLibraryCommand}"
-                                    CommandParameter="True"
-                                    Margin="{StaticResource FrameMarginVertical}" />
+                        <Button Content="{Binding Source={StaticResource Strings}, Path=ResetMusicDatabase}"
+                                DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                                Command="{Binding IndexMediaLibraryCommand}"
+                                CommandParameter="True"
+                                Margin="{StaticResource FrameMarginVertical}" />
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
