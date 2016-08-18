@@ -208,9 +208,7 @@ namespace VLC.Services.RunTime
                 if (ind != -1)
                     lenToWrite = (uint)ind;
 
-                byte[] base64data = new byte[lenToWrite];
-                Array.Copy(buffer.ToArray(), 0, base64data, 0, (int)lenToWrite);
-                await payloadOutputStream.WriteAsync(base64data.AsBuffer());
+                await payloadOutputStream.WriteAsync(buffer.ToArray().AsBuffer(0, (int)lenToWrite));
 
                 if (ind != -1)
                 {
