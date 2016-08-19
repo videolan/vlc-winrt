@@ -188,9 +188,6 @@ namespace VLC.Services.RunTime
                     {
                         switch (args.VirtualKey)
                         {
-                            case VirtualKey.GamepadB:
-                                Locator.NavigationService.GoBack_Specific();
-                                break;
                             case VirtualKey.GamepadMenu:
                             case VirtualKey.F1:
                                 if (Locator.SettingsVM.MediaCenterMode)
