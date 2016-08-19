@@ -257,6 +257,9 @@ namespace VLC.Model.Library
         {
             try
             {
+                StorageFolder folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("Medias", CreationCollisionOption.OpenIfExists);
+                await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder));
+
                 await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.VideosLibrary));
 
                 await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.MusicLibrary));
