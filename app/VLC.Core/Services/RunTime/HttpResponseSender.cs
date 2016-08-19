@@ -100,7 +100,7 @@ public class HttpResponseSender
                             "\r\n", contentType, fileBuffer.Length);
         using (IOutputStream output = socket.OutputStream)
         {
-            byte[] headerArray = Encoding.ASCII.GetBytes(header);
+            byte[] headerArray = Encoding.UTF8.GetBytes(header);
             IBuffer buffer = headerArray.AsBuffer();
             await output.WriteAsync(buffer);
             await output.WriteAsync(fileBuffer);
@@ -141,7 +141,7 @@ public class HttpResponseSender
                             "Connection: close\r\n" +
                             "\r\n", stream.Size, fileName);
 
-                    byte[] headerArray = Encoding.ASCII.GetBytes(header);
+                    byte[] headerArray = Encoding.UTF8.GetBytes(header);
                     IBuffer buffer = headerArray.AsBuffer();
                     await output.WriteAsync(buffer);
                 }
@@ -278,7 +278,7 @@ public class HttpResponseSender
     {
         using (IOutputStream output = socket.OutputStream)
         {
-            byte[] headerArray = Encoding.ASCII.GetBytes(answer);
+            byte[] headerArray = Encoding.UTF8.GetBytes(answer);
             IBuffer buffer = headerArray.AsBuffer();
             await output.WriteAsync(buffer);
         }

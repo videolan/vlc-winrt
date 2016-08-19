@@ -184,7 +184,7 @@ namespace VLC.Services.RunTime
                 }
                 else
                 {
-                    Debug.WriteLine("mutipart header: " + Encoding.ASCII.GetString(buffer.ToArray()));
+                    Debug.WriteLine("mutipart header: " + Encoding.UTF8.GetString(buffer.ToArray()));
 
                     await headerStream.WriteAsync(buffer.ToArray(), 0, (int)buffer.Length);
                     parseHeader(buffer.ToArray());
@@ -221,7 +221,7 @@ namespace VLC.Services.RunTime
             public void parseHeader(byte[] data)
             {
                 var headerBuilder = new StringBuilder();
-                headerBuilder.Append(Encoding.ASCII.GetString(data));
+                headerBuilder.Append(Encoding.UTF8.GetString(data));
                 var header = headerBuilder.ToString();
 
                 var ind = header.IndexOf("\r\n\r\n");
@@ -270,7 +270,7 @@ namespace VLC.Services.RunTime
 
             // Look for the end of the header.
             var headerBuilder = new StringBuilder();
-            headerBuilder.Append(Encoding.ASCII.GetString(data));
+            headerBuilder.Append(Encoding.UTF8.GetString(data));
             var header = headerBuilder.ToString();
 
             var ind = header.IndexOf("\r\n\r\n");
