@@ -282,10 +282,6 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\VariousPages\SpecialThanks.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\VariousPages\UploaderPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\VideoPages\TVShowsViews\ShowEpisodesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -520,9 +516,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\VariousPages\SpecialThanks.xaml.cs">
       <DependentUpon>SpecialThanks.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\VariousPages\UploaderPage.xaml.cs">
-      <DependentUpon>UploaderPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\VideoPages\TVShowsViews\ShowEpisodesView.xaml.cs">
       <DependentUpon>ShowEpisodesView.xaml</DependentUpon>

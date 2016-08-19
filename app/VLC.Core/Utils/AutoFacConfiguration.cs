@@ -51,8 +51,6 @@ namespace VLC.Utils
 
             builder.RegisterType<VLCExplorerViewModel>();
 
-            builder.RegisterType<UploaderViewModel>();
-
             // Register Services
             builder.RegisterType<MetroSlideshow>();
             builder.RegisterType<VLCService>();
