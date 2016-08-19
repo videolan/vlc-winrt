@@ -59,7 +59,7 @@
                     </Grid.Background>
                 </Grid>
             </Grid>
-            <StackPanel Grid.Row="1"
+            <Grid Grid.Row="1"
                         Margin="{StaticResource FrameMarginVertical}">
                 <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=PlayVideo}"
                               Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.CloseFlyoutAndPlayVideoCommand}"
