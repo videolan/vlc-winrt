@@ -103,7 +103,7 @@ namespace VLC.Database
         public Task Clear()
         {
             var c = new SQLiteAsyncConnection(DbPath);
-            return c.ExecuteAsync("DELETE FROM TrackItem");
+            return c.ExecuteAsync($"DELETE FROM {nameof(BackgroundTrackItem)}");
         }
     }
 }
