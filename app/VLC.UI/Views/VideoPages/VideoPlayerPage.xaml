@@ -179,7 +179,6 @@
                             <AppBarButton Name="PiPButton"
                                           Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.InitPiPCommand}"
                                           IsCompact="True"
-                                          IsTabStop="False"
                                           HorizontalAlignment="Stretch"
                                           VerticalAlignment="Stretch"
                                           Style="{StaticResource AppBarButtonStyleHuge}"
@@ -192,7 +191,6 @@
                             </AppBarButton>
                             <AppBarButton Name="FullscreenToggle"
                                           IsCompact="True"
-                                          IsTabStop="False"
                                           HorizontalAlignment="Stretch"
                                           VerticalAlignment="Stretch"
                                           Style="{StaticResource AppBarButtonStyleHuge}"
@@ -267,7 +265,6 @@
                             <AppBarButton Name="MenuButton"
                                           Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerOptionsPanelVisible}"
                                           IsCompact="True"
-                                          IsTabStop="False"
                                           HorizontalAlignment="Stretch"
                                           VerticalAlignment="Stretch"
                                           Style="{StaticResource AppBarButtonStyleHuge}"
