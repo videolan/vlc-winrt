@@ -12,10 +12,10 @@ namespace VLC.Utils
         public static readonly int SemanticZoomItemCountThreshold = 25;
 
         // Database Version 
-        public static readonly int DbVersion = 7;
+        public static readonly int DbVersion = 9;
         public static bool NeedsToDrop()
         {
-            if (!ApplicationSettingsHelper.Contains(Strings.AlreadyLaunched) || ApplicationSettingsHelper.Contains(Strings.DatabaseVersion) && (int)ApplicationSettingsHelper.ReadSettingsValue(Strings.DatabaseVersion) == Numbers.DbVersion)
+            if (ApplicationSettingsHelper.Contains(Strings.AlreadyLaunched, true) && ApplicationSettingsHelper.Contains(Strings.DatabaseVersion, true) && (int)ApplicationSettingsHelper.ReadSettingsValue(Strings.DatabaseVersion, true) == Numbers.DbVersion)
             {
                 LogHelper.Log("DB does not need to be dropped.");
                 return false;
@@ -23,8 +23,8 @@ namespace VLC.Utils
             else
             {
                 LogHelper.Log("DB needs to be dropped.");
-                ApplicationSettingsHelper.SaveSettingsValue(Strings.DatabaseVersion, Numbers.DbVersion);
-                ApplicationSettingsHelper.SaveSettingsValue(Strings.AlreadyLaunched, true);
+                ApplicationSettingsHelper.SaveSettingsValue(Strings.DatabaseVersion, Numbers.DbVersion, true);
+                ApplicationSettingsHelper.SaveSettingsValue(Strings.AlreadyLaunched, true, true);
                 return true;
             }
         }
