@@ -131,10 +131,10 @@ namespace VLC.Services.RunTime
             {
                 await responseSender.error404();
             }
-            catch
+            /*catch
             {
                 await responseSender.error500();
-            }
+            }*/
         }
 
 
@@ -253,7 +253,8 @@ namespace VLC.Services.RunTime
 
             private async Task<IOutputStream> getUploadOutputStream()
             {
-                file = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+                StorageFolder folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("Medias", CreationCollisionOption.OpenIfExists);
+                file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
                 var writeStream = await file.OpenAsync(FileAccessMode.ReadWrite);
                 return writeStream;
             }
