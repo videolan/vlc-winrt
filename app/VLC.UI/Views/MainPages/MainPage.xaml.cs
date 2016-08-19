@@ -41,6 +41,9 @@ namespace VLC.Views.MainPages
             Locator.MediaPlaybackViewModel.SetMediaTransportControls(smtc);
             this.GotFocus += MainPage_GotFocus;
             this.Loaded += MainPage_Loaded;
+
+            if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+                Locator.HttpServer.bind(8080);
         }
 
         private void MainPage_GotFocus(object sender, RoutedEventArgs e)
