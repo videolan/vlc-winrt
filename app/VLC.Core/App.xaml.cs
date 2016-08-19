@@ -231,8 +231,14 @@ namespace VLC
             {
                 Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
 
-                if (!Locator.SettingsVM.MediaCenterMode)
+                if (Locator.SettingsVM.MediaCenterMode)
+                {
+                    Locator.NavigationService.Go(VLCPage.MainPageXBOX);
+                }
+                else
+                {
                     App.SplitShell.FooterContent = new CommandBarBottom();
+                }
             }).ConfigureAwait(false);
         }
 
