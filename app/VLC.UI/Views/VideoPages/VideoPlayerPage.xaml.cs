@@ -101,7 +101,7 @@ namespace VLC.Views.VideoPages
 
         private void VideoPlayerVm_PlayerControlVisibilityChangeRequested(object sender, EventArgs e)
         {
-            DisplayOrHide(!isVisible);
+            ControlsTimer_Tick(null, true);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
