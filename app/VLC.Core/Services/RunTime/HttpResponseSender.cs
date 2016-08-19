@@ -175,10 +175,10 @@ public class HttpResponseSender
         {
             mediaList += String.Format("<div style='background-image: url(\"/thumbnails/video/{1}/{2}/art.jpg\"); height: 174px;'>"
                 + "<a href='/downloads/video/{1}/{2}/{3}' class='inner'><div class='down icon bgz'></div><div class='infos'>"
-                + "<span class='first-line'>{0}</span><span class='second-line'>00:12 - 1.28 MB</span>"
+                + "<span class='first-line'>{0}</span><span class='second-line'>{4}</span>"
                 + "</div></a></div>",
                 v.Name, Uri.EscapeDataString(v.Name), v.Id,
-                Uri.EscapeDataString(GetFileName(v.Path)));
+                Uri.EscapeDataString(GetFileName(v.Path)), DurationToString(v.Duration));
         }
 
         List<TrackItem> tracks = await Locator.MediaLibrary.LoadTracks();
@@ -186,10 +186,10 @@ public class HttpResponseSender
         {
             mediaList += String.Format("<div style='background-image: url(\"/thumbnails/track/{2}/{3}/{4}/art.jpg\"); height: 174px;'>"
                 + "<a href='/downloads/track/{2}/{3}/{4}/{5}' class='inner'><div class='down icon bgz'></div><div class='infos'>"
-                + "<span class='first-line'>{0} - {1}</span><span class='second-line'>00:12 - 1.28 MB</span>"
+                + "<span class='first-line'>{0} - {1}</span><span class='second-line'>{6}</span>"
                 + "</div></a></div>",
                 t.ArtistName, t.Name, Uri.EscapeDataString(t.ArtistName), Uri.EscapeDataString(t.Name), t.Id,
-                Uri.EscapeDataString(GetFileName(t.Path)));
+                Uri.EscapeDataString(GetFileName(t.Path)), DurationToString(t.Duration));
         }
 
         fileStr = fileStr.Replace("%%FILES%%", mediaList);
@@ -200,6 +200,16 @@ public class HttpResponseSender
     string GetFileName(string path)
     {
         return path.Substring(path.LastIndexOf('\\') + 1);
+    }
+
+    string DurationToString(TimeSpan d)
+    {
+        string ret = "";
+        if (d.Hours != 0)
+            ret += d.Hours.ToString("D2") + ":";
+        ret += d.Minutes.ToString("D2") + ":";
+        ret += d.Seconds.ToString("D2");
+        return ret;
     }
 
     async Task<Uri> getThumbnail(string path)
