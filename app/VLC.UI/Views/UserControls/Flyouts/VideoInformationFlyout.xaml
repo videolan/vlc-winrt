@@ -72,7 +72,19 @@
                                   FontFamily="{StaticResource VLCFont}" />
                     </AppBarButton.Icon>
                 </AppBarButton>
-            </StackPanel>
+                <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=DeleteSelected}"
+                              Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.DeleteFromLibraryCommand}"
+                              CommandParameter="{Binding}"
+                              Click="ActionButton_Click"
+                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              Margin="{StaticResource FrameMarginRight}"
+                              HorizontalAlignment="Right">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource DeleteSymbol}"
+                                  FontFamily="{StaticResource VLCFont}" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </Grid>
             <TextBlock Grid.Row="2"
                        Margin="{StaticResource FrameMarginLeft}"
                        Style="{StaticResource BodyTextBlockStyle}">

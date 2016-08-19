@@ -80,7 +80,8 @@ namespace VLC.Model.Video
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
-
+        public bool IsAvailable { get;
+            set; }
         public string Name
         {
             get { return _name; }

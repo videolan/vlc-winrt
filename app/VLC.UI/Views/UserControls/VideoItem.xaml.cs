@@ -45,6 +45,7 @@ namespace VLC.Views.UserControls
             if (Video == null)
                 return;
 
+            this.Opacity = Video.IsAvailable ? 1 : Numbers.NotAvailableFileItemOpacity;
             NameTextBlock.Text = Video.Name;
             UpdateVideoDurations();
             Video.PropertyChanged += Video_PropertyChanged;

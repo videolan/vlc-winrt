@@ -34,6 +34,7 @@ namespace VLC.Model.Music
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
+        public bool IsAvailable { get; set; }
         public int AlbumId { get; set; }
         public int ArtistId { get; set; }
         public string ArtistName

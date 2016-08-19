@@ -165,6 +165,16 @@ namespace VLC.ViewModels.VideoVM
         public VideoPlayerVM()
         {
             Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet += PlaybackService_Playback_MediaSet;
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaFileNotFound += PlaybackService_Playback_MediaFileNotFound;
+        }
+
+        private async void PlaybackService_Playback_MediaFileNotFound(IMediaItem media)
+        {
+            if (!(media is VideoItem))
+                return;
+
+            (media as VideoItem).IsAvailable = false;
+            await Locator.MediaLibrary.UpdateVideo(media as VideoItem);
         }
         #endregion
 

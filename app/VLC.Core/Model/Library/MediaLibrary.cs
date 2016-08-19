@@ -382,7 +382,8 @@ namespace VLC.Model.Library
                             Path = item.Path,
                             Index = mP.Tracknumber,
                             DiscNumber = mP.DiscNumber,
-                            Genre = mP.Genre
+                            Genre = mP.Genre,
+                            IsAvailable = true,
                         };
                         await trackDatabase.Add(track);
                         AddTrack(track);
@@ -1004,48 +1005,56 @@ namespace VLC.Model.Library
             }
         }
 
-        public async Task RemoveTrackFromCollectionAndDatabase(TrackItem trackItem)
+        public async Task RemoveMediaFromCollectionAndDatabase(IMediaItem media)
         {
-            if (trackItem == null)
-                return;
-
-            var trackDB = await LoadTrackById(trackItem.Id);
-            if (trackDB == null)
-                return;
-            await trackDatabase.Remove(trackDB);
-
-            var albumDB = await LoadAlbum(trackItem.AlbumId);
-            if (albumDB == null)
-                return;
-            var albumTracks = await LoadTracksByAlbumId(albumDB.Id);
-            if (!albumTracks.Any())
+            if (media is TrackItem)
             {
-                albumDatabase.Remove(albumDB);
-            }
+                var trackItem = media as TrackItem;
+                var trackDB = await LoadTrackById(trackItem.Id);
+                if (trackDB == null)
+                    return;
+                await trackDatabase.Remove(trackDB);
 
-            var artistDB = await LoadArtist(trackItem.ArtistId);
-            if (artistDB == null)
-                return;
-            var artistAlbums = await LoadAlbums(artistDB.Id);
-            if (!artistAlbums.Any())
-            {
-                await artistDatabase.Remove(artistDB);
-            }
+                var albumDB = await LoadAlbum(trackItem.AlbumId);
+                if (albumDB == null)
+                    return;
+                var albumTracks = await LoadTracksByAlbumId(albumDB.Id);
+                if (!albumTracks.Any())
+                {
+                    albumDatabase.Remove(albumDB);
+                }
 
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                try
+                var artistDB = await LoadArtist(trackItem.ArtistId);
+                if (artistDB == null)
+                    return;
+                var artistAlbums = await LoadAlbums(artistDB.Id);
+                if (!artistAlbums.Any())
+                {
+                    await artistDatabase.Remove(artistDB);
+                }
+
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     Tracks?.Remove(Tracks?.FirstOrDefault(x => x.Path == trackItem.Path));
-                    
+
                     var playingTrack = Locator.MediaPlaybackViewModel.PlaybackService.Playlist.FirstOrDefault(x => x.Id == trackItem.Id);
                     if (playingTrack != null)
                         Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Remove(playingTrack);
-                }
-                catch
+                });
+            }
+            else if (media is VideoItem)
+            {
+                var videoItem = media as VideoItem;
+                var videoDb = await LoadVideoById(videoItem.Id);
+                if (videoDb == null)
+                    return;
+                await videoDatabase.Remove(videoDb);
+
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
-                }
-            });
+                    Videos?.Remove(Videos?.FirstOrDefault(x => x.Path == videoItem.Path));
+                });
+            }
         }
 
         public bool AddAlbumToPlaylist(object args)

@@ -238,7 +238,7 @@ namespace VLC.ViewModels.MusicVM
         public StartTrackMetaEdit StartTrackMetaEdit { get; private set; } = new StartTrackMetaEdit();
 
         public SetAlbumViewOrderCommand SetAlbumViewOrder { get; private set; } = new SetAlbumViewOrderCommand();
-
+        public DeleteFromLibraryCommand DeleteFromLibraryCommand { get; private set; } = new DeleteFromLibraryCommand();
         public ArtistItem FocusOnAnArtist // Music Flow recommandation
         {
             get { return _focusOnAnArtist; }

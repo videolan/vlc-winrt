@@ -51,6 +51,7 @@ namespace VLC.Views.UserControls
             if (Track == null)
                 return;
 
+            this.Opacity = Track.IsAvailable ? 1 : Numbers.NotAvailableFileItemOpacity;
             NameTextBlock.Text = Track.Name;
             DurationTextBlock.Text = Strings.HumanizeSeconds(Track.Duration.TotalSeconds);
 

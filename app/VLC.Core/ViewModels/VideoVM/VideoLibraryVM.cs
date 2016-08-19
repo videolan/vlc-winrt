@@ -26,6 +26,7 @@ using Autofac;
 using System.Linq;
 using VLC.Model.Library;
 using Windows.UI.Xaml;
+using VLC.Commands.MediaLibrary;
 
 namespace VLC.ViewModels.VideoVM
 {
@@ -117,7 +118,7 @@ namespace VLC.ViewModels.VideoVM
         public PlayVideoCommand OpenVideo { get; private set; } = new PlayVideoCommand();
 
         public CloseFlyoutAndPlayVideoCommand CloseFlyoutAndPlayVideoCommand { get; private set; } = new CloseFlyoutAndPlayVideoCommand();
-
+        public DeleteFromLibraryCommand DeleteFromLibraryCommand { get; private set; } = new DeleteFromLibraryCommand();
         public Visibility IndexingLibraryVisibility
         {
             get { return Locator.MediaLibrary.MediaLibraryIndexingState == LoadingState.Loading ? Visibility.Visible : Visibility.Collapsed; }

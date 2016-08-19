@@ -60,6 +60,7 @@ namespace VLC.Helpers
                 mP.Season,
                 mP.Episode
                 );
+            video.IsAvailable = true;
 
             return video;
         }

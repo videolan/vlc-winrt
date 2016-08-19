@@ -116,7 +116,8 @@ namespace VLC.ViewModels.MusicVM
             if (!(media is TrackItem))
                 return;
 
-            await Locator.MediaLibrary.RemoveTrackFromCollectionAndDatabase(media as TrackItem);
+            (media as TrackItem).IsAvailable = false;
+            await Locator.MediaLibrary.Update(media as TrackItem);
         }
 
         private async void Playback_MediaSet(IMediaItem media)

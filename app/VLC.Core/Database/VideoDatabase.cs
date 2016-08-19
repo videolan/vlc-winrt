@@ -90,6 +90,12 @@ namespace VLC.Database
             return connection.UpdateAsync(video);
         }
 
+        public Task Remove(VideoItem video)
+        {
+            var connection = new SQLiteAsyncConnection(DbPath);
+            return connection.DeleteAsync(video);
+        }
+
         public Task<List<VideoItem>> GetLastViewed()
         {
             var connection = new SQLiteAsyncConnection(DbPath);

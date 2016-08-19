@@ -29,6 +29,7 @@ namespace VLC.Utils
             }
         }
 
+        public static double NotAvailableFileItemOpacity = 0.6;
         public static ulong OSVersion
         {
             get

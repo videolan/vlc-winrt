@@ -49,6 +49,8 @@ namespace VLC.UI.Legacy.Views.UserControls
         {
             if (Track == null)
                 return;
+
+            this.Opacity = Track.IsAvailable ? 1 : Numbers.NotAvailableFileItemOpacity;
             NameTextBlock.Text = Track.Name;
             ArtistAlbumNameTextBlock.Text = Track.ArtistName + Strings.Dash + Track.AlbumName;
 
