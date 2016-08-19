@@ -106,8 +106,10 @@ namespace VLC.Services.RunTime
                         {
                             await responseSender.simpleOK();
                             // TODO: remove the file if it cannot be indexed?
-                            await Locator.MediaLibrary.DiscoverMediaItemOrWaitAsync(
+                            bool success = await Locator.MediaLibrary.DiscoverMediaItemOrWaitAsync(
                                 uploadFileStream.getStorageFile(), false);
+                            if (success == false)
+                                await uploadFileStream.getStorageFile().DeleteAsync();
                             break;
                         }
 

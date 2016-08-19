@@ -137,21 +137,24 @@ namespace VLC.Model.Library
             }
         }
 
-        public async Task DiscoverMediaItemOrWaitAsync(StorageFile storageItem, bool isCameraRoll)
+        public async Task<bool> DiscoverMediaItemOrWaitAsync(StorageFile storageItem, bool isCameraRoll)
         {
             await MediaItemDiscovererSemaphoreSlim.WaitAsync();
+            bool success;
             try
             {
-                await ParseMediaFile(storageItem, isCameraRoll);
+                success = await ParseMediaFile(storageItem, isCameraRoll);
             }
             catch (Exception e)
             {
                 LogHelper.Log(StringsHelper.ExceptionToString(e));
+                success = false;
             }
             finally
             {
                 MediaItemDiscovererSemaphoreSlim.Release();
             }
+            return success;
         }
 
         public async Task FetchVideoThumbnailOrWaitAsync(VideoItem videoVm)
@@ -288,20 +291,20 @@ namespace VLC.Model.Library
             }
         }
 
-        async Task ParseMediaFile(StorageFile item, bool isCameraRoll)
+        async Task<bool> ParseMediaFile(StorageFile item, bool isCameraRoll)
         {
             try
             {
                 if (VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower()))
                 {
                     if (await trackDatabase.DoesTrackExist(item.Path))
-                        return;
+                        return true;
 
                     // Groove Music puts its cache into this folder in Music.
                     // If the file is in this folder or subfolder, don't add it to the collection,
                     // since we can't play it anyway because of the DRM.
                     if (item.Path.Contains("Music Cache") || item.Path.Contains("Podcast"))
-                        return;
+                        return false;
 
                     var media = await Locator.VLCService.GetMediaFromPath(item.Path);
                     var mP = await Locator.VLCService.GetMusicProperties(media);
@@ -392,7 +395,7 @@ namespace VLC.Model.Library
                 else if (VLCFileExtensions.VideoExtensions.Contains(item.FileType.ToLower()))
                 {
                     if (await videoDatabase.DoesMediaExist(item.Path))
-                        return;
+                        return true;
 
                     var video = await MediaLibraryHelper.GetVideoItem(item);
                     
@@ -414,14 +417,15 @@ namespace VLC.Model.Library
                 else
                 {
                     Debug.WriteLine($"{item.Path} is not a media file");
+                    return false;
                 }
             }
             catch (Exception e)
             {
-#if DEBUG
                 throw e;
-#endif
             }
+
+            return true;
         }
 
 
