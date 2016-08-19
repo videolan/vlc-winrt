@@ -300,7 +300,7 @@ namespace VLC.Model.Library
                     // Groove Music puts its cache into this folder in Music.
                     // If the file is in this folder or subfolder, don't add it to the collection,
                     // since we can't play it anyway because of the DRM.
-                    if (item.Path.Contains("Music Cache"))
+                    if (item.Path.Contains("Music Cache") || item.Path.Contains("Podcast"))
                         return;
 
                     var media = await Locator.VLCService.GetMediaFromPath(item.Path);
