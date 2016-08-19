@@ -83,7 +83,7 @@ namespace VLC.Views.VideoPages
             Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseCursorHidden;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
             RootGrid.Tapped += RootGrid_Tapped;
-            controlsTimer.Interval = TimeSpan.FromSeconds(4);
+            controlsTimer.Interval = TimeSpan.FromSeconds(5);
             controlsTimer.Tick += ControlsTimer_Tick;
             controlsTimer.Start();
 
