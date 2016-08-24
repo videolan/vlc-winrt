@@ -125,8 +125,22 @@ namespace VLC.ViewModels.RemovableDevicesVM
                 Locator.MediaLibrary.MediaListItemDeleted += VLCService_MediaListItemDeleted;
                 await Locator.MediaLibrary.InitDiscoverer();
             });
+
+            if ((Utils.Numbers.OSVersion > 10586) && (Helpers.DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Xbox))
+                await InitializeUSBKey();
         }
 
+        private async Task InitializeUSBKey()
+        {
+            var devices = KnownFolders.RemovableDevices;
+            IReadOnlyList<StorageFolder> rootFolders = await devices.GetFoldersAsync();
+            foreach (StorageFolder rootFolder in rootFolders)
+            {
+                var external = new LocalFileExplorerViewModel(rootFolder, RootFolderType.ExternalDevice);
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => external.LogoGlyph = App.Current.Resources["USBFilledSymbol"] as string);
+                await AddToFolder(external);
+            }
+        }
 
         private async Task InitializeSDCard()
         {
@@ -146,7 +160,7 @@ namespace VLC.ViewModels.RemovableDevicesVM
 
         private async Task DeviceAdded(object sender, string id)
         {
-            await AddFolder(id);
+            await InitializeUSBKey();
         }
 
         private async Task AddFolder(string newId)
@@ -165,17 +179,12 @@ namespace VLC.ViewModels.RemovableDevicesVM
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                LocalFileExplorerViewModel removedViewModel = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == RootFolderType.ExternalDevice)?.FirstOrDefault(vm => vm.Id == id) as LocalFileExplorerViewModel;
-                if (removedViewModel != null)
-                {
-                    if (CurrentStorageVM == removedViewModel)
-                    {
-                        CurrentStorageVM.StorageItems.Clear();
-                        CurrentStorageVM = null;
-                    }
-                    FileExplorersGrouped.FirstOrDefault(x => x.Contains(removedViewModel)).Remove(removedViewModel);
-                }
+                var key = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == RootFolderType.ExternalDevice);
+                if (key != null)
+                    key.Clear();
             });
+
+            await InitializeUSBKey();
         }
 
         private async void VLCService_MediaListItemAdded(libVLCX.Media media, int index)
