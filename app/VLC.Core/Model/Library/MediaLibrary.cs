@@ -38,7 +38,7 @@ namespace VLC.Model.Library
             Locator.ExternalDeviceService.ExternalDeviceAdded += ExternalDeviceService_ExternalDeviceAdded;
         }
 
-        private async void ExternalDeviceService_ExternalDeviceAdded(object sender, string id)
+        private async Task ExternalDeviceService_ExternalDeviceAdded(object sender, string id)
         {
             var folder = StorageDevice.FromId(id);
             if (!StorageApplicationPermissions.FutureAccessList.CheckAccess(folder))

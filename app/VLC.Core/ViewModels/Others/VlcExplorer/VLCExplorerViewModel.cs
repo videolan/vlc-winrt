@@ -144,14 +144,13 @@ namespace VLC.ViewModels.RemovableDevicesVM
             }
         }
 
-        private async void DeviceAdded(object sender, string id)
+        private async Task DeviceAdded(object sender, string id)
         {
             await AddFolder(id);
         }
 
         private async Task AddFolder(string newId)
         {
-            if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet) return;
             try
             {
                 var folder = StorageDevice.FromId(newId);
@@ -162,7 +161,7 @@ namespace VLC.ViewModels.RemovableDevicesVM
             catch { }
         }
 
-        private async void DeviceRemoved(object sender, string id)
+        private async Task DeviceRemoved(object sender, string id)
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
