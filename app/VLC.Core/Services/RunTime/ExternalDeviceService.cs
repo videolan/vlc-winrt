@@ -54,12 +54,14 @@ namespace VLC.Services.RunTime
 
         private async void DeviceAdded(DeviceWatcher sender, DeviceInformation args)
         {
-            await ExternalDeviceAdded(sender, args.Id);
+            if (ExternalDeviceAdded != null)
+                await ExternalDeviceAdded(sender, args.Id);
         }
 
         private async void DeviceRemoved(DeviceWatcher sender, DeviceInformationUpdate args)
         {
-            await ExternalDeviceRemoved(sender, args.Id);
+            if (ExternalDeviceRemoved != null)
+                await ExternalDeviceRemoved(sender, args.Id);
         }
     }
 }
