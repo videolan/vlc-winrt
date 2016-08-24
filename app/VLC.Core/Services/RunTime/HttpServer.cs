@@ -131,10 +131,10 @@ namespace VLC.Services.RunTime
             {
                 await responseSender.error404();
             }
-            /*catch
+            catch
             {
                 await responseSender.error500();
-            }*/
+            }
         }
 
 
