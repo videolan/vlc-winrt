@@ -40,11 +40,17 @@ namespace VLC.Model.Library
 
         private async Task ExternalDeviceService_ExternalDeviceAdded(object sender, string id)
         {
-            var folder = StorageDevice.FromId(id);
-            if (!StorageApplicationPermissions.FutureAccessList.CheckAccess(folder))
-                StorageApplicationPermissions.FutureAccessList.Add(folder);
-            await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder));
+            var devices = KnownFolders.RemovableDevices;
+            IReadOnlyList<StorageFolder> rootFolders = await devices.GetFoldersAsync();
+
+            foreach (var folder in rootFolders)
+            {
+                if (!StorageApplicationPermissions.FutureAccessList.CheckAccess(folder))
+                    StorageApplicationPermissions.FutureAccessList.Add(folder);
+                await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder));
+            }
         }
+
         #region properties
         private object discovererLock = new object();
         private bool _alreadyIndexedOnce = false;
