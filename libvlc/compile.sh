@@ -149,7 +149,8 @@ cd $CONTRIB_FOLDER
     --enable-jpeg \
     --enable-postproc \
     --enable-vpx \
-    --enable-libdsm
+    --enable-libdsm \
+    --disable-mfx
 
 echo "EXTRA_CFLAGS=${EXTRA_CPPFLAGS}" >> config.mak
 echo "EXTRA_LDFLAGS=${EXTRA_LDFLAGS}" >> config.mak
