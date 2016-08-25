@@ -28,6 +28,7 @@ using VLC.Services.RunTime;
 using libVLCX;
 using Windows.Devices.Portable;
 using Windows.Storage.AccessCache;
+using System.IO;
 
 namespace VLC.Model.Library
 {
@@ -36,6 +37,8 @@ namespace VLC.Model.Library
         public MediaLibrary()
         {
             Locator.ExternalDeviceService.ExternalDeviceAdded += ExternalDeviceService_ExternalDeviceAdded;
+            Locator.ExternalDeviceService.ExternalDeviceRemoved += ExternalDeviceService_ExternalDeviceRemoved;
+            Task.Run(() => this.CleanMediaLibrary()).Wait();
         }
 
         private async Task ExternalDeviceService_ExternalDeviceAdded(object sender, string id)
@@ -49,6 +52,11 @@ namespace VLC.Model.Library
                     StorageApplicationPermissions.FutureAccessList.Add(folder);
                 await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder));
             }
+        }
+
+        private async Task ExternalDeviceService_ExternalDeviceRemoved(object sender, string id)
+        {
+            await CleanMediaLibrary();
         }
 
         #region properties
@@ -437,7 +445,37 @@ namespace VLC.Model.Library
             return true;
         }
 
+        // Remove items that are no longer reachable.
+        private async Task CleanMediaLibrary()
+        {
+            // Clean videos
+            var videos = await LoadVideos(x => true);
+            foreach (var video in videos)
+            {
+                try
+                {
+                    var file = await StorageFile.GetFileFromPathAsync(video.Path);
+                }
+                catch
+                {
+                    await RemoveMediaFromCollectionAndDatabase(video);
+                }
+            }
 
+            // Clean tracks
+            var tracks = await LoadTracks();
+            foreach (var track in tracks)
+            {
+                try
+                {
+                    var file = await StorageFile.GetFileFromPathAsync(track.Path);
+                }
+                catch
+                {
+                    await RemoveMediaFromCollectionAndDatabase(track);
+                }
+            }
+        }
 
         public void AddArtist(ArtistItem artist)
         {
