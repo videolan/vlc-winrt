@@ -1,0 +1,55 @@
+﻿<UserControl
+    x:Class="VLC.Views.UserControls.FolderDataTemplate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC.Universal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <FontIcon Grid.RowSpan="2"
+                      Foreground="{StaticResource SemiLightMainColor}"
+                      FontFamily="{StaticResource VLCFont}"
+                      Glyph="{Binding Converter={StaticResource StorageTypeToIconConverter}}"
+                      FontSize="32" />
+        <TextBlock Grid.Column="2"
+                       Grid.ColumnSpan="2"
+                       Grid.Row="0"
+                       Text="{Binding Name}"
+                       FontSize="15"
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center"
+                       TextTrimming="CharacterEllipsis" />
+        <TextBlock Grid.Column="2"
+                       Grid.Row="1"
+                       FontSize="14"
+                       VerticalAlignment="Center"
+                       TextTrimming="CharacterEllipsis"
+                       Margin="{StaticResource FrameMarginRight}"
+                       Visibility="{Binding SizeAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Run Text="{Binding SizeHumanizedString}"
+                     Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
+        </TextBlock>
+        <TextBlock Grid.Column="3"
+                       Grid.Row="1"
+                       FontSize="14"
+                       VerticalAlignment="Center"
+                       TextTrimming="CharacterEllipsis">
+                <Run Text="{Binding LastModified}"
+                     Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
+        </TextBlock>
+    </Grid>
+</UserControl>
