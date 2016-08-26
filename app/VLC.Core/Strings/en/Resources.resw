@@ -735,4 +735,7 @@
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Sharing via WiFi</value>
   </data>
+  <data name="CopyToLocalStorage" xml:space="preserve">
+    <value>copy to local storage</value>
+  </data>
 </root>

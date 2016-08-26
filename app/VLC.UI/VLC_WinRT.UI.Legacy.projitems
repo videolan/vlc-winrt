@@ -535,5 +535,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoPlayerPage.xaml.cs">
       <DependentUpon>VideoPlayerPage.xaml</DependentUpon>
     </Compile>
+
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\FolderDataTemplate.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\FolderDataTemplate.xaml.cs">
+      <DependentUpon>FolderDataTemplate.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

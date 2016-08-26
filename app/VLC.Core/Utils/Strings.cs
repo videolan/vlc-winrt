@@ -209,6 +209,7 @@ namespace VLC.Utils
         // ACTIONS
         public static string Back => _resourcesLoader.GetString(nameof(Back));
         public static string Add => _resourcesLoader.GetString(nameof(Add));
+        public static string CopyToLocalStorage => _resourcesLoader.GetString(nameof(CopyToLocalStorage));
 
         // PLAY ..
         public static string Play => _resourcesLoader.GetString(nameof(Play));
