@@ -48,17 +48,33 @@ namespace VLC.Helpers
                 return;
 
             var coreAppViewTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+
+            
             if (!Locator.SettingsVM.MediaCenterMode)
+            {
                 coreAppViewTitleBar.ExtendViewIntoTitleBar = extend;
+                if (extend)
+                {
+                    titleBar.BackgroundColor = Colors.Transparent;
+                    titleBar.ButtonBackgroundColor = Colors.Transparent;
+
+                    titleBar.ButtonForegroundColor = Colors.White;
+                }
+                else
+                {
+                    titleBar.BackgroundColor = Colors.DimGray;
+                    titleBar.InactiveBackgroundColor = Colors.DarkGray;
+                    
+                    titleBar.ButtonBackgroundColor = Colors.DimGray;
+                    titleBar.ButtonInactiveBackgroundColor = Colors.DarkGray;
+
+                    titleBar.ButtonForegroundColor = Colors.White;
+                }
+            }
             else
                 coreAppViewTitleBar.ExtendViewIntoTitleBar = false;
 
-            var appView = ApplicationView.GetForCurrentView();
-            var titleBar = appView.TitleBar;
-            titleBar.BackgroundColor = Colors.Transparent;
-            titleBar.ButtonForegroundColor = Colors.White;
-            titleBar.ButtonBackgroundColor = Colors.Transparent;
-            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
         }
 
         public static void SetTitleBar(UIElement titleBar)
