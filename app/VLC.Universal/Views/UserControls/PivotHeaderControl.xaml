@@ -31,7 +31,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="FontSize">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="19" />
+                                                    Value="17" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
                                                        Storyboard.TargetProperty="Margin">
@@ -127,7 +127,7 @@
         </VisualStateManager.VisualStateGroups>
         <FontIcon x:Name="Icon"
                   FontFamily="{StaticResource VLCFont}"
-                  FontSize="23"
+                  FontSize="21"
                   VerticalAlignment="Center" />
         <TextBlock x:Name="Title"
                    Grid.Column="2"

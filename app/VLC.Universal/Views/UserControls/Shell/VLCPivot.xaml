@@ -9,30 +9,28 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-
     <Pivot x:Name="Pivot"
            ItemsSource="{Binding Panels}"
            HeaderTemplate="{StaticResource PivotHeaderDataTemplate}"
            SelectedItem="{Binding CurrentPanel, Mode=TwoWay}"
            Style="{StaticResource TitlelessPivot}"
-           Background="{ThemeResource ApplicationChromeThemeBrush}">
+           Background="{ThemeResource TranslucentMainColor}">
         <Pivot.LeftHeader>
-            <Grid x:Name="TitleBar"
-                  Loaded="TitleBar_Loaded"
-                  Background="Transparent">
+            <Grid Margin="{StaticResource FrameMarginRight}">
                 <Path x:Name="VLCIcon"
                       Data="{StaticResource VLCFlatPath}"
-                      Fill="{ThemeResource MainColor}"
+                      Fill="White"
                       Stretch="Uniform"
                       HorizontalAlignment="Left"
                       VerticalAlignment="Center"
-                      Height="20"
-                      Margin="{StaticResource FrameMarginLeft}"/>
+                      Height="16"
+                      Margin="{StaticResource FrameMarginHorizontal}" />
             </Grid>
         </Pivot.LeftHeader>
         <Pivot.RightHeader>
-            <Grid x:Name="RightHeaderGrid">
-            </Grid>
+            <Grid x:Name="TitleBar"
+                  Loaded="TitleBar_Loaded"
+                  Background="Transparent" />
         </Pivot.RightHeader>
         <Pivot.ItemTemplate>
             <DataTemplate>

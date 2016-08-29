@@ -20,7 +20,8 @@
 
         <Pivot x:Name="MainPivot"
                Grid.Row="1"
-               Style="{StaticResource TitlelessPivot}">
+               Style="{StaticResource TitlelessPivot}"
+               Background="{ThemeResource BaiscForeground}">
             <PivotItem>
                 <PivotItem.Header>
                     <StackPanel Orientation="Horizontal">

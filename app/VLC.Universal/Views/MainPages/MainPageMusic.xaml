@@ -13,7 +13,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
+            <RowDefinition Height="40" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <ContentPresenter x:Name="MainPageMusicContentPresenter"
@@ -55,13 +55,13 @@
                       IsSwipeEnabled="False"
                       IsItemClickEnabled="False"
                       SelectionMode="Single"
-                      HorizontalAlignment="Center"
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsStackPanel Orientation="Horizontal"
-                                         Height="30" />
+                                         Height="30"
+                                         Margin="{StaticResource FrameMarginLeft}" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemContainerTransitions>
@@ -82,7 +82,6 @@
             </ListView>
 
             <musicPanesControls:AlbumsCollectionButtons Grid.Column="1"
-                                                        Margin="0,-8,0,0"
                                                         Visibility="{Binding AlbumsCollectionsButtonVisible}" />
         </Grid>
 

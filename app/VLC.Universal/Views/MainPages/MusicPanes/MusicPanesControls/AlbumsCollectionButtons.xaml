@@ -15,13 +15,14 @@
         </Grid.ColumnDefinitions>
         <ComboBox x:Name="OrderTypeComboBox"
                   Grid.Column="0"
-                  Height="40"
+                  Height="30"
                   DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                   ItemsSource="{Binding AlbumsOrderTypeCollection}"
                   SelectedItem="{Binding AlbumsOrderType}"
                   DropDownOpened="ComboBox_OnDropDownOpened"
                   DropDownClosed="ComboBox_OnDropDownClosed"
-                  Style="{StaticResource VLCLightComboBox}">
+                  Style="{StaticResource VLCLightComboBox}"
+                  VerticalAlignment="Center">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="SelectionChanged">
                     <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.SetAlbumViewOrder}"
@@ -37,14 +38,15 @@
         </ComboBox>
         <ComboBox x:Name="OrderByComboBox"
                   Grid.Column="1"
-                  Margin="12,0"
-                  Height="40"
+                  Margin="{StaticResource FrameMarginLeft}"
+                  Height="30"
                   DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                   ItemsSource="{Binding AlbumsListingTypeCollection}"
                   SelectedItem="{Binding AlbumsOrderListing, Mode=TwoWay}"
                   DropDownOpened="ComboBox_OnDropDownOpened"
                   DropDownClosed="ComboBox_OnDropDownClosed"
-                  Style="{StaticResource VLCLightComboBox}">
+                  Style="{StaticResource VLCLightComboBox}"
+                  VerticalAlignment="Center">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Converter={StaticResource OrderTypeStringifyConverter}}" />
