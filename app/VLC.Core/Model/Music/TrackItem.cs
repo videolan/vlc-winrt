@@ -174,6 +174,8 @@ namespace VLC.Model.Music
         {
             if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == -1)
                 return false;
+            if (!Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Any())
+                return false;
             return Id == Locator.MediaPlaybackViewModel.PlaybackService.Playlist[Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia].Id;
         }
     }
