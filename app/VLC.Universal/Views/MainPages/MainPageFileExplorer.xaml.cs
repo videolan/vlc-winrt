@@ -42,17 +42,9 @@ namespace VLC.Views.MainPages
             if (Locator.NavigationService.CurrentPage == VLCPage.MainPageFileExplorer
                 && e.Key == VirtualKey.GamepadView)
             {
-                var menu = new MenuFlyout();
-
-                menu.Items.Add(new MenuFlyoutItem()
-                {
-                    Name = "CopyToLocalStorage",
-                    Text = Strings.CopyToLocalStorage,
-                    Command = new CopyToLocalStorageCommand(),
-                    CommandParameter = list.ItemFromContainer(focussedListViewItem),
-                });
-                focussedListViewItem.ContextFlyout = menu;
-                focussedListViewItem.ContextFlyout.ShowAt(focussedListViewItem);
+                var menu = new FileExplorerItemFlyout();
+                menu.setCurrentVLCStorageItem(list.ItemFromContainer(focussedListViewItem));
+                menu.ShowAt(focussedListViewItem);
             }
         }
 

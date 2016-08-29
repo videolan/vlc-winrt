@@ -210,6 +210,9 @@
     <Compile Include="Views\UserControls\Flyouts\AlbumMenuFlyout.xaml.cs">
       <DependentUpon>AlbumMenuFlyout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\Flyouts\FileExplorerItemFlyout.xaml.cs">
+      <DependentUpon>FileExplorerItemFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\Flyouts\TrackItemFlyout.xaml.cs">
       <DependentUpon>TrackItemFlyout.xaml</DependentUpon>
     </Compile>
@@ -1330,6 +1333,10 @@
     <Page Include="Views\UserControls\Flyouts\AlbumMenuFlyout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Flyouts\FileExplorerItemFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\Flyouts\TrackItemFlyout.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VLC.Commands.MediaLibrary;
 using VLC.Commands.VLCFileExplorer;
 using VLC.Model;
 using VLC.Model.FileExplorer;
@@ -35,6 +36,7 @@ namespace VLC.ViewModels.Others.VlcExplorer
         public Visibility RootMediaTypeVisible => string.IsNullOrEmpty(LogoGlyph) && string.IsNullOrEmpty(ArtworkUrl) 
                                                     ? Visibility.Visible : Visibility.Collapsed;
         public IStorageItemClickedCommand NavigateToCommand { get; } = new IStorageItemClickedCommand();
+        public CopyToLocalStorageCommand CopyCommand { get; } = new CopyToLocalStorageCommand();
 
         public PlayFolderCommand PlayFolderCommand { get; } = new PlayFolderCommand();
 

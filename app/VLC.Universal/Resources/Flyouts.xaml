@@ -11,4 +11,5 @@
     <flyouts:AlbumMenuFlyout x:Key="AlbumMenuFlyout" />
     <flyouts:TrackItemFlyout x:Key="TrackItemFlyout"/>
     <flyouts:VideoInformationFlyout x:Key="VideoInformationFlyout" />
+    <flyouts:FileExplorerItemFlyout x:Key="FileExplorerItemFlyout" />
 </ResourceDictionary>

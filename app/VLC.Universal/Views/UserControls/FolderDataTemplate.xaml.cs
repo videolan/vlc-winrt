@@ -24,5 +24,10 @@ namespace VLC.Views.UserControls
         {
             this.InitializeComponent();
         }
+
+        private void Grid_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            Flyout.ShowAttachedFlyout((Grid)sender);
+        }
     }
 }
