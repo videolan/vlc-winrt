@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using VLC.Utils;
 using VLC.ViewModels;
 using Windows.Networking.Sockets;
 using Windows.Storage;
@@ -253,7 +254,7 @@ namespace VLC.Services.RunTime
 
             private async Task<IOutputStream> getUploadOutputStream()
             {
-                StorageFolder folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("Medias", CreationCollisionOption.OpenIfExists);
+                StorageFolder folder = await FileUtils.GetLocalStorageMediaFolder();
                 file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
                 var writeStream = await file.OpenAsync(FileAccessMode.ReadWrite);
                 return writeStream;
