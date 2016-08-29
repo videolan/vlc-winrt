@@ -52,5 +52,10 @@ namespace VLC.UI.Legacy.Views.MusicPages.ArtistPageControls
                 VisualStateUtilities.GoToState(this, "Tall", false);
             }
         }
+
+        public void UpdateMoreAboutButton(bool isInMoreView)
+        {
+            MoreAboutButton.IsChecked = isInMoreView;
+        }
     }
 }

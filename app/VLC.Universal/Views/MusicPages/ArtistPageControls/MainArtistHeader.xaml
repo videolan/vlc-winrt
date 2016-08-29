@@ -75,18 +75,19 @@
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarButton.Icon>
         </AppBarButton>
-        <AppBarButton Grid.Column="4"
-                      x:Name="MoreAboutButton"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Label="{Binding Source={StaticResource Strings}, Path=MoreInfo}"
-                      Command="{Binding CurrentArtist.NavigateArtistInfoView}"
-                      VerticalAlignment="Bottom"
-                      Margin="{StaticResource FrameMarginBothSides}">
-            <AppBarButton.Icon>
+        <AppBarToggleButton Grid.Column="4"
+                            x:Name="MoreAboutButton"
+                            Background="{ThemeResource MainColor}"
+                            Style="{StaticResource AppBarToggleButtonStyleHorizontal}"
+                            Label="{Binding Source={StaticResource Strings}, Path=MoreInfo}"
+                            Command="{Binding CurrentArtist.NavigateArtistInfoView}"
+                            VerticalAlignment="Bottom"
+                            Margin="{StaticResource FrameMarginBothSides}">
+            <AppBarToggleButton.Icon>
                 <FontIcon Glyph="{StaticResource BuddySymbol}"
                           FontFamily="{StaticResource VLCFont}" />
-            </AppBarButton.Icon>
-        </AppBarButton>
+            </AppBarToggleButton.Icon>
+        </AppBarToggleButton>
         <AppBarButton Grid.Column="5"
                       x:Name="PinButton"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"

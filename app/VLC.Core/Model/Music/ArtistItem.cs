@@ -272,7 +272,13 @@ namespace VLC.Model.Music
         public SeeArtistShowsCommand SeeArtistShowsCommand { get; } = new SeeArtistShowsCommand();
 
         [Ignore]
-        public static ActionCommand NavigateArtistInfoView => new ActionCommand(() => Locator.NavigationService.Go(VLCPage.ArtistInfoView));
+        public static ActionCommand NavigateArtistInfoView => new ActionCommand(() =>
+        {
+            if (Locator.NavigationService.CurrentPage != VLCPage.ArtistInfoView)
+                Locator.NavigationService.Go(VLCPage.ArtistInfoView);
+            else
+                Locator.NavigationService.Go(VLCPage.ArtistPage);
+        });
         #endregion
     }
 }

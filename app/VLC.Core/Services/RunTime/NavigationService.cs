@@ -308,15 +308,29 @@ namespace VLC.Services.RunTime
                     if (CurrentPage != VLCPage.MainPageMusic || Locator.MusicLibraryVM.MusicView != Model.Music.MusicView.Artists
                         || (CurrentPage == VLCPage.MainPageMusic && Locator.MusicLibraryVM.MusicView == Model.Music.MusicView.Artists && Window.Current.Bounds.Width < 750))
                     {
-                        App.ApplicationFrame.Navigate(typeof(ArtistPageBase), desiredPage);
+                        if (CurrentPage == VLCPage.ArtistPage)
+                        {
+                            (App.ApplicationFrame.Content as ArtistPageBase).SetView(false);
+                        }
+                        else
+                        {
+                            App.ApplicationFrame.Navigate(typeof(ArtistPageBase), desiredPage);
+                        }
                     }
                     break;
-
                 case VLCPage.SearchPage:
                     App.SplitShell.FlyoutContent = typeof(SearchPage);
                     break;
                 case VLCPage.ArtistInfoView:
-                    App.ApplicationFrame.Navigate(typeof(ArtistPageBase), desiredPage);
+                    if (CurrentPage == VLCPage.ArtistPage)
+                    {
+                        (App.ApplicationFrame.Content as ArtistPageBase).SetView(true);
+                    }
+                    else
+                    {
+                        App.ApplicationFrame.Navigate(typeof(ArtistPageBase), desiredPage);
+                    }
+                    CurrentPage = desiredPage;
                     break;
                 case VLCPage.SettingsPage:
                 case VLCPage.SettingsPageUI:

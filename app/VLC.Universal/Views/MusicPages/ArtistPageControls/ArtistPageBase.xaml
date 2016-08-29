@@ -18,35 +18,13 @@
         <local:MainArtistHeader x:Name="MainArtistHeader"
                                 VerticalAlignment="Stretch" />
 
-        <Pivot x:Name="MainPivot"
-               Grid.Row="1"
-               Style="{StaticResource TitlelessPivot}"
-               Background="{ThemeResource BaiscForeground}">
-            <PivotItem>
-                <PivotItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
-                                  FontFamily="{StaticResource VLCFont}"
-                                  FontSize="22" />
-                        <TextBlock Margin="5,0,0,0"
-                                   Text="{Binding Source={StaticResource Strings}, Path=Albums}" />
-                    </StackPanel>
-                </PivotItem.Header>
-                <local:ArtistAlbumsSemanticView x:Name="ArtistAlbumsSemanticView"/>
-            </PivotItem>
-            <PivotItem>
-                <PivotItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <FontIcon Glyph="{StaticResource BuddySymbol}"
-                                  FontFamily="{StaticResource VLCFont}"
-                                  FontSize="22" />
-                        <TextBlock Margin="5,0,0,0"
-                                   Text="{Binding Source={StaticResource Strings}, Path=SimilarArtists}" />
-                    </StackPanel>
-                </PivotItem.Header>
-                <local:ArtistInfoControl x:Name="ExtraInfoGrid" />
-            </PivotItem>
-        </Pivot>
+        <local:ArtistAlbumsSemanticView x:Name="ArtistAlbumsSemanticView"
+                                        Grid.Row="1"/>
+
+        <local:ArtistInfoControl x:Name="ExtraInfoGrid"
+                                 x:DeferLoadStrategy="Lazy"
+                                 Grid.Row="1"
+                                 Visibility="Collapsed" />
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

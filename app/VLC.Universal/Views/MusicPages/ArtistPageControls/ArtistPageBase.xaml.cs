@@ -20,15 +20,27 @@ namespace VLC.UI.Legacy.Views.MusicPages.ArtistPageControls
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if ((VLCPage)e.Parameter == VLCPage.ArtistInfoView)
-            {
-                MainPivot.SelectedIndex = 1;
-            }
+            SetView((VLCPage)e.Parameter == VLCPage.ArtistInfoView);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
+        }
+
+        public void SetView(bool isArtistInfoView)
+        {
+            if (isArtistInfoView)
+            {
+                (FindName(nameof(ExtraInfoGrid)) as FrameworkElement).Visibility = Visibility.Visible;
+                ArtistAlbumsSemanticView.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                (FindName(nameof(ExtraInfoGrid)) as FrameworkElement).Visibility = Visibility.Collapsed;
+                ArtistAlbumsSemanticView.Visibility = Visibility.Visible;
+            }
+            MainArtistHeader.UpdateMoreAboutButton(isArtistInfoView);
         }
     }
 }
