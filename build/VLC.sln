@@ -31,11 +31,9 @@ Global
 		..\app\VLC.MediaMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
 		..\app\VLC.Slideshow\VLC_WinRT.Slideshow.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
 		..\app\VLC.SplitShell\VLC_WinRT.SplitShell.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
-		..\app\VLC.UI\VLC_WinRT.UI.Legacy.projitems*{7b5c5b10-85f4-491a-94fa-755d253ff609}*SharedItemsImports = 4
 		..\app\VLC.Slideshow\VLC_WinRT.Slideshow.projitems*{ad0c8b4f-7a03-42cc-b8da-bf8d50df822b}*SharedItemsImports = 13
 		..\app\VLC.SplitShell\VLC_WinRT.SplitShell.projitems*{adcb4c5d-450d-40f5-b60a-9dd96ff17dd6}*SharedItemsImports = 13
 		..\app\VLC.MediaMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{c3f84118-8e3d-4b19-a300-9cb6f7ae0e87}*SharedItemsImports = 13
-		..\app\VLC.UI\VLC_WinRT.UI.Legacy.projitems*{d499d5a2-b899-4664-94e8-65c8114582de}*SharedItemsImports = 13
 		..\app\VLC.Core\VLC_WinRT.Shared.projitems*{db1dea15-00b8-4707-8c70-53431c4fa754}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
