@@ -47,7 +47,8 @@
                       SelectionMode="Single"
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                      SelectionChanged="PanelsListView_SelectionChanged">
+                      SelectionChanged="PanelsListView_SelectionChanged"
+                      SingleSelectionFollowsFocus="True">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsStackPanel Orientation="Horizontal"
