@@ -56,7 +56,7 @@ namespace VLC.Helpers
             var appView = ApplicationView.GetForCurrentView();
             var titleBar = appView.TitleBar;
             titleBar.BackgroundColor = Colors.Transparent;
-            titleBar.ButtonForegroundColor = Colors.DimGray;
+            titleBar.ButtonForegroundColor = Colors.White;
             titleBar.ButtonBackgroundColor = Colors.Transparent;
             titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
         }
