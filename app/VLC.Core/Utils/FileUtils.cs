@@ -57,5 +57,11 @@ namespace VLC.Utils
             }
             return hexBuilder.ToString();
         }
+
+        public static async Task<StorageFolder> GetLocalStorageMediaFolder()
+        {
+            return await ApplicationData.Current.LocalFolder.CreateFolderAsync(
+                "Medias", CreationCollisionOption.OpenIfExists);
+        }
     }
 }

@@ -11,6 +11,7 @@ using VLC.Views.UserControls.Flyouts;
 using VLC.Commands;
 using VLC.Utils;
 using Windows.System;
+using VLC.Commands.MediaLibrary;
 
 namespace VLC.Views.MainPages
 {
@@ -45,9 +46,10 @@ namespace VLC.Views.MainPages
 
                 menu.Items.Add(new MenuFlyoutItem()
                 {
-                    Name = "PlayPauseItem",
+                    Name = "CopyToLocalStorage",
                     Text = Strings.CopyToLocalStorage,
-                    Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.PlaybackService.Pause())
+                    Command = new CopyToLocalStorageCommand(),
+                    CommandParameter = list.ItemFromContainer(focussedListViewItem),
                 });
                 focussedListViewItem.ContextFlyout = menu;
                 focussedListViewItem.ContextFlyout.ShowAt(focussedListViewItem);
