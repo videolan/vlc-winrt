@@ -35,7 +35,8 @@ namespace VLC.Commands.MediaLibrary
 
         private async Task CopyMediaFileToLocalStorage(StorageFile source)
         {
-            StorageFile copy = await source.CopyAsync(await FileUtils.GetLocalStorageMediaFolder());
+            StorageFile copy = await source.CopyAsync(await FileUtils.GetLocalStorageMediaFolder(),
+                source.Name, NameCollisionOption.GenerateUniqueName);
             bool success = await Locator.MediaLibrary.DiscoverMediaItemOrWaitAsync(copy, false);
             if (success == false)
                 await copy.DeleteAsync();
