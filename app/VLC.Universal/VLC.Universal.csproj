@@ -219,6 +219,9 @@
     <Compile Include="Views\UserControls\FocusTextBox.xaml.cs">
       <DependentUpon>FocusTextBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\FolderDataTemplate.xaml.cs">
+      <DependentUpon>FolderDataTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\MusicControls\Equalizer.xaml.cs">
       <DependentUpon>Equalizer.xaml</DependentUpon>
     </Compile>
@@ -1337,6 +1340,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\FocusTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\FolderDataTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
