@@ -8,9 +8,11 @@ namespace VLC.Views.UserControls.Flyouts
             this.InitializeComponent();
         }
 
-        public void setCurrentVLCStorageItem(object o)
+        public void setCurrentVLCStorageItem(object storageItem)
         {
-            CopyToLocalStorageItem.CommandParameter = o;
+            this.InitializeComponent();
+            foreach (var item in MenuFlyout.Items)
+                item.DataContext = storageItem;
         }
     }
 }
