@@ -4,12 +4,18 @@ using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
 using VLC.Helpers;
 using VLC.ViewModels;
+using Windows.UI.Xaml.Input;
+using Windows.System;
+using VLC.Model;
+using VLC.Views.UserControls.Flyouts;
 
 namespace VLC.Views.MainPages.MusicPanes
 {
     public sealed partial class SongsPivotItem : Page
     {
         private bool isWide;
+        private ListViewItem focussedListViewItem;
+
         public SongsPivotItem()
         {
             this.InitializeComponent();
@@ -73,6 +79,26 @@ namespace VLC.Views.MainPages.MusicPanes
             width = DeviceHelper.IsPortrait() ? Window.Current.Bounds.Width : 400;
             grid.ItemWidth = (width - 48) / 4;
             grid.ItemHeight = grid.ItemWidth;
+        }
+
+        private void TracksZoomedInView_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ListView list = (ListView)sender;
+            if (FocusManager.GetFocusedElement() as ListViewItem != null)
+            {
+                focussedListViewItem = (ListViewItem)FocusManager.GetFocusedElement();
+            }
+        }
+
+        private void TracksZoomedInView_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            ListView list = (ListView)sender;
+            if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic
+                && e.Key == VirtualKey.GamepadView)
+            {
+                var menu = new TrackItemFlyout(TracksZoomedInView.ItemFromContainer(focussedListViewItem));
+                menu.ShowAt(focussedListViewItem);
+            }
         }
     }
 }

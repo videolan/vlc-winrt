@@ -58,9 +58,11 @@
                           SelectionMode="None"
                           IsItemClickEnabled="True"
                           ItemContainerStyle="{StaticResource ListViewItemContainerStyleNoSelectCheck}"
-                                                             ItemTemplate="{StaticResource TrackItemNoIndexTemplate}"
-                                                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                             ScrollViewer.HorizontalScrollMode="Disabled">
+                          ItemTemplate="{StaticResource TrackItemNoIndexTemplate}"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ScrollViewer.HorizontalScrollMode="Disabled"
+                          GotFocus="TracksZoomedInView_GotFocus"
+                          KeyDown="TracksZoomedInView_KeyDown">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
                             <triggers:InvokeCommandAction Command="{Binding PlayAllSongsCommand}"
