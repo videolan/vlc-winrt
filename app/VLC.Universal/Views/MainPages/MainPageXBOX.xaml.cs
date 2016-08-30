@@ -33,8 +33,7 @@ namespace VLC.UI.Legacy.Views.MainPages
         
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var model = e.ClickedItem as Model.Panel;
-            Locator.NavigationService.Go(model.Target);
+            Locator.MainVM.CurrentPanel = e.ClickedItem as Model.Panel;
         }
 
         private void ItemsWrapGrid_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
