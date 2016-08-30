@@ -139,6 +139,7 @@ namespace VLC.ViewModels.RemovableDevicesVM
 
         private async Task InitializeUSBKey()
         {
+            await CleanAllFromType(RootFolderType.ExternalDevice);
             var devices = KnownFolders.RemovableDevices;
             IReadOnlyList<StorageFolder> rootFolders = await devices.GetFoldersAsync();
             foreach (StorageFolder rootFolder in rootFolders)
