@@ -39,6 +39,9 @@ namespace VLC.UI.Legacy.Views.MainPages
 
         private void ItemsWrapGrid_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            if (PanelsListView.SelectedIndex == -1)
+                return;
+
             ((PanelsListView.ItemsPanelRoot as ItemsWrapGrid).Children[PanelsListView.SelectedIndex] as ListViewItem).Focus(Windows.UI.Xaml.FocusState.Programmatic);
         }
     }
