@@ -110,8 +110,7 @@ namespace VLC.Helpers
 
         public static bool GetFullscreen()
         {
-            var v = ApplicationView.GetForCurrentView();
-            return v.IsFullScreenMode;
+            return ApplicationView.GetForCurrentView().IsFullScreenMode;
         }
 
         public static async Task CreateNewWindow(Type view, double width, double height)
