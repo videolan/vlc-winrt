@@ -48,12 +48,14 @@ namespace VLC.Views.MainPages
 
         private void MainPage_GotFocus(object sender, RoutedEventArgs e)
         {
+#if XAML_DEBUG
             var el = e.OriginalSource as FrameworkElement;
            
             var output ="GOTFOCUS --" + e.OriginalSource.ToString() + "--" + el.Name + el.BaseUri;
             DebugString(output);
 
             Debug.WriteLine(output);
+#endif
         }
 
         public void SetBackground(bool force = false, bool dark = false)
