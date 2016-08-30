@@ -37,12 +37,12 @@ namespace VLC.Helpers
                 StatusBar.GetForCurrentView().HideAsync();
             }
 
-            if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
             {
                 ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
             }
 
-            if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
+            if (DeviceHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
                 return;
             if (Numbers.OSVersion <= 10586)
                 return;
@@ -79,7 +79,7 @@ namespace VLC.Helpers
 
         public static void SetTitleBar(UIElement titleBar)
         {
-            if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
+            if (DeviceHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
                 return;
             if (Numbers.OSVersion <= 10586)
                 return;

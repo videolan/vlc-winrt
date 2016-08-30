@@ -126,7 +126,7 @@ namespace VLC.ViewModels.RemovableDevicesVM
                 await Locator.MediaLibrary.InitDiscoverer();
             });
 
-            if ((Utils.Numbers.OSVersion > 10586) && (Helpers.DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Xbox))
+            if ((Utils.Numbers.OSVersion > 10586) && (Helpers.DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox))
                 await InitializeUSBKey();
         }
 

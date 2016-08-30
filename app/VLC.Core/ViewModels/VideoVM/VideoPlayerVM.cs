@@ -185,9 +185,9 @@ namespace VLC.ViewModels.VideoVM
             // If we navigate back and forth to the main page, we also don't want to 
             // re-mark the task as completed.
             Locator.MediaLibrary.ContinueIndexing = new TaskCompletionSource<bool>();
-            DisplayHelper.PrivateDisplayCall(true);
+            DeviceHelper.PrivateDisplayCall(true);
             Locator.Slideshow.IsPaused = true;
-            if (Locator.SettingsVM.ForceLandscape && DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Xbox)
+            if (Locator.SettingsVM.ForceLandscape && DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox)
             {
                 DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
             }
@@ -208,7 +208,7 @@ namespace VLC.ViewModels.VideoVM
             Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible = false;
             Locator.Slideshow.IsPaused = false;
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
-            DisplayHelper.PrivateDisplayCall(false);
+            DeviceHelper.PrivateDisplayCall(false);
             LoadingSubtitleText = string.Empty;
         }
 

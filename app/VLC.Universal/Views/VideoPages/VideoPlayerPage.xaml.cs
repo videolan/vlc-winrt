@@ -56,7 +56,7 @@ namespace VLC.Views.VideoPages
                 VisualStateManager.GoToState(this, nameof(Full), false);
             }
 
-            if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Tablet && AppViewHelper.GetFullscreen() == false)
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Tablet && AppViewHelper.GetFullscreen() == false)
             {
                 VisualStateManager.GoToState(this, nameof(WindowState), false);
             }
@@ -221,7 +221,7 @@ namespace VLC.Views.VideoPages
             VolumeSlider.IsEnabled = !isLocked;
             MenuButton.IsEnabled = !isLocked;
 
-            if (Locator.SettingsVM.ForceLandscape && DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Xbox)
+            if (Locator.SettingsVM.ForceLandscape && DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox)
             {
                 DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
             }

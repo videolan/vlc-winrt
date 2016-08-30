@@ -70,7 +70,7 @@ namespace VLC.Views.MainPages.MusicPanes
         {
             if (grid == null) return;
             double width;
-            width = DisplayHelper.IsPortrait() ? Window.Current.Bounds.Width : 400;
+            width = DeviceHelper.IsPortrait() ? Window.Current.Bounds.Width : 400;
             grid.ItemWidth = (width - 48) / 4;
             grid.ItemHeight = grid.ItemWidth;
         }

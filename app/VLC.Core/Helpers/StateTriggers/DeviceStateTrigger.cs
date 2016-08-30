@@ -41,7 +41,7 @@ namespace VLC.Helpers
 
         public bool IsCurrentPlatform()
         {
-            return DeviceType == DeviceTypeHelper.GetDeviceType();
+            return DeviceType == DeviceHelper.GetDeviceType();
         }
     }
 }

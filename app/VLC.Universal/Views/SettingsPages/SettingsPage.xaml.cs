@@ -26,7 +26,7 @@ namespace VLC.UI.UWP.Views.SettingsPages
         private void SettingsPage_Loaded(object sender, RoutedEventArgs e)
         {
 #if STARTS
-            if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
+            if (DeviceHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
             {
                 foreach (var element in MusicSettingsPanel.Children)
                 {

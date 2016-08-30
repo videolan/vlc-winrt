@@ -42,7 +42,7 @@ namespace VLC.Views.MainPages
             this.GotFocus += MainPage_GotFocus;
             this.Loaded += MainPage_Loaded;
 
-            if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
                 Locator.HttpServer.bind(8080);
         }
 

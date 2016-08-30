@@ -92,7 +92,7 @@ namespace VLC.UI.Legacy.Views.UserControls
             var miniWindowButton = FindName(nameof(MiniWindowButton)) as FrameworkElement;
             if (miniWindowButton != null)
             {
-                if (DeviceTypeHelper.GetDeviceType() != DeviceTypeEnum.Tablet || UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Touch)
+                if (DeviceHelper.GetDeviceType() != DeviceTypeEnum.Tablet || UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Touch)
                 {
                     miniWindowButton.Visibility = Visibility.Collapsed;
                 }

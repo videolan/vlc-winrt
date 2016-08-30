@@ -53,10 +53,15 @@ namespace VLC
             InitializeComponent();
             Suspending += OnSuspending;
             Container = AutoFacConfiguration.Configure();
-            if (DeviceTypeHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+            
+            if (DeviceHelper.IsMediaCenterModeCompliant)
             {
                 this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
                 Locator.SettingsVM.MediaCenterMode = true;
+            }
+            else
+            {
+                Locator.SettingsVM.MediaCenterMode = false;
             }
         }
 
