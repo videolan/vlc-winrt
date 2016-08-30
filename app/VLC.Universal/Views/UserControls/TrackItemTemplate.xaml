@@ -28,8 +28,6 @@
                    x:Name="NameTextBlock"
                    TextWrapping="NoWrap"
                    TextTrimming="CharacterEllipsis"
-                   Style="{StaticResource TitleTextBlockStyle}"
-                   FontSize="15"
                    VerticalAlignment="Center"/>
         <TextBlock Grid.Column="1"
                    x:Name="DurationTextBlock"
