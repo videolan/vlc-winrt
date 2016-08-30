@@ -60,6 +60,7 @@ namespace VLC.UI.Legacy.Views.MusicPages.ArtistPageControls
             if (AlbumsArtistsListView != null)
                 AlbumsArtistsListView.SizeChanged += AlbumsArtistsListView_SizeChanged;
             ResponsiveAlbumsWrapGrid();
+            ResponsiveAlbumsList();
         }
 
         private void AlbumsArtistsListView_SizeChanged(object sender, SizeChangedEventArgs e)
