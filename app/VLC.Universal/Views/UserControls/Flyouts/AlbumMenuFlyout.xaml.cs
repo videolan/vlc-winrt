@@ -7,5 +7,12 @@ namespace VLC.Views.UserControls.Flyouts
         {
             this.InitializeComponent();
         }
+
+        public AlbumMenuFlyout(object albumItem)
+        {
+            this.InitializeComponent();
+            foreach (var item in MenuFlyout.Items)
+                item.DataContext = albumItem;
+        }
     }
 }

@@ -25,7 +25,9 @@
                                              SelectionMode="None"
                                              IsSwipeEnabled="False"
                                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                             ScrollViewer.HorizontalScrollMode="Disabled">
+                                             ScrollViewer.HorizontalScrollMode="Disabled"
+                                             GotFocus="AlbumsZoomedInView_GotFocus"
+                                             KeyDown="AlbumsZoomedInView_KeyDown">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"

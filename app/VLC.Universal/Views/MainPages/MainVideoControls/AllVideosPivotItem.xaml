@@ -25,7 +25,9 @@
                                              IsItemClickEnabled="True"
                                              SelectionMode="None"
                                              IsSwipeEnabled="False"
-                                             ScrollViewer.BringIntoViewOnFocusChange="True">
+                                             ScrollViewer.BringIntoViewOnFocusChange="True"
+                                             KeyDown="AllVideosListView_KeyDown"
+                                             GotFocus="AllVideosListView_GotFocus">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding OpenVideo}"

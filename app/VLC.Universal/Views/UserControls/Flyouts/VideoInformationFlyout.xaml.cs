@@ -11,6 +11,12 @@ namespace VLC.Views.UserControls.Flyouts
             this.InitializeComponent();
         }
 
+        public VideoInformationFlyout(object videoItem)
+        {
+            this.InitializeComponent();
+            this.FlyoutGrid.DataContext = videoItem;
+        }
+
         private void ActionButton_Click(object sender, RoutedEventArgs e)
         {
             Hide();

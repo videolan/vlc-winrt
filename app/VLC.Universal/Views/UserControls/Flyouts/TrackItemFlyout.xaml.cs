@@ -16,6 +16,13 @@ namespace VLC.Views.UserControls.Flyouts
             this.Opened += TrackItemFlyout_Opened;
         }
 
+        public TrackItemFlyout(object trackItem)
+        {
+            this.InitializeComponent();
+            this.Opened += TrackItemFlyout_Opened;
+            this.FlyoutGrid.DataContext = trackItem;
+        }
+
         private void TrackItemFlyout_Opened(object sender, object e)
         {
             Locator.MusicLibraryVM.OnNavigatedToPlaylists();

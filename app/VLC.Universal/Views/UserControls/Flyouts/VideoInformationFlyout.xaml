@@ -10,7 +10,7 @@
             Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
             BorderThickness="1"
             Loaded="Grid_Loaded">
-        <Grid>
+        <Grid x:Name="FlyoutGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="200" />
                 <RowDefinition />
