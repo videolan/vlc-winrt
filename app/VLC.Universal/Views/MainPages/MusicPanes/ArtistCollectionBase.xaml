@@ -157,7 +157,7 @@
                 <VisualState x:Name="Wide">
                     <VisualState.StateTriggers>
                         <statetriggers:AdaptativeAndValuesStateTrigger MinWindowWidth="1000"
-                                                                       StateValue="{Binding IsCurrentArtistExist}" />
+                                                                       StateValue="{Binding DisplayArtistAlbumsPaneInArtistsView}" />
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
@@ -172,7 +172,7 @@
                 <VisualState x:Name="Medium">
                     <VisualState.StateTriggers>
                         <statetriggers:AdaptativeAndValuesStateTrigger MinWindowWidth="650"
-                                                                       StateValue="{Binding IsCurrentArtistExist}" />
+                                                                       StateValue="{Binding DisplayArtistAlbumsPaneInArtistsView}" />
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>

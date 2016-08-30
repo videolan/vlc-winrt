@@ -19,7 +19,6 @@
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
         <Grid Grid.ColumnSpan="6">
@@ -75,20 +74,7 @@
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarButton.Icon>
         </AppBarButton>
-        <AppBarToggleButton Grid.Column="4"
-                            x:Name="MoreAboutButton"
-                            Background="{ThemeResource MainColor}"
-                            Style="{StaticResource AppBarToggleButtonStyleHorizontal}"
-                            Label="{Binding Source={StaticResource Strings}, Path=MoreInfo}"
-                            Command="{Binding CurrentArtist.NavigateArtistInfoView}"
-                            VerticalAlignment="Bottom"
-                            Margin="{StaticResource FrameMarginBothSides}">
-            <AppBarToggleButton.Icon>
-                <FontIcon Glyph="{StaticResource BuddySymbol}"
-                          FontFamily="{StaticResource VLCFont}" />
-            </AppBarToggleButton.Icon>
-        </AppBarToggleButton>
-        <AppBarButton Grid.Column="5"
+        <AppBarButton Grid.Column="4"
                       x:Name="PinButton"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
                       IsCompact="True"
@@ -98,7 +84,7 @@
                       VerticalAlignment="Bottom"
                       Margin="{StaticResource FrameMarginBothSides}" />
         <AppBarButton x:Name="MenuButton"
-                      Grid.Column="5"
+                      Grid.Column="4"
                       Visibility="Collapsed"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
                       IsCompact="True"
@@ -125,13 +111,14 @@
             </AppBarButton.Flyout>
         </AppBarButton>
 
+        
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Tall">
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
                                                        Storyboard.TargetProperty="Height">
-                            <DiscreteObjectKeyFrame Value="250"
+                            <DiscreteObjectKeyFrame Value="200"
                                                     KeyTime="0" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
@@ -159,11 +146,6 @@
                             <DiscreteObjectKeyFrame Value="Collapsed"
                                                     KeyTime="0" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreAboutButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="Collapsed"
-                                                    KeyTime="0" />
-                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Wide">
@@ -174,11 +156,6 @@
                                                     KeyTime="0" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PinButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="Visible"
-                                                    KeyTime="0" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MoreAboutButton"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame Value="Visible"
                                                     KeyTime="0" />

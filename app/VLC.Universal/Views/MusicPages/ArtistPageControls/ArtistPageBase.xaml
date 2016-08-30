@@ -13,17 +13,31 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <local:MainArtistHeader x:Name="MainArtistHeader"
                                 VerticalAlignment="Stretch" />
 
+
+        <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+            <Button Content="{Binding Source={StaticResource Strings}, Path=Albums}"
+                    Command="{Binding CurrentArtist.NavigateArtistInfoView}"
+                    Style="{StaticResource TextBlockButtonStyle}"
+                    Margin="{StaticResource FrameMarginBothSides}" />
+            <Button Content="{Binding Source={StaticResource Strings}, Path=MoreInfo}"
+                    Command="{Binding CurrentArtist.NavigateArtistInfoView}"
+                    Style="{StaticResource TextBlockButtonStyle}"
+                    Margin="{StaticResource FrameMarginBothSides}" />
+        </StackPanel>
         <local:ArtistAlbumsSemanticView x:Name="ArtistAlbumsSemanticView"
-                                        Grid.Row="1"/>
+                                        Grid.Row="2"/>
 
         <local:ArtistInfoControl x:Name="ExtraInfoGrid"
                                  x:DeferLoadStrategy="Lazy"
-                                 Grid.Row="1"
+                                 Grid.Row="2"
                                  Visibility="Collapsed" />
 
         <VisualStateManager.VisualStateGroups>

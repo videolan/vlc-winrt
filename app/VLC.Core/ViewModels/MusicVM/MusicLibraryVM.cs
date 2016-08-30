@@ -252,6 +252,7 @@ namespace VLC.ViewModels.MusicVM
             {
                 SetProperty(ref _currentArtist, value);
                 OnPropertyChanged(nameof(IsCurrentArtistExist));
+                OnPropertyChanged(nameof(DisplayArtistAlbumsPaneInArtistsView));
             }
         }
 
@@ -276,10 +277,10 @@ namespace VLC.ViewModels.MusicVM
             get { return _currentMediaCollection; }
             set { SetProperty(ref _currentMediaCollection, value); }
         }
-        public bool IsCurrentArtistExist
-        {
-            get { return _currentArtist != null; }
-        }
+
+        public bool IsCurrentArtistExist => _currentArtist != null;
+
+        public bool DisplayArtistAlbumsPaneInArtistsView => IsCurrentArtistExist && !Locator.SettingsVM.MediaCenterMode;
         #endregion
 
         public void ResetLibrary()

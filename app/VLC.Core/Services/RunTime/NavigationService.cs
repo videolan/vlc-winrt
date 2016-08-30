@@ -156,6 +156,7 @@ namespace VLC.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.ArtistPage:
+                case VLCPage.ArtistInfoView:
                     GoBack_Default();
                     break;
                 case VLCPage.PlaylistPage:
@@ -305,7 +306,7 @@ namespace VLC.Services.RunTime
                     App.SplitShell.FlyoutContent = typeof(AlbumPageBase);
                     break;
                 case VLCPage.ArtistPage:
-                    if (CurrentPage != VLCPage.MainPageMusic || Locator.MusicLibraryVM.MusicView != Model.Music.MusicView.Artists
+                    if (Locator.SettingsVM.MediaCenterMode || CurrentPage != VLCPage.MainPageMusic || Locator.MusicLibraryVM.MusicView != Model.Music.MusicView.Artists
                         || (CurrentPage == VLCPage.MainPageMusic && Locator.MusicLibraryVM.MusicView == Model.Music.MusicView.Artists && Window.Current.Bounds.Width < 750))
                     {
                         if (CurrentPage == VLCPage.ArtistPage)

@@ -40,7 +40,6 @@ namespace VLC.UI.Legacy.Views.MusicPages.ArtistPageControls
                 (FindName(nameof(ExtraInfoGrid)) as FrameworkElement).Visibility = Visibility.Collapsed;
                 ArtistAlbumsSemanticView.Visibility = Visibility.Visible;
             }
-            MainArtistHeader.UpdateMoreAboutButton(isArtistInfoView);
         }
     }
 }
