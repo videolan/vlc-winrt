@@ -1,4 +1,5 @@
-﻿<MenuFlyout x:Class="VLC.Views.UserControls.Flyouts.AlbumMenuFlyout"
+﻿<MenuFlyout x:Name="MenuFlyout"
+            x:Class="VLC.Views.UserControls.Flyouts.AlbumMenuFlyout"
             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
             xmlns:local="using:VLC.Views.UserControls.Flyouts"
@@ -29,7 +30,7 @@
                     CommandParameter="{Binding}" 
                     Style="{StaticResource MenuFlyoutItemIconTemplate}"
                     Tag="{StaticResource PinSymbol}"/>
-    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=ChangeAlbumCover}"
+        <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=ChangeAlbumCover}"
                                             Command="{Binding ChangeAlbumArtCommand}"
                                             CommandParameter="{Binding}" 
                     Style="{StaticResource MenuFlyoutItemIconTemplate}"
