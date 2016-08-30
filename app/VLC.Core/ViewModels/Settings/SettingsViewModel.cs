@@ -151,6 +151,9 @@ namespace VLC.ViewModels.Settings
             }
             set
             {
+                if (value && !DeviceHelper.IsMediaCenterModeCompliant)
+                    return;
+
                 SetProperty(ref _mediaCenterMode, value);
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(MediaCenterMode), value, true);
             }
