@@ -45,7 +45,7 @@
                  Margin="{StaticResource FrameMarginBottom}">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="{Binding CurrentArtist.ArtistImage}"
-                            Stretch="UniformToFill"/>
+                            Stretch="UniformToFill" />
             </Ellipse.Fill>
         </Ellipse>
 
