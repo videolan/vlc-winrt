@@ -98,17 +98,24 @@ namespace VLC.ViewModels.RemovableDevicesVM
             if (FileExplorersGrouped.Any() == false)
             {
                 var categories = Enum.GetValues(typeof(RootFolderType)).Cast<RootFolderType>();
+                if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+                    categories = categories.Where(x => x != RootFolderType.Library);
+
                 foreach (var c in categories)
                     await CreateFolderCategory(c);
-                var musicFolder = new LocalFileExplorerViewModel(KnownFolders.MusicLibrary, RootFolderType.Library);
-                musicFolder.LogoGlyph = App.Current.Resources["MusicFilledSymbol"] as string;
-                await AddToFolder(musicFolder);
-                var videoFolder = new LocalFileExplorerViewModel(KnownFolders.VideosLibrary, RootFolderType.Library);
-                videoFolder.LogoGlyph = App.Current.Resources["VideoFilledSymbol"] as string;
-                await AddToFolder(videoFolder);
-                var picFolder = new LocalFileExplorerViewModel(KnownFolders.PicturesLibrary, RootFolderType.Library);
-                picFolder.LogoGlyph = App.Current.Resources["BuddySymbol"] as string;
-                await AddToFolder(picFolder);
+
+                if (DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox)
+                {
+                    var musicFolder = new LocalFileExplorerViewModel(KnownFolders.MusicLibrary, RootFolderType.Library);
+                    musicFolder.LogoGlyph = App.Current.Resources["MusicFilledSymbol"] as string;
+                    await AddToFolder(musicFolder);
+                    var videoFolder = new LocalFileExplorerViewModel(KnownFolders.VideosLibrary, RootFolderType.Library);
+                    videoFolder.LogoGlyph = App.Current.Resources["VideoFilledSymbol"] as string;
+                    await AddToFolder(videoFolder);
+                    var picFolder = new LocalFileExplorerViewModel(KnownFolders.PicturesLibrary, RootFolderType.Library);
+                    picFolder.LogoGlyph = App.Current.Resources["BuddySymbol"] as string;
+                    await AddToFolder(picFolder);
+                }
             }
 
             Locator.ExternalDeviceService.ExternalDeviceAdded += DeviceAdded;
