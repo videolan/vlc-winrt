@@ -127,7 +127,7 @@
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
                                                        Storyboard.TargetProperty="Height">
-                            <DiscreteObjectKeyFrame Value="125"
+                            <DiscreteObjectKeyFrame Value="135"
                                                     KeyTime="0" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
