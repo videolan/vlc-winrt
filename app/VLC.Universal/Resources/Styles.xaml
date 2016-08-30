@@ -3776,6 +3776,8 @@
                 Value="Stretch" />
         <Setter Property="VerticalContentAlignment"
                 Value="Stretch" />
+        <Setter Property="UseSystemFocusVisuals"
+                Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
@@ -3811,6 +3813,12 @@
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource MainColor}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
+                                                                       Storyboard.TargetProperty="FontSize"
+                                                                       EnableDependentAnimation="True">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="20" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -3987,7 +3995,8 @@
                                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                   Margin="{TemplateBinding Padding}"
-                                                  Foreground="{ThemeResource BasicForeground}" />
+                                                  Foreground="{ThemeResource BasicForeground}"
+                                                  FontSize="{TemplateBinding FontSize}" />
                             </Border>
                         </Grid>
                     </Border>
