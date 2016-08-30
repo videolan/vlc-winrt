@@ -113,13 +113,6 @@
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            HideTextIfEmpty="True"
-                                                           Header="Media Center mode"
-                                                           Text="Requires an XBOX One gamepad" />
-
-                        <ToggleSwitch IsOn="{Binding MediaCenterMode, Mode=TwoWay}" />
-
-                        <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
-                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}" />
                         <ListView ItemsSource="{Binding KeyboardActions}"
                                   SelectionMode="None"

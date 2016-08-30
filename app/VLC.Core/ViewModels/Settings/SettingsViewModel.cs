@@ -134,30 +134,7 @@ namespace VLC.ViewModels.Settings
             }
         }
 
-        public bool MediaCenterMode
-        {
-            get
-            {
-                var mediaCenter = ApplicationSettingsHelper.ReadSettingsValue(nameof(MediaCenterMode), true);
-                if (mediaCenter == null)
-                {
-                    _mediaCenterMode = false;
-                }
-                else
-                {
-                    _mediaCenterMode = (bool)mediaCenter;
-                }
-                return _mediaCenterMode;
-            }
-            set
-            {
-                if (value && !DeviceHelper.IsMediaCenterModeCompliant)
-                    return;
-
-                SetProperty(ref _mediaCenterMode, value);
-                ApplicationSettingsHelper.SaveSettingsValue(nameof(MediaCenterMode), value, true);
-            }
-        }
+        public bool MediaCenterMode { get; set; }
 
         public static ApplicationTheme GetApplicationTheme()
         {

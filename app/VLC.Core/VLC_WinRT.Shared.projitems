@@ -195,6 +195,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IMediaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\ExternalDeviceService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\GamepadService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\HttpServer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\HttpResponseSender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\KeyboardListenerService.cs" />

@@ -53,16 +53,6 @@ namespace VLC
             InitializeComponent();
             Suspending += OnSuspending;
             Container = AutoFacConfiguration.Configure();
-            
-            if (DeviceHelper.IsMediaCenterModeCompliant)
-            {
-                this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
-                Locator.SettingsVM.MediaCenterMode = true;
-            }
-            else
-            {
-                Locator.SettingsVM.MediaCenterMode = false;
-            }
         }
 
         public static Frame ApplicationFrame => RootPage?.NavigationFrame;
@@ -234,17 +224,40 @@ namespace VLC
             await LoadLibraries(disableConsumingTasks).ConfigureAwait(false);
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
-
-                if (Locator.SettingsVM.MediaCenterMode)
+                if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
                 {
-                    Locator.NavigationService.Go(VLCPage.MainPageXBOX);
+                    this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
+                }
+
+                Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
+            }).ConfigureAwait(false);
+
+            Locator.GamepadService.GamepadUpdated += async (s, e) =>
+            {
+                if (Gamepad.Gamepads.Any())
+                {
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        Locator.SettingsVM.MediaCenterMode = true;
+                        Locator.NavigationService.Go(VLCPage.MainPageXBOX);
+                        if (!AppViewHelper.GetFullscreen())
+                            AppViewHelper.SetFullscreen();
+
+                        App.SplitShell.FooterContent = null;
+                    });
                 }
                 else
                 {
-                    App.SplitShell.FooterContent = new CommandBarBottom();
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        Locator.SettingsVM.MediaCenterMode = false;
+                        if (AppViewHelper.GetFullscreen())
+                            AppViewHelper.SetFullscreen();
+
+                        App.SplitShell.FooterContent = new CommandBarBottom();
+                    });
                 }
-            }).ConfigureAwait(false);
+            };
         }
 
         private async void Current_VisibilityChanged(object sender, VisibilityChangedEventArgs e)
