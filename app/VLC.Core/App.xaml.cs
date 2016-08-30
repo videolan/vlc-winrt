@@ -54,6 +54,11 @@ namespace VLC
             InitializeComponent();
             Suspending += OnSuspending;
             Container = AutoFacConfiguration.Configure();
+
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+            {
+                this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
+            }
         }
 
         public static Frame ApplicationFrame => RootPage?.NavigationFrame;
@@ -223,13 +228,9 @@ namespace VLC
             SetLanguage();
             SetShellDecoration();
             await LoadLibraries(disableConsumingTasks).ConfigureAwait(false);
+
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
-                {
-                    this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
-                }
-
                 Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
             }).ConfigureAwait(false);
 
