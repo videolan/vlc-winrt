@@ -517,6 +517,8 @@ namespace VLC.ViewModels.MusicVM
                     LoadingStateTracks = LoadingState.Loading;
                 });
 
+                if (Locator.MediaLibrary.Tracks != null)
+                    Locator.MediaLibrary.Tracks.CollectionChanged += Tracks_CollectionChanged;
                 await Locator.MediaLibrary.LoadTracksFromDatabase();
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
@@ -527,6 +529,11 @@ namespace VLC.ViewModels.MusicVM
                 });
                 await OrderTracks();
             });
+        }
+
+        private async void Tracks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            await OrderTracks();
         }
 
         async Task OrderTracks()
