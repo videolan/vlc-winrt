@@ -20,7 +20,10 @@ namespace VLC.UI.Legacy.Views.MusicPages.ArtistPageControls
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            SetView((VLCPage)e.Parameter == VLCPage.ArtistInfoView);
+            if (e.Parameter == null)
+                SetView(isArtistInfoView: false);
+            else
+                SetView((VLCPage)e.Parameter == VLCPage.ArtistInfoView);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
