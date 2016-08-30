@@ -33,6 +33,7 @@ using WinRTXamlToolkit.IO.Serialization;
 using VLC.Helpers.VideoLibrary;
 using Windows.System.Threading;
 using VLC.UI.Legacy.Views.UserControls;
+using Windows.Gaming.Input;
 
 namespace VLC
 {
