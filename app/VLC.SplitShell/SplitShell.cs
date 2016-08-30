@@ -82,6 +82,8 @@ namespace VLC.Controls
         public async void SetFooterContentPresenter(object content)
         {
             await TemplateApplied.Task;
+            if (content == null)
+                return;
             _page.BottomAppBar = content as CommandBar;
             _previousAppBarClosedDisplayMode = _page.BottomAppBar.ClosedDisplayMode;
         }
