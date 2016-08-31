@@ -18,13 +18,17 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <local:MainAlbumHeader />
-        <ListView Grid.Row="1"
+        <ListView x:Name="TracksListView"
+                  Grid.Row="1"
                   ItemsSource="{Binding Tracks}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemTemplate="{StaticResource TrackItemTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemBasic}"
-                  ItemsPanel="{StaticResource StackPanelTemplate}">
+                  ItemsPanel="{StaticResource StackPanelTemplate}"
+                  XYFocusDown="{x:Bind TracksListView}"
+                  XYFocusLeft="{x:Bind TracksListView}"
+                  XYFocusRight="{x:Bind TracksListView}">
             <ListView.ItemContainerTransitions>
                 <TransitionCollection>
                     <AddDeleteThemeTransition />
