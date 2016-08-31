@@ -424,7 +424,10 @@ namespace VLC.ViewModels.MusicVM
                     }
                 }
                 else
+                {
                     await OrderAlbums();
+                    await RefreshRecommendedAlbums();
+                }
             }
             catch { }
         }
