@@ -549,7 +549,7 @@ namespace VLC.ViewModels.MusicVM
             });
         }
 
-        Task InitializePlaylists()
+        public Task InitializePlaylists()
         {
             return Task.Run(async () =>
             {

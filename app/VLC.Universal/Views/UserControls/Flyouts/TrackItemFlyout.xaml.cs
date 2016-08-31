@@ -25,7 +25,7 @@ namespace VLC.Views.UserControls.Flyouts
 
         private void TrackItemFlyout_Opened(object sender, object e)
         {
-            Locator.MusicLibraryVM.OnNavigatedToPlaylists();
+            Locator.MusicLibraryVM.InitializePlaylists();
         }
 
         private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
