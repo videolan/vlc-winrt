@@ -287,83 +287,98 @@ namespace VLC.ViewModels.MusicVM
             RecommendedAlbums = new List<AlbumItem>();
         }
 
-        public void OnNavigatedTo()
+        public async Task OnNavigatedTo()
         {
             ResetLibrary();
-        }
 
-        public void OnNavigatedToArtists()
-        {
-            if (LoadingStateArtists == LoadingState.NotLoaded && GroupedArtists == null)
+            switch (_musicView)
             {
-                InitializeArtists();
-            }
-            else
-            {
-                OnPropertyChanged(nameof(IsMusicLibraryEmpty));
-                OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
-            }
-        }
-
-        public void OnNavigatedToAlbums()
-        {
-            if (LoadingStateAlbums == LoadingState.NotLoaded)
-            {
-                InitializeAlbums();
-            }
-        }
-
-        public void OnNavigatedToTracks()
-        {
-            if (LoadingStateTracks == LoadingState.NotLoaded)
-            {
-                InitializeTracks();
-            }
-        }
-
-        public void OnNavigatedToPlaylists()
-        {
-            if (LoadingStatePlaylists == LoadingState.NotLoaded)
-            {
-                InitializePlaylists();
+                case MusicView.Albums:
+                    if (LoadingStateAlbums == LoadingState.NotLoaded)
+                    {
+                        await InitializeAlbums();
+                    }
+                    break;
+                case MusicView.Artists:
+                    if (LoadingStateArtists == LoadingState.NotLoaded && GroupedArtists == null)
+                    {
+                        await InitializeArtists();
+                    }
+                    else
+                    {
+                        OnPropertyChanged(nameof(IsMusicLibraryEmpty));
+                        OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
+                    }
+                    break;
+                case MusicView.Songs:
+                    if (LoadingStateTracks == LoadingState.NotLoaded)
+                    {
+                        await InitializeTracks();
+                    }
+                    break;
+                case MusicView.Playlists:
+                    if (LoadingStatePlaylists == LoadingState.NotLoaded)
+                    {
+                        await InitializePlaylists();
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
-        public void OnNavigatedFrom()
+        public async Task OnNavigatedFrom()
         {
             ResetLibrary();
-        }
 
-        public Task OnNavigatedFromArtists()
-        {
-            if (Locator.MediaLibrary.Artists != null)
+            switch (_musicView)
             {
-                Locator.MediaLibrary.Artists.CollectionChanged -= Artists_CollectionChanged;
-                Locator.MediaLibrary.Artists.Clear();
+                case MusicView.Albums:
+                    if (Locator.MediaLibrary.Albums != null)
+                    {
+                        Locator.MediaLibrary.Albums.CollectionChanged -= Albums_CollectionChanged;
+                        Locator.MediaLibrary.Albums.Clear();
+                    }
+
+                    RecommendedAlbums?.Clear();
+
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                    {
+                        GroupedAlbums = null;
+                        LoadingStateAlbums = LoadingState.NotLoaded;
+                    });
+                    break;
+                case MusicView.Artists:
+                    if (Locator.MediaLibrary.Artists != null)
+                    {
+                        Locator.MediaLibrary.Artists.CollectionChanged -= Artists_CollectionChanged;
+                        Locator.MediaLibrary.Artists.Clear();
+                    }
+
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                    {
+                        GroupedArtists = null;
+                        LoadingStateArtists = LoadingState.NotLoaded;
+                    });
+                    break;
+                case MusicView.Songs:
+                    if (Locator.MediaLibrary.Tracks != null)
+                    {
+                        Locator.MediaLibrary.Tracks.CollectionChanged -= Tracks_CollectionChanged;
+                        Locator.MediaLibrary.Tracks.Clear();
+                    }
+
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, async () =>
+                    {
+                        await OrderTracks();
+                        LoadingStateTracks = LoadingState.NotLoaded;
+                    });
+                    break;
+                case MusicView.Playlists:
+                    break;
+                default:
+                    break;
             }
-
-            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-            {
-                GroupedArtists = null;
-                LoadingStateArtists = LoadingState.NotLoaded;
-            });
-        }
-
-        public Task OnNavigatedFromAlbums()
-        {
-            if (Locator.MediaLibrary.Albums != null)
-            {
-                Locator.MediaLibrary.Albums.CollectionChanged -= Albums_CollectionChanged;
-                Locator.MediaLibrary.Albums.Clear();
-            }
-
-            RecommendedAlbums?.Clear();
-
-            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-            {
-                GroupedAlbums = null;
-                LoadingStateAlbums = LoadingState.NotLoaded;
-            });
         }
 
         Task InitializeAlbums()
@@ -426,7 +441,6 @@ namespace VLC.ViewModels.MusicVM
                 else
                 {
                     await OrderAlbums();
-                    await RefreshRecommendedAlbums();
                 }
             }
             catch { }

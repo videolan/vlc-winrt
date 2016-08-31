@@ -15,21 +15,9 @@ namespace VLC.Views.MainPages.MusicPanes
         public ArtistCollectionBase()
         {
             this.InitializeComponent();
-            this.Loaded += ArtistCollectionBase_Loaded;
-            this.Unloaded += ArtistCollectionBase_Unloaded;
             this.SizeChanged += ArtistCollectionBase_SizeChanged;
         }
-
-        private void ArtistCollectionBase_Unloaded(object sender, RoutedEventArgs e)
-        {
-            Locator.MusicLibraryVM.OnNavigatedFromArtists();
-        }
-
-        void ArtistCollectionBase_Loaded(object sender, RoutedEventArgs e)
-        {
-            Locator.MusicLibraryVM.OnNavigatedToArtists();
-        }
-
+        
         private void ArtistCollectionBase_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             ResponsiveArtistsList();

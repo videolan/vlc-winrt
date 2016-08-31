@@ -16,6 +16,7 @@ using VLC.Model.Music;
 using VLC.Views.MainPages.MusicPanes;
 using VLC.ViewModels.Settings;
 using VLC.ViewModels.MusicVM;
+using System.Threading.Tasks;
 
 namespace VLC.Views.MainPages
 {
@@ -24,26 +25,27 @@ namespace VLC.Views.MainPages
         public MainPageMusic()
         {
             this.InitializeComponent();
-            this.Loaded += MainPageMusic_Loaded;
         }
-        
-        void MainPageMusic_Loaded(object sender, RoutedEventArgs e)
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            base.OnNavigatedTo(e);
+
             Responsive(Window.Current.Bounds.Width);
-            Locator.MusicLibraryVM.OnNavigatedTo();
             Window.Current.SizeChanged += Current_SizeChanged;
-            this.Unloaded += AlbumsCollectionButtons_Unloaded;
         }
-        
+
+        protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+
+            await Locator.MusicLibraryVM.OnNavigatedFrom();
+            Window.Current.SizeChanged -= Current_SizeChanged;
+        }
+
         void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
             Responsive(e.Size.Width);
-        }
-
-        void AlbumsCollectionButtons_Unloaded(object sender, RoutedEventArgs e)
-        {
-            Window.Current.SizeChanged -= Current_SizeChanged;
-            Locator.MusicLibraryVM.OnNavigatedFrom();
         }
 
         void Responsive(double width)
@@ -54,25 +56,26 @@ namespace VLC.Views.MainPages
                 VisualStateUtilities.GoToState(this, "Wide", false);
         }
 
-        private void MusicPanesFrame_OnLoaded(object sender, RoutedEventArgs e)
+        private async void MusicPanesFrame_OnLoaded(object sender, RoutedEventArgs e)
         {
             if (MainPageMusicContentPresenter.Content == null)
             {
-                Switch(Locator.MusicLibraryVM.MusicView);
+                await Switch(Locator.MusicLibraryVM.MusicView);
             }
             Locator.MusicLibraryVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
         }
 
-        private void MusicLibraryVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private async void MusicLibraryVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(MusicLibraryVM.MusicView))
             {
-                Switch(Locator.MusicLibraryVM.MusicView);
+                await Switch(Locator.MusicLibraryVM.MusicView);
             }
         }
 
-        void Switch(MusicView view)
+        async Task Switch(MusicView view)
         {
+            await Locator.MusicLibraryVM.OnNavigatedFrom();
             switch (view)
             {
                 case MusicView.Albums:
@@ -92,6 +95,7 @@ namespace VLC.Views.MainPages
                         MainPageMusicContentPresenter.Content = new PlaylistPivotItem();
                     break;
             }
+            await Locator.MusicLibraryVM.OnNavigatedTo();
         }
     }
 }
