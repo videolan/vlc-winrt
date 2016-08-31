@@ -276,9 +276,6 @@
     <Compile Include="Views\UserControls\Shell\VLCDialog.xaml.cs">
       <DependentUpon>VLCDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\Shell\VLCPivot.xaml.cs">
-      <DependentUpon>VLCPivot.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\ShowItem.xaml.cs">
       <DependentUpon>ShowItem.xaml</DependentUpon>
     </Compile>
@@ -1419,10 +1416,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\Shell\VLCDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\Shell\VLCPivot.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
