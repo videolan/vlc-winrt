@@ -202,7 +202,7 @@ namespace VLC
                                     await Locator.MediaPlaybackViewModel.PlayStream(url.AbsoluteUri);
                                 break;
                             case "useraction":
-                                Locator.NavigationService.Go(VLCPage.MainPageNetwork);
+                                Locator.MainVM.GoToStreamPanel.Execute(null);
                                 break;
                             case "url":
                                 if (decoder[1]?.Name == "url")

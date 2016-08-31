@@ -289,7 +289,7 @@ namespace VLC.Services.RunTime
                             break;
                         case VLCAction.OpenNetwork:
                             {
-                                Locator.NavigationService.Go(VLCPage.MainPageNetwork);
+                                Locator.MainVM.GoToStreamPanel.Execute(null);
                             }
                             break;
                         case VLCAction.VolumeUp:
