@@ -277,16 +277,8 @@ namespace VLC.Services.RunTime
                 case VLCPage.MainPageMusic:
                 case VLCPage.MainPageFileExplorer:
                 case VLCPage.MainPageNetwork:
-                    if (Locator.SettingsVM.MediaCenterMode)
-                    {
-                        if (App.ApplicationFrame.CurrentSourcePageType != VLCPageToPageType(desiredPage))
-                            App.ApplicationFrame.Navigate(VLCPageToPageType(desiredPage));
-                    }
-                    else
-                    {
-                        if (App.ApplicationFrame.CurrentSourcePageType != typeof(HomePage))
-                            App.ApplicationFrame.Navigate(typeof(HomePage));
-                    }
+                    if (App.ApplicationFrame.CurrentSourcePageType != typeof(HomePage))
+                        App.ApplicationFrame.Navigate(typeof(HomePage));
 
                     HomePageNavigated?.Invoke(null, desiredPage);
                     currentHomePage = desiredPage;
