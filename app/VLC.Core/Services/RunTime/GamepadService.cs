@@ -10,7 +10,8 @@ namespace VLC.Services.RunTime
     public class GamepadService : IDisposable
     {
         public event EventHandler<Gamepad> GamepadUpdated;
-        public GamepadService()
+        
+        public void StartListening()
         {
             Gamepad.GamepadAdded += Gamepad_GamepadUpdated;
             Gamepad.GamepadRemoved += Gamepad_GamepadUpdated;

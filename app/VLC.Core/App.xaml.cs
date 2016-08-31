@@ -221,6 +221,7 @@ namespace VLC
 
         private async Task LaunchTheApp(bool disableConsumingTasks = false)
         {
+            Locator.GamepadService.StartListening();
             Dispatcher = Window.Current.Dispatcher;
             Window.Current.Content = new MainPage();
             Window.Current.Activate();
@@ -228,39 +229,40 @@ namespace VLC
             SetLanguage();
             SetShellDecoration();
 
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
-                App.SplitShell.FooterContent = new CommandBarBottom();
-            }).ConfigureAwait(false);
+            Locator.GamepadService.GamepadUpdated += (s, e) => Task.Run(() => ToggleMediaCenterMode());
 
-            Locator.GamepadService.GamepadUpdated += async (s, e) =>
-            {
-                if (Gamepad.Gamepads.Any())
-                {
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-                    {
-                        Locator.SettingsVM.MediaCenterMode = true;
-                        Locator.NavigationService.Go(VLCPage.MainPageXBOX);
-                        if (!AppViewHelper.GetFullscreen())
-                            AppViewHelper.SetFullscreen();
-
-                        App.SplitShell.FooterContent = null;
-                    });
-                }
-                else
-                {
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-                    {
-                        Locator.SettingsVM.MediaCenterMode = false;
-                        if (AppViewHelper.GetFullscreen())
-                            AppViewHelper.SetFullscreen();
-
-                        App.SplitShell.FooterContent = new CommandBarBottom();
-                    });
-                }
-            };
+            await ToggleMediaCenterMode();
             await LoadLibraries(disableConsumingTasks).ConfigureAwait(false);
+        }
+
+        async Task ToggleMediaCenterMode()
+        {
+            if (Gamepad.Gamepads.Any())
+            {
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    Locator.SettingsVM.MediaCenterMode = true;
+                    Locator.MainVM.GoToHomePageMediaCenterCommand.Execute(null);
+
+                    if (!AppViewHelper.GetFullscreen())
+                        AppViewHelper.SetFullscreen();
+
+                    App.SplitShell.FooterContent = null;
+                });
+            }
+            else
+            {
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    Locator.SettingsVM.MediaCenterMode = false;
+                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
+
+                    if (AppViewHelper.GetFullscreen())
+                        AppViewHelper.SetFullscreen();
+
+                    App.SplitShell.FooterContent = new CommandBarBottom();
+                });
+            }
         }
 
         private async void Current_VisibilityChanged(object sender, VisibilityChangedEventArgs e)
