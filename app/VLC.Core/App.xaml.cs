@@ -227,7 +227,6 @@ namespace VLC
             await SplitShell.TemplateApplied.Task;
             SetLanguage();
             SetShellDecoration();
-            await LoadLibraries(disableConsumingTasks).ConfigureAwait(false);
 
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -260,6 +259,7 @@ namespace VLC
                     });
                 }
             };
+            await LoadLibraries(disableConsumingTasks).ConfigureAwait(false);
         }
 
         private async void Current_VisibilityChanged(object sender, VisibilityChangedEventArgs e)
