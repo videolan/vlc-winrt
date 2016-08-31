@@ -342,7 +342,7 @@ namespace VLC.ViewModels.MusicVM
 
                     RecommendedAlbums?.Clear();
 
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         GroupedAlbums = null;
                         LoadingStateAlbums = LoadingState.NotLoaded;
@@ -355,7 +355,7 @@ namespace VLC.ViewModels.MusicVM
                         Locator.MediaLibrary.Artists.Clear();
                     }
 
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         GroupedArtists = null;
                         LoadingStateArtists = LoadingState.NotLoaded;
@@ -368,7 +368,7 @@ namespace VLC.ViewModels.MusicVM
                         Locator.MediaLibrary.Tracks.Clear();
                     }
 
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, async () =>
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                     {
                         await OrderTracks();
                         LoadingStateTracks = LoadingState.NotLoaded;
