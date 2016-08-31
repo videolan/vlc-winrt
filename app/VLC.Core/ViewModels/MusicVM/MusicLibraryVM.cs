@@ -87,12 +87,6 @@ namespace VLC.ViewModels.MusicVM
             set { SetProperty(ref _topArtists, value); }
         }
 
-        public ObservableCollection<ArtistItem> RecommendedArtists
-        {
-            get { return _recommendedArtists; }
-            set { SetProperty(ref _recommendedArtists, value); }
-        }
-
         public ObservableCollection<GroupItemList<ArtistItem>> GroupedArtists
         {
             get { return _groupedArtists; }
@@ -289,9 +283,6 @@ namespace VLC.ViewModels.MusicVM
             LoadingStateTracks = LoadingState.NotLoaded;
             LoadingStatePlaylists = LoadingState.NotLoaded;
 
-            RecommendedArtists?.Clear();
-            RecommendedArtists = new ObservableCollection<ArtistItem>();
-
             RecommendedAlbums?.Clear();
             RecommendedAlbums = new List<AlbumItem>();
         }
@@ -460,12 +451,10 @@ namespace VLC.ViewModels.MusicVM
 
                 if (Locator.MediaLibrary.Artists != null)
                     Locator.MediaLibrary.Artists.CollectionChanged += Artists_CollectionChanged;
-                await Locator.MediaLibrary.LoadArtistsFromDatabase();
-                var recommendedArtists = await Locator.MediaLibrary.LoadRandomArtistsFromDatabase();
+                Locator.MediaLibrary.LoadArtistsFromDatabase();
+                
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    RecommendedArtists = recommendedArtists;
-
                     Locator.MainVM.InformationText = String.Empty;
                     LoadingStateArtists = LoadingState.Loaded;
                     OnPropertyChanged(nameof(IsMusicLibraryEmpty));
