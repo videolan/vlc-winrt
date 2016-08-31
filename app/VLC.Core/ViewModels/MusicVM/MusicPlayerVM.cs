@@ -140,8 +140,8 @@ namespace VLC.ViewModels.MusicVM
 
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
-                await SetCurrentArtist();
-                await SetCurrentAlbum();
+                SetCurrentArtist();
+                SetCurrentAlbum();
                 await UpdatePlayingUI();
                 await Scrobble();
                 await UpdateWindows8UI();
@@ -183,14 +183,14 @@ namespace VLC.ViewModels.MusicVM
             });
         }
 
-        public async Task SetCurrentArtist()
+        public void SetCurrentArtist()
         {
             if (CurrentTrack == null) return;
             if (CurrentArtist != null && CurrentArtist.Id == CurrentTrack.ArtistId) return;
             CurrentArtist = Locator.MediaLibrary.LoadArtist(CurrentTrack.ArtistId);
         }
 
-        public async Task SetCurrentAlbum()
+        public void SetCurrentAlbum()
         {
             if (CurrentTrack == null) return;
             if (CurrentArtist == null) return;
