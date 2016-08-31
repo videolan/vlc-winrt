@@ -43,61 +43,28 @@ namespace VLC.Database
 
         public async Task Add(BackgroundTrackItem track)
         {
-            await MusicDatabase.DatabaseOperation.WaitAsync();
-            try
-            {
-                var connection = new SQLiteAsyncConnection(DbPath);
-                await connection.InsertAsync(track);
-            }
-            finally
-            {
-                MusicDatabase.DatabaseOperation.Release();
-            }
+            var connection = new SQLiteAsyncConnection(DbPath);
+            await connection.InsertAsync(track);
         }
 
         public async Task Add(IEnumerable<BackgroundTrackItem> tracks)
         {
-            await MusicDatabase.DatabaseOperation.WaitAsync();
-            try
-            {
-                var connection = new SQLiteAsyncConnection(DbPath);
-                await connection.InsertAllAsync(tracks);
-            }
-            finally
-            {
-                MusicDatabase.DatabaseOperation.Release();
-            }
+            var connection = new SQLiteAsyncConnection(DbPath);
+            await connection.InsertAllAsync(tracks);
         }
 
         public async Task<List<BackgroundTrackItem>> LoadPlaylist()
         {
-            await MusicDatabase.DatabaseOperation.WaitAsync();
-            try
-            {
-                var connection = new SQLiteAsyncConnection(DbPath);
-                var query = connection.Table<BackgroundTrackItem>();
-                var tracks = await query.ToListAsync();
-                return tracks;
-            }
-            finally
-            {
-                MusicDatabase.DatabaseOperation.Release();
-            }
+            var connection = new SQLiteAsyncConnection(DbPath);
+            var query = connection.Table<BackgroundTrackItem>();
+            var tracks = await query.ToListAsync();
+            return tracks;
         }
-
 
         public async Task Remove(BackgroundTrackItem track)
         {
-            await MusicDatabase.DatabaseOperation.WaitAsync();
-            try
-            {
-                var connection = new SQLiteAsyncConnection(DbPath);
-                await connection.DeleteAsync(track);
-            }
-            finally
-            {
-                MusicDatabase.DatabaseOperation.Release();
-            }
+            var connection = new SQLiteAsyncConnection(DbPath);
+            await connection.DeleteAsync(track);
         }
 
         public Task Clear()

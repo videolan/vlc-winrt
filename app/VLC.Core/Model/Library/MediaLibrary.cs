@@ -79,9 +79,7 @@ namespace VLC.Model.Library
         #endregion
 
         #region databases
-        readonly ArtistDatabase artistDatabase = new ArtistDatabase();
-        readonly TrackDatabase trackDatabase = new TrackDatabase();
-        readonly AlbumDatabase albumDatabase = new AlbumDatabase();
+        readonly MusicDatabase musicDatabase = new MusicDatabase();
         readonly TracklistItemRepository tracklistItemRepository = new TracklistItemRepository();
         readonly TrackCollectionRepository trackCollectionRepository = new TrackCollectionRepository();
         
@@ -198,14 +196,14 @@ namespace VLC.Model.Library
             if (!Numbers.NeedsToDrop()) return;
             trackCollectionRepository.Drop();
             tracklistItemRepository.Drop();
-            albumDatabase.Drop();
-            artistDatabase.Drop();
-            trackDatabase.Drop();
+            musicDatabase.Drop();
+            musicDatabase.Drop();
+            musicDatabase.Drop();
             trackCollectionRepository.Initialize();
             tracklistItemRepository.Initialize();
-            albumDatabase.Initialize();
-            artistDatabase.Initialize();
-            trackDatabase.Initialize();
+            musicDatabase.Initialize();
+            musicDatabase.Initialize();
+            musicDatabase.Initialize();
 
             videoDatabase.Drop();
             videoDatabase.Initialize();
@@ -241,15 +239,15 @@ namespace VLC.Model.Library
 
         async Task StartIndexing()
         {
-            artistDatabase.DeleteAll();
-            albumDatabase.DeleteAll();
-            trackDatabase.DeleteAll();
+            musicDatabase.DeleteAll();
+            musicDatabase.DeleteAll();
+            musicDatabase.DeleteAll();
             trackCollectionRepository.DeleteAll();
             tracklistItemRepository.DeleteAll();
 
-            artistDatabase.Initialize();
-            albumDatabase.Initialize();
-            trackDatabase.Initialize();
+            musicDatabase.Initialize();
+            musicDatabase.Initialize();
+            musicDatabase.Initialize();
             trackCollectionRepository.Initialize();
             tracklistItemRepository.Initialize();
 
@@ -281,7 +279,7 @@ namespace VLC.Model.Library
                 await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.CameraRoll), true);
 
                 // Cortana gets all those artists, albums, songs names
-                var artists = await LoadArtists(null);
+                var artists = LoadArtists(null);
                 if (artists != null)
                     await CortanaHelper.SetPhraseList("artistName", artists.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
 
@@ -314,7 +312,7 @@ namespace VLC.Model.Library
             {
                 if (VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower()))
                 {
-                    if (trackDatabase.DoesTrackExist(item.Path))
+                    if (musicDatabase.ContainsTrack(item.Path))
                         return true;
 
                     // Groove Music puts its cache into this folder in Music.
@@ -342,19 +340,19 @@ namespace VLC.Model.Library
                     {
                         var artistName = mP.Artist?.Trim();
                         var albumArtistName = mP.AlbumArtist?.Trim();
-                        ArtistItem artist = await LoadViaArtistName(string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName);
+                        ArtistItem artist = LoadViaArtistName(string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName);
                         if (artist == null)
                         {
                             artist = new ArtistItem();
                             artist.Name = string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName;
                             artist.PlayCount = 0;
-                            await artistDatabase.Add(artist);
+                            musicDatabase.Add(artist);
                             AddArtist(artist);
                         }
 
                         var albumName = mP.Album?.Trim();
                         var albumYear = mP.Year;
-                        AlbumItem album = await albumDatabase.LoadAlbumViaName(artist.Id, albumName);
+                        AlbumItem album = musicDatabase.LoadAlbumFromName(artist.Id, albumName);
                         if (album == null)
                         {
                             var albumUrl = await Locator.VLCService.GetArtworkUrl(media);
@@ -381,7 +379,7 @@ namespace VLC.Model.Library
                                 Year = albumYear,
                                 AlbumCoverUri = albumSimplifiedUrl
                             };
-                            await albumDatabase.Add(album);
+                            musicDatabase.Add(album);
                             AddAlbum(album);
                             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                             {
@@ -405,7 +403,7 @@ namespace VLC.Model.Library
                             Genre = mP.Genre,
                             IsAvailable = true,
                         };
-                        trackDatabase.Add(track);
+                        musicDatabase.Add(track);
                         AddTrack(track);
                     }
                 }
@@ -673,13 +671,13 @@ namespace VLC.Model.Library
         }
         #endregion
         #region DatabaseLogic
-        public async Task LoadAlbumsFromDatabase()
+        public void LoadAlbumsFromDatabase()
         {
             try
             {
                 Albums?.Clear();
                 LogHelper.Log("Loading albums from MusicDB ...");
-                var albums = await albumDatabase.LoadAlbums().ToObservableAsync();
+                var albums = musicDatabase.LoadAlbums().ToObservable();
                 var orderedAlbums = albums.OrderBy(x => x.Artist).ThenBy(x => x.Name);
                 Albums.AddRange(orderedAlbums);
             }
@@ -689,11 +687,11 @@ namespace VLC.Model.Library
             }
         }
 
-        public async Task<List<AlbumItem>> LoadRecommendedAlbumsFromDatabase()
+        public List<AlbumItem> LoadRecommendedAlbumsFromDatabase()
         {
             try
             {
-                var albums = await albumDatabase.LoadAlbums().ToObservableAsync();
+                var albums = musicDatabase.LoadAlbums().ToObservable();
                 var recommendedAlbums = albums?.Where(x => x.Favorite).ToList();
                 if (recommendedAlbums.Count() <= 10) // TODO : Magic number
                 {
@@ -716,50 +714,29 @@ namespace VLC.Model.Library
         }
 
 
-        public Task<List<AlbumItem>> Contains(string column, string value)
+        public List<AlbumItem> Contains(string column, string value)
         {
-            return albumDatabase.Contains(column, value);
+            return musicDatabase.LoadAlbumsFromColumnValue(column, value);
         }
 
-        public async Task LoadArtistsFromDatabase()
+        public void LoadArtistsFromDatabase()
         {
             try
             {
                 Artists?.Clear();
                 LogHelper.Log("Loading artists from MusicDB ...");
-                var artists = await LoadArtists(null);
+                var artists = LoadArtists(null);
                 LogHelper.Log("Found " + artists.Count + " artists from MusicDB");
                 Artists.AddRange(artists.OrderBy(x => x.Name).ToObservable());
             }
             catch { }
         }
-
-        public async Task<ObservableCollection<ArtistItem>> LoadRandomArtistsFromDatabase()
+        
+        public void LoadTracksFromDatabase()
         {
             try
             {
-                var topArtists = (await LoadArtists(x => x.PlayCount > 10).ToObservableAsync()).Take(20);
-                // We use user top artists to search for similar artists in its collection, to recommend them
-                if (topArtists.Any())
-                {
-                    var random = new Random().Next(0, topArtists.Count() - 1);
-                    var suggestedArtists = await MusicFlow.GetFollowingArtistViaSimilarity(topArtists.ElementAt(random));
-                    if (suggestedArtists != null)
-                        return new ObservableCollection<ArtistItem>(suggestedArtists);
-                }
-            }
-            catch (Exception)
-            {
-                LogHelper.Log("Error selecting random and recommended artists from database.");
-            }
-            return new ObservableCollection<ArtistItem>();
-        }
-
-        public async Task LoadTracksFromDatabase()
-        {
-            try
-            {
-                Tracks = trackDatabase.LoadTracks().ToObservable();
+                Tracks = musicDatabase.LoadTracks().ToObservable();
             }
             catch (Exception)
             {
@@ -769,7 +746,7 @@ namespace VLC.Model.Library
 
         bool IsMusicDatabaseEmpty()
         {
-            return trackDatabase.IsEmpty();
+            return musicDatabase.IsEmpty();
         }
 
         public async Task LoadPlaylistsFromDatabase()
@@ -782,7 +759,7 @@ namespace VLC.Model.Library
                     var observableCollection = await tracklistItemRepository.LoadTracks(trackCollection);
                     foreach (TracklistItem tracklistItem in observableCollection)
                     {
-                        TrackItem item = trackDatabase.LoadTrack(tracklistItem.TrackId);
+                        TrackItem item = musicDatabase.LoadTrackFromId(tracklistItem.TrackId);
                         trackCollection.Playlist.Add(item);
                     }
                 }
@@ -800,7 +777,7 @@ namespace VLC.Model.Library
             return videoDatabase.IsEmpty();
         }
 
-        public async Task LoadVideosFromDatabase()
+        public void LoadVideosFromDatabase()
         {
             try
             {
@@ -850,7 +827,7 @@ namespace VLC.Model.Library
                 await AddTvShow(item);
             }
         }
-        public async Task LoadCameraRollFromDatabase()
+        public void LoadCameraRollFromDatabase()
         {
             CameraRoll?.Clear();
             var camVideos = LoadVideos(x => x.IsCameraRoll);
@@ -1064,24 +1041,24 @@ namespace VLC.Model.Library
                 var trackDB = LoadTrackById(trackItem.Id);
                 if (trackDB == null)
                     return;
-                trackDatabase.Remove(trackDB);
+                musicDatabase.Remove(trackDB);
 
-                var albumDB = await LoadAlbum(trackItem.AlbumId);
+                var albumDB = LoadAlbum(trackItem.AlbumId);
                 if (albumDB == null)
                     return;
                 var albumTracks = LoadTracksByAlbumId(albumDB.Id);
                 if (!albumTracks.Any())
                 {
-                    albumDatabase.Remove(albumDB);
+                    musicDatabase.Remove(albumDB);
                 }
 
-                var artistDB = await LoadArtist(trackItem.ArtistId);
+                var artistDB = LoadArtist(trackItem.ArtistId);
                 if (artistDB == null)
                     return;
-                var artistAlbums = await LoadAlbums(artistDB.Id);
+                var artistAlbums = LoadAlbums(artistDB.Id);
                 if (!artistAlbums.Any())
                 {
-                    await artistDatabase.Remove(artistDB);
+                    musicDatabase.Remove(artistDB);
                 }
 
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
@@ -1123,7 +1100,7 @@ namespace VLC.Model.Library
         public async Task<TrackItem> GetTrackItemFromFile(StorageFile track, string token = null)
         {
             //TODO: Warning, is it safe to consider this a good idea?
-            var trackItem = trackDatabase.LoadTrackByPath(track.Path);
+            var trackItem = musicDatabase.LoadTrackFromPath(track.Path);
             if (trackItem != null)
             {
                 return trackItem;
@@ -1158,7 +1135,7 @@ namespace VLC.Model.Library
         {
             try
             {
-                var tracks = trackDatabase.LoadTracksByAlbumId(album.Id);
+                var tracks = musicDatabase.LoadTracksFromAlbumId(album.Id);
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     album.Tracks = tracks;
@@ -1174,7 +1151,7 @@ namespace VLC.Model.Library
         {
             try
             {
-                var albums = await albumDatabase.LoadAlbumsFromId(artist.Id).ToObservableAsync();
+                var albums = musicDatabase.LoadAlbumsFromArtistId(artist.Id).ToObservable();
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     artist.Albums = albums;
@@ -1190,7 +1167,7 @@ namespace VLC.Model.Library
         {
             try
             {
-                var albums = await albumDatabase.LoadAlbumsFromIdWithTracks(artist.Id).ToObservableAsync();
+                var albums = musicDatabase.LoadAlbumsFromIdWithTracks(artist.Id).ToObservable();
                 var groupedAlbums = new ObservableCollection<GroupItemList<TrackItem>>();
                 var groupQuery = from album in albums
                                  orderby album.Name
@@ -1235,57 +1212,57 @@ namespace VLC.Model.Library
 
         public TrackItem LoadTrackById(int id)
         {
-            return trackDatabase.LoadTrack(id);
+            return musicDatabase.LoadTrackFromId(id);
         }
 
         public List<TrackItem> LoadTracksByArtistId(int id)
         {
-            return trackDatabase.LoadTracksByArtistId(id);
+            return musicDatabase.LoadTracksFromArtistId(id);
         }
 
         public List<TrackItem> LoadTracksByAlbumId(int id)
         {
-            return trackDatabase.LoadTracksByAlbumId(id);
+            return musicDatabase.LoadTracksFromAlbumId(id);
         }
 
-        public async Task<ArtistItem> LoadArtist(int id)
+        public ArtistItem LoadArtist(int id)
         {
-            return await artistDatabase.LoadArtist(id);
+            return musicDatabase.LoadArtistFromId(id);
         }
 
-        public async Task<ArtistItem> LoadViaArtistName(string name)
+        public ArtistItem LoadViaArtistName(string name)
         {
-            return await artistDatabase.LoadViaArtistName(name);
+            return musicDatabase.LoadFromArtistName(name);
         }
 
-        public Task<AlbumItem> LoadAlbum(int id)
+        public AlbumItem LoadAlbum(int id)
         {
-            return albumDatabase.LoadAlbum(id);
+            return musicDatabase.LoadAlbumFromId(id);
         }
 
-        public Task<List<AlbumItem>> LoadAlbums(int artistId)
+        public List<AlbumItem> LoadAlbums(int artistId)
         {
-            return albumDatabase.LoadAlbumsFromId(artistId);
+            return musicDatabase.LoadAlbumsFromArtistId(artistId);
         }
 
-        public Task<int> LoadAlbumsCount(int artistId)
+        public int LoadAlbumsCount(int artistId)
         {
-            return albumDatabase.LoadAlbumsCountFromId(artistId);
+            return musicDatabase.LoadAlbumsCountFromId(artistId);
         }
 
         public Task Update(ArtistItem artist)
         {
-            return artistDatabase.Update(artist);
+            return musicDatabase.Update(artist);
         }
 
-        public Task Update(AlbumItem album)
+        public void Update(AlbumItem album)
         {
-            return albumDatabase.Update(album);
+            musicDatabase.Update(album);
         }
 
         public void Update(TrackItem track)
         {
-            trackDatabase.Update(track);
+            musicDatabase.Update(track);
         }
 
         public Task Remove(TracklistItem tracklist)
@@ -1298,29 +1275,29 @@ namespace VLC.Model.Library
             return tracklistItemRepository.Remove(trackid, playlistid);
         }
 
-        public Task<int> ArtistCount()
+        public int ArtistCount()
         {
-            return artistDatabase.Count();
+            return musicDatabase.ArtistsCount();
         }
 
-        public Task<ArtistItem> ArtistAt(int index)
+        public ArtistItem ArtistAt(int index)
         {
-            return artistDatabase.At(index);
+            return musicDatabase.ArtistAt(index);
         }
 
-        public Task<List<ArtistItem>> LoadArtists(Expression<Func<ArtistItem, bool>> predicate)
+        public List<ArtistItem> LoadArtists(Expression<Func<ArtistItem, bool>> predicate)
         {
-            return artistDatabase.Load(predicate);
+            return musicDatabase.LoadArtists(predicate);
         }
 
         public Task<List<AlbumItem>> LoadAlbums(Expression<Func<AlbumItem, bool>> predicate)
         {
-            return albumDatabase.Load(predicate);
+            return musicDatabase.Load(predicate);
         }
 
         public List<TrackItem> LoadTracks()
         {
-            return trackDatabase.LoadTracks();
+            return musicDatabase.LoadTracks();
         }
 
         #endregion

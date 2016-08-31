@@ -66,7 +66,7 @@ namespace VLC.Helpers
                     case "playAlbumByArtist":
                     case "createArtistPlaylist":
                         var artistName = voiceArgs.Result.SemanticInterpretation.Properties["artistName"].FirstOrDefault();
-                        var artistItem = await Locator.MediaLibrary.LoadViaArtistName(artistName);
+                        var artistItem = Locator.MediaLibrary.LoadViaArtistName(artistName);
                         switch (commandName)
                         {
                             case "playArtist":

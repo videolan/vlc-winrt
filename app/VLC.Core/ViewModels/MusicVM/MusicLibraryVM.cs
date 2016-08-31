@@ -38,7 +38,6 @@ namespace VLC.ViewModels.MusicVM
         #region private fields
         private ObservableCollection<GroupItemList<ArtistItem>> _groupedArtists;
         private ObservableCollection<ArtistItem> _topArtists = new ObservableCollection<ArtistItem>();
-        private ObservableCollection<ArtistItem> _recommendedArtists = new ObservableCollection<ArtistItem>(); // recommanded with MusicFlow
 
         private ObservableCollection<PlaylistItem> _trackCollections = new ObservableCollection<PlaylistItem>();
 
@@ -389,7 +388,7 @@ namespace VLC.ViewModels.MusicVM
 
                 if (Locator.MediaLibrary.Albums != null)
                     Locator.MediaLibrary.Albums.CollectionChanged += Albums_CollectionChanged;
-                await Locator.MediaLibrary.LoadAlbumsFromDatabase();
+                Locator.MediaLibrary.LoadAlbumsFromDatabase();
                 await RefreshRecommendedAlbums();
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
@@ -405,7 +404,7 @@ namespace VLC.ViewModels.MusicVM
         {
             if (MusicView != MusicView.Albums)
                 return;
-            var recommendedAlbums = await Locator.MediaLibrary.LoadRecommendedAlbumsFromDatabase();
+            var recommendedAlbums = Locator.MediaLibrary.LoadRecommendedAlbumsFromDatabase();
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 RecommendedAlbums = recommendedAlbums;
@@ -519,7 +518,7 @@ namespace VLC.ViewModels.MusicVM
 
                 if (Locator.MediaLibrary.Tracks != null)
                     Locator.MediaLibrary.Tracks.CollectionChanged += Tracks_CollectionChanged;
-                await Locator.MediaLibrary.LoadTracksFromDatabase();
+                Locator.MediaLibrary.LoadTracksFromDatabase();
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     Locator.MainVM.InformationText = String.Empty;

@@ -187,7 +187,7 @@ namespace VLC.ViewModels.MusicVM
         {
             if (CurrentTrack == null) return;
             if (CurrentArtist != null && CurrentArtist.Id == CurrentTrack.ArtistId) return;
-            CurrentArtist = await Locator.MediaLibrary.LoadArtist(CurrentTrack.ArtistId);
+            CurrentArtist = Locator.MediaLibrary.LoadArtist(CurrentTrack.ArtistId);
         }
 
         public async Task SetCurrentAlbum()
@@ -195,7 +195,7 @@ namespace VLC.ViewModels.MusicVM
             if (CurrentTrack == null) return;
             if (CurrentArtist == null) return;
             if (CurrentAlbum != null && CurrentAlbum.Id == CurrentTrack.AlbumId) return;
-            CurrentAlbum = await Locator.MediaLibrary.LoadAlbum(CurrentTrack.AlbumId);
+            CurrentAlbum = Locator.MediaLibrary.LoadAlbum(CurrentTrack.AlbumId);
         }
 
 

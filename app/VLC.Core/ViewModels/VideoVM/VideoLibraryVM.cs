@@ -205,7 +205,7 @@ namespace VLC.ViewModels.VideoVM
 
                 if (Locator.MediaLibrary.Videos != null)
                     Locator.MediaLibrary.Videos.CollectionChanged += Videos_CollectionChanged;
-                await Locator.MediaLibrary.LoadVideosFromDatabase();
+                Locator.MediaLibrary.LoadVideosFromDatabase();
                 await Locator.MediaLibrary.LoadViewedVideosFromDatabase();
 
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
@@ -262,7 +262,7 @@ namespace VLC.ViewModels.VideoVM
 
                 if (Locator.MediaLibrary.CameraRoll != null)
                     Locator.MediaLibrary.CameraRoll.CollectionChanged += CameraRoll_CollectionChanged;
-                await Locator.MediaLibrary.LoadCameraRollFromDatabase();
+                Locator.MediaLibrary.LoadCameraRollFromDatabase();
             });
         }
 

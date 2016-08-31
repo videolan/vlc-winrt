@@ -64,7 +64,7 @@ namespace VLC.Services.RunTime
                 var success = bytes != null && await SaveAlbumImageAsync(album, bytes);
                 if (success)
                 {
-                    await Locator.MediaLibrary.Update(album);
+                    Locator.MediaLibrary.Update(album);
                     return true;
                 }
             }

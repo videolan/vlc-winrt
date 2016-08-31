@@ -219,7 +219,7 @@ public class HttpResponseSender
         if (decomp[1] == "track")
         {
             TrackItem track = Locator.MediaLibrary.LoadTrackById(int.Parse(decomp[4]));
-            AlbumItem album = await Locator.MediaLibrary.LoadAlbum(track.AlbumId);
+            AlbumItem album = Locator.MediaLibrary.LoadAlbum(track.AlbumId);
             ret = new Uri(album.AlbumCoverFullUri);
         }
         else if (decomp[1] == "video")

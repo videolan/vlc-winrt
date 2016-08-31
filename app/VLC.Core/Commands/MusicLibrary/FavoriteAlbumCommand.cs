@@ -25,7 +25,7 @@ namespace VLC.Commands.MusicLibrary
                 return;
 
             album.Favorite = !album.Favorite;
-            await Locator.MediaLibrary.Update(album);
+            Locator.MediaLibrary.Update(album);
             await Task.Run(() => Locator.MusicLibraryVM.RefreshRecommendedAlbums());
         }
     }

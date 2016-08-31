@@ -27,7 +27,7 @@ namespace VLC.Commands.MusicPlayer
             else if (parameter is int)
             {
                 var id = (int) parameter;
-                albumItem = await Locator.MediaLibrary.LoadAlbum(id);
+                albumItem = Locator.MediaLibrary.LoadAlbum(id);
             }
 
             if (albumItem != null)

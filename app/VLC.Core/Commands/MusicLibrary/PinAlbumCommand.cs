@@ -16,7 +16,7 @@ namespace VLC.Commands.MusicLibrary
                 if (await TileHelper.CreateOrReplaceSecondaryTile(VLCItemType.Album, album.Id, album.Name))
                 {
                     album.IsPinned = !album.IsPinned;
-                    await Locator.MediaLibrary.Update(album);
+                    Locator.MediaLibrary.Update(album);
                 }
             }
         }

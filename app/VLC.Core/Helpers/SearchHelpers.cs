@@ -18,7 +18,7 @@ namespace VLC.Helpers
         public static async Task<ObservableCollection<SearchResult>> SearchArtists(string tag)
         {
             var results = new ObservableCollection<SearchResult>();
-            var artistItems = await SearchArtistItems(tag);
+            var artistItems = SearchArtistItems(tag);
             foreach (var artistItem in artistItems)
             {
                 results.Add(new SearchResult(artistItem.Name, ApplicationData.Current.LocalFolder.Path + "\\artistPic\\" + artistItem.Id + ".jpg",
@@ -36,7 +36,7 @@ namespace VLC.Helpers
         public static async Task<ObservableCollection<SearchResult>> SearchAlbumsGeneric(string tag)
         {
             var results = new ObservableCollection<SearchResult>();
-            var albumItems = await SearchAlbumItems(tag);
+            var albumItems = SearchAlbumItems(tag);
             foreach (AlbumItem albumItem in albumItems)
             {
                 results.Add(new SearchResult(albumItem.Name,
@@ -49,7 +49,7 @@ namespace VLC.Helpers
 
         public static async Task<List<AlbumItem>> SearchAlbums(string tag, List<AlbumItem> results)
         {
-            var albums = await SearchAlbumItems(tag);
+            var albums = SearchAlbumItems(tag);
             foreach (var album in albums)
             {
                 if (results != null && !results.Contains(album)) 
@@ -109,12 +109,12 @@ namespace VLC.Helpers
             }
         }
 
-        public static Task<List<ArtistItem>> SearchArtistItems(string tag)
+        public static List<ArtistItem> SearchArtistItems(string tag)
         {
             return Locator.MediaLibrary.LoadArtists(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
         }
 
-        public static Task<List<AlbumItem>> SearchAlbumItems(string tag)
+        public static List<AlbumItem> SearchAlbumItems(string tag)
         {
             return Locator.MediaLibrary.Contains(nameof(AlbumItem.Name), tag);
         }

@@ -119,15 +119,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\VideoViewStringifyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\VLCPageStringifyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\VLCSurfaceZoomStringifyConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\AlbumDatabase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\ArtistDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\BackgroundTrackDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\IDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\KeyboardActionDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\MusicDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\StreamsDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\TrackCollectionDatabase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\TrackDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\TracklistItemDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\VideoDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ApplicationSettingsHelper.cs" />
@@ -138,7 +135,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LoadImageToMemoryHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LogHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MediaLibraryHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicFlow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicLibraryManagement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicPlayer\LastFMScrobbler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SearchHelpers.cs" />

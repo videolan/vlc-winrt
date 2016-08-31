@@ -84,7 +84,7 @@ namespace VLC.Helpers
 
         public static async Task LoadImageToMemory(TrackItem item)
         {
-            var albumItem = await Locator.MediaLibrary.LoadAlbum(item.AlbumId);
+            var albumItem = Locator.MediaLibrary.LoadAlbum(item.AlbumId);
             try
             {
                 if (albumItem.IsPictureLoaded)
