@@ -221,7 +221,7 @@ namespace VLC.Services.RunTime
                 var restoredplaylist = new SmartCollection<IMediaItem>();
                 foreach (int trackId in trackIds)
                 {
-                    var trackItem = await Locator.MediaLibrary.LoadTrackById(trackId);
+                    var trackItem = Locator.MediaLibrary.LoadTrackById(trackId);
                     if (trackItem != null)
                         restoredplaylist.Add(trackItem);
                 }

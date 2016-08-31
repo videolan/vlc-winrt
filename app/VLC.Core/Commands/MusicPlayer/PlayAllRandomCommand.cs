@@ -14,7 +14,7 @@ namespace VLC.Commands.MusicPlayer
     {
         public override async void Execute(object parameter)
         {
-            var tracks = await Locator.MediaLibrary.LoadTracks();
+            var tracks = Locator.MediaLibrary.LoadTracks();
             if (tracks == null || !tracks.Any())
                 return;
 

@@ -111,13 +111,13 @@ namespace VLC.ViewModels.MusicVM
             Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaFileNotFound += PlaybackService_Playback_MediaFileNotFound;
         }
 
-        private async void PlaybackService_Playback_MediaFileNotFound(IMediaItem media)
+        private void PlaybackService_Playback_MediaFileNotFound(IMediaItem media)
         {
             if (!(media is TrackItem))
                 return;
 
             (media as TrackItem).IsAvailable = false;
-            await Locator.MediaLibrary.Update(media as TrackItem);
+            Locator.MediaLibrary.Update(media as TrackItem);
         }
 
         private async void Playback_MediaSet(IMediaItem media)

@@ -114,7 +114,7 @@ public class HttpResponseSender
         string localPath;
         if (decomp[1] == "track")
         {
-            TrackItem track = await Locator.MediaLibrary.LoadTrackById(int.Parse(decomp[4]));
+            TrackItem track = Locator.MediaLibrary.LoadTrackById(int.Parse(decomp[4]));
             localPath = track.Path;
         }
         else if (decomp[1] == "video")
@@ -181,7 +181,7 @@ public class HttpResponseSender
                 Uri.EscapeDataString(GetFileName(v.Path)), DurationToString(v.Duration));
         }
 
-        List<TrackItem> tracks = await Locator.MediaLibrary.LoadTracks();
+        List<TrackItem> tracks = Locator.MediaLibrary.LoadTracks();
         foreach (TrackItem t in tracks)
         {
             mediaList += String.Format("<div style='background-image: url(\"/thumbnails/track/{2}/{3}/{4}/art.jpg\"); height: 174px;'>"
@@ -218,7 +218,7 @@ public class HttpResponseSender
         var decomp = path.Substring(1).Split('/');
         if (decomp[1] == "track")
         {
-            TrackItem track = await Locator.MediaLibrary.LoadTrackById(int.Parse(decomp[4]));
+            TrackItem track = Locator.MediaLibrary.LoadTrackById(int.Parse(decomp[4]));
             AlbumItem album = await Locator.MediaLibrary.LoadAlbum(track.AlbumId);
             ret = new Uri(album.AlbumCoverFullUri);
         }

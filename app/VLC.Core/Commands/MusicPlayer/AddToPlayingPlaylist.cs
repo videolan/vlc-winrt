@@ -26,7 +26,7 @@ namespace VLC.Commands.MusicPlayer
                 var albumItem = parameter as AlbumItem;
                 if (albumItem != null)
                 {
-                    var playlist = await Locator.MediaLibrary.LoadTracksByAlbumId(albumItem.Id);
+                    var playlist = Locator.MediaLibrary.LoadTracksByAlbumId(albumItem.Id);
 
                     await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(playlist, false, false, null);
                 }

@@ -34,7 +34,7 @@ namespace VLC.Commands.MusicPlayer
             {
                 Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
 
-                var tracks = await Locator.MediaLibrary.LoadTracksByAlbumId(albumItem.Id);
+                var tracks = Locator.MediaLibrary.LoadTracksByAlbumId(albumItem.Id);
                 await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(tracks, true, true, tracks[0]);
             }
         }

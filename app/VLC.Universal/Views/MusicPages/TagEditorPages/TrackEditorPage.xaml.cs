@@ -18,7 +18,7 @@ namespace VLC.UI.Legacy.Views.MusicPages.TagEditorPages
                 if (!string.IsNullOrEmpty(TrackNameTextBox.Text))
                     Locator.MusicLibraryVM.CurrentTrack.Name = TrackNameTextBox.Text;
 
-                await Locator.MediaLibrary.Update(Locator.MusicLibraryVM.CurrentTrack);
+                Locator.MediaLibrary.Update(Locator.MusicLibraryVM.CurrentTrack);
             }
 
             Locator.NavigationService.GoBack_Specific();
