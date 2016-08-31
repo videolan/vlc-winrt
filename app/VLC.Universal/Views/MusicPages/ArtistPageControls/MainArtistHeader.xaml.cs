@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xaml.Interactivity;
+using System.Threading.Tasks;
 using VLC.Model.Music;
 using VLC.Utils;
 using VLC.ViewModels;
@@ -25,8 +26,36 @@ namespace VLC.UI.Legacy.Views.MusicPages.ArtistPageControls
             Responsive();
 
             Locator.MusicLibraryVM.CurrentArtist.PropertyChanged += CurrentArtist_PropertyChanged;
-            await Locator.MusicLibraryVM.CurrentArtist.ResetArtistPicture(true);
-            await Locator.MusicLibraryVM.CurrentArtist.ResetArtistPicture(false);
+
+            if (!await UpdateThumbnail())
+                await Locator.MusicLibraryVM.CurrentArtist.ResetArtistPicture(true);
+
+            if (!await UpdateBackground())
+                await Locator.MusicLibraryVM.CurrentArtist.ResetArtistPicture(false);
+        }
+
+        async Task<bool> UpdateThumbnail()
+        {
+            if (Locator.MusicLibraryVM.CurrentArtist.ArtistImageThumbnail == null)
+                return false;
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            {
+                EllipseImage.Fill = new ImageBrush()
+                {
+                    ImageSource = Locator.MusicLibraryVM.CurrentArtist.ArtistImageThumbnail,
+                    Stretch = Stretch.UniformToFill
+                };
+            });
+            return true;
+        }
+
+        async Task<bool> UpdateBackground()
+        {
+            if (Locator.MusicLibraryVM.CurrentArtist.ArtistImage == null)
+                return false;
+
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => BackgroundImage.Source = Locator.MusicLibraryVM.CurrentArtist.ArtistImage);
+            return true;
         }
 
         private async void CurrentArtist_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -34,18 +63,11 @@ namespace VLC.UI.Legacy.Views.MusicPages.ArtistPageControls
             if (Locator.MusicLibraryVM.CurrentArtist == null) return;
             if (e.PropertyName == nameof(ArtistItem.ArtistImageThumbnail))
             {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                {
-                    EllipseImage.Fill = new ImageBrush()
-                    {
-                        ImageSource = Locator.MusicLibraryVM.CurrentArtist.ArtistImageThumbnail,
-                        Stretch = Stretch.UniformToFill
-                    };
-                });
+                await UpdateThumbnail();
             }
             else if (e.PropertyName == nameof(ArtistItem.ArtistImage))
             {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => BackgroundImage.Source = Locator.MusicLibraryVM.CurrentArtist.ArtistImage);
+                await UpdateBackground();
             }
         }
 
