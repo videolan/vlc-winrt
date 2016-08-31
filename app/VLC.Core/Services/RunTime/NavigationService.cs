@@ -63,17 +63,8 @@ namespace VLC.Services.RunTime
             App.SplitShell.FlyoutNavigated += SplitShell_FlyoutNavigated;
             App.SplitShell.FlyoutClosed += SplitShell_FlyoutClosed;
             HomePageNavigated += NavigationService_HomePageNavigated;
-            Locator.MainVM.PropertyChanged += MainVM_PropertyChanged;
         }
-
-        private void MainVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(MainVM.CurrentPanel))
-            {
-                Go(Locator.MainVM.CurrentPanel.Target);
-            }
-        }
-
+        
         private void NavigationService_HomePageNavigated(object sender, VLCPage homepage)
         {
             VLCPageNavigated(homepage);
@@ -286,8 +277,6 @@ namespace VLC.Services.RunTime
                 case VLCPage.MainPageMusic:
                 case VLCPage.MainPageFileExplorer:
                 case VLCPage.MainPageNetwork:
-                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == desiredPage);
-
                     if (Locator.SettingsVM.MediaCenterMode)
                     {
                         if (App.ApplicationFrame.CurrentSourcePageType != VLCPageToPageType(desiredPage))

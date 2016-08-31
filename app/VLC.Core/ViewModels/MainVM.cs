@@ -48,16 +48,20 @@ namespace VLC.ViewModels
         private string _informationText;
         private bool _isBackground = false;
         static bool? _isWindows10;
-        
+
         #endregion
 
         #region public props
         public Panel CurrentPanel
         {
             get { return _currentPanel; }
-            set { SetProperty(ref _currentPanel, value); }
+            set
+            {
+                SetProperty(ref _currentPanel, value);
+                Locator.NavigationService.Go(value.Target);
+            }
         }
-        
+
         public KeyboardListenerService KeyboardListenerService { get { return keyboardListenerService; } }
 
 
