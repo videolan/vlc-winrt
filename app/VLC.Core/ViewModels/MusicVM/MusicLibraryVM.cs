@@ -294,7 +294,7 @@ namespace VLC.ViewModels.MusicVM
             switch (_musicView)
             {
                 case MusicView.Albums:
-                    if (LoadingStateAlbums == LoadingState.NotLoaded)
+                    if (LoadingStateAlbums == LoadingState.NotLoaded && GroupedAlbums == null)
                     {
                         await InitializeAlbums();
                     }
