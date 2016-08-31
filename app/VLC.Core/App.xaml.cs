@@ -237,9 +237,9 @@ namespace VLC
 
         async Task ToggleMediaCenterMode()
         {
-            if (Gamepad.Gamepads.Any())
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                if (Gamepad.Gamepads.Any())
                 {
                     Locator.SettingsVM.MediaCenterMode = true;
                     Locator.MainVM.GoToHomePageMediaCenterCommand.Execute(null);
@@ -248,11 +248,8 @@ namespace VLC
                         AppViewHelper.SetFullscreen();
 
                     App.SplitShell.FooterContent = null;
-                });
-            }
-            else
-            {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                }
+                else
                 {
                     Locator.SettingsVM.MediaCenterMode = false;
                     Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
@@ -261,8 +258,9 @@ namespace VLC
                         AppViewHelper.SetFullscreen();
 
                     App.SplitShell.FooterContent = new CommandBarBottom();
-                });
-            }
+                }
+                Locator.NavigationService.RefreshCurrentPage();
+            });
         }
 
         private async void Current_VisibilityChanged(object sender, VisibilityChangedEventArgs e)
