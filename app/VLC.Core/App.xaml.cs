@@ -231,6 +231,7 @@ namespace VLC
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
+                App.SplitShell.FooterContent = new CommandBarBottom();
             }).ConfigureAwait(false);
 
             Locator.GamepadService.GamepadUpdated += async (s, e) =>
