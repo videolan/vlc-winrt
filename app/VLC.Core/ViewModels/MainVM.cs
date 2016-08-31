@@ -66,7 +66,7 @@ namespace VLC.ViewModels
 
 
         public GoBackCommand GoBackCommand { get; private set; } = new GoBackCommand();
-
+        public ActionCommand GoToHomePageMediaCenterCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.MainPageXBOX));
         public ActionCommand GoToAboutViewCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.AboutAppView));
 
         public ActionCommand GoToSettingsPageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SettingsPage));
