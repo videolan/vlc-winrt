@@ -736,7 +736,7 @@ namespace VLC.Model.Library
         {
             try
             {
-                Tracks = musicDatabase.LoadTracks().ToObservable();
+                Tracks.AddRange(musicDatabase.LoadTracks());
             }
             catch (Exception)
             {
