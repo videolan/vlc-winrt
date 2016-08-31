@@ -12,12 +12,6 @@ namespace VLC.Views.MainPages.MusicPanes
         public PlaylistPivotItem()
         {
             this.InitializeComponent();
-            this.Loaded += PlaylistPivotItem_Loaded;
-        }
-
-        private void PlaylistPivotItem_Loaded(object sender, RoutedEventArgs e)
-        {
-            Locator.MusicLibraryVM.OnNavigatedToPlaylists();
         }
     }
 }
