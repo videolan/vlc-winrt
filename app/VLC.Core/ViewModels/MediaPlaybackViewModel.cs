@@ -407,7 +407,7 @@ namespace VLC.ViewModels
             if (Locator.VideoPlayerVm.CurrentVideo != null)
             {
                 Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = (int)((double)Time / 1000); ;
-                await Locator.MediaLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
+                Locator.MediaLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo);
 
                 var file = await ApplicationData.Current.RoamingFolder.CreateFileAsync("roamVideo.txt", CreationCollisionOption.ReplaceExisting);
                 await FileIO.WriteLinesAsync(file, new string[]
@@ -531,7 +531,7 @@ namespace VLC.ViewModels
                             Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = 0;
                     });
                     if (Locator.VideoPlayerVm.CurrentVideo != null)
-                        await Locator.MediaLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo).ConfigureAwait(false);
+                        Locator.MediaLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo);
                     break;
                 case PlayingType.NotPlaying:
                     break;

@@ -174,7 +174,7 @@ namespace VLC.ViewModels.VideoVM
                 return;
 
             (media as VideoItem).IsAvailable = false;
-            await Locator.MediaLibrary.UpdateVideo(media as VideoItem);
+            Locator.MediaLibrary.UpdateVideo(media as VideoItem);
         }
         #endregion
 

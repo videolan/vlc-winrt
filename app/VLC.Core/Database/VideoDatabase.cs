@@ -14,6 +14,10 @@ namespace VLC.Database
     public class VideoRepository : IDatabase
     {
         private static readonly string DbPath = Strings.VideoDatabase;
+        private SQLiteConnectionWithLock _connection;
+
+        private SQLiteConnectionWithLock Connection => _connection ?? (_connection = new SQLiteConnectionWithLock(new SQLiteConnectionString(DbPath, false),
+            SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.SharedCache));
 
         public VideoRepository()
         {
@@ -22,98 +26,111 @@ namespace VLC.Database
 
         public void Initialize()
         {
-            using (var db = new SQLiteConnection(DbPath))
+            using (Connection.Lock())
             {
-                db.CreateTable<VideoItem>();
+                Connection.CreateTable<VideoItem>();
             }
         }
 
         public void Drop()
         {
-            using (var db = new SQLiteConnection(DbPath))
+            using (Connection.Lock())
             {
-                db.DropTable<VideoItem>();
+                Connection.DropTable<VideoItem>();
             }
         }
 
         public void DeleteAll()
         {
-            using (var db = new SQLiteConnection(DbPath))
+            using (Connection.Lock())
             {
-                db.DeleteAll<VideoItem>();
-            }
-        }
-        public async Task<bool> DoesMediaExist(String path)
-        {
-            var track = await GetFromPath(path);
-            return track != null;
-        }
-
-        public async Task<VideoItem> GetFromPath(String path)
-        {
-            var conn = new SQLiteAsyncConnection(DbPath);
-            var req = conn.Table<VideoItem>().Where(x => x.Path == path);
-            var res = await req.ToListAsync().ConfigureAwait(false);
-            return res.FirstOrDefault();
-        }
-
-        public async Task<List<VideoItem>> Load(Expression<Func<VideoItem, bool>> predicate)
-        {
-            var conn = new SQLiteAsyncConnection(DbPath);
-            if (predicate == null)
-            {
-                return await conn.Table<VideoItem>().ToListAsync();
-            }
-            else
-            {
-                return await conn.Table<VideoItem>().Where(predicate).ToListAsync();
+                Connection.DeleteAll<VideoItem>();
             }
         }
 
-        public async Task<VideoItem> LoadVideo(int videoId)
+        public bool DoesMediaExist(String path)
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            var query = connection.Table<VideoItem>().Where(x => x.Id.Equals(videoId));
-            var result = await query.ToListAsync();
-            return result.FirstOrDefault();
+            return GetFromPath(path) != null;
         }
 
-        public Task Insert(VideoItem item)
+        public VideoItem GetFromPath(String path)
         {
-            var conn = new SQLiteAsyncConnection(DbPath);
-            return conn.InsertAsync(item);
+            using (Connection.Lock())
+            {
+                return Connection.Table<VideoItem>().Where(x => x.Path == path).FirstOrDefault();
+            }
         }
 
-        public Task Update(VideoItem video)
+        public List<VideoItem> Load(Expression<Func<VideoItem, bool>> predicate)
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.UpdateAsync(video);
+            using (Connection.Lock())
+            {
+                if (predicate == null)
+                {
+                    return Connection.Table<VideoItem>().ToList();
+                }
+                else
+                {
+                    return Connection.Table<VideoItem>().Where(predicate).ToList();
+                }
+            }
         }
 
-        public Task Remove(VideoItem video)
+        public VideoItem LoadVideo(int videoId)
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.DeleteAsync(video);
+            using (Connection.Lock())
+            {
+                return Connection.Table<VideoItem>().Where(x => x.Id.Equals(videoId)).First();
+            }
         }
 
-        public Task<List<VideoItem>> GetLastViewed()
+        public void Insert(VideoItem item)
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            var req = connection.Table<VideoItem>().Where(x => x.TimeWatchedSeconds > 0);
-            return req.ToListAsync();
+            using (Connection.Lock())
+            {
+                Connection.Insert(item);
+            }
+        }
+
+        public void Update(VideoItem video)
+        {
+            using (Connection.Lock())
+            {
+                Connection.Update(video);
+            }
+        }
+
+        public void Remove(VideoItem video)
+        {
+            using (Connection.Lock())
+            {
+                Connection.Delete(video);
+            }
+        }
+
+        public List<VideoItem> GetLastViewed()
+        {
+            using (Connection.Lock())
+            {
+                return Connection.Table<VideoItem>().Where(x => x.TimeWatchedSeconds > 0).ToList();
+            }
         }
 
 
-        public Task<List<VideoItem>> Contains(string column, string value)
+        public List<VideoItem> Contains(string column, string value)
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.QueryAsync<VideoItem>($"SELECT * FROM {nameof(VideoItem)} WHERE {column} LIKE '%{value}%';", new string[] { });
+            using (Connection.Lock())
+            {
+                return Connection.Query<VideoItem>($"SELECT * FROM {nameof(VideoItem)} WHERE {column} LIKE '%{value}%';", new string[] { });
+            }
         }
 
-        public async Task<bool> IsEmpty()
+        public bool IsEmpty()
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            return await connection.Table<VideoItem>().CountAsync() == 0;
+            using (Connection.Lock())
+            {
+                return Connection.Table<VideoItem>().Count() == 0;
+            }
         }
     }
 }

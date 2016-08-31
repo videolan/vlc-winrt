@@ -227,7 +227,7 @@ namespace VLC.Model.Library
             if (_alreadyIndexedOnce) return;
             _alreadyIndexedOnce = true;
             // Doing full indexing from scratch if 0 tracks are found
-            if (IsMusicDatabaseEmpty() && await IsVideoDatabaseEmpty())
+            if (IsMusicDatabaseEmpty() && IsVideoDatabaseEmpty())
             {
                 await StartIndexing();
             }
@@ -411,7 +411,7 @@ namespace VLC.Model.Library
                 }
                 else if (VLCFileExtensions.VideoExtensions.Contains(item.FileType.ToLower()))
                 {
-                    if (await videoDatabase.DoesMediaExist(item.Path))
+                    if (videoDatabase.DoesMediaExist(item.Path))
                         return true;
 
                     var video = await MediaLibraryHelper.GetVideoItem(item);
@@ -429,7 +429,7 @@ namespace VLC.Model.Library
                     {
                         Videos.Add(video);
                     }
-                    await videoDatabase.Insert(video);
+                    videoDatabase.Insert(video);
                 }
                 else
                 {
@@ -449,7 +449,7 @@ namespace VLC.Model.Library
         private async Task CleanMediaLibrary()
         {
             // Clean videos
-            var videos = await LoadVideos(x => true);
+            var videos = LoadVideos(x => true);
             foreach (var video in videos)
             {
                 try
@@ -795,7 +795,7 @@ namespace VLC.Model.Library
         }
         #endregion
         #region video
-        Task<bool> IsVideoDatabaseEmpty()
+        bool IsVideoDatabaseEmpty()
         {
             return videoDatabase.IsEmpty();
         }
@@ -806,7 +806,7 @@ namespace VLC.Model.Library
             {
                 Videos?.Clear();
                 LogHelper.Log("Loading videos from VideoDB ...");
-                var videos = await LoadVideos(x => x.IsCameraRoll == false && x.IsTvShow == false);
+                var videos = LoadVideos(x => x.IsCameraRoll == false && x.IsTvShow == false);
                 LogHelper.Log($"Found {videos.Count} artists from VideoDB");
                 Videos.AddRange(videos.OrderBy(x => x.Name).ToObservable());
             }
@@ -817,7 +817,7 @@ namespace VLC.Model.Library
         {
             ViewedVideos?.Clear();
 
-            var result = await videoDatabase.GetLastViewed();
+            var result = videoDatabase.GetLastViewed();
             var orderedResults = result.OrderByDescending(x => x.LastWatched).Take(6);
             foreach (VideoItem videoVm in orderedResults)
             {
@@ -844,7 +844,7 @@ namespace VLC.Model.Library
         public async Task LoadShowsFromDatabase()
         {
             Shows?.Clear();
-            var shows = await LoadVideos(x => x.IsTvShow);
+            var shows = LoadVideos(x => x.IsTvShow);
             foreach (var item in shows)
             {
                 await AddTvShow(item);
@@ -853,7 +853,7 @@ namespace VLC.Model.Library
         public async Task LoadCameraRollFromDatabase()
         {
             CameraRoll?.Clear();
-            var camVideos = await LoadVideos(x => x.IsCameraRoll);
+            var camVideos = LoadVideos(x => x.IsCameraRoll);
             CameraRoll.AddRange(camVideos.OrderBy(x => x.Name).ToObservable());
         }
         #endregion
@@ -936,7 +936,7 @@ namespace VLC.Model.Library
                         await tcs.Task;
 
                         videoItem.IsPictureLoaded = true;
-                        await videoDatabase.Update(videoItem);
+                        videoDatabase.Update(videoItem);
                         await videoItem.ResetVideoPicture();
                         thumbnailTask.TrySetResult(true);
                     }
@@ -1096,10 +1096,10 @@ namespace VLC.Model.Library
             else if (media is VideoItem)
             {
                 var videoItem = media as VideoItem;
-                var videoDb = await LoadVideoById(videoItem.Id);
+                var videoDb = LoadVideoById(videoItem.Id);
                 if (videoDb == null)
                     return;
-                await videoDatabase.Remove(videoDb);
+                videoDatabase.Remove(videoDb);
 
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
@@ -1325,22 +1325,22 @@ namespace VLC.Model.Library
 
         #endregion
         #region video
-        public Task<List<VideoItem>> LoadVideos(Expression<Func<VideoItem, bool>> predicate)
+        public List<VideoItem> LoadVideos(Expression<Func<VideoItem, bool>> predicate)
         {
             return videoDatabase.Load(predicate);
         }
 
-        public Task<VideoItem> LoadVideoById(int id)
+        public VideoItem LoadVideoById(int id)
         {
             return videoDatabase.LoadVideo(id);
         }
 
-        public Task UpdateVideo(VideoItem video)
+        public void UpdateVideo(VideoItem video)
         {
-            return videoDatabase.Update(video);
+            videoDatabase.Update(video);
         }
 
-        public Task<List<VideoItem>> ContainsVideo(string column, string val)
+        public List<VideoItem> ContainsVideo(string column, string val)
         {
             return videoDatabase.Contains(column, val);
         }

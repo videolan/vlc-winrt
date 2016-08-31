@@ -119,7 +119,7 @@ public class HttpResponseSender
         }
         else if (decomp[1] == "video")
         {
-            VideoItem video = await Locator.MediaLibrary.LoadVideoById(int.Parse(decomp[3]));
+            VideoItem video = Locator.MediaLibrary.LoadVideoById(int.Parse(decomp[3]));
             localPath = video.Path;
         }
         else
@@ -170,7 +170,7 @@ public class HttpResponseSender
         var fileStr = Encoding.UTF8.GetString(fileBuffer.ToArray());
         var mediaList = "";
 
-        List<VideoItem> videos = await Locator.MediaLibrary.LoadVideos(x => true);
+        List<VideoItem> videos = Locator.MediaLibrary.LoadVideos(x => true);
         foreach (VideoItem v in videos)
         {
             mediaList += String.Format("<div style='background-image: url(\"/thumbnails/video/{1}/{2}/art.jpg\"); height: 174px;'>"
@@ -224,7 +224,7 @@ public class HttpResponseSender
         }
         else if (decomp[1] == "video")
         {
-            VideoItem video = await Locator.MediaLibrary.LoadVideoById(int.Parse(decomp[3]));
+            VideoItem video = Locator.MediaLibrary.LoadVideoById(int.Parse(decomp[3]));
             ret = new Uri(video.PictureUri);
         }
         else

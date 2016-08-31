@@ -65,7 +65,7 @@ namespace VLC.Helpers
 
         public static async Task<ObservableCollection<SearchResult>> SearchVideosGeneric(string tag, ObservableCollection<SearchResult> results)
         {
-            var videoVms = await SearchVideoItems(tag);
+            var videoVms = SearchVideoItems(tag);
             foreach (VideoItem vm in videoVms)
             {
                 results.Add(new SearchResult(vm.Name, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + vm.Name + ".jpg", VLCItemType.Video));
@@ -81,7 +81,7 @@ namespace VLC.Helpers
 
         public static async Task<List<VideoItem>> SearchVideos(string tag, List<VideoItem> results)
         {
-            var videos = await SearchVideoItems(tag);
+            var videos = SearchVideoItems(tag);
             foreach (var video in videos)
             {
                 if (!results.Contains(video))
@@ -119,7 +119,7 @@ namespace VLC.Helpers
             return Locator.MediaLibrary.Contains(nameof(AlbumItem.Name), tag);
         }
 
-        public static Task<List<VideoItem>> SearchVideoItems(string tag)
+        public static List<VideoItem> SearchVideoItems(string tag)
         {
             return Locator.MediaLibrary.ContainsVideo(nameof(VideoItem.Name), tag);
         }

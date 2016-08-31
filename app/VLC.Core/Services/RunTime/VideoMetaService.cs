@@ -30,7 +30,7 @@ namespace VLC.Services.RunTime
                     {
                         if (video.Id > -1)
                         {
-                            await Locator.MediaLibrary.UpdateVideo(video);
+                            Locator.MediaLibrary.UpdateVideo(video);
                         }
                         return true;
                     }
@@ -69,7 +69,7 @@ namespace VLC.Services.RunTime
                     var success = await SaveMoviePictureAsync(video, bytes);
                     if (success)
                     {
-                        await Locator.MediaLibrary.UpdateVideo(video);
+                        Locator.MediaLibrary.UpdateVideo(video);
                         return true;
                     }
                 }
