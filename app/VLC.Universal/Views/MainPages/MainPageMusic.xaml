@@ -36,18 +36,31 @@
 
         <Grid Background="{ThemeResource ApplicationChromeThemeBrush}">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             </Grid.ColumnDefinitions>
-            <ProgressBar Grid.Column="0"
+            <AppBarButton x:Name="HamburgerButton"
+                          Grid.Column="0"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          IsCompact="True"
+                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToHomePageMediaCenterCommand}"
+                          Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.MediaCenterMode}"
+                          Margin="{StaticResource FrameMarginLeft}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource MenuOpenRight}"
+                              FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <ProgressBar Grid.Column="1"
                          Grid.ColumnSpan="3"
                          IsIndeterminate="True"
                          IsEnabled="True"
                          VerticalAlignment="Bottom"
                          DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
                          Visibility="{Binding IndexingLibraryVisibility}" />
-            <ListView Grid.Column="0"
+            <ListView Grid.Column="1"
                       Grid.ColumnSpan="3"
                       x:Name="PanelsListView"
                       ItemsSource="{Binding MusicViewCollection}"
