@@ -31,23 +31,18 @@
             </interactivity:Interaction.Behaviors>
             
             <Image x:Name="BackgroundImage"
-                   Source="{Binding CurrentArtist.ArtistImage}"
                    Opacity="0.5"
                    Stretch="UniformToFill"
                    VerticalAlignment="Center">
             </Image>
         </Grid>
 
-        <Ellipse Grid.Column="1"
+        <Ellipse x:Name="EllipseImage"
+                 Grid.Column="1"
                  Width="120"
                  Height="120"
                  VerticalAlignment="Bottom"
-                 Margin="{StaticResource FrameMarginBottom}">
-            <Ellipse.Fill>
-                <ImageBrush ImageSource="{Binding CurrentArtist.ArtistImage}"
-                            Stretch="UniformToFill" />
-            </Ellipse.Fill>
-        </Ellipse>
+                 Margin="{StaticResource FrameMarginBottom}" />
 
         <TextBlock Grid.Column="2"
                    TextTrimming="CharacterEllipsis"
