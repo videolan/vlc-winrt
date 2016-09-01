@@ -229,10 +229,10 @@ namespace VLC
             SetLanguage();
             SetShellDecoration();
 
+            await LoadLibraries(disableConsumingTasks).ConfigureAwait(false);
             Locator.GamepadService.GamepadUpdated += (s, e) => Task.Run(() => ToggleMediaCenterMode());
 
             await ToggleMediaCenterMode();
-            await LoadLibraries(disableConsumingTasks).ConfigureAwait(false);
         }
 
         async Task ToggleMediaCenterMode()
