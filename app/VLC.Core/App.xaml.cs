@@ -281,7 +281,7 @@ namespace VLC
                 {
                     Locator.MediaLibrary.DropTablesIfNeeded();
                     await Locator.MediaLibrary.CleanMediaLibrary().ConfigureAwait(false);
-                    await Task.Factory.StartNew(async () => await Locator.MediaLibrary.Initialize()).ConfigureAwait(false);
+                    await Locator.MediaLibrary.Initialize().ConfigureAwait(false);
                 }
             });
         }
