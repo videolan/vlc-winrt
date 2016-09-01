@@ -35,7 +35,24 @@
         </Rectangle>
 
         <Grid Background="{ThemeResource ApplicationChromeThemeBrush}">
-            <ProgressBar IsIndeterminate="True"
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <AppBarButton x:Name="HamburgerButton"
+                          Grid.Column="0"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          IsCompact="True"
+                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToHomePageMediaCenterCommand}"
+                          Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.MediaCenterMode}"
+                          Margin="{StaticResource FrameMarginLeft}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource MenuOpenRight}"
+                              FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <ProgressBar Grid.Column="1"
+                         IsIndeterminate="True"
                          IsEnabled="True"
                          VerticalAlignment="Bottom"
                          Visibility="{Binding IndexingLibraryVisibility}" />
