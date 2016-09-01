@@ -38,7 +38,6 @@ namespace VLC.Model.Library
         {
             Locator.ExternalDeviceService.ExternalDeviceAdded += ExternalDeviceService_ExternalDeviceAdded;
             Locator.ExternalDeviceService.ExternalDeviceRemoved += ExternalDeviceService_ExternalDeviceRemoved;
-            Task.Run(() => this.CleanMediaLibrary()).Wait();
         }
 
         private async Task ExternalDeviceService_ExternalDeviceAdded(object sender, string id)
@@ -444,7 +443,7 @@ namespace VLC.Model.Library
         }
 
         // Remove items that are no longer reachable.
-        private async Task CleanMediaLibrary()
+        public async Task CleanMediaLibrary()
         {
             // Clean videos
             var videos = LoadVideos(x => true);
