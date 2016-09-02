@@ -40,9 +40,13 @@ namespace VLC.Services.RunTime
 
         public delegate Task ExternalDeviceAddedEvent(DeviceWatcher sender, string Id);
         public delegate Task ExternalDeviceRemovedEvent(DeviceWatcher sender, string Id);
+        public delegate Task MustIndexExternalDeviceEvent();
+        public delegate Task MustUnindexExternalDeviceEvent();
 
         public ExternalDeviceAddedEvent ExternalDeviceAdded;
         public ExternalDeviceRemovedEvent ExternalDeviceRemoved;
+        public MustIndexExternalDeviceEvent MustIndexExternalDevice;
+        public MustUnindexExternalDeviceEvent MustUnindexExternalDevice;
 
         public async Task<IEnumerable<string>> GetExternalDeviceIds()
         {

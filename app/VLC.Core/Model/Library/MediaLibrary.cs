@@ -36,11 +36,11 @@ namespace VLC.Model.Library
     {
         public MediaLibrary()
         {
-            Locator.ExternalDeviceService.ExternalDeviceAdded += ExternalDeviceService_ExternalDeviceAdded;
-            Locator.ExternalDeviceService.ExternalDeviceRemoved += ExternalDeviceService_ExternalDeviceRemoved;
+            Locator.ExternalDeviceService.MustIndexExternalDevice += ExternalDeviceService_MustIndexExternalDevice;
+            Locator.ExternalDeviceService.MustUnindexExternalDevice += ExternalDeviceService_MustUnindexExternalDevice;
         }
 
-        private async Task ExternalDeviceService_ExternalDeviceAdded(object sender, string id)
+        private async Task ExternalDeviceService_MustIndexExternalDevice()
         {
             var devices = KnownFolders.RemovableDevices;
             IReadOnlyList<StorageFolder> rootFolders = await devices.GetFoldersAsync();
@@ -53,7 +53,7 @@ namespace VLC.Model.Library
             }
         }
 
-        private async Task ExternalDeviceService_ExternalDeviceRemoved(object sender, string id)
+        private async Task ExternalDeviceService_MustUnindexExternalDevice()
         {
             await CleanMediaLibrary();
         }
