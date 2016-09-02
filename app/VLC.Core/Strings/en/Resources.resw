@@ -738,4 +738,19 @@
   <data name="CopyToLocalStorage" xml:space="preserve">
     <value>copy to local storage</value>
   </data>
+  <data name="DoNothing" xml:space="preserve">
+    <value>Do nothing</value>
+  </data>
+  <data name="ExternalStorageDeviceDetected" xml:space="preserve">
+    <value>VLC has detected an external storage device.</value>
+  </data>
+  <data name="IndexExternalStorage" xml:space="preserve">
+    <value>Index its content inside my library</value>
+  </data>
+  <data name="SelectContentToCopy" xml:space="preserve">
+    <value>Select content to copy to the internal storage</value>
+  </data>
+  <data name="WhatToDo" xml:space="preserve">
+    <value>What would you like to do?</value>
+  </data>
 </root>

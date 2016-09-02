@@ -377,6 +377,12 @@ namespace VLC.Utils
         public static string BackgroundColor => _resourcesLoader.GetString(nameof(BackgroundColor));
         public static string TitleBar => _resourcesLoader.GetString(nameof(TitleBar));
 
+        // EXTERNAL STORAGE DEVICES
+        public static string ExternalStorageDeviceDetected => _resourcesLoader.GetString(nameof(ExternalStorageDeviceDetected));
+        public static string WhatToDo => _resourcesLoader.GetString(nameof(WhatToDo));
+        public static string IndexExternalStorage => _resourcesLoader.GetString(nameof(IndexExternalStorage));
+        public static string SelectContentToCopy => _resourcesLoader.GetString(nameof(SelectContentToCopy));
+        public static string DoNothing => _resourcesLoader.GetString(nameof(DoNothing));
 
         public Strings()
         {

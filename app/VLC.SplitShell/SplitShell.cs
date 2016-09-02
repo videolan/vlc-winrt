@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -129,6 +130,7 @@ namespace VLC.Controls
         {
             var that = (SplitShell)dependencyObject;
             that.SetFlyoutContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
+            that.Responsive();
         }
 
         public bool FlyoutAsHeader
@@ -260,6 +262,15 @@ namespace VLC.Controls
                     _flyoutContentPresenter.Height = (navBarHeight < 900 * 0.7 ? navBarHeight : navBarHeight * 0.7) - bottomBarHeight;
                 }
             }
+
+            /* Test if we have a specific property to fit the flyout height or not.
+             * TODO: find a nicer way to achieve the same result. Maybe through inheritance? */
+            var members =_flyoutContentPresenter.Content?.GetType().GetTypeInfo().DeclaredMembers;
+            if (members != null)
+                foreach (var x in members)
+                    if (x.Name == "FitContentHeight")
+                        _flyoutContentPresenter.Height = double.NaN;
+
             _windowResizerTimer.Stop();
             _windowResizerTimer.Start();
         }

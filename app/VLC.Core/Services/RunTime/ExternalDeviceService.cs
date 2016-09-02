@@ -11,7 +11,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VLC.Model;
+using VLC.Utils;
+using VLC.ViewModels;
 using Windows.Devices.Enumeration;
+using Windows.UI.Core;
 
 namespace VLC.Services.RunTime
 {
@@ -58,14 +62,26 @@ namespace VLC.Services.RunTime
 
         private async void DeviceAdded(DeviceWatcher sender, DeviceInformation args)
         {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.High,
+                () => Locator.NavigationService.Go(VLCPage.ExternalStorageInclude));
+
             if (ExternalDeviceAdded != null)
                 await ExternalDeviceAdded(sender, args.Id);
+        }
+
+        public async void AskExternalDeviceIndexing()
+        {
+            if (MustIndexExternalDevice != null)
+                await MustIndexExternalDevice();
         }
 
         private async void DeviceRemoved(DeviceWatcher sender, DeviceInformationUpdate args)
         {
             if (ExternalDeviceRemoved != null)
                 await ExternalDeviceRemoved(sender, args.Id);
+
+            if (MustUnindexExternalDevice != null)
+                await MustUnindexExternalDevice();
         }
     }
 }

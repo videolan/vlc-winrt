@@ -28,7 +28,7 @@ using Windows.UI.Core;
 using VLC.UI.Legacy.Views.VideoPages.TVShowsViews;
 using VLC.UI.UWP.VariousPages;
 using VLC.UI.UWP.Views.SettingsPages;
-
+using VLC.UI.UWP.Views.VariousPages;
 
 namespace VLC.Services.RunTime
 {
@@ -213,6 +213,9 @@ namespace VLC.Services.RunTime
                 case VLCPage.AboutAppView:
                     GoBack_HideFlyout();
                     break;
+                case VLCPage.ExternalStorageInclude:
+                    GoBack_HideFlyout();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -365,6 +368,9 @@ namespace VLC.Services.RunTime
                 case VLCPage.AboutAppView:
                     App.SplitShell.FlyoutContent = typeof(AboutPage);
                     break;
+                case VLCPage.ExternalStorageInclude:
+                    App.SplitShell.FlyoutContent = typeof(ExternalStorageIncludePage);
+                    break;
                 default:
                     break;
             }
@@ -392,7 +398,8 @@ namespace VLC.Services.RunTime
                    page == VLCPage.TrackEditorPage ||
                    page == VLCPage.AboutAppView ||
                    page == VLCPage.SearchPage ||
-                   page == VLCPage.MainPageXBOX;
+                   page == VLCPage.MainPageXBOX ||
+                   page == VLCPage.ExternalStorageInclude;
         }
 
         Type VLCPageToPageType(VLCPage p)
@@ -456,6 +463,8 @@ namespace VLC.Services.RunTime
                 case VLCPage.AboutAppView:
                     break;
                 case VLCPage.MainPageXBOX:
+                    break;
+                case VLCPage.ExternalStorageInclude:
                     break;
                 default:
                     break;

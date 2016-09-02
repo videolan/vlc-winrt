@@ -31,5 +31,6 @@
         TvShowView,
         AboutAppView,
         MainPageXBOX,
+        ExternalStorageInclude,
     }
 }
