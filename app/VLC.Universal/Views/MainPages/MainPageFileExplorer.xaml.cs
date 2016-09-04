@@ -23,11 +23,8 @@ namespace VLC.Views.MainPages
         {
             this.InitializeComponent();
             this.Loaded += MainPageFileExplorer_Loaded;
-
-            StorageItemsListView.KeyDown += StorageItemsListView_KeyDown;
-            StorageItemsListView.GotFocus += StorageItemsListView_GotFocus;
         }
-        
+
         private async void MainPageFileExplorer_Loaded(object sender, RoutedEventArgs e)
         {
             Responsive();
@@ -35,28 +32,7 @@ namespace VLC.Views.MainPages
             this.Unloaded += OnUnloaded;
             await Locator.FileExplorerVM.OnNavigatedTo();
         }
-
-        private void StorageItemsListView_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            ListView list = (ListView)sender;
-            if (Locator.NavigationService.CurrentPage == VLCPage.MainPageFileExplorer
-                && e.Key == VirtualKey.GamepadView)
-            {
-                var menu = new FileExplorerItemFlyout();
-                menu.setCurrentVLCStorageItem(list.ItemFromContainer(focussedListViewItem));
-                menu.ShowAt(focussedListViewItem);
-            }
-        }
-
-        void StorageItemsListView_GotFocus(object sender, RoutedEventArgs e)
-        {
-            ListView list = (ListView)sender;
-            if (FocusManager.GetFocusedElement() as ListViewItem != null)
-            {
-                focussedListViewItem = (ListViewItem)FocusManager.GetFocusedElement();
-            }
-        }
-
+        
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
             Responsive();
