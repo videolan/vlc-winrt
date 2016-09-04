@@ -10,11 +10,14 @@ using VLC.Database;
 using VLC.Helpers;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml;
+using System;
+using Windows.Foundation;
 
 namespace VLC.Services.RunTime
 {
     public class KeyboardListenerService
     {
+        public event TypedEventHandler<CoreWindow, KeyEventArgs> KeyDownPressed;
         public KeyboardActionDatabase _keyboardActionDatabase = new KeyboardActionDatabase();
 
         private const uint MaxVirtualKeys = 3;
@@ -154,6 +157,8 @@ namespace VLC.Services.RunTime
         async void KeyboardListenerService_KeyDown(CoreWindow sender, KeyEventArgs args)
         {
             if (!CanListen) return;
+
+            KeyDownPressed?.Invoke(sender, args);
             // Guidelines:
             // If first VirtualKey is Ctrl, Alt, or Shift, then we're waiting for another key
             var i = 0;
