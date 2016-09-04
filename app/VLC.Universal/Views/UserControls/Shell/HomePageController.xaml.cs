@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using VLC.Model;
-using VLC.UI.Legacy.Views.MainPages;
-using VLC.UI.Legacy.Views.UserControls.Shell;
-using VLC.UI.Legacy.Views.VariousPages;
+using VLC.UI.Views.MainPages;
+using VLC.UI.Views.UserControls.Shell;
+using VLC.UI.Views.VariousPages;
 using VLC.Utils;
 using VLC.ViewModels;
 using VLC.Views.MainPages;

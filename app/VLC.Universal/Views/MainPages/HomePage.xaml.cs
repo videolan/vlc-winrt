@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
 
-namespace VLC.UI.Legacy.Views.MainPages
+namespace VLC.UI.Views.MainPages
 {
     public sealed partial class HomePage : Page
     {

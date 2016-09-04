@@ -1,4 +1,4 @@
-﻿<Page x:Class="VLC.UI.Legacy.Views.VideoPages.VideoNowPlayingControls.VideoPlayerOptionsPanel"
+﻿<Page x:Class="VLC.UI.Views.VideoPages.VideoNowPlayingControls.VideoPlayerOptionsPanel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:VLC.Views.UserControls"

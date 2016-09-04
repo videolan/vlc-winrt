@@ -6,9 +6,9 @@
       xmlns:views="using:VLC.Views"
       xmlns:controls="using:VLC.Controls"
       xmlns:userControls="using:VLC.Views.UserControls"
-      xmlns:videoControls="using:VLC.UI.Legacy.Views.VideoPages.VideoNowPlayingControls"
+      xmlns:videoControls="using:VLC.UI.Views.VideoPages.VideoNowPlayingControls"
       xmlns:placeholder="using:VLC.Views.UserControls.Placeholder"
-      xmlns:uC="using:VLC.UI.UWP.Views.UserControls"
+      xmlns:uC="using:VLC.UI.Views.UserControls"
       mc:Ignorable="d"
       Background="Transparent"
       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">

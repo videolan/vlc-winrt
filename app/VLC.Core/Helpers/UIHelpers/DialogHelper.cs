@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using libVLCX;
-using VLC.UI.UWP.Views.UserControls.Shell;
+using VLC.UI.Views.UserControls.Shell;
 using System.Threading.Tasks;
 using System.Threading;
 

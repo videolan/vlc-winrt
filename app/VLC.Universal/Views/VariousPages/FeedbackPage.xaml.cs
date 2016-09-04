@@ -16,7 +16,7 @@ using VLC.Utils;
 using VLC.ViewModels;
 using WinRTXamlToolkit.Controls.Extensions;
 
-namespace VLC.UI.Legacy.Views.VariousPages
+namespace VLC.UI.Views.VariousPages
 {
     public sealed partial class FeedbackPage
     {

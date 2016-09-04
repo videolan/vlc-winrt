@@ -10,11 +10,11 @@ using Windows.UI.Xaml.Media.Animation;
 using VLC.Helpers;
 using Windows.ApplicationModel.Core;
 using Windows.UI.ViewManagement;
-using VLC.UI.Legacy.Views.UserControls.Shell;
+using VLC.UI.Views.UserControls.Shell;
 using Microsoft.Graphics.Canvas.Effects;
 using Windows.UI.Composition;
 using Windows.UI.Xaml.Hosting;
-using VLC.UI.UWP.Views.UserControls;
+using VLC.UI.Views.UserControls;
 
 namespace VLC.Controls
 {
@@ -229,7 +229,7 @@ namespace VLC.Controls
 
         private void _flyoutFadeOut_Completed(object sender, object e)
         {
-            _flyoutContentPresenter.Navigate(typeof(UI.Legacy.Views.UserControls.Shell.BlankPage));
+            _flyoutContentPresenter.Navigate(typeof(BlankPage));
         }
         
         private void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)

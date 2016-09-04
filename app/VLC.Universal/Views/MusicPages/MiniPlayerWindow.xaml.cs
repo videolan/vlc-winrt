@@ -15,7 +15,7 @@ using VLC.Views.MainPages;
 using VLC.Utils;
 using VLC.Model;
 
-namespace VLC.UI.Legacy.Views.MusicPages
+namespace VLC.UI.Views.MusicPages
 {
     public sealed partial class MiniPlayerWindow : Page
     {

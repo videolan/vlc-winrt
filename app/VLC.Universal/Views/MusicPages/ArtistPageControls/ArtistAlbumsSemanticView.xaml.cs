@@ -12,7 +12,7 @@ using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC.UI.Legacy.Views.MusicPages.ArtistPageControls
+namespace VLC.UI.Views.MusicPages.ArtistPageControls
 {
     public sealed partial class ArtistAlbumsSemanticView : Grid
     {

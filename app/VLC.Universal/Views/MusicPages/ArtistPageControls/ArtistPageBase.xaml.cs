@@ -8,7 +8,7 @@ using VLC.ViewModels;
 using Windows.UI.Xaml.Navigation;
 using VLC.Model;
 
-namespace VLC.UI.Legacy.Views.MusicPages.ArtistPageControls
+namespace VLC.UI.Views.MusicPages.ArtistPageControls
 {
     public sealed partial class ArtistPageBase : Page
     {

@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Navigation;
 using Microsoft.Xaml.Interactivity;
 using VLC.ViewModels;
 
-namespace VLC.UI.Legacy.Views.VariousPages
+namespace VLC.UI.Views.VariousPages
 {
     public sealed partial class SearchPage : Page
     {

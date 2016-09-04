@@ -32,7 +32,7 @@ using Windows.UI.Xaml;
 using VLC.Views.MusicPages;
 using System.Threading.Tasks;
 using Windows.UI.ViewManagement;
-using VLC.UI.Legacy.Views.UserControls;
+using VLC.UI.Views.UserControls;
 
 namespace VLC.ViewModels
 {

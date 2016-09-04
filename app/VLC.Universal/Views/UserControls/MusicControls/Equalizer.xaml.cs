@@ -11,7 +11,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 
-namespace VLC.UI.Legacy.Views.UserControls.MusicControls
+namespace VLC.UI.Views.UserControls.MusicControls
 {
     public sealed partial class Equalizer : UserControl
     {

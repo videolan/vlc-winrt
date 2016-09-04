@@ -6,7 +6,7 @@
                     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                     xmlns:winrtext="using:WinRTXamlToolkit.Controls.Extensions"
                     xmlns:userControls="using:VLC.Views.UserControls"
-                    xmlns:userControl="using:VLC.UI.Legacy.Views.UserControls"
+                    xmlns:userControl="using:VLC.UI.Views.UserControls"
                     xmlns:placeholders="using:VLC.Views.UserControls.Placeholders">
 
     <DataTemplate x:Key="AlbumItemTemplate">

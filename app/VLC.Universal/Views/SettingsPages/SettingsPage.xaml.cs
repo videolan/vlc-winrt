@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Input;
 
-namespace VLC.UI.UWP.Views.SettingsPages
+namespace VLC.UI.Views.SettingsPages
 {
     public sealed partial class SettingsPage
     {

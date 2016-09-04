@@ -6,10 +6,10 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Documents;
 using VLC.Helpers;
 using VLC.Model;
-using VLC.UI.Legacy.Views.MainPages;
-using VLC.UI.Legacy.Views.MusicPages;
-using VLC.UI.Legacy.Views.MusicPages.TagEditorPages;
-using VLC.UI.Legacy.Views.VariousPages;
+using VLC.UI.Views.MainPages;
+using VLC.UI.Views.MusicPages;
+using VLC.UI.Views.MusicPages.TagEditorPages;
+using VLC.UI.Views.VariousPages;
 using VLC.ViewModels;
 using VLC.Views.MainPages;
 using VLC.Views.MusicPages;
@@ -18,17 +18,16 @@ using VLC.Views.MusicPages.ArtistPages;
 using VLC.Views.MusicPages.PlaylistControls;
 using VLC.Views.VariousPages;
 using VLC.Views.VideoPages;
-using VLC.UI.Legacy.Views.VideoPages.VideoNowPlayingControls;
+using VLC.UI.Views.VideoPages.VideoNowPlayingControls;
 using Windows.Foundation.Metadata;
 using Windows.UI.Xaml.Controls;
-using VLC.UI.Legacy.Views.MusicPages.ArtistPageControls;
+using VLC.UI.Views.MusicPages.ArtistPageControls;
 using VLC.Utils;
 using Panel = VLC.Model.Panel;
 using Windows.UI.Core;
-using VLC.UI.Legacy.Views.VideoPages.TVShowsViews;
-using VLC.UI.UWP.VariousPages;
-using VLC.UI.UWP.Views.SettingsPages;
-using VLC.UI.Views.VariousPages;
+using VLC.UI.Views.VideoPages.TVShowsViews;
+using VLC.UI.VariousPages;
+using VLC.UI.Views.SettingsPages;
 
 namespace VLC.Services.RunTime
 {

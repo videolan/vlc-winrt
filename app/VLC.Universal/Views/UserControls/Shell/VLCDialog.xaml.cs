@@ -10,7 +10,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-namespace VLC.UI.UWP.Views.UserControls.Shell
+namespace VLC.UI.Views.UserControls.Shell
 {
     public sealed partial class VLCDialog : ContentDialog
     {

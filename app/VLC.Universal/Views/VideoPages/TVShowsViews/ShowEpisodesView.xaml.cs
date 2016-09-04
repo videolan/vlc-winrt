@@ -9,7 +9,7 @@ using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC.UI.Legacy.Views.VideoPages.TVShowsViews
+namespace VLC.UI.Views.VideoPages.TVShowsViews
 {
     public sealed partial class ShowEpisodesView : Page
     {

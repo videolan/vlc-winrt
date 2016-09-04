@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Input;
 
-namespace VLC.UI.Legacy.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class AlbumWithTracksResponsiveTemplate : UserControl
     {
