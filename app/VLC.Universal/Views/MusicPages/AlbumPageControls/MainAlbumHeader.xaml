@@ -38,7 +38,8 @@
                                            Header="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
                                            Text="{Binding Artist, Converter={StaticResource ArtistStringConverter}}" />
 
-        <AppBarButton Grid.Column="3"
+        <AppBarButton x:Name="ViewArtistButton"
+                      Grid.Column="3"
                       Grid.Row="0"
                       VerticalAlignment="Top"
                       Margin="{StaticResource FrameMarginRight}"
@@ -87,7 +88,8 @@
                           Command="{Binding PlayAlbum}"
                           CommandParameter="{Binding}"
                           Foreground="{ThemeResource MainColor}"
-                          IsTabStop="True">
+                          IsTabStop="True"
+                          XYFocusUp="{x:Bind ViewArtistButton}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PlaySymbol}"
                               FontFamily="{StaticResource VLCFont}" />
@@ -99,7 +101,8 @@
                           ToolTipService.ToolTip="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
                           Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.OpenAddAlbumToPlaylistDialogCommand}"
                           IsTabStop="True"
-                          IsCompact="True">
+                          IsCompact="True"
+                          XYFocusUp="{x:Bind ViewArtistButton}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource AddSymbol}"
                               FontFamily="{StaticResource VLCFont}" />
@@ -112,7 +115,8 @@
                           CommandParameter="{Binding}"
                           VerticalAlignment="Center"
                           IsTabStop="True"
-                          IsCompact="True" />
+                          IsCompact="True"
+                          XYFocusUp="{x:Bind ViewArtistButton}" />
             <AppBarButton Grid.Column="6"
                           Icon="{Binding Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
                           Command="{Binding FavoriteAlbum}"
@@ -120,7 +124,8 @@
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
                           IsTabStop="True"
-                          IsCompact="True" />
+                          IsCompact="True"
+                          XYFocusUp="{x:Bind ViewArtistButton}" />
         </Grid>
     </Grid>
 </UserControl>
