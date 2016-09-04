@@ -476,7 +476,10 @@ namespace VLC.Services.RunTime
         {
             if (page == typeof(HomePage))
             {
-                return Locator.MainVM.CurrentPanel.Target;
+                if (Locator.MainVM.CurrentPanel != null)
+                    return Locator.MainVM.CurrentPanel.Target;
+                else
+                    return Locator.SettingsVM.HomePage;
             }
             if (page == typeof(MainPageVideos))
                 return VLCPage.MainPageVideo;
