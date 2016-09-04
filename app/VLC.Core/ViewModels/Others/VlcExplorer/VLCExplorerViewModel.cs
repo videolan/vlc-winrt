@@ -216,7 +216,7 @@ namespace VLC.ViewModels.RemovableDevicesVM
             var fileExType = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == RootFolderType.Network);
             if (fileExType == null)
                 return;
-            var fileEx = fileExType.FirstOrDefault(x => x.Name == media.meta(libVLCX.MediaMeta.Title));
+            var fileEx = fileExType.ToList().FirstOrDefault(x => x.Name == media.meta(libVLCX.MediaMeta.Title));
             if (fileEx == null)
                 return;
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => fileExType.Remove(fileEx));
