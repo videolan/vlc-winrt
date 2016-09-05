@@ -5,9 +5,8 @@
                     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                     xmlns:winrtext="using:WinRTXamlToolkit.Controls.Extensions"
-                    xmlns:userControls="using:VLC.Views.UserControls"
-                    xmlns:userControl="using:VLC.UI.Views.UserControls"
-                    xmlns:placeholders="using:VLC.Views.UserControls.Placeholders">
+                    xmlns:userControls="using:VLC.UI.Views.UserControls"
+                    xmlns:placeholders="using:VLC.UI.Views.UserControls.Placeholders">
 
     <DataTemplate x:Key="AlbumItemTemplate">
         <userControls:AlbumItem Album="{Binding}" />
@@ -24,7 +23,7 @@
     </DataTemplate>
     
     <DataTemplate x:Key="AlbumResponsiveTemplate">
-        <userControl:AlbumWithTracksResponsiveTemplate Album="{Binding Key}"/>
+        <userControls:AlbumWithTracksResponsiveTemplate Album="{Binding Key}"/>
     </DataTemplate>
     
     <DataTemplate x:Key="FakeAlbumTemplate">

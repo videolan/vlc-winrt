@@ -27,7 +27,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using VLC.Commands;
 using System.Linq;
 
-namespace VLC.Views.VideoPages
+namespace VLC.UI.Views.VideoPages
 {
     public sealed partial class VideoPlayerPage : Page
     {
