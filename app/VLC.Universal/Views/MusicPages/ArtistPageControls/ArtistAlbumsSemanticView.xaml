@@ -43,12 +43,6 @@
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>
-                <scrollWatcher:ListViewScrollWatcher.ItemContainerTransitions>
-                    <TransitionCollection>
-                        <AddDeleteThemeTransition />
-                        <EntranceThemeTransition IsStaggeringEnabled="True" />
-                    </TransitionCollection>
-                </scrollWatcher:ListViewScrollWatcher.ItemContainerTransitions>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid Orientation="Horizontal"
@@ -72,14 +66,7 @@
                         <ItemsWrapGrid Orientation="Horizontal"
                                        Margin="{StaticResource FrameMarginTop}"
                                        HorizontalAlignment="Center"
-                                       Loaded="ZoomedOutItemsWrapGrid_Loaded">
-                            <ItemsWrapGrid.ChildrenTransitions>
-                                <TransitionCollection>
-                                    <AddDeleteThemeTransition />
-                                    <EntranceThemeTransition IsStaggeringEnabled="True" />
-                                </TransitionCollection>
-                            </ItemsWrapGrid.ChildrenTransitions>
-                        </ItemsWrapGrid>
+                                       Loaded="ZoomedOutItemsWrapGrid_Loaded" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
@@ -105,14 +92,7 @@
                 <ItemsWrapGrid Orientation="Horizontal"
                                Margin="{StaticResource FooterMarginBottom}"
                                HorizontalAlignment="Center"
-                               Loaded="ZoomedOutItemsWrapGrid_Loaded">
-                    <ItemsWrapGrid.ChildrenTransitions>
-                        <TransitionCollection>
-                            <AddDeleteThemeTransition />
-                            <EntranceThemeTransition IsStaggeringEnabled="True" />
-                        </TransitionCollection>
-                    </ItemsWrapGrid.ChildrenTransitions>
-                </ItemsWrapGrid>
+                               Loaded="ZoomedOutItemsWrapGrid_Loaded" />
             </ItemsPanelTemplate>
         </ListView.ItemsPanel>
     </ListView>
