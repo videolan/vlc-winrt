@@ -5,11 +5,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:placeholder="using:VLC.Views.UserControls.Placeholder"
+        xmlns:uC="using:VLC.UI.Views.UserControls"
         mc:Ignorable="d"
         d:DesignHeight="300"
         d:DesignWidth="400">
     <Grid x:Name="FlyoutGrid"
-          Background="{ThemeResource LightGray2ThemeBrush}"
           Loaded="Grid_Loaded">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
@@ -18,7 +18,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid Background="{ThemeResource ApplicationFourthForegroundThemeColor}">
+        <uC:BackDrop Grid.RowSpan="5"
+                     BlurAmount="5" />
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -116,8 +118,7 @@
             </AppBarButton>
         </Grid>
         <Grid Grid.Row="2"
-              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
-              Background="{ThemeResource ApplicationFourthForegroundThemeColor}">
+              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition />
