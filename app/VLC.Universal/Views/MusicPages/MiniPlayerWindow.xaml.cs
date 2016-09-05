@@ -11,7 +11,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using VLC.Controls;
 using VLC.Helpers;
 using VLC.ViewModels;
-using VLC.Views.MainPages;
+using VLC.UI.Views.MainPages;
 using VLC.Utils;
 using VLC.Model;
 

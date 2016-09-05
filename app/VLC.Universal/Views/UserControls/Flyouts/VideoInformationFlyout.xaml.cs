@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 
-namespace VLC.Views.UserControls.Flyouts
+namespace VLC.UI.Views.UserControls.Flyouts
 {
     public sealed partial class VideoInformationFlyout
     {

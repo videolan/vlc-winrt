@@ -3,7 +3,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace VLC.Views.MusicPages.AlbumPageControls
+namespace VLC.UI.Views.MusicPages.AlbumPageControls
 {
     public sealed partial class MainAlbumHeader : UserControl
     {

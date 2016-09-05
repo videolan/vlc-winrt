@@ -5,9 +5,9 @@ using VLC.ViewModels;
 using Windows.UI.Xaml.Input;
 using VLC.Model;
 using Windows.System;
-using VLC.Views.UserControls.Flyouts;
+using VLC.UI.Views.UserControls.Flyouts;
 
-namespace VLC.Views.MainPages.MusicPanes
+namespace VLC.UI.Views.MainPages.MusicPanes
 {
     public sealed partial class AlbumCollectionBase : UserControl
     {

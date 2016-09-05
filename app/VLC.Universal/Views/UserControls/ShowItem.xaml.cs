@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace VLC.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class ShowItem : UserControl
     {

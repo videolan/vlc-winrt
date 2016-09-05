@@ -4,7 +4,7 @@
                     xmlns:controls="using:VLC.Controls"
                     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-                    xmlns:userControls="using:VLC.Views.UserControls"
+                    xmlns:userControls="using:VLC.UI.Views.UserControls"
                     xmlns:triggers="using:WinRT.Triggers">
 
     <ResourceDictionary.MergedDictionaries>

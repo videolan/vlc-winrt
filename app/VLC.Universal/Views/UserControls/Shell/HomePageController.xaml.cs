@@ -5,10 +5,10 @@ using VLC.UI.Views.UserControls.Shell;
 using VLC.UI.Views.VariousPages;
 using VLC.Utils;
 using VLC.ViewModels;
-using VLC.Views.MainPages;
+using VLC.UI.Views.MainPages;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class HomePageController : UserControl
     {

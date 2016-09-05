@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace VLC.Views.UserControls.Placeholders
+namespace VLC.UI.Views.UserControls.Placeholders
 {
     public sealed partial class FakeAlbumControl : UserControl
     {

@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Controls;
 using VLC.ViewModels;
 using Windows.Foundation.Metadata;
 using VLC.UI.Views.UserControls;
-using VLC.Views.UserControls;
+using VLC.UI.Views.UserControls;
 using VLC.Utils;
 
 namespace VLC.Helpers

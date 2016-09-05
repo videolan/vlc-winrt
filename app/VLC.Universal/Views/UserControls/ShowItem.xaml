@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="VLC.Views.UserControls.ShowItem"
+﻿<UserControl x:Class="VLC.UI.Views.UserControls.ShowItem"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:VLC.UI.Views.UserControls"

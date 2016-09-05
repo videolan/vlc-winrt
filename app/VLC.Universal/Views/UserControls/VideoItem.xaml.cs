@@ -6,7 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace VLC.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class VideoItem : UserControl
     {

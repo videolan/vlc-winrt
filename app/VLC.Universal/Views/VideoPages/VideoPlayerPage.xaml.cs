@@ -172,7 +172,7 @@ namespace VLC.Views.VideoPages
         private void PlaceholderInteractionGrid_OnTapped(object sender, TappedRoutedEventArgs e)
         {
         }
-        
+
         void DisplayOrHide(bool mouseOrTouchPresent)
         {
             isVisible = mouseOrTouchPresent;

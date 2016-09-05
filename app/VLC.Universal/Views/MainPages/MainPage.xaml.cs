@@ -30,7 +30,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Storage;
 
-namespace VLC.Views.MainPages
+namespace VLC.UI.Views.MainPages
 {
     public sealed partial class MainPage
     {

@@ -5,10 +5,10 @@ using VLC.Model.Video;
 using VLC.ViewModels;
 using Windows.UI.Xaml.Input;
 using Windows.System;
-using VLC.Views.UserControls.Flyouts;
+using VLC.UI.Views.UserControls.Flyouts;
 using VLC.Model;
 
-namespace VLC.Views.MainPages.MainVideoControls
+namespace VLC.UI.Views.MainPages.MainVideoControls
 {
     public sealed partial class AllVideosPivotItem : Page
     {

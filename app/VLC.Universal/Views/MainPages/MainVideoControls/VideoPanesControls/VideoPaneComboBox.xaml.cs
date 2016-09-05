@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml.Controls;
 using VLC.ViewModels;
 
-namespace VLC.Views.MainPages.MainVideoControls.VideoPanesControls
+namespace VLC.UI.Views.MainPages.MainVideoControls.VideoPanesControls
 {
     public sealed partial class VideoPaneComboBox : UserControl
     {

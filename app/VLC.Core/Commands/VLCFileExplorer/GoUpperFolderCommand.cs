@@ -1,7 +1,7 @@
 ﻿using VLC.Model;
 using VLC.Utils;
 using VLC.ViewModels;
-using VLC.Views.MainPages;
+using VLC.UI.Views.MainPages;
 
 namespace VLC.Commands.VLCFileExplorer
 {

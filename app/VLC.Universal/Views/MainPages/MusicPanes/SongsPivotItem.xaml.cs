@@ -7,9 +7,9 @@ using VLC.ViewModels;
 using Windows.UI.Xaml.Input;
 using Windows.System;
 using VLC.Model;
-using VLC.Views.UserControls.Flyouts;
+using VLC.UI.Views.UserControls.Flyouts;
 
-namespace VLC.Views.MainPages.MusicPanes
+namespace VLC.UI.Views.MainPages.MusicPanes
 {
     public sealed partial class SongsPivotItem : Page
     {

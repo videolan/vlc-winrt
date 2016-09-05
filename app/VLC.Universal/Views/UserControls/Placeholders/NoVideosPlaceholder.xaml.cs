@@ -3,7 +3,7 @@ using Windows.UI.Xaml.Controls;
 using VLC.Model.Video;
 using VLC.ViewModels;
 
-namespace VLC.Views.UserControls.Placeholder
+namespace VLC.UI.Views.UserControls.Placeholder
 {
     public sealed partial class NoVideosPlaceholder : UserControl
     {

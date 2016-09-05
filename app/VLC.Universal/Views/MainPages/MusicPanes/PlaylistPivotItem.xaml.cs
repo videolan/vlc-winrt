@@ -5,7 +5,7 @@ using Microsoft.Xaml.Interactivity;
 using Windows.UI.Xaml.Navigation;
 using VLC.ViewModels;
 
-namespace VLC.Views.MainPages.MusicPanes
+namespace VLC.UI.Views.MainPages.MusicPanes
 {
     public sealed partial class PlaylistPivotItem : Page
     {

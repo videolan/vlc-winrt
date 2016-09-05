@@ -4,7 +4,7 @@
       xmlns:local="using:VLC.UI.Views.MainPage s"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:shellControls="using:VLC.Views.UserControls"
+      xmlns:shellControls="using:VLC.UI.Views.UserControls"
       mc:Ignorable="d">
 
     <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">

@@ -7,13 +7,13 @@ using Windows.UI.Xaml.Input;
 using VLC.Commands.VLCFileExplorer;
 using VLC.Model;
 using VLC.Model.FileExplorer;
-using VLC.Views.UserControls.Flyouts;
+using VLC.UI.Views.UserControls.Flyouts;
 using VLC.Commands;
 using VLC.Utils;
 using Windows.System;
 using VLC.Commands.MediaLibrary;
 
-namespace VLC.Views.MainPages
+namespace VLC.UI.Views.MainPages
 {
     public sealed partial class MainPageFileExplorer : Page
     {

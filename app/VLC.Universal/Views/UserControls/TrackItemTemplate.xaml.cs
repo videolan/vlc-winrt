@@ -10,7 +10,7 @@ using VLC.ViewModels;
 using VLC.ViewModels.MusicVM;
 using VLC.Model;
 
-namespace VLC.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class TrackItemTemplate : UserControl
     {

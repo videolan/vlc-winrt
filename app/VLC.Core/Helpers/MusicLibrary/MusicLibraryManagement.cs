@@ -21,7 +21,7 @@ using Windows.Storage.Search;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using VLC.Utils;
-using VLC.Views.MusicPages.PlaylistControls;
+using VLC.UI.Views.MusicPages.PlaylistControls;
 using WinRTXamlToolkit.Controls.Extensions;
 using System.Collections.Generic;
 using libVLCX;

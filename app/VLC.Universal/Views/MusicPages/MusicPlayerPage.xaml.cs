@@ -13,7 +13,7 @@ using VLC.Slideshow.Texts;
 using VLC.ViewModels;
 using VLC.Helpers;
 
-namespace VLC.Views.MusicPages
+namespace VLC.UI.Views.MusicPages
 {
     public sealed partial class MusicPlayerPage : Page
     {

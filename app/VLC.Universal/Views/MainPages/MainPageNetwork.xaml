@@ -4,8 +4,8 @@
       xmlns:local="using:VLC.UI.Views.MainPages"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:userControls="using:VLC.Views.UserControls"
-      xmlns:placeholder="using:VLC.Views.UserControls.Placeholder"
+      xmlns:userControls="using:VLC.UI.Views.UserControls"
+      xmlns:placeholder="using:VLC.UI.Views.UserControls.Placeholder"
       xmlns:triggers="using:WinRT.Triggers"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=StreamsVM}">

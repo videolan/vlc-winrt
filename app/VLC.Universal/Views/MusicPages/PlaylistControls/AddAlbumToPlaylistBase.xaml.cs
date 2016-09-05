@@ -3,7 +3,7 @@ using Windows.UI.Xaml.Controls;
 using VLC.Helpers.MusicLibrary;
 using VLC.ViewModels;
 
-namespace VLC.Views.MusicPages.PlaylistControls
+namespace VLC.UI.Views.MusicPages.PlaylistControls
 {
     public sealed partial class AddAlbumToPlaylistBase
     {

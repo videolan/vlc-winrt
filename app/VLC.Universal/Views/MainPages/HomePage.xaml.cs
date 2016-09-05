@@ -2,7 +2,7 @@
 using VLC.Helpers;
 using VLC.Model;
 using VLC.ViewModels;
-using VLC.Views.MainPages;
+using VLC.UI.Views.MainPages;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;

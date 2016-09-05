@@ -4,7 +4,7 @@ using Microsoft.Xaml.Interactivity;
 using VLC.Model;
 using VLC.ViewModels;
 
-namespace VLC.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class PivotHeaderControl : UserControl
     {

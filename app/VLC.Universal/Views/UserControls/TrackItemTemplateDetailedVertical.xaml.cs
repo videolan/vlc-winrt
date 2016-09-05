@@ -9,7 +9,7 @@ using VLC.Model.Music;
 using VLC.Utils;
 using VLC.ViewModels;
 using VLC.ViewModels.MusicVM;
-using VLC.Views.UserControls;
+using VLC.UI.Views.UserControls;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Core;

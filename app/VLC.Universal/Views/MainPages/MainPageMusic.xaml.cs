@@ -13,12 +13,12 @@ using Windows.UI.Xaml.Navigation;
 using VLC.ViewModels;
 using Microsoft.Xaml.Interactivity;
 using VLC.Model.Music;
-using VLC.Views.MainPages.MusicPanes;
+using VLC.UI.Views.MainPages.MusicPanes;
 using VLC.ViewModels.Settings;
 using VLC.ViewModels.MusicVM;
 using System.Threading.Tasks;
 
-namespace VLC.Views.MainPages
+namespace VLC.UI.Views.MainPages
 {
     public sealed partial class MainPageMusic : Page
     {

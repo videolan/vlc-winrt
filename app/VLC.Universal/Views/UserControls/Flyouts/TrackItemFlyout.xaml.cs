@@ -6,7 +6,7 @@ using VLC.ViewModels.MusicVM;
 using Windows.UI.Xaml.Controls.Primitives;
 using VLC.Model;
 
-namespace VLC.Views.UserControls.Flyouts
+namespace VLC.UI.Views.UserControls.Flyouts
 {
     public partial class TrackItemFlyout
     {
