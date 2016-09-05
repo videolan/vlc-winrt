@@ -24,7 +24,7 @@ namespace VLC.UI.Views.MusicPages.ArtistPageControls
 
         private void ArtistAlbumsSemanticView_Loaded(object sender, RoutedEventArgs e)
         {
-            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+            if (DeviceHelper.IsMediaCenterModeCompliant)
                 (FindName(nameof(AlbumsArtistsListView)) as FrameworkElement).Visibility = Visibility.Visible;
             else
                 (FindName(nameof(AlbumsSemanticZoom)) as FrameworkElement).Visibility = Visibility.Visible;
