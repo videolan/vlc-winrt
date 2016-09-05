@@ -1,59 +1,14 @@
 ﻿<Page x:Class="VLC.UI.Views.MainPages.HomePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:VLC.UI.Views.MainPage s"
+      xmlns:local="using:VLC.UI.Views.MainPages"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:VLC.UI.Views.UserControls.Shell"
       xmlns:shellControls="using:VLC.UI.Views.UserControls"
       mc:Ignorable="d">
 
-    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
-        <Pivot x:Name="Pivot"
-               x:DeferLoadStrategy="Lazy"
-               Visibility="Collapsed"
-               ItemsSource="{Binding Panels}"
-               HeaderTemplate="{StaticResource PivotHeaderDataTemplate}"
-               SelectedItem="{Binding CurrentPanel, Mode=TwoWay}"
-               Style="{StaticResource TitlelessPivot}"
-               Background="{ThemeResource TranslucentMainColor}">
-            <Pivot.LeftHeader>
-                <Grid Margin="{StaticResource FrameMarginRight}">
-                    <Path x:Name="VLCIcon"
-                          Data="{StaticResource VLCFlatPath}"
-                          Fill="White"
-                          Stretch="Uniform"
-                          HorizontalAlignment="Left"
-                          VerticalAlignment="Center"
-                          Height="16"
-                          Margin="{StaticResource FrameMarginHorizontal}">
-                        <Path.ContextFlyout>
-                            <MenuFlyout>
-                                <MenuFlyoutSubItem Text="File">
-                                    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OpenFile}" />
-                                    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OpenFile}" />
-                                </MenuFlyoutSubItem>
-                                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Settings}" />
-                                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=AboutTheApp}" />
-                            </MenuFlyout>
-                        </Path.ContextFlyout>
-                    </Path>
-                </Grid>
-            </Pivot.LeftHeader>
-            <Pivot.RightHeader>
-                <Grid x:Name="TitleBar"
-                      Loaded="TitleBar_Loaded"
-                      Background="Transparent" />
-            </Pivot.RightHeader>
-            <Pivot.ItemTemplate>
-                <DataTemplate>
-                    <shellControls:HomePageController Tag="Pivot" />
-                </DataTemplate>
-            </Pivot.ItemTemplate>
-        </Pivot>
-
-
-        <shellControls:HomePageController x:Name="MediaCenterController"
-                                          x:DeferLoadStrategy="Lazy"
-                                          Visibility="Collapsed" />
+    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+          x:Name="MyGrid">
     </Grid>
 </Page>

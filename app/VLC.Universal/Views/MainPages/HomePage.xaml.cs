@@ -7,6 +7,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
+using VLC.UI.Views.UserControls;
+using VLC.UI.Views.UserControls.Shell;
 
 namespace VLC.UI.Views.MainPages
 {
@@ -15,26 +17,19 @@ namespace VLC.UI.Views.MainPages
         public HomePage()
         {
             this.InitializeComponent();
-            this.SizeChanged += HomePage_SizeChanged;
-        }
-
-        private void HomePage_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Responsive();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            MyGrid.Children.Clear();
             if (Locator.SettingsVM.MediaCenterMode)
             {
-                (FindName(nameof(MediaCenterController)) as FrameworkElement).Visibility = Visibility.Visible;
-                (FindName(nameof(Pivot)) as FrameworkElement).Visibility = Visibility.Collapsed;
+                MyGrid.Children.Add(new HomePageController());
             }
             else
             {
-                (FindName(nameof(MediaCenterController)) as FrameworkElement).Visibility = Visibility.Collapsed;
-                (FindName(nameof(Pivot)) as FrameworkElement).Visibility = Visibility.Visible;
+                MyGrid.Children.Add(new DesktopHomePageController());
                 AppViewHelper.SetAppView(true);
             }
         }
@@ -44,41 +39,6 @@ namespace VLC.UI.Views.MainPages
             base.OnNavigatingFrom(e);
             if (!Locator.SettingsVM.MediaCenterMode)
                 AppViewHelper.SetAppView(false);
-        }
-
-        private void TitleBar_Loaded(object sender, RoutedEventArgs e)
-        {
-            AppViewHelper.SetTitleBar(TitleBar);
-            Responsive();
-        }
-
-        private void Responsive()
-        {
-            if (Window.Current.Bounds.Width < 850)
-            {
-                VLCIcon.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                VLCIcon.Visibility = Visibility.Visible;
-            }
-
-
-            if (AppViewHelper.TitleBarRightOffset == 0)
-                return;
-
-            var pivotHeader = WinRTXamlToolkit.Controls.Extensions.VisualTreeHelperExtensions.GetFirstDescendantOfType<PivotHeaderPanel>(Pivot);
-            if (pivotHeader == null)
-                return;
-
-            if (Window.Current.Bounds.Width < 850)
-            {
-                pivotHeader.Margin = new Thickness(0, 16, 0, 0);
-            }
-            else
-            {
-                pivotHeader.Margin = new Thickness();
-            }
         }
     }
 }
