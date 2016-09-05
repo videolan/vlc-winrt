@@ -266,6 +266,8 @@ namespace VLC.Services.RunTime
 
         public void Go(VLCPage desiredPage)
         {
+            var previousSourcePageType = App.ApplicationFrame.CurrentSourcePageType;
+
             if (!IsFlyout(desiredPage) && desiredPage == CurrentPage) return;
 
             if (IsFlyout(desiredPage))
@@ -374,7 +376,11 @@ namespace VLC.Services.RunTime
                 default:
                     break;
             }
-            if (App.SplitShell.IsFlyoutOpen && !IsFlyout(desiredPage))
+
+            if (App.SplitShell.IsFlyoutOpen
+                && !IsFlyout(desiredPage)
+                // Do not hide the current flyout if there was no page behind.
+                && previousSourcePageType != null)
                 App.SplitShell.HideFlyout();
         }
 
