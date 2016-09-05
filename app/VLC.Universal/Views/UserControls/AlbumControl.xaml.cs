@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
+using VLC.Model.Music;
 using VLC.Utils;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -9,9 +10,9 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace VLC.UI.Views.UserControls
 {
-    public sealed partial class AlbumItem : UserControl
+    public sealed partial class AlbumControl : UserControl
     {
-        public AlbumItem()
+        public AlbumControl()
         {
             this.InitializeComponent();
         }
@@ -39,7 +40,7 @@ namespace VLC.UI.Views.UserControls
         }
         
 
-        public Model.Music.AlbumItem Album
+        public AlbumItem Album
         {
             get { return (Model.Music.AlbumItem)GetValue(AlbumProperty); }
             set { SetValue(AlbumProperty, value); }
@@ -50,7 +51,7 @@ namespace VLC.UI.Views.UserControls
 
         private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var that = (AlbumItem)dependencyObject;
+            var that = (AlbumControl)dependencyObject;
             that.Init();
         }
 

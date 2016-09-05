@@ -9,15 +9,15 @@
                     xmlns:placeholders="using:VLC.UI.Views.UserControls.Placeholders">
 
     <DataTemplate x:Key="AlbumItemTemplate">
-        <userControls:AlbumItem Album="{Binding}" />
+        <userControls:AlbumControl Album="{Binding}" />
     </DataTemplate>
 
     <DataTemplate x:Key="AlbumItemTemplateKeyBinding">
-        <userControls:AlbumItem Album="{Binding Group.Key}" />
+        <userControls:AlbumControl Album="{Binding Group.Key}" />
     </DataTemplate>
 
     <DataTemplate x:Key="AlbumItemTemplateFixedSize">
-        <userControls:AlbumItem Album="{Binding}"
+        <userControls:AlbumControl Album="{Binding}"
                                 Height="173"
                                 Width="123" />
     </DataTemplate>

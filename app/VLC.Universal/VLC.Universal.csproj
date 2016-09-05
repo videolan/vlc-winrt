@@ -191,8 +191,8 @@
     <Compile Include="Views\SettingsPages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\AlbumItem.xaml.cs">
-      <DependentUpon>AlbumItem.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\AlbumControl.xaml.cs">
+      <DependentUpon>AlbumControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\AlbumWithTracksResponsiveTemplate.xaml.cs">
       <DependentUpon>AlbumWithTracksResponsiveTemplate.xaml</DependentUpon>
@@ -1310,7 +1310,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\AlbumItem.xaml">
+    <Page Include="Views\UserControls\AlbumControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
