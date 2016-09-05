@@ -263,13 +263,9 @@ namespace VLC.Controls
                 }
             }
 
-            /* Test if we have a specific property to fit the flyout height or not.
-             * TODO: find a nicer way to achieve the same result. Maybe through inheritance? */
-            var members =_flyoutContentPresenter.Content?.GetType().GetTypeInfo().DeclaredMembers;
-            if (members != null)
-                foreach (var x in members)
-                    if (x.Name == "FitContentHeight")
-                        _flyoutContentPresenter.Height = double.NaN;
+            // Test if we have a specific property to fit the flyout height or not.
+            if (IsCurrentFlyoutModal())
+                _flyoutContentPresenter.Height = double.NaN;
 
             _windowResizerTimer.Stop();
             _windowResizerTimer.Start();
@@ -284,6 +280,8 @@ namespace VLC.Controls
 
         private void FlyoutGridContainerOnTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
         {
+            if (IsCurrentFlyoutModal())
+                return;
             FlyoutCloseRequested?.Invoke(null, new EventArgs());
         }
 
@@ -323,5 +321,20 @@ namespace VLC.Controls
 
         public bool IsFlyoutOpen { get; private set; }
         public bool IsTopBarOpen { get; set; }
+
+        private bool IsCurrentFlyoutModal()
+        {
+            // TODO: find a nicer way to achieve the same result.Maybe through inheritance ?
+            bool ret = false;
+            var members = _flyoutContentPresenter.Content?.GetType().GetTypeInfo().DeclaredMembers;
+            if (members != null)
+                foreach (var x in members)
+                    if (x.Name == "ModalMode")
+                    {
+                        ret = true;
+                        break;
+                    }
+            return ret;
+        }
     }
 }

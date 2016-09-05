@@ -26,8 +26,9 @@ namespace VLC.UI.UWP.Views.VariousPages
                 Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == VLCPage.MainPageFileExplorer);
         }
 
-        /* We want the flyout to fit the size of its content,
-         * so we had this member that is detected by the SplitShell. */
-        public static object FitContentHeight;
+        /* We want the flyout to fit the size of its content and not
+         * be hidden on background click so we had this member that
+         * is detected by the SplitShell. */
+        public static object ModalMode;
     }
 }
