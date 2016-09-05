@@ -1,30 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using System.Linq;
+using VLC.Model;
+using VLC.Utils;
+using VLC.ViewModels;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
-namespace VLC.UI.Views.VariousPages
+namespace VLC.UI.UWP.Views.VariousPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class ExternalStorageIncludePage : Page
+    public sealed partial class ExternalStorageIncludePage
     {
         public ExternalStorageIncludePage()
         {
             this.InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Locator.NavigationService.GoBack_HideFlyout();
+
+            if (Index.IsChecked == true)
+                Locator.ExternalDeviceService.AskExternalDeviceIndexing();
+            else if (Select.IsChecked == true)
+                // TODO: open the explorer window of the added device.
+                Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == VLCPage.MainPageFileExplorer);
+        }
+
+        /* We want the flyout to fit the size of its content,
+         * so we had this member that is detected by the SplitShell. */
+        public static object FitContentHeight;
     }
 }

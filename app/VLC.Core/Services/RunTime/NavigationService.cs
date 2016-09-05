@@ -28,6 +28,7 @@ using Windows.UI.Core;
 using VLC.UI.Views.VideoPages.TVShowsViews;
 using VLC.UI.VariousPages;
 using VLC.UI.Views.SettingsPages;
+using VLC.UI.UWP.Views.VariousPages;
 
 namespace VLC.Services.RunTime
 {
