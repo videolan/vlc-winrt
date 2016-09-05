@@ -91,11 +91,6 @@
             </AppBarButton.Icon>
             <AppBarButton.Flyout>
                 <MenuFlyout Placement="Bottom">
-                    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=MoreInfo}"
-                                    Command="{Binding CurrentArtist.NavigateArtistInfoView}"
-                                    Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                                    Tag="{StaticResource BuddySymbol}"
-                                    Foreground="White" />
                     <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PinArtist}"
                                     Command="{Binding CurrentArtist.PinArtistCommand}"
                                     CommandParameter="{Binding CurrentArtist}"
