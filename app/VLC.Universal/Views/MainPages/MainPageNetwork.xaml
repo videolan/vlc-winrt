@@ -31,6 +31,18 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
+            <AppBarButton x:Name="HamburgerButton"
+                Grid.Column="0"
+                Style="{StaticResource AppBarButtonStyleHorizontal}"
+                IsCompact="True"
+                Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToHomePageMediaCenterCommand}"
+                Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.MediaCenterMode}"
+                Margin="{StaticResource FrameMarginLeft}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource MenuOpenRight}"
+                              FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
             <userControls:FocusTextBox x:Name="MrlTextBox"
                                        Grid.Column="1"
                                        PlaceholderText="{Binding Source={StaticResource Strings}, Path=EnterURL}"

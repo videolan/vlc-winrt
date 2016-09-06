@@ -25,11 +25,23 @@
         <Grid x:Name="FileExplorerButtonsGrid"
               Background="{ThemeResource ApplicationChromeThemeBrush}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+            <AppBarButton x:Name="HamburgerButton"
+                          Grid.Column="0"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          IsCompact="True"
+                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToHomePageMediaCenterCommand}"
+                          Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.MediaCenterMode}"
+                          Margin="{StaticResource FrameMarginLeft}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource MenuOpenRight}"
+                              FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
             <AppBarButton x:Name="GoBackButton"
                           Grid.Column="1"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
