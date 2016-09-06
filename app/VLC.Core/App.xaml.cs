@@ -242,6 +242,7 @@ namespace VLC
                 if (Gamepad.Gamepads.Any())
                 {
                     Locator.SettingsVM.MediaCenterMode = true;
+                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
                     Locator.MainVM.GoToHomePageMediaCenterCommand.Execute(null);
 
                     if (!AppViewHelper.GetFullscreen())
