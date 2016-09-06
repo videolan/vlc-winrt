@@ -1,11 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using VLC.Model;
+using VLC.Model.FileExplorer;
 using VLC.UI.Views;
-using VLC.Utils;
 using VLC.ViewModels;
-using Windows.UI.Core;
+using VLC.ViewModels.Others.VlcExplorer;
+using Windows.Storage;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace VLC.UI.UWP.Views.VariousPages
 {
@@ -16,15 +18,29 @@ namespace VLC.UI.UWP.Views.VariousPages
             this.InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             Locator.NavigationService.GoBack_HideFlyout();
 
             if (Index.IsChecked == true)
                 Locator.ExternalDeviceService.AskExternalDeviceIndexing();
             else if (Select.IsChecked == true)
-                // TODO: open the explorer window of the added device.
+            {
+                // Display the folder of the first external storage device detected.
                 Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == VLCPage.MainPageFileExplorer);
+
+                var devices = KnownFolders.RemovableDevices;
+                IReadOnlyList<StorageFolder> rootFolders = await devices.GetFoldersAsync();
+
+                var rootFolder = rootFolders.First();
+                if (rootFolder == null)
+                    return;
+
+                var storageItem = new VLCStorageFolder(rootFolder);
+                Locator.FileExplorerVM.CurrentStorageVM = new LocalFileExplorerViewModel(
+                    rootFolder, RootFolderType.ExternalDevice);
+                await Locator.FileExplorerVM.CurrentStorageVM.GetFiles();
+            }
         }
 
         public bool ModalMode
