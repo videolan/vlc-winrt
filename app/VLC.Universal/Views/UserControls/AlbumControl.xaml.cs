@@ -38,7 +38,6 @@ namespace VLC.UI.Views.UserControls
             if (e.Pointer.PointerDeviceType != Windows.Devices.Input.PointerDeviceType.Mouse) return;
             VisualStateManager.GoToState(this, "Normal", false);
         }
-        
 
         public AlbumItem Album
         {
@@ -47,7 +46,7 @@ namespace VLC.UI.Views.UserControls
         }
 
         public static readonly DependencyProperty AlbumProperty =
-            DependencyProperty.Register(nameof(Album), typeof(Model.Music.AlbumItem), typeof(AlbumItem), new PropertyMetadata(null, PropertyChangedCallback));
+            DependencyProperty.Register(nameof(Album), typeof(AlbumItem), typeof(AlbumControl), new PropertyMetadata(null, PropertyChangedCallback));
 
         private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
