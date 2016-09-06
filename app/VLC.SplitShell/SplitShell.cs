@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -7,14 +6,10 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
-using VLC.Helpers;
-using Windows.ApplicationModel.Core;
 using Windows.UI.ViewManagement;
 using VLC.UI.Views.UserControls.Shell;
-using Microsoft.Graphics.Canvas.Effects;
-using Windows.UI.Composition;
-using Windows.UI.Xaml.Hosting;
 using VLC.UI.Views.UserControls;
+using VLC.UI.Views;
 
 namespace VLC.Controls
 {
@@ -322,18 +317,16 @@ namespace VLC.Controls
         public bool IsFlyoutOpen { get; private set; }
         public bool IsTopBarOpen { get; set; }
 
-        private bool IsCurrentFlyoutModal()
+        public bool IsCurrentFlyoutModal()
         {
-            // TODO: find a nicer way to achieve the same result.Maybe through inheritance ?
             bool ret = false;
-            var members = _flyoutContentPresenter.Content?.GetType().GetTypeInfo().DeclaredMembers;
-            if (members != null)
-                foreach (var x in members)
-                    if (x.Name == "ModalMode")
-                    {
-                        ret = true;
-                        break;
-                    }
+            try
+            {
+                var fo = (IVLCModalFlyout)_flyoutContentPresenter.Content;
+                if (fo.ModalMode)
+                    ret = true;
+            }
+            catch { }
             return ret;
         }
     }

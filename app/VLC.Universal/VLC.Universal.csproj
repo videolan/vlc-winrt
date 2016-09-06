@@ -210,6 +210,7 @@
     <Compile Include="Views\UserControls\Flyouts\AlbumMenuFlyout.xaml.cs">
       <DependentUpon>AlbumMenuFlyout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\IVLCModalFlyout.cs" />
     <Compile Include="Views\UserControls\Flyouts\FileExplorerItemFlyout.xaml.cs">
       <DependentUpon>FileExplorerItemFlyout.xaml</DependentUpon>
     </Compile>
