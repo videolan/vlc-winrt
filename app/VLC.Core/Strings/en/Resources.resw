@@ -753,4 +753,13 @@
   <data name="WhatToDo" xml:space="preserve">
     <value>What would you like to do?</value>
   </data>
+  <data name="AskMe" xml:space="preserve">
+    <value>Ask me</value>
+  </data>
+  <data name="ExternalStorage" xml:space="preserve">
+    <value>external storage</value>
+  </data>
+  <data name="WhatToDoWhenExternalStorage" xml:space="preserve">
+    <value>What should VLC do when an external storage device has been detected?</value>
+  </data>
 </root>

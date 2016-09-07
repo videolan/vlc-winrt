@@ -49,6 +49,7 @@ namespace VLC.ViewModels.Settings
         private OrderType _albumsOrderType;
         private OrderListing _albumsOrderListing;
         private VLCPage _homePage;
+        private ExternalDeviceMode _externalDeviceMode;
         private Languages _selectedLanguage;
         private string _lastFmUserName;
         private string _lastFmPassword;
@@ -281,6 +282,9 @@ namespace VLC.ViewModels.Settings
             VLCPage.MainPageMusic,
             VLCPage.MainPageFileExplorer
         };
+
+        public List<ExternalDeviceMode> ExternalDeviceModeCollection { get; set; }
+            = Enum.GetValues(typeof(ExternalDeviceMode)).Cast<ExternalDeviceMode>().ToList();
 
         public List<Languages> LanguageCollection { get; set; } = new List<Languages>()
         {
@@ -529,6 +533,24 @@ namespace VLC.ViewModels.Settings
             {
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(HomePage), (int)value, false);
                 SetProperty(ref _homePage, value);
+            }
+        }
+
+        public ExternalDeviceMode ExternalDeviceMode
+        {
+            get
+            {
+                var externalDeviceMode = ApplicationSettingsHelper.ReadSettingsValue(nameof(ExternalDeviceMode), false);
+                if (externalDeviceMode == null)
+                    _externalDeviceMode = ExternalDeviceMode.AskMe;
+                else
+                    _externalDeviceMode = (ExternalDeviceMode)externalDeviceMode;
+                return _externalDeviceMode;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(ExternalDeviceMode), (int)value, false);
+                SetProperty(ref _externalDeviceMode, value);
             }
         }
 

@@ -117,6 +117,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StorageTypeToIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToUpperConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\VideoViewStringifyConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ExternalDeviceModeStringifyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\VLCPageStringifyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\VLCSurfaceZoomStringifyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\BackgroundTrackDatabase.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\FileExplorer\RootFolderType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\FileExplorer\VLCStorageFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\KeyboardAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ExternalDeviceMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Languages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Library\MediaLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\LoadingState.cs" />

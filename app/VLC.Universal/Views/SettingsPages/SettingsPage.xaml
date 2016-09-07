@@ -113,6 +113,23 @@
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            HideTextIfEmpty="True"
+                                                           Header="{Binding Source={StaticResource Strings}, Path=ExternalStorage}"
+                                                           Text="{Binding Source={StaticResource Strings}, Path=WhatToDoWhenExternalStorage}" />
+
+                        <ComboBox Margin="{StaticResource FrameMarginTop}"
+                                  ItemsSource="{Binding ExternalDeviceModeCollection}"
+                                  SelectedItem="{Binding ExternalDeviceMode, Mode=TwoWay}"
+                                  Style="{StaticResource VLCLightComboBox}"
+                                  Width="160">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource ExternalDeviceModeStringifyConverter}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}" />
                         <ListView ItemsSource="{Binding KeyboardActions}"
                                   SelectionMode="None"
