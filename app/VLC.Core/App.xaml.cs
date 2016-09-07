@@ -233,6 +233,7 @@ namespace VLC
             Locator.GamepadService.GamepadUpdated += (s, e) => Task.Run(() => ToggleMediaCenterMode());
 
             await ToggleMediaCenterMode();
+            Locator.ExternalDeviceService.startWatcher();
         }
 
         async Task ToggleMediaCenterMode()

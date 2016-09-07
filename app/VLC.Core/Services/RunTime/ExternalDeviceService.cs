@@ -23,7 +23,7 @@ namespace VLC.Services.RunTime
     {
         private DeviceWatcher _deviceWatcher;
 
-        public ExternalDeviceService()
+        public void startWatcher()
         {
             _deviceWatcher = DeviceInformation.CreateWatcher(DeviceClass.PortableStorageDevice);
             _deviceWatcher.Added += DeviceAdded;
