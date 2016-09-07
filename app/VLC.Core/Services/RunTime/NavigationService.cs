@@ -39,8 +39,6 @@ namespace VLC.Services.RunTime
         public VLCPage CurrentPage { get; private set; }
         private VLCPage currentFlyout { get; set; }
 
-        private VLCPage currentHomePage { get; set; }
-
         public bool PreventAppExit { get; set; } = false;
 
         public delegate void Navigated(object sender, VLCPage newPage);
@@ -287,7 +285,6 @@ namespace VLC.Services.RunTime
                         App.ApplicationFrame.Navigate(typeof(HomePage));
 
                     HomePageNavigated?.Invoke(null, desiredPage);
-                    currentHomePage = desiredPage;
                     break;
                 case VLCPage.AlbumPage:
                     setFlyoutContent(typeof(AlbumPageBase));
