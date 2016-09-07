@@ -269,13 +269,10 @@ namespace VLC.Services.RunTime
 
             if (!IsFlyout(desiredPage) && desiredPage == CurrentPage) return;
 
-            if (IsFlyout(desiredPage))
-                currentFlyout = desiredPage;
-
             switch (desiredPage)
             {
                 case VLCPage.MainPageXBOX:
-                    setFlyoutContent(typeof(MainPageXBOX));
+                    setFlyoutContent(desiredPage, typeof(MainPageXBOX));
                     break;
                 case VLCPage.MainPageVideo:
                 case VLCPage.MainPageMusic:
@@ -283,11 +280,10 @@ namespace VLC.Services.RunTime
                 case VLCPage.MainPageNetwork:
                     if (App.ApplicationFrame.CurrentSourcePageType != typeof(HomePage))
                         App.ApplicationFrame.Navigate(typeof(HomePage));
-
                     HomePageNavigated?.Invoke(null, desiredPage);
                     break;
                 case VLCPage.AlbumPage:
-                    setFlyoutContent(typeof(AlbumPageBase));
+                    setFlyoutContent(desiredPage, typeof(AlbumPageBase));
                     break;
                 case VLCPage.ArtistPage:
                     if (Locator.SettingsVM.MediaCenterMode || CurrentPage != VLCPage.MainPageMusic || Locator.MusicLibraryVM.MusicView != Model.Music.MusicView.Artists
@@ -304,7 +300,7 @@ namespace VLC.Services.RunTime
                     }
                     break;
                 case VLCPage.SearchPage:
-                    setFlyoutContent(typeof(SearchPage));
+                    setFlyoutContent(desiredPage, typeof(SearchPage));
                     break;
                 case VLCPage.ArtistInfoView:
                     if (CurrentPage == VLCPage.ArtistPage)
@@ -321,13 +317,13 @@ namespace VLC.Services.RunTime
                 case VLCPage.SettingsPageUI:
                 case VLCPage.SettingsPageMusic:
                 case VLCPage.SettingsPageVideo:
-                    setFlyoutContent(typeof(SettingsPage));
+                    setFlyoutContent(desiredPage, typeof(SettingsPage));
                     break;
                 case VLCPage.PlaylistPage:
-                    setFlyoutContent(typeof(PlaylistPage));
+                    setFlyoutContent(desiredPage, typeof(PlaylistPage));
                     break;
                 case VLCPage.CurrentPlaylistPage:
-                    setFlyoutContent(typeof(MusicPlaylistPage));
+                    setFlyoutContent(desiredPage, typeof(MusicPlaylistPage));
                     break;
                 case VLCPage.VideoPlayerPage:
                     App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
@@ -336,40 +332,40 @@ namespace VLC.Services.RunTime
                     App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
                     break;
                 case VLCPage.SpecialThanksPage:
-                    setFlyoutContent(typeof(SpecialThanks));
+                    setFlyoutContent(desiredPage, typeof(SpecialThanks));
                     break;
                 case VLCPage.ArtistShowsPage:
-                    setFlyoutContent(typeof(ArtistShowsPage));
+                    setFlyoutContent(desiredPage, typeof(ArtistShowsPage));
                     break;
                 case VLCPage.AddAlbumToPlaylistDialog:
-                    setFlyoutContent(typeof(AddAlbumToPlaylistBase));
+                    setFlyoutContent(desiredPage, typeof(AddAlbumToPlaylistBase));
                     break;
                 case VLCPage.CreateNewPlaylistDialog:
-                    setFlyoutContent(typeof(CreateNewPlaylist));
+                    setFlyoutContent(desiredPage, typeof(CreateNewPlaylist));
                     break;
                 case VLCPage.LicensePage:
-                    setFlyoutContent(typeof(LicensePage));
+                    setFlyoutContent(desiredPage, typeof(LicensePage));
                     break;
                 case VLCPage.MiniPlayerView:
                     App.ApplicationFrame.Navigate(typeof(MiniPlayerWindow));
                     break;
                 case VLCPage.VideoPlayerOptionsPanel:
-                    setFlyoutContent(typeof(VideoPlayerOptionsPanel));
+                    setFlyoutContent(desiredPage, typeof(VideoPlayerOptionsPanel));
                     break;
                 case VLCPage.TrackEditorPage:
-                    setFlyoutContent(typeof(TrackEditorPage));
+                    setFlyoutContent(desiredPage, typeof(TrackEditorPage));
                     break;
                 case VLCPage.FeedbackPage:
-                    setFlyoutContent(typeof(FeedbackPage));
+                    setFlyoutContent(desiredPage, typeof(FeedbackPage));
                     break;
                 case VLCPage.TvShowView:
-                    setFlyoutContent(typeof(ShowEpisodesView));
+                    setFlyoutContent(desiredPage, typeof(ShowEpisodesView));
                     break;
                 case VLCPage.AboutAppView:
-                    setFlyoutContent(typeof(AboutPage));
+                    setFlyoutContent(desiredPage, typeof(AboutPage));
                     break;
                 case VLCPage.ExternalStorageInclude:
-                    setFlyoutContent(typeof(ExternalStorageIncludePage));
+                    setFlyoutContent(desiredPage, typeof(ExternalStorageIncludePage));
                     break;
                 default:
                     break;
@@ -377,17 +373,17 @@ namespace VLC.Services.RunTime
 
             if (App.SplitShell.IsFlyoutOpen
                 && !IsFlyout(desiredPage)
-                // Do not hide the current flyout if there was no page behind.
                 && previousSourcePageType != null)
                 App.SplitShell.HideFlyout();
         }
 
-        private void setFlyoutContent(Type t)
+        private void setFlyoutContent(VLCPage desiredPage, Type t)
         {
             // Do not switch the current flyout if it is modal.
             if (App.SplitShell.IsCurrentFlyoutModal())
                 return;
 
+            currentFlyout = desiredPage;
             App.SplitShell.FlyoutContent = t;
         }
 
