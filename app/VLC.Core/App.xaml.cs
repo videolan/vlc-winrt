@@ -240,7 +240,7 @@ namespace VLC
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (Gamepad.Gamepads.Any())
+                if (Gamepad.Gamepads.Any() || DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
                 {
                     Locator.SettingsVM.MediaCenterMode = true;
                     Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
