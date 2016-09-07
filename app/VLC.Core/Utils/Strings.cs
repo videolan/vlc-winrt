@@ -386,6 +386,7 @@ namespace VLC.Utils
         public static string SelectContentToCopy => _resourcesLoader.GetString(nameof(SelectContentToCopy));
         public static string DoNothing => _resourcesLoader.GetString(nameof(DoNothing));
         public static string AskMe => _resourcesLoader.GetString(nameof(AskMe));
+        public static string RememberChoice => _resourcesLoader.GetString(nameof(RememberChoice));
 
         public Strings()
         {

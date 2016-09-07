@@ -26,6 +26,16 @@ namespace VLC.UI.UWP.Views.VariousPages
                 await Locator.ExternalDeviceService.AskExternalDeviceIndexing();
             else if (Select.IsChecked == true)
                 await Locator.ExternalDeviceService.AskContentToCopy();
+
+            if (Remember.IsChecked == true)
+            {
+                if (Index.IsChecked == true)
+                    Locator.SettingsVM.ExternalDeviceMode = ExternalDeviceMode.IndexMedias;
+                else if (Select.IsChecked == true)
+                    Locator.SettingsVM.ExternalDeviceMode = ExternalDeviceMode.SelectMedias;
+                else if (DoNothing.IsChecked == true)
+                    Locator.SettingsVM.ExternalDeviceMode = ExternalDeviceMode.DoNothing;
+            }
         }
 
         public bool ModalMode

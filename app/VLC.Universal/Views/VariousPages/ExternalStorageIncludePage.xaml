@@ -14,8 +14,10 @@
         <StackPanel>
             <RadioButton x:Name="Index" Content="{Binding Source={StaticResource Strings}, Path=IndexExternalStorage}" IsChecked="True" />
             <RadioButton x:Name="Select" Content="{Binding Source={StaticResource Strings}, Path=SelectContentToCopy}" />
-            <RadioButton Content="{Binding Source={StaticResource Strings}, Path=DoNothing}" />
+            <RadioButton x:Name="DoNothing" Content="{Binding Source={StaticResource Strings}, Path=DoNothing}" />
         </StackPanel>
+
+        <CheckBox x:Name="Remember" Content="{Binding Source={StaticResource Strings}, Path=RememberChoice}" IsChecked="True" />
 
         <Grid>
             <Grid.ColumnDefinitions>

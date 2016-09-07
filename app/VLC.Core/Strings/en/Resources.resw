@@ -759,6 +759,9 @@
   <data name="ExternalStorage" xml:space="preserve">
     <value>external storage</value>
   </data>
+  <data name="RememberChoice" xml:space="preserve">
+    <value>Remember my choice.</value>
+  </data>
   <data name="WhatToDoWhenExternalStorage" xml:space="preserve">
     <value>What should VLC do when an external storage device has been detected?</value>
   </data>
