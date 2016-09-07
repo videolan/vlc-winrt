@@ -12,9 +12,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VLC.Model;
+using VLC.Model.FileExplorer;
 using VLC.Utils;
 using VLC.ViewModels;
+using VLC.ViewModels.Others.VlcExplorer;
 using Windows.Devices.Enumeration;
+using Windows.Storage;
 using Windows.UI.Core;
 
 namespace VLC.Services.RunTime
@@ -62,17 +65,51 @@ namespace VLC.Services.RunTime
 
         private async void DeviceAdded(DeviceWatcher sender, DeviceInformation args)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.High,
-                () => Locator.NavigationService.Go(VLCPage.ExternalStorageInclude));
+            switch (Locator.SettingsVM.ExternalDeviceMode)
+            {
+                case ExternalDeviceMode.AskMe:
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.High,
+                        () => Locator.NavigationService.Go(VLCPage.ExternalStorageInclude));
+                    break;
+                case ExternalDeviceMode.IndexMedias:
+                    await AskExternalDeviceIndexing();
+                    break;
+                case ExternalDeviceMode.SelectMedias:
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
+                    {
+                        await AskContentToCopy();
+                    });
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
 
             if (ExternalDeviceAdded != null)
                 await ExternalDeviceAdded(sender, args.Id);
         }
 
-        public async void AskExternalDeviceIndexing()
+        public async Task AskExternalDeviceIndexing()
         {
             if (MustIndexExternalDevice != null)
                 await MustIndexExternalDevice();
+        }
+
+        public async Task AskContentToCopy()
+        {
+            // Display the folder of the first external storage device detected.
+            Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == VLCPage.MainPageFileExplorer);
+
+            var devices = KnownFolders.RemovableDevices;
+            IReadOnlyList<StorageFolder> rootFolders = await devices.GetFoldersAsync();
+
+            var rootFolder = rootFolders.First();
+            if (rootFolder == null)
+                return;
+
+            var storageItem = new VLCStorageFolder(rootFolder);
+            Locator.FileExplorerVM.CurrentStorageVM = new LocalFileExplorerViewModel(
+                rootFolder, RootFolderType.ExternalDevice);
+            await Locator.FileExplorerVM.CurrentStorageVM.GetFiles();
         }
 
         private async void DeviceRemoved(DeviceWatcher sender, DeviceInformationUpdate args)
