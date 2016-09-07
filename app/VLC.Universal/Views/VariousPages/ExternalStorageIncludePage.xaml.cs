@@ -23,24 +23,9 @@ namespace VLC.UI.UWP.Views.VariousPages
             Locator.NavigationService.GoBack_HideFlyout();
 
             if (Index.IsChecked == true)
-                Locator.ExternalDeviceService.AskExternalDeviceIndexing();
+                await Locator.ExternalDeviceService.AskExternalDeviceIndexing();
             else if (Select.IsChecked == true)
-            {
-                // Display the folder of the first external storage device detected.
-                Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == VLCPage.MainPageFileExplorer);
-
-                var devices = KnownFolders.RemovableDevices;
-                IReadOnlyList<StorageFolder> rootFolders = await devices.GetFoldersAsync();
-
-                var rootFolder = rootFolders.First();
-                if (rootFolder == null)
-                    return;
-
-                var storageItem = new VLCStorageFolder(rootFolder);
-                Locator.FileExplorerVM.CurrentStorageVM = new LocalFileExplorerViewModel(
-                    rootFolder, RootFolderType.ExternalDevice);
-                await Locator.FileExplorerVM.CurrentStorageVM.GetFiles();
-            }
+                await Locator.ExternalDeviceService.AskContentToCopy();
         }
 
         public bool ModalMode
