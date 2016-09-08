@@ -2417,36 +2417,6 @@
                 Value="{StaticResource MainColor}" />
     </Style>
 
-    <MenuFlyout x:Key="AlbumCollectionBaseFlyout">
-        <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PlayAll}"
-                        Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllSongsCommand}"
-                        Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                        Tag="{StaticResource PlaySymbol}" />
-        <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Shuffle}"
-                        Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}"
-                        Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                        Tag="{StaticResource ShuffleSymbol}" />
-        <MenuFlyoutSeparator />
-        <MenuFlyoutSubItem Text="Order by"
-                           FontSize="13">
-            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OrderByArtist}"
-                            Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                            Tag="{StaticResource BuddySymbol}"
-                            Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.SetAlbumViewOrder}"
-                            CommandParameter="OrderByArtist" />
-            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OrderByAlbum}"
-                            Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                            Tag="{StaticResource AlbumDiscSymbol}"
-                            Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.SetAlbumViewOrder}"
-                            CommandParameter="OrderByAlbum" />
-            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OrderByDate}"
-                            Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                            Tag="{StaticResource CalendarSymbol}"
-                            Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.SetAlbumViewOrder}"
-                            CommandParameter="OrderByDate" />
-        </MenuFlyoutSubItem>
-    </MenuFlyout>
-
     <!-- LISTVIEW CONTAINERS -->
     <Style x:Key="ListViewItemContainerStyleNoSelectCheck"
            TargetType="ListViewItem">
