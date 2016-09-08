@@ -11,12 +11,12 @@ using VLC.UI.Views.UserControls.Flyouts;
 
 namespace VLC.UI.Views.MainPages.MusicPanes
 {
-    public sealed partial class SongsPivotItem : Page
+    public sealed partial class SongCollectionBase : Page
     {
         private bool isWide;
         private ListViewItem focussedListViewItem;
 
-        public SongsPivotItem()
+        public SongCollectionBase()
         {
             this.InitializeComponent();
         }

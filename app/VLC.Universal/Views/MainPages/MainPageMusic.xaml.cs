@@ -87,8 +87,8 @@ namespace VLC.UI.Views.MainPages
                         MainPageMusicContentPresenter.Content = new ArtistCollectionBase();
                     break;
                 case MusicView.Songs:
-                    if (!(MainPageMusicContentPresenter.Content is SongsPivotItem))
-                        MainPageMusicContentPresenter.Content = new SongsPivotItem();
+                    if (!(MainPageMusicContentPresenter.Content is SongCollectionBase))
+                        MainPageMusicContentPresenter.Content = new SongCollectionBase();
                     break;
                 case MusicView.Playlists:
                     if (!(MainPageMusicContentPresenter.Content is PlaylistCollectionBase))

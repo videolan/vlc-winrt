@@ -143,8 +143,8 @@
     <Compile Include="Views\MainPages\MusicPanes\PlaylistCollectionBase.xaml.cs">
       <DependentUpon>PlaylistCollectionBase.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPages\MusicPanes\SongsPivotItem.xaml.cs">
-      <DependentUpon>SongsPivotItem.xaml</DependentUpon>
+    <Compile Include="Views\MainPages\MusicPanes\SongCollectionBase.xaml.cs">
+      <DependentUpon>SongCollectionBase.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MusicPages\AlbumPageControls\AlbumPageBase.xaml.cs">
       <DependentUpon>AlbumPageBase.xaml</DependentUpon>
@@ -1250,7 +1250,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MainPages\MusicPanes\SongsPivotItem.xaml">
+    <Page Include="Views\MainPages\MusicPanes\SongCollectionBase.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
