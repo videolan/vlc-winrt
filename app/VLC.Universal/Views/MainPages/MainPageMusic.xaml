@@ -39,6 +39,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             </Grid.ColumnDefinitions>
             <AppBarButton x:Name="HamburgerButton"
@@ -95,8 +96,49 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <musicPanesControls:AlbumsCollectionButtons Grid.Column="1"
+            <musicPanesControls:AlbumsCollectionButtons Grid.Column="2"
                                                         Visibility="{Binding AlbumsCollectionsButtonVisible}" />
+
+            <AppBarButton
+                      Grid.Column="3"
+                      Visibility="{Binding PlayArtistButtonVisible}"
+                      Flyout="{StaticResource ArtistCollectionBaseFlyout}">
+                <AppBarButton.Content>
+                    <FontIcon Glyph="{StaticResource PlaySymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Content>
+            </AppBarButton>
+
+            <AppBarButton
+                      Grid.Column="3"
+                      Visibility="{Binding PlayAlbumButtonVisible}"
+                      Flyout="{StaticResource AlbumCollectionBaseFlyout}">
+                <AppBarButton.Content>
+                    <FontIcon Glyph="{StaticResource PlaySymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Content>
+            </AppBarButton>
+
+            <AppBarButton
+                      Grid.Column="3"
+                      Visibility="{Binding PlaySongButtonVisible}"
+                      Flyout="{StaticResource SongCollectionBaseFlyout}">
+                <AppBarButton.Content>
+                    <FontIcon Glyph="{StaticResource PlaySymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Content>
+            </AppBarButton>
+
+            <AppBarButton
+                      Grid.Column="3"
+                      Visibility="{Binding AddPlaylistButtonVisible}"
+                      Command="{Binding ShowCreateNewPlaylistPaneCommand}">
+                <AppBarButton.Content>
+                    <FontIcon Glyph="{StaticResource AddSymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Content>
+            </AppBarButton>
+
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

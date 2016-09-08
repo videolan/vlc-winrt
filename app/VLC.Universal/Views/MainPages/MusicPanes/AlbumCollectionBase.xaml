@@ -106,6 +106,7 @@
                       Style="{StaticResource CircleButtonStyle}"
                       VerticalAlignment="Bottom"
                       HorizontalAlignment="Right"
+                      Visibility="{Binding DesktopMode}"
                       Margin="{StaticResource FrameMarginHorizontalPlusFooter}"
                       Flyout="{StaticResource AlbumCollectionBaseFlyout}">
             <AppBarButton.Content>

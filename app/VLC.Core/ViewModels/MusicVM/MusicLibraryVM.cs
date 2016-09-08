@@ -127,10 +127,50 @@ namespace VLC.ViewModels.MusicVM
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(MusicView), (int)value, false);
                 SetProperty(ref _musicView, value);
                 OnPropertyChanged(nameof(AlbumsCollectionsButtonVisible));
+                OnPropertyChanged(nameof(PlayArtistButtonVisible));
+                OnPropertyChanged(nameof(PlayAlbumButtonVisible));
+                OnPropertyChanged(nameof(PlaySongButtonVisible));
+                OnPropertyChanged(nameof(AddPlaylistButtonVisible));
             }
         }
 
         public Visibility AlbumsCollectionsButtonVisible { get { return MusicView == MusicView.Albums ? Visibility.Visible : Visibility.Collapsed; } }
+
+        public Visibility PlayArtistButtonVisible {
+            get {
+                return MusicView == MusicView.Artists && Locator.SettingsVM.MediaCenterMode
+                    ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
+        public Visibility PlayAlbumButtonVisible
+        {
+            get
+            {
+                return MusicView == MusicView.Albums && Locator.SettingsVM.MediaCenterMode
+                    ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
+        public Visibility PlaySongButtonVisible
+        {
+            get
+            {
+                return MusicView == MusicView.Songs && Locator.SettingsVM.MediaCenterMode
+                    ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
+        public Visibility AddPlaylistButtonVisible
+        {
+            get
+            {
+                return MusicView == MusicView.Playlists && Locator.SettingsVM.MediaCenterMode
+                    ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
+        public bool DesktopMode { get { return !Locator.SettingsVM.MediaCenterMode; } }
 
         public Visibility MusicLibraryEmptyVisible => IsMusicLibraryEmpty ? Visibility.Visible : Visibility.Collapsed;
 
