@@ -243,6 +243,7 @@ namespace VLC.Services.RunTime
 
         public void GoBack_HideFlyout()
         {
+            currentFlyout = VLCPage.None;
             App.SplitShell.HideFlyout();
         }
 
@@ -257,7 +258,7 @@ namespace VLC.Services.RunTime
             frame.Navigate(frame.Content.GetType());
             frame.GoBack();
 
-            if (currentFlyout != null && currentFlyout != VLCPage.None)
+            if (currentFlyout != VLCPage.None)
             {
                 Go(currentFlyout);
             }
@@ -371,7 +372,7 @@ namespace VLC.Services.RunTime
 
             if (App.SplitShell.IsFlyoutOpen
                 && !IsFlyout(desiredPage))
-                App.SplitShell.HideFlyout();
+                GoBack_HideFlyout();
         }
 
         private void setFlyoutContent(VLCPage desiredPage, Type t)
