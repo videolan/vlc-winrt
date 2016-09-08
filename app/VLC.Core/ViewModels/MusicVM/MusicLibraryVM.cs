@@ -127,27 +127,10 @@ namespace VLC.ViewModels.MusicVM
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(MusicView), (int)value, false);
                 SetProperty(ref _musicView, value);
                 OnPropertyChanged(nameof(AlbumsCollectionsButtonVisible));
-                OnPropertyChanged(nameof(ShuffleButtonVisible));
-                OnPropertyChanged(nameof(PlaylistButtonsVisible));
             }
         }
 
         public Visibility AlbumsCollectionsButtonVisible { get { return MusicView == MusicView.Albums ? Visibility.Visible : Visibility.Collapsed; } }
-        public Visibility ShuffleButtonVisible
-        {
-            get
-            {
-                return (MusicView == MusicView.Albums || MusicView == MusicView.Artists || MusicView == MusicView.Songs) ? Visibility.Visible : Visibility.Collapsed;
-            }
-        }
-
-        public Visibility PlaylistButtonsVisible
-        {
-            get
-            {
-                return MusicView == MusicView.Playlists ? Visibility.Visible : Visibility.Collapsed;
-            }
-        }
 
         public Visibility MusicLibraryEmptyVisible => IsMusicLibraryEmpty ? Visibility.Visible : Visibility.Collapsed;
 
