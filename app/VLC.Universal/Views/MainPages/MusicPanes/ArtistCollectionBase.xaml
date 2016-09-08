@@ -112,23 +112,12 @@
                           Style="{StaticResource CircleButtonStyle}"
                           VerticalAlignment="Bottom"
                           HorizontalAlignment="Right"
-                          Margin="{StaticResource FrameMarginHorizontalPlusFooter}">
+                          Margin="{StaticResource FrameMarginHorizontalPlusFooter}"
+                          Flyout="{StaticResource ArtistCollectionBaseFlyout}">
                 <AppBarButton.Content>
                     <FontIcon Glyph="{StaticResource PlaySymbol}"
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Content>
-                <AppBarButton.Flyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PlayAll}"
-                                        Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllSongsCommand}"
-                                        Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                                        Tag="{StaticResource PlaySymbol}"/>
-                        <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Shuffle}"
-                                        Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}" 
-                                        Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                                        Tag="{StaticResource ShuffleSymbol}"/>
-                    </MenuFlyout>
-                </AppBarButton.Flyout>
             </AppBarButton>
         </Grid>
 
