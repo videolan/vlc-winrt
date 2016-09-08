@@ -80,6 +80,8 @@ namespace VLC.Services.RunTime
                         await AskContentToCopy();
                     });
                     break;
+                case ExternalDeviceMode.DoNothing:
+                    break;
                 default:
                     throw new NotImplementedException();
             }
