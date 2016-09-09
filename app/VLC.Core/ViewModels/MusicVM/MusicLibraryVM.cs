@@ -30,6 +30,7 @@ using VLC.Commands.MusicPlayer;
 using Windows.UI.Xaml;
 using VLC.Model.Library;
 using VLC.Commands.MediaLibrary;
+using VLC.Commands.Navigation;
 
 namespace VLC.ViewModels.MusicVM
 {
@@ -255,6 +256,7 @@ namespace VLC.ViewModels.MusicVM
 
         public SetAlbumViewOrderCommand SetAlbumViewOrder { get; private set; } = new SetAlbumViewOrderCommand();
         public DeleteFromLibraryCommand DeleteFromLibraryCommand { get; private set; } = new DeleteFromLibraryCommand();
+        public ChangeMusicViewCommand ChangeMusicViewCommand { get; private set; } = new ChangeMusicViewCommand();
         public ArtistItem FocusOnAnArtist // Music Flow recommandation
         {
             get { return _focusOnAnArtist; }

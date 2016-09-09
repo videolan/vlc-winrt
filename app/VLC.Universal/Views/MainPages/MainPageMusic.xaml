@@ -5,6 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:musicPanesControls="using:VLC.UI.Views.MainPages.MusicPanes.MusicPanesControls"
       xmlns:userControls="using:VLC.UI.Views.UserControls"
+      xmlns:triggers="using:WinRT.Triggers"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="600"
@@ -65,13 +66,18 @@
                       Grid.ColumnSpan="3"
                       x:Name="PanelsListView"
                       ItemsSource="{Binding MusicViewCollection}"
-                      SelectedItem="{Binding MusicView, Mode=TwoWay}"
                       IsSwipeEnabled="False"
-                      IsItemClickEnabled="False"
-                      SelectionMode="Single"
+                      IsItemClickEnabled="True"
+                      SelectionMode="None"
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled"
                       VerticalAlignment="Bottom">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding ChangeMusicViewCommand}"
+                            PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsStackPanel Orientation="Horizontal"
