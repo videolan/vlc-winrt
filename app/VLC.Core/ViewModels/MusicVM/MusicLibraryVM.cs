@@ -132,8 +132,10 @@ namespace VLC.ViewModels.MusicVM
                 OnPropertyChanged(nameof(PlayAlbumButtonVisible));
                 OnPropertyChanged(nameof(PlaySongButtonVisible));
                 OnPropertyChanged(nameof(AddPlaylistButtonVisible));
+                MusicViewSet?.Invoke(value);
             }
         }
+        public event Action<MusicView> MusicViewSet;
 
         public Visibility AlbumsCollectionsButtonVisible { get { return MusicView == MusicView.Albums ? Visibility.Visible : Visibility.Collapsed; } }
 

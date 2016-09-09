@@ -64,4 +64,8 @@
         <userControls:VideoViewItemTemplate />
     </DataTemplate>
 
+    <DataTemplate x:Key="MusicViewItemTemplate">
+        <userControls:MusicViewItemTemplate />
+    </DataTemplate>
+
 </ResourceDictionary>
