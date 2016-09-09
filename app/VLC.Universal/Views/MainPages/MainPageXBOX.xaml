@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
+      xmlns:userControls="using:VLC.UI.Views.UserControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
@@ -15,6 +16,7 @@
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1"
@@ -84,5 +86,8 @@
                 </AppBarButton.Icon>
             </AppBarButton>
         </Grid>
+
+        <userControls:CommandBarXbox
+            Grid.Row="6" />
     </Grid>
 </Page>
