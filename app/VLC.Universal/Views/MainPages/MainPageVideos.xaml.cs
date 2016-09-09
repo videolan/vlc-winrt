@@ -68,7 +68,6 @@ namespace VLC.UI.Views.MainPages
 
         void Switch(VideoView view)
         {
-            PanelsListView.SelectedItem = view;
             switch (view)
             {
                 case VideoView.Videos:
