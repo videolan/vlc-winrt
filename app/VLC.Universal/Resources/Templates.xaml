@@ -59,4 +59,9 @@
     <DataTemplate x:Key="PivotHeaderDataTemplate">
         <userControls:PivotHeaderControl Panel="{Binding}"/>
     </DataTemplate>
+
+    <DataTemplate x:Key="VideoViewItemTemplate">
+        <userControls:VideoViewItemTemplate />
+    </DataTemplate>
+
 </ResourceDictionary>

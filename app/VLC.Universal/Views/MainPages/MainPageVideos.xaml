@@ -63,6 +63,7 @@
                       IsSwipeEnabled="False"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
+                      ItemTemplate="{StaticResource VideoViewItemTemplate}"
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled"
                       SingleSelectionFollowsFocus="True"
@@ -85,16 +86,6 @@
                         <RepositionThemeTransition />
                     </TransitionCollection>
                 </ListView.ItemContainerTransitions>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock x:Name="Title"
-                                   Text="{Binding Converter={StaticResource VideoViewStringifyConverter}}"
-                                   VerticalAlignment="Center"
-                                   FontSize="16"
-                                   TextTrimming="CharacterEllipsis"
-                                   TextWrapping="NoWrap" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
             </ListView>
         </Grid>
     </Grid>

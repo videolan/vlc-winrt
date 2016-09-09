@@ -229,6 +229,9 @@
     <Compile Include="Views\UserControls\MusicControls\Equalizer.xaml.cs">
       <DependentUpon>Equalizer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\VideoViewItemTemplate.xaml.cs">
+      <DependentUpon>VideoViewItemTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\PivotHeaderControl.xaml.cs">
       <DependentUpon>PivotHeaderControl.xaml</DependentUpon>
     </Compile>
@@ -1361,6 +1364,10 @@
     <Page Include="Views\UserControls\MusicControls\Equalizer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\VideoViewItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\PivotHeaderControl.xaml">
       <Generator>MSBuild:Compile</Generator>
