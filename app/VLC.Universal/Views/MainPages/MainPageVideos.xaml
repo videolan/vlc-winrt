@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:videoPanesControls="using:VLC.UI.Views.MainPages.MainVideoControls.VideoPanesControls"
+      xmlns:triggers="using:WinRT.Triggers"
       mc:Ignorable="d"
       d:DesignHeight="768"
       d:DesignWidth="400"
@@ -60,13 +61,18 @@
                       x:Name="PanelsListView"
                       ItemsSource="{Binding VideoViewCollection}"
                       IsSwipeEnabled="False"
-                      IsItemClickEnabled="False"
-                      SelectionMode="Single"
+                      IsItemClickEnabled="True"
+                      SelectionMode="None"
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                      SelectionChanged="PanelsListView_SelectionChanged"
                       SingleSelectionFollowsFocus="True"
                       VerticalAlignment="Bottom">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding ChangeVideoViewCommand}"
+                            PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsStackPanel Orientation="Horizontal"

@@ -85,13 +85,5 @@ namespace VLC.UI.Views.MainPages
                     break;
             }
         }
-
-        private void PanelsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.AddedItems == null || e.AddedItems.Count == 0)
-                return;
-            var view = (VideoView)e.AddedItems[0];
-            Locator.VideoLibraryVM.VideoView = view;
-        }
     }
 }
