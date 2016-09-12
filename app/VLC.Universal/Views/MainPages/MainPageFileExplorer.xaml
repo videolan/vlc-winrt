@@ -29,6 +29,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <AppBarButton x:Name="HamburgerButton"
                           Grid.Column="0"
@@ -65,6 +66,16 @@
                     <FontIcon Glyph="{StaticResource FileSymbol}"
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton
+                      Grid.Column="4"
+                      Visibility="{Binding PlayFolderButtonVisible}"
+                      Command="{Binding CurrentStorageVM.PlayFolderCommand}"
+                      CommandParameter="{Binding CurrentStorageVM.StorageItems}">
+                <AppBarButton.Content>
+                    <FontIcon Glyph="{StaticResource PlaySymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Content>
             </AppBarButton>
             <TextBlock x:Name="CurrentFolder"
                        Grid.Column="2"
@@ -108,6 +119,7 @@
                           VerticalAlignment="Bottom"
                           HorizontalAlignment="Right"
                           Margin="{StaticResource FrameMarginHorizontalPlusFooter}"
+                          Visibility="{Binding DesktopMode}"
                           Command="{Binding CurrentStorageVM.PlayFolderCommand}"
                           CommandParameter="{Binding CurrentStorageVM.StorageItems}">
                 <AppBarButton.Content>

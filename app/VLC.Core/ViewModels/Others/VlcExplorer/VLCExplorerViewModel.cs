@@ -89,9 +89,24 @@ namespace VLC.ViewModels.RemovableDevicesVM
         public Visibility FileExplorerVisibility
         {
             get { return _fileExplorerVisibility; }
-            set { SetProperty(ref _fileExplorerVisibility, value); }
+            set {
+                SetProperty(ref _fileExplorerVisibility, value);
+                OnPropertyChanged(nameof(PlayFolderButtonVisible));
+            }
         }
         #endregion
+
+        public Visibility PlayFolderButtonVisible
+        {
+            get
+            {
+                return FileExplorerVisibility == Visibility.Visible
+                    && Locator.SettingsVM.MediaCenterMode
+                    ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
+        public bool DesktopMode { get { return !Locator.SettingsVM.MediaCenterMode; } }
 
         public async Task OnNavigatedTo()
         {
