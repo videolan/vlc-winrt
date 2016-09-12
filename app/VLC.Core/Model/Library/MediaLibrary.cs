@@ -49,7 +49,7 @@ namespace VLC.Model.Library
             {
                 if (!StorageApplicationPermissions.FutureAccessList.CheckAccess(folder))
                     StorageApplicationPermissions.FutureAccessList.Add(folder);
-                await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder));
+                await Task.Run(async () => await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder)));
             }
         }
 
@@ -266,30 +266,33 @@ namespace VLC.Model.Library
 
         async Task PerformMediaLibraryIndexing()
         {
-            try
+            await Task.Run(async () =>
             {
-                StorageFolder folder = await FileUtils.GetLocalStorageMediaFolder();
-                await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder));
+                try
+                {
+                    StorageFolder folder = await FileUtils.GetLocalStorageMediaFolder();
+                    await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder));
 
-                await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.VideosLibrary));
+                    await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.VideosLibrary));
 
-                await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.MusicLibrary));
+                    await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.MusicLibrary));
 
-                await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.CameraRoll), true);
+                    await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.CameraRoll), true);
 
-                // Cortana gets all those artists, albums, songs names
-                var artists = LoadArtists(null);
-                if (artists != null)
-                    await CortanaHelper.SetPhraseList("artistName", artists.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
+                    // Cortana gets all those artists, albums, songs names
+                    var artists = LoadArtists(null);
+                    if (artists != null)
+                        await CortanaHelper.SetPhraseList("artistName", artists.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
 
-                var albums = await LoadAlbums(null);
-                if (albums != null)
-                    await CortanaHelper.SetPhraseList("albumName", albums.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
-            }
-            catch (Exception e)
-            {
-                LogHelper.Log(StringsHelper.ExceptionToString(e));
-            }
+                    var albums = await LoadAlbums(null);
+                    if (albums != null)
+                        await CortanaHelper.SetPhraseList("albumName", albums.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
+                }
+                catch (Exception e)
+                {
+                    LogHelper.Log(StringsHelper.ExceptionToString(e));
+                }
+            });
         }
 
         async Task DiscoverMediaItems(IReadOnlyList<StorageFile> files, bool isCameraRoll = false)
