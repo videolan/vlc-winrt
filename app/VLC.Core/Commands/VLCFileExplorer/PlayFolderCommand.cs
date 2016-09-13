@@ -48,7 +48,8 @@ namespace VLC.Commands.VLCFileExplorer
                 }
 
             }
-            await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(playlist, true, true, playlist[0]);
+            if (playlist.Count > 0)
+                await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(playlist, true, true, playlist[0]);
         }
     }
 }
