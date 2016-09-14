@@ -71,7 +71,6 @@ namespace VLC.ViewModels.MusicVM
                     Locator.MediaPlaybackViewModel.PlaybackService.SetCurrentMediaPosition(0); return null;
                 }
                 var media = Locator.MediaPlaybackViewModel.CurrentMedia;
-                OnPropertyChanged(nameof(CurrentMediaTitle));
                 return (media is TrackItem) ? (TrackItem)media : null;
             }
         }
@@ -124,6 +123,7 @@ namespace VLC.ViewModels.MusicVM
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
+                OnPropertyChanged(nameof(CurrentMediaTitle));
                 OnPropertyChanged(nameof(IsMiniPlayerVisible));
                 OnPropertyChanged(nameof(CurrentTrack));
             });
