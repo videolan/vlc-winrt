@@ -17,20 +17,14 @@ namespace VLC.UI.Views.UserControls
         #region init
         private void CommandBarXbox_Loaded(object sender, RoutedEventArgs e)
         {
-            UpdatePlayerVisibility();
             Locator.MusicPlayerVM.PropertyChanged += MusicPlayerVM_PropertyChanged;
-            this.SizeChanged += CommandBarBottom_SizeChanged;
-            App.SplitShell.ContentSizeChanged += SplitShell_ContentSizeChanged;
+            this.SizeChanged += CommandBarXbox_SizeChanged;
             Responsive();
+            this.MiniPlayerVisibility = Locator.MusicPlayerVM.IsMiniPlayerVisible;
             UpdatePlayerVisibility();
         }
 
-        private void CommandBarBottom_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Responsive();
-        }
-
-        private void SplitShell_ContentSizeChanged(double newWidth)
+        private void CommandBarXbox_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             Responsive();
         }
@@ -65,18 +59,9 @@ namespace VLC.UI.Views.UserControls
             NowPlayingArtistGrid.Visibility =
                 PlayPreviousButton.Visibility =
                 PlayNextButton.Visibility =
+                ShuffleButton.Visibility =
+                RepeatButton.Visibility =
                 MiniPlayerVisibility;
-
-            var shuffleButton = FindName(nameof(ShuffleButton)) as FrameworkElement;
-            if (shuffleButton != null)
-                shuffleButton.Visibility = MiniPlayerVisibility;
-
-            var repeatButton = FindName(nameof(RepeatButton)) as FrameworkElement;
-            if (repeatButton != null)
-                repeatButton.Visibility = MiniPlayerVisibility;
-
-            if (App.SplitShell.FooterVisibility != AppBarClosedDisplayMode.Hidden)
-                App.SplitShell.FooterVisibility = MiniPlayerVisibility == Visibility.Visible ? AppBarClosedDisplayMode.Compact : AppBarClosedDisplayMode.Minimal;
         }
 
         #endregion
@@ -98,8 +83,6 @@ namespace VLC.UI.Views.UserControls
             {
                 TrackNameTextBlock.Visibility = ArtistNameTextBlock.Visibility = Visibility.Visible;
             }
-
-            UpdatePlayerVisibility();
         }
 
         private async void PlayButton_RightTapped(object sender, RightTappedRoutedEventArgs e)
