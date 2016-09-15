@@ -1,7 +1,7 @@
-From 430c5c1f3d9d1df7620eb9063d93990f015847c1 Mon Sep 17 00:00:00 2001
+From 20e6c78ad589688cfab3b1ed88429c9754c521a3 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Wed, 18 May 2016 20:28:19 +0200
-Subject: [PATCH 01/11] modules: bank: Save the cache if it was empty
+Subject: [PATCH 01/10] modules: bank: Save the cache if it was empty
 
 This aims at fixing an issue with some libvlc issues, that wouldn't have
 a plugin cache if they don't rely on a VLC player installation (since we
@@ -49,5 +49,5 @@ index 19292e6..4455c94 100644
          case CACHE_RESET:
              CacheSave (p_this, path, bank.cache, bank.i_cache);
 -- 
-2.8.1
+2.9.3
 

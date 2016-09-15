@@ -1,25 +1,25 @@
-From 2cbbbc40929bb53e89d18c208c9319bafe8370dc Mon Sep 17 00:00:00 2001
+From b0d84ef8887b0458981ba505e022a9943057d479 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Feb 2015 11:58:54 +0100
-Subject: [PATCH 02/11] wasapi: Don't fail if the client is already initialized
+Subject: [PATCH 02/10] wasapi: Don't fail if the client is already initialized
 
 ---
  modules/audio_output/wasapi.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/modules/audio_output/wasapi.c b/modules/audio_output/wasapi.c
-index 6cc1416..cbfc547 100644
+index a90d2da..610e384 100644
 --- a/modules/audio_output/wasapi.c
 +++ b/modules/audio_output/wasapi.c
-@@ -447,7 +447,7 @@ static HRESULT Start(aout_stream_t *s, audio_sample_format_t *restrict fmt,
-                                  AOUT_MAX_PREPARE_TIME * 10, 0,
-                                  (hr == S_OK) ? &wf.Format : pwf, sid);
-     CoTaskMemFree(pwf);
+@@ -514,7 +514,7 @@ static HRESULT Start(aout_stream_t *s, audio_sample_format_t *restrict pfmt,
+     hr = IAudioClient_Initialize(sys->client, shared_mode, 0, buffer_duration,
+                                  0, pwf, sid);
+     CoTaskMemFree(pwf_closest);
 -    if (FAILED(hr))
 +    if (FAILED(hr) && hr != AUDCLNT_E_ALREADY_INITIALIZED)
      {
          msg_Err(s, "cannot initialize audio client (error 0x%lx)", hr);
          goto error;
 -- 
-2.8.1
+2.9.3
 
