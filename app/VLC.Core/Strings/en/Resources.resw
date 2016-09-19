@@ -316,7 +316,7 @@
     <value>VLC will only search songs that are in your music library. You can add folders to your library here</value>
   </data>
   <data name="MusicSettings" xml:space="preserve">
-    <value>music settings</value>
+    <value>Music Settings</value>
   </data>
   <data name="MusicShows" xml:space="preserve">
     <value>music shows</value>
@@ -589,7 +589,7 @@
     <value>upcoming shows</value>
   </data>
   <data name="UserInterface" xml:space="preserve">
-    <value>user interface</value>
+    <value>User Interface</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>username</value>
@@ -613,7 +613,7 @@
     <value>videos</value>
   </data>
   <data name="VideoSettings" xml:space="preserve">
-    <value>video settings</value>
+    <value>Video Settings</value>
   </data>
   <data name="ViewAlbum" xml:space="preserve">
     <value>view album</value>
