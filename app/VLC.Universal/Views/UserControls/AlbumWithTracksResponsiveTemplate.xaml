@@ -87,7 +87,8 @@
                     Icon="{Binding Key.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                      IsTabStop="True"/>
+                    Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.DesktopMode}"
+                    IsTabStop="True"/>
         <AppBarButton  x:Name="FavoriteAppBarButton"
                        Grid.Row="1"
                        Grid.Column="6"

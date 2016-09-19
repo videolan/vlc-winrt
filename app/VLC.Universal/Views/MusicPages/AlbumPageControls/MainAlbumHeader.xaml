@@ -116,6 +116,7 @@
                           VerticalAlignment="Center"
                           IsTabStop="True"
                           IsCompact="True"
+                          Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.DesktopMode}"
                           XYFocusUp="{x:Bind ViewArtistButton}" />
             <AppBarButton Grid.Column="6"
                           Icon="{Binding Favorite, Converter={StaticResource FavoriteSymbolConverter}}"

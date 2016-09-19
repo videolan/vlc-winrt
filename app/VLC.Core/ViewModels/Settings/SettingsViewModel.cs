@@ -136,6 +136,7 @@ namespace VLC.ViewModels.Settings
         }
 
         public bool MediaCenterMode { get; set; }
+        public bool DesktopMode { get { return !MediaCenterMode; } }
 
         public static ApplicationTheme GetApplicationTheme()
         {
