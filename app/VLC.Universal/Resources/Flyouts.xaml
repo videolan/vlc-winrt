@@ -18,25 +18,6 @@
                         Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}"
                         Style="{StaticResource MenuFlyoutItemIconTemplate}"
                         Tag="{StaticResource ShuffleSymbol}" />
-        <MenuFlyoutSeparator />
-        <MenuFlyoutSubItem Text="Order by"
-                           FontSize="13">
-            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OrderByArtist}"
-                            Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                            Tag="{StaticResource BuddySymbol}"
-                            Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.SetAlbumViewOrder}"
-                            CommandParameter="OrderByArtist" />
-            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OrderByAlbum}"
-                            Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                            Tag="{StaticResource AlbumDiscSymbol}"
-                            Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.SetAlbumViewOrder}"
-                            CommandParameter="OrderByAlbum" />
-            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OrderByDate}"
-                            Style="{StaticResource MenuFlyoutItemIconTemplate}"
-                            Tag="{StaticResource CalendarSymbol}"
-                            Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.SetAlbumViewOrder}"
-                            CommandParameter="OrderByDate" />
-        </MenuFlyoutSubItem>
     </MenuFlyout>
 
     <MenuFlyout x:Key="ArtistCollectionBaseFlyout">
