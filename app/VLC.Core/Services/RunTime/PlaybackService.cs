@@ -137,9 +137,10 @@ namespace VLC.Services.RunTime
 
         public async Task Shuffle()
         {
+            SmartCollection<IMediaItem> unshuffled;
             if (IsShuffled)
             {
-                NonShuffledPlaylist = new SmartCollection<IMediaItem>(Playlist);
+                unshuffled = new SmartCollection<IMediaItem>(Playlist);
                 Random r = new Random();
                 for (int i = 0; i < Playlist.Count; i++)
                 {
@@ -150,13 +151,15 @@ namespace VLC.Services.RunTime
                         Playlist.Move(index1, index2);
                     }
                 }
-                await SetPlaylist(Playlist, true, false, null);
+                var pl = Playlist.ToList<IMediaItem>();
+                await SetPlaylist(pl, true, false, null);
             }
             else
             {
-                Playlist.Clear();
-                await SetPlaylist(NonShuffledPlaylist, true, false, null);
+                unshuffled = new SmartCollection<IMediaItem>(NonShuffledPlaylist);
+                await SetPlaylist(unshuffled, true, false, null);
             }
+            NonShuffledPlaylist = unshuffled;
         }
 
         public async Task<bool> SetPlaylist(IEnumerable<IMediaItem> mediaItems, bool reset, bool play, IMediaItem media)
