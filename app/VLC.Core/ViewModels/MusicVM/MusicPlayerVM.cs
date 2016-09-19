@@ -101,6 +101,7 @@ namespace VLC.ViewModels.MusicVM
                 return Visibility.Collapsed;
             }
         }
+        public bool DesktopMode { get { return !Locator.SettingsVM.MediaCenterMode; } }
         #endregion
 
         public MusicPlayerVM()

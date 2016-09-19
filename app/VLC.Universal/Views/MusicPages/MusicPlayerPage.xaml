@@ -166,6 +166,7 @@
                 <AppBarButton Grid.Column="2"
                               Style="{StaticResource AppBarButtonStyleHuge}"
                               IsCompact="True"
+                              Visibility="{Binding DesktopMode}"
                               Command="{Binding ShareNowPlayingMusicCommand}">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource ShareSymbol}"
