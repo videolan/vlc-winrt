@@ -94,7 +94,6 @@ namespace VLC.Model.Library
         public SmartCollection<PlaylistItem> TrackCollections { get; private set; } = new SmartCollection<PlaylistItem>();
 
         public SmartCollection<VideoItem> Videos { get; private set; } = new SmartCollection<VideoItem>();
-        public SmartCollection<VideoItem> ViewedVideos { get; private set; } = new SmartCollection<VideoItem>();
         public SmartCollection<VideoItem> CameraRoll { get; private set; } = new SmartCollection<VideoItem>();
         public SmartCollection<TvShow> Shows { get; private set; } = new SmartCollection<TvShow>();
 
@@ -217,7 +216,6 @@ namespace VLC.Model.Library
             TrackCollections.Clear();
 
             Videos.Clear();
-            ViewedVideos.Clear();
             CameraRoll.Clear();
             Shows.Clear();
 
@@ -258,7 +256,6 @@ namespace VLC.Model.Library
             videoDatabase.DeleteAll();
 
             Videos?.Clear();
-            ViewedVideos?.Clear();
             CameraRoll?.Clear();
             Shows?.Clear();
             await PerformMediaLibraryIndexing();
@@ -790,34 +787,6 @@ namespace VLC.Model.Library
                 Videos.AddRange(videos.OrderBy(x => x.Name).ToObservable());
             }
             catch { }
-        }
-
-        public async Task LoadViewedVideosFromDatabase()
-        {
-            ViewedVideos?.Clear();
-
-            var result = videoDatabase.GetLastViewed();
-            var orderedResults = result.OrderByDescending(x => x.LastWatched).Take(6);
-            foreach (VideoItem videoVm in orderedResults)
-            {
-                try
-                {
-                    if (videoVm.Path != null)
-                    {
-                        StorageFile file = await StorageFile.GetFileFromPathAsync(videoVm.Path);
-                    }
-                    ViewedVideos.Add(videoVm);
-                }
-                catch (Exception)
-                {
-                    // If the video file was deleted, we can't add it to the last viewed files.
-                    // We "should" keep the file in the list, and if the user selects it either tell them that the file
-                    // is now gone (and let them try and find it again, in case they moved it, so we can keep it in the DB)
-                    // but that will require quite a bit of code work to make happen. So for now, we'll catch the error
-                    // and not add it to the list.
-                    LogHelper.Log($"File not found : {videoVm.Path}");
-                }
-            }
         }
 
         public async Task LoadShowsFromDatabase()

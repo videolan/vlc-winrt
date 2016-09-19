@@ -59,11 +59,6 @@ namespace VLC.ViewModels.VideoVM
             get { return Locator.MediaLibrary.Videos?.ToObservable(); }
         }
 
-        public ObservableCollection<VideoItem> ViewedVideos
-        {
-            get { return Locator.MediaLibrary.ViewedVideos?.ToObservable(); }
-        }
-
         public ObservableCollection<TvShow> Shows
         {
             get { return Locator.MediaLibrary.Shows?.ToObservable(); }
@@ -122,7 +117,6 @@ namespace VLC.ViewModels.VideoVM
 
         public CloseFlyoutAndPlayVideoCommand CloseFlyoutAndPlayVideoCommand { get; private set; } = new CloseFlyoutAndPlayVideoCommand();
         public DeleteFromLibraryCommand DeleteFromLibraryCommand { get; private set; } = new DeleteFromLibraryCommand();
-        public ChangeVideoViewCommand ChangeVideoViewCommand { get; private set; } = new ChangeVideoViewCommand();
         public Visibility IndexingLibraryVisibility
         {
             get { return Locator.MediaLibrary.MediaLibraryIndexingState == LoadingState.Loading ? Visibility.Visible : Visibility.Collapsed; }
@@ -210,11 +204,9 @@ namespace VLC.ViewModels.VideoVM
                 if (Locator.MediaLibrary.Videos != null)
                     Locator.MediaLibrary.Videos.CollectionChanged += Videos_CollectionChanged;
                 Locator.MediaLibrary.LoadVideosFromDatabase();
-                await Locator.MediaLibrary.LoadViewedVideosFromDatabase();
 
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    OnPropertyChanged(nameof(ViewedVideos));
                     OnPropertyChanged(nameof(Videos));
                     Locator.MainVM.InformationText = String.Empty;
                     LoadingStateAllVideos = LoadingState.Loaded;

@@ -37,7 +37,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\ShareNowPlayingMusicCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\TrackCollectionClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\ChangeVideoViewCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\ChangeMusicViewCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\ChangeSettingsViewCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\CreateMiniPlayerView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\GoBackCommand.cs" />
