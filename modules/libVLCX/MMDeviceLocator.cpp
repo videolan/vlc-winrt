@@ -31,6 +31,8 @@
 
 #include "MMDeviceLocator.h"
 
+#include <tchar.h>
+
 HRESULT MMDeviceLocator::RegisterForWASAPI(){
     HRESULT hr = S_OK;
     IActivateAudioInterfaceAsyncOperation *asyncOp;
@@ -86,3 +88,28 @@ HRESULT MMDeviceLocator::ActivateCompleted(IActivateAudioInterfaceAsyncOperation
     return hr;
 }
 
+namespace libVLCX
+{
+    Platform::String^ AudioDeviceHandler::GetAudioDevice()
+    {
+        ComPtr<MMDeviceLocator> audioReg = Make<MMDeviceLocator>();
+
+        audioReg->m_AudioClient = NULL;
+        audioReg->m_audioClientReady = CreateEventEx(NULL, TEXT("AudioClientReady"), 0, EVENT_ALL_ACCESS);
+        audioReg->RegisterForWASAPI();
+
+        void *addr = NULL;
+        DWORD res;
+        while ((res = WaitForSingleObjectEx(audioReg->m_audioClientReady, 1000, TRUE)) == WAIT_TIMEOUT) {
+            OutputDebugStringW(L"Waiting for audio\n");
+        }
+        CloseHandle(audioReg->m_audioClientReady);
+        if (res != WAIT_OBJECT_0) {
+            OutputDebugString(TEXT("Failure while waiting for audio client"));
+            return nullptr;
+        }
+        TCHAR buff[32];
+        _sntprintf(buff, sizeof(buff), TEXT("%p"), audioReg->m_AudioClient);
+        return ref new Platform::String(buff);
+    }
+}

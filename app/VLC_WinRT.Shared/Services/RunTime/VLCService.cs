@@ -41,6 +41,7 @@ namespace VLC_WinRT.Services.RunTime
         public TaskCompletionSource<bool> PlayerInstanceReady { get; set; } = new TaskCompletionSource<bool>();
 
         public Instance Instance { get; private set; }
+        private String AudioDevice { get; set; }
         public MediaPlayer MediaPlayer { get; private set; }
         
         public Task Initialize(object o = null)
@@ -57,7 +58,8 @@ namespace VLC_WinRT.Services.RunTime
                     "--avcodec-fast",
                     string.Format("--freetype-font={0}\\NotoSans-Regular.ttf",Windows.ApplicationModel.Package.Current.InstalledLocation.Path),
                     "--subsdec-encoding",
-                    Locator.SettingsVM.SubtitleEncodingValue == "System" ? "" : Locator.SettingsVM.SubtitleEncodingValue
+                    Locator.SettingsVM.SubtitleEncodingValue == "System" ? "" : Locator.SettingsVM.SubtitleEncodingValue,
+                    "--aout=winstore"
                 };
 
                 // So far, this NEEDS to be called from the main thread
@@ -82,6 +84,9 @@ namespace VLC_WinRT.Services.RunTime
                         (dialog, title, text, intermidiate, position, cancel) => { },
                         (dialog) => dialog.dismiss(),
                         (dialog, position, text) => { });
+
+                    // Audio device also needs to be called from the main thread
+                    AudioDevice = libVLCX.AudioDeviceHandler.GetAudioDevice();
                     PlayerInstanceReady.TrySetResult(Instance != null);
                 }
                 catch (Exception e)
@@ -128,6 +133,7 @@ namespace VLC_WinRT.Services.RunTime
 
             MediaPlayer = new MediaPlayer(vlcMedia);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
+            MediaPlayer.outputDeviceSet(AudioDevice);
             SetEqualizer(Locator.SettingsVM.Equalizer);
             var em = MediaPlayer.eventManager();
             em.OnOpening += Em_OnOpening;
