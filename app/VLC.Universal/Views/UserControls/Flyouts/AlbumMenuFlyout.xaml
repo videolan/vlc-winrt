@@ -29,6 +29,7 @@
                     Command="{Binding PinAlbumCommand}"
                     CommandParameter="{Binding}" 
                     Style="{StaticResource MenuFlyoutItemIconTemplate}"
+                    Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.DesktopMode}"
                     Tag="{StaticResource PinSymbol}"/>
         <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=ChangeAlbumCover}"
                                             Command="{Binding ChangeAlbumArtCommand}"
