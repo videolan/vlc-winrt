@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:placeholder="using:VLC.UI.Views.UserControls.Placeholder"
         xmlns:uC="using:VLC.UI.Views.UserControls"
+        Placement="{Binding Source={StaticResource Locator}, Path=MainVM.FlyoutPlacement}"
         mc:Ignorable="d"
         d:DesignHeight="300"
         d:DesignWidth="400">
