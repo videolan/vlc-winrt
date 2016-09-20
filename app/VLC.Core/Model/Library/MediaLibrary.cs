@@ -692,17 +692,6 @@ namespace VLC.Model.Library
             {
                 var albums = musicDatabase.LoadAlbums().ToObservable();
                 var recommendedAlbums = albums?.Where(x => x.Favorite).ToList();
-                if (recommendedAlbums.Count() <= 10) // TODO : Magic number
-                {
-                    var nonfavAlbums = albums.Where(x => !x.Favorite).Take(10);
-                    if (nonfavAlbums.Any())
-                    {
-                        foreach (var nonFavAlbum in nonfavAlbums)
-                        {
-                            recommendedAlbums.Add(nonFavAlbum);
-                        }
-                    }
-                }
                 return recommendedAlbums;
             }
             catch (Exception)
