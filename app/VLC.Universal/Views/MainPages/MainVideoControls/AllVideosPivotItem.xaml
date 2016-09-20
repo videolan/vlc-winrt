@@ -52,8 +52,6 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ScrollWatcher:ListViewScrollWatcher>
-        <placeholder:NoVideosPlaceholder VerticalAlignment="Bottom"
-                                         Margin="{StaticResource FrameMarginHorizontalPlusFooter}"
-                                         Visibility="{Binding Videos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+        <placeholder:NoVideosPlaceholder Visibility="{Binding Videos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>
