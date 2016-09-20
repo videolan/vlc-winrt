@@ -53,7 +53,6 @@
                    Margin="{StaticResource FrameMarginBottom}"
                    Text="{Binding CurrentArtist.Name, Converter={StaticResource ArtistStringConverter}}"
                    Style="{StaticResource SubheaderTextBlockStyle}"
-                   Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.DesktopMode}"
                    FontSize="36" />
 
         <AppBarButton Grid.Column="3"
@@ -148,7 +147,7 @@
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PinButton"
                                                        Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="{Binding Source={StaticResource Locator}, Path=SettingsVM.DesktopMode}"
+                            <DiscreteObjectKeyFrame Value="{Binding Source={StaticResource Locator}, Path=MainVM.CollapsedInMediaCenterMode}"
                                                     KeyTime="0" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>

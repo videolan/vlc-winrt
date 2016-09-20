@@ -157,5 +157,11 @@ namespace VLC.ViewModels
             get { return _panels; }
             set { SetProperty(ref _panels, value); }
         }
+
+        public Visibility CollapsedInMediaCenterMode
+        {
+            get { return Locator.SettingsVM.MediaCenterMode ?
+                    Visibility.Collapsed : Visibility.Visible; }
+        }
     }
 }
