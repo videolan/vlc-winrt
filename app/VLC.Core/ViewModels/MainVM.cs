@@ -33,6 +33,7 @@ using VLC.UI.Views.MusicPages;
 using System.Threading.Tasks;
 using Windows.UI.ViewManagement;
 using VLC.UI.Views.UserControls;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace VLC.ViewModels
 {
@@ -162,6 +163,12 @@ namespace VLC.ViewModels
         {
             get { return Locator.SettingsVM.MediaCenterMode ?
                     Visibility.Collapsed : Visibility.Visible; }
+        }
+
+        public FlyoutPlacementMode FlyoutPlacement
+        {
+            get { return Locator.SettingsVM.DesktopMode ?
+                    FlyoutPlacementMode.Top : FlyoutPlacementMode.Full; }
         }
     }
 }

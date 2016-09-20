@@ -4,12 +4,14 @@
         xmlns:local="using:VLC.UI.Views.UserControls.Flyouts"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Placement="{Binding Source={StaticResource Locator}, Path=MainVM.FlyoutPlacement}"
         mc:Ignorable="d">
 
     <Border RequestedTheme="Dark"
             Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
             BorderThickness="1"
             Loaded="Grid_Loaded">
+
         <Grid x:Name="FlyoutGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="200" />
