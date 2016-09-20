@@ -322,14 +322,8 @@
     <Compile Include="Views\VariousPages\FeedbackPage.xaml.cs">
       <DependentUpon>FeedbackPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\VariousPages\LicensePage.xaml.cs">
-      <DependentUpon>LicensePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\VariousPages\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\VariousPages\SpecialThanks.xaml.cs">
-      <DependentUpon>SpecialThanks.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VideoPages\TVShowsViews\ShowEpisodesView.xaml.cs">
       <DependentUpon>ShowEpisodesView.xaml</DependentUpon>
@@ -1495,15 +1489,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\VariousPages\LicensePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\VariousPages\SearchPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\VariousPages\SpecialThanks.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

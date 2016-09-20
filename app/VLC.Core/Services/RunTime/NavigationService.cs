@@ -164,9 +164,6 @@ namespace VLC.Services.RunTime
                 case VLCPage.MusicPlayerPage:
                     GoBack_Default();
                     break;
-                case VLCPage.SpecialThanksPage:
-                    GoBack_HideFlyout();
-                    break;
                 case VLCPage.ArtistShowsPage:
                     GoBack_HideFlyout();
                     break;
@@ -174,9 +171,6 @@ namespace VLC.Services.RunTime
                     Go(VLCPage.AlbumPage);
                     break;
                 case VLCPage.CreateNewPlaylistDialog:
-                    GoBack_HideFlyout();
-                    break;
-                case VLCPage.LicensePage:
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.MiniPlayerView:
@@ -330,9 +324,6 @@ namespace VLC.Services.RunTime
                 case VLCPage.MusicPlayerPage:
                     App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
                     break;
-                case VLCPage.SpecialThanksPage:
-                    setFlyoutContent(desiredPage, typeof(SpecialThanks));
-                    break;
                 case VLCPage.ArtistShowsPage:
                     setFlyoutContent(desiredPage, typeof(ArtistShowsPage));
                     break;
@@ -341,9 +332,6 @@ namespace VLC.Services.RunTime
                     break;
                 case VLCPage.CreateNewPlaylistDialog:
                     setFlyoutContent(desiredPage, typeof(CreateNewPlaylist));
-                    break;
-                case VLCPage.LicensePage:
-                    setFlyoutContent(desiredPage, typeof(LicensePage));
                     break;
                 case VLCPage.MiniPlayerView:
                     App.ApplicationFrame.Navigate(typeof(MiniPlayerWindow));
@@ -392,8 +380,6 @@ namespace VLC.Services.RunTime
                    page == VLCPage.CreateNewPlaylistDialog ||
                    page == VLCPage.ArtistShowsPage ||
                    page == VLCPage.PlaylistPage ||
-                   page == VLCPage.LicensePage ||
-                   page == VLCPage.SpecialThanksPage ||
                    page == VLCPage.CurrentPlaylistPage ||
                    page == VLCPage.SettingsPageUI ||
                    page == VLCPage.SettingsPageMusic ||
@@ -439,15 +425,11 @@ namespace VLC.Services.RunTime
                     break;
                 case VLCPage.SettingsPage:
                     break;
-                case VLCPage.SpecialThanksPage:
-                    break;
                 case VLCPage.ArtistShowsPage:
                     break;
                 case VLCPage.AddAlbumToPlaylistDialog:
                     break;
                 case VLCPage.CreateNewPlaylistDialog:
-                    break;
-                case VLCPage.LicensePage:
                     break;
                 case VLCPage.SearchPage:
                     break;

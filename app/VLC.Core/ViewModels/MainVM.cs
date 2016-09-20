@@ -71,10 +71,6 @@ namespace VLC.ViewModels
 
         public ActionCommand GoToSettingsPageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SettingsPage));
 
-        public ActionCommand GoToThanksPageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SpecialThanksPage));
-
-        public ActionCommand GoToLicensePageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.LicensePage));
-
         public ActionCommand GoToSearchPageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SearchPage));
 
         public ActionCommand GoToFeedbackPageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.FeedbackPage));
