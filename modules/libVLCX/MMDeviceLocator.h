@@ -45,3 +45,12 @@ public:
     HANDLE                 m_audioClientReady;
 };
 
+namespace libVLCX
+{
+    public ref class AudioDeviceHandler sealed
+    {
+    public:
+        static Platform::String^ GetAudioDevice();
+    };
+}
+
