@@ -100,6 +100,7 @@ namespace VLC.Services.RunTime
 
                     // Audio device management also needs to be called from the main thread
                     AudioClient = new AudioDeviceHandler(AudioDeviceID);
+                    MediaDevice.DefaultAudioRenderDeviceChanged += onDefaultAudioRenderDeviceChanged;
                     PlayerInstanceReady.TrySetResult(Instance != null);
                 }
                 catch (Exception e)
@@ -107,6 +108,26 @@ namespace VLC.Services.RunTime
                     LogHelper.Log("VLC Service : Couldn't create VLC Instance\n" + StringsHelper.ExceptionToString(e));
                     ToastHelper.Basic(Strings.FailStartVLCEngine);
                 }
+            });
+        }
+
+        private async void onDefaultAudioRenderDeviceChanged(object sender, DefaultAudioRenderDeviceChangedEventArgs args)
+        {
+            if (args.Role != AudioDeviceRole.Default || args.Id == AudioDeviceID)
+                return;
+
+            AudioDeviceID = args.Id;
+            // If we don't have an instance yet, no need to fetch the audio client as it will be done upon
+            // instance creation.
+            if (Instance == null)
+                return;
+            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                // Always fetch the new audio client, as we always assign it when starting a new playback
+                AudioClient = new AudioDeviceHandler(AudioDeviceID);
+                // But if a playback is in progress, inform VLC backend that we changed device
+                if (MediaPlayer != null)
+                    MediaPlayer.outputDeviceSet(AudioClient.audioClient());
             });
         }
 
