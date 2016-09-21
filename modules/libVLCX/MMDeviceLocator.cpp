@@ -89,7 +89,7 @@ HRESULT MMDeviceLocator::ActivateCompleted(IActivateAudioInterfaceAsyncOperation
 
 namespace libVLCX
 {
-    Platform::String^ AudioDeviceHandler::GetAudioDevice(Platform::String^ deviceId)
+    Platform::String^ AudioDeviceHandler::GetAudioClient(Platform::String^ deviceId)
     {
         ComPtr<MMDeviceLocator> audioReg = Make<MMDeviceLocator>();
 
