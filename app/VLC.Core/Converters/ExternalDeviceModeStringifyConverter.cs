@@ -16,7 +16,7 @@ namespace VLC.Converters
                     case ExternalDeviceMode.AskMe:
                         return Strings.AskMe;
                     case ExternalDeviceMode.IndexMedias:
-                        return Strings.IndexExternalStorage;
+                        return Strings.ReadFromExternalStorage;
                     case ExternalDeviceMode.SelectMedias:
                         return Strings.SelectContentToCopy;
                     case ExternalDeviceMode.DoNothing:

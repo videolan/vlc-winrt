@@ -205,6 +205,8 @@ namespace VLC.Utils
         public static string No => _resourcesLoader.GetString(nameof(No));
         public static string AreYouSure => _resourcesLoader.GetString(nameof(AreYouSure));
         public static string Others => "Others";
+        public static string Ok => _resourcesLoader.GetString(nameof(Ok));
+        public static string Cancel => _resourcesLoader.GetString(nameof(Cancel));
 
         // ACTIONS
         public static string Back => _resourcesLoader.GetString(nameof(Back));
@@ -382,7 +384,7 @@ namespace VLC.Utils
         public static string ExternalStorageDeviceDetected => _resourcesLoader.GetString(nameof(ExternalStorageDeviceDetected));
         public static string WhatToDo => _resourcesLoader.GetString(nameof(WhatToDo));
         public static string WhatToDoWhenExternalStorage => _resourcesLoader.GetString(nameof(WhatToDoWhenExternalStorage));
-        public static string IndexExternalStorage => _resourcesLoader.GetString(nameof(IndexExternalStorage));
+        public static string ReadFromExternalStorage => _resourcesLoader.GetString(nameof(ReadFromExternalStorage));
         public static string SelectContentToCopy => _resourcesLoader.GetString(nameof(SelectContentToCopy));
         public static string DoNothing => _resourcesLoader.GetString(nameof(DoNothing));
         public static string AskMe => _resourcesLoader.GetString(nameof(AskMe));

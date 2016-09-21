@@ -12,20 +12,28 @@
             Text="{Binding Source={StaticResource Strings}, Path=WhatToDo}" />
 
         <StackPanel>
-            <RadioButton x:Name="Index" Content="{Binding Source={StaticResource Strings}, Path=IndexExternalStorage}" IsChecked="True" />
+            <RadioButton x:Name="Index" Content="{Binding Source={StaticResource Strings}, Path=ReadFromExternalStorage}" IsChecked="True" />
             <RadioButton x:Name="Select" Content="{Binding Source={StaticResource Strings}, Path=SelectContentToCopy}" />
-            <RadioButton x:Name="DoNothing" Content="{Binding Source={StaticResource Strings}, Path=DoNothing}" />
         </StackPanel>
 
-        <CheckBox x:Name="Remember" Content="{Binding Source={StaticResource Strings}, Path=RememberChoice}" IsChecked="True" />
+        <CheckBox x:Name="Remember"
+                  Margin="20,5,20,5"
+                  Content="{Binding Source={StaticResource Strings}, Path=RememberChoice}" />
 
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="1"
-                    Click="Button_Click">Ok</Button>
+                    Margin="10"
+                    Click="Button_Click"
+                    Content="{Binding Source={StaticResource Strings}, Path=Ok}" />
+            <Button Grid.Column="2"
+                    Margin="10"
+                    Click="Cancel_Click"
+                    Content="{Binding Source={StaticResource Strings}, Path=Cancel}" />
         </Grid>
     </StackPanel>
 </Page>

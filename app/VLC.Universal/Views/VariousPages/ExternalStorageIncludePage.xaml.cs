@@ -33,14 +33,20 @@ namespace VLC.UI.UWP.Views.VariousPages
                     Locator.SettingsVM.ExternalDeviceMode = ExternalDeviceMode.IndexMedias;
                 else if (Select.IsChecked == true)
                     Locator.SettingsVM.ExternalDeviceMode = ExternalDeviceMode.SelectMedias;
-                else if (DoNothing.IsChecked == true)
-                    Locator.SettingsVM.ExternalDeviceMode = ExternalDeviceMode.DoNothing;
             }
         }
 
         public bool ModalMode
         {
             get { return true; }
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Locator.NavigationService.GoBack_HideFlyout();
+
+            if (Remember.IsChecked == true)
+                Locator.SettingsVM.ExternalDeviceMode = ExternalDeviceMode.DoNothing;
         }
     }
 }
