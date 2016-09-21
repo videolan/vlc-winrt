@@ -108,7 +108,7 @@ namespace libVLCX
             return nullptr;
         }
         TCHAR buff[32];
-        _sntprintf(buff, sizeof(buff), TEXT("%p"), audioReg->m_AudioClient);
+        _sntprintf_s(buff, _TRUNCATE, TEXT("%p"), audioReg->m_AudioClient);
         return ref new Platform::String(buff);
     }
 }
