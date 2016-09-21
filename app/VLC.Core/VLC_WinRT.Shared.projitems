@@ -221,6 +221,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utils\OpenMenuFlyoutAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\SmartCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Strings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediaLibraryVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Locator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediaPlaybackViewModel.cs" />

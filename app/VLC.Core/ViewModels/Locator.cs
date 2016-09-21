@@ -21,8 +21,6 @@ using VLC.Services.RunTime;
 using VLC.Utils;
 using Slide2D;
 using VLC.ViewModels.Others;
-using VLC.Helpers.VideoLibrary;
-using VLC.Helpers.MusicLibrary;
 using VLC.Model.Library;
 
 namespace VLC.ViewModels
@@ -39,6 +37,7 @@ namespace VLC.ViewModels
         private static MainVM _main;
         private static MediaPlaybackViewModel _mediaPlayback;
         private static MusicPlayerVM _musicPlayer;
+        private static MediaLibraryVM _mediaLibraryVM;
         private static MusicLibraryVM _musicLibraryVM;
         private static VideoLibraryVM _videoLibraryVM;
         private static VideoPlayerVM _videoPlayer;
@@ -73,7 +72,9 @@ namespace VLC.ViewModels
 
         public static MediaLibrary MediaLibrary => _mediaLibrary ?? (_mediaLibrary = App.Container.Resolve<MediaLibrary>());
 
-        public static MusicPlayerVM MusicPlayerVM => _musicPlayer ?? (_musicPlayer = App.Container.Resolve<MusicPlayerVM>()); 
+        public static MusicPlayerVM MusicPlayerVM => _musicPlayer ?? (_musicPlayer = App.Container.Resolve<MusicPlayerVM>());
+
+        public static MediaLibraryVM MediaLibraryVM => _mediaLibraryVM ?? (_mediaLibraryVM = App.Container.Resolve<MediaLibraryVM>());
 
         public static MusicLibraryVM MusicLibraryVM => _musicLibraryVM ?? (_musicLibraryVM = App.Container.Resolve<MusicLibraryVM>());
 

@@ -42,6 +42,7 @@ namespace VLC.Model.Library
 
         private async Task ExternalDeviceService_MustIndexExternalDevice()
         {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
             var devices = KnownFolders.RemovableDevices;
             IReadOnlyList<StorageFolder> rootFolders = await devices.GetFoldersAsync();
 
@@ -51,6 +52,7 @@ namespace VLC.Model.Library
                     StorageApplicationPermissions.FutureAccessList.Add(folder);
                 await Task.Run(async () => await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder)));
             }
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
         }
 
         private async Task ExternalDeviceService_MustUnindexExternalDevice()
@@ -209,7 +211,6 @@ namespace VLC.Model.Library
         
         public async Task Initialize()
         {
-            MediaLibraryIndexingState = LoadingState.Loading;
             Artists.Clear();
             Albums.Clear();
             Tracks.Clear();
@@ -231,7 +232,6 @@ namespace VLC.Model.Library
                 // Else, perform a Routine Indexing (without dropping tables)
                 await PerformMediaLibraryIndexing();
             }
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
         }
 
         async Task StartIndexing()
@@ -267,6 +267,8 @@ namespace VLC.Model.Library
             {
                 try
                 {
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
+
                     StorageFolder folder = await FileUtils.GetLocalStorageMediaFolder();
                     await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder));
 
@@ -284,6 +286,8 @@ namespace VLC.Model.Library
                     var albums = await LoadAlbums(null);
                     if (albums != null)
                         await CortanaHelper.SetPhraseList("albumName", albums.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
+
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
                 }
                 catch (Exception e)
                 {
@@ -445,6 +449,7 @@ namespace VLC.Model.Library
         // Remove items that are no longer reachable.
         public async Task CleanMediaLibrary()
         {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
             // Clean videos
             var videos = LoadVideos(x => true);
             foreach (var video in videos)
@@ -472,6 +477,7 @@ namespace VLC.Model.Library
                     await RemoveMediaFromCollectionAndDatabase(track);
                 }
             }
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
         }
 
         public void AddArtist(ArtistItem artist)

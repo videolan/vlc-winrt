@@ -40,6 +40,7 @@ namespace VLC.Utils
             builder.RegisterType<MediaPlaybackViewModel>();
             builder.RegisterType<MediaLibrary>().SingleInstance();
 
+            builder.RegisterType<MediaLibraryVM>();
             builder.RegisterType<MusicLibraryVM>();
             builder.RegisterType<MusicPlayerVM>();
             builder.RegisterType<VideoLibraryVM>();

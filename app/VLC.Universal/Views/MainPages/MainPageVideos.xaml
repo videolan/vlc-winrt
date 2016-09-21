@@ -56,7 +56,7 @@
                          IsIndeterminate="True"
                          IsEnabled="True"
                          VerticalAlignment="Bottom"
-                         Visibility="{Binding IndexingLibraryVisibility}" />
+                         Visibility="{Binding Source={StaticResource Locator}, Path=MediaLibraryVM.IndexingLibraryVisibility}" />
             <ListView Grid.Column="1"
                       x:Name="PanelsListView"
                       ItemsSource="{Binding VideoViewCollection}"

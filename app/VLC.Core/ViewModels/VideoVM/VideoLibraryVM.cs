@@ -41,7 +41,6 @@ namespace VLC.ViewModels.VideoVM
         private LoadingState _loadingStateAllVideos;
         private LoadingState _loadingStateCamera;
         private LoadingState _loadingStateShows;
-        private bool _isIndexingLibrary = false;
         private bool _hasNoMedia = true;
         private TvShow _currentShow;
         #endregion
@@ -118,11 +117,6 @@ namespace VLC.ViewModels.VideoVM
         public CloseFlyoutAndPlayVideoCommand CloseFlyoutAndPlayVideoCommand { get; private set; } = new CloseFlyoutAndPlayVideoCommand();
         public DeleteFromLibraryCommand DeleteFromLibraryCommand { get; private set; } = new DeleteFromLibraryCommand();
         public ChangeVideoViewCommand ChangeVideoViewCommand { get; private set; } = new ChangeVideoViewCommand();
-
-        public Visibility IndexingLibraryVisibility
-        {
-            get { return Locator.MediaLibrary.MediaLibraryIndexingState == LoadingState.Loading ? Visibility.Visible : Visibility.Collapsed; }
-        }
         #endregion
         #region contructors
         public VideoLibraryVM()
@@ -131,11 +125,6 @@ namespace VLC.ViewModels.VideoVM
         #endregion
 
         #region methods
-        private async void MediaLibrary_OnIndexing(LoadingState obj)
-        {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged(nameof(IndexingLibraryVisibility)));
-        }
-
         public void ResetLibrary()
         {
             LoadingStateAllVideos = LoadingStateCamera = LoadingStateShows = LoadingState.NotLoaded;
@@ -145,7 +134,6 @@ namespace VLC.ViewModels.VideoVM
         public void OnNavigatedTo()
         {
             ResetLibrary();
-            Locator.MediaLibrary.OnIndexing += MediaLibrary_OnIndexing;
         }
 
         public void OnNavigatedToAllVideos()
@@ -190,7 +178,6 @@ namespace VLC.ViewModels.VideoVM
         public void OnNavigatedFrom()
         {
             ResetLibrary();
-            Locator.MediaLibrary.OnIndexing -= MediaLibrary_OnIndexing;
         }
 
         Task InitializeVideos()
