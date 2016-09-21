@@ -25,6 +25,7 @@ using VLC.Utils;
 using MediaPlayer = libVLCX.MediaPlayer;
 using VLC.ViewModels;
 using VLC.Helpers.UIHelpers;
+using Windows.Media.Devices;
 
 namespace VLC.Services.RunTime
 {
@@ -41,7 +42,19 @@ namespace VLC.Services.RunTime
         public TaskCompletionSource<bool> PlayerInstanceReady { get; set; } = new TaskCompletionSource<bool>();
 
         public Instance Instance { get; private set; }
+        // Contains the IAudioClient address, as a string.
         private String AudioDevice { get; set; }
+        private String _audioDeviceID;
+        private String AudioDeviceID
+        {
+            get
+            {
+                if ( _audioDeviceID == null )
+                   _audioDeviceID = MediaDevice.GetDefaultAudioRenderId(AudioDeviceRole.Default);
+                return _audioDeviceID;
+            }
+            set { _audioDeviceID = value; }
+        }
         public MediaPlayer MediaPlayer { get; private set; }
         
         public Task Initialize(object o = null)
@@ -85,8 +98,8 @@ namespace VLC.Services.RunTime
                         (dialog) => dialog.dismiss(),
                         (dialog, position, text) => { });
 
-                    // Audio device also needs to be called from the main thread
-                    AudioDevice = libVLCX.AudioDeviceHandler.GetAudioDevice();
+                    // Audio device management also needs to be called from the main thread
+                    AudioDevice = libVLCX.AudioDeviceHandler.GetAudioDevice(AudioDeviceID);
                     PlayerInstanceReady.TrySetResult(Instance != null);
                 }
                 catch (Exception e)

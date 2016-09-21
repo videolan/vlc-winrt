@@ -39,7 +39,7 @@ class MMDeviceLocator :
     public RuntimeClass< RuntimeClassFlags< ClassicCom >, FtmBase, IActivateAudioInterfaceCompletionHandler >
 {
 public:
-    STDMETHOD(RegisterForWASAPI)();
+    STDMETHOD(RegisterForWASAPI)(Platform::String^ deviceId);
     STDMETHOD(ActivateCompleted)(IActivateAudioInterfaceAsyncOperation *operation);
     IAudioClient2          *m_AudioClient;
     HANDLE                 m_audioClientReady;
@@ -50,7 +50,7 @@ namespace libVLCX
     public ref class AudioDeviceHandler sealed
     {
     public:
-        static Platform::String^ GetAudioDevice();
+        static Platform::String^ GetAudioDevice(Platform::String^ deviceId);
     };
 }
 

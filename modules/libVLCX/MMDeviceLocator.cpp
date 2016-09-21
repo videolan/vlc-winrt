@@ -33,12 +33,11 @@
 
 #include <tchar.h>
 
-HRESULT MMDeviceLocator::RegisterForWASAPI(){
+HRESULT MMDeviceLocator::RegisterForWASAPI(Platform::String^ deviceId){
     HRESULT hr = S_OK;
     IActivateAudioInterfaceAsyncOperation *asyncOp;
 
-    Platform::String^ id = MediaDevice::GetDefaultAudioRenderId(Windows::Media::Devices::AudioDeviceRole::Default);
-    hr = ActivateAudioInterfaceAsync(id->Data(), __uuidof(IAudioClient2), nullptr, this, &asyncOp);
+    hr = ActivateAudioInterfaceAsync(deviceId->Data(), __uuidof(IAudioClient2), nullptr, this, &asyncOp);
 
     SafeRelease(&asyncOp);
 
@@ -90,13 +89,13 @@ HRESULT MMDeviceLocator::ActivateCompleted(IActivateAudioInterfaceAsyncOperation
 
 namespace libVLCX
 {
-    Platform::String^ AudioDeviceHandler::GetAudioDevice()
+    Platform::String^ AudioDeviceHandler::GetAudioDevice(Platform::String^ deviceId)
     {
         ComPtr<MMDeviceLocator> audioReg = Make<MMDeviceLocator>();
 
         audioReg->m_AudioClient = NULL;
         audioReg->m_audioClientReady = CreateEventEx(NULL, TEXT("AudioClientReady"), 0, EVENT_ALL_ACCESS);
-        audioReg->RegisterForWASAPI();
+        audioReg->RegisterForWASAPI(deviceId);
 
         void *addr = NULL;
         DWORD res;
