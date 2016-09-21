@@ -809,6 +809,20 @@
                 Value="{ThemeResource MainColor}" />
     </Style>
 
+    <Style x:Key="LoadingRing"
+           TargetType="ProgressRing">
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="Foreground"
+                Value="{ThemeResource MainColor}" />
+        <Setter Property="Margin"
+                Value="70" />
+        <Setter Property="Height"
+                Value="70" />
+        <Setter Property="Width"
+                Value="70" />
+    </Style>
+
     <Style x:Key="VLCSlider"
            TargetType="Slider">
         <Setter Property="Background"

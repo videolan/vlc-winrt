@@ -55,12 +55,6 @@
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <ProgressBar Grid.Column="1"
-                         Grid.ColumnSpan="3"
-                         IsIndeterminate="True"
-                         IsEnabled="True"
-                         VerticalAlignment="Bottom"
-                         Visibility="{Binding Source={StaticResource Locator}, Path=MediaLibraryVM.IndexingLibraryVisibility}" />
             <ListView Grid.Column="1"
                       Grid.ColumnSpan="3"
                       x:Name="PanelsListView"
@@ -136,6 +130,13 @@
             </AppBarButton>
 
         </Grid>
+
+        <ProgressRing Grid.Row="1"
+            IsActive="True"
+            Style="{StaticResource LoadingRing}"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
+            Visibility="{Binding Source={StaticResource Locator}, Path=MediaLibraryVM.IndexingLibraryVisibility}" />
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

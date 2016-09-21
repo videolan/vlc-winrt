@@ -20,7 +20,7 @@
                           Margin="{StaticResource FrameMargin}"
                           Grid.Row="1"
                           Loaded="MainPageVideoContentPresenter_OnLoaded" />
-        
+
         <Rectangle Grid.Row="1"
                    VerticalAlignment="Top"
                    Height="8">
@@ -39,6 +39,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <AppBarButton x:Name="HamburgerButton"
                           Grid.Column="0"
@@ -52,11 +53,6 @@
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <ProgressBar Grid.Column="1"
-                         IsIndeterminate="True"
-                         IsEnabled="True"
-                         VerticalAlignment="Bottom"
-                         Visibility="{Binding Source={StaticResource Locator}, Path=MediaLibraryVM.IndexingLibraryVisibility}" />
             <ListView Grid.Column="1"
                       x:Name="PanelsListView"
                       ItemsSource="{Binding VideoViewCollection}"
@@ -87,5 +83,11 @@
                 </ListView.ItemContainerTransitions>
             </ListView>
         </Grid>
+        <ProgressRing Grid.Row="1"
+            IsActive="True"
+            Style="{StaticResource LoadingRing}"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
+            Visibility="{Binding Source={StaticResource Locator}, Path=MediaLibraryVM.IndexingLibraryVisibility}" />
     </Grid>
 </Page>
