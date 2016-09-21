@@ -50,7 +50,11 @@ namespace libVLCX
     public ref class AudioDeviceHandler sealed
     {
     public:
-        static Platform::String^ GetAudioClient(Platform::String^ deviceId);
+        AudioDeviceHandler(Platform::String^ deviceId);
+        Platform::String^ audioClient();
+
+    internal:
+        ComPtr<IAudioClient2> m_ptr;
     };
 }
 

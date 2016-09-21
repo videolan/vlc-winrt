@@ -43,7 +43,7 @@ namespace VLC.Services.RunTime
 
         public Instance Instance { get; private set; }
         // Contains the IAudioClient address, as a string.
-        private String AudioClient { get; set; }
+        private AudioDeviceHandler AudioClient { get; set; }
         private String _audioDeviceID;
         private String AudioDeviceID
         {
@@ -99,7 +99,7 @@ namespace VLC.Services.RunTime
                         (dialog, position, text) => { });
 
                     // Audio device management also needs to be called from the main thread
-                    AudioClient = libVLCX.AudioDeviceHandler.GetAudioClient(AudioDeviceID);
+                    AudioClient = new AudioDeviceHandler(AudioDeviceID);
                     PlayerInstanceReady.TrySetResult(Instance != null);
                 }
                 catch (Exception e)
@@ -147,7 +147,7 @@ namespace VLC.Services.RunTime
 
             MediaPlayer = new MediaPlayer(vlcMedia);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
-            MediaPlayer.outputDeviceSet(AudioClient);
+            MediaPlayer.outputDeviceSet(AudioClient.audioClient());
             SetEqualizer(Locator.SettingsVM.Equalizer);
             var em = MediaPlayer.eventManager();
             em.OnOpening += Em_OnOpening;

@@ -89,7 +89,7 @@ HRESULT MMDeviceLocator::ActivateCompleted(IActivateAudioInterfaceAsyncOperation
 
 namespace libVLCX
 {
-    Platform::String^ AudioDeviceHandler::GetAudioClient(Platform::String^ deviceId)
+    AudioDeviceHandler::AudioDeviceHandler(Platform::String^ deviceId)
     {
         ComPtr<MMDeviceLocator> audioReg = Make<MMDeviceLocator>();
 
@@ -105,10 +105,15 @@ namespace libVLCX
         CloseHandle(audioReg->m_audioClientReady);
         if (res != WAIT_OBJECT_0) {
             OutputDebugString(TEXT("Failure while waiting for audio client"));
-            return nullptr;
+            throw ref new Platform::FailureException("Failure while waiting for audio client");
         }
+        m_ptr = audioReg->m_AudioClient;
+    }
+
+    Platform::String^ AudioDeviceHandler::audioClient()
+    {
         TCHAR buff[32];
-        _sntprintf_s(buff, _TRUNCATE, TEXT("%p"), audioReg->m_AudioClient);
+        _sntprintf_s(buff, _TRUNCATE, TEXT("%p"), m_ptr.Get());
         return ref new Platform::String(buff);
     }
 }
