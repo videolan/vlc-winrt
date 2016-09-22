@@ -2,15 +2,13 @@
 using Windows.UI.Xaml.Controls;
 using VLC.Model.Music;
 using VLC.ViewModels;
-using VLC.ViewModels.MusicVM;
-using Windows.UI.Xaml.Controls.Primitives;
 using VLC.Model;
 
 namespace VLC.UI.Views.UserControls.Flyouts
 {
-    public partial class TrackItemFlyout
+    public partial class TrackItemFlyout : Flyout
     {
-        public TrackItemFlyout()
+        public TrackItemFlyout() : base()
         {
             this.InitializeComponent();
             this.Opened += TrackItemFlyout_Opened;
@@ -40,12 +38,6 @@ namespace VLC.UI.Views.UserControls.Flyouts
         private void ActionButton_Click(object sender, RoutedEventArgs e)
         {
             Hide();
-        }
-
-        void Hide()
-        {
-            var trackFlyout = App.Current.Resources["TrackItemFlyout"] as Flyout;
-            trackFlyout.Hide();
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
