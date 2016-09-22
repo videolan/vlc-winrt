@@ -1,12 +1,11 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
 
 namespace VLC.UI.Views.UserControls.Flyouts
 {
-    public sealed partial class VideoInformationFlyout
+    public sealed partial class VideoInformationFlyout : Flyout
     {
-        public VideoInformationFlyout()
+        public VideoInformationFlyout() : base()
         {
             this.InitializeComponent();
         }
@@ -20,12 +19,6 @@ namespace VLC.UI.Views.UserControls.Flyouts
         private void ActionButton_Click(object sender, RoutedEventArgs e)
         {
             Hide();
-        }
-
-        void Hide()
-        {
-            var trackFlyout = App.Current.Resources["VideoInformationFlyout"] as Flyout;
-            trackFlyout.Hide();
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
