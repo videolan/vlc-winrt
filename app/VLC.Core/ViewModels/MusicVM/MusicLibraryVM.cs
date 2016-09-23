@@ -300,7 +300,7 @@ namespace VLC.ViewModels.MusicVM
 
         public bool IsCurrentArtistExist => _currentArtist != null;
 
-        public bool DisplayArtistAlbumsPaneInArtistsView => IsCurrentArtistExist && !Locator.SettingsVM.MediaCenterMode;
+        public bool DisplayArtistAlbumsPaneInArtistsView => IsCurrentArtistExist;
         #endregion
 
         public void ResetLibrary()
