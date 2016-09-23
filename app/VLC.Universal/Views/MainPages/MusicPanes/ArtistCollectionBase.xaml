@@ -133,8 +133,14 @@
             <local:MainArtistHeader x:Name="MainArtistHeader"
                                     VerticalAlignment="Stretch"
                                     HorizontalAlignment="Center" />
-            <local:ArtistAlbumsSemanticView x:Name="ArtistAlbumsSemanticView"
-                                            Grid.Row="1" />
+            <Pivot Grid.Row="1">
+                <PivotItem Header="{Binding Source={StaticResource Strings}, Path=Albums}">
+                    <local:ArtistAlbumsSemanticView />
+                </PivotItem>
+                <PivotItem Header="{Binding Source={StaticResource Strings}, Path=MoreInfo}">
+                    <local:ArtistInfoControl />
+                </PivotItem>
+            </Pivot>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
