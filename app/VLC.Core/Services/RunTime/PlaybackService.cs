@@ -126,7 +126,7 @@ namespace VLC.Services.RunTime
 
         public async Task ResetCollection()
         {
-            await Locator.MediaPlaybackViewModel.PlaybackService.BackgroundTrackRepository.Clear();
+            await BackgroundTrackRepository.Clear();
             Playlist.Clear();
             CurrentMedia = -1;
             NonShuffledPlaylist?.Clear();
@@ -137,10 +137,9 @@ namespace VLC.Services.RunTime
 
         public async Task Shuffle()
         {
-            SmartCollection<IMediaItem> unshuffled;
             if (IsShuffled)
             {
-                unshuffled = new SmartCollection<IMediaItem>(Playlist);
+                NonShuffledPlaylist = new SmartCollection<IMediaItem>(Playlist);
                 Random r = new Random();
                 for (int i = 0; i < Playlist.Count; i++)
                 {
@@ -152,14 +151,19 @@ namespace VLC.Services.RunTime
                     }
                 }
                 var pl = Playlist.ToList<IMediaItem>();
-                await SetPlaylist(pl, true, false, null);
+
+                // We do not save the playlist in shuffle mode for now.
+                await BackgroundTrackRepository.Clear();
             }
             else
             {
-                unshuffled = new SmartCollection<IMediaItem>(NonShuffledPlaylist);
-                await SetPlaylist(unshuffled, true, false, null);
+                IMediaItem m = Playlist[CurrentMedia];
+
+                Playlist.Clear();
+                Playlist.AddRange(NonShuffledPlaylist);
+
+                CurrentMedia = Playlist.IndexOf(m);
             }
-            NonShuffledPlaylist = unshuffled;
         }
 
         public async Task<bool> SetPlaylist(IEnumerable<IMediaItem> mediaItems, bool reset, bool play, IMediaItem media)
@@ -186,7 +190,7 @@ namespace VLC.Services.RunTime
 
                 Playlist.AddRange(mediaItems);
 
-                await Locator.MediaPlaybackViewModel.PlaybackService.BackgroundTrackRepository.Add(backgroundTrackItems);
+                await BackgroundTrackRepository.Add(backgroundTrackItems);
 
                 IsRunning = true;
             }
