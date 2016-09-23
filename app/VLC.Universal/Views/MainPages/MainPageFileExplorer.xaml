@@ -61,7 +61,8 @@
                           HorizontalAlignment="Right"
                           Label="{Binding Source={StaticResource Strings}, Path=OpenFile}"
                           Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickMediaCommand}"
-                          Margin="{StaticResource FrameMarginRight}">
+                          Margin="{StaticResource FrameMarginRight}"
+                          Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.CollapsedOnXbox}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource FileSymbol}"
                               FontFamily="{StaticResource VLCFont}" />

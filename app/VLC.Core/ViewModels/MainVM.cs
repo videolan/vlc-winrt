@@ -165,6 +165,15 @@ namespace VLC.ViewModels
                     Visibility.Collapsed : Visibility.Visible; }
         }
 
+        public Visibility CollapsedOnXbox
+        {
+            get
+            {
+                return DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox ?
+                    Visibility.Collapsed : Visibility.Visible;
+            }
+        }
+
         public FlyoutPlacementMode FlyoutPlacement
         {
             get { return Locator.SettingsVM.DesktopMode ?
