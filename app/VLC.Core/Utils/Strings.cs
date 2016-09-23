@@ -390,6 +390,10 @@ namespace VLC.Utils
         public static string AskMe => _resourcesLoader.GetString(nameof(AskMe));
         public static string RememberChoice => _resourcesLoader.GetString(nameof(RememberChoice));
 
+        // BETA WARNING
+        public static string BetaWarning => _resourcesLoader.GetString(nameof(BetaWarning));
+        public static string BetaWarningTitle => _resourcesLoader.GetString(nameof(BetaWarningTitle));
+
         public Strings()
         {
         }

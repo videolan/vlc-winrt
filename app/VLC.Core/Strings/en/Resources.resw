@@ -771,4 +771,10 @@
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="BetaWarning" xml:space="preserve">
+    <value>WARNING: I am a beta so I may kill your cat!</value>
+  </data>
+  <data name="BetaWarningTitle" xml:space="preserve">
+    <value>Beta</value>
+  </data>
 </root>

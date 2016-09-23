@@ -19,6 +19,7 @@ using Windows.Gaming.Input;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -209,6 +210,16 @@ namespace VLC
 
         private async Task LaunchTheApp(bool disableConsumingTasks = false)
         {
+            bool betaWarningShown = false;
+            if (ApplicationSettingsHelper.Contains(nameof(betaWarningShown)))
+                betaWarningShown = (bool)ApplicationSettingsHelper.ReadSettingsValue(nameof(betaWarningShown));
+
+            if (!betaWarningShown)
+            {
+                showWarningDialog();
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(betaWarningShown), true);
+            }
+
             Locator.GamepadService.StartListening();
             Dispatcher = Window.Current.Dispatcher;
             Window.Current.Content = new MainPage();
@@ -222,6 +233,17 @@ namespace VLC
 
             await ToggleMediaCenterMode();
             Locator.ExternalDeviceService.startWatcher();
+        }
+
+        private async void showWarningDialog()
+        {
+            var messageDialog = new MessageDialog(Strings.BetaWarning, Strings.BetaWarningTitle);
+
+            // Add commands and set their callbacks; both buttons use the same callback function instead of inline event handlers
+            messageDialog.Commands.Add(new UICommand(Strings.Ok));
+
+            // Show the message dialog
+            await messageDialog.ShowAsync();
         }
 
         async Task ToggleMediaCenterMode()
