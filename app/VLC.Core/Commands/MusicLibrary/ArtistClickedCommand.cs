@@ -37,7 +37,6 @@ namespace VLC.Commands.MusicLibrary
             }
             if (artist == null) return;
             Locator.MusicLibraryVM.CurrentArtist = artist;
-            Locator.NavigationService.Go(VLCPage.ArtistPage);
         }
     }
 }

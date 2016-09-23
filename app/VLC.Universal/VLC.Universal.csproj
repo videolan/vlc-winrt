@@ -158,9 +158,6 @@
     <Compile Include="Views\MusicPages\ArtistPageControls\ArtistInfoControl.xaml.cs">
       <DependentUpon>ArtistInfoControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MusicPages\ArtistPageControls\ArtistPageBase.xaml.cs">
-      <DependentUpon>ArtistPageBase.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MusicPages\ArtistPageControls\MainArtistHeader.xaml.cs">
       <DependentUpon>MainArtistHeader.xaml</DependentUpon>
     </Compile>
@@ -1270,10 +1267,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MusicPages\ArtistPageControls\ArtistInfoControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\MusicPages\ArtistPageControls\ArtistPageBase.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

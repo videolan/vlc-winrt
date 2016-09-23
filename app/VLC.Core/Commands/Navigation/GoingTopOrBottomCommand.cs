@@ -13,9 +13,7 @@ namespace VLC.Commands.Navigation
             if (lv.ScrollDirection == ScrollDirection.Bottom)
             {
                 if ((Locator.MediaPlaybackViewModel.PlaybackService.IsRunning 
-                    && Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music)
-                    || Locator.NavigationService.CurrentPage == VLCPage.ArtistPage
-                    || Locator.NavigationService.CurrentPage == VLCPage.ArtistInfoView)
+                    && Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music))
                 {
                     App.SplitShell.HideTopBar();
                 }

@@ -145,10 +145,6 @@ namespace VLC.Services.RunTime
                 case VLCPage.AlbumPage:
                     GoBack_HideFlyout();
                     break;
-                case VLCPage.ArtistPage:
-                case VLCPage.ArtistInfoView:
-                    GoBack_Default();
-                    break;
                 case VLCPage.PlaylistPage:
                     GoBack_HideFlyout();
                     break;
@@ -278,33 +274,8 @@ namespace VLC.Services.RunTime
                 case VLCPage.AlbumPage:
                     setFlyoutContent(desiredPage, typeof(AlbumPageBase));
                     break;
-                case VLCPage.ArtistPage:
-                    if (Locator.SettingsVM.MediaCenterMode || CurrentPage != VLCPage.MainPageMusic || Locator.MusicLibraryVM.MusicView != Model.Music.MusicView.Artists
-                        || (CurrentPage == VLCPage.MainPageMusic && Locator.MusicLibraryVM.MusicView == Model.Music.MusicView.Artists && Window.Current.Bounds.Width < 750))
-                    {
-                        if (CurrentPage == VLCPage.ArtistPage)
-                        {
-                            (App.ApplicationFrame.Content as ArtistPageBase).SetView(false);
-                        }
-                        else
-                        {
-                            App.ApplicationFrame.Navigate(typeof(ArtistPageBase), desiredPage);
-                        }
-                    }
-                    break;
                 case VLCPage.SearchPage:
                     setFlyoutContent(desiredPage, typeof(SearchPage));
-                    break;
-                case VLCPage.ArtistInfoView:
-                    if (CurrentPage == VLCPage.ArtistPage)
-                    {
-                        (App.ApplicationFrame.Content as ArtistPageBase).SetView(true);
-                    }
-                    else
-                    {
-                        App.ApplicationFrame.Navigate(typeof(ArtistPageBase), desiredPage);
-                    }
-                    CurrentPage = desiredPage;
                     break;
                 case VLCPage.SettingsPage:
                 case VLCPage.SettingsPageUI:
@@ -411,10 +382,6 @@ namespace VLC.Services.RunTime
                     return typeof(MainPageNetwork);
                 case VLCPage.AlbumPage:
                     break;
-                case VLCPage.ArtistPage:
-                    break;
-                case VLCPage.ArtistInfoView:
-                    break;
                 case VLCPage.PlaylistPage:
                     break;
                 case VLCPage.CurrentPlaylistPage:
@@ -494,8 +461,6 @@ namespace VLC.Services.RunTime
                 return VLCPage.TrackEditorPage;
             if (page == typeof(FeedbackPage))
                 return VLCPage.FeedbackPage;
-            if (page == typeof(ArtistPageBase))
-                return VLCPage.ArtistPage;
             if (page == typeof(MiniPlayerWindow))
                 return VLCPage.MiniPlayerView;
             return VLCPage.None;
