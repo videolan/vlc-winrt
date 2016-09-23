@@ -151,9 +151,6 @@ namespace VLC.Services.RunTime
                     }
                 }
                 var pl = Playlist.ToList<IMediaItem>();
-
-                // We do not save the playlist in shuffle mode for now.
-                await BackgroundTrackRepository.Clear();
             }
             else
             {
@@ -316,7 +313,9 @@ namespace VLC.Services.RunTime
                 var track = (TrackItem)media;
                 await InitializePlayback(track, autoPlay);
 
-                ApplicationSettingsHelper.SaveSettingsValue(nameof(CurrentMedia), CurrentMedia);
+                int index = IsShuffled ?
+                    NonShuffledPlaylist.IndexOf(Playlist[CurrentMedia]): CurrentMedia;
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(CurrentMedia), index);
             }
             else if (media is StreamMedia)
             {
