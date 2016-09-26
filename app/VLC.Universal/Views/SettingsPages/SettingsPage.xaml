@@ -96,23 +96,6 @@
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            HideTextIfEmpty="True"
-                                                           Header="{Binding Source={StaticResource Strings}, Path=HomePage}"
-                                                           Text="{Binding Source={StaticResource Strings}, Path=HomePageDescription}" />
-
-                        <ComboBox Margin="{StaticResource FrameMarginTop}"
-                                  ItemsSource="{Binding HomePageCollection}"
-                                  SelectedItem="{Binding HomePage, Mode=TwoWay}"
-                                  Style="{StaticResource VLCLightComboBox}"
-                                  Width="160">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={StaticResource VLCPageStringifyConverter}}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-
-                        <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
-                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=ExternalStorage}"
                                                            Text="{Binding Source={StaticResource Strings}, Path=WhatToDoWhenExternalStorage}" />
 
@@ -124,6 +107,23 @@
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Converter={StaticResource ExternalDeviceModeStringifyConverter}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                                                           HideTextIfEmpty="True"
+                                                           Header="{Binding Source={StaticResource Strings}, Path=HomePage}"
+                                                           Text="{Binding Source={StaticResource Strings}, Path=HomePageDescription}" />
+
+                        <ComboBox Margin="{StaticResource FrameMarginTop}"
+                                  ItemsSource="{Binding HomePageCollection}"
+                                  SelectedItem="{Binding HomePage, Mode=TwoWay}"
+                                  Style="{StaticResource VLCLightComboBox}"
+                                  Width="160">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource VLCPageStringifyConverter}}" />
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
