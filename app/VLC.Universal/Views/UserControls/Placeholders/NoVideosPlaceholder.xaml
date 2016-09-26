@@ -18,6 +18,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="12"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <FontIcon Glyph="{StaticResource VideoFilledSymbol}"
                   FontFamily="{StaticResource VLCFont}"
@@ -60,5 +61,12 @@
                      FontFamily="{StaticResource VLCFont}" />
             </TextBlock>
         </Button>
+        <TextBlock Grid.Row="6"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="{Binding Source={StaticResource Locator}, Path=MediaLibraryVM.AddMediaHelpString}"
+                 FontSize="18" />
+        </TextBlock>
     </Grid>
 </UserControl>

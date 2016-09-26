@@ -286,6 +286,8 @@ namespace VLC.Utils
         public static string ElementsNotFound => _resourcesLoader.GetString(nameof(ElementsNotFound));
 
         public static string NoVideosFound => _resourcesLoader.GetString(nameof(NoVideosFound));
+        public static string AddMediaHelp => _resourcesLoader.GetString(nameof(AddMediaHelp));
+        public static string AddMediaHelpWithIP => _resourcesLoader.GetString(nameof(AddMediaHelpWithIP));
         public static string NoResults => _resourcesLoader.GetString(nameof(NoResults));
         public static string HoweverYouMayFindWhatYouWantHere => _resourcesLoader.GetString(nameof(HoweverYouMayFindWhatYouWantHere));
         public static string NoCameraVideosFound => _resourcesLoader.GetString(nameof(NoCameraVideosFound));

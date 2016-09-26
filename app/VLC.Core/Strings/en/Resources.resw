@@ -780,4 +780,10 @@
   <data name="Remember" xml:space="preserve">
     <value>Remember</value>
   </data>
+  <data name="AddMediaHelp" xml:space="preserve">
+    <value>Please insert an external storage device</value>
+  </data>
+  <data name="AddMediaHelpWithIP" xml:space="preserve">
+    <value>Please insert an external storage device, or go to http://{0}:8080 to upload some media</value>
+  </data>
 </root>
