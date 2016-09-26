@@ -64,7 +64,8 @@
         <TextBlock Grid.Row="6"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    VerticalAlignment="Center"
-                   TextAlignment="Center">
+                   TextAlignment="Center"
+                   Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.VisibleOnXbox}">
             <Run Text="{Binding Source={StaticResource Locator}, Path=MediaLibraryVM.AddMediaHelpString}"
                  FontSize="18" />
         </TextBlock>
