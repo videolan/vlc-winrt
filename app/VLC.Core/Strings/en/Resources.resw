@@ -742,7 +742,7 @@
     <value>VLC has detected an external storage device.</value>
   </data>
   <data name="ReadFromExternalStorage" xml:space="preserve">
-    <value>Read media from the external storage.</value>
+    <value>Use external storage as media library.</value>
   </data>
   <data name="SelectContentToCopy" xml:space="preserve">
     <value>Copy media to the internal storage.</value>
@@ -755,9 +755,6 @@
   </data>
   <data name="ExternalStorage" xml:space="preserve">
     <value>external storage</value>
-  </data>
-  <data name="RememberChoice" xml:space="preserve">
-    <value>Do not ask me again.</value>
   </data>
   <data name="WhatToDoWhenExternalStorage" xml:space="preserve">
     <value>What should VLC do when an external storage device has been detected?</value>
@@ -776,5 +773,11 @@
   </data>
   <data name="BetaWarningTitle" xml:space="preserve">
     <value>Beta</value>
+  </data>
+  <data name="Ignore" xml:space="preserve">
+    <value>Ignore</value>
+  </data>
+  <data name="Remember" xml:space="preserve">
+    <value>Remember</value>
   </data>
 </root>

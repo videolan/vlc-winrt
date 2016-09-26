@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using VLC.Model;
 using VLC.Model.FileExplorer;
 using VLC.UI.Views;
@@ -18,22 +19,30 @@ namespace VLC.UI.UWP.Views.VariousPages
             this.InitializeComponent();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private async void Ok_Click(object sender, RoutedEventArgs e)
+        {
+            Locator.NavigationService.GoBack_HideFlyout();
+            await performAction();
+        }
+
+        private async void Remember_Click(object sender, RoutedEventArgs e)
         {
             Locator.NavigationService.GoBack_HideFlyout();
 
             if (Index.IsChecked == true)
+                Locator.SettingsVM.ExternalDeviceMode = ExternalDeviceMode.IndexMedias;
+            else if (Select.IsChecked == true)
+                Locator.SettingsVM.ExternalDeviceMode = ExternalDeviceMode.SelectMedias;
+
+            await performAction();
+        }
+
+        private async Task performAction()
+        {
+            if (Index.IsChecked == true)
                 await Locator.ExternalDeviceService.AskExternalDeviceIndexing();
             else if (Select.IsChecked == true)
                 await Locator.ExternalDeviceService.AskContentToCopy();
-
-            if (Remember.IsChecked == true)
-            {
-                if (Index.IsChecked == true)
-                    Locator.SettingsVM.ExternalDeviceMode = ExternalDeviceMode.IndexMedias;
-                else if (Select.IsChecked == true)
-                    Locator.SettingsVM.ExternalDeviceMode = ExternalDeviceMode.SelectMedias;
-            }
         }
 
         public bool ModalMode
@@ -41,12 +50,9 @@ namespace VLC.UI.UWP.Views.VariousPages
             get { return true; }
         }
 
-        private void Cancel_Click(object sender, RoutedEventArgs e)
+        private void Ignore_Click(object sender, RoutedEventArgs e)
         {
             Locator.NavigationService.GoBack_HideFlyout();
-
-            if (Remember.IsChecked == true)
-                Locator.SettingsVM.ExternalDeviceMode = ExternalDeviceMode.DoNothing;
         }
     }
 }

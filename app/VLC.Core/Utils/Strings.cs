@@ -207,6 +207,8 @@ namespace VLC.Utils
         public static string Others => "Others";
         public static string Ok => _resourcesLoader.GetString(nameof(Ok));
         public static string Cancel => _resourcesLoader.GetString(nameof(Cancel));
+        public static string Ignore => _resourcesLoader.GetString(nameof(Ignore));
+        public static string Remember => _resourcesLoader.GetString(nameof(Remember));
 
         // ACTIONS
         public static string Back => _resourcesLoader.GetString(nameof(Back));
@@ -388,7 +390,6 @@ namespace VLC.Utils
         public static string SelectContentToCopy => _resourcesLoader.GetString(nameof(SelectContentToCopy));
         public static string DoNothing => _resourcesLoader.GetString(nameof(DoNothing));
         public static string AskMe => _resourcesLoader.GetString(nameof(AskMe));
-        public static string RememberChoice => _resourcesLoader.GetString(nameof(RememberChoice));
 
         // BETA WARNING
         public static string BetaWarning => _resourcesLoader.GetString(nameof(BetaWarning));

@@ -16,24 +16,25 @@
             <RadioButton x:Name="Select" Content="{Binding Source={StaticResource Strings}, Path=SelectContentToCopy}" />
         </StackPanel>
 
-        <CheckBox x:Name="Remember"
-                  Margin="20,5,20,5"
-                  Content="{Binding Source={StaticResource Strings}, Path=RememberChoice}" />
-
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="1"
                     Margin="10"
-                    Click="Button_Click"
+                    Click="Ok_Click"
                     Content="{Binding Source={StaticResource Strings}, Path=Ok}" />
             <Button Grid.Column="2"
                     Margin="10"
-                    Click="Cancel_Click"
-                    Content="{Binding Source={StaticResource Strings}, Path=Cancel}" />
+                    Click="Remember_Click"
+                    Content="{Binding Source={StaticResource Strings}, Path=Remember}" />
+            <Button Grid.Column="3"
+                    Margin="10"
+                    Click="Ignore_Click"
+                    Content="{Binding Source={StaticResource Strings}, Path=Ignore}" />
         </Grid>
     </StackPanel>
 </Page>
