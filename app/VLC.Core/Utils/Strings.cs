@@ -110,7 +110,7 @@ namespace VLC.Utils
         
         public static string YourMusic => _resourcesLoader.GetString(nameof(YourMusic));
         public static string MostPlayedArtists => _resourcesLoader.GetString(nameof(MostPlayedArtists));
-        public static string RecommendedForYou => _resourcesLoader.GetString(nameof(RecommendedForYou));
+        public static string Favorites => _resourcesLoader.GetString(nameof(Favorites));
         public static string Loading => _resourcesLoader.GetString(nameof(Loading));
         public static string LoadingMusic => _resourcesLoader.GetString(nameof(LoadingMusic));
         public static string Download => "Download";

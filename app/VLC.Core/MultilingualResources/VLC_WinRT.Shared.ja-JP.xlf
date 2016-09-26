@@ -462,9 +462,9 @@
           <source>privacy statement</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">プライバシーに関する声明</target>
         </trans-unit>
-        <trans-unit id="RecommendedForYou" translate="yes" xml:space="preserve">
-          <source>recommended for you</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">あなたのためをお勧めします</target>
+        <trans-unit id="Favorites" translate="yes" xml:space="preserve">
+          <source>Favorites</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">お気に入りのメディア</target>
         </trans-unit>
         <trans-unit id="RefreshMusicLibrary" translate="yes" xml:space="preserve">
           <source>refresh music library</source>

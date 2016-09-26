@@ -354,7 +354,7 @@
   <data name="PrivacyStatement" xml:space="preserve">
     <value>confidentialité</value>
   </data>
-  <data name="RecommendedForYou" xml:space="preserve">
+  <data name="Favorites" xml:space="preserve">
     <value>recommandé pour vous</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">

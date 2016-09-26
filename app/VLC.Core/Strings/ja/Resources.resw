@@ -354,7 +354,7 @@
   <data name="PrivacyStatement" xml:space="preserve">
     <value>プライバシーに関する声明</value>
   </data>
-  <data name="RecommendedForYou" xml:space="preserve">
+  <data name="Favorites" xml:space="preserve">
     <value>あなたのためをお勧めします</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">

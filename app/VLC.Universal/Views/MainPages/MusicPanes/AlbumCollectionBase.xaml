@@ -65,7 +65,7 @@
                                   FontFamily="{StaticResource VLCFont}"
                                   FontSize="20"
                                   Margin="0,6,0,0" />
-                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RecommendedForYou}"
+                        <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Favorites}"
                                    Style="{StaticResource SubheaderTextBlockStyle}"
                                    Margin="{StaticResource FrameMarginLeft}" />
                     </StackPanel>

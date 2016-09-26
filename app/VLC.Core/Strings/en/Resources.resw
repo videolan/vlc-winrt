@@ -459,8 +459,8 @@
   <data name="PrivacyStatement" xml:space="preserve">
     <value>privacy statement</value>
   </data>
-  <data name="RecommendedForYou" xml:space="preserve">
-    <value>recommended for you</value>
+  <data name="Favorites" xml:space="preserve">
+    <value>Favorites</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">
     <value>refresh music library</value>
