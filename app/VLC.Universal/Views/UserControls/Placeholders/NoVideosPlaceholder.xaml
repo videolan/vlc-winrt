@@ -14,9 +14,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="12"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="12"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -32,11 +31,23 @@
                    TextAlignment="Center">
             <Run Text="{Binding Source={StaticResource Strings}, Path=NoVideosFound}"
                  FontSize="20" />
-            <LineBreak />
-            <Run Text="{Binding Source={StaticResource Strings}, Path=HoweverYouMayFindWhatYouWantHere}"
+        </TextBlock>
+        <TextBlock Grid.Row="2"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center"
+                   Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.VisibleOnXbox}">
+            <Run Text="{Binding Source={StaticResource Locator}, Path=MediaLibraryVM.AddMediaHelpString}"
                  FontSize="18" />
         </TextBlock>
-        <Button Grid.Row="3"
+        <TextBlock Grid.Row="3"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+        <Run Text="{Binding Source={StaticResource Strings}, Path=HoweverYouMayFindWhatYouWantHere}"
+                 FontSize="18" />
+        </TextBlock>
+        <Button Grid.Row="4"
                 Click="ShowsClick"
                 Style="{StaticResource TextBlockButtonStyle}"
                 HorizontalAlignment="Center">
@@ -61,13 +72,5 @@
                      FontFamily="{StaticResource VLCFont}" />
             </TextBlock>
         </Button>
-        <TextBlock Grid.Row="6"
-                   Style="{StaticResource SubheaderTextBlockStyle}"
-                   VerticalAlignment="Center"
-                   TextAlignment="Center"
-                   Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.VisibleOnXbox}">
-            <Run Text="{Binding Source={StaticResource Locator}, Path=MediaLibraryVM.AddMediaHelpString}"
-                 FontSize="18" />
-        </TextBlock>
     </Grid>
 </UserControl>
