@@ -46,7 +46,7 @@ namespace VLC.ViewModels.VideoVM
         #endregion
 
         #region public fields
-        public List<VideoView> VideoViewCollection { get; set; } = new List<VideoView>()
+        public List<VideoView> VideoViewCollection { get; } = new List<VideoView>()
         {
             VideoView.Videos,
             VideoView.Shows,
