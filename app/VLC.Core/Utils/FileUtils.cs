@@ -61,7 +61,7 @@ namespace VLC.Utils
         public static async Task<StorageFolder> GetLocalStorageMediaFolder()
         {
             return await ApplicationData.Current.LocalFolder.CreateFolderAsync(
-                "Medias", CreationCollisionOption.OpenIfExists);
+                "Media", CreationCollisionOption.OpenIfExists);
         }
     }
 }

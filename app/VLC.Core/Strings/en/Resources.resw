@@ -742,10 +742,10 @@
     <value>VLC has detected an external storage device.</value>
   </data>
   <data name="ReadFromExternalStorage" xml:space="preserve">
-    <value>Read medias from the external storage.</value>
+    <value>Read media from the external storage.</value>
   </data>
   <data name="SelectContentToCopy" xml:space="preserve">
-    <value>Copy medias to the internal storage.</value>
+    <value>Copy media to the internal storage.</value>
   </data>
   <data name="WhatToDo" xml:space="preserve">
     <value>What would you like to do?</value>
