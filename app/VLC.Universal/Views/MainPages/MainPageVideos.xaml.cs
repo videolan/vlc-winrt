@@ -15,6 +15,8 @@ using Microsoft.Xaml.Interactivity;
 using VLC.Model.Video;
 using VLC.UI.Views.MainPages.MainVideoControls;
 using VLC.ViewModels.VideoVM;
+using VLC.Helpers;
+using System.Diagnostics;
 
 namespace VLC.UI.Views.MainPages
 {
@@ -79,6 +81,7 @@ namespace VLC.UI.Views.MainPages
                         MainPageVideoContentPresenter.Content = new ShowsPivotItem();
                     break;
                 case VideoView.CameraRoll:
+                    Debug.Assert(DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox);
                     if (!(MainPageVideoContentPresenter.Content is CameraRollPivotItem))
                         MainPageVideoContentPresenter.Content = new CameraRollPivotItem();
                     break;

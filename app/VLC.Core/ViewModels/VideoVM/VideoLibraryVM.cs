@@ -43,15 +43,27 @@ namespace VLC.ViewModels.VideoVM
         private LoadingState _loadingStateShows;
         private bool _hasNoMedia = true;
         private TvShow _currentShow;
+        private List<VideoView> _videoViewCollection;
         #endregion
 
         #region public fields
-        public List<VideoView> VideoViewCollection { get; } = new List<VideoView>()
+        public List<VideoView> VideoViewCollection
         {
-            VideoView.Videos,
-            VideoView.Shows,
-            VideoView.CameraRoll
-        };
+            get
+            {
+                if (_videoViewCollection == null)
+                {
+                    _videoViewCollection = new List<VideoView>()
+                    {
+                        VideoView.Videos,
+                        VideoView.Shows,
+                    };
+                    if (DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox)
+                        _videoViewCollection.Add(VideoView.CameraRoll);
+                }
+                return _videoViewCollection;
+            }
+        }
 
         public ObservableCollection<VideoItem> Videos
         {

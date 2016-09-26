@@ -50,7 +50,8 @@
         <Button Grid.Row="5"
                 Click="CameraRollClick"
                 Style="{StaticResource TextBlockButtonStyle}"
-                HorizontalAlignment="Center">
+                HorizontalAlignment="Center"
+                Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.CollapsedOnXbox}">
             <TextBlock>
                 <Run Text="{Binding Source={StaticResource Strings}, Path=CameraRoll}"
                      FontWeight="Light"
