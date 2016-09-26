@@ -105,16 +105,16 @@
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Grid.Column="2"
-                          Grid.Row="2"
-                          Label="{Binding Source={StaticResource Strings}, Path=EditMetadata}"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.StartTrackMetaEdit}"
-                          CommandParameter="{Binding}"
-                          Click="ActionButton_Click">
+            <AppBarButton Grid.Row="2"
+                      Grid.Column="2"
+                      Label="{Binding Source={StaticResource Strings}, Path=AddToCurrentPlaylist}"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.AddToPlayingPlaylist}"
+                      CommandParameter="{Binding}"
+                      Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlaybackService.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource OrderedListSymbol}"
-                              FontFamily="{StaticResource VLCFont}" />
+                          FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
         </Grid>
@@ -122,18 +122,16 @@
               DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                <ColumnDefinition />
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="1"
                        Text="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
                        Style="{StaticResource BodyTextBlockStyle}"
                        FontWeight="SemiBold"
                        VerticalAlignment="Center"/>
-            <AppBarButton Grid.Column="3"
-                          Label="{Binding Source={StaticResource Strings}, Path=NewPlaylist}"
+            <AppBarButton Grid.Column="2"
+                          HorizontalAlignment="Right"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Command="{Binding ShowCreateNewPlaylistPaneCommand}"
                           Margin="0,2,0,0"
@@ -144,19 +142,7 @@
                 </AppBarButton.Icon>
             </AppBarButton>
         </Grid>
-        <AppBarButton Grid.Row="3"
-                      Margin="{StaticResource FrameMargin}"
-                      Label="{Binding Source={StaticResource Strings}, Path=AddToCurrentPlaylist}"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.AddToPlayingPlaylist}"
-                      CommandParameter="{Binding}"
-                      Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlaybackService.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource OrderedListSymbol}"
-                          FontFamily="{StaticResource VLCFont}" />
-            </AppBarButton.Icon>
-        </AppBarButton>
-        <Grid Grid.Row="4"
+        <StackPanel Grid.Row="4"
               DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
               Margin="{StaticResource FrameMarginBothSides}">
             <ListView ItemsSource="{Binding TrackCollections}"
@@ -164,6 +150,6 @@
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       SelectionChanged="Selector_OnSelectionChanged" />
             <placeholder:NoPlaylistPlaceholder Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}" />
-        </Grid>
+        </StackPanel>
     </Grid>
 </Flyout>
