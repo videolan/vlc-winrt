@@ -297,6 +297,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\style.css" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\web-download-fixed.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\web-download.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\windows_cone_icon.mp4" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Wide310x150Logo.scale-150.png" />

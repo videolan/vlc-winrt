@@ -29,6 +29,7 @@ public class HttpResponseSender
         { "woff", "application/font-woff" },
         { "jpg", "image/jpeg" },
         { "png", "image/png" },
+        { "mp4", "video/mp4" },
     };
 
     private readonly String[] HTMLStrings =

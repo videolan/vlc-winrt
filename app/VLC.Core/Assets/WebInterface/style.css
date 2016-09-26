@@ -165,9 +165,6 @@ div.main.drop {
   cursor: pointer;
 }
 
-.messageUpload {
-  margin: 80px 0px;
-}
 .messageUpload h1 {
   font-size: 30px;
   font-weight: bold;
@@ -195,6 +192,14 @@ div.main.drop {
   text-shadow: 1px 1px 2px black;
 }
 
+.videoContainer {
+    width: 30%;
+    margin: 0 auto 0 auto;
+}
+
+.videoContainer video {
+    width: 100%;
+}
 .files {
   text-align: left;
   margin-left: 20px;
