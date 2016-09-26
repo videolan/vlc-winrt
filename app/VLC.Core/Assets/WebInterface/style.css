@@ -200,6 +200,7 @@ div.main.drop {
 .videoContainer video {
     width: 100%;
 }
+
 .files {
   text-align: left;
   margin-left: 20px;
@@ -382,6 +383,7 @@ div.main.drop {
 
 .downloads .inner .infos span.first-line {
   font-size: 1.7em;
+  overflow: hidden;
 }
 
 .downloads .inner .infos span.second-line {
