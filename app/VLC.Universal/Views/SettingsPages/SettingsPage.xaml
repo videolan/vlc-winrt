@@ -130,11 +130,13 @@
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            HideTextIfEmpty="True"
-                                                           Header="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}" />
+                                                           Header="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}"
+                                                           Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.CollapsedOnXbox}" />
                         <ListView ItemsSource="{Binding KeyboardActions}"
                                   SelectionMode="None"
                                   Margin="{StaticResource FrameMarginTop}"
-                                  ItemContainerStyle="{StaticResource ListViewItemBasic}">
+                                  ItemContainerStyle="{StaticResource ListViewItemBasic}"
+                                  Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.CollapsedOnXbox}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Margin="{StaticResource FrameMarginBottom}"
