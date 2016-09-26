@@ -285,6 +285,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\StoreLogo.scale-150.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\StoreLogo.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\StoreLogo.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\favicon.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\gradient-cell.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\index.html" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\WebInterface\jquery-1.10.1.min.jstxt" />
