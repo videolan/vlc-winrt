@@ -256,8 +256,7 @@ namespace VLC
                     Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
                     Locator.MainVM.GoToHomePageMediaCenterCommand.Execute(null);
 
-                    if (!AppViewHelper.GetFullscreen())
-                        AppViewHelper.SetFullscreen();
+                    AppViewHelper.EnterFullscreen();
 
                     App.SplitShell.FooterContent = null;
                 }
@@ -266,8 +265,7 @@ namespace VLC
                     Locator.SettingsVM.MediaCenterMode = false;
                     Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
 
-                    if (AppViewHelper.GetFullscreen())
-                        AppViewHelper.SetFullscreen();
+                    AppViewHelper.LeaveFullscreen();
 
                     App.SplitShell.FooterContent = new CommandBarBottom();
                 }

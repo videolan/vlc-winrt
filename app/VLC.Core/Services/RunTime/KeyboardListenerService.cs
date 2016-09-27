@@ -229,10 +229,10 @@ namespace VLC.Services.RunTime
                 switch (keyboardAction.Action)
                 {
                     case VLCAction.FullscreenToggle:
-                        AppViewHelper.SetFullscreen();
+                        AppViewHelper.ToggleFullscreen();
                         break;
                     case VLCAction.LeaveFullscreen:
-                        AppViewHelper.SetFullscreen();
+                        AppViewHelper.LeaveFullscreen();
                         break;
                     case VLCAction.PauseToggle:
                         if (Locator.MediaPlaybackViewModel.MediaState == MediaState.Paused

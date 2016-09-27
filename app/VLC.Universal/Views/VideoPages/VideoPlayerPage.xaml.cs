@@ -115,8 +115,7 @@ namespace VLC.UI.Views.VideoPages
 
             Locator.VideoPlayerVm.PlayerControlVisibilityChangeRequested -= VideoPlayerVm_PlayerControlVisibilityChangeRequested;
 
-            if (AppViewHelper.GetFullscreen())
-                AppViewHelper.SetFullscreen();
+            AppViewHelper.LeaveFullscreen();
 
             this.SizeChanged -= OnSizeChanged;
 
@@ -201,7 +200,7 @@ namespace VLC.UI.Views.VideoPages
         {
             if (e.PointerDeviceType != Windows.Devices.Input.PointerDeviceType.Touch)
             {
-                AppViewHelper.SetFullscreen();
+                AppViewHelper.ToggleFullscreen();
             }
         }
 
@@ -370,7 +369,7 @@ namespace VLC.UI.Views.VideoPages
             videoSubItem.Items.Add(new MenuFlyoutItem()
             {
                 Text = "Fullscreen toggle",
-                Command = new ActionCommand(() => AppViewHelper.SetFullscreen())
+                Command = new ActionCommand(() => AppViewHelper.ToggleFullscreen())
             });
             videoSubItem.Items.Add(new MenuFlyoutItem()
             {
@@ -450,7 +449,7 @@ namespace VLC.UI.Views.VideoPages
 
         private void FullscreenToggle_Click(object sender, RoutedEventArgs e)
         {
-            AppViewHelper.SetFullscreen();
+            AppViewHelper.ToggleFullscreen();
         }
     }
 }

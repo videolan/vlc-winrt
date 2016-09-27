@@ -94,7 +94,7 @@ namespace VLC.Helpers
             appView.Title = title;
         }
 
-        public static void SetFullscreen()
+        public static void ToggleFullscreen()
         {
             var v = ApplicationView.GetForCurrentView();
 
@@ -106,6 +106,18 @@ namespace VLC.Helpers
             {
                 v.TryEnterFullScreenMode();
             }
+        }
+
+        public static void LeaveFullscreen()
+        {
+            var v = ApplicationView.GetForCurrentView();
+            v.ExitFullScreenMode();
+        }
+
+        public static void EnterFullscreen()
+        {
+            var v = ApplicationView.GetForCurrentView();
+            v.TryEnterFullScreenMode();
         }
 
         public static bool GetFullscreen()
