@@ -12,14 +12,8 @@ namespace VLC.Services.RunTime
 {
     public class FileCopyService
     {
-        private readonly Queue<StorageFile> q = new Queue<StorageFile>();
+        private readonly Queue<StorageFile> filesQueue = new Queue<StorageFile>();
         private bool copying = false;
-
-        private int _copyValue = 0;
-        private int _maximumValue = 0;
-
-        public event EventHandler<int> CopyValueChanged;
-        public event EventHandler<int> MaximumValueChanged;
 
         public FileCopyService()
         {
@@ -27,28 +21,55 @@ namespace VLC.Services.RunTime
             copyTask.Start();
         }
 
+        private int _nbCopiedFiles = 0;
+        private int _totalNbFiles = 0;
+
+        private int NbCopiedFiles
+        {
+            get { return _nbCopiedFiles; }
+            set
+            {
+                _nbCopiedFiles = value;
+                DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal,
+                    () => NbCopiedFilesChanged?.Invoke(this, _nbCopiedFiles));
+            }
+        }
+
+        private int TotalNbFiles
+        {
+            get { return _totalNbFiles; }
+            set
+            {
+                _totalNbFiles = value;
+                DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal,
+                    () => TotalNbFilesChanged?.Invoke(this, _totalNbFiles));
+            }
+        }
+
+        public event EventHandler<int> NbCopiedFilesChanged;
+        public event EventHandler<int> TotalNbFilesChanged;
+
+        public event EventHandler CopyStarted;
+        public event EventHandler CopyEnded;
+
         public void Enqueue(StorageFile f)
         {
-            lock (q)
+            lock (filesQueue)
             {
                 if (!copying)
                 {
+                    NbCopiedFiles = 0;
+                    TotalNbFiles = 0;
                     DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal,
-                        () => {
-                            _copyValue = 0;
-                            _maximumValue = 0;
-                            CopyValueChanged?.Invoke(this, _copyValue);
-                            Locator.FileExplorerVM.copyStarted();
-                        });
+                        () => CopyStarted?.Invoke(this, null));
                 }
 
-                q.Enqueue(f);
+                filesQueue.Enqueue(f);
                 copying = true;
-                Monitor.Pulse(q);
+                Monitor.Pulse(filesQueue);
             }
 
-            _maximumValue++;
-            MaximumValueChanged?.Invoke(this, _maximumValue);
+            TotalNbFiles++;
         }
 
         private async void copyThread()
@@ -56,13 +77,13 @@ namespace VLC.Services.RunTime
             while (true)
             {
                 StorageFile f = null;
-                lock (q)
+                lock (filesQueue)
                 {
-                    if (q.Count == 0)
-                        Monitor.Wait(q);
+                    if (filesQueue.Count == 0)
+                        Monitor.Wait(filesQueue);
 
-                    if (q.Count > 0)
-                        f = q.Dequeue();
+                    if (filesQueue.Count > 0)
+                        f = filesQueue.Dequeue();
                 }
 
                 if (f != null)
@@ -74,16 +95,15 @@ namespace VLC.Services.RunTime
                     if (success == false)
                         await copy.DeleteAsync();
 
-                    _copyValue++;
-                    CopyValueChanged?.Invoke(this, _copyValue);
+                    NbCopiedFiles++;
 
-                    lock (q)
+                    lock (filesQueue)
                     {
-                        if (q.Count == 0)
+                        if (filesQueue.Count == 0)
                         {
                             copying = false;
                             DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal,
-                                () => Locator.FileExplorerVM.copyEnded());
+                                () => CopyEnded?.Invoke(this, null));
                         }
                     }
                 }

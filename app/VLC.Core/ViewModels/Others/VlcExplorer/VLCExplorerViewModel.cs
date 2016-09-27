@@ -47,6 +47,15 @@ namespace VLC.ViewModels.RemovableDevicesVM
         public RootFolderClickedCommand RootFolderClicked { get; } = new RootFolderClickedCommand();
         public GoUpperFolderCommand GoBackCommand { get; } = new GoUpperFolderCommand();
 
+        public VLCExplorerViewModel()
+        {
+            Locator.FileCopyService.NbCopiedFilesChanged += FileCopyService_CopyValueChanged;
+            Locator.FileCopyService.TotalNbFilesChanged += FileCopyService_MaximumValueChanged;
+
+            Locator.FileCopyService.CopyStarted += FileCopyService_CopyStarted;
+            Locator.FileCopyService.CopyEnded += FileCopyService_CopyEnded;
+        }
+
         public bool CanGoBack
         {
             get { return CurrentStorageVM?.BackStack.Count > 1; }
@@ -129,18 +138,28 @@ namespace VLC.ViewModels.RemovableDevicesVM
 
         private DateTime visibilityUpdateTime;
 
-        public void copyStarted()
+        private void FileCopyService_CopyStarted(object sender, EventArgs e)
         {
             visibilityUpdateTime = DateTime.UtcNow;
             CopyProgressVisibility = Visibility.Visible;
         }
 
-        public async void copyEnded()
+        private async void FileCopyService_CopyEnded(object sender, EventArgs e)
         {
             DateTime t = visibilityUpdateTime = DateTime.UtcNow;
             await Task.Delay(5000);
             if (t == visibilityUpdateTime)
                 CopyProgressVisibility = Visibility.Collapsed;
+        }
+
+        private void FileCopyService_MaximumValueChanged(object sender, int e)
+        {
+            CopyMaximum = e;
+        }
+
+        private void FileCopyService_CopyValueChanged(object sender, int e)
+        {
+            CopyValue = e;
         }
 
         public bool DesktopMode { get { return !Locator.SettingsVM.MediaCenterMode; } }
