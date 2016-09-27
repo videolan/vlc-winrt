@@ -38,7 +38,7 @@ using Windows.UI.Xaml;
 
 namespace VLC.ViewModels
 {
-    public sealed class MediaPlaybackViewModel : BindableBase, IDisposable
+    public sealed class MediaPlaybackViewModel : BindableBase
     {
         #region private props
         private MouseService _mouseService;
@@ -737,10 +737,5 @@ namespace VLC.ViewModels
             }
         }
         #endregion
-
-        public void Dispose()
-        {
-            PlaybackService.Stop();
-        }
     }
 }
