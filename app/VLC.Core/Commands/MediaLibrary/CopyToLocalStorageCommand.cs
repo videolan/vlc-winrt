@@ -20,7 +20,7 @@ namespace VLC.Commands.MediaLibrary
                 // Copy the selected file.
                 var file = parameter as VLCStorageFile;
                 StorageFile f = await StorageFile.GetFileFromPathAsync(file.StorageItem.Path);
-                await CopyMediaFileToLocalStorage(f);
+                CopyMediaFileToLocalStorage(f);
             }
             else if (parameter is VLCStorageFolder)
             {
@@ -29,17 +29,13 @@ namespace VLC.Commands.MediaLibrary
                 StorageFolder d = await StorageFolder.GetFolderFromPathAsync(folder.StorageItem.Path);
                 var list = await MediaLibraryHelper.GetSupportedFiles(d);
                 foreach (StorageFile f in list)
-                    await CopyMediaFileToLocalStorage(f);
+                    CopyMediaFileToLocalStorage(f);
             }
         }
 
-        private async Task CopyMediaFileToLocalStorage(StorageFile source)
+        private void CopyMediaFileToLocalStorage(StorageFile source)
         {
-            StorageFile copy = await source.CopyAsync(await FileUtils.GetLocalStorageMediaFolder(),
-                source.Name, NameCollisionOption.GenerateUniqueName);
-            bool success = await Locator.MediaLibrary.DiscoverMediaItemOrWaitAsync(copy, false);
-            if (success == false)
-                await copy.DeleteAsync();
+            Locator.FileCopyService.Enqueue(source);
         }
     }
 }
