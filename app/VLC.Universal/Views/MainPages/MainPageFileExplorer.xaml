@@ -19,6 +19,7 @@
     <Grid x:Name="RootGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -89,7 +90,12 @@
                        Margin="0,-2,0,0" />
         </Grid>
 
-        <Grid Grid.Row="1"
+        <ProgressBar Grid.Row="1"
+                     Value="{Binding CopyValue}"
+                     Maximum="{Binding CopyMaximum}"
+                     Visibility="{Binding CopyProgressVisibility}" />
+
+        <Grid Grid.Row="2"
               Visibility="{Binding FileExplorerVisibility}">
             <placeholder:NothingToSeeHere Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <ProgressBar IsIndeterminate="True"
@@ -130,7 +136,7 @@
             </AppBarButton>
         </Grid>
 
-        <Grid Grid.Row="1"
+        <Grid Grid.Row="2"
               Visibility="{Binding RootFoldersVisibility}">
             <ListView ItemsSource="{Binding Source={StaticResource StorageVMsGroupedByType}}"
                       SelectedItem="{Binding CurrentStorageVM}"

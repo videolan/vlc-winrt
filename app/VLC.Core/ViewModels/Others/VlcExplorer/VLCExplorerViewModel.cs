@@ -40,6 +40,9 @@ namespace VLC.ViewModels.RemovableDevicesVM
         #region public props
         private Visibility _rootFoldersVisibility;
         private Visibility _fileExplorerVisibility;
+        private Visibility _copyProgressVisibility = Visibility.Collapsed;
+        private int _copyMaximum = 0;
+        private int _copyValue = 0;
 
         public RootFolderClickedCommand RootFolderClicked { get; } = new RootFolderClickedCommand();
         public GoUpperFolderCommand GoBackCommand { get; } = new GoUpperFolderCommand();
@@ -104,6 +107,40 @@ namespace VLC.ViewModels.RemovableDevicesVM
                     && Locator.SettingsVM.MediaCenterMode
                     ? Visibility.Visible : Visibility.Collapsed;
             }
+        }
+
+        public int CopyMaximum
+        {
+            get { return _copyMaximum; }
+            set { SetProperty(ref _copyMaximum, value); }
+        }
+
+        public int CopyValue
+        {
+            get { return _copyValue; }
+            set { SetProperty(ref _copyValue, value); }
+        }
+
+        public Visibility CopyProgressVisibility
+        {
+            get { return _copyProgressVisibility; }
+            set { SetProperty(ref _copyProgressVisibility, value); }
+        }
+
+        private DateTime visibilityUpdateTime;
+
+        public void copyStarted()
+        {
+            visibilityUpdateTime = DateTime.UtcNow;
+            CopyProgressVisibility = Visibility.Visible;
+        }
+
+        public async void copyEnded()
+        {
+            DateTime t = visibilityUpdateTime = DateTime.UtcNow;
+            await Task.Delay(5000);
+            if (t == visibilityUpdateTime)
+                CopyProgressVisibility = Visibility.Collapsed;
         }
 
         public bool DesktopMode { get { return !Locator.SettingsVM.MediaCenterMode; } }
