@@ -18,12 +18,7 @@ namespace VLC.Helpers.MusicPlayer
             _auth = new LastAuth(apiKey, apiSig);
         }
 
-        public IAsyncOperation<bool> ConnectOperation(string account, string password)
-        {
-            return Connect(account, password).AsAsyncOperation();
-        }
-
-        internal async Task<bool> Connect(string account, string password)
+        public async Task<bool> ConnectOperation(string account, string password)
         {
             var lastResponse = await _auth.GetSessionTokenAsync(account, password);
             IsConnected = lastResponse.Success && _auth.Authenticated;
