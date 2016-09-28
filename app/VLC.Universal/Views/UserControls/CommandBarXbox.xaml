@@ -28,10 +28,10 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Button x:Name="NowPlayingArtistGrid"
-                        Height="70"
-                        Background="Transparent"
-                        Tapped="RootMiniPlayer_Tapped"
-                        Style="{StaticResource GrayedBackgroundButtonStyle}">
+                    Click="NowPlayingArtistGrid_Click"
+                    Height="70"
+                    Background="Transparent"
+                    Style="{StaticResource GrayedBackgroundButtonStyle}">
                 <Grid Margin="{StaticResource FrameMarginRight}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -46,8 +46,7 @@
                            Grid.RowSpan="2"
                            DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
                            Source="{Binding CurrentAlbum.AlbumImage}"
-                           Stretch="UniformToFill"
-                           Tapped="RootMiniPlayer_Tapped" />
+                           Stretch="UniformToFill" />
                     <TextBlock x:Name="TrackNameTextBlock"
                                Grid.Column="2"
                                Text="{Binding CurrentMediaTitle}"

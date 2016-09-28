@@ -67,7 +67,7 @@ namespace VLC.UI.Views.UserControls
         #endregion
 
         #region interactions
-        private void RootMiniPlayer_Tapped(object sender, TappedRoutedEventArgs e)
+        private void NowPlayingArtistGrid_Click(object sender, RoutedEventArgs e)
         {
             Locator.MusicPlayerVM.GoToMusicPlayerPage.Execute(null);
         }
