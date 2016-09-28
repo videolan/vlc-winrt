@@ -196,7 +196,12 @@ namespace VLC.Services.RunTime
                             case VirtualKey.GamepadMenu:
                             case VirtualKey.F1:
                                 if (Locator.SettingsVM.MediaCenterMode)
-                                    Locator.NavigationService.Go(VLCPage.MainPageXBOX);
+                                {
+                                    if (Locator.NavigationService.CurrentPage != VLCPage.MainPageXBOX)
+                                        Locator.NavigationService.Go(VLCPage.MainPageXBOX);
+                                    else
+                                        Locator.NavigationService.GoBack_HideFlyout();
+                                }
                                 break;
                             case VirtualKey.GamepadA:
                             case VirtualKey.GamepadLeftThumbstickButton:
