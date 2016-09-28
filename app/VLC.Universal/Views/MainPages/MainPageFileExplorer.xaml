@@ -21,6 +21,7 @@
             <RowDefinition Height="40" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid x:Name="FileExplorerButtonsGrid"
@@ -203,5 +204,13 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
+
+        <StackPanel Grid.Row="3"
+            Visibility="{Binding CopyHelpVisible}"
+            Background="{ThemeResource ApplicationChromeThemeBrush}">
+            <TextBlock Text="{Binding CopyHelpMessage}"
+                HorizontalAlignment="Center"
+                FontSize="16" />
+        </StackPanel>
     </Grid>
 </Page>

@@ -786,4 +786,10 @@
   <data name="AddMediaHelpWithIP" xml:space="preserve">
     <value>Please insert an external storage device, or go to http://{0}:8080 to upload some media</value>
   </data>
+  <data name="CopyHelpDesktop" xml:space="preserve">
+    <value>Right-click on a file or a folder to copy it to the local storage.</value>
+  </data>
+  <data name="CopyHelpMediaCenter" xml:space="preserve">
+    <value>Press "Y" on a file or a folder to copy it to the local storage.</value>
+  </data>
 </root>

@@ -80,6 +80,7 @@ namespace VLC.ViewModels.RemovableDevicesVM
                     FileExplorerVisibility = Visibility.Collapsed;
                     RootFoldersVisibility = Visibility.Visible;
                 }
+                OnPropertyChanged(nameof(CopyHelpVisible));
             }
         }
         #endregion
@@ -115,6 +116,25 @@ namespace VLC.ViewModels.RemovableDevicesVM
                 return FileExplorerVisibility == Visibility.Visible
                     && Locator.SettingsVM.MediaCenterMode
                     ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
+        public Visibility CopyHelpVisible
+        {
+            get
+            {
+                return FileExplorerVisibility == Visibility.Visible
+                    && _currentStorageVM is LocalFileExplorerViewModel
+                    ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
+        public string CopyHelpMessage
+        {
+            get
+            {
+                return Locator.SettingsVM.MediaCenterMode
+                    ? Strings.CopyHelpMediaCenter : Strings.CopyHelpDesktop;
             }
         }
 

@@ -726,4 +726,10 @@
   <data name="Remember" xml:space="preserve">
     <value>Se souvenir</value>
   </data>
+  <data name="CopyHelpDesktop" xml:space="preserve">
+    <value>Cliquez droit sur un fichier ou un dossier pour le copier ver le stockage local.</value>
+  </data>
+  <data name="CopyHelpMediaCenter" xml:space="preserve">
+    <value>Pressez "Y" sur un fichier ou un dossier pour le copier ver le stockage local.</value>
+  </data>
 </root>
