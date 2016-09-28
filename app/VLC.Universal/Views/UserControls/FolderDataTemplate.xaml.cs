@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using VLC.Helpers;
+﻿using VLC.Model.FileExplorer;
 using VLC.ViewModels;
 using Windows.System;
 using Windows.UI.Xaml;
@@ -40,7 +39,8 @@ namespace VLC.UI.Views.UserControls
                     ShowFlyout();
                     break;
                 case VirtualKey.GamepadY:
-                    Locator.FileExplorerVM.CurrentStorageVM.CopyCommand.Execute(this.DataContext);
+                    if ((this.DataContext as IVLCStorageItem).StorageItem != null)
+                        Locator.FileExplorerVM.CurrentStorageVM.CopyCommand.Execute(this.DataContext);
                     break;
                 default:
                     break;
@@ -59,7 +59,8 @@ namespace VLC.UI.Views.UserControls
 
         void ShowFlyout()
         {
-            Flyout.ShowAttachedFlyout(RootGrid);
+            if ((this.DataContext as IVLCStorageItem).StorageItem != null)
+                Flyout.ShowAttachedFlyout(RootGrid);
         }
     }
 }
