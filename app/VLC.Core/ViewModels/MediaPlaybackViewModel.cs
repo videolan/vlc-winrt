@@ -598,11 +598,6 @@ namespace VLC.ViewModels
 
         public void SetMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
         {
-            ForceMediaTransportControls(systemMediaTransportControls);
-        }
-
-        void ForceMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
-        {
             try
             {
                 _systemMediaTransportControls = systemMediaTransportControls;
