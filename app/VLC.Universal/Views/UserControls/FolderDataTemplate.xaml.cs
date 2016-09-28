@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using VLC.Helpers;
 using VLC.ViewModels;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -33,9 +34,16 @@ namespace VLC.UI.Views.UserControls
 
         private void KeyboardListenerService_KeyDownPressed(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
         {
-            if (args.VirtualKey == Windows.System.VirtualKey.GamepadView)
+            switch (args.VirtualKey)
             {
-                ShowFlyout();
+                case VirtualKey.GamepadView:
+                    ShowFlyout();
+                    break;
+                case VirtualKey.GamepadY:
+                    Locator.FileExplorerVM.CurrentStorageVM.CopyCommand.Execute(this.DataContext);
+                    break;
+                default:
+                    break;
             }
         }
 
