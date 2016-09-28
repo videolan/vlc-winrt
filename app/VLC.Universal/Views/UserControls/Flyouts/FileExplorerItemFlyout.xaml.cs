@@ -7,12 +7,5 @@ namespace VLC.UI.Views.UserControls.Flyouts
         {
             this.InitializeComponent();
         }
-
-        public void setCurrentVLCStorageItem(object storageItem)
-        {
-            this.InitializeComponent();
-            foreach (var item in MenuFlyout.Items)
-                item.DataContext = storageItem;
-        }
     }
 }
