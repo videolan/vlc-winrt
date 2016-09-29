@@ -24,7 +24,8 @@
                     <StackPanel Margin="{StaticResource FrameMarginHorizontal}">
                         <toolkitControls:HeaderedTextBlock HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=Theme}"
-                                                           Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}" />
+                                                           Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}" 
+                                                           IsTabStop="False"/>
 
                         <winControls:WrapPanel Orientation="Horizontal">
                             <ToggleSwitch x:Name="AppThemeSwitch"
@@ -73,7 +74,8 @@
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=Languages}"
-                                                           Text="{Binding Source={StaticResource Strings}, Path=SelectLanguageDescription}" />
+                                                           Text="{Binding Source={StaticResource Strings}, Path=SelectLanguageDescription}"
+                                                           IsTabStop="False"/>
 
                         <winControls:WrapPanel Margin="{StaticResource FrameMarginTop}"
                                                Orientation="Horizontal">
@@ -97,7 +99,8 @@
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=ExternalStorage}"
-                                                           Text="{Binding Source={StaticResource Strings}, Path=WhatToDoWhenExternalStorage}" />
+                                                           Text="{Binding Source={StaticResource Strings}, Path=WhatToDoWhenExternalStorage}" 
+                                                           IsTabStop="False" />
 
                         <ComboBox Margin="{StaticResource FrameMarginTop}"
                                   ItemsSource="{Binding ExternalDeviceModeCollection}"
@@ -114,7 +117,8 @@
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=HomePage}"
-                                                           Text="{Binding Source={StaticResource Strings}, Path=HomePageDescription}" />
+                                                           Text="{Binding Source={StaticResource Strings}, Path=HomePageDescription}" 
+                                                           IsTabStop="False" />
 
                         <ComboBox Margin="{StaticResource FrameMarginTop}"
                                   ItemsSource="{Binding HomePageCollection}"
@@ -169,7 +173,8 @@
                                 Margin="{StaticResource FrameMarginHorizontal}">
                         <toolkitControls:HeaderedTextBlock Header="{Binding Source={StaticResource Strings}, Path=VideoFolders}"
                                                            HideTextIfEmpty="True"
-                                                           Text="{Binding Source={StaticResource Strings}, Path=VideoFoldersDescription}" />
+                                                           Text="{Binding Source={StaticResource Strings}, Path=VideoFoldersDescription}" 
+                                                           IsTabStop="False" />
                         <ListView Tag="STARTS"
                                   ItemsSource="{Binding VideoFolders}"
                                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -231,7 +236,8 @@
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=HardwareDecoding}"
-                                                           Text="{Binding Source={StaticResource Strings}, Path=HardwareDecodingDescription}" />
+                                                           Text="{Binding Source={StaticResource Strings}, Path=HardwareDecodingDescription}" 
+                                                           IsTabStop="False" />
                         <ToggleSwitch IsOn="{Binding HardwareAccelerationEnabled, Mode=TwoWay}" />
 
                         <ToggleSwitch Header="{Binding Source={StaticResource Strings}, Path=ForceLandscape}"
@@ -244,7 +250,8 @@
 
                         <toolkitControls:HeaderedTextBlock HideTextIfEmpty="True"
                                                            Margin="{StaticResource FrameMarginTop}"
-                                                           Header="{Binding Source={StaticResource Strings}, Path=SubtitlesEncoding}" />
+                                                           Header="{Binding Source={StaticResource Strings}, Path=SubtitlesEncoding}" 
+                                                           IsTabStop="False" />
                         <ComboBox Margin="0,12"
                                   ItemsSource="{Binding SubtitlesEncodingValues}"
                                   SelectedItem="{Binding SubtitleEncodingValue, Mode=TwoWay}"
@@ -266,7 +273,8 @@
                     <StackPanel x:Name="MusicSettingsPanel"
                                 Margin="{StaticResource FrameMarginHorizontal}">
                         <toolkitControls:HeaderedTextBlock HideTextIfEmpty="True"
-                                                           Header="{Binding Source={StaticResource Strings}, Path=Equalizer}" />
+                                                           Header="{Binding Source={StaticResource Strings}, Path=Equalizer}" 
+                                                           IsTabStop="False" />
 
                         <ComboBox ItemsSource="{Binding Presets}"
                                   SelectedItem="{Binding Equalizer, Mode=TwoWay}"
@@ -290,7 +298,8 @@
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=MusicFolders}"
-                                                           Text="{Binding Source={StaticResource Strings}, Path=MusicFoldersDescription}" />
+                                                           Text="{Binding Source={StaticResource Strings}, Path=MusicFoldersDescription}" 
+                                                           IsTabStop="False" />
                         <ListView Tag="STARTS"
                                   ItemsSource="{Binding MusicFolders}"
                                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -352,13 +361,15 @@
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=Notifications}"
-                                                           Text="{Binding Source={StaticResource Strings}, Path=NotificationWhenSongStarts}" />
+                                                           Text="{Binding Source={StaticResource Strings}, Path=NotificationWhenSongStarts}"
+                                                           IsTabStop="False"/>
 
                         <ToggleSwitch  IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}" />
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            HideTextIfEmpty="True"
-                                                           Header="{Binding Source={StaticResource Strings}, Path=ConnectToLastFM}" />
+                                                           Header="{Binding Source={StaticResource Strings}, Path=ConnectToLastFM}"
+                                                           IsTabStop="False" />
                         <userControls:FocusTextBox Height="30"
                                                    Width="250"
                                                    Margin="0,12,0,12"
@@ -399,7 +410,8 @@
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=Reset}"
-                                                           Text="This will delete all the playlists made with VLC, and index the music library again." />
+                                                           Text="This will delete all the playlists made with VLC, and index the music library again." 
+                                                           IsTabStop="False" />
 
                         <Button Content="{Binding Source={StaticResource Strings}, Path=ResetMusicDatabase}"
                                 DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
