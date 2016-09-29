@@ -19,7 +19,6 @@
                       Foreground="{StaticResource MainColor}" />
         </Pivot.LeftHeader>
         <PivotItem Header="{Binding Source={StaticResource Strings}, Path=UserInterface}">
-            <Grid>
                 <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
                     <StackPanel Margin="{StaticResource FrameMarginHorizontal}">
                         <toolkitControls:HeaderedTextBlock HideTextIfEmpty="True"
@@ -164,10 +163,8 @@
                         </ListView>
                     </StackPanel>
                 </ScrollViewer>
-            </Grid>
         </PivotItem>
         <PivotItem Header="{Binding Source={StaticResource Strings}, Path=VideoSettings}">
-            <Grid>
                 <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
                     <StackPanel x:Name="VideoSettingsPanel"
                                 Margin="{StaticResource FrameMarginHorizontal}">
@@ -266,10 +263,8 @@
                         </ComboBox>
                     </StackPanel>
                 </ScrollViewer>
-            </Grid>
         </PivotItem>
         <PivotItem Header="{Binding Source={StaticResource Strings}, Path=MusicSettings}">
-            <Grid>
                 <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
                     <StackPanel x:Name="MusicSettingsPanel"
                                 Margin="{StaticResource FrameMarginHorizontal}">
@@ -422,8 +417,6 @@
                                 Margin="{StaticResource FrameMarginVertical}" />
                     </StackPanel>
                 </ScrollViewer>
-            </Grid>
-
         </PivotItem>
     </Pivot>
 </Page>
