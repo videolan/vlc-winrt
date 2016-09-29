@@ -70,22 +70,20 @@
             </ListView.ItemsPanel>
         </ListView>
 
-        <Grid Grid.Row="5"
-              Margin="{StaticResource FrameMarginBottom}">
-            <AppBarButton Grid.Column="3"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          VerticalAlignment="Center"
-                          Label="{Binding Source={StaticResource Strings}, Path=Settings}"
-                          ToolTipService.ToolTip="{Binding Source={StaticResource Strings}, Path=Settings}"
-                          Command="{Binding GoToSettingsPageCommand}"
-                          IsTabStop="True"
-                          HorizontalAlignment="Center">
+        <AppBarButton Grid.Row="5"
+              Margin="{StaticResource FrameMarginBottom}"
+              IsTabStop="True"
+                Style="{StaticResource AppBarButtonStyleHorizontal}"
+                VerticalAlignment="Center"
+                Label="{Binding Source={StaticResource Strings}, Path=Settings}"
+                ToolTipService.ToolTip="{Binding Source={StaticResource Strings}, Path=Settings}"
+                Command="{Binding GoToSettingsPageCommand}"
+                HorizontalAlignment="Center">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource SettingsSymbol}"
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
-            </AppBarButton>
-        </Grid>
+        </AppBarButton>
 
         <userControls:CommandBarXbox
             Grid.Row="6" />
