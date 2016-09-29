@@ -585,9 +585,6 @@
   <data name="UnknownTrack" xml:space="preserve">
     <value>Unknown track</value>
   </data>
-  <data name="UpcomingShows" xml:space="preserve">
-    <value>upcoming shows</value>
-  </data>
   <data name="UserInterface" xml:space="preserve">
     <value>User Interface</value>
   </data>

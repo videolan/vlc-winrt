@@ -67,13 +67,6 @@
                        Margin="{StaticResource FrameMarginHorizontal}"
                        MaxWidth="700"
                        TextAlignment="Justify" />
-            <TextBlock Grid.Row="8"
-                       TextTrimming="CharacterEllipsis"
-                       TextWrapping="NoWrap"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Center"
-                       Text="{Binding Source={StaticResource Strings}, Path=UpcomingShows}"
-                       Style="{StaticResource SubheaderTextBlockStyle}" />
         </Grid>
     </ScrollViewer>
 </UserControl>

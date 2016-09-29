@@ -585,9 +585,6 @@
   <data name="UnknownTrack" xml:space="preserve">
     <value>Piste inconnue</value>
   </data>
-  <data name="UpcomingShows" xml:space="preserve">
-    <value>spectacles à venir</value>
-  </data>
   <data name="UserInterface" xml:space="preserve">
     <value>interface utilisateur</value>
   </data>

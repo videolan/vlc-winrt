@@ -30,12 +30,6 @@ namespace VLC.MusicMetaFetcher
             ApiKeyLastFm = lastFmApiKey;
         }
 
-        public async Task<List<Show>> GetArtistEvents(string artistName)
-        {
-            var shows = await DownloadArtistEventFromLastFm(artistName);
-            return shows;
-        }
-
         private async Task<byte[]> DownloadArtistPictureFromDeezer(string artistName)
         {
             var deezerClient = new DeezerClient();
@@ -134,11 +128,6 @@ namespace VLC.MusicMetaFetcher
             {
                 Debug.WriteLine(string.Format("Error getting or saving art from lastFm. {0}", ex));
             }
-            return null;
-        }
-
-        private async Task<List<Show>> DownloadArtistEventFromLastFm(string artistName)
-        {
             return null;
         }
 

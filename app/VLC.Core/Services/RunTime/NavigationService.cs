@@ -14,7 +14,6 @@ using VLC.ViewModels;
 using VLC.UI.Views.MainPages;
 using VLC.UI.Views.MusicPages;
 using VLC.UI.Views.MusicPages.AlbumPageControls;
-using VLC.UI.Views.MusicPages.ArtistPages;
 using VLC.UI.Views.MusicPages.PlaylistControls;
 using VLC.UI.Views.VariousPages;
 using VLC.UI.Views.VideoPages;
@@ -294,9 +293,6 @@ namespace VLC.Services.RunTime
                     break;
                 case VLCPage.MusicPlayerPage:
                     App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
-                    break;
-                case VLCPage.ArtistShowsPage:
-                    setFlyoutContent(desiredPage, typeof(ArtistShowsPage));
                     break;
                 case VLCPage.AddAlbumToPlaylistDialog:
                     setFlyoutContent(desiredPage, typeof(AddAlbumToPlaylistBase));

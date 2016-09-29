@@ -127,16 +127,5 @@ namespace VLC.Services.RunTime
         {
             throw new NotImplementedException();
         }
-
-        public async Task GetArtistEvents(ArtistItem artist)
-        {
-            var shows = await musicMdFetcher.GetArtistEvents(artist.Name);
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                artist.IsUpcomingShowsLoading = false;
-                if (shows == null) return; 
-                artist.UpcomingShows = shows;
-            });
-        }
     }
 }

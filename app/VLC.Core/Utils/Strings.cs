@@ -251,7 +251,6 @@ namespace VLC.Utils
 
         public static string EditMetadata => _resourcesLoader.GetString(nameof(EditMetadata));
         public static string ChangeAlbumCover => _resourcesLoader.GetString(nameof(ChangeAlbumCover));
-        public static string UpcomingShows => _resourcesLoader.GetString(nameof(UpcomingShows));
 
 
         // PLAYLISTS

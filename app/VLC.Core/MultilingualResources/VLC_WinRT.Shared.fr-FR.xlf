@@ -630,10 +630,6 @@
           <source>Unknown track</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Piste inconnue</target>
         </trans-unit>
-        <trans-unit id="UpcomingShows" translate="yes" xml:space="preserve">
-          <source>upcoming shows</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">spectacles à venir</target>
-        </trans-unit>
         <trans-unit id="UserInterface" translate="yes" xml:space="preserve">
           <source>user interface</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">interface utilisateur</target>

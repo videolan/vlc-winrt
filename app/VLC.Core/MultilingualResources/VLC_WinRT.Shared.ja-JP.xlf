@@ -630,10 +630,6 @@
           <source>Unknown track</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">不明なトラック</target>
         </trans-unit>
-        <trans-unit id="UpcomingShows" translate="yes" xml:space="preserve">
-          <source>upcoming shows</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">今後の番組</target>
-        </trans-unit>
         <trans-unit id="UserInterface" translate="yes" xml:space="preserve">
           <source>user interface</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">ユーザー インターフェイス</target>

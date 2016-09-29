@@ -1,18 +1,13 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media.Imaging;
 using SQLite;
 using VLC.Commands.MusicLibrary;
 using VLC.Helpers;
-using VLC.Helpers.MusicLibrary;
 using VLC.MusicMetaFetcher.Models.MusicEntities;
 using VLC.Utils;
 using VLC.ViewModels;
-using System.Diagnostics;
-using VLC.Commands;
 
 namespace VLC.Model.Music
 {
@@ -35,8 +30,6 @@ namespace VLC.Model.Music
         private bool _isOnlineMusicVideosLoaded = false;
         private string _biography;
         private List<Show> _upcomingShowItems;
-        private bool _isUpcomingShowsLoading = false;
-        private bool _isUpcomingShowsItemsLoaded = false;
         private bool _isPinned;
 
         private BitmapImage _artistImage;
@@ -224,32 +217,6 @@ namespace VLC.Model.Music
         {
             get { return _isPinned; }
             set { SetProperty(ref _isPinned, value); }
-        }
-
-        [Ignore]
-        public List<Show> UpcomingShows
-        {
-            get
-            {
-                if (!_isUpcomingShowsItemsLoaded)
-                {
-                    IsUpcomingShowsLoading = true;
-                    _isUpcomingShowsItemsLoaded = true;
-                    Task.Run(() => Locator.MusicMetaService.GetArtistEvents(this));
-                }
-                return _upcomingShowItems;
-            }
-            set { SetProperty(ref _upcomingShowItems, value); }
-        }
-
-        [Ignore]
-        public bool IsUpcomingShowsLoading
-        {
-            get
-            {
-                return _isUpcomingShowsLoading;
-            }
-            set { SetProperty(ref _isUpcomingShowsLoading, value); }
         }
 
         public bool IsFavorite

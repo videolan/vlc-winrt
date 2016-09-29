@@ -585,9 +585,6 @@
   <data name="UnknownTrack" xml:space="preserve">
     <value>不明なトラック</value>
   </data>
-  <data name="UpcomingShows" xml:space="preserve">
-    <value>今後の番組</value>
-  </data>
   <data name="UserInterface" xml:space="preserve">
     <value>ユーザー インターフェイス</value>
   </data>
