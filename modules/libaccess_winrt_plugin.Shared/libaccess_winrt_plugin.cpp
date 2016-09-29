@@ -276,7 +276,7 @@ ssize_t Read(access_t *access, void *buffer, size_t size)
             }
             OutputDebugString(L"Failed to reopen file\n");
         }
-        return -1;
+        return 0;
     }
 
     p_sys->i_pos += totalRead;
