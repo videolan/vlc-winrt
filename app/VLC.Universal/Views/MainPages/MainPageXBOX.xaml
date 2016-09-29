@@ -26,7 +26,8 @@
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   SelectionMode="Single"
                   IsItemClickEnabled="True"
-                  ItemClick="ListView_ItemClick">
+                  ItemClick="ListView_ItemClick"
+                  XYFocusDown="{x:Bind SettingsButton}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid VerticalAlignment="Center"
@@ -61,6 +62,7 @@
         </ListView>
 
         <AppBarButton
+            x:Name="SettingsButton"
             Margin="{StaticResource FrameMarginBottom}"
             IsTabStop="True"
             Style="{StaticResource AppBarButtonStyleHorizontal}"
@@ -75,6 +77,7 @@
             </AppBarButton.Icon>
         </AppBarButton>
 
-        <userControls:CommandBarXbox />
+        <userControls:CommandBarXbox
+            XYFocusUp="{x:Bind SettingsButton}"/>
     </StackPanel>
 </Page>
