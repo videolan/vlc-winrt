@@ -9,17 +9,8 @@
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
-    <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1"
+    <StackPanel Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+        <StackPanel
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
             <Path Data="{StaticResource VLCFlatPath}"
@@ -32,7 +23,6 @@
                        VerticalAlignment="Center" />
         </StackPanel>
         <ListView x:Name="PanelsListView"
-                  Grid.Row="3"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   SelectionMode="Single"
                   IsItemClickEnabled="True"
@@ -70,22 +60,21 @@
             </ListView.ItemsPanel>
         </ListView>
 
-        <AppBarButton Grid.Row="5"
-              Margin="{StaticResource FrameMarginBottom}"
-              IsTabStop="True"
-                Style="{StaticResource AppBarButtonStyleHorizontal}"
-                VerticalAlignment="Center"
-                Label="{Binding Source={StaticResource Strings}, Path=Settings}"
-                ToolTipService.ToolTip="{Binding Source={StaticResource Strings}, Path=Settings}"
-                Command="{Binding GoToSettingsPageCommand}"
-                HorizontalAlignment="Center">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource SettingsSymbol}"
-                              FontFamily="{StaticResource VLCFont}" />
-                </AppBarButton.Icon>
+        <AppBarButton
+            Margin="{StaticResource FrameMarginBottom}"
+            IsTabStop="True"
+            Style="{StaticResource AppBarButtonStyleHorizontal}"
+            VerticalAlignment="Center"
+            Label="{Binding Source={StaticResource Strings}, Path=Settings}"
+            ToolTipService.ToolTip="{Binding Source={StaticResource Strings}, Path=Settings}"
+            Command="{Binding GoToSettingsPageCommand}"
+            HorizontalAlignment="Center">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource SettingsSymbol}"
+                            FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Icon>
         </AppBarButton>
 
-        <userControls:CommandBarXbox
-            Grid.Row="6" />
-    </Grid>
+        <userControls:CommandBarXbox />
+    </StackPanel>
 </Page>
