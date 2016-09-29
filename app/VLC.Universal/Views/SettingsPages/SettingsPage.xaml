@@ -235,7 +235,8 @@
                         <ToggleSwitch IsOn="{Binding HardwareAccelerationEnabled, Mode=TwoWay}" />
 
                         <ToggleSwitch Header="{Binding Source={StaticResource Strings}, Path=ForceLandscape}"
-                                      IsOn="{Binding ForceLandscape, Mode=TwoWay}" />
+                                      IsOn="{Binding ForceLandscape, Mode=TwoWay}"
+                                      Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.CollapsedOnXbox}" />
 
                         <ToggleSwitch Tag="WindowsOnly"
                                       Header="{Binding Source={StaticResource Strings}, Path=VideoPlaybackInBackground}"
