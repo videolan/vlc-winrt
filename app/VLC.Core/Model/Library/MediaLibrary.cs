@@ -670,9 +670,24 @@ namespace VLC.Model.Library
             return groupedArtists;
         }
 
-        public IEnumerable<IGrouping<char, TrackItem>> OrderTracks()
+        public ObservableCollection<GroupItemList<TrackItem>> OrderTracks()
         {
-            return Tracks?.GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownChar : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ToUpper().ElementAt(0) : Strings.UnknownChar));
+            var groupedTracks = new ObservableCollection<GroupItemList<TrackItem>>();
+            var groupQuery = from track in Tracks
+                             group track by Strings.HumanizedArtistFirstLetter(track.Name) into a
+                             orderby a.Key
+                             select new { GroupName = a.Key, Items = a };
+            foreach (var g in groupQuery)
+            {
+                GroupItemList<TrackItem> tracks = new GroupItemList<TrackItem>();
+                tracks.Key = g.GroupName;
+                foreach (var artist in g.Items)
+                {
+                    tracks.Add(artist);
+                }
+                groupedTracks.Add(tracks);
+            }
+            return groupedTracks;
         }
         #endregion
         #region DatabaseLogic

@@ -37,6 +37,8 @@ namespace VLC.ViewModels.MusicVM
     public class MusicLibraryVM : BindableBase
     {
         #region private fields
+        private ObservableCollection<GroupItemList<TrackItem>> _groupedTracks;
+
         private ObservableCollection<GroupItemList<ArtistItem>> _groupedArtists;
         private ObservableCollection<ArtistItem> _topArtists = new ObservableCollection<ArtistItem>();
 
@@ -94,9 +96,10 @@ namespace VLC.ViewModels.MusicVM
             set { SetProperty(ref _groupedArtists, value); }
         }
 
-        public IEnumerable<IGrouping<char, TrackItem>> GroupedTracks
+        public ObservableCollection<GroupItemList<TrackItem>> GroupedTracks
         {
-            get { return Locator.MediaLibrary.OrderTracks(); }
+            get { return _groupedTracks; }
+            set { SetProperty(ref _groupedTracks, value); }
         }
 
         public ObservableCollection<AlbumItem> GroupedAlbums
@@ -565,11 +568,30 @@ namespace VLC.ViewModels.MusicVM
 
         private async void Tracks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            await OrderTracks();
+            if (Locator.MediaLibrary.Tracks?.Count == 0 || Locator.MediaLibrary.Tracks?.Count == 1)
+            {
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    OnPropertyChanged(nameof(IsMusicLibraryEmpty));
+                    OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
+                });
+            }
+
+            if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems.Count > 0)
+            {
+                foreach (var newItem in e.NewItems)
+                {
+                    var track = (TrackItem)newItem;
+                    await InsertIntoGroupTrack(track);
+                }
+            }
+            else
+                await OrderTracks();
         }
 
         async Task OrderTracks()
         {
+            _groupedTracks = Locator.MediaLibrary.OrderTracks();
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(GroupedTracks));
@@ -651,6 +673,29 @@ namespace VLC.ViewModels.MusicVM
                 else
                 {
                     await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => firstChar.Add(artist));
+                }
+            }
+            catch { }
+        }
+
+        async Task InsertIntoGroupTrack(TrackItem track)
+        {
+            try
+            {
+                var supposedFirstChar = Strings.HumanizedArtistFirstLetter(track.Name);
+                var firstChar = GroupedTracks.FirstOrDefault(x => (string)x.Key == supposedFirstChar);
+                if (firstChar == null)
+                {
+                    var newChar = new GroupItemList<TrackItem>(track) { Key = supposedFirstChar };
+                    if (GroupedTracks == null)
+                        return;
+                    int i = GroupedTracks.IndexOf(GroupedTracks.LastOrDefault(x => string.Compare((string)x.Key, (string)newChar.Key) < 0));
+                    i++;
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => GroupedTracks.Insert(i, newChar));
+                }
+                else
+                {
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => firstChar.Add(track));
                 }
             }
             catch { }
