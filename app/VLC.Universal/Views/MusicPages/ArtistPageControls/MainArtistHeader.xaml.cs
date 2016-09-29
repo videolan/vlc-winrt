@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using VLC.Model.Music;
 using VLC.Utils;
 using VLC.ViewModels;
+using VLC.ViewModels.MusicVM;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -25,7 +26,7 @@ namespace VLC.UI.Views.MusicPages.ArtistPageControls
             Window.Current.SizeChanged += Current_SizeChanged;
             Responsive();
 
-            Locator.MusicLibraryVM.CurrentArtist.PropertyChanged += CurrentArtist_PropertyChanged;
+            Locator.MusicLibraryVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
 
             if (!await UpdateThumbnail())
                 await Locator.MusicLibraryVM.CurrentArtist.ResetArtistPicture(true);
@@ -36,8 +37,6 @@ namespace VLC.UI.Views.MusicPages.ArtistPageControls
 
         async Task<bool> UpdateThumbnail()
         {
-            if (Locator.MusicLibraryVM.CurrentArtist.ArtistImageThumbnail == null)
-                return false;
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
                 EllipseImage.Fill = new ImageBrush()
@@ -51,24 +50,31 @@ namespace VLC.UI.Views.MusicPages.ArtistPageControls
 
         async Task<bool> UpdateBackground()
         {
-            if (Locator.MusicLibraryVM.CurrentArtist.ArtistImage == null)
-                return false;
-
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => BackgroundImage.Source = Locator.MusicLibraryVM.CurrentArtist.ArtistImage);
             return true;
         }
 
+        private async void MusicLibraryVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(MusicLibraryVM.CurrentArtist))
+            {
+                if (Locator.MusicLibraryVM.CurrentArtist == null)
+                    return;
+                await UpdateThumbnail();
+                await UpdateBackground();
+                Locator.MusicLibraryVM.CurrentArtist.PropertyChanged += CurrentArtist_PropertyChanged;
+            }
+        }
+
         private async void CurrentArtist_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (Locator.MusicLibraryVM.CurrentArtist == null) return;
+            if (Locator.MusicLibraryVM.CurrentArtist == null)
+                return;
+
             if (e.PropertyName == nameof(ArtistItem.ArtistImageThumbnail))
-            {
                 await UpdateThumbnail();
-            }
             else if (e.PropertyName == nameof(ArtistItem.ArtistImage))
-            {
                 await UpdateBackground();
-            }
         }
 
         private void MainArtistHeader_Unloaded(object sender, RoutedEventArgs e)
