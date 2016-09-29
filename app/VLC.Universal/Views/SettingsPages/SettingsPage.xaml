@@ -171,7 +171,8 @@
                 <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
                     <StackPanel x:Name="VideoSettingsPanel"
                                 Margin="{StaticResource FrameMarginHorizontal}">
-                        <toolkitControls:HeaderedTextBlock Header="{Binding Source={StaticResource Strings}, Path=VideoFolders}"
+                        <toolkitControls:HeaderedTextBlock Tag="STARTS"
+                                                           Header="{Binding Source={StaticResource Strings}, Path=VideoFolders}"
                                                            HideTextIfEmpty="True"
                                                            Text="{Binding Source={StaticResource Strings}, Path=VideoFoldersDescription}" 
                                                            IsTabStop="False" />
@@ -295,7 +296,8 @@
 
                         <musicControls:Equalizer EqualizerValue="{Binding Equalizer}" />
 
-                        <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                        <toolkitControls:HeaderedTextBlock Tag="STARTS"
+                                                           Margin="{StaticResource FrameMarginTop}"
                                                            HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=MusicFolders}"
                                                            Text="{Binding Source={StaticResource Strings}, Path=MusicFoldersDescription}" 
