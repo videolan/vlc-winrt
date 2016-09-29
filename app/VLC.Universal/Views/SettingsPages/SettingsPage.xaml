@@ -366,7 +366,8 @@
                                                    FontWeight="Light"
                                                    Text="{Binding LastFmUserName, Mode=TwoWay}"
                                                    PlaceholderText="{Binding Source={StaticResource Strings}, Path=Username}"
-                                                   HorizontalAlignment="Left" />
+                                                   HorizontalAlignment="Left"
+                                                   IsSpellCheckEnabled="False"/>
                         <PasswordBox x:Name="PasswordBoxLastFm"
                                      Height="30"
                                      Width="250"
