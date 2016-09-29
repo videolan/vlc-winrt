@@ -598,7 +598,7 @@
     <value>video folders</value>
   </data>
   <data name="VideoFoldersDescription" xml:space="preserve">
-    <value>VLC will only search songs that are in your video library. You can add folders to your library here</value>
+    <value>VLC will only search videos that are in your video library. You can add folders to your library here</value>
   </data>
   <data name="VideoPlayback" xml:space="preserve">
     <value>video playback</value>

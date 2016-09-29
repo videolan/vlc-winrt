@@ -647,7 +647,7 @@
           <target state="needs-review-translation" state-qualifier="tm-suggestion">ビデオ フォルダ</target>
         </trans-unit>
         <trans-unit id="VideoFoldersDescription" translate="yes" xml:space="preserve">
-          <source>VLC will only search songs that are in your video library. You can add folders to your library here</source>
+          <source>VLC will only search videos that are in your video library. You can add folders to your library here</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC は、あなたのビデオのライブラリにある曲をのみ検索されます。ここにあなたのライブラリにフォルダーを追加することができます。</target>
         </trans-unit>
         <trans-unit id="VideoPlayback" translate="yes" xml:space="preserve">

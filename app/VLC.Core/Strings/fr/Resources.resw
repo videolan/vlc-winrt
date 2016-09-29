@@ -598,7 +598,7 @@
     <value>dossiers de vidéos</value>
   </data>
   <data name="VideoFoldersDescription" xml:space="preserve">
-    <value>VLC recherchera uniquement des chansons qui sont dans votre vidéothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici</value>
+    <value>VLC recherchera uniquement des vidéos qui sont dans votre vidéothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici</value>
   </data>
   <data name="VideoPlayback" xml:space="preserve">
     <value>lecture vidéo</value>

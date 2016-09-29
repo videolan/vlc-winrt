@@ -647,8 +647,8 @@
           <target state="needs-review-translation" state-qualifier="tm-suggestion">dossiers de vidéos</target>
         </trans-unit>
         <trans-unit id="VideoFoldersDescription" translate="yes" xml:space="preserve">
-          <source>VLC will only search songs that are in your video library. You can add folders to your library here</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC recherchera uniquement des chansons qui sont dans votre vidéothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici</target>
+          <source>VLC will only search videos that are in your video library. You can add folders to your library here</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC recherchera uniquement des vidéos qui sont dans votre vidéothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici</target>
         </trans-unit>
         <trans-unit id="VideoPlayback" translate="yes" xml:space="preserve">
           <source>video playback</source>
