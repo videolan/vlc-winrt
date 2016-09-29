@@ -26,6 +26,19 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
         </Grid.RowDefinitions>
+
+        <Grid x:Name="Placeholder"
+              Grid.Column="0"
+              Grid.RowSpan="3"
+              Height="180"
+              Width="180"
+              Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
+            <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
+                      FontFamily="{StaticResource VLCFont}"
+                      FontSize="42"
+                      Foreground="{ThemeResource MainColor}" />
+        </Grid>
+
         <Image Grid.Column="0"
                Grid.RowSpan="3"
                Source="{Binding AlbumImage}"
