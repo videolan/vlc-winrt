@@ -14,14 +14,14 @@
           Background="{ThemeResource ApplicationPageBackgroundThemeColor}"
           RequestedTheme="Dark">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.ColumnSpan="6">
+        <Grid Grid.ColumnSpan="5">
             <interactivity:Interaction.Behaviors>
                 <behaviors:Blur x:Name="BackgroundEffect"
                                 Value="10"

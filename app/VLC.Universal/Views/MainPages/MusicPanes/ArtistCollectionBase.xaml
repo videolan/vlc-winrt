@@ -122,7 +122,7 @@
             </AppBarButton>
         </Grid>
 
-        <Grid Grid.Column="2"
+        <Grid Grid.Column="1"
               x:Name="ArtistInfoGrid"
               x:DeferLoadStrategy="Lazy"
               Visibility="Collapsed">
@@ -130,9 +130,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <local:MainArtistHeader x:Name="MainArtistHeader"
-                                    VerticalAlignment="Stretch"
-                                    HorizontalAlignment="Center" />
+            <local:MainArtistHeader x:Name="MainArtistHeader" />
             <Pivot Grid.Row="1">
                 <PivotItem Header="{Binding Source={StaticResource Strings}, Path=Albums}">
                     <local:ArtistAlbumsSemanticView />
