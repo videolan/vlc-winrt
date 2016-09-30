@@ -80,22 +80,12 @@
                 <Run Text="{Binding Tracks.Count}" />
                 <Run Text="{Binding Source={StaticResource Strings}, Path=Tracks}" />
         </TextBlock>
-        <Grid Grid.Column="2"
-              Grid.ColumnSpan="2"
-              Grid.Row="2"
-              Height="50"
-              VerticalAlignment="Bottom">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="2"
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    Height="50">
             <AppBarButton x:Name="PlayAlbum"
-                          Grid.Column="0"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
                           Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
@@ -107,8 +97,7 @@
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Grid.Column="2"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+            <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
                           ToolTipService.ToolTip="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
                           Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.OpenAddAlbumToPlaylistDialogCommand}"
@@ -118,21 +107,19 @@
                               FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Grid.Column="4"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+            <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Icon="{Binding IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
                           Command="{Binding PinAlbumCommand}"
                           CommandParameter="{Binding}"
                           VerticalAlignment="Center"
                           IsCompact="True"
                           Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.DesktopMode}" />
-            <AppBarButton Grid.Column="6"
-                          Icon="{Binding Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
+            <AppBarButton Icon="{Binding Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
                           Command="{Binding FavoriteAlbum}"
                           CommandParameter="{Binding}"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
                           IsCompact="True" />
-        </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>
