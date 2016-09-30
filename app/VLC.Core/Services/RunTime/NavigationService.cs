@@ -58,9 +58,19 @@ namespace VLC.Services.RunTime
             }
 
             App.RootPage.NavigationFrame.Navigated += NavigationFrame_Navigated;
+            HomePageNavigated += NavigationService_HomePageNavigated;
+        }
+
+        public void Reset()
+        {
+            CurrentPage = VLCPage.None;
+            currentFlyout = VLCPage.None;
+        }
+
+        public void BindSplitShellEvents()
+        {
             App.SplitShell.FlyoutNavigated += SplitShell_FlyoutNavigated;
             App.SplitShell.FlyoutClosed += SplitShell_FlyoutClosed;
-            HomePageNavigated += NavigationService_HomePageNavigated;
         }
         
         private void NavigationService_HomePageNavigated(object sender, VLCPage homepage)

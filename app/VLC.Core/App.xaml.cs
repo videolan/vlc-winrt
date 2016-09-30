@@ -225,6 +225,7 @@ namespace VLC
             Window.Current.Content = new MainPage();
             Window.Current.Activate();
             await SplitShell.TemplateApplied.Task;
+            Locator.NavigationService.BindSplitShellEvents();
             SetLanguage();
             SetShellDecoration();
 
@@ -239,6 +240,17 @@ namespace VLC
                 Locator.HttpServer.bind(8080);
         }
 
+        public static async Task reloadApplicationPage()
+        {
+            Locator.NavigationService.Reset();
+            Window.Current.Content = new MainPage();
+            await SplitShell.TemplateApplied.Task;
+            Locator.NavigationService.BindSplitShellEvents();
+            SetLanguage();
+            SetShellDecoration();
+            await ToggleMediaCenterMode();
+        }
+
         private async void showWarningDialog()
         {
             var messageDialog = new MessageDialog(Strings.BetaWarning, Strings.BetaWarningTitle);
@@ -250,7 +262,7 @@ namespace VLC
             await messageDialog.ShowAsync();
         }
 
-        async Task ToggleMediaCenterMode()
+        async static Task ToggleMediaCenterMode()
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
