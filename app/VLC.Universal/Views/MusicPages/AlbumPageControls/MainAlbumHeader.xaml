@@ -49,7 +49,8 @@
                                            Grid.RowSpan="2"
                                            HideTextIfEmpty="True"
                                            Header="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
-                                           Text="{Binding Artist, Converter={StaticResource ArtistStringConverter}}" />
+                                           Text="{Binding Artist, Converter={StaticResource ArtistStringConverter}}"
+                                           IsTabStop="False" />
 
         <AppBarButton x:Name="ViewArtistButton"
                       Grid.Column="3"
