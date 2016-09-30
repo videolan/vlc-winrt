@@ -80,14 +80,6 @@ namespace VLC.UI.Views.MainPages
         {
             Locator.NavigationService.GoBack_HideFlyout();
         }
-        
-        public void DebugString(string s)
-        {
-#if DEBUG
-            DebugTextBlock.Text = s;
-#endif
-        }
-        
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
