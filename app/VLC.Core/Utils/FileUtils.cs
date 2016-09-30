@@ -12,11 +12,6 @@ namespace VLC.Utils
 {
     public static class FileUtils
     {
-        /**
-         * Size of the chunks that will be hashed in bytes (64 KB)
-         */
-        private static readonly uint HASH_CHUNK_SIZE = 64 * 1024;
-
         public static async Task<string> ComputeHash(StorageFile file)
         {
             using (var stream = await file.OpenReadAsync())

@@ -74,7 +74,7 @@ public class HttpResponseSender
         try
         {
             if (path.StartsWith("/thumbnails/"))
-                uri = await getThumbnail(path);
+                uri = getThumbnail(path);
             else
                 uri = new Uri("ms-appx:///Assets/WebInterface" + path);
         }
@@ -92,7 +92,7 @@ public class HttpResponseSender
 
         // Fill media list if we serve the main page.
         if (path == "/index.html")
-            fileBuffer = await fillMediaList(fileBuffer);
+            fileBuffer = fillMediaList(fileBuffer);
 
         string header = String.Format("HTTP/1.1 200 OK\r\n" +
                             "Content-Type: {0}\r\n" +
@@ -166,7 +166,7 @@ public class HttpResponseSender
         }
     }
 
-    async Task<IBuffer> fillMediaList(IBuffer fileBuffer)
+    IBuffer fillMediaList(IBuffer fileBuffer)
     {
         var fileStr = Encoding.UTF8.GetString(fileBuffer.ToArray());
         var mediaList = "";
@@ -213,7 +213,7 @@ public class HttpResponseSender
         return ret;
     }
 
-    async Task<Uri> getThumbnail(string path)
+    Uri getThumbnail(string path)
     {
         Uri ret = null;
         var decomp = path.Substring(1).Split('/');

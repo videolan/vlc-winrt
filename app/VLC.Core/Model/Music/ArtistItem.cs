@@ -29,7 +29,6 @@ namespace VLC.Model.Music
         private List<Artist> _onlineRelatedArtists;
         private bool _isOnlineMusicVideosLoaded = false;
         private string _biography;
-        private List<Show> _upcomingShowItems;
         private bool _isPinned;
 
         private BitmapImage _artistImage;

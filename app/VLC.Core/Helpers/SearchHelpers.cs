@@ -15,7 +15,7 @@ namespace VLC.Helpers
 {
     public static class SearchHelpers
     {        
-        public static async Task<List<AlbumItem>> SearchAlbums(string tag, List<AlbumItem> results)
+        public static List<AlbumItem> SearchAlbums(string tag, List<AlbumItem> results)
         {
             var albums = SearchAlbumItems(tag);
             foreach (var album in albums)
@@ -31,7 +31,7 @@ namespace VLC.Helpers
             return results;
         }
 
-        public static async Task<List<VideoItem>> SearchVideos(string tag, List<VideoItem> results)
+        public static List<VideoItem> SearchVideos(string tag, List<VideoItem> results)
         {
             var videos = SearchVideoItems(tag);
             foreach (var video in videos)

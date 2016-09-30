@@ -168,7 +168,7 @@ namespace VLC.ViewModels.VideoVM
             Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaFileNotFound += PlaybackService_Playback_MediaFileNotFound;
         }
 
-        private async void PlaybackService_Playback_MediaFileNotFound(IMediaItem media)
+        private void PlaybackService_Playback_MediaFileNotFound(IMediaItem media)
         {
             if (!(media is VideoItem))
                 return;

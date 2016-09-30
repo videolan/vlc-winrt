@@ -29,7 +29,6 @@ namespace Slide2D
         public static event WindowSizeChanged WindowSizeUpdated;
         private ImgSlideshow slideshow;
 
-        private bool wasPausedBeforeCoreWindowDeactivation = false;
         public MetroSlideshow()
         {
             SetWindowSize();

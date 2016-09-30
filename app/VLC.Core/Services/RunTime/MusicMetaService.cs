@@ -122,10 +122,5 @@ namespace VLC.Services.RunTime
             }
             return false;
         }
-
-        public async Task<List<Artist>> GetTopArtistGenre(string genre)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

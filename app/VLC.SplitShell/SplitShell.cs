@@ -66,7 +66,7 @@ namespace VLC.Controls
             _contentPresenter.Content = contentPresenter;
         }
         
-        public async void SetFlyoutContentPresenter(object content)
+        public async Task SetFlyoutContentPresenter(object content)
         {
             await TemplateApplied.Task;
             _flyoutContentPresenter.Navigate((Type)content);
@@ -118,10 +118,10 @@ namespace VLC.Controls
             nameof(FlyoutContent), typeof(Type), typeof(SplitShell),
             new PropertyMetadata(default(Type), FlyoutContentPropertyChangedCallback));
 
-        private static void FlyoutContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        private static async void FlyoutContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var that = (SplitShell)dependencyObject;
-            that.SetFlyoutContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
+            await that.SetFlyoutContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
             that.Responsive();
         }
 

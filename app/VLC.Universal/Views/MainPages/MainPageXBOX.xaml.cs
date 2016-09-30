@@ -13,12 +13,12 @@ namespace VLC.UI.Views.MainPages
         public MainPageXBOX()
         {
             this.InitializeComponent();
-            AppViewHelper.SetAppView(true);
             PanelsListView.Focus(Windows.UI.Xaml.FocusState.Keyboard);
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            await AppViewHelper.SetAppView(true);
             App.SplitShell.FlyoutAsHeader = true;
             base.OnNavigatedTo(e);
             PanelsListView.ItemsSource = Locator.MainVM.Panels;

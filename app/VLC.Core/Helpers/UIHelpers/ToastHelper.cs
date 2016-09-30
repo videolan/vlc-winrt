@@ -13,7 +13,7 @@ namespace VLC.Helpers
 {
     public static class ToastHelper
     {
-        public static async Task HandleProtocolActivation(IActivatedEventArgs args)
+        public static void HandleProtocolActivation(IActivatedEventArgs args)
         {
             var toastArgs = args as ToastNotificationActivatedEventArgs;
             switch (toastArgs.Argument)

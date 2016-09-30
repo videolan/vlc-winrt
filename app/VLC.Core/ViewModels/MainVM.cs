@@ -32,7 +32,6 @@ using Windows.UI.Xaml;
 using VLC.UI.Views.MusicPages;
 using System.Threading.Tasks;
 using Windows.UI.ViewManagement;
-using VLC.UI.Views.UserControls;
 using Windows.UI.Xaml.Controls.Primitives;
 
 namespace VLC.ViewModels
@@ -129,7 +128,7 @@ namespace VLC.ViewModels
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
         }
 
-        private async void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)
+        private void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)
         {
             if (e.WindowActivationState == CoreWindowActivationState.Deactivated)
             {

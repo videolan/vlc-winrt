@@ -123,7 +123,7 @@ namespace VLC
                     await CortanaHelper.HandleProtocolActivation(args);
                     break;
                 case ActivationKind.ToastNotification:
-                    await ToastHelper.HandleProtocolActivation(args);
+                    ToastHelper.HandleProtocolActivation(args);
                     break;
             }
 

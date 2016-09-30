@@ -28,14 +28,14 @@ namespace VLC.UI.Views.MusicPages
             this.Loaded += MiniPlayerWindow_Loaded;
         }
 
-        private void MiniPlayerWindow_Loaded(object sender, RoutedEventArgs e)
+        private async void MiniPlayerWindow_Loaded(object sender, RoutedEventArgs e)
         {
             this.SizeChanged += MiniPlayerWindow_SizeChanged;
             this.Unloaded += MiniPlayerWindow_Unloaded;
             Initialize();
             Responsive();
             AppViewHelper.ResizeWindow(false, 400, 80);
-            AppViewHelper.SetAppView(true);
+            await AppViewHelper.SetAppView(true);
             AppViewHelper.SetTitleBar(DraggableGrid);
             App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Hidden;
         }

@@ -5,7 +5,6 @@ using VLC.UI.Views.UserControls.Shell;
 using VLC.UI.Views.VariousPages;
 using VLC.Utils;
 using VLC.ViewModels;
-using VLC.UI.Views.MainPages;
 using Windows.UI.Xaml.Controls;
 
 namespace VLC.UI.Views.UserControls

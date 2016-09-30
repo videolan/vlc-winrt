@@ -42,7 +42,6 @@ namespace VLC.ViewModels.Settings
         private bool videoFoldersLoaded;
         private bool _notificationOnNewSong;
         private ApplicationTheme applicationTheme;
-        private bool _mediaCenterMode;
         private List<VLCAccentColor> _accentColors = new List<VLCAccentColor>();
         private VLCAccentColor _accentColor;
         private bool _continueVideoPlaybackInBackground;
@@ -602,7 +601,7 @@ namespace VLC.ViewModels.Settings
             Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = culture.Name;
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
-            ResourceManager.Current.DefaultContext.Reset();
+            ResourceContext.GetForCurrentView().Reset();
         }
 
         public async Task GetMusicLibraryFolders()

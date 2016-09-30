@@ -19,7 +19,7 @@ namespace VLC.UI.Views.MainPages
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             MyGrid.Children.Clear();
@@ -30,15 +30,15 @@ namespace VLC.UI.Views.MainPages
             else
             {
                 MyGrid.Children.Add(new DesktopHomePageController());
-                AppViewHelper.SetAppView(true);
+                await AppViewHelper.SetAppView(true);
             }
         }
 
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
             if (!Locator.SettingsVM.MediaCenterMode)
-                AppViewHelper.SetAppView(false);
+                await AppViewHelper.SetAppView(false);
         }
     }
 }
