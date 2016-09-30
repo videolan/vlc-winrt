@@ -6,7 +6,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:toolkitControls="using:Microsoft.Toolkit.Uwp.UI.Controls"
       mc:Ignorable="d">
-    <StackPanel Background="{ThemeResource ApplicationOverlayTranslucentThemeColor}">
+    <StackPanel Background="{ThemeResource ApplicationOverlayTranslucentThemeColor}"
+                Padding="15">
         <toolkitControls:HeaderedTextBlock
             Header="{Binding Source={StaticResource Strings}, Path=ExternalStorageDeviceDetected}"
             Text="{Binding Source={StaticResource Strings}, Path=WhatToDo}"
