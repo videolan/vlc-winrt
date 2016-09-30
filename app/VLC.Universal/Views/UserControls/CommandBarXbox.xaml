@@ -9,46 +9,24 @@
             mc:Ignorable="d"
             d:DesignHeight="300"
             d:DesignWidth="400">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1"
-            DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Button x:Name="NowPlayingArtistGrid"
+    <StackPanel
+            DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}" 
+            Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            Padding="15"
+            VerticalAlignment="Center">
+        <Button x:Name="NowPlayingArtistGrid"
                     Click="NowPlayingArtistGrid_Click"
-                    Height="70"
                     Background="Transparent"
-                    Style="{StaticResource GrayedBackgroundButtonStyle}">
-                <Grid Margin="{StaticResource FrameMarginRight}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Image Grid.Row="0"
-                           Grid.RowSpan="2"
-                           DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+                    Style="{StaticResource GrayedBackgroundButtonStyle}"
+                    Padding="50">
+            <StackPanel Orientation="Horizontal">
+                <Image DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
                            Source="{Binding CurrentAlbum.AlbumImage}"
-                           Stretch="UniformToFill" />
+                           Stretch="UniformToFill" 
+                        Height="64"/>
+                <StackPanel>
                     <TextBlock x:Name="TrackNameTextBlock"
-                               Grid.Column="2"
                                Text="{Binding CurrentMediaTitle}"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
@@ -56,88 +34,86 @@
                                FontSize="20"
                                VerticalAlignment="Bottom" />
                     <TextBlock x:Name="ArtistNameTextBlock"
-                               Grid.Column="2"
-                               Grid.Row="1"
                                Text="{Binding CurrentTrack.ArtistName}"
                                TextWrapping="NoWrap"
                                FontWeight="SemiLight"
                                TextTrimming="CharacterEllipsis"
                                FontSize="18" />
-                </Grid>
-            </Button>
-        </Grid>
-        <AppBarButton Grid.Column="2"
-                      x:Name="PlayPreviousButton"
+                </StackPanel>
+            </StackPanel>
+        </Button>
+        <AppBarButton x:Name="PlayPreviousButton"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       Command="{Binding PlayPreviousCommand}"
                       IsEnabled="{Binding CanGoPrevious}"
-                      IsCompact="True">
+                      IsCompact="True"
+                      VerticalAlignment="Stretch">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource PreviousSymbol}"
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarButton.Icon>
         </AppBarButton>
-        <AppBarButton Grid.Column="3"
-                      x:Name="PlayButton"
+        <AppBarButton x:Name="PlayButton"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       Command="{Binding PlayOrPauseCommand}"
                       IsCompact="True"
                       Visibility="{Binding PlayButtonVisible}"
                       RightTapped="PlayButton_RightTapped"
-                      Holding="PauseButton_Holding">
+                      Holding="PauseButton_Holding"
+                      VerticalAlignment="Stretch" >
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource PlaySymbol}"
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarButton.Icon>
         </AppBarButton>
-        <AppBarButton Grid.Column="4"
-                      x:Name="PauseButton"
+        <AppBarButton x:Name="PauseButton"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       Command="{Binding PlayOrPauseCommand}"
                       IsCompact="True"
                       Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
                       RightTapped="PlayButton_RightTapped"
-                      Holding="PauseButton_Holding">
+                      Holding="PauseButton_Holding"
+                      VerticalAlignment="Stretch" >
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource PauseSymbol}"
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarButton.Icon>
         </AppBarButton>
-        <AppBarButton Grid.Column="5"
-                      x:Name="PlayNextButton"
+        <AppBarButton x:Name="PlayNextButton"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       Command="{Binding PlayNextCommand}"
                       IsEnabled="{Binding CanGoNext}"
-                      IsCompact="True">
+                      IsCompact="True"
+                      VerticalAlignment="Stretch" >
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource SkipNextSymbol}"
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarButton.Icon>
         </AppBarButton>
-        <AppBarToggleButton Grid.Column="6"
-                            x:Name="ShuffleButton"
+        <AppBarToggleButton x:Name="ShuffleButton"
                             DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                             Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.Shuffle}"
                             Label="{Binding Source={StaticResource Strings},Path=Shuffle}"
                             IsChecked="{Binding PlaybackService.IsShuffled, Mode=TwoWay}"
                             IsCompact="True"
-                            Tag="sec">
+                            Tag="sec"
+                            VerticalAlignment="Stretch" >
             <AppBarToggleButton.Icon>
                 <FontIcon Glyph="{StaticResource ShuffleSymbol}"
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarToggleButton.Icon>
         </AppBarToggleButton>
-        <AppBarToggleButton Grid.Column="7"
-                            x:Name="RepeatButton"
+        <AppBarToggleButton x:Name="RepeatButton"
                             Label="repeat"
                             DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                             IsChecked="{Binding PlaybackService.Repeat, Mode=TwoWay}"
                             IsCompact="True"
-                            Tag="sec">
+                            Tag="sec"
+                            VerticalAlignment="Stretch" >
             <AppBarToggleButton.Icon>
                 <FontIcon Glyph="{StaticResource RefreshSymbol}"
                               FontFamily="{StaticResource VLCFont}" />
             </AppBarToggleButton.Icon>
         </AppBarToggleButton>
-    </Grid>
+    </StackPanel>
 </UserControl>
