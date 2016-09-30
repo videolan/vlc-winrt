@@ -281,6 +281,9 @@ namespace VLC.Controls
         {
             _flyoutFadeIn.Begin();
             IsFlyoutOpen = true;
+            var mainControl = _contentPresenter.Content as Control;
+            if (mainControl != null)
+                mainControl.IsEnabled = false;
             _backdrop.Show(6);
         }
 
@@ -289,6 +292,9 @@ namespace VLC.Controls
             _backdrop.Hide();
             _flyoutFadeOut.Begin();
             _flyoutContentPresenter.Navigate(typeof(BlankPage));
+            var mainControl = _contentPresenter.Content as Control;
+            if (mainControl != null)
+                mainControl.IsEnabled = true;
             IsFlyoutOpen = false;
             FlyoutClosed?.Invoke(null, new EventArgs());
         }
