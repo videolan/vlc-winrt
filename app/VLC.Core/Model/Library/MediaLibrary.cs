@@ -1233,9 +1233,9 @@ namespace VLC.Model.Library
             return musicDatabase.LoadAlbumsCountFromId(artistId);
         }
 
-        public Task Update(ArtistItem artist)
+        public void Update(ArtistItem artist)
         {
-            return musicDatabase.Update(artist);
+            musicDatabase.Update(artist);
         }
 
         public void Update(AlbumItem album)

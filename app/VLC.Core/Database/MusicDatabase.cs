@@ -250,7 +250,7 @@ namespace VLC.Database
         }
         #endregion
         #region update
-        public async Task Update(ArtistItem artist)
+        public void Update(ArtistItem artist)
         {
             using (Connection.Lock())
             {

@@ -12,7 +12,7 @@ namespace VLC.Commands.MediaPlayback
                 || Locator.MediaPlaybackViewModel.PlaybackService.Playlist == null
                 || !Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Any()
                 || Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Count < 3) return;
-            await Locator.MediaPlaybackViewModel.PlaybackService.Shuffle();
+            Locator.MediaPlaybackViewModel.PlaybackService.Shuffle();
         }
     }
 }

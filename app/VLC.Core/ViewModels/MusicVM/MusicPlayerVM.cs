@@ -149,7 +149,7 @@ namespace VLC.ViewModels.MusicVM
                 if (CurrentArtist != null)
                 {
                     CurrentArtist.PlayCount++;
-                    await Locator.MediaLibrary.Update(CurrentArtist);
+                    Locator.MediaLibrary.Update(CurrentArtist);
                 }
             });
         }

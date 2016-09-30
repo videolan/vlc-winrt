@@ -11,7 +11,7 @@ namespace VLC.UI.Views.MusicPages.TagEditorPages
             this.InitializeComponent();
         }
 
-        public async Task SaveChanges()
+        public void SaveChanges()
         {
             if (TrackNameTextBox.Text != Locator.MusicLibraryVM.CurrentTrack.Name)
             {
@@ -24,9 +24,9 @@ namespace VLC.UI.Views.MusicPages.TagEditorPages
             Locator.NavigationService.GoBack_Specific();
         }
 
-        private async void SaveChanges_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void SaveChanges_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            await SaveChanges();
+            SaveChanges();
         }
     }
 }

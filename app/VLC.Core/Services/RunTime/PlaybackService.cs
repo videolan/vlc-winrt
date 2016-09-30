@@ -135,7 +135,7 @@ namespace VLC.Services.RunTime
             IsRunning = false;
         }
 
-        public async Task Shuffle()
+        public void Shuffle()
         {
             if (IsShuffled)
             {

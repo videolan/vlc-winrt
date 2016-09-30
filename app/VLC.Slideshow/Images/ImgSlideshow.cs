@@ -55,7 +55,7 @@ namespace Slide2D.Images
             }
         }
 
-        async void Navigated()
+        void Navigated()
         {
             var newPic = false;
             if (Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage)
@@ -199,7 +199,7 @@ namespace Slide2D.Images
             catch { }
         }
 
-        public async void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+        public void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             if (currentImg?.ScaleEffect != null)
             {

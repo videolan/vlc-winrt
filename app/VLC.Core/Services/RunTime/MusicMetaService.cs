@@ -49,7 +49,7 @@ namespace VLC.Services.RunTime
             {
                 artist.Biography = bio;
             });
-            await Locator.MediaLibrary.Update(artist);
+            Locator.MediaLibrary.Update(artist);
         }
 
         public async Task<bool> GetAlbumCover(AlbumItem album)
@@ -83,7 +83,7 @@ namespace VLC.Services.RunTime
                 var success = bytes != null && await SaveArtistImageAsync(artist, bytes);
                 if (success)
                 {
-                    await Locator.MediaLibrary.Update(artist);
+                    Locator.MediaLibrary.Update(artist);
                     return true;
                 }
             }
