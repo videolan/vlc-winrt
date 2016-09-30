@@ -174,6 +174,8 @@ namespace VLC.Services.RunTime
                     break;
                 // Settings pages
                 case VLCPage.SettingsPage:
+                    GoBack_HideFlyout();
+                    break;
                 case VLCPage.SearchPage:
                     Go(Locator.SettingsVM.HomePage);
                     break;
