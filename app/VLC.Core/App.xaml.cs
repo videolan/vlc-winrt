@@ -232,7 +232,11 @@ namespace VLC
             Locator.GamepadService.GamepadUpdated += (s, e) => Task.Run(() => ToggleMediaCenterMode());
 
             await ToggleMediaCenterMode();
+
             Locator.ExternalDeviceService.startWatcher();
+
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+                Locator.HttpServer.bind(8080);
         }
 
         private async void showWarningDialog()
