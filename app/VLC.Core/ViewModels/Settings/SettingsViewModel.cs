@@ -82,25 +82,25 @@ namespace VLC.ViewModels.Settings
             {
                 if (!_accentColors.Any())
                 {
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 0xff, 0x88, 0x00)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 241, 13, 162)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 240, 67, 98)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 239, 95, 65)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 46, 204, 113)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 52, 152, 219)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 155, 89, 182)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 52, 73, 94)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 22, 160, 133)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 39, 174, 96)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 41, 128, 185)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 142, 68, 173)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 44, 62, 80)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 241, 196, 15)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 230, 126, 34)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 231, 76, 60)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 243, 156, 18)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 211, 84, 0)));
-                    _accentColors.Add(new VLCAccentColor("color", Color.FromArgb(255, 192, 57, 43)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 0xff, 0x88, 0x00)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 241, 13, 162)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 240, 67, 98)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 239, 95, 65)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 46, 204, 113)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 52, 152, 219)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 155, 89, 182)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 52, 73, 94)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 22, 160, 133)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 39, 174, 96)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 41, 128, 185)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 142, 68, 173)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 44, 62, 80)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 241, 196, 15)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 230, 126, 34)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 231, 76, 60)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 243, 156, 18)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 211, 84, 0)));
+                    _accentColors.Add(new VLCAccentColor(Color.FromArgb(255, 192, 57, 43)));
                 }
                 return _accentColors;
             }

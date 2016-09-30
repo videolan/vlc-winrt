@@ -48,17 +48,12 @@
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Ellipse Height="24"
-                                                     Width="24"
-                                                     VerticalAlignment="Center">
-                                                <Ellipse.Fill>
+                                            <Rectangle Height="24"
+                                                       Width="96">
+                                                <Rectangle.Fill>
                                                     <SolidColorBrush Color="{Binding Color}" />
-                                                </Ellipse.Fill>
-                                            </Ellipse>
-                                            <TextBlock Text="{Binding Name}"
-                                                       Margin="{StaticResource FrameMarginHorizontal}"
-                                                       Style="{StaticResource BodyTextBlockStyle}"
-                                                       VerticalAlignment="Center" />
+                                                </Rectangle.Fill>
+                                            </Rectangle>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
