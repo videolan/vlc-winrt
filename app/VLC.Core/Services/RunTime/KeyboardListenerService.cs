@@ -152,6 +152,19 @@ namespace VLC.Services.RunTime
                     virtualKeys[i] = VirtualKey.None;
                 }
             }
+            switch (args.VirtualKey)
+            {
+                case VirtualKey.GamepadMenu:
+                case VirtualKey.F1:
+                    if (Locator.SettingsVM.MediaCenterMode)
+                    {
+                        if (Locator.NavigationService.CurrentPage != VLCPage.MainPageXBOX)
+                            Locator.NavigationService.Go(VLCPage.MainPageXBOX);
+                        else
+                            Locator.NavigationService.GoBack_HideFlyout();
+                    }
+                    break;
+            }
         }
 
         async void KeyboardListenerService_KeyDown(CoreWindow sender, KeyEventArgs args)
@@ -193,16 +206,6 @@ namespace VLC.Services.RunTime
                     {
                         switch (args.VirtualKey)
                         {
-                            case VirtualKey.GamepadMenu:
-                            case VirtualKey.F1:
-                                if (Locator.SettingsVM.MediaCenterMode)
-                                {
-                                    if (Locator.NavigationService.CurrentPage != VLCPage.MainPageXBOX)
-                                        Locator.NavigationService.Go(VLCPage.MainPageXBOX);
-                                    else
-                                        Locator.NavigationService.GoBack_HideFlyout();
-                                }
-                                break;
                             case VirtualKey.GamepadA:
                             case VirtualKey.GamepadLeftThumbstickButton:
                             case VirtualKey.GamepadDPadDown:
