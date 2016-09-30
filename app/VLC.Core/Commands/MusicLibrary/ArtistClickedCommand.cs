@@ -9,7 +9,7 @@ namespace VLC.Commands.MusicLibrary
 {
     public class ArtistClickedCommand : AlwaysExecutableCommand
     {
-        public override async void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             ArtistItem artist = null;
             if (parameter is ArtistItem)

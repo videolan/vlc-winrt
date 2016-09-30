@@ -283,7 +283,7 @@ namespace VLC.Model.Library
                     if (artists != null)
                         await CortanaHelper.SetPhraseList("artistName", artists.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
 
-                    var albums = await LoadAlbums(null);
+                    var albums = LoadAlbums(null);
                     if (albums != null)
                         await CortanaHelper.SetPhraseList("albumName", albums.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
 
@@ -1273,7 +1273,7 @@ namespace VLC.Model.Library
             return musicDatabase.LoadArtists(predicate);
         }
 
-        public Task<List<AlbumItem>> LoadAlbums(Expression<Func<AlbumItem, bool>> predicate)
+        public List<AlbumItem> LoadAlbums(Expression<Func<AlbumItem, bool>> predicate)
         {
             return musicDatabase.Load(predicate);
         }

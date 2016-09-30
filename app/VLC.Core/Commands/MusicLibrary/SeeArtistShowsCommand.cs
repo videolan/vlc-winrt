@@ -8,7 +8,7 @@ namespace VLC.Commands.MusicLibrary
 {
     public class SeeArtistShowsCommand : AlwaysExecutableCommand
     {
-        public override async void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             Locator.NavigationService.Go(VLCPage.ArtistShowsPage);
             var artistItem = parameter as ArtistItem;

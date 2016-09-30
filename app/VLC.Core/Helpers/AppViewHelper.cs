@@ -29,11 +29,11 @@ namespace VLC.Helpers
         {
         }
 
-        public static void SetAppView(bool extend)
+        public static async Task SetAppView(bool extend)
         {
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
-                StatusBar.GetForCurrentView().HideAsync();
+                await StatusBar.GetForCurrentView().HideAsync();
             }
 
             if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)

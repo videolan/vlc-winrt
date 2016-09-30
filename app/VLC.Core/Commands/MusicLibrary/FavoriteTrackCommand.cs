@@ -17,7 +17,7 @@ namespace VLC.Commands.MusicPlayer
 {
     public class FavoriteTrackCommand : AlwaysExecutableCommand
     {
-        public override async void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             var track = parameter as TrackItem;
             if (track == null)

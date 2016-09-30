@@ -156,7 +156,7 @@ namespace VLC.Database
             }
         }
 
-        public async Task<List<AlbumItem>> Load(Expression<Func<AlbumItem, bool>> compare = null)
+        public List<AlbumItem> Load(Expression<Func<AlbumItem, bool>> compare = null)
         {
             using (Connection.Lock())
             {

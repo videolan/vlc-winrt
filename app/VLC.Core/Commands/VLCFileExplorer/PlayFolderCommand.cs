@@ -43,7 +43,7 @@ namespace VLC.Commands.VLCFileExplorer
                 }
                 else
                 {
-                    var stream = await MediaLibraryHelper.GetStreamItem(file);
+                    var stream = MediaLibraryHelper.GetStreamItem(file);
                     playlist.Add(stream);
                 }
 

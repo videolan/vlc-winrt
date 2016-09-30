@@ -65,7 +65,7 @@ namespace VLC.Helpers
             return video;
         }
 
-        public static async Task<StreamMedia> GetStreamItem(VLCStorageFile file)
+        public static StreamMedia GetStreamItem(VLCStorageFile file)
         {
             var video = new StreamMedia();
             video.Name = file.Name;
