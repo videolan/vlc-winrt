@@ -60,8 +60,6 @@ namespace VLC.Controls
         private Storyboard _topBarFadeOut;
         private Storyboard _topBarFadeIn;
 
-        private AppBarClosedDisplayMode _previousAppBarClosedDisplayMode;
-
         public async void SetContentPresenter(object contentPresenter)
         {
             await TemplateApplied.Task;
@@ -81,7 +79,6 @@ namespace VLC.Controls
             _page.BottomAppBar = content as CommandBar;
             if (content == null)
                 return;
-            _previousAppBarClosedDisplayMode = _page.BottomAppBar.ClosedDisplayMode;
         }
 
         public async void SetFooterVisibility(object visibility)
