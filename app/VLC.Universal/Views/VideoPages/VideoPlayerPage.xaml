@@ -168,7 +168,8 @@
                                                 IsCompact="True"
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Left"
-                                                Click="LockToggleButton_Click">
+                                                Click="LockToggleButton_Click"
+                                                Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.CollapsedOnXbox}">
                                 <AppBarToggleButton.Icon>
                                     <FontIcon x:Name="LockToggleIcon"
                                               Glyph="{StaticResource UnlockedSymbol}"
@@ -182,7 +183,8 @@
                                           HorizontalAlignment="Stretch"
                                           VerticalAlignment="Stretch"
                                           Style="{StaticResource AppBarButtonStyleHuge}"
-                                          Margin="{StaticResource FrameMarginHorizontal}">
+                                          Margin="{StaticResource FrameMarginHorizontal}"
+                                          Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.CollapsedOnXbox}">
                                 <AppBarButton.Icon>
                                     <FontIcon Glyph="{StaticResource PipSymbol}"
                                               FontFamily="{StaticResource VLCFont}"
@@ -195,7 +197,8 @@
                                           VerticalAlignment="Stretch"
                                           Style="{StaticResource AppBarButtonStyleHuge}"
                                           Margin="{StaticResource FrameMarginHorizontal}"
-                                          Click="FullscreenToggle_Click">
+                                          Click="FullscreenToggle_Click"
+                                          Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.CollapsedOnXbox}">
                                 <AppBarButton.Icon>
                                     <FontIcon Glyph="{StaticResource ExpandWindow}"
                                               FontFamily="{StaticResource VLCFont}"
