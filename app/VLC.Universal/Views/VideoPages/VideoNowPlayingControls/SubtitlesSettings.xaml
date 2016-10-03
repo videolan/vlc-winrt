@@ -20,14 +20,14 @@
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        Foreground="{ThemeResource BasicForeground}"
                        FontWeight="SemiBold"
-                       VerticalAlignment="Center"
-                       Margin="0,-12,0,0" />
+                       VerticalAlignment="Center" />
             
             <ComboBox DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       PlaceholderText="{Binding Source={StaticResource Strings}, Path=NoSubtitles}"
                       ItemsSource="{Binding Subtitles}"
                       IsEnabled="{Binding Subtitles.Count, Converter={StaticResource CountToBooleanConverter}}"
-                      SelectedItem="{Binding CurrentSubtitle, Mode=TwoWay}">
+                      SelectedItem="{Binding CurrentSubtitle, Mode=TwoWay}"
+                      Margin="15">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"
@@ -43,13 +43,19 @@
                     <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Style="{StaticResource TextBlockButtonStyle}"
+                <AppBarButton
                         VerticalAlignment="Center"
-                        Foreground="{ThemeResource MainColor}"
-                        FontSize="14"
+                        Style="{StaticResource AppBarButtonStyleHorizontal}"
+                        Label="{Binding Source={StaticResource Strings}, Path=Download}"
+                        HorizontalAlignment="Center"
                         ToolTipService.ToolTip="{Binding Source={StaticResource Strings}, Path=Download}"
                         Content="{Binding Source={StaticResource Strings}, Path=Download}"
-                        Command="{Binding DownloadSubtitleCommand}" />
+                        Command="{Binding DownloadSubtitleCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource DownloadSymbol}"
+                            FontFamily="{StaticResource VLCFont}" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
                 <ProgressRing Grid.Column="2"
                               IsActive="{Binding IsLoadingSubtitle}"/>
                 <TextBlock Grid.Column="4"

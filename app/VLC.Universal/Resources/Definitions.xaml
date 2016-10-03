@@ -99,6 +99,7 @@
     <x:String x:Key="MenuOpenRight"></x:String>
     <x:String x:Key="PlayerSettingsSymbol"></x:String>
     <x:String x:Key="PipSymbol"></x:String>
+    <x:String x:Key="DownloadSymbol"></x:String>
 
     <!-- Segoe UI Symbol Font -->
     <x:String x:Key="HorizontalDotsSymbol"></x:String>

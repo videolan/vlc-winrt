@@ -547,7 +547,7 @@
     <value>subtitle delay</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
-    <value>subtitles</value>
+    <value>Subtitles</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
     <value>subtitles encoding</value>
