@@ -1,7 +1,7 @@
-From 2559207e7f1e590ad326dac683e32e900c0438ac Mon Sep 17 00:00:00 2001
+From 32b57f2a1aaa89465887c7fd2e24da4fcd01febf Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 09:33:36 +0200
-Subject: [PATCH 07/10] contrib: ffmpeg: fix a deadlock in d3d11va
+Subject: [PATCH 07/12] contrib: ffmpeg: fix a deadlock in d3d11va
 
 ---
  ...-t-keep-the-context-lock-while-waiting-fo.patch | 40 ++++++++++++++++++++++

@@ -1,0 +1,50 @@
+From 3530a4758b035a1e801498d2f63962a9f4edfe32 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
+Date: Tue, 2 Aug 2016 18:54:28 +0200
+Subject: [PATCH 10/12] config: cmdline: Use msg_* instead of fprintf
+
+---
+ src/config/cmdline.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/src/config/cmdline.c b/src/config/cmdline.c
+index 12e92ba..12045e9 100644
+--- a/src/config/cmdline.c
++++ b/src/config/cmdline.c
+@@ -225,8 +225,8 @@ int config_LoadCmdLine( vlc_object_t *p_this, int i_argc,
+                 /* Check if the option is deprecated */
+                 if( p_conf->b_removed )
+                 {
+-                    fprintf(stderr,
+-                            "Warning: option --%s no longer exists.\n",
++                    msg_Warn(p_this,
++                            "Warning: option --%s no longer exists.",
+                             psz_name);
+                     continue;
+                 }
+@@ -290,17 +290,17 @@ int config_LoadCmdLine( vlc_object_t *p_this, int i_argc,
+         /* Internal error: unknown option */
+         if( !b_ignore_errors )
+         {
+-            fputs( "vlc: unknown option"
+-                     " or missing mandatory argument ", stderr );
+             if( state.opt )
+             {
+-                fprintf( stderr, "`-%c'\n", state.opt );
++                msg_Err( p_this, "vlc: unknown option"
++                         " or missing mandatory argument `-%c'", state.opt );
+             }
+             else
+             {
+-                fprintf( stderr, "`%s'\n", ppsz_argv[state.ind-1] );
++                msg_Err( p_this, "vlc: unknown option"
++                         " or missing mandatory argument `-%s'", ppsz_argv[state.ind-1] );
+             }
+-            fputs( "Try `vlc --help' for more information.\n", stderr );
++            msg_Err( p_this, "Try `vlc --help' for more information." );
+             goto out;
+         }
+     }
+-- 
+2.9.3
+

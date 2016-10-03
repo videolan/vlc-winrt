@@ -1,0 +1,30 @@
+From 7bca55136a2ac751f007687321406a4c82558c09 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Tue, 27 Sep 2016 14:37:29 +0200
+Subject: [PATCH 12/12] direct3d11: don't allocate NV12/P010 textures with odd
+ sizes
+
+fixes #17419
+---
+ modules/video_output/win32/direct3d11.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index c6da0b5..16412db 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -1704,6 +1704,11 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+         if ( i_extra )
+             texDesc.Height -= p_chroma_desc->p[plane].h.den / p_chroma_desc->p[plane].h.num - i_extra;
+     }
++    if (texDesc.Format == DXGI_FORMAT_NV12 || texDesc.Format == DXGI_FORMAT_P010)
++    {
++        texDesc.Width  &= ~1;
++        texDesc.Height &= ~1;
++    }
+ 
+     hr = ID3D11Device_CreateTexture2D(sys->d3ddevice, &texDesc, NULL, &quad->pTexture);
+     if (FAILED(hr)) {
+-- 
+2.9.3
+
