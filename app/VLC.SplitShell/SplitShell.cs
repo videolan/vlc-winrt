@@ -216,11 +216,19 @@ namespace VLC.Controls
 
         private void _flyoutFadeIn_Completed(object sender, object e)
         {
+            // In case the flyout has been hidden in the meantime, stop now to
+            // avoid an invalid state
+            if (!IsFlyoutOpen)
+                return;
             FlyoutNavigated?.Invoke(null, new EventArgs());
         }
 
         private void _flyoutFadeOut_Completed(object sender, object e)
         {
+            // In case the flyout has been displayed back, stop now to
+            // avoid an invalid state
+            if (IsFlyoutOpen)
+                return;
             _flyoutContentPresenter.Navigate(typeof(BlankPage));
         }
         
@@ -279,6 +287,8 @@ namespace VLC.Controls
 
         void ShowFlyout()
         {
+            if (IsFlyoutOpen)
+                return;
             _flyoutFadeIn.Begin();
             IsFlyoutOpen = true;
             var mainControl = _contentPresenter.Content as Control;
@@ -289,6 +299,8 @@ namespace VLC.Controls
 
         public void HideFlyout()
         {
+            if (!IsFlyoutOpen)
+                return;
             _backdrop.Hide();
             _flyoutFadeOut.Begin();
             _flyoutContentPresenter.Navigate(typeof(BlankPage));
