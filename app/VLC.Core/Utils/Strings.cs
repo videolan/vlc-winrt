@@ -395,10 +395,6 @@ namespace VLC.Utils
         public static string DoNothing => _resourcesLoader.GetString(nameof(DoNothing));
         public static string AskMe => _resourcesLoader.GetString(nameof(AskMe));
 
-        // BETA WARNING
-        public static string BetaWarning => _resourcesLoader.GetString(nameof(BetaWarning));
-        public static string BetaWarningTitle => _resourcesLoader.GetString(nameof(BetaWarningTitle));
-
         public Strings()
         {
         }
