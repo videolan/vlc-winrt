@@ -18,8 +18,7 @@
         <Button x:Name="NowPlayingArtistGrid"
                     Click="NowPlayingArtistGrid_Click"
                     Background="Transparent"
-                    Style="{StaticResource GrayedBackgroundButtonStyle}"
-                    Padding="50">
+                    Style="{StaticResource GrayedBackgroundButtonStyle}">
             <StackPanel Orientation="Horizontal">
                 <Image DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
                            Source="{Binding CurrentAlbum.AlbumImage}"
@@ -32,12 +31,14 @@
                                TextTrimming="CharacterEllipsis"
                                FontWeight="SemiBold"
                                FontSize="20"
-                               VerticalAlignment="Bottom" />
+                               VerticalAlignment="Bottom"
+                               Padding="5,10,5,0"/>
                     <TextBlock x:Name="ArtistNameTextBlock"
                                Text="{Binding CurrentTrack.ArtistName}"
                                TextWrapping="NoWrap"
                                FontWeight="SemiLight"
                                TextTrimming="CharacterEllipsis"
+                               Padding="5,0,5,10"
                                FontSize="18" />
                 </StackPanel>
             </StackPanel>
