@@ -13,92 +13,56 @@
             Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
             Padding="{StaticResource FrameMarginHorizontal}">
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <AppBarButton Grid.Column="0"
-                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                  VerticalAlignment="Center"
-                                  HorizontalAlignment="Stretch"
-                                  IsCompact="True"
-                                  Margin="{StaticResource FrameMarginRight}"
-                                  Foreground="{ThemeResource BasicForeground}"
-                                  DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-                                  Command="{Binding GoBackCommand}">
-                        <AppBarButton.Icon>
-                            <FontIcon Glyph="{StaticResource PlayerSettingsSymbol}"
-                                      FontFamily="{StaticResource VLCFont}"
-                                      Foreground="{StaticResource MainColor}" />
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                    <TextBlock Grid.Column="1"
-                               TextTrimming="CharacterEllipsis"
-                               TextWrapping="NoWrap"
-                               VerticalAlignment="Center"
-                               Text="{Binding Source={StaticResource Strings}, Path=PlayerSettings}"/>
-                </Grid>
-                <TextBlock Grid.Row="2"
+            <StackPanel>
+                <TextBlock
+                            TextTrimming="CharacterEllipsis"
+                            TextWrapping="NoWrap"
+                            VerticalAlignment="Center"
+                            Text="{Binding Source={StaticResource Strings}, Path=PlayerSettings}"/>
+                <TextBlock
                            Foreground="{ThemeResource BasicForeground}"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            FontWeight="SemiLight"
                            Text="{Binding Source={StaticResource Strings}, Path=Zoom}" />
-                <ComboBox Grid.Row="3"
+                <ComboBox
                           Margin="{StaticResource FrameMarginTop}"
                           DataContext="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm}"
                           ItemsSource="{Binding Zooms}"
                           SelectedItem="{Binding CurrentSurfaceZoom, Mode=TwoWay}"
                           Style="{StaticResource VLCLightComboBox}"
                           Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}"
-                          Width="200">
+                          Width="200"
+                          XYFocusDown="{x:Bind SpeedResetButton}" >
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Converter={StaticResource VLCSurfaceZoomStringifyConverter}}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <TextBlock Grid.Row="5"
+                <Grid>
+                    <TextBlock Grid.Row="0"
                            Text="{Binding Source={StaticResource Strings}, Path=Speed}"
                            Foreground="{ThemeResource BasicForeground}"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            FontWeight="SemiLight" />
-                <Button Grid.Row="5"
-                        Content="{Binding Source={StaticResource Strings}, Path=Reset}"
-                        HorizontalAlignment="Right"
-                        Command="{Binding ChangePlaybackSpeedRateCommand}"
-                        CommandParameter="reset" />
-                <Slider Grid.Row="6"
+                    <Button Grid.Row="0"
+                            x:Name="SpeedResetButton"
+                            Content="{Binding Source={StaticResource Strings}, Path=Reset}"
+                            HorizontalAlignment="Right"
+                            Command="{Binding ChangePlaybackSpeedRateCommand}"
+                            CommandParameter="reset" />
+                </Grid>
+                <Slider
                         Margin="0,12,0,0"
                         Style="{StaticResource VLCSlider}"
                         Minimum="50"
                         Value="{Binding SpeedRate, Mode=TwoWay}"
                         Maximum="200"
                         IsThumbToolTipEnabled="True"
-                        ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}" />
-                <Grid Grid.Row="7">
+                        ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}"
+                        XYFocusDown="{x:Bind AudioDelayResetButton}"
+                        XYFocusUp="{x:Bind SpeedResetButton}"/>
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -118,7 +82,8 @@
                                Foreground="{ThemeResource BasicForeground}" />
                 </Grid>
 
-                <TextBlock Grid.Row="9"
+                <Grid>
+                    <TextBlock Grid.Row="0"
                            Foreground="{ThemeResource BasicForeground}"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            FontWeight="SemiLight"
@@ -132,29 +97,33 @@
                          Foreground="{ThemeResource MainColor}"
                          FontSize="26"
                          FontWeight="Light" />
-                </TextBlock>
-                <StackPanel Grid.Row="9"
+                    </TextBlock>
+                    <StackPanel Grid.Row="0"
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
-                    <Button Content="{Binding Source={StaticResource Strings}, Path=Reset}"
+                        <Button Content="{Binding Source={StaticResource Strings}, Path=Reset}"
+                            x:Name="AudioDelayResetButton"
                             Command="{Binding ChangeAudioDelayCommand}"
                             CommandParameter="reset" />
-                    <Button Content="-"
+                        <Button Content="-"
                             Margin="12,0,0,0"
                             Command="{Binding ChangeAudioDelayCommand}"
                             CommandParameter="slower" />
-                    <Button Content="+"
+                        <Button Content="+"
                             Margin="12,0,0,0"
                             Command="{Binding ChangeAudioDelayCommand}"
                             CommandParameter="faster" />
-                </StackPanel>
-                <Slider Grid.Row="10"
+                    </StackPanel>
+                </Grid>
+                <Slider
                         Margin="0,12,0,0"
                         Style="{StaticResource VLCSlider}"
                         Minimum="-3000"
                         Value="{Binding AudioDelay, Mode=TwoWay}"
-                        Maximum="3000" />
-                <Grid Grid.Row="11">
+                        Maximum="3000"
+                        XYFocusDown="{x:Bind SubtitleDelayResetButton}"
+                        XYFocusUp="{x:Bind AudioDelayResetButton}"/>
+                <Grid>
                     <TextBlock Text="-3s"
                                Style="{StaticResource SubtitleTextBlockStyle}"
                                Foreground="{ThemeResource BasicForeground}" />
@@ -168,7 +137,8 @@
                                Foreground="{ThemeResource BasicForeground}" />
                 </Grid>
 
-                <TextBlock Grid.Row="13"
+                <Grid>
+                    <TextBlock Grid.Row="0"
                            Foreground="{ThemeResource BasicForeground}"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            FontWeight="SemiLight">
@@ -181,29 +151,32 @@
                          Foreground="{ThemeResource MainColor}"
                          FontSize="26"
                          FontWeight="Light" />
-                </TextBlock>
-                <StackPanel Grid.Row="13"
+                    </TextBlock>
+                    <StackPanel Grid.Row="0"
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
-                    <Button Content="{Binding Source={StaticResource Strings}, Path=Reset}"
+                        <Button Content="{Binding Source={StaticResource Strings}, Path=Reset}"
+                            x:Name="SubtitleDelayResetButton"
                             Command="{Binding ChangeSpuDelayCommand}"
                             CommandParameter="reset" />
-                    <Button Content="-"
+                        <Button Content="-"
                             Margin="12,0,0,0"
                             Command="{Binding ChangeSpuDelayCommand}"
                             CommandParameter="slower" />
-                    <Button Content="+"
+                        <Button Content="+"
                             Margin="12,0,0,0"
                             Command="{Binding ChangeSpuDelayCommand}"
                             CommandParameter="faster" />
-                </StackPanel>
-                <Slider Grid.Row="14"
+                    </StackPanel>
+                </Grid>
+                <Slider
                         Margin="0,12,0,0"
                         Style="{StaticResource VLCSlider}"
                         Minimum="-3000"
                         Value="{Binding SpuDelay, Mode=TwoWay}"
-                        Maximum="3000" />
-                <Grid Grid.Row="15">
+                        Maximum="3000"
+                        XYFocusUp="{x:Bind SubtitleDelayResetButton}"/>
+                <Grid>
                     <TextBlock Text="-3s"
                                Style="{StaticResource SubtitleTextBlockStyle}"
                                Foreground="{ThemeResource BasicForeground}" />
@@ -217,7 +190,7 @@
                                Foreground="{ThemeResource BasicForeground}" />
                 </Grid>
 
-                <TextBlock Grid.Row="17"
+                <TextBlock
                            Foreground="{ThemeResource BasicForeground}"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            FontWeight="SemiLight">
@@ -227,7 +200,7 @@
                          FontSize="26"
                          FontWeight="Light" />
                 </TextBlock>
-                <ComboBox Grid.Row="18"
+                <ComboBox
                           DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                           ItemsSource="{Binding Chapters}"
                           SelectedItem="{Binding CurrentChapter, Mode=TwoWay}"
@@ -242,7 +215,7 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-            </Grid>
+            </StackPanel>
         </ScrollViewer>
     </Border>
 </Page>

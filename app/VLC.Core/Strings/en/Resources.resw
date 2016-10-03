@@ -430,7 +430,7 @@
     <value>playback</value>
   </data>
   <data name="PlayerSettings" xml:space="preserve">
-    <value>player settings</value>
+    <value>Player Settings</value>
   </data>
   <data name="PlayFolder" xml:space="preserve">
     <value>play folder</value>
