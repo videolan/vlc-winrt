@@ -110,6 +110,7 @@ namespace VLC.UI.Views.VideoPages
             AppViewHelper.SetTitleBarTitle();
             App.RootPage.SwapChainPanel.Visibility = Visibility.Collapsed;
             App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Minimal;
+            Locator.NavigationService.CloseVideoFlyouts();
 
             Locator.VideoPlayerVm.OnNavigatedFrom();
 

@@ -437,5 +437,14 @@ namespace VLC.Services.RunTime
                    || p == VLCPage.MainPageFileExplorer
                    || p == VLCPage.MainPageNetwork;
         }
+
+        public void CloseVideoFlyouts()
+        {
+            if (currentFlyout == VLCPage.SubtitlesSettings || 
+                currentFlyout == VLCPage.AudioTracksSettings )
+            {
+                GoBack_HideFlyout();
+            }
+        }
     }
 }
