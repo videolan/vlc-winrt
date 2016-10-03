@@ -48,7 +48,7 @@ namespace VLC.ViewModels
         private TimeSpan _timeTotal;
 
         private int _volume = 100;
-        private int _speedRate;
+        private int _speedRate = 100;
         private long _audioDelay;
         private long _spuDelay;
         private int _bufferingProgress;
