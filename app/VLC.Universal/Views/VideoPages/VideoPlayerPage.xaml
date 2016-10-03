@@ -135,7 +135,6 @@
                   Tapped="PlaceholderInteractionGrid_OnTapped"
                   DoubleTapped="PlaceholderInteractionGrid_DoubleTapped"
                   Loaded="PlaceholderInteractionGrid_Loaded"/>
-            <videoControls:AudioTracksSettings />
             <videoControls:VolumeSliderSettings />
         </Grid>
 
@@ -226,7 +225,7 @@
                                 <AppBarButton.Flyout>
                                     <MenuFlyout>
                                         <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=AudioTracks}"
-                                                        Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerAudioTracksSettingsVisible}"
+                                                        Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ShowAudioTracksSettingsCommand}"
                                                         Tag="{StaticResource VolumeSymbol}"
                                                         Style="{StaticResource MenuFlyoutItemIconTemplate}" />
                                         <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Subtitles}"

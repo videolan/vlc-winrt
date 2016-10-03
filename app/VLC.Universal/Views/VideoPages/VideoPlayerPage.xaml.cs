@@ -176,8 +176,7 @@ namespace VLC.UI.Views.VideoPages
         {
             isVisible = mouseOrTouchPresent;
 
-            if (Locator.VideoPlayerVm.IsVideoPlayerAudioTracksSettingsVisible ||
-                Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible ||
+            if (Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible ||
                 Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible)
                 return;
             if (!isVisible)

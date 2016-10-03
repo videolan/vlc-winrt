@@ -159,7 +159,8 @@ namespace VLC.Services.RunTime
                     break;
                 case VLCPage.VideoPlayerPage:
                     if (currentFlyout == VLCPage.VideoPlayerOptionsPanel || 
-                        currentFlyout == VLCPage.SubtitlesSettings)
+                        currentFlyout == VLCPage.SubtitlesSettings ||
+                        currentFlyout == VLCPage.AudioTracksSettings )
                         GoBack_HideFlyout();
 
                     Locator.MediaPlaybackViewModel.GoBack.Execute(null);
@@ -200,6 +201,9 @@ namespace VLC.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.SubtitlesSettings:
+                    GoBack_HideFlyout();
+                    break;
+                case VLCPage.AudioTracksSettings:
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.TrackEditorPage:
@@ -322,6 +326,9 @@ namespace VLC.Services.RunTime
                 case VLCPage.SubtitlesSettings:
                     setFlyoutContent(desiredPage, typeof(SubtitlesSettings));
                     break;
+                case VLCPage.AudioTracksSettings:
+                    setFlyoutContent(desiredPage, typeof(AudioTracksSettings));
+                    break;
                 case VLCPage.TrackEditorPage:
                     setFlyoutContent(desiredPage, typeof(TrackEditorPage));
                     break;
@@ -370,6 +377,7 @@ namespace VLC.Services.RunTime
                    page == VLCPage.SettingsPage ||
                    page == VLCPage.VideoPlayerOptionsPanel ||
                    page == VLCPage.SubtitlesSettings ||
+                   page == VLCPage.AudioTracksSettings ||
                    page == VLCPage.FeedbackPage ||
                    page == VLCPage.TvShowView ||
                    page == VLCPage.TrackEditorPage ||
