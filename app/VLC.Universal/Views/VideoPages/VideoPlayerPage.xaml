@@ -231,7 +231,7 @@
                                                         Visibility="{Binding AudioTracks.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
                                                         />
                                         <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Subtitles}"
-                                                        Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ShowSubtitlesSettinsCommand}"
+                                                        Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ShowSubtitlesSettingsCommand}"
                                                         Tag="{StaticResource ConversationSymbol}"
                                                         Style="{StaticResource MenuFlyoutItemIconTemplate}" />
                                         <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Chapters}"
