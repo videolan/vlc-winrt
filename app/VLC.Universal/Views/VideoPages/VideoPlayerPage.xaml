@@ -135,7 +135,6 @@
                   Tapped="PlaceholderInteractionGrid_OnTapped"
                   DoubleTapped="PlaceholderInteractionGrid_DoubleTapped"
                   Loaded="PlaceholderInteractionGrid_Loaded"/>
-            <videoControls:VolumeSliderSettings />
         </Grid>
 
         <!-- TODO : When switching fully to UWP, replace Border by Grid and remove Grid child -->

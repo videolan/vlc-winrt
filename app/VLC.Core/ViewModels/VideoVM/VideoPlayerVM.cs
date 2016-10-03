@@ -40,7 +40,6 @@ namespace VLC.ViewModels.VideoVM
 
         private VLCSurfaceZoom currentSurfaceZoom = VLCSurfaceZoom.SURFACE_BEST_FIT;
         private bool isVideoPlayerOptionsPanelVisible;
-        private bool isVideoPlayerVolumeSettingsVisible;
         private List<VLCSurfaceZoom> zooms;
 
         private bool _isLoadingSubtitle;
@@ -76,24 +75,10 @@ namespace VLC.ViewModels.VideoVM
             set { SetProperty(ref isVideoPlayerOptionsPanelVisible, value); }
         }
 
-        public bool IsVideoPlayerVolumeSettingsVisible
-        {
-            get { return isVideoPlayerVolumeSettingsVisible; }
-            set { SetProperty(ref isVideoPlayerVolumeSettingsVisible, value); }
-        }
-
         public ActionCommand ToggleIsVideoPlayerOptionsPanelVisible { get; private set; } = new ActionCommand(() =>
         {
             Locator.NavigationService.Go(VLCPage.VideoPlayerOptionsPanel);
             Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible = false;
-            Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible = false;
-        });
-
-
-        public ActionCommand ToggleIsVideoPlayerVolumeSettingsVisible { get; private set; } = new ActionCommand(() =>
-        {
-            Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible = false;
-            Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible = !Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible;
         });
 
         public SurfaceZoomToggleCommand SurfaceZoomToggleCommand { get; private set; } = new SurfaceZoomToggleCommand();
@@ -171,7 +156,6 @@ namespace VLC.ViewModels.VideoVM
                 Locator.MediaLibrary.ContinueIndexing.TrySetResult(true);
             }
             Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible = false;
-            Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible = false;
             Locator.Slideshow.IsPaused = false;
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
             DeviceHelper.PrivateDisplayCall(false);

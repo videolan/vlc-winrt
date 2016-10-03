@@ -334,9 +334,6 @@
     <Compile Include="Views\VideoPages\VideoNowPlayingControls\VideoPlayerOptionsPanel.xaml.cs">
       <DependentUpon>VideoPlayerOptionsPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\VideoPages\VideoNowPlayingControls\VolumeSliderSettings.xaml.cs">
-      <DependentUpon>VolumeSliderSettings.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\VideoPages\VideoPlayerPage.xaml.cs">
       <DependentUpon>VideoPlayerPage.xaml</DependentUpon>
     </Compile>
@@ -1529,10 +1526,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\VideoPages\VideoNowPlayingControls\VideoPlayerOptionsPanel.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\VideoPages\VideoNowPlayingControls\VolumeSliderSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
