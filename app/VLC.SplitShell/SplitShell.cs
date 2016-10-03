@@ -322,15 +322,10 @@ namespace VLC.Controls
 
         public bool IsCurrentFlyoutModal()
         {
-            bool ret = false;
-            try
-            {
-                var fo = (IVLCModalFlyout)_flyoutContentPresenter.Content;
-                if (fo.ModalMode)
-                    ret = true;
-            }
-            catch { }
-            return ret;
+            var fo = _flyoutContentPresenter.Content as IVLCModalFlyout;
+            if (fo == null)
+                return false;
+            return fo.ModalMode;
         }
     }
 }
