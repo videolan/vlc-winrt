@@ -89,6 +89,7 @@ namespace VLC.ViewModels.VideoVM
 
         public ShowSubtitlesSettingsCommand ShowSubtitlesSettinsCommand { get; private set; } = new ShowSubtitlesSettingsCommand();
         public ShowAudioTracksSettingsCommand ShowAudioTracksSettingsCommand { get; private set; } = new ShowAudioTracksSettingsCommand();
+        public ShowChaptersSettingsCommand ShowChaptersSettingsCommand { get; private set; } = new ShowChaptersSettingsCommand();
         public bool IsLoadingSubtitle { get { return _isLoadingSubtitle; } set { SetProperty(ref _isLoadingSubtitle, value); } }
         public string LoadingSubtitleText { get { return _loadingSubtitleText; } set { SetProperty(ref _loadingSubtitleText, value); } }
         #endregion

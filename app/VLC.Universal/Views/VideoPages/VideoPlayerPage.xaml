@@ -234,6 +234,12 @@
                                                         Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ShowSubtitlesSettinsCommand}"
                                                         Tag="{StaticResource ConversationSymbol}"
                                                         Style="{StaticResource MenuFlyoutItemIconTemplate}" />
+                                        <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Chapters}"
+                                                        Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ShowChaptersSettingsCommand}"
+                                                        DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                                                        Visibility="{Binding Chapters.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
+                                                        Tag="{StaticResource ChaptersSymbol}"
+                                                        Style="{StaticResource MenuFlyoutItemIconTemplate}" />
                                         <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OpenSubtitle}"
                                                         Command="{Binding OpenSubtitleCommand}"
                                                         Tag="{StaticResource FileExplorerSymbol}"

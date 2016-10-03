@@ -100,6 +100,7 @@
     <x:String x:Key="PlayerSettingsSymbol"></x:String>
     <x:String x:Key="PipSymbol"></x:String>
     <x:String x:Key="DownloadSymbol"></x:String>
+    <x:String x:Key="ChaptersSymbol"></x:String>
 
     <!-- Segoe UI Symbol Font -->
     <x:String x:Key="HorizontalDotsSymbol"></x:String>

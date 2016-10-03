@@ -76,6 +76,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\DownloadSubtitleCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\InitPiPCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\OpenAudioTracksSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\ShowChaptersSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\OpenSubtitleCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\PlayVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\ShowSubtitlesSettingsCommand.cs" />

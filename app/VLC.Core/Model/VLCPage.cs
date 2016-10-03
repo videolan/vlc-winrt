@@ -24,6 +24,7 @@
         VideoPlayerOptionsPanel,
         SubtitlesSettings,
         AudioTracksSettings,
+        ChaptersSettings,
         TrackEditorPage,
         FeedbackPage,
         TvShowView,

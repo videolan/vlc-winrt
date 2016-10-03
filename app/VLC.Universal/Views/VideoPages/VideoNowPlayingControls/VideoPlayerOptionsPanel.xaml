@@ -7,6 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="400"
+             VerticalAlignment="Center"
              DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
 
     <Border x:Name="RootGrid"
@@ -189,32 +190,6 @@
                                Style="{StaticResource SubtitleTextBlockStyle}"
                                Foreground="{ThemeResource BasicForeground}" />
                 </Grid>
-
-                <TextBlock
-                           Foreground="{ThemeResource BasicForeground}"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
-                           FontWeight="SemiLight">
-                    <Run Text="{Binding Source={StaticResource Strings}, Path=Chapters}" />
-                    <Run Text="{Binding Chapters.Count}"
-                         Foreground="{ThemeResource MainColor}"
-                         FontSize="26"
-                         FontWeight="Light" />
-                </TextBlock>
-                <ComboBox
-                          DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
-                          ItemsSource="{Binding Chapters}"
-                          SelectedItem="{Binding CurrentChapter, Mode=TwoWay}"
-                          Margin="{StaticResource FrameMarginTop}"
-                          Style="{StaticResource VLCLightComboBox}"
-                          Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}"
-                          Width="200">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}"
-                                       VerticalAlignment="Center" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
             </StackPanel>
         </ScrollViewer>
     </Border>

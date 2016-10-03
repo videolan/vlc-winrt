@@ -160,7 +160,8 @@ namespace VLC.Services.RunTime
                 case VLCPage.VideoPlayerPage:
                     if (currentFlyout == VLCPage.VideoPlayerOptionsPanel || 
                         currentFlyout == VLCPage.SubtitlesSettings ||
-                        currentFlyout == VLCPage.AudioTracksSettings )
+                        currentFlyout == VLCPage.AudioTracksSettings ||
+                        currentFlyout == VLCPage.ChaptersSettings )
                         GoBack_HideFlyout();
 
                     Locator.MediaPlaybackViewModel.GoBack.Execute(null);
@@ -201,6 +202,9 @@ namespace VLC.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.SubtitlesSettings:
+                    GoBack_HideFlyout();
+                    break;
+                case VLCPage.ChaptersSettings:
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.AudioTracksSettings:
@@ -329,6 +333,9 @@ namespace VLC.Services.RunTime
                 case VLCPage.AudioTracksSettings:
                     setFlyoutContent(desiredPage, typeof(AudioTracksSettings));
                     break;
+                case VLCPage.ChaptersSettings:
+                    setFlyoutContent(desiredPage, typeof(ChaptersSettings));
+                    break;
                 case VLCPage.TrackEditorPage:
                     setFlyoutContent(desiredPage, typeof(TrackEditorPage));
                     break;
@@ -378,6 +385,7 @@ namespace VLC.Services.RunTime
                    page == VLCPage.VideoPlayerOptionsPanel ||
                    page == VLCPage.SubtitlesSettings ||
                    page == VLCPage.AudioTracksSettings ||
+                   page == VLCPage.ChaptersSettings ||
                    page == VLCPage.FeedbackPage ||
                    page == VLCPage.TvShowView ||
                    page == VLCPage.TrackEditorPage ||
@@ -441,7 +449,8 @@ namespace VLC.Services.RunTime
         public void CloseVideoFlyouts()
         {
             if (currentFlyout == VLCPage.SubtitlesSettings || 
-                currentFlyout == VLCPage.AudioTracksSettings )
+                currentFlyout == VLCPage.AudioTracksSettings ||
+                currentFlyout == VLCPage.ChaptersSettings )
             {
                 GoBack_HideFlyout();
             }
