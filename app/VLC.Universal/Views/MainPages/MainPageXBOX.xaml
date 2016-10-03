@@ -17,10 +17,16 @@
                   Fill="{ThemeResource MainColor}"
                   Stretch="Uniform"
                   Height="40" />
-            <TextBlock Text="VLC"
+            <StackPanel>
+                <TextBlock Text="VLC"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        Margin="{StaticResource FrameMarginLeft}"
                        VerticalAlignment="Center" />
+                <TextBlock Text="beta"
+                           FontSize="10"
+                           Margin="{StaticResource FrameMarginLeft}"
+                           HorizontalAlignment="Right"/>
+            </StackPanel>
         </StackPanel>
         <ListView x:Name="PanelsListView"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
