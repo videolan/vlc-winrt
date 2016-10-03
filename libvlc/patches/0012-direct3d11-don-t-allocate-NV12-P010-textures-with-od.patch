@@ -1,7 +1,7 @@
 From 7bca55136a2ac751f007687321406a4c82558c09 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Tue, 27 Sep 2016 14:37:29 +0200
-Subject: [PATCH 12/12] direct3d11: don't allocate NV12/P010 textures with odd
+Subject: [PATCH 12/13] direct3d11: don't allocate NV12/P010 textures with odd
  sizes
 
 fixes #17419

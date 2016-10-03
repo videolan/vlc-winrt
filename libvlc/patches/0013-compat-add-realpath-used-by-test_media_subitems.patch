@@ -1,0 +1,123 @@
+From f61803ce11143078e9688fc8ac002f4e99f5787b Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Fri, 30 Sep 2016 09:49:18 +0200
+Subject: [PATCH 13/13] compat: add realpath used by test_media_subitems()
+
+--
+replaces https://patches.videolan.org/patch/14469/
+* support non ASCII chars in pathes
+* use resolved_path if provided
+
+replaces https://patches.videolan.org/patch/14471/
+* fix leak
+---
+ compat/realpath.c    | 67 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ configure.ac         |  2 ++
+ include/vlc_fixups.h |  4 ++++
+ 3 files changed, 73 insertions(+)
+ create mode 100644 compat/realpath.c
+
+diff --git a/compat/realpath.c b/compat/realpath.c
+new file mode 100644
+index 0000000..a8edce5
+--- /dev/null
++++ b/compat/realpath.c
+@@ -0,0 +1,67 @@
++/*****************************************************************************
++ * realpath.c: POSIX realpath replacement
++ *****************************************************************************
++ * Copyright © 2016 VLC authors and VideoLAN
++ *
++ * This program is free software; you can redistribute it and/or modify it
++ * under the terms of the GNU Lesser General Public License as published by
++ * the Free Software Foundation; either version 2.1 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
++ * GNU Lesser General Public License for more details.
++ *
++ * You should have received a copy of the GNU Lesser General Public License
++ * along with this program; if not, write to the Free Software Foundation,
++ * Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
++ *****************************************************************************/
++
++#ifdef HAVE_CONFIG_H
++# include <config.h>
++#endif
++
++#include <stdlib.h>
++#ifdef _WIN32
++#include <windows.h>
++#endif
++
++char *realpath(const char * restrict relpath, char * restrict resolved_path)
++{
++#ifdef _WIN32
++    int len = MultiByteToWideChar( CP_UTF8, 0, relpath, -1, NULL, 0 );
++    if (len == 0)
++        return NULL;
++
++    wchar_t *wrelpath = (wchar_t *)malloc(len * sizeof (wchar_t));
++    if (wrelpath == NULL)
++        return NULL;
++
++    MultiByteToWideChar( CP_UTF8, 0, relpath, -1, wrelpath, len );
++
++    wchar_t *wfullpath = _wfullpath( NULL, wrelpath, _MAX_PATH );
++    free(wrelpath);
++    if (wfullpath != NULL)
++    {
++        size_t len = WideCharToMultiByte( CP_UTF8, 0, wfullpath, -1, NULL, 0, NULL, NULL );
++        if (len != 0)
++        {
++            if (resolved_path != NULL)
++                len = len >= _MAX_PATH ? _MAX_PATH : len;
++            else
++                resolved_path = (char *)malloc(len);
++
++            if (resolved_path != NULL)
++                WideCharToMultiByte( CP_UTF8, 0, wfullpath, -1, resolved_path, len, NULL, NULL );
++            free(wfullpath);
++            return resolved_path;
++        }
++        free(wfullpath);
++    }
++#else
++    (void)resolved_path;
++    (void)relpath;
++#endif
++    return NULL;
++}
+diff --git a/configure.ac b/configure.ac
+index 671c8a1..85b14d1 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -604,6 +604,8 @@ AC_CHECK_FUNC(fdatasync,,
+   [AC_DEFINE(fdatasync, fsync, [Alias fdatasync() to fsync() if missing.])
+ ])
+ 
++VLC_REPLACE_DECL([realpath], [#include <stdlib.h>])
++
+ dnl mingw64 implements those as static inline, not functions with C linkage
+ VLC_REPLACE_DECL([asprintf], [#include <stdio.h>])
+ VLC_REPLACE_DECL([vasprintf], [#include <stdio.h>])
+diff --git a/include/vlc_fixups.h b/include/vlc_fixups.h
+index 7a76ef4..690daae 100644
+--- a/include/vlc_fixups.h
++++ b/include/vlc_fixups.h
+@@ -481,6 +481,10 @@ void freeaddrinfo (struct addrinfo *res);
+ #define nanf(tagp) NAN
+ #endif
+ 
++#ifndef HAVE_REALPATH
++char *realpath(const char * restrict pathname, char * restrict resolved_path);
++#endif
++
+ #ifdef _WIN32
+ FILE *vlc_win32_tmpfile(void);
+ #endif
+-- 
+2.9.3
+
