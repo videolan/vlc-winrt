@@ -27,6 +27,7 @@
                       ItemsSource="{Binding Subtitles}"
                       IsEnabled="{Binding Subtitles.Count, Converter={StaticResource CountToBooleanConverter}}"
                       SelectedItem="{Binding CurrentSubtitle, Mode=TwoWay}"
+                      Width="200"
                       Margin="15">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
