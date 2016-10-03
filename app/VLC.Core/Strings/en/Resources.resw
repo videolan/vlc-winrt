@@ -163,7 +163,7 @@
     <value>audio delay</value>
   </data>
   <data name="AudioTracks" xml:space="preserve">
-    <value>audio tracks</value>
+    <value>Audio Tracks</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>back</value>
@@ -175,7 +175,7 @@
     <value>change album cover</value>
   </data>
   <data name="Chapters" xml:space="preserve">
-    <value>chapters</value>
+    <value>Chapters</value>
   </data>
   <data name="CheckCredentials" xml:space="preserve">
     <value>an error occured, please check your credentials</value>
