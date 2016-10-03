@@ -268,6 +268,8 @@ namespace VLC
             {
                 if (Gamepad.Gamepads.Any() || DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
                 {
+                    if (Locator.SettingsVM.MediaCenterMode == true)
+                        return;
                     Locator.SettingsVM.MediaCenterMode = true;
                     Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
                     Locator.MainVM.GoToHomePageMediaCenterCommand.Execute(null);
