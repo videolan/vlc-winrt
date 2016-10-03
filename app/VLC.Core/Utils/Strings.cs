@@ -175,6 +175,7 @@ namespace VLC.Utils
         public static string DecreaseSpeed => _resourcesLoader.GetString(nameof(DecreaseSpeed));
         public static string AudioTracks => _resourcesLoader.GetString(nameof(AudioTracks));
         public static string Subtitles => _resourcesLoader.GetString(nameof(Subtitles));
+        public static string NoSubtitles => _resourcesLoader.GetString(nameof(NoSubtitles));
         public static string Chapters => _resourcesLoader.GetString(nameof(Chapters));
         public static string Volume => _resourcesLoader.GetString(nameof(Volume));
         public static string IncreaseVolume => _resourcesLoader.GetString(nameof(IncreaseVolume));

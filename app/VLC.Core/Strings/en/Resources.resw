@@ -789,4 +789,7 @@
   <data name="CopyHelpMediaCenter" xml:space="preserve">
     <value>Press "Y" on a file or a folder to copy it to the local storage.</value>
   </data>
+  <data name="NoSubtitles" xml:space="preserve">
+    <value>No subtitle tracks</value>
+  </data>
 </root>

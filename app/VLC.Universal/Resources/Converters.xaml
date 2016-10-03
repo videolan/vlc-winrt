@@ -36,6 +36,7 @@
     <converters:PositionToTimeStampStringConverter x:Key="PositionToTimeStampStringConverter" />
     <converters:RootFolderTypeToNameConverter x:Key="RootFolderTypeToNameConverter"/>
     <converters:PlayingStateToGlyphConverter x:Key="PlayingStateToGlyphConverter" />
+    <converters:CountToBooleanConverter x:Key="CountToBooleanConverter" />
 
     <!-- Strings converter -->
     <converters:VideoViewStringifyConverter x:Key="VideoViewStringifyConverter" />
