@@ -215,8 +215,7 @@ namespace VLC.UI.Views.VideoPages
             LockToggleIcon.Glyph = (isLocked) ? App.Current.Resources["LockedSymbol"].ToString() : App.Current.Resources["UnlockedSymbol"].ToString();
             Slider.IsEnabled = !isLocked;
             SubtitlesButton.IsEnabled = !isLocked;
-            PlayButton.IsEnabled = !isLocked;
-            PauseButton.IsEnabled = !isLocked;
+            PlayPauseButton.IsEnabled = !isLocked;
             VolumeSlider.IsEnabled = !isLocked;
             MenuButton.IsEnabled = !isLocked;
 

@@ -58,6 +58,7 @@ namespace VLC.UI.Views.UserControls
         {
             NowPlayingArtistGrid.Visibility =
                 PlayPreviousButton.Visibility =
+                PlayPauseButton.Visibility =
                 PlayNextButton.Visibility =
                 ShuffleButton.Visibility =
                 RepeatButton.Visibility =

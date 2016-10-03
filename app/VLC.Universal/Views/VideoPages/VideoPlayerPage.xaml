@@ -206,35 +206,11 @@
                                 </AppBarButton.Icon>
                             </AppBarButton>
                         </StackPanel>
-                        <AppBarButton x:Name="PlayButton"
-                                      Grid.Column="1"
-                                      Command="{Binding PlayOrPauseCommand}"
-                                      Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
-                                      Style="{StaticResource AppBarButtonStyleHuge}"
-                                      IsCompact="True"
-                                      HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Stretch">
-                            <AppBarButton.Icon>
-                                <FontIcon Glyph="{StaticResource PlaySymbol}"
-                                          FontFamily="{StaticResource VLCFont}"
-                                          FontSize="42" />
-                            </AppBarButton.Icon>
-                        </AppBarButton>
-                        <AppBarButton x:Name="PauseButton"
-                                      Grid.Column="1"
-                                      IsCompact="True"
-                                      Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                      Style="{StaticResource AppBarButtonStyleHuge}"
-                                      HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Stretch"
-                                      Command="{Binding PlayOrPauseCommand}"
-                                      Foreground="{ThemeResource MainColor}">
-                            <AppBarButton.Icon>
-                                <FontIcon Glyph="{StaticResource PauseSymbol}"
-                                          FontFamily="{StaticResource VLCFont}"
-                                          FontSize="42" />
-                            </AppBarButton.Icon>
-                        </AppBarButton>
+                        <userControls:PlayPauseButtonControl x:Name="PlayPauseButton"
+                            Grid.Column="1"
+                            DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                            ButtonStyle="{StaticResource AppBarButtonStyleHuge}"
+                            ButtonFontSize="42" />
                         <StackPanel Grid.Column="2"
                                     Orientation="Horizontal"
                                     HorizontalAlignment="Right">

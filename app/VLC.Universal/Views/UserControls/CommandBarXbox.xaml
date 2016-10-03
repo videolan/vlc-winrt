@@ -44,7 +44,6 @@
         </Button>
         <AppBarButton x:Name="PlayPreviousButton"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
-                      Command="{Binding PlayPreviousCommand}"
                       IsEnabled="{Binding CanGoPrevious}"
                       IsCompact="True"
                       VerticalAlignment="Stretch">
@@ -53,32 +52,11 @@
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarButton.Icon>
         </AppBarButton>
-        <AppBarButton x:Name="PlayButton"
+        <userControls:PlayPauseButtonControl x:Name="PlayPauseButton"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
-                      Command="{Binding PlayOrPauseCommand}"
-                      IsCompact="True"
-                      Visibility="{Binding PlayButtonVisible}"
                       RightTapped="PlayButton_RightTapped"
-                      Holding="PauseButton_Holding"
-                      VerticalAlignment="Stretch" >
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource PlaySymbol}"
-                          FontFamily="{StaticResource VLCFont}" />
-            </AppBarButton.Icon>
-        </AppBarButton>
-        <AppBarButton x:Name="PauseButton"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
-                      Command="{Binding PlayOrPauseCommand}"
-                      IsCompact="True"
-                      Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
-                      RightTapped="PlayButton_RightTapped"
-                      Holding="PauseButton_Holding"
-                      VerticalAlignment="Stretch" >
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource PauseSymbol}"
-                          FontFamily="{StaticResource VLCFont}" />
-            </AppBarButton.Icon>
-        </AppBarButton>
+                      ButtonFontSize="20"
+                      Holding="PauseButton_Holding" />
         <AppBarButton x:Name="PlayNextButton"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       Command="{Binding PlayNextCommand}"
