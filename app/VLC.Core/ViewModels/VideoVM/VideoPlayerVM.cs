@@ -40,7 +40,6 @@ namespace VLC.ViewModels.VideoVM
 
         private VLCSurfaceZoom currentSurfaceZoom = VLCSurfaceZoom.SURFACE_BEST_FIT;
         private bool isVideoPlayerOptionsPanelVisible;
-        private bool isVideoPlayerSubtitlesSettingsVisible;
         private bool isVideoPlayerAudioTracksSettingsVisible;
         private bool isVideoPlayerVolumeSettingsVisible;
         private List<VLCSurfaceZoom> zooms;
@@ -78,12 +77,6 @@ namespace VLC.ViewModels.VideoVM
             set { SetProperty(ref isVideoPlayerOptionsPanelVisible, value); }
         }
 
-        public bool IsVideoPlayerSubtitlesSettingsVisible
-        {
-            get { return isVideoPlayerSubtitlesSettingsVisible; }
-            set { SetProperty(ref isVideoPlayerSubtitlesSettingsVisible, value); }
-        }
-
         public bool IsVideoPlayerAudioTracksSettingsVisible
         {
             get { return isVideoPlayerAudioTracksSettingsVisible; }
@@ -101,22 +94,12 @@ namespace VLC.ViewModels.VideoVM
             Locator.NavigationService.Go(VLCPage.VideoPlayerOptionsPanel);
             Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible = false;
             Locator.VideoPlayerVm.IsVideoPlayerAudioTracksSettingsVisible = false;
-            Locator.VideoPlayerVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible = false;
         });
 
-
-        public ActionCommand ToggleIsVideoPlayerSubtitlesSettingsVisible { get; private set; } = new ActionCommand(() =>
-        {
-            Locator.VideoPlayerVm.IsVideoPlayerAudioTracksSettingsVisible = false;
-            Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible = false;
-            Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible = false;
-            Locator.VideoPlayerVm.IsVideoPlayerSubtitlesSettingsVisible = !Locator.VideoPlayerVm.IsVideoPlayerSubtitlesSettingsVisible;
-        });
 
         public ActionCommand ToggleIsVideoPlayerAudioTracksSettingsVisible { get; private set; } = new ActionCommand(() =>
         {
-            Locator.VideoPlayerVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible = false;
             Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible = false;
             Locator.VideoPlayerVm.IsVideoPlayerAudioTracksSettingsVisible = !Locator.VideoPlayerVm.IsVideoPlayerAudioTracksSettingsVisible;
@@ -126,7 +109,6 @@ namespace VLC.ViewModels.VideoVM
         public ActionCommand ToggleIsVideoPlayerVolumeSettingsVisible { get; private set; } = new ActionCommand(() =>
         {
             Locator.VideoPlayerVm.IsVideoPlayerAudioTracksSettingsVisible = false;
-            Locator.VideoPlayerVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible = false;
             Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible = !Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible;
         });
@@ -136,6 +118,8 @@ namespace VLC.ViewModels.VideoVM
         public InitPiPCommand InitPiPCommand { get; private set; } = new InitPiPCommand();
 
         public DownloadSubtitleCommand DownloadSubtitleCommand { get; private set; } = new DownloadSubtitleCommand();
+
+        public ShowSubtitlesSettingsCommand ShowSubtitlesSettinsCommand { get; private set; } = new ShowSubtitlesSettingsCommand();
         public bool IsLoadingSubtitle { get { return _isLoadingSubtitle; } set { SetProperty(ref _isLoadingSubtitle, value); } }
         public string LoadingSubtitleText { get { return _loadingSubtitleText; } set { SetProperty(ref _loadingSubtitleText, value); } }
         #endregion
@@ -204,7 +188,6 @@ namespace VLC.ViewModels.VideoVM
             }
             Locator.VideoPlayerVm.IsVideoPlayerAudioTracksSettingsVisible = false;
             Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible = false;
-            Locator.VideoPlayerVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible = false;
             Locator.Slideshow.IsPaused = false;
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;

@@ -178,7 +178,6 @@ namespace VLC.UI.Views.VideoPages
 
             if (Locator.VideoPlayerVm.IsVideoPlayerAudioTracksSettingsVisible ||
                 Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible ||
-                Locator.VideoPlayerVm.IsVideoPlayerSubtitlesSettingsVisible ||
                 Locator.VideoPlayerVm.IsVideoPlayerVolumeSettingsVisible)
                 return;
             if (!isVisible)

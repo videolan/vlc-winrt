@@ -22,6 +22,7 @@
         SettingsPageMusic,
         SettingsPageVideo,
         VideoPlayerOptionsPanel,
+        SubtitlesSettings,
         TrackEditorPage,
         FeedbackPage,
         TvShowView,

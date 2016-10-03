@@ -77,6 +77,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\InitPiPCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\OpenSubtitleCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\PlayVideoCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\ShowSubtitlesSettingsCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\StopVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\SurfaceZoomToggleCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VLCFileExplorer\GoUpperFolderCommand.cs" />
