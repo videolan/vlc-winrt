@@ -47,7 +47,7 @@
         <toolkitControls:HeaderedTextBlock Grid.Column="2"
                                            Grid.Row="0"
                                            Grid.RowSpan="2"
-                                           HideTextIfEmpty="True"
+                                           Visibility="{Binding Name, Converter={StaticResource EmptyStringToVisibilityConverter}}"
                                            Header="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
                                            Text="{Binding Artist, Converter={StaticResource ArtistStringConverter}}"
                                            IsTabStop="False" />

@@ -68,7 +68,7 @@
                    Stretch="Uniform" />
             <toolkitControls:HeaderedTextBlock Grid.Column="2"
                                                VerticalAlignment="Center"
-                                               HideTextIfEmpty="True"
+                                               Visibility="{Binding CurrentAlbum.Artist, Converter={StaticResource EmptyStringToVisibilityConverter}}"
                                                Header="{Binding CurrentAlbum.Name, Converter={StaticResource AlbumStringConverter}}"
                                                Text="{Binding CurrentAlbum.Artist, Converter={StaticResource ArtistStringConverter}}" />
         </Grid>

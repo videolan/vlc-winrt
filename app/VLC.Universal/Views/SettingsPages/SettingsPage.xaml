@@ -21,8 +21,7 @@
         <PivotItem Header="{Binding Source={StaticResource Strings}, Path=UserInterface}">
                 <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
                     <StackPanel Margin="{StaticResource FrameMarginHorizontal}">
-                        <toolkitControls:HeaderedTextBlock HideTextIfEmpty="True"
-                                                           Header="{Binding Source={StaticResource Strings}, Path=Theme}"
+                        <toolkitControls:HeaderedTextBlock Header="{Binding Source={StaticResource Strings}, Path=Theme}"
                                                            Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}" 
                                                            IsTabStop="False"/>
 
@@ -66,7 +65,6 @@
                         </winControls:WrapPanel>
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
-                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=Languages}"
                                                            Text="{Binding Source={StaticResource Strings}, Path=SelectLanguageDescription}"
                                                            IsTabStop="False"/>
@@ -91,7 +89,6 @@
                         </winControls:WrapPanel>
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
-                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=ExternalStorage}"
                                                            Text="{Binding Source={StaticResource Strings}, Path=WhatToDoWhenExternalStorage}" 
                                                            IsTabStop="False" />
@@ -109,7 +106,6 @@
                         </ComboBox>
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
-                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=HomePage}"
                                                            Text="{Binding Source={StaticResource Strings}, Path=HomePageDescription}" 
                                                            IsTabStop="False" />
@@ -127,7 +123,6 @@
                         </ComboBox>
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
-                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}"
                                                            Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.CollapsedOnXbox}" />
                         <ListView ItemsSource="{Binding KeyboardActions}"
@@ -165,7 +160,6 @@
                                 Margin="{StaticResource FrameMarginHorizontal}">
                         <toolkitControls:HeaderedTextBlock Tag="STARTS"
                                                            Header="{Binding Source={StaticResource Strings}, Path=VideoFolders}"
-                                                           HideTextIfEmpty="True"
                                                            Text="{Binding Source={StaticResource Strings}, Path=VideoFoldersDescription}" 
                                                            IsTabStop="False" />
                         <ListView Tag="STARTS"
@@ -227,7 +221,6 @@
                                 CommandParameter="{Binding VideoLibraryId}" />
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
-                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=HardwareDecoding}"
                                                            Text="{Binding Source={StaticResource Strings}, Path=HardwareDecodingDescription}" 
                                                            IsTabStop="False" />
@@ -241,8 +234,7 @@
                                       Header="{Binding Source={StaticResource Strings}, Path=VideoPlaybackInBackground}"
                                       IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}" />
 
-                        <toolkitControls:HeaderedTextBlock HideTextIfEmpty="True"
-                                                           Margin="{StaticResource FrameMarginTop}"
+                        <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            Header="{Binding Source={StaticResource Strings}, Path=SubtitlesEncoding}" 
                                                            IsTabStop="False" />
                         <ComboBox Margin="0,12"
@@ -263,7 +255,7 @@
                 <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
                     <StackPanel x:Name="MusicSettingsPanel"
                                 Margin="{StaticResource FrameMarginHorizontal}">
-                        <toolkitControls:HeaderedTextBlock HideTextIfEmpty="True"
+                        <toolkitControls:HeaderedTextBlock
                                                            Header="{Binding Source={StaticResource Strings}, Path=Equalizer}" 
                                                            IsTabStop="False" />
 
@@ -288,7 +280,7 @@
 
                         <toolkitControls:HeaderedTextBlock Tag="STARTS"
                                                            Margin="{StaticResource FrameMarginTop}"
-                                                           HideTextIfEmpty="True"
+                                                           Visibility="{Binding Source={StaticResource Strings}, Path=MusicFoldersDescription, Converter={StaticResource EmptyStringToVisibilityConverter}}"
                                                            Header="{Binding Source={StaticResource Strings}, Path=MusicFolders}"
                                                            Text="{Binding Source={StaticResource Strings}, Path=MusicFoldersDescription}" 
                                                            IsTabStop="False" />
@@ -351,7 +343,6 @@
                                 CommandParameter="{Binding MusicLibraryId}" />
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
-                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=Notifications}"
                                                            Text="{Binding Source={StaticResource Strings}, Path=NotificationWhenSongStarts}"
                                                            IsTabStop="False"/>
@@ -359,7 +350,6 @@
                         <ToggleSwitch  IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}" />
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
-                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=ConnectToLastFM}"
                                                            IsTabStop="False" />
                         <userControls:FocusTextBox Height="30"
@@ -400,7 +390,6 @@
                         </AppBarButton>
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
-                                                           HideTextIfEmpty="True"
                                                            Header="{Binding Source={StaticResource Strings}, Path=Reset}"
                                                            Text="This will delete all the playlists made with VLC, and index the music library again." 
                                                            IsTabStop="False" />

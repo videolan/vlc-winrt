@@ -46,4 +46,5 @@
     <converters:LanguageStringifyConverter x:Key="LanguageStringifyConverter" />
     <converters:OrderTypeStringifyConverter x:Key="OrderTypeStringifyConverter" />
     <converters:VLCSurfaceZoomStringifyConverter x:Key="VLCSurfaceZoomStringifyConverter" />
+    <converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter" />
 </ResourceDictionary>
