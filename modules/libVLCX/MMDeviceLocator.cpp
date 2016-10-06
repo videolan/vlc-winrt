@@ -113,7 +113,7 @@ namespace libVLCX
     Platform::String^ AudioDeviceHandler::audioClient()
     {
         TCHAR buff[32];
-        _sntprintf( buff, 32, TEXT( "%p" ), m_ptr.Get() );
+        _sntprintf_s(buff, _TRUNCATE, TEXT("%p"), m_ptr.Get());
         return ref new Platform::String(buff);
     }
 }
