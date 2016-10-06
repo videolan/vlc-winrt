@@ -44,14 +44,14 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     ComPtr<IDXGIDevice1> dxgiDevice;
 
     UINT i_factoryFlags = 0;
-#ifndef NDEBUG
+#if defined(_DEBUG) && !defined(_M_ARM)
     i_factoryFlags |= DXGI_CREATE_FACTORY_DEBUG;
 #endif
     hr = CreateDXGIFactory2( i_factoryFlags, __uuidof( IDXGIFactory2 ), &dxgiFactory );
     CheckDXOperation( hr, "Could not create DXGI factory" );
 
     UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT | D3D11_CREATE_DEVICE_VIDEO_SUPPORT;
-#ifndef NDEBUG
+#if defined(_DEBUG) && !defined(_M_ARM)
     creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
