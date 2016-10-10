@@ -571,21 +571,6 @@ namespace VLC.Model.Library
             return tcs.Task.Result;
         }
 
-        public async Task DisposeDiscoverer()
-        {
-            await Task.Run(() =>
-            {
-                lock (discovererLock)
-                {
-                    foreach (var discoverer in discoverers)
-                    {
-                        if (discoverer.Value.isRunning())
-                            discoverer.Value.stop();
-                    }
-                }
-            });
-        }
-
         public async Task<MediaList> DiscoverMediaList(Media media)
         {
             var tcs = new TaskCompletionSource<MediaList>();
