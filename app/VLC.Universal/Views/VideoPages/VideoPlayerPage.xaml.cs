@@ -204,11 +204,6 @@ namespace VLC.UI.Views.VideoPages
 
         private void LockToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            SwitchLock();
-        }
-
-        void SwitchLock()
-        {
             isLocked = !isLocked;
             LockToggleIcon.Glyph = (isLocked) ? App.Current.Resources["LockedSymbol"].ToString() : App.Current.Resources["UnlockedSymbol"].ToString();
             Slider.IsEnabled = !isLocked;
