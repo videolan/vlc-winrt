@@ -28,7 +28,6 @@ using VLC.Utils;
 using VLC.Commands.VideoPlayer;
 using VLC.Commands.VideoLibrary;
 using System.Linq;
-using VLC.Helpers.UIHelpers;
 using VLC.Commands.MusicPlayer;
 using VLC.MediaMetaFetcher.Fetchers;
 using VLC.Model.Video;

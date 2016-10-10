@@ -151,7 +151,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StateTriggers\DeviceStateTrigger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StringsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UIHelpers\CortanaHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\UIHelpers\DialogHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UIHelpers\ToastHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\TileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoLibrary\TitleDecrapifier.cs" />

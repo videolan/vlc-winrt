@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
+using System.Threading.Tasks;
 using VLC.Utils;
 using VLC.ViewModels;
 using Windows.Foundation;
@@ -14,20 +16,37 @@ namespace VLC.UI.Views.UserControls.Shell
 {
     public sealed partial class VLCDialog : ContentDialog
     {
-        public VLCDialog()
+        static SemaphoreSlim SingleDialogSem = new SemaphoreSlim(1);
+        Dialog Dialog;
+
+        private static void Dialog_Closed(Windows.UI.Xaml.Controls.ContentDialog sender, Windows.UI.Xaml.Controls.ContentDialogClosedEventArgs args)
         {
-            this.InitializeComponent();
+            SingleDialogSem.Release();
         }
 
-        public void Initialize(string title, string desc)
+        static public async Task WaitForDialogLock()
         {
-            FillText(title, desc);
+            await SingleDialogSem.WaitAsync();
+        }
+
+        private void CommonInit(string title, string desc, Dialog dialog)
+        {
+            this.InitializeComponent();
+            TitleTextBlock.Text = title;
+            DescriptionTextBlock.Text = desc;
+            this.Closed += Dialog_Closed;
+            Dialog = dialog;
+        }
+
+        public VLCDialog(string title, string desc)
+        {
+            CommonInit(title, desc, null);
             this.PrimaryButtonText = "OK";
         }
 
-        public void Initialize(string title, string desc, Dialog dialog, string username, bool askStore)
+        public VLCDialog(string title, string desc, Dialog dialog, string username, bool askStore)
         {
-            FillText(title, desc);
+            CommonInit(title, desc, dialog);
             TextBox1.Visibility = Visibility.Visible;
             TextBox1.PlaceholderText = Strings.Username;
 
@@ -53,21 +72,9 @@ namespace VLC.UI.Views.UserControls.Shell
             };
         }
 
-        public void Initialize(string title, string desc, Dialog dialog, Question questionType, string cancel, string action1, string action2)
+        public VLCDialog(string title, string desc, Dialog dialog, Question questionType, string cancel, string action1, string action2)
         {
-            FillText(title, desc);
-
-            switch (questionType)
-            {
-                case Question.normal:
-                    break;
-                case Question.warning:
-                    break;
-                case Question.critical:
-                    break;
-                default:
-                    break;
-            }
+            CommonInit(title, desc, dialog);
 
             this.PrimaryButtonText = action1;
             this.PrimaryButtonClick += (d, eventArgs) =>
@@ -81,10 +88,10 @@ namespace VLC.UI.Views.UserControls.Shell
             };
         }
 
-        private void FillText(string title, string desc)
+        public void Cancel()
         {
-            TitleTextBlock.Text = title;
-            DescriptionTextBlock.Text = desc;
+            Dialog.dismiss();
+            Hide();
         }
 
         private void PasswordBox1_GotFocus(object sender, RoutedEventArgs e)

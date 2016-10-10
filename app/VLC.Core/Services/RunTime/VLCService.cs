@@ -24,8 +24,8 @@ using libVLCX;
 using VLC.Utils;
 using MediaPlayer = libVLCX.MediaPlayer;
 using VLC.ViewModels;
-using VLC.Helpers.UIHelpers;
 using Windows.Media.Devices;
+using VLC.UI.Views.UserControls.Shell;
 
 namespace VLC.Services.RunTime
 {
@@ -56,7 +56,8 @@ namespace VLC.Services.RunTime
             set { _audioDeviceID = value; }
         }
         public MediaPlayer MediaPlayer { get; private set; }
-        
+        private VLCDialog CurrentDialog;
+
         public Task Initialize(object o = null)
         {
             return DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
@@ -82,22 +83,42 @@ namespace VLC.Services.RunTime
                     Instance?.setDialogHandlers(
                         async (title, text) =>
                         {
-                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () => await DialogHelper.DisplayDialog(title, text));
+                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+                            {
+                                await VLCDialog.WaitForDialogLock();
+                                CurrentDialog = new VLCDialog(title, text);
+                                await CurrentDialog.ShowAsync();
+                            });
                         },
                         async (dialog, title, text, defaultUserName, askToStore) =>
                         {
-                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () => await DialogHelper.DisplayDialog(title, text, dialog, defaultUserName, askToStore));
+                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+                            {
+                                await VLCDialog.WaitForDialogLock();
+                                CurrentDialog = new VLCDialog(title, text, dialog, defaultUserName, askToStore);
+                                await CurrentDialog.ShowAsync();
+                            });
                         },
 
                         async (dialog, title, text, qType, cancel, action1, action2) =>
                         {
-                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () => await DialogHelper.DisplayDialog(title, text, dialog, qType, cancel, action1, action2));
+                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+                            {
+                                if (qType == Question.warning)
+                                {
+                                    dialog.postAction(1);
+                                    return;
+                                }
+                                await VLCDialog.WaitForDialogLock();
+                                CurrentDialog = new VLCDialog(title, text, dialog, qType, cancel, action1, action2);
+                                await CurrentDialog.ShowAsync();
+                            });
                         },
 
                         (dialog, title, text, intermidiate, position, cancel) => { },
                         async (dialog) =>
                         {
-                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => DialogHelper.CancelDialog(dialog));
+                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => CurrentDialog.Cancel());
                         },
                         (dialog, position, text) => { });
 
