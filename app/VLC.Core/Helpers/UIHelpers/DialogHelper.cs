@@ -19,27 +19,19 @@ namespace VLC.Helpers.UIHelpers
         public static async Task DisplayDialog(string title, string desc)
         {
             await DialogDisplaySemaphoreSlim.WaitAsync();
-            try
-            {
-                var dialog = new VLCDialog();
-                dialog.Closed += Dialog_Closed;
-                dialog.Initialize(title, desc);
-                await dialog.ShowAsync();
-            }
-            catch { }
+            var dialog = new VLCDialog();
+            dialog.Closed += Dialog_Closed;
+            dialog.Initialize(title, desc);
+            await dialog.ShowAsync();
         }
 
         public static async Task DisplayDialog(string title, string desc, Dialog d, string username = null, bool askStore = false)
         {
             await DialogDisplaySemaphoreSlim.WaitAsync();
-            try
-            {
-                var dialog = new VLCDialog();
-                dialog.Closed += Dialog_Closed;
-                dialog.Initialize(title, desc, d, username, askStore);
-                await dialog.ShowAsync();
-            }
-            catch { }
+            var dialog = new VLCDialog();
+            dialog.Closed += Dialog_Closed;
+            dialog.Initialize(title, desc, d, username, askStore);
+            await dialog.ShowAsync();
         }
 
         public static async Task DisplayDialog(string title, string desc, Dialog d, Question questionType, string cancel, string action1, string action2)
@@ -51,15 +43,10 @@ namespace VLC.Helpers.UIHelpers
             }
 
             await DialogDisplaySemaphoreSlim.WaitAsync();
-            try
-            {
-
-                var dialog = new VLCDialog();
-                dialog.Closed += Dialog_Closed;
-                dialog.Initialize(title, desc, d, questionType, cancel, action1, action2);
-                await dialog.ShowAsync();
-            }
-            catch { }
+            var dialog = new VLCDialog();
+            dialog.Closed += Dialog_Closed;
+            dialog.Initialize(title, desc, d, questionType, cancel, action1, action2);
+            await dialog.ShowAsync();
         }
     }
 }
