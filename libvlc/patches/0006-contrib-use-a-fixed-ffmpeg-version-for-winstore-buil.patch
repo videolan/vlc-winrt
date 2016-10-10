@@ -20,7 +20,7 @@ index e4178c6..a69c688 100644
  
  ifdef USE_FFMPEG
 -FFMPEG_HASH=HEAD
-+FFMPEG_HASH=cb46b78b2ec0179666012e2d85014236c2f5385b
++FFMPEG_HASH=9b462a0b9df6260f59726c98d8aef8b07a1e442b
  FFMPEG_SNAPURL := http://git.videolan.org/?p=ffmpeg.git;a=snapshot;h=$(FFMPEG_HASH);sf=tgz
  FFMPEG_GITURL := git://git.videolan.org/ffmpeg.git
  else
