@@ -84,7 +84,6 @@ namespace VLC.UI.Views.VideoPages
 
             // UI interactions
             Locator.MediaPlaybackViewModel.MouseService.Start();
-            Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseCursorHidden;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
             RootGrid.Tapped += RootGrid_Tapped;
             controlsTimer.Interval = TimeSpan.FromSeconds(5);
@@ -127,7 +126,6 @@ namespace VLC.UI.Views.VideoPages
             this.SizeChanged -= OnSizeChanged;
 
             Locator.MediaPlaybackViewModel.MouseService.Stop();
-            Locator.MediaPlaybackViewModel.MouseService.OnHidden -= MouseCursorHidden;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved -= MouseMoved;
             controlsTimer.Tick -= ControlsTimer_Tick;
             controlsTimer.Stop();
@@ -148,11 +146,6 @@ namespace VLC.UI.Views.VideoPages
 
             controlsTimer.Stop();
             controlsTimer.Start();
-        }
-
-        private void MouseCursorHidden()
-        {
-            ControlsTimer_Tick(null, false);
         }
 
         private void MouseMoved()
