@@ -584,7 +584,7 @@ namespace VLC.Model.Library
                 tcs.TrySetResult(media.subItems());
             };
             await MediaItemDiscovererSemaphoreSlim.WaitAsync();
-            media.parseWithOptions(ParseFlags.Local | ParseFlags.Network | ParseFlags.Interact, 5000);
+            media.parseWithOptions(ParseFlags.Local | ParseFlags.Network | ParseFlags.Interact, 0);
             MediaItemDiscovererSemaphoreSlim.Release();
             return tcs.Task.Result;
         }
