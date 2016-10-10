@@ -95,7 +95,10 @@ namespace VLC.Services.RunTime
                         },
 
                         (dialog, title, text, intermidiate, position, cancel) => { },
-                        (dialog) => dialog.dismiss(),
+                        async (dialog) =>
+                        {
+                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => DialogHelper.CancelDialog(dialog));
+                        },
                         (dialog, position, text) => { });
 
                     // Audio device management also needs to be called from the main thread
