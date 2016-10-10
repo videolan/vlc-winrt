@@ -12,7 +12,6 @@
 
     <AppBarButton x:Name="PlayPauseAppBarButton"
                   Style="{Binding Path=ButtonStyle, ElementName=PlayPauseButton}"
-                  Grid.Column="1"
                   Command="{Binding PlayOrPauseCommand}"
                   IsCompact="True"
                   HorizontalAlignment="Stretch"
