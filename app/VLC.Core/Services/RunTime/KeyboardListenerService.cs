@@ -217,7 +217,7 @@ namespace VLC.Services.RunTime
                             case VirtualKey.GamepadLeftThumbstickRight:
                             case VirtualKey.GamepadLeftThumbstickLeft:
                                 if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage)
-                                    Locator.VideoPlayerVm.RequestChangeControlBarVisibility();
+                                    Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
                                 break;
                             default:
                                 break;

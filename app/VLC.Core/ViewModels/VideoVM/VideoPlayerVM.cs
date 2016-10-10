@@ -33,7 +33,7 @@ namespace VLC.ViewModels.VideoVM
     public class VideoPlayerVM : BindableBase
     {
         #region events
-        public event EventHandler PlayerControlVisibilityChangeRequested;
+        public event EventHandler<bool> PlayerControlVisibilityChangeRequested;
         #endregion
         #region private props
         private VideoItem _currentVideo;
@@ -44,6 +44,7 @@ namespace VLC.ViewModels.VideoVM
 
         private bool _isLoadingSubtitle;
         private string _loadingSubtitleText;
+        public bool PlayerControlVisibility { get; private set; }
         #endregion
 
         #region private fields
@@ -304,9 +305,9 @@ namespace VLC.ViewModels.VideoVM
             App.RootPage.SwapChainPanel.RenderTransform = scaleTransform;
         }
 
-        public void RequestChangeControlBarVisibility()
+        public void RequestChangeControlBarVisibility(bool visibility)
         {
-            PlayerControlVisibilityChangeRequested?.Invoke(this, new EventArgs());
+            PlayerControlVisibilityChangeRequested?.Invoke(this, visibility);
         }
         #endregion
 
@@ -325,6 +326,11 @@ namespace VLC.ViewModels.VideoVM
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.VideoPlayerVm.CurrentVideo = video);
             await TryUseSubtitleFromFolder();
+        }
+
+        public void OnPlayerControlVisibilityChanged(bool visibility)
+        {
+            PlayerControlVisibility = visibility;
         }
 
         #endregion

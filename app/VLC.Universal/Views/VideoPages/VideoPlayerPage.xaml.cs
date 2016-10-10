@@ -35,6 +35,10 @@ namespace VLC.UI.Views.VideoPages
         private bool isLocked = false;
         private GestureActionType currentGestureActionType;
         private DispatcherTimer controlsTimer = new DispatcherTimer();
+
+        public delegate void PlayerControlVisibilityChanged(bool visibility);
+        public event PlayerControlVisibilityChanged OnPlayerControlVisibilityChanged;
+
         public VideoPlayerPage()
         {
             InitializeComponent();
@@ -90,6 +94,7 @@ namespace VLC.UI.Views.VideoPages
             // VM initialization
             Locator.VideoPlayerVm.OnNavigatedTo();
             Locator.VideoPlayerVm.PlayerControlVisibilityChangeRequested += VideoPlayerVm_PlayerControlVisibilityChangeRequested;
+            OnPlayerControlVisibilityChanged += Locator.VideoPlayerVm.OnPlayerControlVisibilityChanged;
 
             // Responsive design
             this.SizeChanged += OnSizeChanged;
@@ -99,9 +104,9 @@ namespace VLC.UI.Views.VideoPages
             App.RootPage.StartCompositionAnimationOnSwapChain(false);
         }
 
-        private void VideoPlayerVm_PlayerControlVisibilityChangeRequested(object sender, EventArgs e)
+        private void VideoPlayerVm_PlayerControlVisibilityChangeRequested(object sender, bool visibility)
         {
-            ControlsTimer_Tick(null, true);
+            ControlsTimer_Tick(null, visibility);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -115,6 +120,7 @@ namespace VLC.UI.Views.VideoPages
             Locator.VideoPlayerVm.OnNavigatedFrom();
 
             Locator.VideoPlayerVm.PlayerControlVisibilityChangeRequested -= VideoPlayerVm_PlayerControlVisibilityChangeRequested;
+            OnPlayerControlVisibilityChanged -= Locator.VideoPlayerVm.OnPlayerControlVisibilityChanged;
 
             AppViewHelper.LeaveFullscreen();
 
@@ -192,6 +198,7 @@ namespace VLC.UI.Views.VideoPages
                 FadeIn.Begin();
                 Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
             }
+            OnPlayerControlVisibilityChanged(isVisible);
         }
 
         private void PlaceholderInteractionGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)

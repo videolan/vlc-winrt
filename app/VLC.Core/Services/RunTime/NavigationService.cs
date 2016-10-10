@@ -158,6 +158,11 @@ namespace VLC.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.VideoPlayerPage:
+                    if (Locator.VideoPlayerVm.PlayerControlVisibility == true )
+                    {
+                        Locator.VideoPlayerVm.RequestChangeControlBarVisibility(false);
+                        break;
+                    }
                     if (currentFlyout == VLCPage.VideoPlayerOptionsPanel || 
                         currentFlyout == VLCPage.SubtitlesSettings ||
                         currentFlyout == VLCPage.AudioTracksSettings ||
