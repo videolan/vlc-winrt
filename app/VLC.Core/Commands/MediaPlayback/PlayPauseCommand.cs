@@ -17,10 +17,6 @@ namespace VLC.Commands.MediaPlayback
     {
         public override void Execute(object parameter)
         {
-            if (Locator.MediaPlaybackViewModel.MediaState == MediaState.NothingSpecial)
-            {
-                Locator.MediaPlaybackViewModel.PlaybackService.Play();
-            }
             Locator.MediaPlaybackViewModel.PlaybackService.Pause();
         }
     }
