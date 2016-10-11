@@ -45,6 +45,15 @@
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ControlsBorder"
+                                               Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <ExponentialEase EasingMode="EaseInOut"
+                                             Exponent="0" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsBorder"
                                                Storyboard.TargetProperty="Visibility">
                     <DiscreteObjectKeyFrame KeyTime="0:0:0.8"
@@ -57,6 +66,18 @@
                     <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                             Value="Visible" />
                 </ObjectAnimationUsingKeyFrames>
+
+
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ControlsBorder"
+                                               Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                          Value="0.8">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <ExponentialEase EasingMode="EaseInOut"
+                                             Exponent="3" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ControlsBorder"
                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
                     <EasingDoubleKeyFrame KeyTime="0:0:0.7"
