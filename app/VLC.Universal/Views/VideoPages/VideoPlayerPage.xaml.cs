@@ -42,6 +42,21 @@ namespace VLC.UI.Views.VideoPages
         public VideoPlayerPage()
         {
             InitializeComponent();
+            ControlsBorder.RegisterPropertyChangedCallback(Border.VisibilityProperty, OnBorderVisibilityChanged);
+        }
+
+        private void OnBorderVisibilityChanged(DependencyObject sender, DependencyProperty dp)
+        {
+            if (dp == Border.VisibilityProperty)
+            {
+                // Since the container is not visible, we can't focus the PlayPauseButton before the fadein
+                // animation actually starts. Using opacity only to "hide" the border is not an option, since
+                // doing so would keep the button focused while invisible, and pressing A would pause instead of
+                // showing the control panel.
+                // As a work around, we wait for the container to be visible again.
+                if (((Border)sender).Visibility == Visibility.Visible)
+                    PlayPauseButton.Focus(FocusState.Programmatic);
+            }
         }
 
         void Responsive()
