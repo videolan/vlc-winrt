@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\ChangePlaybackSpeedRateCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\ChangeSpuDelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\ChangeVolumeCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\FastSeekCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\DeletePlaylistTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\ResetCurrentArtistAndAlbumCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\SetAlbumViewOrderCommand.cs" />

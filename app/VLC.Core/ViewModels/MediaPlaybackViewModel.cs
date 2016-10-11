@@ -88,6 +88,8 @@ namespace VLC.ViewModels
         public ChangeAudioDelayCommand ChangeAudioDelayCommand { get; } = new ChangeAudioDelayCommand();
 
         public ChangeSpuDelayCommand ChangeSpuDelayCommand { get; } = new ChangeSpuDelayCommand();
+
+        public FastSeekCommand FastSeekCommand { get; } = new FastSeekCommand();
         #endregion
 
         #region public props
