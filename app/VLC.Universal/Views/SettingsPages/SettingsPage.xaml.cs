@@ -21,6 +21,20 @@ namespace VLC.UI.Views.SettingsPages
         {
             this.InitializeComponent();
             this.Loaded += SettingsPage_Loaded;
+            this.UsernameBoxLastFm.KeyUp += UsernameBoxLastFm_KeyUp;
+            this.PasswordBoxLastFm.KeyUp += PasswordBoxLastFm_KeyUp;
+        }
+
+        private void UsernameBoxLastFm_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+                PasswordBoxLastFm.Focus(FocusState.Programmatic);
+        }
+
+        private void PasswordBoxLastFm_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+                ConnectToLastFM_Click(PasswordBoxLastFm, null);
         }
 
         private void SettingsPage_Loaded(object sender, RoutedEventArgs e)

@@ -352,7 +352,8 @@
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            Header="{Binding Source={StaticResource Strings}, Path=ConnectToLastFM}"
                                                            IsTabStop="False" />
-                        <userControls:FocusTextBox Height="30"
+                        <userControls:FocusTextBox x:Name="UsernameBoxLastFm"
+                                                   Height="30"
                                                    Width="250"
                                                    Margin="0,12,0,12"
                                                    FontSize="18"
