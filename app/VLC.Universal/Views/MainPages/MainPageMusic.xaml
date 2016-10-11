@@ -62,7 +62,6 @@
                       IsSwipeEnabled="False"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
-                      ItemTemplate="{StaticResource MusicViewItemTemplate}"
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled"
                       VerticalAlignment="Bottom">
@@ -84,6 +83,16 @@
                         <RepositionThemeTransition />
                     </TransitionCollection>
                 </ListView.ItemContainerTransitions>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="Title"
+                                   Text="{Binding Converter={StaticResource MusicViewStringifyConverter}}"
+                                   VerticalAlignment="Center"
+                                   FontSize="16"
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="NoWrap" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
 
             <musicPanesControls:AlbumsCollectionButtons Grid.Column="2"

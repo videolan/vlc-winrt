@@ -226,9 +226,6 @@
     <Compile Include="Views\UserControls\MusicControls\Equalizer.xaml.cs">
       <DependentUpon>Equalizer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\MusicViewItemTemplate.xaml.cs">
-      <DependentUpon>MusicViewItemTemplate.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\PlayPauseButton.xaml.cs">
       <DependentUpon>PlayPauseButton.xaml</DependentUpon>
     </Compile>
@@ -1379,10 +1376,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\MusicControls\Equalizer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\MusicViewItemTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
