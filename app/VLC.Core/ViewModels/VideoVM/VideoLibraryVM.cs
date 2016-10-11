@@ -101,10 +101,8 @@ namespace VLC.ViewModels.VideoVM
             {
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(VideoView), (int)value, false);
                 SetProperty(ref _videoView, value);
-                VideoViewSet?.Invoke(value);
             }
         }
-        public event Action<VideoView> VideoViewSet;
 
         public TvShow CurrentShow
         {

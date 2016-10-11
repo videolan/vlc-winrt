@@ -229,9 +229,6 @@
     <Compile Include="Views\UserControls\PlayPauseButton.xaml.cs">
       <DependentUpon>PlayPauseButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\VideoViewItemTemplate.xaml.cs">
-      <DependentUpon>VideoViewItemTemplate.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\PivotHeaderControl.xaml.cs">
       <DependentUpon>PivotHeaderControl.xaml</DependentUpon>
     </Compile>
@@ -1380,10 +1377,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\PlayPauseButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\VideoViewItemTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
