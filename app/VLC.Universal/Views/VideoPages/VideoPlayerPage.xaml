@@ -91,7 +91,7 @@
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
                                                Storyboard.TargetProperty="Opacity">
                     <EasingDoubleKeyFrame KeyTime="0:0:0.7"
-                                          Value="1">
+                                          Value="0.8">
                         <EasingDoubleKeyFrame.EasingFunction>
                             <ExponentialEase EasingMode="EaseInOut"
                                              Exponent="3" />
@@ -119,7 +119,8 @@
         <Grid x:Name="HeaderGrid"
               Height="40"
               Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
-              Visibility="Collapsed">
+              Visibility="Collapsed"
+              Opacity="0.8">
             <Grid.RenderTransform>
                 <TranslateTransform />
             </Grid.RenderTransform>
@@ -162,7 +163,8 @@
         <Border x:Name="ControlsBorder"
                 Grid.Row="2"
                 Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
-                Padding="{StaticResource FrameMarginBothSides}">
+                Padding="{StaticResource FrameMarginBothSides}"
+                Opacity="0.8">
             <Border.RenderTransform>
                 <TranslateTransform />
             </Border.RenderTransform>
