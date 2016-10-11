@@ -425,42 +425,38 @@ namespace VLC.ViewModels
         #region Events
         private async void Playback_StatusChanged(object sender, MediaState e)
         {
-            try
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                IsPlaying = e == MediaState.Playing || e == MediaState.Buffering;
+
+                LoadingMedia = Visibility.Collapsed;
+                switch (MediaState)
                 {
-                    IsPlaying = e == MediaState.Playing || e == MediaState.Buffering;
+                    case MediaState.NothingSpecial:
+                        break;
+                    case MediaState.Opening:
+                        break;
+                    case MediaState.Buffering:
+                        break;
+                    case MediaState.Playing:
+                        if (_systemMediaTransportControls != null)
+                            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
 
-                    LoadingMedia = Visibility.Collapsed;
-                    switch (MediaState)
-                    {
-                        case MediaState.NothingSpecial:
-                            break;
-                        case MediaState.Opening:
-                            break;
-                        case MediaState.Buffering:
-                            break;
-                        case MediaState.Playing:
-                            if (_systemMediaTransportControls != null)
-                                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
-
-                            break;
-                        case MediaState.Paused:
-                            if (_systemMediaTransportControls != null)
-                                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
-                            break;
-                        case MediaState.Stopped:
-                            break;
-                        case MediaState.Ended:
-                            break;
-                        case MediaState.Error:
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
-                });
-            }
-            catch { }
+                        break;
+                    case MediaState.Paused:
+                        if (_systemMediaTransportControls != null)
+                            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
+                        break;
+                    case MediaState.Stopped:
+                        break;
+                    case MediaState.Ended:
+                        break;
+                    case MediaState.Error:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            });
         }
 
         private async void Playback_MediaTimeChanged(long time)
@@ -599,55 +595,45 @@ namespace VLC.ViewModels
 
         public void SetMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
         {
-            try
+            _systemMediaTransportControls = systemMediaTransportControls;
+            if (_systemMediaTransportControls != null)
             {
-                _systemMediaTransportControls = systemMediaTransportControls;
-                if (_systemMediaTransportControls != null)
-                {
-                    _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
-                    _systemMediaTransportControls.ButtonPressed += SystemMediaTransportControlsOnButtonPressed;
-                    _systemMediaTransportControls.IsEnabled = false;
-                }
+                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
+                _systemMediaTransportControls.ButtonPressed += SystemMediaTransportControlsOnButtonPressed;
+                _systemMediaTransportControls.IsEnabled = false;
             }
-            catch (Exception exception)
-            { }
         }
 
         public async Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                try
+                if (_systemMediaTransportControls == null) return;
+                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
+                _systemMediaTransportControls.IsEnabled = true;
+                _systemMediaTransportControls.IsPauseEnabled = true;
+                _systemMediaTransportControls.IsPlayEnabled = true;
+                _systemMediaTransportControls.PlaybackRate = 1;
+
+                SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
+                updater.ClearAll();
+                updater.Type = MediaPlaybackType.Music;
+                // Music metadata.
+                updater.AppMediaId = "VLC Media Player";
+                updater.MusicProperties.AlbumArtist = artistName;
+                updater.MusicProperties.Artist = artistName;
+                updater.MusicProperties.Title = trackName;
+
+                // Set the album art thumbnail.
+                // RandomAccessStreamReference is defined in Windows.Storage.Streams
+
+                if (albumUri != null && !string.IsNullOrEmpty(albumUri))
                 {
-                    if (_systemMediaTransportControls == null) return;
-                    _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
-                    _systemMediaTransportControls.IsEnabled = true;
-                    _systemMediaTransportControls.IsPauseEnabled = true;
-                    _systemMediaTransportControls.IsPlayEnabled = true;
-                    _systemMediaTransportControls.PlaybackRate = 1;
-
-                    SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
-                    updater.ClearAll();
-                    updater.Type = MediaPlaybackType.Music;
-                    // Music metadata.
-                    updater.AppMediaId = "VLC Media Player";
-                    updater.MusicProperties.AlbumArtist = artistName;
-                    updater.MusicProperties.Artist = artistName;
-                    updater.MusicProperties.Title = trackName;
-
-                    // Set the album art thumbnail.
-                    // RandomAccessStreamReference is defined in Windows.Storage.Streams
-
-                    if (albumUri != null && !string.IsNullOrEmpty(albumUri))
-                    {
-                        updater.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri(albumUri));
-                    }
-
-                    // Update the system media transport controls.
-                    updater.Update();
+                    updater.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri(albumUri));
                 }
-                catch (Exception exception)
-                { }
+
+                // Update the system media transport controls.
+                updater.Update();
             });
         }
 
@@ -655,28 +641,21 @@ namespace VLC.ViewModels
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                try
-                {
-                    if (_systemMediaTransportControls == null) return;
-                    LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
-                    SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
-                    updater.ClearAll();
-                    updater.AppMediaId = "VLC Media Player";
-                    updater.Type = MediaPlaybackType.Video;
-                    _systemMediaTransportControls.IsEnabled = true;
-                    _systemMediaTransportControls.IsPreviousEnabled = false;
-                    _systemMediaTransportControls.IsNextEnabled = false;
-                    _systemMediaTransportControls.PlaybackRate = 1;
-                    //Video metadata
-                    updater.VideoProperties.Title = title;
-                    //TODO: add full thumbnail suport
-                    updater.Thumbnail = null;
-                    updater.Update();
-                }
-                catch (Exception e)
-                {
-                    LogHelper.Log(StringsHelper.ExceptionToString(e));
-                }
+                if (_systemMediaTransportControls == null) return;
+                LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
+                SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
+                updater.ClearAll();
+                updater.AppMediaId = "VLC Media Player";
+                updater.Type = MediaPlaybackType.Video;
+                _systemMediaTransportControls.IsEnabled = true;
+                _systemMediaTransportControls.IsPreviousEnabled = false;
+                _systemMediaTransportControls.IsNextEnabled = false;
+                _systemMediaTransportControls.PlaybackRate = 1;
+                //Video metadata
+                updater.VideoProperties.Title = title;
+                //TODO: add full thumbnail suport
+                updater.Thumbnail = null;
+                updater.Update();
             });
         }
 
@@ -684,17 +663,10 @@ namespace VLC.ViewModels
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                try
-                {
-                    if (_systemMediaTransportControls == null) return;
-                    LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
-                    SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
-                    updater.ClearAll();
-                }
-                catch (Exception e)
-                {
-                    LogHelper.Log(StringsHelper.ExceptionToString(e));
-                }
+                if (_systemMediaTransportControls == null) return;
+                LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
+                SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
+                updater.ClearAll();
             });
         }
 
@@ -722,22 +694,14 @@ namespace VLC.ViewModels
 
         public void SystemMediaTransportControlsBackPossible(bool backPossible)
         {
-            try
-            {
-                if (_systemMediaTransportControls != null) _systemMediaTransportControls.IsPreviousEnabled = backPossible;
-            }
-            catch { }
+            if (_systemMediaTransportControls != null)
+                _systemMediaTransportControls.IsPreviousEnabled = backPossible;
         }
 
         public void SystemMediaTransportControlsNextPossible(bool nextPossible)
         {
-            try
-            {
-                if (_systemMediaTransportControls != null) _systemMediaTransportControls.IsNextEnabled = nextPossible;
-            }
-            catch
-            {
-            }
+            if (_systemMediaTransportControls != null)
+                _systemMediaTransportControls.IsNextEnabled = nextPossible;
         }
         #endregion
     }
