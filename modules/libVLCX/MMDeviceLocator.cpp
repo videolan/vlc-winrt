@@ -64,7 +64,7 @@ HRESULT MMDeviceLocator::ActivateCompleted(IActivateAudioInterfaceAsyncOperation
 			AudioClientProperties props = AudioClientProperties{
 				sizeof(props),
 				FALSE,
-                (AUDIO_STREAM_CATEGORY) 2, // AudioCategory_BackgroundCapableMedia
+                AudioCategory_Movie, // AudioCategory_BackgroundCapableMedia
                 AUDCLNT_STREAMOPTIONS_NONE
 			};
             auto res = m_AudioClient->SetClientProperties(&props);
