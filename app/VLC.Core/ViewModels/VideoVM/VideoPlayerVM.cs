@@ -44,7 +44,7 @@ namespace VLC.ViewModels.VideoVM
 
         private bool _isLoadingSubtitle;
         private string _loadingSubtitleText;
-        public bool PlayerControlVisibility { get; private set; }
+        public bool PlayerControlVisibility { get; private set; } = true;
         #endregion
 
         #region private fields
