@@ -71,7 +71,6 @@ namespace VLC.UI.Views.VideoPages
 
             Locator.MediaPlaybackViewModel.PlaybackService.SetSizeVideoPlayer((uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualWidth), (uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualHeight));
             Locator.VideoPlayerVm.ChangeSurfaceZoom(Locator.VideoPlayerVm.CurrentSurfaceZoom);
-            ShowControlPanel();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
