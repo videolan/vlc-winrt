@@ -71,7 +71,7 @@ namespace VLC.UI.Views.VideoPages
 
             Locator.MediaPlaybackViewModel.PlaybackService.SetSizeVideoPlayer((uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualWidth), (uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualHeight));
             Locator.VideoPlayerVm.ChangeSurfaceZoom(Locator.VideoPlayerVm.CurrentSurfaceZoom);
-            DisplayOrHide(true);
+            ShowControlPanel();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -84,7 +84,7 @@ namespace VLC.UI.Views.VideoPages
 
             // UI interactions
             Locator.MediaPlaybackViewModel.MouseService.Start();
-            Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
+            Locator.MediaPlaybackViewModel.MouseService.OnMoved += ShowControlPanel;
             RootGrid.Tapped += RootGrid_Tapped;
             controlsTimer.Interval = TimeSpan.FromSeconds(5);
             controlsTimer.Tick += ControlsTimer_Tick;
@@ -105,7 +105,10 @@ namespace VLC.UI.Views.VideoPages
 
         private void VideoPlayerVm_PlayerControlVisibilityChangeRequested(object sender, bool visibility)
         {
-            ControlsTimer_Tick(null, visibility);
+            if (visibility)
+                ShowControlPanel();
+            else
+                HideControlPanel();
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -126,7 +129,7 @@ namespace VLC.UI.Views.VideoPages
             this.SizeChanged -= OnSizeChanged;
 
             Locator.MediaPlaybackViewModel.MouseService.Stop();
-            Locator.MediaPlaybackViewModel.MouseService.OnMoved -= MouseMoved;
+            Locator.MediaPlaybackViewModel.MouseService.OnMoved -= ShowControlPanel;
             controlsTimer.Tick -= ControlsTimer_Tick;
             controlsTimer.Stop();
             Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
@@ -139,18 +142,7 @@ namespace VLC.UI.Views.VideoPages
 
         private void ControlsTimer_Tick(object sender, object e)
         {
-            if (e == null)
-                DisplayOrHide(false);
-            else
-                DisplayOrHide((bool)e);
-
-            controlsTimer.Stop();
-            controlsTimer.Start();
-        }
-
-        private void MouseMoved()
-        {
-            ControlsTimer_Tick(null, true);
+            HideControlPanel();
         }
 
         private void RootGrid_Tapped(object sender, TappedRoutedEventArgs e)
@@ -160,11 +152,11 @@ namespace VLC.UI.Views.VideoPages
 
             if ((e.OriginalSource as FrameworkElement)?.Name == nameof(PlaceholderInteractionGrid))
             {
-                ControlsTimer_Tick(null, !isVisible);
+                ToggleControlPanelVisibility();
             }
             else
             {
-                ControlsTimer_Tick(null, true);
+                ShowControlPanel();
             }
         }
 
@@ -172,26 +164,36 @@ namespace VLC.UI.Views.VideoPages
         {
         }
 
-        void DisplayOrHide(bool mouseOrTouchPresent)
+        void HideControlPanel()
         {
-            isVisible = mouseOrTouchPresent;
-
-            if (Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible)
+            if (isVisible == false || Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible)
                 return;
-            if (!isVisible)
-            {
-                ControlsGridFadeOut.Value = ControlsBorder.ActualHeight;
-                HeaderGridFadeOut.Value = -HeaderGrid.ActualHeight;
-                FadeOut.Begin();
-
-                Locator.MediaPlaybackViewModel.MouseService.HideCursor();
-            }
-            else
-            {
-                FadeIn.Begin();
-                Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
-            }
+            isVisible = false;
+            ControlsGridFadeOut.Value = ControlsBorder.ActualHeight;
+            HeaderGridFadeOut.Value = -HeaderGrid.ActualHeight;
+            FadeOut.Begin();
+            Locator.MediaPlaybackViewModel.MouseService.HideCursor();
             OnPlayerControlVisibilityChanged(isVisible);
+        }
+
+        void ShowControlPanel()
+        {
+            controlsTimer.Stop();
+            controlsTimer.Start();
+            if (isVisible == true)
+                return;
+            isVisible = true;
+            FadeIn.Begin();
+            Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
+            OnPlayerControlVisibilityChanged(true);
+        }
+
+        void ToggleControlPanelVisibility()
+        {
+            if (isVisible)
+                HideControlPanel();
+            else
+                ShowControlPanel();
         }
 
         private void PlaceholderInteractionGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
