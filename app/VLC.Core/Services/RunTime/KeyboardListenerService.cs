@@ -220,6 +220,9 @@ namespace VLC.Services.RunTime
                                 case VirtualKey.GamepadLeftThumbstickLeft:
                                     Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
                                     break;
+                                case VirtualKey.GamepadY:
+                                    Locator.MediaPlaybackViewModel.PlayOrPauseCommand.Execute(null);
+                                    break;
                                 default:
                                     break;
                             }
