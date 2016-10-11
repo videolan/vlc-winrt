@@ -204,23 +204,25 @@ namespace VLC.Services.RunTime
                     }
                     else
                     {
-                        switch (args.VirtualKey)
+                        if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage)
                         {
-                            case VirtualKey.GamepadA:
-                            case VirtualKey.GamepadLeftThumbstickButton:
-                            case VirtualKey.GamepadDPadDown:
-                            case VirtualKey.GamepadDPadLeft:
-                            case VirtualKey.GamepadDPadUp:
-                            case VirtualKey.GamepadDPadRight:
-                            case VirtualKey.GamepadLeftThumbstickUp:
-                            case VirtualKey.GamepadLeftThumbstickDown:
-                            case VirtualKey.GamepadLeftThumbstickRight:
-                            case VirtualKey.GamepadLeftThumbstickLeft:
-                                if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage)
+                            switch (args.VirtualKey)
+                            {
+                                case VirtualKey.GamepadA:
+                                case VirtualKey.GamepadLeftThumbstickButton:
+                                case VirtualKey.GamepadDPadDown:
+                                case VirtualKey.GamepadDPadLeft:
+                                case VirtualKey.GamepadDPadUp:
+                                case VirtualKey.GamepadDPadRight:
+                                case VirtualKey.GamepadLeftThumbstickUp:
+                                case VirtualKey.GamepadLeftThumbstickDown:
+                                case VirtualKey.GamepadLeftThumbstickRight:
+                                case VirtualKey.GamepadLeftThumbstickLeft:
                                     Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
-                                break;
-                            default:
-                                break;
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
                     break;
