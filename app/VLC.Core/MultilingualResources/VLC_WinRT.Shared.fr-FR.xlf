@@ -763,67 +763,67 @@
         </trans-unit>
         <trans-unit id="Local" translate="yes" xml:space="preserve">
           <source>local</source>
-          <target state="new">local</target>
+          <target state="translated">Bibliothèques locales</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES" translate="yes" xml:space="preserve">
           <source>Download Files</source>
-          <target state="new">Download Files</target>
+          <target state="translated">Téléchargement de fichiers</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES_LONG" translate="yes" xml:space="preserve">
           <source>Just click the file you want to download from your Xbox.</source>
-          <target state="new">Just click the file you want to download from your Xbox.</target>
+          <target state="translated">Séléctionnez simplement le fichier que vous voulez télécharger depuis votre Xbox</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES" translate="yes" xml:space="preserve">
           <source>Drop Files</source>
-          <target state="new">Drop Files</target>
+          <target state="translated">Déposez des fichiers</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
           <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the "+" button to use the file picker dialog.</source>
-          <target state="new">Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the "+" button to use the file picker dialog.</target>
+          <target state="translated">Déposez des fichiers ici pour les ajouter au stockage interne de votre Xbox.<it id="1" pos="open">&lt;br&gt;</it>ou cliquez sur le bouton "+" pour choisir un fichier.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
-          <target state="new">Sharing via WiFi</target>
+          <target state="translated">Partage réseau</target>
         </trans-unit>
         <trans-unit id="CopyToLocalStorage" translate="yes" xml:space="preserve">
           <source>copy to local storage</source>
-          <target state="new">copy to local storage</target>
+          <target state="translated">copier vers le stockage interne</target>
         </trans-unit>
         <trans-unit id="ExternalStorageDeviceDetected" translate="yes" xml:space="preserve">
           <source>VLC has detected an external storage device.</source>
-          <target state="new">VLC has detected an external storage device.</target>
+          <target state="translated">VLC a détecté un périphérique de stockage amovible.</target>
         </trans-unit>
         <trans-unit id="ReadFromExternalStorage" translate="yes" xml:space="preserve">
           <source>Use external storage as media library.</source>
-          <target state="new">Use external storage as media library.</target>
+          <target state="translated">Intégrer le périphérique de stockage à la bibliothèque de media</target>
         </trans-unit>
         <trans-unit id="SelectContentToCopy" translate="yes" xml:space="preserve">
           <source>Copy media to the internal storage.</source>
-          <target state="new">Copy media to the internal storage.</target>
+          <target state="translated">Copier les media sur le stockage interne</target>
         </trans-unit>
         <trans-unit id="WhatToDo" translate="yes" xml:space="preserve">
           <source>What would you like to do?</source>
-          <target state="new">What would you like to do?</target>
+          <target state="translated">Que souhaitez vous faire ?</target>
         </trans-unit>
         <trans-unit id="AskMe" translate="yes" xml:space="preserve">
           <source>Ask me</source>
-          <target state="new">Ask me</target>
+          <target state="translated">Me demander</target>
         </trans-unit>
         <trans-unit id="ExternalStorage" translate="yes" xml:space="preserve">
           <source>external storage</source>
-          <target state="new">external storage</target>
+          <target state="translated">stockage amovible</target>
         </trans-unit>
         <trans-unit id="WhatToDoWhenExternalStorage" translate="yes" xml:space="preserve">
           <source>What should VLC do when an external storage device has been detected?</source>
-          <target state="new">What should VLC do when an external storage device has been detected?</target>
+          <target state="translated">Que doit faire VLC lorsqu'un périphérique de stockage amovible est détecté ?</target>
         </trans-unit>
         <trans-unit id="Cancel" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target state="new">Cancel</target>
+          <target state="translated">Annuler</target>
         </trans-unit>
         <trans-unit id="DoNothing" translate="yes" xml:space="preserve">
           <source>Do nothing</source>
-          <target state="new">Do nothing</target>
+          <target state="translated">Ne rien faire</target>
         </trans-unit>
         <trans-unit id="Ok" translate="yes" xml:space="preserve">
           <source>Ok</source>
@@ -831,31 +831,31 @@
         </trans-unit>
         <trans-unit id="Ignore" translate="yes" xml:space="preserve">
           <source>Ignore</source>
-          <target state="new">Ignore</target>
+          <target state="translated">Ignorer</target>
         </trans-unit>
         <trans-unit id="Remember" translate="yes" xml:space="preserve">
           <source>Remember</source>
-          <target state="new">Remember</target>
+          <target state="translated">S'en souvenir</target>
         </trans-unit>
         <trans-unit id="AddMediaHelp" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device</source>
-          <target state="new">Please insert an external storage device</target>
+          <target state="translated">Veuillez insérer un périphérique de stockage amovible</target>
         </trans-unit>
         <trans-unit id="AddMediaHelpWithIP" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device, or go to http://{0}:8080 to upload some media</source>
-          <target state="new">Please insert an external storage device, or go to http://{0}:8080 to upload some media</target>
+          <target state="translated">Veuillez insérer un disque de stockage externe, ou allez sur http://{0}:8080 pour télécharger des media vers votre Xbox</target>
         </trans-unit>
         <trans-unit id="CopyHelpDesktop" translate="yes" xml:space="preserve">
           <source>Right-click on a file or a folder to copy it to the local storage.</source>
-          <target state="new">Right-click on a file or a folder to copy it to the local storage.</target>
+          <target state="translated">Cliquez droit sur un fichier ou un dossier pour le copier vers le stockage interne</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
           <source>Press "Y" on a file or a folder to copy it to the local storage.</source>
-          <target state="new">Press "Y" on a file or a folder to copy it to the local storage.</target>
+          <target state="translated">Appuyez sur Y sur un fichier ou un dossier pour le copier vers le stockage interne</target>
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
           <source>No subtitle tracks</source>
-          <target state="new">No subtitle tracks</target>
+          <target state="translated">Aucune piste de sous titre</target>
         </trans-unit>
       </group>
     </body>
