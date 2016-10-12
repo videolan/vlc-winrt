@@ -1,110 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -123,9 +18,6 @@
   <data name="Add" xml:space="preserve">
     <value>追加</value>
   </data>
-  <data name="AddDetails" xml:space="preserve">
-    <value>詳細を追加します。</value>
-  </data>
   <data name="AddFolder" xml:space="preserve">
     <value>フォルダーを追加します。</value>
   </data>
@@ -143,9 +35,6 @@
   </data>
   <data name="AlbumsFound" xml:space="preserve">
     <value>アルバムが見つかりました: {0}</value>
-  </data>
-  <data name="AllBackers" xml:space="preserve">
-    <value>すべての支持</value>
   </data>
   <data name="Animations" xml:space="preserve">
     <value>アニメーション</value>
@@ -219,9 +108,6 @@
   <data name="Episode" xml:space="preserve">
     <value>この回のタイトル|エピソード</value>
   </data>
-  <data name="ErrorSendingFeedback" xml:space="preserve">
-    <value>フィードバックの送信中にエラーが発生しました。</value>
-  </data>
   <data name="EvenIfBackground" xml:space="preserve">
     <value>場合でも、アプリがバック グラウンドに</value>
   </data>
@@ -245,9 +131,6 @@
   </data>
   <data name="FileExplorer" xml:space="preserve">
     <value>ファイル</value>
-  </data>
-  <data name="GoldPartners" xml:space="preserve">
-    <value>ゴールド パートナー</value>
   </data>
   <data name="HardwareDecoding" xml:space="preserve">
     <value>ハードウェアのデコード</value>
@@ -291,9 +174,6 @@
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>キーボード ショート カット</value>
   </data>
-  <data name="Library" xml:space="preserve">
-    <value>ライブラリ</value>
-  </data>
   <data name="License" xml:space="preserve">
     <value>ライセンス</value>
   </data>
@@ -330,12 +210,6 @@
   <data name="Network" xml:space="preserve">
     <value>ストリーム</value>
   </data>
-  <data name="NewFeedback" xml:space="preserve">
-    <value>新しいフィードバック</value>
-  </data>
-  <data name="NewFeedbackSubtitle" xml:space="preserve">
-    <value>何が問題ですか。</value>
-  </data>
   <data name="NewPlaylist" xml:space="preserve">
     <value>新しい再生リスト</value>
   </data>
@@ -362,9 +236,6 @@
   </data>
   <data name="NoShowsFound" xml:space="preserve">
     <value>ないショーを発見</value>
-  </data>
-  <data name="NotableSponsors" xml:space="preserve">
-    <value>注目のスポンサー</value>
   </data>
   <data name="NothingToSeeHere" xml:space="preserve">
     <value>ここを参照してくださいすることはないです。</value>
@@ -453,14 +324,11 @@
   <data name="PlayVideo" xml:space="preserve">
     <value>ビデオを再生します。</value>
   </data>
-  <data name="PremiumSponsors" xml:space="preserve">
-    <value>プレミアム スポンサー</value>
-  </data>
   <data name="PrivacyStatement" xml:space="preserve">
     <value>プライバシーに関する声明</value>
   </data>
   <data name="Favorites" xml:space="preserve">
-    <value>あなたのためをお勧めします</value>
+    <value>お気に入りのメディア</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">
     <value>音楽ライブラリを更新します。</value>
@@ -492,23 +360,11 @@
   <data name="RichAnimationsDescription" xml:space="preserve">
     <value>豊富なアニメーションを使用して、スライド ショーで</value>
   </data>
-  <data name="RunningInsiderBuild" xml:space="preserve">
-    <value>インサイダー ビルドを実行しているか。</value>
-  </data>
   <data name="Search" xml:space="preserve">
     <value>検索</value>
   </data>
   <data name="Season" xml:space="preserve">
     <value>シーズン</value>
-  </data>
-  <data name="SendFeedback" xml:space="preserve">
-    <value>フィードバックを送信</value>
-  </data>
-  <data name="SendingFeedback" xml:space="preserve">
-    <value>フィードバックの送信</value>
-  </data>
-  <data name="SendLogs" xml:space="preserve">
-    <value>ログを送信</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>設定</value>
@@ -522,20 +378,11 @@
   <data name="Shuffle" xml:space="preserve">
     <value>シャッフル</value>
   </data>
-  <data name="SilverPartners" xml:space="preserve">
-    <value>シルバー パートナー</value>
-  </data>
   <data name="Songs" xml:space="preserve">
     <value>曲</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
     <value>特別な感謝</value>
-  </data>
-  <data name="SpecifiedBuildIncorrect" xml:space="preserve">
-    <value>指定したビルド番号が正しくありません。</value>
-  </data>
-  <data name="SpecifyBuild" xml:space="preserve">
-    <value>あなたの Windows 10 インサイダーのビルド番号を指定してください。</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>速度</value>
@@ -551,9 +398,6 @@
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
     <value>字幕のエンコーディング</value>
-  </data>
-  <data name="Summary" xml:space="preserve">
-    <value>要約</value>
   </data>
   <data name="Theme" xml:space="preserve">
     <value>テーマ</value>
@@ -618,20 +462,11 @@
   <data name="ViewArtist" xml:space="preserve">
     <value>ビュー アーティスト</value>
   </data>
-  <data name="VLCTeamThankYou" xml:space="preserve">
-    <value>VLC のチームがこのアプリを可能にしたすべての人々 に感謝したいと思います</value>
-  </data>
   <data name="Volume" xml:space="preserve">
     <value>ボリューム</value>
   </data>
-  <data name="Website" xml:space="preserve">
-    <value>Web サイト</value>
-  </data>
   <data name="WeNeedYourHelp" xml:space="preserve">
     <value>私たちはあなたの助けを必要があります。</value>
-  </data>
-  <data name="WindowsBuildNumberPlaceholder" xml:space="preserve">
-    <value>Windows 10 内部ビルド番号</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>はい</value>

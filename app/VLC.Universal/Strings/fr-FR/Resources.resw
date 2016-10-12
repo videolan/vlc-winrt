@@ -1,110 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -118,13 +13,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTheApp" xml:space="preserve">
-    <value>sur l'app</value>
+    <value>À propos de l'application</value>
   </data>
   <data name="Add" xml:space="preserve">
     <value>ajouter</value>
-  </data>
-  <data name="AddDetails" xml:space="preserve">
-    <value>Ajouter des détails</value>
   </data>
   <data name="AddFolder" xml:space="preserve">
     <value>Ajouter un dossier</value>
@@ -136,7 +28,7 @@
     <value>Ajouter à la liste de lecture courante</value>
   </data>
   <data name="AddToPlaylist" xml:space="preserve">
-    <value>Ajouter à la playlist</value>
+    <value>Ajouter à la liste de lecture</value>
   </data>
   <data name="Albums" xml:space="preserve">
     <value>albums</value>
@@ -144,14 +36,11 @@
   <data name="AlbumsFound" xml:space="preserve">
     <value>Albums trouvés : {0}</value>
   </data>
-  <data name="AllBackers" xml:space="preserve">
-    <value>tous les bailleurs de fonds</value>
-  </data>
   <data name="Animations" xml:space="preserve">
     <value>animations</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>thème d'application</value>
+    <value>thème de l'application</value>
   </data>
   <data name="Artists" xml:space="preserve">
     <value>artistes</value>
@@ -193,7 +82,7 @@
     <value>se connecter à Last.FM</value>
   </data>
   <data name="CrashReport" xml:space="preserve">
-    <value>rapport d'accident</value>
+    <value>rapport de bogue</value>
   </data>
   <data name="DecreaseSpeed" xml:space="preserve">
     <value>diminuer la vitesse</value>
@@ -202,25 +91,22 @@
     <value>diminuer le volume</value>
   </data>
   <data name="DeletePlaylist" xml:space="preserve">
-    <value>supprimer la playlist</value>
+    <value>supprimer la liste de lecture</value>
   </data>
   <data name="DeleteSelected" xml:space="preserve">
-    <value>supprimer les</value>
+    <value>supprimer la selection</value>
   </data>
   <data name="EditMetadata" xml:space="preserve">
     <value>modifier les métadonnées</value>
   </data>
   <data name="ElementsNotFound" xml:space="preserve">
-    <value>Nous n'avons pas trouvé des éléments là-dedans</value>
+    <value>Nous n'avons pas trouvé d'élément ici</value>
   </data>
   <data name="EnterURL" xml:space="preserve">
     <value>Entrez une url</value>
   </data>
   <data name="Episode" xml:space="preserve">
     <value>épisode</value>
-  </data>
-  <data name="ErrorSendingFeedback" xml:space="preserve">
-    <value>une erreur s'est produite lors de l'envoi des commentaires</value>
   </data>
   <data name="EvenIfBackground" xml:space="preserve">
     <value>même si l'application est en arrière-plan</value>
@@ -229,7 +115,7 @@
     <value>même si l'app n'est pas en arrière-plan</value>
   </data>
   <data name="FailFilePlayBackground" xml:space="preserve">
-    <value>Ce fichier ne peut pas jouer en arrière-plan</value>
+    <value>Ce fichier ne peut pas être joué en arrière-plan</value>
   </data>
   <data name="FailNavigateVideoPlayerPage" xml:space="preserve">
     <value>VLC n'a pas pu accéder à la page Video Player</value>
@@ -241,40 +127,37 @@
     <value>L'app n'a pas pu démarrer le moteur VLC</value>
   </data>
   <data name="FeedbackThankYou" xml:space="preserve">
-    <value>vos commentaires envoyés ! Merci</value>
+    <value>vos commentaires ont été envoyés ! Merci</value>
   </data>
   <data name="FileExplorer" xml:space="preserve">
-    <value>parcourir</value>
-  </data>
-  <data name="GoldPartners" xml:space="preserve">
-    <value>partenaires Gold</value>
+    <value>naviguer</value>
   </data>
   <data name="HardwareDecoding" xml:space="preserve">
-    <value>décodage du matériel</value>
+    <value>décodage matériel</value>
   </data>
   <data name="HardwareDecodingDescription" xml:space="preserve">
-    <value>Décodage matériel peut ne pas fonctionner sur votre appareil.</value>
+    <value>Le décodage matériel peut ne pas fonctionner sur votre appareil.</value>
   </data>
   <data name="HaveToSelectPlaylist" xml:space="preserve">
-    <value>s'il vous plaît sélectionnez une playlist</value>
+    <value>Veuillez sélectionner une playlist</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>accueil</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-    <value>page d'accueil</value>
+    <value>page principale</value>
   </data>
   <data name="HomePageDescription" xml:space="preserve">
     <value>VLC commencera sur la page sélectionnée</value>
   </data>
   <data name="HoweverYouMayFindWhatYouWantHere" xml:space="preserve">
-    <value>Toutefois, vous pouvez trouver ce que vous cherchez ici</value>
+    <value>Toutefois, vous pouvez peut-être trouver ce que vous cherchez ici</value>
   </data>
   <data name="HowToFavoriteAlbum1" xml:space="preserve">
-    <value>pour favori un album, appuyez simplement sur</value>
+    <value>pour marquer un album comme favori, appuyez simplement sur</value>
   </data>
   <data name="HowToFavoriteAlbum2" xml:space="preserve">
-    <value>et vous aurez un accès instantané à ce</value>
+    <value>et vous y aurez accès rapidement</value>
   </data>
   <data name="ImportantSponsors" xml:space="preserve">
     <value>auteurs importants</value>
@@ -291,9 +174,6 @@
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>raccourcis clavier</value>
   </data>
-  <data name="Local" xml:space="preserve">
-    <value>local</value>
-  </data>
   <data name="License" xml:space="preserve">
     <value>Licence</value>
   </data>
@@ -301,7 +181,7 @@
     <value>chargement</value>
   </data>
   <data name="LoadingMusic" xml:space="preserve">
-    <value>chargement de musique</value>
+    <value>chargement de votre musique</value>
   </data>
   <data name="MostPlayedArtists" xml:space="preserve">
     <value>artistes les plus joués</value>
@@ -316,10 +196,10 @@
     <value>VLC recherchera uniquement des chansons qui se trouvent dans votre bibliothèque musicale. Vous pouvez ajouter des dossiers à votre bibliothèque ici</value>
   </data>
   <data name="MusicSettings" xml:space="preserve">
-    <value>paramètres de la musique</value>
+    <value>paramètres audio</value>
   </data>
   <data name="MusicShows" xml:space="preserve">
-    <value>spectacles de musique</value>
+    <value>concerts</value>
   </data>
   <data name="Mute" xml:space="preserve">
     <value>muet</value>
@@ -329,12 +209,6 @@
   </data>
   <data name="Network" xml:space="preserve">
     <value>réseau</value>
-  </data>
-  <data name="NewFeedback" xml:space="preserve">
-    <value>nouveaux commentaires</value>
-  </data>
-  <data name="NewFeedbackSubtitle" xml:space="preserve">
-    <value>Quel est le problème ?</value>
   </data>
   <data name="NewPlaylist" xml:space="preserve">
     <value>nouvelle liste de lecture</value>
@@ -346,25 +220,22 @@
     <value>non</value>
   </data>
   <data name="NoBiographyFound" xml:space="preserve">
-    <value>pas bio trouvé pour cet artiste</value>
+    <value>pas bio trouvée pour cet artiste</value>
   </data>
   <data name="NoCameraVideosFound" xml:space="preserve">
-    <value>aucune caméra vidéos trouvées</value>
+    <value>aucune caméra vidéo trouvée</value>
   </data>
   <data name="NoFavoriteAlbums" xml:space="preserve">
-    <value>aucun albums préférés</value>
+    <value>aucun album préféré</value>
   </data>
   <data name="NoInternetConnection" xml:space="preserve">
     <value>pas de connexion internet</value>
   </data>
   <data name="NoPlaylists" xml:space="preserve">
-    <value>aucun playlists</value>
+    <value>aucune liste de lecture</value>
   </data>
   <data name="NoShowsFound" xml:space="preserve">
-    <value>pas de spectacles trouvés</value>
-  </data>
-  <data name="NotableSponsors" xml:space="preserve">
-    <value>auteurs notables</value>
+    <value>aucun concert trouvé</value>
   </data>
   <data name="NothingToSeeHere" xml:space="preserve">
     <value>Il n'y a rien à voir ici</value>
@@ -376,7 +247,7 @@
     <value>au démarrage de la chanson</value>
   </data>
   <data name="NoVideosFound" xml:space="preserve">
-    <value>Nous n'avons pas trouvé vidéos</value>
+    <value>Nous n'avons trouvé aucune vidéo</value>
   </data>
   <data name="NowPlaying" xml:space="preserve">
     <value>lecture en cours</value>
@@ -385,10 +256,10 @@
     <value>ouvrir le fichier</value>
   </data>
   <data name="OpenStream" xml:space="preserve">
-    <value>ouvrir le flot</value>
+    <value>ouvrir le flux</value>
   </data>
   <data name="OpenSubtitle" xml:space="preserve">
-    <value>ouvrir le sous-titre</value>
+    <value>ouvrir des sous-titres</value>
   </data>
   <data name="OrderAscending" xml:space="preserve">
     <value>croissant</value>
@@ -397,7 +268,7 @@
     <value>par album</value>
   </data>
   <data name="OrderByArtist" xml:space="preserve">
-    <value>par interprète</value>
+    <value>par artiste</value>
   </data>
   <data name="OrderByDate" xml:space="preserve">
     <value>par date</value>
@@ -409,16 +280,16 @@
     <value>mot de passe</value>
   </data>
   <data name="Pause" xml:space="preserve">
-    <value>Pause</value>
+    <value>pause</value>
   </data>
   <data name="PinAlbum" xml:space="preserve">
-    <value>album de broche</value>
+    <value>épingler l'album</value>
   </data>
   <data name="PinArtist" xml:space="preserve">
-    <value>artiste de la broche</value>
+    <value>épingler l'artiste</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>lire</value>
+    <value>lecture</value>
   </data>
   <data name="PlayAlbum" xml:space="preserve">
     <value>lire l’album</value>
@@ -436,31 +307,28 @@
     <value>lire le dossier</value>
   </data>
   <data name="Playlist" xml:space="preserve">
-    <value>sélection</value>
+    <value>liste de lecture</value>
   </data>
   <data name="PlaylistAlreadyExists" xml:space="preserve">
-    <value>cette playlist existe déjà</value>
+    <value>cette liste de lecture existe déjà</value>
   </data>
   <data name="PlaylistNamePlaceholder" xml:space="preserve">
-    <value>nom de la playlist</value>
+    <value>nom de la liste de lecture</value>
   </data>
   <data name="Playlists" xml:space="preserve">
     <value>sélections</value>
   </data>
   <data name="PlayTrack" xml:space="preserve">
-    <value>jeu de piste</value>
+    <value>jouer le morceau</value>
   </data>
   <data name="PlayVideo" xml:space="preserve">
     <value>jouer la vidéo</value>
   </data>
-  <data name="PremiumSponsors" xml:space="preserve">
-    <value>commanditaires de la prime</value>
-  </data>
   <data name="PrivacyStatement" xml:space="preserve">
-    <value>confidentialité</value>
+    <value>politique de confidentialité</value>
   </data>
   <data name="Favorites" xml:space="preserve">
-    <value>recommandé pour vous</value>
+    <value>Favoris</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">
     <value>actualiser la bibliothèque musicale</value>
@@ -475,7 +343,7 @@
     <value>supprimer le dossier</value>
   </data>
   <data name="RemoveMusicFolderDescription" xml:space="preserve">
-    <value>Si vous ne voulez pas de ce dossier dans votre bibliothèque de musique, vous pouvez le supprimer. Il affecte toutes les applications, non seulement de VLC</value>
+    <value>Si vous ne voulez pas de ce dossier dans votre bibliothèque de musique, vous pouvez le supprimer. Cela affectera toutes les applications, non seulement de VLC</value>
   </data>
   <data name="RemoveVideoFolderDescription" xml:space="preserve">
     <value>Si vous ne voulez pas de ce dossier dans votre vidéothèque, vous pouvez le supprimer. Il affecte toutes les applications, non seulement de VLC</value>
@@ -492,23 +360,11 @@
   <data name="RichAnimationsDescription" xml:space="preserve">
     <value>Utiliser des animations riches dans les diaporamas</value>
   </data>
-  <data name="RunningInsiderBuild" xml:space="preserve">
-    <value>vous exécutez une génération d'initiés ?</value>
-  </data>
   <data name="Search" xml:space="preserve">
     <value>rechercher</value>
   </data>
   <data name="Season" xml:space="preserve">
     <value>Saison</value>
-  </data>
-  <data name="SendFeedback" xml:space="preserve">
-    <value>envoyer des commentaires</value>
-  </data>
-  <data name="SendingFeedback" xml:space="preserve">
-    <value>envoyer vos commentaires</value>
-  </data>
-  <data name="SendLogs" xml:space="preserve">
-    <value>envoyer des journaux</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>paramètres</value>
@@ -517,13 +373,10 @@
     <value>Voir la playlist</value>
   </data>
   <data name="Shows" xml:space="preserve">
-    <value>montre</value>
+    <value>Séries</value>
   </data>
   <data name="Shuffle" xml:space="preserve">
     <value>lecture aléatoire</value>
-  </data>
-  <data name="SilverPartners" xml:space="preserve">
-    <value>partenaires Silver</value>
   </data>
   <data name="Songs" xml:space="preserve">
     <value>Morceaux                 </value>
@@ -531,47 +384,38 @@
   <data name="SpecialThanks" xml:space="preserve">
     <value>merci spécial</value>
   </data>
-  <data name="SpecifiedBuildIncorrect" xml:space="preserve">
-    <value>le numéro de build spécifié est incorrect</value>
-  </data>
-  <data name="SpecifyBuild" xml:space="preserve">
-    <value>Précisez le que numéro de build vous initié 10 Windows</value>
-  </data>
   <data name="Speed" xml:space="preserve">
     <value>vitesse</value>
   </data>
   <data name="Stop" xml:space="preserve">
-    <value>arrêter</value>
+    <value>stop</value>
   </data>
   <data name="SubtitleDelay" xml:space="preserve">
-    <value>retard de sous-titre</value>
+    <value>délai de sous-titre</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
     <value>sous-titres</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
-    <value>sous-titres de codage</value>
-  </data>
-  <data name="Summary" xml:space="preserve">
-    <value>résumé</value>
+    <value>Encodage des sous-titres</value>
   </data>
   <data name="Theme" xml:space="preserve">
     <value>thème</value>
   </data>
   <data name="TileRemoved" xml:space="preserve">
-    <value>carrelage enlevé</value>
+    <value>tuile supprimée</value>
   </data>
   <data name="TopVideos" xml:space="preserve">
-    <value>vidéos Top</value>
+    <value>vidéos préférées</value>
   </data>
   <data name="TrackAddedToYourPlaylist" xml:space="preserve">
-    <value>ajouté à la sélection de piste</value>
+    <value>morceau ajouté à la liste de lecture</value>
   </data>
   <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
-    <value>cette piste est déjà dans la liste de lecture</value>
+    <value>ce morceau est déjà dans la liste de lecture</value>
   </data>
   <data name="Tracks" xml:space="preserve">
-    <value>pistes</value>
+    <value>morceaux</value>
   </data>
   <data name="UnknownAlbum" xml:space="preserve">
     <value>Album inconnu</value>
@@ -580,10 +424,10 @@
     <value>Artiste inconnu</value>
   </data>
   <data name="UnknownShow" xml:space="preserve">
-    <value>Spectacle inconnu</value>
+    <value>Concert inconnu</value>
   </data>
   <data name="UnknownTrack" xml:space="preserve">
-    <value>Piste inconnue</value>
+    <value>Morceau inconnue</value>
   </data>
   <data name="UserInterface" xml:space="preserve">
     <value>interface utilisateur</value>
@@ -613,25 +457,16 @@
     <value>paramètres vidéo</value>
   </data>
   <data name="ViewAlbum" xml:space="preserve">
-    <value>album de vue</value>
+    <value>voir les albums</value>
   </data>
   <data name="ViewArtist" xml:space="preserve">
-    <value>artiste de la vue</value>
-  </data>
-  <data name="VLCTeamThankYou" xml:space="preserve">
-    <value>L'équipe VLC aimerait remercier toutes les personnes qui ont rendu cette application possible</value>
+    <value>voir les artistes</value>
   </data>
   <data name="Volume" xml:space="preserve">
     <value>volume</value>
   </data>
-  <data name="Website" xml:space="preserve">
-    <value>site web</value>
-  </data>
   <data name="WeNeedYourHelp" xml:space="preserve">
     <value>Nous avons besoin de votre aide</value>
-  </data>
-  <data name="WindowsBuildNumberPlaceholder" xml:space="preserve">
-    <value>Numéro de build de Windows 10 Insider</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>oui</value>
@@ -661,10 +496,10 @@
     <value>zoom</value>
   </data>
   <data name="AreYouSure" xml:space="preserve">
-    <value>Es-tu sûr?</value>
+    <value>Êtes vous sûr?</value>
   </data>
   <data name="MediaCantBeRead" xml:space="preserve">
-    <value>les médias ne peuvent être lus</value>
+    <value>le média n'a pas pu être lu</value>
   </data>
   <data name="Sorry" xml:space="preserve">
     <value>Nous sommes désolés</value>
@@ -682,13 +517,13 @@
     <value>votre liste de lecture ne sera pas accessible</value>
   </data>
   <data name="NoArtistShowsFound" xml:space="preserve">
-    <value>On n'a pas trouvé de spectacles pour cet artiste</value>
+    <value>Nous n'avons pas trouvé de spectacles pour cet artiste</value>
   </data>
   <data name="NoResults" xml:space="preserve">
     <value>aucun résultat</value>
   </data>
   <data name="ForceLandscape" xml:space="preserve">
-    <value>Paysage de force</value>
+    <value>Force l'affichage en mode paysage</value>
   </data>
   <data name="SURFACE_STRETCH" xml:space="preserve">
     <value>étirer</value>
@@ -709,7 +544,7 @@
     <value>Langages</value>
   </data>
   <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>Sélectionnez la langue qu'apparaît dans VLC</value>
+    <value>VLC sera affiché en </value>
   </data>
   <data name="ApplyAndRestart" xml:space="preserve">
     <value>Appliquer et redémarrer</value>
@@ -717,16 +552,73 @@
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Actualiser la langue</value>
   </data>
+  <data name="Local" xml:space="preserve">
+    <value>Bibliothèques locales</value>
+  </data>
+  <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
+    <value>Téléchargement de fichiers</value>
+  </data>
+  <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
+    <value>Séléctionnez simplement le fichier que vous voulez télécharger depuis votre Xbox</value>
+  </data>
+  <data name="WEBINTF_DROPFILES" xml:space="preserve">
+    <value>Déposez des fichiers</value>
+  </data>
+  <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
+    <value>Déposez des fichiers ici pour les ajouter au stockage interne de votre Xbox.&lt;br&gt;ou cliquez sur le bouton "+" pour choisir un fichier.</value>
+  </data>
+  <data name="WEBINTF_TITLE" xml:space="preserve">
+    <value>Partage réseau</value>
+  </data>
+  <data name="CopyToLocalStorage" xml:space="preserve">
+    <value>copier vers le stockage interne</value>
+  </data>
+  <data name="ExternalStorageDeviceDetected" xml:space="preserve">
+    <value>VLC a détecté un périphérique de stockage amovible.</value>
+  </data>
+  <data name="ReadFromExternalStorage" xml:space="preserve">
+    <value>Intégrer le périphérique de stockage à la bibliothèque de media</value>
+  </data>
+  <data name="SelectContentToCopy" xml:space="preserve">
+    <value>Copier les media sur le stockage interne</value>
+  </data>
+  <data name="WhatToDo" xml:space="preserve">
+    <value>Que souhaitez vous faire ?</value>
+  </data>
+  <data name="AskMe" xml:space="preserve">
+    <value>Me demander</value>
+  </data>
+  <data name="ExternalStorage" xml:space="preserve">
+    <value>stockage amovible</value>
+  </data>
+  <data name="WhatToDoWhenExternalStorage" xml:space="preserve">
+    <value>Que doit faire VLC lorsqu'un périphérique de stockage amovible est détecté ?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="DoNothing" xml:space="preserve">
+    <value>Ne rien faire</value>
+  </data>
   <data name="Ignore" xml:space="preserve">
     <value>Ignorer</value>
   </data>
   <data name="Remember" xml:space="preserve">
-    <value>Se souvenir</value>
+    <value>S'en souvenir</value>
+  </data>
+  <data name="AddMediaHelp" xml:space="preserve">
+    <value>Veuillez insérer un périphérique de stockage amovible</value>
+  </data>
+  <data name="AddMediaHelpWithIP" xml:space="preserve">
+    <value>Veuillez insérer un disque de stockage externe, ou allez sur http://{0}:8080 pour télécharger des media vers votre Xbox</value>
   </data>
   <data name="CopyHelpDesktop" xml:space="preserve">
-    <value>Cliquez droit sur un fichier ou un dossier pour le copier ver le stockage local.</value>
+    <value>Cliquez droit sur un fichier ou un dossier pour le copier vers le stockage interne</value>
   </data>
   <data name="CopyHelpMediaCenter" xml:space="preserve">
-    <value>Pressez "Y" sur un fichier ou un dossier pour le copier ver le stockage local.</value>
+    <value>Appuyez sur Y sur un fichier ou un dossier pour le copier vers le stockage interne</value>
+  </data>
+  <data name="NoSubtitles" xml:space="preserve">
+    <value>Aucune piste de sous titre</value>
   </data>
 </root>
