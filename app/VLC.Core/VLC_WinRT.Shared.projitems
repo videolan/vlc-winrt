@@ -338,15 +338,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Services\Mocks\" />
   </ItemGroup>
   <ItemGroup>
-    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
-    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\fr-FR\Resources.resw" />
-    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\ja-JP\Resources.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VLC.Core.fr-FR.xlf" />
-    <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VLC.Core.ja-JP.xlf" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Assets\windows_cone_icon.svg" />
     <None Include="$(MSBuildThisFileDirectory)Assets\windows_cone_icon_w.svg" />
   </ItemGroup>

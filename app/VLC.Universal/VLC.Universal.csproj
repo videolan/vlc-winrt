@@ -1514,6 +1514,15 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\fr-FR\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\ja-JP\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VLC.Universal.fr-FR.xlf" />
+    <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VLC.Universal.ja-JP.xlf" />
+  </ItemGroup>
   <Import Project="..\VLC.Core\VLC_WinRT.Shared.projitems" Label="Shared" />
   <Import Project="..\VLC.MediaMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems" Label="Shared" />
   <Import Project="..\VLC.Slideshow\VLC_WinRT.Slideshow.projitems" Label="Shared" />
