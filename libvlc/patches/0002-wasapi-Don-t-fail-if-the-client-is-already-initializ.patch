@@ -1,17 +1,17 @@
-From 35bd6672575f5f890b950c4bb3405bc734c5ef58 Mon Sep 17 00:00:00 2001
+From ac50369eb1d6b8e65152b6f042873bc3df313d84 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Feb 2015 11:58:54 +0100
-Subject: [PATCH 02/13] wasapi: Don't fail if the client is already initialized
+Subject: [PATCH 02/11] wasapi: Don't fail if the client is already initialized
 
 ---
  modules/audio_output/wasapi.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/modules/audio_output/wasapi.c b/modules/audio_output/wasapi.c
-index a90d2da..610e384 100644
+index 4ad4ac2..40b5adb 100644
 --- a/modules/audio_output/wasapi.c
 +++ b/modules/audio_output/wasapi.c
-@@ -514,7 +514,7 @@ static HRESULT Start(aout_stream_t *s, audio_sample_format_t *restrict pfmt,
+@@ -532,7 +532,7 @@ static HRESULT Start(aout_stream_t *s, audio_sample_format_t *restrict pfmt,
      hr = IAudioClient_Initialize(sys->client, shared_mode, 0, buffer_duration,
                                   0, pwf, sid);
      CoTaskMemFree(pwf_closest);
