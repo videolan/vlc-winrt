@@ -14,10 +14,6 @@
           <source>add</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">追加</target>
         </trans-unit>
-        <trans-unit id="AddDetails" translate="yes" xml:space="preserve">
-          <source>add details</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">詳細を追加します。</target>
-        </trans-unit>
         <trans-unit id="AddFolder" translate="yes" xml:space="preserve">
           <source>add folder</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">フォルダーを追加します。</target>
@@ -67,8 +63,9 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">オーディオ遅延</target>
         </trans-unit>
         <trans-unit id="AudioTracks" translate="yes" xml:space="preserve">
-          <source>audio tracks</source>
+          <source>Audio Tracks</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">オーディオ トラック</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Back" translate="yes" xml:space="preserve">
           <source>back</source>
@@ -83,8 +80,9 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">アルバム カバーを変更します。</target>
         </trans-unit>
         <trans-unit id="Chapters" translate="yes" xml:space="preserve">
-          <source>chapters</source>
+          <source>Chapters</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">章</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="CheckCredentials" translate="yes" xml:space="preserve">
           <source>an error occured, please check your credentials</source>
@@ -141,10 +139,6 @@
         <trans-unit id="Episode" translate="yes" xml:space="preserve">
           <source>episode</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">この回のタイトル|エピソード</target>
-        </trans-unit>
-        <trans-unit id="ErrorSendingFeedback" translate="yes" xml:space="preserve">
-          <source>an error occured while sending the feedback</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">フィードバックの送信中にエラーが発生しました。</target>
         </trans-unit>
         <trans-unit id="EvenIfBackground" translate="yes" xml:space="preserve">
           <source>even if the app is in background</source>
@@ -238,10 +232,6 @@
           <source>keyboard shortcuts</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">キーボード ショート カット</target>
         </trans-unit>
-        <trans-unit id="Library" translate="yes" xml:space="preserve">
-          <source>library</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ライブラリ</target>
-        </trans-unit>
         <trans-unit id="License" translate="yes" xml:space="preserve">
           <source>license</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">ライセンス</target>
@@ -271,8 +261,9 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC は、あなたの音楽ライブラリにある曲をのみ検索されます。ここにあなたのライブラリにフォルダーを追加することができます。</target>
         </trans-unit>
         <trans-unit id="MusicSettings" translate="yes" xml:space="preserve">
-          <source>music settings</source>
+          <source>Music Settings</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">音楽の設定</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="MusicShows" translate="yes" xml:space="preserve">
           <source>music shows</source>
@@ -289,14 +280,6 @@
         <trans-unit id="Network" translate="yes" xml:space="preserve">
           <source>network</source>
           <target state="translated">ストリーム</target>
-        </trans-unit>
-        <trans-unit id="NewFeedback" translate="yes" xml:space="preserve">
-          <source>new feedback</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">新しいフィードバック</target>
-        </trans-unit>
-        <trans-unit id="NewFeedbackSubtitle" translate="yes" xml:space="preserve">
-          <source>what's the problem?</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">何が問題ですか。</target>
         </trans-unit>
         <trans-unit id="NewPlaylist" translate="yes" xml:space="preserve">
           <source>new playlist</source>
@@ -423,8 +406,9 @@
           <target state="needs-review-translation" state-qualifier="tm-suggestion">再生</target>
         </trans-unit>
         <trans-unit id="PlayerSettings" translate="yes" xml:space="preserve">
-          <source>player settings</source>
+          <source>Player Settings</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">プレーヤーの設定</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="PlayFolder" translate="yes" xml:space="preserve">
           <source>play folder</source>
@@ -506,10 +490,6 @@
           <source>Use rich animations in the slideshows</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">豊富なアニメーションを使用して、スライド ショーで</target>
         </trans-unit>
-        <trans-unit id="RunningInsiderBuild" translate="yes" xml:space="preserve">
-          <source>are you running an Insider build?</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">インサイダー ビルドを実行しているか。</target>
-        </trans-unit>
         <trans-unit id="Search" translate="yes" xml:space="preserve">
           <source>search</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">検索</target>
@@ -517,18 +497,6 @@
         <trans-unit id="Season" translate="yes" xml:space="preserve">
           <source>season</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">シーズン</target>
-        </trans-unit>
-        <trans-unit id="SendFeedback" translate="yes" xml:space="preserve">
-          <source>send feedback</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">フィードバックを送信</target>
-        </trans-unit>
-        <trans-unit id="SendingFeedback" translate="yes" xml:space="preserve">
-          <source>sending feedback</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">フィードバックの送信</target>
-        </trans-unit>
-        <trans-unit id="SendLogs" translate="yes" xml:space="preserve">
-          <source>send logs</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ログを送信</target>
         </trans-unit>
         <trans-unit id="Settings" translate="yes" xml:space="preserve">
           <source>settings</source>
@@ -558,14 +526,6 @@
           <source>special thanks</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">特別な感謝</target>
         </trans-unit>
-        <trans-unit id="SpecifiedBuildIncorrect" translate="yes" xml:space="preserve">
-          <source>the specified build number is incorrect</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">指定したビルド番号が正しくありません。</target>
-        </trans-unit>
-        <trans-unit id="SpecifyBuild" translate="yes" xml:space="preserve">
-          <source>please specify you Windows 10 Insider build number</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">あなたの Windows 10 インサイダーのビルド番号を指定してください。</target>
-        </trans-unit>
         <trans-unit id="Speed" translate="yes" xml:space="preserve">
           <source>speed</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">速度</target>
@@ -579,16 +539,13 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">字幕の遅延</target>
         </trans-unit>
         <trans-unit id="Subtitles" translate="yes" xml:space="preserve">
-          <source>subtitles</source>
+          <source>Subtitles</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">字幕</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="SubtitlesEncoding" translate="yes" xml:space="preserve">
           <source>subtitles encoding</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">字幕のエンコーディング</target>
-        </trans-unit>
-        <trans-unit id="Summary" translate="yes" xml:space="preserve">
-          <source>summary</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">要約</target>
         </trans-unit>
         <trans-unit id="Theme" translate="yes" xml:space="preserve">
           <source>theme</source>
@@ -631,8 +588,9 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">不明なトラック</target>
         </trans-unit>
         <trans-unit id="UserInterface" translate="yes" xml:space="preserve">
-          <source>user interface</source>
+          <source>User Interface</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">ユーザー インターフェイス</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Username" translate="yes" xml:space="preserve">
           <source>username</source>
@@ -663,8 +621,9 @@
           <target state="translated">ビデオ</target>
         </trans-unit>
         <trans-unit id="VideoSettings" translate="yes" xml:space="preserve">
-          <source>video settings</source>
+          <source>Video Settings</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">ビデオの設定</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="ViewAlbum" translate="yes" xml:space="preserve">
           <source>view album</source>
@@ -689,10 +648,6 @@
         <trans-unit id="WeNeedYourHelp" translate="yes" xml:space="preserve">
           <source>we need your help</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">私たちはあなたの助けを必要があります。</target>
-        </trans-unit>
-        <trans-unit id="WindowsBuildNumberPlaceholder" translate="yes" xml:space="preserve">
-          <source>Windows 10 Insider build number</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Windows 10 内部ビルド番号</target>
         </trans-unit>
         <trans-unit id="Yes" translate="yes" xml:space="preserve">
           <source>yes</source>
@@ -806,6 +761,102 @@
         <trans-unit id="RefreshLanguage" translate="yes" xml:space="preserve">
           <source>Refresh Language</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">言語を更新します。</target>
+        </trans-unit>
+        <trans-unit id="Local" translate="yes" xml:space="preserve">
+          <source>local</source>
+          <target state="new">local</target>
+        </trans-unit>
+        <trans-unit id="WEBINTF_DOWNLOADFILES" translate="yes" xml:space="preserve">
+          <source>Download Files</source>
+          <target state="new">Download Files</target>
+        </trans-unit>
+        <trans-unit id="WEBINTF_DOWNLOADFILES_LONG" translate="yes" xml:space="preserve">
+          <source>Just click the file you want to download from your Xbox.</source>
+          <target state="new">Just click the file you want to download from your Xbox.</target>
+        </trans-unit>
+        <trans-unit id="WEBINTF_DROPFILES" translate="yes" xml:space="preserve">
+          <source>Drop Files</source>
+          <target state="new">Drop Files</target>
+        </trans-unit>
+        <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
+          <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the "+" button to use the file picker dialog.</source>
+          <target state="new">Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the "+" button to use the file picker dialog.</target>
+        </trans-unit>
+        <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
+          <source>Sharing via WiFi</source>
+          <target state="new">Sharing via WiFi</target>
+        </trans-unit>
+        <trans-unit id="CopyToLocalStorage" translate="yes" xml:space="preserve">
+          <source>copy to local storage</source>
+          <target state="new">copy to local storage</target>
+        </trans-unit>
+        <trans-unit id="ExternalStorageDeviceDetected" translate="yes" xml:space="preserve">
+          <source>VLC has detected an external storage device.</source>
+          <target state="new">VLC has detected an external storage device.</target>
+        </trans-unit>
+        <trans-unit id="ReadFromExternalStorage" translate="yes" xml:space="preserve">
+          <source>Use external storage as media library.</source>
+          <target state="new">Use external storage as media library.</target>
+        </trans-unit>
+        <trans-unit id="SelectContentToCopy" translate="yes" xml:space="preserve">
+          <source>Copy media to the internal storage.</source>
+          <target state="new">Copy media to the internal storage.</target>
+        </trans-unit>
+        <trans-unit id="WhatToDo" translate="yes" xml:space="preserve">
+          <source>What would you like to do?</source>
+          <target state="new">What would you like to do?</target>
+        </trans-unit>
+        <trans-unit id="AskMe" translate="yes" xml:space="preserve">
+          <source>Ask me</source>
+          <target state="new">Ask me</target>
+        </trans-unit>
+        <trans-unit id="ExternalStorage" translate="yes" xml:space="preserve">
+          <source>external storage</source>
+          <target state="new">external storage</target>
+        </trans-unit>
+        <trans-unit id="WhatToDoWhenExternalStorage" translate="yes" xml:space="preserve">
+          <source>What should VLC do when an external storage device has been detected?</source>
+          <target state="new">What should VLC do when an external storage device has been detected?</target>
+        </trans-unit>
+        <trans-unit id="Cancel" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="new">Cancel</target>
+        </trans-unit>
+        <trans-unit id="DoNothing" translate="yes" xml:space="preserve">
+          <source>Do nothing</source>
+          <target state="new">Do nothing</target>
+        </trans-unit>
+        <trans-unit id="Ok" translate="yes" xml:space="preserve">
+          <source>Ok</source>
+          <target state="new">Ok</target>
+        </trans-unit>
+        <trans-unit id="Ignore" translate="yes" xml:space="preserve">
+          <source>Ignore</source>
+          <target state="new">Ignore</target>
+        </trans-unit>
+        <trans-unit id="Remember" translate="yes" xml:space="preserve">
+          <source>Remember</source>
+          <target state="new">Remember</target>
+        </trans-unit>
+        <trans-unit id="AddMediaHelp" translate="yes" xml:space="preserve">
+          <source>Please insert an external storage device</source>
+          <target state="new">Please insert an external storage device</target>
+        </trans-unit>
+        <trans-unit id="AddMediaHelpWithIP" translate="yes" xml:space="preserve">
+          <source>Please insert an external storage device, or go to http://{0}:8080 to upload some media</source>
+          <target state="new">Please insert an external storage device, or go to http://{0}:8080 to upload some media</target>
+        </trans-unit>
+        <trans-unit id="CopyHelpDesktop" translate="yes" xml:space="preserve">
+          <source>Right-click on a file or a folder to copy it to the local storage.</source>
+          <target state="new">Right-click on a file or a folder to copy it to the local storage.</target>
+        </trans-unit>
+        <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
+          <source>Press "Y" on a file or a folder to copy it to the local storage.</source>
+          <target state="new">Press "Y" on a file or a folder to copy it to the local storage.</target>
+        </trans-unit>
+        <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
+          <source>No subtitle tracks</source>
+          <target state="new">No subtitle tracks</target>
         </trans-unit>
       </group>
     </body>
