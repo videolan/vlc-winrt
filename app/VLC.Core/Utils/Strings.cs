@@ -29,20 +29,6 @@ namespace VLC.Utils
             }
         }
 
-        public static string DeviceModel
-        {
-            get
-            {
-                var deviceInfo = new EasClientDeviceInformation();
-                if (string.IsNullOrEmpty(deviceInfo.SystemManufacturer) ||
-                    string.IsNullOrEmpty(deviceInfo.SystemProductName))
-                {
-                    return "Unknown model";
-                }
-                return $"{deviceInfo?.SystemManufacturer ?? "Unknown OEM"} - {deviceInfo?.SystemProductName ?? "Unknown model"}";
-            }
-        }
-
         /// <summary>
         /// Appends the current memory usage and limits on Windows Phone to the <paramref name="stringBuilder"/>
         /// </summary>
