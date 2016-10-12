@@ -256,6 +256,7 @@ namespace VLC.Utils
         public static string ResetMusicDatabase => _resourcesLoader.GetString(nameof(ResetMusicDatabase));
         public static string RefreshMusicLibrary => _resourcesLoader.GetString(nameof(RefreshMusicLibrary));
         public static string RefreshVideoLibrary => _resourcesLoader.GetString(nameof(RefreshVideoLibrary));
+        public static string RefreshLanguage => _resourcesLoader.GetString(nameof(RefreshLanguage));
 
         // PLACEHOLDERS
         public static string PlaylistNamePlaceholder => _resourcesLoader.GetString(nameof(PlaylistNamePlaceholder));

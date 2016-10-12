@@ -85,7 +85,7 @@
                             <Button x:Name="RefreshLanguage"
                                     x:Uid="RefreshLanguage"
                                     Click="ForceRefreshLanguage"
-                                    Content="Refresh Language" />
+                                    Content="{Binding Source={StaticResource Strings}, Path=RefreshLanguage}" />
                         </winControls:WrapPanel>
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
