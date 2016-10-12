@@ -536,7 +536,7 @@ namespace VLC.ViewModels
                     break;
             }
 
-            if (!PlaybackService.CanGoNext())
+            if (!PlaybackService.CanGoNext() && !PlaybackService.Repeat)
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
