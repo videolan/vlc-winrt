@@ -576,9 +576,6 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libmft_plugin.dll">
       <Link>plugins\codec\libmft_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libmpeg_audio_plugin.dll">
-      <Link>plugins\codec\libmpeg_audio_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libmpg123_plugin.dll">
       <Link>plugins\codec\libmpg123_plugin.dll</Link>
     </Content>
@@ -1133,6 +1130,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\visualization\libvisual_plugin.dll">
       <Link>plugins\visualization\libvisual_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\packetizer\libpacketizer_mpegaudio_plugin.dll">
+      <Link>plugins\packetizer\libpacketizer_mpegaudio_plugin.dll</Link>
     </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="VLCCommands.xml">
