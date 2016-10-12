@@ -43,19 +43,6 @@ namespace VLC.Utils
             }
         }
 
-        public static string Firmware
-        {
-            get
-            {
-                var deviceInfo = new EasClientDeviceInformation();
-                if (string.IsNullOrEmpty(deviceInfo.SystemFirmwareVersion))
-                {
-                    return "Unknown";
-                }
-                return deviceInfo.SystemFirmwareVersion;
-            }
-        }
-
         /// <summary>
         /// Appends the current memory usage and limits on Windows Phone to the <paramref name="stringBuilder"/>
         /// </summary>
@@ -311,14 +298,10 @@ namespace VLC.Utils
 
         // SETTINGS
         public static string Settings => _resourcesLoader.GetString(nameof(Settings));
-        public static string SettingsUppercase => Settings.ToUpper();
         public static string License => _resourcesLoader.GetString(nameof(License));
         public static string UserInterface => _resourcesLoader.GetString(nameof(UserInterface));
-        public static string UserInterfaceUppercase => UserInterface.ToUpperFirstChar();
         public static string VideoSettings => _resourcesLoader.GetString(nameof(VideoSettings));
-        public static string VideoSettingsUppercase => VideoSettings.ToUpperFirstChar();
         public static string MusicSettings => _resourcesLoader.GetString(nameof(MusicSettings));
-        public static string MusicSettingsUppercase => MusicSettings.ToUpperFirstChar();    
         public static string AboutTheApp => _resourcesLoader.GetString(nameof(AboutTheApp));
         public static string Notifications => _resourcesLoader.GetString(nameof(Notifications));
         public static string NotificationWhenSongStarts => _resourcesLoader.GetString(nameof(NotificationWhenSongStarts));
@@ -382,11 +365,6 @@ namespace VLC.Utils
 
         public static string HumanizedArtistName(string artistName) { return string.IsNullOrEmpty(artistName) ? Strings.UnknownArtist : artistName; }
         public static string HumanizedAlbumName(string albumName) { return string.IsNullOrEmpty(albumName) ? Strings.UnknownAlbum : albumName; }
-        public static string HumanizedYear(int year) { return year == 0 ? Strings.UnknownString : year.ToString(); }
-        public static string HumanizedAlbumFirstLetter(string albumName)
-        {
-            return string.IsNullOrEmpty(albumName) ? Strings.UnknownArtist[0].ToString() : (char.IsLetter(albumName.ElementAt(0)) ? albumName.ElementAt(0).ToString().ToUpper() : Strings.UnknownString);
-        }
 
         public static string HumanizedArtistFirstLetter(string artist)
         {
