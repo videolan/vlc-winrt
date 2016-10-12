@@ -56,8 +56,6 @@ namespace VLC.Utils
             }
         }
 
-        public static string FeedbackAzureURL => "https://vlc.azure-mobile.net/tables/feedback";
-
         /// <summary>
         /// Appends the current memory usage and limits on Windows Phone to the <paramref name="stringBuilder"/>
         /// </summary>
@@ -82,8 +80,6 @@ namespace VLC.Utils
         public static readonly string MoviePicFolderPath = "ms-appdata:///local/moviePic";
         public static readonly string MovieSubFolderPath = "ms-appdata:///local/movieSub";
         public static readonly string TemporaryFolderPath = "ms-appdata:///temp";
-
-        public static readonly string FeedbackMailAdress = "modernvlc@outlook.com";
 
         public static readonly string ModernFont = "ms-appx:VLC.ttf#VLC";
         public static readonly string MusicDatabase = Path.Combine(ApplicationData.Current.LocalFolder.Path, "mediavlc.sqlite");
@@ -356,22 +352,7 @@ namespace VLC.Utils
         public static string HardwareDecodingDescription => _resourcesLoader.GetString(nameof(HardwareDecodingDescription));
         public static string ForceLandscape => _resourcesLoader.GetString(nameof(ForceLandscape));
         public static string SubtitlesEncoding => _resourcesLoader.GetString(nameof(SubtitlesEncoding));
-
-        // FEEDBACK
-        public static string SendFeedback => _resourcesLoader.GetString(nameof(SendFeedback));
-        public static string NewFeedback => _resourcesLoader.GetString(nameof(NewFeedback));
-        public static string NewFeedbackSubtitle => _resourcesLoader.GetString(nameof(NewFeedbackSubtitle));
-        public static string Summary => _resourcesLoader.GetString(nameof(Summary));
-        public static string AddDetails => _resourcesLoader.GetString(nameof(AddDetails));
-        public static string SendLogs => _resourcesLoader.GetString(nameof(SendLogs));
-        public static string RunningInsiderBuild => _resourcesLoader.GetString(nameof(RunningInsiderBuild));
-        public static string SendingFeedback => _resourcesLoader.GetString(nameof(SendingFeedback));
-        public static string FeedbackThankYou => _resourcesLoader.GetString(nameof(FeedbackThankYou));
-        public static string ErrorSendingFeedback => _resourcesLoader.GetString(nameof(ErrorSendingFeedback));
-        public static string SpecifyBuild => _resourcesLoader.GetString(nameof(SpecifyBuild));
-        public static string SpecifiedBuildIncorrect => _resourcesLoader.GetString(nameof(SpecifiedBuildIncorrect));
-        public static string WindowsBuildNumberPlaceholder => _resourcesLoader.GetString(nameof(WindowsBuildNumberPlaceholder));
-
+        
         // ERRORS
         public static string FailOpenVideo => _resourcesLoader.GetString(nameof(FailOpenVideo));
         public static string FailNavigateVideoPlayerPage => _resourcesLoader.GetString(nameof(FailNavigateVideoPlayerPage));

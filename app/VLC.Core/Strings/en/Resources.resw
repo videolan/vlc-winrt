@@ -123,9 +123,6 @@
   <data name="Add" xml:space="preserve">
     <value>add</value>
   </data>
-  <data name="AddDetails" xml:space="preserve">
-    <value>add details</value>
-  </data>
   <data name="AddFolder" xml:space="preserve">
     <value>add folder</value>
   </data>
@@ -218,9 +215,6 @@
   </data>
   <data name="Episode" xml:space="preserve">
     <value>episode</value>
-  </data>
-  <data name="ErrorSendingFeedback" xml:space="preserve">
-    <value>an error occured while sending the feedback</value>
   </data>
   <data name="EvenIfBackground" xml:space="preserve">
     <value>even if the app is in background</value>
@@ -329,12 +323,6 @@
   </data>
   <data name="Network" xml:space="preserve">
     <value>network</value>
-  </data>
-  <data name="NewFeedback" xml:space="preserve">
-    <value>new feedback</value>
-  </data>
-  <data name="NewFeedbackSubtitle" xml:space="preserve">
-    <value>what's the problem?</value>
   </data>
   <data name="NewPlaylist" xml:space="preserve">
     <value>new playlist</value>
@@ -492,23 +480,11 @@
   <data name="RichAnimationsDescription" xml:space="preserve">
     <value>Use rich animations in the slideshows</value>
   </data>
-  <data name="RunningInsiderBuild" xml:space="preserve">
-    <value>are you running an Insider build?</value>
-  </data>
   <data name="Search" xml:space="preserve">
     <value>search</value>
   </data>
   <data name="Season" xml:space="preserve">
     <value>season</value>
-  </data>
-  <data name="SendFeedback" xml:space="preserve">
-    <value>send feedback</value>
-  </data>
-  <data name="SendingFeedback" xml:space="preserve">
-    <value>sending feedback</value>
-  </data>
-  <data name="SendLogs" xml:space="preserve">
-    <value>send logs</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>settings</value>
@@ -531,12 +507,6 @@
   <data name="SpecialThanks" xml:space="preserve">
     <value>special thanks</value>
   </data>
-  <data name="SpecifiedBuildIncorrect" xml:space="preserve">
-    <value>the specified build number is incorrect</value>
-  </data>
-  <data name="SpecifyBuild" xml:space="preserve">
-    <value>please specify you Windows 10 Insider build number</value>
-  </data>
   <data name="Speed" xml:space="preserve">
     <value>speed</value>
   </data>
@@ -551,9 +521,6 @@
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
     <value>subtitles encoding</value>
-  </data>
-  <data name="Summary" xml:space="preserve">
-    <value>summary</value>
   </data>
   <data name="Theme" xml:space="preserve">
     <value>theme</value>
@@ -629,9 +596,6 @@
   </data>
   <data name="WeNeedYourHelp" xml:space="preserve">
     <value>we need your help</value>
-  </data>
-  <data name="WindowsBuildNumberPlaceholder" xml:space="preserve">
-    <value>Windows 10 Insider build number</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>yes</value>

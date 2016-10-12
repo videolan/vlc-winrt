@@ -310,9 +310,6 @@
     <Compile Include="Views\VariousPages\ExternalStorageIncludePage.xaml.cs">
       <DependentUpon>ExternalStorageIncludePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\VariousPages\FeedbackPage.xaml.cs">
-      <DependentUpon>FeedbackPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\VariousPages\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
@@ -1487,10 +1484,6 @@
     <Page Include="Views\VariousPages\ExternalStorageIncludePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\VariousPages\FeedbackPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\VariousPages\SearchPage.xaml">
       <Generator>MSBuild:Compile</Generator>

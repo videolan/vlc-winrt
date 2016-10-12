@@ -173,33 +173,5 @@ namespace VLC.Helpers
                 FrontendSemaphoreSlim.Release();
             }
         }
-
-        public static async Task<Windows.Web.Http.HttpResponseMessage> SendFeedback(Feedback fb, bool sendLogs)
-        {
-            var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Accept.Add(new HttpMediaTypeWithQualityHeaderValue("application/json"));
-            httpClient.DefaultRequestHeaders.Add("X-ZUMO-APPLICATION", "SBEhmMRzWBrKTGXfDkhVNGfXmsSrzv88");
-
-            if (sendLogs)
-            {
-                fb.BackendLog = await FileIO.ReadTextAsync(_backendLogFile) ?? "None";
-                fb.FrontendLog = await FileIO.ReadTextAsync(_frontendLogFile) ?? "None";
-            }
-            else
-            {
-                fb.BackendLog = fb.FrontendLog = "None";
-            }
-
-            var jsonSer = new DataContractJsonSerializer(typeof(Feedback));
-            var ms = new MemoryStream();
-            jsonSer.WriteObject(ms, fb);
-            ms.Position = 0;
-            var sr = new StreamReader(ms);
-            var theContent = new StringContent(sr.ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
-
-            var str = await theContent.ReadAsStringAsync();
-            var result = await httpClient.PostAsync(new Uri(Strings.FeedbackAzureURL), new HttpStringContent(str, UnicodeEncoding.Utf8, "application/json"));
-            return result;
-        }
     }
 }

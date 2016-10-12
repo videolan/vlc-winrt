@@ -218,9 +218,6 @@ namespace VLC.Services.RunTime
                 case VLCPage.TrackEditorPage:
                     GoBack_HideFlyout();
                     break;
-                case VLCPage.FeedbackPage:
-                    GoBack_HideFlyout();
-                    break;
                 case VLCPage.TvShowView:
                     GoBack_HideFlyout();
                     break;
@@ -344,9 +341,6 @@ namespace VLC.Services.RunTime
                 case VLCPage.TrackEditorPage:
                     setFlyoutContent(desiredPage, typeof(TrackEditorPage));
                     break;
-                case VLCPage.FeedbackPage:
-                    setFlyoutContent(desiredPage, typeof(FeedbackPage));
-                    break;
                 case VLCPage.TvShowView:
                     setFlyoutContent(desiredPage, typeof(ShowEpisodesView));
                     break;
@@ -391,7 +385,6 @@ namespace VLC.Services.RunTime
                    page == VLCPage.SubtitlesSettings ||
                    page == VLCPage.AudioTracksSettings ||
                    page == VLCPage.ChaptersSettings ||
-                   page == VLCPage.FeedbackPage ||
                    page == VLCPage.TvShowView ||
                    page == VLCPage.TrackEditorPage ||
                    page == VLCPage.AboutAppView ||
@@ -431,8 +424,6 @@ namespace VLC.Services.RunTime
                 return VLCPage.SearchPage;
             if (page == typeof(TrackEditorPage))
                 return VLCPage.TrackEditorPage;
-            if (page == typeof(FeedbackPage))
-                return VLCPage.FeedbackPage;
             if (page == typeof(MiniPlayerWindow))
                 return VLCPage.MiniPlayerView;
             return VLCPage.None;

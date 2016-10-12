@@ -26,7 +26,6 @@
         AudioTracksSettings,
         ChaptersSettings,
         TrackEditorPage,
-        FeedbackPage,
         TvShowView,
         AboutAppView,
         MainPageXBOX,

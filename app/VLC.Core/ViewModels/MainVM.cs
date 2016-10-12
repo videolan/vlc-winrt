@@ -73,8 +73,6 @@ namespace VLC.ViewModels
 
         public ActionCommand GoToSearchPageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SearchPage));
 
-        public ActionCommand GoToFeedbackPageCommand { get; private set; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.FeedbackPage));
-
         public ActionCommand GoToStreamPanel { get; private set; } = new ActionCommand(() => Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == VLCPage.MainPageNetwork));
 
         public CreateMiniPlayerView CreateMiniPlayerView { get; private set; } = new CreateMiniPlayerView();
