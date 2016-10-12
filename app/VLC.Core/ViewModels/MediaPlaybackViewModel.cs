@@ -600,7 +600,7 @@ namespace VLC.ViewModels
             {
                 _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
                 _systemMediaTransportControls.ButtonPressed += SystemMediaTransportControlsOnButtonPressed;
-                _systemMediaTransportControls.IsEnabled = false;
+                _systemMediaTransportControls.IsEnabled = true;
             }
         }
 
