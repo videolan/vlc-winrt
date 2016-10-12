@@ -8,7 +8,7 @@
       <group id="VLC.SHARED/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
         <trans-unit id="AboutTheApp" translate="yes" xml:space="preserve">
           <source>about the app</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">sur l'app</target>
+          <target state="translated">À propos de l'application</target>
         </trans-unit>
         <trans-unit id="Add" translate="yes" xml:space="preserve">
           <source>add</source>
@@ -32,7 +32,7 @@
         </trans-unit>
         <trans-unit id="AddToPlaylist" translate="yes" xml:space="preserve">
           <source>add to playlist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ajouter à la playlist</target>
+          <target state="translated">Ajouter à la liste de lecture</target>
         </trans-unit>
         <trans-unit id="Albums" translate="yes" xml:space="preserve">
           <source>albums</source>
@@ -52,27 +52,27 @@
         </trans-unit>
         <trans-unit id="AppTheme" translate="yes" xml:space="preserve">
           <source>application theme</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">thème d'application</target>
+          <target state="translated">thème de l'application</target>
         </trans-unit>
         <trans-unit id="Artists" translate="yes" xml:space="preserve">
           <source>artists</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">artistes</target>
+          <target state="translated" state-qualifier="tm-suggestion">artistes</target>
         </trans-unit>
         <trans-unit id="Audio" translate="yes" xml:space="preserve">
           <source>audio</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">audio</target>
+          <target state="translated" state-qualifier="tm-suggestion">audio</target>
         </trans-unit>
         <trans-unit id="AudioDelay" translate="yes" xml:space="preserve">
           <source>audio delay</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">décalage audio</target>
+          <target state="translated" state-qualifier="mt-suggestion">décalage audio</target>
         </trans-unit>
         <trans-unit id="AudioTracks" translate="yes" xml:space="preserve">
           <source>audio tracks</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">pistes audio</target>
+          <target state="translated" state-qualifier="mt-suggestion">pistes audio</target>
         </trans-unit>
         <trans-unit id="Back" translate="yes" xml:space="preserve">
           <source>back</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">précédent</target>
+          <target state="translated" state-qualifier="tm-suggestion">précédent</target>
         </trans-unit>
         <trans-unit id="CameraRoll" translate="yes" xml:space="preserve">
           <source>camera roll</source>
@@ -80,7 +80,7 @@
         </trans-unit>
         <trans-unit id="ChangeAlbumCover" translate="yes" xml:space="preserve">
           <source>change album cover</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">changer la couverture de l'album</target>
+          <target state="translated" state-qualifier="mt-suggestion">changer la couverture de l'album</target>
         </trans-unit>
         <trans-unit id="Chapters" translate="yes" xml:space="preserve">
           <source>chapters</source>
@@ -92,11 +92,11 @@
         </trans-unit>
         <trans-unit id="Connect" translate="yes" xml:space="preserve">
           <source>connect</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">connecter</target>
+          <target state="translated" state-qualifier="tm-suggestion">connecter</target>
         </trans-unit>
         <trans-unit id="ConnectedToLastFM" translate="yes" xml:space="preserve">
           <source>connected to Last.FM</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">connecté à Last.FM</target>
+          <target state="translated" state-qualifier="mt-suggestion">connecté à Last.FM</target>
         </trans-unit>
         <trans-unit id="Connecting" translate="yes" xml:space="preserve">
           <source>connecting</source>
@@ -104,11 +104,11 @@
         </trans-unit>
         <trans-unit id="ConnectToLastFM" translate="yes" xml:space="preserve">
           <source>connect to Last.FM</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">se connecter à Last.FM</target>
+          <target state="translated" state-qualifier="mt-suggestion">se connecter à Last.FM</target>
         </trans-unit>
         <trans-unit id="CrashReport" translate="yes" xml:space="preserve">
           <source>crash report</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">rapport d'accident</target>
+          <target state="translated">rapport de bogue</target>
         </trans-unit>
         <trans-unit id="DecreaseSpeed" translate="yes" xml:space="preserve">
           <source>decrease speed</source>
@@ -120,11 +120,11 @@
         </trans-unit>
         <trans-unit id="DeletePlaylist" translate="yes" xml:space="preserve">
           <source>delete playlist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">supprimer la playlist</target>
+          <target state="translated">supprimer la liste de lecture</target>
         </trans-unit>
         <trans-unit id="DeleteSelected" translate="yes" xml:space="preserve">
           <source>delete selected</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">supprimer les</target>
+          <target state="translated">supprimer la selection</target>
         </trans-unit>
         <trans-unit id="EditMetadata" translate="yes" xml:space="preserve">
           <source>edit metadata</source>
@@ -132,7 +132,7 @@
         </trans-unit>
         <trans-unit id="ElementsNotFound" translate="yes" xml:space="preserve">
           <source>we did not find elements in there</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nous n'avons pas trouvé des éléments là-dedans</target>
+          <target state="translated">Nous n'avons pas trouvé d'élément ici</target>
         </trans-unit>
         <trans-unit id="EnterURL" translate="yes" xml:space="preserve">
           <source>enter a url</source>
@@ -156,7 +156,7 @@
         </trans-unit>
         <trans-unit id="FailFilePlayBackground" translate="yes" xml:space="preserve">
           <source>This file may not play in the background</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ce fichier ne peut pas jouer en arrière-plan</target>
+          <target state="translated">Ce fichier ne peut pas être joué en arrière-plan</target>
         </trans-unit>
         <trans-unit id="FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
           <source>VLC failed to navigate to the Video Player page</source>
@@ -172,11 +172,11 @@
         </trans-unit>
         <trans-unit id="FeedbackThankYou" translate="yes" xml:space="preserve">
           <source>feedback sent! thank you</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">vos commentaires envoyés ! Merci</target>
+          <target state="translated">vos commentaires ont été envoyés ! Merci</target>
         </trans-unit>
         <trans-unit id="FileExplorer" translate="yes" xml:space="preserve">
           <source>browse</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">fichiers</target>
+          <target state="translated">naviguer</target>
         </trans-unit>
         <trans-unit id="GoldPartners" translate="yes" xml:space="preserve">
           <source>gold partners</source>
@@ -184,15 +184,15 @@
         </trans-unit>
         <trans-unit id="HardwareDecoding" translate="yes" xml:space="preserve">
           <source>hardware decoding</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">décodage du matériel</target>
+          <target state="translated">décodage matériel</target>
         </trans-unit>
         <trans-unit id="HardwareDecodingDescription" translate="yes" xml:space="preserve">
           <source>Hardware decoding may not work on your device.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Décodage matériel peut ne pas fonctionner sur votre appareil.</target>
+          <target state="translated">Le décodage matériel peut ne pas fonctionner sur votre appareil.</target>
         </trans-unit>
         <trans-unit id="HaveToSelectPlaylist" translate="yes" xml:space="preserve">
           <source>please select a playlist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">s'il vous plaît sélectionnez une playlist</target>
+          <target state="translated">Veuillez sélectionner une playlist</target>
         </trans-unit>
         <trans-unit id="Home" translate="yes" xml:space="preserve">
           <source>home</source>
@@ -200,7 +200,7 @@
         </trans-unit>
         <trans-unit id="HomePage" translate="yes" xml:space="preserve">
           <source>home page</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">page d'accueil</target>
+          <target state="translated">page principale</target>
         </trans-unit>
         <trans-unit id="HomePageDescription" translate="yes" xml:space="preserve">
           <source>VLC will start on the selected page</source>
@@ -208,15 +208,15 @@
         </trans-unit>
         <trans-unit id="HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
           <source>however you may find what you're looking for here</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Toutefois, vous pouvez trouver ce que vous cherchez ici</target>
+          <target state="translated">Toutefois, vous pouvez peut-être trouver ce que vous cherchez ici</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum1" translate="yes" xml:space="preserve">
           <source>to favorite an album, just press</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">pour favori un album, appuyez simplement sur</target>
+          <target state="translated">pour marquer un album comme favori, appuyez simplement sur</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum2" translate="yes" xml:space="preserve">
           <source>and you'll get an instant access to it</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">et vous aurez un accès instantané à ce</target>
+          <target state="translated">et vous y aurez accès rapidement</target>
         </trans-unit>
         <trans-unit id="ImportantSponsors" translate="yes" xml:space="preserve">
           <source>important sponsors</source>
@@ -252,7 +252,7 @@
         </trans-unit>
         <trans-unit id="LoadingMusic" translate="yes" xml:space="preserve">
           <source>loading music</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">chargement de musique</target>
+          <target state="translated">chargement de votre musique</target>
         </trans-unit>
         <trans-unit id="MostPlayedArtists" translate="yes" xml:space="preserve">
           <source>most played artists</source>
@@ -272,11 +272,11 @@
         </trans-unit>
         <trans-unit id="MusicSettings" translate="yes" xml:space="preserve">
           <source>music settings</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">paramètres de la musique</target>
+          <target state="translated">paramètres audio</target>
         </trans-unit>
         <trans-unit id="MusicShows" translate="yes" xml:space="preserve">
           <source>music shows</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">spectacles de musique</target>
+          <target state="translated">concerts</target>
         </trans-unit>
         <trans-unit id="Mute" translate="yes" xml:space="preserve">
           <source>mute</source>
@@ -312,15 +312,15 @@
         </trans-unit>
         <trans-unit id="NoBiographyFound" translate="yes" xml:space="preserve">
           <source>no bio found for this artist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">pas bio trouvé pour cet artiste</target>
+          <target state="translated">pas bio trouvée pour cet artiste</target>
         </trans-unit>
         <trans-unit id="NoCameraVideosFound" translate="yes" xml:space="preserve">
           <source>no camera videos found</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">aucune caméra vidéos trouvées</target>
+          <target state="translated">aucune caméra vidéo trouvée</target>
         </trans-unit>
         <trans-unit id="NoFavoriteAlbums" translate="yes" xml:space="preserve">
           <source>no favorite albums</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">aucun albums préférés</target>
+          <target state="translated">aucun album préféré</target>
         </trans-unit>
         <trans-unit id="NoInternetConnection" translate="yes" xml:space="preserve">
           <source>no internet connection</source>
@@ -328,11 +328,11 @@
         </trans-unit>
         <trans-unit id="NoPlaylists" translate="yes" xml:space="preserve">
           <source>no playlists</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">aucun playlists</target>
+          <target state="translated">aucune liste de lecture</target>
         </trans-unit>
         <trans-unit id="NoShowsFound" translate="yes" xml:space="preserve">
           <source>no shows found</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">pas de spectacles trouvés</target>
+          <target state="translated">aucun concert trouvé</target>
         </trans-unit>
         <trans-unit id="NotableSponsors" translate="yes" xml:space="preserve">
           <source>notable sponsors</source>
@@ -352,7 +352,7 @@
         </trans-unit>
         <trans-unit id="NoVideosFound" translate="yes" xml:space="preserve">
           <source>we did not find videos</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nous n'avons pas trouvé vidéos</target>
+          <target state="translated">Nous n'avons trouvé aucune vidéo</target>
         </trans-unit>
         <trans-unit id="NowPlaying" translate="yes" xml:space="preserve">
           <source>now playing</source>
@@ -364,11 +364,11 @@
         </trans-unit>
         <trans-unit id="OpenStream" translate="yes" xml:space="preserve">
           <source>open stream</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ouvrir le flot</target>
+          <target state="translated">ouvrir le flux</target>
         </trans-unit>
         <trans-unit id="OpenSubtitle" translate="yes" xml:space="preserve">
           <source>open subtitle</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ouvrir le sous-titre</target>
+          <target state="translated">ouvrir des sous-titres</target>
         </trans-unit>
         <trans-unit id="OrderAscending" translate="yes" xml:space="preserve">
           <source>ascending</source>
@@ -380,7 +380,7 @@
         </trans-unit>
         <trans-unit id="OrderByArtist" translate="yes" xml:space="preserve">
           <source>by artist</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">par interprète</target>
+          <target state="translated">par artiste</target>
         </trans-unit>
         <trans-unit id="OrderByDate" translate="yes" xml:space="preserve">
           <source>by date</source>
@@ -396,19 +396,19 @@
         </trans-unit>
         <trans-unit id="Pause" translate="yes" xml:space="preserve">
           <source>pause</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Pause</target>
+          <target state="translated">pause</target>
         </trans-unit>
         <trans-unit id="PinAlbum" translate="yes" xml:space="preserve">
           <source>pin album</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">album de broche</target>
+          <target state="translated">épingler l'album</target>
         </trans-unit>
         <trans-unit id="PinArtist" translate="yes" xml:space="preserve">
           <source>pin artist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">artiste de la broche</target>
+          <target state="translated">épingler l'artiste</target>
         </trans-unit>
         <trans-unit id="Play" translate="yes" xml:space="preserve">
           <source>play</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">lire</target>
+          <target state="translated">lecture</target>
         </trans-unit>
         <trans-unit id="PlayAlbum" translate="yes" xml:space="preserve">
           <source>play album</source>
@@ -432,15 +432,15 @@
         </trans-unit>
         <trans-unit id="Playlist" translate="yes" xml:space="preserve">
           <source>playlist</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">sélection</target>
+          <target state="translated">liste de lecture</target>
         </trans-unit>
         <trans-unit id="PlaylistAlreadyExists" translate="yes" xml:space="preserve">
           <source>this playlist already exists</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">cette playlist existe déjà</target>
+          <target state="translated">cette liste de lecture existe déjà</target>
         </trans-unit>
         <trans-unit id="PlaylistNamePlaceholder" translate="yes" xml:space="preserve">
           <source>playlist name</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">nom de la playlist</target>
+          <target state="translated">nom de la liste de lecture</target>
         </trans-unit>
         <trans-unit id="Playlists" translate="yes" xml:space="preserve">
           <source>playlists</source>
@@ -448,7 +448,7 @@
         </trans-unit>
         <trans-unit id="PlayTrack" translate="yes" xml:space="preserve">
           <source>play track</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">jeu de piste</target>
+          <target state="translated">jouer le morceau</target>
         </trans-unit>
         <trans-unit id="PlayVideo" translate="yes" xml:space="preserve">
           <source>play video</source>
@@ -456,11 +456,11 @@
         </trans-unit>
         <trans-unit id="PremiumSponsors" translate="yes" xml:space="preserve">
           <source>premium sponsors</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">commanditaires de la prime</target>
+          <target state="translated">soutiens majeurs</target>
         </trans-unit>
         <trans-unit id="PrivacyStatement" translate="yes" xml:space="preserve">
           <source>privacy statement</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">confidentialité</target>
+          <target state="translated">politique de confidentialité</target>
         </trans-unit>
         <trans-unit id="Favorites" translate="yes" xml:space="preserve">
           <source>Favorites</source>
@@ -484,7 +484,7 @@
         </trans-unit>
         <trans-unit id="RemoveMusicFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Si vous ne voulez pas de ce dossier dans votre bibliothèque de musique, vous pouvez le supprimer. Il affecte toutes les applications, non seulement de VLC</target>
+          <target state="translated">Si vous ne voulez pas de ce dossier dans votre bibliothèque de musique, vous pouvez le supprimer. Cela affectera toutes les applications, non seulement de VLC</target>
         </trans-unit>
         <trans-unit id="RemoveVideoFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</source>
@@ -540,7 +540,7 @@
         </trans-unit>
         <trans-unit id="Shows" translate="yes" xml:space="preserve">
           <source>shows</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">montre</target>
+          <target state="translated">Séries</target>
         </trans-unit>
         <trans-unit id="Shuffle" translate="yes" xml:space="preserve">
           <source>shuffle</source>
@@ -572,11 +572,11 @@
         </trans-unit>
         <trans-unit id="Stop" translate="yes" xml:space="preserve">
           <source>stop</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">arrêter</target>
+          <target state="translated">stop</target>
         </trans-unit>
         <trans-unit id="SubtitleDelay" translate="yes" xml:space="preserve">
           <source>subtitle delay</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">retard de sous-titre</target>
+          <target state="translated">délai de sous-titre</target>
         </trans-unit>
         <trans-unit id="Subtitles" translate="yes" xml:space="preserve">
           <source>subtitles</source>
@@ -584,7 +584,7 @@
         </trans-unit>
         <trans-unit id="SubtitlesEncoding" translate="yes" xml:space="preserve">
           <source>subtitles encoding</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">sous-titres de codage</target>
+          <target state="translated">Encodage des sous-titres</target>
         </trans-unit>
         <trans-unit id="Summary" translate="yes" xml:space="preserve">
           <source>summary</source>
@@ -596,23 +596,23 @@
         </trans-unit>
         <trans-unit id="TileRemoved" translate="yes" xml:space="preserve">
           <source>tile removed</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">carrelage enlevé</target>
+          <target state="translated">tuile supprimée</target>
         </trans-unit>
         <trans-unit id="TopVideos" translate="yes" xml:space="preserve">
           <source>top videos</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">vidéos Top</target>
+          <target state="translated">vidéos préférées</target>
         </trans-unit>
         <trans-unit id="TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
           <source>track added to the playlist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ajouté à la sélection de piste</target>
+          <target state="translated">morceau ajouté à la liste de lecture</target>
         </trans-unit>
         <trans-unit id="TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
           <source>this track is already in that playlist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">cette piste est déjà dans la liste de lecture</target>
+          <target state="translated">ce morceau est déjà dans la liste de lecture</target>
         </trans-unit>
         <trans-unit id="Tracks" translate="yes" xml:space="preserve">
           <source>tracks</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">pistes</target>
+          <target state="translated">morceaux</target>
         </trans-unit>
         <trans-unit id="UnknownAlbum" translate="yes" xml:space="preserve">
           <source>Unknown album</source>
@@ -624,11 +624,11 @@
         </trans-unit>
         <trans-unit id="UnknownShow" translate="yes" xml:space="preserve">
           <source>Unknown show</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Spectacle inconnu</target>
+          <target state="translated">Concert inconnu</target>
         </trans-unit>
         <trans-unit id="UnknownTrack" translate="yes" xml:space="preserve">
           <source>Unknown track</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Piste inconnue</target>
+          <target state="translated">Morceau inconnue</target>
         </trans-unit>
         <trans-unit id="UserInterface" translate="yes" xml:space="preserve">
           <source>user interface</source>
@@ -668,11 +668,11 @@
         </trans-unit>
         <trans-unit id="ViewAlbum" translate="yes" xml:space="preserve">
           <source>view album</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">album de vue</target>
+          <target state="translated">voir les albums</target>
         </trans-unit>
         <trans-unit id="ViewArtist" translate="yes" xml:space="preserve">
           <source>view artist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">artiste de la vue</target>
+          <target state="translated">voir les artistes</target>
         </trans-unit>
         <trans-unit id="VLCTeamThankYou" translate="yes" xml:space="preserve">
           <source>The VLC team would like to thank all the people who made this app possible</source>
@@ -684,7 +684,7 @@
         </trans-unit>
         <trans-unit id="Website" translate="yes" xml:space="preserve">
           <source>website</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">site web</target>
+          <target state="translated">site internet</target>
         </trans-unit>
         <trans-unit id="WeNeedYourHelp" translate="yes" xml:space="preserve">
           <source>we need your help</source>
@@ -732,11 +732,11 @@
         </trans-unit>
         <trans-unit id="AreYouSure" translate="yes" xml:space="preserve">
           <source>are you sure?</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Es-tu sûr?</target>
+          <target state="translated">Êtes vous sûr?</target>
         </trans-unit>
         <trans-unit id="MediaCantBeRead" translate="yes" xml:space="preserve">
           <source>the media can't be read</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">les médias ne peuvent être lus</target>
+          <target state="translated">le média n'a pas pu être lu</target>
         </trans-unit>
         <trans-unit id="Sorry" translate="yes" xml:space="preserve">
           <source>we're sorry</source>
@@ -760,7 +760,7 @@
         </trans-unit>
         <trans-unit id="NoArtistShowsFound" translate="yes" xml:space="preserve">
           <source>we didn't find shows for this artist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">On n'a pas trouvé de spectacles pour cet artiste</target>
+          <target state="translated">Nous n'avons pas trouvé de spectacles pour cet artiste</target>
         </trans-unit>
         <trans-unit id="NoResults" translate="yes" xml:space="preserve">
           <source>no results</source>
@@ -768,7 +768,7 @@
         </trans-unit>
         <trans-unit id="ForceLandscape" translate="yes" xml:space="preserve">
           <source>Force landscape</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Paysage de force</target>
+          <target state="translated">Force l'affichage en mode paysage</target>
         </trans-unit>
         <trans-unit id="SURFACE_STRETCH" translate="yes" xml:space="preserve">
           <source>stretch</source>
@@ -796,8 +796,7 @@
         </trans-unit>
         <trans-unit id="SelectLanguageDescription" translate="yes" xml:space="preserve">
           <source>VLC will be displayed in</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sélectionnez la langue qu'apparaît dans VLC</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">VLC sera affiché en </target>
         </trans-unit>
         <trans-unit id="ApplyAndRestart" translate="yes" xml:space="preserve">
           <source>Apply And Restart</source>
