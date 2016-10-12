@@ -100,7 +100,6 @@ namespace VLC.Utils
         public static string LoadingMusic => _resourcesLoader.GetString(nameof(LoadingMusic));
         public static string Download => "Download";
         public static string NoInternetConnection => _resourcesLoader.GetString(nameof(NoInternetConnection));
-        public static string Website => _resourcesLoader.GetString(nameof(Website));
 
         // MUSIC ITEMS
         public static string UnknownArtist => _resourcesLoader.GetString(nameof(UnknownArtist));
@@ -285,16 +284,6 @@ namespace VLC.Utils
 
 
         public static string PrivacyStatement => _resourcesLoader.GetString(nameof(PrivacyStatement));
-        // SPECIAL THANKS
-        public static string SpecialThanks => _resourcesLoader.GetString(nameof(SpecialThanks));
-        public static string VLCTeamThankYou => _resourcesLoader.GetString(nameof(VLCTeamThankYou));
-        public static string PremiumSponsors => _resourcesLoader.GetString(nameof(PremiumSponsors));
-        public static string AllBackers => _resourcesLoader.GetString(nameof(AllBackers));
-        public static string GoldPartners => _resourcesLoader.GetString(nameof(GoldPartners));
-        public static string SilverPartners => _resourcesLoader.GetString(nameof(SilverPartners));
-        public static string ImportantSponsors => _resourcesLoader.GetString(nameof(ImportantSponsors));
-        public static string NotableSponsors => _resourcesLoader.GetString(nameof(NotableSponsors));
-
 
         // SETTINGS
         public static string Settings => _resourcesLoader.GetString(nameof(Settings));

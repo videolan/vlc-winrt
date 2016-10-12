@@ -38,10 +38,6 @@
           <source>albums found : {0}</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">アルバムが見つかりました: {0}</target>
         </trans-unit>
-        <trans-unit id="AllBackers" translate="yes" xml:space="preserve">
-          <source>all backers</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">すべての支持</target>
-        </trans-unit>
         <trans-unit id="Animations" translate="yes" xml:space="preserve">
           <source>animations</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">アニメーション</target>
@@ -171,10 +167,6 @@
         <trans-unit id="FileExplorer" translate="yes" xml:space="preserve">
           <source>browse</source>
           <target state="translated">ファイル</target>
-        </trans-unit>
-        <trans-unit id="GoldPartners" translate="yes" xml:space="preserve">
-          <source>gold partners</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ゴールド パートナー</target>
         </trans-unit>
         <trans-unit id="HardwareDecoding" translate="yes" xml:space="preserve">
           <source>hardware decoding</source>
@@ -317,10 +309,6 @@
           <source>no shows found</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">ないショーを発見</target>
         </trans-unit>
-        <trans-unit id="NotableSponsors" translate="yes" xml:space="preserve">
-          <source>notable sponsors</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">注目のスポンサー</target>
-        </trans-unit>
         <trans-unit id="NothingToSeeHere" translate="yes" xml:space="preserve">
           <source>there's nothing to see here</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">ここを参照してくださいすることはないです。</target>
@@ -438,10 +426,6 @@
           <source>play video</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">ビデオを再生します。</target>
         </trans-unit>
-        <trans-unit id="PremiumSponsors" translate="yes" xml:space="preserve">
-          <source>premium sponsors</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">プレミアム スポンサー</target>
-        </trans-unit>
         <trans-unit id="PrivacyStatement" translate="yes" xml:space="preserve">
           <source>privacy statement</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">プライバシーに関する声明</target>
@@ -513,10 +497,6 @@
         <trans-unit id="Shuffle" translate="yes" xml:space="preserve">
           <source>shuffle</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">シャッフル</target>
-        </trans-unit>
-        <trans-unit id="SilverPartners" translate="yes" xml:space="preserve">
-          <source>silver partners</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">シルバー パートナー</target>
         </trans-unit>
         <trans-unit id="Songs" translate="yes" xml:space="preserve">
           <source>songs</source>
@@ -633,17 +613,9 @@
           <source>view artist</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">ビュー アーティスト</target>
         </trans-unit>
-        <trans-unit id="VLCTeamThankYou" translate="yes" xml:space="preserve">
-          <source>The VLC team would like to thank all the people who made this app possible</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC のチームがこのアプリを可能にしたすべての人々 に感謝したいと思います</target>
-        </trans-unit>
         <trans-unit id="Volume" translate="yes" xml:space="preserve">
           <source>volume</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">ボリューム</target>
-        </trans-unit>
-        <trans-unit id="Website" translate="yes" xml:space="preserve">
-          <source>website</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Web サイト</target>
         </trans-unit>
         <trans-unit id="WeNeedYourHelp" translate="yes" xml:space="preserve">
           <source>we need your help</source>

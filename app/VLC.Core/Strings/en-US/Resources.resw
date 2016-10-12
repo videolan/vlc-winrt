@@ -141,9 +141,6 @@
   <data name="AlbumsFound" xml:space="preserve">
     <value>albums found : {0}</value>
   </data>
-  <data name="AllBackers" xml:space="preserve">
-    <value>all backers</value>
-  </data>
   <data name="Animations" xml:space="preserve">
     <value>animations</value>
   </data>
@@ -239,9 +236,6 @@
   </data>
   <data name="FileExplorer" xml:space="preserve">
     <value>browse</value>
-  </data>
-  <data name="GoldPartners" xml:space="preserve">
-    <value>gold partners</value>
   </data>
   <data name="HardwareDecoding" xml:space="preserve">
     <value>hardware decoding</value>
@@ -351,9 +345,6 @@
   <data name="NoShowsFound" xml:space="preserve">
     <value>no shows found</value>
   </data>
-  <data name="NotableSponsors" xml:space="preserve">
-    <value>notable sponsors</value>
-  </data>
   <data name="NothingToSeeHere" xml:space="preserve">
     <value>there's nothing to see here</value>
   </data>
@@ -441,9 +432,6 @@
   <data name="PlayVideo" xml:space="preserve">
     <value>play video</value>
   </data>
-  <data name="PremiumSponsors" xml:space="preserve">
-    <value>premium sponsors</value>
-  </data>
   <data name="PrivacyStatement" xml:space="preserve">
     <value>privacy statement</value>
   </data>
@@ -497,9 +485,6 @@
   </data>
   <data name="Shuffle" xml:space="preserve">
     <value>shuffle</value>
-  </data>
-  <data name="SilverPartners" xml:space="preserve">
-    <value>silver partners</value>
   </data>
   <data name="Songs" xml:space="preserve">
     <value>songs</value>
@@ -585,14 +570,8 @@
   <data name="ViewArtist" xml:space="preserve">
     <value>view artist</value>
   </data>
-  <data name="VLCTeamThankYou" xml:space="preserve">
-    <value>The VLC team would like to thank all the people who made this app possible</value>
-  </data>
   <data name="Volume" xml:space="preserve">
     <value>volume</value>
-  </data>
-  <data name="Website" xml:space="preserve">
-    <value>website</value>
   </data>
   <data name="WeNeedYourHelp" xml:space="preserve">
     <value>we need your help</value>
