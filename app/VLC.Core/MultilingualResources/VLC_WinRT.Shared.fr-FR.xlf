@@ -5,7 +5,7 @@
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" tool-company="Microsoft" />
     </header>
     <body>
-      <group id="VLC.SHARED/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
+      <group id="VLC_WINRT.SHARED/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
         <trans-unit id="AboutTheApp" translate="yes" xml:space="preserve">
           <source>about the app</source>
           <target state="translated">À propos de l'application</target>
