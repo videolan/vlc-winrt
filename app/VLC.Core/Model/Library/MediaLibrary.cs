@@ -573,20 +573,13 @@ namespace VLC.Model.Library
 
         public async Task<MediaList> DiscoverMediaList(Media media)
         {
-            var tcs = new TaskCompletionSource<MediaList>();
             if (media.parsedStatus() == ParsedStatus.Done)
-                tcs.TrySetResult(media.subItems());
+                return media.subItems();
 
-            media.eventManager().OnParsedChanged += (ParsedStatus s) =>
-            {
-                if (s != ParsedStatus.Done)
-                    return;
-                tcs.TrySetResult(media.subItems());
-            };
             await MediaItemDiscovererSemaphoreSlim.WaitAsync();
-            media.parseWithOptions(ParseFlags.Local | ParseFlags.Network | ParseFlags.Interact, 0);
+            await media.parseWithOptionsAsync(ParseFlags.Local | ParseFlags.Network | ParseFlags.Interact, 0);
             MediaItemDiscovererSemaphoreSlim.Release();
-            return tcs.Task.Result;
+            return media.subItems();
         }
         #endregion
 

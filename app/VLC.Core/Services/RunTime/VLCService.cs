@@ -269,12 +269,14 @@ namespace VLC.Services.RunTime
 
             if (shouldParse)
             {
-                if (media.parsedStatus() != ParsedStatus.Done && media.parsedStatus() != ParsedStatus.Skipped)
-                    media.parse();
+                if (media.parsedStatus() != ParsedStatus.Done)
+                {
+                    var res = await media.parseWithOptionsAsync(ParseFlags.FetchLocal | ParseFlags.Local | ParseFlags.Network, 5000);
+                    if (res != ParsedStatus.Done)
+                        return null;
+                }
             }
 
-            if (media.parsedStatus() == ParsedStatus.Failed)
-                return null;
             var url = media.meta(MediaMeta.ArtworkURL);
             if (!string.IsNullOrEmpty(url))
                 return url;
@@ -290,10 +292,13 @@ namespace VLC.Services.RunTime
             await PlayerInstanceReady.Task;
             if (media == null)
                 return mP;
-            if (media.parsedStatus() != ParsedStatus.Done && media.parsedStatus() != ParsedStatus.Skipped)
-                media.parse();
-            if (media.parsedStatus() == ParsedStatus.Failed)
-                return mP;
+            if (media.parsedStatus() != ParsedStatus.Done)
+            {
+                var res = await media.parseWithOptionsAsync(ParseFlags.FetchLocal | ParseFlags.Local | ParseFlags.Network, 5000);
+                if (res != ParsedStatus.Done)
+                    return mP;
+            }
+            
             mP.Title = media.meta(MediaMeta.Title);
 
             var showName = media.meta(MediaMeta.ShowName);
@@ -347,10 +352,12 @@ namespace VLC.Services.RunTime
             await PlayerInstanceReady.Task;
             if (media == null)
                 return null;
-            if (media.parsedStatus() != ParsedStatus.Done && media.parsedStatus() != ParsedStatus.Skipped)
-                media.parse();
-            if (media.parsedStatus() == ParsedStatus.Failed)
-                return null;
+            if (media.parsedStatus() != ParsedStatus.Done)
+            {
+                var res = await media.parseWithOptionsAsync(ParseFlags.FetchLocal | ParseFlags.Local | ParseFlags.Network, 5000);
+                if (res != ParsedStatus.Done)
+                    return null;
+            }
 
             var mP = new MediaProperties();
             mP.AlbumArtist = media.meta(MediaMeta.AlbumArtist);
