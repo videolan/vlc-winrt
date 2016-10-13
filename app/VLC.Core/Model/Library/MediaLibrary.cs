@@ -387,10 +387,6 @@ namespace VLC.Model.Library
                             };
                             musicDatabase.Add(album);
                             AddAlbum(album);
-                            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                            {
-                                Locator.MainVM.InformationText = string.Format(Strings.AlbumsFound, Albums.Count);
-                            });
                         }
 
                         TrackItem track = new TrackItem

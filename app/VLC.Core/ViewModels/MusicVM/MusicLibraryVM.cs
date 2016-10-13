@@ -415,7 +415,6 @@ namespace VLC.ViewModels.MusicVM
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    Locator.MainVM.InformationText = Strings.LoadingMusic;
                     LoadingStateAlbums = LoadingState.Loading;
                     GroupedAlbums = new ObservableCollection<AlbumItem>();
                 });
@@ -426,7 +425,6 @@ namespace VLC.ViewModels.MusicVM
                 await RefreshRecommendedAlbums();
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    Locator.MainVM.InformationText = String.Empty;
                     LoadingStateAlbums = LoadingState.Loaded;
                     OnPropertyChanged(nameof(IsMusicLibraryEmpty));
                     OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
@@ -489,7 +487,6 @@ namespace VLC.ViewModels.MusicVM
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    Locator.MainVM.InformationText = Strings.LoadingMusic;
                     LoadingStateArtists = LoadingState.Loading;
                     GroupedArtists = new ObservableCollection<GroupItemList<ArtistItem>>();
                 });
@@ -500,7 +497,6 @@ namespace VLC.ViewModels.MusicVM
                 
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    Locator.MainVM.InformationText = String.Empty;
                     LoadingStateArtists = LoadingState.Loaded;
                     OnPropertyChanged(nameof(IsMusicLibraryEmpty));
                     OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
@@ -546,7 +542,6 @@ namespace VLC.ViewModels.MusicVM
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    Locator.MainVM.InformationText = Strings.LoadingMusic;
                     LoadingStateTracks = LoadingState.Loading;
                 });
 
@@ -555,7 +550,6 @@ namespace VLC.ViewModels.MusicVM
                 Locator.MediaLibrary.LoadTracksFromDatabase();
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    Locator.MainVM.InformationText = String.Empty;
                     LoadingStateTracks = LoadingState.Loaded;
                     OnPropertyChanged(nameof(IsMusicLibraryEmpty));
                     OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
@@ -602,7 +596,6 @@ namespace VLC.ViewModels.MusicVM
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    Locator.MainVM.InformationText = Strings.LoadingMusic;
                     LoadingStatePlaylists = LoadingState.Loading;
                 });
 
@@ -611,7 +604,6 @@ namespace VLC.ViewModels.MusicVM
                 {
                     OnPropertyChanged(nameof(TrackCollections));
 
-                    Locator.MainVM.InformationText = String.Empty;
                     LoadingStatePlaylists = LoadingState.Loaded;
                 });
             });

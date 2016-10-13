@@ -85,12 +85,6 @@ namespace VLC.ViewModels
             set { SetProperty(ref _preventAppExit, value); }
         }
 
-        public string InformationText
-        {
-            get { return _informationText; }
-            set { SetProperty(ref _informationText, value); }
-        }
-
         public bool IsBackground
         {
             get { return _isBackground; }

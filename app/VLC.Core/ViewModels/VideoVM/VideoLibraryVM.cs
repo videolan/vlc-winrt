@@ -196,7 +196,6 @@ namespace VLC.ViewModels.VideoVM
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    Locator.MainVM.InformationText = Strings.Loading;
                     LoadingStateAllVideos = LoadingState.Loading;
                 });
 
@@ -207,7 +206,6 @@ namespace VLC.ViewModels.VideoVM
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     OnPropertyChanged(nameof(Videos));
-                    Locator.MainVM.InformationText = String.Empty;
                     LoadingStateAllVideos = LoadingState.Loaded;
                 });
             });
@@ -227,7 +225,6 @@ namespace VLC.ViewModels.VideoVM
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    Locator.MainVM.InformationText = Strings.Loading;
                     LoadingStateShows = LoadingState.Loading;
                 });
 
@@ -251,7 +248,6 @@ namespace VLC.ViewModels.VideoVM
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    Locator.MainVM.InformationText = Strings.Loading;
                     LoadingStateCamera = LoadingState.Loading;
                 });
 
