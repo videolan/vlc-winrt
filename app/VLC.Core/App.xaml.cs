@@ -222,9 +222,12 @@ namespace VLC
             {
                 var _ = Task.Run(async () => await LoadLibraries());
             }
-            Locator.GamepadService.GamepadUpdated += (s, e) => Task.Run(() => ToggleMediaCenterMode());
-
-            await ToggleMediaCenterMode();
+            Locator.GamepadService.GamepadUpdated += async (s, e) =>
+            {
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => ToggleMediaCenterMode());
+            };
+            
+            ToggleMediaCenterMode();
 
             Locator.ExternalDeviceService.startWatcher();
 
@@ -240,36 +243,33 @@ namespace VLC
             Locator.NavigationService.BindSplitShellEvents();
             SetLanguage();
             SetShellDecoration();
-            await ToggleMediaCenterMode();
+            ToggleMediaCenterMode();
         }
 
-        async static Task ToggleMediaCenterMode()
+        static void ToggleMediaCenterMode()
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            if (Gamepad.Gamepads.Any() || DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
             {
-                if (Gamepad.Gamepads.Any() || DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
-                {
-                    if (Locator.SettingsVM.MediaCenterMode == true)
-                        return;
-                    Locator.SettingsVM.MediaCenterMode = true;
-                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
-                    Locator.MainVM.GoToHomePageMediaCenterCommand.Execute(null);
+                if (Locator.SettingsVM.MediaCenterMode == true)
+                    return;
+                Locator.SettingsVM.MediaCenterMode = true;
+                Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
+                Locator.MainVM.GoToHomePageMediaCenterCommand.Execute(null);
 
-                    AppViewHelper.EnterFullscreen();
+                AppViewHelper.EnterFullscreen();
 
-                    App.SplitShell.FooterContent = null;
-                }
-                else
-                {
-                    Locator.SettingsVM.MediaCenterMode = false;
-                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
+                App.SplitShell.FooterContent = null;
+            }
+            else
+            {
+                Locator.SettingsVM.MediaCenterMode = false;
+                Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
 
-                    AppViewHelper.LeaveFullscreen();
+                AppViewHelper.LeaveFullscreen();
 
-                    App.SplitShell.FooterContent = new CommandBarBottom();
-                }
-                Locator.NavigationService.RefreshCurrentPage();
-            });
+                App.SplitShell.FooterContent = new CommandBarBottom();
+            }
+            Locator.NavigationService.RefreshCurrentPage();
         }
 
         private void Current_VisibilityChanged(object sender, VisibilityChangedEventArgs e)
