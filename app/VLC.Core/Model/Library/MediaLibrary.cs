@@ -227,17 +227,11 @@ namespace VLC.Model.Library
             _alreadyIndexedOnce = true;
             // Doing full indexing from scratch if 0 tracks are found
             if (IsMusicDatabaseEmpty() && IsVideoDatabaseEmpty())
-            {
-                await StartIndexing();
-            }
-            else
-            {
-                // Else, perform a Routine Indexing (without dropping tables)
-                await PerformMediaLibraryIndexing();
-            }
+                ClearDatabase();
+            await PerformMediaLibraryIndexing();
         }
 
-        async Task StartIndexing()
+        void ClearDatabase()
         {
             musicDatabase.DeleteAll();
             musicDatabase.DeleteAll();
@@ -261,7 +255,6 @@ namespace VLC.Model.Library
             Videos?.Clear();
             CameraRoll?.Clear();
             Shows?.Clear();
-            await PerformMediaLibraryIndexing();
         }
 
         async Task PerformMediaLibraryIndexing()
