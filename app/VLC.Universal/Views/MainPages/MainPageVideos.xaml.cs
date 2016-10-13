@@ -30,25 +30,13 @@ namespace VLC.UI.Views.MainPages
 
         void MainPageMusic_Loaded(object sender, RoutedEventArgs e)
         {
-            Responsive(Window.Current.Bounds.Width);
             Locator.VideoLibraryVM.OnNavigatedTo();
-            Window.Current.SizeChanged += Current_SizeChanged;
             this.Unloaded += AlbumsCollectionButtons_Unloaded;
-        }
-
-        void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
-        {
-            Responsive(e.Size.Width);
         }
 
         void AlbumsCollectionButtons_Unloaded(object sender, RoutedEventArgs e)
         {
-            Window.Current.SizeChanged -= Current_SizeChanged;
             Locator.VideoLibraryVM.OnNavigatedFrom();
-        }
-
-        void Responsive(double width)
-        {
         }
 
         private void MainPageVideoContentPresenter_OnLoaded(object sender, RoutedEventArgs e)
