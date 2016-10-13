@@ -31,7 +31,7 @@ namespace VLC.UI.Views.UserControls
             set { SetValue(VideoProperty, value); }
         }
 
-        public static readonly DependencyProperty VideoProperty =
+        private static readonly DependencyProperty VideoProperty =
             DependencyProperty.Register(nameof(Video), typeof(VideoItem), typeof(VideoItem), new PropertyMetadata(null, PropertyChangedCallback));
 
         private static void PropertyChangedCallback(DependencyObject dO, DependencyPropertyChangedEventArgs args)
