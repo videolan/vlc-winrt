@@ -16,21 +16,13 @@ namespace VLC.Helpers
 {
     public static class MediaLibraryHelper
     {
-        public static async Task<IReadOnlyList<StorageFile>> GetSupportedFiles(StorageFolder folder)
+        public static Task<IReadOnlyList<StorageFile>> GetSupportedFiles(StorageFolder folder)
         {
-            IReadOnlyList<StorageFile> files = null;
-            try
-            {
-                var queryOptions = new QueryOptions { FolderDepth = FolderDepth.Deep };
-                foreach (var type in VLCFileExtensions.Supported)
-                    queryOptions.FileTypeFilter.Add(type);
-                var fileQueryResult = folder.CreateFileQueryWithOptions(queryOptions);
-                files = await fileQueryResult.GetFilesAsync();
-            }
-            catch (Exception e)
-            {
-            }
-            return files;
+            var queryOptions = new QueryOptions { FolderDepth = FolderDepth.Deep };
+            foreach (var type in VLCFileExtensions.Supported)
+                queryOptions.FileTypeFilter.Add(type);
+            var fileQueryResult = folder.CreateFileQueryWithOptions(queryOptions);
+            return fileQueryResult.GetFilesAsync().AsTask();
         }
 
         public static async Task<VideoItem> GetVideoItem(StorageFile file)
