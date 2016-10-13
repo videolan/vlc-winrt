@@ -58,9 +58,9 @@ namespace VLC.Model.Library
             });
         }
 
-        private async Task ExternalDeviceService_MustUnindexExternalDevice()
+        private Task ExternalDeviceService_MustUnindexExternalDevice()
         {
-            await CleanMediaLibrary();
+            return Task.Run(async () => await CleanMediaLibrary());
         }
 
         #region properties
