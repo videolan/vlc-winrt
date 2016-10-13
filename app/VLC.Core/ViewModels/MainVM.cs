@@ -44,8 +44,6 @@ namespace VLC.ViewModels
         #region private props
         private KeyboardListenerService keyboardListenerService;
         private Panel _currentPanel;
-        private bool _preventAppExit = false;
-        private string _informationText;
         private bool _isBackground = false;
         static bool? _isWindows10;
 
@@ -78,12 +76,6 @@ namespace VLC.ViewModels
         public CreateMiniPlayerView CreateMiniPlayerView { get; private set; } = new CreateMiniPlayerView();
 
         public ScrollDetectedCommand ScrollDetectedCommand { get; private set; } = new ScrollDetectedCommand();
-
-        public bool PreventAppExit
-        {
-            get { return _preventAppExit; }
-            set { SetProperty(ref _preventAppExit, value); }
-        }
 
         public bool IsBackground
         {

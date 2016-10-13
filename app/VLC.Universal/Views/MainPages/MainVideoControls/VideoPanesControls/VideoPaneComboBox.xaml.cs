@@ -12,12 +12,10 @@ namespace VLC.UI.Views.MainPages.MainVideoControls.VideoPanesControls
 
         private void ComboBox_OnDropDownOpened(object sender, object e)
         {
-            Locator.NavigationService.PreventAppExit = true;
         }
 
         private void ComboBox_OnDropDownClosed(object sender, object e)
         {
-            Locator.NavigationService.PreventAppExit = false;
         }
     }
 }
