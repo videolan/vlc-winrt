@@ -22,7 +22,6 @@
 * Preamble
 *****************************************************************************/
 
-#include "pch.h"
 #include <ppltasks.h>
 
 #ifndef WIN32_LEAN_AND_MEAN
