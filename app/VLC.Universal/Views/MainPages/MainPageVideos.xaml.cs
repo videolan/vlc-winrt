@@ -25,16 +25,16 @@ namespace VLC.UI.Views.MainPages
         public MainPageVideos()
         {
             InitializeComponent();
-            this.Loaded += MainPageMusic_Loaded;
+            this.Loaded += MainPageVideo_Loaded;
         }
 
-        void MainPageMusic_Loaded(object sender, RoutedEventArgs e)
+        void MainPageVideo_Loaded(object sender, RoutedEventArgs e)
         {
             Locator.VideoLibraryVM.OnNavigatedTo();
-            this.Unloaded += AlbumsCollectionButtons_Unloaded;
+            this.Unloaded += VideoCollectionButtons_Unloaded;
         }
 
-        void AlbumsCollectionButtons_Unloaded(object sender, RoutedEventArgs e)
+        void VideoCollectionButtons_Unloaded(object sender, RoutedEventArgs e)
         {
             Locator.VideoLibraryVM.OnNavigatedFrom();
         }
