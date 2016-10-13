@@ -218,7 +218,10 @@ namespace VLC
             SetLanguage();
             SetShellDecoration();
 
-            var _ = Task.Run( async() => await LoadLibraries(disableConsumingTasks));
+            if (disableConsumingTasks == false)
+            {
+                var _ = Task.Run(async () => await LoadLibraries());
+            }
             Locator.GamepadService.GamepadUpdated += (s, e) => Task.Run(() => ToggleMediaCenterMode());
 
             await ToggleMediaCenterMode();
@@ -275,18 +278,15 @@ namespace VLC
             {
                 if (Locator.MediaLibrary.AlreadyIndexedOnce)
                     return;
-                Task.Run(async () => await LoadLibraries(false));
+                Task.Run(async () => await LoadLibraries());
             }
         }
 
-        private async Task LoadLibraries(bool disableConsumingTask)
+        private async Task LoadLibraries()
         {
-            if (!disableConsumingTask)
-            {
-                Locator.MediaLibrary.DropTablesIfNeeded();
-                await Locator.MediaLibrary.CleanMediaLibrary().ConfigureAwait(false);
-                await Locator.MediaLibrary.Initialize().ConfigureAwait(false);
-            }
+            Locator.MediaLibrary.DropTablesIfNeeded();
+            await Locator.MediaLibrary.CleanMediaLibrary().ConfigureAwait(false);
+            await Locator.MediaLibrary.Initialize().ConfigureAwait(false);
         }
 
         public static void SetLanguage()
