@@ -259,37 +259,27 @@ namespace VLC.Model.Library
 
         async Task PerformMediaLibraryIndexing()
         {
-            await Task.Run(async () =>
-            {
-                try
-                {
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
 
-                    StorageFolder folder = await FileUtils.GetLocalStorageMediaFolder();
-                    await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder));
+            StorageFolder folder = await FileUtils.GetLocalStorageMediaFolder();
+            await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder));
 
-                    await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.VideosLibrary));
+            await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.VideosLibrary));
 
-                    await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.MusicLibrary));
+            await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.MusicLibrary));
 
-                    await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.CameraRoll), true);
+            await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.CameraRoll), true);
 
-                    // Cortana gets all those artists, albums, songs names
-                    var artists = LoadArtists(null);
-                    if (artists != null)
-                        await CortanaHelper.SetPhraseList("artistName", artists.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
+            // Cortana gets all those artists, albums, songs names
+            var artists = LoadArtists(null);
+            if (artists != null)
+                await CortanaHelper.SetPhraseList("artistName", artists.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
 
-                    var albums = LoadAlbums(null);
-                    if (albums != null)
-                        await CortanaHelper.SetPhraseList("albumName", albums.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
+            var albums = LoadAlbums(null);
+            if (albums != null)
+                await CortanaHelper.SetPhraseList("albumName", albums.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
 
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
-                }
-                catch (Exception e)
-                {
-                    LogHelper.Log(StringsHelper.ExceptionToString(e));
-                }
-            });
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
         }
 
         async Task DiscoverMediaItems(IReadOnlyList<StorageFile> files, bool isCameraRoll = false)
