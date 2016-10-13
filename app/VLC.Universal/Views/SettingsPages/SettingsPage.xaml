@@ -398,7 +398,6 @@
                         <Button Content="{Binding Source={StaticResource Strings}, Path=ResetMusicDatabase}"
                                 DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                                 Command="{Binding IndexMediaLibraryCommand}"
-                                CommandParameter="True"
                                 Margin="{StaticResource FrameMarginVertical}" />
                     </StackPanel>
                 </ScrollViewer>

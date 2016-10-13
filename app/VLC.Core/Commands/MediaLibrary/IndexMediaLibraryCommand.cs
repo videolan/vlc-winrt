@@ -8,10 +8,7 @@ namespace VLC.Commands.MediaLibrary
     {
         public async override void Execute(object parameter)
         {
-            if (parameter == null && parameter.ToString() == "True")
-            {
-                await Locator.MediaLibrary.Initialize();
-            }
+            await Locator.MediaLibrary.Initialize();
         }
     }
 }
