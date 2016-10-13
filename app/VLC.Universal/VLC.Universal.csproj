@@ -128,9 +128,6 @@
     <Compile Include="Views\MainPages\MainVideoControls\ShowsPivotItem.xaml.cs">
       <DependentUpon>ShowsPivotItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPages\MainVideoControls\VideoPanesControls\VideoPaneComboBox.xaml.cs">
-      <DependentUpon>VideoPaneComboBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainPages\MusicPanes\AlbumCollectionBase.xaml.cs">
       <DependentUpon>AlbumCollectionBase.xaml</DependentUpon>
     </Compile>
@@ -1245,10 +1242,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MainPages\MainVideoControls\VideoPanesControls\VideoPaneComboBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\MainPages\MusicPanes\AlbumCollectionBase.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1522,6 +1515,9 @@
   <ItemGroup>
     <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VLC.Universal.fr-FR.xlf" />
     <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VLC.Universal.ja-JP.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\MainPages\MainVideoControls\VideoPanesControls\" />
   </ItemGroup>
   <Import Project="..\VLC.Core\VLC_WinRT.Shared.projitems" Label="Shared" />
   <Import Project="..\VLC.MediaMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems" Label="Shared" />
