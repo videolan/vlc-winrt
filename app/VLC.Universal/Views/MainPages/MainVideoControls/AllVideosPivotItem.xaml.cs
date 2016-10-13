@@ -18,11 +18,11 @@ namespace VLC.UI.Views.MainPages.MainVideoControls
         {
             this.InitializeComponent();
             this.Loaded += OnLoaded;
+            this.Unloaded += AllVideosPivotItem_Unloaded;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
-            this.Unloaded += AllVideosPivotItem_Unloaded;
             Locator.VideoLibraryVM.OnNavigatedToAllVideos();
         }
 
