@@ -40,19 +40,22 @@ namespace VLC.Model.Library
             Locator.ExternalDeviceService.MustUnindexExternalDevice += ExternalDeviceService_MustUnindexExternalDevice;
         }
 
-        private async Task ExternalDeviceService_MustIndexExternalDevice()
+        private Task ExternalDeviceService_MustIndexExternalDevice()
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
-            var devices = KnownFolders.RemovableDevices;
-            IReadOnlyList<StorageFolder> rootFolders = await devices.GetFoldersAsync();
-
-            foreach (var folder in rootFolders)
+            return Task.Run(async () =>
             {
-                if (!StorageApplicationPermissions.FutureAccessList.CheckAccess(folder))
-                    StorageApplicationPermissions.FutureAccessList.Add(folder);
-                await Task.Run(async () => await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder)));
-            }
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
+                var devices = KnownFolders.RemovableDevices;
+                IReadOnlyList<StorageFolder> rootFolders = await devices.GetFoldersAsync();
+
+                foreach (var folder in rootFolders)
+                {
+                    if (!StorageApplicationPermissions.FutureAccessList.CheckAccess(folder))
+                        StorageApplicationPermissions.FutureAccessList.Add(folder);
+                    await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder));
+                }
+               await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
+            });
         }
 
         private async Task ExternalDeviceService_MustUnindexExternalDevice()
