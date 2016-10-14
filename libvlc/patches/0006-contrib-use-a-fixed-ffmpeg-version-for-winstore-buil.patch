@@ -1,14 +1,14 @@
-From 0943d180ced7b617acad755b0bb811bb487fc8c8 Mon Sep 17 00:00:00 2001
+From eb79a8bb8bfbc50a62f01c7ce0c56a746f5e80b7 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 09:42:20 +0200
-Subject: [PATCH 06/10] contrib: use a fixed ffmpeg version for winstore builds
+Subject: [PATCH 5/9] contrib: use a fixed ffmpeg version for winstore builds
 
 ---
  contrib/src/ffmpeg/rules.mak | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index e4178c6..a69c688 100644
+index a7f2fa2..806f33a 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
 @@ -2,10 +2,10 @@
@@ -20,7 +20,7 @@ index e4178c6..a69c688 100644
  
  ifdef USE_FFMPEG
 -FFMPEG_HASH=HEAD
-+FFMPEG_HASH=cb46b78b2ec0179666012e2d85014236c2f5385b
++FFMPEG_HASH=9b462a0b9df6260f59726c98d8aef8b07a1e442b
  FFMPEG_SNAPURL := http://git.videolan.org/?p=ffmpeg.git;a=snapshot;h=$(FFMPEG_HASH);sf=tgz
  FFMPEG_GITURL := git://git.videolan.org/ffmpeg.git
  else
