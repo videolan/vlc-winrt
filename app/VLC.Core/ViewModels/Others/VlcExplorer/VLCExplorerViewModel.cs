@@ -313,8 +313,11 @@ namespace VLC.ViewModels.RemovableDevicesVM
 
         async Task AddToFolder(FileExplorer fileEx)
         {
-            var key = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == fileEx.Type);
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => key.Add(fileEx));
+            var group = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == fileEx.Type);
+            var exists = group.Any((FileExplorer fe) => fileEx.Name == fe.Name && fileEx.RootMediaType == fe.RootMediaType);
+            if (exists)
+                return;
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => group.Add(fileEx));
         }
 
         async Task CleanAllFromType(RootFolderType type)
