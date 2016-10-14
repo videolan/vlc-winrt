@@ -122,25 +122,19 @@ namespace VLC.ViewModels.MusicVM
 
         private async void Playback_MediaSet(IMediaItem media)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 OnPropertyChanged(nameof(CurrentMediaTitle));
                 OnPropertyChanged(nameof(IsMiniPlayerVisible));
                 OnPropertyChanged(nameof(CurrentTrack));
-            });
 
-            if (!(media is TrackItem))
-            {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                if (!(media is TrackItem))
                 {
                     CurrentAlbum = null;
                     CurrentArtist = null;
-                });
-                return;
-            }
+                    return;
+                }
 
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
-            {
                 SetCurrentArtist();
                 SetCurrentAlbum();
                 await UpdatePlayingUI();
