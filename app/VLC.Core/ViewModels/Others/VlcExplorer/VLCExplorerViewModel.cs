@@ -287,18 +287,11 @@ namespace VLC.ViewModels.RemovableDevicesVM
 
         private async void VLCService_MediaListItemAdded(libVLCX.Media media, int index)
         {
-            try
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
-                {
-                    var localNetwork = new VLCFileExplorerViewModel(media, RootFolderType.Network);
-                    await AddToFolder(localNetwork);
-                });
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e);
-            }
+                var localNetwork = new VLCFileExplorerViewModel(media, RootFolderType.Network);
+                await AddToFolder(localNetwork);
+            });
         }
 
         private async void VLCService_MediaListItemDeleted(libVLCX.Media media, int index)
