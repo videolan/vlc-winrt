@@ -155,11 +155,6 @@ namespace VLC.Services.RunTime
             });
         }
 
-        public void SetNullMediaPlayer()
-        {
-            MediaPlayer = null;
-        }
-
         public async Task SetMediaFile(IMediaItem media)
         {
             Media vlcMedia = null;
@@ -237,14 +232,6 @@ namespace VLC.Services.RunTime
 
         #endregion
         #region file meta info
-        public async Task<string> GetToken(string filePath)
-        {
-            if (string.IsNullOrEmpty(filePath)) return null;
-            if (filePath[0] == '{' && filePath[filePath.Length - 1] == '}') return filePath;
-            var file = await StorageFile.GetFileFromPathAsync(filePath);
-            return StorageApplicationPermissions.FutureAccessList.Add(file);
-        }
-
         public async Task<Media> GetMediaFromPath(string filePath)
         {
             if (Instance == null)
