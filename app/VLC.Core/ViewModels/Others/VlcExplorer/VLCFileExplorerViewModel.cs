@@ -79,7 +79,7 @@ namespace VLC.ViewModels.Others.VlcExplorer
             if (item != null)
             {
                 BackStack.Add(item);
-                var _ = Task.Run(async () => await GetFiles());
+                await GetFiles();
             }
             else
             {
