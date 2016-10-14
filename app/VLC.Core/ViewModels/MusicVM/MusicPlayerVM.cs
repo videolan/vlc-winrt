@@ -137,7 +137,7 @@ namespace VLC.ViewModels.MusicVM
 
                 SetCurrentArtist();
                 SetCurrentAlbum();
-                await UpdatePlayingUI();
+                UpdatePlayingUI();
                 await Scrobble();
                 await UpdateWindows8UI();
                 if (CurrentArtist != null)
@@ -168,14 +168,11 @@ namespace VLC.ViewModels.MusicVM
             }
         }
 
-        public async Task UpdatePlayingUI()
+        private void UpdatePlayingUI()
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                Locator.MediaPlaybackViewModel.PlaybackService.IsRunning = true;
-                OnPropertyChanged(nameof(CurrentTrack));
-                TileHelper.UpdateMusicTile();
-            });
+            Locator.MediaPlaybackViewModel.PlaybackService.IsRunning = true;
+            OnPropertyChanged(nameof(CurrentTrack));
+            TileHelper.UpdateMusicTile();
         }
 
         public void SetCurrentArtist()
