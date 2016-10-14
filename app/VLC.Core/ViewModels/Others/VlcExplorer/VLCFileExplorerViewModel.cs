@@ -22,12 +22,6 @@ namespace VLC.ViewModels.Others.VlcExplorer
             : base(media.meta(MediaMeta.Title), ftype)
         {
             BackStack.Add(new VLCStorageFolder(media));
-            Task.Run(async () =>
-            {
-                var url = await Locator.VLCService.GetArtworkUrl(media, false);
-                base.ArtworkUrl = url;
-            });
-
             var mrl = media.mrl();
             var schemeEnd = mrl.IndexOf("://");
             if (schemeEnd > -1)

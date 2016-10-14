@@ -344,16 +344,15 @@ namespace VLC.Model.Library
                         AlbumItem album = musicDatabase.LoadAlbumFromName(artist.Id, albumName);
                         if (album == null)
                         {
-                            var albumUrl = await Locator.VLCService.GetArtworkUrl(media);
                             string albumSimplifiedUrl = null;
-                            if (!string.IsNullOrEmpty(albumUrl) && albumUrl.StartsWith("file://"))
+                            if (!string.IsNullOrEmpty(mP.AlbumArt) && mP.AlbumArt.StartsWith("file://"))
                             {
                                 // The Uri will be like
                                 // ms-appdata:///local/vlc/art/artistalbum/30 Seconds To Mars/B-sides & Rarities/art.jpg
-                                var indexStart = albumUrl.IndexOf("vlc/art/artistalbum/", StringComparison.Ordinal);
+                                var indexStart = mP.AlbumArt.IndexOf("vlc/art/artistalbum/", StringComparison.Ordinal);
                                 if (indexStart != -1)
                                 {
-                                    albumSimplifiedUrl = albumUrl.Substring(indexStart, albumUrl.Length - indexStart);
+                                    albumSimplifiedUrl = mP.AlbumArt.Substring(indexStart, mP.AlbumArt.Length - indexStart);
                                     Debug.WriteLine("VLC : found album cover with TagLib - " + albumName);
                                 }
                             }

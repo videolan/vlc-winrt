@@ -244,32 +244,6 @@ namespace VLC.Services.RunTime
             return new Media(Instance, filePath, FromType.FromPath);
         }
 
-        public async Task<string> GetArtworkUrl(Media media, bool shouldParse = true)
-        {
-            if (Instance == null)
-            {
-                await Initialize();
-            }
-            await PlayerInstanceReady.Task;
-            if (media == null)
-                return null;
-
-            if (shouldParse)
-            {
-                if (media.parsedStatus() != ParsedStatus.Done)
-                {
-                    var res = await media.parseWithOptionsAsync(ParseFlags.FetchLocal | ParseFlags.Local | ParseFlags.Network, 5000);
-                    if (res != ParsedStatus.Done)
-                        return null;
-                }
-            }
-
-            var url = media.meta(MediaMeta.ArtworkURL);
-            if (!string.IsNullOrEmpty(url))
-                return url;
-            return null;
-        }
-
         public async Task<MediaProperties> GetVideoProperties(MediaProperties mP, Media media)
         {
             if (Instance == null)
@@ -351,6 +325,7 @@ namespace VLC.Services.RunTime
             mP.Artist = media.meta(MediaMeta.Artist);
             mP.Album = media.meta(MediaMeta.Album);
             mP.Title = media.meta(MediaMeta.Title);
+            mP.AlbumArt = media.meta(MediaMeta.ArtworkURL);
             var yearString = media.meta(MediaMeta.Date);
             var year = 0;
             if (int.TryParse(yearString, out year))
