@@ -128,13 +128,6 @@ namespace VLC.ViewModels.MusicVM
                 OnPropertyChanged(nameof(IsMiniPlayerVisible));
                 OnPropertyChanged(nameof(CurrentTrack));
 
-                if (!(media is TrackItem))
-                {
-                    CurrentAlbum = null;
-                    CurrentArtist = null;
-                    return;
-                }
-
                 SetCurrentArtist();
                 SetCurrentAlbum();
                 UpdatePlayingUI();
