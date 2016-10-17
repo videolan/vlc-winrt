@@ -69,22 +69,22 @@ namespace VLC.UI.Views.UserControls
             }
             else if (e.PropertyName == nameof(Video.Duration) || e.PropertyName == nameof(Video.TimeWatched))
             {
-                UpdateVideoDurations();
+                await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                {
+                    UpdateVideoDurations();
+                });
             }
         }
 
-        async void UpdateVideoDurations()
+        void UpdateVideoDurations()
         {
-            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
-                TimeWatchedTextBlock.Text = Strings.HumanizedTimeSpan(Video.TimeWatched);
-                DurationTextBlock.Text = Strings.HumanizedTimeSpan(Video.Duration);
+            TimeWatchedTextBlock.Text = Strings.HumanizedTimeSpan(Video.TimeWatched);
+            DurationTextBlock.Text = Strings.HumanizedTimeSpan(Video.Duration);
 
-                VideoProgressBar.Value = Video.TimeWatched.TotalSeconds;
-                VideoProgressBar.Maximum = Video.Duration.TotalSeconds;
+            VideoProgressBar.Value = Video.TimeWatched.TotalSeconds;
+            VideoProgressBar.Maximum = Video.Duration.TotalSeconds;
 
-                VideoProgressBar.Visibility = Video.TimeWatched.TotalSeconds > 0 ? Visibility.Visible : Visibility.Collapsed;
-            });
+            VideoProgressBar.Visibility = Video.TimeWatched.TotalSeconds > 0 ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void FadeOutCover_Completed(object sender, object e)
