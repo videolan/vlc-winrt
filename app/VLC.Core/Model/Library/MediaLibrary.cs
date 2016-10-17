@@ -814,55 +814,44 @@ namespace VLC.Model.Library
                     ContinueIndexing = null;
                 }
 
-                var thumbnailTask = new TaskCompletionSource<bool>();
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
+                WriteableBitmap image = null;
+                StorageItemThumbnail thumb = null;
+                // If file is a mkv, we save the thumbnail in a VideoPic folder so we don't consume CPU and resources each launch
+                if (VLCFileExtensions.MFSupported.Contains(videoItem.Type.ToLower()))
                 {
-                    WriteableBitmap image = null;
-                    StorageItemThumbnail thumb = null;
-                    // If file is a mkv, we save the thumbnail in a VideoPic folder so we don't consume CPU and resources each launch
-                    if (VLCFileExtensions.MFSupported.Contains(videoItem.Type.ToLower()))
+                    if (await videoItem.LoadFileFromPath())
+                        thumb = await ThumbsService.GetThumbnail(videoItem.File);
+                }
+                // If MF thumbnail generation failed or wasn't supported:
+                if (thumb == null)
+                {
+                    if (await videoItem.LoadFileFromPath() || !string.IsNullOrEmpty(videoItem.Token))
                     {
-                        if (await videoItem.LoadFileFromPath())
-                            thumb = await ThumbsService.GetThumbnail(videoItem.File);
+                        var res = await ThumbsService.GetScreenshot(videoItem.GetMrlAndFromType(true).Item2);
+                        image = res?.Bitmap();
                     }
-                    // If MF thumbnail generation failed or wasn't supported:
-                    if (thumb == null)
-                    {
-                        if (await videoItem.LoadFileFromPath() || !string.IsNullOrEmpty(videoItem.Token))
-                        {
-                            var res = await ThumbsService.GetScreenshot(videoItem.GetMrlAndFromType(true).Item2);
-                            image = res?.Bitmap();
-                        }
-                    }
+                }
 
-                    if (thumb != null || image != null)
+                if (thumb == null && image == null)
+                    return false;
+                // RunAsync won't await on the lambda it receives, so we need to do it ourselves
+                var tcs = new TaskCompletionSource<bool>();
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, async () =>
+                {
+                    if (thumb != null)
                     {
-                        // RunAsync won't await on the lambda it receives, so we need to do it ourselves
-                        var tcs = new TaskCompletionSource<bool>();
-                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, async () =>
-                        {
-                            if (thumb != null)
-                            {
-                                image = new WriteableBitmap((int)thumb.OriginalWidth, (int)thumb.OriginalHeight);
-                                await image.SetSourceAsync(thumb);
-                            }
-                            await DownloadAndSaveHelper.WriteableBitmapToStorageFile(image, videoItem.Id.ToString());
-                            videoItem.IsPictureLoaded = true;
-                            tcs.SetResult(true);
-                        });
-                        await tcs.Task;
-
-                        videoItem.IsPictureLoaded = true;
-                        videoDatabase.Update(videoItem);
-                        await videoItem.ResetVideoPicture();
-                        thumbnailTask.TrySetResult(true);
+                        image = new WriteableBitmap((int)thumb.OriginalWidth, (int)thumb.OriginalHeight);
+                        await image.SetSourceAsync(thumb);
                     }
-                    else
-                    {
-                        thumbnailTask.TrySetResult(false);
-                    }
+                    await DownloadAndSaveHelper.WriteableBitmapToStorageFile(image, videoItem.Id.ToString());
+                    tcs.SetResult(true);
                 });
-                return await thumbnailTask.Task;
+                await tcs.Task;
+
+                videoItem.IsPictureLoaded = true;
+                videoDatabase.Update(videoItem);
+                await videoItem.ResetVideoPicture();
+                return true;
             }
             catch (Exception ex)
             {
