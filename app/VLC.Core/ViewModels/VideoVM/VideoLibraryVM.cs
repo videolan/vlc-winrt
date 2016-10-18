@@ -158,11 +158,6 @@ namespace VLC.ViewModels.VideoVM
             return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => LoadingStateAllVideos = LoadingState.NotLoaded);
         }
 
-        public Task OnNavigatedFromShows()
-        {
-            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => LoadingStateShows = LoadingState.NotLoaded);
-        }
-
         public Task OnNavigatedFromCamera()
         {
             return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => LoadingStateCamera = LoadingState.NotLoaded);
