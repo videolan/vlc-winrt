@@ -7,27 +7,18 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Windows.UI.Core;
-using SQLite;
-using VLC.Commands;
-using VLC.Database;
+using VLC.Commands.MediaLibrary;
+using VLC.Commands.Navigation;
+using VLC.Commands.VideoLibrary;
+using VLC.Commands.VideoPlayer;
 using VLC.Helpers;
-using VLC.Helpers.VideoLibrary;
 using VLC.Model;
 using VLC.Model.Video;
 using VLC.Utils;
-using VLC.Commands.VideoPlayer;
-using VLC.Commands.VideoLibrary;
-using System.Collections.Generic;
-using Autofac;
-using System.Linq;
-using VLC.Model.Library;
-using Windows.UI.Xaml;
-using VLC.Commands.MediaLibrary;
-using VLC.Commands.Navigation;
+using Windows.UI.Core;
 
 namespace VLC.ViewModels.VideoVM
 {
