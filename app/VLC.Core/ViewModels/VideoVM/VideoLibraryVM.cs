@@ -41,7 +41,6 @@ namespace VLC.ViewModels.VideoVM
         private LoadingState _loadingStateAllVideos;
         private LoadingState _loadingStateCamera;
         private LoadingState _loadingStateShows;
-        private bool _hasNoMedia = true;
         private TvShow _currentShow;
         private List<VideoView> _videoViewCollection;
         #endregion
@@ -113,13 +112,6 @@ namespace VLC.ViewModels.VideoVM
         public LoadingState LoadingStateAllVideos { get { return _loadingStateAllVideos; } private set { SetProperty(ref _loadingStateAllVideos, value); } }
         public LoadingState LoadingStateShows { get { return _loadingStateShows; } private set { SetProperty(ref _loadingStateShows, value); } }
         public LoadingState LoadingStateCamera { get { return _loadingStateCamera; } private set { SetProperty(ref _loadingStateCamera, value); } }
-
-        public bool HasNoMedia
-        {
-            get { return _hasNoMedia; }
-            set { SetProperty(ref _hasNoMedia, value); }
-        }
-
 
         public static TVShowClickedCommand TVShowClickedCommand { get; private set; } = new TVShowClickedCommand();
         public PlayVideoCommand OpenVideo { get; private set; } = new PlayVideoCommand();
