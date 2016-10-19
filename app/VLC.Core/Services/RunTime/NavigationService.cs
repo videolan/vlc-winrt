@@ -277,14 +277,14 @@ namespace VLC.Services.RunTime
             }
         }
 
-        public void Go(VLCPage desiredPage)
+        public void Go(VLCPage desiredPage, object param = null)
         {
             if (!IsFlyout(desiredPage) && desiredPage == CurrentPage) return;
 
             switch (desiredPage)
             {
                 case VLCPage.MainPageXBOX:
-                    setFlyoutContent(desiredPage, typeof(MainPageXBOX));
+                    setFlyoutContent(desiredPage, typeof(MainPageXBOX), param);
                     break;
                 case VLCPage.MainPageVideo:
                 case VLCPage.MainPageMusic:
@@ -295,22 +295,22 @@ namespace VLC.Services.RunTime
                     HomePageNavigated?.Invoke(null, desiredPage);
                     break;
                 case VLCPage.AlbumPage:
-                    setFlyoutContent(desiredPage, typeof(AlbumPageBase));
+                    setFlyoutContent(desiredPage, typeof(AlbumPageBase), param);
                     break;
                 case VLCPage.SearchPage:
-                    setFlyoutContent(desiredPage, typeof(SearchPage));
+                    setFlyoutContent(desiredPage, typeof(SearchPage), param);
                     break;
                 case VLCPage.SettingsPage:
                 case VLCPage.SettingsPageUI:
                 case VLCPage.SettingsPageMusic:
                 case VLCPage.SettingsPageVideo:
-                    setFlyoutContent(desiredPage, typeof(SettingsPage));
+                    setFlyoutContent(desiredPage, typeof(SettingsPage), param);
                     break;
                 case VLCPage.PlaylistPage:
-                    setFlyoutContent(desiredPage, typeof(PlaylistPage));
+                    setFlyoutContent(desiredPage, typeof(PlaylistPage), param);
                     break;
                 case VLCPage.CurrentPlaylistPage:
-                    setFlyoutContent(desiredPage, typeof(MusicPlaylistPage));
+                    setFlyoutContent(desiredPage, typeof(MusicPlaylistPage), param);
                     break;
                 case VLCPage.VideoPlayerPage:
                     App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
@@ -319,37 +319,37 @@ namespace VLC.Services.RunTime
                     App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
                     break;
                 case VLCPage.AddAlbumToPlaylistDialog:
-                    setFlyoutContent(desiredPage, typeof(AddAlbumToPlaylistBase));
+                    setFlyoutContent(desiredPage, typeof(AddAlbumToPlaylistBase), param);
                     break;
                 case VLCPage.CreateNewPlaylistDialog:
-                    setFlyoutContent(desiredPage, typeof(CreateNewPlaylist));
+                    setFlyoutContent(desiredPage, typeof(CreateNewPlaylist), param);
                     break;
                 case VLCPage.MiniPlayerView:
                     App.ApplicationFrame.Navigate(typeof(MiniPlayerWindow));
                     break;
                 case VLCPage.VideoPlayerOptionsPanel:
-                    setFlyoutContent(desiredPage, typeof(VideoPlayerOptionsPanel));
+                    setFlyoutContent(desiredPage, typeof(VideoPlayerOptionsPanel), param);
                     break;
                 case VLCPage.SubtitlesSettings:
-                    setFlyoutContent(desiredPage, typeof(SubtitlesSettings));
+                    setFlyoutContent(desiredPage, typeof(SubtitlesSettings), param);
                     break;
                 case VLCPage.AudioTracksSettings:
-                    setFlyoutContent(desiredPage, typeof(AudioTracksSettings));
+                    setFlyoutContent(desiredPage, typeof(AudioTracksSettings), param);
                     break;
                 case VLCPage.ChaptersSettings:
-                    setFlyoutContent(desiredPage, typeof(ChaptersSettings));
+                    setFlyoutContent(desiredPage, typeof(ChaptersSettings), param);
                     break;
                 case VLCPage.TrackEditorPage:
-                    setFlyoutContent(desiredPage, typeof(TrackEditorPage));
+                    setFlyoutContent(desiredPage, typeof(TrackEditorPage), param);
                     break;
                 case VLCPage.TvShowView:
-                    setFlyoutContent(desiredPage, typeof(ShowEpisodesView));
+                    setFlyoutContent(desiredPage, typeof(ShowEpisodesView), param);
                     break;
                 case VLCPage.AboutAppView:
-                    setFlyoutContent(desiredPage, typeof(AboutPage));
+                    setFlyoutContent(desiredPage, typeof(AboutPage), param);
                     break;
                 case VLCPage.ExternalStorageInclude:
-                    setFlyoutContent(desiredPage, typeof(ExternalStorageIncludePage));
+                    setFlyoutContent(desiredPage, typeof(ExternalStorageIncludePage), param);
                     break;
                 default:
                     break;
@@ -360,14 +360,14 @@ namespace VLC.Services.RunTime
                 GoBack_HideFlyout();
         }
 
-        private void setFlyoutContent(VLCPage desiredPage, Type t)
+        private void setFlyoutContent(VLCPage desiredPage, Type t, object param)
         {
             // Do not switch the current flyout if it is modal.
             if (App.SplitShell.IsCurrentFlyoutModal())
                 return;
 
             currentFlyout = desiredPage;
-            App.SplitShell.FlyoutContent = t;
+            App.SplitShell.SetFlyoutContentPresenter(t, param);
         }
 
         public bool IsFlyout(VLCPage page)

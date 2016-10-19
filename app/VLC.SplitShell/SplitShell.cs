@@ -66,11 +66,13 @@ namespace VLC.Controls
             _contentPresenter.Content = contentPresenter;
         }
         
-        public async Task SetFlyoutContentPresenter(object content)
+        public void SetFlyoutContentPresenter(object content, object param)
         {
-            await TemplateApplied.Task;
-            _flyoutContentPresenter.Navigate((Type)content);
+            //FIXME: Remove all those, but that's a looooong refactoring.
+            //await TemplateApplied.Task;
+            _flyoutContentPresenter.Navigate((Type)content, param);
             ShowFlyout();
+            Responsive();
         }
 
         public async void SetFooterContentPresenter(object content)
@@ -107,23 +109,6 @@ namespace VLC.Controls
         #endregion
 
         #region RFlyoutContent Property
-
-        public Type FlyoutContent
-        {
-            get { return (Type)GetValue(FlyoutContentProperty); }
-            set { SetValue(FlyoutContentProperty, value); }
-        }
-
-        public static readonly DependencyProperty FlyoutContentProperty = DependencyProperty.Register(
-            nameof(FlyoutContent), typeof(Type), typeof(SplitShell),
-            new PropertyMetadata(default(Type), FlyoutContentPropertyChangedCallback));
-
-        private static async void FlyoutContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var that = (SplitShell)dependencyObject;
-            await that.SetFlyoutContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
-            that.Responsive();
-        }
 
         public bool FlyoutAsHeader
         {
