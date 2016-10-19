@@ -244,7 +244,7 @@ namespace VLC.Model.Library
 
             videoDatabase.DeleteAll();
 
-            Videos?.Clear();
+            Videos.Clear();
             CameraRoll?.Clear();
             Shows?.Clear();
         }
@@ -741,7 +741,7 @@ namespace VLC.Model.Library
         {
             try
             {
-                Videos?.Clear();
+                Videos.Clear();
                 LogHelper.Log("Loading videos from VideoDB ...");
                 var videos = LoadVideos(x => x.IsCameraRoll == false && x.IsTvShow == false);
                 LogHelper.Log($"Found {videos.Count} artists from VideoDB");
@@ -1003,7 +1003,7 @@ namespace VLC.Model.Library
 
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
                 {
-                    Videos?.Remove(Videos?.FirstOrDefault(x => x.Path == videoItem.Path));
+                    Videos.Remove(Videos.FirstOrDefault(x => x.Path == videoItem.Path));
                 });
             }
         }
