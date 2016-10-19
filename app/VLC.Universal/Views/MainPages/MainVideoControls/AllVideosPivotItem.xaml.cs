@@ -17,18 +17,6 @@ namespace VLC.UI.Views.MainPages.MainVideoControls
         public AllVideosPivotItem()
         {
             this.InitializeComponent();
-            this.Loaded += OnLoaded;
-            this.Unloaded += AllVideosPivotItem_Unloaded;
-        }
-
-        private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
-        {
-            Locator.VideoLibraryVM.OnNavigatedToAllVideos();
-        }
-
-        private async void AllVideosPivotItem_Unloaded(object sender, RoutedEventArgs e)
-        {
-            await Locator.VideoLibraryVM.OnNavigatedFromAllVideos();
         }
 
         private void VideosWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)

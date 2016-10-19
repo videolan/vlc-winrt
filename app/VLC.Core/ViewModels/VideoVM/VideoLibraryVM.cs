@@ -118,41 +118,15 @@ namespace VLC.ViewModels.VideoVM
         #endregion
 
         #region methods
-        public void ResetLibrary()
+        
+        public void OnNavigatedTo()
         {
             CurrentShow = null;
         }
 
-        public void OnNavigatedTo()
-        {
-            ResetLibrary();
-        }
-
-        public void OnNavigatedToAllVideos()
-        {
-        }
-
-        public void OnNavigatedToShows()
-        {
-        }
-
-        public void OnNavigatedToCameraRollVideos()
-        {
-        }
-
-        public Task OnNavigatedFromAllVideos()
-        {
-            return Task.FromResult(0);
-        }
-
-        public Task OnNavigatedFromCamera()
-        {
-            return Task.FromResult(0);
-        }
-
         public void OnNavigatedFrom()
         {
-            ResetLibrary();
+            CurrentShow = null;
         }
 
         private async void Videos_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
