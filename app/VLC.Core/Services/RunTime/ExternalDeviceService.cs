@@ -68,7 +68,7 @@ namespace VLC.Services.RunTime
             switch (Locator.SettingsVM.ExternalDeviceMode)
             {
                 case ExternalDeviceMode.AskMe:
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.High,
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal,
                         () => Locator.NavigationService.Go(VLCPage.ExternalStorageInclude));
                     break;
                 case ExternalDeviceMode.IndexMedias:
