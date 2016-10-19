@@ -9,6 +9,7 @@
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using VLC.Commands.MediaLibrary;
 using VLC.Commands.Navigation;
@@ -34,6 +35,7 @@ namespace VLC.ViewModels.VideoVM
         private LoadingState _loadingStateShows;
         private TvShow _currentShow;
         private List<VideoView> _videoViewCollection;
+        private ObservableCollection<VideoItem> _videos = new ObservableCollection<VideoItem>();
         #endregion
 
         #region public fields
@@ -57,7 +59,7 @@ namespace VLC.ViewModels.VideoVM
 
         public ObservableCollection<VideoItem> Videos
         {
-            get { return Locator.MediaLibrary.Videos?.ToObservable(); }
+            get { return _videos; }
         }
 
         public ObservableCollection<TvShow> Shows
@@ -168,32 +170,30 @@ namespace VLC.ViewModels.VideoVM
             ResetLibrary();
         }
 
-        Task InitializeVideos()
-        {
-            return Task.Run(async () =>
-            {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    LoadingStateAllVideos = LoadingState.Loading;
-                });
-
-                if (Locator.MediaLibrary.Videos != null)
-                    Locator.MediaLibrary.Videos.CollectionChanged += Videos_CollectionChanged;
-                Locator.MediaLibrary.LoadVideosFromDatabase();
-
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    OnPropertyChanged(nameof(Videos));
-                    LoadingStateAllVideos = LoadingState.Loaded;
-                });
-            });
-        }
-
         private async void Videos_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Move ||
+                    e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Replace)
+            {
+                LogHelper.Log("Unexpected Video collection change: " + e.Action);
+                return;
+            }
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                OnPropertyChanged(nameof(Videos));
+                switch (e.Action)
+                {
+                    case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+                        foreach (VideoItem v in e.NewItems)
+                            Videos.Add(v);
+                        break;
+                    case System.Collections.Specialized.NotifyCollectionChangedAction.Reset:
+                        Videos.Clear();
+                        break;
+                    case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                        foreach (VideoItem v in e.OldItems)
+                            Videos.Remove(v);
+                        break;
+                }
             });
         }
 

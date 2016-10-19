@@ -90,7 +90,7 @@ namespace VLC.Model.Library
         public SmartCollection<TrackItem> Tracks { get; private set; } = new SmartCollection<TrackItem>();
         public SmartCollection<PlaylistItem> TrackCollections { get; private set; } = new SmartCollection<PlaylistItem>();
 
-        public SmartCollection<VideoItem> Videos { get; private set; } = new SmartCollection<VideoItem>();
+        public ObservableCollection<VideoItem> Videos { get; } = new ObservableCollection<VideoItem>();
         public SmartCollection<VideoItem> CameraRoll { get; private set; } = new SmartCollection<VideoItem>();
         public SmartCollection<TvShow> Shows { get; private set; } = new SmartCollection<TvShow>();
 
@@ -1001,10 +1001,7 @@ namespace VLC.Model.Library
                     return;
                 videoDatabase.Remove(videoDb);
 
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                {
-                    Videos.Remove(Videos.FirstOrDefault(x => x.Path == videoItem.Path));
-                });
+                Videos.Remove(Videos.FirstOrDefault(x => x.Path == videoItem.Path));
             }
         }
 
