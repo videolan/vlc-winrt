@@ -55,14 +55,6 @@ namespace VLC.Services.RunTime
         public MustIndexExternalDeviceEvent MustIndexExternalDevice;
         public MustUnindexExternalDeviceEvent MustUnindexExternalDevice;
 
-        public async Task<IEnumerable<string>> GetExternalDeviceIds()
-        {
-            DeviceInformationCollection devices =
-                await DeviceInformation.FindAllAsync(DeviceClass.PortableStorageDevice);
-
-            return devices.Select(d => d.Id);
-        }
-
         private async void DeviceAdded(DeviceWatcher sender, DeviceInformation args)
         {
             switch (Locator.SettingsVM.ExternalDeviceMode)
