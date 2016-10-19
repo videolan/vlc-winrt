@@ -36,6 +36,8 @@ namespace VLC.ViewModels.VideoVM
         private TvShow _currentShow;
         private List<VideoView> _videoViewCollection;
         private ObservableCollection<VideoItem> _videos = new ObservableCollection<VideoItem>();
+        private ObservableCollection<TvShow> _shows = new ObservableCollection<TvShow>();
+        private ObservableCollection<VideoItem> _cameraRoll = new ObservableCollection<VideoItem>();
         #endregion
 
         #region public fields
@@ -64,12 +66,12 @@ namespace VLC.ViewModels.VideoVM
 
         public ObservableCollection<TvShow> Shows
         {
-            get { return Locator.MediaLibrary.Shows?.ToObservable(); }
+            get { return _shows; }
         }
 
         public ObservableCollection<VideoItem> CameraRoll
         {
-            get { return Locator.MediaLibrary.CameraRoll?.ToObservable(); }
+            get { return _cameraRoll; }
         }
         #endregion
 
@@ -169,6 +171,11 @@ namespace VLC.ViewModels.VideoVM
 
         private async void Videos_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            await onAnyVideosCollectionChanged<VideoItem>(_videos, e);
+        }
+
+        private async Task onAnyVideosCollectionChanged<T>(ObservableCollection<T> collection, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Move ||
                     e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Replace)
             {
@@ -180,15 +187,15 @@ namespace VLC.ViewModels.VideoVM
                 switch (e.Action)
                 {
                     case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-                        foreach (VideoItem v in e.NewItems)
-                            Videos.Add(v);
+                        foreach (T v in e.NewItems)
+                            collection.Add(v);
                         break;
                     case System.Collections.Specialized.NotifyCollectionChangedAction.Reset:
-                        Videos.Clear();
+                        collection.Clear();
                         break;
                     case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-                        foreach (VideoItem v in e.OldItems)
-                            Videos.Remove(v);
+                        foreach (T v in e.OldItems)
+                            collection.Remove(v);
                         break;
                 }
             });
