@@ -220,6 +220,10 @@ namespace VLC.Model.Library
             // Doing full indexing from scratch if 0 tracks are found
             if (IsMusicDatabaseEmpty() && IsVideoDatabaseEmpty())
                 ClearDatabase();
+            else // Restore the database
+            {
+                LoadVideosFromDatabase();
+            }
             await PerformMediaLibraryIndexing();
         }
 
@@ -737,17 +741,15 @@ namespace VLC.Model.Library
             return videoDatabase.IsEmpty();
         }
 
-        public void LoadVideosFromDatabase()
+        private void LoadVideosFromDatabase()
         {
-            try
-            {
-                Videos.Clear();
-                LogHelper.Log("Loading videos from VideoDB ...");
-                var videos = LoadVideos(x => x.IsCameraRoll == false && x.IsTvShow == false);
-                LogHelper.Log($"Found {videos.Count} artists from VideoDB");
-                Videos.AddRange(videos.OrderBy(x => x.Name).ToObservable());
-            }
-            catch { }
+            Videos.Clear();
+            LogHelper.Log("Loading videos from VideoDB ...");
+            var videos = LoadVideos(x => x.IsCameraRoll == false && x.IsTvShow == false);
+            LogHelper.Log($"Found {videos.Count} artists from VideoDB");
+            var newVideos = videos.OrderBy(x => x.Name);
+            foreach (var v in newVideos)
+                Videos.Add(v);
         }
 
         public async Task LoadShowsFromDatabase()

@@ -116,6 +116,7 @@ namespace VLC.ViewModels.VideoVM
         #region contructors
         public VideoLibraryVM()
         {
+            Locator.MediaLibrary.Videos.CollectionChanged += Videos_CollectionChanged;
         }
         #endregion
 
@@ -133,10 +134,6 @@ namespace VLC.ViewModels.VideoVM
 
         public void OnNavigatedToAllVideos()
         {
-            if (LoadingStateAllVideos == LoadingState.NotLoaded)
-            {
-                InitializeVideos();
-            }
         }
 
         public void OnNavigatedToShows()
