@@ -30,9 +30,6 @@ namespace VLC.ViewModels.VideoVM
 
         #region private props
         private VideoView _videoView;
-        private LoadingState _loadingStateAllVideos;
-        private LoadingState _loadingStateCamera;
-        private LoadingState _loadingStateShows;
         private TvShow _currentShow;
         private List<VideoView> _videoViewCollection;
         private ObservableCollection<VideoItem> _videos = new ObservableCollection<VideoItem>();
@@ -104,10 +101,6 @@ namespace VLC.ViewModels.VideoVM
             set { SetProperty(ref _currentShow, value); }
         }
 
-        public LoadingState LoadingStateAllVideos { get { return _loadingStateAllVideos; } private set { SetProperty(ref _loadingStateAllVideos, value); } }
-        public LoadingState LoadingStateShows { get { return _loadingStateShows; } private set { SetProperty(ref _loadingStateShows, value); } }
-        public LoadingState LoadingStateCamera { get { return _loadingStateCamera; } private set { SetProperty(ref _loadingStateCamera, value); } }
-
         public static TVShowClickedCommand TVShowClickedCommand { get; private set; } = new TVShowClickedCommand();
         public PlayVideoCommand OpenVideo { get; private set; } = new PlayVideoCommand();
 
@@ -127,7 +120,6 @@ namespace VLC.ViewModels.VideoVM
         #region methods
         public void ResetLibrary()
         {
-            LoadingStateAllVideos = LoadingStateCamera = LoadingStateShows = LoadingState.NotLoaded;
             CurrentShow = null;
         }
 
@@ -150,12 +142,12 @@ namespace VLC.ViewModels.VideoVM
 
         public Task OnNavigatedFromAllVideos()
         {
-            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => LoadingStateAllVideos = LoadingState.NotLoaded);
+            return Task.FromResult(0);
         }
 
         public Task OnNavigatedFromCamera()
         {
-            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => LoadingStateCamera = LoadingState.NotLoaded);
+            return Task.FromResult(0);
         }
 
         public void OnNavigatedFrom()
