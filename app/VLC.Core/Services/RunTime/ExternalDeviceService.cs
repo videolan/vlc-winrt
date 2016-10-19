@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VLC.Commands.ExternalDevice;
 using VLC.Model;
 using VLC.Model.FileExplorer;
 using VLC.Utils;
@@ -61,7 +62,7 @@ namespace VLC.Services.RunTime
             {
                 case ExternalDeviceMode.AskMe:
                     await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal,
-                        () => Locator.NavigationService.Go(VLCPage.ExternalStorageInclude));
+                        () => new ShowExternalDevicePage().Execute(null));
                     break;
                 case ExternalDeviceMode.IndexMedias:
                     await AskExternalDeviceIndexing();
