@@ -48,7 +48,7 @@ namespace VLC.Services.RunTime
 
         public delegate Task ExternalDeviceAddedEvent(DeviceWatcher sender, string Id);
         public delegate Task ExternalDeviceRemovedEvent(DeviceWatcher sender, string Id);
-        public delegate Task MustIndexExternalDeviceEvent();
+        public delegate Task MustIndexExternalDeviceEvent(string Id);
         public delegate Task MustUnindexExternalDeviceEvent();
 
         public ExternalDeviceAddedEvent ExternalDeviceAdded;
@@ -62,15 +62,15 @@ namespace VLC.Services.RunTime
             {
                 case ExternalDeviceMode.AskMe:
                     await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal,
-                        () => new ShowExternalDevicePage().Execute(null));
+                        () => new ShowExternalDevicePage().Execute(args));
                     break;
                 case ExternalDeviceMode.IndexMedias:
-                    await AskExternalDeviceIndexing();
+                    await AskExternalDeviceIndexing(args.Id);
                     break;
                 case ExternalDeviceMode.SelectMedias:
                     await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                     {
-                        await AskContentToCopy();
+                        await AskContentToCopy(args.Id);
                     });
                     break;
                 case ExternalDeviceMode.DoNothing:
@@ -83,21 +83,18 @@ namespace VLC.Services.RunTime
                 await ExternalDeviceAdded(sender, args.Id);
         }
 
-        public async Task AskExternalDeviceIndexing()
+        public async Task AskExternalDeviceIndexing(string deviceId)
         {
             if (MustIndexExternalDevice != null)
-                await MustIndexExternalDevice();
+                await MustIndexExternalDevice(deviceId);
         }
 
-        public async Task AskContentToCopy()
+        public async Task AskContentToCopy(string deviceId)
         {
             // Display the folder of the first external storage device detected.
             Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == VLCPage.MainPageFileExplorer);
 
-            var devices = KnownFolders.RemovableDevices;
-            IReadOnlyList<StorageFolder> rootFolders = await devices.GetFoldersAsync();
-
-            var rootFolder = rootFolders.First();
+            var rootFolder = Windows.Devices.Portable.StorageDevice.FromId(deviceId);
             if (rootFolder == null)
                 return;
 

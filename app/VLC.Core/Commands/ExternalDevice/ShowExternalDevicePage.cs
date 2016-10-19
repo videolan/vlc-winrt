@@ -7,7 +7,7 @@ namespace VLC.Commands.ExternalDevice
     {
         public override void Execute(object param)
         {
-            Locator.NavigationService.Go(Model.VLCPage.ExternalStorageInclude);
+            Locator.NavigationService.Go(Model.VLCPage.ExternalStorageInclude, param);
         }
     }
 }

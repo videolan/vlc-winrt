@@ -32,20 +32,16 @@ namespace VLC.Model.Library
             Locator.ExternalDeviceService.MustUnindexExternalDevice += ExternalDeviceService_MustUnindexExternalDevice;
         }
 
-        private Task ExternalDeviceService_MustIndexExternalDevice()
+        private Task ExternalDeviceService_MustIndexExternalDevice(string deviceId)
         {
             return Task.Run(async () =>
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading).ConfigureAwait(false);
-                var devices = KnownFolders.RemovableDevices;
-                IReadOnlyList<StorageFolder> rootFolders = await devices.GetFoldersAsync().AsTask().ConfigureAwait(false);
+                var folder = Windows.Devices.Portable.StorageDevice.FromId(deviceId);
 
-                foreach (var folder in rootFolders)
-                {
-                    if (!StorageApplicationPermissions.FutureAccessList.CheckAccess(folder))
-                        StorageApplicationPermissions.FutureAccessList.Add(folder);
-                    await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder)).ConfigureAwait(false);
-                }
+                if (!StorageApplicationPermissions.FutureAccessList.CheckAccess(folder))
+                    StorageApplicationPermissions.FutureAccessList.Add(folder);
+                await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder)).ConfigureAwait(false);
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded).ConfigureAwait(false);
             });
         }

@@ -7,16 +7,27 @@ using VLC.Model.FileExplorer;
 using VLC.UI.Views;
 using VLC.ViewModels;
 using VLC.ViewModels.Others.VlcExplorer;
+using Windows.Devices.Enumeration;
 using Windows.Storage;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace VLC.UI.UWP.Views.VariousPages
 {
-    public sealed partial class ExternalStorageIncludePage : IVLCModalFlyout
+    public sealed partial class ExternalStorageIncludePage : Page, IVLCModalFlyout
     {
+        private string _deviceID;
         public ExternalStorageIncludePage()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var device = e.Parameter as DeviceInformation;
+            _deviceID = device.Id;
+            DeviceNamePlaceHolder.Text = device.Name;
         }
 
         private async void Ok_Click(object sender, RoutedEventArgs e)
@@ -40,9 +51,9 @@ namespace VLC.UI.UWP.Views.VariousPages
         private async Task performAction()
         {
             if (Index.IsChecked == true)
-                await Locator.ExternalDeviceService.AskExternalDeviceIndexing();
+                await Locator.ExternalDeviceService.AskExternalDeviceIndexing(_deviceID);
             else if (Select.IsChecked == true)
-                await Locator.ExternalDeviceService.AskContentToCopy();
+                await Locator.ExternalDeviceService.AskContentToCopy(_deviceID);
         }
 
         public bool ModalMode

@@ -8,10 +8,18 @@
       mc:Ignorable="d">
     <StackPanel Background="{ThemeResource ApplicationOverlayTranslucentThemeColor}"
                 Padding="15">
-        <toolkitControls:HeaderedTextBlock
-            Header="{Binding Source={StaticResource Strings}, Path=ExternalStorageDeviceDetected}"
-            Text="{Binding Source={StaticResource Strings}, Path=WhatToDo}"
-            IsTabStop="False" />
+        <TextBlock Padding="10">
+            <Run Text="{Binding Source={StaticResource Strings}, Path=ExternalStorageDeviceDetected}"
+                 Foreground="{StaticResource MainColor}"
+                 FontSize="19"/>
+            <LineBreak />
+            <Run Text="{StaticResource USBFilledSymbol}"
+                 FontFamily="{StaticResource VLCFont}"
+                 Foreground="{StaticResource MainColor}" />
+            <Run x:Name="DeviceNamePlaceHolder" FontWeight="SemiBold" />
+            <LineBreak />
+            <Run Text="{Binding Source={StaticResource Strings}, Path=WhatToDo}" />
+        </TextBlock>
 
         <RadioButton x:Name="Index" Content="{Binding Source={StaticResource Strings}, Path=ReadFromExternalStorage}" IsChecked="True" />
         <RadioButton x:Name="Select" Content="{Binding Source={StaticResource Strings}, Path=SelectContentToCopy}" />
