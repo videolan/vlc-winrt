@@ -119,6 +119,8 @@ namespace VLC.ViewModels.VideoVM
         public VideoLibraryVM()
         {
             Locator.MediaLibrary.Videos.CollectionChanged += Videos_CollectionChanged;
+            Locator.MediaLibrary.Shows.CollectionChanged += Shows_CollectionChanged;
+            Locator.MediaLibrary.CameraRoll.CollectionChanged += CameraRoll_CollectionChanged;
         }
         #endregion
 
@@ -140,18 +142,10 @@ namespace VLC.ViewModels.VideoVM
 
         public void OnNavigatedToShows()
         {
-            if (LoadingStateShows == LoadingState.NotLoaded)
-            {
-                InitializeShows();
-            }
         }
 
         public void OnNavigatedToCameraRollVideos()
         {
-            if (LoadingStateCamera == LoadingState.NotLoaded)
-            {
-                InitializeCameraRollVideos();
-            }
         }
 
         public Task OnNavigatedFromAllVideos()
@@ -172,6 +166,15 @@ namespace VLC.ViewModels.VideoVM
         private async void Videos_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             await onAnyVideosCollectionChanged<VideoItem>(_videos, e);
+        }
+
+        private async void Shows_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            await onAnyVideosCollectionChanged<TvShow>(_shows, e);
+        }
+        private async void CameraRoll_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            await onAnyVideosCollectionChanged<VideoItem>(_cameraRoll, e);
         }
 
         private async Task onAnyVideosCollectionChanged<T>(ObservableCollection<T> collection, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -198,52 +201,6 @@ namespace VLC.ViewModels.VideoVM
                             collection.Remove(v);
                         break;
                 }
-            });
-        }
-
-        Task InitializeShows()
-        {
-            return Task.Run(async () =>
-            {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    LoadingStateShows = LoadingState.Loading;
-                });
-
-                if (Locator.MediaLibrary.Shows != null)
-                    Locator.MediaLibrary.Shows.CollectionChanged += Shows_CollectionChanged;
-                await Locator.MediaLibrary.LoadShowsFromDatabase();
-            });
-        }
-
-        private async void Shows_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                OnPropertyChanged(nameof(Shows));
-            });
-        }
-
-        Task InitializeCameraRollVideos()
-        {
-            return Task.Run(async () =>
-            {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    LoadingStateCamera = LoadingState.Loading;
-                });
-
-                if (Locator.MediaLibrary.CameraRoll != null)
-                    Locator.MediaLibrary.CameraRoll.CollectionChanged += CameraRoll_CollectionChanged;
-                Locator.MediaLibrary.LoadCameraRollFromDatabase();
-            });
-        }
-
-        private async void CameraRoll_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                OnPropertyChanged(nameof(CameraRoll));
             });
         }
         #endregion

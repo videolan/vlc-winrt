@@ -91,7 +91,7 @@ namespace VLC.Model.Library
         public SmartCollection<PlaylistItem> TrackCollections { get; private set; } = new SmartCollection<PlaylistItem>();
 
         public ObservableCollection<VideoItem> Videos { get; } = new ObservableCollection<VideoItem>();
-        public SmartCollection<VideoItem> CameraRoll { get; private set; } = new SmartCollection<VideoItem>();
+        public ObservableCollection<VideoItem> CameraRoll { get; private set; } = new ObservableCollection<VideoItem>();
         public SmartCollection<TvShow> Shows { get; private set; } = new SmartCollection<TvShow>();
 
         public SmartCollection<StreamMedia> Streams { get; private set; } = new SmartCollection<StreamMedia>();
@@ -223,6 +223,8 @@ namespace VLC.Model.Library
             else // Restore the database
             {
                 LoadVideosFromDatabase();
+                await LoadShowsFromDatabase();
+                LoadCameraRollFromDatabase();
             }
             await PerformMediaLibraryIndexing();
         }
@@ -249,7 +251,7 @@ namespace VLC.Model.Library
             videoDatabase.DeleteAll();
 
             Videos.Clear();
-            CameraRoll?.Clear();
+            CameraRoll.Clear();
             Shows?.Clear();
         }
 
@@ -757,15 +759,15 @@ namespace VLC.Model.Library
             Shows?.Clear();
             var shows = LoadVideos(x => x.IsTvShow);
             foreach (var item in shows)
-            {
                 await AddTvShow(item);
-            }
         }
         public void LoadCameraRollFromDatabase()
         {
-            CameraRoll?.Clear();
+            CameraRoll.Clear();
             var camVideos = LoadVideos(x => x.IsCameraRoll);
-            CameraRoll.AddRange(camVideos.OrderBy(x => x.Name).ToObservable());
+            var newVideos = camVideos.OrderBy(x => x.Name);
+            foreach (var item in newVideos)
+                CameraRoll.Add(item);
         }
         #endregion
         #region streams
