@@ -795,11 +795,10 @@ namespace VLC.Model.Library
                         await image.SetSourceAsync(thumb);
                     }
                     await DownloadAndSaveHelper.WriteableBitmapToStorageFile(image, videoItem.Id.ToString());
+                    videoItem.IsPictureLoaded = true;
                     tcs.SetResult(true);
                 });
                 await tcs.Task;
-
-                videoItem.IsPictureLoaded = true;
                 videoDatabase.Update(videoItem);
                 return true;
             }
