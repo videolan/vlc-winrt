@@ -261,18 +261,6 @@ namespace VLC.ViewModels.RemovableDevicesVM
             await InitializeUSBKey();
         }
 
-        private async Task AddFolder(string newId)
-        {
-            try
-            {
-                var folder = StorageDevice.FromId(newId);
-                var external = new LocalFileExplorerViewModel(folder, RootFolderType.ExternalDevice, newId);
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => external.LogoGlyph = App.Current.Resources["USBFilledSymbol"] as string);
-                await AddToFolder(external);
-            }
-            catch { }
-        }
-
         private async Task DeviceRemoved(object sender, string id)
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
