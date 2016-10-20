@@ -16,13 +16,53 @@ namespace VLC.Helpers
 {
     public static class MediaLibraryHelper
     {
-        public static Task<IReadOnlyList<StorageFile>> GetSupportedFiles(StorageFolder folder)
+        public static async Task ForeachSupportedFile(StorageFolder root, Func<IReadOnlyList<StorageFile>, Task> func)
         {
-            var queryOptions = new QueryOptions { FolderDepth = FolderDepth.Deep };
-            foreach (var type in VLCFileExtensions.Supported)
-                queryOptions.FileTypeFilter.Add(type);
-            var fileQueryResult = folder.CreateFileQueryWithOptions(queryOptions);
-            return fileQueryResult.GetFilesAsync().AsTask();
+            Stack<StorageFolder> folders = new Stack<StorageFolder>();
+            folders.Push(root);
+            var queryOptions = new QueryOptions(CommonFileQuery.DefaultQuery, VLCFileExtensions.Supported);
+
+            while (folders.Count > 0)
+            {
+                var folder = folders.Pop();
+                var fileQueryResult = folder.CreateFileQueryWithOptions(queryOptions);
+
+                uint maxFiles = 50;
+                uint filesStartIndex = 0;
+                IReadOnlyList<StorageFile> files;
+                do
+                {
+                    try
+                    {
+                        files = await fileQueryResult.GetFilesAsync(filesStartIndex, maxFiles);
+                    }
+                    catch (System.ArgumentException)
+                    {
+                        // Silently ignore some folders which refuse to be browsed for no apparent reasons
+                        break;
+                    }
+                    await func(files);
+                    filesStartIndex += maxFiles;
+                } while (files.Count == maxFiles);
+
+                uint maxFolders = 50;
+                uint foldersStartIndex = 0;
+                IReadOnlyList<StorageFolder> subFolders;
+                do
+                {
+                    try
+                    {
+                        subFolders = await folder.GetFoldersAsync(CommonFolderQuery.DefaultQuery, foldersStartIndex, maxFolders);
+                    }
+                    catch (System.ArgumentException)
+                    {
+                        break;
+                    }
+                    foldersStartIndex += maxFolders;
+                    foreach (var sf in subFolders)
+                        folders.Push(sf);
+                } while (subFolders.Count == maxFolders);
+            }
         }
 
         public static async Task<VideoItem> GetVideoItem(StorageFile file)

@@ -27,9 +27,12 @@ namespace VLC.Commands.MediaLibrary
                 // Copy all media files in the selected folder.
                 var folder = parameter as VLCStorageFolder;
                 StorageFolder d = await StorageFolder.GetFolderFromPathAsync(folder.StorageItem.Path);
-                var list = await MediaLibraryHelper.GetSupportedFiles(d);
-                foreach (StorageFile f in list)
-                    CopyMediaFileToLocalStorage(f);
+                await MediaLibraryHelper.ForeachSupportedFile(d, (IReadOnlyList<StorageFile> files) =>
+                {
+                    foreach (var f in files)
+                        CopyMediaFileToLocalStorage(f);
+                    return Task.FromResult(true);
+                });
             }
         }
 

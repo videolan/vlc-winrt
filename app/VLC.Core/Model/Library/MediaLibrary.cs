@@ -50,8 +50,8 @@ namespace VLC.Model.Library
 
                 if (!StorageApplicationPermissions.FutureAccessList.CheckAccess(folder))
                     StorageApplicationPermissions.FutureAccessList.Add(folder);
-                await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder)).ConfigureAwait(false);
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded).ConfigureAwait(false);
+                await MediaLibraryHelper.ForeachSupportedFile(folder, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
+                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
             });
         }
 
@@ -265,13 +265,10 @@ namespace VLC.Model.Library
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
 
             StorageFolder folder = await FileUtils.GetLocalStorageMediaFolder();
-            await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(folder));
-
-            await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.VideosLibrary));
-
-            await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.MusicLibrary));
-
-            await DiscoverMediaItems(await MediaLibraryHelper.GetSupportedFiles(KnownFolders.CameraRoll), true);
+            await MediaLibraryHelper.ForeachSupportedFile(folder, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
+            await MediaLibraryHelper.ForeachSupportedFile(KnownFolders.VideosLibrary, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
+            await MediaLibraryHelper.ForeachSupportedFile(KnownFolders.MusicLibrary, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
+            await MediaLibraryHelper.ForeachSupportedFile(KnownFolders.CameraRoll, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
 
             // Cortana gets all those artists, albums, songs names
             var artists = LoadArtists(null);
