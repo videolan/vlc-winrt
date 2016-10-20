@@ -60,7 +60,6 @@ namespace VLC.ViewModels.MusicVM
         private ArtistItem _currentArtist;
         private PlaylistItem _currentMediaCollection;
         private bool _isLoaded = false;
-        private bool _isBusy = false;
         private MusicView _musicView;
         #endregion
 
@@ -197,12 +196,6 @@ namespace VLC.ViewModels.MusicVM
         {
             get { return _isLoaded; }
             set { SetProperty(ref _isLoaded, value); }
-        }
-
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set { SetProperty(ref _isBusy, value); }
         }
 
         public bool IsMusicLibraryEmpty => (LoadingStateArtists == LoadingState.Loaded && Locator.MediaLibrary.Artists.Count == 0)
