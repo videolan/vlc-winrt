@@ -322,8 +322,9 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">通知 = 歌が始まるときに</target>
         </trans-unit>
         <trans-unit id="NoVideosFound" translate="yes" xml:space="preserve">
-          <source>we did not find videos</source>
+          <source>we did not find video</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">我々 はビデオを見つけられませんでした。</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="NowPlaying" translate="yes" xml:space="preserve">
           <source>now playing</source>

@@ -322,8 +322,9 @@
           <target state="needs-review-translation" state-qualifier="mt-suggestion">au démarrage de la chanson</target>
         </trans-unit>
         <trans-unit id="NoVideosFound" translate="yes" xml:space="preserve">
-          <source>we did not find videos</source>
-          <target state="translated">Nous n'avons trouvé aucune vidéo</target>
+          <source>we did not find video</source>
+          <target state="needs-review-translation">Nous n'avons trouvé aucune vidéo</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="NowPlaying" translate="yes" xml:space="preserve">
           <source>now playing</source>
