@@ -84,12 +84,6 @@ namespace VLC.ViewModels.MusicVM
             set { SetProperty(ref _recommendedAlbums, value); }
         }
 
-        public ObservableCollection<ArtistItem> TopArtists
-        {
-            get { return _topArtists; }
-            set { SetProperty(ref _topArtists, value); }
-        }
-
         public ObservableCollection<GroupItemList<ArtistItem>> GroupedArtists
         {
             get { return _groupedArtists; }
