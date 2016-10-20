@@ -48,11 +48,7 @@
         <ProgressBar x:Name="VideoProgressBar"
                      Grid.Row="1"
                      Style="{StaticResource ThinProgressBar}" />
-        <Grid Grid.Row="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+        <StackPanel Grid.Row="2">
             <TextBlock x:Name="NameTextBlock"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
@@ -60,7 +56,7 @@
                        FontWeight="SemiBold"
                        HorizontalAlignment="Center"
                        Margin="0,0,3,0" />
-            <StackPanel Grid.Row="1"
+            <StackPanel
                         Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <TextBlock Visibility="{Binding HasBeenSeen, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -79,6 +75,6 @@
                            FontSize="14"
                            Margin="1,0,0,0" />
             </StackPanel>
-        </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>
