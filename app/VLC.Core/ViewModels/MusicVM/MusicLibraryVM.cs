@@ -54,7 +54,6 @@ namespace VLC.ViewModels.MusicVM
         private LoadingState _loadingStateTracks = LoadingState.NotLoaded;
         private LoadingState _loadingStatePlaylists = LoadingState.NotLoaded;
 
-        private ArtistItem _focusOnAnArtist; // recommended with MusicFlow
         private TrackItem _currentMedia;
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArtist;
@@ -247,11 +246,6 @@ namespace VLC.ViewModels.MusicVM
         public SetAlbumViewOrderCommand SetAlbumViewOrder { get; private set; } = new SetAlbumViewOrderCommand();
         public DeleteFromLibraryCommand DeleteFromLibraryCommand { get; private set; } = new DeleteFromLibraryCommand();
         public ChangeMusicViewCommand ChangeMusicViewCommand { get; private set; } = new ChangeMusicViewCommand();
-        public ArtistItem FocusOnAnArtist // Music Flow recommandation
-        {
-            get { return _focusOnAnArtist; }
-            set { SetProperty(ref _focusOnAnArtist, value); }
-        }
 
         public ArtistItem CurrentArtist
         {
