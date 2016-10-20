@@ -94,7 +94,15 @@ namespace VLC.Services.RunTime
             // Display the folder of the first external storage device detected.
             Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == VLCPage.MainPageFileExplorer);
 
-            var rootFolder = Windows.Devices.Portable.StorageDevice.FromId(deviceId);
+            StorageFolder rootFolder;
+            if (Helpers.DeviceHelper.GetDeviceType() != Helpers.DeviceTypeEnum.Xbox)
+                rootFolder = Windows.Devices.Portable.StorageDevice.FromId(deviceId);
+            else
+            {
+                var devices = KnownFolders.RemovableDevices;
+                var allFolders = await devices.GetFoldersAsync();
+                rootFolder = allFolders.Last();
+            }
             if (rootFolder == null)
                 return;
 
