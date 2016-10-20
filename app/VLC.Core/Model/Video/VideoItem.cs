@@ -312,7 +312,8 @@ namespace VLC.Model.Video
             {
                 if (File == null)
                 {
-                    File = await StorageFile.GetFileFromPathAsync(Path);
+                    var f = await StorageFile.GetFileFromPathAsync(Path);
+                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => File = f);
                 }
             }
             catch (Exception e)
