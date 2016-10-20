@@ -355,7 +355,7 @@
     <value>when the song starts</value>
   </data>
   <data name="NoVideosFound" xml:space="preserve">
-    <value>we did not find videos</value>
+    <value>we did not find video</value>
   </data>
   <data name="NowPlaying" xml:space="preserve">
     <value>now playing</value>
