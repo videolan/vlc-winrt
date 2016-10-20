@@ -336,7 +336,7 @@ namespace VLC.Model.Library
                             artist.Name = string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName;
                             artist.PlayCount = 0;
                             musicDatabase.Add(artist);
-                            AddArtist(artist);
+                            Artists.Add(artist);
                         }
 
                         var albumName = mP.Album?.Trim();
@@ -368,7 +368,7 @@ namespace VLC.Model.Library
                                 AlbumCoverUri = albumSimplifiedUrl
                             };
                             musicDatabase.Add(album);
-                            AddAlbum(album);
+                            Albums.Add(album);
                         }
 
                         TrackItem track = new TrackItem
@@ -388,7 +388,7 @@ namespace VLC.Model.Library
                             IsAvailable = true,
                         };
                         musicDatabase.Add(track);
-                        AddTrack(track);
+                        Tracks.Add(track);
                     }
                 }
                 else if (VLCFileExtensions.VideoExtensions.Contains(item.FileType.ToLower()))
@@ -459,21 +459,6 @@ namespace VLC.Model.Library
                 }
             }
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
-        }
-
-        public void AddArtist(ArtistItem artist)
-        {
-            Artists.Add(artist);
-        }
-
-        public void AddAlbum(AlbumItem album)
-        {
-            Albums.Add(album);
-        }
-
-        public void AddTrack(TrackItem track)
-        {
-            Tracks.Add(track);
         }
 
         public async Task AddTvShow(VideoItem episode)
