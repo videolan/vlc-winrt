@@ -59,10 +59,13 @@ namespace VLC.Helpers
                 BodyTextLine1 = new ToastText() { Text = t1 },
                 BodyTextLine2 = new ToastText() { Text = t3 },
             };
-            toastContent.Visual.InlineImages.Add(new ToastImage()
+            if (imgsrc != null)
             {
-                Source = new ToastImageSource(imgsrc),
-            });
+                toastContent.Visual.InlineImages.Add(new ToastImage()
+                {
+                    Source = new ToastImageSource(imgsrc),
+                });
+            }
             toastContent.Audio = new ToastAudio()
             {
                 Silent = true,
