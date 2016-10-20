@@ -248,16 +248,16 @@ namespace VLC.Model.Library
             trackCollectionRepository.Initialize();
             tracklistItemRepository.Initialize();
 
-            Artists?.Clear();
-            Albums?.Clear();
-            Tracks?.Clear();
-            TrackCollections?.Clear();
+            Artists.Clear();
+            Albums.Clear();
+            Tracks.Clear();
+            TrackCollections.Clear();
 
             videoDatabase.DeleteAll();
 
             Videos.Clear();
             CameraRoll.Clear();
-            Shows?.Clear();
+            Shows.Clear();
         }
 
         async Task PerformMediaLibraryIndexing()
@@ -652,33 +652,18 @@ namespace VLC.Model.Library
         #region DatabaseLogic
         public void LoadAlbumsFromDatabase()
         {
-            try
-            {
-                Albums?.Clear();
-                LogHelper.Log("Loading albums from MusicDB ...");
-                var albums = musicDatabase.LoadAlbums().ToObservable();
-                var orderedAlbums = albums.OrderBy(x => x.Artist).ThenBy(x => x.Name);
-                Albums.AddRange(orderedAlbums);
-            }
-            catch
-            {
-                LogHelper.Log("Error selecting albums from database.");
-            }
+            Albums.Clear();
+            LogHelper.Log("Loading albums from MusicDB ...");
+            var albums = musicDatabase.LoadAlbums().ToObservable();
+            var orderedAlbums = albums.OrderBy(x => x.Artist).ThenBy(x => x.Name);
+            Albums.AddRange(orderedAlbums);
         }
 
         public List<AlbumItem> LoadRecommendedAlbumsFromDatabase()
         {
-            try
-            {
-                var albums = musicDatabase.LoadAlbums().ToObservable();
-                var recommendedAlbums = albums?.Where(x => x.Favorite).ToList();
-                return recommendedAlbums;
-            }
-            catch (Exception)
-            {
-                LogHelper.Log("Error selecting random albums from database.");
-            }
-            return new List<AlbumItem>();
+            var albums = musicDatabase.LoadAlbums().ToObservable();
+            var recommendedAlbums = albums?.Where(x => x.Favorite).ToList();
+            return recommendedAlbums;
         }
 
 
@@ -689,27 +674,17 @@ namespace VLC.Model.Library
 
         public void LoadArtistsFromDatabase()
         {
-            try
-            {
-                Artists?.Clear();
-                LogHelper.Log("Loading artists from MusicDB ...");
-                var artists = LoadArtists(null);
-                LogHelper.Log("Found " + artists.Count + " artists from MusicDB");
-                Artists.AddRange(artists.OrderBy(x => x.Name).ToObservable());
-            }
-            catch { }
+            Artists.Clear();
+            LogHelper.Log("Loading artists from MusicDB ...");
+            var artists = LoadArtists(null);
+            LogHelper.Log("Found " + artists.Count + " artists from MusicDB");
+            Artists.AddRange(artists.OrderBy(x => x.Name).ToObservable());
         }
         
         public void LoadTracksFromDatabase()
         {
-            try
-            {
-                Tracks.AddRange(musicDatabase.LoadTracks());
-            }
-            catch (Exception)
-            {
-                LogHelper.Log("Error selecting tracks from database.");
-            }
+            Tracks.AddRange(musicDatabase.LoadTracks());
+            LogHelper.Log("Error selecting tracks from database.");
         }
 
         bool IsMusicDatabaseEmpty()
@@ -719,24 +694,17 @@ namespace VLC.Model.Library
 
         public async Task LoadPlaylistsFromDatabase()
         {
-            try
+            var trackColl = await trackCollectionRepository.LoadTrackCollections().ToObservableAsync();
+            foreach (var trackCollection in trackColl)
             {
-                var trackColl = await trackCollectionRepository.LoadTrackCollections().ToObservableAsync();
-                foreach (var trackCollection in trackColl)
+                var observableCollection = await tracklistItemRepository.LoadTracks(trackCollection);
+                foreach (TracklistItem tracklistItem in observableCollection)
                 {
-                    var observableCollection = await tracklistItemRepository.LoadTracks(trackCollection);
-                    foreach (TracklistItem tracklistItem in observableCollection)
-                    {
-                        TrackItem item = musicDatabase.LoadTrackFromId(tracklistItem.TrackId);
-                        trackCollection.Playlist.Add(item);
-                    }
+                    TrackItem item = musicDatabase.LoadTrackFromId(tracklistItem.TrackId);
+                    trackCollection.Playlist.Add(item);
                 }
-                TrackCollections = trackColl;
             }
-            catch (Exception)
-            {
-                LogHelper.Log("Error getting database.");
-            }
+            TrackCollections = trackColl;
         }
         #endregion
         #region video
@@ -992,7 +960,7 @@ namespace VLC.Model.Library
 
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    Tracks?.Remove(Tracks?.FirstOrDefault(x => x.Path == trackItem.Path));
+                    Tracks.Remove(Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
 
                     var playingTrack = Locator.MediaPlaybackViewModel.PlaybackService.Playlist.FirstOrDefault(x => x.Id == trackItem.Id);
                     if (playingTrack != null)

@@ -211,9 +211,9 @@ namespace VLC.ViewModels.MusicVM
             set { SetProperty(ref _isBusy, value); }
         }
 
-        public bool IsMusicLibraryEmpty => (LoadingStateArtists == LoadingState.Loaded && Locator.MediaLibrary.Artists?.Count == 0)
-                                        || (LoadingStateAlbums == LoadingState.Loaded && Locator.MediaLibrary.Albums?.Count == 0)
-                                        || (LoadingStateTracks == LoadingState.Loaded && Locator.MediaLibrary.Tracks?.Count == 0);
+        public bool IsMusicLibraryEmpty => (LoadingStateArtists == LoadingState.Loaded && Locator.MediaLibrary.Artists.Count == 0)
+                                        || (LoadingStateAlbums == LoadingState.Loaded && Locator.MediaLibrary.Albums.Count == 0)
+                                        || (LoadingStateTracks == LoadingState.Loaded && Locator.MediaLibrary.Tracks.Count == 0);
 
         public IndexMediaLibraryCommand IndexMediaLibraryCommand { get; private set; } = new IndexMediaLibraryCommand();
 
@@ -447,7 +447,7 @@ namespace VLC.ViewModels.MusicVM
         {
             try
             {
-                if (Locator.MediaLibrary.Albums?.Count == 0 || Locator.MediaLibrary.Albums?.Count == 1)
+                if (Locator.MediaLibrary.Albums.Count == 0 || Locator.MediaLibrary.Albums.Count == 1)
                 {
                     await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                     {
@@ -506,7 +506,7 @@ namespace VLC.ViewModels.MusicVM
 
         private async void Artists_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (Locator.MediaLibrary.Artists?.Count == 0 || Locator.MediaLibrary.Artists?.Count == 1)
+            if (Locator.MediaLibrary.Artists.Count == 0 || Locator.MediaLibrary.Artists.Count == 1)
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
@@ -560,7 +560,7 @@ namespace VLC.ViewModels.MusicVM
 
         private async void Tracks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (Locator.MediaLibrary.Tracks?.Count == 0 || Locator.MediaLibrary.Tracks?.Count == 1)
+            if (Locator.MediaLibrary.Tracks.Count == 0 || Locator.MediaLibrary.Tracks.Count == 1)
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
                 {
