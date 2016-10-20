@@ -110,7 +110,15 @@ namespace VLC.Model.Video
             set { SetProperty(ref _lastWatched, value); }
         }
 
-        public Boolean IsPictureLoaded { get; set; }
+        private bool _isPictureLoaded;
+        public Boolean IsPictureLoaded {
+            get { return _isPictureLoaded; }
+            set
+            {
+                _isPictureLoaded = value;
+                OnPropertyChanged(nameof(VideoImage));
+            }
+        }
         public bool IsSubtitlePreLoaded { get; set; }
         
         public Boolean HasMoviePicture { get; set; }
@@ -138,20 +146,22 @@ namespace VLC.Model.Video
         {
             get
             {
-                if (_videoImage == null && _videosImageLoadingState == LoadingState.NotLoaded)
+                if (_videoImage == null)
                 {
-                    _videosImageLoadingState = LoadingState.Loading;
-                    LoadThumbnailInMemory();
+                    if (IsPictureLoaded || HasMoviePicture)
+                    {
+                        _videosImageLoadingState = LoadingState.Loaded;
+                        _videoImage = new BitmapImage(new Uri(PictureUri));
+                    }
+                    else if (_videosImageLoadingState == LoadingState.NotLoaded)
+                    {
+                        _videosImageLoadingState = LoadingState.Loading;
+                        Task.Run(() => Locator.MediaLibrary.FetchVideoThumbnailOrWaitAsync(this));
+                    }
                 }
-
                 return _videoImage;
             }
-            set { SetProperty(ref _videoImage, value); }
-        }
-
-        public Task LoadThumbnailInMemory()
-        {
-            return Task.Factory.StartNew(() => LoadImageToMemoryHelper.LoadImageToMemory(this));
+            private set { SetProperty(ref _videoImage, value); }
         }
 
         [Ignore]

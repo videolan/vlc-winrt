@@ -49,19 +49,14 @@ namespace VLC.UI.Views.UserControls
             NameTextBlock.Text = Video.Name;
             UpdateVideoDurations();
             Video.PropertyChanged += Video_PropertyChanged;
-
-            var video = Video;
-            Task.Run(async () =>
-            {
-                await video.LoadThumbnailInMemory();
-            });
+            if (Video.VideoImage != null)
+                FadeOutCover.Begin();
         }
 
         private async void Video_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Video.VideoImage))
             {
-                if (Video == null) return;
                 await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
                     FadeOutCover.Begin();
