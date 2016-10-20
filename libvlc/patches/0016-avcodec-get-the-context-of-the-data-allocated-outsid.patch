@@ -1,0 +1,204 @@
+From 1d65b9277ba359295a73c92176e0cb3659eb9dca Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Thu, 20 Oct 2016 14:19:09 +0200
+Subject: [PATCH 16/17] avcodec: get the context of the data allocated outside
+ of a picture_t
+
+---
+ modules/codec/avcodec/d3d11va.c    | 4 ++--
+ modules/codec/avcodec/directx_va.c | 4 ++--
+ modules/codec/avcodec/directx_va.h | 2 +-
+ modules/codec/avcodec/dxva2.c      | 4 ++--
+ modules/codec/avcodec/va.h         | 8 ++++----
+ modules/codec/avcodec/vaapi.c      | 4 ++--
+ modules/codec/avcodec/vda.c        | 4 ++--
+ modules/codec/avcodec/video.c      | 4 +++-
+ modules/hw/vdpau/avcodec.c         | 4 ++--
+ 9 files changed, 20 insertions(+), 18 deletions(-)
+
+diff --git a/modules/codec/avcodec/d3d11va.c b/modules/codec/avcodec/d3d11va.c
+index e7ffbb0..da3b891 100644
+--- a/modules/codec/avcodec/d3d11va.c
++++ b/modules/codec/avcodec/d3d11va.c
+@@ -365,9 +365,9 @@ static int CheckDevice(vlc_va_t *va)
+     return VLC_SUCCESS;
+ }
+ 
+-static int Get(vlc_va_t *va, picture_t *pic, uint8_t **data)
++static int Get(vlc_va_t *va, void **data_context, uint8_t **data)
+ {
+-    return directx_va_Get(va, &va->sys->dx_sys, pic, data);
++    return directx_va_Get(va, &va->sys->dx_sys, data_context, data);
+ }
+ 
+ static void Close(vlc_va_t *va, AVCodecContext *ctx)
+diff --git a/modules/codec/avcodec/directx_va.c b/modules/codec/avcodec/directx_va.c
+index 2f886fc..4b145fe 100644
+--- a/modules/codec/avcodec/directx_va.c
++++ b/modules/codec/avcodec/directx_va.c
+@@ -376,7 +376,7 @@ void DestroyVideoDecoder(vlc_va_t *va, directx_sys_t *dx_sys)
+ }
+ 
+ /* FIXME it is nearly common with VAAPI */
+-int directx_va_Get(vlc_va_t *va, directx_sys_t *dx_sys, picture_t *pic, uint8_t **data)
++int directx_va_Get(vlc_va_t *va, directx_sys_t *dx_sys, void **data_context, uint8_t **data)
+ {
+     /* Check the device */
+     if (dx_sys->pf_check_device(va)!=VLC_SUCCESS)
+@@ -408,7 +408,7 @@ int directx_va_Get(vlc_va_t *va, directx_sys_t *dx_sys, picture_t *pic, uint8_t
+     surface->refcount = 1;
+     surface->order = ++dx_sys->surface_order;
+     *data = (void *)dx_sys->hw_surface[i];
+-    pic->context = surface;
++    *data_context = surface;
+ 
+     vlc_mutex_unlock( &dx_sys->surface_lock );
+ 
+diff --git a/modules/codec/avcodec/directx_va.h b/modules/codec/avcodec/directx_va.h
+index 700ecb1..aa9d3ee 100644
+--- a/modules/codec/avcodec/directx_va.h
++++ b/modules/codec/avcodec/directx_va.h
+@@ -137,7 +137,7 @@ typedef struct
+ int directx_va_Open(vlc_va_t *, directx_sys_t *, AVCodecContext *ctx, const es_format_t *fmt, bool b_dll);
+ void directx_va_Close(vlc_va_t *, directx_sys_t *);
+ int directx_va_Setup(vlc_va_t *, directx_sys_t *, AVCodecContext *avctx);
+-int directx_va_Get(vlc_va_t *, directx_sys_t *, picture_t *pic, uint8_t **data);
++int directx_va_Get(vlc_va_t *, directx_sys_t *, void **data_context, uint8_t **data);
+ void directx_va_Release(void *opaque);
+ char *directx_va_GetDecoderName(const GUID *guid);
+ 
+diff --git a/modules/codec/avcodec/dxva2.c b/modules/codec/avcodec/dxva2.c
+index 2b6a1fc..3001b6e 100644
+--- a/modules/codec/avcodec/dxva2.c
++++ b/modules/codec/avcodec/dxva2.c
+@@ -296,9 +296,9 @@ static int CheckDevice(vlc_va_t *va)
+     return VLC_SUCCESS;
+ }
+ 
+-static int Get(vlc_va_t *va, picture_t *pic, uint8_t **data)
++static int Get(vlc_va_t *va, void **data_context, uint8_t **data)
+ {
+-    return directx_va_Get(va, &va->sys->dx_sys, pic, data);
++    return directx_va_Get(va, &va->sys->dx_sys, data_context, data);
+ }
+ 
+ static void Close(vlc_va_t *va, AVCodecContext *ctx)
+diff --git a/modules/codec/avcodec/va.h b/modules/codec/avcodec/va.h
+index 05ef83b..b1c9c20 100644
+--- a/modules/codec/avcodec/va.h
++++ b/modules/codec/avcodec/va.h
+@@ -40,7 +40,7 @@ struct vlc_va_t {
+     VLC_DEPRECATED
+     void (*setup)(vlc_va_t *, vlc_fourcc_t *output);
+ #endif
+-    int  (*get)(vlc_va_t *, picture_t *pic, uint8_t **data);
++    int  (*get)(vlc_va_t *, void **data_context, uint8_t **data);
+     void (*release)(void *pic);
+     int  (*extract)(vlc_va_t *, picture_t *pic, uint8_t *data);
+ };
+@@ -69,7 +69,7 @@ vlc_va_t *vlc_va_New(vlc_object_t *obj, AVCodecContext *,
+  * The surface will be used as output for the hardware decoder, and possibly
+  * also as a reference frame to decode other surfaces.
+  *
+- * @param pic pointer to VLC picture being allocated [IN/OUT]
++ * @param data_context pointer to VLC structure to free data being allocated [OUT]
+  * @param data pointer to the AVFrame data[3] pointers [OUT]
+  *
+  * @note This function needs not be reentrant. However it may be called
+@@ -78,9 +78,9 @@ vlc_va_t *vlc_va_New(vlc_object_t *obj, AVCodecContext *,
+  *
+  * @return VLC_SUCCESS on success, otherwise an error code.
+  */
+-static inline int vlc_va_Get(vlc_va_t *va, picture_t *pic, uint8_t **data)
++static inline int vlc_va_Get(vlc_va_t *va, void **data_context, uint8_t **data)
+ {
+-    return va->get(va, pic, data);
++    return va->get(va, data_context, data);
+ }
+ 
+ /**
+diff --git a/modules/codec/avcodec/vaapi.c b/modules/codec/avcodec/vaapi.c
+index 8671139..cd3ef4e 100644
+--- a/modules/codec/avcodec/vaapi.c
++++ b/modules/codec/avcodec/vaapi.c
+@@ -144,7 +144,7 @@ error:
+     return ret;
+ }
+ 
+-static int Get( vlc_va_t *va, picture_t *pic, uint8_t **data )
++static int Get( vlc_va_t *va, void **data_context, uint8_t **data )
+ {
+     vlc_va_sys_t *sys = va->sys;
+     unsigned i = sys->count;
+@@ -162,7 +162,7 @@ static int Get( vlc_va_t *va, picture_t *pic, uint8_t **data )
+ 
+     VASurfaceID *surface = &sys->surfaces[i];
+ 
+-    pic->context = surface;
++    *data_context = surface;
+     *data = (void *)(uintptr_t)*surface;
+     return VLC_SUCCESS;
+ }
+diff --git a/modules/codec/avcodec/vda.c b/modules/codec/avcodec/vda.c
+index 7c716ad..0107056 100644
+--- a/modules/codec/avcodec/vda.c
++++ b/modules/codec/avcodec/vda.c
+@@ -162,10 +162,10 @@ static void Close( vlc_va_t *va, AVCodecContext *avctx )
+ }
+ 
+ // Never called
+-static int Get( vlc_va_t *va, picture_t *p_picture, uint8_t **data )
++static int Get( vlc_va_t *va, void **data_context, uint8_t **data )
+ {
+     VLC_UNUSED( va );
+-    (void) p_picture;
++    (void) data_context;
+     (void) data;
+     return VLC_SUCCESS;
+ }
+diff --git a/modules/codec/avcodec/video.c b/modules/codec/avcodec/video.c
+index 5e88eeb..5b99732 100644
+--- a/modules/codec/avcodec/video.c
++++ b/modules/codec/avcodec/video.c
+@@ -1122,13 +1122,15 @@ static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
+ {
+     decoder_t *dec = ctx->opaque;
+     vlc_va_t *va = dec->p_sys->p_va;
++    void *data_context;
+ 
+-    if (vlc_va_Get(va, pic, &AV_FRAME_SURFACE_DATA(frame)))
++    if (vlc_va_Get(va, &data_context, &AV_FRAME_SURFACE_DATA(frame)))
+     {
+         msg_Err(dec, "hardware acceleration picture allocation failed");
+         picture_Release(pic);
+         return -1;
+     }
++    pic->context = data_context;
+     AV_FRAME_SURFACE(frame) = AV_FRAME_SURFACE_DATA(frame);
+ 
+     void (*release)(void *) = va->release;
+diff --git a/modules/hw/vdpau/avcodec.c b/modules/hw/vdpau/avcodec.c
+index e175cb2..0be3500 100644
+--- a/modules/hw/vdpau/avcodec.c
++++ b/modules/hw/vdpau/avcodec.c
+@@ -115,7 +115,7 @@ static vlc_vdp_video_field_t *GetSurface(vlc_va_t *va)
+     return CreateSurface(va);
+ }
+ 
+-static int Lock(vlc_va_t *va, picture_t *pic, uint8_t **data)
++static int Lock(vlc_va_t *va, void **data_context, uint8_t **data)
+ {
+     vlc_vdp_video_field_t *field;
+     unsigned tries = (CLOCK_FREQ + VOUT_OUTMEM_SLEEP) / VOUT_OUTMEM_SLEEP;
+@@ -129,7 +129,7 @@ static int Lock(vlc_va_t *va, picture_t *pic, uint8_t **data)
+         msleep(VOUT_OUTMEM_SLEEP);
+     }
+ 
+-    pic->context = field;
++    *data_context = field;
+     *data = (void *)(uintptr_t)field->frame->surface;
+     return VLC_SUCCESS;
+ }
+-- 
+2.9.3
+

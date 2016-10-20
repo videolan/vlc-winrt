@@ -1,0 +1,154 @@
+From 910fe35ff55c5d8394ba50f6314d63afc2f6fd7a Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Thu, 20 Oct 2016 13:41:54 +0200
+Subject: [PATCH 12/17] avcodec: remove unused parameter in va->release()
+
+---
+ modules/codec/avcodec/directx_va.c | 3 +--
+ modules/codec/avcodec/directx_va.h | 2 +-
+ modules/codec/avcodec/va.h         | 7 +++----
+ modules/codec/avcodec/vaapi.c      | 3 +--
+ modules/codec/avcodec/vda.c        | 3 +--
+ modules/codec/avcodec/video.c      | 7 +++----
+ 6 files changed, 10 insertions(+), 15 deletions(-)
+
+diff --git a/modules/codec/avcodec/directx_va.c b/modules/codec/avcodec/directx_va.c
+index e6f4f0e..2f886fc 100644
+--- a/modules/codec/avcodec/directx_va.c
++++ b/modules/codec/avcodec/directx_va.c
+@@ -415,7 +415,7 @@ int directx_va_Get(vlc_va_t *va, directx_sys_t *dx_sys, picture_t *pic, uint8_t
+     return VLC_SUCCESS;
+ }
+ 
+-void directx_va_Release(void *opaque, uint8_t *data)
++void directx_va_Release(void *opaque)
+ {
+     picture_t *pic = opaque;
+     vlc_va_surface_t *surface = pic->context;
+@@ -424,7 +424,6 @@ void directx_va_Release(void *opaque, uint8_t *data)
+     surface->refcount--;
+     pic->context = NULL;
+     picture_Release(pic);
+-    (void) data;
+ 
+     vlc_mutex_unlock( surface->p_lock );
+ }
+diff --git a/modules/codec/avcodec/directx_va.h b/modules/codec/avcodec/directx_va.h
+index ad20ead..700ecb1 100644
+--- a/modules/codec/avcodec/directx_va.h
++++ b/modules/codec/avcodec/directx_va.h
+@@ -138,7 +138,7 @@ int directx_va_Open(vlc_va_t *, directx_sys_t *, AVCodecContext *ctx, const es_f
+ void directx_va_Close(vlc_va_t *, directx_sys_t *);
+ int directx_va_Setup(vlc_va_t *, directx_sys_t *, AVCodecContext *avctx);
+ int directx_va_Get(vlc_va_t *, directx_sys_t *, picture_t *pic, uint8_t **data);
+-void directx_va_Release(void *opaque, uint8_t *data);
++void directx_va_Release(void *opaque);
+ char *directx_va_GetDecoderName(const GUID *guid);
+ 
+ #endif /* AVCODEC_DIRECTX_VA_H */
+diff --git a/modules/codec/avcodec/va.h b/modules/codec/avcodec/va.h
+index e697118..4f7df66 100644
+--- a/modules/codec/avcodec/va.h
++++ b/modules/codec/avcodec/va.h
+@@ -41,7 +41,7 @@ struct vlc_va_t {
+     void (*setup)(vlc_va_t *, vlc_fourcc_t *output);
+ #endif
+     int  (*get)(vlc_va_t *, picture_t *pic, uint8_t **data);
+-    void (*release)(void *pic, uint8_t *surface);
++    void (*release)(void *pic);
+     int  (*extract)(vlc_va_t *, picture_t *pic, uint8_t *data);
+ };
+ 
+@@ -88,15 +88,14 @@ static inline int vlc_va_Get(vlc_va_t *va, picture_t *pic, uint8_t **data)
+  * The surface has been previously allocated with vlc_va_Get().
+  *
+  * @param pic VLC picture being released [IN/OUT]
+- * @param data data[0] pointer of the AVFrame set by vlc_va_Get()
+  *
+  * @note This function needs not be reentrant. However it may be called
+  * concurrently with vlc_va_Get() and/or vlc_va_Extract() from other threads
+  * and other frames.
+  */
+-static inline void vlc_va_Release(vlc_va_t *va, picture_t *pic, uint8_t *data)
++static inline void vlc_va_Release(vlc_va_t *va, picture_t *pic)
+ {
+-    va->release(pic, data);
++    va->release(pic);
+ }
+ 
+ /**
+diff --git a/modules/codec/avcodec/vaapi.c b/modules/codec/avcodec/vaapi.c
+index 937a3ef..8671139 100644
+--- a/modules/codec/avcodec/vaapi.c
++++ b/modules/codec/avcodec/vaapi.c
+@@ -167,7 +167,7 @@ static int Get( vlc_va_t *va, picture_t *pic, uint8_t **data )
+     return VLC_SUCCESS;
+ }
+ 
+-static void Release( void *opaque, uint8_t *data )
++static void Release( void *opaque )
+ {
+     picture_t *pic = opaque;
+     VASurfaceID *surface = pic->context;
+@@ -182,7 +182,6 @@ static void Release( void *opaque, uint8_t *data )
+ 
+     pic->context = NULL;
+     picture_Release(pic);
+-    (void) data;
+ }
+ 
+ static void Delete( vlc_va_t *va, AVCodecContext *avctx )
+diff --git a/modules/codec/avcodec/vda.c b/modules/codec/avcodec/vda.c
+index cb4070e..7c716ad 100644
+--- a/modules/codec/avcodec/vda.c
++++ b/modules/codec/avcodec/vda.c
+@@ -171,10 +171,9 @@ static int Get( vlc_va_t *va, picture_t *p_picture, uint8_t **data )
+ }
+ 
+ // Never called
+-static void Release( void *opaque, uint8_t *data )
++static void Release( void *opaque )
+ {
+     VLC_UNUSED(opaque);
+-    (void) data;
+ }
+ 
+ static int Extract( vlc_va_t *va, picture_t *p_picture, uint8_t *data )
+diff --git a/modules/codec/avcodec/video.c b/modules/codec/avcodec/video.c
+index a121e6a..ff7a046 100644
+--- a/modules/codec/avcodec/video.c
++++ b/modules/codec/avcodec/video.c
+@@ -1105,12 +1105,11 @@ static void ffmpeg_InitCodec( decoder_t *p_dec )
+     }
+ }
+ 
+-static void lavc_ReleaseFrame(void *opaque, uint8_t *data)
++static void lavc_ReleaseFrame(void *opaque)
+ {
+     picture_t *picture = opaque;
+ 
+     picture_Release(picture);
+-    (void) data;
+ }
+ 
+ static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
+@@ -1129,14 +1128,14 @@ static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
+      * data[3] actually contains the format-specific surface handle. */
+     frame->data[3] = frame->data[0];
+ 
+-    void (*release)(void *, uint8_t *) = va->release;
++    void (*release)(void *) = va->release;
+     if (va->release == NULL)
+         release = lavc_ReleaseFrame;
+ 
+     frame->buf[0] = av_buffer_create(frame->data[0], 0, release, pic, 0);
+     if (unlikely(frame->buf[0] == NULL))
+     {
+-        release(pic, frame->data[0]);
++        release(pic);
+         return -1;
+     }
+ 
+-- 
+2.9.3
+
