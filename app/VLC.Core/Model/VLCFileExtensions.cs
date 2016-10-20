@@ -14,7 +14,8 @@ namespace VLC.Model
             ".mp3",
             ".wma",
             ".m4a",
-            ".flac"
+            ".flac",
+            ".mkv",
         };
 
         public static List<string> Supported = new List<string>()
