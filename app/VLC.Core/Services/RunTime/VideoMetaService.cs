@@ -86,7 +86,7 @@ namespace VLC.Services.RunTime
                     video.IsPictureLoaded = true;
                     video.HasMoviePicture = true;
                 });
-                await video.ResetVideoPicture();
+                await video.LoadThumbnailInMemory();
                 return true;
             }
             return false;

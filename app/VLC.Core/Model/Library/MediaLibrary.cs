@@ -470,7 +470,7 @@ namespace VLC.Model.Library
                 if (show == null)
                 {
                     // Generate a thumbnail for the show
-                    await episode.ResetVideoPicture();
+                    await episode.LoadThumbnailInMemory();
 
                     show = new TvShow(episode.ShowTitle);
                     show.Episodes.Add(episode);
@@ -801,7 +801,7 @@ namespace VLC.Model.Library
 
                 videoItem.IsPictureLoaded = true;
                 videoDatabase.Update(videoItem);
-                await videoItem.ResetVideoPicture();
+                await videoItem.LoadThumbnailInMemory();
                 return true;
             }
             catch (Exception ex)

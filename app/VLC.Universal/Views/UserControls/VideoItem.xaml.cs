@@ -53,7 +53,7 @@ namespace VLC.UI.Views.UserControls
             var video = Video;
             Task.Run(async () =>
             {
-                await video.ResetVideoPicture();
+                await video.LoadThumbnailInMemory();
             });
         }
 

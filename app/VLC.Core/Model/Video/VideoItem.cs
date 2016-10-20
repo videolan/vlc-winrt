@@ -141,7 +141,7 @@ namespace VLC.Model.Video
                 if (_videoImage == null && _videosImageLoadingState == LoadingState.NotLoaded)
                 {
                     _videosImageLoadingState = LoadingState.Loading;
-                    ResetVideoPicture();
+                    LoadThumbnailInMemory();
                 }
 
                 return _videoImage;
@@ -149,7 +149,7 @@ namespace VLC.Model.Video
             set { SetProperty(ref _videoImage, value); }
         }
 
-        public Task ResetVideoPicture()
+        public Task LoadThumbnailInMemory()
         {
             return Task.Factory.StartNew(() => LoadImageToMemoryHelper.LoadImageToMemory(this));
         }
