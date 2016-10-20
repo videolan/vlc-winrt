@@ -140,6 +140,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Database\VideoDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ApplicationSettingsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AppViewHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\CollectionChangedHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DeviceHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DownloadAndSaveHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ImageHelper.cs" />

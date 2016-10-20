@@ -131,43 +131,16 @@ namespace VLC.ViewModels.VideoVM
 
         private async void Videos_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            await onAnyVideosCollectionChanged<VideoItem>(_videos, e);
+            await CollectionChangedHelper.Handle<VideoItem>(_videos, e);
         }
 
         private async void Shows_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            await onAnyVideosCollectionChanged<TvShow>(_shows, e);
+            await CollectionChangedHelper.Handle<TvShow>(_shows, e);
         }
         private async void CameraRoll_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            await onAnyVideosCollectionChanged<VideoItem>(_cameraRoll, e);
-        }
-
-        private async Task onAnyVideosCollectionChanged<T>(ObservableCollection<T> collection, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Move ||
-                    e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Replace)
-            {
-                LogHelper.Log("Unexpected Video collection change: " + e.Action);
-                return;
-            }
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                switch (e.Action)
-                {
-                    case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-                        foreach (T v in e.NewItems)
-                            collection.Add(v);
-                        break;
-                    case System.Collections.Specialized.NotifyCollectionChangedAction.Reset:
-                        collection.Clear();
-                        break;
-                    case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-                        foreach (T v in e.OldItems)
-                            collection.Remove(v);
-                        break;
-                }
-            });
+            await CollectionChangedHelper.Handle<VideoItem>(_cameraRoll, e);
         }
         #endregion
     }
