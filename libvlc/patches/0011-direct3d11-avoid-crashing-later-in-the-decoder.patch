@@ -1,4 +1,4 @@
-From 2d836f0443f7bcaa605febbaf4c481a60ab17f13 Mon Sep 17 00:00:00 2001
+From d8be48b1416d3b47d95836388e28e50dde2b2493 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 20 Oct 2016 15:17:11 +0200
 Subject: [PATCH 11/17] direct3d11: avoid crashing later in the decoder

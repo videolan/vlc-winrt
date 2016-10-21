@@ -1,4 +1,4 @@
-From 49b0f3f7dd17358804bf2f1ba98c18ca069d54ba Mon Sep 17 00:00:00 2001
+From 52fa3fa0a30de45a5bdfcf0dda93239811a29fb8 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 20 Oct 2016 13:35:31 +0200
 Subject: [PATCH 14/17] codec: av_buffer_create() uses the raw buffer data not

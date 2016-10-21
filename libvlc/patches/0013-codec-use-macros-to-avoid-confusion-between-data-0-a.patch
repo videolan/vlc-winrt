@@ -1,4 +1,4 @@
-From c6f5a8c5693084ede0620c3990842b2cabf74e5b Mon Sep 17 00:00:00 2001
+From efd591798e101c247e75b8855671ed0da9ef351b Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 20 Oct 2016 13:32:29 +0200
 Subject: [PATCH 13/17] codec: use macros to avoid confusion between data[0]

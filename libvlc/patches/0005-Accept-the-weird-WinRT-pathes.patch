@@ -1,4 +1,4 @@
-From 77a99b65a20d6f2f96af5bd3c7809ae6d55cb7f0 Mon Sep 17 00:00:00 2001
+From aef6f14b7346a3df35cdf265b1d426bfb1b85eca Mon Sep 17 00:00:00 2001
 From: Jean-Baptiste Kempf <jb@videolan.org>
 Date: Wed, 12 Mar 2014 00:11:26 +0100
 Subject: [PATCH 05/17] Accept the weird WinRT pathes

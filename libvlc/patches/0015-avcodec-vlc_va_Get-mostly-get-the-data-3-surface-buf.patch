@@ -1,4 +1,4 @@
-From 4b4632770f788c098c4a05d8d61eb95f9696598a Mon Sep 17 00:00:00 2001
+From b8ef40af1163230b1ec3bef1c787f80bdb2ac7ea Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 20 Oct 2016 14:25:42 +0200
 Subject: [PATCH 15/17] avcodec: vlc_va_Get() mostly get the data[3] surface

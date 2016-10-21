@@ -1,4 +1,4 @@
-From 250bba9922df89c3c8c95afc689bccb6cc8d1c3e Mon Sep 17 00:00:00 2001
+From 44f32ac7e25d3eaf170caf276734aac1c3236784 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Wed, 18 May 2016 20:28:19 +0200
 Subject: [PATCH 01/17] modules: bank: Save the cache if it was empty

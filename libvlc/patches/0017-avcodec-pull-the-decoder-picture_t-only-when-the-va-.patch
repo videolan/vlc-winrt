@@ -1,6 +1,6 @@
-From c354d53c5de8539dbe6ccf8b393610b9bc374481 Mon Sep 17 00:00:00 2001
-From: Steve Lhomme <robux4@videolabs.io>
-Date: Thu, 20 Oct 2016 14:59:14 +0200
+From cf80c861644f856a7081e5d08a9c63c419fe53e8 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robUx4@videolabs.io>
+Date: Fri, 21 Oct 2016 17:42:59 +0200
 Subject: [PATCH 17/17] avcodec: pull the decoder picture_t only when the va
  has a picture to extract
 
@@ -10,16 +10,25 @@ when needed. This surface context is filled during vlc_va_Get().
 picture_t->context is no longer filled before/after calling vlc_va_Extract().
 
 The AVFrame->opaque is no longer a picture_t but the surface context.
+--
+replaces https://patches.videolan.org/patch/14764/
+* vdpau needs the picture->context after the vlc_va_Extract() so that
+VDPAU filters can work. *UNTESTED*
+
+replaces https://patches.videolan.org/patch/14766/
+* fixes picture_t handling wit no video acceleration
+* fixes vdpau decoding by holding/releasing the surface reference when attached
+to a picture_t
 ---
  modules/codec/avcodec/d3d11va.c    |  4 ++--
- modules/codec/avcodec/directx_va.c |  7 +------
+ modules/codec/avcodec/directx_va.c |  7 +-----
  modules/codec/avcodec/dxva2.c      |  4 ++--
- modules/codec/avcodec/va.h         | 14 +++++++-------
- modules/codec/avcodec/vaapi.c      |  9 +++------
- modules/codec/avcodec/vda.c        | 11 +++--------
- modules/codec/avcodec/video.c      | 38 +++++++++++++++++---------------------
- modules/hw/vdpau/avcodec.c         |  4 ++--
- 8 files changed, 37 insertions(+), 54 deletions(-)
+ modules/codec/avcodec/va.h         | 14 ++++++------
+ modules/codec/avcodec/vaapi.c      |  9 +++-----
+ modules/codec/avcodec/vda.c        | 11 +++-------
+ modules/codec/avcodec/video.c      | 45 ++++++++++++++++++++------------------
+ modules/hw/vdpau/avcodec.c         | 14 +++++++++---
+ 8 files changed, 53 insertions(+), 55 deletions(-)
 
 diff --git a/modules/codec/avcodec/d3d11va.c b/modules/codec/avcodec/d3d11va.c
 index da3b891..94a9311 100644
@@ -163,10 +172,10 @@ index cd3ef4e..0e5008c 100644
  
  static void Delete( vlc_va_t *va, AVCodecContext *avctx )
 diff --git a/modules/codec/avcodec/vda.c b/modules/codec/avcodec/vda.c
-index 0107056..870ce41 100644
+index ff33f0b..e06f4ce 100644
 --- a/modules/codec/avcodec/vda.c
 +++ b/modules/codec/avcodec/vda.c
-@@ -149,7 +149,7 @@ static int Open(vlc_va_t *va,
+@@ -144,7 +144,7 @@ static int Open(vlc_va_t *va,
      va->sys = sys;
      va->description = (char *)"VDA";
      va->get = Get;
@@ -175,7 +184,7 @@ index 0107056..870ce41 100644
      va->extract = Extract;
  
      return VLC_SUCCESS;
-@@ -170,14 +170,9 @@ static int Get( vlc_va_t *va, void **data_context, uint8_t **data )
+@@ -165,14 +165,9 @@ static int Get( vlc_va_t *va, void **data_context, uint8_t **data )
      return VLC_SUCCESS;
  }
  
@@ -193,7 +202,7 @@ index 0107056..870ce41 100644
  
      CVPixelBufferRef cv_buffer = (CVPixelBufferRef)data;
 diff --git a/modules/codec/avcodec/video.c b/modules/codec/avcodec/video.c
-index 5b99732..54e5809 100644
+index 5b99732..d0dc7b1 100644
 --- a/modules/codec/avcodec/video.c
 +++ b/modules/codec/avcodec/video.c
 @@ -954,8 +954,8 @@ static picture_t *DecodeVideo( decoder_t *p_dec, block_t **pp_block )
@@ -207,25 +216,31 @@ index 5b99732..54e5809 100644
          {   /* When direct rendering is not used, get_format() and get_buffer()
               * might not be called. The output video format must be set here
               * then picture buffer can be allocated. */
-@@ -975,9 +975,15 @@ static picture_t *DecodeVideo( decoder_t *p_dec, block_t **pp_block )
-         }
+@@ -976,8 +976,21 @@ static picture_t *DecodeVideo( decoder_t *p_dec, block_t **pp_block )
          else
          {
-+            p_pic = decoder_NewPicture(p_dec);
-+            if( !p_pic )
-+            {
-+                av_frame_free(&frame);
-+                break;
-+            }
-+
              if( p_sys->p_va != NULL )
 -                vlc_va_Extract( p_sys->p_va, p_pic, AV_FRAME_SURFACE_DATA(frame) );
 -            picture_Hold( p_pic );
++            {
++                /* a picture_ has not been allocated yet, frame->opaque is meaningless */
++                p_pic = decoder_NewPicture(p_dec);
++                if( unlikely(p_pic==NULL) )
++                {
++                    av_frame_free(&frame);
++                    break;
++                }
 +                vlc_va_Extract( p_sys->p_va, p_pic, AV_FRAME_SURFACE(frame), AV_FRAME_SURFACE_DATA(frame) );
++            }
++            else
++            {
++                p_pic = frame->opaque;
++                picture_Hold(p_pic);
++            }
          }
  
          if( !p_dec->fmt_in.video.i_sar_num || !p_dec->fmt_in.video.i_sar_den )
-@@ -1117,34 +1123,24 @@ static void lavc_ReleaseFrame(void *opaque)
+@@ -1117,34 +1130,24 @@ static void lavc_ReleaseFrame(void *opaque)
      picture_Release(picture);
  }
  
@@ -246,11 +261,11 @@ index 5b99732..54e5809 100644
      }
 -    pic->context = data_context;
 -    AV_FRAME_SURFACE(frame) = AV_FRAME_SURFACE_DATA(frame);
- 
+-
 -    void (*release)(void *) = va->release;
 -    if (va->release == NULL)
 -        release = lavc_ReleaseFrame;
--
+ 
 -    frame->buf[0] = av_buffer_create(AV_FRAME_SURFACE_DATA(frame), 0, release, pic, 0);
 +    frame->buf[0] = av_buffer_create(AV_FRAME_SURFACE_DATA(frame), 0, va->release, AV_FRAME_SURFACE(frame), 0);
      if (unlikely(frame->buf[0] == NULL))
@@ -264,7 +279,7 @@ index 5b99732..54e5809 100644
      assert(AV_FRAME_SURFACE(frame) != NULL);
      return 0;
  }
-@@ -1258,13 +1254,13 @@ static int lavc_GetFrame(struct AVCodecContext *ctx, AVFrame *frame, int flags)
+@@ -1258,13 +1261,13 @@ static int lavc_GetFrame(struct AVCodecContext *ctx, AVFrame *frame, int flags)
      }
      post_mt(sys);
  
@@ -282,10 +297,10 @@ index 5b99732..54e5809 100644
       * so we need to check for direct rendering again. */
      int ret = lavc_dr_GetFrame(ctx, frame, pic);
 diff --git a/modules/hw/vdpau/avcodec.c b/modules/hw/vdpau/avcodec.c
-index 0be3500..45d6527 100644
+index 0be3500..b420f80 100644
 --- a/modules/hw/vdpau/avcodec.c
 +++ b/modules/hw/vdpau/avcodec.c
-@@ -134,9 +134,9 @@ static int Lock(vlc_va_t *va, void **data_context, uint8_t **data)
+@@ -134,12 +134,20 @@ static int Lock(vlc_va_t *va, void **data_context, uint8_t **data)
      return VLC_SUCCESS;
  }
  
@@ -293,9 +308,29 @@ index 0be3500..45d6527 100644
 +static int Copy(vlc_va_t *va, picture_t *pic, void *data_context, uint8_t *data)
  {
 -    (void) va; (void) pic; (void) data;
-+    (void) va; (void) pic; (void) data; (void) data_context;
++    (void) va; (void) data;
++    vlc_vdp_video_field_t *field = data_context;
++    pic->context = vlc_vdp_video_copy(field);
      return VLC_SUCCESS;
  }
+ 
++static void Release(void *opaque)
++{
++    vlc_vdp_video_field_t *f = opaque;
++    DestroySurface(f);
++}
++
+ static int Open(vlc_va_t *va, AVCodecContext *avctx, enum PixelFormat pix_fmt,
+                 const es_format_t *fmt, picture_sys_t *p_sys)
+ {
+@@ -316,7 +324,7 @@ static int Open(vlc_va_t *va, AVCodecContext *avctx, enum PixelFormat pix_fmt,
+ 
+     va->description = infos;
+     va->get = Lock;
+-    va->release = NULL;
++    va->release = Release;
+     va->extract = Copy;
+     return VLC_SUCCESS;
  
 -- 
 2.9.3

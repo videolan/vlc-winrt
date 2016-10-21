@@ -1,4 +1,4 @@
-From 538c8efc29dcec970c64f6ccc5c778607449496d Mon Sep 17 00:00:00 2001
+From d6124257f0d26e3f6188bd0bb1a50e5845ea79d8 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 19:14:48 +0200
 Subject: [PATCH 07/17] upnp: lookup the best interface to use libupnp with

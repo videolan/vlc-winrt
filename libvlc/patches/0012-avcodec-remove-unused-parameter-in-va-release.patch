@@ -1,4 +1,4 @@
-From 910fe35ff55c5d8394ba50f6314d63afc2f6fd7a Mon Sep 17 00:00:00 2001
+From f8bc9b421924e49369f450c7d20a7b2e233831a9 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 20 Oct 2016 13:41:54 +0200
 Subject: [PATCH 12/17] avcodec: remove unused parameter in va->release()
@@ -99,10 +99,10 @@ index 937a3ef..8671139 100644
  
  static void Delete( vlc_va_t *va, AVCodecContext *avctx )
 diff --git a/modules/codec/avcodec/vda.c b/modules/codec/avcodec/vda.c
-index cb4070e..7c716ad 100644
+index 29c0944..c89685e 100644
 --- a/modules/codec/avcodec/vda.c
 +++ b/modules/codec/avcodec/vda.c
-@@ -171,10 +171,9 @@ static int Get( vlc_va_t *va, picture_t *p_picture, uint8_t **data )
+@@ -166,10 +166,9 @@ static int Get( vlc_va_t *va, picture_t *p_picture, uint8_t **data )
  }
  
  // Never called

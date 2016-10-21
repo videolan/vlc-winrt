@@ -1,4 +1,4 @@
-From f47929a851c47d2a8631233d56bd9bed1b528d50 Mon Sep 17 00:00:00 2001
+From adc8bee541e8aeadea26c64c4d1d19e6073f7752 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 09:42:20 +0200
 Subject: [PATCH 06/17] contrib: use a fixed ffmpeg version for winstore builds
