@@ -194,11 +194,11 @@ namespace VLC.UI.Views.VideoPages
         {
             controlsTimer.Stop();
             controlsTimer.Start();
+            Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
             if (isVisible == true)
                 return;
             isVisible = true;
             FadeIn.Begin();
-            Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
             OnPlayerControlVisibilityChanged(true);
         }
 
