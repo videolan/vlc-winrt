@@ -1,3 +1,25 @@
+Changes between 2.1.0 and 2.1.1
+-------------------------------
+Release: 23 October 2016
+
+Bugfixes:
+* Fix crash when browsing password protected network drives
+* Fix mixed up channels when playing 5.1/7.1
+* Fix too long media discovery
+* Fix wrong external drive being browsed when 2 or more drives are plugged in
+* Fix various hardware acceleration bugs
+* Fix crash when displaying teletext subtitles
+* Fix inconsistent background audio behavior
+* Fix duplicated display of network drives
+
+Application:
+* Added fast seek using gamepad triggers
+* B will now close the playback overlay when it's displayed
+* Fix default control panel button focus
+* Improved media discovering performances
+* Fixed tab colors
+* General performance improvement 
+
 Changes between 1.8.4 and 1.8.5
 -------------------------------
 Release: 21 October 2015
