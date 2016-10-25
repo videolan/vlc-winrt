@@ -604,22 +604,27 @@ namespace VLC.ViewModels
             }
         }
 
+        private SystemMediaTransportControlsDisplayUpdater CommonTransportControlInit()
+        {
+            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
+            _systemMediaTransportControls.IsEnabled = true;
+            _systemMediaTransportControls.IsPauseEnabled = true;
+            _systemMediaTransportControls.IsPlayEnabled = true;
+            _systemMediaTransportControls.PlaybackRate = 1;
+
+            var updater = _systemMediaTransportControls.DisplayUpdater;
+            updater.ClearAll();
+            updater.AppMediaId = "VLC Media Player";
+            return updater;
+        }
+
         public async Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (_systemMediaTransportControls == null) return;
-                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
-                _systemMediaTransportControls.IsEnabled = true;
-                _systemMediaTransportControls.IsPauseEnabled = true;
-                _systemMediaTransportControls.IsPlayEnabled = true;
-                _systemMediaTransportControls.PlaybackRate = 1;
-
-                SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
-                updater.ClearAll();
+                var updater = CommonTransportControlInit();
                 updater.Type = MediaPlaybackType.Music;
                 // Music metadata.
-                updater.AppMediaId = "VLC Media Player";
                 updater.MusicProperties.AlbumArtist = artistName;
                 updater.MusicProperties.Artist = artistName;
                 updater.MusicProperties.Title = trackName;
@@ -641,16 +646,9 @@ namespace VLC.ViewModels
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (_systemMediaTransportControls == null) return;
                 LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
-                SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
-                updater.ClearAll();
-                updater.AppMediaId = "VLC Media Player";
+                var updater = CommonTransportControlInit();
                 updater.Type = MediaPlaybackType.Video;
-                _systemMediaTransportControls.IsEnabled = true;
-                _systemMediaTransportControls.IsPreviousEnabled = false;
-                _systemMediaTransportControls.IsNextEnabled = false;
-                _systemMediaTransportControls.PlaybackRate = 1;
                 //Video metadata
                 updater.VideoProperties.Title = title;
                 //TODO: add full thumbnail suport
