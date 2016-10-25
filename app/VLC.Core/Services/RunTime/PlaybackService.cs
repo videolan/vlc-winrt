@@ -114,6 +114,13 @@ namespace VLC.Services.RunTime
             Task.Run(() => RestorePlaylist());
             _mediasCollection = new SmartCollection<IMediaItem>();
             InitializePlaylist();
+            _mediaService.MediaFailed += MediaFailed;
+            _mediaService.StatusChanged += PlayerStateChanged;
+            _mediaService.TimeChanged += UpdateTime;
+            _mediaService.OnLengthChanged += OnLengthChanged;
+            _mediaService.OnStopped += OnStopped;
+            _mediaService.OnEndReached += OnEndReached;
+            _mediaService.OnBuffering += OnBuffering;
         }
         #endregion
 
@@ -328,10 +335,6 @@ namespace VLC.Services.RunTime
             // First set the player engine
             // For videos AND music, we have to try first with Microsoft own player
             // Then we register to Failed callback. If it doesn't work, we set ForceVlcLib to true
-            _mediaService.MediaFailed += MediaFailed;
-            _mediaService.StatusChanged += PlayerStateChanged;
-            _mediaService.TimeChanged += UpdateTime;
-
             if (autoPlay)
             {
                 // Reset the libVLC log file
@@ -341,10 +344,6 @@ namespace VLC.Services.RunTime
             // Send the media we want to play
             await _mediaService.SetMediaFile(media);
 
-            _mediaService.OnLengthChanged += OnLengthChanged;
-            _mediaService.OnStopped += OnStopped;
-            _mediaService.OnEndReached += OnEndReached;
-            _mediaService.OnBuffering += OnBuffering;
 
             if (_mediaService.MediaPlayer == null) return;
             var em = _mediaService.MediaPlayer.eventManager();
@@ -542,16 +541,6 @@ namespace VLC.Services.RunTime
 
         public void Stop()
         {
-            _mediaService.MediaFailed -= MediaFailed;
-            _mediaService.StatusChanged -= PlayerStateChanged;
-            _mediaService.TimeChanged -= UpdateTime;
-
-            _mediaService.OnLengthChanged -= OnLengthChanged;
-            _mediaService.OnStopped -= OnStopped;
-            _mediaService.OnEndReached -= OnEndReached;
-            _mediaService.OnBuffering -= OnBuffering;
-
-
             _currentAudioTrack = -1;
             _currentSubtitle = -1;
 
@@ -561,7 +550,6 @@ namespace VLC.Services.RunTime
             if (PlayerState != MediaState.Ended && PlayerState != MediaState.NothingSpecial)
             {
                 _mediaService.Stop();
-                Playback_MediaStopped?.Invoke();
             }
             TileHelper.ClearTile();
         }
