@@ -95,7 +95,6 @@ namespace VLC.UI.Views.VideoPages
             // Set UI Layout
             App.RootPage.SwapChainPanel.Visibility = Visibility.Visible;
             App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Hidden;
-            AppViewHelper.SetTitleBarTitle(Locator.VideoPlayerVm.CurrentVideo?.Name);
 
             // UI interactions
             Locator.MediaPlaybackViewModel.MouseService.Start();

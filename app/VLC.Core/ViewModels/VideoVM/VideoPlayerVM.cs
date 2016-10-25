@@ -324,7 +324,11 @@ namespace VLC.ViewModels.VideoVM
 
         async Task UpdateCurrentVideo(VideoItem video)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.VideoPlayerVm.CurrentVideo = video);
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                Locator.VideoPlayerVm.CurrentVideo = video;
+                AppViewHelper.SetTitleBarTitle(video.Name);
+            });
             await TryUseSubtitleFromFolder();
         }
 
