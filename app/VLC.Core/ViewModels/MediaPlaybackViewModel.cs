@@ -481,7 +481,7 @@ namespace VLC.ViewModels
             });
         }
 
-        private async void Playback_MediaStopped(IMediaService mediaService)
+        private async void Playback_MediaStopped()
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {

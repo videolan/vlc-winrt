@@ -55,7 +55,7 @@ namespace VLC.Services.Interface
         event EventHandler<libVLCX.MediaState> StatusChanged;
         event TimeChanged TimeChanged; 
         event EventHandler MediaFailed;
-        event Action<IMediaService> OnStopped;
+        event Action OnStopped;
         event Action<long> OnLengthChanged;
         event Action OnEndReached;
         event Action<int> OnBuffering;

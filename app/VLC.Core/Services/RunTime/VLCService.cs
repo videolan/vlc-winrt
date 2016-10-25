@@ -34,7 +34,7 @@ namespace VLC.Services.RunTime
         public event EventHandler<MediaState> StatusChanged;
         public event TimeChanged TimeChanged;
         public event EventHandler MediaFailed;
-        public event Action<IMediaService> OnStopped;
+        public event Action OnStopped;
         public event Action<long> OnLengthChanged;
         public event Action OnEndReached;
         public event Action<int> OnBuffering;
@@ -221,7 +221,7 @@ namespace VLC.Services.RunTime
         private void EmOnOnStopped()
         {
             StatusChanged?.Invoke(this, MediaState.Stopped);
-            OnStopped?.Invoke(this);
+            OnStopped?.Invoke();
         }
 
         void em_OnEncounteredError()

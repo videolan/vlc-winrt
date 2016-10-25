@@ -40,7 +40,7 @@ namespace VLC.Services.RunTime
         public event Action<TrackType, int> Playback_MediaTracksUpdated;
         public event TimeChanged Playback_MediaTimeChanged;
         public event EventHandler Playback_MediaFailed;
-        public event Action<IMediaService> Playback_MediaStopped;
+        public event Action Playback_MediaStopped;
         public event Action<long> Playback_MediaLengthChanged;
         public event Action Playback_MediaEndReached;
         public event Action<int> Playback_MediaBuffering;
@@ -561,6 +561,7 @@ namespace VLC.Services.RunTime
             if (PlayerState != MediaState.Ended && PlayerState != MediaState.NothingSpecial)
             {
                 _mediaService.Stop();
+                Playback_MediaStopped?.Invoke();
             }
             TileHelper.ClearTile();
         }
@@ -720,12 +721,12 @@ namespace VLC.Services.RunTime
             }
         }
 
-        private void OnStopped(IMediaService mediaService)
+        private void OnStopped()
         {
-            Debug.WriteLine("OnStopped event called from " + mediaService);
+            Debug.WriteLine("OnStopped event");
 
             PlayerState = MediaState.Stopped;
-            Playback_MediaStopped?.Invoke(mediaService);
+            Playback_MediaStopped?.Invoke();
         }
 
         private void OnLengthChanged(long length)
