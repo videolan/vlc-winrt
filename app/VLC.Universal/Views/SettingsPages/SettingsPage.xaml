@@ -235,7 +235,8 @@
                                       IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}" />
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
-                                                           Header="{Binding Source={StaticResource Strings}, Path=SubtitlesEncoding}" 
+                                                           Header="{Binding Source={StaticResource Strings}, Path=SubtitlesEncoding}"
+                                                           Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}"
                                                            IsTabStop="False" />
                         <ComboBox Margin="0,12"
                                   ItemsSource="{Binding SubtitlesEncodingValues}"
