@@ -43,6 +43,7 @@ namespace VLC.UI.Views.VideoPages
         {
             InitializeComponent();
             ControlsBorder.RegisterPropertyChangedCallback(Border.VisibilityProperty, OnBorderVisibilityChanged);
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaStopped += OnPlaybackStopped;
         }
 
         private void OnBorderVisibilityChanged(DependencyObject sender, DependencyProperty dp)
@@ -147,6 +148,15 @@ namespace VLC.UI.Views.VideoPages
             controlsTimer.Tick -= ControlsTimer_Tick;
             controlsTimer.Stop();
             Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
+        }
+
+        async void OnPlaybackStopped()
+        {
+            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                if (!Locator.NavigationService.GoBack_Default())
+                    Locator.NavigationService.Go(Locator.MainVM.CurrentPanel.Target);
+            });
         }
 
         void OnSizeChanged(object sender, SizeChangedEventArgs args)

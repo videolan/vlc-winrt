@@ -20,13 +20,6 @@ namespace VLC.Commands.VideoPlayer
         {
             await Locator.MediaPlaybackViewModel.UpdatePosition();
 
-            if (parameter is Type)
-            {
-                App.ApplicationFrame.Navigate((Type)parameter);
-            }
-            else if (!Locator.NavigationService.GoBack_Default())
-                Locator.NavigationService.Go(Locator.MainVM.CurrentPanel.Target);
-
             Locator.MediaPlaybackViewModel.PlaybackService.Stop();
         }
     }
