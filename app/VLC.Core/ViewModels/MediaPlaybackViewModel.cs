@@ -611,6 +611,7 @@ namespace VLC.ViewModels
             _systemMediaTransportControls.IsPauseEnabled = true;
             _systemMediaTransportControls.IsPlayEnabled = true;
             _systemMediaTransportControls.PlaybackRate = 1;
+            _systemMediaTransportControls.IsStopEnabled = true;
 
             var updater = _systemMediaTransportControls.DisplayUpdater;
             updater.ClearAll();
