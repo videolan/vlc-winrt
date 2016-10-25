@@ -612,6 +612,8 @@ namespace VLC.ViewModels
             _systemMediaTransportControls.IsPlayEnabled = true;
             _systemMediaTransportControls.PlaybackRate = 1;
             _systemMediaTransportControls.IsStopEnabled = true;
+            _systemMediaTransportControls.IsFastForwardEnabled = true;
+            _systemMediaTransportControls.IsRewindEnabled = true;
 
             var updater = _systemMediaTransportControls.DisplayUpdater;
             updater.ClearAll();
@@ -687,6 +689,12 @@ namespace VLC.ViewModels
                     break;
                 case SystemMediaTransportControlsButton.Next:
                     await PlaybackService.PlayNext();
+                    break;
+                case SystemMediaTransportControlsButton.FastForward:
+                    Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(30000);
+                    break;
+                case SystemMediaTransportControlsButton.Rewind:
+                    Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(-30000);
                     break;
             }
         }
