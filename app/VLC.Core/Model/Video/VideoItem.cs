@@ -129,8 +129,6 @@ namespace VLC.Model.Video
         {
             get
             {
-                if (_timeWatchedSeconds == 0)
-                    _timeWatchedSeconds = (int)TimeWatched.TotalSeconds;
                 return _timeWatchedSeconds;
             }
             set
