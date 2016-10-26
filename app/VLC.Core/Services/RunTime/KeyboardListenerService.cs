@@ -224,15 +224,19 @@ namespace VLC.Services.RunTime
                                     Locator.MediaPlaybackViewModel.PlayOrPauseCommand.Execute(null);
                                     break;
                                 case VirtualKey.GamepadLeftShoulder:
+                                    Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
                                     Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(-5000);
                                     break;
                                 case VirtualKey.GamepadLeftTrigger:
+                                    Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
                                     Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(-30000);
                                     break;
                                 case VirtualKey.GamepadRightShoulder:
+                                    Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
                                     Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(5000);
                                     break;
                                 case VirtualKey.GamepadRightTrigger:
+                                    Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
                                     Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(30000);
                                     break;
                                 default:
