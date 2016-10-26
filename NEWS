@@ -1,5 +1,19 @@
 Changes between 2.1.0 and 2.1.1
 -------------------------------
+Release: 26 October 2016
+
+Bugfixes:
+* Fix duplication of left/right channels in rear speakers
+* Fix crash when downloading subtitle
+
+Application:
+* Full Xbox1 remote support
+* Improve video control panel behavior
+* Fix missing video name display in windowed mode
+* Display the control when seeking using gamepad triggers
+
+Changes between 2.1.0 and 2.1.1
+-------------------------------
 Release: 23 October 2016
 
 Bugfixes:
