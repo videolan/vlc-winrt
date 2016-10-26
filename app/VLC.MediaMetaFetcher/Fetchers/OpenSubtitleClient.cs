@@ -31,7 +31,14 @@ namespace VLC.MediaMetaFetcher.Fetchers
                 var client = new XmlHttpClient();
                 var xml = await client.PostXmlAsync(OpenSubtitlesAPIUrl, "LogIn", new List<string> { "", "", "fre", USER_AGENT });
                 var tokenNode = xml.GetElementsByTagName("name");
-                token = System.Net.WebUtility.HtmlDecode(tokenNode[0].NextSibling.NextSibling.InnerText.ToString()).Trim();
+                var firstNode = tokenNode[0].NextSibling;
+                while (firstNode != null && token == null)
+                {
+                    if (firstNode.NodeName == "value")
+                        token = System.Net.WebUtility.HtmlDecode(firstNode.InnerText.ToString()).Trim();
+                    else
+                        firstNode = firstNode.NextSibling;
+                }
                 if (!string.IsNullOrEmpty(token))
                     configured = true;
             }
