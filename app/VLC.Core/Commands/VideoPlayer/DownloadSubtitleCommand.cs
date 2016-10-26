@@ -14,6 +14,12 @@ namespace VLC.Commands.VideoPlayer
             Locator.VideoPlayerVm.IsLoadingSubtitle = true;
             Locator.VideoPlayerVm.LoadingSubtitleText = Strings.Loading;
 
+            if (Locator.VideoPlayerVm.CurrentVideo == null)
+            {
+                Locator.VideoPlayerVm.LoadingSubtitleText = Strings.NoResults;
+                Locator.VideoPlayerVm.IsLoadingSubtitle = false;
+                return;
+            }
             var success = false;
             if (Locator.VideoPlayerVm.CurrentVideo.IsSubtitlePreLoaded)
                 success = true;
