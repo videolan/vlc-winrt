@@ -139,6 +139,7 @@ namespace VLC.ViewModels.VideoVM
             // If no playback was ever started, ContinueIndexing can be null
             // If we navigate back and forth to the main page, we also don't want to 
             // re-mark the task as completed.
+            PlayerControlVisibility = true;
             Locator.MediaLibrary.ContinueIndexing = new TaskCompletionSource<bool>();
             DeviceHelper.PrivateDisplayCall(true);
             Locator.Slideshow.IsPaused = true;

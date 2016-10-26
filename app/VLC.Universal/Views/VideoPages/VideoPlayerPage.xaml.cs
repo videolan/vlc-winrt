@@ -44,6 +44,7 @@ namespace VLC.UI.Views.VideoPages
             InitializeComponent();
             ControlsBorder.RegisterPropertyChangedCallback(Border.VisibilityProperty, OnBorderVisibilityChanged);
             Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaStopped += OnPlaybackStopped;
+            FadeOut.Completed += FadeOut_Completed;
         }
 
         private void OnBorderVisibilityChanged(DependencyObject sender, DependencyProperty dp)
@@ -196,7 +197,6 @@ namespace VLC.UI.Views.VideoPages
             HeaderGridFadeOut.Value = -HeaderGrid.ActualHeight;
             FadeOut.Begin();
             Locator.MediaPlaybackViewModel.MouseService.HideCursor();
-            OnPlayerControlVisibilityChanged(isVisible);
         }
 
         void ShowControlPanel()
@@ -209,6 +209,14 @@ namespace VLC.UI.Views.VideoPages
             isVisible = true;
             FadeIn.Begin();
             OnPlayerControlVisibilityChanged(true);
+        }
+
+        private void FadeOut_Completed(object sender, object e)
+        {
+            // Toggle the visibility once the animation is complete.
+            // Otherwise, on xbox, double tapping B will toggle the boolean, and the 2nd press will 
+            // trigger the "Back" action
+            OnPlayerControlVisibilityChanged(false);
         }
 
         void ToggleControlPanelVisibility()
