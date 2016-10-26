@@ -106,22 +106,28 @@ namespace VLC.Helpers
 #endif
                 if (backend)
                 {
-                    backEndBuffer.Add(s);
-                    if (backEndBuffer.Count >= 5)
+                    lock (backEndBuffer)
                     {
-                        var lines = backEndBuffer.ToList();
-                        backEndBuffer.Clear();
-                        Task.Run(() => BackendSemaphore(() => WriteInLog(_backendLogFile, lines)));
+                        backEndBuffer.Add(s);
+                        if (backEndBuffer.Count >= 5)
+                        {
+                            var lines = backEndBuffer.ToList();
+                            backEndBuffer.Clear();
+                            Task.Run(() => BackendSemaphore(() => WriteInLog(_backendLogFile, lines)));
+                        }
                     }
                 }
                 else
                 {
-                    frontEndBuffer.Add(s);
-                    if (frontEndBuffer.Count >= 5)
+                    lock (frontEndBuffer)
                     {
-                        var lines = frontEndBuffer.ToList();
-                        frontEndBuffer.Clear();
-                        Task.Run(() => FrontendSemaphore(() => WriteInLog(_frontendLogFile, lines)));
+                        frontEndBuffer.Add(s);
+                        if (frontEndBuffer.Count >= 5)
+                        {
+                            var lines = frontEndBuffer.ToList();
+                            frontEndBuffer.Clear();
+                            Task.Run(() => FrontendSemaphore(() => WriteInLog(_frontendLogFile, lines)));
+                        }
                     }
                 }
             }
