@@ -315,10 +315,9 @@ namespace VLC.ViewModels.VideoVM
 
         private async void PlaybackService_Playback_MediaSet(IMediaItem media)
         {
+            await UpdateCurrentVideo(media as VideoItem);
             if (!(media is VideoItem))
                 return;
-
-            await UpdateCurrentVideo(media as VideoItem);
             await Locator.MediaPlaybackViewModel.SetMediaTransportControlsInfo(CurrentVideo.Name);
         }
 
@@ -327,9 +326,11 @@ namespace VLC.ViewModels.VideoVM
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Locator.VideoPlayerVm.CurrentVideo = video;
-                AppViewHelper.SetTitleBarTitle(video.Name);
+                if (video != null)
+                    AppViewHelper.SetTitleBarTitle(video.Name);
             });
-            await TryUseSubtitleFromFolder();
+            if (video != null)
+                await TryUseSubtitleFromFolder();
         }
 
         public void OnPlayerControlVisibilityChanged(bool visibility)
