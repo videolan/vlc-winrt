@@ -1,7 +1,7 @@
-From 6eeff8954568f04b99c9a675f13aa6773f43f73f Mon Sep 17 00:00:00 2001
+From 81bc18c5d3cba8a12403b39a4a8eb0279397c22a Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 20 Oct 2016 14:19:09 +0200
-Subject: [PATCH 16/17] avcodec: get the context of the data allocated outside
+Subject: [PATCH 14/15] avcodec: get the context of the data allocated outside
  of a picture_t
 
 ---
@@ -140,7 +140,7 @@ index 8671139..cd3ef4e 100644
      return VLC_SUCCESS;
  }
 diff --git a/modules/codec/avcodec/vda.c b/modules/codec/avcodec/vda.c
-index c89685e..ff33f0b 100644
+index f864797..25865d0 100644
 --- a/modules/codec/avcodec/vda.c
 +++ b/modules/codec/avcodec/vda.c
 @@ -157,10 +157,10 @@ static void Close( vlc_va_t *va, AVCodecContext *avctx )

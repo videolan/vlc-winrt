@@ -1,7 +1,7 @@
-From 52fa3fa0a30de45a5bdfcf0dda93239811a29fb8 Mon Sep 17 00:00:00 2001
+From 92609ad37bca586c5458a576bde343f68743ca8e Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 20 Oct 2016 13:35:31 +0200
-Subject: [PATCH 14/17] codec: av_buffer_create() uses the raw buffer data not
+Subject: [PATCH 12/15] codec: av_buffer_create() uses the raw buffer data not
  the high level surface
 
 ---

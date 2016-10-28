@@ -1,7 +1,7 @@
-From d6124257f0d26e3f6188bd0bb1a50e5845ea79d8 Mon Sep 17 00:00:00 2001
+From faa70386b1c878d686b9b055bd794b7265b711e2 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 19:14:48 +0200
-Subject: [PATCH 07/17] upnp: lookup the best interface to use libupnp with
+Subject: [PATCH 06/15] upnp: lookup the best interface to use libupnp with
 
 libupnp cannot handle more than one interface/IP at a time, so we need to make
 sure we use an appropriate one.

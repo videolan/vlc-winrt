@@ -1,7 +1,7 @@
-From cf80c861644f856a7081e5d08a9c63c419fe53e8 Mon Sep 17 00:00:00 2001
+From 8295fffe43871048a6ed275ef5da8f31fbdcf432 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robUx4@videolabs.io>
 Date: Fri, 21 Oct 2016 17:42:59 +0200
-Subject: [PATCH 17/17] avcodec: pull the decoder picture_t only when the va
+Subject: [PATCH 15/15] avcodec: pull the decoder picture_t only when the va
  has a picture to extract
 
 The va decoder is no longer provided a picture_t, the surface context is passed
@@ -172,7 +172,7 @@ index cd3ef4e..0e5008c 100644
  
  static void Delete( vlc_va_t *va, AVCodecContext *avctx )
 diff --git a/modules/codec/avcodec/vda.c b/modules/codec/avcodec/vda.c
-index ff33f0b..e06f4ce 100644
+index 25865d0..b139140 100644
 --- a/modules/codec/avcodec/vda.c
 +++ b/modules/codec/avcodec/vda.c
 @@ -144,7 +144,7 @@ static int Open(vlc_va_t *va,

@@ -1,7 +1,7 @@
-From efd591798e101c247e75b8855671ed0da9ef351b Mon Sep 17 00:00:00 2001
+From 2223c8f4d0e7bee69396a94a582b60b404e889a6 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 20 Oct 2016 13:32:29 +0200
-Subject: [PATCH 13/17] codec: use macros to avoid confusion between data[0]
+Subject: [PATCH 11/15] codec: use macros to avoid confusion between data[0]
  and data[3] types
 
 having data[3] = data[0] doesn't help
