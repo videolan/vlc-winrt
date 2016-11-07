@@ -145,7 +145,10 @@ namespace VLC.UI.Views.MainPages
                     return;
             }
 
-            Locator.MediaPlaybackViewModel.PlaybackService.SetSizeVideoPlayer((uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualWidth), (uint)Math.Ceiling(App.RootPage.SwapChainPanel.ActualHeight));
+            var scp = App.RootPage.SwapChainPanel;
+            Locator.MediaPlaybackViewModel.PlaybackService.SetSizeVideoPlayer(
+                (uint)Math.Ceiling(scp.ActualWidth * scp.CompositionScaleX), 
+                (uint)Math.Ceiling(scp.ActualHeight * scp.CompositionScaleY));
             Locator.VideoPlayerVm.ChangeSurfaceZoom(Locator.VideoPlayerVm.CurrentSurfaceZoom);
 
 

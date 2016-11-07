@@ -90,11 +90,10 @@ void DirectXManager::CreateSwapPanel(SwapChainPanel^ panel){
     }
     CheckDXOperation(hr, "Could not D3D11CreateDevice");
     CheckDXOperation(cp_d3dDevice.As(&dxgiDevice), "Could not transform to DXGIDevice");
-
     //Create the swapchain
     DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
-    swapChainDesc.Width  = (UINT) panel->ActualWidth;
-    swapChainDesc.Height = (UINT) panel->ActualHeight;
+    swapChainDesc.Width  = (UINT) ( panel->ActualWidth * panel->CompositionScaleX );
+    swapChainDesc.Height = (UINT) ( panel->ActualHeight * panel->CompositionScaleY );
     swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
     swapChainDesc.Stereo = false;
     swapChainDesc.SampleDesc.Count = 1;
@@ -125,6 +124,13 @@ void DirectXManager::CreateSwapPanel(SwapChainPanel^ panel){
     // This is necessary so we can call Trim() on suspend
     hr = dxgiDevice.As(&cp_dxgiDev3);
     CheckDXOperation(hr, "Failed to get the DXGIDevice3 from Dxgidevice1");
+
+    hr = cp_swapChain.As(&cp_swapChain2);
+    CheckDXOperation(hr, "Failed to get IDXGISwapChain2 from IDXGISwapChain1");
+    DXGI_MATRIX_3X2_F inverseScale = { 0 };
+    inverseScale._11 = 1.0f / panel->CompositionScaleX;
+    inverseScale._22 = 1.0f / panel->CompositionScaleY;
+    cp_swapChain2->SetMatrixTransform(&inverseScale);
 }
 
 void DirectXManager::Trim()
