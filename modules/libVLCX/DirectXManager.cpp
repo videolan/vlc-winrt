@@ -27,17 +27,17 @@
 
 using namespace libVLCX;
 
-DirectXManger::DirectXManger()
+DirectXManager::DirectXManager()
 {
 }
 
-void DirectXManger::CheckDXOperation(HRESULT hr, Platform::String^ message){
+void DirectXManager::CheckDXOperation(HRESULT hr, Platform::String^ message){
     if (hr != S_OK) {
         throw ref new Platform::Exception(hr, message);
     }
 }
 
-void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
+void DirectXManager::CreateSwapPanel(SwapChainPanel^ panel){
     HRESULT hr;
     ComPtr<IDXGIFactory2> dxgiFactory;
     ComPtr<IDXGIAdapter> dxgiAdapter;
@@ -127,7 +127,7 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     CheckDXOperation(hr, "Failed to get the DXGIDevice3 from Dxgidevice1");
 }
 
-void DirectXManger::Trim()
+void DirectXManager::Trim()
 {
     if (cp_dxgiDev3 != nullptr)
         cp_dxgiDev3->Trim();

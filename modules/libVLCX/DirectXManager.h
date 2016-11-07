@@ -33,10 +33,10 @@ using namespace Windows::Media::Devices;
 using namespace Windows::UI::Xaml::Controls;
 
 namespace libVLCX {
-    class DirectXManger
+    class DirectXManager
     {
     public:
-        DirectXManger();
+        DirectXManager();
         void CreateSwapPanel(SwapChainPanel^ panel);
         void Trim();
     private:
