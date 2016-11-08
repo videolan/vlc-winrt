@@ -232,7 +232,7 @@ namespace VLC
             Locator.ExternalDeviceService.startWatcher();
 
             if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
-                Locator.HttpServer.bind(8080);
+                await Locator.HttpServer.bind(8080).ConfigureAwait(false);
         }
 
         public static async Task reloadApplicationPage()
