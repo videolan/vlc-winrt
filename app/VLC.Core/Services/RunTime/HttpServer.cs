@@ -99,8 +99,6 @@ namespace VLC.Services.RunTime
                             }
                         }
 
-                        Debug.WriteLine("received: " + payloadLengthReceived);
-
                         // End of request with a payload upload
                         if (uploadFileStream != null
                             && payloadLengthReceived == requestParameters.payloadLength)
