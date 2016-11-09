@@ -73,7 +73,8 @@ namespace VLC.Services.RunTime
                     string.Format("--freetype-font={0}\\NotoSans-Regular.ttf",Windows.ApplicationModel.Package.Current.InstalledLocation.Path),
                     "--subsdec-encoding",
                     Locator.SettingsVM.SubtitleEncodingValue == "System" ? "" : Locator.SettingsVM.SubtitleEncodingValue,
-                    "--aout=winstore"
+                    "--aout=winstore",
+                    string.Format("--keystore-file={0}\\keystore", ApplicationData.Current.LocalFolder.Path),
                 };
 
                 // So far, this NEEDS to be called from the main thread
