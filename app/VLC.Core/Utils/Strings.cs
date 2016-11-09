@@ -286,6 +286,8 @@ namespace VLC.Utils
         public static string EvenIfBackground => _resourcesLoader.GetString(nameof(EvenIfBackground));
         public static string EvenIfNotBackground => _resourcesLoader.GetString(nameof(EvenIfNotBackground));
         public static string NeedRestart => _resourcesLoader.GetString(nameof(NeedRestart));
+        public static string ClearKeystore => _resourcesLoader.GetString(nameof(ClearKeystore));
+        public static string Credentials => _resourcesLoader.GetString(nameof(Credentials));
 
         // LastFM
         public static string ConnectToLastFM => _resourcesLoader.GetString(nameof(ConnectToLastFM));

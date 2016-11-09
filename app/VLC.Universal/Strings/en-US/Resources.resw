@@ -729,4 +729,10 @@
   <data name="NoSubtitles" xml:space="preserve">
     <value>No subtitle tracks</value>
   </data>
+  <data name="ClearKeystore" xml:space="preserve">
+    <value>Clear saved credentials</value>
+  </data>
+  <data name="Credentials" xml:space="preserve">
+    <value>Credentials</value>
+  </data>
 </root>

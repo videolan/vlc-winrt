@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Input;
+using Windows.Storage;
 
 namespace VLC.UI.Views.SettingsPages
 {
@@ -116,6 +117,12 @@ namespace VLC.UI.Views.SettingsPages
         {
             if (e.AddedItems.Any())
                 Locator.SettingsVM.Equalizer = e.AddedItems[0] as VLCEqualizer;
+        }
+
+        private async void OnClearKeystoreClicked(object sender, RoutedEventArgs a)
+        {
+            var file = await StorageFile.GetFileFromPathAsync(string.Format("{0}\\keystore", ApplicationData.Current.LocalFolder.Path));
+            await FileIO.WriteTextAsync(file, "");
         }
     }
 }

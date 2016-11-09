@@ -830,6 +830,14 @@
           <source>No subtitle tracks</source>
           <target state="translated">Aucune piste de sous titre</target>
         </trans-unit>
+        <trans-unit id="ClearKeystore" translate="yes" xml:space="preserve">
+          <source>Clear saved credentials</source>
+          <target state="new">Clear saved credentials</target>
+        </trans-unit>
+        <trans-unit id="Credentials" translate="yes" xml:space="preserve">
+          <source>Credentials</source>
+          <target state="new">Credentials</target>
+        </trans-unit>
       </group>
     </body>
   </file>

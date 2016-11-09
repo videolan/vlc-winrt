@@ -122,7 +122,15 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
 
-                        <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                    <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                                                           Header="{Binding Source={StaticResource Strings}, Path=Credentials}"
+                                                           IsTabStop="False"/>
+                    <Button x:Name="Clearkeystore"
+                            x:Uid="ClearKeystore"
+                            Click="OnClearKeystoreClicked"
+                            Content="{Binding Source={StaticResource Strings}, Path=ClearKeystore}" />
+
+                    <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            Header="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}"
                                                            Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.CollapsedOnXbox}" />
                         <ListView ItemsSource="{Binding KeyboardActions}"
