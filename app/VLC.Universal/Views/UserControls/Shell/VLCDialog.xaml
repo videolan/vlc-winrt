@@ -40,7 +40,8 @@
                                    Margin="{StaticResource FrameMarginTop}"
                                    MaxWidth="300"
                                    HorizontalAlignment="Left"
-                                   Visibility="Collapsed" />
+                                   Visibility="Collapsed"
+                                   KeyUp="UsernameBox_KeyUp"/>
         <PasswordBox x:Name="PasswordBox1"
                      Grid.Row="3"
                      PlaceholderText="{Binding Source={StaticResource Strings}, Path=Password}"
@@ -50,7 +51,8 @@
                      HorizontalAlignment="Left"
                      GotFocus="PasswordBox1_GotFocus"
                      LostFocus="PasswordBox1_LostFocus"
-                     Visibility="Collapsed" />
+                     Visibility="Collapsed"
+                     KeyUp="PasswordBox_KeyUp"/>
         <ToggleSwitch x:Name="StoreToggleSwitch"
                       Grid.Row="4"
                       Visibility="Collapsed" />

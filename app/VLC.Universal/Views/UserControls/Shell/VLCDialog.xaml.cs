@@ -10,6 +10,7 @@ using VLC.Utils;
 using VLC.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 namespace VLC.UI.Views.UserControls.Shell
@@ -108,6 +109,17 @@ namespace VLC.UI.Views.UserControls.Shell
         private void PasswordBox1_LostFocus(object sender, RoutedEventArgs e)
         {
             Locator.MainVM.KeyboardListenerService.CanListen = true;
+        }
+
+        private void UsernameBox_KeyUp(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+                PasswordBox1.Focus(FocusState.Programmatic);
+        }
+        private void PasswordBox_KeyUp(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+                StoreToggleSwitch.Focus(FocusState.Programmatic);
         }
     }
 }
