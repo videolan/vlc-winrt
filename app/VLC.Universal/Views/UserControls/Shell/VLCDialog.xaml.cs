@@ -64,14 +64,14 @@ namespace VLC.UI.Views.UserControls.Shell
             this.PrimaryButtonText = "Submit";
             this.PrimaryButtonClick += (d, eventArgs) =>
             {
-                Dialog.postLogin(TextBox1.Text, PasswordBox1.Password, StoreToggleSwitch.IsOn);
+                Dialog?.postLogin(TextBox1.Text, PasswordBox1.Password, StoreToggleSwitch.IsOn);
                 Dialog = null;
             };
 
             this.SecondaryButtonText = "Cancel";
             this.SecondaryButtonClick += (d, eventArgs) =>
             {
-                Dialog.dismiss();
+                Dialog?.dismiss();
                 Dialog = null;
             };
         }
@@ -83,20 +83,20 @@ namespace VLC.UI.Views.UserControls.Shell
             this.PrimaryButtonText = action1;
             this.PrimaryButtonClick += (d, eventArgs) =>
             {
-                Dialog.postAction(1);
+                Dialog?.postAction(1);
                 Dialog = null;
             };
             this.SecondaryButtonText = action2;
             this.SecondaryButtonClick += (d, eventArgs) =>
             {
-                Dialog.postAction(2);
+                Dialog?.postAction(2);
                 Dialog = null;
             };
         }
 
         public void Cancel()
         {
-            Dialog.dismiss();
+            Dialog?.dismiss();
             Dialog = null;
             Hide();
         }
