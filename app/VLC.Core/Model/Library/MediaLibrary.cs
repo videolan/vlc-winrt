@@ -268,7 +268,7 @@ namespace VLC.Model.Library
             await MediaLibraryHelper.ForeachSupportedFile(folder, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
             await MediaLibraryHelper.ForeachSupportedFile(KnownFolders.VideosLibrary, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
             await MediaLibraryHelper.ForeachSupportedFile(KnownFolders.MusicLibrary, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
-            await MediaLibraryHelper.ForeachSupportedFile(KnownFolders.CameraRoll, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
+            await MediaLibraryHelper.ForeachSupportedFile(KnownFolders.CameraRoll, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files, true));
 
             // Cortana gets all those artists, albums, songs names
             var artists = LoadArtists(null);
