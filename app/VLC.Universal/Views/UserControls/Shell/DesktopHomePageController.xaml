@@ -14,27 +14,15 @@
         Style="{StaticResource TitlelessPivot}"
         Background="{ThemeResource TranslucentMainColor}">
         <Pivot.LeftHeader>
-            <Grid Margin="{StaticResource FrameMarginRight}">
-                <Path x:Name="VLCIcon"
-                              Data="{StaticResource VLCFlatPath}"
-                              Fill="White"
-                              Stretch="Uniform"
-                              HorizontalAlignment="Left"
-                              VerticalAlignment="Center"
-                              Height="16"
-                              Margin="{StaticResource FrameMarginHorizontal}">
-                    <Path.ContextFlyout>
-                        <MenuFlyout>
-                            <MenuFlyoutSubItem Text="File">
-                                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OpenFile}" />
-                                <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OpenFile}" />
-                            </MenuFlyoutSubItem>
-                            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Settings}" />
-                            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=AboutTheApp}" />
-                        </MenuFlyout>
-                    </Path.ContextFlyout>
-                </Path>
-            </Grid>
+            <Path x:Name="VLCIcon"
+                  Data="{StaticResource VLCFlatPath}"
+                  Fill="White"
+                  Stretch="Uniform"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Center"
+                  Height="16"
+                  Margin="{StaticResource FrameMarginHorizontal}">
+            </Path>
         </Pivot.LeftHeader>
         <Pivot.RightHeader>
             <Grid x:Name="TitleBar"
