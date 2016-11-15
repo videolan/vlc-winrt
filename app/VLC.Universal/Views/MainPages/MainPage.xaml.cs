@@ -121,7 +121,7 @@ namespace VLC.UI.Views.MainPages
         
         public async void StopCompositionAnimationOnSwapChain()
         {
-            if (_compositor == null)
+            if (_compositor == null || _pipEnabled == false)
                 return;
 
             _pipEnabled = false;
