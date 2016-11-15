@@ -133,8 +133,11 @@ namespace VLC.ViewModels.RemovableDevicesVM
         {
             get
             {
-                return Locator.SettingsVM.MediaCenterMode
-                    ? Strings.CopyHelpMediaCenter : Strings.CopyHelpDesktop;
+                if (Locator.SettingsVM.MediaCenterMode)
+                    return Strings.CopyHelpMediaCenter;
+                if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Phone)
+                    return Strings.CopyHelpPhone;
+                return Strings.CopyHelpDesktop;
             }
         }
 

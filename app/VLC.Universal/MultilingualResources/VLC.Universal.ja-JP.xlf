@@ -839,6 +839,10 @@
           <source>Credentials</source>
           <target state="new">Credentials</target>
         </trans-unit>
+        <trans-unit id="CopyHelpPhone" translate="yes" xml:space="preserve">
+          <source>Long press on a file or a folder to copy it to the local storage.</source>
+          <target state="new">Long press on a file or a folder to copy it to the local storage.</target>
+        </trans-unit>
       </group>
     </body>
   </file>

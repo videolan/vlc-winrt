@@ -735,4 +735,7 @@
   <data name="Credentials" xml:space="preserve">
     <value>Credentials</value>
   </data>
+  <data name="CopyHelpPhone" xml:space="preserve">
+    <value>Long press on a file or a folder to copy it to the local storage.</value>
+  </data>
 </root>

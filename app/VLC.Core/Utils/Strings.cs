@@ -78,6 +78,7 @@ namespace VLC.Utils
         public static string Search => _resourcesLoader.GetString(nameof(Search));
         public static string CopyHelpDesktop => _resourcesLoader.GetString(nameof(CopyHelpDesktop));
         public static string CopyHelpMediaCenter => _resourcesLoader.GetString(nameof(CopyHelpMediaCenter));
+        public static string CopyHelpPhone => _resourcesLoader.GetString(nameof(CopyHelpPhone));
 
         public static string YourMusic => _resourcesLoader.GetString(nameof(YourMusic));
         public static string MostPlayedArtists => _resourcesLoader.GetString(nameof(MostPlayedArtists));
