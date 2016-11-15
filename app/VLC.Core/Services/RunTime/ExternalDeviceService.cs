@@ -95,7 +95,8 @@ namespace VLC.Services.RunTime
             Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == VLCPage.MainPageFileExplorer);
 
             StorageFolder rootFolder;
-            if (Helpers.DeviceHelper.GetDeviceType() != Helpers.DeviceTypeEnum.Xbox)
+            if (Helpers.DeviceHelper.GetDeviceType() != Helpers.DeviceTypeEnum.Xbox &&
+                Helpers.DeviceHelper.GetDeviceType() != Helpers.DeviceTypeEnum.Phone)
                 rootFolder = Windows.Devices.Portable.StorageDevice.FromId(deviceId);
             else
             {

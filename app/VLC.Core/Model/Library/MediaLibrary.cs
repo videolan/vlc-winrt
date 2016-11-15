@@ -39,7 +39,8 @@ namespace VLC.Model.Library
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
                 StorageFolder folder;
                 // Windows.Devices.Portable.StorageDevice.FromId blocks forever on Xbox... so work around
-                if (Helpers.DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox)
+                if (Helpers.DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox &&
+                    Helpers.DeviceHelper.GetDeviceType() != DeviceTypeEnum.Phone)
                     folder = Windows.Devices.Portable.StorageDevice.FromId(deviceId);
                 else
                 {
