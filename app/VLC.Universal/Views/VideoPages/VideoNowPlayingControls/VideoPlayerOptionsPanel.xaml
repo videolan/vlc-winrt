@@ -12,6 +12,7 @@
 
     <Border x:Name="RootGrid"
             Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+            Margin="10,75">
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}"
                       Padding="{StaticResource FrameMarginHorizontal}">
             <StackPanel>
