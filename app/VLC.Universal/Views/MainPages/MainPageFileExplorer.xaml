@@ -210,6 +210,7 @@
             Background="{ThemeResource ApplicationChromeThemeBrush}">
             <TextBlock Text="{Binding CopyHelpMessage}"
                 HorizontalAlignment="Center"
+                TextWrapping="WrapWholeWords"
                 FontSize="16" />
         </StackPanel>
     </Grid>
