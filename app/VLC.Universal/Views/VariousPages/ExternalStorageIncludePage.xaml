@@ -8,7 +8,8 @@
       mc:Ignorable="d">
     <StackPanel Background="{ThemeResource ApplicationOverlayTranslucentThemeColor}"
                 Padding="15">
-        <TextBlock Padding="10">
+        <TextBlock Padding="10"
+                   TextWrapping="WrapWholeWords">
             <Run Text="{Binding Source={StaticResource Strings}, Path=ExternalStorageDeviceDetected}"
                  Foreground="{StaticResource MainColor}"
                  FontSize="19"/>
