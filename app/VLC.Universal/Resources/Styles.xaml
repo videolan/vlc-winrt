@@ -4269,6 +4269,7 @@
                                         VerticalAlignment="Stretch">
                                 <Grid x:Name="PivotLayoutElement">
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
                                         <RowDefinition Height="40" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
@@ -4276,34 +4277,44 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition x:Name="LeftColumnDefinition"
                                                           Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition x:Name="RightColumnDefinition"
                                                           Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Grid.RenderTransform>
                                         <CompositeTransform x:Name="PivotLayoutElementTranslateTransform" />
                                     </Grid.RenderTransform>
-                                    <ContentPresenter x:Name="LeftHeaderPresenter"
+                                    <ContentPresenter x:Name="TopHeaderPresenter"
+                                                      Grid.Row="0"
+                                                      Grid.Column="0"
+                                                      Grid.ColumnSpan="2"
+                                                      Height="20"
+                                                      Background="{TemplateBinding Background}"
+                                                      HorizontalAlignment="Stretch"
+                                                      VerticalAlignment="Stretch" />
+                                        <ContentPresenter x:Name="LeftHeaderPresenter"
+                                                      Grid.Row="1"
                                                       Background="{TemplateBinding Background}"
                                                       Content="{TemplateBinding LeftHeader}"
                                                       ContentTemplate="{TemplateBinding LeftHeaderTemplate}"
                                                       HorizontalAlignment="Stretch"
                                                       VerticalAlignment="Stretch" />
                                     <ContentPresenter x:Name="RightHeaderPresenter"
-                                                      Grid.Column="2"
+                                                      Grid.Row="1"
+                                                      Grid.Column="1"
                                                       Background="{TemplateBinding Background}"
                                                       Content="{TemplateBinding RightHeader}"
                                                       ContentTemplate="{TemplateBinding RightHeaderTemplate}"
                                                       HorizontalAlignment="Stretch"
                                                       VerticalAlignment="Stretch" />
                                     <ContentControl x:Name="HeaderClipper"
+                                                    Grid.Row="1"
                                                     Grid.Column="1"
+                                                    Grid.ColumnSpan="1"
                                                     UseSystemFocusVisuals="False">
                                         <ContentControl.Clip>
                                             <RectangleGeometry x:Name="HeaderClipperGeometry" />
                                         </ContentControl.Clip>
-                                        <Grid Background="{TemplateBinding Background}"
-                                              RequestedTheme="Dark">
+                                        <Grid>
                                             <PivotHeaderPanel x:Name="StaticHeader"
                                                               Visibility="Collapsed" />
                                             <PivotHeaderPanel x:Name="Header">
@@ -4317,7 +4328,8 @@
                                         </Grid>
                                     </ContentControl>
                                     <Button x:Name="PreviousButton"
-                                            Grid.Column="1"
+                                            Grid.Column="0"
+                                            Grid.Row="1"
                                             Template="{StaticResource PreviousTemplate}"
                                             Width="20"
                                             Height="36"
@@ -4330,6 +4342,7 @@
                                             Opacity="0"
                                             Background="Transparent" />
                                     <Button x:Name="NextButton"
+                                            Grid.Row="1"
                                             Grid.Column="2"
                                             Template="{StaticResource NextTemplate}"
                                             Width="20"
@@ -4343,7 +4356,7 @@
                                             Opacity="0"
                                             Background="Transparent" />
                                     <ItemsPresenter x:Name="PivotItemPresenter"
-                                                    Grid.Row="1"
+                                                    Grid.Row="2"
                                                     Grid.ColumnSpan="3">
                                         <ItemsPresenter.RenderTransform>
                                             <TransformGroup>
