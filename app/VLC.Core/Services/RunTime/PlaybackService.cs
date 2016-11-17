@@ -100,7 +100,7 @@ namespace VLC.Services.RunTime
             private set { _playlist = value; }
         }
 
-        public SmartCollection<IMediaItem> NonShuffledPlaylist
+        private SmartCollection<IMediaItem> NonShuffledPlaylist
         {
             get { return _nonShuffledPlaylist; }
             set { _nonShuffledPlaylist = value; }
