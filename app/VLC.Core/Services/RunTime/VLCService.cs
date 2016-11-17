@@ -39,6 +39,7 @@ namespace VLC.Services.RunTime
         public event Action<int> OnBuffering;
 
         public TaskCompletionSource<bool> PlayerInstanceReady { get; set; } = new TaskCompletionSource<bool>();
+        private DialogService _dialogService = new DialogService();
 
         public Instance Instance { get; private set; }
         // Contains the IAudioClient address, as a string.
@@ -55,7 +56,6 @@ namespace VLC.Services.RunTime
             set { _audioDeviceID = value; }
         }
         public MediaPlayer MediaPlayer { get; private set; }
-        private VLCDialog CurrentDialog;
 
         public Task Initialize()
         {
@@ -81,46 +81,13 @@ namespace VLC.Services.RunTime
                 {
                     Instance = new Instance(param, App.RootPage.SwapChainPanel);
                     Instance?.setDialogHandlers(
-                        async (title, text) =>
-                        {
-                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-                            {
-                                await VLCDialog.WaitForDialogLock();
-                                CurrentDialog = new VLCDialog(title, text);
-                                await CurrentDialog.ShowAsync();
-                            });
-                        },
-                        async (dialog, title, text, defaultUserName, askToStore) =>
-                        {
-                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-                            {
-                                await VLCDialog.WaitForDialogLock();
-                                CurrentDialog = new VLCDialog(title, text, dialog, defaultUserName, askToStore);
-                                await CurrentDialog.ShowAsync();
-                            });
-                        },
-
-                        async (dialog, title, text, qType, cancel, action1, action2) =>
-                        {
-                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-                            {
-                                if (qType == Question.warning)
-                                {
-                                    dialog.postAction(1);
-                                    return;
-                                }
-                                await VLCDialog.WaitForDialogLock();
-                                CurrentDialog = new VLCDialog(title, text, dialog, qType, cancel, action1, action2);
-                                await CurrentDialog.ShowAsync();
-                            });
-                        },
-
+                        async (title, text) => await _dialogService.ShowErrorDialog(title, text),
+                        async (dialog, title, text, defaultUserName, askToStore) => await _dialogService.ShowLoginDialog(dialog, title, text, defaultUserName, askToStore),
+                        async (dialog, title, text, qType, cancel, action1, action2) => await _dialogService.ShowQuestionDialog(dialog, title, text, qType, cancel, action1, action2),
                         (dialog, title, text, intermidiate, position, cancel) => { },
-                        async (dialog) =>
-                        {
-                            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => CurrentDialog.Cancel());
-                        },
-                        (dialog, position, text) => { });
+                        async (dialog) => await _dialogService.CancelCurrentDialog(),
+                        (dialog, position, text) => { }
+                    );
 
                     // Audio device management also needs to be called from the main thread
                     AudioClient = new AudioDeviceHandler(AudioDeviceID);
