@@ -210,7 +210,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\PlaybackService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\VideoMetaService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\VLCService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MouseService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MusicMetaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\NetworkListenerService.cs" />

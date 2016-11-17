@@ -28,6 +28,7 @@ using System.IO;
 using libVLCX;
 using VLC.ViewModels;
 using VLC.Database;
+using Windows.Media.Devices;
 
 namespace VLC.Services.RunTime
 {
@@ -38,11 +39,11 @@ namespace VLC.Services.RunTime
         public event Action<ParsedStatus> Playback_MediaParsed;
         public event Action<TrackType, int> Playback_MediaTracksUpdated;
         public event TimeChanged Playback_MediaTimeChanged;
-        public event EventHandler Playback_MediaFailed;
-        public event Action Playback_MediaStopped;
-        public event Action<long> Playback_MediaLengthChanged;
+        public event EncounteredError Playback_MediaFailed;
+        public event Stopped Playback_MediaStopped;
+        public event LengthChanged Playback_MediaLengthChanged;
         public event Action Playback_MediaEndReached;
-        public event Action<int> Playback_MediaBuffering;
+        public event Buffering Playback_MediaBuffering;
         public event Action<IMediaItem> Playback_MediaFileNotFound;
 
         private List<DictionaryKeyValue> _subtitlesTracks = new List<DictionaryKeyValue>();
@@ -56,7 +57,89 @@ namespace VLC.Services.RunTime
         private bool _repeat;
 
         public BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
-        private VLCService _mediaService => Locator.VLCService;
+        public TaskCompletionSource<bool> PlayerInstanceReady { get; set; } = new TaskCompletionSource<bool>();
+        private DialogService _dialogService = new DialogService();
+
+        public Instance Instance { get; private set; }
+        // Contains the IAudioClient address, as a string.
+        private AudioDeviceHandler AudioClient { get; set; }
+        private String _audioDeviceID;
+        private String AudioDeviceID
+        {
+            get
+            {
+                if (_audioDeviceID == null)
+                    _audioDeviceID = MediaDevice.GetDefaultAudioRenderId(AudioDeviceRole.Default);
+                return _audioDeviceID;
+            }
+            set { _audioDeviceID = value; }
+        }
+        public MediaPlayer MediaPlayer { get; private set; }
+
+        public Task Initialize()
+        {
+            return DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                var param = new List<string>
+                {
+                    "-I",
+                    "dummy",
+                    "--no-osd",
+                    "--verbose=3",
+                    "--no-stats",
+                    "--avcodec-fast",
+                    string.Format("--freetype-font={0}\\NotoSans-Regular.ttf",Windows.ApplicationModel.Package.Current.InstalledLocation.Path),
+                    "--subsdec-encoding",
+                    Locator.SettingsVM.SubtitleEncodingValue == "System" ? "" : Locator.SettingsVM.SubtitleEncodingValue,
+                    "--aout=winstore",
+                    string.Format("--keystore-file={0}\\keystore", ApplicationData.Current.LocalFolder.Path),
+                };
+
+                // So far, this NEEDS to be called from the main thread
+                try
+                {
+                    Instance = new Instance(param, App.RootPage.SwapChainPanel);
+                    Instance?.setDialogHandlers(
+                        async (title, text) => await _dialogService.ShowErrorDialog(title, text),
+                        async (dialog, title, text, defaultUserName, askToStore) => await _dialogService.ShowLoginDialog(dialog, title, text, defaultUserName, askToStore),
+                        async (dialog, title, text, qType, cancel, action1, action2) => await _dialogService.ShowQuestionDialog(dialog, title, text, qType, cancel, action1, action2),
+                        (dialog, title, text, intermidiate, position, cancel) => { },
+                        async (dialog) => await _dialogService.CancelCurrentDialog(),
+                        (dialog, position, text) => { }
+                    );
+
+                    // Audio device management also needs to be called from the main thread
+                    AudioClient = new AudioDeviceHandler(AudioDeviceID);
+                    MediaDevice.DefaultAudioRenderDeviceChanged += onDefaultAudioRenderDeviceChanged;
+                    PlayerInstanceReady.TrySetResult(Instance != null);
+                }
+                catch (Exception e)
+                {
+                    LogHelper.Log("VLC Service : Couldn't create VLC Instance\n" + StringsHelper.ExceptionToString(e));
+                    ToastHelper.Basic(Strings.FailStartVLCEngine);
+                }
+            });
+        }
+
+        private async void onDefaultAudioRenderDeviceChanged(object sender, DefaultAudioRenderDeviceChangedEventArgs args)
+        {
+            if (args.Role != AudioDeviceRole.Default || args.Id == AudioDeviceID)
+                return;
+
+            AudioDeviceID = args.Id;
+            // If we don't have an instance yet, no need to fetch the audio client as it will be done upon
+            // instance creation.
+            if (Instance == null)
+                return;
+            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                // Always fetch the new audio client, as we always assign it when starting a new playback
+                AudioClient = new AudioDeviceHandler(AudioDeviceID);
+                // But if a playback is in progress, inform VLC backend that we changed device
+                if (MediaPlayer != null)
+                    MediaPlayer.outputDeviceSet(AudioClient.audioClient());
+            });
+        }
 
         public int CurrentMedia { get; private set; }
 
@@ -113,13 +196,6 @@ namespace VLC.Services.RunTime
             Task.Run(() => RestorePlaylist());
             _playlist = new SmartCollection<IMediaItem>();
             InitializePlaylist();
-            _mediaService.MediaFailed += MediaFailed;
-            _mediaService.StatusChanged += PlayerStateChanged;
-            _mediaService.TimeChanged += UpdateTime;
-            _mediaService.OnLengthChanged += OnLengthChanged;
-            _mediaService.OnStopped += OnStopped;
-            _mediaService.OnEndReached += OnEndReached;
-            _mediaService.OnBuffering += OnBuffering;
         }
         #endregion
 
@@ -167,6 +243,11 @@ namespace VLC.Services.RunTime
 
                 CurrentMedia = Playlist.IndexOf(m);
             }
+        }
+
+        public void Trim()
+        {
+            Instance?.Trim();
         }
 
         public async Task<bool> SetPlaylist(IEnumerable<IMediaItem> mediaItems, bool reset, bool play, IMediaItem media)
@@ -329,6 +410,55 @@ namespace VLC.Services.RunTime
             }
         }
 
+        private async Task SetMediaFile(IMediaItem media)
+        {
+            Media vlcMedia = null;
+            if (media.VlcMedia != null)
+            {
+                vlcMedia = media.VlcMedia;
+            }
+            else
+            {
+                var mrl_fromType = media.GetMrlAndFromType();
+                LogHelper.Log("SetMRL: " + mrl_fromType.Item2);
+                if (Instance == null)
+                {
+                    await Initialize();
+                }
+                await PlayerInstanceReady.Task;
+
+                if (!PlayerInstanceReady.Task.Result)
+                {
+                    LogHelper.Log($"Couldn't play media {media.Name} as VLC failed to init");
+                    return;
+                }
+
+                vlcMedia = new Media(Instance, mrl_fromType.Item2, mrl_fromType.Item1);
+            }
+
+            // Hardware decoding
+            vlcMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
+            vlcMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-threads=0" : ":avcodec-threads=1");
+
+            MediaPlayer = new MediaPlayer(vlcMedia);
+            LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
+            MediaPlayer.outputDeviceSet(AudioClient.audioClient());
+            SetEqualizer(Locator.SettingsVM.Equalizer);
+            var em = MediaPlayer.eventManager();
+
+            em.OnOpening += OnOpening;
+            em.OnBuffering += Playback_MediaBuffering;
+            em.OnStopped += OnStopped;
+            em.OnPlaying += OnPlaying;
+            em.OnPaused += OnPaused;
+            em.OnTimeChanged += Playback_MediaTimeChanged;
+            em.OnEndReached += OnEndReached;
+            em.OnEncounteredError += Playback_MediaFailed;
+            em.OnLengthChanged += Playback_MediaLengthChanged;
+            em.OnTrackAdded += OnTrackAdded;
+            em.OnTrackDeleted += OnTrackDeleted;
+        }
+
         private async Task InitializePlayback(IMediaItem media, bool autoPlay)
         {
             // First set the player engine
@@ -341,26 +471,17 @@ namespace VLC.Services.RunTime
             }
 
             // Send the media we want to play
-            await _mediaService.SetMediaFile(media);
+            await SetMediaFile(media);
 
 
-            if (_mediaService.MediaPlayer == null) return;
-            var em = _mediaService.MediaPlayer.eventManager();
-            em.OnTrackAdded += OnTrackAdded;
-            em.OnTrackDeleted += OnTrackDeleted;
-            var mem = _mediaService.MediaPlayer.media().eventManager();
+            if (MediaPlayer == null) return;
+            var mem = MediaPlayer.media().eventManager();
             mem.OnParsedChanged += OnParsedStatus;
             if (!autoPlay)
                 return;
-            _mediaService.Play();
+            Play();
 
-            SetSpeedRate(1);
-        }
-
-        private void BgService_MediaSet_FromBackground(int currentTrackIndex)
-        {
-            SetCurrentMediaPosition(currentTrackIndex);
-            Playback_MediaSet?.Invoke(Playlist[CurrentMedia]);
+            MediaPlayer.setRate(1);
         }
 
         #endregion
@@ -402,63 +523,63 @@ namespace VLC.Services.RunTime
 
         public int Volume
         {
-            get { return _mediaService.GetVolume(); }
-            set { _mediaService.SetVolume(value); }
+            get { return MediaPlayer.volume(); }
+            set { MediaPlayer.setVolume(value); }
         }
 
         public void SetSubtitleTrack(int i)
         {
-            _mediaService.SetSubtitleTrack(i);
+            MediaPlayer.setSpu(i);
         }
 
         public void SetAudioTrack(int i)
         {
-            _mediaService.SetAudioTrack(i);
+            MediaPlayer.setAudioTrack(i);
         }
 
         public void SetAudioDelay(long delay)
         {
-            _mediaService.SetAudioDelay(delay * 1000);
+            MediaPlayer.setAudioDelay(delay * 1000);
         }
 
         public void SetSpuDelay(long delay)
         {
-            _mediaService.SetSpuDelay(delay * 1000);
+            MediaPlayer.setSpuDelay(delay * 1000);
         }
 
         public void SetTime(long time)
         {
-            _mediaService.SetTime(time);
+            MediaPlayer.setTime(time);
         }
 
         public long GetTime()
         {
-            return _mediaService.GetTime();
+            return MediaPlayer.time();
         }
 
         public void SetPosition(float pos)
         {
-            _mediaService.SetPosition(pos);
+            MediaPlayer.setPosition(pos);
         }
 
         public float GetPosition()
         {
-            return _mediaService.GetPosition();
+            return MediaPlayer.position();
         }
 
         public void OpenSubtitleMrl(string mrl)
         {
-            _mediaService.SetSubtitleFile(mrl);
+            MediaPlayer.addSlave(SlaveType.Subtitle, mrl, true);
         }
 
         public void SetSpeedRate(float rate)
         {
-            _mediaService.SetSpeedRate(rate);
+            MediaPlayer.setRate(rate);
         }
 
         public VLCChapterDescription GetCurrentChapter()
         {
-            var currentChapter = _mediaService.MediaPlayer?.chapter();
+            var currentChapter = MediaPlayer?.chapter();
             if (_chapters?.Count > 0 && currentChapter.HasValue)
             {
                 return _chapters[currentChapter.Value];
@@ -478,15 +599,142 @@ namespace VLC.Services.RunTime
             var index = _chapters.IndexOf(selectCh);
             if (index > -1)
             {
-                _mediaService.MediaPlayer.setChapter(index);
+                MediaPlayer.setChapter(index);
             }
+        }
+
+        public async Task<MediaProperties> GetVideoProperties(MediaProperties mP, Media media)
+        {
+            if (Instance == null)
+            {
+                await Initialize();
+            }
+            await PlayerInstanceReady.Task;
+            if (media == null)
+                return mP;
+            if (media.parsedStatus() != ParsedStatus.Done)
+            {
+                var res = await media.parseWithOptionsAsync(ParseFlags.FetchLocal | ParseFlags.Local | ParseFlags.Network, 5000);
+                if (res != ParsedStatus.Done)
+                    return mP;
+            }
+
+            mP.Title = media.meta(MediaMeta.Title);
+
+            var showName = media.meta(MediaMeta.ShowName);
+            if (string.IsNullOrEmpty(showName))
+            {
+                showName = media.meta(MediaMeta.Artist);
+            }
+            if (!string.IsNullOrEmpty(showName))
+            {
+                mP.ShowTitle = showName;
+            }
+
+            var episodeString = media.meta(MediaMeta.Episode);
+            if (string.IsNullOrEmpty(episodeString))
+            {
+                episodeString = media.meta(MediaMeta.TrackNumber);
+            }
+            var episode = 0;
+            if (!string.IsNullOrEmpty(episodeString) && int.TryParse(episodeString, out episode))
+            {
+                mP.Episode = episode;
+            }
+
+            var episodesTotal = 0;
+            var episodesTotalString = media.meta(MediaMeta.TrackTotal);
+            if (!string.IsNullOrEmpty(episodesTotalString) && int.TryParse(episodesTotalString, out episodesTotal))
+            {
+                mP.Episodes = episodesTotal;
+            }
+
+            var videoTrack = media.tracks().FirstOrDefault(x => x.type() == TrackType.Video);
+            if (videoTrack != null)
+            {
+                mP.Width = videoTrack.width();
+                mP.Height = videoTrack.height();
+            }
+
+            var durationLong = media.duration();
+            var duration = TimeSpan.FromMilliseconds(durationLong);
+            mP.Duration = duration;
+
+            return mP;
+        }
+
+        public async Task<MediaProperties> GetMusicProperties(Media media)
+        {
+            if (Instance == null)
+            {
+                await Initialize();
+            }
+            await PlayerInstanceReady.Task;
+            if (media == null)
+                return null;
+            if (media.parsedStatus() != ParsedStatus.Done)
+            {
+                var res = await media.parseWithOptionsAsync(ParseFlags.FetchLocal | ParseFlags.Local | ParseFlags.Network, 5000);
+                if (res != ParsedStatus.Done)
+                    return null;
+            }
+
+            var mP = new MediaProperties();
+            mP.AlbumArtist = media.meta(MediaMeta.AlbumArtist);
+            mP.Artist = media.meta(MediaMeta.Artist);
+            mP.Album = media.meta(MediaMeta.Album);
+            mP.Title = media.meta(MediaMeta.Title);
+            mP.AlbumArt = media.meta(MediaMeta.ArtworkURL);
+            var yearString = media.meta(MediaMeta.Date);
+            var year = 0;
+            if (int.TryParse(yearString, out year))
+            {
+                mP.Year = year;
+            }
+
+            var durationLong = media.duration();
+            TimeSpan duration = TimeSpan.FromMilliseconds(durationLong);
+            mP.Duration = duration;
+
+            var trackNbString = media.meta(MediaMeta.TrackNumber);
+            uint trackNbInt = 0;
+            uint.TryParse(trackNbString, out trackNbInt);
+            mP.Tracknumber = trackNbInt;
+
+            var discNb = media.meta(MediaMeta.DiscNumber);
+            if (discNb.Contains("/"))
+            {
+                // if discNb = "1/2"
+                var discNumDen = discNb.Split('/');
+                if (discNumDen.Any())
+                    discNb = discNumDen[0];
+            }
+            int discNbInt = 1;
+            int.TryParse(discNb, out discNbInt);
+            mP.DiscNumber = discNbInt;
+
+            var genre = media.meta(MediaMeta.Genre);
+            mP.Genre = genre;
+
+            return mP;
+        }
+
+        public async Task<Media> GetMediaFromPath(string filePath)
+        {
+            if (Instance == null)
+            {
+                await Initialize();
+            }
+            await PlayerInstanceReady.Task;
+            if (string.IsNullOrEmpty(filePath))
+                return null;
+            return new Media(Instance, filePath, FromType.FromPath);
         }
 
         public List<VLCChapterDescription> GetChapters()
         {
-            var mP = _mediaService?.MediaPlayer;
             _chapters.Clear();
-            var chapters = mP?.chapterDescription(-1);
+            var chapters = MediaPlayer?.chapterDescription(-1);
             foreach (var c in chapters)
             {
                 var vlcChapter = new VLCChapterDescription(c);
@@ -508,7 +756,7 @@ namespace VLC.Services.RunTime
             _currentAudioTrack = _audioTracks.IndexOf(audioTrack);
             if (audioTrack != null)
             {
-                _mediaService.SetAudioTrack(audioTrack.Id);
+                MediaPlayer.setAudioTrack(audioTrack.Id);
             }
         }
 
@@ -529,7 +777,7 @@ namespace VLC.Services.RunTime
             _currentSubtitle = _subtitlesTracks.IndexOf(subTrack);
             if (subTrack != null)
             {
-                _mediaService.SetSubtitleTrack(subTrack.Id);
+                MediaPlayer.setSpu(subTrack.Id);
             }
         }
 
@@ -548,29 +796,29 @@ namespace VLC.Services.RunTime
 
             if (PlayerState != MediaState.Ended && PlayerState != MediaState.NothingSpecial)
             {
-                _mediaService.Stop();
+                MediaPlayer.stop();
             }
             TileHelper.ClearTile();
         }
 
         public void Pause()
         {
-            _mediaService?.Pause();
+            MediaPlayer?.pause();
         }
 
         public void Play()
         {
-            _mediaService?.Play();
+            MediaPlayer?.play();
         }
 
         public void SetSizeVideoPlayer(uint x, uint y)
         {
-            _mediaService?.SetSizeVideoPlayer(x, y);
+            Instance?.UpdateSize(x, y);
         }
 
         void SetPlaybackTypeFromTracks()
         {
-            var videoTrack = _mediaService.MediaPlayer.media().tracks().FirstOrDefault(x => x.type() == TrackType.Video);
+            var videoTrack = MediaPlayer.media().tracks().FirstOrDefault(x => x.type() == TrackType.Video);
 
             if (videoTrack == null)
             {
@@ -581,6 +829,24 @@ namespace VLC.Services.RunTime
                 PlayingType = PlayingType.Video;
             }
         }
+
+        public void SetEqualizer(VLCEqualizer vlcEq)
+        {
+            var eq = new Equalizer(vlcEq.Index);
+            MediaPlayer?.setEqualizer(eq);
+        }
+
+        public IList<VLCEqualizer> GetEqualizerPresets()
+        {
+            var presetCount = Equalizer.presetCount();
+            var presets = new List<VLCEqualizer>();
+            for (uint i = 0; i < presetCount; i++)
+            {
+                presets.Add(new VLCEqualizer(i));
+            }
+            return presets;
+        }
+
         #endregion
 
         #region Playback events callbacks
@@ -590,18 +856,17 @@ namespace VLC.Services.RunTime
             if (parsedStatus != ParsedStatus.Done)
                 return;
             
-            var mP = _mediaService?.MediaPlayer;
             // Get chapters
             GetChapters();
 
             // Get subtitle delay etc
-            if (mP != null)
+            if (MediaPlayer != null)
             {
-                SetAudioDelay(mP.audioDelay());
-                SetSpuDelay(mP.spuDelay());
+                SetAudioDelay(MediaPlayer.audioDelay());
+                SetSpuDelay(MediaPlayer.spuDelay());
             }
 
-            if (_mediaService.MediaPlayer == null)
+            if (MediaPlayer == null)
                 return;
 
             SetPlaybackTypeFromTracks();
@@ -649,12 +914,12 @@ namespace VLC.Services.RunTime
             if (type == TrackType.Audio)
             {
                 target = _audioTracks;
-                source = _mediaService.MediaPlayer?.audioTrackDescription();
+                source = MediaPlayer?.audioTrackDescription();
             }
             else
             {
                 target = _subtitlesTracks;
-                source = _mediaService.MediaPlayer?.spuDescription();
+                source = MediaPlayer?.spuDescription();
             }
 
             target?.Clear();
@@ -678,11 +943,6 @@ namespace VLC.Services.RunTime
             }
 
             Playback_MediaTracksUpdated?.Invoke(type, trackId);
-        }
-
-        private void OnBuffering(int progress)
-        {
-            Playback_MediaBuffering?.Invoke(progress);
         }
 
         private async void OnEndReached()
@@ -710,20 +970,23 @@ namespace VLC.Services.RunTime
 
         private void OnStopped()
         {
-            Debug.WriteLine("OnStopped event");
-
             PlayerState = MediaState.Stopped;
             Playback_MediaStopped?.Invoke();
         }
 
-        private void OnLengthChanged(long length)
+        private void OnPaused()
         {
-            Playback_MediaLengthChanged?.Invoke(length);
+            PlayerStateChanged(this, MediaState.Paused);
         }
 
-        private void UpdateTime(long time)
+        private void OnPlaying()
         {
-            Playback_MediaTimeChanged?.Invoke(time);
+            PlayerStateChanged(this, MediaState.Playing);
+        }
+
+        private void OnOpening()
+        {
+            PlayerStateChanged(this, MediaState.Opening);
         }
 
         private void PlayerStateChanged(object sender, MediaState e)
@@ -731,11 +994,7 @@ namespace VLC.Services.RunTime
             Playback_StatusChanged?.Invoke(sender, e);
             PlayerState = e;
         }
-
-        private void MediaFailed(object sender, EventArgs e)
-        {
-            Playback_MediaFailed?.Invoke(sender, e);
-        }
+        
         #endregion
     }
 }

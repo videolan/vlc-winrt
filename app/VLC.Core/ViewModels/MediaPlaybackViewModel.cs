@@ -492,9 +492,9 @@ namespace VLC.ViewModels
             });
         }
 
-        private async void Playback_MediaBuffering(int f)
+        private async void Playback_MediaBuffering(float f)
         {
-            _bufferingProgress = f;
+            _bufferingProgress = (int)f;
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(BufferingProgress));
@@ -502,7 +502,7 @@ namespace VLC.ViewModels
             });
         }
 
-        private async void Playback_MediaFailed(object sender, EventArgs e)
+        private async void Playback_MediaFailed()
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {

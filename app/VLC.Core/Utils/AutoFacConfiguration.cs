@@ -53,7 +53,7 @@ namespace VLC.Utils
 
             // Register Services
             builder.RegisterType<MetroSlideshow>();
-            builder.RegisterType<VLCService>();
+            builder.RegisterType<PlaybackService>();
             builder.RegisterType<NavigationService>();
             builder.RegisterType<MusicMetaService>();
             builder.RegisterType<VideoMetaService>();

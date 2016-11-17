@@ -311,8 +311,8 @@ namespace VLC.Model.Library
                     if (item.Path.Contains("Music Cache") || item.Path.Contains("Podcast"))
                         return false;
 
-                    var media = await Locator.VLCService.GetMediaFromPath(item.Path);
-                    var mP = await Locator.VLCService.GetMusicProperties(media);
+                    var media = await Locator.PlaybackService.GetMediaFromPath(item.Path);
+                    var mP = await Locator.PlaybackService.GetMusicProperties(media);
                     if (mP == null || (string.IsNullOrEmpty(mP.Artist) && string.IsNullOrEmpty(mP.Album) && (string.IsNullOrEmpty(mP.Title) || mP.Title == item.Name)))
                     {
                         var props = await item.Properties.GetMusicPropertiesAsync();
@@ -491,12 +491,12 @@ namespace VLC.Model.Library
 
         public async Task<bool> InitDiscoverer()
         {
-            if (Locator.VLCService.Instance == null)
+            if (Locator.PlaybackService.Instance == null)
             {
-                await Locator.VLCService.Initialize();
+                await Locator.PlaybackService.Initialize();
             }
-            await Locator.VLCService.PlayerInstanceReady.Task;
-            if (Locator.VLCService.Instance == null)
+            await Locator.PlaybackService.PlayerInstanceReady.Task;
+            if (Locator.PlaybackService.Instance == null)
                 return false;
 
             await MediaItemDiscovererSemaphoreSlim.WaitAsync();
@@ -508,10 +508,10 @@ namespace VLC.Model.Library
                     if (discoverers == null)
                     {
                         discoverers = new Dictionary<string, MediaDiscoverer>();
-                        var discoverersDesc = Locator.VLCService.Instance.mediaDiscoverers(MediaDiscovererCategory.Lan);
+                        var discoverersDesc = Locator.PlaybackService.Instance.mediaDiscoverers(MediaDiscovererCategory.Lan);
                         foreach (var discDesc in discoverersDesc)
                         {
-                            var discoverer = new MediaDiscoverer(Locator.VLCService.Instance, discDesc.name());
+                            var discoverer = new MediaDiscoverer(Locator.PlaybackService.Instance, discDesc.name());
 
                             var mediaList = discoverer.mediaList();
                             if (mediaList == null)

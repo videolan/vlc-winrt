@@ -192,7 +192,7 @@ namespace VLC.ViewModels.Settings
             }
         }
 
-        public IList<VLCEqualizer> Presets => _equalizerPresets ?? (_equalizerPresets = Locator.VLCService.GetEqualizerPresets());
+        public IList<VLCEqualizer> Presets => _equalizerPresets ?? (_equalizerPresets = Locator.PlaybackService.GetEqualizerPresets());
 
         public VLCEqualizer Equalizer
         {
@@ -215,7 +215,7 @@ namespace VLC.ViewModels.Settings
                     return;
                 SetProperty(ref _vlcEqualizer, value);
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(Equalizer), value.Index);
-                Locator.VLCService.SetEqualizer(value);
+                Locator.PlaybackService.SetEqualizer(value);
             }
         }
 
