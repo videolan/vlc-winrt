@@ -54,7 +54,6 @@ namespace VLC.Services.RunTime
 
         private SmartCollection<IMediaItem> _playlist;
         private SmartCollection<IMediaItem> _nonShuffledPlaylist;
-        private bool _repeat;
 
         public BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
         public TaskCompletionSource<bool> PlayerInstanceReady { get; set; } = new TaskCompletionSource<bool>();
@@ -146,14 +145,7 @@ namespace VLC.Services.RunTime
 
         public PlayingType PlayingType { get; set; }
 
-        public bool Repeat
-        {
-            get { return _repeat; }
-            set
-            {
-                _repeat = value;
-            }
-        }
+        public bool Repeat { get; set; }
 
         public MediaState PlayerState { get; private set; }
 
