@@ -63,10 +63,10 @@ namespace VLC.ViewModels.MusicVM
         {
             get
             {
-                if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == -1
-                    || Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Count)
+                if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentPlaylistIndex == -1
+                    || Locator.MediaPlaybackViewModel.PlaybackService.CurrentPlaylistIndex == Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Count)
                     return null;
-                if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia > Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Count)
+                if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentPlaylistIndex > Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Count)
                 {
                     Locator.MediaPlaybackViewModel.PlaybackService.SetCurrentMediaPosition(0); return null;
                 }

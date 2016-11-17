@@ -97,11 +97,11 @@ namespace VLC.ViewModels
         {
             get
             {
-                if (PlaybackService.CurrentMedia == -1)
+                if (PlaybackService.CurrentPlaylistIndex == -1)
                     return null;
                 if (PlaybackService.Playlist.Count == 0)
                     return null;
-                return PlaybackService.Playlist[PlaybackService.CurrentMedia];
+                return PlaybackService.Playlist[PlaybackService.CurrentPlaylistIndex];
             }
         }
 

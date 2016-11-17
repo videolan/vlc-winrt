@@ -85,7 +85,7 @@ namespace VLC.UI.Views.UserControls
                 if (Track == null)
                     return;
 
-                if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == -1 || Locator.MediaPlaybackViewModel.PlaybackService.Playlist?.Count == 0)
+                if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentPlaylistIndex == -1 || Locator.MediaPlaybackViewModel.PlaybackService.Playlist?.Count == 0)
                     return;
 
                 if (Track.IsCurrentPlaying())

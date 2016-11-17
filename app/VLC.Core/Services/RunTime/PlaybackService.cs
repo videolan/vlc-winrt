@@ -141,7 +141,7 @@ namespace VLC.Services.RunTime
             });
         }
 
-        public int CurrentMedia { get; private set; }
+        public int CurrentPlaylistIndex { get; private set; }
 
         public PlayingType PlayingType { get; set; }
 
@@ -158,14 +158,14 @@ namespace VLC.Services.RunTime
 
         public bool CanGoPrevious()
         {
-            var previous = (CurrentMedia > 0);
+            var previous = (CurrentPlaylistIndex > 0);
             Locator.MediaPlaybackViewModel.SystemMediaTransportControlsBackPossible(previous);
             return previous;
         }
 
         public bool CanGoNext()
         {
-            var next = (Playlist.Count != 1) && (CurrentMedia < Playlist.Count - 1);
+            var next = (Playlist.Count != 1) && (CurrentPlaylistIndex < Playlist.Count - 1);
             Locator.MediaPlaybackViewModel.SystemMediaTransportControlsNextPossible(next);
             Debug.WriteLine("Can go next:" + next);
             return next;
@@ -203,14 +203,14 @@ namespace VLC.Services.RunTime
         public void InitializePlaylist()
         {
             Playlist.Clear();
-            CurrentMedia = -1;
+            CurrentPlaylistIndex = -1;
         }
 
         public async Task ResetCollection()
         {
             await BackgroundTrackRepository.Clear();
             Playlist.Clear();
-            CurrentMedia = -1;
+            CurrentPlaylistIndex = -1;
             NonShuffledPlaylist?.Clear();
             IsShuffled = false;
             Playback_MediaSet(null);
@@ -225,7 +225,7 @@ namespace VLC.Services.RunTime
                 Random r = new Random();
                 for (int i = 0; i < Playlist.Count; i++)
                 {
-                    if (i > CurrentMedia)
+                    if (i > CurrentPlaylistIndex)
                     {
                         int index1 = r.Next(i, Playlist.Count);
                         int index2 = r.Next(i, Playlist.Count);
@@ -236,12 +236,12 @@ namespace VLC.Services.RunTime
             }
             else
             {
-                IMediaItem m = Playlist[CurrentMedia];
+                IMediaItem m = Playlist[CurrentPlaylistIndex];
 
                 Playlist.Clear();
                 Playlist.AddRange(NonShuffledPlaylist);
 
-                CurrentMedia = Playlist.IndexOf(m);
+                CurrentPlaylistIndex = Playlist.IndexOf(m);
             }
         }
 
@@ -317,26 +317,26 @@ namespace VLC.Services.RunTime
                         restoredplaylist.Add(trackItem);
                 }
 
-                if (!ApplicationSettingsHelper.Contains(nameof(CurrentMedia)))
+                if (!ApplicationSettingsHelper.Contains(nameof(CurrentPlaylistIndex)))
                     return;
-                var index = (int)ApplicationSettingsHelper.ReadSettingsValue(nameof(CurrentMedia));
+                var index = (int)ApplicationSettingsHelper.ReadSettingsValue(nameof(CurrentPlaylistIndex));
                 if (restoredplaylist.Any())
                 {
                     if (index == -1)
                     {
                         // Background Audio was terminated
                         // We need to reset the playlist, or set the current track 0.
-                        ApplicationSettingsHelper.SaveSettingsValue(nameof(CurrentMedia), 0);
+                        ApplicationSettingsHelper.SaveSettingsValue(nameof(CurrentPlaylistIndex), 0);
                         index = 0;
                     }
                     SetCurrentMediaPosition(index);
                 }
 
-                if (CurrentMedia >= restoredplaylist.Count || CurrentMedia == -1)
-                    CurrentMedia = 0;
+                if (CurrentPlaylistIndex >= restoredplaylist.Count || CurrentPlaylistIndex == -1)
+                    CurrentPlaylistIndex = 0;
 
                 if (restoredplaylist.Any())
-                    await SetPlaylist(restoredplaylist, true, false, restoredplaylist[CurrentMedia]);
+                    await SetPlaylist(restoredplaylist, true, false, restoredplaylist[CurrentPlaylistIndex]);
             }
             catch (Exception e)
             {
@@ -349,7 +349,7 @@ namespace VLC.Services.RunTime
             if (media == null)
                 throw new ArgumentNullException(nameof(media), "Media is missing. Can't play");
 
-            if (Playlist.ElementAt(CurrentMedia) != null)
+            if (Playlist.ElementAt(CurrentPlaylistIndex) != null)
                 Stop();
 
             if (media is VideoItem || media is TrackItem)
@@ -401,8 +401,8 @@ namespace VLC.Services.RunTime
                 await InitializePlayback(track, autoPlay);
 
                 int index = IsShuffled ?
-                    NonShuffledPlaylist.IndexOf(Playlist[CurrentMedia]): CurrentMedia;
-                ApplicationSettingsHelper.SaveSettingsValue(nameof(CurrentMedia), index);
+                    NonShuffledPlaylist.IndexOf(Playlist[CurrentPlaylistIndex]): CurrentPlaylistIndex;
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(CurrentPlaylistIndex), index);
             }
             else if (media is StreamMedia)
             {
@@ -493,22 +493,22 @@ namespace VLC.Services.RunTime
         /// <param name="index"></param>
         public void SetCurrentMediaPosition(int index)
         {
-            CurrentMedia = index;
+            CurrentPlaylistIndex = index;
         }
 
 
         public async Task StartAgain()
         {
             SetCurrentMediaPosition(0);
-            await SetPlaylist(null, false, true, Playlist[CurrentMedia]);
+            await SetPlaylist(null, false, true, Playlist[CurrentPlaylistIndex]);
         }
 
         public async Task PlayNext()
         {
             if (CanGoNext())
             {
-                SetCurrentMediaPosition(CurrentMedia + 1);
-                await SetPlaylist(null, false, true, Playlist[CurrentMedia]);
+                SetCurrentMediaPosition(CurrentPlaylistIndex + 1);
+                await SetPlaylist(null, false, true, Playlist[CurrentPlaylistIndex]);
             }
         }
 
@@ -516,8 +516,8 @@ namespace VLC.Services.RunTime
         {
             if (CanGoPrevious())
             {
-                SetCurrentMediaPosition(CurrentMedia - 1);
-                await SetPlaylist(null, false, true, Playlist[CurrentMedia]);
+                SetCurrentMediaPosition(CurrentPlaylistIndex - 1);
+                await SetPlaylist(null, false, true, Playlist[CurrentPlaylistIndex]);
             }
         }
 

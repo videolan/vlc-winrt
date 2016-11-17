@@ -301,7 +301,7 @@ namespace VLC.Model.Video
 
         public bool IsCurrentPlaying()
         {
-            return Path == Locator.MediaPlaybackViewModel.PlaybackService.Playlist[Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia].Path;
+            return Path == Locator.MediaPlaybackViewModel.PlaybackService.Playlist[Locator.MediaPlaybackViewModel.PlaybackService.CurrentPlaylistIndex].Path;
         }
 
         public async Task<bool> LoadFileFromPath()
