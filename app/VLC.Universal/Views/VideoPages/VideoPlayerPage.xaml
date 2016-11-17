@@ -174,7 +174,8 @@
                 
                 <Grid x:Name="ControlsGrid">
                     <userControls:SliderControl x:Name="Slider"
-                                                VerticalAlignment="Top" />
+                                                VerticalAlignment="Top"
+                                                XYFocusDown="{x:Bind PlayPauseButton}"/>
                     <Grid Margin="0,40,0,-10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
@@ -226,11 +227,38 @@
                                 </AppBarButton.Icon>
                             </AppBarButton>
                         </StackPanel>
-                        <userControls:PlayPauseButtonControl x:Name="PlayPauseButton"
-                            Grid.Column="1"
-                            DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
-                            ButtonStyle="{StaticResource AppBarButtonStyleHuge}"
-                            ButtonFontSize="42" />
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <AppBarButton x:Name="PreviousButton"
+                                    Margin="10,0"
+                                    Style="{StaticResource AppBarButtonStyleHuge}"
+                                    Click="PreviousButton_Click"
+                                    IsEnabled="{Binding CanGoPrevious}"
+                                    IsCompact="True"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch">
+                                <FontIcon x:Name="PreviousIcon"
+                                          Glyph="{StaticResource PreviousSymbol}"
+                                          FontSize="42"
+                                          FontFamily="{StaticResource VLCFont}" />
+                            </AppBarButton>
+                            <userControls:PlayPauseButtonControl x:Name="PlayPauseButton"
+                                DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                                ButtonStyle="{StaticResource AppBarButtonStyleHuge}"
+                                ButtonFontSize="42" />
+                            <AppBarButton x:Name="NextButton"
+                                    Margin="10,0"
+                                    Style="{StaticResource AppBarButtonStyleHuge}"
+                                    Click="NextButton_Click"
+                                    IsCompact="True"
+                                    IsEnabled="{Binding CanGoNext}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch">
+                                <FontIcon x:Name="NextIcon"
+                                          FontSize="42"
+                                          Glyph="{StaticResource SkipNextSymbol}"
+                                          FontFamily="{StaticResource VLCFont}" />
+                            </AppBarButton>
+                        </StackPanel>
                         <StackPanel Grid.Column="2"
                                     Orientation="Horizontal"
                                     HorizontalAlignment="Right">

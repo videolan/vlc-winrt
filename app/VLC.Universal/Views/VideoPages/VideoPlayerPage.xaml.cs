@@ -479,5 +479,15 @@ namespace VLC.UI.Views.VideoPages
         {
             AppViewHelper.ToggleFullscreen();
         }
+
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            Locator.MediaPlaybackViewModel.PlayNextCommand.Execute(null);
+        }
+
+        private void PreviousButton_Click(object sender, RoutedEventArgs e)
+        {
+            Locator.MediaPlaybackViewModel.PlayPreviousCommand.Execute(null);
+        }
     }
 }
