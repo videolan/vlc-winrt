@@ -74,7 +74,7 @@ namespace VLC.Services.RunTime
             }
             set { _audioDeviceID = value; }
         }
-        public MediaPlayer MediaPlayer { get; private set; }
+        private MediaPlayer _mediaPlayer;
         public Media CurrentMedia { get; private set; }
 
         public Task Initialize()
@@ -137,8 +137,8 @@ namespace VLC.Services.RunTime
                 // Always fetch the new audio client, as we always assign it when starting a new playback
                 AudioClient = new AudioDeviceHandler(AudioDeviceID);
                 // But if a playback is in progress, inform VLC backend that we changed device
-                if (MediaPlayer != null)
-                    MediaPlayer.outputDeviceSet(AudioClient.audioClient());
+                if (_mediaPlayer != null)
+                    _mediaPlayer.outputDeviceSet(AudioClient.audioClient());
             });
         }
 
@@ -440,11 +440,11 @@ namespace VLC.Services.RunTime
             CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
             CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-threads=0" : ":avcodec-threads=1");
 
-            MediaPlayer = new MediaPlayer(CurrentMedia);
+            _mediaPlayer = new MediaPlayer(CurrentMedia);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
-            MediaPlayer.outputDeviceSet(AudioClient.audioClient());
+            _mediaPlayer.outputDeviceSet(AudioClient.audioClient());
             SetEqualizer(Locator.SettingsVM.Equalizer);
-            var em = MediaPlayer.eventManager();
+            var em = _mediaPlayer.eventManager();
 
             em.OnOpening += OnOpening;
             em.OnBuffering += Playback_MediaBuffering;
@@ -475,14 +475,14 @@ namespace VLC.Services.RunTime
             await SetMediaFile(media);
 
 
-            if (MediaPlayer == null) return;
-            var mem = MediaPlayer.media().eventManager();
+            if (_mediaPlayer == null) return;
+            var mem = _mediaPlayer.media().eventManager();
             mem.OnParsedChanged += OnParsedStatus;
             if (!autoPlay)
                 return;
             Play();
 
-            MediaPlayer.setRate(1);
+            _mediaPlayer.setRate(1);
         }
 
         #endregion
@@ -524,63 +524,63 @@ namespace VLC.Services.RunTime
 
         public int Volume
         {
-            get { return MediaPlayer.volume(); }
-            set { MediaPlayer.setVolume(value); }
+            get { return _mediaPlayer.volume(); }
+            set { _mediaPlayer.setVolume(value); }
         }
 
         public void SetSubtitleTrack(int i)
         {
-            MediaPlayer.setSpu(i);
+            _mediaPlayer.setSpu(i);
         }
 
         public void SetAudioTrack(int i)
         {
-            MediaPlayer.setAudioTrack(i);
+            _mediaPlayer.setAudioTrack(i);
         }
 
         public void SetAudioDelay(long delay)
         {
-            MediaPlayer.setAudioDelay(delay * 1000);
+            _mediaPlayer.setAudioDelay(delay * 1000);
         }
 
         public void SetSpuDelay(long delay)
         {
-            MediaPlayer.setSpuDelay(delay * 1000);
+            _mediaPlayer.setSpuDelay(delay * 1000);
         }
 
         public void SetTime(long time)
         {
-            MediaPlayer.setTime(time);
+            _mediaPlayer.setTime(time);
         }
 
         public long GetTime()
         {
-            return MediaPlayer.time();
+            return _mediaPlayer.time();
         }
 
         public void SetPosition(float pos)
         {
-            MediaPlayer.setPosition(pos);
+            _mediaPlayer.setPosition(pos);
         }
 
         public float GetPosition()
         {
-            return MediaPlayer.position();
+            return _mediaPlayer.position();
         }
 
         public void OpenSubtitleMrl(string mrl)
         {
-            MediaPlayer.addSlave(SlaveType.Subtitle, mrl, true);
+            _mediaPlayer.addSlave(SlaveType.Subtitle, mrl, true);
         }
 
         public void SetSpeedRate(float rate)
         {
-            MediaPlayer.setRate(rate);
+            _mediaPlayer.setRate(rate);
         }
 
         public VLCChapterDescription GetCurrentChapter()
         {
-            var currentChapter = MediaPlayer?.chapter();
+            var currentChapter = _mediaPlayer?.chapter();
             if (_chapters?.Count > 0 && currentChapter.HasValue)
             {
                 return _chapters[currentChapter.Value];
@@ -600,7 +600,7 @@ namespace VLC.Services.RunTime
             var index = _chapters.IndexOf(selectCh);
             if (index > -1)
             {
-                MediaPlayer.setChapter(index);
+                _mediaPlayer.setChapter(index);
             }
         }
 
@@ -735,7 +735,7 @@ namespace VLC.Services.RunTime
         public List<VLCChapterDescription> GetChapters()
         {
             _chapters.Clear();
-            var chapters = MediaPlayer?.chapterDescription(-1);
+            var chapters = _mediaPlayer?.chapterDescription(-1);
             foreach (var c in chapters)
             {
                 var vlcChapter = new VLCChapterDescription(c);
@@ -757,7 +757,7 @@ namespace VLC.Services.RunTime
             _currentAudioTrack = _audioTracks.IndexOf(audioTrack);
             if (audioTrack != null)
             {
-                MediaPlayer.setAudioTrack(audioTrack.Id);
+                _mediaPlayer.setAudioTrack(audioTrack.Id);
             }
         }
 
@@ -778,7 +778,7 @@ namespace VLC.Services.RunTime
             _currentSubtitle = _subtitlesTracks.IndexOf(subTrack);
             if (subTrack != null)
             {
-                MediaPlayer.setSpu(subTrack.Id);
+                _mediaPlayer.setSpu(subTrack.Id);
             }
         }
 
@@ -797,19 +797,19 @@ namespace VLC.Services.RunTime
 
             if (PlayerState != MediaState.Ended && PlayerState != MediaState.NothingSpecial)
             {
-                MediaPlayer.stop();
+                _mediaPlayer.stop();
             }
             TileHelper.ClearTile();
         }
 
         public void Pause()
         {
-            MediaPlayer?.pause();
+            _mediaPlayer?.pause();
         }
 
         public void Play()
         {
-            MediaPlayer?.play();
+            _mediaPlayer?.play();
         }
 
         public void SetSizeVideoPlayer(uint x, uint y)
@@ -819,7 +819,7 @@ namespace VLC.Services.RunTime
 
         void SetPlaybackTypeFromTracks()
         {
-            var videoTrack = MediaPlayer.media().tracks().FirstOrDefault(x => x.type() == TrackType.Video);
+            var videoTrack = _mediaPlayer.media().tracks().FirstOrDefault(x => x.type() == TrackType.Video);
 
             if (videoTrack == null)
             {
@@ -834,7 +834,7 @@ namespace VLC.Services.RunTime
         public void SetEqualizer(VLCEqualizer vlcEq)
         {
             var eq = new Equalizer(vlcEq.Index);
-            MediaPlayer?.setEqualizer(eq);
+            _mediaPlayer?.setEqualizer(eq);
         }
 
         public IList<VLCEqualizer> GetEqualizerPresets()
@@ -861,13 +861,13 @@ namespace VLC.Services.RunTime
             GetChapters();
 
             // Get subtitle delay etc
-            if (MediaPlayer != null)
+            if (_mediaPlayer != null)
             {
-                SetAudioDelay(MediaPlayer.audioDelay());
-                SetSpuDelay(MediaPlayer.spuDelay());
+                SetAudioDelay(_mediaPlayer.audioDelay());
+                SetSpuDelay(_mediaPlayer.spuDelay());
             }
 
-            if (MediaPlayer == null)
+            if (_mediaPlayer == null)
                 return;
 
             SetPlaybackTypeFromTracks();
@@ -915,12 +915,12 @@ namespace VLC.Services.RunTime
             if (type == TrackType.Audio)
             {
                 target = _audioTracks;
-                source = MediaPlayer?.audioTrackDescription();
+                source = _mediaPlayer?.audioTrackDescription();
             }
             else
             {
                 target = _subtitlesTracks;
-                source = MediaPlayer?.spuDescription();
+                source = _mediaPlayer?.spuDescription();
             }
 
             target?.Clear();
