@@ -206,27 +206,15 @@ namespace VLC.ViewModels
          */
         public long Time
         {
-            get
-            {
-                return PlaybackService.GetTime();
-            }
-            set
-            {
-                PlaybackService.SetTime(value);
-            }
+            get { return PlaybackService.Time; }
+            set { PlaybackService.Time = value; }
         }
-
         public float Position
         {
-            get
-            {
-                return PlaybackService.GetPosition();
-            }
-            set
-            {
-                PlaybackService.SetPosition(value);
-            }
+            get { return PlaybackService.Position; }
+            set { PlaybackService.Position = value; }
         }
+                
 
         public DictionaryKeyValue CurrentSubtitle
         {

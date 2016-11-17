@@ -383,7 +383,7 @@ namespace VLC.Services.RunTime
 
                 if (video.TimeWatched != TimeSpan.FromSeconds(0))
                 {
-                    SetTime((long)video.TimeWatched.TotalMilliseconds);
+                    Time = (long)video.TimeWatched.TotalMilliseconds;
                 }
 
                 TileHelper.UpdateVideoTile();
@@ -540,24 +540,16 @@ namespace VLC.Services.RunTime
             _mediaPlayer.setSpuDelay(delay * 1000);
         }
 
-        public void SetTime(long time)
+        public long Time
         {
-            _mediaPlayer.setTime(time);
+            get { return _mediaPlayer.time(); }
+            set { _mediaPlayer.setTime(value); }
         }
 
-        public long GetTime()
+        public float Position
         {
-            return _mediaPlayer.time();
-        }
-
-        public void SetPosition(float pos)
-        {
-            _mediaPlayer.setPosition(pos);
-        }
-
-        public float GetPosition()
-        {
-            return _mediaPlayer.position();
+            get { return _mediaPlayer.position(); }
+            set { _mediaPlayer.setPosition(value); }
         }
 
         public void OpenSubtitleMrl(string mrl)
