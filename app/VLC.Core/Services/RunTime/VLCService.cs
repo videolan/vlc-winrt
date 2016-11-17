@@ -57,7 +57,7 @@ namespace VLC.Services.RunTime
         public MediaPlayer MediaPlayer { get; private set; }
         private VLCDialog CurrentDialog;
 
-        public Task Initialize(object o = null)
+        public Task Initialize()
         {
             return DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
