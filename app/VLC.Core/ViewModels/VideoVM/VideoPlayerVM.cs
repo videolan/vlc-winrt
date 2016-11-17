@@ -220,7 +220,7 @@ namespace VLC.ViewModels.VideoVM
             var screenWidth = App.RootPage.SwapChainPanel.ActualWidth;
             var screenHeight = App.RootPage.SwapChainPanel.ActualHeight;
             
-            var videoTrack = Locator.PlaybackService.MediaPlayer?.media()?.tracks()?.FirstOrDefault(x => x.type() == TrackType.Video);
+            var videoTrack = Locator.PlaybackService.CurrentMedia?.tracks()?.FirstOrDefault(x => x.type() == TrackType.Video);
 
             if (videoTrack == null)
                 return;

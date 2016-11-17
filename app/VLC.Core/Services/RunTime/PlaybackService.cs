@@ -75,6 +75,7 @@ namespace VLC.Services.RunTime
             set { _audioDeviceID = value; }
         }
         public MediaPlayer MediaPlayer { get; private set; }
+        public Media CurrentMedia { get; private set; }
 
         public Task Initialize()
         {
@@ -412,10 +413,9 @@ namespace VLC.Services.RunTime
 
         private async Task SetMediaFile(IMediaItem media)
         {
-            Media vlcMedia = null;
             if (media.VlcMedia != null)
             {
-                vlcMedia = media.VlcMedia;
+                CurrentMedia = media.VlcMedia;
             }
             else
             {
@@ -433,14 +433,14 @@ namespace VLC.Services.RunTime
                     return;
                 }
 
-                vlcMedia = new Media(Instance, mrl_fromType.Item2, mrl_fromType.Item1);
+                CurrentMedia = new Media(Instance, mrl_fromType.Item2, mrl_fromType.Item1);
             }
 
             // Hardware decoding
-            vlcMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
-            vlcMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-threads=0" : ":avcodec-threads=1");
+            CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
+            CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-threads=0" : ":avcodec-threads=1");
 
-            MediaPlayer = new MediaPlayer(vlcMedia);
+            MediaPlayer = new MediaPlayer(CurrentMedia);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
             MediaPlayer.outputDeviceSet(AudioClient.audioClient());
             SetEqualizer(Locator.SettingsVM.Equalizer);
@@ -458,6 +458,7 @@ namespace VLC.Services.RunTime
             em.OnTrackAdded += OnTrackAdded;
             em.OnTrackDeleted += OnTrackDeleted;
         }
+
 
         private async Task InitializePlayback(IMediaItem media, bool autoPlay)
         {
