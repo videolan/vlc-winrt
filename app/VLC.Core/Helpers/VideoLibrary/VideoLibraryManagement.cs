@@ -17,7 +17,6 @@ using VLC.Model.Video;
 using VLC.ViewModels;
 using WinRTXamlToolkit.IO.Extensions;
 using VLC.Database;
-using VLC.Services.Interface;
 using VLC.Utils;
 using VLC.Model.Music;
 using Windows.UI.Xaml;

@@ -10,7 +10,6 @@
 using System;
 using System.Threading.Tasks;
 using Windows.Storage.AccessCache;
-using VLC.Services.Interface;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using VLC.Helpers;

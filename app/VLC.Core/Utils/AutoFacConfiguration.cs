@@ -12,7 +12,6 @@ using Slide2D;
 using VLC.Helpers.MusicLibrary;
 using VLC.Helpers.VideoLibrary;
 using VLC.Model.Library;
-using VLC.Services.Interface;
 using VLC.Services.RunTime;
 using VLC.ViewModels;
 using VLC.ViewModels.MusicVM;

@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using Windows.Storage.AccessCache;
 using VLC.Helpers;
 using VLC.Model;
-using VLC.Services.Interface;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using System.Collections.Generic;
@@ -29,7 +28,7 @@ using VLC.UI.Views.UserControls.Shell;
 
 namespace VLC.Services.RunTime
 {
-    public sealed class VLCService : IMediaService
+    public sealed class VLCService
     {
         public event EventHandler<MediaState> StatusChanged;
         public event TimeChanged TimeChanged;

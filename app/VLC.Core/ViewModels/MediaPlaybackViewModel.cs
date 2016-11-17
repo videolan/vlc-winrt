@@ -16,7 +16,6 @@ using System;
 using Windows.UI.Core;
 using VLC.Helpers;
 using VLC.Model;
-using VLC.Services.Interface;
 using VLC.Commands.MediaPlayback;
 using System.Threading.Tasks;
 using Windows.Storage.Streams;

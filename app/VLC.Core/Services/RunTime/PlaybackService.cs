@@ -23,7 +23,6 @@ using VLC.Utils;
 using System.Diagnostics;
 using VLC.Services.RunTime;
 using VLC.Model.Stream;
-using VLC.Services.Interface;
 using Windows.Storage;
 using System.IO;
 using libVLCX;
