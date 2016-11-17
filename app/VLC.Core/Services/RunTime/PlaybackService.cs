@@ -52,7 +52,7 @@ namespace VLC.Services.RunTime
         private int _currentSubtitle;
         private int _currentAudioTrack;
 
-        private SmartCollection<IMediaItem> _mediasCollection;
+        private SmartCollection<IMediaItem> _playlist;
         private SmartCollection<IMediaItem> _nonShuffledPlaylist;
         private bool _repeat;
 
@@ -96,8 +96,8 @@ namespace VLC.Services.RunTime
         #region public fields
         public SmartCollection<IMediaItem> Playlist
         {
-            get { return _mediasCollection; }
-            private set { _mediasCollection = value; }
+            get { return _playlist; }
+            private set { _playlist = value; }
         }
 
         public SmartCollection<IMediaItem> NonShuffledPlaylist
@@ -112,7 +112,7 @@ namespace VLC.Services.RunTime
         public PlaybackService()
         {
             Task.Run(() => RestorePlaylist());
-            _mediasCollection = new SmartCollection<IMediaItem>();
+            _playlist = new SmartCollection<IMediaItem>();
             InitializePlaylist();
             _mediaService.MediaFailed += MediaFailed;
             _mediaService.StatusChanged += PlayerStateChanged;
