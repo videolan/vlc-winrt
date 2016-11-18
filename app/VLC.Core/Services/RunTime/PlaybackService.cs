@@ -356,10 +356,10 @@ namespace VLC.Services.RunTime
                 }
             }
 
+            await InitializePlayback(media, autoPlay);
             if (media is VideoItem)
             {
                 var video = (VideoItem)media;
-                await InitializePlayback(video, autoPlay);
 
                 var roamFile = await ApplicationData.Current.RoamingFolder.TryGetItemAsync("roamVideo.txt");
                 if (roamFile != null)
@@ -387,16 +387,9 @@ namespace VLC.Services.RunTime
             }
             else if (media is TrackItem)
             {
-                var track = (TrackItem)media;
-                await InitializePlayback(track, autoPlay);
-
                 int index = IsShuffled ?
                     NonShuffledPlaylist.IndexOf(Playlist[CurrentPlaylistIndex]) : CurrentPlaylistIndex;
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(CurrentPlaylistIndex), index);
-            }
-            else if (media is StreamMedia)
-            {
-                await InitializePlayback(media, autoPlay);
             }
         }
 
