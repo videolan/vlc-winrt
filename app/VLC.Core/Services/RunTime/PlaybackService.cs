@@ -74,6 +74,9 @@ namespace VLC.Services.RunTime
         private MediaPlayer _mediaPlayer;
         public Media CurrentMedia { get; private set; }
 
+        public bool IsPlaying { get { return _mediaPlayer.isPlaying(); } }
+        public bool IsPaused {  get { return _mediaPlayer.state() == MediaState.Paused; } }
+
         public Task Initialize()
         {
             return DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>

@@ -42,7 +42,6 @@ namespace VLC.ViewModels
         #region private props
         private MouseService _mouseService;
         private SystemMediaTransportControls _systemMediaTransportControls;
-        private bool _isPlaying;
         private PlaybackService _playbackService;
         private TimeSpan _timeTotal;
 
@@ -106,21 +105,8 @@ namespace VLC.ViewModels
 
         public bool IsPlaying
         {
-            get
-            {
-                return _isPlaying;
-            }
-            private set
-            {
-                if (value != _isPlaying)
-                {
-                    SetProperty(ref _isPlaying, value);
-                }
-                OnPropertyChanged(nameof(PlayButtonVisible));
-            }
+            get { return PlaybackService.IsPlaying && !PlaybackService.IsPaused; }
         }
-
-        public Visibility PlayButtonVisible => PlaybackService.IsRunning && !IsPlaying ? Visibility.Visible : Visibility.Collapsed;
 
         public bool CanGoNext => PlaybackService.CanGoNext();
         public bool CanGoPrevious => PlaybackService.CanGoPrevious();
@@ -412,14 +398,18 @@ namespace VLC.ViewModels
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
-                IsPlaying = true;
                 LoadingMedia = Visibility.Collapsed;
+                OnPropertyChanged(nameof(IsPlaying));
             });
             if (_systemMediaTransportControls != null)
                 _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
         }
-        private void OnPaused()
+        private async void OnPaused()
         {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            {
+                OnPropertyChanged(nameof(IsPlaying));
+            });
             if (_systemMediaTransportControls != null)
                 _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
         }
@@ -450,13 +440,13 @@ namespace VLC.ViewModels
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
-                IsPlaying = false;
                 AudioTracks.Clear();
                 Subtitles.Clear();
                 OnPropertyChanged(nameof(AudioTracks));
                 OnPropertyChanged(nameof(Subtitles));
                 OnPropertyChanged(nameof(CurrentAudioTrack));
                 OnPropertyChanged(nameof(CurrentSubtitle));
+                OnPropertyChanged(nameof(IsPlaying));
                 await ClearMediaTransportControls();
             });
         }
@@ -512,7 +502,6 @@ namespace VLC.ViewModels
                     {
                         App.RootPage.StopCompositionAnimationOnSwapChain();
                     }
-                    IsPlaying = false;
                     if (!Locator.NavigationService.GoBack_Default())
                     {
                         Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
