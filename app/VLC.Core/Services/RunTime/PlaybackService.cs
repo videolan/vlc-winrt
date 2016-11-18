@@ -429,23 +429,27 @@ namespace VLC.Services.RunTime
             CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
             CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-threads=0" : ":avcodec-threads=1");
 
-            _mediaPlayer = new MediaPlayer(CurrentMedia);
-            LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
+            if (_mediaPlayer == null)
+            {
+                _mediaPlayer = new MediaPlayer(CurrentMedia);
+                var em = _mediaPlayer.eventManager();
+
+                em.OnOpening += OnOpening;
+                em.OnBuffering += Playback_MediaBuffering;
+                em.OnStopped += OnStopped;
+                em.OnPlaying += OnPlaying;
+                em.OnPaused += OnPaused;
+                em.OnTimeChanged += Playback_MediaTimeChanged;
+                em.OnEndReached += OnEndReached;
+                em.OnEncounteredError += Playback_MediaFailed;
+                em.OnLengthChanged += Playback_MediaLengthChanged;
+                em.OnTrackAdded += OnTrackAdded;
+                em.OnTrackDeleted += OnTrackDeleted;
+            }
+            else
+                _mediaPlayer.setMedia(CurrentMedia);
             _mediaPlayer.outputDeviceSet(AudioClient.audioClient());
             SetEqualizer(Locator.SettingsVM.Equalizer);
-            var em = _mediaPlayer.eventManager();
-
-            em.OnOpening += OnOpening;
-            em.OnBuffering += Playback_MediaBuffering;
-            em.OnStopped += OnStopped;
-            em.OnPlaying += OnPlaying;
-            em.OnPaused += OnPaused;
-            em.OnTimeChanged += Playback_MediaTimeChanged;
-            em.OnEndReached += OnEndReached;
-            em.OnEncounteredError += Playback_MediaFailed;
-            em.OnLengthChanged += Playback_MediaLengthChanged;
-            em.OnTrackAdded += OnTrackAdded;
-            em.OnTrackDeleted += OnTrackDeleted;
         }
 
         private async Task InitializePlayback(IMediaItem media, bool autoPlay)
