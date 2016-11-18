@@ -418,6 +418,9 @@ namespace VLC.Services.RunTime
                 CurrentMedia = new Media(Instance, mrl_fromType.Item2, mrl_fromType.Item1);
             }
 
+            // Default to audio playback, and switch to video when a video track is encountered
+            PlayingType = PlayingType.Music;
+
             // Hardware decoding
             CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
             CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-threads=0" : ":avcodec-threads=1");
@@ -747,20 +750,6 @@ namespace VLC.Services.RunTime
             Instance?.UpdateSize(x, y);
         }
 
-        void SetPlaybackTypeFromTracks()
-        {
-            var videoTrack = _mediaPlayer.media().tracks().FirstOrDefault(x => x.type() == TrackType.Video);
-
-            if (videoTrack == null)
-            {
-                PlayingType = PlayingType.Music;
-            }
-            else
-            {
-                PlayingType = PlayingType.Video;
-            }
-        }
-
         public void SetEqualizer(VLCEqualizer vlcEq)
         {
             var eq = new Equalizer(vlcEq.Index);
@@ -789,8 +778,6 @@ namespace VLC.Services.RunTime
             
             // Get chapters
             GetChapters();
-
-            SetPlaybackTypeFromTracks();
 
             Playback_MediaParsed?.Invoke(parsedStatus);
         }
