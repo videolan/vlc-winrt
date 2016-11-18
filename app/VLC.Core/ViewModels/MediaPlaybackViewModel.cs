@@ -266,7 +266,8 @@ namespace VLC.ViewModels
         public MediaPlaybackViewModel()
         {
             _mouseService = App.Container.Resolve<MouseService>();
-            PlaybackService.Playback_StatusChanged += Playback_StatusChanged;
+            PlaybackService.Playback_MediaPlaying += OnPlaying;
+            PlaybackService.Playback_MediaPaused += OnPaused;
             PlaybackService.Playback_MediaTimeChanged += Playback_MediaTimeChanged;
             PlaybackService.Playback_MediaLengthChanged += Playback_MediaLengthChanged;
             PlaybackService.Playback_MediaBuffering += Playback_MediaBuffering;
@@ -407,40 +408,20 @@ namespace VLC.ViewModels
         #endregion
 
         #region Events
-        private async void Playback_StatusChanged(object sender, MediaState e)
+        private async void OnPlaying()
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
-                IsPlaying = e == MediaState.Playing || e == MediaState.Buffering;
-
+                IsPlaying = true;
                 LoadingMedia = Visibility.Collapsed;
-                switch (MediaState)
-                {
-                    case MediaState.NothingSpecial:
-                        break;
-                    case MediaState.Opening:
-                        break;
-                    case MediaState.Buffering:
-                        break;
-                    case MediaState.Playing:
-                        if (_systemMediaTransportControls != null)
-                            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
-
-                        break;
-                    case MediaState.Paused:
-                        if (_systemMediaTransportControls != null)
-                            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
-                        break;
-                    case MediaState.Stopped:
-                        break;
-                    case MediaState.Ended:
-                        break;
-                    case MediaState.Error:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
             });
+            if (_systemMediaTransportControls != null)
+                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
+        }
+        private void OnPaused()
+        {
+            if (_systemMediaTransportControls != null)
+                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
         }
 
         private async void Playback_MediaTimeChanged(long time)
@@ -469,6 +450,7 @@ namespace VLC.ViewModels
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
+                IsPlaying = false;
                 AudioTracks.Clear();
                 Subtitles.Clear();
                 OnPropertyChanged(nameof(AudioTracks));

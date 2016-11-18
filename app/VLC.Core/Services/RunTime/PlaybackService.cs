@@ -34,7 +34,6 @@ namespace VLC.Services.RunTime
 {
     public class PlaybackService
     {
-        public event EventHandler<MediaState> Playback_StatusChanged;
         public event Action<IMediaItem> Playback_MediaSet;
         public event Action<ParsedStatus> Playback_MediaParsed;
         public event Action<TrackType, int, string> Playback_MediaTracksAdded;
@@ -46,6 +45,8 @@ namespace VLC.Services.RunTime
         public event Action Playback_MediaEndReached;
         public event Buffering Playback_MediaBuffering;
         public event Action<IMediaItem> Playback_MediaFileNotFound;
+        public event Playing Playback_MediaPlaying;
+        public event Paused Playback_MediaPaused;
 
         private List<VLCChapterDescription> _chapters = new List<VLCChapterDescription>();
 
@@ -430,7 +431,6 @@ namespace VLC.Services.RunTime
                 _mediaPlayer = new MediaPlayer(CurrentMedia);
                 var em = _mediaPlayer.eventManager();
 
-                em.OnOpening += OnOpening;
                 em.OnBuffering += Playback_MediaBuffering;
                 em.OnStopped += OnStopped;
                 em.OnPlaying += OnPlaying;
@@ -441,6 +441,8 @@ namespace VLC.Services.RunTime
                 em.OnLengthChanged += Playback_MediaLengthChanged;
                 em.OnTrackAdded += OnTrackAdded;
                 em.OnTrackDeleted += OnTrackDeleted;
+                em.OnPlaying += Playback_MediaPlaying;
+                em.OnPaused += Playback_MediaPaused;
             }
             else
                 _mediaPlayer.setMedia(CurrentMedia);
@@ -856,14 +858,8 @@ namespace VLC.Services.RunTime
             PlayerStateChanged(this, MediaState.Playing);
         }
 
-        private void OnOpening()
-        {
-            PlayerStateChanged(this, MediaState.Opening);
-        }
-
         private void PlayerStateChanged(object sender, MediaState e)
         {
-            Playback_StatusChanged?.Invoke(sender, e);
             PlayerState = e;
         }
         
