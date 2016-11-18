@@ -42,7 +42,6 @@ namespace VLC.ViewModels
         #region private props
         private MouseService _mouseService;
         private SystemMediaTransportControls _systemMediaTransportControls;
-        private PlaybackService _playbackService;
         private TimeSpan _timeTotal;
 
         private int _volume = 100;
@@ -51,14 +50,7 @@ namespace VLC.ViewModels
         private Visibility _loadingMedia = Visibility.Collapsed;
         #endregion
 
-        public PlaybackService PlaybackService
-        {
-            get
-            {
-                _playbackService = _playbackService ?? new PlaybackService();
-                return _playbackService;
-            }
-        }
+        public PlaybackService PlaybackService { get { return Locator.PlaybackService; } }
         public MouseService MouseService { get { return _mouseService; } }
 
 
