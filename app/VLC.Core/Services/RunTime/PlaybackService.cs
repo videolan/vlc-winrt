@@ -37,7 +37,8 @@ namespace VLC.Services.RunTime
         public event EventHandler<MediaState> Playback_StatusChanged;
         public event Action<IMediaItem> Playback_MediaSet;
         public event Action<ParsedStatus> Playback_MediaParsed;
-        public event Action<TrackType, int> Playback_MediaTracksUpdated;
+        public event Action<TrackType, int, string> Playback_MediaTracksAdded;
+        public event Action<TrackType, int> Playback_MediaTracksDeleted;
         public event TimeChanged Playback_MediaTimeChanged;
         public event EncounteredError Playback_MediaFailed;
         public event Stopped Playback_MediaStopped;
@@ -46,11 +47,7 @@ namespace VLC.Services.RunTime
         public event Buffering Playback_MediaBuffering;
         public event Action<IMediaItem> Playback_MediaFileNotFound;
 
-        private List<DictionaryKeyValue> _subtitlesTracks = new List<DictionaryKeyValue>();
-        private List<DictionaryKeyValue> _audioTracks = new List<DictionaryKeyValue>();
         private List<VLCChapterDescription> _chapters = new List<VLCChapterDescription>();
-        private int _currentSubtitle;
-        private int _currentAudioTrack;
 
         private SmartCollection<IMediaItem> _playlist;
         private SmartCollection<IMediaItem> _nonShuffledPlaylist;
@@ -394,7 +391,7 @@ namespace VLC.Services.RunTime
                 await InitializePlayback(track, autoPlay);
 
                 int index = IsShuffled ?
-                    NonShuffledPlaylist.IndexOf(Playlist[CurrentPlaylistIndex]): CurrentPlaylistIndex;
+                    NonShuffledPlaylist.IndexOf(Playlist[CurrentPlaylistIndex]) : CurrentPlaylistIndex;
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(CurrentPlaylistIndex), index);
             }
             else if (media is StreamMedia)
@@ -450,7 +447,6 @@ namespace VLC.Services.RunTime
             em.OnTrackAdded += OnTrackAdded;
             em.OnTrackDeleted += OnTrackDeleted;
         }
-
 
         private async Task InitializePlayback(IMediaItem media, bool autoPlay)
         {
@@ -518,16 +514,6 @@ namespace VLC.Services.RunTime
         {
             get { return _mediaPlayer.volume(); }
             set { _mediaPlayer.setVolume(value); }
-        }
-
-        public void SetSubtitleTrack(int i)
-        {
-            _mediaPlayer.setSpu(i);
-        }
-
-        public void SetAudioTrack(int i)
-        {
-            _mediaPlayer.setAudioTrack(i);
         }
 
         public void SetAudioDelay(long delay)
@@ -728,57 +714,20 @@ namespace VLC.Services.RunTime
             return _chapters.ToList();
         }
 
-        public DictionaryKeyValue GetCurrentAudioTrack()
+        public int CurrentAudioTrack
         {
-            if (_currentAudioTrack == -1 || _currentAudioTrack >= _audioTracks.Count)
-                return null;
-
-            return _audioTracks[_currentAudioTrack];
+            get { return _mediaPlayer.audioTrack(); }
+            set { _mediaPlayer.setAudioTrack(value); }
         }
 
-        public void SetAudioTrack(DictionaryKeyValue audioTrack)
+        public int CurrentSubtitleTrack
         {
-            _currentAudioTrack = _audioTracks.IndexOf(audioTrack);
-            if (audioTrack != null)
-            {
-                _mediaPlayer.setAudioTrack(audioTrack.Id);
-            }
-        }
-
-        public List<DictionaryKeyValue> GetAudioTracks()
-        {
-            return _audioTracks.ToList();
-        }
-
-        public DictionaryKeyValue GetCurrentSubtitleTrack()
-        {
-            if (_currentSubtitle < 0 || _currentSubtitle >= _subtitlesTracks.Count)
-                return null;
-            return _subtitlesTracks[_currentSubtitle];
-        }
-
-        public void SetSubtitleTrack(DictionaryKeyValue subTrack)
-        {
-            _currentSubtitle = _subtitlesTracks.IndexOf(subTrack);
-            if (subTrack != null)
-            {
-                _mediaPlayer.setSpu(subTrack.Id);
-            }
-        }
-
-        public List<DictionaryKeyValue> GetSubtitleTracks()
-        {
-            return _subtitlesTracks.ToList();
+            get { return _mediaPlayer.spu(); }
+            set { _mediaPlayer.setSpu(value); }
         }
 
         public void Stop()
         {
-            _currentAudioTrack = -1;
-            _currentSubtitle = -1;
-
-            _audioTracks.Clear();
-            _subtitlesTracks.Clear();
-
             if (PlayerState != MediaState.Ended && PlayerState != MediaState.NothingSpecial)
             {
                 _mediaPlayer.stop();
@@ -859,75 +808,37 @@ namespace VLC.Services.RunTime
             Playback_MediaParsed?.Invoke(parsedStatus);
         }
 
-        private void OnTrackDeleted(TrackType type, int trackId)
-        {
-            if (type == TrackType.Unknown || type == TrackType.Video)
-                return;
-            List<DictionaryKeyValue> target;
-            if (type == TrackType.Audio)
-                target = _audioTracks;
-            else
-                target = _subtitlesTracks;
-
-            target.RemoveAll((t) => t.Id == trackId);
-            if (target.Count > 0)
-                return;
-            if (type == TrackType.Subtitle)
-            {
-                _currentSubtitle = -1;
-            }
-            else
-            {
-                _currentAudioTrack = -1;
-            }
-
-            Playback_MediaTracksUpdated?.Invoke(type, trackId);
-        }
-
         private void OnTrackAdded(TrackType type, int trackId)
         {
             if (type == TrackType.Unknown)
                 return;
 
             if (type == TrackType.Video)
-            {
                 PlayingType = PlayingType.Video;
-            }
 
-            List<DictionaryKeyValue> target;
-            IList<TrackDescription> source;
+            IList<TrackDescription> tracks;
             if (type == TrackType.Audio)
-            {
-                target = _audioTracks;
-                source = _mediaPlayer?.audioTrackDescription();
-            }
+                tracks = _mediaPlayer.audioTrackDescription();
+            else if (type == TrackType.Subtitle)
+                tracks = _mediaPlayer.spuDescription();
             else
-            {
-                target = _subtitlesTracks;
-                source = _mediaPlayer?.spuDescription();
-            }
+                tracks = _mediaPlayer.videoTrackDescription();
 
-            target?.Clear();
-            foreach (var t in source)
+            foreach (var t in tracks)
             {
-                target?.Add(new DictionaryKeyValue()
+                if (t.id() == trackId)
                 {
-                    Id = t.id(),
-                    Name = t.name(),
-                });
+                    Playback_MediaTracksAdded?.Invoke(type, trackId, t.name());
+                    return;
+                }
             }
+            LogHelper.Log("Failed to find track description");
+            Playback_MediaTracksAdded(type, trackId, "Unknown track");
+        }
 
-            // This assumes we have a "Disable" track for both subtitles & audio
-            if (type == TrackType.Subtitle && _subtitlesTracks?.Count > 1)
-            {
-                _currentSubtitle = 1;
-            }
-            else if (type == TrackType.Audio && _audioTracks?.Count > 1)
-            {
-                _currentAudioTrack = 1;
-            }
-
-            Playback_MediaTracksUpdated?.Invoke(type, trackId);
+        private void OnTrackDeleted(TrackType trackType, int trackId)
+        {
+            Playback_MediaTracksDeleted?.Invoke(trackType, trackId);
         }
 
         private async void OnEndReached()

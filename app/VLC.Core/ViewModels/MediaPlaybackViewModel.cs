@@ -33,6 +33,7 @@ using VLC.Model.Video;
 using VLC.Model.Stream;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using System.Collections.ObjectModel;
 
 namespace VLC.ViewModels
 {
@@ -214,31 +215,31 @@ namespace VLC.ViewModels
             get { return PlaybackService.Position; }
             set { PlaybackService.Position = value; }
         }
-                
 
+
+        private DictionaryKeyValue _currentSubtitle;
         public DictionaryKeyValue CurrentSubtitle
         {
-            get
-            {
-                return PlaybackService.GetCurrentSubtitleTrack();
-            }
+            get { return _currentSubtitle; }
             set
             {
-                if (value != null)
-                    PlaybackService.SetSubtitleTrack(value);
+                if (value == null)
+                    return;
+                _currentSubtitle = value;
+                PlaybackService.CurrentSubtitleTrack = value.Id;
             }
         }
 
+        private DictionaryKeyValue _currentAudioTrack;
         public DictionaryKeyValue CurrentAudioTrack
         {
-            get
-            {
-                return PlaybackService.GetCurrentAudioTrack();
-            }
+            get { return _currentAudioTrack; }
             set
             {
-                if (value != null)
-                    PlaybackService.SetAudioTrack(value);
+                if (value == null)
+                    return;
+                _currentAudioTrack = value;
+                PlaybackService.CurrentAudioTrack = value.Id;
             }
         }
 
@@ -257,9 +258,9 @@ namespace VLC.ViewModels
         #endregion
 
         #region public fields
-        public List<DictionaryKeyValue> AudioTracks => PlaybackService.GetAudioTracks();
+        public ObservableCollection<DictionaryKeyValue> AudioTracks { get; } = new ObservableCollection<DictionaryKeyValue>();
 
-        public List<DictionaryKeyValue> Subtitles => PlaybackService.GetSubtitleTracks();
+        public ObservableCollection<DictionaryKeyValue> Subtitles { get; } = new ObservableCollection<DictionaryKeyValue>();
 
         public List<VLCChapterDescription> Chapters => PlaybackService.GetChapters();
 
@@ -277,7 +278,8 @@ namespace VLC.ViewModels
             PlaybackService.Playback_MediaEndReached += Playback_MediaEndReach;
             PlaybackService.Playback_MediaFailed += Playback_MediaFailed;
             PlaybackService.Playback_MediaStopped += Playback_MediaStopped;
-            PlaybackService.Playback_MediaTracksUpdated += Playback_MediaTracksUpdated;
+            PlaybackService.Playback_MediaTracksAdded += OnMediaTrackAdded;
+            PlaybackService.Playback_MediaTracksDeleted += OnMediaTrackDeleted;
             PlaybackService.Playback_MediaParsed += Playback_MediaParsed;
 
             PlaybackService.Playback_MediaSet += PlaybackService_MediaSet;
@@ -472,6 +474,8 @@ namespace VLC.ViewModels
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
+                AudioTracks.Clear();
+                Subtitles.Clear();
                 OnPropertyChanged(nameof(AudioTracks));
                 OnPropertyChanged(nameof(Subtitles));
                 OnPropertyChanged(nameof(CurrentAudioTrack));
@@ -539,23 +543,63 @@ namespace VLC.ViewModels
                 });
             }
         }
-
-        private async void Playback_MediaTracksUpdated(TrackType type, int trackId)
+        
+        private async void OnMediaTrackAdded(TrackType type, int trackId, string name)
         {
+            var item = new DictionaryKeyValue
+            {
+                Id = trackId,
+                Name = name
+            };
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                OnPropertyChanged(nameof(AudioTracks));
-                OnPropertyChanged(nameof(Subtitles));
-                OnPropertyChanged(nameof(CurrentSubtitle));
-                OnPropertyChanged(nameof(CurrentAudioTrack));
-
-                if (type == TrackType.Video)
+                if (type == TrackType.Audio)
                 {
-                    if (PlaybackService.PlayingType == PlayingType.Video && Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage)
-                    {
-                        Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
-                    }
+                    if (AudioTracks.Count == 0)
+                        AudioTracks.Add(new DictionaryKeyValue { Id = -1, Name = "Disabled" });
+                    AudioTracks.Add(item);
+                    if (_currentAudioTrack == null)
+                        _currentAudioTrack = item;
+                    OnPropertyChanged(nameof(AudioTracks));
+                    OnPropertyChanged(nameof(CurrentAudioTrack));
                 }
+                else if (type == TrackType.Subtitle)
+                {
+                    if (Subtitles.Count == 0)
+                        Subtitles.Add(new DictionaryKeyValue { Id = -1, Name = "Disabled" });
+                    Subtitles.Add(item);
+                    if (_currentSubtitle == null)
+                        _currentSubtitle = item;
+                    OnPropertyChanged(nameof(Subtitles));
+                    OnPropertyChanged(nameof(CurrentSubtitle));
+                }
+                else
+                {
+                    Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
+                }
+            });
+        }
+
+        private async void OnMediaTrackDeleted(TrackType type, int trackId)
+        {
+            if (type == TrackType.Video)
+                return;
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                ObservableCollection<DictionaryKeyValue> target;
+                if (type == TrackType.Audio)
+                {
+                    target = AudioTracks;
+                    OnPropertyChanged(nameof(CurrentAudioTrack));
+                }
+                else
+                {
+                    target = Subtitles;
+                    OnPropertyChanged(nameof(CurrentSubtitle));
+                }
+                var res = target.FirstOrDefault((item) => item.Id == trackId);
+                if (res != null)
+                    target.Remove(res);
             });
         }
 
