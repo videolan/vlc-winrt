@@ -264,11 +264,7 @@ namespace VLC.Services.RunTime
                         AppViewHelper.LeaveFullscreen();
                         break;
                     case VLCAction.PauseToggle:
-                        if (Locator.MediaPlaybackViewModel.MediaState == MediaState.Paused
-                            || Locator.MediaPlaybackViewModel.MediaState == MediaState.Playing)
-                        {
-                            Locator.MediaPlaybackViewModel.PlaybackService.Pause();
-                        }
+                        Locator.MediaPlaybackViewModel.PlaybackService.Pause();
                         break;
                     case VLCAction.Quit:
                         App.Current.Exit();
