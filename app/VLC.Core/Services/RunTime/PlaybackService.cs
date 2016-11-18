@@ -516,14 +516,16 @@ namespace VLC.Services.RunTime
             set { _mediaPlayer.setVolume(value); }
         }
 
-        public void SetAudioDelay(long delay)
+        public long AudioDelay
         {
-            _mediaPlayer.setAudioDelay(delay * 1000);
+            get { return _mediaPlayer.audioDelay(); }
+            set { _mediaPlayer.setAudioDelay(value); }
         }
 
-        public void SetSpuDelay(long delay)
+        public long SpuDelay
         {
-            _mediaPlayer.setSpuDelay(delay * 1000);
+            get { return _mediaPlayer.spuDelay(); }
+            set { _mediaPlayer.setSpuDelay(value * 1000); }
         }
 
         public long Time

@@ -48,8 +48,6 @@ namespace VLC.ViewModels
 
         private int _volume = 100;
         private int _speedRate = 100;
-        private long _audioDelay;
-        private long _spuDelay;
         private int _bufferingProgress;
         private Visibility _loadingMedia = Visibility.Collapsed;
         #endregion
@@ -166,14 +164,11 @@ namespace VLC.ViewModels
         /// </summary>
         public long AudioDelay
         {
-            get
-            {
-                return _audioDelay;
-            }
+            get { return PlaybackService.AudioDelay; }
             set
             {
-                PlaybackService.SetAudioDelay(value);
-                SetProperty(ref _audioDelay, value);
+                PlaybackService.AudioDelay = value;
+                OnPropertyChanged(nameof(AudioDelay));
             }
         }
 
@@ -184,11 +179,11 @@ namespace VLC.ViewModels
         /// </summary>
         public long SpuDelay
         {
-            get { return _spuDelay; }
+            get { return PlaybackService.SpuDelay; }
             set
             {
-                PlaybackService.SetSpuDelay(value);
-                SetProperty(ref _spuDelay, value);
+                PlaybackService.SpuDelay = value;
+                OnPropertyChanged(nameof(SpuDelay));
             }
         }
 
