@@ -356,7 +356,7 @@ namespace VLC.ViewModels
             {
                 var stream = await Locator.MediaLibrary.LoadStreamFromDatabaseOrCreateOne(uri.ToString());
                 LoadingMedia = Visibility.Visible;
-                await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(new List<IMediaItem> { stream }, true, true, stream);
+                await PlaybackService.SetPlaylist(new List<IMediaItem> { stream }, true, true, stream);
             }
             catch (Exception e)
             {
@@ -374,7 +374,7 @@ namespace VLC.ViewModels
         {
             var trackItem = await Locator.MediaLibrary.GetTrackItemFromFile(file, token);
 
-            await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(new List<IMediaItem> { trackItem }, true, true, trackItem);
+            await PlaybackService.SetPlaylist(new List<IMediaItem> { trackItem }, true, true, trackItem);
         }
 
         /// <summary>
@@ -389,7 +389,7 @@ namespace VLC.ViewModels
             if (token != null)
                 video.Token = token;
 
-            await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(new List<IMediaItem> { video }, true, true, video);
+            await PlaybackService.SetPlaylist(new List<IMediaItem> { video }, true, true, video);
         }
 
         public async Task UpdatePosition()
@@ -722,10 +722,10 @@ namespace VLC.ViewModels
                     await PlaybackService.PlayNext();
                     break;
                 case SystemMediaTransportControlsButton.FastForward:
-                    Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(30000);
+                    FastSeekCommand.Execute(30000);
                     break;
                 case SystemMediaTransportControlsButton.Rewind:
-                    Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(-30000);
+                    FastSeekCommand.Execute(-30000);
                     break;
             }
         }
