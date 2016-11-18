@@ -314,23 +314,20 @@ namespace VLC.Services.RunTime
                 if (!ApplicationSettingsHelper.Contains(nameof(CurrentPlaylistIndex)))
                     return;
                 var index = (int)ApplicationSettingsHelper.ReadSettingsValue(nameof(CurrentPlaylistIndex));
-                if (restoredplaylist.Any())
+                if (restoredplaylist.Count == 0)
                 {
-                    if (index == -1)
-                    {
-                        // Background Audio was terminated
-                        // We need to reset the playlist, or set the current track 0.
-                        ApplicationSettingsHelper.SaveSettingsValue(nameof(CurrentPlaylistIndex), 0);
-                        index = 0;
-                    }
-                    SetCurrentMediaPosition(index);
-                }
-
-                if (CurrentPlaylistIndex >= restoredplaylist.Count || CurrentPlaylistIndex == -1)
                     CurrentPlaylistIndex = 0;
-
-                if (restoredplaylist.Any())
-                    await SetPlaylist(restoredplaylist, true, false, restoredplaylist[CurrentPlaylistIndex]);
+                    return;
+                }
+                if (index == -1)
+                {
+                    // Background Audio was terminated
+                    // We need to reset the playlist, or set the current track 0.
+                    ApplicationSettingsHelper.SaveSettingsValue(nameof(CurrentPlaylistIndex), 0);
+                    index = 0;
+                }
+                SetCurrentMediaPosition(index);
+                await SetPlaylist(restoredplaylist, true, false, restoredplaylist[CurrentPlaylistIndex]);
             }
             catch (Exception e)
             {
