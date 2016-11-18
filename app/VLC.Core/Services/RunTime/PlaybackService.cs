@@ -790,16 +790,6 @@ namespace VLC.Services.RunTime
             // Get chapters
             GetChapters();
 
-            // Get subtitle delay etc
-            if (_mediaPlayer != null)
-            {
-                SetAudioDelay(_mediaPlayer.audioDelay());
-                SetSpuDelay(_mediaPlayer.spuDelay());
-            }
-
-            if (_mediaPlayer == null)
-                return;
-
             SetPlaybackTypeFromTracks();
 
             Playback_MediaParsed?.Invoke(parsedStatus);
