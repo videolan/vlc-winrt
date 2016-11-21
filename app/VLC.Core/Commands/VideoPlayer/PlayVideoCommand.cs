@@ -52,19 +52,6 @@ namespace VLC.Commands.VideoPlayer
                 ToastHelper.Basic(Strings.FailOpenVideo);
                 return;
             }
-
-            try
-            {
-                Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
-                LogHelper.Log("PLAYVIDEO: Navigating to VideoPlayerPage");
-            }
-            catch
-            {
-                // TODO: Enhance error handling
-                // TODO: Remove hardcoded English
-                ToastHelper.Basic(string.Format(Strings.FailNavigateVideoPlayerPage));
-                LogHelper.Log("PLAYVIDEO: failed to navigate to video player page.");
-            }
         }
     }
 }
