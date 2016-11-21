@@ -148,8 +148,8 @@ namespace VLC.ViewModels.VideoVM
                 DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
             }
 
-            if (Locator.MediaPlaybackViewModel.CurrentMedia is VideoItem)
-                Task.Run(async () => await UpdateCurrentVideo(Locator.MediaPlaybackViewModel.CurrentMedia as VideoItem));
+            if (Locator.PlaybackService.CurrentPlaybackMedia is VideoItem)
+                Task.Run(async () => await UpdateCurrentVideo(Locator.PlaybackService.CurrentPlaybackMedia as VideoItem));
         }
 
         public void OnNavigatedFrom()

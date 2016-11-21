@@ -46,7 +46,7 @@
         <ListView Grid.Row="3"
                   Margin="{StaticResource FrameMargin}"
                   DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
-                  ItemsSource="{Binding PlaybackService.Playlist}"
+                  ItemsSource="{Binding Playlist}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemTemplate="{StaticResource TrackItemTemplateDetailedVertical}"

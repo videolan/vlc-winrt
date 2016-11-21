@@ -139,8 +139,8 @@ namespace VLC.UI.Views.UserControls
 
         public async Task StopPlayback()
         {
-            Locator.MediaPlaybackViewModel.PlaybackService.Stop();
-            await Locator.MediaPlaybackViewModel.PlaybackService.ResetCollection();
+            Locator.PlaybackService.Stop();
+            await Locator.PlaybackService.ClearPlaylist();
         }
     }
 }

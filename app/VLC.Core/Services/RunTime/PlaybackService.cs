@@ -48,14 +48,14 @@ namespace VLC.Services.RunTime
         public event Playing Playback_MediaPlaying;
         public event Paused Playback_MediaPaused;
 
-        private List<VLCChapterDescription> _chapters = new List<VLCChapterDescription>();
+        public event Action OnPlaylistEndReached;
+        public event Action OnPlaylistChanged;
+        
+        private List<VLCChapterDescription> _chapters = new List<VLCChapterDescription>();       
 
-        private SmartCollection<IMediaItem> _playlist;
-        private SmartCollection<IMediaItem> _nonShuffledPlaylist;
-
-        public BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
         public TaskCompletionSource<bool> PlayerInstanceReady { get; set; } = new TaskCompletionSource<bool>();
         private DialogService _dialogService = new DialogService();
+        private PlaylistService _playlistService;
 
         public Instance Instance { get; private set; }
         // Contains the IAudioClient address, as a string.
@@ -73,9 +73,11 @@ namespace VLC.Services.RunTime
         }
         private MediaPlayer _mediaPlayer;
         public Media CurrentMedia { get; private set; }
+        public IMediaItem CurrentPlaybackMedia { get; private set; }
 
-        public bool IsPlaying { get { return _mediaPlayer.isPlaying(); } }
+        public bool IsPlaying { get { return _mediaPlayer != null ? _mediaPlayer.isPlaying() : false; } }
         public bool IsPaused {  get { return _mediaPlayer.state() == MediaState.Paused; } }
+        public ObservableCollection<IMediaItem> Playlist {  get { return _playlistService.Playlist; } }
 
         public Task Initialize()
         {
@@ -142,206 +144,100 @@ namespace VLC.Services.RunTime
             });
         }
 
-        public int CurrentPlaylistIndex { get; private set; }
 
         public PlayingType PlayingType { get; set; }
 
-        public bool Repeat { get; set; }
-
         public MediaState PlayerState { get; private set; }
 
-        public bool CanGoPrevious()
-        {
-            var previous = (CurrentPlaylistIndex > 0);
-            Locator.MediaPlaybackViewModel.SystemMediaTransportControlsBackPossible(previous);
-            return previous;
-        }
-
-        public bool CanGoNext()
-        {
-            var next = (Playlist.Count != 1) && (CurrentPlaylistIndex < Playlist.Count - 1);
-            Locator.MediaPlaybackViewModel.SystemMediaTransportControlsNextPossible(next);
-            Debug.WriteLine("Can go next:" + next);
-            return next;
-        }
-
         public bool IsRunning { get; set; }
-
-        public bool IsShuffled { get; set; }
-
-        #region public fields
-        public SmartCollection<IMediaItem> Playlist
-        {
-            get { return _playlist; }
-            private set { _playlist = value; }
-        }
-
-        private SmartCollection<IMediaItem> NonShuffledPlaylist
-        {
-            get { return _nonShuffledPlaylist; }
-            set { _nonShuffledPlaylist = value; }
-        }
-
-        #endregion
-
+        
         #region ctors
         public PlaybackService()
         {
-            Task.Run(() => RestorePlaylist());
-            _playlist = new SmartCollection<IMediaItem>();
-            InitializePlaylist();
+            _playlistService = new PlaylistService(this);
+            _playlistService.OnPlaylistEndReached += () => OnPlaylistEndReached?.Invoke();
+            _playlistService.OnPlaylistChanged += () => OnPlaylistChanged?.Invoke();
+            _playlistService.OnCurrentMediaChanged += onCurrentMediaChanged;
         }
+
         #endregion
-
-        #region Playlist setup
-        public void InitializePlaylist()
-        {
-            Playlist.Clear();
-            CurrentPlaylistIndex = -1;
-        }
-
-        public async Task ResetCollection()
-        {
-            await BackgroundTrackRepository.Clear();
-            Playlist.Clear();
-            CurrentPlaylistIndex = -1;
-            NonShuffledPlaylist?.Clear();
-            IsShuffled = false;
-            Playback_MediaSet(null);
-            IsRunning = false;
-        }
-
-        public void Shuffle()
-        {
-            if (IsShuffled)
-            {
-                NonShuffledPlaylist = new SmartCollection<IMediaItem>(Playlist);
-                Random r = new Random();
-                for (int i = 0; i < Playlist.Count; i++)
-                {
-                    if (i > CurrentPlaylistIndex)
-                    {
-                        int index1 = r.Next(i, Playlist.Count);
-                        int index2 = r.Next(i, Playlist.Count);
-                        Playlist.Move(index1, index2);
-                    }
-                }
-                var pl = Playlist.ToList<IMediaItem>();
-            }
-            else
-            {
-                IMediaItem m = Playlist[CurrentPlaylistIndex];
-
-                Playlist.Clear();
-                Playlist.AddRange(NonShuffledPlaylist);
-
-                CurrentPlaylistIndex = Playlist.IndexOf(m);
-            }
-        }
 
         public void Trim()
         {
             Instance?.Trim();
         }
+        #region Playlist setup
 
-        public async Task<bool> SetPlaylist(IEnumerable<IMediaItem> mediaItems, bool reset, bool play, IMediaItem media)
+        public bool CanGoNext => _playlistService.CanGoNext;
+
+        public bool CanGoPrevious => _playlistService.CanGoPrevious;
+
+        public Task RestorePlaylist()
         {
-            if (reset)
-            {
-                await ResetCollection();
-            }
+            return _playlistService.Restore();
+        }
+        private async void onCurrentMediaChanged(IMediaItem media)
+        {
+            await SetMedia(media);
+            Play();
+            Playback_MediaSet?.Invoke(media);
+        }
 
-            if (mediaItems != null)
-            {
-                var count = (uint)Playlist.Count;
-                var trackItems = mediaItems.OfType<TrackItem>();
-                var backgroundTrackItems = new List<BackgroundTrackItem>();
-                foreach (var track in trackItems)
-                {
-                    backgroundTrackItems.Add(new BackgroundTrackItem()
-                    {
-                        TrackId = track.Id
-                    });
-                    track.Index = count;
-                    count++;
-                }
+        public void ShufflePlaylist()
+        {
+            _playlistService.Shuffle();
+        }
 
-                Playlist.AddRange(mediaItems);
+        public void SetPlaylistIndex(int index)
+        {
+            if (index == _playlistService.Index)
+                return;
+            _playlistService.Index = index;
+        }
 
-                await BackgroundTrackRepository.Add(backgroundTrackItems);
+        public async Task RemoveMedia(IMediaItem media)
+        {
+            bool currentRemoved = CurrentPlaybackMedia == media;
+            _playlistService.RemoveMedia(media);
+            if (currentRemoved)
+                await SetMedia(_playlistService.CurrentMedia);
+        }
 
-                IsRunning = true;
-            }
+        public Task AddToPlaylist(IEnumerable<IMediaItem> toAdd)
+        {
+            return _playlistService.AddToPlaylist(toAdd);
+        }
 
-            if (media != null && Playlist.Any())
-            {
-                var mediaInPlaylist = Playlist.FirstOrDefault(x => x.Path == media.Path);
+        public Task SetPlaylist(IEnumerable<IMediaItem> mediaItems, uint startingIndex = 0)
+        {
+            return _playlistService.SetPlaylist(mediaItems, startingIndex);
+        }
 
-                if (mediaInPlaylist == null)
-                    return false;
+        public Task ClearPlaylist()
+        {
+            return _playlistService.Clear();
+        }
 
-                var mediaIndex = Playlist.IndexOf(mediaInPlaylist);
-
-                if (mediaIndex < 0)
-                    return false;
-
-                SetCurrentMediaPosition(mediaIndex);
-                Playback_MediaSet.Invoke(mediaInPlaylist);
-                await SetMedia(mediaInPlaylist, play);
-            }
+        public bool Next()
+        {
+            return _playlistService.Next();
+        }
+        public bool Previous()
+        {
+            if (Position < 0.05)
+                return _playlistService.Previous();
+            Position = 0;
             return true;
         }
 
-        private async Task RestorePlaylist()
-        {
-            try
-            {
-                var playlist = await BackgroundTrackRepository.LoadPlaylist();
-                if (!playlist.Any())
-                {
-                    return;
-                }
+        #endregion
 
-                var trackIds = playlist.Select(node => node.TrackId);
-                var restoredplaylist = new SmartCollection<IMediaItem>();
-                foreach (int trackId in trackIds)
-                {
-                    var trackItem = Locator.MediaLibrary.LoadTrackById(trackId);
-                    if (trackItem != null)
-                        restoredplaylist.Add(trackItem);
-                }
+        #region Playback methods
 
-                if (!ApplicationSettingsHelper.Contains(nameof(CurrentPlaylistIndex)))
-                    return;
-                var index = (int)ApplicationSettingsHelper.ReadSettingsValue(nameof(CurrentPlaylistIndex));
-                if (restoredplaylist.Count == 0)
-                {
-                    CurrentPlaylistIndex = 0;
-                    return;
-                }
-                if (index == -1)
-                {
-                    // Background Audio was terminated
-                    // We need to reset the playlist, or set the current track 0.
-                    ApplicationSettingsHelper.SaveSettingsValue(nameof(CurrentPlaylistIndex), 0);
-                    index = 0;
-                }
-                SetCurrentMediaPosition(index);
-                await SetPlaylist(restoredplaylist, true, false, restoredplaylist[CurrentPlaylistIndex]);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("Failed to restore the playlist");
-            }
-        }
-
-        private async Task SetMedia(IMediaItem media, bool autoPlay = true)
+        private async Task SetMedia(IMediaItem media)
         {
             if (media == null)
                 throw new ArgumentNullException(nameof(media), "Media is missing. Can't play");
-
-            if (Playlist.ElementAt(CurrentPlaylistIndex) != null)
-                Stop();
 
             if (media is VideoItem || media is TrackItem)
             {
@@ -357,7 +253,16 @@ namespace VLC.Services.RunTime
                 }
             }
 
-            await InitializePlayback(media, autoPlay);
+            await LogHelper.ResetBackendFile();
+
+            // Send the media we want to play
+            await SetMediaFile(media);
+            
+            if (_mediaPlayer == null) return;
+            CurrentPlaybackMedia = media;
+            var mem = _mediaPlayer.media().eventManager();
+            mem.OnParsedChanged += OnParsedStatus;
+
             if (media is VideoItem)
             {
                 var video = (VideoItem)media;
@@ -385,12 +290,6 @@ namespace VLC.Services.RunTime
                 }
 
                 TileHelper.UpdateVideoTile();
-            }
-            else if (media is TrackItem)
-            {
-                int index = IsShuffled ?
-                    NonShuffledPlaylist.IndexOf(Playlist[CurrentPlaylistIndex]) : CurrentPlaylistIndex;
-                ApplicationSettingsHelper.SaveSettingsValue(nameof(CurrentPlaylistIndex), index);
             }
         }
 
@@ -450,67 +349,11 @@ namespace VLC.Services.RunTime
             SetEqualizer(Locator.SettingsVM.Equalizer);
         }
 
-        private async Task InitializePlayback(IMediaItem media, bool autoPlay)
-        {
-            // First set the player engine
-            // For videos AND music, we have to try first with Microsoft own player
-            // Then we register to Failed callback. If it doesn't work, we set ForceVlcLib to true
-            if (autoPlay)
-            {
-                // Reset the libVLC log file
-                await LogHelper.ResetBackendFile();
-            }
-
-            // Send the media we want to play
-            await SetMediaFile(media);
-
-
-            if (_mediaPlayer == null) return;
-            var mem = _mediaPlayer.media().eventManager();
-            mem.OnParsedChanged += OnParsedStatus;
-            if (!autoPlay)
-                return;
-            Play();
-
-            _mediaPlayer.setRate(1);
-        }
-
-        #endregion
-
-        #region Playback methods
         /// <summary>
         /// Only this method should set the CurrentMedia property of TrackCollection.
         /// </summary>
         /// <param name="index"></param>
-        public void SetCurrentMediaPosition(int index)
-        {
-            CurrentPlaylistIndex = index;
-        }
-
-
-        public async Task StartAgain()
-        {
-            SetCurrentMediaPosition(0);
-            await SetPlaylist(null, false, true, Playlist[CurrentPlaylistIndex]);
-        }
-
-        public async Task PlayNext()
-        {
-            if (CanGoNext())
-            {
-                SetCurrentMediaPosition(CurrentPlaylistIndex + 1);
-                await SetPlaylist(null, false, true, Playlist[CurrentPlaylistIndex]);
-            }
-        }
-
-        public async Task PlayPrevious()
-        {
-            if (CanGoPrevious())
-            {
-                SetCurrentMediaPosition(CurrentPlaylistIndex - 1);
-                await SetPlaylist(null, false, true, Playlist[CurrentPlaylistIndex]);
-            }
-        }
+        
 
         public int Volume
         {
@@ -819,32 +662,18 @@ namespace VLC.Services.RunTime
             Playback_MediaTracksDeleted?.Invoke(trackType, trackId);
         }
 
-        private async void OnEndReached()
+        private void OnEndReached()
         {
             Playback_MediaEndReached?.Invoke();
             TileHelper.ClearTile();
             PlayerState = MediaState.Ended;
-            if (!CanGoNext())
-            {
-                // Playlist is finished
-                if (Repeat)
-                {
-                    // ... One More Time!
-                    await StartAgain();
-                    return;
-                }
-                PlayingType = PlayingType.NotPlaying;
-                IsRunning = false;
-            }
-            else
-            {
-                await PlayNext();
-            }
         }
 
         private void OnStopped()
         {
+            CurrentPlaybackMedia = null;
             PlayerState = MediaState.Stopped;
+            PlayingType = PlayingType.NotPlaying;
             Playback_MediaStopped?.Invoke();
         }
 

@@ -154,7 +154,7 @@ namespace VLC.UI.Views.MusicPages
 
         void SetPreviousButton()
         {
-            PreviousButton.IsEnabled = Locator.MediaPlaybackViewModel.PlaybackService.CanGoPrevious();
+            PreviousButton.IsEnabled = Locator.PlaybackService.CanGoPrevious;
         }
 
         void SetPlayPauseButtons()
@@ -170,7 +170,7 @@ namespace VLC.UI.Views.MusicPages
 
         void SetNextButton()
         {
-            NextButton.IsEnabled = Locator.MediaPlaybackViewModel.PlaybackService.CanGoNext();
+            NextButton.IsEnabled = Locator.PlaybackService.CanGoNext;
         }
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)

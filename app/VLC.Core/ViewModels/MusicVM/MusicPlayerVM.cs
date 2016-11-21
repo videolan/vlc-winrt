@@ -61,21 +61,10 @@ namespace VLC.ViewModels.MusicVM
 
         public TrackItem CurrentTrack
         {
-            get
-            {
-                if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentPlaylistIndex == -1
-                    || Locator.MediaPlaybackViewModel.PlaybackService.CurrentPlaylistIndex == Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Count)
-                    return null;
-                if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentPlaylistIndex > Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Count)
-                {
-                    Locator.MediaPlaybackViewModel.PlaybackService.SetCurrentMediaPosition(0); return null;
-                }
-                var media = Locator.MediaPlaybackViewModel.CurrentMedia;
-                return (media is TrackItem) ? (TrackItem)media : null;
-            }
+            get { return Locator.PlaybackService.CurrentPlaybackMedia as TrackItem; }
         }
 
-        public string CurrentMediaTitle => (CurrentTrack == null) ? Locator.MediaPlaybackViewModel.CurrentMedia?.Name : CurrentTrack.Name;
+        public string CurrentMediaTitle => Locator.PlaybackService.CurrentPlaybackMedia?.Name;
 
         public GoToMusicPlayerPage GoToMusicPlayerPage { get; } = new GoToMusicPlayerPage();
 

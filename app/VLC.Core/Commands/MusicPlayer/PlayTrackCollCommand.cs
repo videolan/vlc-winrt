@@ -16,20 +16,12 @@ namespace VLC.Commands.MusicPlayer
             if (trackCollection == null || trackCollection.Playlist == null || !trackCollection.Playlist.Any()) return;
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
 
-            if (parameter is int)
+            uint index = 0;
+            if (parameter is uint)
             {
-                await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(trackCollection.Playlist, false, true, trackCollection.Playlist[(int)parameter]);
+                index = (uint)parameter;
             }
-            else if (parameter is ItemClickEventArgs)
-            {
-                var track = (TrackItem)((ItemClickEventArgs)parameter).ClickedItem;
-
-                await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(trackCollection.Playlist, true, true, track);
-            }
-            else
-            {
-                await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(trackCollection.Playlist, false, true, trackCollection.Playlist[0]);
-            }
+            await Locator.PlaybackService.SetPlaylist(trackCollection.Playlist, index);
         }
     }
 }

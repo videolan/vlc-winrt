@@ -16,7 +16,7 @@ namespace VLC.Commands.MusicPlayer
                 var artist = parameter as ArtistItem;
                 var tracks = Locator.MediaLibrary.LoadTracksByArtistId(artist.Id).ToObservable();
 
-                await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(tracks, false, true, tracks[0]);
+                await Locator.PlaybackService.SetPlaylist(tracks);
             }
         }
     }

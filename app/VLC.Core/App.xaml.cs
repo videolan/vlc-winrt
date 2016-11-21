@@ -220,7 +220,11 @@ namespace VLC
 
             if (disableConsumingTasks == false)
             {
-                var _ = Task.Run(async () => await LoadLibraries());
+                var _ = Task.Run(async () =>
+                {
+                    await LoadLibraries();
+                    await Locator.PlaybackService.RestorePlaylist();
+                });
             }
             Locator.GamepadService.GamepadUpdated += async (s, e) =>
             {

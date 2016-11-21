@@ -25,7 +25,7 @@ namespace VLC.Commands.MusicPlayer
             }
             if (index > -1)
             {
-                await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(tracks, true, true, tracks[index]);
+                await Locator.PlaybackService.SetPlaylist(tracks, (uint)index);
             }
         }
     }

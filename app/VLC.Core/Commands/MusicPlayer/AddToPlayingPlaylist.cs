@@ -19,7 +19,7 @@ namespace VLC.Commands.MusicPlayer
             {
                 var playlist = new List<IMediaItem>() { trackItem };
 
-                await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(playlist, false, false, null);
+                await Locator.PlaybackService.AddToPlaylist(playlist);
             }
             else
             {
@@ -28,7 +28,7 @@ namespace VLC.Commands.MusicPlayer
                 {
                     var playlist = Locator.MediaLibrary.LoadTracksByAlbumId(albumItem.Id);
 
-                    await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(playlist, false, false, null);
+                    await Locator.PlaybackService.AddToPlaylist(playlist);
                 }
             }
         }

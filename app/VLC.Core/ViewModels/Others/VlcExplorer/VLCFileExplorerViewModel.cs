@@ -86,7 +86,7 @@ namespace VLC.ViewModels.Others.VlcExplorer
                 var file = storageItem as VLCStorageFile;
                 // TODO : Difference between audio and video, here ? Hint: i don't think so
                 var video = MediaLibraryHelper.GetStreamItem(file);
-                await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(new List<IMediaItem> { video }, true, true, video);
+                await Locator.PlaybackService.SetPlaylist(new List<IMediaItem> { video });
             }
             OnPropertyChanged(nameof(CurrentFolderName));
         }

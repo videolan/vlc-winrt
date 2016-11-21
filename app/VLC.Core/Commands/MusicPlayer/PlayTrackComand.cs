@@ -42,15 +42,11 @@ namespace VLC.Commands.MusicPlayer
             if (Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage
                 || Locator.NavigationService.CurrentPage == VLCPage.CurrentPlaylistPage)
             {
-                var success = await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(null, false, true, track);
+                Locator.PlaybackService.SetPlaylistIndex((int)track.Index);
             }
             else
             {
-                var success = await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(new List<IMediaItem> { track }, false, true, track);
-                if (success)
-                {
-                    Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
-                }
+                await Locator.PlaybackService.SetPlaylist(new List<IMediaItem> { track }, track.Index);
             }
         }
     }

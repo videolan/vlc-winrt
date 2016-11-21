@@ -946,10 +946,8 @@ namespace VLC.Model.Library
                 {
                     Tracks.Remove(Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
 
-                    var playingTrack = Locator.MediaPlaybackViewModel.PlaybackService.Playlist.FirstOrDefault(x => x.Id == trackItem.Id);
-                    if (playingTrack != null)
-                        Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Remove(playingTrack);
                 });
+                await Locator.PlaybackService.RemoveMedia(trackItem);
             }
             else if (media is VideoItem)
             {

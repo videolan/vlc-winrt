@@ -14,9 +14,9 @@ namespace VLC.Commands.MediaPlayback
 {
     public class PlayPreviousCommand : AlwaysExecutableCommand
     {
-        public override async void Execute(object parameter)
+        public override void Execute(object parameter)
         {
-            await Locator.MediaPlaybackViewModel.PlaybackService.PlayPrevious();
+            Locator.PlaybackService.Previous();
         }
     }
 }

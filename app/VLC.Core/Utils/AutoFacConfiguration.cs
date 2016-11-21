@@ -67,6 +67,7 @@ namespace VLC.Utils
             builder.RegisterType<ThumbnailService>().SingleInstance();
             builder.RegisterType<HttpServer>().SingleInstance();
             builder.RegisterType<FileCopyService>().SingleInstance();
+            builder.RegisterType<PlaylistService>().SingleInstance();
 
             return builder.Build();
         }

@@ -172,11 +172,7 @@ namespace VLC.Model.Music
         
         public bool IsCurrentPlaying()
         {
-            if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentPlaylistIndex == -1)
-                return false;
-            if (!Locator.MediaPlaybackViewModel.PlaybackService.Playlist.Any())
-                return false;
-            return Id == Locator.MediaPlaybackViewModel.PlaybackService.Playlist[Locator.MediaPlaybackViewModel.PlaybackService.CurrentPlaylistIndex].Id;
+            return this == Locator.PlaybackService.CurrentPlaybackMedia;
         }
     }
 }

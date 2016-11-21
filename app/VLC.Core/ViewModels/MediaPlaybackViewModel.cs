@@ -34,6 +34,7 @@ using VLC.Model.Stream;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using System.Collections.ObjectModel;
+using VLC.Model.Music;
 
 namespace VLC.ViewModels
 {
@@ -83,25 +84,14 @@ namespace VLC.ViewModels
 
         #region public props
 
-        public IMediaItem CurrentMedia
-        {
-            get
-            {
-                if (PlaybackService.CurrentPlaylistIndex == -1)
-                    return null;
-                if (PlaybackService.Playlist.Count == 0)
-                    return null;
-                return PlaybackService.Playlist[PlaybackService.CurrentPlaylistIndex];
-            }
-        }
-
         public bool IsPlaying
         {
             get { return PlaybackService.IsPlaying && !PlaybackService.IsPaused; }
         }
 
-        public bool CanGoNext => PlaybackService.CanGoNext();
-        public bool CanGoPrevious => PlaybackService.CanGoPrevious();
+        public bool CanGoNext => Locator.PlaybackService.CanGoNext;
+        public bool CanGoPrevious => Locator.PlaybackService.CanGoPrevious;
+        public ObservableCollection<IMediaItem> Playlist => Locator.PlaybackService.Playlist;
 
         public MediaState MediaState => PlaybackService.PlayerState;
 
@@ -256,13 +246,33 @@ namespace VLC.ViewModels
             PlaybackService.Playback_MediaTracksDeleted += OnMediaTrackDeleted;
             PlaybackService.Playback_MediaParsed += Playback_MediaParsed;
 
-            PlaybackService.Playback_MediaSet += PlaybackService_MediaSet;
             App.Container.Resolve<NetworkListenerService>().InternetConnectionChanged += MediaPlaybackViewModel_InternetConnectionChanged;
+
+            Locator.PlaybackService.Playback_MediaSet += OnCurrentMediaChanged;
+            Locator.PlaybackService.OnPlaylistChanged += PlaylistService_OnPlaylistChanged;
+            Locator.PlaybackService.OnPlaylistEndReached += OnPlaylistEndReached;
+        }
+
+        private void OnCurrentMediaChanged(IMediaItem media)
+        {
+            PlaylistService_OnPlaylistChanged();
+        }
+
+        private void PlaylistService_OnPlaylistChanged()
+        {
+            DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged(nameof(CanGoNext));
+                SystemMediaTransportControlsNextPossible(CanGoNext);
+                OnPropertyChanged(nameof(CanGoPrevious));
+                SystemMediaTransportControlsBackPossible(CanGoPrevious);
+                OnPropertyChanged(nameof(Playlist));
+            });
         }
 
         private async void MediaPlaybackViewModel_InternetConnectionChanged(object sender, Model.Events.InternetConnectionChangedEventArgs e)
         {
-            if (!e.IsConnected && IsPlaying && CurrentMedia is StreamMedia)
+            if (!e.IsConnected && IsPlaying && Locator.PlaybackService.CurrentPlaybackMedia is StreamMedia)
             {
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
                 {
@@ -330,7 +340,7 @@ namespace VLC.ViewModels
             {
                 var stream = await Locator.MediaLibrary.LoadStreamFromDatabaseOrCreateOne(uri.ToString());
                 LoadingMedia = Visibility.Visible;
-                await PlaybackService.SetPlaylist(new List<IMediaItem> { stream }, true, true, stream);
+                await Locator.PlaybackService.SetPlaylist(new List<IMediaItem> { stream });
             }
             catch (Exception e)
             {
@@ -348,7 +358,7 @@ namespace VLC.ViewModels
         {
             var trackItem = await Locator.MediaLibrary.GetTrackItemFromFile(file, token);
 
-            await PlaybackService.SetPlaylist(new List<IMediaItem> { trackItem }, true, true, trackItem);
+            await Locator.PlaybackService.SetPlaylist(new List<IMediaItem> { trackItem });
         }
 
         /// <summary>
@@ -363,7 +373,7 @@ namespace VLC.ViewModels
             if (token != null)
                 video.Token = token;
 
-            await PlaybackService.SetPlaylist(new List<IMediaItem> { video }, true, true, video);
+            await Locator.PlaybackService.SetPlaylist(new List<IMediaItem> { video });
         }
 
         public async Task UpdatePosition()
@@ -457,9 +467,9 @@ namespace VLC.ViewModels
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
-                if (CurrentMedia is StreamMedia)
+                if (Locator.PlaybackService.CurrentPlaybackMedia is StreamMedia)
                 {
-                    await Locator.MediaLibrary.RemoveStreamFromCollectionAndDatabase(CurrentMedia as StreamMedia);
+                    await Locator.MediaLibrary.RemoveStreamFromCollectionAndDatabase(Locator.PlaybackService.CurrentPlaybackMedia as StreamMedia);
                 }
                 GoBack.Execute(null);
             });
@@ -485,23 +495,24 @@ namespace VLC.ViewModels
                 default:
                     break;
             }
-
-            if (!PlaybackService.CanGoNext() && !PlaybackService.Repeat)
-            {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-                {
-                    if (PlaybackService.PlayingType == PlayingType.Video)
-                    {
-                        App.RootPage.StopCompositionAnimationOnSwapChain();
-                    }
-                    if (!Locator.NavigationService.GoBack_Default())
-                    {
-                        Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
-                    }
-                });
-            }
         }
         
+        private async void OnPlaylistEndReached()
+        {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            {
+                if (PlaybackService.PlayingType == PlayingType.Video)
+                {
+                    App.RootPage.StopCompositionAnimationOnSwapChain();
+                }
+                if (!Locator.NavigationService.GoBack_Default())
+                {
+                    Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
+                }
+            });
+        }
+
+
         private async void OnMediaTrackAdded(TrackType type, int trackId, string name)
         {
             var item = new DictionaryKeyValue
@@ -570,14 +581,6 @@ namespace VLC.ViewModels
             });
         }
 
-        private async void PlaybackService_MediaSet(IMediaItem media)
-        {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                OnPropertyChanged(nameof(CanGoPrevious));
-                OnPropertyChanged(nameof(CanGoNext));
-            });
-        }
         #endregion
 
         #region MediaTransportControls
@@ -674,10 +677,10 @@ namespace VLC.ViewModels
                     PlaybackService.Stop();
                     break;
                 case SystemMediaTransportControlsButton.Previous:
-                    await PlaybackService.PlayPrevious();
+                    Locator.PlaybackService.Previous();
                     break;
                 case SystemMediaTransportControlsButton.Next:
-                    await PlaybackService.PlayNext();
+                    Locator.PlaybackService.Next();
                     break;
                 case SystemMediaTransportControlsButton.FastForward:
                     FastSeekCommand.Execute(30000);

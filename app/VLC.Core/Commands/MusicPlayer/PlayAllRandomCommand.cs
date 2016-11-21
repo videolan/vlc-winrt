@@ -19,9 +19,8 @@ namespace VLC.Commands.MusicPlayer
                 return;
 
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
-            var shuffledTracks = tracks.Shuffle();
-
-            await Locator.MediaPlaybackViewModel.PlaybackService.SetPlaylist(shuffledTracks, true, true, shuffledTracks[0]);
+            await Locator.PlaybackService.SetPlaylist(tracks);
+            Locator.PlaybackService.ShufflePlaylist();
         }
     }
 }

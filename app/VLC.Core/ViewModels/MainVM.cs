@@ -103,7 +103,6 @@ namespace VLC.ViewModels
             if (e.WindowActivationState == CoreWindowActivationState.Deactivated)
             {
                 IsBackground = true;
-                if (Locator.MediaPlaybackViewModel.CurrentMedia == null) return;
                 if (!Locator.MediaPlaybackViewModel.IsPlaying) return;
                 
                 // If we're playing a video, just pause.
