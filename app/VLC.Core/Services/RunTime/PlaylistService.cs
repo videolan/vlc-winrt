@@ -17,6 +17,7 @@ namespace VLC.Services.RunTime
     {
         public event Action OnPlaylistChanged;
         public event Action OnPlaylistEndReached;
+        public event Action<bool> OnRepeatChanged;
         public event Action<IMediaItem> OnCurrentMediaChanged;
         public BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
         public ObservableCollection<IMediaItem> _playlist;
@@ -28,7 +29,16 @@ namespace VLC.Services.RunTime
 
         private SmartCollection<IMediaItem> _nonShuffledPlaylist;
 
-        public bool Repeat { get; set; }
+        private bool _repeat;
+        public bool Repeat
+        {
+            get { return _repeat; }
+            set
+            {
+                _repeat = value;
+                OnRepeatChanged?.Invoke(value);
+            }
+        }
         public bool IsShuffled { get; private set; }
 
         private int _index;

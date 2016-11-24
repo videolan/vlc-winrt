@@ -51,6 +51,7 @@ namespace VLC.Services.RunTime
 
         public event Action OnPlaylistEndReached;
         public event Action OnPlaylistChanged;
+        public event Action<bool> OnRepeatChanged;
         
         private List<VLCChapterDescription> _chapters = new List<VLCChapterDescription>();       
 
@@ -159,6 +160,7 @@ namespace VLC.Services.RunTime
             _playlistService.OnPlaylistEndReached += () => OnPlaylistEndReached?.Invoke();
             _playlistService.OnPlaylistChanged += () => OnPlaylistChanged?.Invoke();
             _playlistService.OnCurrentMediaChanged += onCurrentMediaChanged;
+            _playlistService.OnRepeatChanged += (v) => OnRepeatChanged?.Invoke(v);
         }
 
         #endregion
@@ -174,6 +176,12 @@ namespace VLC.Services.RunTime
         public bool CanGoPrevious => _playlistService.CanGoPrevious;
 
         public bool IsShuffled => _playlistService.IsShuffled;
+
+        public bool Repeat
+        {
+            get { return _playlistService.Repeat; }
+            set { _playlistService.Repeat = value; }
+        }
 
         public Task RestorePlaylist()
         {

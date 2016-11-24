@@ -93,6 +93,11 @@ namespace VLC.ViewModels
         public bool CanGoPrevious => Locator.PlaybackService.CanGoPrevious;
         public ObservableCollection<IMediaItem> Playlist => Locator.PlaybackService.Playlist;
         public bool IsShuffled { get { return Locator.PlaybackService.IsShuffled; } }
+        public bool Repeat
+        {
+            get { return Locator.PlaybackService.Repeat; }
+            set { Locator.PlaybackService.Repeat = value; }
+        }
 
         public MediaState MediaState => PlaybackService.PlayerState;
 
@@ -252,6 +257,12 @@ namespace VLC.ViewModels
             Locator.PlaybackService.Playback_MediaSet += OnCurrentMediaChanged;
             Locator.PlaybackService.OnPlaylistChanged += PlaylistService_OnPlaylistChanged;
             Locator.PlaybackService.OnPlaylistEndReached += OnPlaylistEndReached;
+            Locator.PlaybackService.OnRepeatChanged += OnRepeatChanged;
+        }
+
+        private async void OnRepeatChanged(bool obj)
+        {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged(nameof(Repeat)));
         }
 
         private void OnCurrentMediaChanged(IMediaItem media)
