@@ -47,7 +47,12 @@ namespace VLC.Services.RunTime
             get { return _index; }
             set
             {
-                _index = value;
+                if (value < 0)
+                    _index = _playlist.Count - 1;
+                else if (value >= Playlist.Count)
+                    _index = 0;
+                else
+                    _index = value;
                 OnCurrentMediaChanged?.Invoke(CurrentMedia);
                 var index = IsShuffled ?
                     _nonShuffledPlaylist.IndexOf(Playlist[_index]) : _index;
@@ -101,12 +106,12 @@ namespace VLC.Services.RunTime
 
         public bool CanGoPrevious
         {
-            get { return _index > 0; }
+            get { return _index > 0 || Repeat; }
         }
 
         public bool CanGoNext
         {
-            get { return _index < _playlist.Count - 1; }
+            get { return _index < _playlist.Count - 1 || Repeat; }
         }
 
         public void Shuffle()

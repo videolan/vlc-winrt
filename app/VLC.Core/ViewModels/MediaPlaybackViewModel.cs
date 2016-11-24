@@ -262,7 +262,12 @@ namespace VLC.ViewModels
 
         private async void OnRepeatChanged(bool obj)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged(nameof(Repeat)));
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged(nameof(Repeat));
+                OnPropertyChanged(nameof(CanGoNext));
+                OnPropertyChanged(nameof(CanGoPrevious));
+            });
         }
 
         private void OnCurrentMediaChanged(IMediaItem media)
