@@ -270,9 +270,9 @@ namespace VLC.ViewModels
             PlaylistService_OnPlaylistChanged();
         }
 
-        private void PlaylistService_OnPlaylistChanged()
+        private async void PlaylistService_OnPlaylistChanged()
         {
-            DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(CanGoNext));
                 SystemMediaTransportControlsNextPossible(CanGoNext);
