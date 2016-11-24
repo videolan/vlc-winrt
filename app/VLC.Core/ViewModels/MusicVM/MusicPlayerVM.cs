@@ -78,7 +78,6 @@ namespace VLC.ViewModels.MusicVM
 
         public MusicPlayerVM()
         {
-            Locator.NavigationService.ViewNavigated += ViewNavigated;
             Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet += Playback_MediaSet;
             Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaFileNotFound += PlaybackService_Playback_MediaFileNotFound;
         }
@@ -110,11 +109,6 @@ namespace VLC.ViewModels.MusicVM
                     Locator.MediaLibrary.Update(CurrentArtist);
                 }
             });
-        }
-
-        private void ViewNavigated(object sender, VLCPage p)
-        {
-            OnPropertyChanged(nameof(IsMiniPlayerVisible));
         }
 
         public async Task UpdateWindows8UI()

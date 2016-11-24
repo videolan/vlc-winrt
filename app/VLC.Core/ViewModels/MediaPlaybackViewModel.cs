@@ -279,11 +279,11 @@ namespace VLC.ViewModels
             PlaylistService_OnPlaylistChanged();
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
-                OnPropertyChanged(nameof(IsMiniPlayerVisible));
+                OnPropertyChanged(nameof(MiniPlayerVisibility));
             });
         }
 
-        public Visibility IsMiniPlayerVisible
+        public Visibility MiniPlayerVisibility
         {
             get
             {
