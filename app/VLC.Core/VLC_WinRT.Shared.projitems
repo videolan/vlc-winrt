@@ -95,7 +95,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BackgroundVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanNegationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\BottomMiniPlayerVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CountToBooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EmptyStringToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PlayingStateToGlyphConverter.cs" />

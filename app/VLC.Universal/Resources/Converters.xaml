@@ -24,7 +24,6 @@
     <converters:OpacityDecreaserConverter  x:Key="OpacityDecreaserConverter" />
     <converters:DateTimeToDayOfMonthConverter  x:Key="DateTimeToDayOfMonthConverter" />
     <converters:DateTimeToShortMonthConverter x:Key="DateTimeToShortMonthConverter" />
-    <converters:BottomMiniPlayerVisibilityConverter x:Key="BottomMiniPlayerVisibilityConverter" />
     <converters:FavoriteSymbolConverter x:Key="FavoriteSymbolConverter" />
     <converters:FavoriteLabelConverter x:Key="FavoriteLabelConverter" />
     <converters:PositionToFixedPointConverter x:Key="PositionToFixedPointConverter" />
