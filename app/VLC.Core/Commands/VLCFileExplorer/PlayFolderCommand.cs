@@ -50,6 +50,7 @@ namespace VLC.Commands.VLCFileExplorer
             }
             if (playlist.Count > 0)
             {
+                Locator.NavigationService.GoOnPlaybackStarted(VLCPage.MusicPlayerPage);
                 await Locator.PlaybackService.SetPlaylist(playlist);
             }
         }
