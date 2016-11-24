@@ -20,7 +20,7 @@ namespace VLC.UI.Views.UserControls
             Locator.MusicPlayerVM.PropertyChanged += MusicPlayerVM_PropertyChanged;
             this.SizeChanged += CommandBarXbox_SizeChanged;
             Responsive();
-            this.MiniPlayerVisibility = Locator.MusicPlayerVM.IsMiniPlayerVisible;
+            this.MiniPlayerVisibility = Locator.MediaPlaybackViewModel.IsMiniPlayerVisible;
             UpdatePlayerVisibility();
         }
 
@@ -31,9 +31,9 @@ namespace VLC.UI.Views.UserControls
 
         private void MusicPlayerVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Locator.MusicPlayerVM.IsMiniPlayerVisible))
+            if (e.PropertyName == nameof(Locator.MediaPlaybackViewModel.IsMiniPlayerVisible))
             {
-                this.MiniPlayerVisibility = Locator.MusicPlayerVM.IsMiniPlayerVisible;
+                this.MiniPlayerVisibility = Locator.MediaPlaybackViewModel.IsMiniPlayerVisible;
             }
         }
         #endregion

@@ -72,22 +72,7 @@ namespace VLC.ViewModels.MusicVM
 
         public GoToMusicPlaylistPageCommand GoToMusicPlaylistPageCommand { get; } = new GoToMusicPlaylistPageCommand();
         public AddToPlayingPlaylist AddToPlayingPlaylist { get; } = new AddToPlayingPlaylist();
-        public Visibility IsMiniPlayerVisible
-        {
-            get
-            {
-                if (Locator.MediaPlaybackViewModel.PlaybackService.IsRunning &&
-                    Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music &&
-                    (Locator.NavigationService.CurrentPage != VLCPage.CurrentPlaylistPage &&
-                     Locator.NavigationService.CurrentPage != VLCPage.MusicPlayerPage &&
-                     Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage &&
-                     Locator.NavigationService.CurrentPage != VLCPage.MiniPlayerView))
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
+
         public bool DesktopMode { get { return !Locator.SettingsVM.MediaCenterMode; } }
         #endregion
 
@@ -112,7 +97,6 @@ namespace VLC.ViewModels.MusicVM
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 OnPropertyChanged(nameof(CurrentMediaTitle));
-                OnPropertyChanged(nameof(IsMiniPlayerVisible));
                 OnPropertyChanged(nameof(CurrentTrack));
 
                 SetCurrentArtist();

@@ -274,9 +274,30 @@ namespace VLC.ViewModels
             });
         }
 
-        private void OnCurrentMediaChanged(IMediaItem media)
+        private async void OnCurrentMediaChanged(IMediaItem media)
         {
             PlaylistService_OnPlaylistChanged();
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged(nameof(IsMiniPlayerVisible));
+            });
+        }
+
+        public Visibility IsMiniPlayerVisible
+        {
+            get
+            {
+                if (Locator.MediaPlaybackViewModel.PlaybackService.IsRunning &&
+                    Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music &&
+                    (Locator.NavigationService.CurrentPage != VLCPage.CurrentPlaylistPage &&
+                     Locator.NavigationService.CurrentPage != VLCPage.MusicPlayerPage &&
+                     Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage &&
+                     Locator.NavigationService.CurrentPage != VLCPage.MiniPlayerView))
+                {
+                    return Visibility.Visible;
+                }
+                return Visibility.Collapsed;
+            }
         }
 
         private async void PlaylistService_OnPlaylistChanged()
