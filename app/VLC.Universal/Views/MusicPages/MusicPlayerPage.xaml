@@ -68,8 +68,8 @@
                 <AppBarToggleButton Grid.Column="0"
                                     Style="{StaticResource VLCAppBarToggleButton}"
                                     IsCompact="True"
-                                    DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlaybackService}"
-                                    IsChecked="{Binding IsShuffled, Mode=TwoWay}"
+                                    DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                                    IsChecked="{Binding IsShuffled}"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"
                                     Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.Shuffle}">

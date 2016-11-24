@@ -92,6 +92,7 @@ namespace VLC.ViewModels
         public bool CanGoNext => Locator.PlaybackService.CanGoNext;
         public bool CanGoPrevious => Locator.PlaybackService.CanGoPrevious;
         public ObservableCollection<IMediaItem> Playlist => Locator.PlaybackService.Playlist;
+        public bool IsShuffled { get { return Locator.PlaybackService.IsShuffled; } }
 
         public MediaState MediaState => PlaybackService.PlayerState;
 
@@ -267,6 +268,7 @@ namespace VLC.ViewModels
                 OnPropertyChanged(nameof(CanGoPrevious));
                 SystemMediaTransportControlsBackPossible(CanGoPrevious);
                 OnPropertyChanged(nameof(Playlist));
+                OnPropertyChanged(nameof(IsShuffled));
             });
         }
 

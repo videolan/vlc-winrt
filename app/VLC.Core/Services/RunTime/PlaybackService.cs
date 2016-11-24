@@ -172,6 +172,8 @@ namespace VLC.Services.RunTime
 
         public bool CanGoPrevious => _playlistService.CanGoPrevious;
 
+        public bool IsShuffled => _playlistService.IsShuffled;
+
         public Task RestorePlaylist()
         {
             return _playlistService.Restore();
