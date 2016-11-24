@@ -12,7 +12,7 @@ namespace VLC.Commands.MusicPlayer
         {
             if (parameter is ArtistItem)
             {
-                Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
+                Locator.NavigationService.GoOnPlaybackStarted(VLCPage.MusicPlayerPage);
                 var artist = parameter as ArtistItem;
                 var tracks = Locator.MediaLibrary.LoadTracksByArtistId(artist.Id).ToObservable();
 

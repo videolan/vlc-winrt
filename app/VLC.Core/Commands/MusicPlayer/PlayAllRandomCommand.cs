@@ -18,7 +18,7 @@ namespace VLC.Commands.MusicPlayer
             if (tracks == null || !tracks.Any())
                 return;
 
-            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
+            Locator.NavigationService.GoOnPlaybackStarted(VLCPage.MusicPlayerPage);
             await Locator.PlaybackService.SetPlaylist(tracks);
             Locator.PlaybackService.ShufflePlaylist();
         }

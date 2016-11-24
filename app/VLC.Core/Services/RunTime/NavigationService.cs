@@ -39,6 +39,8 @@ namespace VLC.Services.RunTime
 
         public delegate void Navigated(object sender, VLCPage newPage);
 
+        private VLCPage? _playbackStartedTarget = null;
+        private object _playbackStartedParam = null;
 
         public Navigated ViewNavigated = delegate { };
         private event HomePageNavigated HomePageNavigated;
@@ -358,6 +360,26 @@ namespace VLC.Services.RunTime
             if (App.SplitShell.IsFlyoutOpen
                 && !IsFlyout(desiredPage))
                 GoBack_HideFlyout();
+        }
+
+        private async void onPlaybackStarted()
+        {
+            if (_playbackStartedTarget == null)
+                return;
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                Go(_playbackStartedTarget.Value, _playbackStartedParam);
+                _playbackStartedTarget = null;
+                _playbackStartedParam = null;
+            });
+            Locator.PlaybackService.Playback_Opening -= onPlaybackStarted;
+        }
+
+        public void GoOnPlaybackStarted(VLCPage desiredPage, object param = null)
+        {
+            _playbackStartedTarget = desiredPage;
+            _playbackStartedParam = param;
+            Locator.PlaybackService.Playback_Opening += onPlaybackStarted;
         }
 
         private void setFlyoutContent(VLCPage desiredPage, Type t, object param)

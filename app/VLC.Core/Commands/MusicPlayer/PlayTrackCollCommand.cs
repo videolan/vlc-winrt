@@ -14,7 +14,7 @@ namespace VLC.Commands.MusicPlayer
         {
             var trackCollection = Locator.MusicLibraryVM.CurrentTrackCollection;
             if (trackCollection == null || trackCollection.Playlist == null || !trackCollection.Playlist.Any()) return;
-            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
+            Locator.NavigationService.GoOnPlaybackStarted(VLCPage.MusicPlayerPage);
 
             uint index = 0;
             if (parameter is uint)

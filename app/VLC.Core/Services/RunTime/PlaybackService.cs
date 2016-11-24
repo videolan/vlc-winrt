@@ -47,6 +47,7 @@ namespace VLC.Services.RunTime
         public event Action<IMediaItem> Playback_MediaFileNotFound;
         public event Playing Playback_MediaPlaying;
         public event Paused Playback_MediaPaused;
+        public event Opening Playback_Opening;
 
         public event Action OnPlaylistEndReached;
         public event Action OnPlaylistChanged;
@@ -344,6 +345,7 @@ namespace VLC.Services.RunTime
                 em.OnTrackDeleted += OnTrackDeleted;
                 em.OnPlaying += Playback_MediaPlaying;
                 em.OnPaused += Playback_MediaPaused;
+                em.OnOpening += Playback_Opening;
             }
             else
                 _mediaPlayer.setMedia(CurrentMedia);

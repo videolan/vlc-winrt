@@ -32,9 +32,9 @@ namespace VLC.Commands.MusicPlayer
 
             if (albumItem != null)
             {
+                Locator.NavigationService.GoOnPlaybackStarted(VLCPage.MusicPlayerPage);
                 var tracks = Locator.MediaLibrary.LoadTracksByAlbumId(albumItem.Id);
                 await Locator.PlaybackService.SetPlaylist(tracks);
-                Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             }
         }
     }
