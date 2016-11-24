@@ -73,28 +73,17 @@
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarButton.Icon>
         </AppBarButton>
-        <AppBarButton x:Name="PlayButton"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
-                      Command="{Binding PlayOrPauseCommand}"
-                      IsCompact="True"
-                      Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
-                      RightTapped="PlayButton_RightTapped"
-                      Holding="PauseButton_Holding">
+        <AppBarButton x:Name="PlayPauseButton"
+                  Command="{Binding PlayOrPauseCommand}"
+                  IsCompact="True"
+                  RightTapped="PlayButton_RightTapped"
+                  Holding="PauseButton_Holding"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Visibility="{Binding MiniPlayerVisibility}">
             <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource PlaySymbol}"
-                          FontFamily="{StaticResource VLCFont}" />
-            </AppBarButton.Icon>
-        </AppBarButton>
-        <AppBarButton x:Name="PauseButton"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
-                      Command="{Binding PlayOrPauseCommand}"
-                      IsCompact="True"
-                      Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
-                      RightTapped="PlayButton_RightTapped"
-                      Holding="PauseButton_Holding">
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource PauseSymbol}"
-                          FontFamily="{StaticResource VLCFont}" />
+                <FontIcon Glyph="{Binding IsPlaying,Converter={StaticResource PlayingStateToGlyphConverter}}"
+                      FontFamily="{StaticResource VLCFont}"/>
             </AppBarButton.Icon>
         </AppBarButton>
         <AppBarButton x:Name="PlayNextButton"
