@@ -174,8 +174,7 @@
                 
                 <Grid x:Name="ControlsGrid">
                     <userControls:SliderControl x:Name="Slider"
-                                                VerticalAlignment="Top"
-                                                XYFocusDown="{x:Bind PlayPauseButton}"/>
+                                                VerticalAlignment="Top"/>
                     <Grid Margin="0,40,0,-10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
