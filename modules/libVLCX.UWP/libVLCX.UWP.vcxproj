@@ -242,16 +242,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\libvlcpp\cppcx\DialogCX.hpp" />
-    <ClInclude Include="..\libvlcpp\cppcx\EqualizerCX.hpp" />
-    <ClInclude Include="..\libvlcpp\cppcx\EventManagerCX.hpp" />
-    <ClInclude Include="..\libvlcpp\cppcx\InstanceCX.hpp" />
-    <ClInclude Include="..\libvlcpp\cppcx\MediaCX.hpp" />
-    <ClInclude Include="..\libvlcpp\cppcx\MediaDiscovererCX.hpp" />
-    <ClInclude Include="..\libvlcpp\cppcx\MediaListCX.hpp" />
-    <ClInclude Include="..\libvlcpp\cppcx\MediaPlayerCX.hpp" />
-    <ClInclude Include="..\libvlcpp\cppcx\PlatformHelpers.hpp" />
-    <ClInclude Include="..\libvlcpp\cppcx\StructuresCX.hpp" />
+    <ClInclude Include="..\libvlcppcx\DialogCX.hpp" />
+    <ClInclude Include="..\libvlcppcx\EqualizerCX.hpp" />
+    <ClInclude Include="..\libvlcppcx\EventManagerCX.hpp" />
+    <ClInclude Include="..\libvlcppcx\InstanceCX.hpp" />
+    <ClInclude Include="..\libvlcppcx\MediaCX.hpp" />
+    <ClInclude Include="..\libvlcppcx\MediaDiscovererCX.hpp" />
+    <ClInclude Include="..\libvlcppcx\MediaListCX.hpp" />
+    <ClInclude Include="..\libvlcppcx\MediaPlayerCX.hpp" />
+    <ClInclude Include="..\libvlcppcx\PlatformHelpers.hpp" />
+    <ClInclude Include="..\libvlcppcx\StructuresCX.hpp" />
     <ClInclude Include="..\libvlcpp\vlcpp\common.hpp" />
     <ClInclude Include="..\libvlcpp\vlcpp\Dialog.hpp" />
     <ClInclude Include="..\libvlcpp\vlcpp\Equalizer.hpp" />
@@ -272,16 +272,16 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\libvlcpp\cppcx\DialogCX.cpp" />
-    <ClCompile Include="..\libvlcpp\cppcx\EqualizerCX.cpp" />
-    <ClCompile Include="..\libvlcpp\cppcx\EventManagerCX.cpp" />
-    <ClCompile Include="..\libvlcpp\cppcx\InstanceCX.cpp" />
-    <ClCompile Include="..\libvlcpp\cppcx\MediaCX.cpp" />
-    <ClCompile Include="..\libvlcpp\cppcx\MediaDiscovererCX.cpp" />
-    <ClCompile Include="..\libvlcpp\cppcx\MediaListCX.cpp" />
-    <ClCompile Include="..\libvlcpp\cppcx\MediaPlayerCX.cpp" />
-    <ClCompile Include="..\libvlcpp\cppcx\PlatformHelpers.cpp" />
-    <ClCompile Include="..\libvlcpp\cppcx\StructuresCX.cpp" />
+    <ClCompile Include="..\libvlcppcx\DialogCX.cpp" />
+    <ClCompile Include="..\libvlcppcx\EqualizerCX.cpp" />
+    <ClCompile Include="..\libvlcppcx\EventManagerCX.cpp" />
+    <ClCompile Include="..\libvlcppcx\InstanceCX.cpp" />
+    <ClCompile Include="..\libvlcppcx\MediaCX.cpp" />
+    <ClCompile Include="..\libvlcppcx\MediaDiscovererCX.cpp" />
+    <ClCompile Include="..\libvlcppcx\MediaListCX.cpp" />
+    <ClCompile Include="..\libvlcppcx\MediaPlayerCX.cpp" />
+    <ClCompile Include="..\libvlcppcx\PlatformHelpers.cpp" />
+    <ClCompile Include="..\libvlcppcx\StructuresCX.cpp" />
     <ClCompile Include="..\libVLCX\DirectXManager.cpp" />
     <ClCompile Include="..\libVLCX\MMDeviceLocator.cpp" />
     <ClCompile Include="..\libVLCX\Thumbnailer.cpp" />
