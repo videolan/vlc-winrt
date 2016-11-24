@@ -47,11 +47,11 @@ namespace VLC.Services.RunTime
             get { return _index; }
             set
             {
+                _index = value;
+                OnCurrentMediaChanged?.Invoke(CurrentMedia);
                 var index = IsShuffled ?
                     _nonShuffledPlaylist.IndexOf(Playlist[_index]) : _index;
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(Index), index);
-                _index = value;
-                OnCurrentMediaChanged?.Invoke(CurrentMedia);
             }
         }
 
