@@ -305,7 +305,7 @@ namespace VLC.ViewModels.RemovableDevicesVM
         async Task AddToFolder(FileExplorer fileEx)
         {
             var group = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == fileEx.Type);
-            var exists = group.Any((FileExplorer fe) => fileEx.Name == fe.Name && fileEx.RootMediaType == fe.RootMediaType);
+            var exists = group.Any((FileExplorer fe) => fileEx.Name.Equals(fe.Name, StringComparison.OrdinalIgnoreCase) && fileEx.RootMediaType == fe.RootMediaType);
             if (exists)
                 return;
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => group.Add(fileEx));
