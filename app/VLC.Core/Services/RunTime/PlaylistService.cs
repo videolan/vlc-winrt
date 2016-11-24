@@ -39,7 +39,17 @@ namespace VLC.Services.RunTime
                 OnRepeatChanged?.Invoke(value);
             }
         }
-        public bool IsShuffled { get; private set; }
+        private bool _isShuffled;
+        public bool IsShuffled
+        {
+            get { return _isShuffled; }
+            set
+            {
+                if (_isShuffled == value)
+                    return;
+                ToggleShuffle();
+            }
+        }
 
         private int _index;
         public int Index
@@ -54,7 +64,7 @@ namespace VLC.Services.RunTime
                 else
                     _index = value;
                 OnCurrentMediaChanged?.Invoke(CurrentMedia);
-                var index = IsShuffled ?
+                var index = _isShuffled ?
                     _nonShuffledPlaylist.IndexOf(Playlist[_index]) : _index;
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(Index), index);
             }
@@ -101,7 +111,7 @@ namespace VLC.Services.RunTime
             _playlist.Clear();
             _nonShuffledPlaylist?.Clear();
             _index = 0;
-            IsShuffled = false;
+            _isShuffled = false;
         }
 
         public bool CanGoPrevious
@@ -114,9 +124,9 @@ namespace VLC.Services.RunTime
             get { return _index < _playlist.Count - 1 || Repeat; }
         }
 
-        public void Shuffle()
+        private void ToggleShuffle()
         {
-            if (!IsShuffled)
+            if (!_isShuffled)
             {
                 _nonShuffledPlaylist = new SmartCollection<IMediaItem>(Playlist);
                 Random r = new Random();
@@ -129,14 +139,14 @@ namespace VLC.Services.RunTime
                         Playlist.Move(index1, index2);
                     }
                 }
-                IsShuffled = true;
+                _isShuffled = true;
             }
             else
             {
                 var index = _nonShuffledPlaylist.IndexOf(CurrentMedia);
                 _playlist = _nonShuffledPlaylist;
                 _index = index;
-                IsShuffled = false;
+                _isShuffled = false;
             }
             OnPlaylistChanged?.Invoke();
         }

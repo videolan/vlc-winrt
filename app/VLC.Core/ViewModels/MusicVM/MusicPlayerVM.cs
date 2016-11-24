@@ -68,8 +68,6 @@ namespace VLC.ViewModels.MusicVM
 
         public GoToMusicPlayerPage GoToMusicPlayerPage { get; } = new GoToMusicPlayerPage();
 
-        public ShuffleCommand Shuffle { get; } = new ShuffleCommand();
-
         public ShareNowPlayingMusicCommand ShareNowPlayingMusicCommand { get; } = new ShareNowPlayingMusicCommand();
 
         public GoToMusicPlaylistPageCommand GoToMusicPlaylistPageCommand { get; } = new GoToMusicPlaylistPageCommand();

@@ -175,7 +175,11 @@ namespace VLC.Services.RunTime
 
         public bool CanGoPrevious => _playlistService.CanGoPrevious;
 
-        public bool IsShuffled => _playlistService.IsShuffled;
+        public bool IsShuffled
+        {
+            get { return _playlistService.IsShuffled; }
+            set { _playlistService.IsShuffled = value; }
+        }
 
         public bool Repeat
         {
@@ -192,11 +196,6 @@ namespace VLC.Services.RunTime
             await SetMedia(media);
             Play();
             Playback_MediaSet?.Invoke(media);
-        }
-
-        public void ShufflePlaylist()
-        {
-            _playlistService.Shuffle();
         }
 
         public void SetPlaylistIndex(int index)

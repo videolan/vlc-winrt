@@ -72,9 +72,8 @@
         </AppBarButton>
         <AppBarToggleButton x:Name="ShuffleButton"
                             DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
-                            Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.Shuffle}"
                             Label="{Binding Source={StaticResource Strings},Path=Shuffle}"
-                            IsChecked="{Binding IsShuffled}"
+                            IsChecked="{Binding IsShuffled, Mode=TwoWay}"
                             IsCompact="True"
                             Tag="sec"
                             VerticalAlignment="Stretch" >

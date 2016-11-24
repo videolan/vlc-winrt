@@ -92,7 +92,11 @@ namespace VLC.ViewModels
         public bool CanGoNext => Locator.PlaybackService.CanGoNext;
         public bool CanGoPrevious => Locator.PlaybackService.CanGoPrevious;
         public ObservableCollection<IMediaItem> Playlist => Locator.PlaybackService.Playlist;
-        public bool IsShuffled { get { return Locator.PlaybackService.IsShuffled; } }
+        public bool IsShuffled
+        {
+            get { return Locator.PlaybackService.IsShuffled; }
+            set { Locator.PlaybackService.IsShuffled = value; }
+        }
         public bool Repeat
         {
             get { return Locator.PlaybackService.Repeat; }
