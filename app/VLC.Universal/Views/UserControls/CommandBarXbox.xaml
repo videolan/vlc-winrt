@@ -45,6 +45,7 @@
         </Button>
         <AppBarButton x:Name="PlayPreviousButton"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                      Command="{Binding PlayPreviousCommand}"
                       IsEnabled="{Binding CanGoPrevious}"
                       IsCompact="True"
                       VerticalAlignment="Stretch">
