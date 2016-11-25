@@ -84,6 +84,14 @@ namespace VLC.Services.RunTime
             };
         }
 
+        public void SetCurrentMedia(IMediaItem media)
+        {
+            var idx = _playlist.IndexOf(media);
+            if (idx < 0)
+                return;
+            Index = idx;
+        }
+
         private void OnMediaEndReached()
         {
             if (CanGoNext == false)

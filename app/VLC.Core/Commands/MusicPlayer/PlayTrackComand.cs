@@ -42,7 +42,7 @@ namespace VLC.Commands.MusicPlayer
             if (Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage
                 || Locator.NavigationService.CurrentPage == VLCPage.CurrentPlaylistPage)
             {
-                Locator.PlaybackService.SetPlaylistIndex((int)track.Index);
+                Locator.PlaybackService.SetPlaylistMedia(track);
             }
             else
             {

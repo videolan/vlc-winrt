@@ -206,6 +206,11 @@ namespace VLC.Services.RunTime
             _playlistService.Index = index;
         }
 
+        public void SetPlaylistMedia(IMediaItem media)
+        {
+            _playlistService.SetCurrentMedia(media);
+        }
+
         public async Task RemoveMedia(IMediaItem media)
         {
             bool currentRemoved = CurrentPlaybackMedia == media;
