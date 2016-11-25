@@ -195,13 +195,13 @@ namespace VLC.Services.RunTime
             await savePlaylistToBackgroundDB();
         }
 
-        public async Task SetPlaylist(IEnumerable<IMediaItem> mediaItems, uint startingIndex = 0)
+        public async Task SetPlaylist(IEnumerable<IMediaItem> mediaItems, int startingIndex = 0)
         {
             await clear();
             foreach (var m in mediaItems)
                 _playlist.Add(m);
             OnPlaylistChanged?.Invoke();
-            Index = (int)startingIndex;
+            Index = startingIndex;
             await savePlaylistToBackgroundDB();
         }
 
@@ -227,7 +227,7 @@ namespace VLC.Services.RunTime
             {
                 return;
             }
-            await SetPlaylist(restoredplaylist, (uint)ApplicationSettingsHelper.ReadSettingsValue(nameof(Index)));
+            await SetPlaylist(restoredplaylist, (int)ApplicationSettingsHelper.ReadSettingsValue(nameof(Index)));
         }
 
         public bool Next()

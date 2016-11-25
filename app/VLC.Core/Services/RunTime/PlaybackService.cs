@@ -224,7 +224,7 @@ namespace VLC.Services.RunTime
             return _playlistService.AddToPlaylist(toAdd);
         }
 
-        public Task SetPlaylist(IEnumerable<IMediaItem> mediaItems, uint startingIndex = 0)
+        public Task SetPlaylist(IEnumerable<IMediaItem> mediaItems, int startingIndex = 0)
         {
             return _playlistService.SetPlaylist(mediaItems, startingIndex);
         }

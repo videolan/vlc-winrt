@@ -16,10 +16,10 @@ namespace VLC.Commands.MusicPlayer
             if (trackCollection == null || trackCollection.Playlist == null || !trackCollection.Playlist.Any()) return;
             Locator.NavigationService.GoOnPlaybackStarted(VLCPage.MusicPlayerPage);
 
-            uint index = 0;
-            if (parameter is uint)
+            int index = 0;
+            if (parameter is int)
             {
-                index = (uint)parameter;
+                index = (int)parameter;
             }
             await Locator.PlaybackService.SetPlaylist(trackCollection.Playlist, index);
         }
