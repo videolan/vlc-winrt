@@ -46,7 +46,7 @@ namespace VLC.Commands.MusicPlayer
             }
             else
             {
-                await Locator.PlaybackService.SetPlaylist(new List<IMediaItem> { track }, track.Index);
+                await Locator.PlaybackService.SetPlaylist(new List<IMediaItem> { track });
             }
         }
     }
