@@ -13,6 +13,8 @@
             Background="{ThemeResource TranslucentMainColor}"
             Style="{StaticResource VLCCommandBar}"
             x:Name="RootCommandBar"
+            DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+            ClosedDisplayMode="{Binding Source={StaticResource Locator}, Path=MainVM.CommandBarDisplayMode}"
             IsDynamicOverflowEnabled="True">
     <CommandBar.Content>
         <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
@@ -24,7 +26,8 @@
                     Height="{ThemeResource AppBarThemeCompactHeight}"
                     Background="Transparent"
                     Tapped="RootMiniPlayer_Tapped"
-                    Style="{StaticResource GrayedBackgroundButtonStyle}">
+                    Style="{StaticResource GrayedBackgroundButtonStyle}"
+                    Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.MiniPlayerVisibility}" >
                 <Grid Margin="{StaticResource FrameMarginRight}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -37,7 +40,6 @@
                     </Grid.RowDefinitions>
                     <Image Grid.Row="0"
                            Grid.RowSpan="2"
-                           DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
                            Source="{Binding CurrentAlbum.AlbumImage}"
                            Stretch="UniformToFill"
                            Tapped="RootMiniPlayer_Tapped" />
@@ -67,6 +69,7 @@
                       Command="{Binding PlayPreviousCommand}"
                       IsEnabled="{Binding CanGoPrevious}"
                       Visibility="{Binding MiniPlayerVisibility}"
+                      Label="Previous"
                       IsCompact="True">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource PreviousSymbol}"
@@ -75,11 +78,13 @@
         </AppBarButton>
         <AppBarButton x:Name="PlayPauseButton"
                   Command="{Binding PlayOrPauseCommand}"
+                  DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                   IsCompact="True"
                   RightTapped="PlayButton_RightTapped"
                   Holding="PauseButton_Holding"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
+                  Label="Play/Pause"
                   Visibility="{Binding MiniPlayerVisibility}">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{Binding IsPlaying,Converter={StaticResource PlayingStateToGlyphConverter}}"
@@ -91,6 +96,7 @@
                       Command="{Binding PlayNextCommand}"
                       Visibility="{Binding MiniPlayerVisibility}"
                       IsEnabled="{Binding CanGoNext}"
+                      Label="Next"
                       IsCompact="True">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource SkipNextSymbol}"

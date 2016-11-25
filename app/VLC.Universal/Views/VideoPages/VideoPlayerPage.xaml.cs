@@ -98,7 +98,6 @@ namespace VLC.UI.Views.VideoPages
             base.OnNavigatedTo(e);
             // Set UI Layout
             App.RootPage.SwapChainPanel.Visibility = Visibility.Visible;
-            App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Hidden;
 
             // UI interactions
             Locator.MediaPlaybackViewModel.MouseService.Start();
@@ -134,7 +133,6 @@ namespace VLC.UI.Views.VideoPages
             base.OnNavigatingFrom(e);
             AppViewHelper.SetTitleBarTitle();
             App.RootPage.SwapChainPanel.Visibility = Visibility.Collapsed;
-            App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Minimal;
             Locator.NavigationService.CloseVideoFlyouts();
 
             Locator.VideoPlayerVm.OnNavigatedFrom();

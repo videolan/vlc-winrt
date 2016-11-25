@@ -83,13 +83,6 @@ namespace VLC.Controls
                 return;
         }
 
-        public async void SetFooterVisibility(object visibility)
-        {
-            await TemplateApplied.Task;
-            if (_page.BottomAppBar != null)
-                _page.BottomAppBar.ClosedDisplayMode = (AppBarClosedDisplayMode)visibility;
-        }
-
         #region Content Property
         public DependencyObject Content
         {
@@ -128,21 +121,6 @@ namespace VLC.Controls
         #endregion
 
         #region FooterContent Property
-
-        public AppBarClosedDisplayMode FooterVisibility
-        {
-            get { return (AppBarClosedDisplayMode)GetValue(FooterVisibilityProperty); }
-            set { SetValue(FooterVisibilityProperty, value); }
-        }
-
-        public static readonly DependencyProperty FooterVisibilityProperty = DependencyProperty.Register(
-            nameof(FooterVisibility), typeof(AppBarClosedDisplayMode), typeof(SplitShell), new PropertyMetadata(AppBarClosedDisplayMode.Compact, FooterVisibilityPropertyChangedCallback));
-
-        private static void FooterVisibilityPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var that = (SplitShell)dependencyObject;
-            that.SetFooterVisibility(dependencyPropertyChangedEventArgs.NewValue);
-        }
 
         public DependencyObject FooterContent
         {

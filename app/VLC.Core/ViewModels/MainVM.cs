@@ -77,6 +77,20 @@ namespace VLC.ViewModels
 
         public ScrollDetectedCommand ScrollDetectedCommand { get; private set; } = new ScrollDetectedCommand();
 
+        public AppBarClosedDisplayMode CommandBarDisplayMode
+        {
+            get
+            {
+                if (Locator.NavigationService.CurrentPage == VLCPage.CurrentPlaylistPage ||
+                       Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage ||
+                       Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage ||
+                       Locator.NavigationService.CurrentPage == VLCPage.MiniPlayerView)
+                    return AppBarClosedDisplayMode.Hidden;
+                return Locator.MediaPlaybackViewModel.MiniPlayerVisibility == Visibility.Visible ?
+                    AppBarClosedDisplayMode.Compact : AppBarClosedDisplayMode.Minimal;
+            }
+        }
+
         public bool IsBackground
         {
             get { return _isBackground; }
@@ -84,7 +98,6 @@ namespace VLC.ViewModels
         }
 
         #endregion
-
 
         public MainVM()
         {
@@ -96,6 +109,20 @@ namespace VLC.ViewModels
             Panels.Add(new Panel(Strings.Network, VLCPage.MainPageNetwork, App.Current.Resources["StreamSymbol"].ToString(), App.Current.Resources["StreamFilledSymbol"].ToString()));
 
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
+
+            // The command bar display depends on:
+            // - The current page
+            Locator.NavigationService.ViewNavigated += (_, __) => NotifyCommandBarDisplayModeChanged();
+            // And whether the media is a video or not
+            Locator.PlaybackService.Playback_MediaSet += (_) => NotifyCommandBarDisplayModeChanged();
+        }
+
+        private async void NotifyCommandBarDisplayModeChanged()
+        {
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged(nameof(CommandBarDisplayMode));
+            });
         }
 
         private void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)

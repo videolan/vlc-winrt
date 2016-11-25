@@ -299,11 +299,7 @@ namespace VLC.ViewModels
             get
             {
                 if (Locator.MediaPlaybackViewModel.PlaybackService.IsRunning &&
-                    Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music &&
-                    (Locator.NavigationService.CurrentPage != VLCPage.CurrentPlaylistPage &&
-                     Locator.NavigationService.CurrentPage != VLCPage.MusicPlayerPage &&
-                     Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage &&
-                     Locator.NavigationService.CurrentPage != VLCPage.MiniPlayerView))
+                    Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music)
                 {
                     return Visibility.Visible;
                 }

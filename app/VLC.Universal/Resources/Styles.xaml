@@ -4572,8 +4572,6 @@
                 Value="Left" />
         <Setter Property="VerticalContentAlignment"
                 Value="Top" />
-        <Setter Property="ClosedDisplayMode"
-                Value="Compact" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="CommandBar">

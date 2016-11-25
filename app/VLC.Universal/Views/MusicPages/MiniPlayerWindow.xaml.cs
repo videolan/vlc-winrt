@@ -31,18 +31,11 @@ namespace VLC.UI.Views.MusicPages
         private async void MiniPlayerWindow_Loaded(object sender, RoutedEventArgs e)
         {
             this.SizeChanged += MiniPlayerWindow_SizeChanged;
-            this.Unloaded += MiniPlayerWindow_Unloaded;
             Initialize();
             Responsive();
             AppViewHelper.ResizeWindow(false, 400, 80);
             await AppViewHelper.SetAppView(true);
             AppViewHelper.SetTitleBar(DraggableGrid);
-            App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Hidden;
-        }
-
-        private void MiniPlayerWindow_Unloaded(object sender, RoutedEventArgs e)
-        {
-            App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Compact;
         }
 
         private void MiniPlayerWindow_SizeChanged(object sender, SizeChangedEventArgs e)

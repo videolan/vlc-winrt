@@ -36,32 +36,6 @@ namespace VLC.UI.Views.MusicPages
         }
 
         #region layout
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Hidden;
-            Locator.MusicPlayerVM.PropertyChanged += MusicPlayerVM_PropertyChanged;
-        }
-
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        {
-            base.OnNavigatingFrom(e);
-            App.SplitShell.FooterVisibility = AppBarClosedDisplayMode.Compact;
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-            Locator.MusicPlayerVM.PropertyChanged -= MusicPlayerVM_PropertyChanged;
-        }
-
-        private void MusicPlayerVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(Locator.MusicPlayerVM.CurrentTrack))
-            {
-            }
-        }
-        
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
             Responsive();
