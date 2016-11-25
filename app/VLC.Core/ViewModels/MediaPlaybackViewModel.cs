@@ -262,6 +262,7 @@ namespace VLC.ViewModels
             Locator.PlaybackService.OnPlaylistChanged += PlaylistService_OnPlaylistChanged;
             Locator.PlaybackService.OnPlaylistEndReached += OnPlaylistEndReached;
             Locator.PlaybackService.OnRepeatChanged += OnRepeatChanged;
+            Locator.PlaybackService.Playback_MediaParsed += OnMediaParsed;
         }
 
         private async void OnRepeatChanged(bool obj)
@@ -276,7 +277,17 @@ namespace VLC.ViewModels
 
         private async void OnCurrentMediaChanged(IMediaItem media)
         {
-            PlaylistService_OnPlaylistChanged();
+            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged(nameof(CanGoNext));
+                SystemMediaTransportControlsNextPossible(CanGoNext);
+                OnPropertyChanged(nameof(CanGoPrevious));
+                SystemMediaTransportControlsBackPossible(CanGoPrevious);
+            });
+        }
+
+        private async void OnMediaParsed(ParsedStatus status)
+        {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(MiniPlayerVisibility));
