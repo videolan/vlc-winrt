@@ -191,10 +191,11 @@ namespace VLC.Services.RunTime
         {
             return _playlistService.Restore();
         }
-        private async void onCurrentMediaChanged(IMediaItem media)
+        private async void onCurrentMediaChanged(IMediaItem media, bool isRewind)
         {
             await SetMedia(media);
-            Play();
+            if (isRewind == false)
+                Play();
             Playback_MediaSet?.Invoke(media);
         }
 

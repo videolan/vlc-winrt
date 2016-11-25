@@ -18,7 +18,8 @@ namespace VLC.Services.RunTime
         public event Action OnPlaylistChanged;
         public event Action OnPlaylistEndReached;
         public event Action<bool> OnRepeatChanged;
-        public event Action<IMediaItem> OnCurrentMediaChanged;
+        // Parameters: The new current media, a boolean indicating if this is due to a playlist rewind
+        public event Action<IMediaItem, bool> OnCurrentMediaChanged;
         public BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
         public ObservableCollection<IMediaItem> _playlist;
 
@@ -63,7 +64,7 @@ namespace VLC.Services.RunTime
                     _index = 0;
                 else
                     _index = value;
-                OnCurrentMediaChanged?.Invoke(CurrentMedia);
+                OnCurrentMediaChanged?.Invoke(CurrentMedia, false);
                 var index = _isShuffled ?
                     _nonShuffledPlaylist.IndexOf(Playlist[_index]) : _index;
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(Index), index);
@@ -90,6 +91,9 @@ namespace VLC.Services.RunTime
                 if (!Repeat)
                 {
                     OnPlaylistEndReached?.Invoke();
+                    // Don't use the Index property, this would cause the listener to start playback immediately
+                    _index = 0;
+                    OnCurrentMediaChanged?.Invoke(CurrentMedia, true);
                     return;
                 }
                 Index = 0;
