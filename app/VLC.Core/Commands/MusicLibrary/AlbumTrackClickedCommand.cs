@@ -26,7 +26,10 @@ namespace VLC.Commands.MusicLibrary
             }
 
             var playlist = Locator.MediaLibrary.LoadTracksByAlbumId(track.AlbumId);
-            var idx = playlist.IndexOf(track);
+            var item = playlist.Find((t) => t.Id == track.Id);
+            if (item == null)
+                return;
+            var idx = playlist.IndexOf(item);
             await Locator.PlaybackService.SetPlaylist(playlist, idx);
         }
     }
