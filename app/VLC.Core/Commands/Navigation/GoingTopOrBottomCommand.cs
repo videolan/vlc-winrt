@@ -12,8 +12,7 @@ namespace VLC.Commands.Navigation
             ScrollingEventArgs lv = parameter as ScrollingEventArgs;
             if (lv.ScrollDirection == ScrollDirection.Bottom)
             {
-                if ((Locator.MediaPlaybackViewModel.PlaybackService.IsRunning 
-                    && Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music))
+                if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music)
                 {
                     App.SplitShell.HideTopBar();
                 }

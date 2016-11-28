@@ -151,8 +151,6 @@ namespace VLC.Services.RunTime
 
         public MediaState PlayerState { get; private set; }
 
-        public bool IsRunning { get; set; }
-        
         #region ctors
         public PlaybackService()
         {

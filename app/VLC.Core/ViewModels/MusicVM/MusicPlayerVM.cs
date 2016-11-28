@@ -128,7 +128,6 @@ namespace VLC.ViewModels.MusicVM
 
         private void UpdatePlayingUI()
         {
-            Locator.MediaPlaybackViewModel.PlaybackService.IsRunning = true;
             OnPropertyChanged(nameof(CurrentTrack));
             TileHelper.UpdateMusicTile();
         }

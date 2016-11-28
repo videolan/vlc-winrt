@@ -16,7 +16,6 @@
     <MenuFlyoutItem Text="add to current playlist"
                     Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.AddToPlayingPlaylist}"
                     CommandParameter="{Binding}"
-                    Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlaybackService.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Style="{StaticResource MenuFlyoutItemIconTemplate}"
                     Tag="{StaticResource AddSymbol}"/>
     <MenuFlyoutSeparator />

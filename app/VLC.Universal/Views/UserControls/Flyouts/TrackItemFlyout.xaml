@@ -110,8 +110,7 @@
                       Label="{Binding Source={StaticResource Strings}, Path=AddToCurrentPlaylist}"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
                       Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.AddToPlayingPlaylist}"
-                      CommandParameter="{Binding}"
-                      Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlaybackService.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
+                      CommandParameter="{Binding}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource OrderedListSymbol}"
                           FontFamily="{StaticResource VLCFont}" />
