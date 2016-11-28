@@ -35,4 +35,10 @@
                     CommandParameter="{Binding}"
                     Style="{StaticResource MenuFlyoutItemIconTemplate}"
                     Tag="{StaticResource AlbumDiscSymbol}"/>
+    <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=DeleteSelected}"
+                    Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.DeleteFromLibraryCommand}"
+                    CommandParameter="{Binding}"
+                    Style="{StaticResource MenuFlyoutItemIconTemplate}"
+                    Tag="{StaticResource DeleteSymbol}"/>
+
 </MenuFlyout>

@@ -64,6 +64,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -114,6 +116,19 @@
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource OrderedListSymbol}"
                           FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Grid.Row="4"
+                          Grid.ColumnSpan="3"
+                          Label="{Binding Source={StaticResource Strings}, Path=DeleteSelected}"
+                          Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.DeleteFromLibraryCommand}"
+                          CommandParameter="{Binding}"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          HorizontalAlignment="Center"
+                          Click="ActionButton_Click">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource DeleteSymbol}"
+                                  FontFamily="{StaticResource VLCFont}" />
                 </AppBarButton.Icon>
             </AppBarButton>
         </Grid>

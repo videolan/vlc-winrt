@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using VLC.Model;
+using VLC.Model.Music;
 using VLC.Utils;
 using VLC.ViewModels;
 using Windows.Storage;
@@ -30,6 +31,18 @@ namespace VLC.Commands.MediaLibrary
 
                 // remove MediaLibrary entries
                 await Locator.MediaLibrary.RemoveMediaFromCollectionAndDatabase(parameter as IMediaItem);
+            }
+            else if (parameter is AlbumItem)
+            {
+                var album = parameter as AlbumItem;
+                var tracks = album.Tracks;
+                foreach (var t in tracks)
+                {
+                    var fileToDelete = t.File ?? await StorageFile.GetFileFromPathAsync(t.Path);
+                    await fileToDelete.DeleteAsync();
+                    await Locator.MediaLibrary.RemoveMediaFromCollectionAndDatabase(t);
+                }
+
             }
         }
     }
