@@ -18,7 +18,7 @@ namespace VLC.Services.RunTime
         public event Action OnPlaylistChanged;
         public event Action OnPlaylistEndReached;
         public event Action<bool> OnRepeatChanged;
-        // Parameters: The new current media, a boolean indicating if this is due to a playlist rewind
+        // Parameters: The new current media, a boolean indicating if the playback should start automatically
         public event Action<IMediaItem, bool> OnCurrentMediaChanged;
         public BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
         public ObservableCollection<IMediaItem> _playlist;
@@ -227,7 +227,11 @@ namespace VLC.Services.RunTime
             {
                 return;
             }
-            await SetPlaylist(restoredplaylist, (int)ApplicationSettingsHelper.ReadSettingsValue(nameof(Index)));
+            await clear();
+            _playlist = restoredplaylist;
+            OnPlaylistChanged?.Invoke();
+            _index = (int)ApplicationSettingsHelper.ReadSettingsValue(nameof(Index));
+            OnCurrentMediaChanged?.Invoke(_playlist[_index], true);
         }
 
         public bool Next()
