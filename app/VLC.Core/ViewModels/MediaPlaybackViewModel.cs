@@ -291,6 +291,7 @@ namespace VLC.ViewModels
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(MiniPlayerVisibility));
+                OnPropertyChanged(nameof(MiniPlayerVisibilityMediaCenter));
             });
         }
 
@@ -306,6 +307,17 @@ namespace VLC.ViewModels
                 return Visibility.Collapsed;
             }
         }
+
+        public Visibility MiniPlayerVisibilityMediaCenter
+        {
+            get
+            {
+                if (Helpers.DeviceHelper.IsMediaCenterModeCompliant == true)
+                    return Visibility.Collapsed;
+                return MiniPlayerVisibility;
+            }
+        }
+
 
         private async void PlaylistService_OnPlaylistChanged()
         {
