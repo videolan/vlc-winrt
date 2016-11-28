@@ -200,7 +200,7 @@ namespace VLC.Services.RunTime
                     if (action != null)
                     {
                         // if there's a match, get the ActionId
-                        await DoKeyboardAction(action);
+                        DoKeyboardAction(action);
                     }
                     else
                     {
@@ -248,7 +248,7 @@ namespace VLC.Services.RunTime
             }
         }
 
-        async Task DoKeyboardAction(KeyboardAction keyboardAction)
+        void DoKeyboardAction(KeyboardAction keyboardAction)
         {
             // determine if it's a combination of keys or not
 
