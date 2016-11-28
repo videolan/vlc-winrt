@@ -1,0 +1,77 @@
+From 59cae7d8d6833667d4d74b92ec6b2ee5c7e70779 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Mon, 28 Nov 2016 14:04:36 +0100
+Subject: [PATCH 15/15] avcodec: allow the va to request extra pictures for
+ decoding
+
+Since direct3d11 requires more frames to extract to with some HEVC sources.
+
+--
+replaces https://patches.videolan.org/patch/15141/ by setting the contraint
+closer to where it's needed.
+---
+ modules/codec/avcodec/va.c    | 14 ++++++++++++++
+ modules/codec/avcodec/va.h    |  7 +++++++
+ modules/codec/avcodec/video.c |  3 +++
+ 3 files changed, 24 insertions(+)
+
+diff --git a/modules/codec/avcodec/va.c b/modules/codec/avcodec/va.c
+index 091c35a..b2c0e53 100644
+--- a/modules/codec/avcodec/va.c
++++ b/modules/codec/avcodec/va.c
+@@ -88,6 +88,20 @@ vlc_fourcc_t vlc_va_GetChroma(enum PixelFormat hwfmt, enum PixelFormat swfmt)
+     }
+ }
+ 
++int vlc_va_GetExtraPictures(enum PixelFormat hwfmt)
++{
++    switch (hwfmt)
++    {
++#if LIBAVUTIL_VERSION_CHECK(54, 13, 1, 24, 100)
++        case AV_PIX_FMT_D3D11VA_VLD:
++            return 2;
++#endif
++        default:
++            break;
++    }
++    return 0;
++}
++
+ static int vlc_va_Start(void *func, va_list ap)
+ {
+     vlc_va_t *va = va_arg(ap, vlc_va_t *);
+diff --git a/modules/codec/avcodec/va.h b/modules/codec/avcodec/va.h
+index ee74f8f..afac5d2 100644
+--- a/modules/codec/avcodec/va.h
++++ b/modules/codec/avcodec/va.h
+@@ -55,6 +55,13 @@ struct vlc_va_t {
+ vlc_fourcc_t vlc_va_GetChroma(enum PixelFormat hwfmt, enum PixelFormat swfmt);
+ 
+ /**
++ * Determine the number of extra pictures the hardware decoder will need.
++ * @param hwfmt the hardware acceleration pixel format
++ * @return the number of extra buffers to allocate for the decoder.
++ */
++int vlc_va_GetExtraPictures(enum PixelFormat hwfmt);
++
++/**
+  * Creates an accelerated video decoding back-end for libavcodec.
+  * @param obj parent VLC object
+  * @param fmt VLC format of the content to decode
+diff --git a/modules/codec/avcodec/video.c b/modules/codec/avcodec/video.c
+index 3ab0e3f..88abea5 100644
+--- a/modules/codec/avcodec/video.c
++++ b/modules/codec/avcodec/video.c
+@@ -158,6 +158,9 @@ static int lavc_GetVideoFormat(decoder_t *dec, video_format_t *restrict fmt,
+         return -1; /* invalid display size */
+     }
+ 
++    if (pix_fmt != sw_pix_fmt)
++        dec->i_extra_picture_buffers += vlc_va_GetExtraPictures(pix_fmt);
++
+     fmt->i_width = width;
+     fmt->i_height = height;
+     fmt->i_visible_width = ctx->width;
+-- 
+2.10.1.windows.1
+
