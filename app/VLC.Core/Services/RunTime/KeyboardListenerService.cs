@@ -276,16 +276,10 @@ namespace VLC.Services.RunTime
                         }
                         break;
                     case VLCAction.Previous:
-                        if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music)
-                        {
-                            Locator.PlaybackService.Previous();
-                        }
+                        Locator.PlaybackService.Previous();
                         break;
                     case VLCAction.Next:
-                        if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Music)
-                        {
-                            Locator.PlaybackService.Next();
-                        }
+                        Locator.PlaybackService.Next();
                         break;
                     case VLCAction.Faster:
                         Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("faster");
