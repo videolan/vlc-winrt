@@ -161,6 +161,7 @@ namespace VLC.Services.RunTime
             _playlistService.OnPlaylistChanged += () => OnPlaylistChanged?.Invoke();
             _playlistService.OnCurrentMediaChanged += onCurrentMediaChanged;
             _playlistService.OnRepeatChanged += (v) => OnRepeatChanged?.Invoke(v);
+            PlayingType = PlayingType.NotPlaying;
         }
 
         #endregion
