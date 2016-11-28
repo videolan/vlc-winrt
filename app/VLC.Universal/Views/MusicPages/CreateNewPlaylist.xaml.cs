@@ -17,5 +17,11 @@ namespace VLC.UI.Views.MusicPages
             await Locator.MediaLibrary.AddNewPlaylist(playlistName.Text);
             Locator.NavigationService.GoBack_HideFlyout();
         }
+
+        private void playlistName_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+                AddToCollection_Click(null, null);
+        }
     }
 }

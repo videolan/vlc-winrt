@@ -38,7 +38,8 @@
         <userControls:FocusTextBox Grid.Row="5"
                                    x:Name="playlistName"
                                    Margin="{StaticResource FrameMargin}"
-                                   PlaceholderText="{Binding Source={StaticResource Strings}, Path=PlaylistNamePlaceholder}" />
+                                   PlaceholderText="{Binding Source={StaticResource Strings}, Path=PlaylistNamePlaceholder}"
+                                   KeyDown="playlistName_KeyDown"/>
         <Button Grid.Row="7"
                 Margin="{StaticResource FrameMargin}"
                 Content="{Binding Source={StaticResource Strings}, Path=AddToCollection}"
