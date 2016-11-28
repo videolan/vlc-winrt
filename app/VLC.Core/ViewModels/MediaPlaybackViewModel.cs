@@ -677,10 +677,12 @@ namespace VLC.ViewModels
                 // Set the album art thumbnail.
                 // RandomAccessStreamReference is defined in Windows.Storage.Streams
 
+                Uri thumbnailUri;
                 if (albumUri != null && !string.IsNullOrEmpty(albumUri))
-                {
-                    updater.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri(albumUri));
-                }
+                    thumbnailUri = new Uri(albumUri);
+                else
+                    thumbnailUri = new Uri("ms-appx:///Assets/Icons/music.png");
+                updater.Thumbnail = RandomAccessStreamReference.CreateFromUri(thumbnailUri);
 
                 // Update the system media transport controls.
                 updater.Update();
