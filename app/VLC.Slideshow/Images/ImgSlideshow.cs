@@ -108,8 +108,8 @@ namespace Slide2D.Images
                         currentImg.Opacity = 0;
                         blurAmount = MaximumBlur;
                     }
-
-                    blurAmount -= 0.025f;
+                    if (blurAmount >= 0.025)
+                        blurAmount -= 0.025f;
                 }
                 else if (frame <= OutroFrameThreshold)
                 {
