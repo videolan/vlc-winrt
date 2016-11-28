@@ -210,6 +210,12 @@ namespace VLC.Model.Library
             videoDatabase.Initialize();
         }
         
+        public Task RescanLibrary()
+        {
+            _alreadyIndexedOnce = false;
+            return Initialize();
+        }
+
         public async Task Initialize()
         {
             Artists.Clear();
