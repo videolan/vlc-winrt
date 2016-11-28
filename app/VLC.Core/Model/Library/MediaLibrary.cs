@@ -506,42 +506,48 @@ namespace VLC.Model.Library
                 return false;
 
             await MediaItemDiscovererSemaphoreSlim.WaitAsync();
-            var tcs = new TaskCompletionSource<bool>();
-            await Task.Run(() =>
+            try
             {
-                lock (discovererLock)
+                var tcs = new TaskCompletionSource<bool>();
+                await Task.Run(() =>
                 {
-                    if (discoverers == null)
+                    lock (discovererLock)
                     {
-                        discoverers = new Dictionary<string, MediaDiscoverer>();
-                        var discoverersDesc = Locator.PlaybackService.Instance.mediaDiscoverers(MediaDiscovererCategory.Lan);
-                        foreach (var discDesc in discoverersDesc)
+                        if (discoverers == null)
                         {
-                            var discoverer = new MediaDiscoverer(Locator.PlaybackService.Instance, discDesc.name());
+                            discoverers = new Dictionary<string, MediaDiscoverer>();
+                            var discoverersDesc = Locator.PlaybackService.Instance.mediaDiscoverers(MediaDiscovererCategory.Lan);
+                            foreach (var discDesc in discoverersDesc)
+                            {
+                                var discoverer = new MediaDiscoverer(Locator.PlaybackService.Instance, discDesc.name());
 
-                            var mediaList = discoverer.mediaList();
-                            if (mediaList == null)
-                                tcs.TrySetResult(false);
+                                var mediaList = discoverer.mediaList();
+                                if (mediaList == null)
+                                    tcs.TrySetResult(false);
 
-                            var eventManager = mediaList.eventManager();
-                            eventManager.onItemAdded += MediaListItemAdded;
-                            eventManager.onItemDeleted += MediaListItemDeleted;
+                                var eventManager = mediaList.eventManager();
+                                eventManager.onItemAdded += MediaListItemAdded;
+                                eventManager.onItemDeleted += MediaListItemDeleted;
 
-                            discoverers.Add(discDesc.name(), discoverer);
+                                discoverers.Add(discDesc.name(), discoverer);
+                            }
                         }
-                    }
 
-                    foreach (var discoverer in discoverers)
-                    {
-                        if (!discoverer.Value.isRunning())
-                            discoverer.Value.start();
+                        foreach (var discoverer in discoverers)
+                        {
+                            if (!discoverer.Value.isRunning())
+                                discoverer.Value.start();
+                        }
+                        tcs.TrySetResult(true);
                     }
-                    tcs.TrySetResult(true);
-                }
-            });
-            await tcs.Task;
-            MediaItemDiscovererSemaphoreSlim.Release();
-            return tcs.Task.Result;
+                });
+                await tcs.Task;
+                return tcs.Task.Result;
+            }
+            finally
+            {
+                MediaItemDiscovererSemaphoreSlim.Release();
+            }
         }
 
         public async Task<MediaList> DiscoverMediaList(Media media)
@@ -550,8 +556,14 @@ namespace VLC.Model.Library
                 return media.subItems();
 
             await MediaItemDiscovererSemaphoreSlim.WaitAsync();
-            await media.parseWithOptionsAsync(ParseFlags.Local | ParseFlags.Network | ParseFlags.Interact, 0);
-            MediaItemDiscovererSemaphoreSlim.Release();
+            try
+            {
+                await media.parseWithOptionsAsync(ParseFlags.Local | ParseFlags.Network | ParseFlags.Interact, 0);
+            }
+            finally
+            {
+                MediaItemDiscovererSemaphoreSlim.Release();
+            }
             return media.subItems();
         }
         #endregion
