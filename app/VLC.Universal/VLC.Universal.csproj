@@ -195,9 +195,6 @@
     <Compile Include="Views\UserControls\BufferingControl.xaml.cs">
       <DependentUpon>BufferingControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\CommandBarXbox.xaml.cs">
-      <DependentUpon>CommandBarXbox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\CommandBarBottom.xaml.cs">
       <DependentUpon>CommandBarBottom.xaml</DependentUpon>
     </Compile>
@@ -1327,10 +1324,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\BufferingControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\CommandBarXbox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

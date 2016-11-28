@@ -24,7 +24,7 @@
             <Button x:Name="NowPlayingArtistGrid"
                     Height="{ThemeResource AppBarThemeCompactHeight}"
                     Background="Transparent"
-                    Tapped="RootMiniPlayer_Tapped"
+                    Click="RootMiniPlayer_Clicked"
                     Style="{StaticResource GrayedBackgroundButtonStyle}"
                     Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.MiniPlayerVisibility}" >
                 <Grid Margin="{StaticResource FrameMarginRight}">
@@ -40,8 +40,7 @@
                     <Image Grid.Row="0"
                            Grid.RowSpan="2"
                            Source="{Binding CurrentAlbum.AlbumImage}"
-                           Stretch="UniformToFill"
-                           Tapped="RootMiniPlayer_Tapped" />
+                           Stretch="UniformToFill" />
                     <TextBlock x:Name="TrackNameTextBlock"
                                Grid.Column="2"
                                Text="{Binding CurrentMediaTitle}"
@@ -135,7 +134,7 @@
                       Label="mini player"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       Command="{Binding Source={StaticResource Locator}, Path=MainVM.CreateMiniPlayerView}"
-                      Visibility="{Binding MiniPlayerVisibility}"
+                      Visibility="{Binding MiniPlayerVisibilityMediaCenter}"
                       DynamicOverflowOrder="1"
                       Tag="sec">
             <AppBarButton.Icon>

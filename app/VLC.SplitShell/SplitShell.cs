@@ -208,8 +208,9 @@ namespace VLC.Controls
             if (FlyoutAsHeader)
             {
                 _flyoutContentPresenter.VerticalAlignment = VerticalAlignment.Top;
-                _flyoutContentPresenter.Height = double.NaN;
                 _flyoutContentPresenter.Width = Window.Current.Bounds.Width;
+                _flyoutContentPresenter.Height = Window.Current.Bounds.Height;
+                _flyoutContentPresenter.Opacity = 0.7;
             }
             else
             {

@@ -23,7 +23,7 @@ namespace VLC.UI.Views.UserControls
         }
 
         #region interactions
-        private void RootMiniPlayer_Tapped(object sender, TappedRoutedEventArgs e)
+        private void RootMiniPlayer_Clicked(object sender, RoutedEventArgs e)
         {
             Locator.MusicPlayerVM.GoToMusicPlayerPage.Execute(null);
         }

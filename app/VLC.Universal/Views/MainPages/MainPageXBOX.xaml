@@ -9,81 +9,71 @@
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
-    <StackPanel Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
-        <StackPanel
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+                    Grid.Row="0">
+            <StackPanel
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
-            <Path Data="{StaticResource VLCFlatPath}"
+                <Path Data="{StaticResource VLCFlatPath}"
                   Fill="{ThemeResource MainColor}"
                   Stretch="Uniform"
                   Height="40" />
-            <StackPanel>
-                <TextBlock Text="VLC"
+                <StackPanel>
+                    <TextBlock Text="VLC"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        Margin="{StaticResource FrameMarginLeft}"
                        VerticalAlignment="Center" />
-                <TextBlock Text="beta"
+                    <TextBlock Text="beta"
                            FontSize="10"
                            Margin="{StaticResource FrameMarginLeft}"
                            HorizontalAlignment="Right"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-        <ListView x:Name="PanelsListView"
+            <ListView x:Name="PanelsListView"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   SelectionMode="Single"
                   IsItemClickEnabled="True"
                   ItemClick="ListView_ItemClick"
-                  XYFocusDown="{x:Bind SettingsButton}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid VerticalAlignment="Center"
+                  >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid VerticalAlignment="Center"
                           HorizontalAlignment="Center"
                           Width="173">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <FontIcon Glyph="{Binding DefaultIcon}"
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <FontIcon Glyph="{Binding DefaultIcon}"
                                   Foreground="{ThemeResource MainColor}"
                                   FontFamily="{StaticResource VLCFont}"
                                   FontSize="42"
                                   HorizontalAlignment="Center" />
-                        <TextBlock Grid.Row="1"
+                            <TextBlock Grid.Row="1"
                                    Text="{Binding Title}"
                                    Style="{StaticResource SubheaderTextBlockStyle}"
                                    HorizontalAlignment="Center" />
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid Orientation="Horizontal"
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Horizontal"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    ItemHeight="173"
                                    ItemWidth="173"
                                    Loaded="ItemsWrapGrid_Loaded"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </ListView>
-
-        <AppBarButton
-            x:Name="SettingsButton"
-            Margin="{StaticResource FrameMarginBottom}"
-            IsTabStop="True"
-            Style="{StaticResource AppBarButtonStyleHorizontal}"
-            VerticalAlignment="Center"
-            Label="{Binding Source={StaticResource Strings}, Path=Settings}"
-            ToolTipService.ToolTip="{Binding Source={StaticResource Strings}, Path=Settings}"
-            Command="{Binding GoToSettingsPageCommand}"
-            HorizontalAlignment="Center">
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource SettingsSymbol}"
-                            FontFamily="{StaticResource VLCFont}" />
-            </AppBarButton.Icon>
-        </AppBarButton>
-
-        <userControls:CommandBarXbox
-            XYFocusUp="{x:Bind SettingsButton}"/>
-    </StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+        </StackPanel>
+        <userControls:CommandBarBottom
+            Grid.Row="1"/>
+    </Grid>
 </Page>
