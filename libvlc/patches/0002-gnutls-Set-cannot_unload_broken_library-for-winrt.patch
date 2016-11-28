@@ -1,4 +1,4 @@
-From 45066dd44eb07f483fbc62463ca8c500513291a5 Mon Sep 17 00:00:00 2001
+From 55e018d34e62cc9d6680377b1121d493b2228f9f Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Wed, 11 May 2016 17:37:47 +0200
 Subject: [PATCH 02/15] gnutls: Set cannot_unload_broken_library for winrt
@@ -22,5 +22,5 @@ index 4bb3ddf..305532f 100644
      add_submodule ()
          set_description( N_("GNU TLS server") )
 -- 
-2.9.3
+2.10.2
 

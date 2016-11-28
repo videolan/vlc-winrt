@@ -1,7 +1,7 @@
-From 81bc18c5d3cba8a12403b39a4a8eb0279397c22a Mon Sep 17 00:00:00 2001
+From e437855c3d3fb16fd50e1e2124b926586f870330 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 20 Oct 2016 14:19:09 +0200
-Subject: [PATCH 14/15] avcodec: get the context of the data allocated outside
+Subject: [PATCH 13/15] avcodec: get the context of the data allocated outside
  of a picture_t
 
 ---
@@ -33,7 +33,7 @@ index e7ffbb0..da3b891 100644
  
  static void Close(vlc_va_t *va, AVCodecContext *ctx)
 diff --git a/modules/codec/avcodec/directx_va.c b/modules/codec/avcodec/directx_va.c
-index 2f886fc..4b145fe 100644
+index 6b07d2f..ff5783b 100644
 --- a/modules/codec/avcodec/directx_va.c
 +++ b/modules/codec/avcodec/directx_va.c
 @@ -376,7 +376,7 @@ void DestroyVideoDecoder(vlc_va_t *va, directx_sys_t *dx_sys)
@@ -157,10 +157,10 @@ index f864797..25865d0 100644
      return VLC_SUCCESS;
  }
 diff --git a/modules/codec/avcodec/video.c b/modules/codec/avcodec/video.c
-index 5e88eeb..5b99732 100644
+index d8dbb43..c7d9c5a 100644
 --- a/modules/codec/avcodec/video.c
 +++ b/modules/codec/avcodec/video.c
-@@ -1122,13 +1122,15 @@ static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
+@@ -1123,13 +1123,15 @@ static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
  {
      decoder_t *dec = ctx->opaque;
      vlc_va_t *va = dec->p_sys->p_va;
@@ -178,11 +178,11 @@ index 5e88eeb..5b99732 100644
  
      void (*release)(void *) = va->release;
 diff --git a/modules/hw/vdpau/avcodec.c b/modules/hw/vdpau/avcodec.c
-index e175cb2..0be3500 100644
+index ac95dc9..753c6f0 100644
 --- a/modules/hw/vdpau/avcodec.c
 +++ b/modules/hw/vdpau/avcodec.c
-@@ -115,7 +115,7 @@ static vlc_vdp_video_field_t *GetSurface(vlc_va_t *va)
-     return CreateSurface(va);
+@@ -95,7 +95,7 @@ static vlc_vdp_video_field_t *GetSurface(vlc_va_t *va)
+     return NULL;
  }
  
 -static int Lock(vlc_va_t *va, picture_t *pic, uint8_t **data)
@@ -190,7 +190,7 @@ index e175cb2..0be3500 100644
  {
      vlc_vdp_video_field_t *field;
      unsigned tries = (CLOCK_FREQ + VOUT_OUTMEM_SLEEP) / VOUT_OUTMEM_SLEEP;
-@@ -129,7 +129,7 @@ static int Lock(vlc_va_t *va, picture_t *pic, uint8_t **data)
+@@ -109,7 +109,7 @@ static int Lock(vlc_va_t *va, picture_t *pic, uint8_t **data)
          msleep(VOUT_OUTMEM_SLEEP);
      }
  
@@ -200,5 +200,5 @@ index e175cb2..0be3500 100644
      return VLC_SUCCESS;
  }
 -- 
-2.9.3
+2.10.2
 

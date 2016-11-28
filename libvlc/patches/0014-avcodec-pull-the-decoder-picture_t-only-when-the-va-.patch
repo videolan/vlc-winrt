@@ -1,7 +1,7 @@
-From 8295fffe43871048a6ed275ef5da8f31fbdcf432 Mon Sep 17 00:00:00 2001
+From 3084395240966ac23666680c485b8291adb71316 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robUx4@videolabs.io>
 Date: Fri, 21 Oct 2016 17:42:59 +0200
-Subject: [PATCH 15/15] avcodec: pull the decoder picture_t only when the va
+Subject: [PATCH 14/15] avcodec: pull the decoder picture_t only when the va
  has a picture to extract
 
 The va decoder is no longer provided a picture_t, the surface context is passed
@@ -49,7 +49,7 @@ index da3b891..94a9311 100644
  
      switch (output->format.i_chroma)
 diff --git a/modules/codec/avcodec/directx_va.c b/modules/codec/avcodec/directx_va.c
-index 4b145fe..5e67dd7 100644
+index ff5783b..fe323e0 100644
 --- a/modules/codec/avcodec/directx_va.c
 +++ b/modules/codec/avcodec/directx_va.c
 @@ -417,14 +417,9 @@ int directx_va_Get(vlc_va_t *va, directx_sys_t *dx_sys, void **data_context, uin
@@ -202,10 +202,10 @@ index 25865d0..b139140 100644
  
      CVPixelBufferRef cv_buffer = (CVPixelBufferRef)data;
 diff --git a/modules/codec/avcodec/video.c b/modules/codec/avcodec/video.c
-index 5b99732..d0dc7b1 100644
+index c7d9c5a..3ab0e3f 100644
 --- a/modules/codec/avcodec/video.c
 +++ b/modules/codec/avcodec/video.c
-@@ -954,8 +954,8 @@ static picture_t *DecodeVideo( decoder_t *p_dec, block_t **pp_block )
+@@ -955,8 +955,8 @@ static picture_t *DecodeVideo( decoder_t *p_dec, block_t **pp_block )
              }
          }
  
@@ -216,7 +216,7 @@ index 5b99732..d0dc7b1 100644
          {   /* When direct rendering is not used, get_format() and get_buffer()
               * might not be called. The output video format must be set here
               * then picture buffer can be allocated. */
-@@ -976,8 +976,21 @@ static picture_t *DecodeVideo( decoder_t *p_dec, block_t **pp_block )
+@@ -977,8 +977,21 @@ static picture_t *DecodeVideo( decoder_t *p_dec, block_t **pp_block )
          else
          {
              if( p_sys->p_va != NULL )
@@ -240,7 +240,7 @@ index 5b99732..d0dc7b1 100644
          }
  
          if( !p_dec->fmt_in.video.i_sar_num || !p_dec->fmt_in.video.i_sar_den )
-@@ -1117,34 +1130,24 @@ static void lavc_ReleaseFrame(void *opaque)
+@@ -1118,34 +1131,24 @@ static void lavc_ReleaseFrame(void *opaque)
      picture_Release(picture);
  }
  
@@ -279,7 +279,7 @@ index 5b99732..d0dc7b1 100644
      assert(AV_FRAME_SURFACE(frame) != NULL);
      return 0;
  }
-@@ -1258,13 +1261,13 @@ static int lavc_GetFrame(struct AVCodecContext *ctx, AVFrame *frame, int flags)
+@@ -1259,13 +1262,13 @@ static int lavc_GetFrame(struct AVCodecContext *ctx, AVFrame *frame, int flags)
      }
      post_mt(sys);
  
@@ -297,10 +297,10 @@ index 5b99732..d0dc7b1 100644
       * so we need to check for direct rendering again. */
      int ret = lavc_dr_GetFrame(ctx, frame, pic);
 diff --git a/modules/hw/vdpau/avcodec.c b/modules/hw/vdpau/avcodec.c
-index 0be3500..b420f80 100644
+index 753c6f0..181ff07 100644
 --- a/modules/hw/vdpau/avcodec.c
 +++ b/modules/hw/vdpau/avcodec.c
-@@ -134,12 +134,20 @@ static int Lock(vlc_va_t *va, void **data_context, uint8_t **data)
+@@ -114,12 +114,20 @@ static int Lock(vlc_va_t *va, void **data_context, uint8_t **data)
      return VLC_SUCCESS;
  }
  
@@ -323,7 +323,7 @@ index 0be3500..b420f80 100644
  static int Open(vlc_va_t *va, AVCodecContext *avctx, enum PixelFormat pix_fmt,
                  const es_format_t *fmt, picture_sys_t *p_sys)
  {
-@@ -316,7 +324,7 @@ static int Open(vlc_va_t *va, AVCodecContext *avctx, enum PixelFormat pix_fmt,
+@@ -205,7 +213,7 @@ static int Open(vlc_va_t *va, AVCodecContext *avctx, enum PixelFormat pix_fmt,
  
      va->description = infos;
      va->get = Lock;
@@ -333,5 +333,5 @@ index 0be3500..b420f80 100644
      return VLC_SUCCESS;
  
 -- 
-2.9.3
+2.10.2
 

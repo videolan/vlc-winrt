@@ -1,4 +1,4 @@
-From 59b4d49a509a4db37a994cf190fb71e853a280a1 Mon Sep 17 00:00:00 2001
+From 0d0bdb25f4a84dc85b83944d81da74af65a07fc5 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Feb 2015 11:58:54 +0100
 Subject: [PATCH 01/15] wasapi: Don't fail if the client is already initialized
@@ -21,5 +21,5 @@ index 4ad4ac2..40b5adb 100644
          msg_Err(s, "cannot initialize audio client (error 0x%lx)", hr);
          goto error;
 -- 
-2.9.3
+2.10.2
 

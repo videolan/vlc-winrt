@@ -1,0 +1,34 @@
+From 1d9fc4a893f3c4463a7606da2af11409d622c8f4 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <slhomme@matroska.org>
+Date: Sat, 26 Nov 2016 06:17:24 +0100
+Subject: [PATCH 15/15] core: don't reserve decoder pictures for filtering in
+ direct renderering
+
+---
+ src/video_output/vout_wrapper.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/src/video_output/vout_wrapper.c b/src/video_output/vout_wrapper.c
+index 10c615e..cc9068a 100644
+--- a/src/video_output/vout_wrapper.c
++++ b/src/video_output/vout_wrapper.c
+@@ -124,7 +124,7 @@ int vout_InitWrapper(vout_thread_t *vout)
+ 
+     sys->display.use_dr = !vout_IsDisplayFiltered(vd);
+     const bool allow_dr = !vd->info.has_pictures_invalid && !vd->info.is_slow && sys->display.use_dr;
+-    const unsigned private_picture  = 4; /* XXX 3 for filter, 1 for SPU */
++    unsigned private_picture  = 4; /* XXX 3 for filter, 1 for SPU */
+     const unsigned decoder_picture  = 1 + sys->dpb_size;
+     const unsigned kept_picture     = 1; /* last displayed picture */
+     const unsigned reserved_picture = DISPLAY_PICTURE_COUNT +
+@@ -147,6 +147,7 @@ int vout_InitWrapper(vout_thread_t *vout)
+         sys->dpb_size     = picture_pool_GetSize(display_pool) - reserved_picture;
+         sys->decoder_pool = display_pool;
+         sys->display_pool = display_pool;
++		private_picture = 1; /* there won't be any filter, just SPU */
+     } else if (!sys->decoder_pool) {
+         sys->decoder_pool =
+             picture_pool_NewFromFormat(&source,
+-- 
+2.10.2
+

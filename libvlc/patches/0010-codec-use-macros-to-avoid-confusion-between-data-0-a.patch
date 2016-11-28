@@ -1,7 +1,7 @@
-From 2223c8f4d0e7bee69396a94a582b60b404e889a6 Mon Sep 17 00:00:00 2001
+From 1004350a9a151b3774d6c79e744ae46e59e048a8 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 20 Oct 2016 13:32:29 +0200
-Subject: [PATCH 11/15] codec: use macros to avoid confusion between data[0]
+Subject: [PATCH 10/15] codec: use macros to avoid confusion between data[0]
  and data[3] types
 
 having data[3] = data[0] doesn't help
@@ -10,7 +10,7 @@ having data[3] = data[0] doesn't help
  1 file changed, 10 insertions(+), 7 deletions(-)
 
 diff --git a/modules/codec/avcodec/video.c b/modules/codec/avcodec/video.c
-index ff7a046..4ae22d6 100644
+index 19442d4..a790b49 100644
 --- a/modules/codec/avcodec/video.c
 +++ b/modules/codec/avcodec/video.c
 @@ -43,6 +43,11 @@
@@ -25,7 +25,7 @@ index ff7a046..4ae22d6 100644
  /*****************************************************************************
   * decoder_sys_t : decoder descriptor
   *****************************************************************************/
-@@ -971,7 +976,7 @@ static picture_t *DecodeVideo( decoder_t *p_dec, block_t **pp_block )
+@@ -972,7 +977,7 @@ static picture_t *DecodeVideo( decoder_t *p_dec, block_t **pp_block )
          else
          {
              if( p_sys->p_va != NULL )
@@ -34,7 +34,7 @@ index ff7a046..4ae22d6 100644
              picture_Hold( p_pic );
          }
  
-@@ -1118,21 +1123,19 @@ static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
+@@ -1119,21 +1124,19 @@ static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
      decoder_t *dec = ctx->opaque;
      vlc_va_t *va = dec->p_sys->p_va;
  
@@ -59,7 +59,7 @@ index ff7a046..4ae22d6 100644
      if (unlikely(frame->buf[0] == NULL))
      {
          release(pic);
-@@ -1140,7 +1143,7 @@ static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
+@@ -1141,7 +1144,7 @@ static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
      }
  
      frame->opaque = pic;
@@ -69,5 +69,5 @@ index ff7a046..4ae22d6 100644
  }
  
 -- 
-2.9.3
+2.10.2
 

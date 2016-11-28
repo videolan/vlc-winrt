@@ -1,7 +1,7 @@
-From 92609ad37bca586c5458a576bde343f68743ca8e Mon Sep 17 00:00:00 2001
+From eafa7007aac0cf41be19179e0787df8100a8c31e Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 20 Oct 2016 13:35:31 +0200
-Subject: [PATCH 12/15] codec: av_buffer_create() uses the raw buffer data not
+Subject: [PATCH 11/15] codec: av_buffer_create() uses the raw buffer data not
  the high level surface
 
 ---
@@ -9,10 +9,10 @@ Subject: [PATCH 12/15] codec: av_buffer_create() uses the raw buffer data not
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/modules/codec/avcodec/video.c b/modules/codec/avcodec/video.c
-index 4ae22d6..a2c71d6 100644
+index a790b49..fd52c2d 100644
 --- a/modules/codec/avcodec/video.c
 +++ b/modules/codec/avcodec/video.c
-@@ -1135,7 +1135,7 @@ static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
+@@ -1136,7 +1136,7 @@ static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
      if (va->release == NULL)
          release = lavc_ReleaseFrame;
  
@@ -22,5 +22,5 @@ index 4ae22d6..a2c71d6 100644
      {
          release(pic);
 -- 
-2.9.3
+2.10.2
 

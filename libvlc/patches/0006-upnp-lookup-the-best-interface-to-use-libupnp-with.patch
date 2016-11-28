@@ -1,4 +1,4 @@
-From faa70386b1c878d686b9b055bd794b7265b711e2 Mon Sep 17 00:00:00 2001
+From 9686aacab97270be67aff371782f8c4c93da8768 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 19:14:48 +0200
 Subject: [PATCH 06/15] upnp: lookup the best interface to use libupnp with
@@ -13,7 +13,7 @@ replaces https://patches.videolan.org/patch/13719/ with better lookup
  1 file changed, 113 insertions(+), 2 deletions(-)
 
 diff --git a/modules/services_discovery/upnp.cpp b/modules/services_discovery/upnp.cpp
-index 75b289f..7d51b76 100644
+index 08a69bb..a20fdba 100644
 --- a/modules/services_discovery/upnp.cpp
 +++ b/modules/services_discovery/upnp.cpp
 @@ -30,6 +30,7 @@
@@ -24,7 +24,7 @@ index 75b289f..7d51b76 100644
  
  #include <assert.h>
  #include <limits.h>
-@@ -1300,6 +1301,114 @@ UpnpInstanceWrapper::~UpnpInstanceWrapper()
+@@ -1302,6 +1303,114 @@ UpnpInstanceWrapper::~UpnpInstanceWrapper()
      UpnpFinish();
  }
  
@@ -139,7 +139,7 @@ index 75b289f..7d51b76 100644
  UpnpInstanceWrapper *UpnpInstanceWrapper::get(vlc_object_t *p_obj, services_discovery_t *p_sd)
  {
      SD::MediaServerList *p_server_list = NULL;
-@@ -1327,8 +1436,10 @@ UpnpInstanceWrapper *UpnpInstanceWrapper::get(vlc_object_t *p_obj, services_disc
+@@ -1329,8 +1438,10 @@ UpnpInstanceWrapper *UpnpInstanceWrapper::get(vlc_object_t *p_obj, services_disc
          free( psz_miface );
      #else
          /* If UpnpInit2 isnt available, initialize on first IPv4-capable interface */
@@ -153,5 +153,5 @@ index 75b289f..7d51b76 100644
          {
              msg_Err( p_obj, "Initialization failed: %s", UpnpGetErrorMessage( i_res ) );
 -- 
-2.9.3
+2.10.2
 

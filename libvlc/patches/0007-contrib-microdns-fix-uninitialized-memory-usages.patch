@@ -1,4 +1,4 @@
-From eb2eef7c5afea449b8eb03ccf8125a6dd70a5a85 Mon Sep 17 00:00:00 2001
+From 7d793c81f129d28805b2cc6affc3eb5ac05557bd Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 15:23:12 +0200
 Subject: [PATCH 07/15] contrib: microdns: fix uninitialized memory usages
@@ -72,10 +72,10 @@ index 0000000..516aa02
 +2.7.2.windows.1
 +
 diff --git a/contrib/src/microdns/rules.mak b/contrib/src/microdns/rules.mak
-index f3bef5b..df2605b 100644
+index 2c1801c..dbc45da 100644
 --- a/contrib/src/microdns/rules.mak
 +++ b/contrib/src/microdns/rules.mak
-@@ -17,6 +17,8 @@ $(TARBALLS)/microdns-$(LIBMICRODNS_VERSION).tar.gz:
+@@ -19,6 +19,8 @@ $(TARBALLS)/microdns-$(LIBMICRODNS_VERSION).tar.gz:
  
  microdns: microdns-$(LIBMICRODNS_VERSION).tar.gz .sum-microdns
  	$(UNPACK)
@@ -85,5 +85,5 @@ index f3bef5b..df2605b 100644
  
  .microdns: microdns
 -- 
-2.9.3
+2.10.2
 
