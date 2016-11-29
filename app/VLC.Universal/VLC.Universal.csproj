@@ -849,6 +849,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\packetizer\libpacketizer_mpeg4video_plugin.dll">
       <Link>plugins\packetizer\libpacketizer_mpeg4video_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\packetizer\libpacketizer_mpegaudio_plugin.dll">
+      <Link>plugins\packetizer\libpacketizer_mpegaudio_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\packetizer\libpacketizer_mpegvideo_plugin.dll">
       <Link>plugins\packetizer\libpacketizer_mpegvideo_plugin.dll</Link>
     </Content>
@@ -869,6 +872,30 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\services_discovery\libupnp_plugin.dll">
       <Link>plugins\services_discovery\libupnp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\spu\libaudiobargraph_v_plugin.dll">
+      <Link>plugins\spu\libaudiobargraph_v_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\spu\liblogo_plugin.dll">
+      <Link>plugins\spu\liblogo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\spu\libmarq_plugin.dll">
+      <Link>plugins\spu\libmarq_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\spu\libmosaic_plugin.dll">
+      <Link>plugins\spu\libmosaic_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\spu\libremoteosd_plugin.dll">
+      <Link>plugins\spu\libremoteosd_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\spu\librss_plugin.dll">
+      <Link>plugins\spu\librss_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\spu\libsubsdelay_plugin.dll">
+      <Link>plugins\spu\libsubsdelay_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\stream_filter\libadf_plugin.dll">
+      <Link>plugins\stream_filter\libadf_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\stream_filter\libcache_block_plugin.dll">
       <Link>plugins\stream_filter\libcache_block_plugin.dll</Link>
@@ -963,9 +990,6 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libantiflicker_plugin.dll">
       <Link>plugins\video_filter\libantiflicker_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libaudiobargraph_v_plugin.dll">
-      <Link>plugins\video_filter\libaudiobargraph_v_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libball_plugin.dll">
       <Link>plugins\video_filter\libball_plugin.dll</Link>
     </Content>
@@ -1023,20 +1047,11 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libinvert_plugin.dll">
       <Link>plugins\video_filter\libinvert_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\liblogo_plugin.dll">
-      <Link>plugins\video_filter\liblogo_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libmagnify_plugin.dll">
       <Link>plugins\video_filter\libmagnify_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libmarq_plugin.dll">
-      <Link>plugins\video_filter\libmarq_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libmirror_plugin.dll">
       <Link>plugins\video_filter\libmirror_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libmosaic_plugin.dll">
-      <Link>plugins\video_filter\libmosaic_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libmotionblur_plugin.dll">
       <Link>plugins\video_filter\libmotionblur_plugin.dll</Link>
@@ -1059,17 +1074,11 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libpuzzle_plugin.dll">
       <Link>plugins\video_filter\libpuzzle_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libremoteosd_plugin.dll">
-      <Link>plugins\video_filter\libremoteosd_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libripple_plugin.dll">
       <Link>plugins\video_filter\libripple_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\librotate_plugin.dll">
       <Link>plugins\video_filter\librotate_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\librss_plugin.dll">
-      <Link>plugins\video_filter\librss_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libscale_plugin.dll">
       <Link>plugins\video_filter\libscale_plugin.dll</Link>
@@ -1082,9 +1091,6 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libsharpen_plugin.dll">
       <Link>plugins\video_filter\libsharpen_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libsubsdelay_plugin.dll">
-      <Link>plugins\video_filter\libsubsdelay_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libtransform_plugin.dll">
       <Link>plugins\video_filter\libtransform_plugin.dll</Link>
@@ -1121,9 +1127,6 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\visualization\libvisual_plugin.dll">
       <Link>plugins\visualization\libvisual_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\packetizer\libpacketizer_mpegaudio_plugin.dll">
-      <Link>plugins\packetizer\libpacketizer_mpegaudio_plugin.dll</Link>
     </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="VLCCommands.xml">
