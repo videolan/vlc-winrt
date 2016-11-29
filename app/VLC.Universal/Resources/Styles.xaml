@@ -4300,7 +4300,6 @@
                                     <ContentControl x:Name="HeaderClipper"
                                                     Grid.Row="0"
                                                     Grid.Column="1"
-                                                    Grid.ColumnSpan="1"
                                                     UseSystemFocusVisuals="False">
                                         <ContentControl.Clip>
                                             <RectangleGeometry x:Name="HeaderClipperGeometry" />
