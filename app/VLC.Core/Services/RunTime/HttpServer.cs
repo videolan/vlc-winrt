@@ -130,6 +130,11 @@ namespace VLC.Services.RunTime
             {
                 await responseSender.error404();
             }
+            catch (System.Runtime.InteropServices.COMException)
+            {
+                // Assume the socket was closed, so don't send an error back
+                return;
+            }
             catch
             {
                 await responseSender.error500();
