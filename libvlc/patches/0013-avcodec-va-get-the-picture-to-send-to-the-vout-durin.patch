@@ -1,0 +1,443 @@
+From 4053f2f5bb189a2fa1e38df535e14507087d194b Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Tue, 29 Nov 2016 08:33:28 +0100
+Subject: [PATCH 13/13] avcodec: va: get the picture to send to the vout during
+ Extract() not Get()
+
+In some cases the decoder pool is stuck on picture_pool_Wait() because the va
+keeps requesting referenced pictures without outputing anything (yet). With
+this patch we only use the pool when we're going to send the picture to the
+vout which will release it at some point.
+
+pic->context is no longer used to release the pictures and so the hacks in DXVA
+and VAAPI not to call the destroy are no longer needed either.
+
+frame->opaque now contains a structure passed to Extract() and Release() as a
+surface context. Each va module has its own interpretation on that type.
+
+In vdpau the reference handling is done both on th AVFrame and the picture_t.
+When providing the picture to the vout the reference count is incremented. The
+surface availability will reset when the decoder and the vout have released the
+picture/frame.
+---
+ modules/codec/avcodec/d3d11va.c    |  8 ++++----
+ modules/codec/avcodec/directx_va.c | 12 ++++--------
+ modules/codec/avcodec/directx_va.h |  2 +-
+ modules/codec/avcodec/dxva2.c      |  8 ++++----
+ modules/codec/avcodec/va.h         | 33 +++++++++++++++++++++------------
+ modules/codec/avcodec/vaapi.c      | 13 +++++--------
+ modules/codec/avcodec/vda.c        |  7 ++++---
+ modules/codec/avcodec/video.c      | 28 ++++++++++++----------------
+ modules/hw/vdpau/avcodec.c         | 16 ++++++++++++----
+ 9 files changed, 67 insertions(+), 60 deletions(-)
+
+diff --git a/modules/codec/avcodec/d3d11va.c b/modules/codec/avcodec/d3d11va.c
+index e7ffbb0..3ad6884 100644
+--- a/modules/codec/avcodec/d3d11va.c
++++ b/modules/codec/avcodec/d3d11va.c
+@@ -245,11 +245,11 @@ static filter_t *CreateFilter( vlc_object_t *p_this, const es_format_t *p_fmt_in
+     return p_filter;
+ }
+ 
+-static int Extract(vlc_va_t *va, picture_t *output, uint8_t *data)
++static int Extract(vlc_va_t *va, picture_t *output, uint8_t *data, void *data_context)
+ {
+     vlc_va_sys_t *sys = va->sys;
+     ID3D11VideoDecoderOutputView *src = (ID3D11VideoDecoderOutputView*)(uintptr_t)data;
+-    vlc_va_surface_t *surface = output->context;
++    vlc_va_surface_t *surface = data_context;
+     int ret = VLC_SUCCESS;
+ 
+     switch (output->format.i_chroma)
+@@ -365,9 +365,9 @@ static int CheckDevice(vlc_va_t *va)
+     return VLC_SUCCESS;
+ }
+ 
+-static int Get(vlc_va_t *va, picture_t *pic, uint8_t **data)
++static int Get(vlc_va_t *va, void **data_context, uint8_t **data)
+ {
+-    return directx_va_Get(va, &va->sys->dx_sys, pic, data);
++    return directx_va_Get(va, &va->sys->dx_sys, data_context, data);
+ }
+ 
+ static void Close(vlc_va_t *va, AVCodecContext *ctx)
+diff --git a/modules/codec/avcodec/directx_va.c b/modules/codec/avcodec/directx_va.c
+index 1c26edc..eda902b 100644
+--- a/modules/codec/avcodec/directx_va.c
++++ b/modules/codec/avcodec/directx_va.c
+@@ -376,7 +376,7 @@ void DestroyVideoDecoder(vlc_va_t *va, directx_sys_t *dx_sys)
+ }
+ 
+ /* FIXME it is nearly common with VAAPI */
+-int directx_va_Get(vlc_va_t *va, directx_sys_t *dx_sys, picture_t *pic, uint8_t **data)
++int directx_va_Get(vlc_va_t *va, directx_sys_t *dx_sys, void **data_context, uint8_t **data)
+ {
+     /* Check the device */
+     if (dx_sys->pf_check_device(va)!=VLC_SUCCESS)
+@@ -408,7 +408,7 @@ int directx_va_Get(vlc_va_t *va, directx_sys_t *dx_sys, picture_t *pic, uint8_t
+     surface->refcount = 1;
+     surface->order = ++dx_sys->surface_order;
+     *data = (void *)dx_sys->hw_surface[i];
+-    pic->context = surface;
++    *data_context = surface;
+ 
+     vlc_mutex_unlock( &dx_sys->surface_lock );
+ 
+@@ -417,14 +417,10 @@ int directx_va_Get(vlc_va_t *va, directx_sys_t *dx_sys, picture_t *pic, uint8_t
+ 
+ void directx_va_Release(void *opaque, uint8_t *data)
+ {
+-    picture_t *pic = opaque;
+-    vlc_va_surface_t *surface = pic->context;
++    VLC_UNUSED(data);
++    vlc_va_surface_t *surface = opaque;
+     vlc_mutex_lock( surface->p_lock );
+-
+     surface->refcount--;
+-    pic->context = NULL;
+-    picture_Release(pic);
+-
+     vlc_mutex_unlock( surface->p_lock );
+ }
+ 
+diff --git a/modules/codec/avcodec/directx_va.h b/modules/codec/avcodec/directx_va.h
+index ad20ead..a68d7fe 100644
+--- a/modules/codec/avcodec/directx_va.h
++++ b/modules/codec/avcodec/directx_va.h
+@@ -137,7 +137,7 @@ typedef struct
+ int directx_va_Open(vlc_va_t *, directx_sys_t *, AVCodecContext *ctx, const es_format_t *fmt, bool b_dll);
+ void directx_va_Close(vlc_va_t *, directx_sys_t *);
+ int directx_va_Setup(vlc_va_t *, directx_sys_t *, AVCodecContext *avctx);
+-int directx_va_Get(vlc_va_t *, directx_sys_t *, picture_t *pic, uint8_t **data);
++int directx_va_Get(vlc_va_t *, directx_sys_t *, void **data_context, uint8_t **data);
+ void directx_va_Release(void *opaque, uint8_t *data);
+ char *directx_va_GetDecoderName(const GUID *guid);
+ 
+diff --git a/modules/codec/avcodec/dxva2.c b/modules/codec/avcodec/dxva2.c
+index 2b6a1fc..9530288 100644
+--- a/modules/codec/avcodec/dxva2.c
++++ b/modules/codec/avcodec/dxva2.c
+@@ -237,7 +237,7 @@ void SetupAVCodecContext(vlc_va_t *va)
+         sys->hw.workaround |= FF_DXVA2_WORKAROUND_INTEL_CLEARVIDEO;
+ }
+ 
+-static int Extract(vlc_va_t *va, picture_t *picture, uint8_t *data)
++static int Extract(vlc_va_t *va, picture_t *picture, uint8_t *data, void *data_context)
+ {
+     directx_sys_t *dx_sys = &va->sys->dx_sys;
+     LPDIRECT3DSURFACE9 d3d = (LPDIRECT3DSURFACE9)(uintptr_t)data;
+@@ -269,7 +269,7 @@ static int Extract(vlc_va_t *va, picture_t *picture, uint8_t *data)
+     }
+     else if (va->sys->filter != NULL) {
+         va->sys->filter->owner.sys = picture;
+-        vlc_va_surface_t *surface = picture->context;
++        vlc_va_surface_t *surface = data_context;
+         picture_Hold( surface->p_pic );
+         va->sys->filter->pf_video_filter( va->sys->filter, surface->p_pic );
+     } else {
+@@ -296,9 +296,9 @@ static int CheckDevice(vlc_va_t *va)
+     return VLC_SUCCESS;
+ }
+ 
+-static int Get(vlc_va_t *va, picture_t *pic, uint8_t **data)
++static int Get(vlc_va_t *va, void **data_context, uint8_t **data)
+ {
+-    return directx_va_Get(va, &va->sys->dx_sys, pic, data);
++    return directx_va_Get(va, &va->sys->dx_sys, data_context, data);
+ }
+ 
+ static void Close(vlc_va_t *va, AVCodecContext *ctx)
+diff --git a/modules/codec/avcodec/va.h b/modules/codec/avcodec/va.h
+index ec70e38..d5c2873 100644
+--- a/modules/codec/avcodec/va.h
++++ b/modules/codec/avcodec/va.h
+@@ -40,9 +40,9 @@ struct vlc_va_t {
+     VLC_DEPRECATED
+     void (*setup)(vlc_va_t *, vlc_fourcc_t *output);
+ #endif
+-    int  (*get)(vlc_va_t *, picture_t *pic, uint8_t **data);
+-    void (*release)(void *pic, uint8_t *data);
+-    int  (*extract)(vlc_va_t *, picture_t *pic, uint8_t *data);
++    int  (*get)(vlc_va_t *, void **data_context, uint8_t **data);
++    void (*release)(void *data_context, uint8_t *data);
++    int  (*extract)(vlc_va_t *, picture_t *pic, uint8_t *data, void *data_context);
+ };
+ 
+ /**
+@@ -69,8 +69,11 @@ vlc_va_t *vlc_va_New(vlc_object_t *obj, AVCodecContext *,
+  * The surface will be used as output for the hardware decoder, and possibly
+  * also as a reference frame to decode other surfaces.
+  *
+- * @param pic pointer to VLC picture being allocated [IN/OUT]
+- * @param data pointer to the AVFrame data[0] and data[3] pointers [OUT]
++ * @param data_context pointer to VLC structure to free data being allocated.
++ * This structure will also be attached to picture_t->context so should handle
++ * a destroy() call. [OUT]
++ * @param data pointer to the AVFrame data[3] pointer, the surface structure
++ * used by the hardware decoder [OUT]
+  *
+  * @note This function needs not be reentrant. However it may be called
+  * concurrently with vlc_va_Extract() and/or vlc_va_Release() from other
+@@ -78,24 +81,24 @@ vlc_va_t *vlc_va_New(vlc_object_t *obj, AVCodecContext *,
+  *
+  * @return VLC_SUCCESS on success, otherwise an error code.
+  */
+-static inline int vlc_va_Get(vlc_va_t *va, picture_t *pic, uint8_t **data)
++static inline int vlc_va_Get(vlc_va_t *va, void **data_context, uint8_t **data)
+ {
+-    return va->get(va, pic, data);
++    return va->get(va, data_context, data);
+ }
+ 
+ /**
+  * Releases a hardware surface from a libavcodec frame.
+  * The surface has been previously allocated with vlc_va_Get().
+  *
+- * @param pic VLC picture being released [IN/OUT]
++ * @param data_context VLC structure being released [IN/OUT]
+  *
+  * @note This function needs not be reentrant. However it may be called
+  * concurrently with vlc_va_Get() and/or vlc_va_Extract() from other threads
+  * and other frames.
+  */
+-static inline void vlc_va_Release(vlc_va_t *va, picture_t *pic)
++static inline void vlc_va_Release(vlc_va_t *va, void *data_context)
+ {
+-    va->release(pic, NULL);
++    va->release(data_context, NULL);
+ }
+ 
+ /**
+@@ -105,12 +108,18 @@ static inline void vlc_va_Release(vlc_va_t *va, picture_t *pic)
+  * The surface may still be used by libavcodec as a reference frame until it is
+  * freed with vlc_va_Release().
+  *
++ * @param pic VLC picture that will receive the data decoded by the va.
++ * @param data the AVFrame data[3] pointer, the surface structure filled by the
++ * hardware decoder.
++ * @param data_context VLC structure to interpret the data pointer.
++ *
+  * @note This function needs not be reentrant, but it may run concurrently with
+  * vlc_va_Get() or vlc_va_Release() in other threads (with distinct frames).
+  */
+-static inline int vlc_va_Extract(vlc_va_t *va, picture_t *pic, uint8_t *data)
++static inline int vlc_va_Extract(vlc_va_t *va, picture_t *pic, uint8_t *data,
++                                 void *data_context)
+ {
+-    return va->extract(va, pic, data);
++    return va->extract(va, pic, data, data_context);
+ }
+ 
+ /**
+diff --git a/modules/codec/avcodec/vaapi.c b/modules/codec/avcodec/vaapi.c
+index 28daa58..a959045 100644
+--- a/modules/codec/avcodec/vaapi.c
++++ b/modules/codec/avcodec/vaapi.c
+@@ -79,8 +79,9 @@ struct vlc_va_sys_t
+     VASurfaceID  surfaces[32];
+ };
+ 
+-static int Extract( vlc_va_t *va, picture_t *p_picture, uint8_t *data )
++static int Extract( vlc_va_t *va, picture_t *p_picture, uint8_t *data, void *data_context )
+ {
++    (void) data_context;
+     vlc_va_sys_t *sys = va->sys;
+     VASurfaceID surface = (VASurfaceID)(uintptr_t)data;
+     VAImage image;
+@@ -144,7 +145,7 @@ error:
+     return ret;
+ }
+ 
+-static int Get( vlc_va_t *va, picture_t *pic, uint8_t **data )
++static int Get( vlc_va_t *va, void **data_context, uint8_t **data )
+ {
+     vlc_va_sys_t *sys = va->sys;
+     unsigned i = sys->count;
+@@ -162,7 +163,7 @@ static int Get( vlc_va_t *va, picture_t *pic, uint8_t **data )
+ 
+     VASurfaceID *surface = &sys->surfaces[i];
+ 
+-    pic->context = surface;
++    *data_context = surface;
+     *data = (void *)(uintptr_t)*surface;
+     return VLC_SUCCESS;
+ }
+@@ -170,8 +171,7 @@ static int Get( vlc_va_t *va, picture_t *pic, uint8_t **data )
+ static void Release( void *opaque, uint8_t *data )
+ {
+     (void) data;
+-    picture_t *pic = opaque;
+-    VASurfaceID *surface = pic->context;
++    VASurfaceID *surface = opaque;
+     vlc_va_sys_t *sys = (void *)((((uintptr_t)surface)
+         - offsetof(vlc_va_sys_t, surfaces)) & ~(sizeof (sys->surfaces) - 1));
+     unsigned i = surface - sys->surfaces;
+@@ -180,9 +180,6 @@ static void Release( void *opaque, uint8_t *data )
+     assert(((sys->available >> i) & 1) == 0);
+     sys->available |= 1 << i;
+     vlc_mutex_unlock( &sys->lock );
+-
+-    pic->context = NULL;
+-    picture_Release(pic);
+ }
+ 
+ static void Delete( vlc_va_t *va, AVCodecContext *avctx )
+diff --git a/modules/codec/avcodec/vda.c b/modules/codec/avcodec/vda.c
+index 5ee8e7e..c142ec6 100644
+--- a/modules/codec/avcodec/vda.c
++++ b/modules/codec/avcodec/vda.c
+@@ -157,10 +157,10 @@ static void Close( vlc_va_t *va, AVCodecContext *avctx )
+ }
+ 
+ // Never called
+-static int Get( vlc_va_t *va, picture_t *p_picture, uint8_t **data )
++static int Get( vlc_va_t *va, void **data_context, uint8_t **data )
+ {
+     VLC_UNUSED( va );
+-    (void) p_picture;
++    *data_context = NULL;
+     (void) data;
+     return VLC_SUCCESS;
+ }
+@@ -172,8 +172,9 @@ static void Release( void *opaque, uint8_t *data )
+     VLC_UNUSED(data);
+ }
+ 
+-static int Extract( vlc_va_t *va, picture_t *p_picture, uint8_t *data )
++static int Extract( vlc_va_t *va, void *p_picture, uint8_t *data, void *data_context )
+ {
++    (void) data_context;
+     vlc_va_sys_t *sys = va->sys;
+ 
+     CVPixelBufferRef cv_buffer = (CVPixelBufferRef)data;
+diff --git a/modules/codec/avcodec/video.c b/modules/codec/avcodec/video.c
+index e9110cc..6cf2362 100644
+--- a/modules/codec/avcodec/video.c
++++ b/modules/codec/avcodec/video.c
+@@ -976,14 +976,15 @@ static picture_t *DecodeVideo( decoder_t *p_dec, block_t **pp_block )
+         }
+         else
+         {
++            /* frame->opaque is not a picture_t when using va */
++            p_pic = decoder_NewPicture(p_dec);
+             if( unlikely(p_pic==NULL) )
+             {
+                 av_frame_free(&frame);
+                 break;
+             }
+ 
+-            vlc_va_Extract( p_sys->p_va, p_pic, frame->data[3] );
+-            picture_Hold( p_pic );
++            vlc_va_Extract( p_sys->p_va, p_pic, frame->data[3], frame->opaque );
+         }
+ 
+         if( !p_dec->fmt_in.video.i_sar_num || !p_dec->fmt_in.video.i_sar_den )
+@@ -1124,16 +1125,15 @@ static void lavc_ReleaseFrame(void *opaque, uint8_t *data)
+     picture_Release(picture);
+ }
+ 
+-static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
+-                            picture_t *pic)
++static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame)
+ {
+     decoder_t *dec = ctx->opaque;
+     vlc_va_t *va = dec->p_sys->p_va;
++    void *data_context;
+ 
+-    if (vlc_va_Get(va, pic, &frame->data[0]))
++    if (vlc_va_Get(va, &data_context, &frame->data[0]))
+     {
+         msg_Err(dec, "hardware acceleration picture allocation failed");
+-        picture_Release(pic);
+         return -1;
+     }
+     assert(frame->data[0] != NULL);
+@@ -1141,18 +1141,14 @@ static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
+      * data[3] actually contains the format-specific surface handle. */
+     frame->data[3] = frame->data[0];
+ 
+-    void (*release)(void *, uint8_t *) = va->release;
+-    if (va->release == NULL)
+-        release = lavc_ReleaseFrame;
+-
+-    frame->buf[0] = av_buffer_create(frame->data[0], 0, release, pic, 0);
++    frame->buf[0] = av_buffer_create(frame->data[0], 0, va->release, data_context, 0);
+     if (unlikely(frame->buf[0] == NULL))
+     {
+-        release(pic, frame->data[0]);
++        va->release(data_context, frame->data[0]);
+         return -1;
+     }
+ 
+-    frame->opaque = pic;
++    frame->opaque = data_context;
+     return 0;
+ }
+ 
+@@ -1265,13 +1261,13 @@ static int lavc_GetFrame(struct AVCodecContext *ctx, AVFrame *frame, int flags)
+     }
+     post_mt(sys);
+ 
++    if (sys->p_va != NULL)
++        return lavc_va_GetFrame(ctx, frame);
++
+     pic = decoder_NewPicture(dec);
+     if (pic == NULL)
+         return -ENOMEM;
+ 
+-    if (sys->p_va != NULL)
+-        return lavc_va_GetFrame(ctx, frame, pic);
+-
+     /* Some codecs set pix_fmt only after the 1st frame has been decoded,
+      * so we need to check for direct rendering again. */
+     int ret = lavc_dr_GetFrame(ctx, frame, pic);
+diff --git a/modules/hw/vdpau/avcodec.c b/modules/hw/vdpau/avcodec.c
+index ac95dc9..82ca784 100644
+--- a/modules/hw/vdpau/avcodec.c
++++ b/modules/hw/vdpau/avcodec.c
+@@ -95,7 +95,7 @@ static vlc_vdp_video_field_t *GetSurface(vlc_va_t *va)
+     return NULL;
+ }
+ 
+-static int Lock(vlc_va_t *va, picture_t *pic, uint8_t **data)
++static int Lock(vlc_va_t *va, void **data_context, uint8_t **data)
+ {
+     vlc_vdp_video_field_t *field;
+     unsigned tries = (CLOCK_FREQ + VOUT_OUTMEM_SLEEP) / VOUT_OUTMEM_SLEEP;
+@@ -109,14 +109,22 @@ static int Lock(vlc_va_t *va, picture_t *pic, uint8_t **data)
+         msleep(VOUT_OUTMEM_SLEEP);
+     }
+ 
+-    pic->context = field;
++    *data_context = field;
+     *data = (void *)(uintptr_t)field->frame->surface;
+     return VLC_SUCCESS;
+ }
+ 
+-static int Copy(vlc_va_t *va, picture_t *pic, uint8_t *data)
++static void Release(void *data_context, uint8_t *data)
++{
++    vlc_vdp_video_field_t *field = data_context;
++    DestroySurface(field);
++}
++
++static int Copy(vlc_va_t *va, picture_t *pic, uint8_t *data, void *data_context)
+ {
+     (void) va; (void) pic; (void) data;
++    vlc_vdp_video_field_t *field = data_context;
++    pic->context = vlc_vdp_video_copy(field);
+     return VLC_SUCCESS;
+ }
+ 
+@@ -205,7 +213,7 @@ static int Open(vlc_va_t *va, AVCodecContext *avctx, enum PixelFormat pix_fmt,
+ 
+     va->description = infos;
+     va->get = Lock;
+-    va->release = NULL;
++    va->release = Release;
+     va->extract = Copy;
+     return VLC_SUCCESS;
+ 
+-- 
+2.10.1.windows.1
+

@@ -1,0 +1,133 @@
+From 986de7ea04599a5b0fd0541d0ddf2ecdb630528c Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Mon, 28 Nov 2016 19:58:42 +0100
+Subject: [PATCH 10/13] avcodec: va: respect the buffer release prototype
+
+It has always have an extra uint8_t pointer.
+
+--
+replaces https://patches.videolan.org/patch/15166/
+fix compilation
+---
+ modules/codec/avcodec/directx_va.c | 2 +-
+ modules/codec/avcodec/directx_va.h | 2 +-
+ modules/codec/avcodec/va.h         | 4 ++--
+ modules/codec/avcodec/vaapi.c      | 3 ++-
+ modules/codec/avcodec/vda.c        | 3 ++-
+ modules/codec/avcodec/video.c      | 7 ++++---
+ 6 files changed, 12 insertions(+), 9 deletions(-)
+
+diff --git a/modules/codec/avcodec/directx_va.c b/modules/codec/avcodec/directx_va.c
+index 6b07d2f..1c26edc 100644
+--- a/modules/codec/avcodec/directx_va.c
++++ b/modules/codec/avcodec/directx_va.c
+@@ -415,7 +415,7 @@ int directx_va_Get(vlc_va_t *va, directx_sys_t *dx_sys, picture_t *pic, uint8_t
+     return VLC_SUCCESS;
+ }
+ 
+-void directx_va_Release(void *opaque)
++void directx_va_Release(void *opaque, uint8_t *data)
+ {
+     picture_t *pic = opaque;
+     vlc_va_surface_t *surface = pic->context;
+diff --git a/modules/codec/avcodec/directx_va.h b/modules/codec/avcodec/directx_va.h
+index 700ecb1..ad20ead 100644
+--- a/modules/codec/avcodec/directx_va.h
++++ b/modules/codec/avcodec/directx_va.h
+@@ -138,7 +138,7 @@ int directx_va_Open(vlc_va_t *, directx_sys_t *, AVCodecContext *ctx, const es_f
+ void directx_va_Close(vlc_va_t *, directx_sys_t *);
+ int directx_va_Setup(vlc_va_t *, directx_sys_t *, AVCodecContext *avctx);
+ int directx_va_Get(vlc_va_t *, directx_sys_t *, picture_t *pic, uint8_t **data);
+-void directx_va_Release(void *opaque);
++void directx_va_Release(void *opaque, uint8_t *data);
+ char *directx_va_GetDecoderName(const GUID *guid);
+ 
+ #endif /* AVCODEC_DIRECTX_VA_H */
+diff --git a/modules/codec/avcodec/va.h b/modules/codec/avcodec/va.h
+index 4f7df66..ec70e38 100644
+--- a/modules/codec/avcodec/va.h
++++ b/modules/codec/avcodec/va.h
+@@ -41,7 +41,7 @@ struct vlc_va_t {
+     void (*setup)(vlc_va_t *, vlc_fourcc_t *output);
+ #endif
+     int  (*get)(vlc_va_t *, picture_t *pic, uint8_t **data);
+-    void (*release)(void *pic);
++    void (*release)(void *pic, uint8_t *data);
+     int  (*extract)(vlc_va_t *, picture_t *pic, uint8_t *data);
+ };
+ 
+@@ -95,7 +95,7 @@ static inline int vlc_va_Get(vlc_va_t *va, picture_t *pic, uint8_t **data)
+  */
+ static inline void vlc_va_Release(vlc_va_t *va, picture_t *pic)
+ {
+-    va->release(pic);
++    va->release(pic, NULL);
+ }
+ 
+ /**
+diff --git a/modules/codec/avcodec/vaapi.c b/modules/codec/avcodec/vaapi.c
+index c9e51fe..28daa58 100644
+--- a/modules/codec/avcodec/vaapi.c
++++ b/modules/codec/avcodec/vaapi.c
+@@ -167,8 +167,9 @@ static int Get( vlc_va_t *va, picture_t *pic, uint8_t **data )
+     return VLC_SUCCESS;
+ }
+ 
+-static void Release( void *opaque )
++static void Release( void *opaque, uint8_t *data )
+ {
++    (void) data;
+     picture_t *pic = opaque;
+     VASurfaceID *surface = pic->context;
+     vlc_va_sys_t *sys = (void *)((((uintptr_t)surface)
+diff --git a/modules/codec/avcodec/vda.c b/modules/codec/avcodec/vda.c
+index f864797..5ee8e7e 100644
+--- a/modules/codec/avcodec/vda.c
++++ b/modules/codec/avcodec/vda.c
+@@ -166,9 +166,10 @@ static int Get( vlc_va_t *va, picture_t *p_picture, uint8_t **data )
+ }
+ 
+ // Never called
+-static void Release( void *opaque )
++static void Release( void *opaque, uint8_t *data )
+ {
+     VLC_UNUSED(opaque);
++    VLC_UNUSED(data);
+ }
+ 
+ static int Extract( vlc_va_t *va, picture_t *p_picture, uint8_t *data )
+diff --git a/modules/codec/avcodec/video.c b/modules/codec/avcodec/video.c
+index 19442d4..699e6b3 100644
+--- a/modules/codec/avcodec/video.c
++++ b/modules/codec/avcodec/video.c
+@@ -1106,8 +1106,9 @@ static void ffmpeg_InitCodec( decoder_t *p_dec )
+     }
+ }
+ 
+-static void lavc_ReleaseFrame(void *opaque)
++static void lavc_ReleaseFrame(void *opaque, uint8_t *data)
+ {
++    (void) data;
+     picture_t *picture = opaque;
+ 
+     picture_Release(picture);
+@@ -1129,14 +1130,14 @@ static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
+      * data[3] actually contains the format-specific surface handle. */
+     frame->data[3] = frame->data[0];
+ 
+-    void (*release)(void *) = va->release;
++    void (*release)(void *, uint8_t *) = va->release;
+     if (va->release == NULL)
+         release = lavc_ReleaseFrame;
+ 
+     frame->buf[0] = av_buffer_create(frame->data[0], 0, release, pic, 0);
+     if (unlikely(frame->buf[0] == NULL))
+     {
+-        release(pic);
++        release(pic, frame->data[0]);
+         return -1;
+     }
+ 
+-- 
+2.10.1.windows.1
+

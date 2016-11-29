@@ -1,0 +1,32 @@
+From 6524485564e378a67d619f6cd83c92b39cfab926 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Mon, 28 Nov 2016 20:12:36 +0100
+Subject: [PATCH 11/13] avcodec: va: assert sooner when the data are not right
+
+---
+ modules/codec/avcodec/video.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/modules/codec/avcodec/video.c b/modules/codec/avcodec/video.c
+index 699e6b3..0c70800 100644
+--- a/modules/codec/avcodec/video.c
++++ b/modules/codec/avcodec/video.c
+@@ -1126,6 +1126,7 @@ static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
+         picture_Release(pic);
+         return -1;
+     }
++    assert(frame->data[0] != NULL);
+     /* data[0] must be non-NULL for libavcodec internal checks.
+      * data[3] actually contains the format-specific surface handle. */
+     frame->data[3] = frame->data[0];
+@@ -1142,7 +1143,6 @@ static int lavc_va_GetFrame(struct AVCodecContext *ctx, AVFrame *frame,
+     }
+ 
+     frame->opaque = pic;
+-    assert(frame->data[0] != NULL);
+     return 0;
+ }
+ 
+-- 
+2.10.1.windows.1
+
