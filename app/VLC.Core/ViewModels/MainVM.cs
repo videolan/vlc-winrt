@@ -114,7 +114,7 @@ namespace VLC.ViewModels
             // - The current page
             Locator.NavigationService.ViewNavigated += (_, __) => NotifyCommandBarDisplayModeChanged();
             // And whether the media is a video or not
-            Locator.PlaybackService.Playback_MediaSet += (_) => NotifyCommandBarDisplayModeChanged();
+            Locator.PlaybackService.PlayingTypeChanged += (_) => NotifyCommandBarDisplayModeChanged();
         }
 
         private async void NotifyCommandBarDisplayModeChanged()

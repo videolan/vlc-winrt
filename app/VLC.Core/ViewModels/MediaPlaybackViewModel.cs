@@ -262,7 +262,7 @@ namespace VLC.ViewModels
             Locator.PlaybackService.OnPlaylistChanged += PlaylistService_OnPlaylistChanged;
             Locator.PlaybackService.OnPlaylistEndReached += OnPlaylistEndReached;
             Locator.PlaybackService.OnRepeatChanged += OnRepeatChanged;
-            Locator.PlaybackService.Playback_MediaParsed += OnMediaParsed;
+            Locator.PlaybackService.PlayingTypeChanged += OnPlayingTypeChanged;
         }
 
         private async void OnRepeatChanged(bool obj)
@@ -286,7 +286,7 @@ namespace VLC.ViewModels
             });
         }
 
-        private async void OnMediaParsed(ParsedStatus status)
+        private async void OnPlayingTypeChanged(PlayingType pType)
         {
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
             {
