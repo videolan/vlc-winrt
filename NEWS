@@ -1,3 +1,33 @@
+Changes between 2.1.2 and 2.1.3
+-------------------------------
+Release: November 29th 2016
+
+Bugfixes:
+* Fix a potential deadlock when dismissing a dialog
+* Fix camera roll appearing in the regular video collection
+* Fix systematic black screen after a full playback
+* Fix SD card discovery on Windows Mobile
+* Fix potential crash when switching between audio collection tabs
+* Fix potential thumbnailer deadlock
+* Fix media library re-indexing
+* Fix wrong thumbnail being displayed in SMTC
+* Fix potential crash when browsing folders
+* Fix potential deadlock when discovering media
+
+Application:
+* Use the correct swapchain resolution
+* Add support for encrypted password store
+* Improve dialog navigation on Xbox1
+* Various WM10 UI fixes
+* Add previous/next buttons for video playback
+* Fix duplicated network shares display
+* Various command bar improvements
+* Improve hardware decoding support
+* Allow audio items deletion
+
+Various:
+* Major playlist & playback code rewrite
+
 Changes between 2.1.1 and 2.1.2
 -------------------------------
 Release: 26 October 2016
