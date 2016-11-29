@@ -48,6 +48,7 @@ namespace VLC.Services.RunTime
         public event Playing Playback_MediaPlaying;
         public event Paused Playback_MediaPaused;
         public event Opening Playback_Opening;
+        public event Action<PlayingType> PlayingTypeChanged;
 
         public event Action OnPlaylistEndReached;
         public event Action OnPlaylistChanged;
@@ -147,7 +148,18 @@ namespace VLC.Services.RunTime
         }
 
 
-        public PlayingType PlayingType { get; set; }
+        private PlayingType _playingType;
+        public PlayingType PlayingType
+        {
+            get { return _playingType; }
+            set
+            {
+                if (_playingType == value)
+                    return;
+                _playingType = value;
+                PlayingTypeChanged?.Invoke(value);
+            }
+        }
 
         public MediaState PlayerState { get; private set; }
 
@@ -332,9 +344,6 @@ namespace VLC.Services.RunTime
 
                 CurrentMedia = new Media(Instance, mrl_fromType.Item2, mrl_fromType.Item1);
             }
-
-            // Default to audio playback, and switch to video when a video track is encountered
-            PlayingType = PlayingType.Music;
 
             // Hardware decoding
             CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
@@ -700,6 +709,9 @@ namespace VLC.Services.RunTime
 
         private void OnPlaying()
         {
+            // If no video tracks were detected so far, assume we're playing music
+            if (PlayingType == PlayingType.NotPlaying)
+                PlayingType = PlayingType.Music;
             PlayerStateChanged(this, MediaState.Playing);
         }
 
