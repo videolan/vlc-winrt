@@ -30,17 +30,10 @@ namespace VLC.UI.Views.MusicPages
 
         private async void MiniPlayerWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            this.SizeChanged += MiniPlayerWindow_SizeChanged;
             Initialize();
-            Responsive();
             AppViewHelper.ResizeWindow(false, 400, 80);
             await AppViewHelper.SetAppView(true);
             AppViewHelper.SetTitleBar(DraggableGrid);
-        }
-
-        private void MiniPlayerWindow_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Responsive();
         }
 
         async void Initialize()
@@ -179,10 +172,6 @@ namespace VLC.UI.Views.MusicPages
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
             Locator.MediaPlaybackViewModel.PlayNextCommand.Execute(null);
-        }
-
-        void Responsive()
-        {
         }
 
         private void ListViewBase_OnItemClick(object sender, ItemClickEventArgs e)
