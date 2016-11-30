@@ -55,8 +55,4 @@
                        TextAlignment="Center" />
         </Grid>
     </DataTemplate>
-
-    <DataTemplate x:Key="PivotHeaderDataTemplate">
-        <userControls:PivotHeaderControl Panel="{Binding}"/>
-    </DataTemplate>
 </ResourceDictionary>

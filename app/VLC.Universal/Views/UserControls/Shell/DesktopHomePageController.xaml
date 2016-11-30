@@ -9,7 +9,6 @@
 
     <Pivot x:Name="Pivot"
         ItemsSource="{Binding Panels}"
-        HeaderTemplate="{StaticResource PivotHeaderDataTemplate}"
         SelectedItem="{Binding CurrentPanel, Mode=TwoWay}"
         Style="{StaticResource TitlelessPivot}"
         Background="{ThemeResource TranslucentMainColor}">
@@ -34,5 +33,10 @@
                 <controls:HomePageController Tag="Pivot" />
             </DataTemplate>
         </Pivot.ItemTemplate>
+        <Pivot.HeaderTemplate>
+            <DataTemplate>
+                <controls:PivotHeaderControl Panel="{Binding}"/>
+            </DataTemplate>
+        </Pivot.HeaderTemplate>
     </Pivot>
 </UserControl>
