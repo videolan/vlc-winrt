@@ -1,7 +1,7 @@
 From 4053f2f5bb189a2fa1e38df535e14507087d194b Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Tue, 29 Nov 2016 08:33:28 +0100
-Subject: [PATCH 13/13] avcodec: va: get the picture to send to the vout during
+Subject: [PATCH 13/14] avcodec: va: get the picture to send to the vout during
  Extract() not Get()
 
 In some cases the decoder pool is stuck on picture_pool_Wait() because the va

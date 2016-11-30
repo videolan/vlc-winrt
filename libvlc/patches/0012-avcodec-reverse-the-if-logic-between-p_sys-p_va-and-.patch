@@ -1,7 +1,7 @@
 From 162f4e60606cadf104ec0d4f76cd9be8b74881a8 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Tue, 29 Nov 2016 09:00:17 +0100
-Subject: [PATCH 12/13] avcodec: reverse the if() logic between p_sys->p_va and
+Subject: [PATCH 12/14] avcodec: reverse the if() logic between p_sys->p_va and
  p_pic NULL testing
 
 That will allow a different meaning for frame->opaque when va is used.

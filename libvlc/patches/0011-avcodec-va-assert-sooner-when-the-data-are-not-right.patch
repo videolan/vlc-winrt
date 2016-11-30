@@ -1,7 +1,7 @@
 From 6524485564e378a67d619f6cd83c92b39cfab926 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 28 Nov 2016 20:12:36 +0100
-Subject: [PATCH 11/13] avcodec: va: assert sooner when the data are not right
+Subject: [PATCH 11/14] avcodec: va: assert sooner when the data are not right
 
 ---
  modules/codec/avcodec/video.c | 2 +-

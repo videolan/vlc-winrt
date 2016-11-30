@@ -1,7 +1,7 @@
 From 986de7ea04599a5b0fd0541d0ddf2ecdb630528c Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 28 Nov 2016 19:58:42 +0100
-Subject: [PATCH 10/13] avcodec: va: respect the buffer release prototype
+Subject: [PATCH 10/14] avcodec: va: respect the buffer release prototype
 
 It has always have an extra uint8_t pointer.
 
