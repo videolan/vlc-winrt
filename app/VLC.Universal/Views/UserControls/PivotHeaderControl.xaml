@@ -7,130 +7,37 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-    <Grid x:Name="RootGrid"
-          VerticalAlignment="Stretch"
-          HorizontalAlignment="Center">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="6" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <StackPanel x:Name="RootGrid"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Normal">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
-                                                       Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="17" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
-                                                       Storyboard.TargetProperty="Margin">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="0,0,12,0" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
-                                                       Storyboard.TargetProperty="Margin">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
-                                                       Storyboard.TargetProperty="TextAlignment">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Left" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1000"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Title.FontSize" Value="17" />
+                    </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="HalfSnap">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
-                                                       Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="16" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
-                                                       Storyboard.TargetProperty="Margin">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="0,0,12,0" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
-                                                       Storyboard.TargetProperty="Margin">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
-                                                       Storyboard.TargetProperty="TextAlignment">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Left" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Snap">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
-                                                       Storyboard.TargetProperty="(Grid.Row)">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="1" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
-                                                       Storyboard.TargetProperty="(Grid.Column)">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
-                                                       Storyboard.TargetProperty="(Grid.Row)">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
-                                                       Storyboard.TargetProperty="FontSize">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="16" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
-                                                       Storyboard.TargetProperty="Margin">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
-                                                       Storyboard.TargetProperty="VerticalAlignment">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Bottom" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
-                                                       Storyboard.TargetProperty="Margin">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="0,0,0,-3" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
-                                                       Storyboard.TargetProperty="TextAlignment">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Center" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Title.FontSize" Value="16" />
+                    </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <FontIcon x:Name="Icon"
                   FontFamily="{StaticResource VLCFont}"
                   FontSize="21"
-                  VerticalAlignment="Center" />
+                  VerticalAlignment="Center"
+                  Margin="0,0,6,0" />
         <TextBlock x:Name="Title"
-                   Grid.Column="2"
                    VerticalAlignment="Center"
                    FontWeight="Light" />
-    </Grid>
+    </StackPanel>
 </UserControl>

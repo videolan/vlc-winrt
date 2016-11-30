@@ -12,8 +12,6 @@ namespace VLC.UI.Views.UserControls
         {
             this.InitializeComponent();
             this.Loaded += PivotHeaderControl_Loaded;
-            Responsive();
-            Window.Current.SizeChanged += Current_SizeChanged;
         }
         
 
@@ -70,23 +68,6 @@ namespace VLC.UI.Views.UserControls
             {
                 Icon.Glyph = Panel.DefaultIcon;
             }
-        }
-
-        void Responsive()
-        {
-            if (Window.Current.Bounds.Width < 1000)
-            {
-                VisualStateUtilities.GoToState(this, nameof(HalfSnap), false);
-            }
-            else
-            {
-                VisualStateUtilities.GoToState(this, nameof(Normal), false);
-            }
-        }
-
-        private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
-        {
-            Responsive();
         }
     }
 }
