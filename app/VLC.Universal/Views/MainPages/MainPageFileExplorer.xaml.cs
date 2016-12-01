@@ -17,8 +17,6 @@ namespace VLC.UI.Views.MainPages
 {
     public sealed partial class MainPageFileExplorer : Page
     {
-        private ListViewItem focussedListViewItem;
-
         public MainPageFileExplorer()
         {
             this.InitializeComponent();
@@ -27,35 +25,7 @@ namespace VLC.UI.Views.MainPages
 
         private async void MainPageFileExplorer_Loaded(object sender, RoutedEventArgs e)
         {
-            Responsive();
-            this.SizeChanged += OnSizeChanged;
-            this.Unloaded += OnUnloaded;
             await Locator.FileExplorerVM.OnNavigatedTo();
-        }
-        
-        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
-        {
-            Responsive();
-        }
-
-        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
-        {
-            this.SizeChanged -= OnSizeChanged;
-        }
-
-        private void Responsive()
-        {
-            if (Window.Current.Bounds.Width < 600)
-            {
-                if (Window.Current.Bounds.Width < 550)
-                {
-                    OpenFileButton.IsCompact = GoBackButton.IsCompact = true;
-                }
-            }
-            else
-            {
-                OpenFileButton.IsCompact = GoBackButton.IsCompact = false;
-            }
         }
     }
 }
