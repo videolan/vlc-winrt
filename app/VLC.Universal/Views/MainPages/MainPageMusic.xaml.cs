@@ -27,33 +27,11 @@ namespace VLC.UI.Views.MainPages
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-
-            Responsive(Window.Current.Bounds.Width);
-            Window.Current.SizeChanged += Current_SizeChanged;
-        }
-
         protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
 
             await Locator.MusicLibraryVM.OnNavigatedFrom();
-            Window.Current.SizeChanged -= Current_SizeChanged;
-        }
-
-        void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
-        {
-            Responsive(e.Size.Width);
-        }
-
-        void Responsive(double width)
-        {
-            if (width <= 600)
-                VisualStateUtilities.GoToState(this, "Narrow", false);
-            else
-                VisualStateUtilities.GoToState(this, "Wide", false);
         }
 
         private async void MusicPanesFrame_OnLoaded(object sender, RoutedEventArgs e)
