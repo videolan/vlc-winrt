@@ -39,6 +39,7 @@ namespace libVLCX {
         DirectXManager();
         void CreateSwapPanel(SwapChainPanel^ panel);
         void Trim();
+        void UpdateScale(float scaleX, float scaleY);
     private:
         void CheckDXOperation(HRESULT hr, Platform::String^ message);
         ComPtr<IDXGIDevice3>        cp_dxgiDev3;

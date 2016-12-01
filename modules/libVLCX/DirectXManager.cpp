@@ -127,9 +127,14 @@ void DirectXManager::CreateSwapPanel(SwapChainPanel^ panel){
 
     hr = cp_swapChain.As(&cp_swapChain2);
     CheckDXOperation(hr, "Failed to get IDXGISwapChain2 from IDXGISwapChain1");
+    UpdateScale(panel->CompositionScaleX, panel->CompositionScaleY);
+}
+
+void DirectXManager::UpdateScale(float scaleX, float scaleY)
+{
     DXGI_MATRIX_3X2_F inverseScale = { 0 };
-    inverseScale._11 = 1.0f / panel->CompositionScaleX;
-    inverseScale._22 = 1.0f / panel->CompositionScaleY;
+    inverseScale._11 = 1.0f / scaleX;
+    inverseScale._22 = 1.0f / scaleY;
     cp_swapChain2->SetMatrixTransform(&inverseScale);
 }
 

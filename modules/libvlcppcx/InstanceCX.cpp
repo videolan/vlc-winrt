@@ -78,6 +78,11 @@ namespace libVLCX
         m_dxManager->cp_swapChain->SetPrivateData(SWAPCHAIN_HEIGHT, sizeof(uint32_t), &m_height);
     }
 
+    void Instance::UpdateScale(float x, float y)
+    {
+        m_dxManager->UpdateScale(x, y);
+    }
+
     int Instance::addIntf(Platform::String^ name)
     {
         return m_instance.addIntf(VLCString(name));

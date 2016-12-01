@@ -104,6 +104,7 @@ namespace VLC.Services.RunTime
                 // So far, this NEEDS to be called from the main thread
                 try
                 {
+                    App.RootPage.SwapChainPanel.CompositionScaleChanged += SwapChainPanel_CompositionScaleChanged;
                     Instance = new Instance(param, App.RootPage.SwapChainPanel);
                     Instance?.setDialogHandlers(
                         async (title, text) => await _dialogService.ShowErrorDialog(title, text),
@@ -125,6 +126,11 @@ namespace VLC.Services.RunTime
                     ToastHelper.Basic(Strings.FailStartVLCEngine);
                 }
             });
+        }
+
+        private void SwapChainPanel_CompositionScaleChanged(Windows.UI.Xaml.Controls.SwapChainPanel sender, object args)
+        {
+            Instance.UpdateScale(sender.CompositionScaleX, sender.CompositionScaleY);
         }
 
         private async void onDefaultAudioRenderDeviceChanged(object sender, DefaultAudioRenderDeviceChangedEventArgs args)
