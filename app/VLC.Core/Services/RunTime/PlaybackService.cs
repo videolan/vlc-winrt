@@ -105,6 +105,7 @@ namespace VLC.Services.RunTime
                 try
                 {
                     App.RootPage.SwapChainPanel.CompositionScaleChanged += SwapChainPanel_CompositionScaleChanged;
+                    App.RootPage.SwapChainPanel.SizeChanged += SwapChainPanel_SizeChanged;
                     Instance = new Instance(param, App.RootPage.SwapChainPanel);
                     Instance?.setDialogHandlers(
                         async (title, text) => await _dialogService.ShowErrorDialog(title, text),
@@ -126,6 +127,11 @@ namespace VLC.Services.RunTime
                     ToastHelper.Basic(Strings.FailStartVLCEngine);
                 }
             });
+        }
+
+        private void SwapChainPanel_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
+        {
+            Instance.UpdateSize((float)e.NewSize.Width, (float)e.NewSize.Height);
         }
 
         private void SwapChainPanel_CompositionScaleChanged(Windows.UI.Xaml.Controls.SwapChainPanel sender, object args)
@@ -621,11 +627,6 @@ namespace VLC.Services.RunTime
         public void Play()
         {
             _mediaPlayer?.play();
-        }
-
-        public void SetSizeVideoPlayer(uint x, uint y)
-        {
-            Instance?.UpdateSize(x, y);
         }
 
         public void SetEqualizer(VLCEqualizer vlcEq)

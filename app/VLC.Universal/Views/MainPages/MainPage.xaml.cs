@@ -145,15 +145,6 @@ namespace VLC.UI.Views.MainPages
                     return;
             }
 
-            var scp = App.RootPage.SwapChainPanel;
-            Locator.MediaPlaybackViewModel.PlaybackService.SetSizeVideoPlayer(
-                (uint)Math.Ceiling(scp.ActualWidth * scp.CompositionScaleX), 
-                (uint)Math.Ceiling(scp.ActualHeight * scp.CompositionScaleY));
-            Locator.VideoPlayerVm.ChangeSurfaceZoom(Locator.VideoPlayerVm.CurrentSurfaceZoom);
-
-
-            Debug.WriteLine($"swapWidth {SwapChainPanel.ActualWidth} -- winWidth {Window.Current.Bounds.Width}");
-            
             // Position Animation
             var posAnimation = _compositor.CreateVector3KeyFrameAnimation();
             if (_pipEnabled)
