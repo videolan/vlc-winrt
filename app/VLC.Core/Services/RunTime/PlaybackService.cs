@@ -94,7 +94,6 @@ namespace VLC.Services.RunTime
                     "--verbose=3",
                     "--no-stats",
                     "--avcodec-fast",
-                    string.Format("--freetype-font={0}\\NotoSans-Regular.ttf",Windows.ApplicationModel.Package.Current.InstalledLocation.Path),
                     "--subsdec-encoding",
                     Locator.SettingsVM.SubtitleEncodingValue == "System" ? "" : Locator.SettingsVM.SubtitleEncodingValue,
                     "--aout=winstore",

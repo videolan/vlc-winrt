@@ -309,7 +309,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="$(MSBuildThisFileDirectory)NotoSans-Regular.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\DeezerApplats_RVB_Noir.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\circle-fab.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\circleShadow.png" />
