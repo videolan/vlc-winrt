@@ -21,16 +21,6 @@ namespace VLC.UI.Views.UserControls.Shell
 
         private void Responsive()
         {
-            if (Window.Current.Bounds.Width < 850)
-            {
-                VLCIcon.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                VLCIcon.Visibility = Visibility.Visible;
-            }
-
-
             if (AppViewHelper.TitleBarRightOffset == 0)
                 return;
 
