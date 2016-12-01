@@ -1,4 +1,4 @@
-Changes between 2.1.2 and 2.1.3
+Changes between 2.1.2 and 2.2.0
 -------------------------------
 Release: November 29th 2016
 
@@ -24,6 +24,7 @@ Application:
 * Various command bar improvements
 * Improve hardware decoding support
 * Allow audio items deletion
+* New subtitle rendering engine with font fallback
 
 Various:
 * Major playlist & playback code rewrite
