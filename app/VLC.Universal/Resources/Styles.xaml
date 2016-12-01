@@ -4210,21 +4210,15 @@
                             <VisualStateGroup x:Name="NavigationButtonsVisibility">
                                 <VisualState x:Name="NavigationButtonsHidden" />
                                 <VisualState x:Name="NavigationButtonsVisible">
+                                    <VisualState.Setters>
+                                        <Setter Target="Previous.Visibility" Value="Visible"/>
+                                        <Setter Target="NextButton.Visibility" Value="Visible"/>
+                                    </VisualState.Setters>
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextButton"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="1" />
-                                        </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextButton"
                                                                        Storyboard.TargetProperty="IsEnabled">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="True" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousButton"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="1" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousButton"
                                                                        Storyboard.TargetProperty="IsEnabled">
@@ -4329,7 +4323,7 @@
                                             IsEnabled="False"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
-                                            Opacity="0"
+                                            Visibility="Collapsed"
                                             Background="Transparent" />
                                     <Button x:Name="NextButton"
                                             Grid.Row="0"
@@ -4343,7 +4337,7 @@
                                             IsEnabled="False"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Top"
-                                            Opacity="0"
+                                            Visibility="Collapsed"
                                             Background="Transparent" />
                                     <ItemsPresenter x:Name="PivotItemPresenter"
                                                     Grid.Row="1"
