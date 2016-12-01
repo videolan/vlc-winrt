@@ -35,9 +35,11 @@
                   FontFamily="{StaticResource VLCFont}"
                   FontSize="21"
                   VerticalAlignment="Center"
-                  Margin="0,0,6,0" />
+                  Margin="0,0,6,0"
+                  Foreground="{ThemeResource ApplicationPageBackgroundThemeColor}" />
         <TextBlock x:Name="Title"
                    VerticalAlignment="Center"
-                   FontWeight="Light" />
+                   FontWeight="Light"
+                   Foreground="{ThemeResource ApplicationPageBackgroundThemeColor}"/>
     </StackPanel>
 </UserControl>
