@@ -63,20 +63,6 @@ namespace VLC.UI.Views.VideoPages
 
         void Responsive()
         {
-            var width = Window.Current.Bounds.Width;
-            if (width < 800)
-            {
-                VisualStateManager.GoToState(this, nameof(Narrow), false);
-            }
-            else if (width < 1050)
-            {
-                VisualStateManager.GoToState(this, nameof(Medium), false);
-            }
-            else
-            {
-                VisualStateManager.GoToState(this, nameof(Full), false);
-            }
-
             if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Tablet && AppViewHelper.GetFullscreen() == false)
             {
                 VisualStateManager.GoToState(this, nameof(WindowState), false);
