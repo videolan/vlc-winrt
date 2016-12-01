@@ -130,12 +130,15 @@ namespace VLC.Services.RunTime
 
         private void SwapChainPanel_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
         {
-            Instance.UpdateSize((float)e.NewSize.Width, (float)e.NewSize.Height);
+            Instance.UpdateSize((float)e.NewSize.Width * App.RootPage.SwapChainPanel.CompositionScaleX, 
+                (float)e.NewSize.Height * App.RootPage.SwapChainPanel.CompositionScaleY);
         }
 
         private void SwapChainPanel_CompositionScaleChanged(Windows.UI.Xaml.Controls.SwapChainPanel sender, object args)
         {
             Instance.UpdateScale(sender.CompositionScaleX, sender.CompositionScaleY);
+            Instance.UpdateSize((float)sender.ActualWidth * sender.CompositionScaleX,
+                (float)sender.ActualHeight * sender.CompositionScaleY);
         }
 
         private async void onDefaultAudioRenderDeviceChanged(object sender, DefaultAudioRenderDeviceChangedEventArgs args)
