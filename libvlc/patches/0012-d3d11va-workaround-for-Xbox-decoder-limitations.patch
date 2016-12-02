@@ -1,17 +1,17 @@
-From a7510a18b6eec462220f243582c98f8d73e87fe0 Mon Sep 17 00:00:00 2001
+From 69c106f2d0cb5e4dc795718199f948bf7a2c5232 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <slhomme@matroska.org>
 Date: Wed, 30 Nov 2016 16:34:18 +0100
-Subject: [PATCH 14/14] d3d11va: workaround for Xbox decoder limitations
+Subject: [PATCH 12/15] d3d11va: workaround for Xbox decoder limitations
 
 ---
  modules/codec/avcodec/d3d11va.c | 40 ++++++++++++++++++++++++++++++++++++++++
  1 file changed, 40 insertions(+)
 
 diff --git a/modules/codec/avcodec/d3d11va.c b/modules/codec/avcodec/d3d11va.c
-index 3ad6884..8980a81 100644
+index bdd5605..bcccea5 100644
 --- a/modules/codec/avcodec/d3d11va.c
 +++ b/modules/codec/avcodec/d3d11va.c
-@@ -947,6 +947,35 @@ static int DxSetupOutput(vlc_va_t *va, const GUID *input, const video_format_t *
+@@ -987,6 +987,35 @@ static int DxSetupOutput(vlc_va_t *va, const GUID *input, const video_format_t *
      return VLC_EGENERIC;
  }
  
@@ -47,7 +47,7 @@ index 3ad6884..8980a81 100644
  /**
   * It creates a Direct3D11 decoder using the given video format
   */
-@@ -963,6 +992,17 @@ static int DxCreateDecoderSurfaces(vlc_va_t *va, int codec_id, const video_forma
+@@ -1003,6 +1032,17 @@ static int DxCreateDecoderSurfaces(vlc_va_t *va, int codec_id, const video_forma
          ID3D10Multithread_Release(pMultithread);
      }
  

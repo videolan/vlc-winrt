@@ -1,22 +1,27 @@
-From 9c39337727048a1f7a0c87966740243582ec1a57 Mon Sep 17 00:00:00 2001
+From 36764508f6faa7441179b31407e2502262b3064d Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Feb 2015 11:58:54 +0100
-Subject: [PATCH 01/14] wasapi: Don't fail if the client is already initialized
+Subject: [PATCH 01/15] wasapi: Don't fail if the client is already initialized
 
+make the extra test only for Winstore builds
 ---
- modules/audio_output/wasapi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ modules/audio_output/wasapi.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/modules/audio_output/wasapi.c b/modules/audio_output/wasapi.c
-index 4ad4ac2..40b5adb 100644
+index 1ed39b5..67a81b4 100644
 --- a/modules/audio_output/wasapi.c
 +++ b/modules/audio_output/wasapi.c
-@@ -532,7 +532,7 @@ static HRESULT Start(aout_stream_t *s, audio_sample_format_t *restrict pfmt,
+@@ -532,7 +532,11 @@ static HRESULT Start(aout_stream_t *s, audio_sample_format_t *restrict pfmt,
      hr = IAudioClient_Initialize(sys->client, shared_mode, 0, buffer_duration,
                                   0, pwf, sid);
      CoTaskMemFree(pwf_closest);
 -    if (FAILED(hr))
-+    if (FAILED(hr) && hr != AUDCLNT_E_ALREADY_INITIALIZED)
++    if (FAILED(hr)
++#if VLC_WINSTORE_APP
++        && hr != AUDCLNT_E_ALREADY_INITIALIZED
++#endif
++        )
      {
          msg_Err(s, "cannot initialize audio client (error 0x%lx)", hr);
          goto error;

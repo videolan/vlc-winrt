@@ -1,7 +1,7 @@
-From b194316cf2f38e25d87bad7f77b1111cd959ce43 Mon Sep 17 00:00:00 2001
+From e169d9997f03c7a2786e582db9d15c9971ce15be Mon Sep 17 00:00:00 2001
 From: Salah-Eddin Shaban <salah@videolan.org>
 Date: Wed, 23 Nov 2016 19:30:28 +0200
-Subject: [PATCH] FreeType: Font fallback using DirectWrite
+Subject: [PATCH 13/15] FreeType: Font fallback using DirectWrite
 
 ---
  modules/text_renderer/Makefile.am               |  10 +-
@@ -862,5 +862,5 @@ index a8c8610..14cf7f1 100644
  
  /* FontConfig */
 -- 
-2.10.2
+2.10.1.windows.1
 
