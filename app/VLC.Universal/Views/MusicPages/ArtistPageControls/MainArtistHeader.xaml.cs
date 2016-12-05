@@ -22,10 +22,6 @@ namespace VLC.UI.Views.MusicPages.ArtistPageControls
         
         private async void MainArtistHeader_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Unloaded += MainArtistHeader_Unloaded;
-            Window.Current.SizeChanged += Current_SizeChanged;
-            Responsive();
-
             Locator.MusicLibraryVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
 
             if (!await UpdateThumbnail())
@@ -79,39 +75,6 @@ namespace VLC.UI.Views.MusicPages.ArtistPageControls
                 await UpdateThumbnail();
             else if (e.PropertyName == nameof(ArtistItem.ArtistImage))
                 await UpdateBackground();
-        }
-
-        private void MainArtistHeader_Unloaded(object sender, RoutedEventArgs e)
-        {
-            Window.Current.SizeChanged -= Current_SizeChanged;
-        }
-
-        private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
-        {
-            Responsive();
-        }
-
-        void Responsive()
-        {
-            BackgroundEffect.StartAnimation();
-            if (Window.Current.Bounds.Width < 650)
-            {
-                VisualStateUtilities.GoToState(this, "Snap", false);
-            }
-            else
-            {
-                VisualStateUtilities.GoToState(this, "Wide", false);
-            }
-
-            if (Window.Current.Bounds.Height < 600)
-            {
-                //HeaderGrid.Height = 100;
-                VisualStateUtilities.GoToState(this, "Tiny", false);
-            }
-            else
-            {
-                VisualStateUtilities.GoToState(this, "Tall", false);
-            }
         }
     }
 }
