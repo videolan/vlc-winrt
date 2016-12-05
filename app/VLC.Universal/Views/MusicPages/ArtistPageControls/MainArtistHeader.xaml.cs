@@ -37,6 +37,8 @@ namespace VLC.UI.Views.MusicPages.ArtistPageControls
 
         async Task<bool> UpdateThumbnail()
         {
+            if (Locator.MusicLibraryVM.CurrentArtist == null)
+                return true;
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
             {
                 EllipseImage.Fill = new ImageBrush()
@@ -50,6 +52,8 @@ namespace VLC.UI.Views.MusicPages.ArtistPageControls
 
         async Task<bool> UpdateBackground()
         {
+            if (Locator.MusicLibraryVM.CurrentArtist == null)
+                return true;
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => BackgroundImage.Source = Locator.MusicLibraryVM.CurrentArtist.ArtistImage);
             return true;
         }

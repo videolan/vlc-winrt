@@ -175,7 +175,24 @@
                 </VisualState>
                 <VisualState x:Name="Tiny">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
+                        <statetriggers:AdaptativeAndValuesStateTrigger MinWindowWidth="0"
+                                        StateValue="{Binding DisplayArtistAlbumsPaneInArtistsView}" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ArtistsGrid.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="ArtistsGridColumnDefinition.Width"
+                                Value="0" />
+                        <Setter Target="ArtistGridColumnDefinition.Width"
+                                Value="*" />
+                        <Setter Target="ArtistInfoGrid.Visibility"
+                                Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NoArtistSelected">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
@@ -185,6 +202,8 @@
                                 Value="*" />
                         <Setter Target="ArtistGridColumnDefinition.Width"
                                 Value="0" />
+                        <Setter Target="ArtistInfoGrid.Visibility"
+                                Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
