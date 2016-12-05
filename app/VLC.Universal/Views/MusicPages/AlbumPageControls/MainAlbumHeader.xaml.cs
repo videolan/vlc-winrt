@@ -16,20 +16,9 @@ namespace VLC.UI.Views.MusicPages.AlbumPageControls
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
-            this.SizeChanged += OnSizeChanged;
-            this.Unloaded += OnUnloaded;
             PlayAlbum.Focus(FocusState.Keyboard);
         }
         
-        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
-        {
-        }
-
-        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
-        {
-            this.SizeChanged -= OnSizeChanged;
-        }
-
         private void ViewArtistButton_Click(object sender, RoutedEventArgs e)
         {
             Locator.NavigationService.GoBack_HideFlyout();
