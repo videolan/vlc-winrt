@@ -13,46 +13,11 @@ namespace VLC.UI.Views.MainPages.MusicPanes
 {
     public sealed partial class SongCollectionBase : Page
     {
-        private bool isWide;
         private ListViewItem focussedListViewItem;
 
         public SongCollectionBase()
         {
             this.InitializeComponent();
-        }
-
-        private void Collection_Loaded(object sender, RoutedEventArgs e)
-        {
-            Window.Current.SizeChanged += Current_SizeChanged;
-            this.Unloaded += OnUnloaded;
-            Responsive();
-        }
-
-        void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
-        {
-            Responsive();
-        }
-
-
-        void Responsive()
-        {
-            if (Window.Current.Bounds.Width > 500)
-            {
-                if (isWide) return;
-                isWide = true;
-                VisualStateUtilities.GoToState(this, "Wide", false);
-            }
-            else
-            {
-                if (!isWide) return;
-                isWide = false;
-                VisualStateUtilities.GoToState(this, "Narrow", false);
-            }
-        }
-
-        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
-        {
-            Window.Current.SizeChanged -= Current_SizeChanged;
         }
 
         private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
