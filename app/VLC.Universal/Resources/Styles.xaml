@@ -2989,6 +2989,10 @@
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="SemiBold" />
                                         </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="FocusVisual"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="0:0:0"
+                                                         To="1" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="PointerOverSelected">
