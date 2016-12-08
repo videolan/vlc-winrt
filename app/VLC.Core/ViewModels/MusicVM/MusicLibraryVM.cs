@@ -648,5 +648,10 @@ namespace VLC.ViewModels.MusicVM
             catch { }
         }
         #endregion
+        public void GoBack()
+        {
+            if (_musicView == MusicView.Artists)
+                Locator.MusicLibraryVM.ResetCurrentArtistAndAlbumCommand.Execute(null);
+        }
     }
 }

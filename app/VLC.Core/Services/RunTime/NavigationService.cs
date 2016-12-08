@@ -127,8 +127,10 @@ namespace VLC.Services.RunTime
                 case VLCPage.MainPageXBOX:
                     GoBack_HideFlyout();
                     break;
-                case VLCPage.MainPageVideo:
                 case VLCPage.MainPageMusic:
+                    Locator.MusicLibraryVM.GoBack();
+                    break;
+                case VLCPage.MainPageVideo:
                 case VLCPage.MainPageNetwork:
                     if (Locator.SettingsVM.MediaCenterMode)
                     {
