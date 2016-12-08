@@ -198,12 +198,8 @@ namespace VLC.Model.Library
             trackCollectionRepository.Drop();
             tracklistItemRepository.Drop();
             musicDatabase.Drop();
-            musicDatabase.Drop();
-            musicDatabase.Drop();
             trackCollectionRepository.Initialize();
             tracklistItemRepository.Initialize();
-            musicDatabase.Initialize();
-            musicDatabase.Initialize();
             musicDatabase.Initialize();
 
             videoDatabase.Drop();
