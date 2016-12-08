@@ -1,6 +1,19 @@
+Changes between 2.2.0 and 2.2.1
+-------------------------------
+Release: December 8th 2016
+
+Bugfixes:
+* Fix resume where you left off
+* Fix black bars behind subtitles
+* Attempt at fixing a crash when updating the application
+
+Application:
+* Fix album page layout on phones
+* Allow artist album listing to be closed on small screens
+
 Changes between 2.1.2 and 2.2.0
 -------------------------------
-Release: November 29th 2016
+Release: December 6th 2016
 
 Bugfixes:
 * Fix a potential deadlock when dismissing a dialog
