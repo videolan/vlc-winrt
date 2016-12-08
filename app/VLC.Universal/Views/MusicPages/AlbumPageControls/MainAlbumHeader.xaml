@@ -42,7 +42,7 @@
         <Image Grid.Column="0"
                Grid.RowSpan="3"
                Source="{Binding AlbumImage}"
-               Stretch="UniformToFill" />
+               Stretch="Uniform" />
 
         <toolkitControls:HeaderedTextBlock Grid.Column="2"
                                            Grid.Row="0"
