@@ -20,8 +20,8 @@ namespace VLC.Services.RunTime
         public event Action<bool> OnRepeatChanged;
         // Parameters: The new current media, a boolean indicating if the playback should start automatically
         public event Action<IMediaItem, bool> OnCurrentMediaChanged;
-        public BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
-        public ObservableCollection<IMediaItem> _playlist;
+        private BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
+        private ObservableCollection<IMediaItem> _playlist;
 
         public ObservableCollection<IMediaItem> Playlist
         {
