@@ -14,7 +14,17 @@ namespace VLC.Database
 
         public BackgroundTrackDatabase()
         {
-            Initialize();
+            try
+            {
+                Initialize();
+            }
+            catch
+            {
+                // There seems to be a problem causing the application to crash when trying to migrate the tables.
+                // If such a case happen, try to drop and recreate the table, cross your fingers, and hope for the best
+                Drop();
+                Initialize();
+            }
         }
 
         public void Initialize()
