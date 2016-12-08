@@ -275,6 +275,34 @@ namespace VLC.Services.RunTime
 
         #region Playback methods
 
+        private async Task<float> FetchPreviousPosition(IMediaItem media)
+        {
+            var video = media as VideoItem;
+
+            if (video == null)
+                return 0;
+            var roamFile = await ApplicationData.Current.RoamingFolder.TryGetItemAsync("roamVideo.txt");
+            if (roamFile != null)
+            {
+                var roamVideos = await FileIO.ReadLinesAsync(roamFile as StorageFile);
+                if (roamVideos.Any())
+                {
+                    if (roamVideos[0] == media.Name)
+                    {
+                        int leftTime = 0;
+                        if (int.TryParse(roamVideos[1], out leftTime))
+                        {
+                            video.TimeWatchedSeconds = leftTime;
+                        }
+                    }
+                }
+            }
+
+            TileHelper.UpdateVideoTile();
+            // VLC expects a start-time in seconds
+            return (float)video.TimeWatched.TotalMilliseconds / 1000.0f;
+        }
+
         private async Task SetMedia(IMediaItem media)
         {
             if (media == null)
@@ -303,35 +331,6 @@ namespace VLC.Services.RunTime
             CurrentPlaybackMedia = media;
             var mem = _mediaPlayer.media().eventManager();
             mem.OnParsedChanged += OnParsedStatus;
-
-            if (media is VideoItem)
-            {
-                var video = (VideoItem)media;
-
-                var roamFile = await ApplicationData.Current.RoamingFolder.TryGetItemAsync("roamVideo.txt");
-                if (roamFile != null)
-                {
-                    var roamVideos = await FileIO.ReadLinesAsync(roamFile as StorageFile);
-                    if (roamVideos.Any())
-                    {
-                        if (roamVideos[0] == media.Name)
-                        {
-                            int leftTime = 0;
-                            if (int.TryParse(roamVideos[1], out leftTime))
-                            {
-                                video.TimeWatchedSeconds = leftTime;
-                            }
-                        }
-                    }
-                }
-
-                if (video.TimeWatched != TimeSpan.FromSeconds(0))
-                {
-                    Time = (long)video.TimeWatched.TotalMilliseconds;
-                }
-
-                TileHelper.UpdateVideoTile();
-            }
         }
 
         private async Task SetMediaFile(IMediaItem media)
@@ -362,6 +361,8 @@ namespace VLC.Services.RunTime
             // Hardware decoding
             CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
             CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-threads=0" : ":avcodec-threads=1");
+            var pos = await FetchPreviousPosition(media);
+            CurrentMedia.addOption($":start-time={pos}");
 
             if (_mediaPlayer == null)
             {
