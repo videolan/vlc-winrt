@@ -131,6 +131,17 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <local:MainArtistHeader x:Name="MainArtistHeader" />
+            <AppBarButton x:Name="GoBackButton"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Command="{Binding ResetCurrentArtistAndAlbumCommand}"
+                          Margin="0,0,6,0"
+                          VerticalAlignment="Top"
+                          Foreground="LightGray">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                              FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
             <Pivot Grid.Row="1">
                 <PivotItem Header="{Binding Source={StaticResource Strings}, Path=Albums}">
                     <local:ArtistAlbumsSemanticView />
@@ -156,6 +167,8 @@
                                 Value="Visible" />
                         <Setter Target="ArtistsGridColumnDefinition.Width"
                                 Value="1.9*" />
+                        <Setter Target="GoBackButton.Visibility"
+                                Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Medium">
@@ -171,6 +184,8 @@
                                 Value="Visible" />
                         <Setter Target="ArtistsGridColumnDefinition.Width"
                                 Value="2.5*" />
+                        <Setter Target="GoBackButton.Visibility"
+                                Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Tiny">
@@ -188,13 +203,14 @@
                                 Value="*" />
                         <Setter Target="ArtistInfoGrid.Visibility"
                                 Value="Visible" />
+                        <Setter Target="GoBackButton.Visibility"
+                                Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NoArtistSelected">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
-
                     <VisualState.Setters>
                         <Setter Target="ArtistsGrid.Visibility"
                                 Value="Visible" />
@@ -203,6 +219,8 @@
                         <Setter Target="ArtistGridColumnDefinition.Width"
                                 Value="0" />
                         <Setter Target="ArtistInfoGrid.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="GoBackButton.Visibility"
                                 Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
