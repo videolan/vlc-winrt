@@ -2030,7 +2030,19 @@ namespace SQLite
             {
                 // This is a big assumption, but for now support ints only as key, otherwise we still
                 // have to pay the price for boxing
-                EnumValues = Enum.GetValues(type).Cast<int>().ToDictionary(x => x, x => x.ToString());
+                var values = Enum.GetValues(type).Cast<int>();
+                EnumValues = new Dictionary<int, string>();
+                foreach (var v in values)
+                {
+                    try
+                    {
+                        EnumValues.Add(v, v.ToString());
+                    }
+                    catch (ArgumentException)
+                    {
+                        // Ignore duplicated element.
+                    }
+                }
 
 #if !USE_NEW_REFLECTION_API
                 StoreAsText = type.GetCustomAttribute(typeof(StoreAsTextAttribute), false) != null;
