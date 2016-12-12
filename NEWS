@@ -1,3 +1,10 @@
+Changes between 2.2.1 and 2.2.2
+-------------------------------
+Release: December 12th 2016
+
+Bufgixes:
+* Fix crash during application startup
+
 Changes between 2.2.0 and 2.2.1
 -------------------------------
 Release: December 8th 2016
