@@ -16,7 +16,6 @@ namespace VLC.Services.RunTime
     public class HttpServer : IDisposable
     {
         private const uint BufferSize = 8192;
-        private static readonly StorageFolder LocalFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
 
         private readonly StreamSocketListener listener;
 
