@@ -144,10 +144,14 @@ namespace VLC.Services.RunTime
                 Random r = new Random();
                 for (int i = 0; i < Playlist.Count; i++)
                 {
-                    if (i > _index)
+                    if (i != _index)
                     {
                         int index1 = r.Next(i, Playlist.Count);
                         int index2 = r.Next(i, Playlist.Count);
+                        if (index1 == _index)
+                            index1 = (index1 + 1) % Playlist.Count;
+                        if (index2 == _index)
+                            index2 = (index2 + 2) % Playlist.Count;
                         Playlist.Move(index1, index2);
                     }
                 }
