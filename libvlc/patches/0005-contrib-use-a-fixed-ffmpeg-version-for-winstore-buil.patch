@@ -1,7 +1,7 @@
-From 78749abcac1d846effee0b2970bdd7ec23101591 Mon Sep 17 00:00:00 2001
+From 33435b6a298c8d8a6567bc0a0414872e3e797031 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 09:42:20 +0200
-Subject: [PATCH 05/15] contrib: use a fixed ffmpeg version for winstore builds
+Subject: [PATCH 05/14] contrib: use a fixed ffmpeg version for winstore builds
 
 ---
  contrib/src/ffmpeg/rules.mak | 4 ++--

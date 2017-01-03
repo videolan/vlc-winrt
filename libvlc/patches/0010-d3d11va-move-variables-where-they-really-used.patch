@@ -1,14 +1,14 @@
-From 4265d34ccb9fa1c4dc3e405f6d06c74cd2593101 Mon Sep 17 00:00:00 2001
+From 885d6a7c4dfd8ea514899edda0ef1705a8b9d397 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 1 Dec 2016 18:01:20 +0100
-Subject: [PATCH 10/15] d3d11va: move variables where they really used
+Subject: [PATCH 10/14] d3d11va: move variables where they really used
 
 ---
  modules/codec/avcodec/d3d11va.c | 9 ++++++---
  1 file changed, 6 insertions(+), 3 deletions(-)
 
 diff --git a/modules/codec/avcodec/d3d11va.c b/modules/codec/avcodec/d3d11va.c
-index e7ffbb0..384a4b6 100644
+index b139b8a..69e5805 100644
 --- a/modules/codec/avcodec/d3d11va.c
 +++ b/modules/codec/avcodec/d3d11va.c
 @@ -258,10 +258,8 @@ static int Extract(vlc_va_t *va, picture_t *output, uint8_t *data)

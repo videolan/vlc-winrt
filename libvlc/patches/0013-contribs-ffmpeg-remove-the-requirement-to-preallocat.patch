@@ -1,7 +1,7 @@
-From 925469f8efff68034bef256c4ab3d12c0f9d6f89 Mon Sep 17 00:00:00 2001
+From 7fd46929590a20796f64fe76708710de7786b1a9 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <slhomme@matroska.org>
 Date: Fri, 2 Dec 2016 09:51:46 +0100
-Subject: [PATCH 14/15] contribs: ffmpeg: remove the requirement to preallocate
+Subject: [PATCH 13/14] contribs: ffmpeg: remove the requirement to preallocate
  d3d11va surfaces
 
 ---

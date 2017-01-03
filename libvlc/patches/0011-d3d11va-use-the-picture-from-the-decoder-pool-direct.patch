@@ -1,7 +1,7 @@
-From d6aec06818d17bfe5cc48c0c53795f43e41036ca Mon Sep 17 00:00:00 2001
+From 5722a47cc2d811f252651d6c7fe93b87c96571d5 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 1 Dec 2016 18:04:12 +0100
-Subject: [PATCH 11/15] d3d11va: use the picture from the decoder pool directly
+Subject: [PATCH 11/14] d3d11va: use the picture from the decoder pool directly
 
 No need to extract into a secondary one to send to the vout and so a
 CopySubresourceRegion() for every frame decoded.
@@ -14,7 +14,7 @@ This code will be activated once the necessary patches are merged in libavcodec
  2 files changed, 43 insertions(+)
 
 diff --git a/modules/codec/avcodec/d3d11va.c b/modules/codec/avcodec/d3d11va.c
-index 384a4b6..bdd5605 100644
+index 69e5805..4c0304f 100644
 --- a/modules/codec/avcodec/d3d11va.c
 +++ b/modules/codec/avcodec/d3d11va.c
 @@ -305,6 +305,9 @@ static int Extract(vlc_va_t *va, picture_t *output, uint8_t *data)
@@ -103,7 +103,7 @@ index 384a4b6..bdd5605 100644
      }
  
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 29702a1..d7c4ad7 100644
+index ac0dc00..1e30a74 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -639,6 +639,8 @@ static void DestroyDisplayPoolPicture(picture_t *picture)

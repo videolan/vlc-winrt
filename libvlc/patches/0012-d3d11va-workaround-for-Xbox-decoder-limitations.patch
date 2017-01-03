@@ -1,14 +1,14 @@
-From 69c106f2d0cb5e4dc795718199f948bf7a2c5232 Mon Sep 17 00:00:00 2001
+From 683d40fc0c84c134c260da0d44abc79be166327e Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <slhomme@matroska.org>
 Date: Wed, 30 Nov 2016 16:34:18 +0100
-Subject: [PATCH 12/15] d3d11va: workaround for Xbox decoder limitations
+Subject: [PATCH 12/14] d3d11va: workaround for Xbox decoder limitations
 
 ---
  modules/codec/avcodec/d3d11va.c | 40 ++++++++++++++++++++++++++++++++++++++++
  1 file changed, 40 insertions(+)
 
 diff --git a/modules/codec/avcodec/d3d11va.c b/modules/codec/avcodec/d3d11va.c
-index bdd5605..bcccea5 100644
+index 4c0304f..4801485 100644
 --- a/modules/codec/avcodec/d3d11va.c
 +++ b/modules/codec/avcodec/d3d11va.c
 @@ -987,6 +987,35 @@ static int DxSetupOutput(vlc_va_t *va, const GUID *input, const video_format_t *
@@ -34,7 +34,7 @@ index bdd5605..bcccea5 100644
 +    bool result = false;
 +    DXGI_ADAPTER_DESC adapterDesc;
 +    if (SUCCEEDED(IDXGIAdapter_GetDesc(p_adapter, &adapterDesc))) {
-+        if (wcscmp(L"ROOT\SraKmd\0000", adapterDesc.Description))
++        if (!wcscmp(L"ROOT\SraKmd\0000", adapterDesc.Description))
 +            result = true;
 +    }
 +
@@ -52,7 +52,7 @@ index bdd5605..bcccea5 100644
      }
  
 +#if VLC_WINSTORE_APP
-+    if ((codec_id == AV_CODEC_ID_H264 || codec_id == AV_CODEC_ID_HEVC) && 
++    if (codec_id == AV_CODEC_ID_H264 && 
 +        (dx_sys->surface_width > 2304 || dx_sys->surface_height > 2304) &&
 +        isXboxHardware(dx_sys))
 +    {
