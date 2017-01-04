@@ -1,3 +1,18 @@
+Changes between 2.2.3 and 2.3.0
+-------------------------------
+Release: January 4th 2017
+
+Bugfixes:
+* Fix hardware accelerated 4K playback
+* Fix poor shuffle algorithm
+
+Changes between 2.2.2 and 2.2.3
+-------------------------------
+Release: December 14th 2016 (Windows Mobile 10 only)
+
+Bugfixes:
+* Fix systematic crash during playback on windows phone
+
 Changes between 2.2.1 and 2.2.2
 -------------------------------
 Release: December 12th 2016
