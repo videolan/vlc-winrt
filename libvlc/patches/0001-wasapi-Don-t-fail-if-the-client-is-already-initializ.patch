@@ -1,7 +1,7 @@
-From eeb5dfd03c43ee63fb8b013cfa49150d8d3041db Mon Sep 17 00:00:00 2001
+From 7091ee346db4bd1d9de6d46e7491307d52a3a574 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Feb 2015 11:58:54 +0100
-Subject: [PATCH 01/14] wasapi: Don't fail if the client is already initialized
+Subject: [PATCH 01/21] wasapi: Don't fail if the client is already initialized
 
 make the extra test only for Winstore builds
 ---

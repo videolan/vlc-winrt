@@ -1,7 +1,7 @@
-From 885d6a7c4dfd8ea514899edda0ef1705a8b9d397 Mon Sep 17 00:00:00 2001
+From 87eabf016c8a769fee1871c41d5bd600294bd28e Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 1 Dec 2016 18:01:20 +0100
-Subject: [PATCH 10/14] d3d11va: move variables where they really used
+Subject: [PATCH 10/21] d3d11va: move variables where they really used
 
 ---
  modules/codec/avcodec/d3d11va.c | 9 ++++++---

@@ -1,7 +1,7 @@
-From 5722a47cc2d811f252651d6c7fe93b87c96571d5 Mon Sep 17 00:00:00 2001
+From 001da8133b90302d8e5c99bd90f8dc2eae3ce2ea Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 1 Dec 2016 18:04:12 +0100
-Subject: [PATCH 11/14] d3d11va: use the picture from the decoder pool directly
+Subject: [PATCH 11/21] d3d11va: use the picture from the decoder pool directly
 
 No need to extract into a secondary one to send to the vout and so a
 CopySubresourceRegion() for every frame decoded.

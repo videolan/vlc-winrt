@@ -1,0 +1,25 @@
+From 7e0942ba5ecb91642091ade63ebc534d543c5a78 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <slhomme@matroska.org>
+Date: Fri, 6 Jan 2017 14:13:56 +0100
+Subject: [PATCH 17/21] direct3d11: make sure ppColorspace is always set a
+ value
+
+---
+ modules/video_output/win32/direct3d11.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index 19963b9..90a7991 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -2045,6 +2045,7 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+         case COLOR_SPACE_BT601:
+             ppColorspace = COLORSPACE_BT601_TO_FULL;
+             break;
++        default:
+         case COLOR_SPACE_UNDEF:
+             if( fmt->i_height > 576 )
+                 ppColorspace = COLORSPACE_BT709_TO_FULL;
+-- 
+2.10.1.windows.1
+

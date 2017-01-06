@@ -1,0 +1,73 @@
+From 4bc51909075bb2df72cb909bba0139607ddecc4c Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <slhomme@matroska.org>
+Date: Fri, 6 Jan 2017 13:58:56 +0100
+Subject: [PATCH 14/21] dxgi_fmt: add a helper function to detect the Xbox One
+
+---
+ modules/video_chroma/dxgi_fmt.c | 33 +++++++++++++++++++++++++++++++++
+ modules/video_chroma/dxgi_fmt.h |  3 +++
+ 2 files changed, 36 insertions(+)
+
+diff --git a/modules/video_chroma/dxgi_fmt.c b/modules/video_chroma/dxgi_fmt.c
+index 67ffbf3..b404bfc 100644
+--- a/modules/video_chroma/dxgi_fmt.c
++++ b/modules/video_chroma/dxgi_fmt.c
+@@ -27,6 +27,10 @@
+ #include "dxgi_fmt.h"
+ #include <vlc_es.h>
+ 
++#define COBJMACROS
++#include <initguid.h>
++#include <d3d11.h>
++
+ typedef struct
+ {
+     const char   *name;
+@@ -118,3 +122,32 @@ void DxgiFormatMask(DXGI_FORMAT format, video_format_t *fmt)
+         fmt->i_bmask = 0xff000000;
+     }
+ }
++
++bool isXboxHardware(ID3D11Device *d3ddev)
++{
++    IDXGIDevice *pDXGIDevice = NULL;
++    HRESULT hr = ID3D11Device_QueryInterface(d3ddev, &IID_IDXGIDevice, (void **)&pDXGIDevice);
++    if (FAILED(hr)) {
++        return false;
++    }
++
++    IDXGIAdapter *p_adapter;
++    hr = IDXGIDevice_GetAdapter(pDXGIDevice, &p_adapter);
++    if (FAILED(hr)) {
++        IDXGIDevice_Release(pDXGIDevice);
++        return false;
++    }
++
++    bool result = false;
++    DXGI_ADAPTER_DESC adapterDesc;
++    if (SUCCEEDED(IDXGIAdapter_GetDesc(p_adapter, &adapterDesc))) {
++        if (adapterDesc.VendorId == 0 &&
++            adapterDesc.DeviceId == 0 &&
++            !wcscmp(L"ROOT\\SraKmd\\0000", adapterDesc.Description))
++            result = true;
++    }
++
++    IDXGIAdapter_Release(p_adapter);
++    IDXGIDevice_Release(pDXGIDevice);
++    return result;
++}
+diff --git a/modules/video_chroma/dxgi_fmt.h b/modules/video_chroma/dxgi_fmt.h
+index 8f2e3bb..ce6d15b 100644
+--- a/modules/video_chroma/dxgi_fmt.h
++++ b/modules/video_chroma/dxgi_fmt.h
+@@ -45,4 +45,7 @@ extern vlc_fourcc_t DxgiFormatFourcc(DXGI_FORMAT format);
+ extern const d3d_format_t *GetRenderFormatList(void);
+ extern void DxgiFormatMask(DXGI_FORMAT format, video_format_t *);
+ 
++typedef struct ID3D11Device ID3D11Device;
++extern bool isXboxHardware(ID3D11Device *d3ddev);
++
+ #endif /* include-guard */
+-- 
+2.10.1.windows.1
+

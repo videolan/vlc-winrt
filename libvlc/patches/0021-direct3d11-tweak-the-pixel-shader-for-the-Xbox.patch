@@ -1,0 +1,46 @@
+From baac3c2cea740dc220bfc2c5794bc4e5105380aa Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <slhomme@matroska.org>
+Date: Fri, 6 Jan 2017 14:20:19 +0100
+Subject: [PATCH 21/21] direct3d11: tweak the pixel shader for the Xbox
+
+although we deliver full range RGB the Xbox assumes it's studio range RGB and
+expand the values even more. So we don't apply the studio->full range already
+in the pixel shaders.
+---
+ modules/video_output/win32/direct3d11.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index d5b25db..347374b 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -2079,6 +2079,26 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+                 ppColorspace = COLORSPACE_BT601_TO_FULL;
+             break;
+     }
++
++#if VLC_WINSTORE_APP
++    if (isXboxHardware(sys->d3ddevice)) {
++        static const FLOAT FULL_TO_STUDIO_RATIO = (256.f - 16.f - 20.f) / 256.f;
++        /* limit to 16-235 range as it's expanded again by the hardware */
++        WHITE_POINT_D65_TO_FULL[0] += FULL_TO_STUDIO_SHIFT;
++        if (RGB_shader) {
++            WHITE_POINT_D65_TO_FULL[1] += FULL_TO_STUDIO_SHIFT;
++            WHITE_POINT_D65_TO_FULL[2] += FULL_TO_STUDIO_SHIFT;
++            ppColorspace[0 * 5] *= FULL_TO_STUDIO_RATIO;
++            ppColorspace[1 * 5] *= FULL_TO_STUDIO_RATIO;
++            ppColorspace[2 * 5] *= FULL_TO_STUDIO_RATIO;
++        } else {
++            ppColorspace[0 * 4] *= FULL_TO_STUDIO_RATIO;
++            ppColorspace[1 * 4] *= FULL_TO_STUDIO_RATIO;
++            ppColorspace[2 * 4] *= FULL_TO_STUDIO_RATIO;
++        }
++    }
++#endif
++
+     memcpy(colorspace.Colorspace, ppColorspace, sizeof(colorspace.Colorspace));
+     memcpy(colorspace.WhitePoint, WHITE_POINT_D65_TO_FULL, sizeof(colorspace.WhitePoint));
+     constantInit.pSysMem = &colorspace;
+-- 
+2.10.1.windows.1
+
