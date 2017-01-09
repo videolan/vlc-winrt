@@ -603,8 +603,8 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libsubsdec_plugin.dll">
       <Link>plugins\codec\libsubsdec_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libsubsttml_plugin.dll">
-      <Link>plugins\codec\libsubsttml_plugin.dll</Link>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libttml_plugin.dll">
+      <Link>plugins\codec\libttml_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libsubstx3g_plugin.dll">
       <Link>plugins\codec\libsubstx3g_plugin.dll</Link>
@@ -749,9 +749,6 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\demux\libtta_plugin.dll">
       <Link>plugins\demux\libtta_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\demux\libttml_plugin.dll">
-      <Link>plugins\demux\libttml_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\demux\libty_plugin.dll">
       <Link>plugins\demux\libty_plugin.dll</Link>
