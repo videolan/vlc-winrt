@@ -1,14 +1,15 @@
-From c21731e7dc5e9d728eeee8156be4e14649e60c43 Mon Sep 17 00:00:00 2001
+From dbc094218545e1329211945b4dc4ee0dcfaf78cc Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 09:42:20 +0200
-Subject: [PATCH 05/21] contrib: use a fixed ffmpeg version for winstore builds
+Subject: [PATCH 05/39] contrib: use a fixed ffmpeg version for winstore builds
 
+use a version with D3D11VA empty output surfaces array
 ---
  contrib/src/ffmpeg/rules.mak | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index 367bc49..20e9b79 100644
+index 367bc49..a4345d3 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
 @@ -2,10 +2,10 @@
@@ -20,7 +21,7 @@ index 367bc49..20e9b79 100644
  
  ifdef USE_FFMPEG
 -FFMPEG_HASH=HEAD
-+FFMPEG_HASH=9b462a0b9df6260f59726c98d8aef8b07a1e442b
++FFMPEG_HASH=8fb48659018f17827c2d5a3ba72263f421fdfa2d
  FFMPEG_SNAPURL := http://git.videolan.org/?p=ffmpeg.git;a=snapshot;h=$(FFMPEG_HASH);sf=tgz
  FFMPEG_GITURL := http://git.videolan.org/git/ffmpeg.git
  else

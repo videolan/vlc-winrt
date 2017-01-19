@@ -1,17 +1,17 @@
-From 6befd25d8d105545d09301a419af144c71a04a33 Mon Sep 17 00:00:00 2001
-From: Steve Lhomme <slhomme@matroska.org>
+From 948f20cd166a6477530dd69994ebbbd84429faaf Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 30 Nov 2016 16:34:18 +0100
-Subject: [PATCH 15/21] d3d11va: workaround for Xbox decoder limitations
+Subject: [PATCH 22/39] d3d11va: workaround for Xbox decoder limitations
 
 ---
  modules/codec/avcodec/d3d11va.c | 11 +++++++++++
  1 file changed, 11 insertions(+)
 
 diff --git a/modules/codec/avcodec/d3d11va.c b/modules/codec/avcodec/d3d11va.c
-index 4c0304f..9fce7fc 100644
+index deed0e7..3918e17 100644
 --- a/modules/codec/avcodec/d3d11va.c
 +++ b/modules/codec/avcodec/d3d11va.c
-@@ -1003,6 +1003,17 @@ static int DxCreateDecoderSurfaces(vlc_va_t *va, int codec_id, const video_forma
+@@ -952,6 +952,17 @@ static int DxCreateDecoderSurfaces(vlc_va_t *va, int codec_id, const video_forma
          ID3D10Multithread_Release(pMultithread);
      }
  

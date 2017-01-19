@@ -1,18 +1,21 @@
-From c5a04078b098e038ed4d7f084b4efc17f0aaf698 Mon Sep 17 00:00:00 2001
-From: Steve Lhomme <slhomme@matroska.org>
+From d866ef4995568e6643daba51eb08d1a87871611c Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 6 Jan 2017 14:11:26 +0100
-Subject: [PATCH 16/21] d3d11: include initguid.h before d3d11.h so we have all
+Subject: [PATCH 20/39] d3d11: include initguid.h before d3d11.h so we have all
  the class IIDs needed
 
 Directly from the headers
+
+--
+replaces https://patches.videolan.org/patch/15371/
+* no need for initguid.h in common.h
 ---
  modules/codec/avcodec/d3d11va.c         | 6 +-----
- modules/video_output/win32/common.h     | 1 +
  modules/video_output/win32/direct3d11.c | 2 +-
- 3 files changed, 3 insertions(+), 6 deletions(-)
+ 2 files changed, 2 insertions(+), 6 deletions(-)
 
 diff --git a/modules/codec/avcodec/d3d11va.c b/modules/codec/avcodec/d3d11va.c
-index 9fce7fc..c13e5a7 100644
+index 0bb2ffd..53ddd30 100644
 --- a/modules/codec/avcodec/d3d11va.c
 +++ b/modules/codec/avcodec/d3d11va.c
 @@ -48,7 +48,7 @@
@@ -35,20 +38,8 @@ index 9fce7fc..c13e5a7 100644
  
  DEFINE_GUID(DXVA_Intel_H264_NoFGT_ClearVideo,       0x604F8E68, 0x4951, 0x4c54, 0x88, 0xFE, 0xAB, 0xD2, 0x5C, 0x15, 0xB3, 0xD6);
  
-diff --git a/modules/video_output/win32/common.h b/modules/video_output/win32/common.h
-index e88184d..6752fc7 100644
---- a/modules/video_output/win32/common.h
-+++ b/modules/video_output/win32/common.h
-@@ -27,6 +27,7 @@
- # include <ddraw.h>
- #endif
- #ifdef MODULE_NAME_IS_direct3d11
-+# include <initguid.h>
- # include <d3d11.h>
- # include <dxgi1_2.h>
- # include <d3dcompiler.h>
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 1e30a74..19963b9 100644
+index cb59794..7b87255 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -38,7 +38,7 @@

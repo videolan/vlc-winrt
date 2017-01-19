@@ -1,19 +1,23 @@
-From 4fb0ca912de2c00f3af1351ca6f2407bfc2ddf8a Mon Sep 17 00:00:00 2001
-From: Steve Lhomme <slhomme@matroska.org>
+From 0b7de505126dad144ecf18429b3464b3a5c57dc5 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 6 Jan 2017 14:15:30 +0100
-Subject: [PATCH 18/21] direct3d11: the magic value for the white point is
+Subject: [PATCH 23/39] direct3d11: the magic value for the white point is
  16/256
 
 That's the "studio" range shifted for full range RGB.
+
+--
+replaces https://patches.videolan.org/patch/15373/
+* fix compilation
 ---
  modules/video_output/win32/direct3d11.c | 5 +++--
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 90a7991..aa2b343 100644
+index 24f566d..5535dd3 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
-@@ -1992,6 +1992,7 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+@@ -1887,6 +1887,7 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
      vout_display_sys_t *sys = vd->sys;
      D3D11_MAPPED_SUBRESOURCE mappedResource;
      HRESULT hr;
@@ -21,16 +25,16 @@ index 90a7991..aa2b343 100644
  
      /* pixel shader constant buffer */
      PS_CONSTANT_BUFFER defaultConstants = {
-@@ -2011,7 +2012,7 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+@@ -1906,7 +1907,7 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
          goto error;
      }
  
 -    static const FLOAT WHITE_POINT_D65[4] = { -0.0625f, -0.5f, -0.5f, 1.f };
-+    static constFLOAT WHITE_POINT_D65_TO_FULL[4] = { -FULL_TO_STUDIO_SHIFT, -0.5f, -0.5f, 1.f };
++    static const FLOAT WHITE_POINT_D65_TO_FULL[4] = { -FULL_TO_STUDIO_SHIFT, -0.5f, -0.5f, 1.f };
  
      static const FLOAT COLORSPACE_BT601_TO_FULL[4*4] = {
          1.164383561643836f,                 0.f,  1.596026785714286f, 0.f,
-@@ -2054,7 +2055,7 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+@@ -1949,7 +1950,7 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
              break;
      }
      memcpy(colorspace.Colorspace, ppColorspace, sizeof(colorspace.Colorspace));

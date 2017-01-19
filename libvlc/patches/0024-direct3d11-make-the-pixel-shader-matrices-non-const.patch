@@ -1,7 +1,7 @@
-From bd6f485508463036f8ed10c08f24116e261950fd Mon Sep 17 00:00:00 2001
-From: Steve Lhomme <slhomme@matroska.org>
+From 98a06d3a42e0b12013c53667a1dc159082627883 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 6 Jan 2017 14:16:15 +0100
-Subject: [PATCH 19/21] direct3d11: make the pixel shader matrices non-const
+Subject: [PATCH 24/39] direct3d11: make the pixel shader matrices non-const
 
 So they can be tweaked
 ---
@@ -9,14 +9,14 @@ So they can be tweaked
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index aa2b343..0945a32 100644
+index 5535dd3..37d2d0e 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
-@@ -2012,22 +2012,22 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+@@ -1907,22 +1907,22 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
          goto error;
      }
  
--    static constFLOAT WHITE_POINT_D65_TO_FULL[4] = { -FULL_TO_STUDIO_SHIFT, -0.5f, -0.5f, 1.f };
+-    static const FLOAT WHITE_POINT_D65_TO_FULL[4] = { -FULL_TO_STUDIO_SHIFT, -0.5f, -0.5f, 1.f };
 +    FLOAT WHITE_POINT_D65_TO_FULL[4] = { -FULL_TO_STUDIO_SHIFT, -0.5f, -0.5f, 1.f };
  
 -    static const FLOAT COLORSPACE_BT601_TO_FULL[4*4] = {
@@ -39,7 +39,7 @@ index aa2b343..0945a32 100644
          1.163746465f, -0.028815145f,  2.823537589f, 0.f,
          1.164383561f, -0.258509894f,  0.379693635f, 0.f,
          1.164383561f,  2.385315708f,  0.021554502f, 0.f,
-@@ -2035,7 +2035,7 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+@@ -1930,7 +1930,7 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
      };
  
      PS_COLOR_TRANSFORM colorspace;
