@@ -42,12 +42,12 @@ namespace libVLCX {
         void UpdateScale(float scaleX, float scaleY);
     private:
         void CheckDXOperation(HRESULT hr, Platform::String^ message);
-        ComPtr<IDXGIDevice3>        cp_dxgiDev3;
 
     public:
         ComPtr<ID3D11Device>        cp_d3dDevice;
         ComPtr<ID3D11DeviceContext> cp_d3dContext;
         ComPtr<IDXGISwapChain1>     cp_swapChain;
         ComPtr<IDXGISwapChain2>     cp_swapChain2;
+        ComPtr<IDXGIDevice3>        cp_dxgiDev3;
     };
 }
