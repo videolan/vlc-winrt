@@ -1,7 +1,7 @@
-From 488e7a9e9fd1c65fdde7839a84f3af413277771e Mon Sep 17 00:00:00 2001
+From 560e1cd82938a2f641621e22d54a925feb4b02ea Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 12 Jan 2017 16:38:04 +0100
-Subject: [PATCH 32/39] direct3d11: use a function to find the SPU blendable
+Subject: [PATCH 20/27] direct3d11: use a function to find the SPU blendable
  texture format
 
 It outputs a full d3d_format_t const pointer which is used to allocate/set the
@@ -12,7 +12,7 @@ quad texture.
  2 files changed, 23 insertions(+), 34 deletions(-)
 
 diff --git a/modules/video_output/win32/common.h b/modules/video_output/win32/common.h
-index 857e658..9fca8eb 100644
+index 857e6581b0..9fca8ebf2f 100644
 --- a/modules/video_output/win32/common.h
 +++ b/modules/video_output/win32/common.h
 @@ -209,7 +209,7 @@ struct vout_display_sys_t
@@ -25,7 +25,7 @@ index 857e658..9fca8eb 100644
      picture_t                **d3dregions;
  #endif
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 32a78e8..dd54554 100644
+index 32a78e8906..dd54554317 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -440,8 +440,12 @@ static int Open(vlc_object_t *object)
@@ -163,5 +163,5 @@ index 32a78e8..dd54554 100644
              if (err != VLC_SUCCESS) {
                  msg_Err(vd, "Failed to create %dx%d texture for OSD",
 -- 
-2.10.1.windows.1
+2.11.0
 

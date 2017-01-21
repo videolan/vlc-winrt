@@ -1,7 +1,7 @@
-From 7d0fa29e900feb44987aa7d3d7ca7754f9c2a3c2 Mon Sep 17 00:00:00 2001
+From cbe6c2b26df6f1b355728b5f88119ad7ecd8a446 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 11 Jan 2017 08:55:27 +0100
-Subject: [PATCH 28/39] direct3d11: move the shader resource view in
+Subject: [PATCH 16/27] direct3d11: move the shader resource view in
  picture_sys_t
 
 So it can be set on textures coming from the decoder
@@ -13,7 +13,7 @@ So it can be set on textures coming from the decoder
  4 files changed, 29 insertions(+), 26 deletions(-)
 
 diff --git a/modules/codec/avcodec/d3d11va.c b/modules/codec/avcodec/d3d11va.c
-index 7e858dd..4ce09ee 100644
+index 6b98730502..a6c64c557a 100644
 --- a/modules/codec/avcodec/d3d11va.c
 +++ b/modules/codec/avcodec/d3d11va.c
 @@ -149,6 +149,7 @@ struct picture_sys_t
@@ -25,7 +25,7 @@ index 7e858dd..4ce09ee 100644
  
  /* */
 diff --git a/modules/video_chroma/d3d11_surface.c b/modules/video_chroma/d3d11_surface.c
-index 92c1fe7..4f9171f 100644
+index 92c1fe7817..4f9171f4fb 100644
 --- a/modules/video_chroma/d3d11_surface.c
 +++ b/modules/video_chroma/d3d11_surface.c
 @@ -59,7 +59,8 @@ struct picture_sys_t
@@ -39,7 +39,7 @@ index 92c1fe7..4f9171f 100644
  
  struct filter_sys_t {
 diff --git a/modules/video_output/win32/common.h b/modules/video_output/win32/common.h
-index e88184d..a478762 100644
+index e88184daa5..a478762046 100644
 --- a/modules/video_output/win32/common.h
 +++ b/modules/video_output/win32/common.h
 @@ -52,6 +52,19 @@ typedef struct
@@ -76,7 +76,7 @@ index e88184d..a478762 100644
      D3D11_VIEWPORT            cropViewport;
  } d3d_quad_t;
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 361f150..27bb51e 100644
+index 361f15029f..27bb51ee08 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -84,17 +84,6 @@ vlc_module_begin ()
@@ -165,5 +165,5 @@ index 361f150..27bb51e 100644
      if (quad->d3dpixelShader)
      {
 -- 
-2.10.1.windows.1
+2.11.0
 

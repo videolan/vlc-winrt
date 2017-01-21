@@ -1,7 +1,7 @@
-From 968cafd5403455fa42fd57cc00ee6b2984ed60cc Mon Sep 17 00:00:00 2001
+From 54e309dbefc7e6a63a05d9f4cdc095971d876990 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 12 Jan 2017 13:11:04 +0100
-Subject: [PATCH 29/39] direct3d11: pass the shader resource view to
+Subject: [PATCH 17/27] direct3d11: pass the shader resource view to
  DisplayD3DPicture()
 
 For when it won't come from the quad anymore.
@@ -10,7 +10,7 @@ For when it won't come from the quad anymore.
  1 file changed, 7 insertions(+), 4 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 27bb51e..4f3f404 100644
+index 27bb51ee08..4f3f404f36 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -994,7 +994,7 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
@@ -51,5 +51,5 @@ index 27bb51e..4f3f404 100644
      }
  
 -- 
-2.10.1.windows.1
+2.11.0
 

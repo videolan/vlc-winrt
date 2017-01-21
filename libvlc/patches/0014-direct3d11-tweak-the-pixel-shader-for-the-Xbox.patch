@@ -1,7 +1,7 @@
-From e3237337d5864ec6ec78b6e8f4fe510049077d09 Mon Sep 17 00:00:00 2001
+From c018c8250dbb2796c4f3b123c1be048ccda685af Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 6 Jan 2017 14:20:19 +0100
-Subject: [PATCH 26/39] direct3d11: tweak the pixel shader for the Xbox
+Subject: [PATCH 14/27] direct3d11: tweak the pixel shader for the Xbox
 
 although we deliver full range RGB the Xbox assumes it's studio range RGB and
 expand the values even more. So we don't apply the studio->full range already
@@ -11,7 +11,7 @@ in the pixel shaders.
  1 file changed, 20 insertions(+)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index b1f2c80..361f150 100644
+index b1f2c806eb..361f15029f 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -1974,6 +1974,26 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
@@ -42,5 +42,5 @@ index b1f2c80..361f150 100644
      memcpy(colorspace.WhitePoint, WHITE_POINT_D65_TO_FULL, sizeof(colorspace.WhitePoint));
      constantInit.pSysMem = &colorspace;
 -- 
-2.10.1.windows.1
+2.11.0
 

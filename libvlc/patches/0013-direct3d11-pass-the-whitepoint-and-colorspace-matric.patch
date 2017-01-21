@@ -1,7 +1,7 @@
-From ff2a2500d6b18b412afc91bc1c6b3f1d642a61ad Mon Sep 17 00:00:00 2001
+From 6ed506bb191573e74026296cbac5f76d4908d337 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 6 Jan 2017 18:05:15 +0100
-Subject: [PATCH 25/39] direct3d11: pass the whitepoint and colorspace matrices
+Subject: [PATCH 13/27] direct3d11: pass the whitepoint and colorspace matrices
  to the RGB pixel shader
 
 Now all pixel shaders are given the same constant buffers
@@ -14,7 +14,7 @@ replaces https://patches.videolan.org/patch/15375/
  1 file changed, 26 insertions(+), 1 deletion(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 37d2d0e..b1f2c80 100644
+index 37d2d0e843..b1f2c806eb 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -235,6 +235,14 @@ static const char* globPixelShaderDefault = "\
@@ -82,5 +82,5 @@ index 37d2d0e..b1f2c80 100644
          case COLOR_SPACE_BT709:
              ppColorspace = COLORSPACE_BT709_TO_FULL;
 -- 
-2.10.1.windows.1
+2.11.0
 

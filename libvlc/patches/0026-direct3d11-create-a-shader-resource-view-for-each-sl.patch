@@ -1,7 +1,7 @@
-From 47219151813fa6ee2d8e0e739343e57d54a2f37c Mon Sep 17 00:00:00 2001
+From ff5f310b5161d1b635ad7a13901a74b2b6d2a691 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 13 Jan 2017 10:17:40 +0100
-Subject: [PATCH 38/39] direct3d11: create a shader resource view for each
+Subject: [PATCH 26/27] direct3d11: create a shader resource view for each
  slice of the decoder texture
 
 This way it can be passed directly to the pixel shader, straight out of the
@@ -11,7 +11,7 @@ decoder.
  1 file changed, 10 insertions(+)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index b1dbede..6c53628 100644
+index b1dbede9d3..6c5362891d 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -577,6 +577,9 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
@@ -46,5 +46,5 @@ index b1dbede..6c53628 100644
          ID3D11Texture2D_Release(p_sys->texture);
      if (p_sys->context)
 -- 
-2.10.1.windows.1
+2.11.0
 

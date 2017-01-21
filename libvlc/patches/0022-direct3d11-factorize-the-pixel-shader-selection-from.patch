@@ -1,7 +1,7 @@
-From 8e6da4a055bdb54812d35eb7afea3bd4b22bca27 Mon Sep 17 00:00:00 2001
+From ed2412fbc824806d5b3aedb97171e77c32448e70 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 12 Jan 2017 16:44:33 +0100
-Subject: [PATCH 34/39] direct3d11: factorize the pixel shader selection from
+Subject: [PATCH 22/27] direct3d11: factorize the pixel shader selection from
  the output format
 
 Warn if we didn't find a suitable subpicture shader
@@ -10,7 +10,7 @@ Warn if we didn't find a suitable subpicture shader
  1 file changed, 29 insertions(+), 22 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 77a8b9f..0654096 100644
+index 77a8b9f27f..0654096339 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -1149,6 +1149,24 @@ static HINSTANCE Direct3D11LoadShaderLibrary(void)
@@ -87,5 +87,5 @@ index 77a8b9f..0654096 100644
      {
          msg_Dbg( vd, "use a staging texture to crop to visible size" );
 -- 
-2.10.1.windows.1
+2.11.0
 

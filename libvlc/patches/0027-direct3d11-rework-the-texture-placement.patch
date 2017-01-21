@@ -1,7 +1,7 @@
-From e574c82095c58a62d504bdd2bbefb50b76ff8446 Mon Sep 17 00:00:00 2001
+From 275686097548177c3c270532d130ec40ff56ef08 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 16 Jan 2017 17:44:07 +0100
-Subject: [PATCH 39/39] direct3d11: rework the texture placement
+Subject: [PATCH 27/27] direct3d11: rework the texture placement
 
 Now we always copy the whole texture area and move the boundaries in the
 viewport to match the offset/visible dimensions.
@@ -10,7 +10,7 @@ viewport to match the offset/visible dimensions.
  1 file changed, 16 insertions(+), 50 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 6c53628..cfcbb1d 100644
+index 6c5362891d..cfcbb1d094 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -155,8 +155,7 @@ static void Direct3D11DeleteRegions(int, picture_t **);
@@ -167,5 +167,5 @@ index 6c53628..cfcbb1d 100644
                  msg_Err(vd, "Failed to create %dx%d texture for OSD",
                          r->fmt.i_visible_width, r->fmt.i_visible_height);
 -- 
-2.10.1.windows.1
+2.11.0
 

@@ -1,7 +1,7 @@
-From c410ca4dd6bf419e16168d56d029cb6b4f2e690d Mon Sep 17 00:00:00 2001
+From e0dcb34471ae23ae7e95f8753d55727fc92bb1f9 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robUx4@videolabs.io>
 Date: Thu, 1 Dec 2016 18:04:56 +0100
-Subject: [PATCH 27/39] d3d11va: use the picture from the decoder pool directly
+Subject: [PATCH 15/27] d3d11va: use the picture from the decoder pool directly
 
 No need to extract into a secondary one to send to the vout and so a
 CopySubresourceRegion() for every frame decoded.
@@ -18,7 +18,7 @@ replaces https://patches.videolan.org/patch/15193/
  1 file changed, 63 insertions(+), 11 deletions(-)
 
 diff --git a/modules/codec/avcodec/d3d11va.c b/modules/codec/avcodec/d3d11va.c
-index 3918e17..7e858dd 100644
+index 9edbffba31..6b98730502 100644
 --- a/modules/codec/avcodec/d3d11va.c
 +++ b/modules/codec/avcodec/d3d11va.c
 @@ -70,6 +70,13 @@ vlc_module_end()
@@ -157,7 +157,7 @@ index 3918e17..7e858dd 100644
      va->extract = Extract;
  
      return VLC_SUCCESS;
-@@ -970,6 +1018,9 @@ static int DxCreateDecoderSurfaces(vlc_va_t *va, int codec_id, const video_forma
+@@ -972,6 +1020,9 @@ static int DxCreateDecoderSurfaces(vlc_va_t *va, int codec_id, const video_forma
  
      if (sys->b_extern_pool)
      {
@@ -167,7 +167,7 @@ index 3918e17..7e858dd 100644
          size_t surface_idx;
          for (surface_idx = 0; surface_idx < dx_sys->surface_count; surface_idx++) {
              picture_t *pic = decoder_NewPicture( (decoder_t*) va->obj.parent );
-@@ -1035,6 +1086,7 @@ static int DxCreateDecoderSurfaces(vlc_va_t *va, int codec_id, const video_forma
+@@ -1037,6 +1088,7 @@ static int DxCreateDecoderSurfaces(vlc_va_t *va, int codec_id, const video_forma
              }
          }
          else
@@ -176,5 +176,5 @@ index 3918e17..7e858dd 100644
      }
  
 -- 
-2.10.1.windows.1
+2.11.0
 

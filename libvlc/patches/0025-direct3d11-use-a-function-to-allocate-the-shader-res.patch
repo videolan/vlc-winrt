@@ -1,7 +1,7 @@
-From 8e1623b3e0f2a8d7b29358a19bfbb38d672c38f8 Mon Sep 17 00:00:00 2001
+From ef355146c474d3677556570dbd2a6e513a660115 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 13 Jan 2017 10:03:40 +0100
-Subject: [PATCH 37/39] direct3d11: use a function to allocate the shader
+Subject: [PATCH 25/27] direct3d11: use a function to allocate the shader
  resource views
 
 Based on the d3d_format_t matching the texture format.
@@ -12,7 +12,7 @@ Allow targetting a particular slice index in the texture slice array.
  1 file changed, 50 insertions(+), 33 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 9310445..b1dbede 100644
+index 9310445392..b1dbede9d3 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -513,6 +513,55 @@ static const d3d_format_t *GetOutputFormat(vout_display_t *vd, vlc_fourcc_t i_sr
@@ -114,5 +114,5 @@ index 9310445..b1dbede 100644
      if ( d3dpixelShader != NULL )
      {
 -- 
-2.10.1.windows.1
+2.11.0
 

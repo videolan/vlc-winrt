@@ -1,7 +1,7 @@
-From 0cf3a28477f3a7bf74fd50e730b0519c107f5727 Mon Sep 17 00:00:00 2001
+From 6c015c057f4c7de0eca45ba3638165db9f185329 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 12 Jan 2017 16:16:24 +0100
-Subject: [PATCH 31/39] direct3d11: factorize the code to select the texture
+Subject: [PATCH 19/27] direct3d11: factorize the code to select the texture
  format
 
 ---
@@ -9,7 +9,7 @@ Subject: [PATCH 31/39] direct3d11: factorize the code to select the texture
  1 file changed, 45 insertions(+), 69 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index ea35e0c..32a78e8 100644
+index ea35e0c17b..32a78e8906 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -474,6 +474,34 @@ static void Close(vlc_object_t *object)
@@ -166,5 +166,5 @@ index ea35e0c..32a78e8 100644
                                                     DXGI_FORMAT_R8G8B8A8_UNORM,
                                                     &i_formatSupport)) &&
 -- 
-2.10.1.windows.1
+2.11.0
 

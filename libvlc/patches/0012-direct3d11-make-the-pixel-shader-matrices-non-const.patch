@@ -1,7 +1,7 @@
-From 98a06d3a42e0b12013c53667a1dc159082627883 Mon Sep 17 00:00:00 2001
+From 3c885c3c6eddffb40c1d864f12935ed59046e446 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 6 Jan 2017 14:16:15 +0100
-Subject: [PATCH 24/39] direct3d11: make the pixel shader matrices non-const
+Subject: [PATCH 12/27] direct3d11: make the pixel shader matrices non-const
 
 So they can be tweaked
 ---
@@ -9,7 +9,7 @@ So they can be tweaked
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 5535dd3..37d2d0e 100644
+index 5535dd3d39..37d2d0e843 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -1907,22 +1907,22 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
@@ -49,5 +49,5 @@ index 5535dd3..37d2d0e 100644
          case COLOR_SPACE_BT709:
              ppColorspace = COLORSPACE_BT709_TO_FULL;
 -- 
-2.10.1.windows.1
+2.11.0
 

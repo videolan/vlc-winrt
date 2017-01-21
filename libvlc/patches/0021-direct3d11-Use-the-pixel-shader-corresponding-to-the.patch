@@ -1,7 +1,7 @@
-From 820c58a985a49d091af44b84e7de367526f9e46e Mon Sep 17 00:00:00 2001
+From b46da3fd0387ad6dd05c2925b903346e7dc052d7 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 12 Jan 2017 16:18:08 +0100
-Subject: [PATCH 33/39] direct3d11: Use the pixel shader corresponding to the
+Subject: [PATCH 21/27] direct3d11: Use the pixel shader corresponding to the
  texture format
 
 Not the sub resources formats.
@@ -11,7 +11,7 @@ Now we refuse to render if we the pixel shader doesn't match a known format.
  1 file changed, 16 insertions(+), 5 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index dd54554..77a8b9f 100644
+index dd54554317..77a8b9f27f 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -1296,14 +1296,25 @@ static int Direct3D11Open(vout_display_t *vd, video_format_t *fmt)
@@ -46,5 +46,5 @@ index dd54554..77a8b9f 100644
      if (sys->d3dregion_format != NULL)
          sys->psz_rgbaPxShader = globPixelShaderDefault;
 -- 
-2.10.1.windows.1
+2.11.0
 

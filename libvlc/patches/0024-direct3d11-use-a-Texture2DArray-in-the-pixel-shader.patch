@@ -1,7 +1,7 @@
-From 939d23317dade2e1f0360252c2f3e01f5dcf5aef Mon Sep 17 00:00:00 2001
+From d4bc364646c5dbf6edebeb07bd5ff4996944f1d3 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 12 Jan 2017 13:58:39 +0100
-Subject: [PATCH 36/39] direct3d11: use a Texture2DArray in the pixel shader
+Subject: [PATCH 24/27] direct3d11: use a Texture2DArray in the pixel shader
 
 So that it can receive a view from a texture with multiple slices, like the
 ones needed by d3d11va.
@@ -20,7 +20,7 @@ anyway.
  2 files changed, 79 insertions(+), 23 deletions(-)
 
 diff --git a/modules/video_output/win32/common.h b/modules/video_output/win32/common.h
-index 9fca8eb..9ae2487 100644
+index 9fca8ebf2f..9ae2487245 100644
 --- a/modules/video_output/win32/common.h
 +++ b/modules/video_output/win32/common.h
 @@ -192,6 +192,7 @@ struct vout_display_sys_t
@@ -32,7 +32,7 @@ index 9fca8eb..9ae2487 100644
      const d3d_format_t       *picQuadConfig;
  
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 4b466e2..9310445 100644
+index 4b466e2c1b..9310445392 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -62,6 +62,9 @@ static void Close(vlc_object_t *);
@@ -236,5 +236,5 @@ index 4b466e2..9310445 100644
      hr = ID3D11Device_CreateShaderResourceView(sys->d3ddevice, (ID3D11Resource *)quad->pTexture, &resviewDesc, &quad->picSys.resourceView[0]);
      if (FAILED(hr)) {
 -- 
-2.10.1.windows.1
+2.11.0
 

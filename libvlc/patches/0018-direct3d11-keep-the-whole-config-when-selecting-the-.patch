@@ -1,7 +1,7 @@
-From 882b4905ca5b0cb1a4db2ff1ed29126367b5d9b9 Mon Sep 17 00:00:00 2001
+From 7a4eac876d471b668786f0ab3806714ccedf3ca8 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 12 Jan 2017 14:47:03 +0100
-Subject: [PATCH 30/39] direct3d11: keep the whole config when selecting the
+Subject: [PATCH 18/27] direct3d11: keep the whole config when selecting the
  quad output format
 
 Rather than keeping a few fields we keep a const pointer with all the data.
@@ -11,7 +11,7 @@ Rather than keeping a few fields we keep a const pointer with all the data.
  2 files changed, 19 insertions(+), 33 deletions(-)
 
 diff --git a/modules/video_output/win32/common.h b/modules/video_output/win32/common.h
-index a478762..857e658 100644
+index a478762046..857e6581b0 100644
 --- a/modules/video_output/win32/common.h
 +++ b/modules/video_output/win32/common.h
 @@ -45,13 +45,7 @@
@@ -39,7 +39,7 @@ index a478762..857e658 100644
      /* staging quad to adjust visible borders */
      d3d_quad_t               stagingQuad;
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 4f3f404..ea35e0c 100644
+index 4f3f404f36..ea35e0c17b 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -46,8 +46,6 @@
@@ -176,5 +176,5 @@ index 4f3f404..ea35e0c 100644
              err = AllocQuad( vd, &r->fmt, d3dquad, &rgbaCfg, sys->pSPUPixelShader,
                               false, PROJECTION_MODE_RECTANGULAR );
 -- 
-2.10.1.windows.1
+2.11.0
 

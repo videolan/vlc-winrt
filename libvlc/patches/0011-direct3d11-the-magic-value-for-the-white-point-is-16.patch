@@ -1,7 +1,7 @@
-From 0b7de505126dad144ecf18429b3464b3a5c57dc5 Mon Sep 17 00:00:00 2001
+From 6f507db57041800172f575eb953796d14da05d9c Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 6 Jan 2017 14:15:30 +0100
-Subject: [PATCH 23/39] direct3d11: the magic value for the white point is
+Subject: [PATCH 11/27] direct3d11: the magic value for the white point is
  16/256
 
 That's the "studio" range shifted for full range RGB.
@@ -14,7 +14,7 @@ replaces https://patches.videolan.org/patch/15373/
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 24f566d..5535dd3 100644
+index 24f566d03c..5535dd3d39 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -1887,6 +1887,7 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
@@ -44,5 +44,5 @@ index 24f566d..5535dd3 100644
  
      static_assert((sizeof(PS_COLOR_TRANSFORM)%16)==0,"Constant buffers require 16-byte alignment");
 -- 
-2.10.1.windows.1
+2.11.0
 

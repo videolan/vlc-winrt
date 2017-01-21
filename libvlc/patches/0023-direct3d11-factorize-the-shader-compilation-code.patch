@@ -1,7 +1,7 @@
-From d179fe80d6f2214a36527446d58e65ff273cb816 Mon Sep 17 00:00:00 2001
+From f7b2c5e1d5f6bc8e8b52c86c6b2ac0f672fbd1ae Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 12 Jan 2017 11:57:33 +0100
-Subject: [PATCH 35/39] direct3d11: factorize the shader compilation code
+Subject: [PATCH 23/27] direct3d11: factorize the shader compilation code
 
 Log the error when the compilation fails
 ---
@@ -9,7 +9,7 @@ Log the error when the compilation fails
  1 file changed, 61 insertions(+), 61 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 0654096..4b466e2 100644
+index 0654096339..4b466e2c1b 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -1425,6 +1425,42 @@ static void UpdatePicQuadPosition(vout_display_t *vd)
@@ -174,5 +174,5 @@ index 0654096..4b466e2 100644
      CropStagingFormat( vd, &core_source );
      UpdatePicQuadPosition(vd);
 -- 
-2.10.1.windows.1
+2.11.0
 
