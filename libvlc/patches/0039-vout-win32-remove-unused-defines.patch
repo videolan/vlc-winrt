@@ -1,0 +1,22 @@
+From 7da250ede468833cb6d4754a7f2a539016df48fe Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Tue, 24 Jan 2017 08:50:39 +0100
+Subject: [PATCH 39/55] vout: win32: remove unused defines
+
+---
+ modules/video_output/win32/common.h | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/modules/video_output/win32/common.h b/modules/video_output/win32/common.h
+index bc87034..a957048 100644
+--- a/modules/video_output/win32/common.h
++++ b/modules/video_output/win32/common.h
+@@ -109,5 +109,3 @@ picture_pool_t *CommonPool(vout_display_t *, unsigned);
+  *****************************************************************************/
+ #define IDM_TOGGLE_ON_TOP WM_USER + 1
+ #define DX_POSITION_CHANGE 0x1000
+-#define DX_WALLPAPER_CHANGE 0x2000
+-#define DX_DESKTOP_CHANGE 0x4000
+-- 
+2.10.1.windows.1
+

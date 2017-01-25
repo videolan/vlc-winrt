@@ -1,0 +1,50 @@
+From fcbdc7fe287c1466a3c4e21d003c5ddc87e5249e Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Thu, 12 Jan 2017 16:18:08 +0100
+Subject: [PATCH 25/55] direct3d11: Use the pixel shader corresponding to the
+ texture format
+
+Not the sub resources formats.
+Now we refuse to render if we the pixel shader doesn't match a known format.
+---
+ modules/video_output/win32/direct3d11.c | 21 ++++++++++++++++-----
+ 1 file changed, 16 insertions(+), 5 deletions(-)
+
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index 67ff543..4329944 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -1291,14 +1291,25 @@ static int Direct3D11Open(vout_display_t *vd, video_format_t *fmt)
+     if (!sys->d3dregion_format)
+         sys->d3dregion_format = GetOutputFormat(vd, VLC_CODEC_BGRA, 0, false, true);
+ 
+-    if (sys->picQuadConfig->formatY == DXGI_FORMAT_R8_UNORM ||
+-        sys->picQuadConfig->formatY == DXGI_FORMAT_R16_UNORM)
++    switch (sys->picQuadConfig->formatTexture)
++    {
++    case DXGI_FORMAT_NV12:
++    case DXGI_FORMAT_P010:
+         sys->d3dPxShader = globPixelShaderBiplanarYUV_2RGB;
+-    else
+-    if (fmt->i_chroma == VLC_CODEC_YUYV)
++        break;
++    case DXGI_FORMAT_YUY2:
+         sys->d3dPxShader = globPixelShaderBiplanarYUYV_2RGB;
+-    else
++        break;
++    case DXGI_FORMAT_R8G8B8A8_UNORM:
++    case DXGI_FORMAT_B8G8R8A8_UNORM:
++    case DXGI_FORMAT_B5G6R5_UNORM:
+         sys->d3dPxShader = globPixelShaderDefault;
++        break;
++    default:
++        msg_Err(vd, "Could not get a suitable pixel shader for %s", sys->picQuadConfig->name);
++        return VLC_EGENERIC;
++        break;
++    }
+ 
+     if (sys->d3dregion_format != NULL)
+         sys->psz_rgbaPxShader = globPixelShaderDefault;
+-- 
+2.10.1.windows.1
+

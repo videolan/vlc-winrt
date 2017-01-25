@@ -1,0 +1,191 @@
+From be908cc1db036f7ea92d799cc744d4bc175b25eb Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Mon, 23 Jan 2017 14:27:40 +0100
+Subject: [PATCH 34/53] direct3d11: move the VLC_CODEC_D3D11_OPAQUE definition
+ in a separate header
+
+Shared by all code using the opaque format.
+---
+ modules/codec/Makefile.am            |  2 +-
+ modules/codec/avcodec/d3d11va.c      | 13 +-----------
+ modules/video_chroma/Makefile.am     |  2 +-
+ modules/video_chroma/d3d11_fmt.h     | 41 ++++++++++++++++++++++++++++++++++++
+ modules/video_chroma/d3d11_surface.c | 13 +-----------
+ modules/video_output/Makefile.am     |  2 +-
+ modules/video_output/win32/common.h  | 11 +---------
+ 7 files changed, 47 insertions(+), 37 deletions(-)
+ create mode 100644 modules/video_chroma/d3d11_fmt.h
+
+diff --git a/modules/codec/Makefile.am b/modules/codec/Makefile.am
+index 2154906..a599c2b 100644
+--- a/modules/codec/Makefile.am
++++ b/modules/codec/Makefile.am
+@@ -392,7 +392,7 @@ endif
+ 
+ libd3d11va_plugin_la_SOURCES = \
+ 	codec/avcodec/d3d11va.c codec/avcodec/directx_va.c codec/avcodec/directx_va.h \
+-	video_chroma/dxgi_fmt.c video_chroma/dxgi_fmt.h \
++	video_chroma/d3d11_fmt.h video_chroma/dxgi_fmt.c video_chroma/dxgi_fmt.h \
+ 	packetizer/h264_nal.c packetizer/h264_nal.h \
+ 	packetizer/hevc_nal.c packetizer/hevc_nal.h
+ libd3d11va_plugin_la_LIBADD = $(LIBCOM) -luuid
+diff --git a/modules/codec/avcodec/d3d11va.c b/modules/codec/avcodec/d3d11va.c
+index a6c64c5..01737d0 100644
+--- a/modules/codec/avcodec/d3d11va.c
++++ b/modules/codec/avcodec/d3d11va.c
+@@ -52,7 +52,7 @@
+ #include <d3d11.h>
+ #include <libavcodec/d3d11va.h>
+ 
+-#include "../../video_chroma/dxgi_fmt.h"
++#include "../../video_chroma/d3d11_fmt.h"
+ 
+ static int Open(vlc_va_t *, AVCodecContext *, enum PixelFormat,
+                 const es_format_t *, picture_sys_t *p_sys);
+@@ -141,17 +141,6 @@ struct vlc_va_sys_t
+     DXGI_FORMAT                    processorFormat;
+ };
+ 
+-/* VLC_CODEC_D3D11_OPAQUE */
+-struct picture_sys_t
+-{
+-    ID3D11VideoDecoderOutputView  *decoder; /* may be NULL for pictures from the pool */
+-    ID3D11Texture2D               *texture;
+-    ID3D11DeviceContext           *context;
+-    unsigned                      slice_index;
+-    ID3D11VideoProcessorInputView *inputView; /* when used as processor input */
+-    ID3D11ShaderResourceView      *resourceView[2];
+-};
+-
+ /* */
+ static int D3dCreateDevice(vlc_va_t *);
+ static void D3dDestroyDevice(vlc_va_t *);
+diff --git a/modules/video_chroma/Makefile.am b/modules/video_chroma/Makefile.am
+index 0545c9b..b2e97d9 100644
+--- a/modules/video_chroma/Makefile.am
++++ b/modules/video_chroma/Makefile.am
+@@ -124,7 +124,7 @@ endif
+ 
+ # D3D11VA
+ libd3d11_surface_plugin_la_SOURCES = video_chroma/d3d11_surface.c \
+-	video_chroma/dxgi_fmt.c video_chroma/dxgi_fmt.h \
++	video_chroma/d3d11_fmt.h video_chroma/dxgi_fmt.c video_chroma/dxgi_fmt.h \
+ 	video_chroma/copy.c video_chroma/copy.h
+ 
+ if HAVE_AVCODEC_D3D11VA
+diff --git a/modules/video_chroma/d3d11_fmt.h b/modules/video_chroma/d3d11_fmt.h
+new file mode 100644
+index 0000000..5fbab72
+--- /dev/null
++++ b/modules/video_chroma/d3d11_fmt.h
+@@ -0,0 +1,41 @@
++/*****************************************************************************
++ * d3d11_fmt.h : D3D11 helper calls
++ *****************************************************************************
++ * Copyright © 2017 VLC authors, VideoLAN and VideoLabs
++ *
++ * Authors: Steve Lhomme <robux4@gmail.com>
++ *
++ * This program is free software; you can redistribute it and/or modify it
++ * under the terms of the GNU Lesser General Public License as published by
++ * the Free Software Foundation; either version 2.1 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
++ * GNU Lesser General Public License for more details.
++ *
++ * You should have received a copy of the GNU Lesser General Public License
++ * along with this program; if not, write to the Free Software Foundation,
++ * Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
++ *****************************************************************************/
++
++#ifndef VLC_VIDEOCHROMA_D3D11_FMT_H_
++#define VLC_VIDEOCHROMA_D3D11_FMT_H_
++
++#include <d3d11.h>
++
++#include "dxgi_fmt.h"
++
++/* VLC_CODEC_D3D11_OPAQUE */
++struct picture_sys_t
++{
++    ID3D11VideoDecoderOutputView  *decoder; /* may be NULL for pictures from the pool */
++    ID3D11Texture2D               *texture;
++    ID3D11DeviceContext           *context;
++    unsigned                      slice_index;
++    ID3D11VideoProcessorInputView *inputView; /* when used as processor input */
++    ID3D11ShaderResourceView      *resourceView[D3D11_MAX_SHADER_VIEW];
++};
++
++#endif /* include-guard */
+diff --git a/modules/video_chroma/d3d11_surface.c b/modules/video_chroma/d3d11_surface.c
+index 4f9171f..6413ba5 100644
+--- a/modules/video_chroma/d3d11_surface.c
++++ b/modules/video_chroma/d3d11_surface.c
+@@ -34,7 +34,6 @@
+ #include <vlc_picture.h>
+ 
+ #include "copy.h"
+-#include "dxgi_fmt.h"
+ 
+ static int  OpenConverter( vlc_object_t * );
+ static void CloseConverter( vlc_object_t * );
+@@ -51,17 +50,7 @@ vlc_module_end ()
+ #include <windows.h>
+ #define COBJMACROS
+ #include <d3d11.h>
+-
+-/* VLC_CODEC_D3D11_OPAQUE */
+-struct picture_sys_t
+-{
+-    ID3D11VideoDecoderOutputView  *decoder; /* may be NULL for pictures from the pool */
+-    ID3D11Texture2D               *texture;
+-    ID3D11DeviceContext           *context;
+-    unsigned                      slice_index;
+-    ID3D11VideoProcessorInputView *inputView; /* when used as processor input */
+-    ID3D11ShaderResourceView      *resourceView[2];
+-};
++#include "d3d11_fmt.h"
+ 
+ struct filter_sys_t {
+     copy_cache_t     cache;
+diff --git a/modules/video_output/Makefile.am b/modules/video_output/Makefile.am
+index fefdf2f..6064f15 100644
+--- a/modules/video_output/Makefile.am
++++ b/modules/video_output/Makefile.am
+@@ -165,7 +165,7 @@ EXTRA_LTLIBRARIES += libdirect3d9_plugin.la
+ endif
+ 
+ libdirect3d11_plugin_la_SOURCES = video_output/win32/direct3d11.c \
+- video_chroma/dxgi_fmt.c video_chroma/dxgi_fmt.h \
++ video_chroma/d3d11_fmt.h video_chroma/dxgi_fmt.c video_chroma/dxgi_fmt.h \
+  video_output/win32/common.c video_output/win32/common.h
+ libdirect3d11_plugin_la_CPPFLAGS = $(AM_CPPFLAGS) \
+  -DMODULE_NAME_IS_direct3d11
+diff --git a/modules/video_output/win32/common.h b/modules/video_output/win32/common.h
+index a4e4bf5..e6e1d77 100644
+--- a/modules/video_output/win32/common.h
++++ b/modules/video_output/win32/common.h
+@@ -47,16 +47,7 @@
+ #ifdef MODULE_NAME_IS_direct3d11
+ #include "../../video_chroma/dxgi_fmt.h"
+ #ifdef HAVE_ID3D11VIDEODECODER
+-/* VLC_CODEC_D3D11_OPAQUE */
+-struct picture_sys_t
+-{
+-    ID3D11VideoDecoderOutputView  *decoder; /* may be NULL for pictures from the pool */
+-    ID3D11Texture2D               *texture;
+-    ID3D11DeviceContext           *context;
+-    unsigned                      slice_index;
+-    ID3D11VideoProcessorInputView *inputView; /* when used as processor input */
+-    ID3D11ShaderResourceView      *resourceView[D3D11_MAX_SHADER_VIEW];
+-};
++#include "../../video_chroma/d3d11_fmt.h"
+ #endif
+ 
+ typedef struct
+-- 
+2.10.1.windows.1
+

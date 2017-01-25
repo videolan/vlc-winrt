@@ -1,7 +1,7 @@
-From 65ca1e566e64e1b2964346008800a229fed101d1 Mon Sep 17 00:00:00 2001
+From da997d5ee58dc5555476b96a809454d1493aa1be Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 15:23:12 +0200
-Subject: [PATCH 07/27] contrib: microdns: fix uninitialized memory usages
+Subject: [PATCH 07/55] contrib: microdns: fix uninitialized memory usages
 
 ---
  ...o-not-return-freed-memory-in-case-of-erro.patch | 24 ++++++++++++++++++++++
@@ -13,7 +13,7 @@ Subject: [PATCH 07/27] contrib: microdns: fix uninitialized memory usages
 
 diff --git a/contrib/src/microdns/0001-mdns_recv-do-not-return-freed-memory-in-case-of-erro.patch b/contrib/src/microdns/0001-mdns_recv-do-not-return-freed-memory-in-case-of-erro.patch
 new file mode 100644
-index 0000000000..fe0e88cf87
+index 0000000..fe0e88c
 --- /dev/null
 +++ b/contrib/src/microdns/0001-mdns_recv-do-not-return-freed-memory-in-case-of-erro.patch
 @@ -0,0 +1,24 @@
@@ -43,7 +43,7 @@ index 0000000000..fe0e88cf87
 +
 diff --git a/contrib/src/microdns/0002-mdns_recv-initialize-the-max-size-of-buffer-to-read-.patch b/contrib/src/microdns/0002-mdns_recv-initialize-the-max-size-of-buffer-to-read-.patch
 new file mode 100644
-index 0000000000..516aa02e54
+index 0000000..516aa02
 --- /dev/null
 +++ b/contrib/src/microdns/0002-mdns_recv-initialize-the-max-size-of-buffer-to-read-.patch
 @@ -0,0 +1,24 @@
@@ -72,7 +72,7 @@ index 0000000000..516aa02e54
 +2.7.2.windows.1
 +
 diff --git a/contrib/src/microdns/rules.mak b/contrib/src/microdns/rules.mak
-index 2c1801c99b..dbc45dae25 100644
+index 2c1801c..dbc45da 100644
 --- a/contrib/src/microdns/rules.mak
 +++ b/contrib/src/microdns/rules.mak
 @@ -19,6 +19,8 @@ $(TARBALLS)/microdns-$(LIBMICRODNS_VERSION).tar.gz:
@@ -85,5 +85,5 @@ index 2c1801c99b..dbc45dae25 100644
  
  .microdns: microdns
 -- 
-2.11.0
+2.10.1.windows.1
 

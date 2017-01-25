@@ -1,0 +1,144 @@
+From bf7e3462aab41ad8a55b2605437dbd9eacee75b5 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Mon, 23 Jan 2017 17:02:50 +0100
+Subject: [PATCH 37/53] d3d11_fmt: avoid a cast between ID3D11Texture2D* and
+ ID3D11Resource*
+
+---
+ modules/codec/avcodec/d3d11va.c         | 18 +++++++++---------
+ modules/video_chroma/d3d11_fmt.h        |  5 ++++-
+ modules/video_chroma/d3d11_surface.c    |  4 ++--
+ modules/video_output/win32/direct3d11.c |  2 +-
+ 4 files changed, 16 insertions(+), 13 deletions(-)
+
+diff --git a/modules/codec/avcodec/d3d11va.c b/modules/codec/avcodec/d3d11va.c
+index 01737d0..8bd884e 100644
+--- a/modules/codec/avcodec/d3d11va.c
++++ b/modules/codec/avcodec/d3d11va.c
+@@ -272,7 +272,7 @@ static int Extract(vlc_va_t *va, picture_t *output, uint8_t *data)
+                 };
+ 
+                 HRESULT hr = ID3D11VideoDevice_CreateVideoProcessorOutputView((ID3D11VideoDevice*) sys->dx_sys.d3ddec,
+-                                                                 (ID3D11Resource*) p_sys_out->texture,
++                                                                 p_sys_out->resource,
+                                                                  sys->procEnumerator,
+                                                                  &outDesc,
+                                                                  (ID3D11VideoProcessorOutputView**) &p_sys_out->decoder);
+@@ -319,15 +319,15 @@ done:
+             ID3D11VideoDecoderOutputView_GetDesc( src, &viewDesc );
+ 
+             D3D11_TEXTURE2D_DESC dstDesc;
+-            ID3D11Texture2D_GetDesc( (ID3D11Texture2D*) p_sys_out->texture, &dstDesc);
++            ID3D11Texture2D_GetDesc( p_sys_out->texture, &dstDesc);
+ 
+             /* copy decoder slice to surface */
+             D3D11_BOX copyBox = {
+                 .right = dstDesc.Width, .bottom = dstDesc.Height, .back = 1,
+             };
+-            ID3D11DeviceContext_CopySubresourceRegion(sys->d3dctx, (ID3D11Resource*) p_sys_out->texture,
++            ID3D11DeviceContext_CopySubresourceRegion(sys->d3dctx, p_sys_out->resource,
+                                                       p_sys_out->slice_index, 0, 0, 0,
+-                                                      (ID3D11Resource*) p_sys_in->texture,
++                                                      p_sys_in->resource,
+                                                       viewDesc.Texture2D.ArraySlice,
+                                                       &copyBox);
+             if( sys->context_mutex  != INVALID_HANDLE_VALUE ) {
+@@ -386,7 +386,7 @@ static int Get(vlc_va_t *va, picture_t *pic, uint8_t **data)
+         viewDesc.Texture2D.ArraySlice = p_sys->slice_index;
+ 
+         hr = ID3D11VideoDevice_CreateVideoDecoderOutputView( (ID3D11VideoDevice*) dx_sys->d3ddec,
+-                                                             (ID3D11Resource*) p_sys->texture,
++                                                             p_sys->resource,
+                                                              &viewDesc,
+                                                              &p_sys->decoder );
+         if (FAILED(hr)) {
+@@ -496,7 +496,7 @@ static int Open(vlc_va_t *va, AVCodecContext *ctx, enum PixelFormat pix_fmt,
+ 
+             assert(p_sys->texture != NULL);
+             D3D11_TEXTURE2D_DESC dstDesc;
+-            ID3D11Texture2D_GetDesc( (ID3D11Texture2D*) p_sys->texture, &dstDesc);
++            ID3D11Texture2D_GetDesc( p_sys->texture, &dstDesc);
+             sys->render = dstDesc.Format;
+         }
+     }
+@@ -1049,7 +1049,7 @@ static int DxCreateDecoderSurfaces(vlc_va_t *va, int codec_id, const video_forma
+ 
+             viewDesc.Texture2D.ArraySlice = pic->p_sys->slice_index;
+             hr = ID3D11VideoDevice_CreateVideoDecoderOutputView( (ID3D11VideoDevice*) dx_sys->d3ddec,
+-                                                                 (ID3D11Resource*) pic->p_sys->texture,
++                                                                 pic->p_sys->resource,
+                                                                  &viewDesc,
+                                                                  &pic->p_sys->decoder );
+             if (FAILED(hr)) {
+@@ -1229,7 +1229,7 @@ static picture_t *DxAllocPicture(vlc_va_t *va, const video_format_t *fmt, unsign
+         return NULL;
+ 
+     pic_sys->decoder  = (ID3D11VideoDecoderOutputView*) sys->dx_sys.hw_surface[index];
+-    ID3D11VideoDecoderOutputView_GetResource(pic_sys->decoder, (ID3D11Resource**) &pic_sys->texture);
++    ID3D11VideoDecoderOutputView_GetResource(pic_sys->decoder, &pic_sys->resource);
+     pic_sys->context  = sys->d3dctx;
+ 
+     if (sys->procEnumerator)
+@@ -1242,7 +1242,7 @@ static picture_t *DxAllocPicture(vlc_va_t *va, const video_format_t *fmt, unsign
+         };
+ 
+         HRESULT hr = ID3D11VideoDevice_CreateVideoProcessorInputView((ID3D11VideoDevice*) sys->dx_sys.d3ddec,
+-                                                        (ID3D11Resource*) pic_sys->texture,
++                                                        pic_sys->resource,
+                                                         sys->procEnumerator,
+                                                         &inDesc,
+                                                         &pic_sys->inputView);
+diff --git a/modules/video_chroma/d3d11_fmt.h b/modules/video_chroma/d3d11_fmt.h
+index 5fbab72..354a4bc 100644
+--- a/modules/video_chroma/d3d11_fmt.h
++++ b/modules/video_chroma/d3d11_fmt.h
+@@ -31,7 +31,10 @@
+ struct picture_sys_t
+ {
+     ID3D11VideoDecoderOutputView  *decoder; /* may be NULL for pictures from the pool */
+-    ID3D11Texture2D               *texture;
++    union {
++        ID3D11Texture2D           *texture;
++        ID3D11Resource            *resource;
++    };
+     ID3D11DeviceContext           *context;
+     unsigned                      slice_index;
+     ID3D11VideoProcessorInputView *inputView; /* when used as processor input */
+diff --git a/modules/video_chroma/d3d11_surface.c b/modules/video_chroma/d3d11_surface.c
+index 6413ba5..655c697 100644
+--- a/modules/video_chroma/d3d11_surface.c
++++ b/modules/video_chroma/d3d11_surface.c
+@@ -110,7 +110,7 @@ static void D3D11_YUY2(filter_t *p_filter, picture_t *src, picture_t *dst)
+ 
+     ID3D11DeviceContext_CopySubresourceRegion(p_sys->context, (ID3D11Resource*) sys->staging,
+                                               0, 0, 0, 0,
+-                                              (ID3D11Resource*) p_sys->texture, viewDesc.Texture2D.ArraySlice,
++                                              p_sys->resource, viewDesc.Texture2D.ArraySlice,
+                                               NULL);
+ 
+     HRESULT hr = ID3D11DeviceContext_Map(p_sys->context, (ID3D11Resource*) sys->staging,
+@@ -191,7 +191,7 @@ static void D3D11_NV12(filter_t *p_filter, picture_t *src, picture_t *dst)
+ 
+     ID3D11DeviceContext_CopySubresourceRegion(p_sys->context, (ID3D11Resource*) sys->staging,
+                                               0, 0, 0, 0,
+-                                              (ID3D11Resource*) p_sys->texture, viewDesc.Texture2D.ArraySlice,
++                                              p_sys->resource, viewDesc.Texture2D.ArraySlice,
+                                               NULL);
+ 
+     HRESULT hr = ID3D11DeviceContext_Map(p_sys->context, (ID3D11Resource*) sys->staging,
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index 5a4aafd..7f3c1da 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -1069,7 +1069,7 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
+         ID3D11DeviceContext_CopySubresourceRegion(sys->d3dcontext,
+                                                   (ID3D11Resource*) sys->picQuad.pTexture,
+                                                   0, 0, 0, 0,
+-                                                  (ID3D11Resource*) p_sys->texture,
++                                                  p_sys->resource,
+                                                   p_sys->slice_index, NULL);
+         if ( sys->context_lock != INVALID_HANDLE_VALUE)
+             ReleaseMutex( sys->context_lock );
+-- 
+2.10.1.windows.1
+

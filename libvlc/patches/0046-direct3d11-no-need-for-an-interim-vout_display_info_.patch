@@ -1,0 +1,52 @@
+From b25eebba845559be45617009de71f24e3b537348 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Tue, 24 Jan 2017 16:03:49 +0100
+Subject: [PATCH 46/55] direct3d11: no need for an interim vout_display_info_t
+ value
+
+---
+ modules/video_output/win32/direct3d11.c | 20 +++++++++-----------
+ 1 file changed, 9 insertions(+), 11 deletions(-)
+
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index f0350cd..6e70dde 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -538,25 +538,23 @@ static int Open(vlc_object_t *object)
+         goto error;
+     }
+ 
+-    vout_display_info_t info  = vd->info;
+-    info.is_slow              = !is_d3d11_opaque(fmt.i_chroma);
+-    info.has_double_click     = true;
+-    info.has_hide_mouse       = false;
+-    info.has_pictures_invalid = !is_d3d11_opaque(fmt.i_chroma);
++    video_format_Clean(&vd->fmt);
++    video_format_Copy(&vd->fmt, &fmt);
++
++    vd->info.is_slow              = !is_d3d11_opaque(fmt.i_chroma);
++    vd->info.has_double_click     = true;
++    vd->info.has_hide_mouse       = false;
++    vd->info.has_pictures_invalid = !is_d3d11_opaque(fmt.i_chroma);
+ 
+     if (var_InheritBool(vd, "direct3d11-hw-blending") &&
+         vd->sys->d3dregion_format != NULL)
+     {
+         vd->sys->pSubpictureChromas[0] = vd->sys->d3dregion_format->fourcc;
+         vd->sys->pSubpictureChromas[1] = 0;
+-        info.subpicture_chromas = vd->sys->pSubpictureChromas;
++        vd->info.subpicture_chromas = vd->sys->pSubpictureChromas;
+     }
+     else
+-        info.subpicture_chromas = NULL;
+-
+-    video_format_Clean(&vd->fmt);
+-    video_format_Copy(&vd->fmt, &fmt);
+-    vd->info = info;
++        vd->info.subpicture_chromas = NULL;
+ 
+     vd->pool    = Pool;
+     vd->prepare = Prepare;
+-- 
+2.10.1.windows.1
+
