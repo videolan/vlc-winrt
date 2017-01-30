@@ -1,0 +1,314 @@
+From ba2e1759e4a0132568c3ab726602e760dbfcbcf7 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Fri, 20 Jan 2017 10:10:16 +0100
+Subject: [PATCH 30/50] dxgi_fmt: provide the list of resource view types in an
+ array
+
+---
+ modules/video_chroma/dxgi_fmt.c         | 36 ++++++------
+ modules/video_chroma/dxgi_fmt.h         |  5 +-
+ modules/video_output/win32/common.h     |  2 +-
+ modules/video_output/win32/direct3d11.c | 99 +++++++++++++++++----------------
+ 4 files changed, 72 insertions(+), 70 deletions(-)
+
+diff --git a/modules/video_chroma/dxgi_fmt.c b/modules/video_chroma/dxgi_fmt.c
+index 0b84d6f308..9fbf702584 100644
+--- a/modules/video_chroma/dxgi_fmt.c
++++ b/modules/video_chroma/dxgi_fmt.c
+@@ -66,28 +66,28 @@ static const dxgi_format_t dxgi_formats[] = {
+ };
+ 
+ static const d3d_format_t d3d_formats[] = {
+-    { "NV12",     DXGI_FORMAT_NV12,           VLC_CODEC_NV12,              8, 2, 2, DXGI_FORMAT_R8_UNORM,       DXGI_FORMAT_R8G8_UNORM },
+-    { "VA_NV12",  DXGI_FORMAT_NV12,           VLC_CODEC_D3D11_OPAQUE,      8, 2, 2, DXGI_FORMAT_R8_UNORM,       DXGI_FORMAT_R8G8_UNORM },
+-    { "P010",     DXGI_FORMAT_P010,           VLC_CODEC_P010,             10, 2, 2, DXGI_FORMAT_R16_UNORM,      DXGI_FORMAT_R16G16_UNORM },
+-    { "VA_P010",  DXGI_FORMAT_P010,           VLC_CODEC_D3D11_OPAQUE_10B, 10, 2, 2, DXGI_FORMAT_R16_UNORM,      DXGI_FORMAT_R16G16_UNORM },
+-    { "YUY2",     DXGI_FORMAT_YUY2,           VLC_CODEC_YUYV,              8, 2, 2, DXGI_FORMAT_R8G8B8A8_UNORM, 0 },
++    { "NV12",     DXGI_FORMAT_NV12,           VLC_CODEC_NV12,              8, 2, 2, { DXGI_FORMAT_R8_UNORM,       DXGI_FORMAT_R8G8_UNORM } },
++    { "VA_NV12",  DXGI_FORMAT_NV12,           VLC_CODEC_D3D11_OPAQUE,      8, 2, 2, { DXGI_FORMAT_R8_UNORM,       DXGI_FORMAT_R8G8_UNORM } },
++    { "P010",     DXGI_FORMAT_P010,           VLC_CODEC_P010,             10, 2, 2, { DXGI_FORMAT_R16_UNORM,      DXGI_FORMAT_R16G16_UNORM } },
++    { "VA_P010",  DXGI_FORMAT_P010,           VLC_CODEC_D3D11_OPAQUE_10B, 10, 2, 2, { DXGI_FORMAT_R16_UNORM,      DXGI_FORMAT_R16G16_UNORM } },
++    { "YUY2",     DXGI_FORMAT_YUY2,           VLC_CODEC_YUYV,              8, 2, 2, { DXGI_FORMAT_R8G8B8A8_UNORM } },
+ #ifdef BROKEN_PIXEL
+-    { "AYUV",     DXGI_FORMAT_AYUV,           VLC_CODEC_YUVA,          8, 1, 1, DXGI_FORMAT_R8G8B8A8_UNORM,     0 },
+-    { "Y416",     DXGI_FORMAT_Y416,           VLC_CODEC_I444_16L,     16, 1, 1, DXGI_FORMAT_R16G16B16A16_UINT,  0 },
++    { "AYUV",     DXGI_FORMAT_AYUV,           VLC_CODEC_YUVA,          8, 1, 1, { DXGI_FORMAT_R8G8B8A8_UNORM } },
++    { "Y416",     DXGI_FORMAT_Y416,           VLC_CODEC_I444_16L,     16, 1, 1, { DXGI_FORMAT_R16G16B16A16_UINT } },
+ #endif
+ #ifdef UNTESTED
+-    { "Y210",     DXGI_FORMAT_Y210,           VLC_CODEC_I422_10L,     10, 2, 1, DXGI_FORMAT_R16G16B16A16_UNORM, 0 },
+-    { "Y410",     DXGI_FORMAT_Y410,           VLC_CODEC_I444,         10, 1, 1, DXGI_FORMAT_R10G10B10A2_UNORM,  0 },
+-    { "NV11",     DXGI_FORMAT_NV11,           VLC_CODEC_I411,          8, 4, 1, DXGI_FORMAT_R8_UNORM,           DXGI_FORMAT_R8G8_UNORM },
++    { "Y210",     DXGI_FORMAT_Y210,           VLC_CODEC_I422_10L,     10, 2, 1, { DXGI_FORMAT_R16G16B16A16_UNORM } },
++    { "Y410",     DXGI_FORMAT_Y410,           VLC_CODEC_I444,         10, 1, 1, { DXGI_FORMAT_R10G10B10A2_UNORM } },
++    { "NV11",     DXGI_FORMAT_NV11,           VLC_CODEC_I411,          8, 4, 1, { DXGI_FORMAT_R8_UNORM,           DXGI_FORMAT_R8G8_UNORM} },
+ #endif
+-    { "R8G8B8A8", DXGI_FORMAT_R8G8B8A8_UNORM, VLC_CODEC_RGBA,          8, 1, 1, DXGI_FORMAT_R8G8B8A8_UNORM,     0 },
+-    { "VA_RGBA",  DXGI_FORMAT_R8G8B8A8_UNORM, VLC_CODEC_D3D11_OPAQUE,  8, 1, 1, DXGI_FORMAT_R8G8B8A8_UNORM,     0 },
+-    { "B8G8R8A8", DXGI_FORMAT_B8G8R8A8_UNORM, VLC_CODEC_BGRA,          8, 1, 1, DXGI_FORMAT_B8G8R8A8_UNORM,     0 },
+-    { "VA_BGRA",  DXGI_FORMAT_B8G8R8A8_UNORM, VLC_CODEC_D3D11_OPAQUE,  8, 1, 1, DXGI_FORMAT_B8G8R8A8_UNORM,     0 },
+-    { "R8G8B8X8", DXGI_FORMAT_B8G8R8X8_UNORM, VLC_CODEC_RGB32,         8, 1, 1, DXGI_FORMAT_B8G8R8X8_UNORM,     0 },
+-    { "B5G6R5",   DXGI_FORMAT_B5G6R5_UNORM,   VLC_CODEC_RGB16,         5, 1, 1, DXGI_FORMAT_B5G6R5_UNORM,       0 },
+-
+-    { NULL, 0, 0, 0, 0, 0, 0, 0}
++    { "R8G8B8A8", DXGI_FORMAT_R8G8B8A8_UNORM, VLC_CODEC_RGBA,          8, 1, 1, { DXGI_FORMAT_R8G8B8A8_UNORM } },
++    { "VA_RGBA",  DXGI_FORMAT_R8G8B8A8_UNORM, VLC_CODEC_D3D11_OPAQUE,  8, 1, 1, { DXGI_FORMAT_R8G8B8A8_UNORM } },
++    { "B8G8R8A8", DXGI_FORMAT_B8G8R8A8_UNORM, VLC_CODEC_BGRA,          8, 1, 1, { DXGI_FORMAT_B8G8R8A8_UNORM } },
++    { "VA_BGRA",  DXGI_FORMAT_B8G8R8A8_UNORM, VLC_CODEC_D3D11_OPAQUE,  8, 1, 1, { DXGI_FORMAT_B8G8R8A8_UNORM } },
++    { "R8G8B8X8", DXGI_FORMAT_B8G8R8X8_UNORM, VLC_CODEC_RGB32,         8, 1, 1, { DXGI_FORMAT_B8G8R8X8_UNORM } },
++    { "B5G6R5",   DXGI_FORMAT_B5G6R5_UNORM,   VLC_CODEC_RGB16,         5, 1, 1, { DXGI_FORMAT_B5G6R5_UNORM } },
++
++    { NULL, 0, 0, 0, 0, 0, {} }
+ };
+ 
+ const char *DxgiFormatToStr(DXGI_FORMAT format)
+diff --git a/modules/video_chroma/dxgi_fmt.h b/modules/video_chroma/dxgi_fmt.h
+index 190bd69c43..dd4abfbfdd 100644
+--- a/modules/video_chroma/dxgi_fmt.h
++++ b/modules/video_chroma/dxgi_fmt.h
+@@ -29,6 +29,8 @@
+ #include <vlc_common.h>
+ #include <vlc_fourcc.h>
+ 
++#define D3D11_MAX_SHADER_VIEW  2
++
+ typedef struct
+ {
+     const char   *name;
+@@ -37,8 +39,7 @@ typedef struct
+     uint8_t      bitsPerChannel;
+     uint8_t      widthDenominator;
+     uint8_t      heightDenominator;
+-    DXGI_FORMAT  formatY;
+-    DXGI_FORMAT  formatUV;
++    DXGI_FORMAT  resourceFormat[D3D11_MAX_SHADER_VIEW];
+ } d3d_format_t;
+ 
+ extern const char *DxgiFormatToStr(DXGI_FORMAT format);
+diff --git a/modules/video_output/win32/common.h b/modules/video_output/win32/common.h
+index b2dd942738..1bf726ba24 100644
+--- a/modules/video_output/win32/common.h
++++ b/modules/video_output/win32/common.h
+@@ -55,7 +55,7 @@ struct picture_sys_t
+     ID3D11DeviceContext           *context;
+     unsigned                      slice_index;
+     ID3D11VideoProcessorInputView *inputView; /* when used as processor input */
+-    ID3D11ShaderResourceView      *resourceView[2];
++    ID3D11ShaderResourceView      *resourceView[D3D11_MAX_SHADER_VIEW];
+ };
+ #endif
+ 
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index 84a9b55e30..5de61ce1a2 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -183,6 +183,9 @@ static const char* globVertexShaderFlat = "\
+   }\
+ ";
+ 
++#define STRINGIZE2(s) #s
++#define STRINGIZE(s) STRINGIZE2(s)
++
+ static const char* globVertexShaderProjection = "\
+   cbuffer VS_PROJECTION_CONST : register(b0)\
+   {\
+@@ -233,7 +236,7 @@ static const char* globPixelShaderDefault = "\
+     float whitePadding;\
+     float4x4 Colorspace;\
+   };\
+-  Texture2D%s shaderTexture;\
++  Texture2D%s shaderTexture[" STRINGIZE(D3D11_MAX_SHADER_VIEW) "];\
+   SamplerState SampleType;\
+   \
+   struct PS_INPUT\
+@@ -246,7 +249,7 @@ static const char* globPixelShaderDefault = "\
+   {\
+     float4 rgba; \
+     \
+-    rgba = shaderTexture.Sample(SampleType, In.Texture);\
++    rgba = shaderTexture[0].Sample(SampleType, In.Texture);\
+     rgba.x += WhitePointX;\
+     rgba.y += WhitePointY;\
+     rgba.z += WhitePointZ;\
+@@ -270,8 +273,7 @@ static const char *globPixelShaderBiplanarYUV_2RGB = "\
+     float whitePadding;\
+     float4x4 Colorspace;\
+   };\
+-  Texture2D%s shaderTextureY;\
+-  Texture2D%s shaderTextureUV;\
++  Texture2D%s shaderTexture[" STRINGIZE(D3D11_MAX_SHADER_VIEW) "];\
+   SamplerState SampleType;\
+   \
+   struct PS_INPUT\
+@@ -284,8 +286,8 @@ static const char *globPixelShaderBiplanarYUV_2RGB = "\
+   {\
+     float4 yuv;\
+     float4 rgba;\
+-    yuv.x  = shaderTextureY.Sample(SampleType, In.Texture).x;\
+-    yuv.yz = shaderTextureUV.Sample(SampleType, In.Texture).xy;\
++    yuv.x  = shaderTexture[0].Sample(SampleType, In.Texture).x;\
++    yuv.yz = shaderTexture[1].Sample(SampleType, In.Texture).xy;\
+     yuv.a  = Opacity;\
+     yuv.x  += WhitePointX;\
+     yuv.y  += WhitePointY;\
+@@ -309,7 +311,7 @@ static const char *globPixelShaderBiplanarYUYV_2RGB = "\
+     float whitePadding;\
+     float4x4 Colorspace;\
+   };\
+-  Texture2D%s shaderTextureYUYV;\
++  Texture2D%s shaderTexture[" STRINGIZE(D3D11_MAX_SHADER_VIEW) "];\
+   SamplerState SampleType;\
+   \
+   struct PS_INPUT\
+@@ -322,9 +324,9 @@ static const char *globPixelShaderBiplanarYUYV_2RGB = "\
+   {\
+     float4 yuv;\
+     float4 rgba;\
+-    yuv.x  = shaderTextureYUYV.Sample(SampleType, In.Texture).x;\
+-    yuv.y  = shaderTextureYUYV.Sample(SampleType, In.Texture).y;\
+-    yuv.z  = shaderTextureYUYV.Sample(SampleType, In.Texture).a;\
++    yuv.x  = shaderTexture[0].Sample(SampleType, In.Texture).x;\
++    yuv.y  = shaderTexture[0].Sample(SampleType, In.Texture).y;\
++    yuv.z  = shaderTexture[0].Sample(SampleType, In.Texture).a;\
+     yuv.a  = Opacity;\
+     yuv.x  += WhitePointX;\
+     yuv.y  += WhitePointY;\
+@@ -514,13 +516,13 @@ static const d3d_format_t *GetOutputFormat(vout_display_t *vd, vlc_fourcc_t i_sr
+ 
+ /* map texture planes to resource views */
+ static int AllocateShaderView(vout_display_t *vd, const d3d_format_t *format, ID3D11Texture2D *texture,
+-                              int slice_index, ID3D11ShaderResourceView *resourceView[2])
++                              int slice_index, ID3D11ShaderResourceView *resourceView[D3D11_MAX_SHADER_VIEW])
+ {
+     HRESULT hr;
+     vout_display_sys_t *sys = vd->sys;
+-    D3D11_SHADER_RESOURCE_VIEW_DESC resviewDesc = {
+-        .Format = format->formatY,
+-    };
++    int i;
++    D3D11_SHADER_RESOURCE_VIEW_DESC resviewDesc = { 0 };
++
+     if (sys->legacy_shader)
+     {
+         resviewDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+@@ -534,31 +536,33 @@ static int AllocateShaderView(vout_display_t *vd, const d3d_format_t *format, ID
+         resviewDesc.Texture2DArray.FirstArraySlice = slice_index;
+     }
+ 
+-    hr = ID3D11Device_CreateShaderResourceView(sys->d3ddevice, (ID3D11Resource *)texture, &resviewDesc, &resourceView[0]);
+-    if (FAILED(hr)) {
+-        msg_Err(vd, "Could not Create the Y/RGB Texture ResourceView slice %d. (hr=0x%lX)", slice_index, hr);
+-        goto error;
++    for (i=0; i<D3D11_MAX_SHADER_VIEW; i++)
++    {
++        if (!format->resourceFormat[i])
++            resourceView[i] = NULL;
++        else
++        {
++            resviewDesc.Format = format->resourceFormat[i];
++            hr = ID3D11Device_CreateShaderResourceView(sys->d3ddevice, (ID3D11Resource *)texture, &resviewDesc, &resourceView[i]);
++            if (FAILED(hr)) {
++                msg_Err(vd, "Could not Create the Texture ResourceView %d slice %d. (hr=0x%lX)", i, slice_index, hr);
++                break;
++            }
++        }
+     }
+ 
+-    resourceView[1] = NULL;
+-    if( format->formatUV )
++    if (i != D3D11_MAX_SHADER_VIEW)
+     {
+-        resviewDesc.Format = format->formatUV;
+-        hr = ID3D11Device_CreateShaderResourceView(sys->d3ddevice, (ID3D11Resource *)texture, &resviewDesc, &resourceView[1]);
+-        if (FAILED(hr)) {
+-            msg_Err(vd, "Could not Create the UV Texture ResourceView slice %d. (hr=0x%lX)", slice_index, hr);
+-            goto error;
++        while (i >= 0)
++        {
++            ID3D11ShaderResourceView_Release(resourceView[i]);
++            resourceView[i] = NULL;
++            i--;
+         }
++        return VLC_EGENERIC;
+     }
+ 
+     return VLC_SUCCESS;
+-error:
+-    if (resourceView[0]) {
+-        ID3D11ShaderResourceView_Release(resourceView[0]);
+-        resourceView[0] = NULL;
+-    }
+-    resourceView[1] = NULL;
+-    return VLC_EGENERIC;
+ }
+ 
+ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -670,10 +674,10 @@ static void DestroyDisplayPoolPicture(picture_t *picture)
+ {
+     picture_sys_t *p_sys = (picture_sys_t*) picture->p_sys;
+ 
+-    if (p_sys->resourceView[0])
+-        ID3D11ShaderResourceView_Release(p_sys->resourceView[0]);
+-    if (p_sys->resourceView[1])
+-        ID3D11ShaderResourceView_Release(p_sys->resourceView[1]);
++    for (int i=0; i<D3D11_MAX_SHADER_VIEW; i++) {
++        if (p_sys->resourceView[i])
++            ID3D11ShaderResourceView_Release(p_sys->resourceView[i]);
++    }
+     if (p_sys->texture)
+         ID3D11Texture2D_Release(p_sys->texture);
+     if (p_sys->context)
+@@ -1013,7 +1017,7 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
+     }
+ }
+ 
+-static void DisplayD3DPicture(vout_display_sys_t *sys, d3d_quad_t *quad, ID3D11ShaderResourceView *resourceView[2])
++static void DisplayD3DPicture(vout_display_sys_t *sys, d3d_quad_t *quad, ID3D11ShaderResourceView *resourceView[D3D11_MAX_SHADER_VIEW])
+ {
+     UINT stride = sizeof(d3d_vertex_t);
+     UINT offset = 0;
+@@ -1031,7 +1035,7 @@ static void DisplayD3DPicture(vout_display_sys_t *sys, d3d_quad_t *quad, ID3D11S
+     ID3D11DeviceContext_PSSetShader(sys->d3dcontext, quad->d3dpixelShader, NULL, 0);
+ 
+     ID3D11DeviceContext_PSSetConstantBuffers(sys->d3dcontext, 0, quad->PSConstantsCount, quad->pPixelShaderConstants);
+-    ID3D11DeviceContext_PSSetShaderResources(sys->d3dcontext, 0, 2, resourceView);
++    ID3D11DeviceContext_PSSetShaderResources(sys->d3dcontext, 0, D3D11_MAX_SHADER_VIEW, resourceView);
+ 
+     ID3D11DeviceContext_RSSetViewports(sys->d3dcontext, 1, &quad->cropViewport);
+ 
+@@ -1868,8 +1872,8 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+     D3D11_MAPPED_SUBRESOURCE mappedResource;
+     HRESULT hr;
+     static const FLOAT FULL_TO_STUDIO_SHIFT = 16.f / 256.f;
+-    const bool RGB_shader = cfg->formatY != DXGI_FORMAT_R8_UNORM &&
+-        cfg->formatY != DXGI_FORMAT_R16_UNORM &&
++    const bool RGB_shader = cfg->resourceFormat[0] != DXGI_FORMAT_R8_UNORM &&
++        cfg->resourceFormat[0] != DXGI_FORMAT_R16_UNORM &&
+         fmt->i_chroma != VLC_CODEC_YUYV;
+ 
+     /* pixel shader constant buffer */
+@@ -2095,15 +2099,12 @@ static void ReleaseQuad(d3d_quad_t *quad)
+         ID3D11Texture2D_Release(quad->pTexture);
+         quad->pTexture = NULL;
+     }
+-    if (quad->picSys.resourceView[0])
+-    {
+-        ID3D11ShaderResourceView_Release(quad->picSys.resourceView[0]);
+-        quad->picSys.resourceView[0] = NULL;
+-    }
+-    if (quad->picSys.resourceView[1])
+-    {
+-        ID3D11ShaderResourceView_Release(quad->picSys.resourceView[1]);
+-        quad->picSys.resourceView[1] = NULL;
++    for (int i=0; i<D3D11_MAX_SHADER_VIEW; i++) {
++        if (quad->picSys.resourceView[i])
++        {
++            ID3D11ShaderResourceView_Release(quad->picSys.resourceView[i]);
++            quad->picSys.resourceView[i] = NULL;
++        }
+     }
+     if (quad->d3dpixelShader)
+     {
+-- 
+2.11.0
+

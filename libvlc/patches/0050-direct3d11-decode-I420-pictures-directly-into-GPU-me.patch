@@ -1,0 +1,41 @@
+From d042031849a4e507c72048ecbaa767247d653ee5 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Mon, 23 Jan 2017 13:42:38 +0100
+Subject: [PATCH 50/50] direct3d11: decode I420 pictures directly into GPU
+ memory
+
+Display them using a Pixel Shader of DXGI_FORMAT_UNKNOWN with a resource view
+for each plane.
+---
+ modules/video_chroma/dxgi_fmt.c | 1 +
+ modules/video_chroma/dxgi_fmt.h | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/modules/video_chroma/dxgi_fmt.c b/modules/video_chroma/dxgi_fmt.c
+index 9fbf702584..e4dd56e837 100644
+--- a/modules/video_chroma/dxgi_fmt.c
++++ b/modules/video_chroma/dxgi_fmt.c
+@@ -80,6 +80,7 @@ static const d3d_format_t d3d_formats[] = {
+     { "Y410",     DXGI_FORMAT_Y410,           VLC_CODEC_I444,         10, 1, 1, { DXGI_FORMAT_R10G10B10A2_UNORM } },
+     { "NV11",     DXGI_FORMAT_NV11,           VLC_CODEC_I411,          8, 4, 1, { DXGI_FORMAT_R8_UNORM,           DXGI_FORMAT_R8G8_UNORM} },
+ #endif
++    { "I420",     DXGI_FORMAT_UNKNOWN,        VLC_CODEC_I420,          8, 2, 2, { DXGI_FORMAT_R8_UNORM,           DXGI_FORMAT_R8_UNORM, DXGI_FORMAT_R8_UNORM } },
+     { "R8G8B8A8", DXGI_FORMAT_R8G8B8A8_UNORM, VLC_CODEC_RGBA,          8, 1, 1, { DXGI_FORMAT_R8G8B8A8_UNORM } },
+     { "VA_RGBA",  DXGI_FORMAT_R8G8B8A8_UNORM, VLC_CODEC_D3D11_OPAQUE,  8, 1, 1, { DXGI_FORMAT_R8G8B8A8_UNORM } },
+     { "B8G8R8A8", DXGI_FORMAT_B8G8R8A8_UNORM, VLC_CODEC_BGRA,          8, 1, 1, { DXGI_FORMAT_B8G8R8A8_UNORM } },
+diff --git a/modules/video_chroma/dxgi_fmt.h b/modules/video_chroma/dxgi_fmt.h
+index dd4abfbfdd..add06cbeb3 100644
+--- a/modules/video_chroma/dxgi_fmt.h
++++ b/modules/video_chroma/dxgi_fmt.h
+@@ -29,7 +29,7 @@
+ #include <vlc_common.h>
+ #include <vlc_fourcc.h>
+ 
+-#define D3D11_MAX_SHADER_VIEW  2
++#define D3D11_MAX_SHADER_VIEW  3
+ 
+ typedef struct
+ {
+-- 
+2.11.0
+
