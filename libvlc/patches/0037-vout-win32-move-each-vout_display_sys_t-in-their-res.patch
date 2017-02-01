@@ -1,0 +1,638 @@
+From d4630d4e842d4f81fc86a5579e9eda55f70f00d9 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Mon, 23 Jan 2017 16:48:48 +0100
+Subject: [PATCH 37/61] vout: win32: move each vout_display_sys_t in their
+ respective module
+
+---
+ modules/video_output/win32/common.c     |  24 ++--
+ modules/video_output/win32/common.h     | 200 --------------------------------
+ modules/video_output/win32/direct3d11.c |  63 ++++++++++
+ modules/video_output/win32/direct3d9.c  |  44 +++++++
+ modules/video_output/win32/directdraw.c |  33 ++++++
+ modules/video_output/win32/events.c     |   4 +-
+ modules/video_output/win32/glwin32.c    |  11 ++
+ modules/video_output/win32/wgl.c        |  10 ++
+ modules/video_output/win32/wingdi.c     |  19 +++
+ 9 files changed, 196 insertions(+), 212 deletions(-)
+
+diff --git a/modules/video_output/win32/common.c b/modules/video_output/win32/common.c
+index 73e7bc9..69f0363 100644
+--- a/modules/video_output/win32/common.c
++++ b/modules/video_output/win32/common.c
+@@ -41,6 +41,8 @@
+ #define COBJMACROS
+ #include <shobjidl.h>
+ 
++#define vout_display_sys_win32_t vout_display_sys_t
++
+ #include "common.h"
+ 
+ #if !defined(NDEBUG) && defined(HAVE_DXGIDEBUG_H)
+@@ -59,7 +61,7 @@ static void RestoreScreensaver(vout_display_t *);
+ /* */
+ int CommonInit(vout_display_t *vd)
+ {
+-    vout_display_sys_win32_t *sys = &vd->sys->sys;
++    vout_display_sys_t *sys = vd->sys;
+ 
+     sys->hwnd      = NULL;
+     sys->hvideownd = NULL;
+@@ -124,7 +126,7 @@ int CommonInit(vout_display_t *vd)
+ picture_pool_t *CommonPool(vout_display_t *vd, unsigned count)
+ {
+     VLC_UNUSED(count);
+-    return vd->sys->sys.pool;
++    return vd->sys->pool;
+ }
+ 
+ /*****************************************************************************
+@@ -139,7 +141,7 @@ void UpdateRects(vout_display_t *vd,
+     const video_format_t *source,
+     bool is_forced)
+ {
+-    vout_display_sys_win32_t *sys = &vd->sys->sys;
++    vout_display_sys_t *sys = vd->sys;
+ #define rect_src sys->rect_src
+ #define rect_src_clipped sys->rect_src_clipped
+ #define rect_dest sys->rect_dest
+@@ -355,7 +357,7 @@ exit:
+ /* */
+ void CommonClean(vout_display_t *vd)
+ {
+-    vout_display_sys_win32_t *sys = &vd->sys->sys;
++    vout_display_sys_t *sys = vd->sys;
+     if (sys->event) {
+         CommonChangeThumbnailClip(vd, false);
+         EventThreadStop(sys->event);
+@@ -382,7 +384,7 @@ void CommonClean(vout_display_t *vd)
+ 
+ void CommonManage(vout_display_t *vd)
+ {
+-    vout_display_sys_win32_t *sys = &vd->sys->sys;
++    vout_display_sys_t *sys = vd->sys;
+ 
+     /* We used to call the Win32 PeekMessage function here to read the window
+      * messages. But since window can stay blocked into this function for a
+@@ -432,7 +434,7 @@ void CommonManage(vout_display_t *vd)
+  */
+ void CommonDisplay(vout_display_t *vd)
+ {
+-    vout_display_sys_win32_t *sys = &vd->sys->sys;
++    vout_display_sys_t *sys = vd->sys;
+     if (!sys->is_first_display)
+         return;
+ 
+@@ -551,7 +553,7 @@ void AlignRect(RECT *r, int align_boundary, int align_size)
+ /* */
+ static void CommonChangeThumbnailClip(vout_display_t *vd, bool show)
+ {
+-    vout_display_sys_win32_t *sys = &vd->sys->sys;
++    vout_display_sys_t *sys = vd->sys;
+ 
+     /* Windows 7 taskbar thumbnail code */
+     OSVERSIONINFO winVer;
+@@ -593,7 +595,7 @@ static void CommonChangeThumbnailClip(vout_display_t *vd, bool show)
+ 
+ static int CommonControlSetFullscreen(vout_display_t *vd, bool is_fullscreen)
+ {
+-    vout_display_sys_win32_t *sys = &vd->sys->sys;
++    vout_display_sys_t *sys = vd->sys;
+ 
+ #ifdef MODULE_NAME_IS_direct3d9
+     if (sys->use_desktop && is_fullscreen)
+@@ -680,7 +682,7 @@ static int CommonControlSetFullscreen(vout_display_t *vd, bool is_fullscreen)
+ 
+ int CommonControl(vout_display_t *vd, int query, va_list args)
+ {
+-    vout_display_sys_win32_t *sys = &vd->sys->sys;
++    vout_display_sys_t *sys = vd->sys;
+ 
+     switch (query) {
+     case VOUT_DISPLAY_CHANGE_DISPLAY_SIZE:   /* const vout_display_cfg_t *p_cfg */
+@@ -756,7 +758,7 @@ int CommonControl(vout_display_t *vd, int query, va_list args)
+ 
+ static void DisableScreensaver(vout_display_t *vd)
+ {
+-    vout_display_sys_win32_t *sys = &vd->sys->sys;
++    vout_display_sys_t *sys = vd->sys;
+ 
+     /* disable screensaver by temporarily changing system settings */
+     sys->i_spi_screensaveactive = 0;
+@@ -773,7 +775,7 @@ static void DisableScreensaver(vout_display_t *vd)
+ 
+ static void RestoreScreensaver(vout_display_t *vd)
+ {
+-    vout_display_sys_win32_t *sys = &vd->sys->sys;
++    vout_display_sys_t *sys = vd->sys;
+ 
+     /* restore screensaver system settings */
+     if (0 != sys->i_spi_screensaveactive) {
+diff --git a/modules/video_output/win32/common.h b/modules/video_output/win32/common.h
+index 238a45d..6e2c835 100644
+--- a/modules/video_output/win32/common.h
++++ b/modules/video_output/win32/common.h
+@@ -23,69 +23,11 @@
+  * Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
+  *****************************************************************************/
+ 
+-#ifdef MODULE_NAME_IS_directdraw
+-# include <ddraw.h>
+-#endif
+-#ifdef MODULE_NAME_IS_direct3d11
+-# include <d3d11.h>
+-# include <dxgi1_2.h>
+-# include <d3dcompiler.h>
+-#endif
+-#ifdef MODULE_NAME_IS_direct3d9
+-# include <d3d9.h>
+-# include <d3dx9effect.h>
+-#endif
+-#if defined(MODULE_NAME_IS_glwin32) || defined(MODULE_NAME_IS_wgl)
+-# include "../opengl/vout_helper.h"
+-#endif
+-
+ /*****************************************************************************
+  * event_thread_t: event thread
+  *****************************************************************************/
+ #include "events.h"
+ 
+-#ifdef MODULE_NAME_IS_direct3d11
+-#include "../../video_chroma/dxgi_fmt.h"
+-#ifdef HAVE_ID3D11VIDEODECODER
+-#include "../../video_chroma/d3d11_fmt.h"
+-#endif
+-typedef struct
+-{
+-    DXGI_FORMAT   textureFormat;
+-    DXGI_FORMAT   resourceFormatYRGB;
+-    DXGI_FORMAT   resourceFormatUV;
+-} d3d_quad_cfg_t;
+-
+-#ifdef HAVE_ID3D11VIDEODECODER
+-/* VLC_CODEC_D3D11_OPAQUE */
+-struct picture_sys_t
+-{
+-    ID3D11VideoDecoderOutputView  *decoder; /* may be NULL for pictures from the pool */
+-    ID3D11Texture2D               *texture;
+-    ID3D11DeviceContext           *context;
+-    unsigned                      slice_index;
+-    ID3D11VideoProcessorInputView *inputView; /* when used as processor input */
+-    ID3D11ShaderResourceView      *resourceView[D3D11_MAX_SHADER_VIEW];
+-};
+-#endif
+-
+-typedef struct
+-{
+-    ID3D11Buffer              *pVertexBuffer;
+-    UINT                      vertexCount;
+-    ID3D11VertexShader        *d3dvertexShader;
+-    ID3D11Buffer              *pIndexBuffer;
+-    UINT                      indexCount;
+-    ID3D11Buffer              *pVertexShaderConstants;
+-    picture_sys_t             picSys;
+-    ID3D11Texture2D           *pTexture;
+-    ID3D11Buffer              *pPixelShaderConstants[2];
+-    UINT                       PSConstantsCount;
+-    ID3D11PixelShader         *d3dpixelShader;
+-    D3D11_VIEWPORT            cropViewport;
+-} d3d_quad_t;
+-#endif
+-
+ #if VLC_WINSTORE_APP
+ extern const GUID GUID_SWAPCHAIN_WIDTH;
+ extern const GUID GUID_SWAPCHAIN_HEIGHT;
+@@ -147,148 +89,6 @@ typedef struct vout_display_sys_win32_t
+ } vout_display_sys_win32_t;
+ 
+ 
+-struct vout_display_sys_t
+-{
+-    vout_display_sys_win32_t sys;
+-#ifdef MODULE_NAME_IS_directdraw
+-    /* Multi-monitor support */
+-    HMONITOR             hmonitor;          /* handle of the current monitor */
+-    GUID                 *display_driver;
+-
+-    bool   use_wallpaper;   /* show as desktop wallpaper ? */
+-
+-    bool   restore_overlay;
+-
+-    /* DDraw capabilities */
+-    bool            can_blit_fourcc;
+-
+-    uint32_t        i_rgb_colorkey;      /* colorkey in RGB used by the overlay */
+-    uint32_t        i_colorkey;                 /* colorkey used by the overlay */
+-
+-    COLORREF        color_bkg;
+-    COLORREF        color_bkgtxt;
+-
+-    LPDIRECTDRAW2        ddobject;                    /* DirectDraw object */
+-    LPDIRECTDRAWSURFACE2 display;                        /* Display device */
+-    LPDIRECTDRAWCLIPPER  clipper;             /* clipper used for blitting */
+-    HINSTANCE            hddraw_dll;       /* handle of the opened ddraw dll */
+-
+-    picture_sys_t        *picsys;
+-
+-    /* It protects the following variables */
+-    vlc_mutex_t    lock;
+-    bool           ch_wallpaper;
+-    bool           wallpaper_requested;
+-#endif
+-
+-#if defined(MODULE_NAME_IS_glwin32) || defined(MODULE_NAME_IS_wgl)
+-    HDC                   hGLDC;
+-    HGLRC                 hGLRC;
+-    vlc_gl_t              *gl;
+-# ifdef MODULE_NAME_IS_glwin32
+-    vout_display_opengl_t *vgl;
+-# endif
+-    HDC                   affinityHDC; // DC for the selected GPU
+-#endif
+-
+-#ifdef MODULE_NAME_IS_direct3d11
+-#if !VLC_WINSTORE_APP
+-    HINSTANCE                hdxgi_dll;        /* handle of the opened dxgi dll */
+-    HINSTANCE                hd3d11_dll;       /* handle of the opened d3d11 dll */
+-    HINSTANCE                hd3dcompiler_dll; /* handle of the opened d3dcompiler dll */
+-    IDXGIFactory2            *dxgifactory;     /* DXGI 1.2 factory */
+-    /* We should find a better way to store this or atleast a shorter name */
+-    PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN OurD3D11CreateDeviceAndSwapChain;
+-    PFN_D3D11_CREATE_DEVICE                OurD3D11CreateDevice;
+-    pD3DCompile                            OurD3DCompile;
+-#endif
+-#if defined(HAVE_ID3D11VIDEODECODER)
+-    HANDLE                   context_lock;     /* D3D11 Context lock necessary
+-                                                  for hw decoding */
+-#endif
+-    IDXGISwapChain1          *dxgiswapChain;   /* DXGI 1.1 swap chain */
+-    ID3D11Device             *d3ddevice;       /* D3D device */
+-    ID3D11DeviceContext      *d3dcontext;      /* D3D context */
+-    d3d_quad_t               picQuad;
+-    const d3d_format_t       *picQuadConfig;
+-
+-    ID3D11RenderTargetView   *d3drenderTargetView;
+-    ID3D11DepthStencilView   *d3ddepthStencilView;
+-    const char               *d3dPxShader;
+-
+-    ID3D11VertexShader        *flatVSShader;
+-    ID3D11VertexShader        *projectionVSShader;
+-
+-    /* copy from the decoder pool into picSquad before display
+-     * Uses a Texture2D with slices rather than a Texture2DArray for the decoder */
+-    bool                     legacy_shader;
+-
+-    // SPU
+-    vlc_fourcc_t             pSubpictureChromas[2];
+-    const char               *psz_rgbaPxShader;
+-    ID3D11PixelShader        *pSPUPixelShader;
+-    const d3d_format_t       *d3dregion_format;
+-    int                      d3dregion_count;
+-    picture_t                **d3dregions;
+-#endif
+-
+-#ifdef MODULE_NAME_IS_direct3d9
+-    bool allow_hw_yuv;    /* Should we use hardware YUV->RGB conversions */
+-    struct {
+-        bool is_fullscreen;
+-        bool is_on_top;
+-        RECT win;
+-    } desktop_save;
+-    vout_display_cfg_t cfg_saved; /* configuration used before going into desktop mode */
+-
+-    // core objects
+-    HINSTANCE               hd3d9_dll;       /* handle of the opened d3d9 dll */
+-    HINSTANCE               hd3d9x_dll;      /* handle of the opened d3d9x dll */
+-    IDirect3DPixelShader9*  d3dx_shader;
+-    LPDIRECT3D9             d3dobj;
+-    D3DCAPS9                d3dcaps;
+-    LPDIRECT3DDEVICE9       d3ddev;
+-    D3DPRESENT_PARAMETERS   d3dpp;
+-    bool                    use_d3d9ex;
+-
+-    // scene objects
+-    LPDIRECT3DTEXTURE9      d3dtex;
+-    LPDIRECT3DVERTEXBUFFER9 d3dvtc;
+-    D3DFORMAT               d3dregion_format;
+-    int                     d3dregion_count;
+-    struct d3d_region_t     *d3dregion;
+-
+-    picture_sys_t           *picsys;
+-
+-    /* */
+-    bool                    reset_device;
+-    bool                    reopen_device;
+-    bool                    lost_not_ready;
+-    bool                    clear_scene;
+-
+-    /* It protects the following variables */
+-    vlc_mutex_t    lock;
+-    bool           ch_desktop;
+-    bool           desktop_requested;
+-#endif
+-
+-#if defined(MODULE_NAME_IS_wingdi)
+-    int  i_depth;
+-
+-    /* Our offscreen bitmap and its framebuffer */
+-    HDC        off_dc;
+-    HBITMAP    off_bitmap;
+-
+-    struct
+-    {
+-        BITMAPINFO bitmapinfo;
+-        RGBQUAD    red;
+-        RGBQUAD    green;
+-        RGBQUAD    blue;
+-    };
+-#endif
+-};
+-
+ /*****************************************************************************
+  * Prototypes from common.c
+  *****************************************************************************/
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index 35f9a38..5afe3c6 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -40,6 +40,8 @@
+ #define COBJMACROS
+ #include <initguid.h>
+ #include <d3d11.h>
++#include <dxgi1_2.h>
++#include <d3dcompiler.h>
+ 
+ /* avoided until we can pass ISwapchainPanel without c++/cx mode
+ # include <windows.ui.xaml.media.dxinterop.h> */
+@@ -91,6 +93,67 @@ vlc_module_begin ()
+     set_callbacks(Open, Close)
+ vlc_module_end ()
+ 
++/* A Quad is texture that can be displayed in a rectangle */
++typedef struct
++{
++    ID3D11Buffer              *pVertexBuffer;
++    UINT                      vertexCount;
++    ID3D11VertexShader        *d3dvertexShader;
++    ID3D11Buffer              *pIndexBuffer;
++    UINT                      indexCount;
++    ID3D11Buffer              *pVertexShaderConstants;
++    picture_sys_t             picSys;
++    ID3D11Texture2D           *pTexture;
++    ID3D11Buffer              *pPixelShaderConstants[2];
++    UINT                       PSConstantsCount;
++    ID3D11PixelShader         *d3dpixelShader;
++    D3D11_VIEWPORT            cropViewport;
++} d3d_quad_t;
++
++struct vout_display_sys_t
++{
++    vout_display_sys_win32_t sys;
++
++#if !VLC_WINSTORE_APP
++    HINSTANCE                hdxgi_dll;        /* handle of the opened dxgi dll */
++    HINSTANCE                hd3d11_dll;       /* handle of the opened d3d11 dll */
++    HINSTANCE                hd3dcompiler_dll; /* handle of the opened d3dcompiler dll */
++    IDXGIFactory2            *dxgifactory;     /* DXGI 1.2 factory */
++    /* We should find a better way to store this or atleast a shorter name */
++    PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN OurD3D11CreateDeviceAndSwapChain;
++    PFN_D3D11_CREATE_DEVICE                OurD3D11CreateDevice;
++    pD3DCompile                            OurD3DCompile;
++#endif
++#if defined(HAVE_ID3D11VIDEODECODER)
++    HANDLE                   context_lock;     /* D3D11 Context lock necessary
++                                                  for hw decoding */
++#endif
++    IDXGISwapChain1          *dxgiswapChain;   /* DXGI 1.1 swap chain */
++    ID3D11Device             *d3ddevice;       /* D3D device */
++    ID3D11DeviceContext      *d3dcontext;      /* D3D context */
++    d3d_quad_t               picQuad;
++    const d3d_format_t       *picQuadConfig;
++
++    ID3D11RenderTargetView   *d3drenderTargetView;
++    ID3D11DepthStencilView   *d3ddepthStencilView;
++    const char               *d3dPxShader;
++
++    ID3D11VertexShader        *flatVSShader;
++    ID3D11VertexShader        *projectionVSShader;
++
++    /* copy from the decoder pool into picSquad before display
++     * Uses a Texture2D with slices rather than a Texture2DArray for the decoder */
++    bool                     legacy_shader;
++
++    // SPU
++    vlc_fourcc_t             pSubpictureChromas[2];
++    const char               *psz_rgbaPxShader;
++    ID3D11PixelShader        *pSPUPixelShader;
++    const d3d_format_t       *d3dregion_format;
++    int                      d3dregion_count;
++    picture_t                **d3dregions;
++};
++
+ /* internal picture_t pool  */
+ typedef struct
+ {
+diff --git a/modules/video_output/win32/direct3d9.c b/modules/video_output/win32/direct3d9.c
+index 0908d71..c0379dc 100644
+--- a/modules/video_output/win32/direct3d9.c
++++ b/modules/video_output/win32/direct3d9.c
+@@ -47,6 +47,7 @@
+ 
+ #include <windows.h>
+ #include <d3d9.h>
++#include <d3dx9effect.h>
+ 
+ #include "common.h"
+ #include "builtin_shaders.h"
+@@ -104,6 +105,49 @@ static const vlc_fourcc_t d3d_subpicture_chromas[] = {
+     0
+ };
+ 
++struct vout_display_sys_t
++{
++    vout_display_sys_win32_t sys;
++
++    bool allow_hw_yuv;    /* Should we use hardware YUV->RGB conversions */
++    struct {
++        bool is_fullscreen;
++        bool is_on_top;
++        RECT win;
++    } desktop_save;
++    vout_display_cfg_t cfg_saved; /* configuration used before going into desktop mode */
++
++    // core objects
++    HINSTANCE               hd3d9_dll;       /* handle of the opened d3d9 dll */
++    HINSTANCE               hd3d9x_dll;      /* handle of the opened d3d9x dll */
++    IDirect3DPixelShader9*  d3dx_shader;
++    LPDIRECT3D9             d3dobj;
++    D3DCAPS9                d3dcaps;
++    LPDIRECT3DDEVICE9       d3ddev;
++    D3DPRESENT_PARAMETERS   d3dpp;
++    bool                    use_d3d9ex;
++
++    // scene objects
++    LPDIRECT3DTEXTURE9      d3dtex;
++    LPDIRECT3DVERTEXBUFFER9 d3dvtc;
++    D3DFORMAT               d3dregion_format;
++    int                     d3dregion_count;
++    struct d3d_region_t     *d3dregion;
++
++    picture_sys_t           *picsys;
++
++    /* */
++    bool                    reset_device;
++    bool                    reopen_device;
++    bool                    lost_not_ready;
++    bool                    clear_scene;
++
++    /* It protects the following variables */
++    vlc_mutex_t    lock;
++    bool           ch_desktop;
++    bool           desktop_requested;
++};
++
+ struct picture_sys_t
+ {
+     LPDIRECT3DSURFACE9 surface;
+diff --git a/modules/video_output/win32/directdraw.c b/modules/video_output/win32/directdraw.c
+index 3f7cff6..d3c5931 100644
+--- a/modules/video_output/win32/directdraw.c
++++ b/modules/video_output/win32/directdraw.c
+@@ -129,6 +129,39 @@ struct picture_sys_t {
+     picture_t            *fallback;
+ };
+ 
++struct vout_display_sys_t
++{
++    vout_display_sys_win32_t sys;
++    /* Multi-monitor support */
++    HMONITOR             hmonitor;          /* handle of the current monitor */
++    GUID                 *display_driver;
++
++    bool   use_wallpaper;   /* show as desktop wallpaper ? */
++
++    bool   restore_overlay;
++
++    /* DDraw capabilities */
++    bool            can_blit_fourcc;
++
++    uint32_t        i_rgb_colorkey;      /* colorkey in RGB used by the overlay */
++    uint32_t        i_colorkey;                 /* colorkey used by the overlay */
++
++    COLORREF        color_bkg;
++    COLORREF        color_bkgtxt;
++
++    LPDIRECTDRAW2        ddobject;                    /* DirectDraw object */
++    LPDIRECTDRAWSURFACE2 display;                        /* Display device */
++    LPDIRECTDRAWCLIPPER  clipper;             /* clipper used for blitting */
++    HINSTANCE            hddraw_dll;       /* handle of the opened ddraw dll */
++
++    picture_sys_t        *picsys;
++
++    /* It protects the following variables */
++    vlc_mutex_t    lock;
++    bool           ch_wallpaper;
++    bool           wallpaper_requested;
++};
++
+ /*****************************************************************************
+  * DirectDraw GUIDs.
+  * Defining them here allows us to get rid of the dxguid library during
+diff --git a/modules/video_output/win32/events.c b/modules/video_output/win32/events.c
+index 23e2eb7..231086c 100644
+--- a/modules/video_output/win32/events.c
++++ b/modules/video_output/win32/events.c
+@@ -41,6 +41,8 @@
+ #include <windowsx.h>                                        /* GET_X_LPARAM */
+ #include <shellapi.h>                                         /* ExtractIcon */
+ 
++#define vout_display_sys_win32_t vout_display_sys_t
++
+ #include "common.h"
+ 
+ /*****************************************************************************
+@@ -1020,7 +1022,7 @@ static long FAR PASCAL WinVoutEventProc( HWND hwnd, UINT message,
+         case IDM_TOGGLE_ON_TOP:            /* toggle the "on top" status */
+         {
+             msg_Dbg(vd, "WinProc WM_SYSCOMMAND: IDM_TOGGLE_ON_TOP");
+-            HMENU hMenu = GetSystemMenu(vd->sys->sys.hwnd, FALSE);
++            HMENU hMenu = GetSystemMenu(vd->sys->hwnd, FALSE);
+             vout_display_SendWindowState(vd, (GetMenuState(hMenu, IDM_TOGGLE_ON_TOP, MF_BYCOMMAND) & MF_CHECKED) ?
+                     VOUT_WINDOW_STATE_NORMAL : VOUT_WINDOW_STATE_ABOVE);
+             return 0;
+diff --git a/modules/video_output/win32/glwin32.c b/modules/video_output/win32/glwin32.c
+index 4b4e437..4b94a28 100644
+--- a/modules/video_output/win32/glwin32.c
++++ b/modules/video_output/win32/glwin32.c
+@@ -60,6 +60,17 @@ vlc_module_end()
+ /*****************************************************************************
+  * Local prototypes.
+  *****************************************************************************/
++struct vout_display_sys_t
++{
++    vout_display_sys_win32_t sys;
++
++    HDC                   hGLDC;
++    HGLRC                 hGLRC;
++    vlc_gl_t              *gl;
++    vout_display_opengl_t *vgl;
++    HDC                   affinityHDC; // DC for the selected GPU
++};
++
+ static picture_pool_t *Pool  (vout_display_t *, unsigned);
+ static void           Prepare(vout_display_t *, picture_t *, subpicture_t *);
+ static void           Display(vout_display_t *, picture_t *, subpicture_t *);
+diff --git a/modules/video_output/win32/wgl.c b/modules/video_output/win32/wgl.c
+index 8d47612..3baee6e 100644
+--- a/modules/video_output/win32/wgl.c
++++ b/modules/video_output/win32/wgl.c
+@@ -58,6 +58,16 @@ vlc_module_end()
+  * Local prototypes.
+  *****************************************************************************/
+ 
++struct vout_display_sys_t
++{
++    vout_display_sys_win32_t sys;
++
++    HDC                   hGLDC;
++    HGLRC                 hGLRC;
++    vlc_gl_t              *gl;
++    HDC                   affinityHDC; // DC for the selected GPU
++};
++
+ static void          Swap(vlc_gl_t *);
+ static void          *OurGetProcAddress(vlc_gl_t *, const char *);
+ static int           MakeCurrent(vlc_gl_t *gl);
+diff --git a/modules/video_output/win32/wingdi.c b/modules/video_output/win32/wingdi.c
+index b496603..4dc43a7 100644
+--- a/modules/video_output/win32/wingdi.c
++++ b/modules/video_output/win32/wingdi.c
+@@ -58,6 +58,25 @@ vlc_module_end ()
+ /*****************************************************************************
+  * Local prototypes
+  *****************************************************************************/
++struct vout_display_sys_t
++{
++    vout_display_sys_win32_t sys;
++
++    int  i_depth;
++
++    /* Our offscreen bitmap and its framebuffer */
++    HDC        off_dc;
++    HBITMAP    off_bitmap;
++
++    struct
++    {
++        BITMAPINFO bitmapinfo;
++        RGBQUAD    red;
++        RGBQUAD    green;
++        RGBQUAD    blue;
++    };
++};
++
+ static picture_pool_t *Pool  (vout_display_t *, unsigned);
+ static void           Display(vout_display_t *, picture_t *, subpicture_t *subpicture);
+ static int            Control(vout_display_t *, int, va_list);
+-- 
+2.10.1.windows.1
+

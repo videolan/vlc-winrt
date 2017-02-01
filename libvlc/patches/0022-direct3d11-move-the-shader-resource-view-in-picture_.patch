@@ -1,0 +1,136 @@
+From dcee26c46e335300a4a5343102dc547e6c06e16b Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Wed, 11 Jan 2017 08:55:27 +0100
+Subject: [PATCH 22/61] direct3d11: move the shader resource view in
+ picture_sys_t
+
+So it can be set on textures coming from the decoder
+---
+ modules/video_chroma/d3d11_fmt.h        |  1 +
+ modules/video_output/win32/common.h     | 16 ++++++++++++++--
+ modules/video_output/win32/direct3d11.c | 24 ++++++++++++------------
+ 3 files changed, 27 insertions(+), 14 deletions(-)
+
+diff --git a/modules/video_chroma/d3d11_fmt.h b/modules/video_chroma/d3d11_fmt.h
+index 38a27d8..b1886d7 100644
+--- a/modules/video_chroma/d3d11_fmt.h
++++ b/modules/video_chroma/d3d11_fmt.h
+@@ -35,6 +35,7 @@ struct picture_sys_t
+     ID3D11DeviceContext           *context;
+     unsigned                      slice_index;
+     ID3D11VideoProcessorInputView *inputView; /* when used as processor input */
++    ID3D11ShaderResourceView      *resourceView[2];
+ };
+ 
+ #endif /* include-guard */
+diff --git a/modules/video_output/win32/common.h b/modules/video_output/win32/common.h
+index a4b0a49..8b06df3 100644
+--- a/modules/video_output/win32/common.h
++++ b/modules/video_output/win32/common.h
+@@ -56,6 +56,19 @@ typedef struct
+     DXGI_FORMAT   resourceFormatUV;
+ } d3d_quad_cfg_t;
+ 
++#ifdef HAVE_ID3D11VIDEODECODER
++/* VLC_CODEC_D3D11_OPAQUE */
++struct picture_sys_t
++{
++    ID3D11VideoDecoderOutputView  *decoder; /* may be NULL for pictures from the pool */
++    ID3D11Texture2D               *texture;
++    ID3D11DeviceContext           *context;
++    unsigned                      slice_index;
++    ID3D11VideoProcessorInputView *inputView; /* when used as processor input */
++    ID3D11ShaderResourceView      *resourceView[2];
++};
++#endif
++
+ typedef struct
+ {
+     ID3D11Buffer              *pVertexBuffer;
+@@ -64,11 +77,10 @@ typedef struct
+     ID3D11Buffer              *pIndexBuffer;
+     UINT                      indexCount;
+     ID3D11Buffer              *pVertexShaderConstants;
++    picture_sys_t             picSys;
+     ID3D11Texture2D           *pTexture;
+     ID3D11Buffer              *pPixelShaderConstants[2];
+     UINT                       PSConstantsCount;
+-    ID3D11ShaderResourceView  *d3dresViewY;
+-    ID3D11ShaderResourceView  *d3dresViewUV;
+     ID3D11PixelShader         *d3dpixelShader;
+     D3D11_VIEWPORT            cropViewport;
+ } d3d_quad_t;
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index 9f96a85..1f61d7b 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -509,7 +509,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+     texDesc.SampleDesc.Count = 1;
+     texDesc.MiscFlags = 0; //D3D11_RESOURCE_MISC_SHARED;
+     texDesc.Usage = D3D11_USAGE_DEFAULT;
+-    texDesc.BindFlags = D3D11_BIND_DECODER;
++    texDesc.BindFlags = D3D11_BIND_DECODER | D3D11_BIND_SHADER_RESOURCE;
+     texDesc.CPUAccessFlags = 0;
+ 
+     texDesc.ArraySize = pool_size;
+@@ -1010,9 +1010,7 @@ static void DisplayD3DPicture(vout_display_sys_t *sys, d3d_quad_t *quad)
+     ID3D11DeviceContext_PSSetShader(sys->d3dcontext, quad->d3dpixelShader, NULL, 0);
+ 
+     ID3D11DeviceContext_PSSetConstantBuffers(sys->d3dcontext, 0, quad->PSConstantsCount, quad->pPixelShaderConstants);
+-    ID3D11DeviceContext_PSSetShaderResources(sys->d3dcontext, 0, 1, &quad->d3dresViewY);
+-    if( quad->d3dresViewUV )
+-        ID3D11DeviceContext_PSSetShaderResources(sys->d3dcontext, 1, 1, &quad->d3dresViewUV);
++    ID3D11DeviceContext_PSSetShaderResources(sys->d3dcontext, 0, 2, &quad->picSys.resourceView[0]);
+ 
+     ID3D11DeviceContext_RSSetViewports(sys->d3dcontext, 1, &quad->cropViewport);
+ 
+@@ -2062,7 +2060,7 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+     resviewDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+     resviewDesc.Texture2D.MipLevels = texDesc.MipLevels;
+ 
+-    hr = ID3D11Device_CreateShaderResourceView(sys->d3ddevice, (ID3D11Resource *)quad->pTexture, &resviewDesc, &quad->d3dresViewY);
++    hr = ID3D11Device_CreateShaderResourceView(sys->d3ddevice, (ID3D11Resource *)quad->pTexture, &resviewDesc, &quad->picSys.resourceView[0]);
+     if (FAILED(hr)) {
+         msg_Err(vd, "Could not Create the Y/RGB D3d11 Texture ResourceView. (hr=0x%lX)", hr);
+         goto error;
+@@ -2071,12 +2069,14 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+     if( cfg->resourceFormatUV )
+     {
+         resviewDesc.Format = cfg->resourceFormatUV;
+-        hr = ID3D11Device_CreateShaderResourceView(sys->d3ddevice, (ID3D11Resource *)quad->pTexture, &resviewDesc, &quad->d3dresViewUV);
++        hr = ID3D11Device_CreateShaderResourceView(sys->d3ddevice, (ID3D11Resource *)quad->pTexture, &resviewDesc, &quad->picSys.resourceView[1]);
+         if (FAILED(hr)) {
+             msg_Err(vd, "Could not Create the UV D3d11 Texture ResourceView. (hr=0x%lX)", hr);
+             goto error;
+         }
+     }
++    else
++        quad->picSys.resourceView[1] = NULL;
+ 
+     if ( d3dpixelShader != NULL )
+     {
+@@ -2132,15 +2132,15 @@ static void ReleaseQuad(d3d_quad_t *quad)
+         ID3D11Texture2D_Release(quad->pTexture);
+         quad->pTexture = NULL;
+     }
+-    if (quad->d3dresViewY)
++    if (quad->picSys.resourceView[0])
+     {
+-        ID3D11ShaderResourceView_Release(quad->d3dresViewY);
+-        quad->d3dresViewY = NULL;
++        ID3D11ShaderResourceView_Release(quad->picSys.resourceView[0]);
++        quad->picSys.resourceView[0] = NULL;
+     }
+-    if (quad->d3dresViewUV)
++    if (quad->picSys.resourceView[1])
+     {
+-        ID3D11ShaderResourceView_Release(quad->d3dresViewUV);
+-        quad->d3dresViewUV = NULL;
++        ID3D11ShaderResourceView_Release(quad->picSys.resourceView[1]);
++        quad->picSys.resourceView[1] = NULL;
+     }
+     if (quad->d3dpixelShader)
+     {
+-- 
+2.10.1.windows.1
+

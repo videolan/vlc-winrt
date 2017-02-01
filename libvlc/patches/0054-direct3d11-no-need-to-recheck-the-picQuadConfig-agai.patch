@@ -1,0 +1,26 @@
+From 7c2ff56df8d08eec3d06c3f5f50ffe9425ea66bd Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Tue, 31 Jan 2017 12:36:22 +0100
+Subject: [PATCH 54/61] direct3d11: no need to recheck the picQuadConfig again
+
+---
+ modules/video_output/win32/direct3d11.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index 0ee8487..1371202 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -766,9 +766,6 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+     ID3D11Texture2D  *textures[pool_size * D3D11_MAX_SHADER_VIEW];
+     HRESULT           hr;
+ 
+-    const d3d_format_t *cfg = GetOutputFormat(vd, vd->fmt.i_chroma, 0, true, false);
+-    assert(cfg == vd->sys->picQuadConfig);
+-
+     ID3D10Multithread *pMultithread;
+     hr = ID3D11Device_QueryInterface( sys->d3ddevice, &IID_ID3D10Multithread, (void **)&pMultithread);
+     if (SUCCEEDED(hr)) {
+-- 
+2.10.1.windows.1
+
