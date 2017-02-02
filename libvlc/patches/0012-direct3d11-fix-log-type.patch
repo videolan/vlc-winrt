@@ -1,17 +1,17 @@
-From a9ed25621d30fb0169e683f446d40b21b3795615 Mon Sep 17 00:00:00 2001
-From: Steve Lhomme <slhomme@matroska.org>
+From bca0ce0538fae99d0513a17f813fb96fb12d926e Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 30 Jan 2017 14:04:58 +0100
-Subject: [PATCH 12/61] direct3d11: fix log type
+Subject: [PATCH 12/62] direct3d11: fix log type
 
 ---
  modules/video_output/win32/direct3d11.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index d5d3eb7..2dc1b26 100644
+index 9b970d2..32aee45 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
-@@ -1820,7 +1820,7 @@ static bool AllocQuadVertices(vout_display_t *vd, d3d_quad_t *quad, video_projec
+@@ -1822,7 +1822,7 @@ static bool AllocQuadVertices(vout_display_t *vd, d3d_quad_t *quad, video_projec
      }
      else
      {

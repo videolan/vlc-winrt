@@ -1,17 +1,17 @@
-From 3f6c7eea483564fe88dc38c2d0ca12d9432b0aac Mon Sep 17 00:00:00 2001
+From 49da38cb17f983267604ced6b14d001f86b6050c Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Tue, 31 Jan 2017 15:13:34 +0100
-Subject: [PATCH 57/61] direct3d11: fix green line in software decoding
+Subject: [PATCH 57/62] direct3d11: fix green line in software decoding
 
 ---
  modules/video_output/win32/direct3d11.c | 18 ++++++++----------
  1 file changed, 8 insertions(+), 10 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 793a025..091bad1 100644
+index 45e5681..01fe2ae 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
-@@ -833,7 +833,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -835,7 +835,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
      }
  
  #ifdef HAVE_ID3D11VIDEODECODER
@@ -20,7 +20,7 @@ index 793a025..091bad1 100644
      {
          /* we need a staging texture */
          video_format_t staging_fmt;
-@@ -1191,14 +1191,16 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
+@@ -1193,14 +1193,16 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
  {
      vout_display_sys_t *sys = vd->sys;
  
@@ -39,7 +39,7 @@ index 793a025..091bad1 100644
          ID3D11Texture2D_GetDesc(sys->stagingSys.texture[0], &texDesc);
          D3D11_BOX box = {
              .bottom = texDesc.Height,
-@@ -1213,7 +1215,6 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
+@@ -1215,7 +1217,6 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
          if ( sys->context_lock != INVALID_HANDLE_VALUE)
              ReleaseMutex( sys->context_lock );
      }
@@ -47,7 +47,7 @@ index 793a025..091bad1 100644
  
      if (subpicture) {
          int subpicture_region_count    = 0;
-@@ -1269,15 +1270,10 @@ static void Display(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
+@@ -1271,15 +1272,10 @@ static void Display(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
  
      ID3D11DeviceContext_ClearDepthStencilView(sys->d3dcontext, sys->d3ddepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
  
@@ -64,7 +64,7 @@ index 793a025..091bad1 100644
          DisplayD3DPicture(sys, &sys->picQuad, picture->p_sys->resourceView);
  
      if (subpicture) {
-@@ -1859,6 +1855,8 @@ static void SetupQuadFlat(d3d_vertex_t *dst_data, const video_format_t *fmt, WOR
+@@ -1861,6 +1857,8 @@ static void SetupQuadFlat(d3d_vertex_t *dst_data, const video_format_t *fmt, WOR
      float top    =  (float) (2*fmt->i_y_offset + fmt->i_visible_height) / (float) fmt->i_visible_height;
      float bottom = -(float) (2*fmt->i_height-fmt->i_visible_height-2*fmt->i_y_offset) / (float) fmt->i_visible_height;
  

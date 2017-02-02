@@ -1,7 +1,7 @@
-From 0bda285c52ca4c39e2d825ba6a3e69ad300955f7 Mon Sep 17 00:00:00 2001
+From 59548f18ee65dba8646a0dda367d229e75d46a5a Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 23 Jan 2017 14:27:40 +0100
-Subject: [PATCH 13/61] direct3d11: move the VLC_CODEC_D3D11_OPAQUE definition
+Subject: [PATCH 13/62] direct3d11: move the VLC_CODEC_D3D11_OPAQUE definition
  in a separate header
 
 Shared by all code using the opaque format.
@@ -150,10 +150,10 @@ index 92c1fe7..6413ba5 100644
  struct filter_sys_t {
      copy_cache_t     cache;
 diff --git a/modules/video_output/Makefile.am b/modules/video_output/Makefile.am
-index 9c8956e..097b4e0 100644
+index c04974e..3ae9387 100644
 --- a/modules/video_output/Makefile.am
 +++ b/modules/video_output/Makefile.am
-@@ -193,7 +193,7 @@ EXTRA_LTLIBRARIES += libdirect3d9_plugin.la
+@@ -196,7 +196,7 @@ EXTRA_LTLIBRARIES += libdirect3d9_plugin.la
  endif
  
  libdirect3d11_plugin_la_SOURCES = video_output/win32/direct3d11.c \
@@ -178,10 +178,10 @@ index c8e2b37..187e37d 100644
  {
      DXGI_FORMAT   textureFormat;
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 2dc1b26..a30f2ac 100644
+index 32aee45..65f3baa 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
-@@ -44,10 +44,13 @@
+@@ -46,10 +46,13 @@
  /* avoided until we can pass ISwapchainPanel without c++/cx mode
  # include <windows.ui.xaml.media.dxinterop.h> */
  
@@ -197,7 +197,7 @@ index 2dc1b26..a30f2ac 100644
  #if !VLC_WINSTORE_APP
  # define D3D11CreateDevice(args...)             sys->OurD3D11CreateDevice(args)
  # define D3DCompile(args...)                    sys->OurD3DCompile(args)
-@@ -84,17 +87,6 @@ vlc_module_begin ()
+@@ -86,17 +89,6 @@ vlc_module_begin ()
      set_callbacks(Open, Close)
  vlc_module_end ()
  

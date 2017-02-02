@@ -1,7 +1,7 @@
-From cf7b087410fde53154b8e3195585392800402ca2 Mon Sep 17 00:00:00 2001
+From 879da90b6f5c836fb46f2b3df14b919b7535a9bf Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 1 Feb 2017 11:17:00 +0100
-Subject: [PATCH 58/61] direct3d11: fix the cropping and texture sizes
+Subject: [PATCH 58/62] direct3d11: fix the cropping and texture sizes
 
 The legacy/intermediate texture needs to match NV12 constraints but cropped on
 display.
@@ -10,10 +10,10 @@ display.
  1 file changed, 62 insertions(+), 35 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 091bad1..edb5460 100644
+index 01fe2ae..3668e1b 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
-@@ -107,6 +107,10 @@ typedef struct
+@@ -109,6 +109,10 @@ typedef struct
      UINT                       PSConstantsCount;
      ID3D11PixelShader         *d3dpixelShader;
      D3D11_VIEWPORT            cropViewport;
@@ -24,7 +24,7 @@ index 091bad1..edb5460 100644
  } d3d_quad_t;
  
  struct vout_display_sys_t
-@@ -670,7 +674,7 @@ static int AllocateShaderView(vout_display_t *vd, const d3d_format_t *format,
+@@ -672,7 +676,7 @@ static int AllocateShaderView(vout_display_t *vd, const d3d_format_t *format,
  }
  
  static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
@@ -33,7 +33,7 @@ index 091bad1..edb5460 100644
                              ID3D11Texture2D *textures[])
  {
      vout_display_sys_t *sys = vd->sys;
-@@ -697,24 +701,15 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
+@@ -699,24 +703,15 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
      texDesc.ArraySize = pool_size;
      texDesc.Height = fmt->i_height;
      texDesc.Width = fmt->i_width;
@@ -64,7 +64,7 @@ index 091bad1..edb5460 100644
  
      hr = ID3D11Device_CreateTexture2D( sys->d3ddevice, &texDesc, NULL, &slicedTexture );
      if (FAILED(hr)) {
-@@ -739,6 +734,7 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
+@@ -741,6 +736,7 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
  
      if (!is_d3d11_opaque(fmt->i_chroma)) {
          D3D11_MAPPED_SUBRESOURCE mappedResource;
@@ -72,7 +72,7 @@ index 091bad1..edb5460 100644
  
          hr = ID3D11DeviceContext_Map(sys->d3dcontext, (ID3D11Resource*)textures[0], 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
          if( FAILED(hr) ) {
-@@ -780,12 +776,6 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -782,12 +778,6 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
      if (AllocateTextures(vd, sys->picQuadConfig, &vd->fmt, pool_size, textures))
          goto error;
  
@@ -85,7 +85,7 @@ index 091bad1..edb5460 100644
  #ifdef HAVE_ID3D11VIDEODECODER
      if (is_d3d11_opaque(vd->fmt.i_chroma))
      {
-@@ -843,6 +833,11 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -845,6 +835,11 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
          if (AllocateTextures(vd, sys->picQuadConfig, &staging_fmt, 1, textures))
              goto error;
  
@@ -97,7 +97,7 @@ index 091bad1..edb5460 100644
          for (unsigned plane = 0; plane < D3D11_MAX_SHADER_VIEW; plane++)
              sys->stagingSys.texture[plane] = textures[plane];
  
-@@ -850,9 +845,22 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -852,9 +847,22 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
              goto error;
      } else
  #endif
@@ -123,7 +123,7 @@ index 091bad1..edb5460 100644
      }
  
      if (vd->info.is_slow) {
-@@ -1203,8 +1211,10 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
+@@ -1205,8 +1213,10 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
  
          ID3D11Texture2D_GetDesc(sys->stagingSys.texture[0], &texDesc);
          D3D11_BOX box = {
@@ -136,7 +136,7 @@ index 091bad1..edb5460 100644
              .back = 1,
          };
          ID3D11DeviceContext_CopySubresourceRegion(sys->d3dcontext,
-@@ -1848,14 +1858,27 @@ static void Direct3D11DestroyPool(vout_display_t *vd)
+@@ -1850,14 +1860,27 @@ static void Direct3D11DestroyPool(vout_display_t *vd)
      sys->sys.pool = NULL;
  }
  
@@ -171,7 +171,7 @@ index 091bad1..edb5460 100644
  
      // bottom left
      dst_data[0].position.x = left;
-@@ -2011,7 +2034,7 @@ static bool AllocQuadVertices(vout_display_t *vd, d3d_quad_t *quad, const video_
+@@ -2013,7 +2036,7 @@ static bool AllocQuadVertices(vout_display_t *vd, d3d_quad_t *quad, const video_
      WORD *triangle_pos = mappedResource.pData;
  
      if ( projection == PROJECTION_MODE_RECTANGULAR )
@@ -180,7 +180,7 @@ index 091bad1..edb5460 100644
      else
          SetupQuadSphere(dst_data, triangle_pos);
  
-@@ -2353,6 +2376,10 @@ static int Direct3D11MapSubpicture(vout_display_t *vd, int *subpicture_region_co
+@@ -2355,6 +2378,10 @@ static int Direct3D11MapSubpicture(vout_display_t *vd, int *subpicture_region_co
                  free(d3dquad);
                  continue;
              }

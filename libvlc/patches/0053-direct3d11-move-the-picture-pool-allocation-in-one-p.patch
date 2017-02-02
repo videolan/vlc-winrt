@@ -1,7 +1,7 @@
-From 8b3bb37c2a29dafe426963853f1a4d1f741a201a Mon Sep 17 00:00:00 2001
-From: Steve Lhomme <slhomme@matroska.org>
+From ab2391e2e135cf1696c710255e3d857e49178922 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
 Date: Tue, 31 Jan 2017 11:00:26 +0100
-Subject: [PATCH 53/61] direct3d11: move the picture pool allocation in one
+Subject: [PATCH 53/62] direct3d11: move the picture pool allocation in one
  place
 
 Only allocate the quad when we know the pool size.
@@ -10,10 +10,10 @@ Only allocate the quad when we know the pool size.
  1 file changed, 62 insertions(+), 95 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 82d0880..0ee8487 100644
+index 9efffea..8241bc3 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
-@@ -205,7 +205,7 @@ static void Direct3D11Close(vout_display_t *);
+@@ -214,7 +214,7 @@ static void Direct3D11Close(vout_display_t *);
  static int  Direct3D11CreateResources (vout_display_t *, video_format_t *);
  static void Direct3D11DestroyResources(vout_display_t *);
  
@@ -22,7 +22,7 @@ index 82d0880..0ee8487 100644
  static void Direct3D11DestroyPool(vout_display_t *);
  
  static void DestroyDisplayPoolPicture(picture_t *);
-@@ -728,12 +728,40 @@ error:
+@@ -737,12 +737,40 @@ error:
  
  static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
  {
@@ -67,7 +67,7 @@ index 82d0880..0ee8487 100644
      unsigned          plane;
      ID3D11Texture2D  *textures[pool_size * D3D11_MAX_SHADER_VIEW];
      HRESULT           hr;
-@@ -742,7 +770,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -751,7 +779,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
      assert(cfg == vd->sys->picQuadConfig);
  
      ID3D10Multithread *pMultithread;
@@ -76,7 +76,7 @@ index 82d0880..0ee8487 100644
      if (SUCCEEDED(hr)) {
          ID3D10Multithread_SetMultithreadProtected(pMultithread, TRUE);
          ID3D10Multithread_Release(pMultithread);
-@@ -752,7 +780,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -761,7 +789,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
      if (!pictures)
          goto error;
  
@@ -85,7 +85,7 @@ index 82d0880..0ee8487 100644
          goto error;
  
      for (picture_count = 0; picture_count < pool_size; picture_count++) {
-@@ -763,12 +791,12 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -772,12 +800,12 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
          for (plane = 0; plane < D3D11_MAX_SHADER_VIEW; plane++)
              picsys->texture[plane] = textures[picture_count * D3D11_MAX_SHADER_VIEW + plane];
  
@@ -101,7 +101,7 @@ index 82d0880..0ee8487 100644
          ID3D11DeviceContext_AddRef(picsys->context);
  
          picture_resource_t resource = {
-@@ -776,7 +804,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -785,7 +813,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
              .pf_destroy = DestroyDisplayPoolPicture,
          };
  
@@ -110,7 +110,7 @@ index 82d0880..0ee8487 100644
          if (unlikely(picture == NULL)) {
              free(picsys);
              msg_Err( vd, "Failed to create picture %d in the pool.", picture_count );
-@@ -786,32 +814,29 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -795,32 +823,29 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
          pictures[picture_count] = picture;
      }
  
@@ -157,7 +157,7 @@ index 82d0880..0ee8487 100644
  }
  
  static void ReleasePictureResources(picture_sys_t *p_sys)
-@@ -834,8 +859,7 @@ static void ReleasePictureResources(picture_sys_t *p_sys)
+@@ -843,8 +868,7 @@ static void ReleasePictureResources(picture_sys_t *p_sys)
  
  static void DestroyQuadPicture(picture_t *picture)
  {
@@ -167,7 +167,7 @@ index 82d0880..0ee8487 100644
      /* belongs to the quad free(p_sys);*/
      free(picture);
  }
-@@ -1743,13 +1767,6 @@ static int Direct3D11CreateResources(vout_display_t *vd, video_format_t *fmt)
+@@ -1752,13 +1776,6 @@ static int Direct3D11CreateResources(vout_display_t *vd, video_format_t *fmt)
      }
      ID3D10Blob_Release(pVSBlob);
  
@@ -181,7 +181,7 @@ index 82d0880..0ee8487 100644
      ID3D11DeviceContext_IASetPrimitiveTopology(sys->d3dcontext, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
  
      UpdatePicQuadPosition(vd);
-@@ -1774,50 +1791,10 @@ static int Direct3D11CreateResources(vout_display_t *vd, video_format_t *fmt)
+@@ -1783,50 +1800,10 @@ static int Direct3D11CreateResources(vout_display_t *vd, video_format_t *fmt)
      ID3D11DeviceContext_PSSetSamplers(sys->d3dcontext, 0, 1, &d3dsampState);
      ID3D11SamplerState_Release(d3dsampState);
  
@@ -232,7 +232,7 @@ index 82d0880..0ee8487 100644
  static void Direct3D11DestroyPool(vout_display_t *vd)
  {
      vout_display_sys_t *sys = vd->sys;
-@@ -2178,19 +2155,14 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+@@ -2187,19 +2164,14 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
      quad->picSys.context = sys->d3dcontext;
      ID3D11DeviceContext_AddRef(quad->picSys.context);
  
@@ -259,7 +259,7 @@ index 82d0880..0ee8487 100644
  
      return VLC_SUCCESS;
  
-@@ -2227,11 +2199,6 @@ static void ReleaseQuad(d3d_quad_t *quad)
+@@ -2236,11 +2208,6 @@ static void ReleaseQuad(d3d_quad_t *quad)
          ID3D11Buffer_Release(quad->pVertexShaderConstants);
          quad->pVertexShaderConstants = NULL;
      }
@@ -271,7 +271,7 @@ index 82d0880..0ee8487 100644
      ReleasePictureResources(&quad->picSys);
  }
  
-@@ -2267,7 +2234,7 @@ static void Direct3D11DestroyResources(vout_display_t *vd)
+@@ -2276,7 +2243,7 @@ static void Direct3D11DestroyResources(vout_display_t *vd)
      }
      if (sys->pSPUPixelShader)
      {

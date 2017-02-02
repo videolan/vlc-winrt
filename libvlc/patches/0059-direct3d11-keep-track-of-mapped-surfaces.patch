@@ -1,7 +1,7 @@
-From cdfbea968ff9d5aeec8177fea7c98ae6ff1da388 Mon Sep 17 00:00:00 2001
+From 8c2438dab8caa230df025dfd26c8aaa06910d6fc Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 1 Feb 2017 13:42:04 +0100
-Subject: [PATCH 59/61] direct3d11: keep track of mapped surfaces
+Subject: [PATCH 59/62] direct3d11: keep track of mapped surfaces
 
 ---
  modules/video_chroma/d3d11_fmt.h        | 1 +
@@ -21,10 +21,10 @@ index caea919..dcffe35 100644
  
  /* index to use for texture/resource that use a known DXGI format
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index edb5460..5373968 100644
+index 3668e1b..a745b7e 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
-@@ -409,13 +409,19 @@ static int Direct3D11MapPoolTexture(picture_t *picture)
+@@ -411,13 +411,19 @@ static int Direct3D11MapPoolTexture(picture_t *picture)
      {
          return VLC_EGENERIC;
      }

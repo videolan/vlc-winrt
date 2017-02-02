@@ -1,7 +1,7 @@
-From 225cbca97650e26788518e863164cf1ce72f5354 Mon Sep 17 00:00:00 2001
+From dbd2a7621075aa55c1394b0681f8a19fc07f9b09 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 1 Feb 2017 15:25:03 +0100
-Subject: [PATCH 60/61] direct3d11: support decoding I420 directly into GPU
+Subject: [PATCH 60/62] direct3d11: support decoding I420 directly into GPU
  memory
 
 We still need a GPU copy to be able to render it.
@@ -37,10 +37,10 @@ index dd4abfb..add06cb 100644
  typedef struct
  {
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 5373968..9005f71 100644
+index a745b7e..e72220c 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
-@@ -107,6 +107,7 @@ typedef struct
+@@ -109,6 +109,7 @@ typedef struct
      UINT                       PSConstantsCount;
      ID3D11PixelShader         *d3dpixelShader;
      D3D11_VIEWPORT            cropViewport;
@@ -48,7 +48,7 @@ index 5373968..9005f71 100644
      unsigned int              i_x_offset;
      unsigned int              i_y_offset;
      unsigned int              i_width;
-@@ -399,28 +400,117 @@ static const char *globPixelShaderBiplanarYUYV_2RGB = "\
+@@ -401,28 +402,117 @@ static const char *globPixelShaderBiplanarYUYV_2RGB = "\
    }\
  ";
  
@@ -172,7 +172,7 @@ index 5373968..9005f71 100644
      }
  }
  
-@@ -616,8 +706,14 @@ static const d3d_format_t *GetOutputFormat(vout_display_t *vd, vlc_fourcc_t i_sr
+@@ -618,8 +708,14 @@ static const d3d_format_t *GetOutputFormat(vout_display_t *vd, vlc_fourcc_t i_sr
          if (!b_allow_opaque && is_d3d11_opaque(output_format->fourcc))
              continue;
  
@@ -188,7 +188,7 @@ index 5373968..9005f71 100644
                                                         &i_formatSupport)) &&
                  ( i_formatSupport & i_quadSupportFlags ) == i_quadSupportFlags )
          {
-@@ -681,10 +777,11 @@ static int AllocateShaderView(vout_display_t *vd, const d3d_format_t *format,
+@@ -683,10 +779,11 @@ static int AllocateShaderView(vout_display_t *vd, const d3d_format_t *format,
  
  static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
                              video_format_t *fmt, unsigned pool_size,
@@ -202,7 +202,7 @@ index 5373968..9005f71 100644
      HRESULT hr;
      ID3D11Texture2D *slicedTexture = NULL;
      D3D11_TEXTURE2D_DESC texDesc;
-@@ -692,42 +789,94 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
+@@ -694,42 +791,94 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
      texDesc.MipLevels = 1;
      texDesc.SampleDesc.Count = 1;
      texDesc.MiscFlags = 0; //D3D11_RESOURCE_MISC_SHARED;
@@ -238,7 +238,7 @@ index 5373968..9005f71 100644
 +            texDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
 +            texDesc.CPUAccessFlags = 0;
 +        } else {
-+            if (picture_SetupPlanes(fmt->i_chroma, fmt, planes, &plane_count) ||
++            if (plane_Setup(fmt->i_chroma, fmt, planes, &plane_count) ||
 +                plane_count == 0)
 +            {
 +                msg_Dbg(vd, "failed to get the pixel format planes for %4.4s", (char *)&fmt->i_chroma);
@@ -328,7 +328,7 @@ index 5373968..9005f71 100644
              if (!cfg->resourceFormat[plane])
                  textures[picture_count * D3D11_MAX_SHADER_VIEW + plane] = NULL;
              else
-@@ -738,7 +887,7 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
+@@ -740,7 +889,7 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
          }
      }
  
@@ -337,7 +337,7 @@ index 5373968..9005f71 100644
          D3D11_MAPPED_SUBRESOURCE mappedResource;
          const vlc_chroma_description_t *p_chroma_desc = vlc_fourcc_GetChromaDescription( fmt->i_chroma );
  
-@@ -779,11 +928,11 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -781,11 +930,11 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
      if (vd->info.is_slow)
          pool_size = 1;
  
@@ -352,7 +352,7 @@ index 5373968..9005f71 100644
      {
          /* we are going to share the context with the decoder */
          HRESULT           hr;
-@@ -794,7 +943,6 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -796,7 +945,6 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
              ID3D10Multithread_Release(pMultithread);
          }
      }
@@ -360,7 +360,7 @@ index 5373968..9005f71 100644
  
      pictures = calloc(pool_size, sizeof(*pictures));
      if (!pictures)
-@@ -828,7 +976,6 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -830,7 +978,6 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
          pictures[picture_count] = picture;
      }
  
@@ -368,7 +368,7 @@ index 5373968..9005f71 100644
      if (!is_d3d11_opaque(vd->fmt.i_chroma) || sys->legacy_shader)
      {
          /* we need a staging texture */
-@@ -836,7 +983,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -838,7 +985,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
          video_format_Copy(&staging_fmt, &vd->fmt);
          staging_fmt.i_width = staging_fmt.i_visible_width;
          staging_fmt.i_height = staging_fmt.i_visible_height;
@@ -377,7 +377,7 @@ index 5373968..9005f71 100644
              goto error;
  
          sys->picQuad.i_x_offset = 0;
-@@ -844,13 +991,15 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -846,13 +993,15 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
          sys->picQuad.i_width    = staging_fmt.i_width;
          sys->picQuad.i_height   = staging_fmt.i_height;
  
@@ -395,7 +395,7 @@ index 5373968..9005f71 100644
      {
          sys->picQuad.i_x_offset = vd->fmt.i_x_offset;
          sys->picQuad.i_y_offset = vd->fmt.i_y_offset;
-@@ -869,8 +1018,14 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -871,8 +1020,14 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
          return NULL;
      }
  
@@ -412,7 +412,7 @@ index 5373968..9005f71 100644
          //pool_cfg.unlock        = Direct3D11UnmapPoolTexture;
      }
      pool_cfg.picture       = pictures;
-@@ -1205,9 +1360,42 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
+@@ -1207,9 +1362,42 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
  {
      vout_display_sys_t *sys = vd->sys;
  
@@ -457,7 +457,7 @@ index 5373968..9005f71 100644
          if( sys->context_lock != INVALID_HANDLE_VALUE )
          {
              WaitForSingleObjectEx( sys->context_lock, INFINITE, FALSE );
-@@ -1215,12 +1403,16 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
+@@ -1217,12 +1405,16 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
          if ( !is_d3d11_opaque(picture->format.i_chroma))
              Direct3D11UnmapPoolTexture(picture);
  
@@ -479,7 +479,7 @@ index 5373968..9005f71 100644
              .back = 1,
          };
          ID3D11DeviceContext_CopySubresourceRegion(sys->d3dcontext,
-@@ -1376,6 +1568,8 @@ static const char *GetFormatPixelShader(const d3d_format_t *format)
+@@ -1378,6 +1570,8 @@ static const char *GetFormatPixelShader(const d3d_format_t *format)
      case DXGI_FORMAT_B8G8R8A8_UNORM:
      case DXGI_FORMAT_B5G6R5_UNORM:
          return globPixelShaderDefault;
@@ -488,7 +488,7 @@ index 5373968..9005f71 100644
      default:
          return NULL;
      }
-@@ -1752,7 +1946,7 @@ static int Direct3D11CreateResources(vout_display_t *vd, video_format_t *fmt)
+@@ -1754,7 +1948,7 @@ static int Direct3D11CreateResources(vout_display_t *vd, video_format_t *fmt)
  #else
      sys->legacy_shader = true;
  #endif
@@ -497,7 +497,7 @@ index 5373968..9005f71 100644
  
      hr = CompilePixelShader(vd, sys->d3dPxShader, &sys->picQuadPixelShader);
      if (FAILED(hr))
-@@ -2363,7 +2557,7 @@ static int Direct3D11MapSubpicture(vout_display_t *vd, int *subpicture_region_co
+@@ -2365,7 +2559,7 @@ static int Direct3D11MapSubpicture(vout_display_t *vd, int *subpicture_region_co
              if (unlikely(d3dquad==NULL)) {
                  continue;
              }
