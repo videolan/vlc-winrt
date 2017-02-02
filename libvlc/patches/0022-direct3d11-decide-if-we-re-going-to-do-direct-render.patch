@@ -1,0 +1,65 @@
+From 64f9d8b6f88cf66386325d9bb26ed975f44d05b4 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Tue, 31 Jan 2017 09:46:45 +0100
+Subject: [PATCH 22/55] direct3d11: decide if we're going to do direct
+ rendering earlier
+
+We delay the creation of the decoder pool when we know it's going to require
+more than one picture. At that point we know the vout is in DR more or not,
+once and for all. We can allocate things accordingly from that point.
+---
+ modules/video_output/win32/direct3d11.c | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index c5b1bd6cd2..6a6d75a4b2 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -538,10 +538,9 @@ static int Open(vlc_object_t *object)
+     video_format_Clean(&vd->fmt);
+     video_format_Copy(&vd->fmt, &fmt);
+ 
+-    vd->info.is_slow              = !is_d3d11_opaque(fmt.i_chroma);
+     vd->info.has_double_click     = true;
+     vd->info.has_hide_mouse       = false;
+-    vd->info.has_pictures_invalid = !is_d3d11_opaque(fmt.i_chroma);
++    vd->info.has_pictures_invalid = vd->info.is_slow;
+ 
+     if (var_InheritBool(vd, "direct3d11-hw-blending") &&
+         vd->sys->d3dregion_format != NULL)
+@@ -1620,6 +1619,8 @@ static int Direct3D11CreateResources(vout_display_t *vd, video_format_t *fmt)
+         ID3D11DepthStencilState_Release(pDepthStencilState);
+     }
+ 
++    vd->info.is_slow = !is_d3d11_opaque(fmt->i_chroma);
++
+     ID3D11PixelShader *pPicQuadShader;
+     hr = CompilePixelShader(vd, sys->d3dPxShader, &pPicQuadShader);
+     if (FAILED(hr))
+@@ -1719,7 +1720,9 @@ static int Direct3D11CreateResources(vout_display_t *vd, video_format_t *fmt)
+     ID3D11DeviceContext_PSSetSamplers(sys->d3dcontext, 0, 1, &d3dsampState);
+     ID3D11SamplerState_Release(d3dsampState);
+ 
+-    if (Direct3D11CreatePool(vd, fmt))
++    /* a decoder pool will be created when needed with the right amount
++     * of pictures for 'slow' (non direct) vout */
++    if (vd->info.is_slow && Direct3D11CreatePool(vd, fmt))
+     {
+         msg_Err(vd, "Direct3D picture pool initialization failed");
+         return VLC_EGENERIC;
+@@ -1733,10 +1736,8 @@ static int Direct3D11CreatePool(vout_display_t *vd, video_format_t *fmt)
+ {
+     vout_display_sys_t *sys = vd->sys;
+ 
+-    if ( is_d3d11_opaque(fmt->i_chroma) )
+-        /* a D3D11VA pool will be created when needed */
+-        return VLC_SUCCESS;
+-
++    /* we need to provide a single picture that the CPU can lock/unlock to write
++     * into, it's the picQuad used to display */
+     picture_sys_pool_t *poolsys = calloc(1, sizeof(*poolsys));
+     if (unlikely(poolsys == NULL)) {
+         return VLC_ENOMEM;
+-- 
+2.11.0
+

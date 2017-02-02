@@ -1,14 +1,14 @@
-From 37320a42ab9ac189282787187032e542e6f7a7db Mon Sep 17 00:00:00 2001
+From 94bdc1095b609dd773c018ce0adcbea532356762 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <slhomme@matroska.org>
 Date: Tue, 31 Jan 2017 09:51:42 +0100
-Subject: [PATCH 11/62] FIXME direct3d11: ease debugging with some defines
+Subject: [PATCH 11/55] FIXME direct3d11: ease debugging with some defines
 
 ---
  modules/video_output/win32/direct3d11.c | 2 ++
  1 file changed, 2 insertions(+)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index d5d3eb7..9b970d2 100644
+index 55f3d8a32f..19d64de74a 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -30,6 +30,8 @@
@@ -21,5 +21,5 @@ index d5d3eb7..9b970d2 100644
  #include <vlc_plugin.h>
  #include <vlc_vout_display.h>
 -- 
-2.10.1.windows.1
+2.11.0
 

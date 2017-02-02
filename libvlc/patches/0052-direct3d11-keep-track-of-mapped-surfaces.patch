@@ -1,0 +1,50 @@
+From 287fef414cb60bf5e802ca4c1b815e83972d4289 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Wed, 1 Feb 2017 13:42:04 +0100
+Subject: [PATCH 52/55] direct3d11: keep track of mapped surfaces
+
+---
+ modules/video_chroma/d3d11_fmt.h        | 1 +
+ modules/video_output/win32/direct3d11.c | 8 +++++++-
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/modules/video_chroma/d3d11_fmt.h b/modules/video_chroma/d3d11_fmt.h
+index caea919a77..dcffe353b2 100644
+--- a/modules/video_chroma/d3d11_fmt.h
++++ b/modules/video_chroma/d3d11_fmt.h
+@@ -40,6 +40,7 @@ struct picture_sys_t
+     ID3D11VideoProcessorInputView *inputView; /* when used as processor input */
+     ID3D11ShaderResourceView      *resourceView[D3D11_MAX_SHADER_VIEW];
+     DXGI_FORMAT                   formatTexture;
++    bool                          mapped;
+ };
+ 
+ /* index to use for texture/resource that use a known DXGI format
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index 3668e1b245..a745b7e2a7 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -411,13 +411,19 @@ static int Direct3D11MapPoolTexture(picture_t *picture)
+     {
+         return VLC_EGENERIC;
+     }
++
++    p_sys->mapped = true;
++
+     return CommonUpdatePicture(picture, NULL, mappedResource.pData, mappedResource.RowPitch);
+ }
+ 
+ static void Direct3D11UnmapPoolTexture(picture_t *picture)
+ {
+     picture_sys_t *p_sys = picture->p_sys;
+-    ID3D11DeviceContext_Unmap(p_sys->context, p_sys->resource[KNOWN_DXGI_INDEX], 0);
++    if (p_sys->mapped) {
++        ID3D11DeviceContext_Unmap(p_sys->context, p_sys->resource[KNOWN_DXGI_INDEX], 0);
++        p_sys->mapped = true;
++    }
+ }
+ 
+ #if !VLC_WINSTORE_APP
+-- 
+2.11.0
+

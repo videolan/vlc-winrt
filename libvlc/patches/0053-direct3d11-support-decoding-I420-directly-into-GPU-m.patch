@@ -1,0 +1,511 @@
+From 87b97ef007686cf068d3cc795a143312325ab72d Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Wed, 1 Feb 2017 15:25:03 +0100
+Subject: [PATCH 53/55] direct3d11: support decoding I420 directly into GPU
+ memory
+
+We still need a GPU copy to be able to render it.
+---
+ modules/video_chroma/dxgi_fmt.c         |   1 +
+ modules/video_chroma/dxgi_fmt.h         |   2 +-
+ modules/video_output/win32/direct3d11.c | 314 ++++++++++++++++++++++++++------
+ 3 files changed, 256 insertions(+), 61 deletions(-)
+
+diff --git a/modules/video_chroma/dxgi_fmt.c b/modules/video_chroma/dxgi_fmt.c
+index 9fbf702584..e4dd56e837 100644
+--- a/modules/video_chroma/dxgi_fmt.c
++++ b/modules/video_chroma/dxgi_fmt.c
+@@ -80,6 +80,7 @@ static const d3d_format_t d3d_formats[] = {
+     { "Y410",     DXGI_FORMAT_Y410,           VLC_CODEC_I444,         10, 1, 1, { DXGI_FORMAT_R10G10B10A2_UNORM } },
+     { "NV11",     DXGI_FORMAT_NV11,           VLC_CODEC_I411,          8, 4, 1, { DXGI_FORMAT_R8_UNORM,           DXGI_FORMAT_R8G8_UNORM} },
+ #endif
++    { "I420",     DXGI_FORMAT_UNKNOWN,        VLC_CODEC_I420,          8, 2, 2, { DXGI_FORMAT_R8_UNORM,           DXGI_FORMAT_R8_UNORM, DXGI_FORMAT_R8_UNORM } },
+     { "R8G8B8A8", DXGI_FORMAT_R8G8B8A8_UNORM, VLC_CODEC_RGBA,          8, 1, 1, { DXGI_FORMAT_R8G8B8A8_UNORM } },
+     { "VA_RGBA",  DXGI_FORMAT_R8G8B8A8_UNORM, VLC_CODEC_D3D11_OPAQUE,  8, 1, 1, { DXGI_FORMAT_R8G8B8A8_UNORM } },
+     { "B8G8R8A8", DXGI_FORMAT_B8G8R8A8_UNORM, VLC_CODEC_BGRA,          8, 1, 1, { DXGI_FORMAT_B8G8R8A8_UNORM } },
+diff --git a/modules/video_chroma/dxgi_fmt.h b/modules/video_chroma/dxgi_fmt.h
+index dd4abfbfdd..add06cbeb3 100644
+--- a/modules/video_chroma/dxgi_fmt.h
++++ b/modules/video_chroma/dxgi_fmt.h
+@@ -29,7 +29,7 @@
+ #include <vlc_common.h>
+ #include <vlc_fourcc.h>
+ 
+-#define D3D11_MAX_SHADER_VIEW  2
++#define D3D11_MAX_SHADER_VIEW  3
+ 
+ typedef struct
+ {
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index a745b7e2a7..e72220c595 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -109,6 +109,7 @@ typedef struct
+     UINT                       PSConstantsCount;
+     ID3D11PixelShader         *d3dpixelShader;
+     D3D11_VIEWPORT            cropViewport;
++    const vlc_chroma_description_t *p_chroma_sampling;
+     unsigned int              i_x_offset;
+     unsigned int              i_y_offset;
+     unsigned int              i_width;
+@@ -401,28 +402,117 @@ static const char *globPixelShaderBiplanarYUYV_2RGB = "\
+   }\
+ ";
+ 
+-static int Direct3D11MapPoolTexture(picture_t *picture)
++
++/* for triplanar 4:2:0 source */
++static const char *globPixelShaderTriplanarI420_2RGB = "\
++  cbuffer PS_CONSTANT_BUFFER : register(b0)\
++  {\
++    float Opacity;\
++    float opacityPadding[3];\
++  };\
++  cbuffer PS_COLOR_TRANSFORM : register(b1)\
++  {\
++    float WhitePointX;\
++    float WhitePointY;\
++    float WhitePointZ;\
++    float whitePadding;\
++    float4x4 Colorspace;\
++  };\
++  Texture2D%s shaderTexture[" STRINGIZE(D3D11_MAX_SHADER_VIEW) "];\
++  SamplerState SampleType;\
++  \
++  struct PS_INPUT\
++  {\
++    float4 Position   : SV_POSITION;\
++    float4 Texture    : TEXCOORD0;\
++  };\
++  \
++  float4 PS( PS_INPUT In ) : SV_TARGET\
++  {\
++    float4 yuv;\
++    float4 rgba;\
++    yuv.x = shaderTexture[0].Sample(SampleType, In.Texture).x;\
++    yuv.y = shaderTexture[1].Sample(SampleType, In.Texture).x;\
++    yuv.z = shaderTexture[2].Sample(SampleType, In.Texture).x;\
++    yuv.a  = Opacity;\
++    yuv.x  += WhitePointX;\
++    yuv.y  += WhitePointY;\
++    yuv.z  += WhitePointZ;\
++    rgba = saturate(mul(yuv, Colorspace));\
++    return rgba;\
++  }\
++";
++
++static int Direct3D11MapPoolTexture(picture_t *picture, D3D11_MAP map_mode)
+ {
+     picture_sys_t *p_sys = picture->p_sys;
+     D3D11_MAPPED_SUBRESOURCE mappedResource;
+     HRESULT hr;
+-    hr = ID3D11DeviceContext_Map(p_sys->context, p_sys->resource[KNOWN_DXGI_INDEX], 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+-    if( FAILED(hr) )
++
++    if ( p_sys->formatTexture == DXGI_FORMAT_UNKNOWN )
+     {
+-        return VLC_EGENERIC;
++        D3D11_TEXTURE2D_DESC texDesc;
++        int i;
++        uint8_t *planes[D3D11_MAX_SHADER_VIEW];
++        unsigned pitches[D3D11_MAX_SHADER_VIEW];
++        unsigned heights[D3D11_MAX_SHADER_VIEW];
++
++        for (i = 0; i < picture->i_planes; i++) {
++            hr = ID3D11DeviceContext_Map(p_sys->context, p_sys->resource[i],
++                    0, map_mode, 0, &mappedResource);
++            if( FAILED(hr) )
++            {
++                while (i-- >= 0)
++                    ID3D11DeviceContext_Unmap(p_sys->context, p_sys->resource[i+1], 0);
++                return VLC_EGENERIC;
++            }
++            ID3D11Texture2D_GetDesc(p_sys->texture[i], &texDesc);
++            planes[i]  = mappedResource.pData;
++            pitches[i] = mappedResource.RowPitch;
++            heights[i] = texDesc.Height;
++        }
++        for (; i < D3D11_MAX_SHADER_VIEW; i++) {
++            planes[i]  = NULL;
++            pitches[i] = 0;
++            heights[i] = 0;
++        }
++        p_sys->mapped = true;
++
++        return CommonUpdatePictureSplit(picture, planes, pitches, heights);
+     }
+ 
++    hr = ID3D11DeviceContext_Map(p_sys->context, p_sys->resource[KNOWN_DXGI_INDEX],
++                                 0, map_mode, 0, &mappedResource);
++    if( FAILED(hr) )
++        return VLC_EGENERIC;
+     p_sys->mapped = true;
+ 
+     return CommonUpdatePicture(picture, NULL, mappedResource.pData, mappedResource.RowPitch);
+ }
+ 
++/* map a texture to CPU that will also be used for drawing to the swapchain */
++static int Direct3D11LockTexture(picture_t *picture)
++{
++    return Direct3D11MapPoolTexture(picture, D3D11_MAP_WRITE_DISCARD);
++}
++
++static int Direct3D11LockDirectTexture(picture_t *picture)
++{
++    return Direct3D11MapPoolTexture(picture, D3D11_MAP_WRITE);
++}
++
+ static void Direct3D11UnmapPoolTexture(picture_t *picture)
+ {
+     picture_sys_t *p_sys = picture->p_sys;
+     if (p_sys->mapped) {
+-        ID3D11DeviceContext_Unmap(p_sys->context, p_sys->resource[KNOWN_DXGI_INDEX], 0);
+-        p_sys->mapped = true;
++        if ( p_sys->formatTexture == DXGI_FORMAT_UNKNOWN ) {
++            for (int i = 0; i < picture->i_planes; i++) {
++                ID3D11DeviceContext_Unmap(p_sys->context, p_sys->resource[i], 0);
++            }
++        } else {
++            ID3D11DeviceContext_Unmap(p_sys->context, p_sys->resource[KNOWN_DXGI_INDEX], 0);
++        }
++        p_sys->mapped = false;
+     }
+ }
+ 
+@@ -618,8 +708,14 @@ static const d3d_format_t *GetOutputFormat(vout_display_t *vd, vlc_fourcc_t i_sr
+         if (!b_allow_opaque && is_d3d11_opaque(output_format->fourcc))
+             continue;
+ 
++        DXGI_FORMAT textureFormat;
++        if (output_format->formatTexture == DXGI_FORMAT_UNKNOWN)
++            textureFormat = output_format->resourceFormat[0];
++        else
++            textureFormat = output_format->formatTexture;
++
+         if( SUCCEEDED( ID3D11Device_CheckFormatSupport(sys->d3ddevice,
+-                                                       output_format->formatTexture,
++                                                       textureFormat,
+                                                        &i_formatSupport)) &&
+                 ( i_formatSupport & i_quadSupportFlags ) == i_quadSupportFlags )
+         {
+@@ -683,10 +779,11 @@ static int AllocateShaderView(vout_display_t *vd, const d3d_format_t *format,
+ 
+ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
+                             video_format_t *fmt, unsigned pool_size,
+-                            ID3D11Texture2D *textures[])
++                            ID3D11Texture2D *textures[], bool for_shader)
+ {
+     vout_display_sys_t *sys = vd->sys;
+-    int plane;
++    plane_t           planes[PICTURE_PLANE_MAX];
++    int plane, plane_count;
+     HRESULT hr;
+     ID3D11Texture2D *slicedTexture = NULL;
+     D3D11_TEXTURE2D_DESC texDesc;
+@@ -694,42 +791,94 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
+     texDesc.MipLevels = 1;
+     texDesc.SampleDesc.Count = 1;
+     texDesc.MiscFlags = 0; //D3D11_RESOURCE_MISC_SHARED;
+-    texDesc.Usage = D3D11_USAGE_DEFAULT;
+-    texDesc.CPUAccessFlags = 0;
+-    texDesc.Format = cfg->formatTexture;
+-    texDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+-    if (is_d3d11_opaque(fmt->i_chroma)) {
+-        texDesc.BindFlags |= D3D11_BIND_DECODER;
+-        texDesc.Usage = D3D11_USAGE_DEFAULT;
+-        texDesc.CPUAccessFlags = 0;
++
++    if (cfg->formatTexture == DXGI_FORMAT_UNKNOWN) {
++        if (for_shader) {
++            const vlc_chroma_description_t *p_chroma_desc = vlc_fourcc_GetChromaDescription( fmt->i_chroma );
++
++            const int i_width_aligned  = fmt->i_width;
++            const int i_height_aligned = fmt->i_height;
++            for( unsigned i = 0; i < p_chroma_desc->plane_count; i++ )
++            {
++                plane_t *p = &planes[i];
++
++                p->i_lines         = i_height_aligned * p_chroma_desc->p[i].h.num / p_chroma_desc->p[i].h.den;
++                p->i_visible_lines = fmt->i_visible_height * p_chroma_desc->p[i].h.num / p_chroma_desc->p[i].h.den;
++                p->i_pitch         = i_width_aligned * p_chroma_desc->p[i].w.num / p_chroma_desc->p[i].w.den * p_chroma_desc->pixel_size;
++                p->i_visible_pitch = fmt->i_visible_width * p_chroma_desc->p[i].w.num / p_chroma_desc->p[i].w.den * p_chroma_desc->pixel_size;
++                p->i_pixel_pitch   = p_chroma_desc->pixel_size;
++
++            }
++            plane_count = p_chroma_desc->plane_count;
++
++            texDesc.Usage = D3D11_USAGE_DEFAULT;
++            texDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
++            texDesc.CPUAccessFlags = 0;
++        } else {
++            if (plane_Setup(fmt->i_chroma, fmt, planes, &plane_count) ||
++                plane_count == 0)
++            {
++                msg_Dbg(vd, "failed to get the pixel format planes for %4.4s", (char *)&fmt->i_chroma);
++                return VLC_EGENERIC;
++            }
++            texDesc.Usage = D3D11_USAGE_STAGING;
++            texDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
++        }
++        assert(plane_count <= D3D11_MAX_SHADER_VIEW);
++
++        texDesc.ArraySize = 1;
++        texDesc.Format = cfg->resourceFormat[0];
++        assert(cfg->resourceFormat[1] == cfg->resourceFormat[0]);
++        assert(cfg->resourceFormat[2] == cfg->resourceFormat[0]);
+     } else {
+-        texDesc.Usage = D3D11_USAGE_DYNAMIC;
+-        texDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+-    }
+-    texDesc.ArraySize = pool_size;
+-    texDesc.Height = fmt->i_height;
+-    texDesc.Width = fmt->i_width;
+-    /* add an extra line if needed, it will be cropped on display */
+-    if (cfg->formatTexture == DXGI_FORMAT_NV12 || cfg->formatTexture == DXGI_FORMAT_P010)
+-    {
+-        texDesc.Width  = (texDesc.Width + 1) & ~1;
+-        texDesc.Height = (texDesc.Height + 1) & ~1;
+-    }
+-    /* this is the actual decoding size that will be used */
+-    fmt->i_height = texDesc.Height;
+-    fmt->i_width = texDesc.Width;
++        plane_count = 1;
++        texDesc.Format = cfg->formatTexture;
++        texDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
++        if (is_d3d11_opaque(fmt->i_chroma)) {
++            texDesc.BindFlags |= D3D11_BIND_DECODER;
++            texDesc.Usage = D3D11_USAGE_DEFAULT;
++            texDesc.CPUAccessFlags = 0;
++        } else {
++            texDesc.Usage = D3D11_USAGE_DYNAMIC;
++            texDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
++        }
++        texDesc.ArraySize = pool_size;
++        texDesc.Height = fmt->i_height;
++        texDesc.Width = fmt->i_width;
++        /* add an extra line if needed, it will be cropped on display */
++        if (cfg->formatTexture == DXGI_FORMAT_NV12 || cfg->formatTexture == DXGI_FORMAT_P010)
++        {
++            texDesc.Width  = (texDesc.Width + 1) & ~1;
++            texDesc.Height = (texDesc.Height + 1) & ~1;
++            /* this is the actual decoding size that will be used */
++            fmt->i_height = texDesc.Height;
++            fmt->i_width = texDesc.Width;
++        }
+ 
+-    hr = ID3D11Device_CreateTexture2D( sys->d3ddevice, &texDesc, NULL, &slicedTexture );
+-    if (FAILED(hr)) {
+-        msg_Err(vd, "CreateTexture2D failed for the %d pool. (hr=0x%0lx)", pool_size, hr);
+-        goto error;
++        hr = ID3D11Device_CreateTexture2D( sys->d3ddevice, &texDesc, NULL, &slicedTexture );
++        if (FAILED(hr)) {
++            msg_Err(vd, "CreateTexture2D failed for the %d pool. (hr=0x%0lx)", pool_size, hr);
++            goto error;
++        }
+     }
+ 
+     for (unsigned picture_count = 0; picture_count < pool_size; picture_count++) {
+-        textures[picture_count * D3D11_MAX_SHADER_VIEW] = slicedTexture;
+-        ID3D11Texture2D_AddRef(slicedTexture);
+-
+-        for (plane = 1; plane < D3D11_MAX_SHADER_VIEW; plane++) {
++        for (plane = 0; plane < plane_count; plane++)
++        {
++            if (slicedTexture) {
++                textures[picture_count * D3D11_MAX_SHADER_VIEW + plane] = slicedTexture;
++                ID3D11Texture2D_AddRef(slicedTexture);
++            } else {
++                texDesc.Height = planes[plane].i_lines;
++                texDesc.Width = planes[plane].i_pitch;
++                hr = ID3D11Device_CreateTexture2D( sys->d3ddevice, &texDesc, NULL, &textures[picture_count * D3D11_MAX_SHADER_VIEW + plane] );
++                if (FAILED(hr)) {
++                    msg_Err(vd, "CreateTexture2D failed for the %d pool. (hr=0x%0lx)", pool_size, hr);
++                    goto error;
++                }
++            }
++        }
++        for (; plane < D3D11_MAX_SHADER_VIEW; plane++) {
+             if (!cfg->resourceFormat[plane])
+                 textures[picture_count * D3D11_MAX_SHADER_VIEW + plane] = NULL;
+             else
+@@ -740,7 +889,7 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
+         }
+     }
+ 
+-    if (!is_d3d11_opaque(fmt->i_chroma)) {
++    if (!is_d3d11_opaque(fmt->i_chroma) && cfg->formatTexture != DXGI_FORMAT_UNKNOWN) {
+         D3D11_MAPPED_SUBRESOURCE mappedResource;
+         const vlc_chroma_description_t *p_chroma_desc = vlc_fourcc_GetChromaDescription( fmt->i_chroma );
+ 
+@@ -781,11 +930,11 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+     if (vd->info.is_slow)
+         pool_size = 1;
+ 
+-    if (AllocateTextures(vd, sys->picQuadConfig, &vd->fmt, pool_size, textures))
++    if (AllocateTextures(vd, sys->picQuadConfig, &vd->fmt, pool_size, textures,
++                         sys->picQuadConfig->formatTexture != DXGI_FORMAT_UNKNOWN && is_d3d11_opaque(vd->fmt.i_chroma) && !sys->legacy_shader))
+         goto error;
+ 
+-#ifdef HAVE_ID3D11VIDEODECODER
+-    if (is_d3d11_opaque(vd->fmt.i_chroma))
++    if (is_d3d11_opaque(vd->fmt.i_chroma) || sys->picQuadConfig->formatTexture == DXGI_FORMAT_UNKNOWN)
+     {
+         /* we are going to share the context with the decoder */
+         HRESULT           hr;
+@@ -796,7 +945,6 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+             ID3D10Multithread_Release(pMultithread);
+         }
+     }
+-#endif
+ 
+     pictures = calloc(pool_size, sizeof(*pictures));
+     if (!pictures)
+@@ -830,7 +978,6 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+         pictures[picture_count] = picture;
+     }
+ 
+-#ifdef HAVE_ID3D11VIDEODECODER
+     if (!is_d3d11_opaque(vd->fmt.i_chroma) || sys->legacy_shader)
+     {
+         /* we need a staging texture */
+@@ -838,7 +985,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+         video_format_Copy(&staging_fmt, &vd->fmt);
+         staging_fmt.i_width = staging_fmt.i_visible_width;
+         staging_fmt.i_height = staging_fmt.i_visible_height;
+-        if (AllocateTextures(vd, sys->picQuadConfig, &staging_fmt, 1, textures))
++        if (AllocateTextures(vd, sys->picQuadConfig, &staging_fmt, 1, textures, true))
+             goto error;
+ 
+         sys->picQuad.i_x_offset = 0;
+@@ -846,13 +993,15 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+         sys->picQuad.i_width    = staging_fmt.i_width;
+         sys->picQuad.i_height   = staging_fmt.i_height;
+ 
++        sys->picQuad.p_chroma_sampling = vlc_fourcc_GetChromaDescription( staging_fmt.i_chroma );
++
+         for (unsigned plane = 0; plane < D3D11_MAX_SHADER_VIEW; plane++)
+             sys->stagingSys.texture[plane] = textures[plane];
+ 
+         if (AllocateShaderView(vd, sys->picQuadConfig, 0, &sys->stagingSys))
+             goto error;
+-    } else
+-#endif
++    }
++    else
+     {
+         sys->picQuad.i_x_offset = vd->fmt.i_x_offset;
+         sys->picQuad.i_y_offset = vd->fmt.i_y_offset;
+@@ -871,8 +1020,14 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+         return NULL;
+     }
+ 
+-    if (vd->info.is_slow) {
+-        pool_cfg.lock          = Direct3D11MapPoolTexture;
++    if (sys->picQuadConfig->formatTexture == DXGI_FORMAT_UNKNOWN)
++    {
++        pool_cfg.lock = Direct3D11LockDirectTexture;
++        pool_cfg.unlock = Direct3D11UnmapPoolTexture;
++    }
++    else if (vd->info.is_slow)
++    {
++        pool_cfg.lock          = Direct3D11LockTexture;
+         //pool_cfg.unlock        = Direct3D11UnmapPoolTexture;
+     }
+     pool_cfg.picture       = pictures;
+@@ -1207,9 +1362,42 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
+ {
+     vout_display_sys_t *sys = vd->sys;
+ 
+-    if (!is_d3d11_opaque(picture->format.i_chroma) || sys->legacy_shader) {
++    if (picture->p_sys->formatTexture == DXGI_FORMAT_UNKNOWN)
++    {
++        picture_sys_t *p_sys = picture->p_sys;
++
++        Direct3D11UnmapPoolTexture(picture);
++        for (int plane = 0; plane < D3D11_MAX_SHADER_VIEW; plane++)
++        {
++            if (!p_sys->resource[plane])
++                continue;
++
++            unsigned int width  = sys->picQuad.i_width;
++            unsigned int height = sys->picQuad.i_height;
++            unsigned int x_offset = picture->format.i_x_offset;
++            unsigned int y_offset = picture->format.i_y_offset;
++            x_offset = x_offset * sys->picQuad.p_chroma_sampling->p[plane].h.num / sys->picQuad.p_chroma_sampling->p[plane].h.den;
++            y_offset = y_offset * sys->picQuad.p_chroma_sampling->p[plane].w.num / sys->picQuad.p_chroma_sampling->p[plane].w.den;
++            width  = width * sys->picQuad.p_chroma_sampling->p[plane].h.num / sys->picQuad.p_chroma_sampling->p[plane].h.den;
++            height = height * sys->picQuad.p_chroma_sampling->p[plane].w.num / sys->picQuad.p_chroma_sampling->p[plane].w.den;
++
++            D3D11_BOX box = {
++                .top = y_offset,
++                .bottom = y_offset + height,
++                .left = x_offset,
++                .right = x_offset + width,
++                .back = 1,
++            };
++            ID3D11DeviceContext_CopySubresourceRegion(sys->d3dcontext,
++                                                      sys->stagingSys.resource[plane],
++                                                      0, 0, 0, 0,
++                                                      p_sys->resource[plane],
++                                                      0, &box);
++        }
++    }
++    else if (!is_d3d11_opaque(picture->format.i_chroma) || sys->legacy_shader)
++    {
+         picture_sys_t *p_sys = picture->p_sys;
+-        D3D11_TEXTURE2D_DESC texDesc;
+         if( sys->context_lock != INVALID_HANDLE_VALUE )
+         {
+             WaitForSingleObjectEx( sys->context_lock, INFINITE, FALSE );
+@@ -1217,12 +1405,16 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
+         if ( !is_d3d11_opaque(picture->format.i_chroma))
+             Direct3D11UnmapPoolTexture(picture);
+ 
+-        ID3D11Texture2D_GetDesc(sys->stagingSys.texture[0], &texDesc);
++        unsigned int width  = sys->picQuad.i_width;
++        unsigned int height = sys->picQuad.i_height;
++        unsigned int x_offset = picture->format.i_x_offset;
++        unsigned int y_offset = picture->format.i_y_offset;
++
+         D3D11_BOX box = {
+-            .top = picture->format.i_y_offset,
+-            .bottom = picture->format.i_y_offset + texDesc.Height,
+-            .left = picture->format.i_x_offset,
+-            .right = picture->format.i_x_offset + texDesc.Width,
++            .top = y_offset,
++            .bottom = y_offset + height,
++            .left = x_offset,
++            .right = x_offset + width,
+             .back = 1,
+         };
+         ID3D11DeviceContext_CopySubresourceRegion(sys->d3dcontext,
+@@ -1378,6 +1570,8 @@ static const char *GetFormatPixelShader(const d3d_format_t *format)
+     case DXGI_FORMAT_B8G8R8A8_UNORM:
+     case DXGI_FORMAT_B5G6R5_UNORM:
+         return globPixelShaderDefault;
++    case DXGI_FORMAT_UNKNOWN:
++        return globPixelShaderTriplanarI420_2RGB;
+     default:
+         return NULL;
+     }
+@@ -1754,7 +1948,7 @@ static int Direct3D11CreateResources(vout_display_t *vd, video_format_t *fmt)
+ #else
+     sys->legacy_shader = true;
+ #endif
+-    vd->info.is_slow = !is_d3d11_opaque(fmt->i_chroma);
++    vd->info.is_slow = !is_d3d11_opaque(fmt->i_chroma) && sys->picQuadConfig->formatTexture != DXGI_FORMAT_UNKNOWN;
+ 
+     hr = CompilePixelShader(vd, sys->d3dPxShader, &sys->picQuadPixelShader);
+     if (FAILED(hr))
+@@ -2365,7 +2559,7 @@ static int Direct3D11MapSubpicture(vout_display_t *vd, int *subpicture_region_co
+             if (unlikely(d3dquad==NULL)) {
+                 continue;
+             }
+-            if (AllocateTextures(vd, sys->d3dregion_format, &r->fmt, 1, textures)) {
++            if (AllocateTextures(vd, sys->d3dregion_format, &r->fmt, 1, textures, true)) {
+                 msg_Err(vd, "Failed to allocate %dx%d texture for OSD",
+                         r->fmt.i_visible_width, r->fmt.i_visible_height);
+                 for (int i=0; i<D3D11_MAX_SHADER_VIEW; i++)
+-- 
+2.11.0
+
