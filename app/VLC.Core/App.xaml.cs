@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using System;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using VLC.Controls;
 using VLC.Helpers;
@@ -17,8 +19,11 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Gaming.Input;
 using Windows.Storage;
+using Windows.Storage.AccessCache;
+using Windows.Storage.Pickers;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -193,12 +198,70 @@ namespace VLC
                                 Locator.MainVM.GoToStreamPanel.Execute(null);
                                 break;
                             case "url":
-                                if (decoder[1]?.Name == "url")
+                                if (decoder[1]?.Name == "url" )
                                 {
-                                    if (!string.IsNullOrEmpty(decoder[1]?.Value))
+                                    StorageFile subsFd = null;
+                                    try
                                     {
-                                        await Locator.MediaPlaybackViewModel.PlayStream(decoder[1].Value);
+                                        var subsFrom = decoder.Where((item, index) => item.Name == "subs_from").FirstOrDefault();
+                                        var subsValue = decoder.Where((item, index) => item.Name == "subs").FirstOrDefault();
+                                        if (!(subsFrom == default(IWwwFormUrlDecoderEntry) && subsValue == default(IWwwFormUrlDecoderEntry)))
+                                        {
+                                            switch (subsFrom.Value)
+                                            {
+                                                case "path":
+                                                    //this StorageFile is like a File Descriptor from Unix
+                                                    subsFd = await StorageFile.GetFileFromPathAsync(subsValue.Value);
+                                                    if(subsFd == null)
+                                                        ToastHelper.Basic("Failed to Load Subtitles: Couln´t find the file.");
+                                                    else if(!StorageApplicationPermissions.FutureAccessList.CheckAccess(subsFd))
+                                                        StorageApplicationPermissions.FutureAccessList.Add(subsFd);
+                                                    break;
+                                                case "url":
+                                                    using (var httpClient = new System.Net.Http.HttpClient())
+                                                    {
+                                                        var subsContent = await httpClient.GetStringAsync(subsValue.Value);
+                                                        subsFd = await ApplicationData.Current.LocalFolder.CreateFileAsync(subsContent.GetHashCode().ToString(), CreationCollisionOption.ReplaceExisting);
+                                                        await FileIO.WriteTextAsync(subsFd, subsContent);
+                                                    }
+                                                    break;
+                                                case "picker":
+                                                    var openPicker = new FileOpenPicker();
+                                                    openPicker.FileTypeFilter.Add(".srt");
+                                                    openPicker.FileTypeFilter.Add(".txt");
+                                                    openPicker.SuggestedStartLocation = PickerLocationId.Downloads;
+                                                    subsFd = await openPicker.PickSingleFileAsync();
+                                                    break;
+                                            }
+                                        }
                                     }
+                                    //StorageFile.GetFileFromPath or CreateFileAsync failed
+                                    catch (UnauthorizedAccessException)
+                                    {
+                                        ToastHelper.Basic("Failed to Load Subtitles: Access Denied to the file.");
+                                    }
+                                    //HttpClient usually fails with an AggregateException instead of WebException or HttpRequest...Exception
+                                    catch (AggregateException)
+                                    {
+                                        ToastHelper.Basic("Failed to Load Subtitles: Problems downloading the subtitles");
+                                    }
+                                    //HttpClient fails with a WebException when there´s no connectivity
+                                    catch (System.Net.WebException)
+                                    {
+                                        ToastHelper.Basic("Failed to Load Subtitles: No Connectivity");
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        ToastHelper.Basic("Failed to Load Subtitles: "+ ex.GetType().ToString());
+                                    }
+
+                                    await Locator.MediaPlaybackViewModel.PlayStream(decoder[1].Value);
+                                    if (subsFd != null)
+                                    {
+                                        ToastHelper.Basic("Subtitles Loaded Successfully");
+                                        Locator.MediaPlaybackViewModel.OpenSubtitleCommand.Execute(subsFd);
+                                    }
+                                        
                                 }
                                 break;
                         }
