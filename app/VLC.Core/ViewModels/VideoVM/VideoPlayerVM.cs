@@ -86,6 +86,8 @@ namespace VLC.ViewModels.VideoVM
 
         public InitPiPCommand InitPiPCommand { get; private set; } = new InitPiPCommand();
 
+        public InitPopupCommand InitPopupCommand { get; private set; } = new InitPopupCommand();
+
         public DownloadSubtitleCommand DownloadSubtitleCommand { get; private set; } = new DownloadSubtitleCommand();
 
         public ShowSubtitlesSettingsCommand ShowSubtitlesSettingsCommand { get; private set; } = new ShowSubtitlesSettingsCommand();
