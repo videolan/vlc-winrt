@@ -32,7 +32,7 @@ namespace libVLCX
     Instance::Instance(Windows::Foundation::Collections::IVector<Platform::String^>^ argv, SwapChainPanel^ panel)
         : m_chainPanel(panel)
     {
-        int extraArgs = 3;
+        int extraArgs = 2;
         auto c_argv = new char*[argv->Size + extraArgs];
         unsigned int i = 0;
         for (auto arg : argv)
@@ -57,18 +57,6 @@ namespace libVLCX
         m_dxManager->CreateSwapPanel(m_chainPanel);
         UpdateSize(m_chainPanel->ActualWidth * m_chainPanel->CompositionScaleX,
                    m_chainPanel->ActualHeight * m_chainPanel->CompositionScaleY);
-
-        bool direct_hw = true;
-        ComPtr<IDXGIAdapter> dxgiAdapter;
-        if (SUCCEEDED(m_dxManager->cp_dxgiDev3->GetAdapter(&dxgiAdapter)))
-        {
-            DXGI_ADAPTER_DESC desc;
-            if (SUCCEEDED(dxgiAdapter->GetDesc(&desc)) && desc.VendorId == 0x1002) // AMD
-            {
-                direct_hw = false;
-            }
-        }
-        argv[nbArgs++] = _strdup(direct_hw ? "--direct3d11-direct-hw" : "--no-direct3d11-direct-hw");
 
         char ptr_d3dcstring[64];
         sprintf_s(ptr_d3dcstring, "--winrt-d3dcontext=0x%p", m_dxManager->cp_d3dContext);
