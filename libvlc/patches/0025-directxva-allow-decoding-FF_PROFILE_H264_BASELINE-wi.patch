@@ -1,7 +1,7 @@
-From 802df5e5d067746e4caf366638332c3407afbb57 Mon Sep 17 00:00:00 2001
+From d949dea7df24efbb8efe221aa9b5032cd16896e9 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 30 Jan 2017 09:57:41 +0100
-Subject: [PATCH 55/55] directxva: allow decoding FF_PROFILE_H264_BASELINE
+Subject: [PATCH 25/26] directxva: allow decoding FF_PROFILE_H264_BASELINE
  without constraint
 
 It works
@@ -10,7 +10,7 @@ It works
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/modules/codec/avcodec/directx_va.c b/modules/codec/avcodec/directx_va.c
-index 1c26edcd6e..d3073f76b8 100644
+index 1c26edc..d3073f7 100644
 --- a/modules/codec/avcodec/directx_va.c
 +++ b/modules/codec/avcodec/directx_va.c
 @@ -45,7 +45,8 @@
@@ -24,5 +24,5 @@ index 1c26edcd6e..d3073f76b8 100644
                                           FF_PROFILE_H264_HIGH, 0 };
  static const int PROF_HEVC_MAIN[]    = { FF_PROFILE_HEVC_MAIN, 0 };
 -- 
-2.11.0
+2.10.1.windows.1
 

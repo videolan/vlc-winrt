@@ -1,7 +1,7 @@
-From 9dc95494ebed6f81e886e58d89735a74d45be0fc Mon Sep 17 00:00:00 2001
+From 2ee851de15bf8d885c0ddc17d068f6ab6500fda9 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 25 Jan 2017 18:05:22 +0100
-Subject: [PATCH 44/55] direct3d11: use AllocateTextures() for quad textures
+Subject: [PATCH 15/26] direct3d11: use AllocateTextures() for quad textures
  too
 
 ---
@@ -9,19 +9,19 @@ Subject: [PATCH 44/55] direct3d11: use AllocateTextures() for quad textures
  1 file changed, 36 insertions(+), 51 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index aea9137c39..dde32b5258 100644
+index 0e7841a..3ca67c9 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
-@@ -2012,7 +2012,7 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+@@ -2077,7 +2077,7 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
                       video_projection_mode_t projection)
  {
      vout_display_sys_t *sys = vd->sys;
 -    D3D11_MAPPED_SUBRESOURCE mappedResource;
 +    ID3D11Texture2D *textures[D3D11_MAX_SHADER_VIEW];
      HRESULT hr;
-     static const FLOAT FULL_TO_STUDIO_SHIFT = 16.f / 256.f;
      const bool RGB_shader = cfg->resourceFormat[0] != DXGI_FORMAT_R8_UNORM &&
-@@ -2137,61 +2137,46 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+         cfg->resourceFormat[0] != DXGI_FORMAT_R16_UNORM &&
+@@ -2202,61 +2202,46 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
          SetQuadVSProjection( vd, quad, &vd->cfg->viewpoint );
      }
  
@@ -119,5 +119,5 @@ index aea9137c39..dde32b5258 100644
  
      if (AllocateShaderView(vd, cfg, 0, &quad->picSys) != VLC_SUCCESS)
 -- 
-2.11.0
+2.10.1.windows.1
 

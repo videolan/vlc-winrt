@@ -1,7 +1,7 @@
-From 530b3a75d1c88fe8564961b21733c89a3664c74b Mon Sep 17 00:00:00 2001
+From b3f243e2ba91c66e35e31b69ba4ebcfe338ade2f Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 20 Jan 2017 18:23:31 +0100
-Subject: [PATCH 26/55] picture: split the plane definition from the picture
+Subject: [PATCH 21/26] picture: split the plane definition from the picture
  creation
 
 This way we can tell plane dimensions from a video format anywhere.
@@ -13,11 +13,11 @@ replaces https://patches.videolan.org/patch/15499/
 ---
  include/vlc_picture.h | 14 ++++++++++++++
  src/libvlccore.sym    |  1 +
- src/misc/picture.c    | 46 +++++++++++++++++++++++++++-------------------
- 3 files changed, 42 insertions(+), 19 deletions(-)
+ src/misc/picture.c    | 14 +++++++++++---
+ 3 files changed, 26 insertions(+), 3 deletions(-)
 
 diff --git a/include/vlc_picture.h b/include/vlc_picture.h
-index b8d4a5a223..865fdebcc7 100644
+index b8d4a5a..865fdeb 100644
 --- a/include/vlc_picture.h
 +++ b/include/vlc_picture.h
 @@ -222,6 +222,20 @@ VLC_API int picture_Export( vlc_object_t *p_obj, block_t **pp_image, video_forma
@@ -42,7 +42,7 @@ index b8d4a5a223..865fdebcc7 100644
  /*****************************************************************************
   * Shortcuts to access image components
 diff --git a/src/libvlccore.sym b/src/libvlccore.sym
-index 7b9657a4b1..fd316b5705 100644
+index 7b9657a..fd316b5 100644
 --- a/src/libvlccore.sym
 +++ b/src/libvlccore.sym
 @@ -328,6 +328,7 @@ picture_pool_Wait
@@ -54,39 +54,27 @@ index 7b9657a4b1..fd316b5705 100644
  playlist_AddExt
  playlist_AddInput
 diff --git a/src/misc/picture.c b/src/misc/picture.c
-index 0a2dc8f69a..11a9751b04 100644
+index 0a2dc8f..7421c2e 100644
 --- a/src/misc/picture.c
 +++ b/src/misc/picture.c
-@@ -137,25 +137,11 @@ static int LCM( int a, int b )
-     return a * b / GCD( a, b );
- }
+@@ -154,8 +154,15 @@ int picture_Setup( picture_t *p_picture, const video_format_t *restrict fmt )
+                         fmt->i_visible_width, fmt->i_visible_height,
+                         fmt->i_sar_num, fmt->i_sar_den );
  
--int picture_Setup( picture_t *p_picture, const video_format_t *restrict fmt )
++    return plane_Setup( p_picture->format.i_chroma, fmt, p_picture->p,
++                                &p_picture->i_planes );
++}
++
 +int plane_Setup( vlc_fourcc_t i_chroma, const video_format_t *restrict fmt,
 +                         plane_t *planes, int *plane_count )
- {
--    /* Store default values */
--    p_picture->i_planes = 0;
--    for( unsigned i = 0; i < VOUT_MAX_PLANES; i++ )
--    {
--        plane_t *p = &p_picture->p[i];
--        p->p_pixels = NULL;
--        p->i_pixel_pitch = 0;
--    }
--
--    p_picture->i_nb_fields = 2;
--
--    video_format_Setup( &p_picture->format, fmt->i_chroma, fmt->i_width, fmt->i_height,
--                        fmt->i_visible_width, fmt->i_visible_height,
--                        fmt->i_sar_num, fmt->i_sar_den );
--
++{
      const vlc_chroma_description_t *p_dsc =
 -        vlc_fourcc_GetChromaDescription( p_picture->format.i_chroma );
 +            vlc_fourcc_GetChromaDescription( i_chroma );
      if( !p_dsc )
          return VLC_EGENERIC;
  
-@@ -182,7 +168,7 @@ int picture_Setup( picture_t *p_picture, const video_format_t *restrict fmt )
+@@ -182,7 +189,7 @@ int picture_Setup( picture_t *p_picture, const video_format_t *restrict fmt )
      const int i_height_extra   = 2 * i_ratio_h; /* This one is a hack for some ASM functions */
      for( unsigned i = 0; i < p_dsc->plane_count; i++ )
      {
@@ -95,7 +83,7 @@ index 0a2dc8f69a..11a9751b04 100644
  
          p->i_lines         = (i_height_aligned + i_height_extra ) * p_dsc->p[i].h.num / p_dsc->p[i].h.den;
          p->i_visible_lines = fmt->i_visible_height * p_dsc->p[i].h.num / p_dsc->p[i].h.den;
-@@ -192,11 +178,33 @@ int picture_Setup( picture_t *p_picture, const video_format_t *restrict fmt )
+@@ -192,7 +199,8 @@ int picture_Setup( picture_t *p_picture, const video_format_t *restrict fmt )
  
          assert( (p->i_pitch % 16) == 0 );
      }
@@ -105,31 +93,6 @@ index 0a2dc8f69a..11a9751b04 100644
  
      return VLC_SUCCESS;
  }
- 
-+int picture_Setup( picture_t *p_picture, const video_format_t *restrict fmt )
-+{
-+    /* Store default values */
-+    p_picture->i_planes = 0;
-+    for( unsigned i = 0; i < VOUT_MAX_PLANES; i++ )
-+    {
-+        plane_t *p = &p_picture->p[i];
-+        p->p_pixels = NULL;
-+        p->i_pixel_pitch = 0;
-+    }
-+
-+    p_picture->i_nb_fields = 2;
-+
-+    video_format_Setup( &p_picture->format, fmt->i_chroma, fmt->i_width, fmt->i_height,
-+                        fmt->i_visible_width, fmt->i_visible_height,
-+                        fmt->i_sar_num, fmt->i_sar_den );
-+
-+    return plane_Setup( p_picture->format.i_chroma, fmt, p_picture->p,
-+                                &p_picture->i_planes );
-+}
-+
- /*****************************************************************************
-  *
-  *****************************************************************************/
 -- 
-2.11.0
+2.10.1.windows.1
 

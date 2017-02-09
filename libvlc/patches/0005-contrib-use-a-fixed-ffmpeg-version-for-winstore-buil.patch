@@ -1,7 +1,7 @@
-From ff29080aa83d5ad146fbe30250e7852f80bdb75b Mon Sep 17 00:00:00 2001
+From be38af4b41cc560ede41fe3b417f5a6698b407b9 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 09:42:20 +0200
-Subject: [PATCH 05/55] contrib: use a fixed ffmpeg version for winstore builds
+Subject: [PATCH 05/26] contrib: use a fixed ffmpeg version for winstore builds
 
 use a version with D3D11VA empty output surfaces array
 ---
@@ -9,7 +9,7 @@ use a version with D3D11VA empty output surfaces array
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index 367bc49868..a4345d33a0 100644
+index 367bc49..a4345d3 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
 @@ -2,10 +2,10 @@
@@ -26,5 +26,5 @@ index 367bc49868..a4345d33a0 100644
  FFMPEG_GITURL := http://git.videolan.org/git/ffmpeg.git
  else
 -- 
-2.11.0
+2.10.1.windows.1
 

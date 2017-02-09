@@ -1,7 +1,7 @@
-From 220daa39f8e796f8413fc17cc20159d3050b73fb Mon Sep 17 00:00:00 2001
+From d8312e91d12a65d42e4ae6d0061ec06d352b38b4 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Tue, 31 Jan 2017 13:11:48 +0100
-Subject: [PATCH 48/55] direct3d11: allocate the texture(s) directly in
+Subject: [PATCH 17/26] direct3d11: allocate the texture(s) directly in
  AllocQuad()
 
 ---
@@ -9,10 +9,10 @@ Subject: [PATCH 48/55] direct3d11: allocate the texture(s) directly in
  1 file changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index f9d6589576..0acd10bb2f 100644
+index 83417f6..550ff01 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
-@@ -222,7 +222,7 @@ static void Direct3D11DeleteRegions(int, picture_t **);
+@@ -213,7 +213,7 @@ static void Direct3D11DeleteRegions(int, picture_t **);
  static int Direct3D11MapSubpicture(vout_display_t *, int *, picture_t ***, subpicture_t *);
  
  static int AllocQuad(vout_display_t *, const video_format_t *, d3d_quad_t *,
@@ -21,7 +21,7 @@ index f9d6589576..0acd10bb2f 100644
  static void ReleaseQuad(d3d_quad_t *);
  static void UpdatePicQuadPosition(vout_display_t *);
  static void UpdateQuadOpacity(vout_display_t *, const d3d_quad_t *, float);
-@@ -750,7 +750,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -741,7 +741,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
          pool_size = 1;
  
      if (AllocQuad( vd, &vd->fmt, &sys->picQuad, sys->picQuadConfig, sys->picQuadPixelShader,
@@ -30,7 +30,7 @@ index f9d6589576..0acd10bb2f 100644
          msg_Err(vd, "Could not Create the main quad picture.");
          return NULL;
      }
-@@ -1983,10 +1983,10 @@ static bool AllocQuadVertices(vout_display_t *vd, d3d_quad_t *quad, const video_
+@@ -2038,10 +2038,10 @@ static bool AllocQuadVertices(vout_display_t *vd, d3d_quad_t *quad, const video_
  
  static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *quad,
                       const d3d_format_t *cfg, ID3D11PixelShader *d3dpixelShader,
@@ -41,9 +41,9 @@ index f9d6589576..0acd10bb2f 100644
 -    ID3D11Texture2D *textures[D3D11_MAX_SHADER_VIEW];
 +    ID3D11Texture2D  *textures[pool_size * D3D11_MAX_SHADER_VIEW];
      HRESULT hr;
-     static const FLOAT FULL_TO_STUDIO_SHIFT = 16.f / 256.f;
      const bool RGB_shader = cfg->resourceFormat[0] != DXGI_FORMAT_R8_UNORM &&
-@@ -2111,7 +2111,7 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+         cfg->resourceFormat[0] != DXGI_FORMAT_R16_UNORM &&
+@@ -2166,7 +2166,7 @@ static int AllocQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
          SetQuadVSProjection( vd, quad, &vd->cfg->viewpoint );
      }
  
@@ -52,7 +52,7 @@ index f9d6589576..0acd10bb2f 100644
          goto error;
  
      for (int i=0; i<D3D11_MAX_SHADER_VIEW; i++)
-@@ -2338,7 +2338,7 @@ static int Direct3D11MapSubpicture(vout_display_t *vd, int *subpicture_region_co
+@@ -2392,7 +2392,7 @@ static int Direct3D11MapSubpicture(vout_display_t *vd, int *subpicture_region_co
                  continue;
              }
              err = AllocQuad( vd, &r->fmt, d3dquad, sys->d3dregion_format, sys->pSPUPixelShader,
@@ -62,5 +62,5 @@ index f9d6589576..0acd10bb2f 100644
                  msg_Err(vd, "Failed to create %dx%d texture for OSD",
                          r->fmt.i_visible_width, r->fmt.i_visible_height);
 -- 
-2.11.0
+2.10.1.windows.1
 
