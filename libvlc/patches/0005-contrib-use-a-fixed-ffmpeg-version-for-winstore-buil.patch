@@ -1,7 +1,7 @@
-From be38af4b41cc560ede41fe3b417f5a6698b407b9 Mon Sep 17 00:00:00 2001
+From 18838eefc2e856634e00cac3916e965aaf727379 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 09:42:20 +0200
-Subject: [PATCH 05/26] contrib: use a fixed ffmpeg version for winstore builds
+Subject: [PATCH 05/17] contrib: use a fixed ffmpeg version for winstore builds
 
 use a version with D3D11VA empty output surfaces array
 ---

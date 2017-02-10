@@ -1,7 +1,7 @@
-From 6ed11c478a862f667147c52248f7db4b7c747a12 Mon Sep 17 00:00:00 2001
+From 89a491d98af8e359d00620c30c878c0e129fbcfe Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 1 Feb 2017 15:25:53 +0100
-Subject: [PATCH 24/26] direct3d11: make D3D11 more prioritary
+Subject: [PATCH 15/17] direct3d11: make D3D11 more prioritary
 
 If it's not supported by the OS, we will fallback to D3D9
 ---
@@ -9,7 +9,7 @@ If it's not supported by the OS, we will fallback to D3D9
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index a8e80ad..81543a0 100644
+index 7c8f3a0..1c3a9fc 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -81,7 +81,7 @@ vlc_module_begin ()

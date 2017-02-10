@@ -1,7 +1,7 @@
-From 64767ed180cb75ab7f1326046f3785f0c0ac330a Mon Sep 17 00:00:00 2001
+From c3734d7af79b175b90ebfbc7fb1bf1bed6aff31e Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 15:23:12 +0200
-Subject: [PATCH 07/26] contrib: microdns: fix uninitialized memory usages
+Subject: [PATCH 07/17] contrib: microdns: fix uninitialized memory usages
 
 ---
  ...o-not-return-freed-memory-in-case-of-erro.patch | 24 ++++++++++++++++++++++

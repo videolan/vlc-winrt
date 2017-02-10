@@ -1,7 +1,7 @@
-From aaa45974a79496a39682e60367ce24dea0a9886f Mon Sep 17 00:00:00 2001
+From aaa9f7c965af7b879ccb8e1cd564263471645a7b Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 25 Jan 2017 18:11:47 +0100
-Subject: [PATCH 22/26] vout: win32: add a function to set the planes of a
+Subject: [PATCH 13/17] vout: win32: add a function to set the planes of a
  picture from the raw values
 
 ---

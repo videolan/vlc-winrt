@@ -1,7 +1,7 @@
-From d949dea7df24efbb8efe221aa9b5032cd16896e9 Mon Sep 17 00:00:00 2001
+From d939da8e9692c616dd8b13d719560136e36878ef Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 30 Jan 2017 09:57:41 +0100
-Subject: [PATCH 25/26] directxva: allow decoding FF_PROFILE_H264_BASELINE
+Subject: [PATCH 16/17] directxva: allow decoding FF_PROFILE_H264_BASELINE
  without constraint
 
 It works

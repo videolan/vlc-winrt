@@ -1,7 +1,7 @@
-From 7773d7b7bcfa858761e9edd3dd32927514e077e8 Mon Sep 17 00:00:00 2001
+From 921b74d497a0195c5dbaeb1c656447df4d019fc5 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 1 Feb 2017 15:25:03 +0100
-Subject: [PATCH 23/26] direct3d11: support decoding I420 directly into GPU
+Subject: [PATCH 14/17] direct3d11: support decoding I420 directly into GPU
  memory
 
 We still need a GPU copy to be able to render it.
@@ -64,7 +64,7 @@ index dd4abfb..add06cb 100644
  typedef struct
  {
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index e7417f3..a8e80ad 100644
+index 42f56fa..7c8f3a0 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -100,6 +100,7 @@ typedef struct
