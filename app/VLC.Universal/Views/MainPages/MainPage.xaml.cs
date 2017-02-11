@@ -6,29 +6,19 @@
  * Licensed under GPLv2+ and MPLv2
  * Refer to COPYING file of the official project for license
  **********************************************************************/
-using Windows.Graphics.Display;
 using Windows.Media;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Autofac;
-using VLC.Helpers;
-using VLC.Services.RunTime;
 using VLC.ViewModels;
 using Windows.UI.ViewManagement;
-using Slide2D;
-using Windows.UI.Xaml.Navigation;
 using VLC.Utils;
 using VLC.Model;
 using System;
 using System.Linq;
-using Windows.System;
-using System.Diagnostics;
 using Windows.UI.Composition;
 using System.Numerics;
 using Windows.UI.Xaml.Hosting;
 using System.Threading.Tasks;
-using Windows.ApplicationModel;
-using Windows.Storage;
 
 namespace VLC.UI.Views.MainPages
 {
@@ -106,6 +96,20 @@ namespace VLC.UI.Views.MainPages
 
         private Compositor _compositor;
         private bool _pipEnabled;
+        private bool _pipPopupEnabled;
+        public async Task StartPopupWindow()
+        {
+            _pipPopupEnabled = !_pipPopupEnabled;
+            if (_pipPopupEnabled)
+            {
+                bool modeSwitched = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay);
+            }
+            else
+            {
+                bool modeSwitched = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
+            }
+        }
+
         public void StartCompositionAnimationOnSwapChain(bool pipEnabled)
         {
             _pipEnabled = pipEnabled;

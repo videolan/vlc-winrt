@@ -182,6 +182,20 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <StackPanel Orientation="Horizontal">
+                            <AppBarButton Name="PiPButton"
+                                          Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.InitPiPCommand}"
+                                          IsCompact="True"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch"
+                                          Style="{StaticResource AppBarButtonStyleHuge}"
+                                          Margin="{StaticResource FrameMarginHorizontal}"
+                                          Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.CollapsedOnXbox}">
+                                <AppBarButton.Icon>
+                                    <FontIcon Glyph="{StaticResource PipSymbol}"
+                                              FontFamily="{StaticResource VLCFont}"
+                                              FontSize="22" />
+                                </AppBarButton.Icon>
+                            </AppBarButton>
                             <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}"
                                                 Grid.Column="0"
                                                 Name="LockToggleButton"
@@ -197,20 +211,6 @@
                                               FontSize="20" />
                                 </AppBarToggleButton.Icon>
                             </AppBarToggleButton>
-                            <AppBarButton Name="PiPButton"
-                                          Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.InitPopupCommand}"
-                                          IsCompact="True"
-                                          HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Stretch"
-                                          Style="{StaticResource AppBarButtonStyleHuge}"
-                                          Margin="{StaticResource FrameMarginHorizontal}"
-                                          Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.CollapsedOnXbox}">
-                                <AppBarButton.Icon>
-                                    <FontIcon Glyph="{StaticResource PipSymbol}"
-                                              FontFamily="{StaticResource VLCFont}"
-                                              FontSize="22" />
-                                </AppBarButton.Icon>
-                            </AppBarButton>
                             <AppBarButton Name="FullscreenToggle"
                                           IsCompact="True"
                                           HorizontalAlignment="Stretch"
