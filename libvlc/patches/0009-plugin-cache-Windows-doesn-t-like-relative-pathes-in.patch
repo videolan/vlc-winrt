@@ -1,4 +1,4 @@
-From c1e9b595c8240e9afb7c56eeae8078c61164fb61 Mon Sep 17 00:00:00 2001
+From 60fd75e7086ed90ed87ff32fe0ae18cffa14d1be Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 30 Sep 2016 09:49:19 +0200
 Subject: [PATCH 09/17] plugin cache: Windows doesn't like relative pathes in

@@ -1,4 +1,4 @@
-From 18838eefc2e856634e00cac3916e965aaf727379 Mon Sep 17 00:00:00 2001
+From da736d29545a4ff0eccad6f29ee725989234b972 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 15 Jun 2016 09:42:20 +0200
 Subject: [PATCH 05/17] contrib: use a fixed ffmpeg version for winstore builds
@@ -9,7 +9,7 @@ use a version with D3D11VA empty output surfaces array
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index 367bc49..a4345d3 100644
+index 3cd3dfe..2f44c6b 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
 @@ -2,10 +2,10 @@

@@ -1,4 +1,4 @@
-From 16e6ea4eae82a947449643a9eff80d38c4bd197b Mon Sep 17 00:00:00 2001
+From e6852fb5ea058e363e39de79f0e23d760648e4c7 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 1 Feb 2017 13:42:04 +0100
 Subject: [PATCH 11/17] direct3d11: keep track of mapped surfaces
@@ -21,10 +21,10 @@ index caea919..dcffe35 100644
  
  /* index to use for texture/resource that use a known DXGI format
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index ceaf065..42f56fa 100644
+index 83d2236..8e86bea 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
-@@ -402,13 +402,19 @@ static int Direct3D11MapPoolTexture(picture_t *picture)
+@@ -401,13 +401,19 @@ static int Direct3D11MapPoolTexture(picture_t *picture)
      {
          return VLC_EGENERIC;
      }

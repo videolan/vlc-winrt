@@ -1,4 +1,4 @@
-From a3eff5b1ac77588aafa8496e133134fd8cd8d570 Mon Sep 17 00:00:00 2001
+From 44557f5d379b48e0bb13082108862639f8f293a2 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 20 Jan 2017 18:23:31 +0100
 Subject: [PATCH 12/17] picture: split the plane definition from the picture
