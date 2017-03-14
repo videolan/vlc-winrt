@@ -32,9 +32,6 @@ namespace VLC.ViewModels.VideoVM
         private VideoView _videoView;
         private TvShow _currentShow;
         private List<VideoView> _videoViewCollection;
-        private ObservableCollection<VideoItem> _videos = new ObservableCollection<VideoItem>();
-        private ObservableCollection<TvShow> _shows = new ObservableCollection<TvShow>();
-        private ObservableCollection<VideoItem> _cameraRoll = new ObservableCollection<VideoItem>();
         #endregion
 
         #region public fields
@@ -58,17 +55,17 @@ namespace VLC.ViewModels.VideoVM
 
         public ObservableCollection<VideoItem> Videos
         {
-            get { return _videos; }
+            get { return Locator.MediaLibrary.Videos; }
         }
 
         public ObservableCollection<TvShow> Shows
         {
-            get { return _shows; }
+            get { return Locator.MediaLibrary.Shows; }
         }
 
         public ObservableCollection<VideoItem> CameraRoll
         {
-            get { return _cameraRoll; }
+            get { return Locator.MediaLibrary.CameraRoll; }
         }
         #endregion
 
@@ -108,17 +105,8 @@ namespace VLC.ViewModels.VideoVM
         public DeleteFromLibraryCommand DeleteFromLibraryCommand { get; private set; } = new DeleteFromLibraryCommand();
         public ChangeVideoViewCommand ChangeVideoViewCommand { get; private set; } = new ChangeVideoViewCommand();
         #endregion
-        #region contructors
-        public VideoLibraryVM()
-        {
-            Locator.MediaLibrary.Videos.CollectionChanged += Videos_CollectionChanged;
-            Locator.MediaLibrary.Shows.CollectionChanged += Shows_CollectionChanged;
-            Locator.MediaLibrary.CameraRoll.CollectionChanged += CameraRoll_CollectionChanged;
-        }
-        #endregion
 
         #region methods
-        
         public void OnNavigatedTo()
         {
             CurrentShow = null;
@@ -127,20 +115,6 @@ namespace VLC.ViewModels.VideoVM
         public void OnNavigatedFrom()
         {
             CurrentShow = null;
-        }
-
-        private async void Videos_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            await CollectionChangedHelper.Handle<VideoItem>(_videos, e);
-        }
-
-        private async void Shows_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            await CollectionChangedHelper.Handle<TvShow>(_shows, e);
-        }
-        private async void CameraRoll_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            await CollectionChangedHelper.Handle<VideoItem>(_cameraRoll, e);
         }
         #endregion
     }
