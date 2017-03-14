@@ -171,7 +171,7 @@ public class HttpResponseSender
         var fileStr = Encoding.UTF8.GetString(fileBuffer.ToArray());
         var mediaList = "";
 
-        List<VideoItem> videos = Locator.MediaLibrary.LoadVideos(x => true);
+        IEnumerable<VideoItem> videos = Locator.MediaLibrary.Videos;
         foreach (VideoItem v in videos)
         {
             mediaList += String.Format("<div style='background-image: url(\"/thumbnails/video/{1}/{2}/art.jpg\"); height: 174px;'>"
