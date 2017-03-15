@@ -72,9 +72,9 @@ namespace VLC.UI.Views.UserControls
             await that.Init();
         }
 
-        public Task Init()
+        public async Task Init()
         {
-            if (Album == null) return null;
+            if (Album == null) return;
             NameTextBlock.Text = Utils.Strings.HumanizedAlbumName(Album.Name);
 
             PlayAppBarButton.Label = Utils.Strings.PlayAlbum;
@@ -89,10 +89,7 @@ namespace VLC.UI.Views.UserControls
 
             Album.PropertyChanged += Album_PropertyChanged;
             var album = Album;
-            return Task.Run(async () =>
-            {
-                await album.ResetAlbumArt();
-            });
+            await album.ResetAlbumArt();
         }
 
         private async void Album_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

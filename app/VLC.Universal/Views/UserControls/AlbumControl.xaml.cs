@@ -48,13 +48,13 @@ namespace VLC.UI.Views.UserControls
         public static readonly DependencyProperty AlbumProperty =
             DependencyProperty.Register(nameof(Album), typeof(AlbumItem), typeof(AlbumControl), new PropertyMetadata(null, PropertyChangedCallback));
 
-        private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        private async static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var that = (AlbumControl)dependencyObject;
-            that.Init();
+            await that.Init();
         }
 
-        public void Init()
+        public async Task Init()
         {
             if (Album == null) return;
             NameTextBlock.Text = Strings.HumanizedAlbumName(Album.Name);
@@ -65,10 +65,7 @@ namespace VLC.UI.Views.UserControls
 
             Album.PropertyChanged += Album_PropertyChanged;
             var album = Album;
-            Task.Run(async () =>
-            {
-                await album.ResetAlbumArt();
-            });
+            await album.ResetAlbumArt();
         }
 
         private async void Album_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
