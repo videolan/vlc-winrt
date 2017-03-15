@@ -219,10 +219,6 @@ namespace VLC.Model.Library
             Tracks.Clear();
             TrackCollections.Clear();
 
-            Videos.Clear();
-            CameraRoll.Clear();
-            Shows.Clear();
-
             if (_alreadyIndexedOnce) return;
             _alreadyIndexedOnce = true;
             // Doing full indexing from scratch if 0 tracks are found
