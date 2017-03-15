@@ -243,10 +243,13 @@ namespace VLC.Model.Library
             trackCollectionRepository.Initialize();
             tracklistItemRepository.Initialize();
 
-            Artists.Clear();
-            Albums.Clear();
-            Tracks.Clear();
-            TrackCollections.Clear();
+            await DispatchHelper.InvokeAsyncHighPriority(() =>
+            {
+                Artists.Clear();
+                Albums.Clear();
+                Tracks.Clear();
+                TrackCollections.Clear();
+            });
 
             videoDatabase.DeleteAll();
 
