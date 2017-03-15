@@ -745,9 +745,9 @@ namespace VLC.Model.Library
         #region streams
         public async Task LoadStreamsFromDatabase()
         {
-            Streams?.Clear();
+            await DispatchHelper.InvokeAsyncHighPriority(() => Streams.Clear());
             var streams = await LoadStreams();
-            Streams.AddRange(streams);
+            await DispatchHelper.InvokeAsyncHighPriority(() => Streams.AddRange(streams));
         }
 
         public async Task<StreamMedia> LoadStreamFromDatabaseOrCreateOne(string mrl)
@@ -1086,14 +1086,15 @@ namespace VLC.Model.Library
             catch { }
         }
 
-        public Task RemoveStreamFromCollectionAndDatabase(StreamMedia stream)
+        public async Task RemoveStreamFromCollectionAndDatabase(StreamMedia stream)
         {
-            var collectionStream = Streams?.FirstOrDefault(x => x.Path == stream.Path);
+            var collectionStream = await DispatchHelper.InvokeAsync<StreamMedia>(CoreDispatcherPriority.High,
+                () => Streams?.FirstOrDefault(x => x.Path == stream.Path));
             if (collectionStream != null)
             {
-                Streams?.Remove(collectionStream);
+                await DispatchHelper.InvokeAsyncHighPriority(() => Streams.Remove(collectionStream));
             }
-            return DeleteStream(stream);
+            await DeleteStream(stream);
         }
         #endregion
         #region database operations

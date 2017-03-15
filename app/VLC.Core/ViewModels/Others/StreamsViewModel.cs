@@ -52,13 +52,10 @@ namespace VLC.ViewModels.Others
             await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged(nameof(NoInternetPlaceholderEnabled)));
         }
 
-        private async void Streams_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void Streams_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-            {
-                OnPropertyChanged(nameof(StreamsHistoryAndFavoritesGrouped));
-                OnPropertyChanged(nameof(IsCollectionEmpty));
-            });
+            OnPropertyChanged(nameof(StreamsHistoryAndFavoritesGrouped));
+            OnPropertyChanged(nameof(IsCollectionEmpty));
         }
 
         public void Dispose()
