@@ -715,10 +715,9 @@ namespace VLC.Model.Library
 
         private async Task loadVideosFromDatabase()
         {
-            LogHelper.Log("Loading videos from VideoDB ...");
             await DispatchHelper.InvokeAsyncHighPriority(() => Videos.Clear());
             var videos = LoadVideos(x => x.IsCameraRoll == false && x.IsTvShow == false);
-            LogHelper.Log($"Found {videos.Count} artists from VideoDB");
+            LogHelper.Log($"Found {videos.Count} videos.");
             var newVideos = videos.OrderBy(x => x.Name);
             foreach (var v in newVideos)
                 await DispatchHelper.InvokeAsyncHighPriority(() => Videos.Add(v));
@@ -728,6 +727,7 @@ namespace VLC.Model.Library
         {
             await DispatchHelper.InvokeAsyncHighPriority(() => Shows.Clear());
             var shows = LoadVideos(x => x.IsTvShow);
+            LogHelper.Log($"Found {shows.Count} videos.");
             foreach (var item in shows)
                 await AddTvShow(item);
         }
@@ -736,6 +736,7 @@ namespace VLC.Model.Library
         {
             await DispatchHelper.InvokeAsyncHighPriority(() => CameraRoll.Clear());
             var camVideos = LoadVideos(x => x.IsCameraRoll);
+            LogHelper.Log($"Found {camVideos.Count} camera videos.");
             var newVideos = camVideos.OrderBy(x => x.Name);
             foreach (var item in newVideos)
                 CameraRoll.Add(item);
