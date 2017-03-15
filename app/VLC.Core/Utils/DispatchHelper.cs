@@ -18,9 +18,9 @@ namespace VLC.Utils
 {
     public class DispatchHelper
     {
-        public static Task InvokeAsync(CoreDispatcherPriority priority, Action action)
+        public async static Task InvokeAsync(CoreDispatcherPriority priority, Action action)
         {
-            return Task.Run(() => CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action()).AsTask());
+            await CoreApplication.MainView.Dispatcher.RunAsync(priority, () => action());
         }
     }
 }
