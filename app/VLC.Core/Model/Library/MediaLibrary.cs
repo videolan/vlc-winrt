@@ -223,26 +223,22 @@ namespace VLC.Model.Library
             _alreadyIndexedOnce = true;
             // Doing full indexing from scratch if 0 tracks are found
             if (IsMusicDatabaseEmpty() && IsVideoDatabaseEmpty())
-                ClearDatabase();
+                await clearDatabase();
             else // Restore the database
             {
-                LoadVideosFromDatabase();
-                await LoadShowsFromDatabase();
-                LoadCameraRollFromDatabase();
+                await loadVideosFromDatabase();
+                await loadShowsFromDatabase();
+                await loadCameraRollFromDatabase();
             }
             await PerformMediaLibraryIndexing();
         }
 
-        void ClearDatabase()
+        private async Task clearDatabase()
         {
-            musicDatabase.DeleteAll();
-            musicDatabase.DeleteAll();
             musicDatabase.DeleteAll();
             trackCollectionRepository.DeleteAll();
             tracklistItemRepository.DeleteAll();
 
-            musicDatabase.Initialize();
-            musicDatabase.Initialize();
             musicDatabase.Initialize();
             trackCollectionRepository.Initialize();
             tracklistItemRepository.Initialize();
@@ -254,9 +250,12 @@ namespace VLC.Model.Library
 
             videoDatabase.DeleteAll();
 
-            Videos.Clear();
-            CameraRoll.Clear();
-            Shows.Clear();
+            await DispatchHelper.InvokeAsyncHighPriority(() =>
+            {
+                Videos.Clear();
+                CameraRoll.Clear();
+                Shows.Clear();
+            });
         }
 
         async Task PerformMediaLibraryIndexing()
@@ -404,11 +403,11 @@ namespace VLC.Model.Library
                     else if (isCameraRoll)
                     {
                         video.IsCameraRoll = true;
-                        CameraRoll.Add(video);
+                        await DispatchHelper.InvokeAsyncHighPriority(() => CameraRoll.Add(video));
                     }
                     else
                     {
-                        Videos.Add(video);
+                        await DispatchHelper.InvokeAsyncHighPriority(() => Videos.Add(video));
                     }
                     videoDatabase.Insert(video);
                 }
@@ -465,20 +464,24 @@ namespace VLC.Model.Library
             episode.IsTvShow = true;
             try
             {
-                TvShow show = Shows.FirstOrDefault(x => x.ShowTitle == episode.ShowTitle);
+                TvShow show = await DispatchHelper.InvokeAsync<TvShow>(CoreDispatcherPriority.High,
+                    () => Shows.FirstOrDefault(x => x.ShowTitle == episode.ShowTitle));
+
                 if (show == null)
                 {
                     // Generate a thumbnail for the show
                     await Locator.MediaLibrary.FetchVideoThumbnailOrWaitAsync(episode);
 
                     show = new TvShow(episode.ShowTitle);
-                    show.Episodes.Add(episode);
-                    Shows.Add(show);
+                    await DispatchHelper.InvokeAsyncHighPriority(() => show.Episodes.Add(episode));
+                    await DispatchHelper.InvokeAsyncHighPriority(() => Shows.Add(show));
                 }
                 else
                 {
-                    if (show.Episodes.FirstOrDefault(x => x.Id == episode.Id) == null)
-                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => show.Episodes.Add(episode));
+                    VideoItem epVideoItem = await DispatchHelper.InvokeAsync<VideoItem>(CoreDispatcherPriority.High,
+                        () => show.Episodes.FirstOrDefault(x => x.Id == episode.Id));
+                    if (epVideoItem == null)
+                        await DispatchHelper.InvokeAsyncHighPriority(() => show.Episodes.Add(episode));
                 }
             }
             catch (Exception e)
@@ -710,27 +713,28 @@ namespace VLC.Model.Library
             return videoDatabase.IsEmpty();
         }
 
-        private void LoadVideosFromDatabase()
+        private async Task loadVideosFromDatabase()
         {
-            Videos.Clear();
             LogHelper.Log("Loading videos from VideoDB ...");
+            await DispatchHelper.InvokeAsyncHighPriority(() => Videos.Clear());
             var videos = LoadVideos(x => x.IsCameraRoll == false && x.IsTvShow == false);
             LogHelper.Log($"Found {videos.Count} artists from VideoDB");
             var newVideos = videos.OrderBy(x => x.Name);
             foreach (var v in newVideos)
-                Videos.Add(v);
+                await DispatchHelper.InvokeAsyncHighPriority(() => Videos.Add(v));
         }
 
-        public async Task LoadShowsFromDatabase()
+        private async Task loadShowsFromDatabase()
         {
-            Shows?.Clear();
+            await DispatchHelper.InvokeAsyncHighPriority(() => Shows.Clear());
             var shows = LoadVideos(x => x.IsTvShow);
             foreach (var item in shows)
                 await AddTvShow(item);
         }
-        public void LoadCameraRollFromDatabase()
+
+        private async Task loadCameraRollFromDatabase()
         {
-            CameraRoll.Clear();
+            await DispatchHelper.InvokeAsyncHighPriority(() => CameraRoll.Clear());
             var camVideos = LoadVideos(x => x.IsCameraRoll);
             var newVideos = camVideos.OrderBy(x => x.Name);
             foreach (var item in newVideos)
@@ -968,7 +972,8 @@ namespace VLC.Model.Library
                     return;
                 videoDatabase.Remove(videoDb);
 
-                Videos.Remove(Videos.FirstOrDefault(x => x.Path == videoItem.Path));
+                await DispatchHelper.InvokeAsyncHighPriority(
+                    () => Videos.Remove(Videos.FirstOrDefault(x => x.Path == videoItem.Path)));
             }
         }
 

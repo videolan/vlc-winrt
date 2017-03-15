@@ -22,5 +22,17 @@ namespace VLC.Utils
         {
             await CoreApplication.MainView.Dispatcher.RunAsync(priority, () => action());
         }
+
+        public async static Task<T> InvokeAsync<T>(CoreDispatcherPriority priority, Func<T> action)
+        {
+            T result = default(T);
+            await CoreApplication.MainView.Dispatcher.RunAsync(priority, () => result = action());
+            return result;
+        }
+
+        public async static Task InvokeAsyncHighPriority(Action action)
+        {
+            await InvokeAsync(CoreDispatcherPriority.High, action);
+        }
     }
 }
