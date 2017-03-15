@@ -305,13 +305,13 @@ namespace VLC.ViewModels.MusicVM
                 case MusicView.Albums:
                     if (LoadingStateAlbums == LoadingState.NotLoaded && GroupedAlbums == null)
                     {
-                        await InitializeAlbums();
+                        await initializeAlbums();
                     }
                     break;
                 case MusicView.Artists:
                     if (LoadingStateArtists == LoadingState.NotLoaded && GroupedArtists == null)
                     {
-                        await InitializeArtists();
+                        initializeArtists();
                     }
                     else
                     {
@@ -325,7 +325,7 @@ namespace VLC.ViewModels.MusicVM
                 case MusicView.Songs:
                     if (LoadingStateTracks == LoadingState.NotLoaded)
                     {
-                        await InitializeTracks();
+                        await initializeTracks();
                     }
                     break;
                 case MusicView.Playlists:
@@ -393,21 +393,17 @@ namespace VLC.ViewModels.MusicVM
             }
         }
 
-        Task InitializeAlbums()
+        private async Task initializeAlbums()
         {
-            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                LoadingStateAlbums = LoadingState.Loading;
-                GroupedAlbums = new ObservableCollection<AlbumItem>();
+            LoadingStateAlbums = LoadingState.Loading;
+            GroupedAlbums = new ObservableCollection<AlbumItem>();
 
-                if (Locator.MediaLibrary.Albums != null)
-                    Locator.MediaLibrary.Albums.CollectionChanged += Albums_CollectionChanged;
-                Locator.MediaLibrary.LoadAlbumsFromDatabase();
-                await RefreshRecommendedAlbums();
-                LoadingStateAlbums = LoadingState.Loaded;
-                OnPropertyChanged(nameof(IsMusicLibraryEmpty));
-                OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
-            });
+            Locator.MediaLibrary.Albums.CollectionChanged += Albums_CollectionChanged;
+            Locator.MediaLibrary.LoadAlbumsFromDatabase();
+            await RefreshRecommendedAlbums();
+            LoadingStateAlbums = LoadingState.Loaded;
+            OnPropertyChanged(nameof(IsMusicLibraryEmpty));
+            OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
         }
 
         public async Task RefreshRecommendedAlbums()
@@ -459,21 +455,17 @@ namespace VLC.ViewModels.MusicVM
             });
         }
 
-        Task InitializeArtists()
+        private void initializeArtists()
         {
-            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                LoadingStateArtists = LoadingState.Loading;
-                GroupedArtists = new ObservableCollection<GroupItemList<ArtistItem>>();
+            LoadingStateArtists = LoadingState.Loading;
+            GroupedArtists = new ObservableCollection<GroupItemList<ArtistItem>>();
 
-                if (Locator.MediaLibrary.Artists != null)
-                    Locator.MediaLibrary.Artists.CollectionChanged += Artists_CollectionChanged;
-                Locator.MediaLibrary.LoadArtistsFromDatabase();
+            Locator.MediaLibrary.Artists.CollectionChanged += Artists_CollectionChanged;
+            Locator.MediaLibrary.LoadArtistsFromDatabase();
                 
-                LoadingStateArtists = LoadingState.Loaded;
-                OnPropertyChanged(nameof(IsMusicLibraryEmpty));
-                OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
-            });
+            LoadingStateArtists = LoadingState.Loaded;
+            OnPropertyChanged(nameof(IsMusicLibraryEmpty));
+            OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
         }
 
         private async void Artists_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -508,19 +500,16 @@ namespace VLC.ViewModels.MusicVM
             });
         }
 
-        Task InitializeTracks()
+        private async Task initializeTracks()
         {
-            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () => 
-            {
-                LoadingStateTracks = LoadingState.Loading;
-                if (Locator.MediaLibrary.Tracks != null)
-                    Locator.MediaLibrary.Tracks.CollectionChanged += Tracks_CollectionChanged;
-                Locator.MediaLibrary.LoadTracksFromDatabase();
-                LoadingStateTracks = LoadingState.Loaded;
-                OnPropertyChanged(nameof(IsMusicLibraryEmpty));
-                OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
-                await OrderTracks();
-            });
+            LoadingStateTracks = LoadingState.Loading;
+            if (Locator.MediaLibrary.Tracks != null)
+                Locator.MediaLibrary.Tracks.CollectionChanged += Tracks_CollectionChanged;
+            Locator.MediaLibrary.LoadTracksFromDatabase();
+            LoadingStateTracks = LoadingState.Loaded;
+            OnPropertyChanged(nameof(IsMusicLibraryEmpty));
+            OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
+            await OrderTracks();
         }
 
         private async void Tracks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -555,15 +544,12 @@ namespace VLC.ViewModels.MusicVM
             });
         }
 
-        public Task InitializePlaylists()
+        public async Task InitializePlaylists()
         {
-            return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                LoadingStatePlaylists = LoadingState.Loading;
-                await Locator.MediaLibrary.LoadPlaylistsFromDatabase();
-                OnPropertyChanged(nameof(TrackCollections));
-                LoadingStatePlaylists = LoadingState.Loaded;
-            });
+            LoadingStatePlaylists = LoadingState.Loading;
+            await Locator.MediaLibrary.LoadPlaylistsFromDatabase();
+            OnPropertyChanged(nameof(TrackCollections));
+            LoadingStatePlaylists = LoadingState.Loaded;
         }
         #region methods            
 
