@@ -805,8 +805,7 @@ namespace VLC.Model.Library
 
                 if (thumb == null && image == null)
                     return false;
-                // RunAsync won't await on the lambda it receives, so we need to do it ourselves
-                var tcs = new TaskCompletionSource<bool>();
+
                 await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, async () =>
                 {
                     if (thumb != null)
@@ -816,9 +815,8 @@ namespace VLC.Model.Library
                     }
                     await DownloadAndSaveHelper.WriteableBitmapToStorageFile(image, videoItem.Id.ToString());
                     videoItem.IsPictureLoaded = true;
-                    tcs.SetResult(true);
                 });
-                await tcs.Task;
+
                 videoDatabase.Update(videoItem);
                 return true;
             }
