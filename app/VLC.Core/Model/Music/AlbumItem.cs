@@ -148,7 +148,7 @@ namespace VLC.Model.Music
                 if (_albumImage == null && _albumImageLoadingState == LoadingState.NotLoaded)
                 {
                     _albumImageLoadingState = LoadingState.Loading;
-                    DispatchHelper.InvokeAsyncHighPriority(() => ResetAlbumArt()).RunSynchronously();
+                    ResetAlbumArt().Wait();
                 }
                 return _albumImage;
             }
