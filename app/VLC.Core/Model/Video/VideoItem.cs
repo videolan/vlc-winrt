@@ -154,7 +154,7 @@ namespace VLC.Model.Video
                     else if (_videosImageLoadingState == LoadingState.NotLoaded)
                     {
                         _videosImageLoadingState = LoadingState.Loading;
-                        Task.Run(() => Locator.MediaLibrary.FetchVideoThumbnailOrWaitAsync(this));
+                        Locator.MediaLibrary.AskVideoThumbnail(this);
                     }
                 }
                 return _videoImage;

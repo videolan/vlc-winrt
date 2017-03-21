@@ -170,23 +170,26 @@ namespace VLC.Model.Library
             return success;
         }
 
-        public async Task FetchVideoThumbnailOrWaitAsync(VideoItem videoVm)
+        public Task AskVideoThumbnail(VideoItem videoVm)
         {
-            await VideoThumbnailFetcherSemaphoreSlim.WaitAsync();
-            try
+            return Task.Run(async () =>
             {
-                await GenerateThumbnail(videoVm);
-                if (videoVm.Type == ".mkv")
-                    await Locator.VideoMetaService.GetMoviePicture(videoVm).ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                LogHelper.Log(StringsHelper.ExceptionToString(e));
-            }
-            finally
-            {
-                VideoThumbnailFetcherSemaphoreSlim.Release();
-            }
+                await VideoThumbnailFetcherSemaphoreSlim.WaitAsync();
+                try
+                {
+                    await GenerateThumbnail(videoVm);
+                    if (videoVm.Type == ".mkv")
+                        await Locator.VideoMetaService.GetMoviePicture(videoVm);
+                }
+                catch (Exception e)
+                {
+                    LogHelper.Log(StringsHelper.ExceptionToString(e));
+                }
+                finally
+                {
+                    VideoThumbnailFetcherSemaphoreSlim.Release();
+                }
+            });
         }
 
         #endregion
@@ -473,7 +476,7 @@ namespace VLC.Model.Library
                 if (show == null)
                 {
                     // Generate a thumbnail for the show
-                    await Locator.MediaLibrary.FetchVideoThumbnailOrWaitAsync(episode);
+                    await Locator.MediaLibrary.AskVideoThumbnail(episode);
 
                     show = new TvShow(episode.ShowTitle);
                     await DispatchHelper.InvokeAsyncHighPriority(() => show.Episodes.Add(episode));
