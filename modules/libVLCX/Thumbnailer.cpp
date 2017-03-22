@@ -29,6 +29,11 @@ using namespace libVLCX;
 
 //TODO: dynamic size
 #define SEEK_POSITION 0.5f
+/* Accept thumbnails with a position >= SEEK_POSITION - SEEK_MARGIN
+ * as the seek is not always precise. It may lead to a position located
+ * before SEEK_POSITION and we can timeout before reaching SEEK_POSITION. */
+#define SEEK_MARGIN 0.2f
+
 #define PIXEL_SIZE 4 /* BGRA */
 
 enum thumbnail_state{
@@ -94,7 +99,7 @@ static void CancelPreparse(const libvlc_event_t*, void* data)
 static void onSeekChanged( const libvlc_event_t*ev, void* data )
 {
     auto sys = reinterpret_cast<thumbnailer_sys_t*>( data );
-    if (ev->u.media_player_position_changed.new_position >= SEEK_POSITION)
+    if (ev->u.media_player_position_changed.new_position >= SEEK_POSITION - SEEK_MARGIN)
     {
         int s = THUMB_SEEKING;
         sys->state.compare_exchange_strong(s, THUMB_SEEKED);
