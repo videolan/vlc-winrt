@@ -401,7 +401,11 @@ namespace VLC.Model.Library
                         return true;
 
                     var video = await MediaLibraryHelper.GetVideoItem(item);
-                    
+
+                    // Insert first in the database to get the id.
+                    videoDatabase.Insert(video);
+
+                    // Add to collections.
                     if (video.IsTvShow)
                     {
                         await AddTvShow(video);
@@ -415,7 +419,6 @@ namespace VLC.Model.Library
                     {
                         await DispatchHelper.InvokeAsyncHighPriority(() => Videos.Add(video));
                     }
-                    videoDatabase.Insert(video);
                 }
                 else
                 {
