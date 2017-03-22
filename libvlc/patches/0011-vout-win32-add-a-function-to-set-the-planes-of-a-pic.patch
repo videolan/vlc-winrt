@@ -1,7 +1,7 @@
-From 6cf5e813d191a91a1a9a3274e1e71aa10f244e64 Mon Sep 17 00:00:00 2001
+From 05b3bb703e0b88c1e857f716006eb58fc64ae3a1 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 25 Jan 2017 18:11:47 +0100
-Subject: [PATCH 12/16] vout: win32: add a function to set the planes of a
+Subject: [PATCH 11/15] vout: win32: add a function to set the planes of a
  picture from the raw values
 
 ---
@@ -10,7 +10,7 @@ Subject: [PATCH 12/16] vout: win32: add a function to set the planes of a
  2 files changed, 13 insertions(+)
 
 diff --git a/modules/video_output/win32/common.c b/modules/video_output/win32/common.c
-index f2b97b8..3b7e84b 100644
+index e331cf1..e8063f8 100644
 --- a/modules/video_output/win32/common.c
 +++ b/modules/video_output/win32/common.c
 @@ -438,6 +438,18 @@ void CommonDisplay(vout_display_t *vd)

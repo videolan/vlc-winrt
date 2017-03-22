@@ -1,7 +1,7 @@
-From 380383098066b6af10fede1e89b875c823b0b1b7 Mon Sep 17 00:00:00 2001
+From 8dd9cad579badcc41abd041be014efebf46dbaf2 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 20 Jan 2017 18:23:31 +0100
-Subject: [PATCH 11/16] picture: split the plane definition from the picture
+Subject: [PATCH 10/15] picture: split the plane definition from the picture
  creation
 
 This way we can tell plane dimensions from a video format anywhere.
@@ -42,7 +42,7 @@ index b8d4a5a..865fdeb 100644
  /*****************************************************************************
   * Shortcuts to access image components
 diff --git a/src/libvlccore.sym b/src/libvlccore.sym
-index 57c8349..d1994b2 100644
+index 8c4d6cd..4a16658 100644
 --- a/src/libvlccore.sym
 +++ b/src/libvlccore.sym
 @@ -327,6 +327,7 @@ picture_pool_Wait
