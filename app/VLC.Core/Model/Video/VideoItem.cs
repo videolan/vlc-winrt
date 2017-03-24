@@ -186,10 +186,33 @@ namespace VLC.Model.Video
                 }
                 else if (HasThumbnail)
                 {
-                    return $"{Strings.VideoPicFolderPath}/{Id}.jpg";
+                    return $"{Strings.VideoThumbsFolderPath}/{Id}.jpg";
                 }
                 return string.Empty;
             }
+        }
+
+        public async Task<bool> VideoThumbFileExist()
+        {
+            return (await tryGetVideoThumbFile()) != null;
+        }
+
+
+        public async Task DeleteVideoThumbFile()
+        {
+            var thumbFile = await tryGetVideoThumbFile();
+            if (thumbFile != null)
+                await thumbFile.DeleteAsync();
+        }
+
+
+        private async Task<StorageFile> tryGetVideoThumbFile()
+        {
+            StorageFile ret = null;
+            StorageFolder subFolder = (StorageFolder)await ApplicationData.Current.LocalFolder.TryGetItemAsync("videoThumbs");
+            if (subFolder != null)
+                ret = (StorageFile)await subFolder.TryGetItemAsync($"{Id}.jpg");
+            return ret;
         }
         
         [Ignore]

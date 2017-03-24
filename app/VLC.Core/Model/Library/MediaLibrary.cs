@@ -177,9 +177,15 @@ namespace VLC.Model.Library
                 await VideoThumbnailFetcherSemaphoreSlim.WaitAsync();
                 try
                 {
-                    await GenerateThumbnail(videoVm);
-                    if (videoVm.Type == ".mkv")
-                        await Locator.VideoMetaService.GetMoviePicture(videoVm);
+                    if (await videoVm.VideoThumbFileExist())
+                        await DispatchHelper.InvokeInUIThreadHighPriority(() => videoVm.HasThumbnail = true);
+                    else
+                    {
+                        // The thumbnail file does not exist, we must generate one.
+                        await GenerateThumbnail(videoVm);
+                        if (videoVm.Type == ".mkv")
+                            await Locator.VideoMetaService.GetMoviePicture(videoVm);
+                    }
                 }
                 catch (Exception e)
                 {
@@ -982,6 +988,7 @@ namespace VLC.Model.Library
                 videoDatabase.Remove(videoDb);
                 await DispatchHelper.InvokeInUIThreadHighPriority(
                     () => Videos.Remove(Videos.FirstOrDefault(x => x.Path == videoItem.Path)));
+                await videoItem.DeleteVideoThumbFile();
 
                 if (videoItem.IsTvShow)
                 {

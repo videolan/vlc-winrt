@@ -43,8 +43,8 @@ namespace VLC.Helpers
             {
                 Guid BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
                 fileName += ".jpg";
-                StorageFolder videoPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("videoPic", CreationCollisionOption.OpenIfExists);
-                var file = await videoPic.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+                StorageFolder videoThumbsFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("videoThumbs", CreationCollisionOption.OpenIfExists);
+                var file = await videoThumbsFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
                 using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
                 {
                     BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoderGuid, stream);

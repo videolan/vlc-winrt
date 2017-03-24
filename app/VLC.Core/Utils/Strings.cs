@@ -49,7 +49,7 @@ namespace VLC.Utils
             return null;
         }
 
-        public static readonly string VideoPicFolderPath = "ms-appdata:///local/videoPic";
+        public static readonly string VideoThumbsFolderPath = "ms-appdata:///local/videoThumbs";
         public static readonly string MoviePicFolderPath = "ms-appdata:///local/moviePic";
         public static readonly string MovieSubFolderPath = "ms-appdata:///local/movieSub";
         public static readonly string TemporaryFolderPath = "ms-appdata:///temp";
