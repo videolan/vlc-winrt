@@ -944,37 +944,33 @@ namespace VLC.Model.Library
                 if (trackDB == null)
                     return;
                 musicDatabase.Remove(trackDB);
+                await DispatchHelper.InvokeInUIThreadHighPriority(() =>
+                    Tracks.Remove(Tracks.FirstOrDefault(x => x.Path == trackItem.Path)));
 
                 var albumDB = LoadAlbum(trackItem.AlbumId);
-                if (albumDB == null)
-                    return;
-                var albumTracks = LoadTracksByAlbumId(albumDB.Id);
-                if (!albumTracks.Any())
+                if (albumDB != null)
                 {
-                    await DispatchHelper.InvokeInUIThreadHighPriority(() =>
+                    var albumTracks = LoadTracksByAlbumId(albumDB.Id);
+                    if (!albumTracks.Any())
                     {
-                        Albums.Remove(Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId));
-                    });
-                    musicDatabase.Remove(albumDB);
+                        musicDatabase.Remove(albumDB);
+                        await DispatchHelper.InvokeInUIThreadHighPriority(() =>
+                            Albums.Remove(Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId)));
+                    }
                 }
 
                 var artistDB = LoadArtist(trackItem.ArtistId);
-                if (artistDB == null)
-                    return;
-                var artistAlbums = LoadAlbums(artistDB.Id);
-                if (!artistAlbums.Any())
+                if (artistDB != null)
                 {
-                    await DispatchHelper.InvokeInUIThreadHighPriority(() =>
+                    var artistAlbums = LoadAlbums(artistDB.Id);
+                    if (!artistAlbums.Any())
                     {
-                        Artists.Remove(Artists.FirstOrDefault(x => x.Id == trackItem.ArtistId));
-                    });
-                    musicDatabase.Remove(artistDB);
+                        musicDatabase.Remove(artistDB);
+                        await DispatchHelper.InvokeInUIThreadHighPriority(() =>
+                            Artists.Remove(Artists.FirstOrDefault(x => x.Id == trackItem.ArtistId)));
+                    }
                 }
 
-                await DispatchHelper.InvokeInUIThreadHighPriority(() =>
-                {
-                    Tracks.Remove(Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
-                });
                 await Locator.PlaybackService.RemoveMedia(trackItem);
             }
             else if (media is VideoItem)
