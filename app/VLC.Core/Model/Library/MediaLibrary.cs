@@ -980,9 +980,22 @@ namespace VLC.Model.Library
                 if (videoDb == null)
                     return;
                 videoDatabase.Remove(videoDb);
-
                 await DispatchHelper.InvokeInUIThreadHighPriority(
                     () => Videos.Remove(Videos.FirstOrDefault(x => x.Path == videoItem.Path)));
+
+                if (videoItem.IsTvShow)
+                {
+                    // Try to find an other episode that belongs to the same show.
+                    VideoItem episode = await DispatchHelper.InvokeInUIThread<VideoItem>(CoreDispatcherPriority.High,
+                        () => Videos.FirstOrDefault(x => x.ShowTitle == videoItem.ShowTitle));
+
+                    if (episode == null)
+                    {
+                        // No other episode was found. We can remove the show from the collection.
+                        await DispatchHelper.InvokeInUIThreadHighPriority(
+                            () => Shows.Remove(Shows.FirstOrDefault(x => x.ShowTitle == videoItem.ShowTitle)));
+                    }
+                }
             }
         }
 
