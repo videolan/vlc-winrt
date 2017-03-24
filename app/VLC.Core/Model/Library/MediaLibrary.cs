@@ -781,7 +781,7 @@ namespace VLC.Model.Library
         // Returns false is no snapshot generation was required, true otherwise
         private async Task<Boolean> GenerateThumbnail(VideoItem videoItem)
         {
-            if (videoItem.IsPictureLoaded)
+            if (videoItem.HasThumbnail)
                 return false;
             try
             {
@@ -820,7 +820,7 @@ namespace VLC.Model.Library
                         await image.SetSourceAsync(thumb);
                     }
                     await DownloadAndSaveHelper.WriteableBitmapToStorageFile(image, videoItem.Id.ToString());
-                    videoItem.IsPictureLoaded = true;
+                    videoItem.HasThumbnail = true;
                 });
 
                 videoDatabase.Update(videoItem);

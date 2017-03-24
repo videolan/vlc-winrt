@@ -26,7 +26,7 @@ namespace VLC.Model.Video
             {
                 if (Episodes == null || !Episodes.Any())
                     return null;
-                return Episodes.FirstOrDefault(x => x.IsPictureLoaded)?.VideoImage;
+                return Episodes.FirstOrDefault(x => x.HasThumbnail || x.HasMoviePicture)?.VideoImage;
             }
         }
 

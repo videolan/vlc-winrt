@@ -83,10 +83,7 @@ namespace VLC.Services.RunTime
             {
                 await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
-                    // Thumbnail is only refreshed when IsPictureLoaded changes, so first we set HasMoviePicture,
-                    // then IsPictureLoaded
                     video.HasMoviePicture = true;
-                    video.IsPictureLoaded = true;
                 });
                 return true;
             }
