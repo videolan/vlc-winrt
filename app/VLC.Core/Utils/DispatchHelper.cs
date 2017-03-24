@@ -18,7 +18,12 @@ namespace VLC.Utils
 {
     public class DispatchHelper
     {
-        public async static Task<bool> InvokeAsync(CoreDispatcherPriority priority, Action action)
+        public async static Task InvokeInUIThreadAsync(CoreDispatcherPriority priority, Action action)
+        {
+            await CoreApplication.MainView.Dispatcher.RunAsync(priority, () => {action();});
+        }
+
+        public async static Task<bool> InvokeInUIThread(CoreDispatcherPriority priority, Action action)
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
             await CoreApplication.MainView.Dispatcher.RunAsync(priority, () => {
