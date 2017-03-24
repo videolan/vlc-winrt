@@ -23,7 +23,7 @@ namespace VLC.Services.RunTime
         {
             var artists = await musicMdFetcher.GetArtistSimilarsArtist(artist.Name);
             if (artists == null) return;
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 artist.IsOnlineRelatedArtistsLoaded = true;
                 artist.OnlineRelatedArtists = artists;
@@ -34,7 +34,7 @@ namespace VLC.Services.RunTime
         {
             var albums = await musicMdFetcher.GetArtistTopAlbums(artist.Name);
             if (albums == null) return;
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 artist.IsOnlinePopularAlbumItemsLoaded = true;
                 artist.OnlinePopularAlbumItems = albums;
@@ -45,7 +45,7 @@ namespace VLC.Services.RunTime
         {
             var bio = await musicMdFetcher.GetArtistBiography(artist.Name);
             if (bio == null) return;
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 artist.Biography = bio;
             });
@@ -94,7 +94,7 @@ namespace VLC.Services.RunTime
         {
             if (await FetcherHelpers.SaveBytes(album.Id, "albumPic", img, "jpg", false))
             {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
                 {
                     album.AlbumCoverUri = $"albumPic/{album.Id}.jpg";
                 });
@@ -116,7 +116,7 @@ namespace VLC.Services.RunTime
                 stream = await ImageHelper.ResizedImage(img, 250, 250);
                 await FetcherHelpers.SaveBytes(artist.Id, "artistPic-thumbnail", stream, "jpg", false);
 
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => { artist.IsPictureLoaded = true; });
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => { artist.IsPictureLoaded = true; });
                 await artist.ResetArtistPicture(true);
                 return true;
             }

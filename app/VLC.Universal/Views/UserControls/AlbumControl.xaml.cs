@@ -76,7 +76,7 @@ namespace VLC.UI.Views.UserControls
                     return;
                 if (Album?.AlbumImage?.UriSource == (Cover.Source as BitmapImage)?.UriSource)
                     return;
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
                 {
                     FadeOutCover.Begin();
                 });

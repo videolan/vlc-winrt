@@ -119,7 +119,7 @@ namespace VLC.ViewModels
 
         private async void NotifyCommandBarDisplayModeChanged()
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(CommandBarDisplayMode));
             });

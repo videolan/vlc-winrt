@@ -267,7 +267,7 @@ namespace VLC.ViewModels
 
         private async void OnRepeatChanged(bool obj)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(Repeat));
                 OnPropertyChanged(nameof(CanGoNext));
@@ -277,7 +277,7 @@ namespace VLC.ViewModels
 
         private async void OnCurrentMediaChanged(IMediaItem media)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(CanGoNext));
                 SystemMediaTransportControlsNextPossible(CanGoNext);
@@ -288,7 +288,7 @@ namespace VLC.ViewModels
 
         private async void OnPlayingTypeChanged(PlayingType pType)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(MiniPlayerVisibility));
                 OnPropertyChanged(nameof(MiniPlayerVisibilityMediaCenter));
@@ -320,7 +320,7 @@ namespace VLC.ViewModels
 
         private async void PlaylistService_OnPlaylistChanged()
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(CanGoNext));
                 SystemMediaTransportControlsNextPossible(CanGoNext);
@@ -335,7 +335,7 @@ namespace VLC.ViewModels
         {
             if (!e.IsConnected && IsPlaying && Locator.PlaybackService.CurrentPlaybackMedia is StreamMedia)
             {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, async () =>
                 {
                     GoBack.Execute(null);
                     var dialog = new MessageDialog(Strings.MediaCantBeRead.ToUpperFirstChar(), Strings.NoInternetConnection.ToUpperFirstChar());
@@ -459,7 +459,7 @@ namespace VLC.ViewModels
         #region Events
         private async void OnPlaying()
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
             {
                 LoadingMedia = Visibility.Collapsed;
                 OnPropertyChanged(nameof(IsPlaying));
@@ -469,7 +469,7 @@ namespace VLC.ViewModels
         }
         private async void OnPaused()
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
             {
                 OnPropertyChanged(nameof(IsPlaying));
             });
@@ -479,7 +479,7 @@ namespace VLC.ViewModels
 
         private async void Playback_MediaTimeChanged(long time)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
             {
                 OnPropertyChanged(nameof(Time));
                 // Assume position also changes when time does.
@@ -491,7 +491,7 @@ namespace VLC.ViewModels
 
         private async void Playback_MediaLengthChanged(long length)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 if (length < 0)
                     return;
@@ -501,7 +501,7 @@ namespace VLC.ViewModels
 
         private async void Playback_MediaStopped()
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, async () =>
             {
                 AudioTracks.Clear();
                 Subtitles.Clear();
@@ -517,7 +517,7 @@ namespace VLC.ViewModels
         private async void Playback_MediaBuffering(float f)
         {
             _bufferingProgress = (int)f;
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(BufferingProgress));
                 OnPropertyChanged(nameof(IsBuffered));
@@ -526,7 +526,7 @@ namespace VLC.ViewModels
 
         private async void Playback_MediaFailed()
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, async () =>
             {
                 if (Locator.PlaybackService.CurrentPlaybackMedia is StreamMedia)
                 {
@@ -543,7 +543,7 @@ namespace VLC.ViewModels
                 case PlayingType.Music:
                     break;
                 case PlayingType.Video:
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
                     {
                         if (Locator.VideoPlayerVm.CurrentVideo != null)
                             Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = 0;
@@ -560,7 +560,7 @@ namespace VLC.ViewModels
         
         private async void OnPlaylistEndReached()
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
             {
                 if (PlaybackService.PlayingType == PlayingType.Video)
                 {
@@ -581,7 +581,7 @@ namespace VLC.ViewModels
                 Id = trackId,
                 Name = name
             };
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 if (type == TrackType.Audio)
                 {
@@ -614,7 +614,7 @@ namespace VLC.ViewModels
         {
             if (type == TrackType.Video)
                 return;
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 ObservableCollection<DictionaryKeyValue> target;
                 if (type == TrackType.Audio)
@@ -635,7 +635,7 @@ namespace VLC.ViewModels
 
         private async void Playback_MediaParsed(ParsedStatus parsedStatus)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(Chapters));
                 OnPropertyChanged(nameof(CurrentChapter));
@@ -676,7 +676,7 @@ namespace VLC.ViewModels
 
         public async Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 var updater = CommonTransportControlInit();
                 updater.Type = MediaPlaybackType.Music;
@@ -702,7 +702,7 @@ namespace VLC.ViewModels
 
         public async Task SetMediaTransportControlsInfo(string title)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
                 var updater = CommonTransportControlInit();
@@ -717,7 +717,7 @@ namespace VLC.ViewModels
 
         public async Task ClearMediaTransportControls()
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 if (_systemMediaTransportControls == null) return;
                 LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");

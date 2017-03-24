@@ -181,7 +181,7 @@ namespace VLC.UI.Views.MusicPages
 
         private async void OpenMainWindow_Click(object sender, RoutedEventArgs e)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => CoreApplication.MainView.CoreWindow.Activate());
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => CoreApplication.MainView.CoreWindow.Activate());
         }
 
         private void ExpandWindow_Click(object sender, RoutedEventArgs e)

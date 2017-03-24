@@ -94,14 +94,14 @@ namespace VLC
                     query = args.Replace("SecondaryTile-Album-", "");
                     id = int.Parse(query);
 
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.AlbumClickedCommand.Execute(id));
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.AlbumClickedCommand.Execute(id));
                 }
                 else if (args.Contains("Artist"))
                 {
                     query = args.Replace("SecondaryTile-Artist-", "");
                     id = int.Parse(query);
 
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.ArtistClickedCommand.Execute(id));
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.ArtistClickedCommand.Execute(id));
                 }
             }
             catch (Exception e)

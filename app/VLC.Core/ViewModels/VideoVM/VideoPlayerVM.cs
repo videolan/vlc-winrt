@@ -324,7 +324,7 @@ namespace VLC.ViewModels.VideoVM
 
         async Task UpdateCurrentVideo(VideoItem video)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 Locator.VideoPlayerVm.CurrentVideo = video;
                 if (video != null)

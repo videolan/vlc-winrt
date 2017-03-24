@@ -15,7 +15,7 @@ namespace VLC.Helpers
                 LogHelper.Log("Unexpected collection change: " + e.Action);
                 return;
             }
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 switch (e.Action)
                 {

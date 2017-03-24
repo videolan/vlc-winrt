@@ -44,7 +44,7 @@ namespace VLC.Model
                     sizeString = size.GetSizeString();
 
                 name = storageItem.DisplayName;
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
                 {
                     lastModified = props.DateModified.ToString("dd/MM/yyyy hh:mm");
                     sizeHumanizedString = sizeString;
@@ -58,7 +58,7 @@ namespace VLC.Model
             {
                 this.name = media.meta(MediaMeta.Title);
 
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
                 {
                     OnPropertyChanged(nameof(Name));
                 });

@@ -40,7 +40,7 @@ namespace VLC.Model
             if (storageItem != null)
             {
                 var props = await storageItem.GetBasicPropertiesAsync();
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
                 {
                     OnPropertyChanged(nameof(Name));
                     if (props.DateModified.Year == 1601) return;

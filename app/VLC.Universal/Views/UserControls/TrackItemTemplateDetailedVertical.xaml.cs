@@ -71,7 +71,7 @@ namespace VLC.UI.Views.UserControls
             {
                 if (Track == null)
                     return;
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
                 {
                     CoverImage.Source = Track.AlbumImage;
                 });
@@ -80,7 +80,7 @@ namespace VLC.UI.Views.UserControls
 
         async void UpdateTrack(IMediaItem media)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
             {
                 if (Track == null)
                     return;

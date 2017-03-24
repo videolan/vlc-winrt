@@ -48,7 +48,7 @@ namespace VLC.UI.Views.UserControls
         {
             if (!Locator.NavigationService.IsPageAMainPage(page))
                 return Task.FromResult(true);
-            return DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            return DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
                 if (IsPivotItem)
                 {

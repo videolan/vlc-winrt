@@ -368,7 +368,7 @@ namespace VLC.Services.RunTime
         {
             if (_playbackStartedTarget == null)
                 return;
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 Go(_playbackStartedTarget.Value, _playbackStartedParam);
                 _playbackStartedTarget = null;

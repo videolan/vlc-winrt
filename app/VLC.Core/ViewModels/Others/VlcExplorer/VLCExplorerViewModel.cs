@@ -238,7 +238,7 @@ namespace VLC.ViewModels.RemovableDevicesVM
             foreach (StorageFolder rootFolder in rootFolders)
             {
                 var external = new LocalFileExplorerViewModel(rootFolder, RootFolderType.ExternalDevice);
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => external.LogoGlyph = App.Current.Resources["USBFilledSymbol"] as string);
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => external.LogoGlyph = App.Current.Resources["USBFilledSymbol"] as string);
                 await AddToFolder(external);
             }
         }
@@ -253,7 +253,7 @@ namespace VLC.ViewModels.RemovableDevicesVM
                 foreach (var card in cards)
                 {
                     var external = new LocalFileExplorerViewModel(card, RootFolderType.ExternalDevice);
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => external.LogoGlyph = App.Current.Resources["SDCardSymbol"] as string);
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => external.LogoGlyph = App.Current.Resources["SDCardSymbol"] as string);
                     await AddToFolder(external);
                 }
             }
@@ -266,7 +266,7 @@ namespace VLC.ViewModels.RemovableDevicesVM
 
         private async Task DeviceRemoved(object sender, string id)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 var key = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == RootFolderType.ExternalDevice);
                 if (key != null)
@@ -278,7 +278,7 @@ namespace VLC.ViewModels.RemovableDevicesVM
 
         private async void VLCService_MediaListItemAdded(libVLCX.Media media, int index)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, async () =>
             {
                 var localNetwork = new VLCFileExplorerViewModel(media, RootFolderType.Network);
                 await AddToFolder(localNetwork);
@@ -293,18 +293,18 @@ namespace VLC.ViewModels.RemovableDevicesVM
             var fileEx = fileExType.ToList().FirstOrDefault(x => x.Name == media.meta(libVLCX.MediaMeta.Title));
             if (fileEx == null)
                 return;
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => fileExType.Remove(fileEx));
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => fileExType.Remove(fileEx));
         }
 
         async Task CreateFolderCategory(RootFolderType type)
         {
             var category = new GroupItemList<FileExplorer>() { Key = type };
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => FileExplorersGrouped.Add(category));
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => FileExplorersGrouped.Add(category));
         }
 
         async Task AddToFolder(FileExplorer fileEx)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 var group = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == fileEx.Type);
                 var exists = group.Any((FileExplorer fe) => fileEx.Name.Equals(fe.Name, StringComparison.OrdinalIgnoreCase) && fileEx.RootMediaType == fe.RootMediaType);
@@ -317,7 +317,7 @@ namespace VLC.ViewModels.RemovableDevicesVM
         async Task CleanAllFromType(RootFolderType type)
         {
             var key = FileExplorersGrouped.FirstOrDefault(x => (RootFolderType)x.Key == type);
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => { key.Clear(); });
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => { key.Clear(); });
         }
 
         public void GoBackToRootFolders()

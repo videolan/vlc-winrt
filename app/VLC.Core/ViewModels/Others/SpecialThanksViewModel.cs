@@ -41,7 +41,7 @@ namespace VLC.ViewModels.RemovableDevicesVM
                         backerCountries.Add(backerCountry);
                     }
                 }
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => BackerCountries = backerCountries);
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => BackerCountries = backerCountries);
             });
         }
 

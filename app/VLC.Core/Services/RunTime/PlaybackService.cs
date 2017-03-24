@@ -84,7 +84,7 @@ namespace VLC.Services.RunTime
 
         public Task Initialize()
         {
-            return DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            return DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
                 var param = new List<string>
                 {
@@ -151,7 +151,7 @@ namespace VLC.Services.RunTime
             // instance creation.
             if (Instance == null)
                 return;
-            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
                 // Always fetch the new audio client, as we always assign it when starting a new playback
                 AudioClient = new AudioDeviceHandler(AudioDeviceID);

@@ -35,7 +35,7 @@ namespace VLC.ViewModels.Others.VlcExplorer
         {
             try
             {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
                 {
                     StorageItems.Clear();
                     IsFolderEmpty = false;
@@ -58,9 +58,9 @@ namespace VLC.ViewModels.Others.VlcExplorer
                         storageItem = new VLCStorageFile(media);
                     }
                     if (storageItem == null) return;
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => StorageItems.Add(storageItem));
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => StorageItems.Add(storageItem));
                 }
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
                 {
                     OnPropertyChanged(nameof(StorageItems));
                     IsFolderEmpty = !StorageItems.Any();

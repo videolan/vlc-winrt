@@ -35,7 +35,7 @@ namespace VLC.UI.Views.MusicPages.ArtistPageControls
         {
             if (Locator.MusicLibraryVM.CurrentArtist == null)
                 return true;
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
             {
                 EllipseImage.Fill = new ImageBrush()
                 {
@@ -50,7 +50,7 @@ namespace VLC.UI.Views.MusicPages.ArtistPageControls
         {
             if (Locator.MusicLibraryVM.CurrentArtist == null)
                 return true;
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => BackgroundImage.Source = Locator.MusicLibraryVM.CurrentArtist.ArtistImage);
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => BackgroundImage.Source = Locator.MusicLibraryVM.CurrentArtist.ArtistImage);
             return true;
         }
 

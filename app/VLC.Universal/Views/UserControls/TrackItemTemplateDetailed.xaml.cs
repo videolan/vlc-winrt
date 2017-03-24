@@ -84,7 +84,7 @@ namespace VLC.UI.Views.UserControls
 
         async void UpdateTrack(IMediaItem media)
         {
-            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Low, () =>
             {
                 if (Track == null)
                     return;

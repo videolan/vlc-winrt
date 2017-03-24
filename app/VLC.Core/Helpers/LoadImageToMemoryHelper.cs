@@ -28,7 +28,7 @@ namespace VLC.Helpers
             {
                 if (fileExists)
                 {
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => item.AlbumImage = new BitmapImage(new Uri(item.AlbumCoverFullUri)));
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => item.AlbumImage = new BitmapImage(new Uri(item.AlbumCoverFullUri)));
                 }
             }
             catch (Exception)
@@ -61,11 +61,11 @@ namespace VLC.Helpers
                 {
                     if (thumbnail)
                     {
-                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => item.ArtistImageThumbnail = new BitmapImage(new Uri(item.PictureThumbnail)));
+                        await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => item.ArtistImageThumbnail = new BitmapImage(new Uri(item.PictureThumbnail)));
                     }
                     else
                     {
-                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => item.ArtistImage = new BitmapImage(new Uri(item.Picture)));
+                        await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => item.ArtistImage = new BitmapImage(new Uri(item.Picture)));
                     }
 
                     Debug.WriteLine($"Artist picture set : {item.Name}");
@@ -89,11 +89,11 @@ namespace VLC.Helpers
             {
                 if (albumItem.IsPictureLoaded)
                 {
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => item.AlbumImage = new BitmapImage(new Uri(albumItem.AlbumCoverFullUri)));
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => item.AlbumImage = new BitmapImage(new Uri(albumItem.AlbumCoverFullUri)));
                 }
                 else
                 {
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => item.AlbumImage = null);
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => item.AlbumImage = null);
                 }
             }
             catch (Exception)

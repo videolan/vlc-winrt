@@ -21,7 +21,7 @@ namespace VLC.ViewModels
 
         private async void MediaLibrary_OnIndexing(LoadingState obj)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged(nameof(IndexingLibraryVisibility)));
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => OnPropertyChanged(nameof(IndexingLibraryVisibility)));
         }
 
         public Visibility IndexingLibraryVisibility

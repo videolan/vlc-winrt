@@ -14,7 +14,7 @@ namespace VLC.Services.RunTime
         public async Task ShowErrorDialog(string title, string text)
         {
             await VLCDialog.WaitForDialogLock();
-            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+            await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
             {
                 _currentDialog = new VLCDialog(title, text);
                 await _currentDialog.ShowAsync();
@@ -24,7 +24,7 @@ namespace VLC.Services.RunTime
         public async Task ShowLoginDialog(libVLCX.Dialog dialog, string title, string text, string defaultUserName, bool askToStore)
         {
             await VLCDialog.WaitForDialogLock();
-            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+            await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
             {
                 _currentDialog = new VLCDialog(title, text, dialog, defaultUserName, askToStore);
                 await _currentDialog.ShowAsync();
@@ -39,7 +39,7 @@ namespace VLC.Services.RunTime
                 return;
             }
             await VLCDialog.WaitForDialogLock();
-            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+            await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
             {
                 _currentDialog = new VLCDialog(title, text, dialog, qType, cancel, action1, action2);
                 await _currentDialog.ShowAsync();
@@ -48,7 +48,7 @@ namespace VLC.Services.RunTime
 
         public async Task CancelCurrentDialog()
         {
-            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => _currentDialog.Cancel());
+            await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () => _currentDialog.Cancel());
         }
     }
 }

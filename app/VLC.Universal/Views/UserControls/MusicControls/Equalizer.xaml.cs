@@ -40,7 +40,7 @@ namespace VLC.UI.Views.UserControls.MusicControls
             if (eq == null)
                 return;
 
-            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
                     for (int i = 0; i < eq.Amps.Count; i++)
                     {

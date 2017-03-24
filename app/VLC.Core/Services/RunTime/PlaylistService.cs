@@ -80,7 +80,7 @@ namespace VLC.Services.RunTime
             ps.Playback_MediaEndReached += async () =>
             {
                 // Don't potentially change the media from a VLC thread
-                await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => OnMediaEndReached());
+                await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () => OnMediaEndReached());
             };
         }
 

@@ -16,7 +16,7 @@ namespace VLC.Commands.MusicLibrary
             {
                 var trackItem = selectedItem as TrackItem;
                 if (trackItem == null) continue;
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, async () =>
                 {
                     try
                     {
@@ -32,7 +32,7 @@ namespace VLC.Commands.MusicLibrary
                 });
             }
             await
-                DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal,
+                DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
                     () => Locator.MusicLibraryVM.CurrentTrackCollection.SelectedTracks.Clear());
         }
     }

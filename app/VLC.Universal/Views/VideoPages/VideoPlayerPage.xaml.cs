@@ -133,7 +133,7 @@ namespace VLC.UI.Views.VideoPages
 
         async void OnPlaybackStopped()
         {
-            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
                 if (!Locator.NavigationService.GoBack_Default())
                     Locator.NavigationService.Go(Locator.MainVM.CurrentPanel.Target);

@@ -607,13 +607,13 @@ namespace VLC.ViewModels.Settings
         public async Task GetMusicLibraryFolders()
         {
             var musicLib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => MusicFolders = musicLib.Folders.ToList());
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MusicFolders = musicLib.Folders.ToList());
         }
 
         public async Task GetVideoLibraryFolders()
         {
             var videosLib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Videos);
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => VideoFolders = videosLib.Folders.ToList());
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => VideoFolders = videosLib.Folders.ToList());
         }
 
         #region navigation

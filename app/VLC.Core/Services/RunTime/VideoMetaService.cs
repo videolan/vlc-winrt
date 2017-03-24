@@ -46,7 +46,7 @@ namespace VLC.Services.RunTime
                 var ext = await FetcherHelpers.ExtractFromArchive(video.Id, $"{ApplicationData.Current.TemporaryFolder.Path}\\{video.Id}.zip");
                 if (!string.IsNullOrEmpty(ext))
                 {
-                    await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                    await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                     {
                         video.IsSubtitlePreLoaded = true;
                         video.SubtitleExtension = ext;
@@ -81,7 +81,7 @@ namespace VLC.Services.RunTime
         {
             if (await FetcherHelpers.SaveBytes(video.Id, "moviePic", img, "jpg", false))
             {
-                await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
                     // Thumbnail is only refreshed when IsPictureLoaded changes, so first we set HasMoviePicture,
                     // then IsPictureLoaded

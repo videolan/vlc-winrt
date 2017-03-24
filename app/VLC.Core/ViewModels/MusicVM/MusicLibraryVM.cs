@@ -315,7 +315,7 @@ namespace VLC.ViewModels.MusicVM
                     }
                     else
                     {
-                        await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                        await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
                         {
                             OnPropertyChanged(nameof(IsMusicLibraryEmpty));
                             OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
@@ -354,7 +354,7 @@ namespace VLC.ViewModels.MusicVM
 
                     RecommendedAlbums?.Clear();
 
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
                     {
                         GroupedAlbums = null;
                         LoadingStateAlbums = LoadingState.NotLoaded;
@@ -367,7 +367,7 @@ namespace VLC.ViewModels.MusicVM
                         Locator.MediaLibrary.Artists.Clear();
                     }
 
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
                     {
                         GroupedArtists = null;
                         LoadingStateArtists = LoadingState.NotLoaded;
@@ -380,7 +380,7 @@ namespace VLC.ViewModels.MusicVM
                         Locator.MediaLibrary.Tracks.Clear();
                     }
 
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, async () =>
                     {
                         await OrderTracks();
                         LoadingStateTracks = LoadingState.NotLoaded;
@@ -411,7 +411,7 @@ namespace VLC.ViewModels.MusicVM
             if (MusicView != MusicView.Albums)
                 return;
             var recommendedAlbums = Locator.MediaLibrary.LoadRecommendedAlbumsFromDatabase();
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 RecommendedAlbums = recommendedAlbums;
             });
@@ -423,7 +423,7 @@ namespace VLC.ViewModels.MusicVM
             {
                 if (Locator.MediaLibrary.Albums.Count == 0 || Locator.MediaLibrary.Albums.Count == 1)
                 {
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
                     {
                         OnPropertyChanged(nameof(IsMusicLibraryEmpty));
                         OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
@@ -449,7 +449,7 @@ namespace VLC.ViewModels.MusicVM
         public async Task OrderAlbums()
         {
             _groupedAlbums = Locator.MediaLibrary.OrderAlbums(Locator.SettingsVM.AlbumsOrderType, Locator.SettingsVM.AlbumsOrderListing);
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
             {
                 OnPropertyChanged(nameof(GroupedAlbums));
             });
@@ -472,7 +472,7 @@ namespace VLC.ViewModels.MusicVM
         {
             if (Locator.MediaLibrary.Artists.Count == 0 || Locator.MediaLibrary.Artists.Count == 1)
             {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
                 {
                     OnPropertyChanged(nameof(IsMusicLibraryEmpty));
                     OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
@@ -494,7 +494,7 @@ namespace VLC.ViewModels.MusicVM
         async Task OrderArtists()
         {
             _groupedArtists = Locator.MediaLibrary.OrderArtists();
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
             {
                 OnPropertyChanged(nameof(GroupedArtists));
             });
@@ -516,7 +516,7 @@ namespace VLC.ViewModels.MusicVM
         {
             if (Locator.MediaLibrary.Tracks.Count == 0 || Locator.MediaLibrary.Tracks.Count == 1)
             {
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
                 {
                     OnPropertyChanged(nameof(IsMusicLibraryEmpty));
                     OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
@@ -538,7 +538,7 @@ namespace VLC.ViewModels.MusicVM
         async Task OrderTracks()
         {
             _groupedTracks = Locator.MediaLibrary.OrderTracks();
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(GroupedTracks));
             });
@@ -557,7 +557,7 @@ namespace VLC.ViewModels.MusicVM
         {
             try
             {
-                return DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () =>
+                return DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
                 {
                     var index = -1;
                     if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByArtist)
@@ -601,11 +601,11 @@ namespace VLC.ViewModels.MusicVM
                         return;
                     int i = GroupedArtists.IndexOf(GroupedArtists.LastOrDefault(x => string.Compare((string)x.Key, (string)newChar.Key) < 0));
                     i++;
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => GroupedArtists.Insert(i, newChar));
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => GroupedArtists.Insert(i, newChar));
                 }
                 else
                 {
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => firstChar.Add(artist));
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => firstChar.Add(artist));
                 }
             }
             catch { }
@@ -624,11 +624,11 @@ namespace VLC.ViewModels.MusicVM
                         return;
                     int i = GroupedTracks.IndexOf(GroupedTracks.LastOrDefault(x => string.Compare((string)x.Key, (string)newChar.Key) < 0));
                     i++;
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => GroupedTracks.Insert(i, newChar));
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => GroupedTracks.Insert(i, newChar));
                 }
                 else
                 {
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, () => firstChar.Add(track));
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => firstChar.Add(track));
                 }
             }
             catch { }

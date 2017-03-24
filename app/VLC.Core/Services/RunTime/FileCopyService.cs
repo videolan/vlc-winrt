@@ -30,7 +30,7 @@ namespace VLC.Services.RunTime
             set
             {
                 _nbCopiedFiles = value;
-                DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal,
+                DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
                     () => NbCopiedFilesChanged?.Invoke(this, _nbCopiedFiles));
             }
         }
@@ -41,7 +41,7 @@ namespace VLC.Services.RunTime
             set
             {
                 _totalNbFiles = value;
-                DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal,
+                DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
                     () => TotalNbFilesChanged?.Invoke(this, _totalNbFiles));
             }
         }
@@ -60,7 +60,7 @@ namespace VLC.Services.RunTime
                 {
                     NbCopiedFiles = 0;
                     TotalNbFiles = 0;
-                    DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal,
+                    DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
                         () => CopyStarted?.Invoke(this, null));
                 }
 
@@ -102,7 +102,7 @@ namespace VLC.Services.RunTime
                         if (filesQueue.Count == 0)
                         {
                             copying = false;
-                            DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal,
+                            DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
                                 () => CopyEnded?.Invoke(this, null));
                         }
                     }

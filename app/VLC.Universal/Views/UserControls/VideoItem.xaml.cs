@@ -57,14 +57,14 @@ namespace VLC.UI.Views.UserControls
         {
             if (e.PropertyName == nameof(Video.VideoImage))
             {
-                await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
                     FadeOutCover.Begin();
                 });
             }
             else if (e.PropertyName == nameof(Video.Duration) || e.PropertyName == nameof(Video.TimeWatched))
             {
-                await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
                     UpdateVideoDurations();
                 });

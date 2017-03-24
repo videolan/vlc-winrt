@@ -55,7 +55,7 @@ namespace VLC.UI.Views.UserControls
             {
                 await artist.ResetArtistPicture(true);
                 var albumsCount = Locator.MediaLibrary.LoadAlbumsCount(artist.Id);
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () => AlbumsCountTextBlock.Text = Strings.Albums.ToUpperFirstChar() + Strings.Dash + albumsCount);
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => AlbumsCountTextBlock.Text = Strings.Albums.ToUpperFirstChar() + Strings.Dash + albumsCount);
             });
         }
 
@@ -64,7 +64,7 @@ namespace VLC.UI.Views.UserControls
             if (e.PropertyName == nameof(Artist.ArtistImageThumbnail))
             {
                 if (Artist == null) return;
-                await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
                 {
                     FadeOutCover.Begin();
                 });

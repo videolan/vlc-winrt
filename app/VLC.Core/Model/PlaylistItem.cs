@@ -49,7 +49,7 @@ namespace VLC.Model
 
         private async void _selectedTracks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            await DispatchHelper.InvokeAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(IsTracksSelectedVisibility));
             });

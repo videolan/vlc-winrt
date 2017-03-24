@@ -93,7 +93,7 @@ namespace VLC.ViewModels.MusicVM
 
         private async void Playback_MediaSet(IMediaItem media)
         {
-            await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, async () =>
             {
                 OnPropertyChanged(nameof(CurrentMediaTitle));
                 OnPropertyChanged(nameof(CurrentTrack));

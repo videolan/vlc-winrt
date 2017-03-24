@@ -61,14 +61,14 @@ namespace VLC.Services.RunTime
             switch (Locator.SettingsVM.ExternalDeviceMode)
             {
                 case ExternalDeviceMode.AskMe:
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal,
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
                         () => new ShowExternalDevicePage().Execute(args));
                     break;
                 case ExternalDeviceMode.IndexMedias:
                     await AskExternalDeviceIndexing(args.Id);
                     break;
                 case ExternalDeviceMode.SelectMedias:
-                    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Normal, async () =>
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, async () =>
                     {
                         await AskContentToCopy(args.Id);
                     });
