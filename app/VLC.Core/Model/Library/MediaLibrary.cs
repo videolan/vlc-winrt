@@ -951,7 +951,10 @@ namespace VLC.Model.Library
                 var albumTracks = LoadTracksByAlbumId(albumDB.Id);
                 if (!albumTracks.Any())
                 {
-                    Albums.Remove(Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId));
+                    await DispatchHelper.InvokeInUIThreadHighPriority(() =>
+                    {
+                        Albums.Remove(Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId));
+                    });
                     musicDatabase.Remove(albumDB);
                 }
 
@@ -961,14 +964,16 @@ namespace VLC.Model.Library
                 var artistAlbums = LoadAlbums(artistDB.Id);
                 if (!artistAlbums.Any())
                 {
-                    Artists.Remove(Artists.FirstOrDefault(x => x.Id == trackItem.ArtistId));
+                    await DispatchHelper.InvokeInUIThreadHighPriority(() =>
+                    {
+                        Artists.Remove(Artists.FirstOrDefault(x => x.Id == trackItem.ArtistId));
+                    });
                     musicDatabase.Remove(artistDB);
                 }
 
-                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.High, () =>
+                await DispatchHelper.InvokeInUIThreadHighPriority(() =>
                 {
                     Tracks.Remove(Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
-
                 });
                 await Locator.PlaybackService.RemoveMedia(trackItem);
             }
