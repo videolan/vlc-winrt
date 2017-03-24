@@ -346,7 +346,7 @@ namespace VLC.Model.Library
                             artist.Name = string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName;
                             artist.PlayCount = 0;
                             musicDatabase.Add(artist);
-                            Artists.Add(artist);
+                            await DispatchHelper.InvokeInUIThreadHighPriority(() => Artists.Add(artist));
                         }
 
                         var albumName = mP.Album?.Trim();
@@ -378,7 +378,7 @@ namespace VLC.Model.Library
                                 AlbumCoverUri = albumSimplifiedUrl
                             };
                             musicDatabase.Add(album);
-                            Albums.Add(album);
+                            await DispatchHelper.InvokeInUIThreadHighPriority(() => Albums.Add(album));
                         }
 
                         TrackItem track = new TrackItem
@@ -398,7 +398,7 @@ namespace VLC.Model.Library
                             IsAvailable = true,
                         };
                         musicDatabase.Add(track);
-                        Tracks.Add(track);
+                        await DispatchHelper.InvokeInUIThreadHighPriority(() => Tracks.Add(track));
                     }
                 }
                 else if (VLCFileExtensions.VideoExtensions.Contains(item.FileType.ToLower()))
