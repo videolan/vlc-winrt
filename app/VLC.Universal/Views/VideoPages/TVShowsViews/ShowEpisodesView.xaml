@@ -49,14 +49,17 @@
             </Grid>
         </Grid>
 
-        <ListView Grid.Row="1"
+        <ListView x:Name="EpisodesListView"
+                  Grid.Row="1"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemsSource="{Binding Episodes}"
                   ItemTemplate="{StaticResource VideoItemTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   Padding="{StaticResource FrameMarginTop}"
-                  Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+                  Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+                  GotFocus="EpisodesListView_GotFocus"
+                  KeyDown="EpisodesListView_KeyDown">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.OpenVideo}"
