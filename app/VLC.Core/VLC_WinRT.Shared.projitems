@@ -141,7 +141,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DeviceHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DownloadAndSaveHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ImageHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\LoadImageToMemoryHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LogHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MediaLibraryHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicLibraryManagement.cs" />

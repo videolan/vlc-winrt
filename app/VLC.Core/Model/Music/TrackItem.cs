@@ -107,16 +107,27 @@ namespace VLC.Model.Music
                 if (_albumImage == null && _albumImageLoadingState == LoadingState.NotLoaded)
                 {
                     _albumImageLoadingState = LoadingState.Loading;
-                    Task.Run(() => ResetAlbumArt());
+                    ResetAlbumArt();
                 }
                 return _albumImage;
             }
             set { SetProperty(ref _albumImage, value); }
         }
 
-        public Task ResetAlbumArt()
+        public void ResetAlbumArt()
         {
-            return LoadImageToMemoryHelper.LoadImageToMemory(this);
+            var albumItem = Locator.MediaLibrary.LoadAlbum(AlbumId);
+            try
+            {
+                if (albumItem.IsPictureLoaded)
+                    AlbumImage = new BitmapImage(new Uri(albumItem.AlbumCoverFullUri));
+                else
+                    AlbumImage = null;
+            }
+            catch (Exception)
+            {
+                LogHelper.Log("Error getting album picture : " + Name);
+            }
         }
 
         [Ignore]

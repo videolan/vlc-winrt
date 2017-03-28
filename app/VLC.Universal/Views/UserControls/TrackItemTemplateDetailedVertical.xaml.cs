@@ -56,10 +56,7 @@ namespace VLC.UI.Views.UserControls
 
             Track.PropertyChanged += Track_PropertyChanged;
             var trackItem = Track;
-            Task.Run(async () =>
-            {
-                await trackItem.ResetAlbumArt();
-            });
+            trackItem.ResetAlbumArt();
 
             Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet += UpdateTrack;
             UpdateTrack(Track);
