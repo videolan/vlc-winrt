@@ -200,6 +200,12 @@ namespace VLC.Model.Video
 
         public async Task DeleteVideoThumbFile()
         {
+            await DispatchHelper.InvokeInUIThreadHighPriority(() =>
+            {
+                // Release the image source URI to allow the file deletion.
+                if (_videoImage != null)
+                    _videoImage.UriSource = null;
+            });
             var thumbFile = await tryGetVideoThumbFile();
             if (thumbFile != null)
                 await thumbFile.DeleteAsync();
