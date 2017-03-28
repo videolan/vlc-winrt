@@ -17,7 +17,7 @@
                 <EntranceThemeTransition />
             </TransitionCollection>
         </Grid.Transitions>
-        <ScrollWatcher:ListViewScrollWatcher x:Name="EpisodesListView"
+        <ScrollWatcher:ListViewScrollWatcher x:Name="ShowsListView"
                   ItemsSource="{Binding Shows}"
                   ItemTemplate="{StaticResource ShowItem}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
