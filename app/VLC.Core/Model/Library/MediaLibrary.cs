@@ -118,17 +118,20 @@ namespace VLC.Model.Library
         readonly SemaphoreSlim AlbumCoverFetcherSemaphoreSlim = new SemaphoreSlim(4);
         readonly SemaphoreSlim ArtistPicFetcherSemaphoreSlim = new SemaphoreSlim(4);
 
-        public async Task FetchAlbumCoverOrWaitAsync(AlbumItem albumItem)
+        public Task FetchAlbumCoverOrWaitAsync(AlbumItem albumItem)
         {
-            await AlbumCoverFetcherSemaphoreSlim.WaitAsync();
-            try
+            return Task.Run(async () =>
             {
-                await Locator.MusicMetaService.GetAlbumCover(albumItem);
-            }
-            finally
-            {
-                AlbumCoverFetcherSemaphoreSlim.Release();
-            }
+                await AlbumCoverFetcherSemaphoreSlim.WaitAsync();
+                try
+                {
+                    await Locator.MusicMetaService.GetAlbumCover(albumItem);
+                }
+                finally
+                {
+                    AlbumCoverFetcherSemaphoreSlim.Release();
+                }
+            });
         }
 
         public async Task FetchArtistPicOrWaitAsync(ArtistItem artistItem)

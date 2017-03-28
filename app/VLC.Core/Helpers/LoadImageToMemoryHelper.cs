@@ -14,37 +14,6 @@ namespace VLC.Helpers
 {
     public class LoadImageToMemoryHelper
     {
-        public static async Task LoadImageToMemory(AlbumItem item)
-        {
-            /*
-            Normally, We would need more tight calls to try and make sure that the file
-            exists in our database. However, since this is on the UI thread, we can't do that.
-            Since binding images directly through XAML leads to blocked files when we
-            need to delete them, we have to load them up manually. This should be enough
-            of a check, for now, to make sure images load correctly.
-            */
-            bool fileExists = item.IsPictureLoaded;
-            try
-            {
-                if (fileExists)
-                {
-                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => item.AlbumImage = new BitmapImage(new Uri(item.AlbumCoverFullUri)));
-                }
-            }
-            catch (Exception)
-            {
-                LogHelper.Log("Error getting album picture : " + item.Name);
-            }
-            if (!fileExists)
-            {
-                try
-                {
-                    await Locator.MediaLibrary.FetchAlbumCoverOrWaitAsync(item);
-                }
-                catch { }
-            }
-        }
-
         public static async Task LoadImageToMemory(ArtistItem item, bool thumbnail)
         {
             /*

@@ -66,13 +66,13 @@ namespace VLC.UI.Views.UserControls
             DependencyProperty.Register(nameof(Album), typeof(AlbumItem), typeof(AlbumWithTracksResponsiveTemplate), new PropertyMetadata(null, PropertyChangedCallback));
 
 
-        private static async void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var that = (AlbumWithTracksResponsiveTemplate)dependencyObject;
-            await that.Init();
+            that.Init();
         }
 
-        public async Task Init()
+        public void Init()
         {
             if (Album == null) return;
             NameTextBlock.Text = Utils.Strings.HumanizedAlbumName(Album.Name);
@@ -89,7 +89,7 @@ namespace VLC.UI.Views.UserControls
 
             Album.PropertyChanged += Album_PropertyChanged;
             var album = Album;
-            await album.ResetAlbumArt();
+            album.ResetAlbumArt();
         }
 
         private async void Album_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

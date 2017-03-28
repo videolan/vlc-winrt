@@ -98,7 +98,6 @@ namespace VLC.Services.RunTime
                 {
                     album.AlbumCoverUri = $"albumPic/{album.Id}.jpg";
                 });
-                await album.ResetAlbumArt();
                 return true;
             }
             return false;

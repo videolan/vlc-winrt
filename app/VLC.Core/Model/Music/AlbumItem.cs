@@ -14,6 +14,7 @@ using VLC.Services.RunTime;
 using VLC.Utils;
 using VLC.ViewModels;
 using System.Collections.Generic;
+using Windows.UI.Core;
 
 namespace VLC.Model.Music
 {
@@ -115,6 +116,7 @@ namespace VLC.Model.Music
             set
             {
                 SetProperty(ref _picture, value);
+                OnPropertyChanged(nameof(AlbumImage));
             }
         }
 
@@ -148,16 +150,26 @@ namespace VLC.Model.Music
                 if (_albumImage == null && _albumImageLoadingState == LoadingState.NotLoaded)
                 {
                     _albumImageLoadingState = LoadingState.Loading;
-                    ResetAlbumArt().Wait();
+                    ResetAlbumArt();
                 }
                 return _albumImage;
             }
             set { SetProperty(ref _albumImage, value); }
         }
 
-        public Task ResetAlbumArt()
+        public void ResetAlbumArt()
         {
-            return LoadImageToMemoryHelper.LoadImageToMemory(this);
+            try
+            {
+                if (IsPictureLoaded)
+                    AlbumImage = new BitmapImage(new Uri(AlbumCoverFullUri));
+                else
+                    Locator.MediaLibrary.FetchAlbumCoverOrWaitAsync(this);
+            }
+            catch (Exception)
+            {
+                LogHelper.Log("Error getting album picture : " + Name);
+            }
         }
 
         [Ignore]
