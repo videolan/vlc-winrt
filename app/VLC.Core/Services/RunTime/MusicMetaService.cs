@@ -116,7 +116,6 @@ namespace VLC.Services.RunTime
                 await FetcherHelpers.SaveBytes(artist.Id, "artistPic-thumbnail", stream, "jpg", false);
 
                 await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => { artist.IsPictureLoaded = true; });
-                await artist.ResetArtistPicture(true);
                 return true;
             }
             return false;

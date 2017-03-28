@@ -8,6 +8,7 @@ using VLC.Helpers;
 using VLC.MusicMetaFetcher.Models.MusicEntities;
 using VLC.Utils;
 using VLC.ViewModels;
+using System;
 
 namespace VLC.Model.Music
 {
@@ -100,9 +101,25 @@ namespace VLC.Model.Music
             set { SetProperty(ref _artistThumbnail, value); }
         }
 
-        public Task ResetArtistPicture(bool thumbnail)
+        public void ResetArtistPicture(bool thumbnail)
         {
-            return Task.Factory.StartNew(() => LoadImageToMemoryHelper.LoadImageToMemory(this, thumbnail));
+            try
+            {
+                if (IsPictureLoaded)
+                {
+                    if (thumbnail)
+                        ArtistImageThumbnail = new BitmapImage(new Uri(PictureThumbnail));
+                    else
+                        ArtistImage = new BitmapImage(new Uri(Picture));
+                    LogHelper.Log($"Artist picture set : {Name}");
+                }
+                else
+                    Locator.MediaLibrary.FetchArtistPicOrWaitAsync(this);
+            }
+            catch (Exception)
+            {
+                LogHelper.Log("Error getting artist picture : " + Name);
+            }
         }
         
         [Ignore]
@@ -114,7 +131,11 @@ namespace VLC.Model.Music
         public bool IsPictureLoaded
         {
             get { return _isPictureLoaded; }
-            set { SetProperty(ref _isPictureLoaded, value); }
+            set {
+                SetProperty(ref _isPictureLoaded, value);
+                OnPropertyChanged(nameof(ArtistImage));
+                OnPropertyChanged(nameof(ArtistImageThumbnail));
+            }
         }
 
         public Task LoadBio()

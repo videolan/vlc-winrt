@@ -25,10 +25,10 @@ namespace VLC.UI.Views.MusicPages.ArtistPageControls
             Locator.MusicLibraryVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
 
             if (!await UpdateThumbnail())
-                await Locator.MusicLibraryVM.CurrentArtist.ResetArtistPicture(true);
+                Locator.MusicLibraryVM.CurrentArtist.ResetArtistPicture(true);
 
             if (!await UpdateBackground())
-                await Locator.MusicLibraryVM.CurrentArtist.ResetArtistPicture(false);
+                Locator.MusicLibraryVM.CurrentArtist.ResetArtistPicture(false);
         }
 
         async Task<bool> UpdateThumbnail()

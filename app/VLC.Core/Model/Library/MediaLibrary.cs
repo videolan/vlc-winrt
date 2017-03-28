@@ -134,23 +134,20 @@ namespace VLC.Model.Library
             });
         }
 
-        public async Task FetchArtistPicOrWaitAsync(ArtistItem artistItem)
+        public Task FetchArtistPicOrWaitAsync(ArtistItem artistItem)
         {
-            await ArtistPicFetcherSemaphoreSlim.WaitAsync();
-            try
+            return Task.Run(async () =>
             {
-                Debug.WriteLine($"{DateTime.Now} -- loading pic : {artistItem.Name}");
-                await Locator.MusicMetaService.GetArtistPicture(artistItem);
-                Debug.WriteLine($"{DateTime.Now} -- loading operation DONE: {artistItem.Name}");
-            }
-            catch
-            {
-                ArtistPicFetcherSemaphoreSlim.Release();
-            }
-            finally
-            {
-                ArtistPicFetcherSemaphoreSlim.Release();
-            }
+                await ArtistPicFetcherSemaphoreSlim.WaitAsync();
+                try
+                {
+                    await Locator.MusicMetaService.GetArtistPicture(artistItem);
+                }
+                finally
+                {
+                    ArtistPicFetcherSemaphoreSlim.Release();
+                }
+            });
         }
 
         public async Task<bool> DiscoverMediaItemOrWaitAsync(StorageFile storageItem, bool isCameraRoll)
@@ -417,6 +414,7 @@ namespace VLC.Model.Library
                     // Add to collections.
                     if (video.IsTvShow)
                     {
+                        LogHelper.Log("ShowId " + video.Id);
                         await AddTvShow(video);
                     }
                     else if (isCameraRoll)
@@ -426,6 +424,7 @@ namespace VLC.Model.Library
                     }
                     else
                     {
+                        LogHelper.Log("VideoId1 " + video.Id);
                         await DispatchHelper.InvokeInUIThreadHighPriority(() => Videos.Add(video));
                     }
                 }
@@ -800,29 +799,42 @@ namespace VLC.Model.Library
                     ContinueIndexing = null;
                 }
 
+                LogHelper.Log("------------------> Thunbnail for " + videoItem.Name);
+
                 WriteableBitmap image = null;
                 StorageItemThumbnail thumb = null;
                 // If file is a mkv, we save the thumbnail in a VideoPic folder so we don't consume CPU and resources each launch
                 if (VLCFileExtensions.MFSupported.Contains(videoItem.Type.ToLower()))
                 {
                     if (await videoItem.LoadFileFromPath())
+                    {
+                        LogHelper.Log("------------------> test1 " + videoItem.Name);
                         thumb = await ThumbsService.GetThumbnail(videoItem.File);
+                        LogHelper.Log("------------------> thumb " + thumb);
+                    }
                 }
                 // If MF thumbnail generation failed or wasn't supported:
                 if (thumb == null)
                 {
                     if (await videoItem.LoadFileFromPath() || !string.IsNullOrEmpty(videoItem.Token))
                     {
+                        LogHelper.Log("------------------> test2 " + videoItem.Name);
                         var res = await ThumbsService.GetScreenshot(videoItem.GetMrlAndFromType(true).Item2);
+                        LogHelper.Log("------------------> test22 " + videoItem.Name);
                         image = res?.Bitmap();
+                        LogHelper.Log("------------------> test23 " + videoItem.Name);
                     }
                 }
 
                 if (thumb == null && image == null)
+                {
+                    LogHelper.Log("------------------> not generated " + videoItem.Name);
                     return false;
+                }
 
                 await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, async () =>
                 {
+                    LogHelper.Log("------------------> test3 " + videoItem.Name + " " + videoItem.Id);
                     if (thumb != null)
                     {
                         image = new WriteableBitmap((int)thumb.OriginalWidth, (int)thumb.OriginalHeight);

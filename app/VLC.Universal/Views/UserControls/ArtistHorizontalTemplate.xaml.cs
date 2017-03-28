@@ -53,7 +53,7 @@ namespace VLC.UI.Views.UserControls
             var artist = Artist;
             Task.Run(async () =>
             {
-                await artist.ResetArtistPicture(true);
+                artist.ResetArtistPicture(true);
                 var albumsCount = Locator.MediaLibrary.LoadAlbumsCount(artist.Id);
                 await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => AlbumsCountTextBlock.Text = Strings.Albums.ToUpperFirstChar() + Strings.Dash + albumsCount);
             });
