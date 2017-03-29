@@ -39,6 +39,8 @@ namespace VLC.Model.Library
                 await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
                 await IndexationSemaphoreSlim.WaitAsync();
 
+                LogHelper.Log("Indexing the external device in the media library.");
+
                 StorageFolder folder;
                 // Windows.Devices.Portable.StorageDevice.FromId blocks forever on Xbox... so work around
                 if (Helpers.DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox &&
@@ -243,6 +245,7 @@ namespace VLC.Model.Library
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
             await IndexationSemaphoreSlim.WaitAsync();
 
+            LogHelper.Log("Initializing the media library.");
 
             Artists.Clear();
             Albums.Clear();
@@ -255,19 +258,27 @@ namespace VLC.Model.Library
             if (IsMusicDatabaseEmpty() && IsVideoDatabaseEmpty())
                 await clearDatabase();
             else // Restore the database
-            {
-                await loadVideosFromDatabase();
-                await loadShowsFromDatabase();
-                await loadCameraRollFromDatabase();
-            }
+                await loadLibrariesFromDatabase();
+
             await PerformMediaLibraryIndexing();
 
             IndexationSemaphoreSlim.Release();
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
         }
 
+        private async Task loadLibrariesFromDatabase()
+        {
+            LogHelper.Log("Loading the media library from the database.");
+
+            await loadVideosFromDatabase();
+            await loadShowsFromDatabase();
+            await loadCameraRollFromDatabase();
+        }
+
         private async Task clearDatabase()
         {
+            LogHelper.Log("Clearing the database.");
+
             musicDatabase.DeleteAll();
             trackCollectionRepository.DeleteAll();
             tracklistItemRepository.DeleteAll();
@@ -296,6 +307,8 @@ namespace VLC.Model.Library
 
         async Task PerformMediaLibraryIndexing()
         {
+            LogHelper.Log("Performing the indexation.");
+
             StorageFolder folder = await FileUtils.GetLocalStorageMediaFolder();
             await MediaLibraryHelper.ForeachSupportedFile(folder, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
             await MediaLibraryHelper.ForeachSupportedFile(KnownFolders.VideosLibrary, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
@@ -461,6 +474,8 @@ namespace VLC.Model.Library
         {
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
             await IndexationSemaphoreSlim.WaitAsync();
+
+            LogHelper.Log("Cleaning the media library.");
 
             // Clean videos
             var videos = LoadVideos(x => true);
