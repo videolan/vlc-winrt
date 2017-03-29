@@ -140,21 +140,7 @@ namespace VLC.Services.RunTime
         {
             if (!_isShuffled)
             {
-                _nonShuffledPlaylist = new SmartCollection<IMediaItem>(Playlist);
-                Random r = new Random();
-                for (int i = 0; i < Playlist.Count; i++)
-                {
-                    if (i != _index)
-                    {
-                        int index1 = r.Next(i, Playlist.Count);
-                        int index2 = r.Next(i, Playlist.Count);
-                        if (index1 == _index)
-                            index1 = (index1 + 1) % Playlist.Count;
-                        if (index2 == _index)
-                            index2 = (index2 + 2) % Playlist.Count;
-                        Playlist.Move(index1, index2);
-                    }
-                }
+                shufflePlaylist(_index);
                 _isShuffled = true;
             }
             else
@@ -165,6 +151,21 @@ namespace VLC.Services.RunTime
                 _isShuffled = false;
             }
             OnPlaylistChanged?.Invoke();
+        }
+
+        private void shufflePlaylist(int doNotMoveIndex = -1)
+        {
+            _nonShuffledPlaylist = new SmartCollection<IMediaItem>(Playlist);
+            Random r = new Random();
+            // Perform three iterations to improve the randomness.
+            for (int i = 0; i < Playlist.Count * 3; i++)
+            {
+                int index1 = r.Next(0, Playlist.Count);
+                int index2 = r.Next(0, Playlist.Count);
+                if (index1 == doNotMoveIndex || index2 == doNotMoveIndex)
+                    continue;
+                Playlist.Move(index1, index2);
+            }
         }
 
         public void RemoveMedia(IMediaItem media)
@@ -199,11 +200,16 @@ namespace VLC.Services.RunTime
             await savePlaylistToBackgroundDB();
         }
 
-        public async Task SetPlaylist(IEnumerable<IMediaItem> mediaItems, int startingIndex = 0)
+        public async Task SetPlaylist(IEnumerable<IMediaItem> mediaItems, int startingIndex = 0, bool shuffle = false)
         {
             await clear();
             foreach (var m in mediaItems)
                 _playlist.Add(m);
+            if (shuffle)
+            {
+                shufflePlaylist();
+                _isShuffled = true;
+            }
             OnPlaylistChanged?.Invoke();
             Index = startingIndex;
             await savePlaylistToBackgroundDB();
