@@ -1,7 +1,7 @@
-From f5859ee475167d9bcf101ca792740fa6a89cd746 Mon Sep 17 00:00:00 2001
+From da0c3afebf45249242a935c821a439454d5c6c5b Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 1 Feb 2017 15:25:03 +0100
-Subject: [PATCH 12/15] direct3d11: support decoding I420 directly into GPU
+Subject: [PATCH 11/14] direct3d11: support decoding I420 directly into GPU
  memory
 
 Use a pixel shader with a texture set to DXGI_FORMAT_UNKNOWN with each of the
@@ -14,7 +14,7 @@ We still need a GPU copy to be able to render it.
  3 files changed, 230 insertions(+), 77 deletions(-)
 
 diff --git a/modules/video_chroma/dxgi_fmt.c b/modules/video_chroma/dxgi_fmt.c
-index 9fbf702..8154bef 100644
+index 9fbf702584..8154bef974 100644
 --- a/modules/video_chroma/dxgi_fmt.c
 +++ b/modules/video_chroma/dxgi_fmt.c
 @@ -66,10 +66,10 @@ static const dxgi_format_t dxgi_formats[] = {
@@ -53,7 +53,7 @@ index 9fbf702..8154bef 100644
  
  const char *DxgiFormatToStr(DXGI_FORMAT format)
 diff --git a/modules/video_chroma/dxgi_fmt.h b/modules/video_chroma/dxgi_fmt.h
-index dd4abfb..add06cb 100644
+index dd4abfbfdd..add06cbeb3 100644
 --- a/modules/video_chroma/dxgi_fmt.h
 +++ b/modules/video_chroma/dxgi_fmt.h
 @@ -29,7 +29,7 @@
@@ -66,7 +66,7 @@ index dd4abfb..add06cb 100644
  typedef struct
  {
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index ad3fa19..e69376f 100644
+index ad3fa19cdd..e69376fcbf 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -100,6 +100,7 @@ typedef struct
@@ -507,5 +507,5 @@ index ad3fa19..e69376f 100644
                          r->fmt.i_visible_width, r->fmt.i_visible_height);
                  for (int i=0; i<D3D11_MAX_SHADER_VIEW; i++)
 -- 
-2.10.1.windows.1
+2.11.0
 

@@ -1,7 +1,7 @@
-From 97a43d7d57f61ebde622b552a804edf1d7b00e39 Mon Sep 17 00:00:00 2001
+From 10d5e81a430e23b12ae8af6ac90ff4f38a4bb1f8 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 1 Feb 2017 13:42:04 +0100
-Subject: [PATCH 09/15] direct3d11: keep track of mapped surfaces
+Subject: [PATCH 08/14] direct3d11: keep track of mapped surfaces
 
 ---
  modules/video_chroma/d3d11_fmt.h        | 1 +
@@ -9,7 +9,7 @@ Subject: [PATCH 09/15] direct3d11: keep track of mapped surfaces
  2 files changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/modules/video_chroma/d3d11_fmt.h b/modules/video_chroma/d3d11_fmt.h
-index caea919..dcffe35 100644
+index caea919a77..dcffe353b2 100644
 --- a/modules/video_chroma/d3d11_fmt.h
 +++ b/modules/video_chroma/d3d11_fmt.h
 @@ -40,6 +40,7 @@ struct picture_sys_t
@@ -21,7 +21,7 @@ index caea919..dcffe35 100644
  
  /* index to use for texture/resource that use a known DXGI format
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 510e9b0..ad3fa19 100644
+index 510e9b0352..ad3fa19cdd 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -396,13 +396,19 @@ static int Direct3D11MapPoolTexture(picture_t *picture)
@@ -46,5 +46,5 @@ index 510e9b0..ad3fa19 100644
  
  #if !VLC_WINSTORE_APP
 -- 
-2.10.1.windows.1
+2.11.0
 

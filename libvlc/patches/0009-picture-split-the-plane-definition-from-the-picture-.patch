@@ -1,7 +1,7 @@
-From 8dd9cad579badcc41abd041be014efebf46dbaf2 Mon Sep 17 00:00:00 2001
+From f19f07de4f188481a63159af2bf5664d1d4b1580 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 20 Jan 2017 18:23:31 +0100
-Subject: [PATCH 10/15] picture: split the plane definition from the picture
+Subject: [PATCH 09/14] picture: split the plane definition from the picture
  creation
 
 This way we can tell plane dimensions from a video format anywhere.
@@ -17,7 +17,7 @@ replaces https://patches.videolan.org/patch/15499/
  3 files changed, 26 insertions(+), 3 deletions(-)
 
 diff --git a/include/vlc_picture.h b/include/vlc_picture.h
-index b8d4a5a..865fdeb 100644
+index b8d4a5a223..865fdebcc7 100644
 --- a/include/vlc_picture.h
 +++ b/include/vlc_picture.h
 @@ -222,6 +222,20 @@ VLC_API int picture_Export( vlc_object_t *p_obj, block_t **pp_image, video_forma
@@ -42,7 +42,7 @@ index b8d4a5a..865fdeb 100644
  /*****************************************************************************
   * Shortcuts to access image components
 diff --git a/src/libvlccore.sym b/src/libvlccore.sym
-index 8c4d6cd..4a16658 100644
+index 8c4d6cd2e7..4a16658062 100644
 --- a/src/libvlccore.sym
 +++ b/src/libvlccore.sym
 @@ -327,6 +327,7 @@ picture_pool_Wait
@@ -54,7 +54,7 @@ index 8c4d6cd..4a16658 100644
  playlist_AddExt
  playlist_AddInput
 diff --git a/src/misc/picture.c b/src/misc/picture.c
-index 0a2dc8f..7421c2e 100644
+index 0a2dc8f69a..7421c2e807 100644
 --- a/src/misc/picture.c
 +++ b/src/misc/picture.c
 @@ -154,8 +154,15 @@ int picture_Setup( picture_t *p_picture, const video_format_t *restrict fmt )
@@ -94,5 +94,5 @@ index 0a2dc8f..7421c2e 100644
      return VLC_SUCCESS;
  }
 -- 
-2.10.1.windows.1
+2.11.0
 

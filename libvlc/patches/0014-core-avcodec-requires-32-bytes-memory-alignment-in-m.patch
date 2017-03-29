@@ -1,7 +1,7 @@
-From 6a4cbbb2ca3c4a9836283201a0f067b00539f0d8 Mon Sep 17 00:00:00 2001
+From 73d52b842b51c4400d8bba31cf58769ca42d640d Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 25 Jan 2017 10:49:37 +0100
-Subject: [PATCH 15/15] core: avcodec requires 32-bytes memory alignment in
+Subject: [PATCH 14/14] core: avcodec requires 32-bytes memory alignment in
  many cases
 
 For example a IA0L texture on Windows is not 32 bytes aligned and avcodec
@@ -16,7 +16,7 @@ replaces https://patches.videolan.org/patch/7971/
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/misc/picture.c b/src/misc/picture.c
-index 7421c2e..944cec1 100644
+index 7421c2e807..944cec1f05 100644
 --- a/src/misc/picture.c
 +++ b/src/misc/picture.c
 @@ -62,7 +62,7 @@ static int AllocatePicture( picture_t *p_pic )
@@ -29,5 +29,5 @@ index 7421c2e..944cec1 100644
      {
          p_pic->i_planes = 0;
 -- 
-2.10.1.windows.1
+2.11.0
 
