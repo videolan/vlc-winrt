@@ -170,9 +170,9 @@ namespace VLC.Model.Library
             return success;
         }
 
-        public Task AskVideoThumbnail(VideoItem videoVm)
+        public void GenerateVideoThumbnailAsync(VideoItem videoVm)
         {
-            return Task.Run(async () =>
+            Task.Run(async () =>
             {
                 await VideoThumbnailFetcherSemaphoreSlim.WaitAsync();
                 try
@@ -492,7 +492,7 @@ namespace VLC.Model.Library
                 if (show == null)
                 {
                     // Generate a thumbnail for the show
-                    await Locator.MediaLibrary.AskVideoThumbnail(episode);
+                    Locator.MediaLibrary.GenerateVideoThumbnailAsync(episode);
 
                     show = new TvShow(episode.ShowTitle);
                     await DispatchHelper.InvokeInUIThreadHighPriority(() => show.Episodes.Add(episode));
