@@ -283,10 +283,7 @@ namespace VLC
 
             if (disableConsumingTasks == false)
             {
-                var _ = Task.Run(async () =>
-                {
-                    await LoadLibraries();
-                });
+                Locator.MediaLibrary.LoadAndCleanLibrariesAsync();
                 Locator.PlaybackService.RestorePlaylistAsync();
             }
             Locator.GamepadService.GamepadUpdated += async (s, e) =>
@@ -345,15 +342,8 @@ namespace VLC
             {
                 if (Locator.MediaLibrary.AlreadyIndexedOnce)
                     return;
-                Task.Run(async () => await LoadLibraries());
+                Locator.MediaLibrary.LoadAndCleanLibrariesAsync();
             }
-        }
-
-        private async Task LoadLibraries()
-        {
-            Locator.MediaLibrary.DropTablesIfNeeded();
-            await Locator.MediaLibrary.CleanMediaLibrary().ConfigureAwait(false);
-            await Locator.MediaLibrary.Initialize().ConfigureAwait(false);
         }
 
         public static void SetLanguage()

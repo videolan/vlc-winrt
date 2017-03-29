@@ -58,7 +58,7 @@ namespace VLC.Model.Library
 
         private Task ExternalDeviceService_MustUnindexExternalDevice()
         {
-            return Task.Run(async () => await CleanMediaLibrary().ConfigureAwait(false));
+            return Task.Run(async () => await cleanMediaLibrary().ConfigureAwait(false));
         }
 
         #region properties
@@ -201,6 +201,17 @@ namespace VLC.Model.Library
         #endregion
 
         #region IndexationLogic
+
+        public void LoadAndCleanLibrariesAsync()
+        {
+            Task.Run(async () =>
+            {
+                Locator.MediaLibrary.DropTablesIfNeeded();
+                await initialize().ConfigureAwait(false);
+                await cleanMediaLibrary().ConfigureAwait(false);
+            });
+        }
+
         public void DropTablesIfNeeded()
         {
             if (!Numbers.NeedsToDrop()) return;
@@ -218,11 +229,13 @@ namespace VLC.Model.Library
         public Task RescanLibrary()
         {
             _alreadyIndexedOnce = false;
-            return Initialize();
+            return initialize();
         }
 
-        public async Task Initialize()
+        private async Task initialize()
         {
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
+
             Artists.Clear();
             Albums.Clear();
             Tracks.Clear();
@@ -240,6 +253,8 @@ namespace VLC.Model.Library
                 await loadCameraRollFromDatabase();
             }
             await PerformMediaLibraryIndexing();
+
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
         }
 
         private async Task clearDatabase()
@@ -272,8 +287,6 @@ namespace VLC.Model.Library
 
         async Task PerformMediaLibraryIndexing()
         {
-            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
-
             StorageFolder folder = await FileUtils.GetLocalStorageMediaFolder();
             await MediaLibraryHelper.ForeachSupportedFile(folder, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
             await MediaLibraryHelper.ForeachSupportedFile(KnownFolders.VideosLibrary, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
@@ -288,8 +301,6 @@ namespace VLC.Model.Library
             var albums = LoadAlbums(null);
             if (albums != null)
                 await CortanaHelper.SetPhraseList("albumName", albums.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
-
-            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
         }
 
         async Task DiscoverMediaItems(IReadOnlyList<StorageFile> files, bool isCameraRoll = false)
@@ -443,7 +454,7 @@ namespace VLC.Model.Library
         }
 
         // Remove items that are no longer reachable.
-        public async Task CleanMediaLibrary()
+        private async Task cleanMediaLibrary()
         {
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
             // Clean videos
