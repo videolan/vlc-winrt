@@ -220,12 +220,10 @@ namespace VLC.ViewModels.RemovableDevicesVM
                 FileExplorerVisibility = Visibility.Collapsed;
                 RootFoldersVisibility = Visibility.Visible;
             }
-            await Task.Run(async () =>
-            {
-                Locator.MediaLibrary.MediaListItemAdded += VLCService_MediaListItemAdded;
-                Locator.MediaLibrary.MediaListItemDeleted += VLCService_MediaListItemDeleted;
-                await Locator.MediaLibrary.InitDiscoverer();
-            });
+
+            Locator.MediaLibrary.MediaListItemAdded += VLCService_MediaListItemAdded;
+            Locator.MediaLibrary.MediaListItemDeleted += VLCService_MediaListItemDeleted;
+            await Locator.MediaLibrary.InitDiscoverer();
 
             await InitializeUSBKey();
         }
