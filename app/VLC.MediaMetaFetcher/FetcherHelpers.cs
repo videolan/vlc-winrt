@@ -33,7 +33,6 @@ namespace VLC.MediaMetaFetcher
                             folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
 
                         var file = await folder.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
-                        Debug.WriteLine("Writing file " + folderName + " " + id);
                         using (var raStream = await file.OpenAsync(FileAccessMode.ReadWrite))
                         {
                             using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
