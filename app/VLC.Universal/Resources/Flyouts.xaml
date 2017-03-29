@@ -33,8 +33,7 @@
 
     <MenuFlyout x:Key="SongCollectionBaseFlyout">
         <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=PlayAll}"
-                                    Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllSongsCommand}"
-                                    CommandParameter="{Binding CurrentArtist}" />
+                        Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllSongsCommand}" />
         <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Shuffle}"
                                     Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}" />
     </MenuFlyout>
