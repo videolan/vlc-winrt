@@ -37,6 +37,8 @@ namespace VLC.Model.Library
             return Task.Run(async () =>
             {
                 await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
+                await IndexationSemaphoreSlim.WaitAsync();
+
                 StorageFolder folder;
                 // Windows.Devices.Portable.StorageDevice.FromId blocks forever on Xbox... so work around
                 if (Helpers.DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox &&
@@ -52,6 +54,8 @@ namespace VLC.Model.Library
                 if (!StorageApplicationPermissions.FutureAccessList.CheckAccess(folder))
                     StorageApplicationPermissions.FutureAccessList.Add(folder);
                 await MediaLibraryHelper.ForeachSupportedFile(folder, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
+
+                IndexationSemaphoreSlim.Release();
                 await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
             });
         }
@@ -117,6 +121,8 @@ namespace VLC.Model.Library
 
         readonly SemaphoreSlim AlbumCoverFetcherSemaphoreSlim = new SemaphoreSlim(4);
         readonly SemaphoreSlim ArtistPicFetcherSemaphoreSlim = new SemaphoreSlim(4);
+
+        readonly SemaphoreSlim IndexationSemaphoreSlim = new SemaphoreSlim(1);
 
         public void FetchAlbumCoverOrWaitAsync(AlbumItem albumItem)
         {
@@ -235,6 +241,8 @@ namespace VLC.Model.Library
         private async Task initialize()
         {
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
+            await IndexationSemaphoreSlim.WaitAsync();
+
 
             Artists.Clear();
             Albums.Clear();
@@ -254,6 +262,7 @@ namespace VLC.Model.Library
             }
             await PerformMediaLibraryIndexing();
 
+            IndexationSemaphoreSlim.Release();
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
         }
 
@@ -451,6 +460,8 @@ namespace VLC.Model.Library
         private async Task cleanMediaLibrary()
         {
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loading);
+            await IndexationSemaphoreSlim.WaitAsync();
+
             // Clean videos
             var videos = LoadVideos(x => true);
             foreach (var video in videos)
@@ -478,6 +489,8 @@ namespace VLC.Model.Library
                     await RemoveMediaFromCollectionAndDatabase(track);
                 }
             }
+
+            IndexationSemaphoreSlim.Release();
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
         }
 
