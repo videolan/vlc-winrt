@@ -118,9 +118,9 @@ namespace VLC.Model.Library
         readonly SemaphoreSlim AlbumCoverFetcherSemaphoreSlim = new SemaphoreSlim(4);
         readonly SemaphoreSlim ArtistPicFetcherSemaphoreSlim = new SemaphoreSlim(4);
 
-        public Task FetchAlbumCoverOrWaitAsync(AlbumItem albumItem)
+        public void FetchAlbumCoverOrWaitAsync(AlbumItem albumItem)
         {
-            return Task.Run(async () =>
+            Task.Run(async () =>
             {
                 await AlbumCoverFetcherSemaphoreSlim.WaitAsync();
                 try
@@ -134,9 +134,9 @@ namespace VLC.Model.Library
             });
         }
 
-        public Task FetchArtistPicOrWaitAsync(ArtistItem artistItem)
+        public void FetchArtistPicOrWaitAsync(ArtistItem artistItem)
         {
-            return Task.Run(async () =>
+            Task.Run(async () =>
             {
                 await ArtistPicFetcherSemaphoreSlim.WaitAsync();
                 try
