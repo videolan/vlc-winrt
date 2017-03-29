@@ -286,8 +286,8 @@ namespace VLC
                 var _ = Task.Run(async () =>
                 {
                     await LoadLibraries();
-                    await Locator.PlaybackService.RestorePlaylist();
                 });
+                Locator.PlaybackService.RestorePlaylistAsync();
             }
             Locator.GamepadService.GamepadUpdated += async (s, e) =>
             {

@@ -212,9 +212,9 @@ namespace VLC.Services.RunTime
             set { _playlistService.Repeat = value; }
         }
 
-        public Task RestorePlaylist()
+        public void RestorePlaylistAsync()
         {
-            return _playlistService.Restore();
+            Task.Run(() => _playlistService.Restore());
         }
         private async void onCurrentMediaChanged(IMediaItem media, bool isRewind)
         {
