@@ -112,14 +112,14 @@ namespace VLC.Services.RunTime
 
         public async Task Clear()
         {
-            await clear();
-            await savePlaylistToBackgroundDB();
+            clear();
+            savePlaylistToBackgroundDB();
             OnPlaylistChanged?.Invoke();
         }
 
-        private async Task clear()
+        private void clear()
         {
-            await BackgroundTrackRepository.Clear();
+            BackgroundTrackRepository.Clear();
             _playlist.Clear();
             _nonShuffledPlaylist?.Clear();
             _index = 0;
@@ -178,7 +178,7 @@ namespace VLC.Services.RunTime
             }
         }
 
-        private async Task savePlaylistToBackgroundDB()
+        private void savePlaylistToBackgroundDB()
         {
             var trackItems = _playlist.OfType<TrackItem>();
             var backgroundTrackItems = new List<BackgroundTrackItem>();
@@ -189,20 +189,20 @@ namespace VLC.Services.RunTime
                     TrackId = track.Id
                 });
             }
-            await BackgroundTrackRepository.Add(backgroundTrackItems);
+            BackgroundTrackRepository.Add(backgroundTrackItems);
         }
 
-        public async Task AddToPlaylist(IEnumerable<IMediaItem> toAdd)
+        public void AddToPlaylist(IEnumerable<IMediaItem> toAdd)
         {
             foreach (var m in toAdd)
                 _playlist.Add(m);
             OnPlaylistChanged?.Invoke();
-            await savePlaylistToBackgroundDB();
+            savePlaylistToBackgroundDB();
         }
 
         public async Task SetPlaylist(IEnumerable<IMediaItem> mediaItems, int startingIndex = 0, bool shuffle = false)
         {
-            await clear();
+            clear();
             foreach (var m in mediaItems)
                 _playlist.Add(m);
             if (shuffle)
@@ -212,15 +212,15 @@ namespace VLC.Services.RunTime
             }
             OnPlaylistChanged?.Invoke();
             Index = startingIndex;
-            await savePlaylistToBackgroundDB();
+            savePlaylistToBackgroundDB();
         }
 
-        public async Task Restore()
+        public void Restore()
         {
             if (!ApplicationSettingsHelper.Contains(nameof(Index)))
                 return;
 
-            var playlist = await BackgroundTrackRepository.LoadPlaylist();
+            var playlist = BackgroundTrackRepository.LoadPlaylist();
             if (!playlist.Any())
                 return;
 
@@ -237,7 +237,7 @@ namespace VLC.Services.RunTime
             {
                 return;
             }
-            await clear();
+            clear();
             _playlist = restoredplaylist;
             OnPlaylistChanged?.Invoke();
             _index = (int)ApplicationSettingsHelper.ReadSettingsValue(nameof(Index));

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using VLC.Utils;
 using VLC.Model.Music;
 using SQLite;
@@ -12,75 +10,76 @@ namespace VLC.Database
     {
         private static readonly string DbPath = Strings.MusicBackgroundDatabase;
 
+        private SQLiteConnectionWithLock connection = new SQLiteConnectionWithLock(new SQLiteConnectionString(DbPath, false),
+            SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.SharedCache);
+
         public BackgroundTrackDatabase()
         {
-            try
-            {
-                Initialize();
-            }
-            catch
-            {
-                // There seems to be a problem causing the application to crash when trying to migrate the tables.
-                // If such a case happen, try to drop and recreate the table, cross your fingers, and hope for the best
-                Drop();
-                Initialize();
-            }
+            Initialize();
         }
 
         public void Initialize()
         {
-            using (var db = new SQLiteConnection(DbPath))
+            using (connection.Lock())
             {
-                db.CreateTable<BackgroundTrackItem>();
+                connection.CreateTable<BackgroundTrackItem>();
             }
         }
 
         public void Drop()
         {
-            using (var db = new SQLiteConnection(DbPath))
+            using (connection.Lock())
             {
-                db.DropTable<BackgroundTrackItem>();
+                connection.DropTable<BackgroundTrackItem>();
             }
         }
 
         public void DeleteAll()
         {
-            using (var db = new SQLiteConnection(DbPath))
+            using (connection.Lock())
             {
-                db.DeleteAll<BackgroundTrackItem>();
+                connection.DeleteAll<BackgroundTrackItem>();
             }
         }
 
-        public async Task Add(BackgroundTrackItem track)
+        public void Add(BackgroundTrackItem track)
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            await connection.InsertAsync(track);
+            using (connection.Lock())
+            {
+                connection.Insert(track);
+            }
         }
 
-        public async Task Add(IEnumerable<BackgroundTrackItem> tracks)
+        public void Add(IEnumerable<BackgroundTrackItem> tracks)
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            await connection.InsertAllAsync(tracks);
+            using (connection.Lock())
+            {
+                connection.InsertAll(tracks);
+            }
         }
 
-        public async Task<List<BackgroundTrackItem>> LoadPlaylist()
+        public List<BackgroundTrackItem> LoadPlaylist()
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            var query = connection.Table<BackgroundTrackItem>();
-            var tracks = await query.ToListAsync();
-            return tracks;
+            using (connection.Lock())
+            {
+                return connection.Table<BackgroundTrackItem>().ToList();
+            }
         }
 
-        public async Task Remove(BackgroundTrackItem track)
+        public void Remove(BackgroundTrackItem track)
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            await connection.DeleteAsync(track);
+            using (connection.Lock())
+            {
+                connection.Delete(track);
+            }
         }
 
-        public Task Clear()
+        public void Clear()
         {
-            var c = new SQLiteAsyncConnection(DbPath);
-            return c.ExecuteAsync($"DELETE FROM {nameof(BackgroundTrackItem)}");
+            using (connection.Lock())
+            {
+                connection.Execute($"DELETE FROM {nameof(BackgroundTrackItem)}");
+            }
         }
     }
 }

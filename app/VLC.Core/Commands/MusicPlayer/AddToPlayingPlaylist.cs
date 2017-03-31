@@ -12,14 +12,14 @@ namespace VLC.Commands.MusicPlayer
 {
     public class AddToPlayingPlaylist : AlwaysExecutableCommand
     {
-        public override async void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             var trackItem = parameter as TrackItem;
             if (trackItem != null)
             {
                 var playlist = new List<IMediaItem>() { trackItem };
 
-                await Locator.PlaybackService.AddToPlaylist(playlist);
+                Locator.PlaybackService.AddToPlaylist(playlist);
             }
             else
             {
@@ -28,7 +28,7 @@ namespace VLC.Commands.MusicPlayer
                 {
                     var playlist = Locator.MediaLibrary.LoadTracksByAlbumId(albumItem.Id);
 
-                    await Locator.PlaybackService.AddToPlaylist(playlist);
+                    Locator.PlaybackService.AddToPlaylist(playlist);
                 }
             }
         }
