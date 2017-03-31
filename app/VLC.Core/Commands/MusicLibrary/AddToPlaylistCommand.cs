@@ -7,15 +7,15 @@ namespace VLC.Commands.MusicLibrary
 {
     public class AddToPlaylistCommand : AlwaysExecutableCommand
     {
-        public override async void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             if (parameter is TrackItem)
             {
-                await Locator.MediaLibrary.AddToPlaylist(parameter as TrackItem);
+                Locator.MediaLibrary.AddToPlaylist(parameter as TrackItem);
             }
             else if (parameter is AlbumItem)
             {
-                await Locator.MediaLibrary.AddToPlaylist(parameter as AlbumItem);
+                Locator.MediaLibrary.AddToPlaylist(parameter as AlbumItem);
             }
         }
     }

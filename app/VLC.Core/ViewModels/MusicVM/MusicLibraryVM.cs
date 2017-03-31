@@ -331,7 +331,7 @@ namespace VLC.ViewModels.MusicVM
                 case MusicView.Playlists:
                     if (LoadingStatePlaylists == LoadingState.NotLoaded)
                     {
-                        await InitializePlaylists();
+                        InitializePlaylists();
                     }
                     break;
                 default:
@@ -544,10 +544,10 @@ namespace VLC.ViewModels.MusicVM
             });
         }
 
-        public async Task InitializePlaylists()
+        public void InitializePlaylists()
         {
             LoadingStatePlaylists = LoadingState.Loading;
-            await Locator.MediaLibrary.LoadPlaylistsFromDatabase();
+            Locator.MediaLibrary.LoadPlaylistsFromDatabase();
             OnPropertyChanged(nameof(TrackCollections));
             LoadingStatePlaylists = LoadingState.Loaded;
         }

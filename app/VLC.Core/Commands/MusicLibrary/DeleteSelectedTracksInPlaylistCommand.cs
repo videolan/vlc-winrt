@@ -16,12 +16,11 @@ namespace VLC.Commands.MusicLibrary
             {
                 var trackItem = selectedItem as TrackItem;
                 if (trackItem == null) continue;
-                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, async () =>
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
                 {
                     try
                     {
-                        await
-                            Locator.MediaLibrary.RemoveTrackInPlaylist(trackItem.Id,
+                        Locator.MediaLibrary.RemoveTrackInPlaylist(trackItem.Id,
                                 Locator.MusicLibraryVM.CurrentTrackCollection.Id);
                         Locator.MusicLibraryVM.CurrentTrackCollection.Remove(trackItem);
                     }

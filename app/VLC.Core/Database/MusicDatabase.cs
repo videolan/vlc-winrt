@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using VLC.Model;
 using VLC.Model.Music;
 using VLC.Utils;
 
@@ -14,91 +15,52 @@ namespace VLC.Database
     public class MusicDatabase : IDatabase
     {
         private static readonly string DbPath = Strings.MusicDatabase;
-        private static SQLiteConnectionWithLock _connection;
 
-        private static SQLiteConnectionWithLock Connection => _connection ?? (_connection = new SQLiteConnectionWithLock(new SQLiteConnectionString(DbPath, false),
-            SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.SharedCache));
+        private static SQLiteConnectionWithLock connection = new SQLiteConnectionWithLock(new SQLiteConnectionString(DbPath, false),
+            SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.SharedCache);
 
         public void Initialize()
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                Connection.CreateTable<ArtistItem>();
-                Connection.CreateTable<AlbumItem>();
-                Connection.CreateTable<TrackItem>();
+                connection.CreateTable<ArtistItem>();
+                connection.CreateTable<AlbumItem>();
+                connection.CreateTable<TrackItem>();
+                connection.CreateTable<TracklistItem>();
+                connection.CreateTable<PlaylistItem>();
             }
         }
 
         public void DeleteAll()
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                Connection.DeleteAll<ArtistItem>();
-                Connection.DeleteAll<AlbumItem>();
-                Connection.DeleteAll<TrackItem>();
+                connection.DeleteAll<ArtistItem>();
+                connection.DeleteAll<AlbumItem>();
+                connection.DeleteAll<TrackItem>();
+                connection.DeleteAll<TracklistItem>();
+                connection.DeleteAll<PlaylistItem>();
             }
         }
 
         public void Drop()
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                Connection.DropTable<ArtistItem>();
-                Connection.DropTable<AlbumItem>();
-                Connection.DropTable<TrackItem>();
+                connection.DropTable<ArtistItem>();
+                connection.DropTable<AlbumItem>();
+                connection.DropTable<TrackItem>();
+                connection.DropTable<TracklistItem>();
+                connection.DropTable<PlaylistItem>();
             }
         }
 
-        public bool IsEmpty()
-        {
-            using (Connection.Lock())
-            {
-                return Connection.Table<TrackItem>().Count() == 0;
-            }
-        }
-
-        #region load artists
-        public ArtistItem LoadArtistFromId(int artistId)
-        {
-            using (Connection.Lock())
-            {
-                return Connection.Table<ArtistItem>().Where(x => x.Id.Equals(artistId)).FirstOrDefault();
-            }
-        }
-
-        public List<ArtistItem> LoadArtists(Expression<Func<ArtistItem, bool>> compare = null)
-        {
-            using (Connection.Lock())
-            {
-                TableQuery<ArtistItem> query;
-                if (compare == null)
-                {
-                    query = Connection.Table<ArtistItem>();
-                }
-                else
-                {
-                    query = Connection.Table<ArtistItem>().Where(compare);
-                }
-                var artists = query.ToList();
-                return artists;
-            }
-        }
-
-        public ArtistItem LoadFromArtistName(string artistName)
-        {
-            using (Connection.Lock())
-            {
-                return Connection.Table<ArtistItem>().Where(x => x.Name.Equals(artistName)).FirstOrDefault();
-            }
-        }
-
-        #endregion
-        #region load albums
+        #region AlbumItem
         public AlbumItem LoadAlbumFromId(int albumId)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Table<AlbumItem>().Where(x => x.Id.Equals(albumId)).FirstOrDefault();
+                return connection.Table<AlbumItem>().Where(x => x.Id.Equals(albumId)).FirstOrDefault();
             }
         }
 
@@ -110,12 +72,12 @@ namespace VLC.Database
         /// <returns></returns>
         public List<AlbumItem> LoadAlbumsFromIdWithTracks(int artistId)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                var albums = Connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).OrderBy(x => x.Name).ToList();
+                var albums = connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).OrderBy(x => x.Name).ToList();
                 foreach (var album in albums)
                 {
-                    var tracks = Connection.Table<TrackItem>().Where(x => x.AlbumId == album.Id).OrderBy(x => x.DiscNumber).ThenBy(x => x.Index).ToList();
+                    var tracks = connection.Table<TrackItem>().Where(x => x.AlbumId == album.Id).OrderBy(x => x.DiscNumber).ThenBy(x => x.Index).ToList();
                     album.Tracks = tracks;
                 }
                 return albums;
@@ -124,33 +86,32 @@ namespace VLC.Database
 
         public int LoadAlbumsCountFromId(int artistId)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).Count();
+                return connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).Count();
             }
         }
 
         public AlbumItem LoadAlbumFromName(int artistId, string albumName)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Table<AlbumItem>().Where(x => x.Name.Equals(albumName)).Where(x => x.ArtistId == artistId).FirstOrDefault();
+                return connection.Table<AlbumItem>().Where(x => x.Name.Equals(albumName)).Where(x => x.ArtistId == artistId).FirstOrDefault();
             }
         }
 
-
         public List<AlbumItem> LoadAlbums(Expression<Func<AlbumItem, bool>> compare = null)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
                 TableQuery<AlbumItem> query;
                 if (compare == null)
                 {
-                    query = Connection.Table<AlbumItem>();
+                    query = connection.Table<AlbumItem>();
                 }
                 else
                 {
-                    query = Connection.Table<AlbumItem>().Where(compare);
+                    query = connection.Table<AlbumItem>().Where(compare);
                 }
                 return query.ToList();
             }
@@ -158,16 +119,16 @@ namespace VLC.Database
 
         public List<AlbumItem> Load(Expression<Func<AlbumItem, bool>> compare = null)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
                 TableQuery<AlbumItem> query;
                 if (compare == null)
                 {
-                    query = Connection.Table<AlbumItem>();
+                    query = connection.Table<AlbumItem>();
                 }
                 else
                 {
-                    query = Connection.Table<AlbumItem>().Where(compare);
+                    query = connection.Table<AlbumItem>().Where(compare);
                 }
                 return query.ToList();
             }
@@ -175,44 +136,67 @@ namespace VLC.Database
 
         public List<AlbumItem> LoadAlbumsFromArtistId(int artistId)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).OrderBy(x => x.Name).ToList();
+                return connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).OrderBy(x => x.Name).ToList();
             }
         }
 
         public List<AlbumItem> LoadAlbumsFromColumnValue(string column, string value)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Query<AlbumItem>($"SELECT * FROM {nameof(AlbumItem)} WHERE {column} LIKE '%{value}%';", new string[] { });
+                return connection.Query<AlbumItem>($"SELECT * FROM {nameof(AlbumItem)} WHERE {column} LIKE '%{value}%';", new string[] { });
             }
+        }
+
+        public void Add(AlbumItem album)
+        {
+            using (connection.Lock())
+            {
+                connection.Insert(album);
+            }
+        }
+
+        public void Update(AlbumItem album)
+        {
+            using (connection.Lock())
+            {
+                connection.Update(album);
+            }
+        }
+
+        public void Remove(AlbumItem album)
+        {
+            if (album == null)
+                return;
+            using (connection.Lock())
+                connection.Delete(album);
         }
         #endregion
 
-        #region load tracks
-
+        #region TrackItem
         public TrackItem LoadTrackFromId(int trackId)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Table<TrackItem>().Where(x => x.Id.Equals(trackId)).FirstOrDefault();
+                return connection.Table<TrackItem>().Where(x => x.Id.Equals(trackId)).FirstOrDefault();
             }
         }
 
         public List<TrackItem> LoadTracks()
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Table<TrackItem>().OrderBy(x => x.Name).ToList();
+                return connection.Table<TrackItem>().OrderBy(x => x.Name).ToList();
             }
         }
 
         public TrackItem LoadTrackFromPath(string path)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                var query = Connection.Table<TrackItem>().Where(x => x.Path == path);
+                var query = connection.Table<TrackItem>().Where(x => x.Path == path);
                 if (query.Count() > 0)
                 {
                     var track = query.FirstOrDefault();
@@ -224,127 +208,214 @@ namespace VLC.Database
 
         public List<TrackItem> LoadTracksFromAlbumId(int albumId)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Table<TrackItem>().Where(x => x.AlbumId == albumId).OrderBy(x => x.DiscNumber).ThenBy(x => x.Index).ToList();
+                return connection.Table<TrackItem>().Where(x => x.AlbumId == albumId).OrderBy(x => x.DiscNumber).ThenBy(x => x.Index).ToList();
             }
         }
 
         public List<TrackItem> LoadTracksFromArtistId(int artistId)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Table<TrackItem>().Where(x => x.ArtistId == artistId).ToList();
+                return connection.Table<TrackItem>().Where(x => x.ArtistId == artistId).ToList();
             }
         }
-        #endregion
 
-        #region contains
+        public bool HasNoTrack()
+        {
+            using (connection.Lock())
+            {
+                return connection.Table<TrackItem>().Count() == 0;
+            }
+        }
 
         public bool ContainsTrack(string path)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Table<TrackItem>().Where(x => x.Path == path).Count() != 0;
-            }
-        }
-        #endregion
-        #region update
-        public void Update(ArtistItem artist)
-        {
-            using (Connection.Lock())
-            {
-                Connection.Update(artist);
-            }
-        }
-
-
-        public void Update(AlbumItem album)
-        {
-            using (Connection.Lock())
-            {
-                Connection.Update(album);
-            }
-        }
-
-        public void Update(TrackItem track)
-        {
-            using (Connection.Lock())
-            {
-                Connection.Update(track);
-            }
-        }
-        #endregion
-        #region add
-        public void Add(ArtistItem artist)
-        {
-            using (Connection.Lock())
-            {
-                Connection.Insert(artist);
-            }
-        }
-
-        public void Add(AlbumItem album)
-        {
-            using (Connection.Lock())
-            {
-                Connection.Insert(album);
+                return connection.Table<TrackItem>().Where(x => x.Path == path).Count() != 0;
             }
         }
 
         public void Add(TrackItem track)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                var query = Connection.Table<TrackItem>().Where(x => x.Path == track.Path);
+                var query = connection.Table<TrackItem>().Where(x => x.Path == track.Path);
                 var result = query.ToList();
                 if (result.Count() == 0)
-                    Connection.Insert(track);
+                    connection.Insert(track);
             }
         }
 
-        #endregion
-        #region remove
-
-        public void Remove(ArtistItem artist)
+        public void Update(TrackItem track)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                Connection.Delete(artist);
+                connection.Update(track);
             }
-        }
-
-        public void Remove(AlbumItem album)
-        {
-            if (album == null)
-                return;
-            using (Connection.Lock())
-                Connection.Delete(album);
         }
 
         public void Remove(TrackItem track)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                Connection.Delete(track);
+                connection.Delete(track);
             }
         }
         #endregion
 
+        #region ArtistItem
+        public ArtistItem LoadArtistFromId(int artistId)
+        {
+            using (connection.Lock())
+            {
+                return connection.Table<ArtistItem>().Where(x => x.Id.Equals(artistId)).FirstOrDefault();
+            }
+        }
+
+        public List<ArtistItem> LoadArtists(Expression<Func<ArtistItem, bool>> compare = null)
+        {
+            using (connection.Lock())
+            {
+                TableQuery<ArtistItem> query;
+                if (compare == null)
+                {
+                    query = connection.Table<ArtistItem>();
+                }
+                else
+                {
+                    query = connection.Table<ArtistItem>().Where(compare);
+                }
+                var artists = query.ToList();
+                return artists;
+            }
+        }
+
+        public ArtistItem LoadFromArtistName(string artistName)
+        {
+            using (connection.Lock())
+            {
+                return connection.Table<ArtistItem>().Where(x => x.Name.Equals(artistName)).FirstOrDefault();
+            }
+        }
+
         public int ArtistsCount()
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Table<ArtistItem>().Count();
+                return connection.Table<ArtistItem>().Count();
             }
         }
 
         public ArtistItem ArtistAt(int index)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Table<ArtistItem>().ElementAt(index);
+                return connection.Table<ArtistItem>().ElementAt(index);
             }
         }
+
+        public void Add(ArtistItem artist)
+        {
+            using (connection.Lock())
+            {
+                connection.Insert(artist);
+            }
+        }
+
+        public void Update(ArtistItem artist)
+        {
+            using (connection.Lock())
+            {
+                connection.Update(artist);
+            }
+        }
+
+        public void Remove(ArtistItem artist)
+        {
+            using (connection.Lock())
+            {
+                connection.Delete(artist);
+            }
+        }
+        #endregion
+
+        #region TracklistItem
+        public List<TracklistItem> LoadTracks(PlaylistItem trackCollection)
+        {
+            using (connection.Lock())
+            {
+                return connection.Table<TracklistItem>().Where(x => x.TrackCollectionId == trackCollection.Id).ToList();
+            }
+        }
+
+        public void Add(TracklistItem track)
+        {
+            using (connection.Lock())
+            {
+                connection.Insert(track);
+            }
+        }
+
+        public void Remove(TracklistItem track)
+        {
+            using (connection.Lock())
+            {
+                connection.Delete(track);
+            }
+        }
+
+        public void RemoveTracklistItemWithIds(int trackId, int trackCollectionId)
+        {
+            using (connection.Lock())
+            {
+                connection.Execute("DELETE FROM TracklistItem WHERE TrackCollectionId=? AND TrackId=?;", trackCollectionId, trackId);
+            }
+        }
+
+        public void Clear()
+        {
+            using (connection.Lock())
+            {
+                connection.Execute("DELETE FROM TracklistItem");
+            }
+        }
+        #endregion
+
+        #region PlaylistItem
+        public PlaylistItem LoadPlayListItemFromName(string name)
+        {
+            using (connection.Lock())
+            {
+                return connection.Table<PlaylistItem>().Where(x => x.Name == name).FirstOrDefault();
+            }
+        }
+
+        public List<PlaylistItem> LoadTrackCollections()
+        {
+            using (connection.Lock())
+            {
+                return connection.Table<PlaylistItem>().ToList();
+            }
+        }
+
+        public void Add(PlaylistItem trackCollection)
+        {
+            using (connection.Lock())
+            {
+                connection.Insert(trackCollection);
+            }
+        }
+
+        public void Remove(PlaylistItem trackCollection)
+        {
+            using (connection.Lock())
+            {
+                connection.Delete(trackCollection);
+            }
+        }
+        #endregion
     }
 }

@@ -88,8 +88,6 @@ namespace VLC.Model.Library
 
         #region databases
         readonly MusicDatabase musicDatabase = new MusicDatabase();
-        readonly TracklistItemRepository tracklistItemRepository = new TracklistItemRepository();
-        readonly TrackCollectionRepository trackCollectionRepository = new TrackCollectionRepository();
         
         readonly VideoRepository videoDatabase = new VideoRepository();
         
@@ -223,11 +221,7 @@ namespace VLC.Model.Library
         public void DropTablesIfNeeded()
         {
             if (!Numbers.NeedsToDrop()) return;
-            trackCollectionRepository.Drop();
-            tracklistItemRepository.Drop();
             musicDatabase.Drop();
-            trackCollectionRepository.Initialize();
-            tracklistItemRepository.Initialize();
             musicDatabase.Initialize();
 
             videoDatabase.Drop();
@@ -280,12 +274,7 @@ namespace VLC.Model.Library
             LogHelper.Log("Clearing the database.");
 
             musicDatabase.DeleteAll();
-            trackCollectionRepository.DeleteAll();
-            tracklistItemRepository.DeleteAll();
-
             musicDatabase.Initialize();
-            trackCollectionRepository.Initialize();
-            tracklistItemRepository.Initialize();
 
             await DispatchHelper.InvokeInUIThreadHighPriority(() =>
             {
@@ -739,15 +728,15 @@ namespace VLC.Model.Library
 
         bool IsMusicDatabaseEmpty()
         {
-            return musicDatabase.IsEmpty();
+            return musicDatabase.HasNoTrack();
         }
 
-        public async Task LoadPlaylistsFromDatabase()
+        public void LoadPlaylistsFromDatabase()
         {
-            var trackColl = await trackCollectionRepository.LoadTrackCollections().ToObservableAsync();
+            var trackColl = musicDatabase.LoadTrackCollections().ToObservable();
             foreach (var trackCollection in trackColl)
             {
-                var observableCollection = await tracklistItemRepository.LoadTracks(trackCollection);
+                var observableCollection = musicDatabase.LoadTracks(trackCollection);
                 foreach (TracklistItem tracklistItem in observableCollection)
                 {
                     TrackItem item = musicDatabase.LoadTrackFromId(tracklistItem.TrackId);
@@ -878,8 +867,7 @@ namespace VLC.Model.Library
         {
             if (string.IsNullOrEmpty(trackCollectionName))
                 return null;
-            PlaylistItem trackCollection = null;
-            trackCollection = await trackCollectionRepository.LoadFromName(trackCollectionName);
+            PlaylistItem trackCollection = musicDatabase.LoadPlayListItemFromName(trackCollectionName);
             if (trackCollection != null)
             {
                 await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => ToastHelper.Basic(Strings.PlaylistAlreadyExists));
@@ -888,27 +876,31 @@ namespace VLC.Model.Library
             {
                 trackCollection = new PlaylistItem();
                 trackCollection.Name = trackCollectionName;
-                await trackCollectionRepository.Add(trackCollection);
+                musicDatabase.Add(trackCollection);
                 TrackCollections.Add(trackCollection);
             }
             return trackCollection;
         }
 
-        public Task DeletePlaylistTrack(TrackItem track, PlaylistItem trackCollection)
+        public void DeletePlaylistTrack(TrackItem track, PlaylistItem trackCollection)
         {
-            return tracklistItemRepository.Remove(track.Id, trackCollection.Id);
+            musicDatabase.RemoveTracklistItemWithIds(track.Id, trackCollection.Id);
         }
 
         public async Task DeletePlaylist(PlaylistItem trackCollection)
         {
-            await trackCollectionRepository.Remove(trackCollection);
+            var tracks = LoadTracks(trackCollection);
+            foreach (TracklistItem tracklistItem in tracks)
+                Remove(tracklistItem);
+            musicDatabase.Remove(trackCollection);
+
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 TrackCollections.Remove(trackCollection);
             });
         }
 
-        public async Task AddToPlaylist(TrackItem trackItem, bool displayToastNotif = true)
+        public void AddToPlaylist(TrackItem trackItem, bool displayToastNotif = true)
         {
             if (Locator.MusicLibraryVM.CurrentTrackCollection == null) return;
             if (Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Contains(trackItem))
@@ -917,7 +909,7 @@ namespace VLC.Model.Library
                 return;
             }
             Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Add(trackItem);
-            await tracklistItemRepository.Add(new TracklistItem()
+            musicDatabase.Add(new TracklistItem()
             {
                 TrackId = trackItem.Id,
                 TrackCollectionId = Locator.MusicLibraryVM.CurrentTrackCollection.Id,
@@ -926,18 +918,18 @@ namespace VLC.Model.Library
                 ToastHelper.Basic(string.Format(Strings.TrackAddedToYourPlaylist, trackItem.Name), false, string.Empty, "playlistview");
         }
 
-        public async Task AddToPlaylist(AlbumItem albumItem)
+        public void AddToPlaylist(AlbumItem albumItem)
         {
             if (Locator.MusicLibraryVM.CurrentTrackCollection == null) return;
             var playlistId = Locator.MusicLibraryVM.CurrentTrackCollection.Id;
             Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.AddRange(albumItem.Tracks);
             foreach (TrackItem trackItem in albumItem.Tracks)
             {
-                await tracklistItemRepository.Add(new TracklistItem()
+                musicDatabase.Add(new TracklistItem()
                 {
                     TrackId = trackItem.Id,
                     TrackCollectionId = playlistId,
-                }).ConfigureAwait(false);
+                });
             }
             ToastHelper.Basic(string.Format(Strings.TrackAddedToYourPlaylist, albumItem.Name), false, string.Empty, "playlistview");
         }
@@ -952,7 +944,7 @@ namespace VLC.Model.Library
 
             foreach (TrackItem trackItem in songs)
             {
-                await tracklistItemRepository.Add(new TracklistItem()
+                musicDatabase.Add(new TracklistItem()
                 {
                     TrackId = trackItem.Id,
                     TrackCollectionId = playlistId,
@@ -962,17 +954,17 @@ namespace VLC.Model.Library
             ToastHelper.Basic(string.Format(Strings.TrackAddedToYourPlaylist, artistItem.Name), false, string.Empty, "playlistview");
         }
 
-        public async Task UpdateTrackCollection(PlaylistItem trackCollection)
+        public void UpdateTrackCollection(PlaylistItem trackCollection)
         {
-            var loadTracks = await tracklistItemRepository.LoadTracks(trackCollection);
+            var loadTracks = musicDatabase.LoadTracks(trackCollection);
             foreach (TracklistItem tracklistItem in loadTracks)
             {
-                await tracklistItemRepository.Remove(tracklistItem);
+                musicDatabase.Remove(tracklistItem);
             }
             foreach (TrackItem trackItem in trackCollection.Playlist)
             {
                 var trackListItem = new TracklistItem { TrackId = trackItem.Id, TrackCollectionId = trackCollection.Id };
-                await tracklistItemRepository.Add(trackListItem);
+                musicDatabase.Add(trackListItem);
             }
         }
 
@@ -1162,9 +1154,9 @@ namespace VLC.Model.Library
         #endregion
         #region database operations
         #region audio
-        public Task<List<TracklistItem>> LoadTracks(PlaylistItem trackCollection)
+        public List<TracklistItem> LoadTracks(PlaylistItem trackCollection)
         {
-            return tracklistItemRepository.LoadTracks(trackCollection);
+            return musicDatabase.LoadTracks(trackCollection);
         }
 
         public TrackItem LoadTrackById(int id)
@@ -1222,14 +1214,14 @@ namespace VLC.Model.Library
             musicDatabase.Update(track);
         }
 
-        public Task Remove(TracklistItem tracklist)
+        public void Remove(TracklistItem tracklist)
         {
-            return tracklistItemRepository.Remove(tracklist);
+            musicDatabase.Remove(tracklist);
         }
 
-        public Task RemoveTrackInPlaylist(int trackid, int playlistid)
+        public void RemoveTrackInPlaylist(int trackid, int playlistid)
         {
-            return tracklistItemRepository.Remove(trackid, playlistid);
+            musicDatabase.RemoveTracklistItemWithIds(trackid, playlistid);
         }
 
         public int ArtistCount()

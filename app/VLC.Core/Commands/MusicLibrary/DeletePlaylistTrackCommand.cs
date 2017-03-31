@@ -8,13 +8,13 @@ namespace VLC.Commands.MusicLibrary
 {
     public class DeletePlaylistTrackCommand : AlwaysExecutableCommand
     {
-        public override async void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             foreach (var item in Locator.MusicLibraryVM.CurrentTrackCollection.SelectedTracks.ToList())
             {
                 Locator.MusicLibraryVM.CurrentTrackCollection.Remove(item);
                 if (item is TrackItem)
-                    await Locator.MediaLibrary.DeletePlaylistTrack(item as TrackItem, Locator.MusicLibraryVM.CurrentTrackCollection);
+                    Locator.MediaLibrary.DeletePlaylistTrack(item as TrackItem, Locator.MusicLibraryVM.CurrentTrackCollection);
             }
         }
     }
