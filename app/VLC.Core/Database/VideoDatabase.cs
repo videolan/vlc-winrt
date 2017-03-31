@@ -1,53 +1,54 @@
 ﻿using SQLite;
 using System;
-using System.Reflection;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
+using VLC.Model.Stream;
 using VLC.Model.Video;
 using VLC.Utils;
 
 namespace VLC.Database
 {
-    public class VideoRepository : IDatabase
+    public class VideoDatabase : IDatabase
     {
         private static readonly string DbPath = Strings.VideoDatabase;
-        private SQLiteConnectionWithLock _connection;
 
-        private SQLiteConnectionWithLock Connection => _connection ?? (_connection = new SQLiteConnectionWithLock(new SQLiteConnectionString(DbPath, false),
-            SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.SharedCache));
+        private SQLiteConnectionWithLock connection = new SQLiteConnectionWithLock(new SQLiteConnectionString(DbPath, false),
+            SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.SharedCache);
 
-        public VideoRepository()
+        public VideoDatabase()
         {
             Initialize();
         }
 
         public void Initialize()
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                Connection.CreateTable<VideoItem>();
+                connection.CreateTable<VideoItem>();
+                connection.CreateTable<StreamMedia>();
             }
         }
 
         public void Drop()
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                Connection.DropTable<VideoItem>();
+                connection.DropTable<VideoItem>();
+                connection.DropTable<StreamMedia>();
             }
         }
 
         public void DeleteAll()
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                Connection.DeleteAll<VideoItem>();
+                connection.DeleteAll<VideoItem>();
+                connection.DeleteAll<StreamMedia>();
             }
         }
 
+        #region VideoItem
         public bool DoesMediaExist(String path)
         {
             return GetFromPath(path) != null;
@@ -55,82 +56,133 @@ namespace VLC.Database
 
         public VideoItem GetFromPath(String path)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Table<VideoItem>().Where(x => x.Path == path).FirstOrDefault();
+                return connection.Table<VideoItem>().Where(x => x.Path == path).FirstOrDefault();
             }
         }
 
         public List<VideoItem> Load(Expression<Func<VideoItem, bool>> predicate)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
                 if (predicate == null)
                 {
-                    return Connection.Table<VideoItem>().ToList();
+                    return connection.Table<VideoItem>().ToList();
                 }
                 else
                 {
-                    return Connection.Table<VideoItem>().Where(predicate).ToList();
+                    return connection.Table<VideoItem>().Where(predicate).ToList();
                 }
             }
         }
 
         public VideoItem LoadVideo(int videoId)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Table<VideoItem>().Where(x => x.Id.Equals(videoId)).First();
+                return connection.Table<VideoItem>().Where(x => x.Id.Equals(videoId)).First();
             }
         }
 
         public void Insert(VideoItem item)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                Connection.Insert(item);
+                connection.Insert(item);
             }
         }
 
         public void Update(VideoItem video)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                Connection.Update(video);
+                connection.Update(video);
             }
         }
 
         public void Remove(VideoItem video)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                Connection.Delete(video);
+                connection.Delete(video);
             }
         }
 
         public List<VideoItem> GetLastViewed()
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Table<VideoItem>().Where(x => x.TimeWatchedSeconds > 0).ToList();
+                return connection.Table<VideoItem>().Where(x => x.TimeWatchedSeconds > 0).ToList();
             }
         }
 
 
         public List<VideoItem> Contains(string column, string value)
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Query<VideoItem>($"SELECT * FROM {nameof(VideoItem)} WHERE {column} LIKE '%{value}%';", new string[] { });
+                return connection.Query<VideoItem>($"SELECT * FROM {nameof(VideoItem)} WHERE {column} LIKE '%{value}%';", new string[] { });
             }
         }
 
         public bool IsEmpty()
         {
-            using (Connection.Lock())
+            using (connection.Lock())
             {
-                return Connection.Table<VideoItem>().Count() == 0;
+                return connection.Table<VideoItem>().Count() == 0;
             }
         }
+        #endregion
+
+        #region StreamMedia
+        public List<StreamMedia> LoadStreams()
+        {
+            using (connection.Lock())
+            {
+                return connection.Table<StreamMedia>().ToList();
+            }
+        }
+
+        public void Insert(StreamMedia stream)
+        {
+            using (connection.Lock())
+            {
+                connection.Insert(stream);
+            }
+        }
+
+        public void Update(StreamMedia stream)
+        {
+            using (connection.Lock())
+            {
+                connection.Update(stream);
+            }
+        }
+
+        public StreamMedia GetStream(string media)
+        {
+            using (connection.Lock())
+            {
+                return connection.Find<StreamMedia>(x => x.Path == media);
+            }
+        }
+
+        public void Delete(StreamMedia stream)
+        {
+            using (connection.Lock())
+            {
+                connection.Delete(stream);
+            }
+        }
+
+        public bool Contains(StreamMedia stream)
+        {
+            using (connection.Lock())
+            {
+                return GetStream(stream.Path) != null;
+            }
+        }
+        #endregion
     }
 }

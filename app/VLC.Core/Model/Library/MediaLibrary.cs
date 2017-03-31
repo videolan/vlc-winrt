@@ -88,10 +88,8 @@ namespace VLC.Model.Library
 
         #region databases
         readonly MusicDatabase musicDatabase = new MusicDatabase();
-        
-        readonly VideoRepository videoDatabase = new VideoRepository();
-        
-        readonly StreamsDatabase streamsDatabase = new StreamsDatabase();
+
+        readonly VideoDatabase videoDatabase = new VideoDatabase();
         #endregion
 
         #region collections
@@ -785,24 +783,24 @@ namespace VLC.Model.Library
         public async Task LoadStreamsFromDatabase()
         {
             await DispatchHelper.InvokeInUIThreadHighPriority(() => Streams.Clear());
-            var streams = await LoadStreams();
+            var streams = LoadStreams();
             await DispatchHelper.InvokeInUIThreadHighPriority(() => Streams.AddRange(streams));
         }
 
-        public async Task<StreamMedia> LoadStreamFromDatabaseOrCreateOne(string mrl)
+        public StreamMedia LoadStreamFromDatabaseOrCreateOne(string mrl)
         {
-            var stream = await LoadStream(mrl);
+            var stream = LoadStream(mrl);
             if (stream == null)
             {
                 stream = new StreamMedia(mrl);
-                await streamsDatabase.Insert(stream);
+                videoDatabase.Insert(stream);
             }
             return stream;
         }
 
-        public Task Update(StreamMedia stream)
+        public void Update(StreamMedia stream)
         {
-            return streamsDatabase.Update(stream);
+            videoDatabase.Update(stream);
         }
         #endregion
         #endregion
@@ -1149,7 +1147,7 @@ namespace VLC.Model.Library
             {
                 await DispatchHelper.InvokeInUIThreadHighPriority(() => Streams.Remove(collectionStream));
             }
-            await DeleteStream(stream);
+            DeleteStream(stream);
         }
         #endregion
         #region database operations
@@ -1272,19 +1270,19 @@ namespace VLC.Model.Library
         }
         #endregion
         #region streams
-        private Task<List<StreamMedia>> LoadStreams()
+        private List<StreamMedia> LoadStreams()
         {
-            return streamsDatabase.Load();
+            return videoDatabase.LoadStreams();
         }
     
-        private Task<StreamMedia> LoadStream(string mrl)
+        private StreamMedia LoadStream(string mrl)
         {
-            return streamsDatabase.Get(mrl);
+            return videoDatabase.GetStream(mrl);
         }
 
-        private Task DeleteStream(StreamMedia media)
+        private void DeleteStream(StreamMedia media)
         {
-            return streamsDatabase.Delete(media);
+            videoDatabase.Delete(media);
         }
         #endregion
         #endregion

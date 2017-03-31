@@ -399,7 +399,7 @@ namespace VLC.ViewModels
             }
             try
             {
-                var stream = await Locator.MediaLibrary.LoadStreamFromDatabaseOrCreateOne(uri.ToString());
+                var stream = Locator.MediaLibrary.LoadStreamFromDatabaseOrCreateOne(uri.ToString());
                 LoadingMedia = Visibility.Visible;
                 await Locator.PlaybackService.SetPlaylist(new List<IMediaItem> { stream });
             }

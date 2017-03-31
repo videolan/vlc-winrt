@@ -16,7 +16,7 @@ namespace VLC.Commands.StreamsLibrary
                 var stream = parameter as StreamMedia;
                 stream.Favorite = !stream.Favorite;
 
-                await Locator.MediaLibrary.Update(stream);
+                Locator.MediaLibrary.Update(stream);
                 await Locator.MediaLibrary.LoadStreamsFromDatabase();
             }
         }
