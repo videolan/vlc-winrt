@@ -30,8 +30,8 @@ namespace VLC.Services.RunTime
             set
             {
                 _nbCopiedFiles = value;
-                DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
-                    () => NbCopiedFilesChanged?.Invoke(this, _nbCopiedFiles));
+                Task.Run(() => DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
+                    () => NbCopiedFilesChanged?.Invoke(this, _nbCopiedFiles)).Result);
             }
         }
 
@@ -41,8 +41,8 @@ namespace VLC.Services.RunTime
             set
             {
                 _totalNbFiles = value;
-                DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
-                    () => TotalNbFilesChanged?.Invoke(this, _totalNbFiles));
+                Task.Run(() => DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
+                    () => TotalNbFilesChanged?.Invoke(this, _totalNbFiles)));
             }
         }
 
@@ -58,10 +58,8 @@ namespace VLC.Services.RunTime
             {
                 if (!copying)
                 {
-                    NbCopiedFiles = 0;
-                    TotalNbFiles = 0;
-                    DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
-                        () => CopyStarted?.Invoke(this, null));
+                    Task.Run(() => DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
+                        () => CopyStarted?.Invoke(this, null)));
                 }
 
                 filesQueue.Enqueue(f);
@@ -102,8 +100,10 @@ namespace VLC.Services.RunTime
                         if (filesQueue.Count == 0)
                         {
                             copying = false;
-                            DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
-                                () => CopyEnded?.Invoke(this, null));
+                            NbCopiedFiles = 0;
+                            TotalNbFiles = 0;
+                            Task.Run(() => DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
+                                () => CopyEnded?.Invoke(this, null)).Result);
                         }
                     }
                 }
