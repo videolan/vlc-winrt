@@ -29,20 +29,20 @@ namespace VLC.UI.Views.UserControls
         }
         #endregion
 
-        private async void PlayButton_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void PlayButton_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
-            await StopPlayback();
+            StopPlayback();
         }
 
-        private async void PauseButton_Holding(object sender, HoldingRoutedEventArgs e)
+        private void PauseButton_Holding(object sender, HoldingRoutedEventArgs e)
         {
-            await StopPlayback();
+            StopPlayback();
         }
 
-        public async Task StopPlayback()
+        public void StopPlayback()
         {
             Locator.PlaybackService.Stop();
-            await Locator.PlaybackService.ClearPlaylist();
+            Locator.PlaybackService.ClearPlaylist();
         }
     }
 }

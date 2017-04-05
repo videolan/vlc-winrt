@@ -254,9 +254,9 @@ namespace VLC.Services.RunTime
             return _playlistService.SetPlaylist(mediaItems, startingIndex, shuffle);
         }
 
-        public Task ClearPlaylist()
+        public void ClearPlaylist()
         {
-            return _playlistService.Clear();
+            _playlistService.Clear();
         }
 
         public bool Next()
