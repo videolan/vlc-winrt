@@ -75,7 +75,7 @@ namespace VLC.MusicMetaFetcher
                 byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
                 return img;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Debug.WriteLine("Error getting or saving art from LastFm.");
                 return null;

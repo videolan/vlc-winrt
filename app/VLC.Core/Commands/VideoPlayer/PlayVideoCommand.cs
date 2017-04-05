@@ -45,7 +45,7 @@ namespace VLC.Commands.VideoPlayer
 
                 await Locator.PlaybackService.SetPlaylist(new List<IMediaItem> { videoVm });
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 // TODO: Enhance error handling
                 // TODO: Remove hardcoded English

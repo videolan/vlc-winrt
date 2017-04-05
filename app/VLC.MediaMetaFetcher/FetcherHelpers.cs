@@ -72,7 +72,7 @@ namespace VLC.MediaMetaFetcher
                     return ext;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Debug.WriteLine("Failed to extract srt from zip archive");
             }

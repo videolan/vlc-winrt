@@ -32,7 +32,7 @@ namespace VLC.MediaMetaFetcher
                     return await movieDbClient.GetMovieImage(movie);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Debug.WriteLine($"Error getting or saving movie: {movieName} picture from MovieDB");
             }
@@ -54,7 +54,7 @@ namespace VLC.MediaMetaFetcher
                     return await openSubClient.DownloadSubtitle(video, movieSub);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Debug.WriteLine($"Error getting or saving movie: {video.Name} subtitle from opensubtitle");
             }

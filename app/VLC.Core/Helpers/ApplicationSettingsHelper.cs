@@ -84,7 +84,7 @@ namespace VLC.Helpers
                         ApplicationData.Current.RoamingSettings.Values[key] = value;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Debug.WriteLine("Failed to save settings in the AppSettings container");
             }

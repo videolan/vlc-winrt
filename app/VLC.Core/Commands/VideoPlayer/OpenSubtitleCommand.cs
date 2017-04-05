@@ -56,7 +56,7 @@ namespace VLC.Commands.VideoPlayer
                     App.OpenFilePickerReason = OpenFilePickerReason.Null;
                     return;
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
                     Debug.WriteLine("Failed to get the subtitle");
                 }

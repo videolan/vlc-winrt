@@ -315,7 +315,7 @@ namespace VLC.Services.RunTime
                 {
                     currentFile = media.File ?? await StorageFile.GetFileFromPathAsync(media.Path);
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
                     Playback_MediaFileNotFound?.Invoke(media);
                     return;

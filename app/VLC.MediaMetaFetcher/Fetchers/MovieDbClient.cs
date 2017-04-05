@@ -36,7 +36,7 @@ namespace VLC.MediaMetaFetcher.Fetchers
                     this.configured = true;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Debug.WriteLine("Failed to get configuration information from MovieDB Client");
             }
@@ -73,7 +73,7 @@ namespace VLC.MediaMetaFetcher.Fetchers
                 }
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Debug.WriteLine($"Failed to get movie {movieName} info from MovieDB. Returning nothing.");
             }

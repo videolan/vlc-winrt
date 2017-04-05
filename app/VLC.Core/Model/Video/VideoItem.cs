@@ -356,7 +356,7 @@ namespace VLC.Model.Video
                     await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => File = f);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

@@ -24,7 +24,7 @@ namespace VLC.Commands.MediaLibrary
                     var fileToDelete = media.File ?? await StorageFile.GetFileFromPathAsync(media.Path);
                     await fileToDelete.DeleteAsync();
                 }
-                catch (FileNotFoundException exception)
+                catch (FileNotFoundException)
                 {
                     // it is already deleted
                 }
