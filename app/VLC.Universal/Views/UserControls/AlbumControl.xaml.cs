@@ -48,7 +48,7 @@ namespace VLC.UI.Views.UserControls
         public static readonly DependencyProperty AlbumProperty =
             DependencyProperty.Register(nameof(Album), typeof(AlbumItem), typeof(AlbumControl), new PropertyMetadata(null, PropertyChangedCallback));
 
-        private async static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var that = (AlbumControl)dependencyObject;
             that.Init();
