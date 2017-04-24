@@ -1,4 +1,4 @@
-From c6758c7e2f46a0cf636ae3178a64d7a87d675a3e Mon Sep 17 00:00:00 2001
+From 52c5230dde436b574fb9f9ff8c80b536916e69b6 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <slhomme@matroska.org>
 Date: Fri, 2 Dec 2016 11:14:40 +0100
 Subject: [PATCH 07/14] TEMPORARY: disable cuda/nvenc when building for
@@ -9,7 +9,7 @@ Subject: [PATCH 07/14] TEMPORARY: disable cuda/nvenc when building for
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index 82f667b177..0156e18e92 100644
+index 5725e8f..5c2f203 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
 @@ -178,7 +178,7 @@ FFMPEGCONF += --enable-w32threads
@@ -22,5 +22,5 @@ index 82f667b177..0156e18e92 100644
  
  ifdef HAVE_WIN64
 -- 
-2.11.0
+2.10.1.windows.1
 

@@ -1,4 +1,4 @@
-From 1e36fc98e9f3ee84a92301b31d02b45e94c8841d Mon Sep 17 00:00:00 2001
+From faddc87e9eb90bac7722f66a2e6d18137e099139 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 1 Feb 2017 15:25:53 +0100
 Subject: [PATCH 12/14] direct3d11: make D3D11 more prioritary
@@ -9,10 +9,10 @@ If it's not supported by the OS, we will fallback to D3D9
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index e69376fcbf..30a814523b 100644
+index d8717d5..60f1dbe 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
-@@ -81,7 +81,7 @@ vlc_module_begin ()
+@@ -80,7 +80,7 @@ vlc_module_begin ()
      add_integer("winrt-swapchain",     0x0, NULL, NULL, true); /* IDXGISwapChain1*     */
  #endif
  
@@ -22,5 +22,5 @@ index e69376fcbf..30a814523b 100644
      set_callbacks(Open, Close)
  vlc_module_end ()
 -- 
-2.11.0
+2.10.1.windows.1
 

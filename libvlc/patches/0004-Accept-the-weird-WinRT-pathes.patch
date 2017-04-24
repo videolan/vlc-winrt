@@ -1,4 +1,4 @@
-From 2f70c4702b1fb9a750c9e1884248d80f1b6b864d Mon Sep 17 00:00:00 2001
+From e33c68a266e94403f9eb0ce4e39e9772e685950c Mon Sep 17 00:00:00 2001
 From: Jean-Baptiste Kempf <jb@videolan.org>
 Date: Wed, 12 Mar 2014 00:11:26 +0100
 Subject: [PATCH 04/14] Accept the weird WinRT pathes
@@ -8,7 +8,7 @@ Subject: [PATCH 04/14] Accept the weird WinRT pathes
  1 file changed, 5 insertions(+)
 
 diff --git a/src/text/url.c b/src/text/url.c
-index 1b602b599e..3ad4e5073d 100644
+index 1b602b5..3ad4e50 100644
 --- a/src/text/url.c
 +++ b/src/text/url.c
 @@ -176,6 +176,11 @@ char *vlc_path2uri (const char *path, const char *scheme)
@@ -24,5 +24,5 @@ index 1b602b599e..3ad4e5073d 100644
      {   /* Windows UNC paths */
          /* \\host\share\path -> file://host/share/path */
 -- 
-2.11.0
+2.10.1.windows.1
 

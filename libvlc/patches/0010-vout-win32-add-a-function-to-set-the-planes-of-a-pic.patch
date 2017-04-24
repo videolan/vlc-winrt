@@ -1,4 +1,4 @@
-From d39b6c01d5a616a614f12c0d7f8e96f8220ee051 Mon Sep 17 00:00:00 2001
+From 7c0230bf77bcecdfa7173955be02402c3324d144 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 25 Jan 2017 18:11:47 +0100
 Subject: [PATCH 10/14] vout: win32: add a function to set the planes of a
@@ -10,7 +10,7 @@ Subject: [PATCH 10/14] vout: win32: add a function to set the planes of a
  2 files changed, 13 insertions(+)
 
 diff --git a/modules/video_output/win32/common.c b/modules/video_output/win32/common.c
-index 719e749976..8d874e3950 100644
+index 8ef0aef..85c46a1 100644
 --- a/modules/video_output/win32/common.c
 +++ b/modules/video_output/win32/common.c
 @@ -438,6 +438,18 @@ void CommonDisplay(vout_display_t *vd)
@@ -33,7 +33,7 @@ index 719e749976..8d874e3950 100644
   * It updates a picture data/pitches.
   */
 diff --git a/modules/video_output/win32/common.h b/modules/video_output/win32/common.h
-index a957048541..27a71a3b75 100644
+index a957048..27a71a3 100644
 --- a/modules/video_output/win32/common.h
 +++ b/modules/video_output/win32/common.h
 @@ -95,6 +95,7 @@ void CommonManage(vout_display_t *);
@@ -45,5 +45,5 @@ index a957048541..27a71a3b75 100644
  void UpdateRects (vout_display_t *,
                    const vout_display_cfg_t *,
 -- 
-2.11.0
+2.10.1.windows.1
 

@@ -1,4 +1,4 @@
-From 82bc39d0aa55b307c38dff78c9a1b24b5bd6608b Mon Sep 17 00:00:00 2001
+From 65b103a2541a728dd3e7c466d93284cb0b68c5a1 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 30 Sep 2016 09:49:19 +0200
 Subject: [PATCH 06/14] plugin cache: Windows doesn't like relative pathes in
@@ -10,7 +10,7 @@ Fixes "vlc-cache-gen ../modules" on Windows and general VLC_PLUGIN_PATH usage.
  1 file changed, 4 insertions(+)
 
 diff --git a/src/modules/bank.c b/src/modules/bank.c
-index 3fff2bb389..612e61487d 100644
+index 3fff2bb..612e614 100644
 --- a/src/modules/bank.c
 +++ b/src/modules/bank.c
 @@ -384,7 +384,11 @@ static void AllocateAllPlugins (vlc_object_t *p_this)
@@ -26,5 +26,5 @@ index 3fff2bb389..612e61487d 100644
          return;
  
 -- 
-2.11.0
+2.10.1.windows.1
 
