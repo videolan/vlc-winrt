@@ -31,6 +31,7 @@
 #ifdef _MSC_VER /* help visual studio compile vlc headers */
 # define inline __inline
 # define strdup _strdup
+# define strcasecmp _stricmp
 # define ssize_t SSIZE_T
 # define N_(x) x
 # define _(x) x
