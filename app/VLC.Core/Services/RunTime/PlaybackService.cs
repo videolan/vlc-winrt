@@ -360,7 +360,7 @@ namespace VLC.Services.RunTime
 
             // Hardware decoding
             CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
-            CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-threads=0" : ":avcodec-threads=1");
+            //CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-threads=0" : ":avcodec-threads=1");
             var pos = await FetchPreviousPosition(media);
             CurrentMedia.addOption($":start-time={pos}");
 
