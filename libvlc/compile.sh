@@ -143,7 +143,6 @@ cd $CONTRIB_FOLDER
     --disable-protobuf \
     --disable-aribb25 \
     --disable-gpl \
-    --disable-libarchive \
     --enable-ssh2 \
     --disable-vncclient \
     --enable-jpeg \
