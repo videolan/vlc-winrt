@@ -41,9 +41,9 @@ and http://nightlies.videolan.org/build/winrt-x86_64/
 
 - For ARM version, builds are located in http://people.videolan.org/~hugo/
 
-Extract the libVLC contents from the archive to vlc/<os>/vlc-<platform>/<configuration>
+Extract the libVLC contents from the archive to libvlc/<os>/vlc-<platform>/<configuration>
 <os> is either Windows, Windows Phone or Universal (Universal *includes* W10M)
-<platform> is either ARM or x86
+<platform> is either ARM or x86 or amd64
 <configuration>  is Debug or Release
 
 2) Build and package the front-end
