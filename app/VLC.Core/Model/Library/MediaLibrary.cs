@@ -24,6 +24,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace VLC.Model.Library
 {
+    // All the methods from the MediaLibrary class must be called from the UI thread.
     public class MediaLibrary
     {
         public MediaLibrary()
