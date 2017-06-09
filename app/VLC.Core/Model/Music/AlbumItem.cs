@@ -97,7 +97,7 @@ namespace VLC.Model.Music
                 if (!_isTracksLoaded)
                 {
                     _isTracksLoaded = true;
-                    Task.Run(() => Locator.MediaLibrary.PopulateTracks(this)).ConfigureAwait(false);
+                    Locator.MediaLibrary.PopulateTracks(this);
                 }
                 return _trackItems ?? (_trackItems = new List<TrackItem>());
             }

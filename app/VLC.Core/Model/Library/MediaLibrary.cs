@@ -1093,15 +1093,12 @@ namespace VLC.Model.Library
             }
         }
 
-        public async Task PopulateAlbums(ArtistItem artist)
+        public void PopulateAlbums(ArtistItem artist)
         {
             try
             {
-                var albums = musicDatabase.LoadAlbumsFromArtistId(artist.Id).ToObservable();
-                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
-                {
-                    artist.Albums = albums;
-                });
+                var albums = Task.Run(() => { return musicDatabase.LoadAlbumsFromArtistId(artist.Id).ToObservable(); }).Result;
+                artist.Albums = albums;
             }
             catch (Exception e)
             {
@@ -1109,11 +1106,11 @@ namespace VLC.Model.Library
             }
         }
 
-        public async Task PopulateAlbumsWithTracks(ArtistItem artist)
+        public void PopulateAlbumsWithTracks(ArtistItem artist)
         {
             try
             {
-                var albums = musicDatabase.LoadAlbumsFromIdWithTracks(artist.Id).ToObservable();
+                var albums = Task.Run(() => { return musicDatabase.LoadAlbumsFromIdWithTracks(artist.Id).ToObservable(); }).Result;
                 var groupedAlbums = new ObservableCollection<GroupItemList<TrackItem>>();
                 var groupQuery = from album in albums
                                  orderby album.Name
@@ -1130,11 +1127,8 @@ namespace VLC.Model.Library
                     groupedAlbums.Add(tracks);
                 }
 
-                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
-                {
-                    artist.Albums = albums;
-                    artist.AlbumsGrouped = groupedAlbums;
-                });
+                artist.Albums = albums;
+                artist.AlbumsGrouped = groupedAlbums;
             }
             catch { }
         }
