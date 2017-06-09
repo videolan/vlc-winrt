@@ -1077,15 +1077,12 @@ namespace VLC.Model.Library
             return trackItem;
         }
 
-        public async Task PopulateTracks(AlbumItem album)
+        public void PopulateTracks(AlbumItem album)
         {
             try
             {
-                var tracks = musicDatabase.LoadTracksFromAlbumId(album.Id);
-                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
-                {
-                    album.Tracks = tracks;
-                });
+                var tracks = Task.Run(() => { return musicDatabase.LoadTracksFromAlbumId(album.Id); }).Result;
+                album.Tracks = tracks;
             }
             catch (Exception e)
             {
