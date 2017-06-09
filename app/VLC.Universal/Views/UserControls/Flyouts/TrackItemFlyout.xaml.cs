@@ -26,15 +26,6 @@ namespace VLC.UI.Views.UserControls.Flyouts
             Locator.MusicLibraryVM.InitializePlaylists();
         }
 
-        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.AddedItems.Count == 0)
-                return;
-            Locator.MusicLibraryVM.CurrentTrackCollection = e.AddedItems[0] as PlaylistItem;
-            Locator.MusicLibraryVM.AddToPlaylistCommand.Execute((this.Content as FrameworkElement).DataContext as TrackItem);
-            (sender as ListView).SelectedIndex = -1;
-        }
-
         private void ActionButton_Click(object sender, RoutedEventArgs e)
         {
             Hide();
@@ -45,6 +36,12 @@ namespace VLC.UI.Views.UserControls.Flyouts
             var root = sender as FrameworkElement;
             root.MaxHeight = 600;
             root.MaxWidth = 400;
+        }
+
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Locator.MusicLibraryVM.CurrentTrackCollection = e.ClickedItem as PlaylistItem;
+            Locator.MusicLibraryVM.AddToPlaylistCommand.Execute((this.Content as FrameworkElement).DataContext as TrackItem);
         }
     }
 }

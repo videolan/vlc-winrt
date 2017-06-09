@@ -162,7 +162,8 @@
             <ListView ItemsSource="{Binding TrackCollections}"
                       ItemTemplate="{StaticResource PlaylistItemTemplate}"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                      SelectionChanged="Selector_OnSelectionChanged" />
+                      IsItemClickEnabled="True"
+                      ItemClick="ListView_ItemClick" />
             <placeholder:NoPlaylistPlaceholder Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         </StackPanel>
     </Grid>
