@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <ComboBox x:Name="OrderTypeComboBox"
                   Grid.Column="0"
-                  Height="30"
+                  Height="35"
                   DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                   ItemsSource="{Binding AlbumsOrderTypeCollection}"
                   SelectedItem="{Binding AlbumsOrderType}"
@@ -39,7 +39,7 @@
         <ComboBox x:Name="OrderByComboBox"
                   Grid.Column="1"
                   Margin="{StaticResource FrameMarginLeft}"
-                  Height="30"
+                  Height="35"
                   DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                   ItemsSource="{Binding AlbumsListingTypeCollection}"
                   SelectedItem="{Binding AlbumsOrderListing, Mode=TwoWay}"
