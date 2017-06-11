@@ -108,9 +108,9 @@ namespace VLC.UI.Views.SettingsPages
             Locator.NavigationService.RefreshCurrentPage();
         }
 
-        private async void ApplyColorButton_Click(object sender, RoutedEventArgs e)
+        private void ApplyColorButton_Click(object sender, RoutedEventArgs e)
         {
-            await App.reloadApplicationPage();
+            App.ReloadApplicationPage();
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

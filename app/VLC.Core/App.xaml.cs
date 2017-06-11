@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿
+using Autofac;
 using System;
 using System.IO;
 using System.Linq;
@@ -299,12 +300,11 @@ namespace VLC
                 await Locator.HttpServer.bind(8080).ConfigureAwait(false);
         }
 
-        public static async Task reloadApplicationPage()
+        public static void ReloadApplicationPage()
         {
+            Locator.PlaybackService.Stop();
             Locator.NavigationService.Reset();
-            Window.Current.Content = new MainPage();
-            await SplitShell.TemplateApplied.Task;
-            Locator.NavigationService.BindSplitShellEvents();
+
             SetLanguage();
             SetShellDecoration();
             ToggleMediaCenterMode();
@@ -315,7 +315,10 @@ namespace VLC
             if (Gamepad.Gamepads.Any() || DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
             {
                 if (Locator.SettingsVM.MediaCenterMode == true)
+                {
+                    Locator.NavigationService.RefreshCurrentPage();
                     return;
+                }
                 Locator.SettingsVM.MediaCenterMode = true;
                 Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
                 Locator.MainVM.GoToHomePageMediaCenterCommand.Execute(null);
@@ -357,28 +360,29 @@ namespace VLC
             if (forceTemporaryAppTheme)
             {
                 RootPage.RequestedTheme = forceDark ? ElementTheme.Dark : ElementTheme.Light;
-                App.RootPage.SetBackground(forceTemporaryAppTheme, forceDark);
+                RootPage.SetBackground(forceTemporaryAppTheme, forceDark);
             }
             else
             {
-                App.RootPage.SetBackground(false);
+                RootPage.SetBackground(false);
                 var appTheme = SettingsViewModel.GetApplicationTheme() == ApplicationTheme.Light;
                 RootPage.RequestedTheme = appTheme ? ElementTheme.Light : ElementTheme.Dark;
             }
-            App.Current.Resources["MainColorBase"] = Locator.SettingsVM.AccentColor.Color;
-            App.Current.Resources["SystemAccentColor"] = Locator.SettingsVM.AccentColor.Color;
-            App.Current.Resources["MainColor"] = new SolidColorBrush()
-            {
-                Color = Locator.SettingsVM.AccentColor.Color
-            };
-            App.Current.Resources["TranslucentMainColor"] = new SolidColorBrush()
+
+            Current.Resources["MainColorBase"] = new SolidColorBrush(Locator.SettingsVM.AccentColor.Color);
+            Current.Resources["SystemAccentColor"] = new SolidColorBrush(Locator.SettingsVM.AccentColor.Color);
+            Current.Resources["MainColor"] = new SolidColorBrush(Locator.SettingsVM.AccentColor.Color);
+            Current.Resources["TranslucentMainColor"] = new SolidColorBrush
             {
                 Color = Locator.SettingsVM.AccentColor.Color,
                 Opacity = 0.9
             };
-            var lightColor = Color.FromArgb(179, Locator.SettingsVM.AccentColor.Color.R, Locator.SettingsVM.AccentColor.Color.G, Locator.SettingsVM.AccentColor.Color.B);
-            App.Current.Resources["SemiLightMainColorBase"] = lightColor;
-            App.Current.Resources["SemiLightMainColor"] = new SolidColorBrush() { Color = lightColor };
+
+            var lightColor = new SolidColorBrush(Color.FromArgb(179, Locator.SettingsVM.AccentColor.Color.R, 
+                Locator.SettingsVM.AccentColor.Color.G, Locator.SettingsVM.AccentColor.Color.B));
+
+            Current.Resources["SemiLightMainColorBase"] = lightColor;
+            Current.Resources["SemiLightMainColor"] = lightColor;
         }
     }
 }
