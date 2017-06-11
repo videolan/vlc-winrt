@@ -198,8 +198,7 @@ namespace VLC.ViewModels.VideoVM
                 // This might now work, hence the try catch
                 var storageFolderParent = await StorageFolder.GetFolderFromPathAsync(folderPath);
                 // Here we need to search for a file with the same name, but with .srt or .ssa (when supported) extension
-                StorageFile storageFolderParentSubtitle = null;
-                storageFolderParentSubtitle = await storageFolderParent.GetFileAsync(fileNameWithoutExtensions + ".srt");
+                var storageFolderParentSubtitle = await storageFolderParent.TryGetItemAsync(fileNameWithoutExtensions + ".srt");
                 if (storageFolderParentSubtitle != null)
                 {
                     Locator.MediaPlaybackViewModel.OpenSubtitleCommand.Execute(storageFolderParentSubtitle);
