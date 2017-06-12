@@ -24,7 +24,6 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace VLC.Model.Library
 {
-    // All the methods from the MediaLibrary class must be called from the UI thread.
     public class MediaLibrary
     {
         public MediaLibrary()
@@ -1078,57 +1077,42 @@ namespace VLC.Model.Library
             return trackItem;
         }
 
+        // This method must be called from the UI thread.
         public void PopulateTracks(AlbumItem album)
         {
-            try
-            {
-                var tracks = musicDatabase.LoadTracksFromAlbumId(album.Id);
-                album.Tracks = tracks;
-            }
-            catch (Exception e)
-            {
-                LogHelper.Log(StringsHelper.ExceptionToString(e));
-            }
+            var tracks = musicDatabase.LoadTracksFromAlbumId(album.Id);
+            album.Tracks = tracks;
         }
 
+        // This method must be called from the UI thread.
         public void PopulateAlbums(ArtistItem artist)
         {
-            try
-            {
-                var albums = musicDatabase.LoadAlbumsFromArtistId(artist.Id).ToObservable();
-                artist.Albums = albums;
-            }
-            catch (Exception e)
-            {
-                LogHelper.Log(StringsHelper.ExceptionToString(e));
-            }
+            var albums = musicDatabase.LoadAlbumsFromArtistId(artist.Id).ToObservable();
+            artist.Albums = albums;
         }
 
+        // This method must be called from the UI thread.
         public void PopulateAlbumsWithTracks(ArtistItem artist)
         {
-            try
+            var albums = musicDatabase.LoadAlbumsFromIdWithTracks(artist.Id).ToObservable();
+            var groupedAlbums = new ObservableCollection<GroupItemList<TrackItem>>();
+            var groupQuery = from album in albums
+                                orderby album.Name
+                                group album.Tracks by album into a
+                                select new { GroupName = a.Key, Items = a };
+            foreach (var g in groupQuery)
             {
-                var albums = musicDatabase.LoadAlbumsFromIdWithTracks(artist.Id).ToObservable();
-                var groupedAlbums = new ObservableCollection<GroupItemList<TrackItem>>();
-                var groupQuery = from album in albums
-                                 orderby album.Name
-                                 group album.Tracks by album into a
-                                 select new { GroupName = a.Key, Items = a };
-                foreach (var g in groupQuery)
+                GroupItemList<TrackItem> tracks = new GroupItemList<TrackItem>();
+                tracks.Key = g.GroupName;
+                foreach (var track in g.Items)
                 {
-                    GroupItemList<TrackItem> tracks = new GroupItemList<TrackItem>();
-                    tracks.Key = g.GroupName;
-                    foreach (var track in g.Items)
-                    {
-                        tracks.AddRange(track);
-                    }
-                    groupedAlbums.Add(tracks);
+                    tracks.AddRange(track);
                 }
-
-                artist.Albums = albums;
-                artist.AlbumsGrouped = groupedAlbums;
+                groupedAlbums.Add(tracks);
             }
-            catch { }
+
+            artist.Albums = albums;
+            artist.AlbumsGrouped = groupedAlbums;
         }
 
         public async Task RemoveStreamFromCollectionAndDatabase(StreamMedia stream)
