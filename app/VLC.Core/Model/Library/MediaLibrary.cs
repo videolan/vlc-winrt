@@ -1082,7 +1082,7 @@ namespace VLC.Model.Library
         {
             try
             {
-                var tracks = Task.Run(() => { return musicDatabase.LoadTracksFromAlbumId(album.Id); }).Result;
+                var tracks = musicDatabase.LoadTracksFromAlbumId(album.Id);
                 album.Tracks = tracks;
             }
             catch (Exception e)
@@ -1095,7 +1095,7 @@ namespace VLC.Model.Library
         {
             try
             {
-                var albums = Task.Run(() => { return musicDatabase.LoadAlbumsFromArtistId(artist.Id).ToObservable(); }).Result;
+                var albums = musicDatabase.LoadAlbumsFromArtistId(artist.Id).ToObservable();
                 artist.Albums = albums;
             }
             catch (Exception e)
@@ -1108,7 +1108,7 @@ namespace VLC.Model.Library
         {
             try
             {
-                var albums = Task.Run(() => { return musicDatabase.LoadAlbumsFromIdWithTracks(artist.Id).ToObservable(); }).Result;
+                var albums = musicDatabase.LoadAlbumsFromIdWithTracks(artist.Id).ToObservable();
                 var groupedAlbums = new ObservableCollection<GroupItemList<TrackItem>>();
                 var groupQuery = from album in albums
                                  orderby album.Name
