@@ -297,11 +297,20 @@ namespace VLC.Model.Library
             LogHelper.Log("Performing the indexation.");
 
             StorageFolder folder = await FileUtils.GetLocalStorageMediaFolder();
-            await MediaLibraryHelper.ForeachSupportedFile(folder, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
-            await MediaLibraryHelper.ForeachSupportedFile(KnownFolders.VideosLibrary, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
-            await MediaLibraryHelper.ForeachSupportedFile(KnownFolders.MusicLibrary, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
-            await MediaLibraryHelper.ForeachSupportedFile(KnownFolders.CameraRoll, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files, true));
 
+#if DEBUG
+            var sw = new Stopwatch();
+            sw.Start();
+#endif
+            await Task.WhenAll(MediaLibraryHelper.ForeachSupportedFile(folder, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files)),
+                MediaLibraryHelper.ForeachSupportedFile(KnownFolders.VideosLibrary, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files)),
+                MediaLibraryHelper.ForeachSupportedFile(KnownFolders.MusicLibrary, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files)),
+                MediaLibraryHelper.ForeachSupportedFile(KnownFolders.CameraRoll, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files, true)));
+#if DEBUG
+            sw.Stop();
+            LogHelper.Log("indexation performed in " + sw.ElapsedMilliseconds + " ms");
+#endif
+            //TODO: Refactor this. Cortana stuff has nothing to do here.
             // Cortana gets all those artists, albums, songs names
             var artists = LoadArtists(null);
             if (artists != null)
