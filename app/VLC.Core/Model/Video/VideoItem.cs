@@ -10,19 +10,14 @@
 using System;
 using System.Threading.Tasks;
 using Windows.Storage;
-using Windows.Storage.FileProperties;
 using Windows.UI.Core;
 using SQLite;
 using VLC.Commands.VideoLibrary;
-using VLC.Helpers.VideoLibrary;
 using VLC.Utils;
 using VLC.ViewModels;
-using System.Diagnostics;
 using Windows.Storage.AccessCache;
 using libVLCX;
-using VLC.Helpers;
 using Windows.UI.Xaml.Media.Imaging;
-using System.IO;
 
 namespace VLC.Model.Video
 {
@@ -42,7 +37,6 @@ namespace VLC.Model.Video
         private BitmapImage _videoImage;
         private LoadingState _videosImageLoadingState = LoadingState.NotLoaded;
 
-        
         #region tvshows props // TVShows related // Todo create a class ShowEpisodeItem that inherits from VideoItem
         private string _showTitle;
         private int _season = -1;
@@ -156,22 +150,34 @@ namespace VLC.Model.Video
         {
             get
             {
-                if (_videoImage == null)
-                {
-                    if (HasThumbnail || HasMoviePicture)
-                    {
-                        _videosImageLoadingState = LoadingState.Loaded;
-                        _videoImage = new BitmapImage(new Uri(PictureUri));
-                    }
-                    else if (_videosImageLoadingState == LoadingState.NotLoaded)
-                    {
-                        _videosImageLoadingState = LoadingState.Loading;
-                        Locator.MediaLibrary.GenerateVideoThumbnailAsync(this);
-                    }
-                }
+                if(_videoImage == null)
+                    InitializeVideoImage();
                 return _videoImage;
             }
             private set { SetProperty(ref _videoImage, value); }
+        }
+
+        public void InitializeVideoImage()
+        {
+            if (_videoImage != null) return;
+
+            if (HasThumbnail || HasMoviePicture)
+            {
+                _videosImageLoadingState = LoadingState.Loaded;
+
+                Task.Run(async () =>
+                {
+                    await DispatchHelper.InvokeInUIThreadHighPriority(async () =>
+                     {
+                         VideoImage = await GetBitmap();
+                     });
+                });
+            }
+            else if (_videosImageLoadingState == LoadingState.NotLoaded)
+            {
+                _videosImageLoadingState = LoadingState.Loading;
+                Locator.MediaLibrary.GenerateVideoThumbnailAsync(this);
+            }
         }
 
         [Ignore]
@@ -194,25 +200,29 @@ namespace VLC.Model.Video
 
         public async Task<bool> VideoThumbFileExist()
         {
-            return (await tryGetVideoThumbFile()) != null;
+            return (await TryGetVideoThumbFile()) != null;
         }
 
+        async Task<BitmapImage> GetBitmap()
+        {
+            var file = await TryGetVideoThumbFile();
+            if (file == null) return null;
+
+            var stream = await file.OpenReadAsync();
+            var bitmap = new BitmapImage();
+            await bitmap.SetSourceAsync(stream);
+
+            return bitmap;
+        }
 
         public async Task DeleteVideoThumbFile()
         {
-            await DispatchHelper.InvokeInUIThreadHighPriority(() =>
-            {
-                // Release the image source URI to allow the file deletion.
-                if (_videoImage != null)
-                    _videoImage.UriSource = null;
-            });
-            var thumbFile = await tryGetVideoThumbFile();
+            var thumbFile = await TryGetVideoThumbFile();
             if (thumbFile != null)
-                await thumbFile.DeleteAsync();
+                await thumbFile.DeleteAsync().AsTask().ConfigureAwait(false);
         }
 
-
-        private async Task<StorageFile> tryGetVideoThumbFile()
+        private async Task<StorageFile> TryGetVideoThumbFile()
         {
             StorageFile ret = null;
             StorageFolder subFolder = (StorageFolder)await ApplicationData.Current.LocalFolder.TryGetItemAsync("videoThumbs");
@@ -220,7 +230,7 @@ namespace VLC.Model.Video
                 ret = (StorageFile)await subFolder.TryGetItemAsync($"{Id}.jpg");
             return ret;
         }
-        
+
         [Ignore]
         public string SubtitleUri
         {
@@ -309,17 +319,6 @@ namespace VLC.Model.Video
             IsTvShow = !string.IsNullOrEmpty(showTitle) && season >= 0 && episode >= 0;
         }
 
-        public async Task InitializeFromFilePath()
-        {
-            try
-            {
-                File = await StorageFile.GetFileFromPathAsync(Path);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
         #endregion
 
         #region methods
