@@ -1,0 +1,26 @@
+From efffeb4e48dc3c7bbf311a1bfefc44e2cb193895 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Thu, 8 Jun 2017 14:45:50 +0200
+Subject: [PATCH 08/11] dxgi_fmt: add one more texture in the array
+
+I420 and other formats need 3 planes
+---
+ modules/video_chroma/dxgi_fmt.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/modules/video_chroma/dxgi_fmt.h b/modules/video_chroma/dxgi_fmt.h
+index b79dbce..8e8cdb5 100644
+--- a/modules/video_chroma/dxgi_fmt.h
++++ b/modules/video_chroma/dxgi_fmt.h
+@@ -29,7 +29,7 @@
+ #include <vlc_common.h>
+ #include <vlc_fourcc.h>
+ 
+-#define D3D11_MAX_SHADER_VIEW  2
++#define D3D11_MAX_SHADER_VIEW  3
+ 
+ typedef struct
+ {
+-- 
+2.10.1.windows.1
+

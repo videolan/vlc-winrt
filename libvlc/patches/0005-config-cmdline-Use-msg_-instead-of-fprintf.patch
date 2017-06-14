@@ -1,7 +1,7 @@
-From 064c411d752ec6dd0a289dd66d568d748dc8cd36 Mon Sep 17 00:00:00 2001
+From d8d888cd4088a09e2dea27e95161e283a7d7d766 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 2 Aug 2016 18:54:28 +0200
-Subject: [PATCH 05/14] config: cmdline: Use msg_* instead of fprintf
+Subject: [PATCH 05/11] config: cmdline: Use msg_* instead of fprintf
 
 ---
  src/config/cmdline.c | 14 +++++++-------
