@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using VLC.Model.Video;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using VLC.Model.Video;
+using VLC.Utils;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace VLC.UI.Views.UserControls
 {
@@ -43,9 +32,30 @@ namespace VLC.UI.Views.UserControls
             if (TVShow == null)
                 return;
 
-            NameTextBlock.Text = TVShow.ShowTitle;
-            ThumbnailImage.Source = TVShow.ShowImage;
-            FadeInCover.Begin();
+            NameTextBlock.Text = TVShow.ShowTitle;       
+            TVShow.PropertyChanged += TVShow_PropertyChanged;
+            if(TVShow.ShowImage != null)
+                FadeOutCover.Begin();
+        }
+
+        private async void TVShow_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(TVShow.ShowImage))
+            {
+                await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                {
+                    FadeOutCover.Begin();
+                });
+            }
+        }
+
+        private void FadeOutCover_Completed(object sender, object e)
+        {
+            if (TVShow != null && TVShow.ShowImage != null)
+            {
+                ThumbnailImage.Source = TVShow.ShowImage;
+                FadeInCover.Begin();
+            }
         }
     }
 }

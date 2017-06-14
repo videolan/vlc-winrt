@@ -11,6 +11,7 @@ namespace VLC.Model.Video
         #region private props
         private string _showTitle;
         private ObservableCollection<VideoItem> _episodes = new ObservableCollection<VideoItem>();
+        private BitmapImage _showImage;
 
         #endregion
         #region public props
@@ -20,20 +21,12 @@ namespace VLC.Model.Video
             private set { SetProperty(ref _showTitle, value); }
         }
 
-        public BitmapImage ShowImage
-        {
-            get
-            {
-                if (Episodes == null || !Episodes.Any())
-                    return null;
-                return Episodes.FirstOrDefault(x => x.HasThumbnail || x.HasMoviePicture)?.VideoImage;
-            }
-        }
-
+        public BitmapImage ShowImage => _showImage ?? (_showImage = Episodes.FirstOrDefault(x => x.HasThumbnail || x.HasMoviePicture)?.VideoImage);
+            
         public ObservableCollection<VideoItem> Episodes
         {
             get { return _episodes; }
-            set { SetProperty(ref _episodes,value); }
+            set { SetProperty(ref _episodes,value); OnPropertyChanged(nameof(ShowImage)); }
         }
 
         #endregion

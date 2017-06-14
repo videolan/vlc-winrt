@@ -14,6 +14,14 @@
                                       Value="1" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Name="FadeOutCover"
+                    Completed="FadeOutCover_Completed">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ThumbnailImage"
+                                           Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4"
+                                      Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </UserControl.Resources>
 
     <Grid FlyoutBase.AttachedFlyout="{StaticResource VideoInformationFlyout}">
