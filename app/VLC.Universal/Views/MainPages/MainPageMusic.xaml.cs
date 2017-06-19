@@ -17,6 +17,7 @@ using VLC.UI.Views.MainPages.MusicPanes;
 using VLC.ViewModels.Settings;
 using VLC.ViewModels.MusicVM;
 using System.Threading.Tasks;
+using VLC.Helpers;
 
 namespace VLC.UI.Views.MainPages
 {
@@ -31,27 +32,31 @@ namespace VLC.UI.Views.MainPages
         {
             base.OnNavigatingFrom(e);
 
+            Locator.MusicLibraryVM.PropertyChanged -= MusicLibraryVM_PropertyChanged;
             await Locator.MusicLibraryVM.OnNavigatedFrom();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            Locator.MusicLibraryVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
         }
 
         private async void MusicPanesFrame_OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (MainPageMusicContentPresenter.Content == null)
-            {
-                await Switch(Locator.MusicLibraryVM.MusicView);
-            }
-            Locator.MusicLibraryVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
+            await Switch(Locator.MusicLibraryVM.MusicView);
         }
-
+        
         private async void MusicLibraryVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
+        {           
             if (e.PropertyName == nameof(MusicLibraryVM.MusicView))
             {
                 await Switch(Locator.MusicLibraryVM.MusicView);
             }
         }
 
-        async Task Switch(MusicView view)
+        private async Task Switch(MusicView view)
         {
             await Locator.MusicLibraryVM.OnNavigatedFrom();
             switch (view)

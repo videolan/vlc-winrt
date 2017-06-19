@@ -183,7 +183,8 @@ namespace VLC.Model.Music
         
         public bool IsCurrentPlaying()
         {
-            return this == Locator.PlaybackService.CurrentPlaybackMedia;
+            return this == Locator.PlaybackService.CurrentPlaybackMedia
+              && Locator.PlaybackService.PlayingType == PlayingType.Music;
         }
     }
 }

@@ -15,7 +15,7 @@
           Holding="Grid_Holding"
           VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="30" />
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -27,7 +27,7 @@
                     FontFamily="{StaticResource VLCFont}"
                     FontSize="23"
                     Width="30"
-                    Visibility="Visible" />
+                    Visibility="Collapsed" />
         <TextBlock Grid.Column="1"
                     x:Name="NameTextBlock"
                     TextWrapping="NoWrap"
@@ -35,8 +35,7 @@
                     FontWeight="SemiLight"
                     Style="{StaticResource TitleTextBlockStyle}"
                     FontSize="15"
-                    Margin="0,0,6,0"
-                    Loaded="NameTextBlock_OnLoaded" />
+                    Margin="0,0,6,0" />
         <TextBlock Grid.Column="2"
                    x:Name="ArtistNameTextBlock"
                    Style="{StaticResource BaseTextBlockStyle}"

@@ -11,24 +11,16 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.Linq;
-using System.Xml.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
-using VLC.Database;
 using VLC.Helpers;
-using VLC.Helpers.MusicLibrary;
 using VLC.Model;
 using VLC.Model.Music;
 using VLC.Commands.MusicLibrary;
-using VLC.Model.Search;
 using VLC.Utils;
 using VLC.Commands.MusicPlayer;
 using Windows.UI.Xaml;
-using VLC.Model.Library;
 using VLC.Commands.MediaLibrary;
 using VLC.Commands.Navigation;
 
@@ -293,7 +285,6 @@ namespace VLC.ViewModels.MusicVM
             LoadingStatePlaylists = LoadingState.NotLoaded;
 
             RecommendedAlbums?.Clear();
-            RecommendedAlbums = new List<AlbumItem>();
         }
 
         public async Task OnNavigatedTo()
@@ -325,7 +316,7 @@ namespace VLC.ViewModels.MusicVM
                 case MusicView.Songs:
                     if (LoadingStateTracks == LoadingState.NotLoaded)
                     {
-                        await initializeTracks();
+                        await InitializeTracks();
                     }
                     break;
                 case MusicView.Playlists:
@@ -380,9 +371,9 @@ namespace VLC.ViewModels.MusicVM
                         Locator.MediaLibrary.Tracks.Clear();
                     }
 
-                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, async () =>
+                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
                     {
-                        await OrderTracks();
+                        GroupedTracks = null;
                         LoadingStateTracks = LoadingState.NotLoaded;
                     });
                     break;
@@ -500,15 +491,18 @@ namespace VLC.ViewModels.MusicVM
             });
         }
 
-        private async Task initializeTracks()
+        private async Task InitializeTracks()
         {
             LoadingStateTracks = LoadingState.Loading;
             if (Locator.MediaLibrary.Tracks != null)
                 Locator.MediaLibrary.Tracks.CollectionChanged += Tracks_CollectionChanged;
             Locator.MediaLibrary.LoadTracksFromDatabase();
             LoadingStateTracks = LoadingState.Loaded;
-            OnPropertyChanged(nameof(IsMusicLibraryEmpty));
-            OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged(nameof(IsMusicLibraryEmpty));
+                OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
+            });
             await OrderTracks();
         }
 
@@ -531,8 +525,6 @@ namespace VLC.ViewModels.MusicVM
                     await InsertIntoGroupTrack(track);
                 }
             }
-            else
-                await OrderTracks();
         }
 
         async Task OrderTracks()
