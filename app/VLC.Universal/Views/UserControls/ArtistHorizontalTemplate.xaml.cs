@@ -51,12 +51,9 @@ namespace VLC.UI.Views.UserControls
             Artist.PropertyChanged += Artist_PropertyChanged;
             
             var artist = Artist;
-            Task.Run(async () =>
-            {
-                artist.ResetArtistPicture(true);
-                var albumsCount = Locator.MediaLibrary.LoadAlbumsCount(artist.Id);
-                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => AlbumsCountTextBlock.Text = Strings.Albums.ToUpperFirstChar() + Strings.Dash + albumsCount);
-            });
+            artist.ResetArtistPicture(true);
+            var albumsCount = Locator.MediaLibrary.LoadAlbumsCount(artist.Id);
+            AlbumsCountTextBlock.Text = Strings.Albums.ToUpperFirstChar() + Strings.Dash + albumsCount;
         }
 
         private async void Artist_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
