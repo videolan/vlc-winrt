@@ -338,7 +338,8 @@ namespace VLC.Model.Library
         {
             try
             {
-                if (VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower()))
+                var fileType = item.FileType.ToLower();
+                if (VLCFileExtensions.AudioExtensions.Contains(fileType))
                 {
                     if (musicDatabase.ContainsTrack(item.Path))
                         return true;
@@ -430,7 +431,7 @@ namespace VLC.Model.Library
                         await DispatchHelper.InvokeInUIThreadHighPriority(() => Tracks.Add(track));
                     }
                 }
-                else if (VLCFileExtensions.VideoExtensions.Contains(item.FileType.ToLower()))
+                else if (VLCFileExtensions.VideoExtensions.Contains(fileType))
                 {
                     if (videoDatabase.DoesMediaExist(item.Path))
                         return true;
@@ -450,6 +451,10 @@ namespace VLC.Model.Library
                     }
                     else
                         await DispatchHelper.InvokeInUIThreadHighPriority(() => Videos.Add(video));
+                }
+                else if (VLCFileExtensions.SubtitleExtensions.Contains(fileType))
+                {
+                    return true;
                 }
                 else
                 {
