@@ -62,7 +62,7 @@
                           KeyDown="TracksZoomedInView_KeyDown">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
-                            <triggers:InvokeCommandAction Command="{Binding PlayAllSongsCommand}"
+                            <triggers:InvokeCommandAction Command="{Binding PlayTrackCommand}"
                                                           PassEventArgsToCommand="True" />
                         </triggers:EventTrigger>
                         <triggers:EventTrigger EventName="ScrollDetected">
