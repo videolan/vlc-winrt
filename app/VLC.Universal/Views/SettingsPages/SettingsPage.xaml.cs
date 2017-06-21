@@ -119,10 +119,9 @@ namespace VLC.UI.Views.SettingsPages
                 Locator.SettingsVM.Equalizer = e.AddedItems[0] as VLCEqualizer;
         }
 
-        private async void OnClearKeystoreClicked(object sender, RoutedEventArgs a)
+        private void OnClearKeystoreClicked(object sender, RoutedEventArgs a)
         {
-            var file = await StorageFile.GetFileFromPathAsync(string.Format("{0}\\keystore", ApplicationData.Current.LocalFolder.Path));
-            await FileIO.WriteTextAsync(file, "");
+            Locator.SettingsVM.ClearKeystore();
         }
     }
 }

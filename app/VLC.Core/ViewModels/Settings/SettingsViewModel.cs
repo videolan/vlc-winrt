@@ -616,6 +616,26 @@ namespace VLC.ViewModels.Settings
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => VideoFolders = videosLib.Folders.ToList());
         }
 
+        /// <summary>
+        /// TODO: This needs to be moved to a service.
+        /// </summary>
+        public void ClearKeystore()
+        {
+            Task.Run(async () =>
+            {
+                try
+                {
+                    var file = await StorageFile.GetFileFromPathAsync(string.Format("{0}\\keystore",
+                        ApplicationData.Current.LocalFolder.Path)).AsTask().ConfigureAwait(false);
+                    await FileIO.WriteTextAsync(file, "").AsTask().ConfigureAwait(false);
+                }
+                catch (Exception e)
+                {
+
+                }
+            }).ConfigureAwait(false);
+        }
+
         #region navigation
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
