@@ -145,7 +145,7 @@ namespace VLC.Model.Music
         }
 
         [Ignore]
-        public TrackClickedCommand TrackClickedCommand { get; } = new TrackClickedCommand();
+        public PlayTrackCommand PlayTrackCommand { get; } = new PlayTrackCommand();
 
         [Ignore]
         public ArtistClickedCommand ViewArtist { get; } = new ArtistClickedCommand();

@@ -17,19 +17,19 @@ using System.Collections.Generic;
 
 namespace VLC.Commands.MusicPlayer
 {
-    public class TrackClickedCommand : AlwaysExecutableCommand
+    public class PlayTrackCommand : AlwaysExecutableCommand
     {
-        public async override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             TrackItem track = null;
             if (parameter is ItemClickEventArgs)
             {
-                var args = parameter as ItemClickEventArgs;
-                track = args.ClickedItem as TrackItem;
+                var itemClickEventArgs = (ItemClickEventArgs) parameter;
+                track = itemClickEventArgs.ClickedItem as TrackItem;
             }
             else if (parameter is TrackItem)
             {
-                track = parameter as TrackItem;
+                track = (TrackItem) parameter;
             }
 
             if (track == null)

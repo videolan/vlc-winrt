@@ -35,7 +35,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\PlayAllSongsCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\PlayArtistAlbumsCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\PlayTrackCollCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\PlayTrackComand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\PlayTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\ShareNowPlayingMusicCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\TrackCollectionClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\ChangeVideoViewCommand.cs" />

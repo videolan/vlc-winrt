@@ -176,7 +176,7 @@ namespace VLC.UI.Views.MusicPages
 
         private void ListViewBase_OnItemClick(object sender, ItemClickEventArgs e)
         {
-            Locator.MusicLibraryVM.TrackClickedCommand.Execute(e);
+            Locator.MusicLibraryVM.PlayTrackCommand.Execute(e);
         }
 
         private async void OpenMainWindow_Click(object sender, RoutedEventArgs e)

@@ -215,7 +215,7 @@ namespace VLC.ViewModels.MusicVM
 
         public PlayAlbumCommand PlayAlbumCommand { get; private set; } = new PlayAlbumCommand();
 
-        public TrackClickedCommand TrackClickedCommand { get; private set; } = new TrackClickedCommand();
+        public PlayTrackCommand PlayTrackCommand { get; private set; } = new PlayTrackCommand();
 
         public AlbumTrackClickedCommand AlbumTrackClickedCommand { get; private set; } = new AlbumTrackClickedCommand();
 
