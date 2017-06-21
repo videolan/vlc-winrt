@@ -119,8 +119,6 @@ namespace VLC.ViewModels.VideoVM
         #region constructors
         public VideoPlayerVM()
         {
-            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet += PlaybackService_Playback_MediaSet;
-            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaFileNotFound += PlaybackService_Playback_MediaFileNotFound;
         }
 
         private void PlaybackService_Playback_MediaFileNotFound(IMediaItem media)
@@ -150,6 +148,9 @@ namespace VLC.ViewModels.VideoVM
 
             if (Locator.PlaybackService.CurrentPlaybackMedia is VideoItem)
                 Task.Run(async () => await UpdateCurrentVideo(Locator.PlaybackService.CurrentPlaybackMedia as VideoItem));
+
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet += PlaybackService_Playback_MediaSet;
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaFileNotFound += PlaybackService_Playback_MediaFileNotFound;
         }
 
         public void OnNavigatedFrom()
@@ -163,6 +164,9 @@ namespace VLC.ViewModels.VideoVM
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
             DeviceHelper.PrivateDisplayCall(false);
             LoadingSubtitleText = string.Empty;
+
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet -= PlaybackService_Playback_MediaSet;
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaFileNotFound -= PlaybackService_Playback_MediaFileNotFound;
         }
 
         public async Task<bool> TryUseSubtitleFromFolder()
@@ -321,7 +325,7 @@ namespace VLC.ViewModels.VideoVM
             await Locator.MediaPlaybackViewModel.SetMediaTransportControlsInfo(CurrentVideo.Name);
         }
 
-        async Task UpdateCurrentVideo(VideoItem video)
+        private async Task UpdateCurrentVideo(VideoItem video)
         {
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
