@@ -18,8 +18,7 @@
         <ContentPresenter x:Name="MainPageVideoContentPresenter"
                           x:FieldModifier="public"
                           Margin="{StaticResource FrameMargin}"
-                          Grid.Row="1"
-                          Loaded="MainPageVideoContentPresenter_OnLoaded" />
+                          Grid.Row="1" />
 
         <Rectangle Grid.Row="1"
                    VerticalAlignment="Top"

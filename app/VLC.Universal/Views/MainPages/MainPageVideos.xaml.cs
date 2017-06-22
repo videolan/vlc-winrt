@@ -17,6 +17,7 @@ using VLC.UI.Views.MainPages.MainVideoControls;
 using VLC.ViewModels.VideoVM;
 using VLC.Helpers;
 using System.Diagnostics;
+using System.Linq;
 
 namespace VLC.UI.Views.MainPages
 {
@@ -24,28 +25,28 @@ namespace VLC.UI.Views.MainPages
     {
         public MainPageVideos()
         {
-            InitializeComponent();
-            this.Loaded += MainPageVideo_Loaded;
-            this.Unloaded += VideoCollectionButtons_Unloaded;
+            InitializeComponent();    
         }
 
-        void MainPageVideo_Loaded(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            base.OnNavigatedTo(e);
+
             Locator.VideoLibraryVM.OnNavigatedTo();
-        }
-
-        void VideoCollectionButtons_Unloaded(object sender, RoutedEventArgs e)
-        {
-            Locator.VideoLibraryVM.OnNavigatedFrom();
-        }
-
-        private void MainPageVideoContentPresenter_OnLoaded(object sender, RoutedEventArgs e)
-        {
             if (MainPageVideoContentPresenter.Content == null)
             {
                 Switch(Locator.VideoLibraryVM.VideoView);
             }
+            
             Locator.VideoLibraryVM.PropertyChanged += VideoLibraryVM_PropertyChanged;
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+
+            Locator.VideoLibraryVM.OnNavigatedFrom();
+            Locator.VideoLibraryVM.PropertyChanged -= VideoLibraryVM_PropertyChanged;
         }
 
         private void VideoLibraryVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -56,7 +57,7 @@ namespace VLC.UI.Views.MainPages
             }
         }
 
-        void Switch(VideoView view)
+        private void Switch(VideoView view)
         {
             switch (view)
             {
