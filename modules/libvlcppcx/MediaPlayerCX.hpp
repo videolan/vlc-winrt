@@ -362,7 +362,9 @@ namespace libVLCX
         /**
         * Toggle teletext transparent status on video output.
         */
+#if LIBVLC_VERSION_INT < LIBVLC_VERSION(3, 0, 0, 0)
         void toggleTeletext();
+#endif
 
         /**
         * Apply new equalizer settings to a media player.

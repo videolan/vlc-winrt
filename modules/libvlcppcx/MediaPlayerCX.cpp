@@ -232,10 +232,12 @@ namespace libVLCX
         return m_mp.fullscreen();
     }
 
+#if LIBVLC_VERSION_INT < LIBVLC_VERSION(3, 0, 0, 0)
     void MediaPlayer::toggleTeletext()
     {
         m_mp.toggleTeletext();
     }
+#endif
 
     int MediaPlayer::setEqualizer(Equalizer^ eq)
     {
