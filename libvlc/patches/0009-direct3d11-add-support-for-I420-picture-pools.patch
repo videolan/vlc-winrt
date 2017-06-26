@@ -1,4 +1,4 @@
-From c63f959177619dcd4f416396602ea3740afda817 Mon Sep 17 00:00:00 2001
+From fc64b401db73200ec7576eddd8c86f08d5ad5d51 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 8 Jun 2017 17:37:04 +0200
 Subject: [PATCH 09/11] direct3d11: add support for I420 picture pools
@@ -12,19 +12,19 @@ The texture to display is copied to the staging texture just before rendering.
  3 files changed, 182 insertions(+), 34 deletions(-)
 
 diff --git a/modules/video_chroma/d3d11_fmt.h b/modules/video_chroma/d3d11_fmt.h
-index 25130f1..4eb21f0 100644
+index 3fdbad2137..81fc079b1e 100644
 --- a/modules/video_chroma/d3d11_fmt.h
 +++ b/modules/video_chroma/d3d11_fmt.h
-@@ -48,6 +48,7 @@ struct picture_sys_t
+@@ -46,6 +46,7 @@ struct picture_sys_t
      ID3D11ShaderResourceView      *resourceView[D3D11_MAX_SHADER_VIEW];
      DXGI_FORMAT                   decoderFormat;
      DXGI_FORMAT                   formatTexture;
 +    bool                          mapped;
  };
  
- /* owned by the hardware decoder */
+ #include "../codec/avcodec/va_surface.h"
 diff --git a/modules/video_chroma/dxgi_fmt.c b/modules/video_chroma/dxgi_fmt.c
-index bc46291..bacf329 100644
+index bc462919ca..bacf329cac 100644
 --- a/modules/video_chroma/dxgi_fmt.c
 +++ b/modules/video_chroma/dxgi_fmt.c
 @@ -80,6 +80,7 @@ static const d3d_format_t d3d_formats[] = {
@@ -36,7 +36,7 @@ index bc46291..bacf329 100644
      { "VA_RGBA",  DXGI_FORMAT_R8G8B8A8_UNORM, VLC_CODEC_D3D11_OPAQUE,  8, 1, 1, { DXGI_FORMAT_R8G8B8A8_UNORM } },
      { "B8G8R8A8", DXGI_FORMAT_B8G8R8A8_UNORM, VLC_CODEC_BGRA,          8, 1, 1, { DXGI_FORMAT_B8G8R8A8_UNORM } },
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index cc6e5aa..a047235 100644
+index 77682321dc..7d97987eb6 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -99,6 +99,7 @@ typedef struct
@@ -273,7 +273,7 @@ index cc6e5aa..a047235 100644
          pool_cfg.lock          = Direct3D11MapPoolTexture;
          //pool_cfg.unlock        = Direct3D11UnmapPoolTexture;
      }
-@@ -1111,7 +1219,38 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
+@@ -1126,7 +1234,38 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
  #endif
      struct va_pic_context *pic_ctx = (struct va_pic_context*)picture->context;
      picture_sys_t *p_sys = pic_ctx ? &pic_ctx->picsys : picture->p_sys;
@@ -313,7 +313,7 @@ index cc6e5aa..a047235 100644
          D3D11_TEXTURE2D_DESC texDesc;
          if (!is_d3d11_opaque(picture->format.i_chroma))
              Direct3D11UnmapPoolTexture(picture);
-@@ -1767,6 +1906,13 @@ static HRESULT CompilePixelShader(vout_display_t *vd, const d3d_format_t *format
+@@ -1766,6 +1905,13 @@ static HRESULT CompilePixelShader(vout_display_t *vd, const d3d_format_t *format
          psz_sampler =
                  "sample = shaderTexture[0].Sample(SampleType, In.Texture);";
          break;
@@ -327,7 +327,7 @@ index cc6e5aa..a047235 100644
      default:
          vlc_assert_unreachable();
      }
-@@ -2130,7 +2276,7 @@ static int Direct3D11CreateResources(vout_display_t *vd, video_format_t *fmt)
+@@ -2129,7 +2275,7 @@ static int Direct3D11CreateResources(vout_display_t *vd, video_format_t *fmt)
      }
  
      sys->legacy_shader = !CanUseTextureArray(vd);
@@ -337,5 +337,5 @@ index cc6e5aa..a047235 100644
      hr = CompilePixelShader(vd, sys->picQuadConfig, fmt->transfer, fmt->b_color_range_full, &sys->picQuadPixelShader);
      if (FAILED(hr))
 -- 
-2.10.1.windows.1
+2.11.0
 
