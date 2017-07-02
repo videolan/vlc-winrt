@@ -1,4 +1,4 @@
-From 267b604a7ff04c07508c964c9159b60c9ed6b1d1 Mon Sep 17 00:00:00 2001
+From 72d7d3436e21e0eb18c3f20117a44810a01dd260 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 8 Jun 2017 14:45:50 +0200
 Subject: [PATCH 08/11] dxgi_fmt: add one more texture in the array
@@ -9,7 +9,7 @@ I420 and other formats need 3 planes
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/modules/video_chroma/dxgi_fmt.h b/modules/video_chroma/dxgi_fmt.h
-index b79dbce7c0..8e8cdb5e5b 100644
+index b79dbce..8e8cdb5 100644
 --- a/modules/video_chroma/dxgi_fmt.h
 +++ b/modules/video_chroma/dxgi_fmt.h
 @@ -29,7 +29,7 @@
@@ -22,5 +22,5 @@ index b79dbce7c0..8e8cdb5e5b 100644
  typedef struct
  {
 -- 
-2.11.0
+2.8.1.windows.1
 
