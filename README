@@ -36,7 +36,7 @@ Run ./compile.sh and generate vlc.7z
 -----------------
 
 If you skipped step 0), take the most recent build, depending on your architecture.
-- For x86 and 64 versions, builds are located in http://http://nightlies.videolan.org/build/winrt-i686/ 
+- For x86 and 64 versions, builds are located in http://nightlies.videolan.org/build/winrt-i686/ 
 and http://nightlies.videolan.org/build/winrt-x86_64/ 
 
 - For ARM version, builds are located in http://people.videolan.org/~hugo/
