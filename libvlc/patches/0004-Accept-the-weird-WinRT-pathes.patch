@@ -1,7 +1,7 @@
-From fe440b20be04fffc60abded167448f0d6a837f96 Mon Sep 17 00:00:00 2001
+From 618061091c622ce87b72e40f915a896fc0b31449 Mon Sep 17 00:00:00 2001
 From: Jean-Baptiste Kempf <jb@videolan.org>
 Date: Wed, 12 Mar 2014 00:11:26 +0100
-Subject: [PATCH 04/11] Accept the weird WinRT pathes
+Subject: [PATCH 04/12] Accept the weird WinRT pathes
 
 ---
  src/text/url.c | 5 +++++
@@ -24,5 +24,5 @@ index 1b602b5..3ad4e50 100644
      {   /* Windows UNC paths */
          /* \\host\share\path -> file://host/share/path */
 -- 
-2.8.1.windows.1
+2.10.1.windows.1
 

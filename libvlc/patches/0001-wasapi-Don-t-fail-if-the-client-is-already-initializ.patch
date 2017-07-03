@@ -1,7 +1,7 @@
-From cc89ba05a357ea4cc5edead65f3173705af2fc30 Mon Sep 17 00:00:00 2001
+From b8e938a57880cf87af6a5406a306340716b6dd92 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Feb 2015 11:58:54 +0100
-Subject: [PATCH 01/11] wasapi: Don't fail if the client is already initialized
+Subject: [PATCH 01/12] wasapi: Don't fail if the client is already initialized
 
 make the extra test only for Winstore builds
 ---
@@ -26,5 +26,5 @@ index e4803b2..3920575 100644
          msg_Err(s, "cannot initialize audio client (error 0x%lx)", hr);
          goto error;
 -- 
-2.8.1.windows.1
+2.10.1.windows.1
 
