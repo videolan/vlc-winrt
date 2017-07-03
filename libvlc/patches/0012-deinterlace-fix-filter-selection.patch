@@ -1,4 +1,4 @@
-From 85d38f329ec68f3344684715a6be117e3fed90a5 Mon Sep 17 00:00:00 2001
+From d37bd9c981f0f9ef05b447aac60f217029b1b8b2 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 3 Jul 2017 10:15:33 +0200
 Subject: [PATCH 12/12] deinterlace: fix filter selection

@@ -1,10 +1,15 @@
-From d4bf9615f5f8c2e17a187465bec8ee9407f5128c Mon Sep 17 00:00:00 2001
+From ed58a000ed9eff2abf51ecb98b3c115a00e8ccee Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 8 Jun 2017 17:37:04 +0200
 Subject: [PATCH 09/12] direct3d11: add support for I420 picture pools
 
 Allow direct rendering to I420 textures directly in the GPU memory mapped to CPU
 The texture to display is copied to the staging texture just before rendering.
+
+--
+replaces https://patches.videolan.org/patch/17236/
+- fix width/height typo
+- the alignment assert is only for plane 0
 ---
  modules/video_chroma/d3d11_fmt.h        |   1 +
  modules/video_chroma/dxgi_fmt.c         |   1 +
@@ -36,7 +41,7 @@ index bc46291..bacf329 100644
      { "VA_RGBA",  DXGI_FORMAT_R8G8B8A8_UNORM, VLC_CODEC_D3D11_OPAQUE,  8, 1, 1, { DXGI_FORMAT_R8G8B8A8_UNORM } },
      { "B8G8R8A8", DXGI_FORMAT_B8G8R8A8_UNORM, VLC_CODEC_BGRA,          8, 1, 1, { DXGI_FORMAT_B8G8R8A8_UNORM } },
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 9b6a879..c0bd23e 100644
+index 9b6a879..5949165 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -99,6 +99,7 @@ typedef struct
@@ -143,7 +148,7 @@ index 9b6a879..c0bd23e 100644
 +
 +            /* align on 16 pixel boundaries */
 +            i_width_aligned  = ( i_width_aligned  + 15 ) & ~15;
-+            i_height_aligned = ( i_width_aligned + 15 ) & ~15;
++            i_height_aligned = ( i_height_aligned + 15 ) & ~15;
 +        }
 +
 +        for( int i = 0; i < plane_count; i++ )
@@ -155,10 +160,10 @@ index 9b6a879..c0bd23e 100644
 +            p->i_pitch         = i_width_aligned * p_chroma_desc->p[i].w.num / p_chroma_desc->p[i].w.den * p_chroma_desc->pixel_size;
 +            p->i_visible_pitch = fmt->i_visible_width * p_chroma_desc->p[i].w.num / p_chroma_desc->p[i].w.den * p_chroma_desc->pixel_size;
 +            p->i_pixel_pitch   = p_chroma_desc->pixel_size;
++        }
 +
-+            if (!pool_type_display) {
-+                assert( (p->i_pitch % 16) == 0 );
-+            }
++        if (!pool_type_display) {
++            assert( (planes[0].i_pitch % 16) == 0 );
 +        }
 +
 +        texDesc.ArraySize = 1;
