@@ -1012,6 +1012,12 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libdeinterlace_plugin.dll">
       <Link>plugins\video_filter\libdeinterlace_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libdirect3d11_adjust_plugin.dll">
+      <Link>plugins\video_filter\libdirect3d11_adjust_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libdirect3d11_deinterlace_plugin.dll">
+      <Link>plugins\video_filter\libdirect3d11_deinterlace_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libedgedetection_plugin.dll">
       <Link>plugins\video_filter\libedgedetection_plugin.dll</Link>
     </Content>
