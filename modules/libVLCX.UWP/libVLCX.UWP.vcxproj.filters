@@ -15,7 +15,6 @@
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="..\libVLCX\DirectXManager.cpp" />
-    <ClCompile Include="..\libVLCX\MMDeviceLocator.cpp" />
     <ClCompile Include="..\libVLCX\Thumbnailer.cpp" />
     <ClCompile Include="..\libvlcppcx\DialogCX.cpp">
       <Filter>libvlcppcx</Filter>
@@ -93,7 +92,6 @@
       <Filter>libvlcpp</Filter>
     </ClInclude>
     <ClInclude Include="..\libVLCX\DirectXManager.h" />
-    <ClInclude Include="..\libVLCX\MMDeviceLocator.h" />
     <ClInclude Include="..\libVLCX\Thumbnailer.h" />
     <ClInclude Include="..\libvlcppcx\DialogCX.hpp">
       <Filter>libvlcppcx</Filter>

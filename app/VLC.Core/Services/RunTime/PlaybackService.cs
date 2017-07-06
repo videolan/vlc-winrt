@@ -61,8 +61,6 @@ namespace VLC.Services.RunTime
         private PlaylistService _playlistService;
 
         public Instance Instance { get; private set; }
-        // Contains the IAudioClient address, as a string.
-        private AudioDeviceHandler AudioClient { get; set; }
         private String _audioDeviceID;
         private String AudioDeviceID
         {
@@ -116,7 +114,6 @@ namespace VLC.Services.RunTime
                     );
 
                     // Audio device management also needs to be called from the main thread
-                    AudioClient = new AudioDeviceHandler(AudioDeviceID);
                     MediaDevice.DefaultAudioRenderDeviceChanged += onDefaultAudioRenderDeviceChanged;
                     PlayerInstanceReady.TrySetResult(Instance != null);
                 }
@@ -141,24 +138,16 @@ namespace VLC.Services.RunTime
                 (float)sender.ActualHeight * sender.CompositionScaleY);
         }
 
-        private async void onDefaultAudioRenderDeviceChanged(object sender, DefaultAudioRenderDeviceChangedEventArgs args)
+        private void onDefaultAudioRenderDeviceChanged(object sender, DefaultAudioRenderDeviceChangedEventArgs args)
         {
             if (args.Role != AudioDeviceRole.Default || args.Id == AudioDeviceID)
                 return;
 
             AudioDeviceID = args.Id;
-            // If we don't have an instance yet, no need to fetch the audio client as it will be done upon
-            // instance creation.
-            if (Instance == null)
-                return;
-            await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
-                // Always fetch the new audio client, as we always assign it when starting a new playback
-                AudioClient = new AudioDeviceHandler(AudioDeviceID);
-                // But if a playback is in progress, inform VLC backend that we changed device
-                if (_mediaPlayer != null)
-                    _mediaPlayer.outputDeviceSet(AudioClient.audioClient());
-            });
+            // Always fetch the new audio client, as we always assign it when starting a new playback
+            // But if a playback is in progress, inform VLC backend that we changed device
+            if (_mediaPlayer != null)
+                _mediaPlayer.outputDeviceSet(AudioDeviceID);
         }
 
 
@@ -385,7 +374,7 @@ namespace VLC.Services.RunTime
             }
             else
                 _mediaPlayer.setMedia(CurrentMedia);
-            _mediaPlayer.outputDeviceSet(AudioClient.audioClient());
+            _mediaPlayer.outputDeviceSet(AudioDeviceID);
             SetEqualizer(Locator.SettingsVM.Equalizer);
         }
 
