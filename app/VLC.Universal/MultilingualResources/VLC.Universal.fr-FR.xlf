@@ -842,6 +842,26 @@
           <source>Long press on a file or a folder to copy it to the local storage.</source>
           <target state="new">Long press on a file or a folder to copy it to the local storage.</target>
         </trans-unit>
+        <trans-unit id="SURFACE_FIT_SCREEN" translate="yes" xml:space="preserve">
+          <source>fit screen</source>
+          <target state="new">fit screen</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_FILL" translate="yes" xml:space="preserve">
+          <source>fill</source>
+          <target state="new">fill</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_16_9" translate="yes" xml:space="preserve">
+          <source>16:9</source>
+          <target state="new">16:9</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_4_3" translate="yes" xml:space="preserve">
+          <source>4:3</source>
+          <target state="new">4:3</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_ORIGINAL" translate="yes" xml:space="preserve">
+          <source>original</source>
+          <target state="new">original</target>
+        </trans-unit>
       </group>
     </body>
   </file>

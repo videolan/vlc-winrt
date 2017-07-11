@@ -129,11 +129,14 @@ namespace VLC.Utils
         public static string AudioDelay => _resourcesLoader.GetString(nameof(AudioDelay));
         public static string SubtitleDelay => _resourcesLoader.GetString(nameof(SubtitleDelay));
         public static string Zoom => _resourcesLoader.GetString(nameof(Zoom));
-        public static string SURFACE_FIT_VERTICAL => _resourcesLoader.GetString(nameof(SURFACE_FIT_VERTICAL));
-        public static string SURFACE_FIT_HORIZONTAL => _resourcesLoader.GetString(nameof(SURFACE_FIT_HORIZONTAL));
+        public static string SURFACE_FIT_SCREEN => _resourcesLoader.GetString(nameof(SURFACE_FIT_SCREEN));
         public static string SURFACE_BEST_FIT => _resourcesLoader.GetString(nameof(SURFACE_BEST_FIT));
-        public static string SURFACE_STRETCH => _resourcesLoader.GetString(nameof(SURFACE_STRETCH));
+        public static string SURFACE_FILL => _resourcesLoader.GetString(nameof(SURFACE_FILL));
+        public static string SURFACE_16_9 => _resourcesLoader.GetString(nameof(SURFACE_16_9));
+        public static string SURFACE_4_3 => _resourcesLoader.GetString(nameof(SURFACE_4_3));
+        public static string SURFACE_ORIGINAL => _resourcesLoader.GetString(nameof(SURFACE_ORIGINAL));
 
+        
 
         // PLAYBACK
         public static string Playlist => _resourcesLoader.GetString(nameof(Playlist));

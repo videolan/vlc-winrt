@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Windows.UI.Xaml.Data;
-using VLC.Model;
 using VLC.Model.Video;
 using VLC.Utils;
 
@@ -18,12 +15,16 @@ namespace VLC.Converters
                 {
                     case VLCSurfaceZoom.SURFACE_BEST_FIT:
                         return Strings.SURFACE_BEST_FIT.ToUpperFirstChar();
-                    case VLCSurfaceZoom.SURFACE_FIT_HORIZONTAL:
-                        return Strings.SURFACE_FIT_HORIZONTAL.ToUpperFirstChar();
-                    case VLCSurfaceZoom.SURFACE_FIT_VERTICAL:
-                        return Strings.SURFACE_FIT_VERTICAL.ToUpperFirstChar();
-                    case VLCSurfaceZoom.SURFACE_STRETCH:
-                        return Strings.SURFACE_STRETCH.ToUpperFirstChar();
+                    case VLCSurfaceZoom.SURFACE_FIT_SCREEN:
+                        return Strings.SURFACE_FIT_SCREEN.ToUpperFirstChar();
+                    case VLCSurfaceZoom.SURFACE_FILL:
+                        return Strings.SURFACE_FILL.ToUpperFirstChar();
+                    case VLCSurfaceZoom.SURFACE_16_9:
+                        return Strings.SURFACE_16_9.ToUpperFirstChar();
+                    case VLCSurfaceZoom.SURFACE_4_3:
+                        return Strings.SURFACE_4_3.ToUpperFirstChar();
+                    case VLCSurfaceZoom.SURFACE_ORIGINAL:
+                        return Strings.SURFACE_ORIGINAL.ToUpperFirstChar();
                     default:
                         throw new ArgumentOutOfRangeException(nameof(value), value, null);
                 }

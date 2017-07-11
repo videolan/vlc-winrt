@@ -26,6 +26,7 @@ using Windows.UI.Xaml.Media;
 using VLC.Commands.VideoPlayer;
 using VLC.Model;
 using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using VLC.MediaMetaFetcher.Fetchers;
 
 namespace VLC.ViewModels.VideoVM
@@ -103,12 +104,14 @@ namespace VLC.ViewModels.VideoVM
             {
                 if (zooms == null || !zooms.Any())
                 {
-                    zooms = new List<VLCSurfaceZoom>()
+                    zooms = new List<VLCSurfaceZoom>
                     {
                         VLCSurfaceZoom.SURFACE_BEST_FIT,
-                        VLCSurfaceZoom.SURFACE_FIT_HORIZONTAL,
-                        VLCSurfaceZoom.SURFACE_FIT_VERTICAL,
-                        VLCSurfaceZoom.SURFACE_STRETCH
+                        VLCSurfaceZoom.SURFACE_FIT_SCREEN,
+                        VLCSurfaceZoom.SURFACE_FILL,
+                        VLCSurfaceZoom.SURFACE_16_9,
+                        VLCSurfaceZoom.SURFACE_4_3,
+                        VLCSurfaceZoom.SURFACE_ORIGINAL
                     };
                 }
                 return zooms;
@@ -220,93 +223,57 @@ namespace VLC.ViewModels.VideoVM
 
         public void ChangeSurfaceZoom(VLCSurfaceZoom desiredZoom)
         {
+            var playbackService = Locator.PlaybackService;
             var screenWidth = App.RootPage.SwapChainPanel.ActualWidth;
             var screenHeight = App.RootPage.SwapChainPanel.ActualHeight;
             
-            var videoTrack = Locator.PlaybackService.CurrentMedia?.tracks()?.FirstOrDefault(x => x.type() == TrackType.Video);
+            var videoTrack = playbackService.CurrentMedia?.tracks()?.FirstOrDefault(x => x.type() == TrackType.Video);
 
             if (videoTrack == null)
                 return;
-            var videoHeight = videoTrack.height();
-            var videoWidth = videoTrack.width();
-
-            var sarDen = videoTrack.sarDen();
-            var sarNum = videoTrack.sarNum();
-
-            double var = 0, displayedVideoWidth;
-            if (sarDen == sarNum)
-            {
-                // Assuming it's 1:1 pixel
-                var = (float)videoWidth / videoHeight;
-            }
-            else
-            {
-                var = (videoWidth * (double)sarNum / sarDen) / videoHeight;
-            }
-
-            var screenar = (float)screenWidth / screenHeight;
-            double displayedVideoHeight = 0;
-            if (var > screenar)
-            {
-                displayedVideoHeight = screenWidth * ((float)videoHeight / videoWidth);
-                displayedVideoWidth = screenWidth;
-            }
-            else
-            {
-                displayedVideoHeight = screenHeight;
-                displayedVideoWidth = displayedVideoHeight * var;
-            }
-
-            double bandesNoiresVertical = screenHeight - displayedVideoHeight;
-            double bandesNoiresHorizontal = screenWidth - displayedVideoWidth;
-
-            var scaleTransform = new ScaleTransform();
-            var verticalScale = Math.Abs(displayedVideoHeight / (displayedVideoHeight - bandesNoiresVertical));
-            var horizontalScale = Math.Abs(displayedVideoWidth / (displayedVideoWidth - bandesNoiresHorizontal));
-
-            scaleTransform.CenterX = screenWidth / 2;
-            scaleTransform.CenterY = screenHeight / 2;
+            
             switch (desiredZoom)
             {
                 case VLCSurfaceZoom.SURFACE_BEST_FIT:
-                    scaleTransform.ScaleX = scaleTransform.ScaleY = 1;
+                    playbackService.VideoAspectRatio = string.Empty;
+                    playbackService.VideoScale = 0;
                     break;
-                case VLCSurfaceZoom.SURFACE_FIT_HORIZONTAL:
-                    scaleTransform.ScaleX = horizontalScale;
-                    scaleTransform.ScaleY = horizontalScale;
-                    scaleTransform.CenterX = screenWidth / 2;
-                    scaleTransform.CenterY = screenHeight / 2;
+                case VLCSurfaceZoom.SURFACE_FIT_SCREEN:
+                    var videoW = videoTrack.width();
+                    var videoH = videoTrack.height();
+                    
+                    if (videoTrack.sarNum() != videoTrack.sarDen())
+                        videoW = videoW * videoTrack.sarNum() / videoTrack.sarDen();
+
+                    var ar = videoW / (float)videoH;
+                    var dar = screenWidth / screenHeight;
+
+                    float scale;
+                    if (dar >= ar)
+                        scale = (float)screenWidth / videoW; /* horizontal */
+                    else
+                        scale = (float)screenHeight / videoH; /* vertical */
+
+                    playbackService.VideoScale = scale;
+                    playbackService.VideoAspectRatio = string.Empty;
                     break;
-                case VLCSurfaceZoom.SURFACE_FIT_VERTICAL:
-                    scaleTransform.ScaleX = verticalScale;
-                    scaleTransform.ScaleY = verticalScale;
+                case VLCSurfaceZoom.SURFACE_FILL:
+                    playbackService.VideoScale = 0;
+                    playbackService.VideoAspectRatio = $"{screenWidth}:{screenHeight}";
                     break;
-                case VLCSurfaceZoom.SURFACE_STRETCH:
-                    if (bandesNoiresVertical > 0)
-                    {
-                        scaleTransform.ScaleX = 1;
-                        scaleTransform.ScaleY = verticalScale;
-                    }
-                    else if (bandesNoiresHorizontal > 0)
-                    {
-                        scaleTransform.ScaleX = horizontalScale;
-                        scaleTransform.ScaleY = 1;
-                    }
+                case VLCSurfaceZoom.SURFACE_16_9:
+                    playbackService.VideoAspectRatio = "16:9";
+                    playbackService.VideoScale = 0;
                     break;
-                //case VLCSurfaceZoom.SURFACE_FILL:
-                //    break;
-                //case VLCSurfaceZoom.SURFACE_16_9:
-                //    break;
-                //case VLCSurfaceZoom.SURFACE_4_3:
-                //    break;
-                //case VLCSurfaceZoom.SURFACE_ORIGINAL:
-                //    break;
-                //case VLCSurfaceZoom.SURFACE_CUSTOM_ZOOM:
-                //    break;
-                default:
+                case VLCSurfaceZoom.SURFACE_4_3:
+                    playbackService.VideoAspectRatio = "4:3";
+                    playbackService.VideoScale = 0;
+                    break;
+                case VLCSurfaceZoom.SURFACE_ORIGINAL:
+                    playbackService.VideoAspectRatio = string.Empty;
+                    playbackService.VideoScale = 1;
                     break;
             }
-            App.RootPage.SwapChainPanel.RenderTransform = scaleTransform;
         }
 
         public void RequestChangeControlBarVisibility(bool visibility)

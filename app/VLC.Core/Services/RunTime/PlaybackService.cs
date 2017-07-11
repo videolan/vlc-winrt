@@ -456,6 +456,7 @@ namespace VLC.Services.RunTime
             {
                 await Initialize();
             }
+            
             await PlayerInstanceReady.Task;
             if (media == null)
                 return mP;
@@ -637,6 +638,19 @@ namespace VLC.Services.RunTime
             }
             return presets;
         }
+
+        public string VideoAspectRatio
+        {
+            get => _mediaPlayer.aspectRatio();
+            set => _mediaPlayer.setAspectRatio(value);
+        }
+
+        public float VideoScale
+        {
+            get => _mediaPlayer.scale();
+            set => _mediaPlayer.setScale(value);
+        }
+        
 
         #endregion
 
