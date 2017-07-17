@@ -208,8 +208,14 @@ namespace VLC.Services.RunTime
                         {
                             switch (args.VirtualKey)
                             {
-                                case VirtualKey.GamepadA:
                                 case VirtualKey.GamepadLeftThumbstickButton:
+                                case VirtualKey.GamepadRightThumbstickButton:
+                                    if (!Locator.VideoPlayerVm.Is3DVideo) break;
+                                    var vp = new VideoViewpoint(0f, 0f, 0f,
+                                        args.VirtualKey == VirtualKey.GamepadRightThumbstickButton ? -0.5f : 0.5f);
+                                    Locator.PlaybackService.UpdateViewpoint(vp, false);
+                                    break;
+                                case VirtualKey.GamepadA:
                                 case VirtualKey.GamepadDPadDown:
                                 case VirtualKey.GamepadDPadLeft:
                                 case VirtualKey.GamepadDPadUp:
@@ -238,6 +244,22 @@ namespace VLC.Services.RunTime
                                 case VirtualKey.GamepadRightTrigger:
                                     Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
                                     Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(30000);
+                                    break;
+                                case VirtualKey.GamepadRightThumbstickDown:
+                                    if (!Locator.VideoPlayerVm.Is3DVideo) break;
+                                    Locator.PlaybackService.UpdateViewpoint(new VideoViewpoint(0f, 5f, 0f, 0f), false);
+                                    break;
+                                case VirtualKey.GamepadRightThumbstickUp:
+                                    if (!Locator.VideoPlayerVm.Is3DVideo) break;
+                                    Locator.PlaybackService.UpdateViewpoint(new VideoViewpoint(0f, -5f, 0f, 0f), false);
+                                    break;
+                                case VirtualKey.GamepadRightThumbstickLeft:
+                                    if (!Locator.VideoPlayerVm.Is3DVideo) break;
+                                    Locator.PlaybackService.UpdateViewpoint(new VideoViewpoint(-5f, 0f, 0f, 0f), false);
+                                    break;
+                                case VirtualKey.GamepadRightThumbstickRight:
+                                    if (!Locator.VideoPlayerVm.Is3DVideo) break;
+                                    Locator.PlaybackService.UpdateViewpoint(new VideoViewpoint(5f, 0f, 0f, 0f), false);
                                     break;
                                 default:
                                     break;

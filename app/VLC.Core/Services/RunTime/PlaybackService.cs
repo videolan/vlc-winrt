@@ -650,7 +650,13 @@ namespace VLC.Services.RunTime
             get => _mediaPlayer.scale();
             set => _mediaPlayer.setScale(value);
         }
-        
+
+        public int VideotrackId => _mediaPlayer.videoTrack();
+
+        public void UpdateViewpoint(VideoViewpoint viewpoint, bool absolute)
+        {
+            _mediaPlayer.updateViewpoint(viewpoint, absolute);
+        }
 
         #endregion
 

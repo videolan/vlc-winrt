@@ -28,6 +28,7 @@ using VLC.Model;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using VLC.MediaMetaFetcher.Fetchers;
+using Projection = libVLCX.Projection;
 
 namespace VLC.ViewModels.VideoVM
 {
@@ -154,6 +155,7 @@ namespace VLC.ViewModels.VideoVM
 
             Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet += PlaybackService_Playback_MediaSet;
             Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaFileNotFound += PlaybackService_Playback_MediaFileNotFound;
+            
         }
 
         public void OnNavigatedFrom()
@@ -301,8 +303,20 @@ namespace VLC.ViewModels.VideoVM
                     AppViewHelper.SetTitleBarTitle(video.Name);
             });
             if (video != null)
+            {
                 await TryUseSubtitleFromFolder();
+
+                var currentVideoTrackid = Locator.PlaybackService.VideotrackId;
+                if (currentVideoTrackid != -1)
+                {
+                    var currentMediaTrack = Locator.PlaybackService.CurrentMedia?.tracks()?
+                        .FirstOrDefault(t => t.id() == currentVideoTrackid);
+                    Is3DVideo = currentMediaTrack?.projection() == Projection.Equirectangular;
+                }
+            }
         }
+
+        public bool Is3DVideo { get; private set; }
 
         public void OnPlayerControlVisibilityChanged(bool visibility)
         {

@@ -150,12 +150,13 @@
             <!-- We will put there the control for swype, tap, double tap, etc -->
             <Grid x:Name="PlaceholderInteractionGrid"
                   Background="Transparent"
-                  ManipulationMode="TranslateX,TranslateY"
+                  ManipulationMode="All"
                   ManipulationStarted="PlaceholderInteractionGrid_OnManipulationStarted"
                   ManipulationDelta="PlaceholderInteractionGrid_OnManipulationDelta"
                   ManipulationCompleted="PlaceholderInteractionGrid_OnManipulationCompleted"
                   Tapped="PlaceholderInteractionGrid_OnTapped"
                   DoubleTapped="PlaceholderInteractionGrid_DoubleTapped"
+                  PointerWheelChanged="PlaceholderInteractionGrid_OnPointerWheelChanged"
                   Loaded="PlaceholderInteractionGrid_Loaded"/>
         </Grid>
 

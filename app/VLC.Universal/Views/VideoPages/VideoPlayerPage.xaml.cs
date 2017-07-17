@@ -26,6 +26,9 @@ using VLC.Utils;
 using Windows.UI.Xaml.Controls.Primitives;
 using VLC.Commands;
 using System.Linq;
+using System.Numerics;
+using Windows.UI.Xaml.Media;
+using libVLCX;
 
 namespace VLC.UI.Views.VideoPages
 {
@@ -35,6 +38,8 @@ namespace VLC.UI.Views.VideoPages
         private bool isLocked = false;
         private GestureActionType currentGestureActionType;
         private DispatcherTimer controlsTimer = new DispatcherTimer();
+        private const float DEFAULT_FOV = 80f;
+        private readonly PlaybackService _playbackService = Locator.PlaybackService;
 
         public delegate void PlayerControlVisibilityChanged(bool visibility);
         public event PlayerControlVisibilityChanged OnPlayerControlVisibilityChanged;
@@ -86,7 +91,7 @@ namespace VLC.UI.Views.VideoPages
             controlsTimer.Interval = TimeSpan.FromSeconds(5);
             controlsTimer.Tick += ControlsTimer_Tick;
             controlsTimer.Start();
-
+           
             // VM initialization
             Locator.VideoPlayerVm.OnNavigatedTo();
             Locator.VideoPlayerVm.PlayerControlVisibilityChangeRequested += VideoPlayerVm_PlayerControlVisibilityChangeRequested;
@@ -244,6 +249,12 @@ namespace VLC.UI.Views.VideoPages
         {
             if (isLocked) return;
             Debug.WriteLine("VideoPlayerPage gesture started");
+            if (Locator.VideoPlayerVm.Is3DVideo)
+            {
+                currentGestureActionType = GestureActionType.Exlore3D;
+                return;
+            }
+
             if (Math.Abs(e.Cumulative.Translation.Y) > Math.Abs(e.Cumulative.Translation.X))
             {
                 if (e.Position.X < (Window.Current.Bounds.Width / 2))
@@ -260,6 +271,7 @@ namespace VLC.UI.Views.VideoPages
             {
                 currentGestureActionType = GestureActionType.Seek;
             }
+            
             GestureBorder.Visibility = Visibility.Visible;
         }
 
@@ -279,6 +291,21 @@ namespace VLC.UI.Views.VideoPages
                 case GestureActionType.Seek:
                     var seekInSeconds = Math.Floor(cumulativeTranslationX / 10);
                     GestureTextBlockDescription.Text = StringsHelper.SecondsToString(seekInSeconds) + " (" + StringsHelper.MillisecondsToString(Locator.MediaPlaybackViewModel.Time) + ")";
+                    break;
+                case GestureActionType.Exlore3D:
+                    var scale = Math.Abs(e.Cumulative.Scale);
+                    if (scale > 1 || scale < 1)
+                    {
+                        _playbackService.UpdateViewpoint(new VideoViewpoint(0, 0, 0, scale < 1 ? 0.5f : -0.5f), false);
+                        
+                    }
+                    else
+                    {
+                        var yaw = (float)(DEFAULT_FOV * -e.Cumulative.Translation.X / App.RootPage.SwapChainPanel.ActualWidth) / 10;
+                        var pitch = (float)(DEFAULT_FOV * -e.Cumulative.Translation.Y / App.RootPage.SwapChainPanel.ActualHeight) / 10;
+                        var viewpoint = new VideoViewpoint(yaw, pitch, 0, 0);
+                        _playbackService.UpdateViewpoint(viewpoint, false);
+                    }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -300,6 +327,8 @@ namespace VLC.UI.Views.VideoPages
                 case GestureActionType.Seek:
                     var timeInSeconds = e.Cumulative.Translation.X;
                     Locator.MediaPlaybackViewModel.Time += (int)timeInSeconds * 100;
+                    break;
+                case GestureActionType.Exlore3D:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -466,6 +495,16 @@ namespace VLC.UI.Views.VideoPages
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
             Locator.MediaPlaybackViewModel.PlayPreviousCommand.Execute(null);
+        }
+
+        private void PlaceholderInteractionGrid_OnPointerWheelChanged(object sender, PointerRoutedEventArgs e)
+        {
+            var properties = e.GetCurrentPoint(RootGrid).Properties;
+            if (properties.IsHorizontalMouseWheel || !Locator.VideoPlayerVm.Is3DVideo) return;
+
+            var fov = (float)-properties.MouseWheelDelta;
+
+            _playbackService.UpdateViewpoint(new VideoViewpoint(0, 0, 0, fov / 10), false );         
         }
     }
 }
