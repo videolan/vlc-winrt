@@ -121,6 +121,15 @@ namespace libVLCX
     {
         return m_fpsDen;
     }
+    Orientation MediaTrack::orientation()
+    {
+        return m_orientation;
+    }
+    Projection MediaTrack::projection()
+    {
+        return m_projection;
+    }
+
     // Subtitles specific
     Platform::String^ MediaTrack::encoding()
     {
@@ -146,6 +155,8 @@ namespace libVLCX
         m_sarDen = track.sarDen();
         m_fpsNum = track.fpsNum();
         m_fpsDen = track.fpsDen();
+        m_orientation = (Orientation) track.orientation();
+        m_projection = (Projection) track.projection();
         m_encoding = ToPlatformString(track.encoding().c_str());
     }
 
@@ -271,6 +282,31 @@ namespace libVLCX
     Platform::String^ MediaSlave::uri()
     {
         return m_uri;
+    }
+
+    VideoViewpoint::VideoViewpoint(float yaw, float pitch, float roll, float fieldOfView)
+        : m_viewpoint(yaw, pitch, roll, fieldOfView)
+    {
+    }
+
+    float VideoViewpoint::yaw()
+    {
+        return m_viewpoint.yaw();
+    }
+
+    float VideoViewpoint::pitch()
+    {
+        return m_viewpoint.pitch();
+    }
+
+    float VideoViewpoint::roll()
+    {
+        return m_viewpoint.roll();
+    }
+
+    float VideoViewpoint::field_of_view()
+    {
+        return m_viewpoint.field_of_view();
     }
 
     Platform::String^ MediaDiscovererDescription::name()

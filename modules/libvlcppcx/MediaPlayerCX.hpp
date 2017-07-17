@@ -859,6 +859,7 @@ namespace libVLCX
 
         bool addSlave(SlaveType type, Platform::String^ uri, bool select);
 
+        bool updateViewpoint(VideoViewpoint^ p_viewpoint, bool b_absolute);
         /**
         * Get the current subtitle delay. Positive values means subtitles are
         * being displayed later, negative values earlier.

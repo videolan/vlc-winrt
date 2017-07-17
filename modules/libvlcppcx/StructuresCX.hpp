@@ -54,6 +54,25 @@ namespace libVLCX
         Subtitle
     };
 
+    public enum class Orientation 
+    {
+        TopLeft,
+        TopRight,
+        BottomLeft,
+        BottomRight,
+        LeftTop,
+        LeftBottom,
+        RightTop,
+        RightBottom
+    };
+
+    public enum class Projection
+    {
+        Rectangular,
+        Equirectangular,
+        CubemapLayoutStandard = 0x100
+    };
+
     public ref class MediaTrack sealed
     {
     public:
@@ -76,6 +95,8 @@ namespace libVLCX
         uint32_t sarDen();
         uint32_t fpsNum();
         uint32_t fpsDen();
+        Orientation orientation();
+        Projection projection();
         // Subtitles specific
         Platform::String^ encoding();
 
@@ -102,6 +123,8 @@ namespace libVLCX
         uint32_t m_sarDen;
         uint32_t m_fpsNum;
         uint32_t m_fpsDen;
+        Orientation m_orientation;
+        Projection m_projection;
         // Subtitles
         Platform::String^ m_encoding;
     };
@@ -211,6 +234,18 @@ namespace libVLCX
         Platform::String^ uri();
     };
 
+    public ref class VideoViewpoint sealed
+    {
+    public:
+        VideoViewpoint(float yaw, float pitch, float roll, float fieldOfView);
+    private:
+        VLC::VideoViewpoint m_viewpoint;
+    public:
+        float yaw();
+        float pitch();
+        float roll();
+        float field_of_view();
+    };
     public enum class MediaDiscovererCategory
     {
         Devices = VLC::MediaDiscoverer::Category::Devices,

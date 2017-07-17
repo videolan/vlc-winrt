@@ -410,6 +410,14 @@ namespace libVLCX
         return m_mp.addSlave(static_cast<VLC::MediaSlave::Type>(type), VLCString(uri), select);
     }
 
+    bool MediaPlayer::updateViewpoint(VideoViewpoint^ videoViewpoint, bool b_absolute)
+    {
+        VLC::VideoViewpoint vp(videoViewpoint->yaw(), 
+            videoViewpoint->pitch(), videoViewpoint->roll(), videoViewpoint->field_of_view());
+
+        return m_mp.updateViewpoint(vp, b_absolute);
+    }
+
     int64_t MediaPlayer::spuDelay()
     {
         return m_mp.spuDelay();
