@@ -1,3 +1,17 @@
+Changes between 2.3.3 and 2.5.0
+-------------------------------
+Release: July 18th 2017
+
+Bugfixes:
+* Fix crash video and show deletion
+* Fix crash when changing theme
+* Fix scaling/zooming (ex: 16:9 to 4:3) display issue
+* Fix image thumbnail not being removed from file system
+* Fix audio stop after library indexing finishes.
+
+* Added subtitles autoload
+* UI and performance improvements
+
 Changes between 2.3.0 and 2.3.1
 -------------------------------
 Release: January 9th 2017
