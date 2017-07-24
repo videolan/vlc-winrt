@@ -1,4 +1,4 @@
-From 81a51e05a7ebb17968872cc237486c5a3c8dde51 Mon Sep 17 00:00:00 2001
+From f06c849e99081fb43710fa4c1a7fbe7b99546e89 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 8 Jun 2017 14:45:50 +0200
 Subject: [PATCH 08/12] dxgi_fmt: add one more texture in the array

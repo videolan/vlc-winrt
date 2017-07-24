@@ -1,4 +1,4 @@
-From ed58a000ed9eff2abf51ecb98b3c115a00e8ccee Mon Sep 17 00:00:00 2001
+From 47cc519912fc6b5739a070a724f65eddcfc58588 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 8 Jun 2017 17:37:04 +0200
 Subject: [PATCH 09/12] direct3d11: add support for I420 picture pools
@@ -41,7 +41,7 @@ index bc46291..bacf329 100644
      { "VA_RGBA",  DXGI_FORMAT_R8G8B8A8_UNORM, VLC_CODEC_D3D11_OPAQUE,  8, 1, 1, { DXGI_FORMAT_R8G8B8A8_UNORM } },
      { "B8G8R8A8", DXGI_FORMAT_B8G8R8A8_UNORM, VLC_CODEC_BGRA,          8, 1, 1, { DXGI_FORMAT_B8G8R8A8_UNORM } },
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 9b6a879..5949165 100644
+index 893870b..291b518 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -99,6 +99,7 @@ typedef struct
@@ -52,7 +52,7 @@ index 9b6a879..5949165 100644
      unsigned int              i_x_offset;
      unsigned int              i_y_offset;
      unsigned int              i_width;
-@@ -405,6 +406,47 @@ static void Direct3D11UnmapPoolTexture(picture_t *picture)
+@@ -410,6 +411,47 @@ static void Direct3D11UnmapPoolTexture(picture_t *picture)
      ID3D11DeviceContext_Unmap(p_sys->context, p_sys->resource[KNOWN_DXGI_INDEX], 0);
  }
  
@@ -100,7 +100,7 @@ index 9b6a879..5949165 100644
  #if !VLC_WINSTORE_APP
  static int OpenHwnd(vout_display_t *vd)
  {
-@@ -580,7 +622,8 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
+@@ -585,7 +627,8 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
                              bool pool_type_display)
  {
      vout_display_sys_t *sys = vd->sys;
@@ -110,7 +110,7 @@ index 9b6a879..5949165 100644
      HRESULT hr;
      ID3D11Texture2D *slicedTexture = NULL;
      D3D11_TEXTURE2D_DESC texDesc;
-@@ -588,31 +631,93 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
+@@ -593,31 +636,93 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
      texDesc.MipLevels = 1;
      texDesc.SampleDesc.Count = 1;
      texDesc.MiscFlags = 0; //D3D11_RESOURCE_MISC_SHARED;
@@ -224,7 +224,7 @@ index 9b6a879..5949165 100644
              if (!cfg->resourceFormat[plane])
                  textures[picture_count * D3D11_MAX_SHADER_VIEW + plane] = NULL;
              else
-@@ -623,10 +728,8 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
+@@ -628,10 +733,8 @@ static int AllocateTextures(vout_display_t *vd, const d3d_format_t *cfg,
          }
      }
  
@@ -236,7 +236,7 @@ index 9b6a879..5949165 100644
          hr = ID3D11DeviceContext_Map(sys->d3dcontext, (ID3D11Resource*)textures[0], 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
          if( FAILED(hr) ) {
              msg_Err(vd, "The texture cannot be mapped. (hr=0x%lX)", hr);
-@@ -677,7 +780,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -688,7 +791,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
      }
  
      if (AllocateTextures(vd, sys->picQuadConfig, &surface_fmt, pool_size, textures,
@@ -245,7 +245,7 @@ index 9b6a879..5949165 100644
          goto error;
  
      if (!vd->info.is_slow) {
-@@ -740,6 +843,8 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -757,6 +860,8 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
          sys->picQuad.i_width    = staging_fmt.i_width;
          sys->picQuad.i_height   = staging_fmt.i_height;
  
@@ -254,7 +254,7 @@ index 9b6a879..5949165 100644
          for (unsigned plane = 0; plane < D3D11_MAX_SHADER_VIEW; plane++)
              sys->stagingSys.texture[plane] = textures[plane];
  
-@@ -768,7 +873,12 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+@@ -785,7 +890,12 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
          return NULL;
      }
  
@@ -268,7 +268,7 @@ index 9b6a879..5949165 100644
          pool_cfg.lock          = Direct3D11MapPoolTexture;
          //pool_cfg.unlock        = Direct3D11UnmapPoolTexture;
      }
-@@ -1106,7 +1216,38 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
+@@ -1123,7 +1233,38 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
          WaitForSingleObjectEx( sys->context_lock, INFINITE, FALSE );
  #endif
      picture_sys_t *p_sys = ActivePictureSys(picture);
@@ -308,7 +308,7 @@ index 9b6a879..5949165 100644
          D3D11_TEXTURE2D_DESC texDesc;
          if (!is_d3d11_opaque(picture->format.i_chroma))
              Direct3D11UnmapPoolTexture(picture);
-@@ -1745,6 +1886,13 @@ static HRESULT CompilePixelShader(vout_display_t *vd, const d3d_format_t *format
+@@ -1778,6 +1919,13 @@ static HRESULT CompilePixelShader(vout_display_t *vd, const d3d_format_t *format
          psz_sampler =
                  "sample = shaderTexture[0].Sample(SampleType, In.Texture);";
          break;
@@ -322,7 +322,7 @@ index 9b6a879..5949165 100644
      default:
          vlc_assert_unreachable();
      }
-@@ -2108,7 +2256,7 @@ static int Direct3D11CreateResources(vout_display_t *vd, video_format_t *fmt)
+@@ -2141,7 +2289,7 @@ static int Direct3D11CreateResources(vout_display_t *vd, video_format_t *fmt)
      }
  
      sys->legacy_shader = !CanUseTextureArray(vd);

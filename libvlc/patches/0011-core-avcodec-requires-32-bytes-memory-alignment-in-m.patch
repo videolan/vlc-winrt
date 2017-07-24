@@ -1,4 +1,4 @@
-From d1d14b788ca95866d14a3e2078b3d85a6e3d46b9 Mon Sep 17 00:00:00 2001
+From 3df73244e494baa691479ba3797f365ffa55f696 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 25 Jan 2017 10:49:37 +0100
 Subject: [PATCH 11/12] core: avcodec requires 32-bytes memory alignment in
@@ -16,7 +16,7 @@ replaces https://patches.videolan.org/patch/7971/
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/misc/picture.c b/src/misc/picture.c
-index 7c170f0..bf72fb6 100644
+index 59d0aaa..aaea5d2 100644
 --- a/src/misc/picture.c
 +++ b/src/misc/picture.c
 @@ -62,7 +62,7 @@ static int AllocatePicture( picture_t *p_pic )
