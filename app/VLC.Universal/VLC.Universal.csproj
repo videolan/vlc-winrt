@@ -412,9 +412,6 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\access\libvdr_plugin.dll">
       <Link>plugins\access\libvdr_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\stream_extractor\libarchive_plugin.dll">
-      <Link>plugins\stream_extractor\libarchive_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\audio_filter\libaudiobargraph_a_plugin.dll">
       <Link>plugins\audio_filter\libaudiobargraph_a_plugin.dll</Link>
     </Content>
@@ -465,6 +462,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\audio_filter\libsimple_channel_mixer_plugin.dll">
       <Link>plugins\audio_filter\libsimple_channel_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\audio_filter\libspatialaudio_plugin.dll">
+      <Link>plugins\audio_filter\libspatialaudio_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\audio_filter\libspatializer_plugin.dll">
       <Link>plugins\audio_filter\libspatializer_plugin.dll</Link>
@@ -601,9 +601,6 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libsubsdec_plugin.dll">
       <Link>plugins\codec\libsubsdec_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libttml_plugin.dll">
-      <Link>plugins\codec\libttml_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libsubstx3g_plugin.dll">
       <Link>plugins\codec\libsubstx3g_plugin.dll</Link>
     </Content>
@@ -613,8 +610,14 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libsvcdsub_plugin.dll">
       <Link>plugins\codec\libsvcdsub_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libtextst_plugin.dll">
+      <Link>plugins\codec\libtextst_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libtheora_plugin.dll">
       <Link>plugins\codec\libtheora_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libttml_plugin.dll">
+      <Link>plugins\codec\libttml_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libuleaddvaudio_plugin.dll">
       <Link>plugins\codec\libuleaddvaudio_plugin.dll</Link>
@@ -670,6 +673,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\demux\libdiracsys_plugin.dll">
       <Link>plugins\demux\libdiracsys_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\demux\libdirectory_demux_plugin.dll">
+      <Link>plugins\demux\libdirectory_demux_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\demux\libes_plugin.dll">
       <Link>plugins\demux\libes_plugin.dll</Link>
     </Content>
@@ -699,6 +705,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\demux\libmpgv_plugin.dll">
       <Link>plugins\demux\libmpgv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\demux\libnoseek_plugin.dll">
+      <Link>plugins\demux\libnoseek_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\demux\libnsc_plugin.dll">
       <Link>plugins\demux\libnsc_plugin.dll</Link>
@@ -889,6 +898,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\spu\libsubsdelay_plugin.dll">
       <Link>plugins\spu\libsubsdelay_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\stream_extractor\libarchive_plugin.dll">
+      <Link>plugins\stream_extractor\libarchive_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\stream_filter\libadf_plugin.dll">
       <Link>plugins\stream_filter\libadf_plugin.dll</Link>
     </Content>
@@ -906,6 +918,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\stream_filter\librecord_plugin.dll">
       <Link>plugins\stream_filter\librecord_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\stream_filter\libskiptags_plugin.dll">
+      <Link>plugins\stream_filter\libskiptags_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\text_renderer\libfreetype_plugin.dll">
       <Link>plugins\text_renderer\libfreetype_plugin.dll</Link>
