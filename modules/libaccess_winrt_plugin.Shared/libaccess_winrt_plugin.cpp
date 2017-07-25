@@ -60,9 +60,9 @@ using namespace Windows::Foundation;
 static int                    Open(vlc_object_t *);
 static void                   Close(vlc_object_t *);
 
-static ssize_t                Read(access_t *access, void *buffer, size_t size);
-static int                    Seek(access_t *access, uint64_t position);
-static int                    Control(access_t *access, int query, va_list args);
+static ssize_t                Read(stream_t *access, void *buffer, size_t size);
+static int                    Seek(stream_t *access, uint64_t position);
+static int                    Control(stream_t *access, int query, va_list args);
 
 /*****************************************************************************
 * Module descriptor
@@ -180,7 +180,7 @@ static int OpenFileAsyncWithToken(access_sys_t *p_sys, String^ token)
  */
 int Open(vlc_object_t *object)
 {
-    access_t *access = (access_t *) object;
+    stream_t *access = (stream_t *) object;
     String^ futureAccesToken;
     int (*pf_open)(access_sys_t *, String^);
 
@@ -229,7 +229,7 @@ int Open(vlc_object_t *object)
 /* */
 void Close(vlc_object_t *object)
 {
-    access_t     *access = (access_t *) object;
+    stream_t     *access = (stream_t *) object;
     access_sys_t *p_sys = reinterpret_cast<access_sys_t*>( access->p_sys );
     if( p_sys->dataReader != nullptr ){
         delete p_sys->dataReader;
@@ -243,7 +243,7 @@ void Close(vlc_object_t *object)
 }
 
 /* */
-ssize_t Read(access_t *access, void *buffer, size_t size)
+ssize_t Read(stream_t *access, void *buffer, size_t size)
 {
     if( buffer == NULL )
     {
@@ -289,7 +289,7 @@ ssize_t Read(access_t *access, void *buffer, size_t size)
 }
 
 /* */
-int Seek(access_t *access, uint64_t position)
+int Seek(stream_t *access, uint64_t position)
 {
     access_sys_t *p_sys = reinterpret_cast<access_sys_t*>( access->p_sys );
 
@@ -309,7 +309,7 @@ int Seek(access_t *access, uint64_t position)
 }
 
 /* */
-int Control(access_t *access, int query, va_list args)
+int Control(stream_t *access, int query, va_list args)
 {
     auto p_sys = reinterpret_cast<access_sys_t*>(access->p_sys);
 
