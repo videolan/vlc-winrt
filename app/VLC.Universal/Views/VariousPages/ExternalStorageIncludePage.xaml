@@ -26,11 +26,10 @@
         <RadioButton x:Name="Select" Content="{Binding Source={StaticResource Strings}, Path=SelectContentToCopy}" />
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <Button
+            <Button x:Name="OkButton"
                     Margin="10"
                     Click="Ok_Click"
-                    Content="{Binding Source={StaticResource Strings}, Path=Ok}"
-                    XYFocusLeft="{x:Bind Select}"/>
+                    Content="{Binding Source={StaticResource Strings}, Path=Ok}"/>
             <Button
                     Margin="10"
                     Click="Remember_Click"

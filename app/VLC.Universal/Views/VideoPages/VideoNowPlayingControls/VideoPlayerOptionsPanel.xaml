@@ -27,14 +27,14 @@
                            FontWeight="SemiLight"
                            Text="{Binding Source={StaticResource Strings}, Path=Zoom}" />
                 <ComboBox
+                          x:Name="ZoomCombobox"
                           Margin="{StaticResource FrameMarginTop}"
                           DataContext="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm}"
                           ItemsSource="{Binding Zooms}"
                           SelectedItem="{Binding CurrentSurfaceZoom, Mode=TwoWay}"
                           Style="{StaticResource VLCLightComboBox}"
                           Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}"
-                          Width="200"
-                          XYFocusDown="{x:Bind SpeedResetButton}" >
+                          Width="200">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Converter={StaticResource VLCSurfaceZoomStringifyConverter}}" />
@@ -55,15 +55,14 @@
                             CommandParameter="reset" />
                 </Grid>
                 <Slider
+                        x:Name="SpeedRateSlider"
                         Margin="0,12,0,0"
                         Style="{StaticResource VLCSlider}"
                         Minimum="50"
                         Value="{Binding SpeedRate, Mode=TwoWay}"
                         Maximum="200"
                         IsThumbToolTipEnabled="True"
-                        ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}"
-                        XYFocusDown="{x:Bind AudioDelayResetButton}"
-                        XYFocusUp="{x:Bind SpeedResetButton}"/>
+                        ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -118,13 +117,12 @@
                     </StackPanel>
                 </Grid>
                 <Slider
+                        x:Name="AudioDelaySlider"
                         Margin="0,12,0,0"
                         Style="{StaticResource VLCSlider}"
                         Minimum="-3000"
                         Value="{Binding AudioDelay, Mode=TwoWay}"
-                        Maximum="3000"
-                        XYFocusDown="{x:Bind SubtitleDelayResetButton}"
-                        XYFocusUp="{x:Bind AudioDelayResetButton}"/>
+                        Maximum="3000"/>
                 <Grid>
                     <TextBlock Text="-3s"
                                Style="{StaticResource SubtitleTextBlockStyle}"
@@ -172,12 +170,12 @@
                     </StackPanel>
                 </Grid>
                 <Slider
+                        x:Name="SpuDelaySlider"
                         Margin="0,12,0,0"
                         Style="{StaticResource VLCSlider}"
                         Minimum="-3000"
                         Value="{Binding SpuDelay, Mode=TwoWay}"
-                        Maximum="3000"
-                        XYFocusUp="{x:Bind SubtitleDelayResetButton}"/>
+                        Maximum="3000"/>
                 <Grid>
                     <TextBlock Text="-3s"
                                Style="{StaticResource SubtitleTextBlockStyle}"

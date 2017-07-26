@@ -584,10 +584,13 @@ namespace VLC.Services.RunTime
         {
             _chapters.Clear();
             var chapters = _mediaPlayer?.chapterDescription(-1);
-            foreach (var c in chapters)
+            if(chapters != null)
             {
-                var vlcChapter = new VLCChapterDescription(c);
-                _chapters.Add(vlcChapter);
+                foreach (var c in chapters)
+                {
+                    var vlcChapter = new VLCChapterDescription(c);
+                    _chapters.Add(vlcChapter);
+                }
             }
             return _chapters.ToList();
         }

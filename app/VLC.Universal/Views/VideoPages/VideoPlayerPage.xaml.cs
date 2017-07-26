@@ -27,6 +27,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using VLC.Commands;
 using System.Linq;
 using System.Numerics;
+using Windows.Foundation.Metadata;
 using Windows.UI.Xaml.Media;
 using libVLCX;
 
@@ -350,138 +351,6 @@ namespace VLC.UI.Views.VideoPages
             return newVol;
         }
 
-        private void PlaceholderInteractionGrid_Loaded(object sender, RoutedEventArgs args)
-        {
-            var menu = new MenuFlyout();
-
-            menu.Items.Add(new MenuFlyoutItem()
-            {
-                Name = "PlayPauseItem",
-                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.PlaybackService.Pause())
-            });
-
-            menu.Items.Add(new MenuFlyoutItem()
-            {
-                Text = Strings.Stop,
-                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.GoBack.Execute(null))
-            });
-
-            menu.Items.Add(new MenuFlyoutSeparator());
-
-            var audioSubItem = new MenuFlyoutSubItem();
-            audioSubItem.Text = Strings.Audio;
-            audioSubItem.Name = "AudioSubItem";
-
-            var audioTracksSubItem = new MenuFlyoutSubItem()
-            {
-                Text = Strings.AudioTracks,
-                Name = "AudioTracksSubItem"
-            };
-            audioSubItem.Items.Add(audioTracksSubItem);
-
-            audioSubItem.Items.Add(new MenuFlyoutSeparator());
-            audioSubItem.Items.Add(new MenuFlyoutItem()
-            {
-                Text = Strings.IncreaseVolume,
-                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("higher"))
-            });
-            audioSubItem.Items.Add(new MenuFlyoutItem()
-            {
-                Text = Strings.DecreaseVolume,
-                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("lower"))
-            });
-            audioSubItem.Items.Add(new MenuFlyoutItem()
-            {
-                Text = Strings.Mute,
-                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("mute"))
-            });
-
-            menu.Items.Add(audioSubItem);
-
-            var videoSubItem = new MenuFlyoutSubItem();
-            videoSubItem.Text = Strings.Video;
-            videoSubItem.Name = "VideoSubItem";
-            videoSubItem.Items.Add(new MenuFlyoutItem()
-            {
-                Text = "Fullscreen toggle",
-                Command = new ActionCommand(() => AppViewHelper.ToggleFullscreen())
-            });
-            videoSubItem.Items.Add(new MenuFlyoutItem()
-            {
-                Text = Strings.Zoom,
-                Command = new ActionCommand(() => Locator.VideoPlayerVm.ToggleIsVideoPlayerOptionsPanelVisible.Execute(null))
-            });
-            videoSubItem.Items.Add(new MenuFlyoutSeparator());
-
-            var subtitlesSubItem = new MenuFlyoutSubItem()
-            {
-                Text = Strings.Subtitles,
-                Name = "SubtitlesSubItem"
-            };
-            videoSubItem.Items.Add(subtitlesSubItem);
-            menu.Items.Add(videoSubItem);
-
-            var playbackSubItem = new MenuFlyoutSubItem();
-            playbackSubItem.Text = Strings.Playback;
-            playbackSubItem.Items.Add(new MenuFlyoutItem()
-            {
-                Text = Strings.Chapters,
-                Command = new ActionCommand(() => Locator.VideoPlayerVm.ToggleIsVideoPlayerOptionsPanelVisible.Execute(null))
-            });
-            playbackSubItem.Items.Add(new MenuFlyoutSeparator());
-            playbackSubItem.Items.Add(new MenuFlyoutItem()
-            {
-                Text = Strings.IncreaseSpeed,
-                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("faster"))
-            });
-            playbackSubItem.Items.Add(new MenuFlyoutItem()
-            {
-                Text = Strings.DecreaseSpeed,
-                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("slower"))
-            });
-            playbackSubItem.Items.Add(new MenuFlyoutItem()
-            {
-                Text = Strings.ResetSpeed,
-                Command = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("reset"))
-            });
-            menu.Items.Add(playbackSubItem);
-
-            menu.Opened += (s, e) =>
-            {
-                ((MenuFlyoutItem)menu.Items.FirstOrDefault(x => x.Name == "PlayPauseItem")).Text = Strings.Play + " " + Strings.Dash + " " + Strings.Pause;
-                var videoSubItemMenu = (MenuFlyoutSubItem)menu.Items.FirstOrDefault(x => x.Name == "VideoSubItem");
-                var subtitlesSubItemMenu = (MenuFlyoutSubItem)videoSubItemMenu.Items.FirstOrDefault(x => x.Name == "SubtitlesSubItem");
-                subtitlesSubItemMenu.Items.Clear();
-                foreach (var sub in Locator.MediaPlaybackViewModel.Subtitles)
-                {
-                    videoSubItemMenu.Items.Add(new MenuFlyoutItem()
-                    {
-                        Text = sub.Name,
-                    });
-                }
-                if (!Locator.MediaPlaybackViewModel.Subtitles.Any())
-                {
-                    subtitlesSubItemMenu.IsEnabled = false;
-                }
-
-                var audioSubItemMenu = (MenuFlyoutSubItem)menu.Items.FirstOrDefault(x => x.Name == "AudioSubItem");
-                var audioTracksSubItemMenu = (MenuFlyoutSubItem)audioSubItemMenu.Items.FirstOrDefault(x => x.Name == "AudioTracksSubItem");
-                audioTracksSubItemMenu.Items.Clear();
-                foreach (var audTrack in Locator.MediaPlaybackViewModel.AudioTracks)
-                {
-                    audioTracksSubItemMenu.Items.Add(new MenuFlyoutItem()
-                    {
-                        Text = audTrack.Name,
-                        Command = new ActionCommand(() =>
-                        {
-                            Locator.MediaPlaybackViewModel.CurrentAudioTrack = audTrack;
-                        })
-                    });
-                }
-            };
-            PlaceholderInteractionGrid.ContextFlyout = menu;
-        }
-
         private void FullscreenToggle_Click(object sender, RoutedEventArgs e)
         {
             AppViewHelper.ToggleFullscreen();
@@ -505,6 +374,41 @@ namespace VLC.UI.Views.VideoPages
             var fov = (float)-properties.MouseWheelDelta;
 
             _playbackService.UpdateViewpoint(new VideoViewpoint(0, 0, 0, fov / 10), false );         
+        }
+
+        private void FlyoutBase_OnOpened(object sender, object e)
+        {
+            SubtitlesSubItem.Items.Clear();
+            foreach (var sub in Locator.MediaPlaybackViewModel.Subtitles)
+            {
+                VideoSubItem.Items.Add(new MenuFlyoutItem()
+                {
+                    Text = sub.Name,
+                });
+            }
+            if (!Locator.MediaPlaybackViewModel.Subtitles.Any())
+            {
+                SubtitlesSubItem.IsEnabled = false;
+            }
+
+            AudioTracksSubItem.Items.Clear();
+            foreach (var audTrack in Locator.MediaPlaybackViewModel.AudioTracks)
+            {
+                AudioTracksSubItem.Items.Add(new MenuFlyoutItem()
+                {
+                    Text = audTrack.Name,
+                    Command = new ActionCommand(() =>
+                    {
+                        Locator.MediaPlaybackViewModel.CurrentAudioTrack = audTrack;
+                    })
+                });
+            }
+        }
+
+        private void PlaceholderInteractionGrid_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            var grid = sender as UIElement;
+            VideoFlyout.ShowAt(grid, e.GetPosition(grid));
         }
     }
 }

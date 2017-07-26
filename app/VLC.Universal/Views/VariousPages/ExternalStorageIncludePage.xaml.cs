@@ -8,10 +8,12 @@ using VLC.UI.Views;
 using VLC.ViewModels;
 using VLC.ViewModels.Others.VlcExplorer;
 using Windows.Devices.Enumeration;
+using Windows.Foundation.Metadata;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using VLC.Helpers;
 
 namespace VLC.UI.UWP.Views.VariousPages
 {
@@ -28,6 +30,12 @@ namespace VLC.UI.UWP.Views.VariousPages
             var device = e.Parameter as DeviceInformation;
             _deviceID = device.Id;
             DeviceNamePlaceHolder.Text = device.Name;
+
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox &&
+                ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.Control", "XYFocusLeft"))
+            {
+                OkButton.XYFocusLeft = Select;
+            }
         }
 
         private async void Ok_Click(object sender, RoutedEventArgs e)

@@ -95,6 +95,17 @@ namespace VLC.ViewModels.VideoVM
         public ShowChaptersSettingsCommand ShowChaptersSettingsCommand { get; private set; } = new ShowChaptersSettingsCommand();
         public bool IsLoadingSubtitle { get { return _isLoadingSubtitle; } set { SetProperty(ref _isLoadingSubtitle, value); } }
         public string LoadingSubtitleText { get { return _loadingSubtitleText; } set { SetProperty(ref _loadingSubtitleText, value); } }
+        public ActionCommand PlayPauseCommand { get; } = new ActionCommand(() => Locator.MediaPlaybackViewModel.PlaybackService.Pause());
+        public ActionCommand GoBackCommand { get; } = new ActionCommand(() => Locator.MediaPlaybackViewModel.GoBack.Execute(null));
+        public ActionCommand IncreaseVolumeCommand { get; } = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("higher"));
+        public ActionCommand DecreaseVolumeCommand { get; } = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("lower"));
+        public ActionCommand MuteCommand { get; } = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("mute"));
+        public ActionCommand ToggleFullscreenCommand { get; } = new ActionCommand(AppViewHelper.ToggleFullscreen);
+        public ActionCommand ZoomCommand { get; } = new ActionCommand(() => Locator.VideoPlayerVm.ToggleIsVideoPlayerOptionsPanelVisible.Execute(null));
+        public ActionCommand IncreaseSpeedCommand { get; } = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("faster"));
+        public ActionCommand DecreaseSpeedCommand { get; } = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("slower"));
+        public ActionCommand ResetSpeedCommand { get; } = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("reset"));
+
         #endregion
 
         #region public fields

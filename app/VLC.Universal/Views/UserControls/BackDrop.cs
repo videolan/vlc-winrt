@@ -1,5 +1,6 @@
 ﻿using Microsoft.Graphics.Canvas.Effects;
 using System;
+using Windows.Foundation.Metadata;
 using Windows.UI;
 using Windows.UI.Composition;
 using Windows.UI.Xaml;
@@ -25,7 +26,6 @@ namespace VLC.UI.Views.UserControls
             }
         }
 
-        Compositor m_compositor;
         SpriteVisual m_blurVisual;
         CompositionBrush m_blurBrush;
         Visual m_rootVisual;
@@ -40,11 +40,20 @@ namespace VLC.UI.Views.UserControls
             Compositor = m_rootVisual.Compositor;
 
             m_blurVisual = Compositor.CreateSpriteVisual();
-        
-            CompositionEffectBrush brush = BuildBlurBrush();
-            brush.SetSourceParameter("source", m_compositor.CreateBackdropBrush());
-            m_blurBrush = brush;
-            m_blurVisual.Brush = m_blurBrush;
+
+
+            if(ApiInformation.IsMethodPresent("Windows.UI.Composition.Compositor", "CreateBackdropBrush"))
+            {
+                var brush = BuildBlurBrush();
+                brush.SetSourceParameter("source", Compositor.CreateBackdropBrush());
+                m_blurBrush = brush;
+                m_blurVisual.Brush = m_blurBrush;
+            }
+            else
+            {
+                m_blurBrush = Compositor.CreateColorBrush(Colors.Black);
+                m_blurVisual.Brush = m_blurBrush;
+            }
 
             ElementCompositionPreview.SetElementChildVisual(this as UIElement, m_blurVisual);
 
@@ -54,18 +63,7 @@ namespace VLC.UI.Views.UserControls
 
         public const string BlurAmountProperty = nameof(BlurAmount);
 
-        public Compositor Compositor
-        {
-            get
-            {
-                return m_compositor;
-            }
-
-            private set
-            {
-                m_compositor = value;
-            }
-        }
+        public Compositor Compositor { get; }
 
 #pragma warning disable 1998
         private async void OnLoading(FrameworkElement sender, object args)
@@ -93,16 +91,22 @@ namespace VLC.UI.Views.UserControls
         {
             m_setUpExpressions = true;
 
-            var exprAnimation = Compositor.CreateExpressionAnimation();
-            exprAnimation.Expression = $"sourceProperties.{BlurAmountProperty}";
-            exprAnimation.SetReferenceParameter("sourceProperties", m_rootVisual.Properties);
+            if(ApiInformation.IsMethodPresent("Windows.UI.Composition.Compositor", "CreateExpressionAnimation"))
+            { 
+                var exprAnimation = Compositor.CreateExpressionAnimation();
+                exprAnimation.Expression = $"sourceProperties.{BlurAmountProperty}";
+                exprAnimation.SetReferenceParameter("sourceProperties", m_rootVisual.Properties);
 
-            m_blurBrush.Properties.StartAnimation("Blur.BlurAmount", exprAnimation);
+                m_blurBrush.Properties.StartAnimation("Blur.BlurAmount", exprAnimation);
+            }
         }
 
 
         private CompositionEffectBrush BuildBlurBrush()
         {
+            if (!IsBlurAvailable)
+                return null;
+
             GaussianBlurEffect blurEffect = new GaussianBlurEffect()
             {
                 Name = "Blur",
@@ -142,10 +146,14 @@ namespace VLC.UI.Views.UserControls
 
         public void RefreshBlur()
         {
+            if (!IsBlurAvailable)
+                return;
+
             if (!m_setUpExpressions)
             {
                 m_blurBrush.Properties.InsertScalar("Blur.BlurAmount", 0f);
             }
+
             m_rootVisual.Properties.InsertScalar(BlurAmountProperty, 0f);
 
             var blurAnim = Compositor.CreateScalarKeyFrameAnimation();
@@ -159,5 +167,8 @@ namespace VLC.UI.Views.UserControls
             this.VisualProperties.StartAnimation(BackDrop.BlurAmountProperty, blurAnim);
             oldBlurAmount = newBlurAmount;
         }
+
+        private bool IsBlurAvailable => ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract",
+            3);
     }
 }

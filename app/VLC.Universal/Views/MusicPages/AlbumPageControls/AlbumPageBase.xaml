@@ -25,10 +25,7 @@
                   SelectionMode="None"
                   ItemTemplate="{StaticResource TrackItemTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemBasic}"
-                  ItemsPanel="{StaticResource StackPanelTemplate}"
-                  XYFocusDown="{x:Bind TracksListView}"
-                  XYFocusLeft="{x:Bind TracksListView}"
-                  XYFocusRight="{x:Bind TracksListView}">
+                  ItemsPanel="{StaticResource StackPanelTemplate}">
             <ListView.ItemContainerTransitions>
                 <TransitionCollection>
                     <AddDeleteThemeTransition />

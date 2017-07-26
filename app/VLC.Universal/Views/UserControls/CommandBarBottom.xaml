@@ -13,8 +13,7 @@
             Background="{ThemeResource TranslucentMainColor}"
             x:Name="RootCommandBar"
             DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
-            ClosedDisplayMode="{Binding Source={StaticResource Locator}, Path=MainVM.CommandBarDisplayMode}"
-            IsDynamicOverflowEnabled="True">
+            ClosedDisplayMode="{Binding Source={StaticResource Locator}, Path=MainVM.CommandBarDisplayMode}">
     <CommandBar.Content>
         <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
             <Grid.RowDefinitions>
@@ -68,8 +67,7 @@
                       IsEnabled="{Binding CanGoPrevious}"
                       Visibility="{Binding MiniPlayerVisibility}"
                       Label="Previous"
-                      IsCompact="True"
-                      DynamicOverflowOrder="2">
+                      IsCompact="True">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource PreviousSymbol}"
                           FontFamily="{StaticResource VLCFont}" />
@@ -84,8 +82,7 @@
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
                   Label="Play/Pause"
-                  Visibility="{Binding MiniPlayerVisibility}"
-                  DynamicOverflowOrder="3">
+                  Visibility="{Binding MiniPlayerVisibility}">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{Binding IsPlaying,Converter={StaticResource PlayingStateToGlyphConverter}}"
                       FontFamily="{StaticResource VLCFont}"/>
@@ -97,8 +94,7 @@
                       Visibility="{Binding MiniPlayerVisibility}"
                       IsEnabled="{Binding CanGoNext}"
                       Label="Next"
-                      IsCompact="True"
-                      DynamicOverflowOrder="2">
+                      IsCompact="True">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource SkipNextSymbol}"
                           FontFamily="{StaticResource VLCFont}" />
@@ -110,8 +106,7 @@
                             IsChecked="{Binding IsShuffled, Mode=TwoWay}"
                             Visibility="{Binding MiniPlayerVisibility}"
                             IsCompact="True"
-                            Tag="sec"
-                            DynamicOverflowOrder="1">
+                            Tag="sec">
             <AppBarToggleButton.Icon>
                 <FontIcon Glyph="{StaticResource ShuffleSymbol}"
                           FontFamily="{StaticResource VLCFont}" />
@@ -123,7 +118,6 @@
                             IsChecked="{Binding PlaybackService.Repeat, Mode=TwoWay}"
                             IsCompact="True"
                             Visibility="{Binding MiniPlayerVisibility}"
-                            DynamicOverflowOrder="1"
                             Tag="sec">
             <AppBarToggleButton.Icon>
                 <FontIcon Glyph="{StaticResource RefreshSymbol}"
@@ -135,7 +129,6 @@
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       Command="{Binding Source={StaticResource Locator}, Path=MainVM.CreateMiniPlayerView}"
                       Visibility="{Binding MiniPlayerVisibilityMediaCenter}"
-                      DynamicOverflowOrder="1"
                       Tag="sec">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource ReduceWindow}"

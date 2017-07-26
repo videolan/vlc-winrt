@@ -18,6 +18,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
 using Windows.Gaming.Input;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
@@ -49,9 +50,11 @@ namespace VLC
             Suspending += OnSuspending;
             Container = AutoFacConfiguration.Configure();
 
-            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox &&
+                ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.ApplicationRequiresPointerMode", 
+                "WhenRequested"))
             {
-                this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
+                RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
             }
         }
 
@@ -319,7 +322,6 @@ namespace VLC
                     Locator.NavigationService.RefreshCurrentPage();
                     return;
                 }
-                Locator.SettingsVM.MediaCenterMode = true;
                 Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
                 Locator.MainVM.GoToHomePageMediaCenterCommand.Execute(null);
 
@@ -329,7 +331,6 @@ namespace VLC
             }
             else
             {
-                Locator.SettingsVM.MediaCenterMode = false;
                 Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
 
                 AppViewHelper.LeaveFullscreen();

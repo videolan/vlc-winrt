@@ -36,7 +36,7 @@
                 Style="{StaticResource AppBarButtonStyleHorizontal}"
                 IsCompact="True"
                 Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToHomePageMediaCenterCommand}"
-                Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.MediaCenterMode}"
+                Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.MediaCenterMode, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Margin="{StaticResource FrameMarginLeft}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource MenuOpenRight}"

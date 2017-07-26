@@ -157,7 +157,37 @@
                   Tapped="PlaceholderInteractionGrid_OnTapped"
                   DoubleTapped="PlaceholderInteractionGrid_DoubleTapped"
                   PointerWheelChanged="PlaceholderInteractionGrid_OnPointerWheelChanged"
-                  Loaded="PlaceholderInteractionGrid_Loaded"/>
+                  RightTapped="PlaceholderInteractionGrid_OnRightTapped">
+                
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout x:Name="VideoFlyout" Opened="FlyoutBase_OnOpened">
+                        <MenuFlyoutItem Text="Play / Pause" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.PlayPauseCommand}"/>
+                        <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Stop}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.GoBackCommand}"/>
+                        <MenuFlyoutSeparator/>
+                        <MenuFlyoutSubItem Text="{Binding Source ={StaticResource Strings}, Path=Audio}">
+                            <MenuFlyoutSubItem x:Name="AudioTracksSubItem" Text="{Binding Source ={StaticResource Strings}, Path=AudioTracks}"/>
+                            <MenuFlyoutSeparator/>
+                            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=IncreaseVolume}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.IncreaseVolumeCommand}"/>
+                            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=DecreaseVolume}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.DecreaseVolumeCommand}"/>
+                            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Mute}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.MuteCommand}"/>
+                        </MenuFlyoutSubItem>
+                        <MenuFlyoutSubItem x:Name="VideoSubItem" Text="{Binding Source ={StaticResource Strings}, Path=Video}">
+                            <MenuFlyoutItem Text="Fullscreen toggle" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleFullscreenCommand}"/>
+                            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Zoom}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ZoomCommand}"/>
+                            <MenuFlyoutSeparator/>
+                            <MenuFlyoutSubItem x:Name="SubtitlesSubItem" Text="{Binding Source={StaticResource Strings}, Path=Subtitles}"/>
+                        </MenuFlyoutSubItem>
+                        <MenuFlyoutSubItem Text="{Binding Source={StaticResource Strings}, Path=Playback}">
+                            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Chapters}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ShowChaptersSettingsCommand}"/>
+                            <MenuFlyoutSeparator/>
+                            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=IncreaseSpeed}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.IncreaseSpeedCommand}"/>
+                            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=DecreaseSpeed}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.DecreaseSpeedCommand}"/>
+                            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=ResetSpeed}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ResetSpeedCommand}"/>
+                            <MenuFlyoutSeparator/>
+                        </MenuFlyoutSubItem>
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
+            </Grid>
         </Grid>
 
         <!-- TODO : When switching fully to UWP, replace Border by Grid and remove Grid child -->

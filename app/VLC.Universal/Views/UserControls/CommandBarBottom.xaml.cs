@@ -8,6 +8,7 @@ using VLC.Helpers;
 using VLC.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -20,6 +21,15 @@ namespace VLC.UI.Views.UserControls
         public CommandBarBottom()
         {
             this.InitializeComponent();
+
+            if (!DynamicApisAvailable) return;
+
+            RootCommandBar.IsDynamicOverflowEnabled = true;
+            PlayPreviousButton.DynamicOverflowOrder = 2;
+            PlayPauseButton.DynamicOverflowOrder = 3;
+            PlayNextButton.DynamicOverflowOrder = 2;
+            ShuffleButton.DynamicOverflowOrder = 1;
+            MiniWindowButton.DynamicOverflowOrder = 1;
         }
 
         #region interactions
@@ -44,5 +54,8 @@ namespace VLC.UI.Views.UserControls
             Locator.PlaybackService.Stop();
             Locator.PlaybackService.ClearPlaylist();
         }
+
+        private bool DynamicApisAvailable => ApiInformation.IsApiContractPresent(
+            "Windows.Foundation.UniversalApiContract", 3);
     }
 }
