@@ -645,14 +645,14 @@ namespace VLC.Services.RunTime
 
         public string VideoAspectRatio
         {
-            get => _mediaPlayer.aspectRatio();
-            set => _mediaPlayer.setAspectRatio(value);
+            get { return _mediaPlayer.aspectRatio(); }
+            set { _mediaPlayer.setAspectRatio(value); }
         }
 
         public float VideoScale
         {
-            get => _mediaPlayer.scale();
-            set => _mediaPlayer.setScale(value);
+            get { return _mediaPlayer.scale(); }
+            set { _mediaPlayer.setScale(value); }
         }
 
         public int VideotrackId => _mediaPlayer.videoTrack();

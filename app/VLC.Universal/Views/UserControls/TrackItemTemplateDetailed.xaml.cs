@@ -28,14 +28,14 @@ namespace VLC.UI.Views.UserControls
 
         public TrackItem Track
         {
-            get => (TrackItem)GetValue(TrackProperty);
-            set => SetValue(TrackProperty, value);
+            get { return (TrackItem)GetValue(TrackProperty); }
+            set { SetValue(TrackProperty, value); }
         }
 
         public bool IsFlyoutEnabled
         {
-            get => (bool)GetValue(IsFlyoutEnabledProperty);
-            set => SetValue(IsFlyoutEnabledProperty, value);
+            get { return (bool)GetValue(IsFlyoutEnabledProperty); }
+            set { SetValue(IsFlyoutEnabledProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for IsFlyoutEnabled.  This enables animation, styling, binding, etc...
