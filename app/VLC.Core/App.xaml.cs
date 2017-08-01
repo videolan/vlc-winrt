@@ -315,13 +315,14 @@ namespace VLC
 
         static void ToggleMediaCenterMode()
         {
-            if (Gamepad.Gamepads.Any() || DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+            if (Locator.SettingsVM.MediaCenterMode)
             {
-                if (Locator.SettingsVM.MediaCenterMode == true)
+                if (Locator.MainVM.CurrentPanel != null)
                 {
                     Locator.NavigationService.RefreshCurrentPage();
                     return;
                 }
+
                 Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
                 Locator.MainVM.GoToHomePageMediaCenterCommand.Execute(null);
 
