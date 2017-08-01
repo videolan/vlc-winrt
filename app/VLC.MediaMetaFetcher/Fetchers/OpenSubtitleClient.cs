@@ -83,7 +83,7 @@ namespace VLC.MediaMetaFetcher.Fetchers
                 var node = nodes.Item(i);
                 if (node.InnerText == "ZipDownloadLink")
                 {
-                    return node.NextSibling.NextSibling.InnerText.Trim();
+                    return node.NextSibling?.InnerText.Trim();
                 }
             }
             return string.Empty;
