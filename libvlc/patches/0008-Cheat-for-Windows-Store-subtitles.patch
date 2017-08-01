@@ -1,17 +1,17 @@
-From 4ef65476add03a08e64ff6e2ec1177eb072c7b19 Mon Sep 17 00:00:00 2001
+From 6db82597279eecb91e709813d085952ebfd62a2b Mon Sep 17 00:00:00 2001
 From: Jean-Baptiste Kempf <jb@videolan.org>
 Date: Wed, 16 Apr 2014 16:09:53 +0200
-Subject: [PATCH 03/12] Cheat for Windows Store subtitles
+Subject: [PATCH 08/16] Cheat for Windows Store subtitles
 
 ---
  lib/video.c | 4 ++++
  1 file changed, 4 insertions(+)
 
 diff --git a/lib/video.c b/lib/video.c
-index fbb99fb..9031fd3 100644
+index f6e16ba..2b48969 100644
 --- a/lib/video.c
 +++ b/lib/video.c
-@@ -400,7 +400,11 @@ int libvlc_video_set_subtitle_file( libvlc_media_player_t *p_mi,
+@@ -402,7 +402,11 @@ int libvlc_video_set_subtitle_file( libvlc_media_player_t *p_mi,
  
      if( p_input_thread )
      {
