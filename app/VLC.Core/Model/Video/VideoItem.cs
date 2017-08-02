@@ -18,6 +18,7 @@ using VLC.ViewModels;
 using Windows.Storage.AccessCache;
 using libVLCX;
 using Windows.UI.Xaml.Media.Imaging;
+using VLC.Helpers;
 
 namespace VLC.Model.Video
 {
@@ -205,12 +206,21 @@ namespace VLC.Model.Video
 
         async Task<BitmapImage> GetBitmap()
         {
-            var file = await TryGetVideoThumbFile();
-            if (file == null) return null;
+            BitmapImage bitmap = null;
+            try
+            {
+                var file = await TryGetVideoThumbFile();
+                if (file == null) return null;
 
-            var stream = await file.OpenReadAsync();
-            var bitmap = new BitmapImage();
-            await bitmap.SetSourceAsync(stream);
+                var stream = await file.OpenReadAsync();
+                if (stream == null) return null;
+                bitmap = new BitmapImage();
+                await bitmap.SetSourceAsync(stream);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Log(e.Message);
+            }
 
             return bitmap;
         }
