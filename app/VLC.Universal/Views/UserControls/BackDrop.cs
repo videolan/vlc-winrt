@@ -91,14 +91,12 @@ namespace VLC.UI.Views.UserControls
         {
             m_setUpExpressions = true;
 
-            if(ApiInformation.IsMethodPresent("Windows.UI.Composition.Compositor", "CreateExpressionAnimation"))
-            { 
-                var exprAnimation = Compositor.CreateExpressionAnimation();
-                exprAnimation.Expression = $"sourceProperties.{BlurAmountProperty}";
-                exprAnimation.SetReferenceParameter("sourceProperties", m_rootVisual.Properties);
+            if (!IsBlurAvailable) return;
 
-                m_blurBrush.Properties.StartAnimation("Blur.BlurAmount", exprAnimation);
-            }
+            var exprAnimation = Compositor.CreateExpressionAnimation();
+            exprAnimation.Expression = $"sourceProperties.{BlurAmountProperty}";
+            exprAnimation.SetReferenceParameter("sourceProperties", m_rootVisual.Properties);
+            m_blurBrush.Properties.StartAnimation("Blur.BlurAmount", exprAnimation);
         }
 
 

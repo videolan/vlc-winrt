@@ -51,8 +51,7 @@ namespace VLC
             Container = AutoFacConfiguration.Configure();
 
             if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox &&
-                ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.ApplicationRequiresPointerMode", 
-                "WhenRequested"))
+                ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 3))
             {
                 RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
             }
