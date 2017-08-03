@@ -41,7 +41,7 @@ namespace VLC.UI.Views.VideoPages
         private DispatcherTimer controlsTimer = new DispatcherTimer();
         private const float DEFAULT_FOV = 80f;
         private readonly PlaybackService _playbackService = Locator.PlaybackService;
-
+        private readonly float DIVIDER = DeviceHelper.GetDeviceType() == DeviceTypeEnum.Phone ? 70f : 10f;
         public delegate void PlayerControlVisibilityChanged(bool visibility);
         public event PlayerControlVisibilityChanged OnPlayerControlVisibilityChanged;
 
@@ -302,8 +302,8 @@ namespace VLC.UI.Views.VideoPages
                     }
                     else
                     {
-                        var yaw = (float)(DEFAULT_FOV * -e.Cumulative.Translation.X / App.RootPage.SwapChainPanel.ActualWidth) / 10;
-                        var pitch = (float)(DEFAULT_FOV * -e.Cumulative.Translation.Y / App.RootPage.SwapChainPanel.ActualHeight) / 10;
+                        var yaw = (float)(DEFAULT_FOV * -e.Cumulative.Translation.X / App.RootPage.SwapChainPanel.ActualWidth) / DIVIDER;
+                        var pitch = (float)(DEFAULT_FOV * -e.Cumulative.Translation.Y / App.RootPage.SwapChainPanel.ActualHeight) / DIVIDER;
                         var viewpoint = new VideoViewpoint(yaw, pitch, 0, 0);
                         _playbackService.UpdateViewpoint(viewpoint, false);
                     }
