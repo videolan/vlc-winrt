@@ -1,3 +1,11 @@
+Changes between 2.5.2 and 2.5.3
+-------------------------------
+Release: August 4th 2017
+
+Bugfixes:
+* Fix mobile 360 sensitivity
+* Stability improvements
+
 Changes between 2.5.1 and 2.5.2
 -------------------------------
 Release: August 2nd 2017
