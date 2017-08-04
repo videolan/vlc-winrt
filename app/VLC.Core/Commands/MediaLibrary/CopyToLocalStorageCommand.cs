@@ -13,26 +13,34 @@ namespace VLC.Commands.MediaLibrary
 {
     public class CopyToLocalStorageCommand : AlwaysExecutableCommand
     {
+        //TODO: Move to a service
         public override async void Execute(object parameter)
         {
-            if (parameter is VLCStorageFile)
+            try
             {
-                // Copy the selected file.
-                var file = parameter as VLCStorageFile;
-                StorageFile f = await StorageFile.GetFileFromPathAsync(file.StorageItem.Path);
-                CopyMediaFileToLocalStorage(f);
-            }
-            else if (parameter is VLCStorageFolder)
-            {
-                // Copy all media files in the selected folder.
-                var folder = parameter as VLCStorageFolder;
-                StorageFolder d = await StorageFolder.GetFolderFromPathAsync(folder.StorageItem.Path);
-                await MediaLibraryHelper.ForeachSupportedFile(d, (IReadOnlyList<StorageFile> files) =>
+                if (parameter is VLCStorageFile)
                 {
-                    foreach (var f in files)
-                        CopyMediaFileToLocalStorage(f);
-                    return Task.FromResult(true);
-                });
+                    // Copy the selected file.
+                    var file = parameter as VLCStorageFile;
+                    StorageFile f = await StorageFile.GetFileFromPathAsync(file.StorageItem.Path);
+                    CopyMediaFileToLocalStorage(f);
+                }
+                else if (parameter is VLCStorageFolder)
+                {
+                    // Copy all media files in the selected folder.
+                    var folder = parameter as VLCStorageFolder;
+                    StorageFolder d = await StorageFolder.GetFolderFromPathAsync(folder.StorageItem.Path);
+                    await MediaLibraryHelper.ForeachSupportedFile(d, (IReadOnlyList<StorageFile> files) =>
+                    {
+                        foreach (var f in files)
+                            CopyMediaFileToLocalStorage(f);
+                        return Task.FromResult(true);
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                LogHelper.Log(e.Message);
             }
         }
 
