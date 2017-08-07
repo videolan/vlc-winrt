@@ -11,135 +11,135 @@ using VLC.Helpers;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml;
 using System;
+using System.Linq;
 using Windows.Foundation;
 
 namespace VLC.Services.RunTime
 {
     public class KeyboardListenerService
     {
-        public event TypedEventHandler<CoreWindow, KeyEventArgs> KeyDownPressed;
-        public KeyboardActionDatabase _keyboardActionDatabase = new KeyboardActionDatabase();
-
         private const uint MaxVirtualKeys = 3;
-        private VirtualKey[] virtualKeys = new VirtualKey[MaxVirtualKeys];
-        public bool CanListen { get; set; }
+        private VirtualKey[] _virtualKeys = new VirtualKey[MaxVirtualKeys];
+        
         public KeyboardListenerService()
         {
             CanListen = true;
             CoreWindow.GetForCurrentThread().KeyUp += KeyboardListenerService_KeyUp;
             CoreWindow.GetForCurrentThread().KeyDown += KeyboardListenerService_KeyDown;
-            InitializeDefault();
+            InitializeDefaultShortcuts();
         }
 
-        void InitializeDefault()
+        public List<KeyboardAction> Shortcuts = new List<KeyboardAction>();
+
+        public bool CanListen { get; set; }
+
+        public event TypedEventHandler<CoreWindow, KeyEventArgs> KeyDownPressed;
+
+        void InitializeDefaultShortcuts()
         {
-            if (_keyboardActionDatabase.IsEmpty())
+            Shortcuts = new List<KeyboardAction>
             {
-                var actionsToSet = new List<KeyboardAction>()
+                new KeyboardAction
                 {
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.FullscreenToggle,
-                        MainKey = VirtualKey.F
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.LeaveFullscreen,
-                        MainKey = VirtualKey.Escape,
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.PauseToggle,
-                        MainKey = VirtualKey.Space
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.Faster,
-                        MainKey = VirtualKey.Add
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.Slow,
-                        MainKey = VirtualKey.Subtract,
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.NormalRate,
-                        MainKey = VirtualKey.Execute,
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.Next,
-                        MainKey = VirtualKey.N,
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.Previous,
-                        MainKey = VirtualKey.P,
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.Stop,
-                        MainKey = VirtualKey.S,
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.Quit,
-                        MainKey = VirtualKey.Q,
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.Back,
-                        MainKey = VirtualKey.Back
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.VolumeUp,
-                        MainKey = VirtualKey.Control,
-                        SecondKey = VirtualKey.Add,
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.VolumeDown,
-                        MainKey = VirtualKey.Control,
-                        SecondKey = VirtualKey.Subtract,
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.Mute,
-                        MainKey = VirtualKey.M,
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.ChangeAudioTrack,
-                        MainKey = VirtualKey.B,
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.ChangeSubtitle,
-                        MainKey = VirtualKey.V
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.OpenFile,
-                        MainKey = VirtualKey.Control,
-                        SecondKey = VirtualKey.O,
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.OpenNetwork,
-                        MainKey = VirtualKey.Control,
-                        SecondKey = VirtualKey.N
-                    },
-                    new KeyboardAction()
-                    {
-                        Action = VLCAction.TabNext,
-                        MainKey = VirtualKey.Control,
-                        SecondKey = VirtualKey.Tab,
-                    }
-                };
-                _keyboardActionDatabase.AddKeyboardActions(actionsToSet);
-            }
+                    Action = VLCAction.FullscreenToggle,
+                    MainKey = VirtualKey.F
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.LeaveFullscreen,
+                    MainKey = VirtualKey.Escape
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.PauseToggle,
+                    MainKey = VirtualKey.Space
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.Faster,
+                    MainKey = VirtualKey.Add
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.Slow,
+                    MainKey = VirtualKey.Subtract
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.NormalRate,
+                    MainKey = VirtualKey.Execute
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.Next,
+                    MainKey = VirtualKey.N
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.Previous,
+                    MainKey = VirtualKey.P
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.Stop,
+                    MainKey = VirtualKey.S
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.Quit,
+                    MainKey = VirtualKey.Q
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.Back,
+                    MainKey = VirtualKey.Back
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.VolumeUp,
+                    MainKey = VirtualKey.Control,
+                    SecondKey = VirtualKey.Add
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.VolumeDown,
+                    MainKey = VirtualKey.Control,
+                    SecondKey = VirtualKey.Subtract
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.Mute,
+                    MainKey = VirtualKey.M
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.ChangeAudioTrack,
+                    MainKey = VirtualKey.B
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.ChangeSubtitle,
+                    MainKey = VirtualKey.V
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.OpenFile,
+                    MainKey = VirtualKey.Control,
+                    SecondKey = VirtualKey.O
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.OpenNetwork,
+                    MainKey = VirtualKey.Control,
+                    SecondKey = VirtualKey.N
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.TabNext,
+                    MainKey = VirtualKey.Control,
+                    SecondKey = VirtualKey.Tab
+                }
+            };
         }
 
         void KeyboardListenerService_KeyUp(CoreWindow sender, KeyEventArgs args)
@@ -147,9 +147,9 @@ namespace VLC.Services.RunTime
             if (!CanListen) return;
             for (int i = 0; i < MaxVirtualKeys; i++)
             {
-                if (virtualKeys[i] == args.VirtualKey)
+                if (_virtualKeys[i] == args.VirtualKey)
                 {
-                    virtualKeys[i] = VirtualKey.None;
+                    _virtualKeys[i] = VirtualKey.None;
                 }
             }
             switch (args.VirtualKey)
@@ -167,7 +167,7 @@ namespace VLC.Services.RunTime
             }
         }
 
-        async void KeyboardListenerService_KeyDown(CoreWindow sender, KeyEventArgs args)
+        void KeyboardListenerService_KeyDown(CoreWindow sender, KeyEventArgs args)
         {
             if (!CanListen) return;
 
@@ -175,15 +175,15 @@ namespace VLC.Services.RunTime
             // Guidelines:
             // If first VirtualKey is Ctrl, Alt, or Shift, then we're waiting for another key
             var i = 0;
-            while (i < MaxVirtualKeys && virtualKeys[i] != VirtualKey.None)
+            while (i < MaxVirtualKeys && _virtualKeys[i] != VirtualKey.None)
             {
                 i++;
             }
 
             if (i == MaxVirtualKeys)
-                virtualKeys = new VirtualKey[3];
+                _virtualKeys = new VirtualKey[3];
             else
-                virtualKeys[i] = args.VirtualKey;
+                _virtualKeys[i] = args.VirtualKey;
 
             switch (args.VirtualKey)
             {
@@ -195,8 +195,7 @@ namespace VLC.Services.RunTime
                     break;
                 default:
                     Debug.WriteLine($"{args.VirtualKey} key was pressed");
-                    // look in the db for a match
-                    var action = await _keyboardActionDatabase.GetKeyboardAction(virtualKeys[0], virtualKeys[1]);
+                    var action = Shortcuts.FirstOrDefault(x => x.MainKey == _virtualKeys[0] && x.SecondKey == _virtualKeys[1]);
                     if (action != null)
                     {
                         // if there's a match, get the ActionId
@@ -274,7 +273,7 @@ namespace VLC.Services.RunTime
         {
             // determine if it's a combination of keys or not
 
-            if (virtualKeys[1] == VirtualKey.None && virtualKeys[2] == VirtualKey.None)
+            if (_virtualKeys[1] == VirtualKey.None && _virtualKeys[2] == VirtualKey.None)
             {
                 // this is a simple shortcut
                 switch (keyboardAction.Action)
@@ -320,10 +319,10 @@ namespace VLC.Services.RunTime
                         break;
                 }
             }
-            else if (virtualKeys[2] == VirtualKey.None)
+            else if (_virtualKeys[2] == VirtualKey.None)
             {
                 // two keys shortcut
-                if (virtualKeys[0] == VirtualKey.Control && virtualKeys[1] == keyboardAction.SecondKey)
+                if (_virtualKeys[0] == VirtualKey.Control && _virtualKeys[1] == keyboardAction.SecondKey)
                 {
                     //two keys shortcut, first key is Ctrl
                     switch (keyboardAction.Action)

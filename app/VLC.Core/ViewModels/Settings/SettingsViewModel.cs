@@ -185,14 +185,8 @@ namespace VLC.ViewModels.Settings
             }
         }
 
-        public List<KeyboardAction> KeyboardActions
-        {
-            get
-            {
-                return _keyboardActions ?? (_keyboardActions = Locator.MainVM.KeyboardListenerService._keyboardActionDatabase.GetAllKeyboardActions());
-            }
-        }
-
+        public List<KeyboardAction> KeyboardActions => Locator.MainVM.KeyboardListenerService.Shortcuts;
+    
         public IList<VLCEqualizer> Presets => _equalizerPresets ?? (_equalizerPresets = Locator.PlaybackService.GetEqualizerPresets());
 
         public VLCEqualizer Equalizer

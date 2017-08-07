@@ -11,6 +11,7 @@
     "Newtonsoft.Json": "9.0.1",
     "NotificationsExtensions.Win10": "14332.0.2",
     "ScrollWatcher": "1.0.5",
+    "sqlite-net-pcl": "1.4.118",
     "Win2D.uwp": "1.20.0",
     "WinRTTriggers": "1.6.0",
     "WinRTXamlToolkit": "2.3.0"
