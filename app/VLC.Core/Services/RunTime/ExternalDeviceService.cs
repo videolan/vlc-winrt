@@ -20,6 +20,7 @@ using VLC.ViewModels.Others.VlcExplorer;
 using Windows.Devices.Enumeration;
 using Windows.Storage;
 using Windows.UI.Core;
+using VLC.Helpers;
 
 namespace VLC.Services.RunTime
 {
@@ -27,23 +28,28 @@ namespace VLC.Services.RunTime
     {
         private DeviceWatcher _deviceWatcher;
 
-        public void startWatcher()
+        public void StartWatcher()
         {
-            _deviceWatcher = DeviceInformation.CreateWatcher(DeviceClass.PortableStorageDevice);
-            _deviceWatcher.Added += DeviceAdded;
-            _deviceWatcher.Removed += DeviceRemoved;
-            _deviceWatcher.Start();
+            try
+            {
+                _deviceWatcher = DeviceInformation.CreateWatcher(DeviceClass.PortableStorageDevice);
+                _deviceWatcher.Added += DeviceAdded;
+                _deviceWatcher.Removed += DeviceRemoved;
+                _deviceWatcher.Start();
+            }
+            catch (Exception e)
+            {
+                LogHelper.Log(e.Message);
+            }
         }
 
         public void Dispose()
         {
-            if (_deviceWatcher != null)
-            {
-                _deviceWatcher.Stop();
-                _deviceWatcher.Added -= DeviceAdded;
-                _deviceWatcher.Removed -= DeviceRemoved;
-                _deviceWatcher = null;
-            }
+            if (_deviceWatcher == null) return;
+            _deviceWatcher.Stop();
+            _deviceWatcher.Added -= DeviceAdded;
+            _deviceWatcher.Removed -= DeviceRemoved;
+            _deviceWatcher = null;
         }
 
         public delegate Task ExternalDeviceAddedEvent(DeviceWatcher sender, string Id);

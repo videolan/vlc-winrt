@@ -296,7 +296,7 @@ namespace VLC
             
             ToggleMediaCenterMode();
 
-            Locator.ExternalDeviceService.startWatcher();
+            Locator.ExternalDeviceService.StartWatcher();
 
             if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
                 await Locator.HttpServer.bind(8080).ConfigureAwait(false);
