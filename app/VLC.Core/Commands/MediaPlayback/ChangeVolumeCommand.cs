@@ -33,7 +33,7 @@ namespace VLC.Commands.MediaPlayback
                     Locator.MediaPlaybackViewModel.Volume = 100;
                     break;
                 case "mute":
-                    Locator.MediaPlaybackViewModel.Volume = 1;
+                    Locator.MediaPlaybackViewModel.Volume = Locator.MediaPlaybackViewModel.Volume == 1 ? 100 : 1;
                     break;
             }
         }
