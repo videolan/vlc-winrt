@@ -61,6 +61,7 @@
                                     x:Uid="ApplyAndRestart"
                                     Click="ApplyColorButton_Click"
                                     Content="Apply"
+                                    Foreground="{ThemeResource MainColor}"
                                     Margin="{StaticResource FrameMarginRight}" />
                         </winControls:WrapPanel>
 
@@ -128,6 +129,7 @@
                     <Button x:Name="Clearkeystore"
                             x:Uid="ClearKeystore"
                             Click="OnClearKeystoreClicked"
+                            Foreground="{ThemeResource MainColor}"
                             Content="{Binding Source={StaticResource Strings}, Path=ClearKeystore}" />
 
                     <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
@@ -224,6 +226,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Button Tag="STARTS"
+                                Foreground="{ThemeResource MainColor}"
                                 Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
                                 Command="{Binding AddFolderToLibrary}"
                                 CommandParameter="{Binding VideoLibraryId}" />
@@ -347,6 +350,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Button Tag="STARTS"
+                                Foreground="{ThemeResource MainColor}"
                                 Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
                                 Command="{Binding AddFolderToLibrary}"
                                 CommandParameter="{Binding MusicLibraryId}" />
@@ -407,6 +411,7 @@
                         <Button Content="{Binding Source={StaticResource Strings}, Path=ResetMusicDatabase}"
                                 DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                                 Command="{Binding IndexMediaLibraryCommand}"
+                                Foreground="{ThemeResource MainColor}"
                                 Margin="{StaticResource FrameMarginVertical}" />
                     </StackPanel>
                 </ScrollViewer>
