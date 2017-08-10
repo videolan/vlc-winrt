@@ -1,14 +1,14 @@
-From 26748fac308fd483461773a009e17c8d3720b333 Mon Sep 17 00:00:00 2001
+From b6aef2dedb8a51ed55858921e8aca9ef8171b5bb Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 2 Aug 2016 18:54:28 +0200
-Subject: [PATCH 10/16] config: cmdline: Use msg_* instead of fprintf
+Subject: [PATCH 05/11] config: cmdline: Use msg_* instead of fprintf
 
 ---
  src/config/cmdline.c | 14 +++++++-------
  1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/src/config/cmdline.c b/src/config/cmdline.c
-index 748ee5c..78686bf 100644
+index 882f224..10f0b26 100644
 --- a/src/config/cmdline.c
 +++ b/src/config/cmdline.c
 @@ -204,8 +204,8 @@ int config_LoadCmdLine( vlc_object_t *p_this, int i_argc,

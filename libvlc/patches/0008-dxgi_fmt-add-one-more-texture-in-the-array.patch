@@ -1,7 +1,7 @@
-From 5432fcfff9011791bae2b70bb02f788fd53ff8d6 Mon Sep 17 00:00:00 2001
+From ee61e2d028eec38a4e243a011802bf2b3878d67b Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 8 Jun 2017 14:45:50 +0200
-Subject: [PATCH 13/16] dxgi_fmt: add one more texture in the array
+Subject: [PATCH 08/11] dxgi_fmt: add one more texture in the array
 
 I420 and other formats need 3 planes
 ---
