@@ -130,7 +130,8 @@ namespace VLC.Database
         {
             using (connection.Lock())
             {
-                return connection.Table<VideoItem>().Count() == 0;
+                return !connection.Table<VideoItem>().Any() 
+                    && !connection.Table<StreamMedia>().Any();
             }
         }
         #endregion
