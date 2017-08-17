@@ -29,6 +29,7 @@ namespace VLC.UI.Views.UserControls
         private void TrackItemTemplate_Unloaded(object sender, RoutedEventArgs e)
         {
             Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet -= UpdateTrack;
+           if(Track != null) Track.PropertyChanged -= Track_PropertyChanged;
         }
 
         public TrackItem Track

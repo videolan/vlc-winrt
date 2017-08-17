@@ -13,6 +13,14 @@ namespace VLC.UI.Views.UserControls
         public VideoItem()
         {
             this.InitializeComponent();
+            Unloaded += OnUnloaded;
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            if(Video != null) Video.PropertyChanged -= Video_PropertyChanged;
+            if(ThumbnailImage?.Source != null) ThumbnailImage.Source = null;
+            ThumbnailImage = null;
         }
 
         private void RootAlbumItem_Holding(object sender, HoldingRoutedEventArgs e)
@@ -84,11 +92,9 @@ namespace VLC.UI.Views.UserControls
 
         private void FadeOutCover_Completed(object sender, object e)
         {
-            if (Video != null && Video.VideoImage != null)
-            {
-                ThumbnailImage.Source = Video.VideoImage;
-                FadeInCover.Begin();
-            }
+            if (Video?.VideoImage == null) return;
+            ThumbnailImage.Source = Video.VideoImage;
+            FadeInCover.Begin();
         }
     }
 }

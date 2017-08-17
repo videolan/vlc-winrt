@@ -42,15 +42,14 @@ namespace VLC.UI.Views.VideoPages
         private const float DEFAULT_FOV = 80f;
         private readonly PlaybackService _playbackService = Locator.PlaybackService;
         private readonly float DIVIDER = DeviceHelper.GetDeviceType() == DeviceTypeEnum.Phone ? 70f : 10f;
+        private long _borderVisibilityChangedToken;
+
         public delegate void PlayerControlVisibilityChanged(bool visibility);
         public event PlayerControlVisibilityChanged OnPlayerControlVisibilityChanged;
 
         public VideoPlayerPage()
         {
             InitializeComponent();
-            ControlsBorder.RegisterPropertyChangedCallback(Border.VisibilityProperty, OnBorderVisibilityChanged);
-            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaStopped += OnPlaybackStopped;
-            FadeOut.Completed += FadeOut_Completed;
         }
 
         private void OnBorderVisibilityChanged(DependencyObject sender, DependencyProperty dp)
@@ -102,6 +101,10 @@ namespace VLC.UI.Views.VideoPages
             this.SizeChanged += OnSizeChanged;
             Responsive();
 
+            _borderVisibilityChangedToken = ControlsBorder.RegisterPropertyChangedCallback(VisibilityProperty, OnBorderVisibilityChanged);
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaStopped += OnPlaybackStopped;
+            FadeOut.Completed += FadeOut_Completed;
+
             // Swapchain animations
             App.RootPage.StartCompositionAnimationOnSwapChain(false);
         }
@@ -128,13 +131,19 @@ namespace VLC.UI.Views.VideoPages
 
             AppViewHelper.LeaveFullscreen();
 
-            this.SizeChanged -= OnSizeChanged;
 
             Locator.MediaPlaybackViewModel.MouseService.Stop();
             Locator.MediaPlaybackViewModel.MouseService.OnMoved -= ShowControlPanel;
+            RootGrid.Tapped -= RootGrid_Tapped;
+
             controlsTimer.Tick -= ControlsTimer_Tick;
             controlsTimer.Stop();
             Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
+
+            this.SizeChanged -= OnSizeChanged;
+            ControlsBorder.UnregisterPropertyChangedCallback(VisibilityProperty, _borderVisibilityChangedToken);
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaStopped -= OnPlaybackStopped;
+            FadeOut.Completed -= FadeOut_Completed;
         }
 
         async void OnPlaybackStopped()
