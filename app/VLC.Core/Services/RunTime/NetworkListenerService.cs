@@ -4,7 +4,7 @@ using VLC.Model.Events;
 
 namespace VLC.Services.RunTime
 {
-    class NetworkListenerService
+    public class NetworkListenerService
     {
         public event EventHandler<InternetConnectionChangedEventArgs> InternetConnectionChanged;
 
@@ -26,14 +26,8 @@ namespace VLC.Services.RunTime
             var arg = new InternetConnectionChangedEventArgs(IsConnected);
             InternetConnectionChanged(null, arg);
         }
-        
-        public static bool IsConnected
-        {
-            get
-            {
-                var profile = NetworkInformation.GetInternetConnectionProfile();
-                return (profile != null && profile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess);
-            }
-        }
+
+        public bool IsConnected => NetworkInformation.GetInternetConnectionProfile()?.GetNetworkConnectivityLevel() ==
+                                    NetworkConnectivityLevel.InternetAccess;
     }
 }

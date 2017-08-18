@@ -1,15 +1,13 @@
 ﻿using Windows.System;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-using VLC.Services.RunTime;
-using VLC.ViewModels;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+using VLC.ViewModels.Others;
 
 namespace VLC.UI.Views.MainPages
 {
-    public sealed partial class MainPageNetwork : Page
+    public sealed partial class MainPageNetwork : StreamsPage
     {
         public MainPageNetwork()
         {
@@ -20,21 +18,19 @@ namespace VLC.UI.Views.MainPages
         {
             base.OnNavigatedTo(e);
             CoreWindow.GetForCurrentThread().KeyDown += KeyboardListenerService_KeyDown;
-            Locator.StreamsVM.OnNavigatedTo();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
             CoreWindow.GetForCurrentThread().KeyDown -= KeyboardListenerService_KeyDown;
-            Locator.StreamsVM.OnNavigatedFrom();
         }
 
         private void KeyboardListenerService_KeyDown(CoreWindow sender, KeyEventArgs args)
         {
             if (args.VirtualKey == VirtualKey.Enter)
             {
-                Locator.StreamsVM.PlayStreamCommand.Execute(MrlTextBox.Text);
+                ViewModel.PlayStreamCommand.Execute(MrlTextBox.Text);
             }
         }
 
@@ -42,5 +38,12 @@ namespace VLC.UI.Views.MainPages
         {
             MrlTextBox.Foreground = App.Current.Resources["MainColor"] as SolidColorBrush;
         }
+    }
+
+    /// <summary>
+    /// Mandatory intermediate class as partial page classes inheriting generic abstract classes do not play well with XAML
+    /// </summary>
+    public class StreamsPage : VlcPage<StreamsViewModel>
+    {
     }
 }

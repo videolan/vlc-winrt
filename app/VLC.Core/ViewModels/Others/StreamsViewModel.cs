@@ -1,52 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using Windows.UI.Xaml;
 using Windows.UI.Core;
-using VLC.Database;
+
 using VLC.Model.Stream;
 using VLC.Utils;
-using VLC.Commands;
-using Windows.UI.Xaml;
-using Autofac;
 using VLC.Services.RunTime;
 using VLC.Commands.StreamsLibrary;
+using VLC.Model.Library;
 
 namespace VLC.ViewModels.Others
 {
-    public class StreamsViewModel : BindableBase, IDisposable
+    public class StreamsViewModel : ViewModelBase
     {
-        public IEnumerable<StreamMedia> StreamsHistoryAndFavoritesGrouped
+        private MediaLibrary _mediaLibrary;
+        private NetworkListenerService _networkListenerService;
+
+        public StreamsViewModel(MediaLibrary mediaLibrary, NetworkListenerService networkListenerService)
         {
-            get { return Locator.MediaLibrary.Streams?.OrderBy(x => x.Order); }
+            _mediaLibrary = mediaLibrary;
+            _networkListenerService = networkListenerService;
+        }
+        
+        public PlayNetworkMRLCommand PlayStreamCommand { get; private set; } = new PlayNetworkMRLCommand();
+        public IEnumerable<StreamMedia> StreamsHistoryAndFavoritesGrouped => _mediaLibrary.Streams?.OrderBy(x => x.Order);        
+        public bool IsCollectionEmpty => !_mediaLibrary.Streams.Any();
+        public Visibility NoInternetPlaceholderEnabled => _networkListenerService.IsConnected ? Visibility.Collapsed : Visibility.Visible;
+
+        public override void Initialize()
+        {
+            _networkListenerService.InternetConnectionChanged += StreamsViewModel_InternetConnectionChanged;
+            _mediaLibrary.Streams.CollectionChanged += Streams_CollectionChanged;
+
+            Task.Run(async () => await _mediaLibrary.LoadStreamsFromDatabase());
         }
 
-        public bool IsCollectionEmpty
+        public override void Stop()
         {
-            get { return !Locator.MediaLibrary.Streams.Any(); }
+            _mediaLibrary.Streams.CollectionChanged -= Streams_CollectionChanged;
+            _networkListenerService.InternetConnectionChanged -= StreamsViewModel_InternetConnectionChanged;
+
+            _mediaLibrary = null;
+            _networkListenerService = null;
+            PlayStreamCommand = null;
         }
-
-        public Visibility NoInternetPlaceholderEnabled => NetworkListenerService.IsConnected ? Visibility.Collapsed : Visibility.Visible;
-
-        public PlayNetworkMRLCommand PlayStreamCommand { get; } = new PlayNetworkMRLCommand();
-
-        public void OnNavigatedTo()
-        {
-            Task.Run(() => Initialize());
-        }
-
-        public void OnNavigatedFrom()
-        {
-            Dispose();
-        }
-
-        async Task Initialize()
-        {
-            App.Container.Resolve<NetworkListenerService>().InternetConnectionChanged += StreamsViewModel_InternetConnectionChanged;
-            Locator.MediaLibrary.Streams.CollectionChanged += Streams_CollectionChanged;
-            await Locator.MediaLibrary.LoadStreamsFromDatabase();
-        }
-
+        
         private async void StreamsViewModel_InternetConnectionChanged(object sender, Model.Events.InternetConnectionChangedEventArgs e)
         {
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => OnPropertyChanged(nameof(NoInternetPlaceholderEnabled)));
@@ -56,12 +56,6 @@ namespace VLC.ViewModels.Others
         {
             OnPropertyChanged(nameof(StreamsHistoryAndFavoritesGrouped));
             OnPropertyChanged(nameof(IsCollectionEmpty));
-        }
-
-        public void Dispose()
-        {
-            Locator.MediaLibrary.Streams.CollectionChanged -= Streams_CollectionChanged;
-            App.Container.Resolve<NetworkListenerService>().InternetConnectionChanged -= StreamsViewModel_InternetConnectionChanged;
         }
     }
 }

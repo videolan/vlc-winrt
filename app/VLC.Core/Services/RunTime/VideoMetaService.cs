@@ -1,27 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.Compression;
-using System.Text;
-using System.Xml.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using VLC.MediaMetaFetcher;
 using VLC.Model.Video;
 using VLC.Utils;
-using VLC.ViewModels;
 using Windows.Storage;
-using System.Linq;
+using VLC.Model.Library;
 
 namespace VLC.Services.RunTime
 {
-    public sealed class VideoMetaService
+    public sealed class VideoMetaService : MetaService
     {
-        readonly VideoMDFetcher videoMdFetcher = new VideoMDFetcher(App.ApiKeyMovieDb);
+        private readonly VideoMDFetcher _videoMdFetcher = new VideoMDFetcher(App.ApiKeyMovieDb);
+
+        public VideoMetaService(MediaLibrary mediaLibrary, NetworkListenerService networkListenerService) 
+            : base(mediaLibrary, networkListenerService)
+        {
+        }
 
         public async Task<bool> GetMovieSubtitle(VideoItem video)
         {
             if (NetworkListenerService.IsConnected && !string.IsNullOrEmpty(video.Path))
             {
-                var bytes = await videoMdFetcher.GetMovieSubtitle(video);
+                var bytes = await _videoMdFetcher.GetMovieSubtitle(video);
                 
                 if (bytes != null)
                 {
@@ -30,7 +29,7 @@ namespace VLC.Services.RunTime
                     {
                         if (video.Id > -1)
                         {
-                            Locator.MediaLibrary.UpdateVideo(video);
+                            MediaLibrary.UpdateVideo(video);
                         }
                         return true;
                     }
@@ -56,20 +55,19 @@ namespace VLC.Services.RunTime
             }
             return false;
         }
-
         
         public async Task<bool> GetMoviePicture(VideoItem video)
         {
             if (NetworkListenerService.IsConnected && !string.IsNullOrEmpty(video.Name))
             {
-                var bytes = await videoMdFetcher.GetMovieCover(video.Name);
+                var bytes = await _videoMdFetcher.GetMovieCover(video.Name);
 
                 if (bytes != null)
                 {
                     var success = await SaveMoviePictureAsync(video, bytes);
                     if (success)
                     {
-                        Locator.MediaLibrary.UpdateVideo(video);
+                        MediaLibrary.UpdateVideo(video);
                         return true;
                     }
                 }

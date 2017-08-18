@@ -198,6 +198,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\HttpServer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\HttpResponseSender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\KeyboardListenerService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MetaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\PlaybackService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\PlaylistService.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoLibraryVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoPlayerVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\NewStoreLogo.scale-100.png" />
