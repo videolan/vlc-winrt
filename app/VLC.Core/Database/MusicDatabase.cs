@@ -180,7 +180,7 @@ namespace VLC.Database
         {
             using (connection.Lock())
             {
-                return connection.Table<TrackItem>().Where(x => x.Id.Equals(trackId)).FirstOrDefault();
+                return connection.Table<TrackItem>().FirstOrDefault(x => x.Id.Equals(trackId));
             }
         }
 
@@ -196,13 +196,7 @@ namespace VLC.Database
         {
             using (connection.Lock())
             {
-                var query = connection.Table<TrackItem>().Where(x => x.Path == path);
-                if (query.Count() > 0)
-                {
-                    var track = query.FirstOrDefault();
-                    return track;
-                }
-                return null;
+                return connection.Table<TrackItem>().FirstOrDefault(x => x.Path == path);
             }
         }
 
@@ -226,7 +220,7 @@ namespace VLC.Database
         {
             using (connection.Lock())
             {
-                return connection.Table<TrackItem>().Count() == 0;
+                return !connection.Table<TrackItem>().Any();
             }
         }
 
@@ -234,7 +228,7 @@ namespace VLC.Database
         {
             using (connection.Lock())
             {
-                return connection.Table<TrackItem>().Where(x => x.Path == path).Count() != 0;
+                return connection.Table<TrackItem>().Count(x => x.Path == path) != 0;
             }
         }
 
@@ -244,7 +238,7 @@ namespace VLC.Database
             {
                 var query = connection.Table<TrackItem>().Where(x => x.Path == track.Path);
                 var result = query.ToList();
-                if (result.Count() == 0)
+                if (!result.Any())
                     connection.Insert(track);
             }
         }
@@ -271,7 +265,7 @@ namespace VLC.Database
         {
             using (connection.Lock())
             {
-                return connection.Table<ArtistItem>().Where(x => x.Id.Equals(artistId)).FirstOrDefault();
+                return connection.Table<ArtistItem>().FirstOrDefault(x => x.Id.Equals(artistId));
             }
         }
 
@@ -280,14 +274,7 @@ namespace VLC.Database
             using (connection.Lock())
             {
                 TableQuery<ArtistItem> query;
-                if (compare == null)
-                {
-                    query = connection.Table<ArtistItem>();
-                }
-                else
-                {
-                    query = connection.Table<ArtistItem>().Where(compare);
-                }
+                query = compare == null ? connection.Table<ArtistItem>() : connection.Table<ArtistItem>().Where(compare);
                 var artists = query.ToList();
                 return artists;
             }
@@ -297,7 +284,7 @@ namespace VLC.Database
         {
             using (connection.Lock())
             {
-                return connection.Table<ArtistItem>().Where(x => x.Name.Equals(artistName)).FirstOrDefault();
+                return connection.Table<ArtistItem>().FirstOrDefault(x => x.Name.Equals(artistName));
             }
         }
 
@@ -389,7 +376,7 @@ namespace VLC.Database
         {
             using (connection.Lock())
             {
-                return connection.Table<PlaylistItem>().Where(x => x.Name == name).FirstOrDefault();
+                return connection.Table<PlaylistItem>().FirstOrDefault(x => x.Name == name);
             }
         }
 

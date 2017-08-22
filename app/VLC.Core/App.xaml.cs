@@ -179,7 +179,14 @@ namespace VLC
         {
             if (Window.Current.Content == null)
                 await LaunchTheApp();
-            await Locator.MediaPlaybackViewModel.OpenFile(args.Files[0] as StorageFile);
+            try
+            {
+                await Locator.MediaPlaybackViewModel.OpenFile(args.Files[0] as StorageFile);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Log($"MediaPlaybackViewModel.OpenFile failed with {e.Message}. {e.StackTrace}");
+            }
         }
 
         private async Task HandleProtocolActivation(IActivatedEventArgs args)
