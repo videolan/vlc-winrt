@@ -71,7 +71,13 @@ namespace VLC.Services.RunTime
             App.SplitShell.FlyoutNavigated += SplitShell_FlyoutNavigated;
             App.SplitShell.FlyoutClosed += SplitShell_FlyoutClosed;
         }
-        
+
+        public void UnbindSplitShellEvents()
+        {
+            App.SplitShell.FlyoutNavigated -= SplitShell_FlyoutNavigated;
+            App.SplitShell.FlyoutClosed -= SplitShell_FlyoutClosed;
+        }
+
         private void NavigationService_HomePageNavigated(object sender, VLCPage homepage)
         {
             VLCPageNavigated(homepage);

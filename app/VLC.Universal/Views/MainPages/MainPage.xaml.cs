@@ -41,6 +41,31 @@ namespace VLC.UI.Views.MainPages
             Locator.MediaPlaybackViewModel.SetMediaTransportControls(smtc);
             this.GotFocus += MainPage_GotFocus;
             this.Loaded += MainPage_Loaded;
+            Unloaded += OnUnloaded;
+        }
+
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigationFrame.AllowDrop = true;
+            NavigationFrame.DragOver += NavigationFrame_DragOver;
+            NavigationFrame.Drop += NavigationFrame_Drop;
+
+            SwapChainPanel.Tapped += SwapChainPanel_Tapped;
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            NavigationFrame.AllowDrop = false;
+            NavigationFrame.DragOver -= NavigationFrame_DragOver;
+            NavigationFrame.Drop -= NavigationFrame_Drop;
+
+            SwapChainPanel.Tapped -= SwapChainPanel_Tapped;
+
+            SplitShell = null;
+            NavigationFrame = null;
+            SwapChainPanel = null;
+            _compositor = null;
+            GC.Collect();
         }
 
         private void MainPage_GotFocus(object sender, RoutedEventArgs e)
@@ -77,17 +102,6 @@ namespace VLC.UI.Views.MainPages
         {
             Locator.NavigationService.GoBack_HideFlyout();
         }
-
-        private void MainPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            NavigationFrame.AllowDrop = true;
-            NavigationFrame.DragOver += NavigationFrame_DragOver;
-            NavigationFrame.Drop += NavigationFrame_Drop;
-
-            SwapChainPanel.Tapped += SwapChainPanel_Tapped;
-        }
-
-
 
         private async void NavigationFrame_Drop(object sender, DragEventArgs e)
         {

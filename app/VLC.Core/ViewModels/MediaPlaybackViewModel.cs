@@ -567,6 +567,9 @@ namespace VLC.ViewModels
         
         private async void OnPlaylistEndReached()
         {
+            var isAppCurrentlyBackgrounded = ApplicationSettingsHelper.ReadSettingsValue("AppBackgrounded") as bool?;
+            if (isAppCurrentlyBackgrounded.HasValue && isAppCurrentlyBackgrounded.Value) return;
+
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
             {
                 if (PlaybackService.PlayingType == PlayingType.Video)

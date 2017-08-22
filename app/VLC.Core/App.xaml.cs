@@ -43,18 +43,44 @@ namespace VLC
         public static OpenFilePickerReason OpenFilePickerReason = OpenFilePickerReason.Null;
         public static Model.Music.AlbumItem SelectedAlbumItem;
         public static IContainer Container;
-        
+        private bool _firstBoot = true;
+
         public App()
         {
             InitializeComponent();
             Suspending += OnSuspending;
             Container = AutoFacConfiguration.Configure();
-
+            EnteredBackground += OnEnteredBackground;
+            LeavingBackground += OnLeavingBackground;
             if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox &&
                 ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 3))
             {
                 RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
             }
+        }
+
+        private async void OnLeavingBackground(object sender, LeavingBackgroundEventArgs leavingBackgroundEventArgs)
+        {
+            ApplicationSettingsHelper.SaveSettingsValue("AppBackgrounded", false);
+            if (_firstBoot)
+            {
+                _firstBoot = false;
+                return;
+            }
+
+            await LaunchTheApp(true);
+        }
+
+        private void OnEnteredBackground(object sender, EnteredBackgroundEventArgs enteredBackgroundEventArgs)
+        {
+            ApplicationSettingsHelper.SaveSettingsValue("AppBackgrounded", true);
+            Locator.GamepadService.StopListening();
+            Locator.NavigationService.UnbindSplitShellEvents();
+            Locator.ExternalDeviceService.Dispose();
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+                Locator.HttpServer.Unbind();
+
+            Window.Current.Content = null;
         }
 
         public static Frame ApplicationFrame => RootPage?.NavigationFrame;
@@ -299,7 +325,7 @@ namespace VLC
             Locator.ExternalDeviceService.StartWatcher();
 
             if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
-                await Locator.HttpServer.bind(8080).ConfigureAwait(false);
+                await Locator.HttpServer.Bind(8080).ConfigureAwait(false);
         }
 
         public static void ReloadApplicationPage()
@@ -316,18 +342,12 @@ namespace VLC
         {
             if (Locator.SettingsVM.MediaCenterMode)
             {
-                if (Locator.MainVM.CurrentPanel != null)
-                {
-                    Locator.NavigationService.RefreshCurrentPage();
-                    return;
-                }
-
                 Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
                 Locator.MainVM.GoToHomePageMediaCenterCommand.Execute(null);
 
                 AppViewHelper.EnterFullscreen();
 
-                App.SplitShell.FooterContent = null;
+                SplitShell.FooterContent = null;
             }
             else
             {
@@ -335,7 +355,7 @@ namespace VLC
 
                 AppViewHelper.LeaveFullscreen();
 
-                App.SplitShell.FooterContent = new CommandBarBottom();
+                SplitShell.FooterContent = new CommandBarBottom();
             }
             Locator.NavigationService.RefreshCurrentPage();
         }

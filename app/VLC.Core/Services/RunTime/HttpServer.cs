@@ -13,26 +13,31 @@ using Windows.Storage.Streams;
 
 namespace VLC.Services.RunTime
 {
-    public class HttpServer : IDisposable
+    public class HttpServer
     {
         private const uint BufferSize = 8192;
-
-        private readonly StreamSocketListener listener;
+        private StreamSocketListener _listener;
 
         public HttpServer()
         {
-            this.listener = new StreamSocketListener();
-            this.listener.ConnectionReceived += (s, e) => ProcessRequestAsync(e.Socket);
         }
 
-        public Task bind(int port)
+        private void OnConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
         {
-            return this.listener.BindServiceNameAsync(port.ToString()).AsTask();
+            ProcessRequestAsync(args.Socket);
         }
 
-        public void Dispose()
+        public Task Bind(int port)
         {
-            this.listener.Dispose();
+            _listener = new StreamSocketListener();
+            _listener.ConnectionReceived += OnConnectionReceived;
+            return _listener.BindServiceNameAsync(port.ToString()).AsTask();
+        }
+
+        public void Unbind()
+        {
+            _listener.ConnectionReceived -= OnConnectionReceived;
+            _listener.Dispose();
         }
 
         private class RequestParameters

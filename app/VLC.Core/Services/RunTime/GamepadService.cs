@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using VLC.ViewModels;
 using Windows.Gaming.Input;
 
 namespace VLC.Services.RunTime
 {
-    public class GamepadService : IDisposable
+    public class GamepadService
     {
         public event EventHandler<Gamepad> GamepadUpdated;
         
@@ -21,8 +17,8 @@ namespace VLC.Services.RunTime
         {
             GamepadUpdated?.Invoke(this, e);
         }
-        
-        public void Dispose()
+
+        public void StopListening()
         {
             Gamepad.GamepadAdded -= Gamepad_GamepadUpdated;
             Gamepad.GamepadRemoved -= Gamepad_GamepadUpdated;
