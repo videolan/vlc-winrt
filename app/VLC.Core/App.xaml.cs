@@ -313,7 +313,9 @@ namespace VLC
             if (disableConsumingTasks == false)
             {
                 Locator.MediaLibrary.LoadAndCleanLibrariesAsync();
+#if !Windows10
                 Locator.PlaybackService.RestorePlaylistAsync();
+#endif
             }
             Locator.GamepadService.GamepadUpdated += async (s, e) =>
             {

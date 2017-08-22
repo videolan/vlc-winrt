@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using VLC.Database;
+
 using VLC.Helpers;
 using VLC.Model;
-using VLC.Model.Music;
 using VLC.Utils;
-using VLC.ViewModels;
 
 namespace VLC.Services.RunTime
 {
@@ -20,7 +17,9 @@ namespace VLC.Services.RunTime
         public event Action<bool> OnRepeatChanged;
         // Parameters: The new current media, a boolean indicating if the playback should start automatically
         public event Action<IMediaItem, bool> OnCurrentMediaChanged;
-        private BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
+#if !Windows10
+        private BackgroundTrackDatabase BackgroundTrackRepository { get; set; }
+#endif
         private ObservableCollection<IMediaItem> _playlist;
 
         public ObservableCollection<IMediaItem> Playlist
@@ -82,6 +81,10 @@ namespace VLC.Services.RunTime
                 // Don't potentially change the media from a VLC thread
                 await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () => OnMediaEndReached());
             };
+
+#if !Windows10
+            BackgroundTrackRepository = new BackgroundTrackDatabase();
+#endif
         }
 
         public void SetCurrentMedia(IMediaItem media)
@@ -113,13 +116,17 @@ namespace VLC.Services.RunTime
         public async Task Clear()
         {
             clear();
+#if !Windows10
             savePlaylistToBackgroundDB();
+#endif
             OnPlaylistChanged?.Invoke();
         }
 
         private void clear()
         {
+#if !Windows10
             BackgroundTrackRepository.Clear();
+#endif
             _playlist.Clear();
             _nonShuffledPlaylist?.Clear();
             _index = 0;
@@ -178,6 +185,7 @@ namespace VLC.Services.RunTime
             }
         }
 
+#if !Windows10
         private void savePlaylistToBackgroundDB()
         {
             var trackItems = _playlist.OfType<TrackItem>();
@@ -190,14 +198,17 @@ namespace VLC.Services.RunTime
                 });
             }
             BackgroundTrackRepository.Add(backgroundTrackItems);
-        }
+    }
+#endif
 
         public void AddToPlaylist(IEnumerable<IMediaItem> toAdd)
         {
             foreach (var m in toAdd)
                 _playlist.Add(m);
             OnPlaylistChanged?.Invoke();
+#if !Windows10
             savePlaylistToBackgroundDB();
+#endif
         }
 
         public async Task SetPlaylist(IEnumerable<IMediaItem> mediaItems, int startingIndex = 0, bool shuffle = false)
@@ -212,9 +223,12 @@ namespace VLC.Services.RunTime
             }
             OnPlaylistChanged?.Invoke();
             Index = startingIndex;
+#if !Windows10
             savePlaylistToBackgroundDB();
+#endif
         }
 
+#if !Windows10
         public void Restore()
         {
             if (!ApplicationSettingsHelper.Contains(nameof(Index)))
@@ -242,7 +256,8 @@ namespace VLC.Services.RunTime
             OnPlaylistChanged?.Invoke();
             _index = (int)ApplicationSettingsHelper.ReadSettingsValue(nameof(Index));
             OnCurrentMediaChanged?.Invoke(_playlist[_index], true);
-        }
+    }
+#endif
 
         public bool Next()
         {
