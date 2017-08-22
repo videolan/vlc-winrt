@@ -92,7 +92,7 @@ namespace VLC.UI.Views.UserControls
 
         private void FadeOutCover_Completed(object sender, object e)
         {
-            if (Video?.VideoImage == null) return;
+            if (Video?.VideoImage == null || ThumbnailImage == null) return;
             ThumbnailImage.Source = Video.VideoImage;
             FadeInCover.Begin();
         }
