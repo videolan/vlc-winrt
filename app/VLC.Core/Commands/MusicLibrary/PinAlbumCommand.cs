@@ -13,11 +13,11 @@ namespace VLC.Commands.MusicLibrary
             if (parameter is AlbumItem)
             {
                 var album = parameter as AlbumItem;
-                if (await TileHelper.CreateOrReplaceSecondaryTile(VLCItemType.Album, album.Id, album.Name))
-                {
-                    album.IsPinned = !album.IsPinned;
-                    Locator.MediaLibrary.Update(album);
-                }
+                //if (await TileHelper.CreateOrReplaceSecondaryTile(VLCItemType.Album, album.Id, album.Name))
+                //{
+                //    album.IsPinned = !album.IsPinned;
+                //    Locator.MediaLibrary.Update(album);
+                //}
             }
         }
     }

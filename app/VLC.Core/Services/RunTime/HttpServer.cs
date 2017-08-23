@@ -189,7 +189,7 @@ namespace VLC.Services.RunTime
                 }
                 else
                 {
-                    Debug.WriteLine("mutipart header: " + Encoding.UTF8.GetString(buffer.ToArray()));
+                    //Debug.WriteLine("mutipart header: " + Encoding.UTF8.GetString(buffer.ToArray()));
 
                     await headerStream.WriteAsync(buffer.ToArray(), 0, (int)buffer.Length);
                     parseHeader(buffer.ToArray());
@@ -206,27 +206,27 @@ namespace VLC.Services.RunTime
             private async Task writeUntilFileEnd(IBuffer buffer)
             {
                 var lenToWrite = buffer.Length;
-                var fileData = Encoding.ASCII.GetString(buffer.ToArray());
+                //var fileData = Encoding.ASCII.GetString(buffer.ToArray());
 
                 // Try to find the end of the file
-                var ind = fileData.IndexOf("\r\n--" + boundary);
-                if (ind != -1)
-                    lenToWrite = (uint)ind;
+                //var ind = fileData.IndexOf("\r\n--" + boundary);
+                //if (ind != -1)
+                    //lenToWrite = (uint)ind;
 
-                await payloadOutputStream.WriteAsync(buffer.ToArray().AsBuffer(0, (int)lenToWrite));
+                //await payloadOutputStream.WriteAsync(buffer.ToArray().AsBuffer(0, (int)lenToWrite));
 
-                if (ind != -1)
-                {
-                    // Close the file.
-                    hasHeader = false;
-                    payloadOutputStream.Dispose();
-                }
+                //if (ind != -1)
+                //{
+                //    // Close the file.
+                //    hasHeader = false;
+                //    payloadOutputStream.Dispose();
+                //}
             }
 
             public void parseHeader(byte[] data)
             {
                 var headerBuilder = new StringBuilder();
-                headerBuilder.Append(Encoding.UTF8.GetString(data));
+                //headerBuilder.Append(Encoding.UTF8.GetString(data));
                 var header = headerBuilder.ToString();
 
                 var ind = header.IndexOf("\r\n\r\n");
@@ -276,7 +276,7 @@ namespace VLC.Services.RunTime
 
             // Look for the end of the header.
             var headerBuilder = new StringBuilder();
-            headerBuilder.Append(Encoding.UTF8.GetString(data));
+            //headerBuilder.Append(Encoding.UTF8.GetString(data));
             var header = headerBuilder.ToString();
 
             var ind = header.IndexOf("\r\n\r\n");

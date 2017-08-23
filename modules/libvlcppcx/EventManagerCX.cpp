@@ -22,7 +22,7 @@
 
 #include "EventManagerCX.hpp"
 #include "MediaCX.hpp"
-#include <vlcpp/vlc.hpp>
+#include <../../libvlcpp/vlcpp/vlc.hpp>
 
 namespace libVLCX
 {

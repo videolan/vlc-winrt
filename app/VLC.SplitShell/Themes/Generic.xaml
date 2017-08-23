@@ -70,10 +70,10 @@
                                       HorizontalAlignment="Stretch"
                                       Grid.Column="0"
                                       Grid.ColumnSpan="3"/>
-                                <uC:BackDrop x:Name="backDrop"
+                                <!--<uC:BackDrop x:Name="backDrop"
                                              BlurAmount="6"
                                              Grid.Column="0"
-                                             Grid.ColumnSpan="3" />
+                                             Grid.ColumnSpan="3" />-->
                                 <Frame x:Name="FlyoutContentPresenter"
                                        Grid.Column="1"
                                        Style="{StaticResource FrameStyle}" />

@@ -37,13 +37,13 @@ namespace VLC.Utils
             try
             {
                 // Gets the app's current memory usage    
-                ulong AppMemoryUsageUlong = Windows.System.MemoryManager.AppMemoryUsage;
-                // Gets the app's memory usage limit    
-                ulong AppMemoryUsageLimitUlong = Windows.System.MemoryManager.AppMemoryUsageLimit;
+                //ulong AppMemoryUsageUlong = Windows.System.MemoryManager.AppMemoryUsage;
+                //// Gets the app's memory usage limit    
+                //ulong AppMemoryUsageLimitUlong = Windows.System.MemoryManager.AppMemoryUsageLimit;
 
-                AppMemoryUsageUlong /= 1024 * 1024;
-                AppMemoryUsageLimitUlong /= 1024 * 1024;
-                return "UsedRAM : " + AppMemoryUsageUlong + " - MaxRAM : " + AppMemoryUsageLimitUlong;
+                //AppMemoryUsageUlong /= 1024 * 1024;
+                //AppMemoryUsageLimitUlong /= 1024 * 1024;
+                //return "UsedRAM : " + AppMemoryUsageUlong + " - MaxRAM : " + AppMemoryUsageLimitUlong;
             }
             catch { }
             return null;

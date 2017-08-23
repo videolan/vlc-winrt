@@ -22,7 +22,7 @@
 
 #pragma once
 
-#include <vlcpp/vlc.hpp>
+#include <../../libvlcpp/vlcpp/vlc.hpp>
 #include "StructuresCX.hpp"
 #include "MediaCX.hpp"
 

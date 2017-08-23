@@ -391,7 +391,7 @@ namespace VLC.ViewModels
             {
                 uri = new Uri(streamMrl);
             }
-            catch (UriFormatException ex)
+            catch (Exception ex)
             {
                 var md = new MessageDialog(string.Format("{0} is invalid ({1})", streamMrl, ex.Message), "Invalid URI");
                 await md.ShowAsync();
@@ -670,7 +670,7 @@ namespace VLC.ViewModels
             _systemMediaTransportControls.IsEnabled = true;
             _systemMediaTransportControls.IsPauseEnabled = true;
             _systemMediaTransportControls.IsPlayEnabled = true;
-            _systemMediaTransportControls.PlaybackRate = 1;
+            //_systemMediaTransportControls.PlaybackRate = 1;
             _systemMediaTransportControls.IsStopEnabled = true;
             _systemMediaTransportControls.IsFastForwardEnabled = true;
             _systemMediaTransportControls.IsRewindEnabled = true;

@@ -1,0 +1,825 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AEA90C9C-7329-4A77-9894-A08B0CB360A3}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VLC.Universal8._1</RootNamespace>
+    <AssemblyName>VLC.Universal8.1.Windows</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <SynthesizeLinkMetadata>true</SynthesizeLinkMetadata>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>VLC.Universal8.1.Windows_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\IVLCModalFlyout.cs" />
+    <Compile Include="Views\MainPages\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MainPageFileExplorer.xaml.cs">
+      <DependentUpon>MainPageFileExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MainPageMusic.xaml.cs">
+      <DependentUpon>MainPageMusic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MainPageNetwork.xaml.cs">
+      <DependentUpon>MainPageNetwork.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MainPageVideos.xaml.cs">
+      <DependentUpon>MainPageVideos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MainPageXBOX.xaml.cs">
+      <DependentUpon>MainPageXBOX.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MainVideoControls\AllVideosPivotItem.xaml.cs">
+      <DependentUpon>AllVideosPivotItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MainVideoControls\CameraRollPivotItem.xaml.cs">
+      <DependentUpon>CameraRollPivotItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MainVideoControls\ShowsPivotItem.xaml.cs">
+      <DependentUpon>ShowsPivotItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MusicPanes\AlbumCollectionBase.xaml.cs">
+      <DependentUpon>AlbumCollectionBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MusicPanes\ArtistCollectionBase.xaml.cs">
+      <DependentUpon>ArtistCollectionBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MusicPanes\MusicPanesControls\AlbumsCollectionButtons.xaml.cs">
+      <DependentUpon>AlbumsCollectionButtons.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MusicPanes\PlaylistCollectionBase.xaml.cs">
+      <DependentUpon>PlaylistCollectionBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MusicPanes\SongCollectionBase.xaml.cs">
+      <DependentUpon>SongCollectionBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\AlbumPageControls\AlbumPageBase.xaml.cs">
+      <DependentUpon>AlbumPageBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\AlbumPageControls\MainAlbumHeader.xaml.cs">
+      <DependentUpon>MainAlbumHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\ArtistPageControls\ArtistAlbumsSemanticView.xaml.cs">
+      <DependentUpon>ArtistAlbumsSemanticView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\ArtistPageControls\ArtistInfoControl.xaml.cs">
+      <DependentUpon>ArtistInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\ArtistPageControls\MainArtistHeader.xaml.cs">
+      <DependentUpon>MainArtistHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\CreateNewPlaylist.xaml.cs">
+      <DependentUpon>CreateNewPlaylist.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\MiniPlayerWindow.xaml.cs">
+      <DependentUpon>MiniPlayerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\MusicPlayerPage.xaml.cs">
+      <DependentUpon>MusicPlayerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\MusicPlaylistPage.xaml.cs">
+      <DependentUpon>MusicPlaylistPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\PlaylistControls\AddAlbumToPlaylistBase.xaml.cs">
+      <DependentUpon>AddAlbumToPlaylistBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\PlaylistPage.xaml.cs">
+      <DependentUpon>PlaylistPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\TagEditorPages\TrackEditorPage.xaml.cs">
+      <DependentUpon>TrackEditorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\AlbumControl.xaml.cs">
+      <DependentUpon>AlbumControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\AlbumWithTracksResponsiveTemplate.xaml.cs">
+      <DependentUpon>AlbumWithTracksResponsiveTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ArtistHorizontalTemplate.xaml.cs">
+      <DependentUpon>ArtistHorizontalTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BufferingControl.xaml.cs">
+      <DependentUpon>BufferingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\CommandBarBottom.xaml.cs">
+      <DependentUpon>CommandBarBottom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Flyouts\AlbumMenuFlyout.xaml.cs">
+      <DependentUpon>AlbumMenuFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Flyouts\FileExplorerItemFlyout.xaml.cs">
+      <DependentUpon>FileExplorerItemFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Flyouts\TrackItemFlyout.xaml.cs">
+      <DependentUpon>TrackItemFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Flyouts\VideoInformationFlyout.xaml.cs">
+      <DependentUpon>VideoInformationFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\FocusTextBox.xaml.cs">
+      <DependentUpon>FocusTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\FolderDataTemplate.xaml.cs">
+      <DependentUpon>FolderDataTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MusicControls\Equalizer.xaml.cs">
+      <DependentUpon>Equalizer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\PivotHeaderControl.xaml.cs">
+      <DependentUpon>PivotHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Placeholders\FakeAlbumControl.xaml.cs">
+      <DependentUpon>FakeAlbumControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Placeholders\FakeVideoControl.xaml.cs">
+      <DependentUpon>FakeVideoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Placeholders\NoCameraVideos.xaml.cs">
+      <DependentUpon>NoCameraVideos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Placeholders\NoFavoriteAlbumsControl.xaml.cs">
+      <DependentUpon>NoFavoriteAlbumsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Placeholders\NoMusicShowsPlaceholder.xaml.cs">
+      <DependentUpon>NoMusicShowsPlaceholder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Placeholders\NoPlaylistPlaceholder.xaml.cs">
+      <DependentUpon>NoPlaylistPlaceholder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Placeholders\NoResults.xaml.cs">
+      <DependentUpon>NoResults.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Placeholders\NoShowPlaceholder.xaml.cs">
+      <DependentUpon>NoShowPlaceholder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Placeholders\NothingToSeeHere.xaml.cs">
+      <DependentUpon>NothingToSeeHere.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Placeholders\NoVideosControl.xaml.cs">
+      <DependentUpon>NoVideosControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Placeholders\NoVideosPlaceholder.xaml.cs">
+      <DependentUpon>NoVideosPlaceholder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Placeholders\StartSearchingSomething.xaml.cs">
+      <DependentUpon>StartSearchingSomething.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\PlayPauseButton.xaml.cs">
+      <DependentUpon>PlayPauseButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Shell\BlankPage.xaml.cs">
+      <DependentUpon>BlankPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Shell\DesktopHomePageController.xaml.cs">
+      <DependentUpon>DesktopHomePageController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Shell\HomePageController.xaml.cs">
+      <DependentUpon>HomePageController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ShowItem.xaml.cs">
+      <DependentUpon>ShowItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\SliderControl.xaml.cs">
+      <DependentUpon>SliderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\SliderControlHorizontal.xaml.cs">
+      <DependentUpon>SliderControlHorizontal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\TrackItemTemplate.xaml.cs">
+      <DependentUpon>TrackItemTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\TrackItemTemplateDetailed.xaml.cs">
+      <DependentUpon>TrackItemTemplateDetailed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\TrackItemTemplateDetailedVertical.xaml.cs">
+      <DependentUpon>TrackItemTemplateDetailedVertical.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\VideoItem.xaml.cs">
+      <DependentUpon>VideoItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\VLCLogoWithGradient.xaml.cs">
+      <DependentUpon>VLCLogoWithGradient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VariousPages\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VariousPages\ExternalStorageIncludePage.xaml.cs">
+      <DependentUpon>ExternalStorageIncludePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VariousPages\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VideoPages\TVShowsViews\ShowEpisodesView.xaml.cs">
+      <DependentUpon>ShowEpisodesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VideoPages\VideoNowPlayingControls\AudioTracksSettings.xaml.cs">
+      <DependentUpon>AudioTracksSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VideoPages\VideoNowPlayingControls\ChaptersSettings.xaml.cs">
+      <DependentUpon>ChaptersSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VideoPages\VideoNowPlayingControls\SubtitlesSettings.xaml.cs">
+      <DependentUpon>SubtitlesSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VideoPages\VideoNowPlayingControls\VideoPlayerOptionsPanel.xaml.cs">
+      <DependentUpon>VideoPlayerOptionsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VideoPages\VideoPlayerPage.xaml.cs">
+      <DependentUpon>VideoPlayerPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="packages.config" />
+    <PRIResource Include="Strings\en-US\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+    <PRIResource Include="Strings\fr-FR\Resources.resw" />
+    <PRIResource Include="Strings\ja-JP\Resources.resw" />
+    <None Include="VLC.Universal8.1.Windows_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\SmallLogo.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Resources\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Converters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Definitions.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Factory.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Flyouts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\AlbumTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\ArtistTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\TrackCollectionTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\TrackTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\VideoTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\HomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\MainPageFileExplorer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\MainPageMusic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\MainPageNetwork.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\MainPageVideos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\MainPageXBOX.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\MainVideoControls\AllVideosPivotItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\MainVideoControls\CameraRollPivotItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\MainVideoControls\ShowsPivotItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\MusicPanes\AlbumCollectionBase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\MusicPanes\ArtistCollectionBase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\MusicPanes\MusicPanesControls\AlbumsCollectionButtons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\MusicPanes\PlaylistCollectionBase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\MusicPanes\SongCollectionBase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MusicPages\AlbumPageControls\AlbumPageBase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MusicPages\AlbumPageControls\MainAlbumHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MusicPages\ArtistPageControls\ArtistAlbumsSemanticView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MusicPages\ArtistPageControls\ArtistInfoControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MusicPages\ArtistPageControls\MainArtistHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MusicPages\CreateNewPlaylist.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MusicPages\MiniPlayerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MusicPages\MusicPlayerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MusicPages\MusicPlaylistPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MusicPages\PlaylistControls\AddAlbumToPlaylistBase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MusicPages\PlaylistPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MusicPages\TagEditorPages\TrackEditorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SettingsPages\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\AlbumControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\AlbumWithTracksResponsiveTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\ArtistHorizontalTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\BufferingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\CommandBarBottom.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Flyouts\AlbumMenuFlyout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Flyouts\FileExplorerItemFlyout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Flyouts\TrackItemFlyout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Flyouts\VideoInformationFlyout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\FocusTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\FolderDataTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\MusicControls\Equalizer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\PivotHeaderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Placeholders\FakeAlbumControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Placeholders\FakeVideoControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Placeholders\NoCameraVideos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Placeholders\NoFavoriteAlbumsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Placeholders\NoMusicShowsPlaceholder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Placeholders\NoPlaylistPlaceholder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Placeholders\NoResults.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Placeholders\NoShowPlaceholder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Placeholders\NothingToSeeHere.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Placeholders\NoVideosControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Placeholders\NoVideosPlaceholder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Placeholders\StartSearchingSomething.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\PlayPauseButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Shell\BlankPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Shell\DesktopHomePageController.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Shell\HomePageController.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\ShowItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\SliderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\SliderControlHorizontal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\TrackItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\TrackItemTemplateDetailed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\TrackItemTemplateDetailedVertical.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\VideoItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\VLCLogoWithGradient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VariousPages\AboutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VariousPages\ExternalStorageIncludePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VariousPages\SearchPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VideoPages\TVShowsViews\ShowEpisodesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VideoPages\VideoNowPlayingControls\AudioTracksSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VideoPages\VideoNowPlayingControls\ChaptersSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VideoPages\VideoNowPlayingControls\SubtitlesSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VideoPages\VideoNowPlayingControls\VideoPlayerOptionsPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VideoPages\VideoPlayerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.6.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\build\packages\Autofac.4.6.1\lib\netstandard1.1\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IF.Lastfm.Core, Version=1.0.1.307, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\build\packages\Inflatable.Lastfm.1.0.1.307\lib\netstandard1.1\IF.Lastfm.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Graphics.Canvas, Version=255.255.255.255, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\build\packages\Win2D.win81.1.20.0\lib\win\Microsoft.Graphics.Canvas.winmd</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\build\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NotificationsExtensions.WinRT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\build\packages\NotificationsExtensions.WinRT.1.0.0\lib\netcore45\NotificationsExtensions.WinRT.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ScrollWatcher, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\build\packages\ScrollWatcher.1.0.5\lib\netcore45\ScrollWatcher.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLite-net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\build\packages\sqlite-net-pcl.1.4.118\lib\netstandard1.1\SQLite-net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_green, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a84b7dcfb1391f7f, processorArchitecture=MSIL">
+      <HintPath>..\..\build\packages\SQLitePCLRaw.bundle_green.1.1.5\lib\win81\SQLitePCLRaw.batteries_green.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
+      <HintPath>..\..\build\packages\SQLitePCLRaw.bundle_green.1.1.5\lib\win81\SQLitePCLRaw.batteries_v2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
+      <HintPath>..\..\build\packages\SQLitePCLRaw.core.1.1.5\lib\win81\SQLitePCLRaw.core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.e_sqlite3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9c301db686d0bd12, processorArchitecture=MSIL">
+      <HintPath>..\..\build\packages\SQLitePCLRaw.provider.e_sqlite3.win81.1.1.5\lib\win81\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\build\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\win8\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WinRT.Triggers, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\build\packages\WinRTTriggers.1.5.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WinRTXamlToolkit, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\build\packages\WinRTXamlToolkit.Windows.1.8.0.0\lib\netcore451\WinRTXamlToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\modules\libVLCX.8.1\libVLCX.8.1.Windows\libVLCX.8.1.Windows.vcxproj">
+      <Project>{252c421d-b48d-44fb-a1a0-0752d66a972d}</Project>
+      <Name>libVLCX.8.1.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\build\libaccess_winrt_plugin.8.1\libaccess_winrt_plugin.8.1.Windows\libaccess_winrt_plugin.8.1.Windows.vcxproj">
+      <Project>{a593376e-2bbe-4844-b25f-1342b7716287}</Project>
+      <Name>libaccess_winrt_plugin.8.1.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="plugins\access\" />
+    <Folder Include="plugins\audio_filter\" />
+    <Folder Include="plugins\audio_mixer\" />
+    <Folder Include="plugins\audio_output\" />
+    <Folder Include="plugins\codec\" />
+    <Folder Include="plugins\control\" />
+    <Folder Include="plugins\demux\" />
+    <Folder Include="plugins\keystore\" />
+    <Folder Include="plugins\logger\" />
+    <Folder Include="plugins\lua\" />
+    <Folder Include="plugins\meta_engine\" />
+    <Folder Include="plugins\misc\" />
+    <Folder Include="plugins\packetizer\" />
+    <Folder Include="plugins\services_discovery\" />
+    <Folder Include="plugins\spu\" />
+    <Folder Include="plugins\stream_extractor\" />
+    <Folder Include="plugins\stream_filter\" />
+    <Folder Include="plugins\text_renderer\" />
+    <Folder Include="plugins\video_chroma\" />
+    <Folder Include="plugins\video_filter\" />
+    <Folder Include="plugins\video_output\" />
+    <Folder Include="plugins\video_splitter\" />
+    <Folder Include="plugins\visualization\" />
+    <Folder Include="Views\MainPages\MainVideoControls\VideoPanesControls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <XliffResource Include="MultilingualResources\VLC.Universal.fr-FR.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.ja-JP.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
+      <Name>Behaviors SDK %28XAML%29</Name>
+    </SDKReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="..\VLC.Core\VLC_WinRT.Shared.projitems" Label="Shared" />
+  <Import Project="..\VLC.MediaMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems" Label="Shared" />
+  <Import Project="..\VLC.Slideshow\VLC_WinRT.Slideshow.projitems" Label="Shared" />
+  <Import Project="..\VLC.SplitShell\VLC_WinRT.SplitShell.projitems" Label="Shared" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <Import Project="..\..\packages\Win2D.win81.1.21.0\build\win\Win2D.win81.targets" Condition="Exists('..\..\packages\Win2D.win81.1.21.0\build\win\Win2D.win81.targets')" />
+  <Import Project="..\..\build\packages\Win2D.win81.1.20.0\build\win\Win2D.win81.targets" Condition="Exists('..\..\build\packages\Win2D.win81.1.20.0\build\win\Win2D.win81.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\build\packages\Win2D.win81.1.20.0\build\win\Win2D.win81.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\build\packages\Win2D.win81.1.20.0\build\win\Win2D.win81.targets'))" />
+    <Error Condition="!Exists('..\..\build\packages\SQLitePCLRaw.lib.e_sqlite3.v120.1.1.5\build\SQLitePCLRaw.lib.e_sqlite3.v120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\build\packages\SQLitePCLRaw.lib.e_sqlite3.v120.1.1.5\build\SQLitePCLRaw.lib.e_sqlite3.v120.targets'))" />
+  </Target>
+  <Import Project="..\..\build\packages\SQLitePCLRaw.lib.e_sqlite3.v120.1.1.5\build\SQLitePCLRaw.lib.e_sqlite3.v120.targets" Condition="Exists('..\..\build\packages\SQLitePCLRaw.lib.e_sqlite3.v120.1.1.5\build\SQLitePCLRaw.lib.e_sqlite3.v120.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

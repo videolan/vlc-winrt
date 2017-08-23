@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\common.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\Dialog.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\Equalizer.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\EventManager.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\Instance.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\Internal.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\Media.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\MediaDiscoverer.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\MediaLibrary.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\MediaList.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\MediaListPlayer.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\MediaPlayer.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\structures.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\vlc.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\DialogCX.hpp">
+      <Filter>libvlcppx</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\EqualizerCX.hpp">
+      <Filter>libvlcppx</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\EventManagerCX.hpp">
+      <Filter>libvlcppx</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\InstanceCX.hpp">
+      <Filter>libvlcppx</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaCX.hpp">
+      <Filter>libvlcppx</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaDiscovererCX.hpp">
+      <Filter>libvlcppx</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaListCX.hpp">
+      <Filter>libvlcppx</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaPlayerCX.hpp">
+      <Filter>libvlcppx</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\PlatformHelpers.hpp">
+      <Filter>libvlcppx</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\StructuresCX.hpp">
+      <Filter>libvlcppx</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DirectXManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Helpers.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Thumbnailer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\DialogCX.cpp">
+      <Filter>libvlcppx</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\EqualizerCX.cpp">
+      <Filter>libvlcppx</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\EventManagerCX.cpp">
+      <Filter>libvlcppx</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\InstanceCX.cpp">
+      <Filter>libvlcppx</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaCX.cpp">
+      <Filter>libvlcppx</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaDiscovererCX.cpp">
+      <Filter>libvlcppx</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaListCX.cpp">
+      <Filter>libvlcppx</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaPlayerCX.cpp">
+      <Filter>libvlcppx</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\PlatformHelpers.cpp">
+      <Filter>libvlcppx</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\StructuresCX.cpp">
+      <Filter>libvlcppx</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DirectXManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Thumbnailer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="libvlcpp">
+      <UniqueIdentifier>{62620a79-eddd-4d7f-8f1e-e26b967def40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libvlcppx">
+      <UniqueIdentifier>{1cd27a16-fc07-44c2-8dbb-d600460263f5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

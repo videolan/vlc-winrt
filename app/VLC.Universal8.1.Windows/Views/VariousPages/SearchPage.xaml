@@ -1,0 +1,106 @@
+﻿<Page x:Class="VLC.Universal8._1.Views.VariousPages.SearchPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VLC.Universal8._1.Views.VariousPages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:placeholder="using:VLC.Universal8._1.Views.UserControls.Placeholder"
+      xmlns:triggers="using:WinRT.Triggers"
+      xmlns:userControls="using:VLC.Universal8._1.Views.UserControls"
+      mc:Ignorable="d"
+      DataContext="{Binding Source={StaticResource Locator}, Path=SearchVM}">
+    <!--
+    <Grid Background="{ThemeResource ApplicationThirdForegroundThemeBrush}">
+        <Pivot>
+            <Pivot.Title>
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Glyph="{StaticResource SearchFilledSymbol}"
+                              FontFamily="{StaticResource VLCFont}"
+                              FontSize="19"
+                              Foreground="{StaticResource MainColor}" />
+                    <userControls:FocusTextBox x:Name="MusicSearchBox"
+                                               PlaceholderText="search"
+                                               Height="30"
+                                               MinWidth="190"
+                                               Margin="{StaticResource FrameMarginLeft}"
+                                               TextChanged="TextBox_TextChanged"
+                                               DataContext="{Binding Source={StaticResource Locator}, Path=SearchVM}"
+                                               Text="{Binding SearchTag}" />
+                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               Margin="{StaticResource FrameMarginLeft}">
+                        <Run Text="{Binding ResultsCount}" />
+                        <Run Text="results" />
+                    </TextBlock>
+                </StackPanel>
+            </Pivot.Title>
+            <Pivot.Items>
+                <PivotItem Header="{Binding Source={StaticResource Strings}, Path=Music}">
+                    <ListView ItemsSource="{Binding SearchResultsAlbums}"
+                              ItemTemplate="{StaticResource AlbumItemTemplate}"
+                              ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                              IsItemClickEnabled="True"
+                              SelectionMode="None"
+                              IsSwipeEnabled="False"
+                              Margin="{StaticResource FrameMargin}">
+                        <triggers:Interactions.Triggers>
+                            <triggers:EventTrigger EventName="ItemClick">
+                                <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.AlbumClickedCommand}"
+                                                              PassEventArgsToCommand="True" />
+                            </triggers:EventTrigger>
+                        </triggers:Interactions.Triggers>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid Orientation="Horizontal"
+                                               SizeChanged="MusicWrapGrid_SizeChanged">
+                                    <ItemsWrapGrid.ChildrenTransitions>
+                                        <TransitionCollection>
+                                            <AddDeleteThemeTransition />
+                                        </TransitionCollection>
+                                    </ItemsWrapGrid.ChildrenTransitions>
+                                </ItemsWrapGrid>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <AddDeleteThemeTransition />
+                                <EntranceThemeTransition FromHorizontalOffset="50"
+                                                         FromVerticalOffset="0" />
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+                    </ListView>
+                </PivotItem>
+                <PivotItem Header="{Binding Source={StaticResource Strings}, Path=Videos}">
+                    <ListView ItemsSource="{Binding SearchResultsVideos}"
+                              ItemTemplate="{StaticResource VideoItemTemplate}"
+                              ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                              IsItemClickEnabled="True"
+                              SelectionMode="None"
+                              IsSwipeEnabled="False"
+                              Margin="{StaticResource FrameMargin}">
+                        <triggers:Interactions.Triggers>
+                            <triggers:EventTrigger EventName="ItemClick">
+                                <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.OpenVideo}"
+                                                              PassEventArgsToCommand="True" />
+                            </triggers:EventTrigger>
+                        </triggers:Interactions.Triggers>
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <AddDeleteThemeTransition />
+                                <EntranceThemeTransition FromHorizontalOffset="50"
+                                                         FromVerticalOffset="0" />
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid Orientation="Horizontal"
+                                               SizeChanged="VideosWrapGrid_SizeChanged"
+                                               Margin="0,0,0,60" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </PivotItem>
+            </Pivot.Items>
+        </Pivot>
+    </Grid>-->
+</Page>

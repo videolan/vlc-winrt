@@ -129,7 +129,7 @@ namespace VLC.Services.RunTime
             if (pos == null) return false;
 
 
-            return pos.Y > AppViewHelper.TitleBarHeight &&
+            return /*pos.Y > AppViewHelper.TitleBarHeight &&*/
                    pos.Y < Window.Current.Bounds.Height &&
                    pos.X > 0 &&
                    pos.X < Window.Current.Bounds.Width;

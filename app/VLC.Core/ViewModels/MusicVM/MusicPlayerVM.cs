@@ -129,7 +129,7 @@ namespace VLC.ViewModels.MusicVM
         private void UpdatePlayingUI()
         {
             OnPropertyChanged(nameof(CurrentTrack));
-            TileHelper.UpdateMusicTile();
+            //TileHelper.UpdateMusicTile();
         }
 
         public void SetCurrentArtist()

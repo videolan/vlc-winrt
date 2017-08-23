@@ -23,7 +23,7 @@
 
 #pragma once
 
-#include "vlcpp\Equalizer.hpp"
+#include "../libvlcpp/vlcpp/Equalizer.hpp"
 
 namespace libVLCX
 {

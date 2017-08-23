@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Windows.Gaming.Input;
 using Windows.Graphics.Display;
 using Windows.System.Display;
 
@@ -14,24 +13,26 @@ namespace VLC.Helpers
 
         public static DeviceTypeEnum GetDeviceType()
         {
-            switch (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily)
-            {
-                case "Windows.Desktop":
-                    return DeviceTypeEnum.Tablet;
-                case "Windows.Mobile":
-                    return DeviceTypeEnum.Phone;
-                case "Windows.Universal":
-                    return DeviceTypeEnum.IoT;
-                case "Windows.Team":
-                    return DeviceTypeEnum.SurfaceHub;
-                case "Windows.Xbox":
-                    return DeviceTypeEnum.Xbox;
-                default:
-                    return DeviceTypeEnum.Other;
-            }
+            return DeviceTypeEnum.Tablet;
+
+            //switch (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily)
+            //{
+            //    case "Windows.Desktop":
+            //        return DeviceTypeEnum.Tablet;
+            //    case "Windows.Mobile":
+            //        return DeviceTypeEnum.Phone;
+            //    case "Windows.Universal":
+            //        return DeviceTypeEnum.IoT;
+            //    case "Windows.Team":
+            //        return DeviceTypeEnum.SurfaceHub;
+            //    case "Windows.Xbox":
+            //        return DeviceTypeEnum.Xbox;
+            //    default:
+            //        return DeviceTypeEnum.Other;
+            //}
         }
 
-        public static bool IsMediaCenterModeCompliant => GetDeviceType() == DeviceTypeEnum.Xbox || Gamepad.Gamepads.Any();
+        public static bool IsMediaCenterModeCompliant => false;
 
         public static bool IsPortrait()
         {

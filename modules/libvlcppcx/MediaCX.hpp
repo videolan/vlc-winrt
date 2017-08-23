@@ -24,7 +24,7 @@
 
 #include "structuresCX.hpp"
 #include <collection.h>
-#include <vlcpp/vlc.hpp>
+#include <../../libvlcpp/vlcpp/vlc.hpp>
 
 #include <ppltasks.h>
 using namespace Windows::Foundation;

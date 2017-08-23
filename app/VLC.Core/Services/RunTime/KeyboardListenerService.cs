@@ -154,7 +154,7 @@ namespace VLC.Services.RunTime
             }
             switch (args.VirtualKey)
             {
-                case VirtualKey.GamepadMenu:
+                //case VirtualKey.GamepadMenu:
                 case VirtualKey.F1:
                     if (Locator.SettingsVM.MediaCenterMode)
                     {
@@ -203,67 +203,67 @@ namespace VLC.Services.RunTime
                     }
                     else
                     {
-                        if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage)
-                        {
-                            switch (args.VirtualKey)
-                            {
-                                case VirtualKey.GamepadLeftThumbstickButton:
-                                case VirtualKey.GamepadRightThumbstickButton:
-                                    if (!Locator.VideoPlayerVm.Is3DVideo) break;
-                                    var vp = new VideoViewpoint(0f, 0f, 0f,
-                                        args.VirtualKey == VirtualKey.GamepadRightThumbstickButton ? -0.5f : 0.5f);
-                                    Locator.PlaybackService.UpdateViewpoint(vp, false);
-                                    break;
-                                case VirtualKey.GamepadA:
-                                case VirtualKey.GamepadDPadDown:
-                                case VirtualKey.GamepadDPadLeft:
-                                case VirtualKey.GamepadDPadUp:
-                                case VirtualKey.GamepadDPadRight:
-                                case VirtualKey.GamepadLeftThumbstickUp:
-                                case VirtualKey.GamepadLeftThumbstickDown:
-                                case VirtualKey.GamepadLeftThumbstickRight:
-                                case VirtualKey.GamepadLeftThumbstickLeft:
-                                    Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
-                                    break;
-                                case VirtualKey.GamepadY:
-                                    Locator.MediaPlaybackViewModel.PlayOrPauseCommand.Execute(null);
-                                    break;
-                                case VirtualKey.GamepadLeftShoulder:
-                                    Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
-                                    Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(-5000);
-                                    break;
-                                case VirtualKey.GamepadLeftTrigger:
-                                    Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
-                                    Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(-30000);
-                                    break;
-                                case VirtualKey.GamepadRightShoulder:
-                                    Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
-                                    Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(5000);
-                                    break;
-                                case VirtualKey.GamepadRightTrigger:
-                                    Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
-                                    Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(30000);
-                                    break;
-                                case VirtualKey.GamepadRightThumbstickDown:
-                                    if (!Locator.VideoPlayerVm.Is3DVideo) break;
-                                    Locator.PlaybackService.UpdateViewpoint(new VideoViewpoint(0f, 5f, 0f, 0f), false);
-                                    break;
-                                case VirtualKey.GamepadRightThumbstickUp:
-                                    if (!Locator.VideoPlayerVm.Is3DVideo) break;
-                                    Locator.PlaybackService.UpdateViewpoint(new VideoViewpoint(0f, -5f, 0f, 0f), false);
-                                    break;
-                                case VirtualKey.GamepadRightThumbstickLeft:
-                                    if (!Locator.VideoPlayerVm.Is3DVideo) break;
-                                    Locator.PlaybackService.UpdateViewpoint(new VideoViewpoint(-5f, 0f, 0f, 0f), false);
-                                    break;
-                                case VirtualKey.GamepadRightThumbstickRight:
-                                    if (!Locator.VideoPlayerVm.Is3DVideo) break;
-                                    Locator.PlaybackService.UpdateViewpoint(new VideoViewpoint(5f, 0f, 0f, 0f), false);
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
+                        //if (Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage)
+                        //{
+                        //    switch (args.VirtualKey)
+                        //    {
+                        //        case VirtualKey.GamepadLeftThumbstickButton:
+                        //        case VirtualKey.GamepadRightThumbstickButton:
+                        //            if (!Locator.VideoPlayerVm.Is3DVideo) break;
+                        //            var vp = new VideoViewpoint(0f, 0f, 0f,
+                        //                args.VirtualKey == VirtualKey.GamepadRightThumbstickButton ? -0.5f : 0.5f);
+                        //            Locator.PlaybackService.UpdateViewpoint(vp, false);
+                        //            break;
+                        //        case VirtualKey.GamepadA:
+                        //        case VirtualKey.GamepadDPadDown:
+                        //        case VirtualKey.GamepadDPadLeft:
+                        //        case VirtualKey.GamepadDPadUp:
+                        //        case VirtualKey.GamepadDPadRight:
+                        //        case VirtualKey.GamepadLeftThumbstickUp:
+                        //        case VirtualKey.GamepadLeftThumbstickDown:
+                        //        case VirtualKey.GamepadLeftThumbstickRight:
+                        //        case VirtualKey.GamepadLeftThumbstickLeft:
+                        //            Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
+                        //            break;
+                        //        case VirtualKey.GamepadY:
+                        //            Locator.MediaPlaybackViewModel.PlayOrPauseCommand.Execute(null);
+                        //            break;
+                        //        case VirtualKey.GamepadLeftShoulder:
+                        //            Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
+                        //            Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(-5000);
+                        //            break;
+                        //        case VirtualKey.GamepadLeftTrigger:
+                        //            Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
+                        //            Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(-30000);
+                        //            break;
+                        //        case VirtualKey.GamepadRightShoulder:
+                        //            Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
+                        //            Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(5000);
+                        //            break;
+                        //        case VirtualKey.GamepadRightTrigger:
+                        //            Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
+                        //            Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(30000);
+                        //            break;
+                        //        case VirtualKey.GamepadRightThumbstickDown:
+                        //            if (!Locator.VideoPlayerVm.Is3DVideo) break;
+                        //            Locator.PlaybackService.UpdateViewpoint(new VideoViewpoint(0f, 5f, 0f, 0f), false);
+                        //            break;
+                        //        case VirtualKey.GamepadRightThumbstickUp:
+                        //            if (!Locator.VideoPlayerVm.Is3DVideo) break;
+                        //            Locator.PlaybackService.UpdateViewpoint(new VideoViewpoint(0f, -5f, 0f, 0f), false);
+                        //            break;
+                        //        case VirtualKey.GamepadRightThumbstickLeft:
+                        //            if (!Locator.VideoPlayerVm.Is3DVideo) break;
+                        //            Locator.PlaybackService.UpdateViewpoint(new VideoViewpoint(-5f, 0f, 0f, 0f), false);
+                        //            break;
+                        //        case VirtualKey.GamepadRightThumbstickRight:
+                        //            if (!Locator.VideoPlayerVm.Is3DVideo) break;
+                        //            Locator.PlaybackService.UpdateViewpoint(new VideoViewpoint(5f, 0f, 0f, 0f), false);
+                        //            break;
+                        //        default:
+                        //            break;
+                        //    }
+                        //}
                     }
                     break;
             }

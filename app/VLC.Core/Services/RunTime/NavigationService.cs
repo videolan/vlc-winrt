@@ -1,31 +1,23 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
-using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Documents;
 using VLC.Helpers;
 using VLC.Model;
-using VLC.UI.Views.MainPages;
-using VLC.UI.Views.MusicPages;
-using VLC.UI.Views.MusicPages.TagEditorPages;
-using VLC.UI.Views.VariousPages;
 using VLC.ViewModels;
-using VLC.UI.Views.MusicPages.AlbumPageControls;
-using VLC.UI.Views.MusicPages.PlaylistControls;
-using VLC.UI.Views.VideoPages;
-using VLC.UI.Views.VideoPages.VideoNowPlayingControls;
-using Windows.Foundation.Metadata;
-using Windows.UI.Xaml.Controls;
-using VLC.UI.Views.MusicPages.ArtistPageControls;
 using VLC.Utils;
-using Panel = VLC.Model.Panel;
 using Windows.UI.Core;
-using VLC.UI.Views.VideoPages.TVShowsViews;
-using VLC.UI.VariousPages;
-using VLC.UI.Views.SettingsPages;
-using VLC.UI.UWP.Views.VariousPages;
-using VLC.UI.Views;
+using VLC.Universal8._1.Views.VideoPages;
+using VLC.Universal8._1.Views.VideoPages.VideoNowPlayingControls;
+using VLC.Universal8._1.Views.MusicPages;
+using VLC.Universal8._1.Views.MusicPages.TagEditorPages;
+using VLC.Universal8._1.Views.VideoPages.TVShowsViews;
+using VLC.Universal8._1.VariousPages;
+using VLC.Universal8._1.UWP.Views.VariousPages;
+using VLC.Universal8._1.Views.MusicPages.PlaylistControls;
+using VLC.Universal8._1.Views.SettingsPages;
+using VLC.Universal8._1.Views.VariousPages;
+using VLC.Universal8._1.Views.MusicPages.AlbumPageControls;
+using VLC.Universal8._1.Views.MainPages;
+using Windows.UI.ViewManagement;
 
 namespace VLC.Services.RunTime
 {
@@ -46,15 +38,15 @@ namespace VLC.Services.RunTime
         private event HomePageNavigated HomePageNavigated;
         public NavigationService()
         {
-            SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
-            {
-                e.Handled = GoBack_Specific();
-            };
+            //SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
+            //{
+            //    e.Handled = GoBack_Specific();
+            //};
 
-            if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
-            {
-                Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-            }
+            //if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
+            //{
+            //    Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+            //}
 
             App.RootPage.NavigationFrame.Navigated += NavigationFrame_Navigated;
             HomePageNavigated += NavigationService_HomePageNavigated;
@@ -104,17 +96,17 @@ namespace VLC.Services.RunTime
             ShowBackButtonIfCanGoBack();
         }
 
-        private void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
-        {
-            e.Handled = GoBack_Specific();
-        }
+        //private void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
+        //{
+        //    e.Handled = GoBack_Specific();
+        //}
 
         public void ShowBackButtonIfCanGoBack()
         {
-            if (CanGoBack())
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-            else
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+            //if (CanGoBack())
+            //    SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            //else
+            //    SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
 
 

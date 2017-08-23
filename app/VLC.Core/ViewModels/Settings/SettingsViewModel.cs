@@ -21,7 +21,6 @@ using VLC.Helpers.MusicLibrary;
 using VLC.Model.Music;
 using VLC.Model.Video;
 using VLC.Model;
-using VLC.UI.Views.MusicPages;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Core;

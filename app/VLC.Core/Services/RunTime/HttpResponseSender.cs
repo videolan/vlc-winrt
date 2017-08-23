@@ -168,7 +168,7 @@ public class HttpResponseSender
 
     IBuffer fillMediaList(IBuffer fileBuffer)
     {
-        var fileStr = Encoding.UTF8.GetString(fileBuffer.ToArray());
+        var fileStr = string.Empty;//Encoding.UTF8.GetString(fileBuffer.ToArray());
         var mediaList = "";
 
         IEnumerable<VideoItem> videos = Locator.MediaLibrary.Videos;
@@ -236,12 +236,13 @@ public class HttpResponseSender
 
     IBuffer translateBuffer(IBuffer fileBuffer)
     {
-        var res = new ResourceLoader();
-        var fileStr = Encoding.UTF8.GetString(fileBuffer.ToArray());
-        foreach (string key in HTMLStrings)
-            fileStr = fileStr.Replace("%%" + key + "%%", res.GetString(key));
+        //var res = new ResourceLoader();
+        ////var fileStr = Encoding.UTF8.GetString(fileBuffer.ToArray());
+        //foreach (string key in HTMLStrings)
+        //    fileStr = fileStr.Replace("%%" + key + "%%", res.GetString(key));
 
-        return Encoding.UTF8.GetBytes(fileStr).AsBuffer();
+        //return Encoding.UTF8.GetBytes(fileStr).AsBuffer();
+        return null;
     }
 
     public async Task simpleOK()

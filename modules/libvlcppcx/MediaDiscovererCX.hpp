@@ -25,7 +25,7 @@
 #pragma once
 
 #include "MediaListCX.hpp"
-#include "vlcpp\MediaDiscoverer.hpp"
+#include "../libvlcpp/vlcpp/MediaDiscoverer.hpp"
 
 namespace libVLCX
 {

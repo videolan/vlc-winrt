@@ -25,7 +25,7 @@
 #pragma once
 
 #include "EventManagerCX.hpp"
-#include "vlcpp\MediaList.hpp"
+#include "../libvlcpp/vlcpp/MediaList.hpp"
 
 namespace libVLCX
 {

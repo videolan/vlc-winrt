@@ -141,10 +141,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicLibraryManagement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicPlayer\LastFMScrobbler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SearchHelpers.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\StateTriggers\AdaptativeAndValuesStateTrigger.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\StateTriggers\DeviceStateTrigger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StringsHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\UIHelpers\CortanaHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UIHelpers\ToastHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\TileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoLibrary\TitleDecrapifier.cs" />
@@ -194,7 +191,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\DialogService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\FileCopyService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\ExternalDeviceService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\GamepadService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\HttpServer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\HttpResponseSender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\KeyboardListenerService.cs" />

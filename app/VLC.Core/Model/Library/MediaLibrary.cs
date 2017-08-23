@@ -312,13 +312,13 @@ namespace VLC.Model.Library
 #endif
             //TODO: Refactor this. Cortana stuff has nothing to do here.
             // Cortana gets all those artists, albums, songs names
-            var artists = LoadArtists(null);
-            if (artists != null)
-                await CortanaHelper.SetPhraseList("artistName", artists.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
+            //var artists = LoadArtists(null);
+            //if (artists != null)
+            //    await CortanaHelper.SetPhraseList("artistName", artists.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
 
-            var albums = LoadAlbums(null);
-            if (albums != null)
-                await CortanaHelper.SetPhraseList("albumName", albums.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
+            //var albums = LoadAlbums(null);
+            //if (albums != null)
+                //await CortanaHelper.SetPhraseList("albumName", albums.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
         }
 
         async Task DiscoverMediaItems(IReadOnlyList<StorageFile> files, bool isCameraRoll = false)

@@ -1,0 +1,150 @@
+﻿<Page x:Class="VLC.Universal8._1.Views.MainPages.MainPageMusic"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:musicPanesControls="using:VLC.Universal8._1.Views.MainPages.MusicPanes.MusicPanesControls"
+      xmlns:userControls="using:VLC.Universal8._1.Views.UserControls"
+      xmlns:triggers="using:WinRT.Triggers"
+      mc:Ignorable="d"
+      d:DesignHeight="300"
+      d:DesignWidth="600"
+      x:Name="MusicLibrary"
+      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ContentPresenter x:Name="MainPageMusicContentPresenter"
+                          Grid.Row="1"
+                          Loaded="MusicPanesFrame_OnLoaded" />
+
+        <Rectangle Grid.Row="1"
+                   VerticalAlignment="Top"
+                   Height="8">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="1,0">
+                    <GradientStopCollection>
+                        <GradientStop Color="{ThemeResource ShadowEndColor}"
+                                      Offset="1" />
+                        <GradientStop Color="{ThemeResource ShadowStartColor}" />
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Grid Background="{ThemeResource ApplicationChromeThemeBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            </Grid.ColumnDefinitions>
+            <AppBarButton x:Name="HamburgerButton"
+                          Grid.Column="0"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          IsCompact="True"
+                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToHomePageMediaCenterCommand}"
+                          Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.MediaCenterMode, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          Margin="{StaticResource FrameMarginLeft}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource MenuOpenRight}"
+                              FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <ListView Grid.Column="1"
+                      Grid.ColumnSpan="3"
+                      x:Name="PanelsListView"
+                      ItemsSource="{Binding MusicViewCollection}"
+                      IsSwipeEnabled="False"
+                      IsItemClickEnabled="True"
+                      SelectionMode="None"
+                      ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                      VerticalAlignment="Bottom">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding ChangeMusicViewCommand}"
+                            PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Orientation="Horizontal"
+                                         Height="30"
+                                         Margin="{StaticResource FrameMarginLeft}" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <RepositionThemeTransition />
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="Title"
+                                   Text="{Binding Converter={StaticResource MusicViewStringifyConverter}}"
+                                   VerticalAlignment="Center"
+                                   FontSize="16"
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="NoWrap" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <musicPanesControls:AlbumsCollectionButtons Grid.Column="2"
+                                                        Visibility="{Binding AlbumsCollectionsButtonVisible}" />
+
+            <AppBarButton
+                      Grid.Column="3"
+                      Visibility="{Binding PlayArtistButtonVisible}"
+                      Flyout="{StaticResource ArtistCollectionBaseFlyout}">
+                <AppBarButton.Content>
+                    <FontIcon Glyph="{StaticResource PlaySymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Content>
+            </AppBarButton>
+
+            <AppBarButton
+                      Grid.Column="3"
+                      Visibility="{Binding PlayAlbumButtonVisible}"
+                      Flyout="{StaticResource AlbumCollectionBaseFlyout}">
+                <AppBarButton.Content>
+                    <FontIcon Glyph="{StaticResource PlaySymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Content>
+            </AppBarButton>
+
+            <AppBarButton
+                      Grid.Column="3"
+                      Visibility="{Binding PlaySongButtonVisible}"
+                      Flyout="{StaticResource SongCollectionBaseFlyout}">
+                <AppBarButton.Content>
+                    <FontIcon Glyph="{StaticResource PlaySymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Content>
+            </AppBarButton>
+
+            <AppBarButton
+                      Grid.Column="3"
+                      Visibility="{Binding AddPlaylistButtonVisible}"
+                      Command="{Binding ShowCreateNewPlaylistPaneCommand}">
+                <AppBarButton.Content>
+                    <FontIcon Glyph="{StaticResource AddSymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Content>
+            </AppBarButton>
+
+        </Grid>
+
+        <ProgressRing Grid.Row="1"
+            IsActive="True"
+            Style="{StaticResource LoadingRing}"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
+            Visibility="{Binding Source={StaticResource Locator}, Path=MediaLibraryVM.IndexingLibraryVisibility}" />
+    </Grid>
+</Page>

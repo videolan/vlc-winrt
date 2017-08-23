@@ -7,9 +7,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.ViewManagement;
-using VLC.UI.Views.UserControls.Shell;
-using VLC.UI.Views.UserControls;
-using VLC.UI.Views;
+using VLC.Universal8._1.Views;
 
 namespace VLC.Controls
 {
@@ -52,7 +50,7 @@ namespace VLC.Controls
         private Grid _flyoutBackgroundGrid;
         private ContentPresenter _contentPresenter;
         private Frame _flyoutContentPresenter;
-        private BackDrop _backdrop;
+   //     private BackDrop _backdrop;
 
         private PlaneProjection _flyoutPlaneProjection;
         private Storyboard _flyoutFadeIn;
@@ -157,7 +155,7 @@ namespace VLC.Controls
             _flyoutPlaneProjection = (PlaneProjection)GetTemplateChild(FlyoutPlaneProjectionName);
             _flyoutGridContainer = (Grid)GetTemplateChild(FlyoutGridContainerName);
             _flyoutBackgroundGrid = (Grid)GetTemplateChild(FlyoutBackgroundGridName);
-            _backdrop = (BackDrop)GetTemplateChild(BackdropGridName);
+      //      _backdrop = (BackDrop)GetTemplateChild(BackdropGridName);
 
             Responsive();
             Window.Current.SizeChanged += Current_SizeChanged;
@@ -192,7 +190,7 @@ namespace VLC.Controls
             // avoid an invalid state
             if (IsFlyoutOpen)
                 return;
-            _flyoutContentPresenter.Navigate(typeof(BlankPage));
+            _flyoutContentPresenter.Navigate(typeof(VLC.Universal8._1.Views.UserControls.Shell.BlankPage));
         }
         
         private void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
@@ -203,7 +201,7 @@ namespace VLC.Controls
         void Responsive()
         {
             var bottomBarHeight = (_page.BottomAppBar == null) ? 0 : _page.BottomAppBar.ActualHeight;
-            var navBarHeight = ApplicationView.GetForCurrentView().VisibleBounds.Height - 16;
+            //var navBarHeight = ApplicationView.GetForCurrentView().VisibleBounds.Height - 16;
 
             if (FlyoutAsHeader)
             {
@@ -217,13 +215,13 @@ namespace VLC.Controls
                 _flyoutContentPresenter.VerticalAlignment = VerticalAlignment.Center;
                 if (Window.Current.Bounds.Width < 650)
                 {
-                    _flyoutContentPresenter.Height = navBarHeight - bottomBarHeight;
+                    //_flyoutContentPresenter.Height = navBarHeight - bottomBarHeight;
                     _flyoutContentPresenter.Width = Window.Current.Bounds.Width;
                 }
                 else
                 {
                     _flyoutContentPresenter.Width = 650;
-                    _flyoutContentPresenter.Height = (navBarHeight < 900 * 0.7 ? navBarHeight : navBarHeight * 0.7) - bottomBarHeight;
+                    //_flyoutContentPresenter.Height = (navBarHeight < 900 * 0.7 ? navBarHeight : navBarHeight * 0.7) - bottomBarHeight;
                 }
             }
 
@@ -258,16 +256,16 @@ namespace VLC.Controls
             var mainControl = _contentPresenter.Content as Control;
             if (mainControl != null)
                 mainControl.IsEnabled = false;
-            _backdrop.Show(6);
+            //_backdrop.Show(6);
         }
 
         public void HideFlyout()
         {
             if (!IsFlyoutOpen)
                 return;
-            _backdrop.Hide();
+            //_backdrop.Hide();
             _flyoutFadeOut.Begin();
-            _flyoutContentPresenter.Navigate(typeof(BlankPage));
+            _flyoutContentPresenter.Navigate(typeof(VLC.Universal8._1.Views.UserControls.Shell.BlankPage));
             var mainControl = _contentPresenter.Content as Control;
             if (mainControl != null)
                 mainControl.IsEnabled = true;

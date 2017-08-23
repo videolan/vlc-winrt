@@ -192,7 +192,6 @@
     <Compile Include="Views\UserControls\ArtistHorizontalTemplate.xaml.cs">
       <DependentUpon>ArtistHorizontalTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\BackDrop.cs" />
     <Compile Include="Views\UserControls\BufferingControl.xaml.cs">
       <DependentUpon>BufferingControl.xaml</DependentUpon>
     </Compile>
@@ -1161,6 +1160,10 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\build\VLC.Universal8.1\VLC.Universal8.1.WindowsPhone\VLC.Universal8.1.WindowsPhone.csproj">
+      <Project>{B886D59E-2335-43D6-A5EF-77D605A2B85B}</Project>
+      <Name>VLC.Universal8.1.WindowsPhone</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\modules\libVLCX.UWP\libVLCX.UWP.vcxproj">
       <Project>{dc8bbfae-5203-44be-9a7c-b3273038d676}</Project>
       <Name>libVLCX.UWP</Name>

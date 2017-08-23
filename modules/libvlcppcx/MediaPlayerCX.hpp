@@ -25,7 +25,7 @@
 #include <collection.h>
 #include "StructuresCX.hpp"
 #include "MediaCX.hpp"
-#include <vlcpp/vlc.hpp>
+#include <../../libvlcpp/vlcpp/vlc.hpp>
 
 namespace libVLCX
 {

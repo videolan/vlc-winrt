@@ -62,7 +62,7 @@ namespace VLC.Utils
             builder.RegisterType<NetworkListenerService>();
             builder.RegisterType<MouseService>();
             builder.RegisterType<ExternalDeviceService>().SingleInstance();
-            builder.RegisterType<GamepadService>();
+            //builder.RegisterType<GamepadService>();
             builder.RegisterType<SpecialThanksViewModel>();
             builder.RegisterType<ThumbnailService>().SingleInstance();
             builder.RegisterType<HttpServer>().SingleInstance();

@@ -62,15 +62,15 @@ namespace VLC.MediaMetaFetcher
         {
             try
             {
-                var subFile = ZipFile.OpenRead(archivePath)?.Entries?.FirstOrDefault(x => x.FullName.EndsWith("srt") || x.FullName.EndsWith("ass"));
-                var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("movieSub", CreationCollisionOption.OpenIfExists);
+                //var subFile = ZipFile.OpenRead(archivePath)?.Entries?.FirstOrDefault(x => x.FullName.EndsWith("srt") || x.FullName.EndsWith("ass"));
+                //var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("movieSub", CreationCollisionOption.OpenIfExists);
                 
-                if (subFile != null)
-                {
-                    var ext = Path.GetExtension(subFile.FullName);
-                    subFile.ExtractToFile($"{folder.Path}\\{id}{ext}", true);
-                    return ext;
-                }
+                //if (subFile != null)
+                //{
+                //    var ext = Path.GetExtension(subFile.FullName);
+                //    subFile.ExtractToFile($"{folder.Path}\\{id}{ext}", true);
+                //    return ext;
+                //}
             }
             catch (Exception)
             {

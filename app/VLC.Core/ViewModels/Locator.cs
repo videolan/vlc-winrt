@@ -47,7 +47,7 @@ namespace VLC.ViewModels
         private static SearchViewModel _search;
         private static SpecialThanksViewModel _specialThanks;
         private static ExternalDeviceService _externalDeviceService;
-        private static GamepadService _gamePadService;
+        //private static GamepadService _gamePadService;
         private static NavigationService _navigationService;
         private static PlaybackService _playbackService;
         private static MusicMetaService _musicMetaService;
@@ -93,7 +93,6 @@ namespace VLC.ViewModels
         public static NavigationService NavigationService => _navigationService ?? (_navigationService = App.Container.Resolve<NavigationService>());
         public static PlaybackService PlaybackService => _playbackService ?? (_playbackService = App.Container.Resolve<PlaybackService>());
         public static ExternalDeviceService ExternalDeviceService => _externalDeviceService ?? (_externalDeviceService = App.Container.Resolve<ExternalDeviceService>());
-        public static GamepadService GamepadService => _gamePadService ?? (_gamePadService = App.Container.Resolve<GamepadService>());
         public static MusicMetaService MusicMetaService => _musicMetaService ?? (_musicMetaService = App.Container.Resolve<MusicMetaService>());
         public static VideoMetaService VideoMetaService => _videoMetaService ?? (_videoMetaService = App.Container.Resolve<VideoMetaService>());
         public static MetroSlideshow Slideshow => _metroSlideshow ?? (_metroSlideshow = App.Container.Resolve<MetroSlideshow>());

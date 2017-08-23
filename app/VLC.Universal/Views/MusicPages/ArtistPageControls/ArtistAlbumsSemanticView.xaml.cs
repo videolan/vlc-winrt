@@ -24,10 +24,10 @@ namespace VLC.UI.Views.MusicPages.ArtistPageControls
 
         private void ArtistAlbumsSemanticView_Loaded(object sender, RoutedEventArgs e)
         {
-            if (DeviceHelper.IsMediaCenterModeCompliant)
-                (FindName(nameof(AlbumsArtistsListView)) as FrameworkElement).Visibility = Visibility.Visible;
-            else
-                (FindName(nameof(AlbumsSemanticZoom)) as FrameworkElement).Visibility = Visibility.Visible;
+            //if (DeviceHelper.IsMediaCenterModeCompliant)
+            //    (FindName(nameof(AlbumsArtistsListView)) as FrameworkElement).Visibility = Visibility.Visible;
+            //else
+            //    (FindName(nameof(AlbumsSemanticZoom)) as FrameworkElement).Visibility = Visibility.Visible;
 
             if (AlbumsListView != null)
                 AlbumsListView.SizeChanged += AlbumsListViewOnSizeChanged;

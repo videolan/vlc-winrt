@@ -27,9 +27,7 @@ using VLC.Model;
 using libVLCX;
 using VLC.Utils;
 using WinRTXamlToolkit.Controls.Extensions;
-using VLC.UI.Views.UserControls;
 using Windows.UI.Xaml;
-using VLC.UI.Views.MusicPages;
 using System.Threading.Tasks;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -77,19 +75,19 @@ namespace VLC.ViewModels
 
         public ScrollDetectedCommand ScrollDetectedCommand { get; private set; } = new ScrollDetectedCommand();
 
-        public AppBarClosedDisplayMode CommandBarDisplayMode
-        {
-            get
-            {
-                if (Locator.NavigationService.CurrentPage == VLCPage.CurrentPlaylistPage ||
-                       Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage ||
-                       Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage ||
-                       Locator.NavigationService.CurrentPage == VLCPage.MiniPlayerView)
-                    return AppBarClosedDisplayMode.Hidden;
-                return Locator.MediaPlaybackViewModel.MiniPlayerVisibility == Visibility.Visible ?
-                    AppBarClosedDisplayMode.Compact : AppBarClosedDisplayMode.Minimal;
-            }
-        }
+        //public AppBarClosedDisplayMode CommandBarDisplayMode
+        //{
+        //    get
+        //    {
+        //        if (Locator.NavigationService.CurrentPage == VLCPage.CurrentPlaylistPage ||
+        //               Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage ||
+        //               Locator.NavigationService.CurrentPage == VLCPage.VideoPlayerPage ||
+        //               Locator.NavigationService.CurrentPage == VLCPage.MiniPlayerView)
+        //            return AppBarClosedDisplayMode.Hidden;
+        //        return Locator.MediaPlaybackViewModel.MiniPlayerVisibility == Visibility.Visible ?
+        //            AppBarClosedDisplayMode.Compact : AppBarClosedDisplayMode.Minimal;
+        //    }
+        //}
 
         public bool IsBackground
         {
@@ -121,7 +119,7 @@ namespace VLC.ViewModels
         {
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
-                OnPropertyChanged(nameof(CommandBarDisplayMode));
+              //  OnPropertyChanged(nameof(CommandBarDisplayMode));
             });
         }
 

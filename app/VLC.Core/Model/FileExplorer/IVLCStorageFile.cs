@@ -37,11 +37,11 @@ namespace VLC.Model
             if (storageItem != null)
             {
                 var props = await storageItem.GetBasicPropertiesAsync();
-                var size = await storageItem.GetSizeAsync();
+                //var size = await storageItem.GetSizeAsync();
 
                 var sizeString = "";
-                if (size > 0)
-                    sizeString = size.GetSizeString();
+                //if (size > 0)
+                //    sizeString = size.GetSizeString();
 
                 name = storageItem.DisplayName;
                 await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>

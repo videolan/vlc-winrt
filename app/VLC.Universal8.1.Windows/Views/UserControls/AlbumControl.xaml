@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="VLC.Universal8._1.Views.UserControls.AlbumControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC.Universal8._1.Views.UserControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+    <UserControl.Resources>
+        <Storyboard x:Name="FadeInCover">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Cover"
+                                           Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                      Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="FadeOutCover"
+                    Completed="FadeOutCover_Completed">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Cover"
+                                           Storyboard.TargetProperty="Opacity">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4"
+                                      Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid Background="Transparent"
+          FlyoutBase.AttachedFlyout="{StaticResource AlbumMenuFlyout}"
+          Holding="RootAlbumItem_Holding"
+          RightTapped="Grid_RightTapped"
+          PointerExited="Cover_PointerExited"
+          PointerEntered="Cover_PointerEntered">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Normal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonOverlay"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NameTextBlock"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistTextBlock"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="MouseOver">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonOverlay"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NameTextBlock"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistTextBlock"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="Placeholder"
+              Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
+            <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
+                      FontFamily="{StaticResource VLCFont}"
+                      FontSize="42"
+                      Foreground="{ThemeResource MainColor}" />
+        </Grid>
+        <Image x:Name="Cover"
+               Stretch="UniformToFill"
+               Opacity="0" />
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <AppBarButton Grid.Row="0"
+                          Grid.RowSpan="2"
+                          x:Name="ButtonOverlay"
+                          Visibility="Collapsed"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Label="{Binding Source={StaticResource Strings}, Path=PlayAlbum}"
+                          HorizontalAlignment="Center">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource PlaySymbol}"
+                              FontSize="24"
+                              FontFamily="{StaticResource VLCFont}"
+                              Margin="0,0,6,0" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <TextBlock x:Name="NameTextBlock"
+                       Grid.Row="0"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"
+                       FontSize="15"
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" />
+            <TextBlock x:Name="ArtistTextBlock"
+                       Grid.Row="1"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"
+                       FontSize="14"
+                       FontWeight="Normal"
+                       Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" />
+        </Grid>
+    </Grid>
+</UserControl>

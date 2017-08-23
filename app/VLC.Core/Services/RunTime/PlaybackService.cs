@@ -127,7 +127,7 @@ namespace VLC.Services.RunTime
 
         private void SwapChainPanel_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
         {
-            Instance.UpdateSize((float)e.NewSize.Width * App.RootPage.SwapChainPanel.CompositionScaleX, 
+            Instance.UpdateSize((float)e.NewSize.Width * App.RootPage.SwapChainPanel.CompositionScaleX,
                 (float)e.NewSize.Height * App.RootPage.SwapChainPanel.CompositionScaleY);
         }
 
@@ -287,7 +287,7 @@ namespace VLC.Services.RunTime
                 }
             }
 
-            TileHelper.UpdateVideoTile();
+            //TileHelper.UpdateVideoTile();
             // VLC expects a start-time in seconds
             return (float)video.TimeWatched.TotalMilliseconds / 1000.0f;
         }
@@ -613,7 +613,7 @@ namespace VLC.Services.RunTime
             {
                 _mediaPlayer.stop();
             }
-            TileHelper.ClearTile();
+            //TileHelper.ClearTile();
         }
 
         public void Pause()
@@ -713,7 +713,7 @@ namespace VLC.Services.RunTime
         private void OnEndReached()
         {
             Playback_MediaEndReached?.Invoke();
-            TileHelper.ClearTile();
+            //TileHelper.ClearTile();
             PlayerState = MediaState.Ended;
         }
 

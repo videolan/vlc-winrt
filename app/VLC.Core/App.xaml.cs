@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 using VLC.Controls;
 using VLC.Helpers;
 using VLC.Model;
-using VLC.UI.Views.MainPages;
-using VLC.UI.Views.UserControls;
+using VLC.Universal8._1.Views.MainPages;
+using VLC.Universal8._1.Views.UserControls;
 using VLC.Utils;
 using VLC.ViewModels;
 using VLC.ViewModels.Settings;
@@ -19,7 +19,6 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
-using Windows.Gaming.Input;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
@@ -50,11 +49,11 @@ namespace VLC
             Suspending += OnSuspending;
             Container = AutoFacConfiguration.Configure();
 
-            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox &&
-                ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 3))
-            {
-                RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
-            }
+            //if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox &&
+            //    ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 3))
+            //{
+            //    RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
+            //}
         }
 
         public static Frame ApplicationFrame => RootPage?.NavigationFrame;
@@ -126,12 +125,12 @@ namespace VLC
                 case ActivationKind.Protocol:
                     await HandleProtocolActivation(args);
                     break;
-                case ActivationKind.VoiceCommand:
-                    await CortanaHelper.HandleProtocolActivation(args);
-                    break;
-                case ActivationKind.ToastNotification:
-                    ToastHelper.HandleProtocolActivation(args);
-                    break;
+                //case ActivationKind.VoiceCommand:
+                //    await CortanaHelper.HandleProtocolActivation(args);
+                //    break;
+                //case ActivationKind.ToastNotification:
+                //    ToastHelper.HandleProtocolActivation(args);
+                //    break;
             }
 
         }
@@ -275,7 +274,6 @@ namespace VLC
 
         private async Task LaunchTheApp(bool disableConsumingTasks = false)
         {
-            Locator.GamepadService.StartListening();
             Dispatcher = Window.Current.Dispatcher;
             Window.Current.Content = new MainPage();
             Window.Current.Activate();
@@ -289,11 +287,7 @@ namespace VLC
                 Locator.MediaLibrary.LoadAndCleanLibrariesAsync();
                 Locator.PlaybackService.RestorePlaylistAsync();
             }
-            Locator.GamepadService.GamepadUpdated += async (s, e) =>
-            {
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => ToggleMediaCenterMode());
-            };
-            
+
             ToggleMediaCenterMode();
 
             Locator.ExternalDeviceService.StartWatcher();

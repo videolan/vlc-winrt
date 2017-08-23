@@ -1,0 +1,45 @@
+﻿<Page x:Class="VLC.Universal8._1.UWP.Views.VariousPages.ExternalStorageIncludePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VLC.Universal8._1.UWP.Views.VariousPages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:toolkitControls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+      mc:Ignorable="d">
+    <StackPanel Background="{ThemeResource ApplicationOverlayTranslucentThemeColor}">
+        <TextBlock Padding="10"
+                   TextWrapping="WrapWholeWords">
+            <Run Text="{Binding Source={StaticResource Strings}, Path=ExternalStorageDeviceDetected}"
+                 Foreground="{StaticResource MainColor}"
+                 FontSize="19"/>
+            <LineBreak />
+            <Run Text="{StaticResource USBFilledSymbol}"
+                 FontFamily="{StaticResource VLCFont}"
+                 Foreground="{StaticResource MainColor}" />
+            <Run x:Name="DeviceNamePlaceHolder" FontWeight="SemiBold" />
+            <LineBreak />
+            <Run Text="{Binding Source={StaticResource Strings}, Path=WhatToDo}" />
+        </TextBlock>
+
+        <RadioButton x:Name="Index" Content="{Binding Source={StaticResource Strings}, Path=ReadFromExternalStorage}" IsChecked="True" />
+        <RadioButton x:Name="Select" Content="{Binding Source={StaticResource Strings}, Path=SelectContentToCopy}" />
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button x:Name="OkButton"
+                    Margin="10"
+                    Click="Ok_Click"
+                    Foreground="{ThemeResource MainColor}"
+                    Content="{Binding Source={StaticResource Strings}, Path=Ok}"/>
+            <Button
+                    Margin="10"
+                    Click="Remember_Click"
+                    Foreground="{ThemeResource MainColor}"
+                    Content="{Binding Source={StaticResource Strings}, Path=Remember}" />
+            <Button
+                    Margin="10"
+                    Click="Ignore_Click"
+                    Foreground="{ThemeResource MainColor}"
+                    Content="{Binding Source={StaticResource Strings}, Path=Ignore}" />
+        </StackPanel>
+    </StackPanel>
+</Page>

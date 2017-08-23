@@ -30,14 +30,15 @@ namespace VLC.Utils
         }
 
         public static double NotAvailableFileItemOpacity = 0.6;
-        public static ulong OSVersion
-        {
-            get
-            {
-                string sv = AnalyticsInfo.VersionInfo.DeviceFamilyVersion;
-                ulong v = ulong.Parse(sv);
-                return (v & 0x00000000FFFF0000L) >> 16;
-            }
-        }
+        public static ulong OSVersion => 1;
+        //{
+
+            //get
+            //{
+            //    //string sv = AnalyticsInfo.VersionInfo.DeviceFamilyVersion;
+            //    //ulong v = ulong.Parse(sv);
+            //    //return (v & 0x00000000FFFF0000L) >> 16;
+            //}
+        //}
     }
 }

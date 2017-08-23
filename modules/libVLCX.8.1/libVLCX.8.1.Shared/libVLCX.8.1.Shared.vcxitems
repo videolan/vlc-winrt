@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{d8088313-cb38-4fdf-9f97-2d5e4cc63173}</ItemsProjectGuid>
+    <ItemsRootNamespace>libVLCX</ItemsRootNamespace>
+    <ItemsProjectName>libVLCX.8.1.Shared</ItemsProjectName>
+    <CodeSharingProject>248F659F-DAC5-46E8-AC09-60EC9FC95053</CodeSharingProject>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\DialogCX.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\EqualizerCX.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\EventManagerCX.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\InstanceCX.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaCX.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaDiscovererCX.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaListCX.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaPlayerCX.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\PlatformHelpers.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\StructuresCX.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\common.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\Dialog.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\Equalizer.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\EventManager.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\Instance.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\Internal.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\Media.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\MediaDiscoverer.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\MediaLibrary.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\MediaList.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\MediaListPlayer.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\MediaPlayer.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\structures.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcpp\vlcpp\vlc.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DirectXManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Helpers.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Thumbnailer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\DialogCX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\EqualizerCX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\EventManagerCX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\InstanceCX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaCX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaDiscovererCX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaListCX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\MediaPlayerCX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\PlatformHelpers.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\StructuresCX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DirectXManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Thumbnailer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+</Project>

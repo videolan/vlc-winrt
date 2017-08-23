@@ -1,0 +1,85 @@
+﻿<Page x:Class="VLC.Universal8._1.Views.VideoPages.TVShowsViews.ShowEpisodesView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VLC.Universal8._1.Views.VideoPages.TVShowsViews"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:triggers="using:WinRT.Triggers"
+      mc:Ignorable="d"
+      DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.CurrentShow}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid RequestedTheme="Dark"
+              Background="Black">
+            <Image Source="{Binding ShowImage}"
+                   Stretch="UniformToFill"
+                   Opacity="0.4" />
+
+            <Grid Margin="{StaticResource FrameMarginLeft}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="1"
+                           TextTrimming="CharacterEllipsis"
+                           TextWrapping="NoWrap"
+                           VerticalAlignment="Top"
+                           Style="{StaticResource SubheaderTextBlockStyle}">
+                    <Run Text="{Binding ShowTitle, Converter={StaticResource AlbumStringConverter}}" />
+                </TextBlock>
+                <TextBlock Grid.Row="3"
+                           Grid.Column="0"
+                           Margin="{StaticResource FrameMarginRight}"
+                           TextTrimming="CharacterEllipsis"
+                           TextWrapping="NoWrap"
+                           FontSize="16"
+                           FontWeight="Light"
+                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}">
+                    <Run Text="{Binding Source={StaticResource Strings}, Path=Episode}" />
+                    <Run Text="{Binding Source={StaticResource Strings}, Path=Dash}" />
+                    <Run Text="{Binding Episodes.Count}" />
+                </TextBlock>
+            </Grid>
+        </Grid>
+
+        <ListView x:Name="EpisodesListView"
+                  Grid.Row="1"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  ItemsSource="{Binding Episodes}"
+                  ItemTemplate="{StaticResource VideoItemTemplate}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                  Padding="{StaticResource FrameMarginTop}"
+                  Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+                  GotFocus="EpisodesListView_GotFocus"
+                  KeyDown="EpisodesListView_KeyDown">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.OpenVideo}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+            <ListView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition />
+                    <EntranceThemeTransition />
+                </TransitionCollection>
+            </ListView.ItemContainerTransitions>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal"
+                                   HorizontalAlignment="Center"
+                                   SizeChanged="VideosWrapGrid_SizeChanged"
+                                   Margin="0,0,-14,0" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+    </Grid>
+</Page>
