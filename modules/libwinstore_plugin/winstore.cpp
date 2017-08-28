@@ -147,6 +147,7 @@ HRESULT MMDeviceLocator::ActivateCompleted(IActivateAudioInterfaceAsyncOperation
 	HRESULT hrActivateResult = S_OK;
 	IUnknown *audioInterface = nullptr;
 
+    m_AudioClient = nullptr;
 	hr = operation->GetActivateResult(&hrActivateResult, &audioInterface);
 	if (SUCCEEDED(hr) && SUCCEEDED(hrActivateResult) && audioInterface != nullptr)
 	{
@@ -168,9 +169,9 @@ HRESULT MMDeviceLocator::ActivateCompleted(IActivateAudioInterfaceAsyncOperation
 			if (res != S_OK) {
 				OutputDebugString(TEXT("Failed to set audio client properties"));
 			}
-			SetEvent(m_audioClientReady);
 		}
 	}
+    SetEvent(m_audioClientReady);
 	return hr;
 }
 
@@ -387,7 +388,14 @@ int Start(audio_output_t *aout, audio_sample_format_t *restrict fmt)
 		return -1;
 
 	if (sys->psz_requested_device != nullptr)
+    {
 		sys->client = GetAudioClient(sys->psz_requested_device != default_device ? sys->psz_requested_device : NULL);
+        if (sys->client == NULL)
+        {
+            vlc_object_release(s);
+            return -1;
+        }
+    }
 	s->owner.activate = ActivateDevice;
 
 	EnterMTA();
