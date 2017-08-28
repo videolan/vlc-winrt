@@ -43,20 +43,27 @@ namespace VLC.Model.Library
 
                 StorageFolder folder;
                 // Windows.Devices.Portable.StorageDevice.FromId blocks forever on Xbox... so work around
-                if (Helpers.DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox &&
-                    Helpers.DeviceHelper.GetDeviceType() != DeviceTypeEnum.Phone)
-                    folder = Windows.Devices.Portable.StorageDevice.FromId(deviceId);
-                else
+                try
                 {
-                    var devices = KnownFolders.RemovableDevices;
-                    var allFolders = await devices.GetFoldersAsync();
-                    folder = allFolders.Last();
+                    if (Helpers.DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox &&
+                        Helpers.DeviceHelper.GetDeviceType() != DeviceTypeEnum.Phone)
+                        folder = Windows.Devices.Portable.StorageDevice.FromId(deviceId);
+                    else
+                    {
+                        var devices = KnownFolders.RemovableDevices;
+                        var allFolders = await devices.GetFoldersAsync();
+                        folder = allFolders.Last();
+                    }
+
+                    if (!StorageApplicationPermissions.FutureAccessList.CheckAccess(folder))
+                        StorageApplicationPermissions.FutureAccessList.Add(folder);
+                    await MediaLibraryHelper.ForeachSupportedFile(folder,
+                        async files => await DiscoverMediaItems(files));
                 }
-
-                if (!StorageApplicationPermissions.FutureAccessList.CheckAccess(folder))
-                    StorageApplicationPermissions.FutureAccessList.Add(folder);
-                await MediaLibraryHelper.ForeachSupportedFile(folder, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
-
+                catch (Exception exception)
+                {
+                    LogHelper.Log(exception.Message + exception.StackTrace);
+                }
                 IndexationSemaphoreSlim.Release();
                 await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MediaLibraryIndexingState = LoadingState.Loaded);
             });
