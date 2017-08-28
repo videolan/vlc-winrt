@@ -50,12 +50,13 @@ namespace VLC
             InitializeComponent();
             Suspending += OnSuspending;
             Container = AutoFacConfiguration.Configure();
-            EnteredBackground += OnEnteredBackground;
-            LeavingBackground += OnLeavingBackground;
-            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox &&
-                ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 3))
+
+            if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 3) 
+                && DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
             {
                 RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
+                EnteredBackground += OnEnteredBackground;
+                LeavingBackground += OnLeavingBackground;
             }
         }
 
