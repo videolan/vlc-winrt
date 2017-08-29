@@ -131,6 +131,8 @@ namespace VLC.UI.Views.MainPages
             _compositor = root.Compositor;
             Animate();
             SplitShell.ContentSizeChanged += (s) => Animate();
+            if(_pipEnabled)
+                Locator.NavigationService.RefreshCurrentPage();
         }
         
         public async void StopCompositionAnimationOnSwapChain()
