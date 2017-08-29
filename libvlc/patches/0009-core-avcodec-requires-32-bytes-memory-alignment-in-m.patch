@@ -1,8 +1,8 @@
-From 082e1c45f25811ddec3d2950cfc88a364fca76b1 Mon Sep 17 00:00:00 2001
+From 881e8323bebe0e5c331e9ca8d2c51e2bc1a6930c Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 25 Jan 2017 10:49:37 +0100
-Subject: [PATCH 9/9] core: avcodec requires 32-bytes memory alignment in many
- cases
+Subject: [PATCH 09/11] core: avcodec requires 32-bytes memory alignment in
+ many cases
 
 For example a IA0L texture on Windows is not 32 bytes aligned and avcodec
 complains about it. This will avoid disabling direct rendering in those cases
