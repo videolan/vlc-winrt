@@ -1,3 +1,13 @@
+Changes between 2.5.3 and 2.5.4
+-------------------------------
+Release: August 30th 2017
+
+Bugfixes:
+* Add unmute shortcut.
+* Fix network streams history deletion bug.
+* Fix Xbox background audio bug.
+* UX improvements.
+
 Changes between 2.5.2 and 2.5.3
 -------------------------------
 Release: August 4th 2017
