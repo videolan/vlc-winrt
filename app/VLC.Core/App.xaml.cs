@@ -78,6 +78,8 @@ namespace VLC
             Locator.GamepadService.StopListening();
             Locator.NavigationService.UnbindSplitShellEvents();
             Locator.ExternalDeviceService.Dispose();
+            if(Locator.PlaybackService.PlayingType == PlayingType.Video)
+                Locator.PlaybackService.Stop();
             if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
                 Locator.HttpServer.Unbind();
 
