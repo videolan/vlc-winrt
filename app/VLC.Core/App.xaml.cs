@@ -325,11 +325,7 @@ namespace VLC
                 Locator.PlaybackService.RestorePlaylistAsync();
 #endif
             }
-            Locator.GamepadService.GamepadUpdated += async (s, e) =>
-            {
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => ToggleMediaCenterMode());
-            };
-            
+
             ToggleMediaCenterMode();
 
             Locator.ExternalDeviceService.StartWatcher();

@@ -1,27 +1,49 @@
 ﻿using System;
 using Windows.Gaming.Input;
 
+using VLC.Helpers;
+
 namespace VLC.Services.RunTime
 {
     public class GamepadService
     {
-        public event EventHandler<Gamepad> GamepadUpdated;
-        
+        private const string GamepadAdded = "Gamedpad Added";
+        private const string GamepadRemoved = "Gamedpad Removed";
+        // Workaround to prevent event firing on app start which makes the notification annoying and unnecessary.
+        private bool _appStartEvent;
+
         public void StartListening()
         {
-            Gamepad.GamepadAdded += Gamepad_GamepadUpdated;
-            Gamepad.GamepadRemoved += Gamepad_GamepadUpdated;
-        }
-        
-        private void Gamepad_GamepadUpdated(object sender, Gamepad e)
-        {
-            GamepadUpdated?.Invoke(this, e);
+            _appStartEvent = true;
+            Gamepad.GamepadAdded += Gamepad_Added;
+            Gamepad.GamepadRemoved += Gamepad_Removed;
         }
 
         public void StopListening()
         {
-            Gamepad.GamepadAdded -= Gamepad_GamepadUpdated;
-            Gamepad.GamepadRemoved -= Gamepad_GamepadUpdated;
+            Gamepad.GamepadAdded -= Gamepad_Added;
+            Gamepad.GamepadRemoved -= Gamepad_Removed;
+        }
+
+        private void Gamepad_Added(object sender, Gamepad e)
+        {
+            if (_appStartEvent)
+            {
+                _appStartEvent = false;
+                return;
+            }
+
+            Notify(GamepadAdded);   
+        }
+
+        private void Gamepad_Removed(object sender, Gamepad e)
+        {
+            Notify(GamepadRemoved);
+        }
+
+        private void Notify(string gamepadState)
+        {
+            ToastHelper.Basic(gamepadState);
         }
     }
 }
