@@ -14,20 +14,13 @@ using System.Linq;
 using VLC.Commands;
 using VLC.Helpers;
 using VLC.Model.Video;
-using VLC.Services.RunTime;
 using VLC.Utils;
 using Windows.Storage;
-using Windows.Storage.AccessCache;
-using Windows.UI.Xaml;
 using libVLCX;
-using System.Diagnostics;
 using Windows.Graphics.Display;
-using Windows.UI.Xaml.Media;
 using VLC.Commands.VideoPlayer;
 using VLC.Model;
 using Windows.UI.Core;
-using Windows.UI.ViewManagement;
-using VLC.MediaMetaFetcher.Fetchers;
 using Projection = libVLCX.Projection;
 
 namespace VLC.ViewModels.VideoVM

@@ -1,0 +1,76 @@
+﻿<Page x:Class="VLC_WinRT.Views.MainPages.MainPageVideos"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:videoPanesControls="using:VLC_WinRT.Views.MainPages.MainVideoControls.VideoPanesControls"
+      mc:Ignorable="d"
+      d:DesignHeight="768"
+      d:DesignWidth="400"
+      DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ContentPresenter x:Name="MainPageVideoContentPresenter"
+                          x:FieldModifier="public"
+                          Margin="{StaticResource FrameMargin}"
+                          Grid.Row="1"
+                          Loaded="MainPageVideoContentPresenter_OnLoaded" />
+        
+        <Rectangle Grid.Row="1"
+                   VerticalAlignment="Top"
+                   Height="8">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="1,0">
+                    <GradientStopCollection>
+                        <GradientStop Color="{ThemeResource ShadowEndColor}"
+                                      Offset="1" />
+                        <GradientStop Color="{ThemeResource ShadowStartColor}" />
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Grid Background="{ThemeResource ApplicationChromeThemeBrush}">
+            <ProgressBar IsIndeterminate="True"
+                         IsEnabled="True"
+                         VerticalAlignment="Bottom"
+                         Visibility="{Binding IndexingLibraryVisibility}" />
+            <ListView Grid.Column="1"
+                      x:Name="PanelsListView"
+                      ItemsSource="{Binding VideoViewCollection}"
+                      IsSwipeEnabled="False"
+                      IsItemClickEnabled="False"
+                      SelectionMode="Single"
+                      ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                      HorizontalAlignment="Center"
+                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                      SelectionChanged="PanelsListView_SelectionChanged">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Orientation="Horizontal"
+                                         Height="30" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <RepositionThemeTransition />
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="Title"
+                                   Text="{Binding Converter={StaticResource VideoViewStringifyConverter}}"
+                                   VerticalAlignment="Center"
+                                   FontSize="16"
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="NoWrap" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>

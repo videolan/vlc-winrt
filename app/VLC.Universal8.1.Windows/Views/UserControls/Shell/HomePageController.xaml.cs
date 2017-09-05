@@ -1,13 +1,13 @@
 ﻿using System.Threading.Tasks;
 using VLC.Model;
-using VLC.Universal8._1.Views.MainPages;
-using VLC.Universal8._1.Views.UserControls.Shell;
-using VLC.Universal8._1.Views.VariousPages;
+using VLC.UI.Views.MainPages;
+using VLC.UI.Views.UserControls.Shell;
+using VLC.UI.Views.VariousPages;
 using VLC.Utils;
 using VLC.ViewModels;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC.Universal8._1.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class HomePageController : UserControl
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace VLC.Universal8._1.Views
+namespace VLC.UI.Views
 {
     interface IVLCModalFlyout
     {

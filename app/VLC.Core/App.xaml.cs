@@ -1,15 +1,10 @@
 ﻿
 using Autofac;
 using System;
-using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
-using VLC.Controls;
 using VLC.Helpers;
 using VLC.Model;
-using VLC.Universal8._1.Views.MainPages;
-using VLC.Universal8._1.Views.UserControls;
 using VLC.Utils;
 using VLC.ViewModels;
 using VLC.ViewModels.Settings;
@@ -18,16 +13,17 @@ using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.Foundation.Metadata;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using Windows.UI;
 using Windows.UI.Core;
-using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using VLC_WinRT.Controls;
+using VLC_WinRT.UI.Legacy.Views.UserControls;
+using VLC_WinRT.Views.MainPages;
 
 namespace VLC
 {
@@ -329,7 +325,7 @@ namespace VLC
 
                 AppViewHelper.LeaveFullscreen();
 
-                App.SplitShell.FooterContent = new CommandBarBottom();
+                //App.SplitShell.FooterContent = new CommandBarBottom();
             }
             Locator.NavigationService.RefreshCurrentPage();
         }

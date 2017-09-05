@@ -2,7 +2,7 @@
 
 // Pour en savoir plus sur le modèle d'élément Contrôle utilisateur, consultez la page http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace VLC.Universal8._1.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class VLCLogoWithGradient : UserControl
     {

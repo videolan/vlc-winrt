@@ -1,8 +1,8 @@
-﻿using SQLite;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using SQLite;
 using VLC.Model.Stream;
 using VLC.Model.Video;
 using VLC.Utils;
@@ -58,7 +58,7 @@ namespace VLC.Database
         {
             using (connection.Lock())
             {
-                return connection.Table<VideoItem>().Where(x => x.Path == path).FirstOrDefault();
+                return connection.Table<VideoItem>().FirstOrDefault(x => x.Path == path);
             }
         }
 

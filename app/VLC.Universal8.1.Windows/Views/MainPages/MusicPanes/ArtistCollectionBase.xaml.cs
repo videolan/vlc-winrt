@@ -2,12 +2,13 @@
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Xaml.Interactivity;
 using VLC.Model.Video;
 using VLC.ViewModels;
 using Windows.UI.Xaml.Navigation;
 using System.Diagnostics;
 
-namespace VLC.Universal8._1.Views.MainPages.MusicPanes
+namespace VLC.UI.Views.MainPages.MusicPanes
 {
     public sealed partial class ArtistCollectionBase : Page
     {

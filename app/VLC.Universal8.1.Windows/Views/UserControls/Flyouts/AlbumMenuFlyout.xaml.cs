@@ -1,5 +1,5 @@
 ﻿using Windows.UI.Xaml.Controls;
-namespace VLC.Universal8._1.Views.UserControls.Flyouts
+namespace VLC.UI.Views.UserControls.Flyouts
 {
     public sealed partial class AlbumMenuFlyout : MenuFlyout
     {
@@ -11,8 +11,8 @@ namespace VLC.Universal8._1.Views.UserControls.Flyouts
         public AlbumMenuFlyout(object albumItem)
         {
             this.InitializeComponent();
-            //foreach (var item in AlbumFlyoutMenu.Items)
-            //    item.DataContext = albumItem;
+            foreach (var item in MenuFlyout.Items)
+                item.DataContext = albumItem;
         }
     }
 }

@@ -8,7 +8,7 @@ using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC.Universal8._1.VariousPages
+namespace VLC.UI.VariousPages
 {
     public sealed partial class AboutPage : Page
     {

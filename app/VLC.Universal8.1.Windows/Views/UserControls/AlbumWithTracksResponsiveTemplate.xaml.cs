@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Input;
 
-namespace VLC.Universal8._1.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class AlbumWithTracksResponsiveTemplate : UserControl
     {
@@ -29,14 +29,14 @@ namespace VLC.Universal8._1.Views.UserControls
 
         private void AlbumWithTracksResponsiveTemplate_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            //if (e.OriginalKey == Windows.System.VirtualKey.GamepadLeftThumbstickRight)
-            //{
-            //    (FocusManager.FindNextFocusableElement(FocusNavigationDirection.Right) as Control)?.Focus(FocusState.Keyboard);
-            //}
-            //else if (e.OriginalKey == Windows.System.VirtualKey.GamepadLeftThumbstickDown)
-            //{
-            //    (FocusManager.FindNextFocusableElement(FocusNavigationDirection.Down) as Control)?.Focus(FocusState.Keyboard);
-            //}
+            if (e.OriginalKey == Windows.System.VirtualKey.GamepadLeftThumbstickRight)
+            {
+                (FocusManager.FindNextFocusableElement(FocusNavigationDirection.Right) as Control)?.Focus(FocusState.Keyboard);
+            }
+            else if (e.OriginalKey == Windows.System.VirtualKey.GamepadLeftThumbstickDown)
+            {
+                (FocusManager.FindNextFocusableElement(FocusNavigationDirection.Down) as Control)?.Focus(FocusState.Keyboard);
+            }
         }
 
         private void AlbumWithTracksResponsiveTemplate_SizeChanged(object sender, SizeChangedEventArgs e)

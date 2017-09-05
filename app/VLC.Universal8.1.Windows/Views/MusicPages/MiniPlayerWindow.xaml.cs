@@ -11,11 +11,11 @@ using Windows.UI.Xaml.Media.Imaging;
 using VLC.Controls;
 using VLC.Helpers;
 using VLC.ViewModels;
-using VLC.Universal8._1.Views.MainPages;
+using VLC.UI.Views.MainPages;
 using VLC.Utils;
 using VLC.Model;
 
-namespace VLC.Universal8._1.Views.MusicPages
+namespace VLC.UI.Views.MusicPages
 {
     public sealed partial class MiniPlayerWindow : Page
     {

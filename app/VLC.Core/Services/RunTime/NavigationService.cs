@@ -5,19 +5,18 @@ using VLC.Model;
 using VLC.ViewModels;
 using VLC.Utils;
 using Windows.UI.Core;
-using VLC.Universal8._1.Views.VideoPages;
-using VLC.Universal8._1.Views.VideoPages.VideoNowPlayingControls;
-using VLC.Universal8._1.Views.MusicPages;
-using VLC.Universal8._1.Views.MusicPages.TagEditorPages;
-using VLC.Universal8._1.Views.VideoPages.TVShowsViews;
-using VLC.Universal8._1.VariousPages;
-using VLC.Universal8._1.UWP.Views.VariousPages;
-using VLC.Universal8._1.Views.MusicPages.PlaylistControls;
-using VLC.Universal8._1.Views.SettingsPages;
-using VLC.Universal8._1.Views.VariousPages;
-using VLC.Universal8._1.Views.MusicPages.AlbumPageControls;
-using VLC.Universal8._1.Views.MainPages;
-using Windows.UI.ViewManagement;
+using VLC_WinRT.UI.Legacy.Views.MainPages;
+using VLC_WinRT.UI.Legacy.Views.MusicPages;
+using VLC_WinRT.UI.Legacy.Views.MusicPages.TagEditorPages;
+using VLC_WinRT.UI.Legacy.Views.VariousPages;
+using VLC_WinRT.UI.Legacy.Views.VideoPages.TVShowsViews;
+using VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls;
+using VLC_WinRT.Views.MainPages;
+using VLC_WinRT.Views.MusicPages;
+using VLC_WinRT.Views.MusicPages.AlbumPageControls;
+using VLC_WinRT.Views.MusicPages.PlaylistControls;
+using VLC_WinRT.Views.VariousPages;
+using VLC_WinRT.Views.VideoPages;
 
 namespace VLC.Services.RunTime
 {
@@ -332,21 +331,21 @@ namespace VLC.Services.RunTime
                 case VLCPage.AudioTracksSettings:
                     setFlyoutContent(desiredPage, typeof(AudioTracksSettings), param);
                     break;
-                case VLCPage.ChaptersSettings:
-                    setFlyoutContent(desiredPage, typeof(ChaptersSettings), param);
-                    break;
+                //case VLCPage.ChaptersSettings:
+                //    setFlyoutContent(desiredPage, typeof(ChaptersSettings), param);
+                //    break;
                 case VLCPage.TrackEditorPage:
                     setFlyoutContent(desiredPage, typeof(TrackEditorPage), param);
                     break;
                 case VLCPage.TvShowView:
                     setFlyoutContent(desiredPage, typeof(ShowEpisodesView), param);
                     break;
-                case VLCPage.AboutAppView:
-                    setFlyoutContent(desiredPage, typeof(AboutPage), param);
-                    break;
-                case VLCPage.ExternalStorageInclude:
-                    setFlyoutContent(desiredPage, typeof(ExternalStorageIncludePage), param);
-                    break;
+                //case VLCPage.AboutAppView:
+                //    setFlyoutContent(desiredPage, typeof(AboutPage), param);
+                //    break;
+                //case VLCPage.ExternalStorageInclude:
+                //    setFlyoutContent(desiredPage, typeof(ExternalStorageIncludePage), param);
+                //    break;
                 default:
                     break;
             }
@@ -379,11 +378,11 @@ namespace VLC.Services.RunTime
         private void setFlyoutContent(VLCPage desiredPage, Type t, object param)
         {
             // Do not switch the current flyout if it is modal.
-            if (App.SplitShell.IsCurrentFlyoutModal())
-                return;
+            //if (App.SplitShell.IsCurrentFlyoutModal())
+            //    return;
 
-            currentFlyout = desiredPage;
-            App.SplitShell.SetFlyoutContentPresenter(t, param);
+            //currentFlyout = desiredPage;
+            //App.SplitShell.SetFlyoutContentPresenter(t, param);
         }
 
         public bool IsFlyout(VLCPage page)

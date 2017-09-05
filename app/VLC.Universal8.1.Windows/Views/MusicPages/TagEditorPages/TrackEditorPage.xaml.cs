@@ -2,7 +2,7 @@
 using VLC.ViewModels;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC.Universal8._1.Views.MusicPages.TagEditorPages
+namespace VLC.UI.Views.MusicPages.TagEditorPages
 {
     public sealed partial class TrackEditorPage : Page
     {

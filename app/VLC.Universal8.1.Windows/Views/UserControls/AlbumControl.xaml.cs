@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace VLC.Universal8._1.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class AlbumControl : UserControl
     {

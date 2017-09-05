@@ -1,0 +1,125 @@
+﻿<UserControl
+    x:Class="VLC_WinRT.UI.Legacy.Views.SettingsPages.SettingsPageUI"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WinRT.UI.Legacy.Views.SettingsPages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="1000"
+    d:DesignWidth="400">
+    <Grid x:Name="RootGrid"
+          Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+          DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
+        <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
+            <StackPanel x:Name="RootPanel"
+                        Margin="{StaticResource FrameMarginBothSidesWithTitleMargin}">
+                <StackPanel Orientation="Horizontal"
+                            Margin="{StaticResource FrameMarginBottom}">
+                    <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  HorizontalAlignment="Right"
+                                  Command="{Binding ChangeSettingsViewCommand}"
+                                  CommandParameter="-1"
+                                  Width="50">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                                      Margin="0,3,0,0"
+                                      FontFamily="{StaticResource VLCFont}" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <TextBlock Text="{Binding Source={StaticResource Strings}, Path=UserInterface}"
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                </StackPanel>
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Theme}"
+                           FontSize="22"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight" />
+                <ToggleSwitch  Header="{Binding Source={StaticResource Strings}, Path=AppTheme}"
+                               OffContent="{Binding Source={StaticResource Strings}, Path=Light}"
+                               OnContent="{Binding Source={StaticResource Strings}, Path=Dark}">
+                    <ToggleSwitch.IsOn>
+                        <Binding Source="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+                                 Path="ApplicationTheme"
+                                 Converter="{StaticResource ApplicationThemeBooleanConverter}"
+                                 Mode="TwoWay" />
+                    </ToggleSwitch.IsOn>
+                </ToggleSwitch>
+
+                <GridView DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+                          ItemsSource="{Binding AccentColors}"
+                          SelectedItem="{Binding AccentColor, Mode=TwoWay}">
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="75"
+                                  Width="75">
+                                <Grid.Background>
+                                    <SolidColorBrush Color="{Binding}" />
+                                </Grid.Background>
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal"
+                                           ItemHeight="75"
+                                           ItemWidth="75" />
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
+                <Button x:Name="ApplyColor" 
+                        Click="ApplyColorButton_Click"
+                        Content="Apply and restart"/>
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
+                           Margin="0,0,0,12">
+                    <Run Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}" />
+                </TextBlock>
+                
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=HomePage}"
+                           Margin="0,12,0,0"
+                           FontSize="22"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight" />
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=HomePageDescription}"
+                           Margin="0,6,0,0"
+                           Style="{StaticResource BodyTextBlockStyle}" />
+                <ComboBox Margin="0,12,0,0"
+                          ItemsSource="{Binding HomePageCollection}"
+                          SelectedItem="{Binding HomePage, Mode=TwoWay}"
+                          Style="{StaticResource VLCLightComboBox}"
+                          Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}"
+                          Width="160">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource VLCPageStringifyConverter}}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                
+                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}"
+                           Margin="0,12,0,0"
+                           FontSize="22"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontWeight="SemiLight" />
+
+                <ListView ItemsSource="{Binding KeyboardActions}"
+                          SelectionMode="None"
+                          Margin="{StaticResource FrameMarginTop}"
+                          ItemContainerStyle="{StaticResource ListViewItemBasic}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Margin="{StaticResource FrameMarginBottom}" 
+                                       Foreground="{ThemeResource BasicForeground}">
+                                <Run Text="{Binding Action}"
+                                     FontSize="15" />
+                                <LineBreak />
+                                <Run Text="{Binding KeyDescription}"
+                                     FontWeight="Light"/>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel> 
+        </ScrollViewer>
+        </Grid>
+</UserControl>

@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC.Helpers;
 
-namespace VLC.Universal8._1.Views.VideoPages.VideoNowPlayingControls
+namespace VLC.UI.Views.VideoPages.VideoNowPlayingControls
 {
     public sealed partial class VideoPlayerOptionsPanel
     {
@@ -17,16 +17,16 @@ namespace VLC.Universal8._1.Views.VideoPages.VideoNowPlayingControls
         {
             base.OnNavigatedTo(e);
 
-            //if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox &&
-            //    ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.Control", nameof(XYFocusDown)))
-            //{
-            //    ZoomCombobox.XYFocusDown = SpeedResetButton;
-            //    SpeedRateSlider.XYFocusDown = AudioDelayResetButton;
-            //    SpeedRateSlider.XYFocusUp = SpeedResetButton;
-            //    AudioDelaySlider.XYFocusDown = SubtitleDelayResetButton;
-            //    AudioDelaySlider.XYFocusUp = AudioDelayResetButton;
-            //    SpuDelaySlider.XYFocusUp = SubtitleDelayResetButton;
-            //}
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox &&
+                ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.Control", nameof(XYFocusDown)))
+            {
+                ZoomCombobox.XYFocusDown = SpeedResetButton;
+                SpeedRateSlider.XYFocusDown = AudioDelayResetButton;
+                SpeedRateSlider.XYFocusUp = SpeedResetButton;
+                AudioDelaySlider.XYFocusDown = SubtitleDelayResetButton;
+                AudioDelaySlider.XYFocusUp = AudioDelayResetButton;
+                SpuDelaySlider.XYFocusUp = SubtitleDelayResetButton;
+            }
         }
     }
 }

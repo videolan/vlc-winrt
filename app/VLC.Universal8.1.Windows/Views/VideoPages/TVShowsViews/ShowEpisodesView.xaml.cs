@@ -1,13 +1,13 @@
 ﻿using VLC.Model;
 using VLC.Model.Video;
-using VLC.Universal8._1.Views.UserControls.Flyouts;
+using VLC.UI.Views.UserControls.Flyouts;
 using VLC.ViewModels;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace VLC.Universal8._1.Views.VideoPages.TVShowsViews
+namespace VLC.UI.Views.VideoPages.TVShowsViews
 {
     public sealed partial class ShowEpisodesView : Page
     {
@@ -35,12 +35,12 @@ namespace VLC.Universal8._1.Views.VideoPages.TVShowsViews
         private void EpisodesListView_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
             ListView list = (ListView)sender;
-            //if (Locator.NavigationService.CurrentPage == VLCPage.TvShowView
-            //    && e.Key == VirtualKey.GamepadView)
-            //{
-            //    var menu = new VideoInformationFlyout(EpisodesListView.ItemFromContainer(focussedListViewItem));
-            //    menu.ShowAt(focussedListViewItem);
-            //}
+            if (Locator.NavigationService.CurrentPage == VLCPage.TvShowView
+                && e.Key == VirtualKey.GamepadView)
+            {
+                var menu = new VideoInformationFlyout(EpisodesListView.ItemFromContainer(focussedListViewItem));
+                menu.ShowAt(focussedListViewItem);
+            }
         }
     }
 }

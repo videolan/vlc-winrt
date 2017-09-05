@@ -12,7 +12,7 @@ using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC.Universal8._1.Views.MusicPages.ArtistPageControls
+namespace VLC.UI.Views.MusicPages.ArtistPageControls
 {
     public sealed partial class ArtistAlbumsSemanticView : Grid
     {
@@ -24,10 +24,10 @@ namespace VLC.Universal8._1.Views.MusicPages.ArtistPageControls
 
         private void ArtistAlbumsSemanticView_Loaded(object sender, RoutedEventArgs e)
         {
-            //if (DeviceHelper.IsMediaCenterModeCompliant)
-            //    (FindName(nameof(AlbumsArtistsListView)) as FrameworkElement).Visibility = Visibility.Visible;
-            //else
-            //    (FindName(nameof(AlbumsSemanticZoom)) as FrameworkElement).Visibility = Visibility.Visible;
+            if (DeviceHelper.IsMediaCenterModeCompliant)
+                (FindName(nameof(AlbumsArtistsListView)) as FrameworkElement).Visibility = Visibility.Visible;
+            else
+                (FindName(nameof(AlbumsSemanticZoom)) as FrameworkElement).Visibility = Visibility.Visible;
 
             if (AlbumsListView != null)
                 AlbumsListView.SizeChanged += AlbumsListViewOnSizeChanged;

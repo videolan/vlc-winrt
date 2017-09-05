@@ -20,7 +20,7 @@ namespace VLC.Services.RunTime
         public event Action<bool> OnRepeatChanged;
         // Parameters: The new current media, a boolean indicating if the playback should start automatically
         public event Action<IMediaItem, bool> OnCurrentMediaChanged;
-        private BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
+     //   private BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
         private ObservableCollection<IMediaItem> _playlist;
 
         public ObservableCollection<IMediaItem> Playlist
@@ -119,7 +119,7 @@ namespace VLC.Services.RunTime
 
         private void clear()
         {
-            BackgroundTrackRepository.Clear();
+     //       BackgroundTrackRepository.Clear();
             _playlist.Clear();
             _nonShuffledPlaylist?.Clear();
             _index = 0;
@@ -189,7 +189,7 @@ namespace VLC.Services.RunTime
                     TrackId = track.Id
                 });
             }
-            BackgroundTrackRepository.Add(backgroundTrackItems);
+    //        BackgroundTrackRepository.Add(backgroundTrackItems);
         }
 
         public void AddToPlaylist(IEnumerable<IMediaItem> toAdd)
@@ -220,28 +220,28 @@ namespace VLC.Services.RunTime
             if (!ApplicationSettingsHelper.Contains(nameof(Index)))
                 return;
 
-            var playlist = BackgroundTrackRepository.LoadPlaylist();
-            if (!playlist.Any())
-                return;
+            //var playlist = BackgroundTrackRepository.LoadPlaylist();
+            //if (!playlist.Any())
+            //    return;
 
-            var trackIds = playlist.Select(node => node.TrackId);
-            var restoredplaylist = new SmartCollection<IMediaItem>();
-            foreach (int trackId in trackIds)
-            {
-                var trackItem = Locator.MediaLibrary.LoadTrackById(trackId);
-                if (trackItem != null)
-                    restoredplaylist.Add(trackItem);
-            }
+            //var trackIds = playlist.Select(node => node.TrackId);
+            //var restoredplaylist = new SmartCollection<IMediaItem>();
+            //foreach (int trackId in trackIds)
+            //{
+            //    var trackItem = Locator.MediaLibrary.LoadTrackById(trackId);
+            //    if (trackItem != null)
+            //        restoredplaylist.Add(trackItem);
+            //}
 
-            if (restoredplaylist.Count == 0)
-            {
-                return;
-            }
-            clear();
-            _playlist = restoredplaylist;
-            OnPlaylistChanged?.Invoke();
-            _index = (int)ApplicationSettingsHelper.ReadSettingsValue(nameof(Index));
-            OnCurrentMediaChanged?.Invoke(_playlist[_index], true);
+            //if (restoredplaylist.Count == 0)
+            //{
+            //    return;
+            //}
+            //clear();
+            //_playlist = restoredplaylist;
+            //OnPlaylistChanged?.Invoke();
+            //_index = (int)ApplicationSettingsHelper.ReadSettingsValue(nameof(Index));
+            //OnCurrentMediaChanged?.Invoke(_playlist[_index], true);
         }
 
         public bool Next()

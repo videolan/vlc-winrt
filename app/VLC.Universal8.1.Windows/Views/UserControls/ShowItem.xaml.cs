@@ -3,7 +3,7 @@ using VLC.Utils;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC.Universal8._1.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class ShowItem : UserControl
     {

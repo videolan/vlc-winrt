@@ -3,7 +3,7 @@ using Windows.UI.Xaml.Controls;
 using VLC.Model.Music;
 using VLC.ViewModels;
 
-namespace VLC.Universal8._1.Views.MusicPages
+namespace VLC.UI.Views.MusicPages
 {
     public sealed partial class PlaylistPage
     {

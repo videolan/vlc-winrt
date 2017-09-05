@@ -3,7 +3,7 @@ using Windows.UI.Xaml.Controls;
 using VLC.Model.Video;
 using VLC.ViewModels;
 
-namespace VLC.Universal8._1.Views.MainPages.MainVideoControls
+namespace VLC.UI.Views.MainPages.MainVideoControls
 {
     public sealed partial class CameraRollPivotItem : Page
     {

@@ -4,7 +4,7 @@ using VLC.Model.Music;
 using VLC.ViewModels;
 using VLC.Model;
 
-namespace VLC.Universal8._1.Views.UserControls.Flyouts
+namespace VLC.UI.Views.UserControls.Flyouts
 {
     public partial class TrackItemFlyout : Flyout
     {
@@ -18,7 +18,7 @@ namespace VLC.Universal8._1.Views.UserControls.Flyouts
         {
             this.InitializeComponent();
             this.Opened += TrackItemFlyout_Opened;
-       //     this.FlyoutGrid.DataContext = trackItem;
+            this.FlyoutGrid.DataContext = trackItem;
         }
 
         private void TrackItemFlyout_Opened(object sender, object e)

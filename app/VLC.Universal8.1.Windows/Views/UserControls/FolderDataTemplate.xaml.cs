@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using WinRTXamlToolkit.Controls.Extensions;
 
-namespace VLC.Universal8._1.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class FolderDataTemplate : UserControl
     {
@@ -33,18 +33,18 @@ namespace VLC.Universal8._1.Views.UserControls
 
         private void KeyboardListenerService_KeyDownPressed(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
         {
-            //switch (args.VirtualKey)
-            //{
-            //    case VirtualKey.GamepadView:
-            //        ShowFlyout();
-            //        break;
-            //    case VirtualKey.GamepadY:
-            //        if ((this.DataContext as IVLCStorageItem).StorageItem != null)
-            //            Locator.FileExplorerVM.CurrentStorageVM.CopyCommand.Execute(this.DataContext);
-            //        break;
-            //    default:
-            //        break;
-            //}
+            switch (args.VirtualKey)
+            {
+                case VirtualKey.GamepadView:
+                    ShowFlyout();
+                    break;
+                case VirtualKey.GamepadY:
+                    if ((this.DataContext as IVLCStorageItem).StorageItem != null)
+                        Locator.FileExplorerVM.CurrentStorageVM.CopyCommand.Execute(this.DataContext);
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void FolderDataTemplate_GotFocus(object sender, RoutedEventArgs e)

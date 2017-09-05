@@ -1,14 +1,14 @@
-﻿<Page x:Class="VLC.Universal8._1.Views.VideoPages.VideoPlayerPage"
+﻿<Page x:Class="VLC.UI.Views.VideoPages.VideoPlayerPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:views="using:VLC.Universal8._1.Views"
+      xmlns:views="using:VLC.UI.Views"
       xmlns:controls="using:VLC.Controls"
-      xmlns:userControls="using:VLC.Universal8._1.Views.UserControls"
-      xmlns:videoControls="using:VLC.Universal8._1.Views.VideoPages.VideoNowPlayingControls"
-      xmlns:placeholder="using:VLC.Universal8._1.Views.UserControls.Placeholder"
-      xmlns:uC="using:VLC.Universal8._1.Views.UserControls"
+      xmlns:userControls="using:VLC.UI.Views.UserControls"
+      xmlns:videoControls="using:VLC.UI.Views.VideoPages.VideoNowPlayingControls"
+      xmlns:placeholder="using:VLC.UI.Views.UserControls.Placeholder"
+      xmlns:uC="using:VLC.UI.Views.UserControls"
       mc:Ignorable="d"
       Background="Transparent"
       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
@@ -164,27 +164,27 @@
                         <MenuFlyoutItem Text="Play / Pause" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.PlayPauseCommand}"/>
                         <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Stop}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.GoBackCommand}"/>
                         <MenuFlyoutSeparator/>
-                        <!--<MenuFlyoutSubItem Text="{Binding Source ={StaticResource Strings}, Path=Audio}">
-                            <MenuFlyoutSubItem x:Name="AudioTracksSubItem" Text="{Binding Source ={StaticResource Strings}, Path=AudioTracks}"/>
+                        <!--<MenuFlyoutSubItem Text="{Binding Source ={StaticResource Strings}, Path=Audio}">-->
+                            <!--<MenuFlyoutSubItem x:Name="AudioTracksSubItem" Text="{Binding Source ={StaticResource Strings}, Path=AudioTracks}"/>-->
                             <MenuFlyoutSeparator/>
                             <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=IncreaseVolume}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.IncreaseVolumeCommand}"/>
                             <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=DecreaseVolume}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.DecreaseVolumeCommand}"/>
                             <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Mute}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.MuteCommand}"/>
-                        </MenuFlyoutSubItem>
-                        <MenuFlyoutSubItem x:Name="VideoSubItem" Text="{Binding Source ={StaticResource Strings}, Path=Video}">
+                        <!--</MenuFlyoutSubItem>-->
+                        <!--<MenuFlyoutSubItem x:Name="VideoSubItem" Text="{Binding Source ={StaticResource Strings}, Path=Video}">-->
                             <MenuFlyoutItem Text="Fullscreen toggle" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleFullscreenCommand}"/>
                             <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Zoom}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ZoomCommand}"/>
                             <MenuFlyoutSeparator/>
-                            <MenuFlyoutSubItem x:Name="SubtitlesSubItem" Text="{Binding Source={StaticResource Strings}, Path=Subtitles}"/>
-                        </MenuFlyoutSubItem>
-                        <MenuFlyoutSubItem Text="{Binding Source={StaticResource Strings}, Path=Playback}">
+                            <!--<MenuFlyoutSubItem x:Name="SubtitlesSubItem" Text="{Binding Source={StaticResource Strings}, Path=Subtitles}"/>-->
+                        <!--</MenuFlyoutSubItem>-->
+                        <!--<MenuFlyoutSubItem Text="{Binding Source={StaticResource Strings}, Path=Playback}">-->
                             <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Chapters}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ShowChaptersSettingsCommand}"/>
                             <MenuFlyoutSeparator/>
                             <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=IncreaseSpeed}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.IncreaseSpeedCommand}"/>
                             <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=DecreaseSpeed}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.DecreaseSpeedCommand}"/>
                             <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=ResetSpeed}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ResetSpeedCommand}"/>
                             <MenuFlyoutSeparator/>
-                        </MenuFlyoutSubItem>-->
+                        <!--</MenuFlyoutSubItem>-->
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
             </Grid>
@@ -200,8 +200,8 @@
                 <TranslateTransform />
             </Border.RenderTransform>
             <Grid>
-                <!--<uC:BackDrop BlurAmount="8"
-                             Margin="{StaticResource FrameMarginBothSidesInverted}" />-->
+                <uC:BackDrop BlurAmount="8"
+                             Margin="{StaticResource FrameMarginBothSidesInverted}" />
                 
                 <Grid x:Name="ControlsGrid">
                     <userControls:SliderControl x:Name="Slider"
@@ -359,22 +359,22 @@
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="LayoutStates">
                 <VisualState x:Name="Narrow">
-                    <!--<VisualState.StateTriggers>
+                    <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0"/>
-                    </VisualState.StateTriggers>-->
-                    <!--<VisualState.Setters>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
                         <Setter Target="VolumeGrid.Visibility" Value="Collapsed" />
                         <Setter Target="ControlsGrid.Margin" Value="0" />
-                    </VisualState.Setters>-->
+                    </VisualState.Setters>
                 </VisualState>
-                <!--<VisualState x:Name="Medium">
+                <VisualState x:Name="Medium">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="850"/>
                     </VisualState.StateTriggers>
-                    <VisualState.>
+                    <VisualState.Setters>
                         <Setter Target="VolumeGrid.Visibility" Value="Visible" />
                         <Setter Target="ControlsGrid.Margin" Value="24" />
-                    </VisualState.>
+                    </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Full">
                     <VisualState.StateTriggers>
@@ -384,7 +384,7 @@
                         <Setter Target="VolumeGrid.Visibility" Value="Visible" />
                         <Setter Target="ControlsGrid.Margin" Value="48,0" />
                     </VisualState.Setters>
-                </VisualState>-->
+                </VisualState>
             </VisualStateGroup>
             <VisualStateGroup x:Name="WindowingStates">
                 <VisualState x:Name="WindowState">

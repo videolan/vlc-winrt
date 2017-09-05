@@ -11,14 +11,15 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC.ViewModels;
+using Microsoft.Xaml.Interactivity;
 using VLC.Model.Music;
-using VLC.Universal8._1.Views.MainPages.MusicPanes;
+using VLC.UI.Views.MainPages.MusicPanes;
 using VLC.ViewModels.Settings;
 using VLC.ViewModels.MusicVM;
 using System.Threading.Tasks;
 using VLC.Helpers;
 
-namespace VLC.Universal8._1.Views.MainPages
+namespace VLC.UI.Views.MainPages
 {
     public sealed partial class MainPageMusic : Page
     {

@@ -2,9 +2,10 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Xaml.Interactivity;
 using VLC.ViewModels;
 
-namespace VLC.Universal8._1.Views.VariousPages
+namespace VLC.UI.Views.VariousPages
 {
     public sealed partial class SearchPage : Page
     {
@@ -45,10 +46,10 @@ namespace VLC.Universal8._1.Views.VariousPages
 
         void Responsive(double width)
         {
-            //if (width <= 700)
-                //VisualStateUtilities.GoToState(this, "Minimal", false);
-            //else
-                //VisualStateUtilities.GoToState(this, "Normal", false);
+            if (width <= 700)
+                VisualStateUtilities.GoToState(this, "Minimal", false);
+            else
+                VisualStateUtilities.GoToState(this, "Normal", false);
         }
 
         private void MusicWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -63,7 +64,7 @@ namespace VLC.Universal8._1.Views.VariousPages
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //Locator.SearchVM.SearchTag = MusicSearchBox.Text;
+            Locator.SearchVM.SearchTag = MusicSearchBox.Text;
         }
 
         private void ToggleSearchMode_Click(object sender, RoutedEventArgs e)

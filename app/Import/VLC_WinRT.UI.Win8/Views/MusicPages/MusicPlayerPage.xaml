@@ -1,0 +1,268 @@
+﻿<Page x:Class="VLC_WinRT.Views.MusicPages.MusicPlayerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:triggers="using:WinRT.Triggers"
+      xmlns:musicNowPlayingControls="using:VLC_WinRT.Views.MusicPages.MusicNowPlayingControls"
+      xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
+      xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
+      mc:Ignorable="d"
+      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
+
+    <Grid RequestedTheme="Dark"
+          Background="Black">
+        <Grid.Resources>    
+            <Storyboard x:Name="FadeOut">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ShowPlaylistButtonTranslateTransform"
+                                               Storyboard.TargetProperty="Y">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                          Value="-50">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <ExponentialEase EasingMode="EaseInOut"
+                                             Exponent="3" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                               Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                          Value="-50">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <ExponentialEase EasingMode="EaseInOut"
+                                             Exponent="3" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGridTranslateTransform"
+                                               Storyboard.TargetProperty="Y">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.8"
+                                          Value="-60">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <ExponentialEase EasingMode="EaseInOut"
+                                             Exponent="3" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                               Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                          Value="0" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
+                                               Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.8"
+                                          Value="0" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ShowPlaylistButton"
+                                               Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.8"
+                                          Value="0" />
+                </DoubleAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderInteractionGrid"
+                                               Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0"
+                                            Value="Visible"/>
+                </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Name="FadeIn">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ShowPlaylistButtonTranslateTransform"
+                                               Storyboard.TargetProperty="Y">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                          Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <ExponentialEase EasingMode="EaseInOut"
+                                             Exponent="3" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                               Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                          Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <ExponentialEase EasingMode="EaseInOut"
+                                             Exponent="3" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGridTranslateTransform"
+                                               Storyboard.TargetProperty="Y">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                          Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <ExponentialEase EasingMode="EaseInOut"
+                                             Exponent="3" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                               Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                          Value="1" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
+                                               Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                          Value="1" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ShowPlaylistButton"
+                                               Storyboard.TargetProperty="Opacity">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                          Value="1" />
+                </DoubleAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderInteractionGrid"
+                                               Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.1"
+                                            Value="Collapsed" />
+                </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="PlayerRowDefinition" />
+            <RowDefinition x:Name="OpenPlaylistRowDefinition" />
+            <RowDefinition x:Name="PlaylistRowDefinition" />
+        </Grid.RowDefinitions>
+
+        <canvas:CanvasAnimatedControl x:Name="Slideshower"
+                                      Grid.Row="0"
+                                      Grid.RowSpan="3"
+                                      Loaded="Slideshower_Loaded_1"
+                                      IsFixedTimeStep="False"
+                                      TargetElapsedTime="0:0:0.3" />
+        
+        <musicNowPlayingControls:MusicNowPlaying x:Name="MusicNowPlaying"
+                                                 Visibility="Collapsed">
+            <musicNowPlayingControls:MusicNowPlaying.RenderTransform>
+                <TranslateTransform x:Name="MusicNowPlayingTranslateTransform" />
+            </musicNowPlayingControls:MusicNowPlaying.RenderTransform>
+        </musicNowPlayingControls:MusicNowPlaying>
+
+        <AppBarButton x:Name="ShowPlaylistButton"
+                      Grid.Row="1"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Label="{Binding Source={StaticResource Strings}, Path=ShowPlaylist}"
+                      Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.GoToMusicPlaylistPageCommand}"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      FontSize="16">
+            <AppBarButton.RenderTransform>
+                <TranslateTransform x:Name="ShowPlaylistButtonTranslateTransform" />
+            </AppBarButton.RenderTransform>
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource OrderedListSymbol}"
+                          FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+
+        <ListView x:Name="PlaylistGrid"
+                  Grid.Row="2"
+                  Margin="{StaticResource FrameMargin}"
+                  ItemsSource="{Binding TrackCollection.Playlist}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  ItemTemplate="{StaticResource TrackTemplateDetailed}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                  Visibility="Collapsed">
+            <ListView.RenderTransform>
+                <TranslateTransform x:Name="PlaylistGridTranslateTransform" />
+            </ListView.RenderTransform>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel Margin="{StaticResource FrameMarginTop}" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+        </ListView>
+        <Grid x:Name="PlaceholderInteractionGrid"
+              Grid.Row="0"
+              Grid.RowSpan="3"
+              Background="Transparent"
+              Visibility="Collapsed"
+              Tapped="PlaceholderInteractionGrid_OnTapped"/>
+
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Wide">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource FrameMargin}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
+                                                       Storyboard.TargetProperty="MinHeight">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="60" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayerRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Auto" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OpenPlaylistRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
+                                                       Storyboard.TargetProperty="MinHeight">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OpenPlaylistRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="60" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>

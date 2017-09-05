@@ -571,7 +571,7 @@ namespace VLC.ViewModels
             {
                 if (PlaybackService.PlayingType == PlayingType.Video)
                 {
-                    App.RootPage.StopCompositionAnimationOnSwapChain();
+               //     App.RootPage.StopCompositionAnimationOnSwapChain();
                 }
                 if (!Locator.NavigationService.GoBack_Default())
                 {

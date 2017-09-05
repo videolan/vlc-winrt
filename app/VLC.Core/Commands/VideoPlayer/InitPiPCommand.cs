@@ -11,7 +11,7 @@ namespace VLC.Commands.VideoPlayer
         public override void Execute(object parameter)
         {
             Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
-            App.RootPage.StartCompositionAnimationOnSwapChain(true);
+       //     App.RootPage.StartCompositionAnimationOnSwapChain(true);
         }
     }
 }

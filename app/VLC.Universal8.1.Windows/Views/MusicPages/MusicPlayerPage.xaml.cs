@@ -8,11 +8,12 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Graphics.Canvas.Text;
+using Microsoft.Xaml.Interactivity;
 using VLC.Slideshow.Texts;
 using VLC.ViewModels;
 using VLC.Helpers;
 
-namespace VLC.Universal8._1.Views.MusicPages
+namespace VLC.UI.Views.MusicPages
 {
     public sealed partial class MusicPlayerPage : Page
     {
@@ -49,11 +50,11 @@ namespace VLC.Universal8._1.Views.MusicPages
         {
             if (Window.Current.Bounds.Width < 640)
             {
-                //VisualStateUtilities.GoToState(this, "Narrow", false);
+                VisualStateUtilities.GoToState(this, "Narrow", false);
             }
             else
             {
-                //VisualStateUtilities.GoToState(this, "Wide", false);
+                VisualStateUtilities.GoToState(this, "Wide", false);
             }
         }
         #endregion

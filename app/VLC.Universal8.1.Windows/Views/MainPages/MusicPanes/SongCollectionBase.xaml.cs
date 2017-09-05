@@ -1,14 +1,15 @@
 ﻿using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Xaml.Interactivity;
 using VLC.Helpers;
 using VLC.ViewModels;
 using Windows.UI.Xaml.Input;
 using Windows.System;
 using VLC.Model;
-using VLC.Universal8._1.Views.UserControls.Flyouts;
+using VLC.UI.Views.UserControls.Flyouts;
 
-namespace VLC.Universal8._1.Views.MainPages.MusicPanes
+namespace VLC.UI.Views.MainPages.MusicPanes
 {
     public sealed partial class SongCollectionBase : Page
     {
@@ -55,13 +56,13 @@ namespace VLC.Universal8._1.Views.MainPages.MusicPanes
 
         private void TracksZoomedInView_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            //ListView list = (ListView)sender;
-            //if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic
-            //    && e.Key == VirtualKey.GamepadView)
-            //{
-            //    var menu = new TrackItemFlyout(TracksZoomedInView.ItemFromContainer(focussedListViewItem));
-            //    menu.ShowAt(focussedListViewItem);
-            //}
+            ListView list = (ListView)sender;
+            if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic
+                && e.Key == VirtualKey.GamepadView)
+            {
+                var menu = new TrackItemFlyout(TracksZoomedInView.ItemFromContainer(focussedListViewItem));
+                menu.ShowAt(focussedListViewItem);
+            }
         }
     }
 }

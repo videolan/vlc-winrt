@@ -6,13 +6,21 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace VLC.Universal8._1.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class VideoItem : UserControl
     {
         public VideoItem()
         {
             this.InitializeComponent();
+            Unloaded += OnUnloaded;
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            if(Video != null) Video.PropertyChanged -= Video_PropertyChanged;
+            if(ThumbnailImage?.Source != null) ThumbnailImage.Source = null;
+            ThumbnailImage = null;
         }
 
         private void RootAlbumItem_Holding(object sender, HoldingRoutedEventArgs e)
@@ -84,11 +92,9 @@ namespace VLC.Universal8._1.Views.UserControls
 
         private void FadeOutCover_Completed(object sender, object e)
         {
-            if (Video != null && Video.VideoImage != null)
-            {
-                ThumbnailImage.Source = Video.VideoImage;
-                FadeInCover.Begin();
-            }
+            if (Video?.VideoImage == null || ThumbnailImage == null) return;
+            ThumbnailImage.Source = Video.VideoImage;
+            FadeInCover.Begin();
         }
     }
 }

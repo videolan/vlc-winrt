@@ -1,12 +1,12 @@
-﻿<Page x:Class="VLC.Universal8._1.Views.MusicPages.MusicPlayerPage"
+﻿<Page x:Class="VLC.UI.Views.MusicPages.MusicPlayerPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
-      xmlns:musicNowPlayingControls="using:VLC.Universal8._1.Views.MusicPages.MusicNowPlayingControls"
+      xmlns:musicNowPlayingControls="using:VLC.UI.Views.MusicPages.MusicNowPlayingControls"
       xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
-      xmlns:userControls="using:VLC.Universal8._1.Views.UserControls"
+      xmlns:userControls="using:VLC.UI.Views.UserControls"
       xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
       mc:Ignorable="d">
 

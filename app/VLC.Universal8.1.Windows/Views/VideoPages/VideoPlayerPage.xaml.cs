@@ -31,7 +31,7 @@ using Windows.Foundation.Metadata;
 using Windows.UI.Xaml.Media;
 using libVLCX;
 
-namespace VLC.Universal8._1.Views.VideoPages
+namespace VLC.UI.Views.VideoPages
 {
     public sealed partial class VideoPlayerPage : Page
     {
@@ -42,15 +42,14 @@ namespace VLC.Universal8._1.Views.VideoPages
         private const float DEFAULT_FOV = 80f;
         private readonly PlaybackService _playbackService = Locator.PlaybackService;
         private readonly float DIVIDER = DeviceHelper.GetDeviceType() == DeviceTypeEnum.Phone ? 70f : 10f;
+        private long _borderVisibilityChangedToken;
+
         public delegate void PlayerControlVisibilityChanged(bool visibility);
         public event PlayerControlVisibilityChanged OnPlayerControlVisibilityChanged;
 
         public VideoPlayerPage()
         {
             InitializeComponent();
-            //ControlsBorder.RegisterPropertyChangedCallback(Border.VisibilityProperty, OnBorderVisibilityChanged);
-            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaStopped += OnPlaybackStopped;
-            FadeOut.Completed += FadeOut_Completed;
         }
 
         private void OnBorderVisibilityChanged(DependencyObject sender, DependencyProperty dp)
@@ -102,6 +101,10 @@ namespace VLC.Universal8._1.Views.VideoPages
             this.SizeChanged += OnSizeChanged;
             Responsive();
 
+            _borderVisibilityChangedToken = ControlsBorder.RegisterPropertyChangedCallback(VisibilityProperty, OnBorderVisibilityChanged);
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaStopped += OnPlaybackStopped;
+            FadeOut.Completed += FadeOut_Completed;
+
             // Swapchain animations
             App.RootPage.StartCompositionAnimationOnSwapChain(false);
         }
@@ -128,13 +131,19 @@ namespace VLC.Universal8._1.Views.VideoPages
 
             AppViewHelper.LeaveFullscreen();
 
-            this.SizeChanged -= OnSizeChanged;
 
             Locator.MediaPlaybackViewModel.MouseService.Stop();
             Locator.MediaPlaybackViewModel.MouseService.OnMoved -= ShowControlPanel;
+            RootGrid.Tapped -= RootGrid_Tapped;
+
             controlsTimer.Tick -= ControlsTimer_Tick;
             controlsTimer.Stop();
             Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
+
+            this.SizeChanged -= OnSizeChanged;
+            ControlsBorder.UnregisterPropertyChangedCallback(VisibilityProperty, _borderVisibilityChangedToken);
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaStopped -= OnPlaybackStopped;
+            FadeOut.Completed -= FadeOut_Completed;
         }
 
         async void OnPlaybackStopped()
@@ -378,37 +387,37 @@ namespace VLC.Universal8._1.Views.VideoPages
 
         private void FlyoutBase_OnOpened(object sender, object e)
         {
-            //SubtitlesSubItem.Items.Clear();
-            //foreach (var sub in Locator.MediaPlaybackViewModel.Subtitles)
-            //{
-            //    VideoSubItem.Items.Add(new MenuFlyoutItem()
-            //    {
-            //        Text = sub.Name,
-            //    });
-            //}
-            //if (!Locator.MediaPlaybackViewModel.Subtitles.Any())
-            //{
-            //    SubtitlesSubItem.IsEnabled = false;
-            //}
+            SubtitlesSubItem.Items.Clear();
+            foreach (var sub in Locator.MediaPlaybackViewModel.Subtitles)
+            {
+                VideoSubItem.Items.Add(new MenuFlyoutItem()
+                {
+                    Text = sub.Name,
+                });
+            }
+            if (!Locator.MediaPlaybackViewModel.Subtitles.Any())
+            {
+                SubtitlesSubItem.IsEnabled = false;
+            }
 
-            //AudioTracksSubItem.Items.Clear();
-            //foreach (var audTrack in Locator.MediaPlaybackViewModel.AudioTracks)
-            //{
-            //    AudioTracksSubItem.Items.Add(new MenuFlyoutItem()
-            //    {
-            //        Text = audTrack.Name,
-            //        Command = new ActionCommand(() =>
-            //        {
-            //            Locator.MediaPlaybackViewModel.CurrentAudioTrack = audTrack;
-            //        })
-            //    });
-            //}
+            AudioTracksSubItem.Items.Clear();
+            foreach (var audTrack in Locator.MediaPlaybackViewModel.AudioTracks)
+            {
+                AudioTracksSubItem.Items.Add(new MenuFlyoutItem()
+                {
+                    Text = audTrack.Name,
+                    Command = new ActionCommand(() =>
+                    {
+                        Locator.MediaPlaybackViewModel.CurrentAudioTrack = audTrack;
+                    })
+                });
+            }
         }
 
         private void PlaceholderInteractionGrid_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             var grid = sender as UIElement;
-            VideoFlyout.ShowAt(grid as FrameworkElement);
+            VideoFlyout.ShowAt(grid, e.GetPosition(grid));
         }
     }
 }

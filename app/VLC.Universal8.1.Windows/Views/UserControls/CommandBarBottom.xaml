@@ -1,18 +1,19 @@
-﻿<CommandBar x:Class="VLC.Universal8._1.Views.UserControls.CommandBarBottom"
+﻿<CommandBar x:Class="VLC.UI.Views.UserControls.CommandBarBottom"
             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-            xmlns:local="using:VLC.Universal8._1.Views.UserControls"
+            xmlns:local="using:VLC.UI.Views.UserControls"
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-            xmlns:userControls="using:VLC.Universal8._1.Views.UserControls"
-            xmlns:userControl="using:VLC.Universal8._1.Views.UserControls"
+            xmlns:userControls="using:VLC.UI.Views.UserControls"
+            xmlns:userControl="using:VLC.UI.Views.UserControls"
             mc:Ignorable="d"
             d:DesignHeight="300"
             d:DesignWidth="400"
             RequestedTheme="Dark"
             Background="{ThemeResource TranslucentMainColor}"
             x:Name="RootCommandBar"
-            DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
+            DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+            ClosedDisplayMode="{Binding Source={StaticResource Locator}, Path=MainVM.CommandBarDisplayMode}">
     <CommandBar.Content>
         <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
             <Grid.RowDefinitions>
@@ -20,6 +21,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Button x:Name="NowPlayingArtistGrid"
+                    Height="{ThemeResource AppBarThemeCompactHeight}"
                     Background="Transparent"
                     Click="RootMiniPlayer_Clicked"
                     Style="{StaticResource GrayedBackgroundButtonStyle}"
@@ -136,14 +138,16 @@
     </CommandBar.PrimaryCommands>
     <CommandBar.SecondaryCommands>
         <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=Search}"
-                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSearchPageCommand}">
+                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSearchPageCommand}"
+                      Style="{StaticResource AppBarTextButtonStyle}">
             <AppBarButton.Icon>
-            <FontIcon Glyph="{StaticResource SearchSymbol}"
+                <FontIcon Glyph="{StaticResource SearchSymbol}"
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarButton.Icon></AppBarButton>
         <AppBarButton x:Name="SettingsButton"
                       Label="{Binding Source={StaticResource Strings}, Path=Settings}"
-                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
+                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}"
+                      Style="{StaticResource AppBarTextButtonStyle}">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource SettingsSymbol}"
                           FontFamily="{StaticResource VLCFont}" />
@@ -151,7 +155,8 @@
         </AppBarButton>
         <AppBarButton x:Name="AboutAppButton"
                       Label="{Binding Source={StaticResource Strings}, Path=AboutTheApp}"
-                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToAboutViewCommand}">
+                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToAboutViewCommand}"
+                      Style="{StaticResource AppBarTextButtonStyle}">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource PlayerSettingsSymbol}"
                           FontFamily="{StaticResource VLCFont}" />

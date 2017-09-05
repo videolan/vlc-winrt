@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC.Universal8._1.Views.UserControls.Flyouts
+namespace VLC.UI.Views.UserControls.Flyouts
 {
     public sealed partial class VideoInformationFlyout : Flyout
     {
@@ -13,7 +13,7 @@ namespace VLC.Universal8._1.Views.UserControls.Flyouts
         public VideoInformationFlyout(object videoItem)
         {
             this.InitializeComponent();
-       //     this.FlyoutGrid.DataContext = videoItem;
+            this.FlyoutGrid.DataContext = videoItem;
         }
 
         private void ActionButton_Click(object sender, RoutedEventArgs e)

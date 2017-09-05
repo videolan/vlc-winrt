@@ -4,12 +4,12 @@ using System.IO.Compression;
 using System.Text;
 using System.Xml.Linq;
 using System.Threading.Tasks;
-using VLC.MediaMetaFetcher;
 using VLC.Model.Video;
 using VLC.Utils;
 using VLC.ViewModels;
 using Windows.Storage;
 using System.Linq;
+using VLC.MediaMetaFetcher;
 
 namespace VLC.Services.RunTime
 {

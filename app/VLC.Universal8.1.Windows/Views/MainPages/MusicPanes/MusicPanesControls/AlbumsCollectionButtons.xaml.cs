@@ -1,8 +1,9 @@
-﻿using Windows.UI.Xaml;
+﻿using Microsoft.Xaml.Interactivity;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC.ViewModels;
 
-namespace VLC.Universal8._1.Views.MainPages.MusicPanes.MusicPanesControls
+namespace VLC.UI.Views.MainPages.MusicPanes.MusicPanesControls
 {
     public sealed partial class AlbumsCollectionButtons : UserControl
     {
@@ -31,10 +32,10 @@ namespace VLC.Universal8._1.Views.MainPages.MusicPanes.MusicPanesControls
 
         void Responsive(double width)
         {
-          //  if (width < 700)
-           //     VisualStateUtilities.GoToState(this, "Minimal", false);
-            //else
-             //   VisualStateUtilities.GoToState(this, "Normal", false);
+            if (width < 700)
+                VisualStateUtilities.GoToState(this, "Minimal", false);
+            else
+                VisualStateUtilities.GoToState(this, "Normal", false);
         }
 
         private void ComboBox_OnDropDownOpened(object sender, object e)

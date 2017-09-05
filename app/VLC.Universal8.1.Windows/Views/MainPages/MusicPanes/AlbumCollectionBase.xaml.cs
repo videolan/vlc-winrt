@@ -5,9 +5,9 @@ using VLC.ViewModels;
 using Windows.UI.Xaml.Input;
 using VLC.Model;
 using Windows.System;
-using VLC.Universal8._1.Views.UserControls.Flyouts;
+using VLC.UI.Views.UserControls.Flyouts;
 
-namespace VLC.Universal8._1.Views.MainPages.MusicPanes
+namespace VLC.UI.Views.MainPages.MusicPanes
 {
     public sealed partial class AlbumCollectionBase : UserControl
     {
@@ -37,12 +37,12 @@ namespace VLC.Universal8._1.Views.MainPages.MusicPanes
         private void AlbumsZoomedInView_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
             ListView list = (ListView)sender;
-            //if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic
-            //    && e.Key == VirtualKey.GamepadView)
-            //{
-            //    var menu = new AlbumMenuFlyout(AlbumsZoomedInView.ItemFromContainer(focussedListViewItem));
-            //    menu.ShowAt(focussedListViewItem);
-            //}
+            if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic
+                && e.Key == VirtualKey.GamepadView)
+            {
+                var menu = new AlbumMenuFlyout(AlbumsZoomedInView.ItemFromContainer(focussedListViewItem));
+                menu.ShowAt(focussedListViewItem);
+            }
         }
     }
 }

@@ -1,15 +1,16 @@
-﻿using VLC.Helpers;
+﻿using Microsoft.Xaml.Interactivity;
+using VLC.Helpers;
 using VLC.Model;
 using VLC.ViewModels;
-using VLC.Universal8._1.Views.MainPages;
+using VLC.UI.Views.MainPages;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
-using VLC.Universal8._1.Views.UserControls;
-using VLC.Universal8._1.Views.UserControls.Shell;
+using VLC.UI.Views.UserControls;
+using VLC.UI.Views.UserControls.Shell;
 
-namespace VLC.Universal8._1.Views.MainPages
+namespace VLC.UI.Views.MainPages
 {
     public sealed partial class HomePage : Page
     {

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC.Universal8._1.Views.UserControls"
-      xmlns:controls="using:VLC.Controls"
+      xmlns:controls="using:VLC.Universal8._1.Views.UserControls"
       xmlns:local="using:Win2DBlurEffect"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

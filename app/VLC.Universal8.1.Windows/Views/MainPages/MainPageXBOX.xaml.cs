@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
-namespace VLC.Universal8._1.Views.MainPages
+namespace VLC.UI.Views.MainPages
 {
     public sealed partial class MainPageXBOX
     {

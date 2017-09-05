@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
+  <Identity Name="VideoLAN.VLCforWindows8" Publisher="CN=716F2E5E-A03A-486B-BC67-9B18474B9D51" Version="1.8.5.0" />
+  <Properties>
+    <DisplayName>VLC for Windows Store</DisplayName>
+    <PublisherDisplayName>VideoLAN</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.0</OSMinVersion>
+    <OSMaxVersionTested>6.3.0</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="VLC_WinRT.Windows.App">
+      <m2:VisualElements DisplayName="VLC for Windows Store" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="VLC for the Windows Store experience" ForegroundText="light" BackgroundColor="#ff8800" ToastCapable="true">
+        <m2:DefaultTile ShortName="VLC for Windows Store" Wide310x150Logo="Assets\Wide310x150Logo.png" Square70x70Logo="Assets\Square70x70Logo.png" DefaultSize="square150x150Logo" Square310x310Logo="Assets\Square310x310Logo.png">
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="square150x150Logo" />
+            <m2:ShowOn Tile="wide310x150Logo" />
+            <m2:ShowOn Tile="square310x310Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
+        <m2:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#ffffff" />
+        <m2:ApplicationView MinWidth="width320" />
+      </m2:VisualElements>
+      <Extensions>
+        <Extension Category="windows.fileTypeAssociation" EntryPoint="VLC_WinRT.Windows.App">
+          <FileTypeAssociation Name="vlc" m2:DesiredView="useHalf">
+            <DisplayName>VLC Media Player</DisplayName>
+            <EditFlags AlwaysUnsafe="true" />
+            <SupportedFileTypes>
+              <FileType>.3g2</FileType>
+              <FileType>.3gp</FileType>
+              <FileType>.3gp2</FileType>
+              <FileType>.3gpp</FileType>
+              <FileType>.amv</FileType>
+              <FileType>.asf</FileType>
+              <FileType>.avi</FileType>
+              <FileType>.divx</FileType>
+              <FileType>.drc</FileType>
+              <FileType>.dv</FileType>
+              <FileType>.f4v</FileType>
+              <FileType>.flv</FileType>
+              <FileType>.gvi</FileType>
+              <FileType>.gxf</FileType>
+              <FileType>.ismv</FileType>
+              <FileType>.m1v</FileType>
+              <FileType>.m2v</FileType>
+              <FileType>.m2t</FileType>
+              <FileType>.m2ts</FileType>
+              <FileType>.m4a</FileType>
+              <FileType>.mkv</FileType>
+              <FileType>.mov</FileType>
+              <FileType>.mp2</FileType>
+              <FileType>.mp2v</FileType>
+              <FileType>.mp4</FileType>
+              <FileType>.m4v</FileType>
+              <FileType>.mp4v</FileType>
+              <FileType>.mpe</FileType>
+              <FileType>.mpeg</FileType>
+              <FileType>.mpeg1</FileType>
+              <FileType>.mpeg2</FileType>
+              <FileType>.mpeg4</FileType>
+              <FileType>.mpg</FileType>
+              <FileType>.mpv2</FileType>
+              <FileType>.mts</FileType>
+              <FileType>.mtv</FileType>
+              <FileType>.mxf</FileType>
+              <FileType>.mxg</FileType>
+              <FileType>.nsv</FileType>
+              <FileType>.nut</FileType>
+              <FileType>.nuv</FileType>
+              <FileType>.ogm</FileType>
+              <FileType>.ogv</FileType>
+              <FileType>.ogx</FileType>
+              <FileType>.ps</FileType>
+              <FileType>.rec</FileType>
+              <FileType>.rm</FileType>
+              <FileType>.rmvb</FileType>
+              <FileType>.tob</FileType>
+              <FileType>.ts</FileType>
+              <FileType>.tts</FileType>
+              <FileType>.vro</FileType>
+              <FileType>.webm</FileType>
+              <FileType>.wm</FileType>
+              <FileType>.wmv</FileType>
+              <FileType>.wtv</FileType>
+              <FileType>.xesc</FileType>
+              <FileType>.mp3</FileType>
+              <FileType>.ogg</FileType>
+              <FileType>.aac</FileType>
+              <FileType>.wma</FileType>
+              <FileType>.wav</FileType>
+              <FileType>.flac</FileType>
+              <FileType>.mlp</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
+        <Extension Category="windows.backgroundTasks" EntryPoint="VLC_WinRT.App">
+          <BackgroundTasks>
+            <Task Type="audio" />
+          </BackgroundTasks>
+        </Extension>
+        <Extension Category="windows.protocol">
+          <Protocol Name="vlc" m2:DesiredView="useMore">
+            <DisplayName>VLC</DisplayName>
+          </Protocol>
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <Capability Name="videosLibrary" />
+    <Capability Name="musicLibrary" />
+    <Capability Name="removableStorage" />
+    <Capability Name="internetClientServer" />
+    <Capability Name="picturesLibrary" />
+  </Capabilities>
+</Package>

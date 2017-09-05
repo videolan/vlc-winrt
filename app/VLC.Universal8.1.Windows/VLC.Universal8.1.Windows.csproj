@@ -200,6 +200,7 @@
     <Compile Include="Views\UserControls\ArtistHorizontalTemplate.xaml.cs">
       <DependentUpon>ArtistHorizontalTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\BackDrop.cs" />
     <Compile Include="Views\UserControls\BufferingControl.xaml.cs">
       <DependentUpon>BufferingControl.xaml</DependentUpon>
     </Compile>
@@ -278,6 +279,9 @@
     <Compile Include="Views\UserControls\Shell\HomePageController.xaml.cs">
       <DependentUpon>HomePageController.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\Shell\VLCDialog.xaml.cs">
+      <DependentUpon>VLCDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\ShowItem.xaml.cs">
       <DependentUpon>ShowItem.xaml</DependentUpon>
     </Compile>
@@ -286,9 +290,6 @@
     </Compile>
     <Compile Include="Views\UserControls\SliderControlHorizontal.xaml.cs">
       <DependentUpon>SliderControlHorizontal.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\TopBar.xaml.cs">
-      <DependentUpon>TopBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\TrackItemTemplate.xaml.cs">
       <DependentUpon>TrackItemTemplate.xaml</DependentUpon>
@@ -304,9 +305,6 @@
     </Compile>
     <Compile Include="Views\UserControls\VLCLogoWithGradient.xaml.cs">
       <DependentUpon>VLCLogoWithGradient.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\VLCPivot.xaml.cs">
-      <DependentUpon>VLCPivot.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VariousPages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
@@ -631,6 +629,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\UserControls\Shell\VLCDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\UserControls\ShowItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -642,10 +644,6 @@
     <Page Include="Views\UserControls\SliderControlHorizontal.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\TopBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\TrackItemTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -666,10 +664,6 @@
     <Page Include="Views\UserControls\VLCLogoWithGradient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\VLCPivot.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\VariousPages\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>

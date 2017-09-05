@@ -7,7 +7,7 @@ using VLC.Services.RunTime;
 using VLC.ViewModels;
 using Windows.UI.Xaml.Media;
 
-namespace VLC.Universal8._1.Views.MainPages
+namespace VLC.UI.Views.MainPages
 {
     public sealed partial class MainPageNetwork : Page
     {

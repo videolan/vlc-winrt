@@ -9,14 +9,14 @@ using VLC.Model.Music;
 using VLC.Utils;
 using VLC.ViewModels;
 using VLC.ViewModels.MusicVM;
-using VLC.Universal8._1.Views.UserControls;
+using VLC.UI.Views.UserControls;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI;
 using VLC.Model;
 
-namespace VLC.Universal8._1.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class TrackItemTemplateDetailedVertical : UserControl
     {
@@ -29,6 +29,7 @@ namespace VLC.Universal8._1.Views.UserControls
         private void TrackItemTemplate_Unloaded(object sender, RoutedEventArgs e)
         {
             Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet -= UpdateTrack;
+           if(Track != null) Track.PropertyChanged -= Track_PropertyChanged;
         }
 
         public TrackItem Track

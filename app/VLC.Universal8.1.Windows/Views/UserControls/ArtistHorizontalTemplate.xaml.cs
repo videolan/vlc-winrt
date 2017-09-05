@@ -7,7 +7,7 @@ using VLC.Model.Music;
 using VLC.Utils;
 using VLC.ViewModels;
 
-namespace VLC.Universal8._1.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class ArtistHorizontalTemplate : UserControl
     {

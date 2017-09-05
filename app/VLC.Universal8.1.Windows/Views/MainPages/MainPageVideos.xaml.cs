@@ -11,14 +11,15 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC.ViewModels;
+using Microsoft.Xaml.Interactivity;
 using VLC.Model.Video;
-using VLC.Universal8._1.Views.MainPages.MainVideoControls;
+using VLC.UI.Views.MainPages.MainVideoControls;
 using VLC.ViewModels.VideoVM;
 using VLC.Helpers;
 using System.Diagnostics;
 using System.Linq;
 
-namespace VLC.Universal8._1.Views.MainPages
+namespace VLC.UI.Views.MainPages
 {
     public sealed partial class MainPageVideos : Page
     {
@@ -69,7 +70,7 @@ namespace VLC.Universal8._1.Views.MainPages
                         MainPageVideoContentPresenter.Content = new ShowsPivotItem();
                     break;
                 case VideoView.CameraRoll:
-                    //Debug.Assert(DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox);
+                    Debug.Assert(DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox);
                     if (!(MainPageVideoContentPresenter.Content is CameraRollPivotItem))
                         MainPageVideoContentPresenter.Content = new CameraRollPivotItem();
                     break;

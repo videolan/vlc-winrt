@@ -6,6 +6,7 @@ using VLC.Model.Music;
 using Windows.ApplicationModel.Resources;
 using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.Storage;
+using Windows.UI.Core;
 
 namespace VLC.Utils
 {

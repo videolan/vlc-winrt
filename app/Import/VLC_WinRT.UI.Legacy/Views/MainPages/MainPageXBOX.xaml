@@ -1,0 +1,88 @@
+﻿<Page x:Class="VLC_WinRT.UI.Legacy.Views.MainPages.MainPageXBOX"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VLC_WinRT.UI.Legacy.Views.MainPages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:triggers="using:WinRT.Triggers"
+      mc:Ignorable="d"
+      DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
+
+    <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+            <Path Data="{StaticResource VLCFlatPath}"
+                  Fill="{ThemeResource MainColor}"
+                  Stretch="Uniform"
+                  Height="40" />
+            <TextBlock Text="VLC"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       Margin="{StaticResource FrameMarginLeft}"
+                       VerticalAlignment="Center" />
+        </StackPanel>
+        <ListView x:Name="PanelsListView"
+                  Grid.Row="3"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                  SelectionMode="Single"
+                  IsItemClickEnabled="True"
+                  ItemClick="ListView_ItemClick">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          Width="173">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <FontIcon Glyph="{Binding DefaultIcon}"
+                                  Foreground="{ThemeResource MainColor}"
+                                  FontFamily="{StaticResource VLCFont}"
+                                  FontSize="42"
+                                  HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1"
+                                   Text="{Binding Title}"
+                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   ItemHeight="173"
+                                   ItemWidth="173"
+                                   Loaded="ItemsWrapGrid_Loaded"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+
+        <Grid Grid.Row="5"
+              Margin="{StaticResource FrameMarginBottom}">
+            <AppBarButton Grid.Column="3"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          VerticalAlignment="Center"
+                          Label="{Binding Source={StaticResource Strings}, Path=Settings}"
+                          ToolTipService.ToolTip="{Binding Source={StaticResource Strings}, Path=Settings}"
+                          Command="{Binding GoToSettingsPageCommand}"
+                          IsTabStop="True"
+                          HorizontalAlignment="Center">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource SettingsSymbol}"
+                              FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </Grid>
+    </Grid>
+</Page>

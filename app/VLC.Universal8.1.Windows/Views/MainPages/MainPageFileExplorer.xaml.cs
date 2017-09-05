@@ -1,18 +1,19 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Xaml.Interactivity;
 using VLC.ViewModels;
 using Windows.UI.Xaml.Input;
 using VLC.Commands.VLCFileExplorer;
 using VLC.Model;
 using VLC.Model.FileExplorer;
-using VLC.Universal8._1.Views.UserControls.Flyouts;
+using VLC.UI.Views.UserControls.Flyouts;
 using VLC.Commands;
 using VLC.Utils;
 using Windows.System;
 using VLC.Commands.MediaLibrary;
 
-namespace VLC.Universal8._1.Views.MainPages
+namespace VLC.UI.Views.MainPages
 {
     public sealed partial class MainPageFileExplorer : Page
     {

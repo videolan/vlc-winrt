@@ -7,11 +7,11 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Slide2D.Images;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml.Data;
-using VLC.MediaMetaFetcher.Models.SharedEntities;
 
 namespace VLC.Converters
 {
@@ -19,15 +19,12 @@ namespace VLC.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var topImage = value as List<Image>;
+            var topImage = value as List<Img>;
             if (topImage == null)
                 return null;
 
-            var albumImage = topImage.LastOrDefault(image => !string.IsNullOrEmpty(image.Url));
-            if (albumImage == null)
-                return null;
-            else
-                return albumImage.Url;
+            var albumImage = topImage.LastOrDefault(image => !string.IsNullOrEmpty(image.Src));
+            return albumImage?.Src;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

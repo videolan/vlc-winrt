@@ -14,7 +14,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace VLC.Universal8._1.Views.UserControls
+namespace VLC.UI.Views.UserControls
 {
     public sealed partial class CommandBarBottom : CommandBar
     {
@@ -22,14 +22,14 @@ namespace VLC.Universal8._1.Views.UserControls
         {
             this.InitializeComponent();
 
-            //if (!DynamicApisAvailable) return;
+            if (!DynamicApisAvailable) return;
 
-            //RootCommandBar.IsDynamicOverflowEnabled = true;
-            //PlayPreviousButton.DynamicOverflowOrder = 2;
-            //PlayPauseButton.DynamicOverflowOrder = 3;
-            //PlayNextButton.DynamicOverflowOrder = 2;
-            //ShuffleButton.DynamicOverflowOrder = 1;
-            //MiniWindowButton.DynamicOverflowOrder = 1;
+            RootCommandBar.IsDynamicOverflowEnabled = true;
+            PlayPreviousButton.DynamicOverflowOrder = 2;
+            PlayPauseButton.DynamicOverflowOrder = 3;
+            PlayNextButton.DynamicOverflowOrder = 2;
+            ShuffleButton.DynamicOverflowOrder = 1;
+            MiniWindowButton.DynamicOverflowOrder = 1;
         }
 
         #region interactions
@@ -55,7 +55,7 @@ namespace VLC.Universal8._1.Views.UserControls
             Locator.PlaybackService.ClearPlaylist();
         }
 
-        //private bool DynamicApisAvailable => ApiInformation.IsApiContractPresent(
-        //    "Windows.Foundation.UniversalApiContract", 3);
+        private bool DynamicApisAvailable => ApiInformation.IsApiContractPresent(
+            "Windows.Foundation.UniversalApiContract", 3);
     }
 }

@@ -4,7 +4,7 @@ using VLC.Helpers.MusicLibrary;
 using VLC.ViewModels;
 using System.Threading.Tasks;
 
-namespace VLC.Universal8._1.Views.MusicPages
+namespace VLC.UI.Views.MusicPages
 {
     public sealed partial class CreateNewPlaylist
     {

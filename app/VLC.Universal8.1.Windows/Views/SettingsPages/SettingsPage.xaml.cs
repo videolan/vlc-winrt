@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Input;
 using Windows.Storage;
 
-namespace VLC.Universal8._1.Views.SettingsPages
+namespace VLC.UI.Views.SettingsPages
 {
     public sealed partial class SettingsPage
     {
@@ -22,20 +22,20 @@ namespace VLC.Universal8._1.Views.SettingsPages
         {
             this.InitializeComponent();
             this.Loaded += SettingsPage_Loaded;
-            //this.UsernameBoxLastFm.KeyUp += UsernameBoxLastFm_KeyUp;
-            //this.PasswordBoxLastFm.KeyUp += PasswordBoxLastFm_KeyUp;
+            this.UsernameBoxLastFm.KeyUp += UsernameBoxLastFm_KeyUp;
+            this.PasswordBoxLastFm.KeyUp += PasswordBoxLastFm_KeyUp;
         }
 
         private void UsernameBoxLastFm_KeyUp(object sender, KeyRoutedEventArgs e)
         {
-            //if (e.Key == VirtualKey.Enter)
-            //    PasswordBoxLastFm.Focus(FocusState.Programmatic);
+            if (e.Key == VirtualKey.Enter)
+                PasswordBoxLastFm.Focus(FocusState.Programmatic);
         }
 
         private void PasswordBoxLastFm_KeyUp(object sender, KeyRoutedEventArgs e)
         {
-            //if (e.Key == VirtualKey.Enter)
-            //    ConnectToLastFM_Click(PasswordBoxLastFm, null);
+            if (e.Key == VirtualKey.Enter)
+                ConnectToLastFM_Click(PasswordBoxLastFm, null);
         }
 
         private void SettingsPage_Loaded(object sender, RoutedEventArgs e)
@@ -59,7 +59,7 @@ namespace VLC.Universal8._1.Views.SettingsPages
                 }
             }
 #endif
-            //AppThemeSwitch.Focus(FocusState.Programmatic);
+            AppThemeSwitch.Focus(FocusState.Programmatic);
         }
 
         void FocusTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -79,23 +79,23 @@ namespace VLC.Universal8._1.Views.SettingsPages
             string pseudo = (string)ApplicationSettingsHelper.ReadSettingsValue("LastFmUserName");
             string pd = (string)ApplicationSettingsHelper.ReadSettingsValue("LastFmPassword");
 
-            //if (string.IsNullOrEmpty(pseudo) || string.IsNullOrEmpty(pd)) return;
-            //ErrorConnectLastFmTextBox.Text = Strings.Connecting;
-            //ErrorConnectLastFmTextBox.Visibility = Visibility.Visible;
-            //ErrorConnectLastFmTextBox.Foreground = new SolidColorBrush(Colors.Gray);
-            //var success = await lastFm.ConnectOperation(pseudo, pd);
-            //if (success)
-            //{
-            //    ErrorConnectLastFmTextBox.Text = "";
-            //    ErrorConnectLastFmTextBox.Visibility = Visibility.Collapsed;
-            //    Locator.SettingsVM.LastFmIsConnected = true;
-            //}
-            //else
-            //{
-            //    ErrorConnectLastFmTextBox.Foreground = new SolidColorBrush(Colors.Red);
-            //    ErrorConnectLastFmTextBox.Text = Strings.CheckCredentials;
-            //    Locator.SettingsVM.LastFmIsConnected = false;
-            //}
+            if (string.IsNullOrEmpty(pseudo) || string.IsNullOrEmpty(pd)) return;
+            ErrorConnectLastFmTextBox.Text = Strings.Connecting;
+            ErrorConnectLastFmTextBox.Visibility = Visibility.Visible;
+            ErrorConnectLastFmTextBox.Foreground = new SolidColorBrush(Colors.Gray);
+            var success = await lastFm.ConnectOperation(pseudo, pd);
+            if (success)
+            {
+                ErrorConnectLastFmTextBox.Text = "";
+                ErrorConnectLastFmTextBox.Visibility = Visibility.Collapsed;
+                Locator.SettingsVM.LastFmIsConnected = true;
+            }
+            else
+            {
+                ErrorConnectLastFmTextBox.Foreground = new SolidColorBrush(Colors.Red);
+                ErrorConnectLastFmTextBox.Text = Strings.CheckCredentials;
+                Locator.SettingsVM.LastFmIsConnected = false;
+            }
         }
 
         private void VideoFolder_Tapped(object sender, RoutedEventArgs args)

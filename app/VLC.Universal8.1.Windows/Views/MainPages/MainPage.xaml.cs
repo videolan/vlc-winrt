@@ -23,13 +23,14 @@ using System;
 using System.Linq;
 using Windows.System;
 using System.Diagnostics;
+using Windows.UI.Composition;
 using System.Numerics;
 using Windows.UI.Xaml.Hosting;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Storage;
 
-namespace VLC.Universal8._1.Views.MainPages
+namespace VLC.UI.Views.MainPages
 {
     public sealed partial class MainPage
     {
@@ -40,6 +41,31 @@ namespace VLC.Universal8._1.Views.MainPages
             Locator.MediaPlaybackViewModel.SetMediaTransportControls(smtc);
             this.GotFocus += MainPage_GotFocus;
             this.Loaded += MainPage_Loaded;
+            Unloaded += OnUnloaded;
+        }
+
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigationFrame.AllowDrop = true;
+            NavigationFrame.DragOver += NavigationFrame_DragOver;
+            NavigationFrame.Drop += NavigationFrame_Drop;
+
+            SwapChainPanel.Tapped += SwapChainPanel_Tapped;
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            NavigationFrame.AllowDrop = false;
+            NavigationFrame.DragOver -= NavigationFrame_DragOver;
+            NavigationFrame.Drop -= NavigationFrame_Drop;
+
+            SwapChainPanel.Tapped -= SwapChainPanel_Tapped;
+
+            SplitShell = null;
+            NavigationFrame = null;
+            SwapChainPanel = null;
+            _compositor = null;
+            GC.Collect();
         }
 
         private void MainPage_GotFocus(object sender, RoutedEventArgs e)
@@ -77,33 +103,22 @@ namespace VLC.Universal8._1.Views.MainPages
             Locator.NavigationService.GoBack_HideFlyout();
         }
 
-        private void MainPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            NavigationFrame.AllowDrop = true;
-            NavigationFrame.DragOver += NavigationFrame_DragOver;
-            NavigationFrame.Drop += NavigationFrame_Drop;
-
-            SwapChainPanel.Tapped += SwapChainPanel_Tapped;
-        }
-
-
-
         private async void NavigationFrame_Drop(object sender, DragEventArgs e)
         {
-            //var storageItems = await e.DataView.GetStorageItemsAsync();
-            //if (!storageItems.Any())
-            //    return;
-            //await Locator.MediaPlaybackViewModel.OpenFile(storageItems[0] as Windows.Storage.StorageFile);
+            var storageItems = await e.DataView.GetStorageItemsAsync();
+            if (!storageItems.Any())
+                return;
+            await Locator.MediaPlaybackViewModel.OpenFile(storageItems[0] as Windows.Storage.StorageFile);
         }
 
         private void NavigationFrame_DragOver(object sender, DragEventArgs e)
         {
-            //e.AcceptedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Copy;
-            //e.DragUIOverride.Caption = Strings.OpenFile;
-            //e.DragUIOverride.IsGlyphVisible = false;
+            e.AcceptedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Copy;
+            e.DragUIOverride.Caption = Strings.OpenFile;
+            e.DragUIOverride.IsGlyphVisible = false;
         }
 
-        //private Compositor _compositor;
+        private Compositor _compositor;
         private bool _pipEnabled;
         public void StartCompositionAnimationOnSwapChain(bool pipEnabled)
         {
@@ -112,67 +127,67 @@ namespace VLC.Universal8._1.Views.MainPages
 
             Canvas.SetZIndex(SwapChainPanel, _pipEnabled ? 1 : 0);
 
-            //var root = ElementCompositionPreview.GetElementVisual(RootGrid);
-            //_compositor = root.Compositor;
+            var root = ElementCompositionPreview.GetElementVisual(RootGrid);
+            _compositor = root.Compositor;
             Animate();
             SplitShell.ContentSizeChanged += (s) => Animate();
         }
         
         public async void StopCompositionAnimationOnSwapChain()
         {
-            //if (_compositor == null || _pipEnabled == false)
-            //    return;
+            if (_compositor == null || _pipEnabled == false)
+                return;
 
-            //_pipEnabled = false;
-            //var target = ElementCompositionPreview.GetElementVisual(SwapChainPanel);
-            //var opacityAnim = _compositor.CreateScalarKeyFrameAnimation();
-            //opacityAnim.InsertKeyFrame(1f, 0f);
+            _pipEnabled = false;
+            var target = ElementCompositionPreview.GetElementVisual(SwapChainPanel);
+            var opacityAnim = _compositor.CreateScalarKeyFrameAnimation();
+            opacityAnim.InsertKeyFrame(1f, 0f);
 
-            //opacityAnim.Duration = TimeSpan.FromMilliseconds(500);
-            //opacityAnim.IterationCount = 1;
-            //target.StartAnimation(nameof(Visual.Opacity), opacityAnim);
-            //await Task.Delay((int)opacityAnim.Duration.TotalMilliseconds);
-            //SwapChainPanel.Visibility = Visibility.Collapsed;
+            opacityAnim.Duration = TimeSpan.FromMilliseconds(500);
+            opacityAnim.IterationCount = 1;
+            target.StartAnimation(nameof(Visual.Opacity), opacityAnim);
+            await Task.Delay((int)opacityAnim.Duration.TotalMilliseconds);
+            SwapChainPanel.Visibility = Visibility.Collapsed;
         }
 
         void Animate()
         {
-            //var target = ElementCompositionPreview.GetElementVisual(SwapChainPanel);
-            //if (!_pipEnabled) // Don't needlessly call composition APIs
-            //{
-            //    if (target.Offset.X == 0f && target.Offset.Y == 0f && target.Opacity != 1f)
-            //        return;
-            //}
+            var target = ElementCompositionPreview.GetElementVisual(SwapChainPanel);
+            if (!_pipEnabled) // Don't needlessly call composition APIs
+            {
+                if (target.Offset.X == 0f && target.Offset.Y == 0f && target.Opacity != 1f)
+                    return;
+            }
 
-            //// Position Animation
-            ////var posAnimation = _compositor.CreateVector3KeyFrameAnimation();
-            //if (_pipEnabled)
-            //{
-            //    posAnimation.InsertKeyFrame(1f, new Vector3((float)Window.Current.Bounds.Width * 0.7f, (float)Window.Current.Bounds.Height * 0.7f, 1f));
-            //}
-            //else
-            //{
-            //    posAnimation.InsertKeyFrame(1f, new Vector3(0f, 0f, 1f));
-            //}
+            // Position Animation
+            var posAnimation = _compositor.CreateVector3KeyFrameAnimation();
+            if (_pipEnabled)
+            {
+                posAnimation.InsertKeyFrame(1f, new Vector3((float)Window.Current.Bounds.Width * 0.7f, (float)Window.Current.Bounds.Height * 0.7f, 1f));
+            }
+            else
+            {
+                posAnimation.InsertKeyFrame(1f, new Vector3(0f, 0f, 1f));
+            }
 
-            //// Opacity animation
-            //var opacityAnim = _compositor.CreateScalarKeyFrameAnimation();
-            //opacityAnim.InsertKeyFrame(1f, 1f);
+            // Opacity animation
+            var opacityAnim = _compositor.CreateScalarKeyFrameAnimation();
+            opacityAnim.InsertKeyFrame(1f, 1f);
 
-            //// Scale animation
-            //var scaleAnimation = _compositor.CreateVector3KeyFrameAnimation();
-            //if (_pipEnabled)
-            //    scaleAnimation.InsertKeyFrame(1f, new Vector3(0.3f, 0.3f, 1f));
-            //else
-            //    scaleAnimation.InsertKeyFrame(1f, new Vector3(1f, 1f, 1f));
+            // Scale animation
+            var scaleAnimation = _compositor.CreateVector3KeyFrameAnimation();
+            if (_pipEnabled)
+                scaleAnimation.InsertKeyFrame(1f, new Vector3(0.3f, 0.3f, 1f));
+            else
+                scaleAnimation.InsertKeyFrame(1f, new Vector3(1f, 1f, 1f));
 
-            //// Set animation properties
-            //opacityAnim.Duration = scaleAnimation.Duration = posAnimation.Duration = TimeSpan.FromMilliseconds(500);
-            //opacityAnim.IterationCount = scaleAnimation.IterationCount = posAnimation.IterationCount = 1;
+            // Set animation properties
+            opacityAnim.Duration = scaleAnimation.Duration = posAnimation.Duration = TimeSpan.FromMilliseconds(500);
+            opacityAnim.IterationCount = scaleAnimation.IterationCount = posAnimation.IterationCount = 1;
 
-            //target.StartAnimation("Offset", posAnimation);
-            //target.StartAnimation("Scale", scaleAnimation);
-            //target.StartAnimation("Opacity", opacityAnim);
+            target.StartAnimation("Offset", posAnimation);
+            target.StartAnimation("Scale", scaleAnimation);
+            target.StartAnimation("Opacity", opacityAnim);
         }
 
         private void SwapChainPanel_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)

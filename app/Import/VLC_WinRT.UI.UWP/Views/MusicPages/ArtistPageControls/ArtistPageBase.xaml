@@ -1,0 +1,75 @@
+﻿<Page x:Class="VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls.ArtistPageBase"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:triggers="using:WinRT.Triggers"
+      mc:Ignorable="d"
+      d:DesignHeight="300"
+      d:DesignWidth="400"
+      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <local:MainArtistHeader x:Name="MainArtistHeader"
+                                VerticalAlignment="Stretch" />
+
+        <Pivot x:Name="MainPivot"
+               Grid.Row="1"
+               Style="{StaticResource TitlelessPivot}">
+            <PivotItem>
+                <PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
+                                  FontFamily="{StaticResource VLCFont}"
+                                  FontSize="22" />
+                        <TextBlock Margin="5,0,0,0"
+                                   Text="{Binding Source={StaticResource Strings}, Path=Albums}" />
+                    </StackPanel>
+                </PivotItem.Header>
+                <local:ArtistAlbumsSemanticView x:Name="ArtistAlbumsSemanticView"/>
+            </PivotItem>
+            <PivotItem>
+                <PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="{StaticResource BuddySymbol}"
+                                  FontFamily="{StaticResource VLCFont}"
+                                  FontSize="22" />
+                        <TextBlock Margin="5,0,0,0"
+                                   Text="{Binding Source={StaticResource Strings}, Path=SimilarArtists}" />
+                    </StackPanel>
+                </PivotItem.Header>
+                <local:ArtistInfoControl x:Name="ExtraInfoGrid" />
+            </PivotItem>
+        </Pivot>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Tiny">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ArtistAlbumsSemanticView.FloatingActionButtonVisibility"
+                                Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Medium">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="650" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ArtistAlbumsSemanticView.FloatingActionButtonVisibility"
+                                Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>

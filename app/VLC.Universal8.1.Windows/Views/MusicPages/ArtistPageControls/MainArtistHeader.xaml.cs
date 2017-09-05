@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using Microsoft.Xaml.Interactivity;
+using System.Threading.Tasks;
 using VLC.Model.Music;
 using VLC.Utils;
 using VLC.ViewModels;
@@ -9,7 +10,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace VLC.Universal8._1.Views.MusicPages.ArtistPageControls
+namespace VLC.UI.Views.MusicPages.ArtistPageControls
 {
     public sealed partial class MainArtistHeader : UserControl
     {
