@@ -16,9 +16,9 @@ namespace VLC_WinRT.Views.UserControls
         }
         
 
-        public Panel Panel
+        public VLC.Model.Panel Panel
         {
-            get { return (Panel)GetValue(PanelProperty); }
+            get { return (VLC.Model.Panel)GetValue(PanelProperty); }
             set { SetValue(PanelProperty, value); }
         }
 
@@ -35,8 +35,8 @@ namespace VLC_WinRT.Views.UserControls
         public void Init()
         {
             if (Panel == null) return;
-            //Icon.Glyph = Panel.DefaultIcon;
-            //Title.Text = Panel.Title;
+            Icon.Glyph = Panel.DefaultIcon;
+            Title.Text = Panel.Title;
             UpdatePivot();
         }
 
@@ -61,14 +61,14 @@ namespace VLC_WinRT.Views.UserControls
 
         void UpdatePivot()
         {
-            //if (Panel.Target == Locator.MainVM.CurrentPanel.Target)
-            //{
-            //    Icon.Glyph = Panel.FilledIcon;
-            //}
-            //else
-            //{
-            //    Icon.Glyph = Panel.DefaultIcon;
-            //}
+            if (Panel.Target == Locator.MainVM.CurrentPanel.Target)
+            {
+                Icon.Glyph = Panel.FilledIcon;
+            }
+            else
+            {
+                Icon.Glyph = Panel.DefaultIcon;
+            }
         }
 
         void Responsive()

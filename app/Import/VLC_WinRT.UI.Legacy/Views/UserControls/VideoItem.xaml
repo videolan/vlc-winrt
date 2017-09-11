@@ -46,8 +46,8 @@
                Stretch="UniformToFill"
                HorizontalAlignment="Center" />
         <ProgressBar x:Name="VideoProgressBar"
-                     Grid.Row="1"
-                     Style="{StaticResource ThinProgressBar}" />
+                     Grid.Row="1"/>
+                     <!--Style="{StaticResource ThinProgressBar}" />-->
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

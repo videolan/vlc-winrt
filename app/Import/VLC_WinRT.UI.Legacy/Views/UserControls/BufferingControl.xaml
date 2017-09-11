@@ -18,8 +18,7 @@
             <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
         </Grid.ColumnDefinitions>
         <ProgressRing IsActive="True"
-                      VerticalAlignment="Center"
-                      Style="{StaticResource ProgressRing}" />
+                      VerticalAlignment="Center"/>
         <TextBlock Grid.Column="2"
                    Style="{StaticResource BaseTextBlockStyle}"
                    Foreground="{ThemeResource MainColor}"

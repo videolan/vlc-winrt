@@ -748,4 +748,261 @@
     <TransitionCollection x:Key="FrameTransitionCollectionStyle">
         <EdgeUIThemeTransition Edge="Right"/>
     </TransitionCollection>
+
+
+    <!-- APPBARBUTTON STYLES -->
+    <Style x:Key="AppBarButtonStyleHuge"
+           TargetType="AppBarButton">
+        <Setter Property="Foreground"
+                Value="{ThemeResource AppBarItemForegroundThemeBrush}" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="FontFamily"
+                Value="{ThemeResource ContentControlThemeFontFamily}" />
+        <Setter Property="FontWeight"
+                Value="Normal" />
+        <Setter Property="Width"
+                Value="45" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="AppBarButton">
+                    <Border x:Name="LayoutRoot"
+                            Width="{TemplateBinding Width}"
+                            Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ApplicationViewStates">
+                                <VisualState x:Name="FullSize" />
+                                <VisualState x:Name="Compact">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextLabel"
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content"
+                                                                       Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="Gray" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                       Storyboard.TargetName="Content">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource AppBarItemPressedForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                       Storyboard.TargetName="Content">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource AppBarItemDisabledForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <StackPanel VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                            <Grid HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Height="{TemplateBinding Height}"
+                                  Margin="0">
+                                <Grid x:Name="ContentRoot"
+                                      Background="Transparent">
+                                    <ContentPresenter x:Name="Content"
+                                                      AutomationProperties.AccessibilityView="Raw"
+                                                      Content="{TemplateBinding Icon}"
+                                                      Foreground="{TemplateBinding Foreground}"
+                                                      HorizontalAlignment="Stretch"
+                                                      VerticalAlignment="Stretch" />
+                                </Grid>
+                            </Grid>
+                            <TextBlock x:Name="TextLabel"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       Width="{TemplateBinding Width}"
+                                       TextAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       Text="{TemplateBinding Label}" />
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style x:Key="VLCSlider"
+           TargetType="Slider">
+        <Setter Property="Background"
+                Value="{ThemeResource InvertedApplicationBackgroundSemiTranslucentThemeBrush}" />
+        <Setter Property="BorderBrush"
+                Value="{ThemeResource SliderBorderThemeBrush}" />
+        <Setter Property="BorderThickness"
+                Value="{ThemeResource SliderBorderThemeThickness}" />
+        <Setter Property="FontFamily"
+                Value="{ThemeResource ContentControlThemeFontFamily}" />
+        <Setter Property="FontSize"
+                Value="{StaticResource ControlContentThemeFontSize}" />
+        <Setter Property="ManipulationMode"
+                Value="None" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Slider">
+                    <Grid Margin="{TemplateBinding Padding}">
+                        <Grid.Resources>
+                            <Style x:Key="SliderThumbStyle"
+                                   TargetType="Thumb">
+                                <Setter Property="BorderThickness"
+                                        Value="0" />
+                                <Setter Property="BorderBrush"
+                                        Value="{ThemeResource BasicForeground}" />
+                                <Setter Property="Background"
+                                        Value="Transparent" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Thumb">
+                                            <Ellipse Fill="White"
+                                                     Height="11"
+                                                     Width="11" />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Grid.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke"
+                                                                       Storyboard.TargetName="HorizontalBorder">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource SliderDisabledBorderThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+                                                                       Storyboard.TargetName="HorizontalDecreaseRect">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource SliderTrackDecreaseDisabledBackgroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+                                                                       Storyboard.TargetName="HorizontalTrackRect">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource SliderTrackDisabledBackgroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                       Storyboard.TargetName="HorizontalThumb">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource SliderThumbDisabledBackgroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
+                                                                       Storyboard.TargetName="HorizontalThumb">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource SliderThumbDisabledBackgroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+                                                                       Storyboard.TargetName="TopTickBar">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource SliderTickMarkOutsideDisabledForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+                                                                       Storyboard.TargetName="HorizontalInlineTickBar">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource SliderTickMarkInlineDisabledForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+                                                                       Storyboard.TargetName="BottomTickBar">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource SliderTickMarkOutsideDisabledForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid x:Name="HorizontalTemplate"
+                              Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Rectangle x:Name="HorizontalTrackRect"
+                                       Grid.ColumnSpan="3"
+                                       Fill="{ThemeResource TranslucentMainColor}"
+                                       Height="1" />
+                            <Rectangle x:Name="HorizontalDecreaseRect"
+                                       Fill="{ThemeResource MainColor}"
+                                       Height="2" />
+                            <TickBar x:Name="TopTickBar"
+                                     Grid.ColumnSpan="3"
+                                     Fill="{ThemeResource SliderTickmarkOutsideBackgroundThemeBrush}"
+                                     Height="{ThemeResource SliderOutsideTickBarThemeHeight}"
+                                     Margin="0,0,0,2"
+                                     Visibility="Collapsed"
+                                     VerticalAlignment="Bottom" />
+                            <TickBar x:Name="HorizontalInlineTickBar"
+                                     Grid.ColumnSpan="3"
+                                     Fill="{ThemeResource SliderTickMarkInlineBackgroundThemeBrush}"
+                                     Height="{ThemeResource SliderTrackThemeHeight}"
+                                     Visibility="Collapsed" />
+                            <TickBar x:Name="BottomTickBar"
+                                     Grid.ColumnSpan="3"
+                                     Fill="{ThemeResource SliderTickmarkOutsideBackgroundThemeBrush}"
+                                     Height="{ThemeResource SliderOutsideTickBarThemeHeight}"
+                                     Margin="0,2,0,0"
+                                     Visibility="Collapsed"
+                                     VerticalAlignment="Top" />
+                            <Thumb x:Name="HorizontalThumb"
+                                   Style="{StaticResource SliderThumbStyle}"
+                                   AutomationProperties.AccessibilityView="Raw"
+                                   Grid.Column="1"
+                                   DataContext="{TemplateBinding Value}" />
+                            <Rectangle x:Name="HorizontalBorder"
+                                       Grid.ColumnSpan="3"
+                                       Stroke="{TemplateBinding BorderBrush}"
+                                       StrokeThickness="{TemplateBinding BorderThickness}" />
+                        </Grid>
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
 </ResourceDictionary>

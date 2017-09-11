@@ -27,7 +27,7 @@
                                MaxHeight="200" />
             </Grid.RowDefinitions>
             <TextBlock Text="{Binding Source={StaticResource Strings}, Path=AudioTracks}"
-                       Style="{StaticResource BaselineTextStyle}"
+                       Style="{StaticResource BaseTextBlockStyle}"
                        Foreground="{ThemeResource BasicForeground}"
                        FontWeight="SemiBold"
                        VerticalAlignment="Center"

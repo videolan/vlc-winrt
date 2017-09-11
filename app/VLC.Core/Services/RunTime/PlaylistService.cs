@@ -180,15 +180,15 @@ namespace VLC.Services.RunTime
 
         private void savePlaylistToBackgroundDB()
         {
-            var trackItems = _playlist.OfType<TrackItem>();
-            var backgroundTrackItems = new List<BackgroundTrackItem>();
-            foreach (var track in trackItems)
-            {
-                backgroundTrackItems.Add(new BackgroundTrackItem()
-                {
-                    TrackId = track.Id
-                });
-            }
+            //var trackItems = _playlist.OfType<TrackItem>();
+            //var backgroundTrackItems = new List<BackgroundTrackItem>();
+            //foreach (var track in trackItems)
+            //{
+            //    backgroundTrackItems.Add(new BackgroundTrackItem()
+            //    {
+            //        TrackId = track.Id
+            //    });
+            //}
     //        BackgroundTrackRepository.Add(backgroundTrackItems);
         }
 

@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="using:VLC_WinRT.UI.Legacy.Resources">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- SCROLLVIEWERS -->
     <Style x:Key="HorizontalScrollViewerStyle"
@@ -880,7 +879,7 @@
                      Color="#FFFFFFFF" />
 
     <FontWeight x:Key="SliderHeaderThemeFontWeight">SemiLight</FontWeight>
-    <Thickness x:Key="SliderHeaderThemeMargin">6</Thickness>
+    <!--<Thickness x:Key="SliderHeaderThemeMargin">6</Thickness>-->
 
     <Style x:Key="VLCSlider"
            TargetType="Slider">

@@ -29,7 +29,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock Text="{Binding Source={StaticResource Strings}, Path=Subtitles}"
-                       Style="{StaticResource BaselineTextStyle}"
+                       Style="{StaticResource BaseTextBlockStyle}"
                        Foreground="{ThemeResource BasicForeground}"
                        FontWeight="SemiBold"
                        VerticalAlignment="Center"
