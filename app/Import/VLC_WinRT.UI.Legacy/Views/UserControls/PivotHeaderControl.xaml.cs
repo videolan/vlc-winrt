@@ -24,7 +24,7 @@ namespace VLC_WinRT.Views.UserControls
 
         // Using a DependencyProperty as the backing store for Panel.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PanelProperty =
-            DependencyProperty.Register(nameof(Panel), typeof(Panel), typeof(PivotHeaderControl), new PropertyMetadata(null, PropertyChangedCallback));
+            DependencyProperty.Register(nameof(Windows.UI.Xaml.Controls.Panel), typeof(VLC.Model.Panel), typeof(PivotHeaderControl), new PropertyMetadata(null, PropertyChangedCallback));
         
         private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
