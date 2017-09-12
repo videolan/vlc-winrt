@@ -1010,7 +1010,6 @@
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
-  <Import Project="..\..\VLC.Universal8.1.Shared\VLC.Universal8.1.Shared.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems" Label="Shared" Condition="Exists('..\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems')" />
   <Import Project="..\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems" Label="Shared" />
