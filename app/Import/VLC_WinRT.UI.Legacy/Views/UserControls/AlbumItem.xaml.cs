@@ -39,14 +39,14 @@ namespace VLC_WinRT.Views.UserControls
         }
         
 
-        public AlbumItem Album
+        public VLC.Model.Music.AlbumItem Album
         {
-            get { return (AlbumItem)GetValue(AlbumProperty); }
+            get { return (VLC.Model.Music.AlbumItem)GetValue(AlbumProperty); }
             set { SetValue(AlbumProperty, value); }
         }
 
         public static readonly DependencyProperty AlbumProperty =
-            DependencyProperty.Register(nameof(Album), typeof(AlbumItem), typeof(AlbumItem), new PropertyMetadata(null, PropertyChangedCallback));
+            DependencyProperty.Register(nameof(VLC.Model.Music.AlbumItem), typeof(VLC.Model.Music.AlbumItem), typeof(AlbumItem), new PropertyMetadata(null, PropertyChangedCallback));
 
         private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -59,41 +59,38 @@ namespace VLC_WinRT.Views.UserControls
             if (Album == null) return;
             NameTextBlock.Text = Strings.HumanizedAlbumName(Album.Name);
             //ArtistTextBlock.Text = Album.ArtistTextBlock.Text;
-            
-            
-            //ButtonOverlay.Command = .PlayAlbum;
+
+
+            ButtonOverlay.Command = Album.PlayAlbum;
             ButtonOverlay.CommandParameter = Album;
 
-            //Album.PropertyChanged += Album_PropertyChanged;
+            Album.PropertyChanged += Album_PropertyChanged;
             var album = Album;
-            //Task.Run(async () =>
-            //{
-            //    await album.ResetAlbumArt();
-            //});
+            Task.Run( () =>
+            {
+                album.ResetAlbumArt();
+            });
         }
 
         private async void Album_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            //if (e.PropertyName == nameof(Album.AlbumImage))
-            //{
-            //    if (Album == null)
-            //        return;
-            //    if (Album?.AlbumImage?.UriSource == (Cover.Source as BitmapImage)?.UriSource)
-            //        return;
-            //    await DispatchHelper.InvokeAsync(CoreDispatcherPriority.Low, () =>
-            //    {
-            //        FadeOutCover.Begin();
-            //    });
-            //}
+            if (e.PropertyName == nameof(Album.AlbumImage))
+            {
+                if (Album == null)
+                    return;
+                if (Album?.AlbumImage?.UriSource == (Cover.Source as BitmapImage)?.UriSource)
+                    return;
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => FadeOutCover.Begin());
+            }
         }
 
         private void FadeOutCover_Completed(object sender, object e)
         {
-            //if (Album != null && Album.AlbumImage != null)
-            //{
-            //    Cover.Source = Album.AlbumImage;
-            //    FadeInCover.Begin();
-            //}
+            if (Album != null && Album.AlbumImage != null)
+            {
+                Cover.Source = Album.AlbumImage;
+                FadeInCover.Begin();
+            }
         }
     }
 }

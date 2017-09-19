@@ -9,6 +9,7 @@ using VLC.MusicMetaFetcher.Models.MusicEntities;
 using VLC.Utils;
 using VLC.ViewModels;
 using System;
+using Windows.UI.Core;
 
 namespace VLC.Model.Music
 {
@@ -101,22 +102,57 @@ namespace VLC.Model.Music
             set { SetProperty(ref _artistThumbnail, value); }
         }
 
-        public void ResetArtistPicture(bool thumbnail)
+        public async void ResetArtistPicture(bool thumbnail)
         {
             try
             {
-                if (IsPictureLoaded)
+                await DispatchHelper.InvokeInUIThreadAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    if (thumbnail)
-                        ArtistImageThumbnail = new BitmapImage(new Uri(PictureThumbnail));
+                    if (IsPictureLoaded)
+                    {
+                        BitmapImage image;
+
+                        if (thumbnail)
+                        {
+                            image = new BitmapImage(new Uri(PictureThumbnail));
+                            ArtistImageThumbnail = image;
+                        }
+
+                        else
+                        {
+                            image = new BitmapImage(new Uri(Picture));
+                            ArtistImage = image;
+                        }
+                        LogHelper.Log($"Artist picture set : {Name}");
+                    }
                     else
-                        ArtistImage = new BitmapImage(new Uri(Picture));
-                    LogHelper.Log($"Artist picture set : {Name}");
-                }
-                else
-                    Locator.MediaLibrary.FetchArtistPicOrWaitAsync(this);
+                        Locator.MediaLibrary.FetchArtistPicOrWaitAsync(this);
+                });
+                //if (IsPictureLoaded)
+                //{
+                //    BitmapImage image;
+
+                //    if (thumbnail)
+                //    {
+                //        image = new BitmapImage(new Uri(PictureThumbnail));
+                //        await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
+                //            () => ArtistImageThumbnail = image);
+                //    }
+
+
+                //    //ArtistImageThumbnail = new BitmapImage(new Uri(PictureThumbnail));
+                //    else
+                //    {
+                //        image = new BitmapImage(new Uri(Picture));
+                //        await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal,
+                //            () => ArtistImage = image);
+                //    }
+                //    //ArtistImage = new BitmapImage(new Uri(Picture));
+                //    LogHelper.Log($"Artist picture set : {Name}");
+                //}
+                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 LogHelper.Log("Error getting artist picture : " + Name);
             }

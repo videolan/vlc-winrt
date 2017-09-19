@@ -45,7 +45,7 @@
                          IsIndeterminate="True"
                          IsEnabled="True"
                          VerticalAlignment="Bottom"
-                         DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
+                         DataContext="{Binding Source={StaticResource Locator}, Path=MediaLibraryVM}"
                          Visibility="{Binding IndexingLibraryVisibility}" />
             <ListView Grid.Column="0"
                       Grid.ColumnSpan="3"
@@ -58,6 +58,7 @@
                       HorizontalAlignment="Center"
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled">
+
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsStackPanel Orientation="Horizontal"

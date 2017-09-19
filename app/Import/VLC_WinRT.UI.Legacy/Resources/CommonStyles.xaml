@@ -1171,7 +1171,6 @@
         <ItemsStackPanel Margin="{StaticResource FrameMarginBothSides}" />
     </ItemsPanelTemplate>
 
-
     <!-- APPBARBUTTON STYLES -->
     <Style x:Key="AppBarButtonStyleHuge"
            TargetType="AppBarButton">

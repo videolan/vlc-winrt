@@ -38,6 +38,7 @@
             <ProgressBar IsIndeterminate="True"
                          IsEnabled="True"
                          VerticalAlignment="Bottom"
+                         DataContext="{Binding Source={StaticResource Locator}, Path=MediaLibraryVM}"
                          Visibility="{Binding IndexingLibraryVisibility}" />
             <ListView Grid.Column="1"
                       x:Name="PanelsListView"

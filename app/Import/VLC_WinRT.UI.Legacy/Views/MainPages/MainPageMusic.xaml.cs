@@ -25,10 +25,10 @@ namespace VLC_WinRT.Views.MainPages
             this.Loaded += MainPageMusic_Loaded;
         }
         
-        void MainPageMusic_Loaded(object sender, RoutedEventArgs e)
+        async void MainPageMusic_Loaded(object sender, RoutedEventArgs e)
         {
             Responsive(Window.Current.Bounds.Width);
-            Locator.MusicLibraryVM.OnNavigatedTo();
+            await Locator.MusicLibraryVM.OnNavigatedTo();
             Window.Current.SizeChanged += Current_SizeChanged;
             this.Unloaded += AlbumsCollectionButtons_Unloaded;
         }
@@ -38,10 +38,10 @@ namespace VLC_WinRT.Views.MainPages
             Responsive(e.Size.Width);
         }
 
-        void AlbumsCollectionButtons_Unloaded(object sender, RoutedEventArgs e)
+        async void AlbumsCollectionButtons_Unloaded(object sender, RoutedEventArgs e)
         {
             Window.Current.SizeChanged -= Current_SizeChanged;
-            Locator.MusicLibraryVM.OnNavigatedFrom();
+            await Locator.MusicLibraryVM.OnNavigatedFrom();
         }
 
         void Responsive(double width)

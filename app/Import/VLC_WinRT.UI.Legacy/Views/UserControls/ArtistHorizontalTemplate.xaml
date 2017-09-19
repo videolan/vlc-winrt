@@ -28,20 +28,20 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
-    
-    <!--<Grid FlyoutBase.AttachedFlyout="{StaticResource ArtistMenuFlyout}">
+
+    <Grid FlyoutBase.AttachedFlyout="{StaticResource ArtistMenuFlyout}">
         <interactivity:Interaction.Behaviors>
-            --><!--<core:EventTriggerBehavior EventName="Holding">
+            <core:EventTriggerBehavior EventName="Holding">
                 <utils:OpenMenuFlyoutAction />
             </core:EventTriggerBehavior>
             <core:EventTriggerBehavior EventName="RightTapped">
                 <utils:OpenMenuFlyoutAction />
-            </core:EventTriggerBehavior>--><!--
+            </core:EventTriggerBehavior>
         </interactivity:Interaction.Behaviors>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="AvatarColumnDefinition"
                               Width="1*" />
-            --><!--<ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />--><!--
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -78,5 +78,5 @@
                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                    VerticalAlignment="Top"
                    FontSize="14" />
-    </Grid>-->
+    </Grid>
 </UserControl>

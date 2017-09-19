@@ -19,7 +19,6 @@
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <shell:MenuDropdown />
         <ListView x:Name="PanelsListView"
                   Grid.Column="1"
                   ItemsSource="{Binding Panels}"

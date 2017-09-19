@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
@@ -28,6 +29,10 @@ namespace VLC.ViewModels.MusicVM
 {
     public class MusicLibraryVM : BindableBase
     {
+        public MusicLibraryVM()
+        {
+            
+        }
         #region private fields
         private ObservableCollection<GroupItemList<TrackItem>> _groupedTracks;
 
@@ -391,7 +396,7 @@ namespace VLC.ViewModels.MusicVM
 
             Locator.MediaLibrary.Albums.CollectionChanged += Albums_CollectionChanged;
             Locator.MediaLibrary.LoadAlbumsFromDatabase();
-            await RefreshRecommendedAlbums();
+            //await RefreshRecommendedAlbums();
             LoadingStateAlbums = LoadingState.Loaded;
             OnPropertyChanged(nameof(IsMusicLibraryEmpty));
             OnPropertyChanged(nameof(MusicLibraryEmptyVisible));
@@ -402,10 +407,18 @@ namespace VLC.ViewModels.MusicVM
             if (MusicView != MusicView.Albums)
                 return;
             var recommendedAlbums = Locator.MediaLibrary.LoadRecommendedAlbumsFromDatabase();
-            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
+            try
             {
-                RecommendedAlbums = recommendedAlbums;
-            });
+                await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
+                {
+                    RecommendedAlbums = recommendedAlbums;
+                });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+           
         }
 
         private async void Albums_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

@@ -74,7 +74,7 @@
                             </ItemsWrapGrid>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
-                    <ListView.Header>
+                    <!--<ListView.Header>
                         <Grid Visibility="{Binding RecommendedArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -120,7 +120,7 @@
                                   VerticalAlignment="Center"
                                   Background="{ThemeResource InvertedApplicationBackgroundSemiTranslucentThemeBrush}" />
                         </Grid>
-                    </ListView.Header>
+                    </ListView.Header>-->
                 </ScrollWatcher:ListViewScrollWatcher>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>

@@ -4,10 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
-      xmlns:removableStorage="using:VLC_WinRT.Controls.RemovableStorage"
-      xmlns:controls="using:VLC_WINRT.Views.Controls"
       xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
-      xmlns:ScrollWatcher="using:ScrollWatcher"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=FileExplorerVM}">
     <Page.Resources>

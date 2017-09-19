@@ -24,10 +24,7 @@ namespace VLC.ViewModels
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => OnPropertyChanged(nameof(IndexingLibraryVisibility)));
         }
 
-        public Visibility IndexingLibraryVisibility
-        {
-            get { return Locator.MediaLibrary.MediaLibraryIndexingState == LoadingState.Loading ? Visibility.Visible : Visibility.Collapsed; }
-        }
+        public Visibility IndexingLibraryVisibility => Locator.MediaLibrary.MediaLibraryIndexingState == LoadingState.Loading ? Visibility.Visible : Visibility.Collapsed;
 
         public string AddMediaHelpString
         {

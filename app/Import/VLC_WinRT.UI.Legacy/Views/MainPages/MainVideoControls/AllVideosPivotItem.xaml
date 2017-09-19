@@ -49,7 +49,7 @@
                                    Margin="{StaticResource FrameMarginTop}" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-            <ListView.Header>
+            <!--<ListView.Header>
                 <Grid Visibility="{Binding ViewedVideos.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -57,8 +57,8 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RecommendedForYou}"
-                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                    --><!--<TextBlock Text="{Binding Source={StaticResource Strings}, Path=RecommendedForYou}"
+                               Style="{StaticResource SubheaderTextBlockStyle}" />--><!--
                     <ListView x:Name="VideosListView"
                               Grid.Row="2"
                               ItemsSource="{Binding ViewedVideos}"
@@ -95,7 +95,7 @@
                           VerticalAlignment="Center"
                           Background="{ThemeResource InvertedApplicationBackgroundSemiTranslucentThemeBrush}" />
                 </Grid>
-            </ListView.Header>
+            </ListView.Header>-->
         </ScrollWatcher:ListViewScrollWatcher>
         <placeholder:NoVideosPlaceholder VerticalAlignment="Bottom"
                                          Margin="{StaticResource FrameMarginHorizontalPlusFooter}"

@@ -9,10 +9,11 @@
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.Xaml.Interactivity;
 
 namespace VLC.Utils
 {
-    public class OpenMenuFlyoutAction : DependencyObject/*, IAction*/
+    public class OpenMenuFlyoutAction : DependencyObject, IAction
     {
         public object Execute(object sender, object parameter)
         {

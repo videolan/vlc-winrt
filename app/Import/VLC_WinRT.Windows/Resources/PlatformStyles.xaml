@@ -1004,5 +1004,9 @@
         </Setter>
     </Style>
 
+    <ItemsPanelTemplate x:Key="WrapPanelTemplate">
+        <ItemsWrapGrid Orientation="Horizontal"
+                       ItemWidth="270" />
+    </ItemsPanelTemplate>
 
 </ResourceDictionary>
