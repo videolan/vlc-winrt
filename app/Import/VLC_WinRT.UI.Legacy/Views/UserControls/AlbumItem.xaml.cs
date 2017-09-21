@@ -46,7 +46,7 @@ namespace VLC_WinRT.Views.UserControls
         }
 
         public static readonly DependencyProperty AlbumProperty =
-            DependencyProperty.Register(nameof(VLC.Model.Music.AlbumItem), typeof(VLC.Model.Music.AlbumItem), typeof(AlbumItem), new PropertyMetadata(null, PropertyChangedCallback));
+            DependencyProperty.Register(nameof(Album), typeof(VLC.Model.Music.AlbumItem), typeof(AlbumItem), new PropertyMetadata(null, PropertyChangedCallback));
 
         private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -58,7 +58,7 @@ namespace VLC_WinRT.Views.UserControls
         {
             if (Album == null) return;
             NameTextBlock.Text = Strings.HumanizedAlbumName(Album.Name);
-            //ArtistTextBlock.Text = Album.ArtistTextBlock.Text;
+            ArtistTextBlock.Text = Album.AlbumArtist;
 
 
             ButtonOverlay.Command = Album.PlayAlbum;
@@ -66,10 +66,7 @@ namespace VLC_WinRT.Views.UserControls
 
             Album.PropertyChanged += Album_PropertyChanged;
             var album = Album;
-            Task.Run( () =>
-            {
-                album.ResetAlbumArt();
-            });
+            album.ResetAlbumArt();
         }
 
         private async void Album_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

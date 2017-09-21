@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:userControls="using:VLC_WinRT.Views.UserControls"
                     xmlns:local="using:VLC_WinRT.Resources">
     <Thickness x:Key="TitleMargin">0,32,0,0</Thickness>
     
@@ -1026,5 +1027,13 @@
         <ItemsWrapGrid Orientation="Horizontal"
                        ItemWidth="270" />
     </ItemsPanelTemplate>
+
+    <ItemsPanelTemplate x:Key="StackPanelTemplate">
+        <ItemsStackPanel Margin="{StaticResource FrameMarginBothSides}" />
+    </ItemsPanelTemplate>
+
+    <DataTemplate x:Key="AlbumItemTemplate">
+        <userControls:AlbumItem Album="{Binding}" />
+    </DataTemplate>
 
 </ResourceDictionary>

@@ -20,7 +20,7 @@
         <ScrollWatcher:ListViewScrollWatcher x:Name="AlbumsZoomedInView"
                                              ItemsSource="{Binding GroupedAlbums}"
                                              ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                                             
+                                             ItemTemplate="{StaticResource AlbumItemTemplate}"
                                              IsItemClickEnabled="True"
                                              SelectionMode="None"
                                              IsSwipeEnabled="False"
