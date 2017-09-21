@@ -735,7 +735,6 @@ namespace VLC.Model.Library
         {
             Tracks.Clear();
             Tracks.AddRange(musicDatabase.LoadTracks());
-            LogHelper.Log("Error selecting tracks from database.");
         }
 
         bool IsMusicDatabaseEmpty()
