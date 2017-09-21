@@ -378,11 +378,11 @@ namespace VLC.Services.RunTime
         private void setFlyoutContent(VLCPage desiredPage, Type t, object param)
         {
             // Do not switch the current flyout if it is modal.
-            //if (App.SplitShell.IsCurrentFlyoutModal())
-            //    return;
+            if (App.SplitShell.IsCurrentFlyoutModal())
+                return;
 
-            //currentFlyout = desiredPage;
-            //App.SplitShell.SetFlyoutContentPresenter(t, param);
+            currentFlyout = desiredPage;
+            App.SplitShell.SetFlyoutContentPresenter(t, param);
         }
 
         public bool IsFlyout(VLCPage page)

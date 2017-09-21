@@ -7,12 +7,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.ViewManagement;
+using VLC_WinRT.UI.Legacy.Views;
 using VLC_WinRT.UI.Legacy.Views.UserControls.Shell;
-#if RS1
-using Microsoft.Graphics.Canvas.Effects;
-using Windows.UI.Composition;
-using Windows.UI.Xaml.Hosting;
-#endif
 
 namespace VLC_WinRT.Controls
 {
@@ -20,7 +16,7 @@ namespace VLC_WinRT.Controls
     public delegate void FlyoutNavigated(object sender, EventArgs p);
     public delegate void FlyoutClosed(object sender, EventArgs e);
     public delegate void ContentSizeChanged(double newWidth);
-    
+
     [TemplatePart(Name = ContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = FlyoutContentPresenterName, Type = typeof(Frame))]
     [TemplatePart(Name = FlyoutFadeInName, Type = typeof(Storyboard))]
@@ -35,7 +31,7 @@ namespace VLC_WinRT.Controls
         public event FlyoutClosed FlyoutClosed;
         public event ContentSizeChanged ContentSizeChanged;
         public TaskCompletionSource<bool> TemplateApplied = new TaskCompletionSource<bool>();
-        
+
         private DispatcherTimer _windowResizerTimer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(200) };
 
         private const string PageName = "Page";
@@ -55,7 +51,7 @@ namespace VLC_WinRT.Controls
         private Grid _flyoutBackgroundGrid;
         private ContentPresenter _contentPresenter;
         private Frame _flyoutContentPresenter;
-      //  private BackDrop _backdrop;
+        //private BackDrop _backdrop;
 
         private PlaneProjection _flyoutPlaneProjection;
         private Storyboard _flyoutFadeIn;
@@ -63,36 +59,27 @@ namespace VLC_WinRT.Controls
         private Storyboard _topBarFadeOut;
         private Storyboard _topBarFadeIn;
 
-    //    private AppBarClosedDisplayMode _previousAppBarClosedDisplayMode;
-
         public async void SetContentPresenter(object contentPresenter)
         {
             await TemplateApplied.Task;
             _contentPresenter.Content = contentPresenter;
         }
-        
-        public async void SetFlyoutContentPresenter(object content)
+
+        public void SetFlyoutContentPresenter(object content, object param)
         {
-            await TemplateApplied.Task;
-            _flyoutContentPresenter.Navigate((Type)content);
+            //FIXME: Remove all those, but that's a looooong refactoring.
+            //await TemplateApplied.Task;
+            _flyoutContentPresenter.Navigate((Type)content, param);
             ShowFlyout();
+            Responsive();
         }
 
         public async void SetFooterContentPresenter(object content)
         {
             await TemplateApplied.Task;
             _page.BottomAppBar = content as CommandBar;
-   //         _previousAppBarClosedDisplayMode = _page.BottomAppBar.ClosedDisplayMode;
-        }
-
-        public async void SetFooterVisibility(object visibility)
-        {
-            await TemplateApplied.Task;
-#if WINDOWS_UWP
-            _page.BottomAppBar.ClosedDisplayMode = (AppBarClosedDisplayMode)visibility;
-#else
-            _page.BottomAppBar.Visibility = (Visibility)visibility;
-#endif
+            if (content == null)
+                return;
         }
 
         #region Content Property
@@ -115,22 +102,6 @@ namespace VLC_WinRT.Controls
 
         #region RFlyoutContent Property
 
-        public Type FlyoutContent
-        {
-            get { return (Type)GetValue(FlyoutContentProperty); }
-            set { SetValue(FlyoutContentProperty, value); }
-        }
-
-        public static readonly DependencyProperty FlyoutContentProperty = DependencyProperty.Register(
-            nameof(FlyoutContent), typeof(Type), typeof(SplitShell),
-            new PropertyMetadata(default(Type), FlyoutContentPropertyChangedCallback));
-
-        private static void FlyoutContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var that = (SplitShell)dependencyObject;
-            that.SetFlyoutContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
-        }
-
         public bool FlyoutAsHeader
         {
             get { return (bool)GetValue(FlyoutAsHeaderProperty); }
@@ -149,21 +120,6 @@ namespace VLC_WinRT.Controls
         #endregion
 
         #region FooterContent Property
-
-        //public AppBarClosedDisplayMode FooterVisibility
-        //{
-        //    get { return (AppBarClosedDisplayMode)GetValue(FooterVisibilityProperty); }
-        //    set { SetValue(FooterVisibilityProperty, value); }
-        //}
-
-        //public static readonly DependencyProperty FooterVisibilityProperty = DependencyProperty.Register(
-        //    nameof(FooterVisibility), typeof(AppBarClosedDisplayMode), typeof(SplitShell), new PropertyMetadata(AppBarClosedDisplayMode.Compact, FooterVisibilityPropertyChangedCallback));
-
-        private static void FooterVisibilityPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var that = (SplitShell)dependencyObject;
-            that.SetFooterVisibility(dependencyPropertyChangedEventArgs.NewValue);
-        }
 
         public DependencyObject FooterContent
         {
@@ -222,14 +178,22 @@ namespace VLC_WinRT.Controls
 
         private void _flyoutFadeIn_Completed(object sender, object e)
         {
+            // In case the flyout has been hidden in the meantime, stop now to
+            // avoid an invalid state
+            if (!IsFlyoutOpen)
+                return;
             FlyoutNavigated?.Invoke(null, new EventArgs());
         }
 
         private void _flyoutFadeOut_Completed(object sender, object e)
         {
-            _flyoutContentPresenter.Navigate(typeof(UI.Legacy.Views.UserControls.Shell.BlankPage));
+            // In case the flyout has been displayed back, stop now to
+            // avoid an invalid state
+            if (IsFlyoutOpen)
+                return;
+            _flyoutContentPresenter.Navigate(typeof(BlankPage));
         }
-        
+
         private void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
         {
             Responsive();
@@ -238,29 +202,34 @@ namespace VLC_WinRT.Controls
         void Responsive()
         {
             var bottomBarHeight = (_page.BottomAppBar == null) ? 0 : _page.BottomAppBar.ActualHeight;
-            //var navBarHeight = ApplicationView.GetForCurrentView().VisibleBounds.Height - 16;
-            var navBarHeight = 30;
+            //var navBarHeight = ApplicationView.GetForCurrentView()VisibleBounds.Height - 16;
 
             if (FlyoutAsHeader)
             {
                 _flyoutContentPresenter.VerticalAlignment = VerticalAlignment.Top;
-                _flyoutContentPresenter.Height = double.NaN;
                 _flyoutContentPresenter.Width = Window.Current.Bounds.Width;
+                _flyoutContentPresenter.Height = Window.Current.Bounds.Height;
+                _flyoutContentPresenter.Opacity = 0.7;
             }
             else
             {
                 _flyoutContentPresenter.VerticalAlignment = VerticalAlignment.Center;
                 if (Window.Current.Bounds.Width < 650)
                 {
-                    _flyoutContentPresenter.Height = navBarHeight - bottomBarHeight;
+                    //_flyoutContentPresenter.Height = navBarHeight - bottomBarHeight;
                     _flyoutContentPresenter.Width = Window.Current.Bounds.Width;
                 }
                 else
                 {
                     _flyoutContentPresenter.Width = 650;
-                    _flyoutContentPresenter.Height = (navBarHeight < 900 * 0.7 ? navBarHeight : navBarHeight * 0.7) - bottomBarHeight;
+                    //_flyoutContentPresenter.Height = (navBarHeight < 900 * 0.7 ? navBarHeight : navBarHeight * 0.7) - bottomBarHeight;
                 }
             }
+
+            // Test if we have a specific property to fit the flyout height or not.
+            if (IsCurrentFlyoutModal())
+                _flyoutContentPresenter.Height = double.NaN;
+
             _windowResizerTimer.Stop();
             _windowResizerTimer.Start();
         }
@@ -274,25 +243,33 @@ namespace VLC_WinRT.Controls
 
         private void FlyoutGridContainerOnTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
         {
+            if (IsCurrentFlyoutModal())
+                return;
             FlyoutCloseRequested?.Invoke(null, new EventArgs());
         }
 
         void ShowFlyout()
         {
+            if (IsFlyoutOpen)
+                return;
             _flyoutFadeIn.Begin();
             IsFlyoutOpen = true;
-#if RS1
-            _backdrop.Show(6);
-#endif
+            var mainControl = _contentPresenter.Content as Control;
+            if (mainControl != null)
+                mainControl.IsEnabled = false;
+            //_backdrop.Show(6);
         }
 
         public void HideFlyout()
         {
-#if RS1
-            _backdrop.Hide();
-#endif
+            if (!IsFlyoutOpen)
+                return;
+            //_backdrop.Hide();
             _flyoutFadeOut.Begin();
             _flyoutContentPresenter.Navigate(typeof(BlankPage));
+            var mainControl = _contentPresenter.Content as Control;
+            if (mainControl != null)
+                mainControl.IsEnabled = true;
             IsFlyoutOpen = false;
             FlyoutClosed?.Invoke(null, new EventArgs());
         }
@@ -309,7 +286,7 @@ namespace VLC_WinRT.Controls
             _topBarFadeIn.Begin();
             IsTopBarOpen = true;
         }
-        
+
         private void _topBarFadeIn_Completed(object sender, object e)
         {
             _contentPresenter.Margin = new Thickness(0);
@@ -317,5 +294,13 @@ namespace VLC_WinRT.Controls
 
         public bool IsFlyoutOpen { get; private set; }
         public bool IsTopBarOpen { get; set; }
+
+        public bool IsCurrentFlyoutModal()
+        {
+            var fo = _flyoutContentPresenter.Content as IVLCModalFlyout;
+            if (fo == null)
+                return false;
+            return fo.ModalMode;
+        }
     }
 }

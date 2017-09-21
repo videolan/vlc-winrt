@@ -273,6 +273,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\IVLCModalFlyout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
