@@ -9,14 +9,8 @@ namespace VLC_WinRT.Views.MusicPages.PlaylistControls
         public AddAlbumToPlaylistBase()
         {
             this.InitializeComponent();
-            this.Loaded += AddAlbumToPlaylistBase_Loaded;
         }
-
-        private async void AddAlbumToPlaylistBase_Loaded(object sender, RoutedEventArgs e)
-        {
-            await Locator.MusicLibraryVM.OnNavigatedTo();
-        }
-
+        
         private async void NewPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
             await Locator.MediaLibrary.AddNewPlaylist(playlistName.Text);

@@ -3,7 +3,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
 using VLC.Helpers;
-using VLC.ViewModels;
 
 namespace VLC_WinRT.Views.MainPages.MusicPanes
 {
@@ -13,13 +12,12 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
         public SongsPivotItem()
         {
             this.InitializeComponent();
+            this.Unloaded += OnUnloaded;
         }
 
         private void Collection_Loaded(object sender, RoutedEventArgs e)
         {
-            Locator.MusicLibraryVM.OnNavigatedTo();
             Window.Current.SizeChanged += Current_SizeChanged;
-            this.Unloaded += OnUnloaded;
             Responsive();
         }
 
@@ -27,7 +25,6 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
         {
             Responsive();
         }
-
 
         void Responsive()
         {

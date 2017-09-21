@@ -7,8 +7,10 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 using Microsoft.Xaml.Interactivity;
 using VLC.Model.Music;
 using VLC.ViewModels;
@@ -24,24 +26,24 @@ namespace VLC_WinRT.Views.MainPages
             this.InitializeComponent();
             this.Loaded += MainPageMusic_Loaded;
         }
-        
+
+        protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+
+            Locator.MusicLibraryVM.PropertyChanged -= MusicLibraryVM_PropertyChanged;
+            await Locator.MusicLibraryVM.OnNavigatedFrom();
+            Window.Current.SizeChanged -= Current_SizeChanged;
+        }
         async void MainPageMusic_Loaded(object sender, RoutedEventArgs e)
         {
             Responsive(Window.Current.Bounds.Width);
-            await Locator.MusicLibraryVM.OnNavigatedTo();
             Window.Current.SizeChanged += Current_SizeChanged;
-            this.Unloaded += AlbumsCollectionButtons_Unloaded;
         }
         
         void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
             Responsive(e.Size.Width);
-        }
-
-        async void AlbumsCollectionButtons_Unloaded(object sender, RoutedEventArgs e)
-        {
-            Window.Current.SizeChanged -= Current_SizeChanged;
-            await Locator.MusicLibraryVM.OnNavigatedFrom();
         }
 
         void Responsive(double width)
@@ -69,8 +71,9 @@ namespace VLC_WinRT.Views.MainPages
             }
         }
 
-        void Switch(MusicView view)
+        async Task Switch(MusicView view)
         {
+            await Locator.MusicLibraryVM.OnNavigatedFrom();
             switch (view)
             {
                 case MusicView.Albums:
@@ -90,6 +93,7 @@ namespace VLC_WinRT.Views.MainPages
                         MainPageMusicContentPresenter.Content = new PlaylistPivotItem();
                     break;
             }
+            await Locator.MusicLibraryVM.OnNavigatedTo();
         }
     }
 }
