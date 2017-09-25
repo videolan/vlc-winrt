@@ -59,7 +59,8 @@
                           Label="{Binding Source={StaticResource Strings}, Path=ViewArtist}"
                           Command="{Binding ViewArtist}"
                           CommandParameter="{Binding ArtistId}"
-                          IsTabStop="True">
+                          IsTabStop="True"
+                          Click="ViewArtistButton_Click">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource BuddySymbol}"
                               FontFamily="{StaticResource VLCFont}" />

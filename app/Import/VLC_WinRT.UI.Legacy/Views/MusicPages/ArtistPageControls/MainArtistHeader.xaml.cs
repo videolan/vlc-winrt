@@ -63,7 +63,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls
 
             if (Window.Current.Bounds.Height < 600)
             {
-                //HeaderGrid.Height = 100;
+                HeaderGrid.Height = 100;
                 VisualStateUtilities.GoToState(this, "Tiny", false);
             }
             else

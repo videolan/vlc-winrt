@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using VLC.ViewModels;
 
 namespace VLC_WinRT.Views.MusicPages.AlbumPageControls
 {
@@ -27,6 +28,11 @@ namespace VLC_WinRT.Views.MusicPages.AlbumPageControls
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
         {
             this.SizeChanged -= OnSizeChanged;
+        }
+
+        private void ViewArtistButton_Click(object sender, RoutedEventArgs e)
+        {
+            Locator.NavigationService.GoBack_HideFlyout();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace VLC_WinRT.Views.UserControls
 
         private void ArtistHorizontalTemplate_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            //AvatarEllipse.Height = NoAvatarEllipse.Height = AvatarColumnDefinition.ActualWidth;
+            AvatarEllipse.Height = NoAvatarEllipse.Height = AvatarColumnDefinition.ActualWidth;
         }
 
         public ArtistItem Artist
@@ -47,15 +47,17 @@ namespace VLC_WinRT.Views.UserControls
             if (Artist == null)
                 return;
 
-            //NameTextBlock.Text = Strings.HumanizedArtistName(Artist.Name);
+            NameTextBlock.Text = Strings.HumanizedArtistName(Artist.Name);
             Artist.PropertyChanged += Artist_PropertyChanged;
             
             var artist = Artist;
+            artist.ResetArtistPicture(true);
+            var albumsCount = Locator.MediaLibrary.LoadAlbumsCount(artist.Id);
+
             Task.Run(async () =>
             {
-                artist.ResetArtistPicture(true);
-                var albumsCount = Locator.MediaLibrary.LoadAlbumsCount(artist.Id);
-                //await DispatchHelper.InvokeInUIThreadAsync(CoreDispatcherPriority.Low, () => AlbumsCountTextBlock.Text = Strings.Albums.ToUpperFirstChar() + Strings.Dash + albumsCount);
+                await DispatchHelper.InvokeInUIThreadAsync(CoreDispatcherPriority.Low, 
+                    () => AlbumsCountTextBlock.Text = Strings.Albums.ToUpperFirstChar() + Strings.Dash + albumsCount);
             });
         }
 
@@ -73,11 +75,9 @@ namespace VLC_WinRT.Views.UserControls
 
         private void FadeOutCover_Completed(object sender, object e)
         {
-            if (Artist != null && Artist.ArtistImageThumbnail != null)
-            {
-                //ArtistImageBrush.ImageSource = Artist.ArtistImageThumbnail;
-                FadeInCover.Begin();
-            }
+            if (Artist?.ArtistImageThumbnail == null) return;
+            ArtistImageBrush.ImageSource = Artist.ArtistImageThumbnail;
+            FadeInCover.Begin();
         }
     }
 }
