@@ -13,6 +13,21 @@
                 Value="Transparent" />
     </Style>
 
+    <!-- SCROLLVIEWERS -->
+    <Style x:Key="VerticalScrollViewerStyle"
+           TargetType="ScrollViewer">
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+                Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                Value="Auto" />
+        <Setter Property="ScrollViewer.HorizontalScrollMode"
+                Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollMode"
+                Value="Enabled" />
+        <Setter Property="ScrollViewer.ZoomMode"
+                Value="Disabled" />
+    </Style>
+
     <Style TargetType="FlyoutPresenter"
            x:Key="BigFlyoutPresenter">
         <Setter Property="BorderThickness"

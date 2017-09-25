@@ -9,7 +9,7 @@
              VerticalAlignment="Bottom">
     <UserControl.Visibility>
         <Binding Source="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm}"
-                 Path="IsVideoPlayerVolumeSettingsVisible"
+                 Path="IsVideoPlayerOptionsPanelVisible"
                  Converter="{StaticResource BooleanToVisibilityConverter}" />
     </UserControl.Visibility>
     

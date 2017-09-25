@@ -5,8 +5,6 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WinRT.Views.UserControls"
       xmlns:videoControls="using:VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls"
-      xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
-      xmlns:uC="using:VLC_WinRT.UI.UWP.Views.UserControls"
       mc:Ignorable="d"
       Background="Transparent"
       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
@@ -100,6 +98,7 @@
             <Grid.RenderTransform>
                 <TranslateTransform />
             </Grid.RenderTransform>
+
             <TextBlock HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        FontSize="16"
@@ -123,6 +122,7 @@
                            VerticalAlignment="Center" />
             </Border>
             <userControls:BufferingControl HorizontalAlignment="Right" />
+            
             <!-- We will put there the control for swype, tap, double tap, etc -->
             <Grid x:Name="PlaceholderInteractionGrid"
                   Background="Transparent"
@@ -131,11 +131,22 @@
                   ManipulationDelta="PlaceholderInteractionGrid_OnManipulationDelta"
                   ManipulationCompleted="PlaceholderInteractionGrid_OnManipulationCompleted"
                   Tapped="PlaceholderInteractionGrid_OnTapped"
-                  DoubleTapped="PlaceholderInteractionGrid_DoubleTapped"
-                  Loaded="PlaceholderInteractionGrid_Loaded"/>
-            <videoControls:AudioTracksSettings />
-            <videoControls:SubtitlesSettings />
+                  DoubleTapped="PlaceholderInteractionGrid_DoubleTapped"/>
+            <videoControls:AudioTracksSettings x:Name="AudioTracksSettings"/>
+            <videoControls:SubtitlesSettings x:Name="SubtitlesSettings"/>
             <videoControls:VolumeSliderSettings />
+            <AppBarButton
+                x:Name="BackButton"
+                Style="{StaticResource AppBarButtonStyleHorizontal}"
+                Margin="{StaticResource FrameMarginLeft}"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Width="50" 
+                Click="GoBack">
+                <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                          Margin="0,3,0,0"
+                          FontFamily="{StaticResource VLCFont}"/>
+            </AppBarButton>
         </Grid>
 
         <!-- TODO : When switching fully to UWP, replace Border by Grid and remove Grid child -->
@@ -247,11 +258,11 @@
                                 <AppBarButton.Flyout>
                                     <MenuFlyout>
                                         <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=AudioTracks}"
-                                                        Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerAudioTracksSettingsVisible}"
+                                                        Click="ShowAudioTrackMenu"
                                                         Tag="{StaticResource VolumeSymbol}"
                                                         Style="{StaticResource MenuFlyoutItemIconTemplate}" />
                                         <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Subtitles}"
-                                                        Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerSubtitlesSettingsVisible}"
+                                                        Click="ShowSubtitlesMenu"
                                                         Tag="{StaticResource ConversationSymbol}"
                                                         Style="{StaticResource MenuFlyoutItemIconTemplate}" />
                                         <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=OpenSubtitle}"
