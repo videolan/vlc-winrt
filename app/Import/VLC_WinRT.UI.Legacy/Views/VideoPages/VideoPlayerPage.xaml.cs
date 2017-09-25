@@ -125,12 +125,13 @@ namespace VLC_WinRT.Views.VideoPages
             Locator.VideoPlayerVm.OnNavigatedFrom();
             if (AppViewHelper.GetFullscreen())
                 AppViewHelper.EnterFullscreen();
-
+            Locator.PlaybackService.Stop();
             this.SizeChanged -= OnSizeChanged;
             KeyDown -= OnKeyDown;
             Locator.MediaPlaybackViewModel.MouseService.Stop();
             Locator.MediaPlaybackViewModel.MouseService.OnHidden -= MouseCursorHidden;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved -= MouseMoved;
+
             _controlsTimer.Tick -= ControlsTimer_Tick;
             _controlsTimer.Stop();
             Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
