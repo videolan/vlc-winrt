@@ -244,7 +244,7 @@
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_filter\libkaraoke_plugin.dll">
       <Link>plugins\audio_filter\libkaraoke_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_filter\libmad_plugin.dll">
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_filter\libmad_plugin.dll" Condition="$(Platform) != 'ARM'">
       <Link>plugins\audio_filter\libmad_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_filter\libmono_plugin.dll">
@@ -267,6 +267,9 @@
     </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_filter\libsimple_channel_mixer_plugin.dll">
       <Link>plugins\audio_filter\libsimple_channel_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_filter\libspatialaudio_plugin.dll">
+      <Link>plugins\audio_filter\libspatialaudio_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\audio_filter\libspatializer_plugin.dll">
       <Link>plugins\audio_filter\libspatializer_plugin.dll</Link>
@@ -412,8 +415,14 @@
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libsvcdsub_plugin.dll">
       <Link>plugins\codec\libsvcdsub_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libtextst_plugin.dll">
+      <Link>plugins\codec\libtextst_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libtheora_plugin.dll">
       <Link>plugins\codec\libtheora_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libttml_plugin.dll">
+      <Link>plugins\codec\libttml_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libuleaddvaudio_plugin.dll">
       <Link>plugins\codec\libuleaddvaudio_plugin.dll</Link>
@@ -424,7 +433,7 @@
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libvpx_plugin.dll">
       <Link>plugins\codec\libvpx_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libzvbi_plugin.dll">
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libzvbi_plugin.dll" Condition="$(Platform) != 'ARM'">
       <Link>plugins\codec\libzvbi_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\control\libdummy_plugin.dll">
@@ -469,6 +478,9 @@
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libdiracsys_plugin.dll">
       <Link>plugins\demux\libdiracsys_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libdirectory_demux_plugin.dll">
+      <Link>plugins\demux\libdirectory_demux_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libes_plugin.dll">
       <Link>plugins\demux\libes_plugin.dll</Link>
     </Content>
@@ -498,6 +510,9 @@
     </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libmpgv_plugin.dll">
       <Link>plugins\demux\libmpgv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libnoseek_plugin.dll">
+      <Link>plugins\demux\libnoseek_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libnsc_plugin.dll">
       <Link>plugins\demux\libnsc_plugin.dll</Link>
@@ -643,6 +658,9 @@
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\packetizer\libpacketizer_mpeg4video_plugin.dll">
       <Link>plugins\packetizer\libpacketizer_mpeg4video_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\packetizer\libpacketizer_mpegaudio_plugin.dll">
+      <Link>plugins\packetizer\libpacketizer_mpegaudio_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\packetizer\libpacketizer_mpegvideo_plugin.dll">
       <Link>plugins\packetizer\libpacketizer_mpegvideo_plugin.dll</Link>
     </Content>
@@ -664,6 +682,33 @@
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\services_discovery\libupnp_plugin.dll">
       <Link>plugins\services_discovery\libupnp_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\spu\libaudiobargraph_v_plugin.dll">
+      <Link>plugins\spu\libaudiobargraph_v_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\spu\liblogo_plugin.dll">
+      <Link>plugins\spu\liblogo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\spu\libmarq_plugin.dll">
+      <Link>plugins\spu\libmarq_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\spu\libmosaic_plugin.dll">
+      <Link>plugins\spu\libmosaic_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\spu\libremoteosd_plugin.dll">
+      <Link>plugins\spu\libremoteosd_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\spu\librss_plugin.dll">
+      <Link>plugins\spu\librss_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\spu\libsubsdelay_plugin.dll">
+      <Link>plugins\spu\libsubsdelay_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_extractor\libarchive_plugin.dll">
+      <Link>plugins\stream_extractor\libarchive_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\libadf_plugin.dll">
+      <Link>plugins\stream_filter\libadf_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\libcache_block_plugin.dll">
       <Link>plugins\stream_filter\libcache_block_plugin.dll</Link>
     </Content>
@@ -678,6 +723,9 @@
     </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\librecord_plugin.dll">
       <Link>plugins\stream_filter\librecord_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\stream_filter\libskiptags_plugin.dll">
+      <Link>plugins\stream_filter\libskiptags_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\text_renderer\libfreetype_plugin.dll">
       <Link>plugins\text_renderer\libfreetype_plugin.dll</Link>
@@ -700,34 +748,34 @@
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi420_nv12_plugin.dll">
       <Link>plugins\video_chroma\libi420_nv12_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi420_rgb_mmx_plugin.dll">
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi420_rgb_mmx_plugin.dll" Condition="$(Platform) != 'ARM'">
       <Link>plugins\video_chroma\libi420_rgb_mmx_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi420_rgb_plugin.dll">
       <Link>plugins\video_chroma\libi420_rgb_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi420_rgb_sse2_plugin.dll">
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi420_rgb_sse2_plugin.dll" Condition="$(Platform) != 'ARM'">
       <Link>plugins\video_chroma\libi420_rgb_sse2_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi420_yuy2_mmx_plugin.dll">
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi420_yuy2_mmx_plugin.dll" Condition="$(Platform) != 'ARM'">
       <Link>plugins\video_chroma\libi420_yuy2_mmx_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi420_yuy2_plugin.dll">
       <Link>plugins\video_chroma\libi420_yuy2_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi420_yuy2_sse2_plugin.dll">
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi420_yuy2_sse2_plugin.dll" Condition="$(Platform) != 'ARM'">
       <Link>plugins\video_chroma\libi420_yuy2_sse2_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi422_i420_plugin.dll">
       <Link>plugins\video_chroma\libi422_i420_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi422_yuy2_mmx_plugin.dll">
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi422_yuy2_mmx_plugin.dll" Condition="$(Platform) != 'ARM'">
       <Link>plugins\video_chroma\libi422_yuy2_mmx_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi422_yuy2_plugin.dll">
       <Link>plugins\video_chroma\libi422_yuy2_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi422_yuy2_sse2_plugin.dll">
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libi422_yuy2_sse2_plugin.dll" Condition="$(Platform) != 'ARM'">
       <Link>plugins\video_chroma\libi422_yuy2_sse2_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\librv32_plugin.dll">
@@ -781,6 +829,12 @@
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libdeinterlace_plugin.dll">
       <Link>plugins\video_filter\libdeinterlace_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libdirect3d11_adjust_plugin.dll">
+      <Link>plugins\video_filter\libdirect3d11_adjust_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libdirect3d11_deinterlace_plugin.dll">
+      <Link>plugins\video_filter\libdirect3d11_deinterlace_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libedgedetection_plugin.dll">
       <Link>plugins\video_filter\libedgedetection_plugin.dll</Link>
     </Content>
@@ -832,7 +886,7 @@
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libposterize_plugin.dll">
       <Link>plugins\video_filter\libposterize_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libpostproc_plugin.dll">
+    <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libpostproc_plugin.dll" Condition="$(Platform) != 'ARM'">
       <Link>plugins\video_filter\libpostproc_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\libvlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libpsychedelic_plugin.dll">
