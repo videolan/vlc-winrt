@@ -143,7 +143,10 @@ namespace VLC.Database
         {
             using (connection.Lock())
             {
-                return connection.Query<AlbumItem>($"SELECT * FROM {nameof(AlbumItem)} WHERE {column} LIKE '%{value}%';", new string[] { });
+                var r1 = connection.Query<AlbumItem>(
+                    $"SELECT * FROM {nameof(AlbumItem)} WHERE {nameof(AlbumItem.Name)} LIKE  '%{value}%'" +
+                    $" OR {nameof(AlbumItem.Artist)} LIKE '%{value}%';");
+                return r1;
             }
         }
 

@@ -71,5 +71,15 @@ namespace VLC_WinRT.UI.Legacy.Views.VariousPages
         {
             Locator.SearchVM.MusicSearchEnabled = !Locator.SearchVM.MusicSearchEnabled;
         }
+
+        private void AlbumItemClick(object sender, ItemClickEventArgs e)
+        {
+            Locator.MusicLibraryVM.AlbumClickedCommand.Execute(e.ClickedItem);
+        }
+
+        private void VideoItemClick(object sender, ItemClickEventArgs e)
+        {
+            Locator.VideoLibraryVM.OpenVideo.Execute(e.ClickedItem);
+        }
     }
 }

@@ -9,7 +9,7 @@
              xmlns:userControls="using:VLC_WinRT.Views.UserControls"
              mc:Ignorable="d"
              DataContext="{Binding Source={StaticResource Locator}, Path=SearchVM}">
-<!-- TODO : USE A PIVOT HERE ON WINDOWS 10 + WINDOWS PHONE 8.1 and a COMBOBOX on WINDOWS 8.!-->
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -21,19 +21,14 @@
                                    PlaceholderText="search"
                                    Height="30"
                                    HorizontalAlignment="Stretch"
-                                   Margin="{StaticResource FrameMarginBothSides}"
+                                   Margin="0,0,0,12"
                                    TextChanged="TextBox_TextChanged"
                                    DataContext="{Binding Source={StaticResource Locator}, Path=SearchVM}"
                                    Text="{Binding SearchTag}" />
         <TextBlock Grid.Row="1"
+                   Text="Search"
                    Style="{StaticResource SubheaderTextBlockStyle}"
-                   Margin="{StaticResource FrameMargin}">
-            <Run Text="Search"/>
-            <Run Text="{Binding ResultsCount}"
-                 FontSize="20"/>
-            <Run Text="results"
-                 FontSize="20"/>
-        </TextBlock>
+                   Margin="{StaticResource FrameMargin}" />
         <Grid x:Name="MusicSearch"
               Grid.Row="3"
               Visibility="{Binding MusicSearchEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -44,11 +39,11 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal">
-                <Button Content="{Binding Source={StaticResource Strings}, Path=Music}"
+                <Button Content="music"
                         Style="{StaticResource TextBlockButtonStyle}"
                         FontSize="20"
                         FontWeight="Light" />
-                <Button Content="{Binding Source={StaticResource Strings}, Path=Videos}"
+                <Button Content="videos"
                         Style="{StaticResource TextBlockButtonStyle}"
                         FontSize="20"
                         FontWeight="Light"
@@ -62,13 +57,8 @@
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
-                      IsSwipeEnabled="False">
-                <triggers:Interactions.Triggers>
-                    <triggers:EventTrigger EventName="ItemClick">
-                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.AlbumClickedCommand}"
-                                                      PassEventArgsToCommand="True" />
-                    </triggers:EventTrigger>
-                </triggers:Interactions.Triggers>
+                      IsSwipeEnabled="False"
+                      ItemClick="AlbumItemClick">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid Orientation="Horizontal"
@@ -101,13 +91,13 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal">
-                <Button Content="{Binding Source={StaticResource Strings}, Path=Music}"
+                <Button Content="music"
                         Style="{StaticResource TextBlockButtonStyle}"
                         FontSize="20"
                         FontWeight="Light"
                         Opacity="0.6"
                         Click="ToggleSearchMode_Click" />
-                <Button Content="{Binding Source={StaticResource Strings}, Path=Videos}"
+                <Button Content="videos"
                         Style="{StaticResource TextBlockButtonStyle}"
                         FontSize="20"
                         FontWeight="Light"
@@ -119,13 +109,8 @@
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
-                      IsSwipeEnabled="False">
-                <triggers:Interactions.Triggers>
-                    <triggers:EventTrigger EventName="ItemClick">
-                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.OpenVideo}"
-                                                      PassEventArgsToCommand="True" />
-                    </triggers:EventTrigger>
-                </triggers:Interactions.Triggers>
+                      IsSwipeEnabled="False"
+                      ItemClick="VideoItemClick">
                 <ListView.ItemContainerTransitions>
                     <TransitionCollection>
                         <AddDeleteThemeTransition />
