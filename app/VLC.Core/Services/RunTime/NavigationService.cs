@@ -343,6 +343,9 @@ namespace VLC.Services.RunTime
                 //case VLCPage.AboutAppView:
                 //    setFlyoutContent(desiredPage, typeof(AboutPage), param);
                 //    break;
+                case VLCPage.ArtistShowsPage:
+                    setFlyoutContent(desiredPage, typeof(ArtistPageBase), param);
+                    break;
                 //case VLCPage.ExternalStorageInclude:
                 //    setFlyoutContent(desiredPage, typeof(ExternalStorageIncludePage), param);
                 //    break;

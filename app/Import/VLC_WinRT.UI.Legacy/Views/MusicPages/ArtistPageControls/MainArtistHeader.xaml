@@ -67,7 +67,8 @@
                       x:Name="MoreAboutButton"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
                       Label="{Binding Source={StaticResource Strings}, Path=MoreInfo}"
-                      Command="{Binding CurrentArtist.NavigateArtistInfoView}"
+                      
+                      Command="{Binding CurrentArtist.SeeArtistShowsCommand}"
                       VerticalAlignment="Bottom"
                       Margin="{StaticResource FrameMarginBothSides}">
             <AppBarButton.Icon>

@@ -72,7 +72,7 @@
                        TextWrapping="NoWrap"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Center"
-                       Text="{Binding Source={StaticResource Strings}, Path=UpcomingShows}"
+                       Text="Upcoming Shows"
                        Style="{StaticResource SubheaderTextBlockStyle}" />
         </Grid>
     </ScrollViewer>

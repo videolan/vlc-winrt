@@ -71,53 +71,6 @@
                             </ItemsWrapGrid>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
-                    <!--<ListView.Header>
-                        <Grid Visibility="{Binding RecommendedArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RecommendedForYou}"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       Margin="{StaticResource FrameMargin}" />
-                            <ListView x:Name="RecommendedArtistListView"
-                                      Grid.Row="2"
-                                      IsItemClickEnabled="True"
-                                      IsSwipeEnabled="False"
-                                      ItemsSource="{Binding RecommendedArtists}"
-                                      SelectionMode="None"
-                                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                                      ItemTemplate="{StaticResource ArtistHorizontalTemplateFixedSize}"
-                                      Visibility="{Binding RecommendedArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
-                                <triggers:Interactions.Triggers>
-                                    <triggers:EventTrigger EventName="ItemClick">
-                                        <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
-                                                                      PassEventArgsToCommand="True" />
-                                    </triggers:EventTrigger>
-                                </triggers:Interactions.Triggers>
-                                <ListView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <ItemsStackPanel Orientation="Horizontal"
-                                                         Margin="{StaticResource FrameMarginLeft}">
-                                            <ItemsStackPanel.ChildrenTransitions>
-                                                <TransitionCollection>
-                                                    <RepositionThemeTransition />
-                                                </TransitionCollection>
-                                            </ItemsStackPanel.ChildrenTransitions>
-                                        </ItemsStackPanel>
-                                    </ItemsPanelTemplate>
-                                </ListView.ItemsPanel>
-                            </ListView>
-                            <Grid Grid.Row="3"
-                                  Margin="24,0"
-                                  MaxWidth="400"
-                                  Height="1"
-                                  VerticalAlignment="Center"
-                                  Background="{ThemeResource InvertedApplicationBackgroundSemiTranslucentThemeBrush}" />
-                        </Grid>
-                    </ListView.Header>-->
                 </ScrollWatcher:ListViewScrollWatcher>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
@@ -138,8 +91,8 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
-                                <TextBlock Text="{Binding Group.Key}"
-                                           Style="{StaticResource SemanticZoomViewOutTextBlockStyle}" />
+                                <!--<TextBlock Text="{Binding Group.Key}"-->
+                                           <!--Style="{StaticResource SemanticZoomViewOutTextBlockStyle}" />-->
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

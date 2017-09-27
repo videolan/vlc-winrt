@@ -40,8 +40,6 @@ namespace VLC_WinRT.Views.MainPages
             var el = e.OriginalSource as FrameworkElement;
            
             var output ="GOTFOCUS --" + e.OriginalSource.ToString() + "--" + el.Name + el.BaseUri;
-            DebugString(output);
-
             Debug.WriteLine(output);
         }
 
@@ -71,6 +69,7 @@ namespace VLC_WinRT.Views.MainPages
         private void MainFrame_OnNavigated(object sender, NavigationEventArgs e)
         {
 #if WINDOWS_APP
+            
             SettingsPane pane = SettingsPane.GetForCurrentView();
             pane.CommandsRequested += SettingsCommandRequested;
 #endif
@@ -102,6 +101,7 @@ namespace VLC_WinRT.Views.MainPages
             //args.Request.ApplicationCommands.Add(specialThanks);
             args.Request.ApplicationCommands.Add(settings);
             //args.Request.ApplicationCommands.Add(license);
+            
         }
 #endif
 
