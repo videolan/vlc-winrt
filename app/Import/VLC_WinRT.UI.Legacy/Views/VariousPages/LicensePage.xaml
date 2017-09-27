@@ -30,7 +30,7 @@
                 <TextBlock Margin="0,12,0,0"
                            TextWrapping="Wrap"
                            FontSize="14">
-                            <Run Text="Copyleft 1994-2014 VideoLAN, VLC Authors" />
+                            <Run Text="Copyleft 1994-2017 VideoLAN, VLC Authors" />
                             <LineBreak />
                             <LineBreak />
                             <Run Text="License"
