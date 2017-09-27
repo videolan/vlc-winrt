@@ -1,25 +1,15 @@
-﻿using System;
-using Windows.ApplicationModel;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using VLC.Utils;
 
 namespace VLC_WinRT.Views.VariousPages
 {
-    public sealed partial class SettingsPage : UserControl
+    public sealed partial class SettingsPage : Page
     {
         public SettingsPage()
         {
             this.InitializeComponent();
             AppVersion.Text = "v" + Strings.AppVersion;
-        //    Extensions.HideWindowsOnlyElements(RootPanel);
-            this.Loaded += SettingsPage_Loaded;
-        }
-
-        private void SettingsPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            UserInterface.Focus(FocusState.Keyboard);
+            //Extensions.HideWindowsOnlyElements(RootPanel);
         }
     }
 }

@@ -7,13 +7,16 @@ using VLC.Utils;
 using Windows.UI.Core;
 using VLC_WinRT.UI.Legacy.Views.MainPages;
 using VLC_WinRT.UI.Legacy.Views.MusicPages;
+using VLC_WinRT.UI.Legacy.Views.MusicPages.ArtistPageControls;
 using VLC_WinRT.UI.Legacy.Views.MusicPages.TagEditorPages;
+using VLC_WinRT.UI.Legacy.Views.SettingsPages;
 using VLC_WinRT.UI.Legacy.Views.VariousPages;
 using VLC_WinRT.UI.Legacy.Views.VideoPages.TVShowsViews;
 using VLC_WinRT.UI.Legacy.Views.VideoPages.VideoNowPlayingControls;
 using VLC_WinRT.Views.MainPages;
 using VLC_WinRT.Views.MusicPages;
 using VLC_WinRT.Views.MusicPages.AlbumPageControls;
+using VLC_WinRT.Views.MusicPages.ArtistPages;
 using VLC_WinRT.Views.MusicPages.PlaylistControls;
 using VLC_WinRT.Views.VariousPages;
 using VLC_WinRT.Views.VideoPages;
@@ -296,10 +299,16 @@ namespace VLC.Services.RunTime
                     setFlyoutContent(desiredPage, typeof(SearchPage), param);
                     break;
                 case VLCPage.SettingsPage:
-                case VLCPage.SettingsPageUI:
-                case VLCPage.SettingsPageMusic:
-                case VLCPage.SettingsPageVideo:
                     setFlyoutContent(desiredPage, typeof(SettingsPage), param);
+                    break;
+                case VLCPage.SettingsPageUI:
+                    setFlyoutContent(desiredPage, typeof(SettingsPageUI), param);
+                    break;
+                case VLCPage.SettingsPageMusic:
+                    setFlyoutContent(desiredPage, typeof(SettingsPageMusic), param);
+                    break;
+                case VLCPage.SettingsPageVideo:
+                    setFlyoutContent(desiredPage, typeof(SettingsPageVideo), param);
                     break;
                 case VLCPage.PlaylistPage:
                     setFlyoutContent(desiredPage, typeof(PlaylistPage), param);
@@ -340,9 +349,9 @@ namespace VLC.Services.RunTime
                 case VLCPage.TvShowView:
                     setFlyoutContent(desiredPage, typeof(ShowEpisodesView), param);
                     break;
-                //case VLCPage.AboutAppView:
-                //    setFlyoutContent(desiredPage, typeof(AboutPage), param);
-                //    break;
+                case VLCPage.AboutAppView:
+                    setFlyoutContent(desiredPage, typeof(LicensePage), param);
+                    break;
                 case VLCPage.ArtistShowsPage:
                     setFlyoutContent(desiredPage, typeof(ArtistPageBase), param);
                     break;

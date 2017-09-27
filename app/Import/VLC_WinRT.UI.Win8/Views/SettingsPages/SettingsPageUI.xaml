@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<Page
     x:Class="VLC_WinRT.UI.Legacy.Views.SettingsPages.SettingsPageUI"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -53,7 +53,7 @@
                             <Grid Height="75"
                                   Width="75">
                                 <Grid.Background>
-                                    <SolidColorBrush Color="{Binding}" />
+                                    <SolidColorBrush Color="{Binding Color}" />
                                 </Grid.Background>
                             </Grid>
                         </DataTemplate>
@@ -122,4 +122,4 @@
             </StackPanel> 
         </ScrollViewer>
         </Grid>
-</UserControl>
+</Page>

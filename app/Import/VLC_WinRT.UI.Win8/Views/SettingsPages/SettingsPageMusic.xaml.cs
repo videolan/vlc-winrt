@@ -11,12 +11,12 @@ using VLC.ViewModels;
 
 namespace VLC_WinRT.UI.Legacy.Views.SettingsPages
 {
-    public sealed partial class SettingsPageMusic : UserControl
+    public sealed partial class SettingsPageMusic : Page
     {
         public SettingsPageMusic()
         {
             this.InitializeComponent();
-         //   Extensions.HideWindowsOnlyElements(RootPanel);
+            //Extensions.HideWindowsOnlyElements(RootPanel);
         }
 
         void FocusTextBox_LostFocus(object sender, RoutedEventArgs e)

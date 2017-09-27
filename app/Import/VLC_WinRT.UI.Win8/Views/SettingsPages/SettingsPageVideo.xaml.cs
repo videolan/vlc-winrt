@@ -4,7 +4,7 @@ using VLC.Utils;
 
 namespace VLC_WinRT.UI.Legacy.Views.SettingsPages
 {
-    public sealed partial class SettingsPageVideo : UserControl
+    public sealed partial class SettingsPageVideo : Page
     {
         public SettingsPageVideo()
         {
