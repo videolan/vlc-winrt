@@ -1,15 +1,14 @@
-From ecf2604a1d9f84465a2405f123e5dd228a441bff Mon Sep 17 00:00:00 2001
+From b0943724d352c6eecc539a0f533befa52b68f07f Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <slhomme@matroska.org>
 Date: Fri, 2 Dec 2016 11:14:40 +0100
-Subject: [PATCH 07/11] TEMPORARY: disable cuda/nvenc when building for
- Winstore
+Subject: [PATCH 7/9] TEMPORARY: disable cuda/nvenc when building for Winstore
 
 ---
  contrib/src/ffmpeg/rules.mak | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index 41d16a4..9fdade6 100644
+index 41d16a4fb2..9fdade64fa 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
 @@ -178,7 +178,7 @@ FFMPEGCONF += --enable-w32threads
@@ -22,5 +21,5 @@ index 41d16a4..9fdade6 100644
  
  ifdef HAVE_WIN64
 -- 
-2.10.1.windows.1
+2.11.0
 
