@@ -335,9 +335,10 @@ namespace VLC.ViewModels.Settings
         public AddFolderToLibrary AddFolderToLibrary { get; set; } = new AddFolderToLibrary();
         public RemoveFolderFromVideoLibrary RemoveFolderFromVideoLibrary { get; set; } = new RemoveFolderFromVideoLibrary();
         public RemoveFolderFromMusicLibrary RemoveFolderFromMusicLibrary { get; set; } = new RemoveFolderFromMusicLibrary();
+#if WINDOWS_APP
         public KnownLibraryId MusicLibraryId { get; set; } = KnownLibraryId.Music;
         public KnownLibraryId VideoLibraryId { get; set; } = KnownLibraryId.Videos;
-
+#endif
         public bool NotificationOnNewSong
         {
             get
@@ -600,14 +601,18 @@ namespace VLC.ViewModels.Settings
 
         public async Task GetMusicLibraryFolders()
         {
+#if WINDOWS_APP
             var musicLib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => MusicFolders = musicLib.Folders.ToList());
+#endif
         }
 
         public async Task GetVideoLibraryFolders()
         {
+#if WINDOWS_APP
             var videosLib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Videos);
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () => VideoFolders = videosLib.Folders.ToList());
+#endif
         }
 
         /// <summary>

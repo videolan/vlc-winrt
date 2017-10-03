@@ -270,6 +270,9 @@ namespace VLC.Services.RunTime
 
             if (video == null)
                 return 0;
+#if  WINDOWS_APP
+            
+
             var roamFile = await ApplicationData.Current.RoamingFolder.TryGetItemAsync("roamVideo.txt");
             if (roamFile != null)
             {
@@ -286,6 +289,7 @@ namespace VLC.Services.RunTime
                     }
                 }
             }
+#endif
 
             //TileHelper.UpdateVideoTile();
             // VLC expects a start-time in seconds

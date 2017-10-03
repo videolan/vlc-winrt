@@ -1,5 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using VLC;
 using VLC.Model;
 using VLC.Model.Music;
@@ -12,9 +13,7 @@ namespace VLC_WinRT.Views.UserControls.Flyouts
         public TrackItemFlyout()
         {
             this.InitializeComponent();
-#if WINDOWS_PHONE_APP
             this.Placement = FlyoutPlacementMode.Full;
-#endif
         }
 
         private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

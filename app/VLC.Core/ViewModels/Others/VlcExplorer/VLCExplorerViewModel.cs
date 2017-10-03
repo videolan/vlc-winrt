@@ -21,7 +21,6 @@ using VLC.Utils;
 using VLC.Helpers;
 using VLC.Model.FileExplorer;
 using Windows.UI.Core;
-using Windows.Devices.Portable;
 using Windows.UI.Xaml;
 using System.Diagnostics;
 

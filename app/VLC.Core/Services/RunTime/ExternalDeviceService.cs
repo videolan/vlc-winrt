@@ -101,15 +101,13 @@ namespace VLC.Services.RunTime
             Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == VLCPage.MainPageFileExplorer);
 
             StorageFolder rootFolder;
-            if (Helpers.DeviceHelper.GetDeviceType() != Helpers.DeviceTypeEnum.Xbox &&
-                Helpers.DeviceHelper.GetDeviceType() != Helpers.DeviceTypeEnum.Phone)
-                rootFolder = Windows.Devices.Portable.StorageDevice.FromId(deviceId);
-            else
-            {
+#if WINDOWS_APP
+            rootFolder = Windows.Devices.Portable.StorageDevice.FromId(deviceId);
+#elif WINDOWS_PHONE_APP
                 var devices = KnownFolders.RemovableDevices;
                 var allFolders = await devices.GetFoldersAsync();
-                rootFolder = allFolders.Last();
-            }
+                rootFolder = allFolders.Last(); 
+#endif
             if (rootFolder == null)
                 return;
 

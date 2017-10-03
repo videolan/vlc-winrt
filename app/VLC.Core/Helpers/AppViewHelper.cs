@@ -20,9 +20,30 @@ namespace VLC.Helpers
     {
         public static double PreviousWindowHeight;
         public static double PreviousWindowsWidth;
-        //public static double TitleBarHeight => CoreApplication.GetCurrentView().TitleBar.Height;
 
-        //public static double TitleBarRightOffset => CoreApplication.GetCurrentView().TitleBar.SystemOverlayRightInset;
+        public static double TitleBarHeight
+        {
+            get
+            {
+#if WINDOWS_UWP
+                 return CoreApplication.GetCurrentView().TitleBar.Height;
+#else
+                return 32;
+#endif
+            }
+        }
+
+        public static double TitleBarRightOffset
+        {
+            get
+            {
+#if WINDOWS_UWP
+                return CoreApplication.GetCurrentView().TitleBar.SystemOverlayRightInset;
+#else
+                return 0;
+#endif
+            }
+        }
 
         static AppViewHelper()
         {
@@ -30,48 +51,51 @@ namespace VLC.Helpers
 
         public static async Task SetAppView(bool extend)
         {
-            //if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            //{
-            //    await StatusBar.GetForCurrentView().HideAsync();
-            //}
+#if WINDOWS_UWP
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                await StatusBar.GetForCurrentView().HideAsync();
+            }
 
-            //if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
-            //{
-            //    ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
-            //}
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+            {
+                ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+            }
 
             if (DeviceHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
                 return;
             if (Numbers.OSVersion <= 10586)
                 return;
 
-            //var coreAppViewTitleBar = CoreApplication.GetCurrentView().TitleBar;
-            //var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            var coreAppViewTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
 
             
-            //if (!Locator.SettingsVM.MediaCenterMode)
-            //{
-            //    coreAppViewTitleBar.ExtendViewIntoTitleBar = extend;
-            //    if (extend)
-            //    {
-            //        titleBar.BackgroundColor = Colors.Transparent;
-            //        titleBar.ButtonBackgroundColor = Colors.Transparent;
+            if (!Locator.SettingsVM.MediaCenterMode)
+            {
+                coreAppViewTitleBar.ExtendViewIntoTitleBar = extend;
+                if (extend)
+                {
+                    titleBar.BackgroundColor = Colors.Transparent;
+                    titleBar.ButtonBackgroundColor = Colors.Transparent;
 
-            //        titleBar.ButtonForegroundColor = Colors.White;
-            //    }
-            //    else
-            //    {
-            //        titleBar.BackgroundColor = Colors.DimGray;
-            //        titleBar.InactiveBackgroundColor = Colors.DarkGray;
+                    titleBar.ButtonForegroundColor = Colors.White;
+                }
+                else
+                {
+                    titleBar.BackgroundColor = Colors.DimGray;
+                    titleBar.InactiveBackgroundColor = Colors.DarkGray;
                     
-            //        titleBar.ButtonBackgroundColor = Colors.DimGray;
-            //        titleBar.ButtonInactiveBackgroundColor = Colors.DarkGray;
+                    titleBar.ButtonBackgroundColor = Colors.DimGray;
+                    titleBar.ButtonInactiveBackgroundColor = Colors.DarkGray;
 
-            //        titleBar.ButtonForegroundColor = Colors.White;
-            //    }
-            //}
-            //else
-            //    coreAppViewTitleBar.ExtendViewIntoTitleBar = false;
+                    titleBar.ButtonForegroundColor = Colors.White;
+                }
+            }
+            else
+                coreAppViewTitleBar.ExtendViewIntoTitleBar = false;
+#endif
+
 
         }
 
@@ -126,6 +150,7 @@ namespace VLC.Helpers
 
         public static async Task CreateNewWindow(Type view, double width, double height)
         {
+#if WINDOWS_APP
             var newCoreAppView = CoreApplication.CreateNewView();
             var appView = ApplicationView.GetForCurrentView();
             await newCoreAppView.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, async () =>
@@ -158,6 +183,7 @@ namespace VLC.Helpers
                     });
                 }
             });
+#endif
         }
 
         public static async void ResizeWindow(bool restoPreviousSize, double width = 0, double height = 0)

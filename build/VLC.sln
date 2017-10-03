@@ -48,9 +48,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libwinstore_plugin.8.1.Shar
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libwinstore_plugin.8.1.Windows", "..\modules\libwinstore_plugin.8.1\libwinstore_plugin.8.1.Windows\libwinstore_plugin.8.1.Windows.vcxproj", "{209C21D7-B0A7-4500-85BF-2F12B248A90D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libwinstore_plugin.8.1.WindowsPhone", "..\modules\libwinstore_plugin.8.1\libwinstore_plugin.8.1.WindowsPhone\libwinstore_plugin.8.1.WindowsPhone.vcxproj", "{9DE8785E-2E87-4ECB-9BA8-583E712B280C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libwinstore_plugin.8.1", "libwinstore_plugin.8.1", "{A16894C8-BD09-4CB5-A74F-3FA51835AAE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WinRT.WindowsPhone", "..\app\Import\VLC_WinRT.WindowsPhone\VLC_WinRT.WindowsPhone.csproj", "{C8711A23-F511-4FA1-A3F5-F2578F820A5A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B73DBA49-E61E-4D86-A2FD-96AE487ED8B4} = {B73DBA49-E61E-4D86-A2FD-96AE487ED8B4}
+		{9DE8785E-2E87-4ECB-9BA8-583E712B280C} = {9DE8785E-2E87-4ECB-9BA8-583E712B280C}
+		{1C3F97BB-2FAA-4EC0-825D-D5B13E304F3C} = {1C3F97BB-2FAA-4EC0-825D-D5B13E304F3C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libwinstore_plugin.8.1.WindowsPhone", "..\modules\libwinstore_plugin.8.1\libwinstore_plugin.8.1.WindowsPhone\libwinstore_plugin.8.1.WindowsPhone.vcxproj", "{9DE8785E-2E87-4ECB-9BA8-583E712B280C}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -74,6 +81,12 @@ Global
 		..\app\VLC.MediaMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
 		libaccess_winrt_plugin.8.1\libaccess_winrt_plugin.8.1.Shared\libaccess_winrt_plugin.8.1.Shared.vcxitems*{b73dba49-e61e-4d86-a2fd-96ae487ed8b4}*SharedItemsImports = 4
 		..\app\VLC.MediaMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{c3f84118-8e3d-4b19-a300-9cb6f7ae0e87}*SharedItemsImports = 13
+		..\app\Import\VLC_WinRT.Slideshow\VLC_WinRT.Slideshow.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
+		..\app\Import\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
+		..\app\Import\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
+		..\app\Import\VLC_WinRT.UI.Win8\VLC_WinRT.UI.Win8.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
+		..\app\VLC.Core\VLC_WinRT.Shared.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
+		..\app\VLC.MediaMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
 		..\app\Import\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{d499d5a2-b899-4664-94e8-65c8114582de}*SharedItemsImports = 13
 		..\modules\libVLCX.8.1\libVLCX.8.1.Shared\libVLCX.8.1.Shared.vcxitems*{d8088313-cb38-4fdf-9f97-2d5e4cc63173}*SharedItemsImports = 9
 		..\app\VLC.Core\VLC_WinRT.Shared.projitems*{db1dea15-00b8-4707-8c70-53431c4fa754}*SharedItemsImports = 13
@@ -98,12 +111,10 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A593376E-2BBE-4844-B25F-1342B7716287}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{A593376E-2BBE-4844-B25F-1342B7716287}.Debug|ARM.ActiveCfg = Debug|ARM
-		{A593376E-2BBE-4844-B25F-1342B7716287}.Debug|ARM.Build.0 = Debug|ARM
 		{A593376E-2BBE-4844-B25F-1342B7716287}.Debug|Universal-ARM.ActiveCfg = Debug|Win32
 		{A593376E-2BBE-4844-B25F-1342B7716287}.Debug|Universal-x64.ActiveCfg = Debug|Win32
 		{A593376E-2BBE-4844-B25F-1342B7716287}.Debug|Universal-x64.Build.0 = Debug|Win32
 		{A593376E-2BBE-4844-B25F-1342B7716287}.Debug|Universal-x86.ActiveCfg = Debug|Win32
-		{A593376E-2BBE-4844-B25F-1342B7716287}.Debug|Universal-x86.Build.0 = Debug|Win32
 		{A593376E-2BBE-4844-B25F-1342B7716287}.Debug|x64.ActiveCfg = Debug|x64
 		{A593376E-2BBE-4844-B25F-1342B7716287}.Debug|x64.Build.0 = Debug|x64
 		{A593376E-2BBE-4844-B25F-1342B7716287}.Debug|x86.ActiveCfg = Debug|Win32
@@ -139,7 +150,6 @@ Global
 		{B73DBA49-E61E-4D86-A2FD-96AE487ED8B4}.Release|x86.Deploy.0 = Release|Win32
 		{252C421D-B48D-44FB-A1A0-0752D66A972D}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{252C421D-B48D-44FB-A1A0-0752D66A972D}.Debug|ARM.ActiveCfg = Debug|ARM
-		{252C421D-B48D-44FB-A1A0-0752D66A972D}.Debug|ARM.Build.0 = Debug|ARM
 		{252C421D-B48D-44FB-A1A0-0752D66A972D}.Debug|Universal-ARM.ActiveCfg = Debug|Win32
 		{252C421D-B48D-44FB-A1A0-0752D66A972D}.Debug|Universal-x64.ActiveCfg = Debug|Win32
 		{252C421D-B48D-44FB-A1A0-0752D66A972D}.Debug|Universal-x64.Build.0 = Debug|Win32
@@ -181,8 +191,6 @@ Global
 		{B1A5A4DC-2C9F-4343-AF3F-372944C4607D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1A5A4DC-2C9F-4343-AF3F-372944C4607D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{B1A5A4DC-2C9F-4343-AF3F-372944C4607D}.Debug|ARM.ActiveCfg = Debug|ARM
-		{B1A5A4DC-2C9F-4343-AF3F-372944C4607D}.Debug|ARM.Build.0 = Debug|ARM
-		{B1A5A4DC-2C9F-4343-AF3F-372944C4607D}.Debug|ARM.Deploy.0 = Debug|ARM
 		{B1A5A4DC-2C9F-4343-AF3F-372944C4607D}.Debug|Universal-ARM.ActiveCfg = Debug|Any CPU
 		{B1A5A4DC-2C9F-4343-AF3F-372944C4607D}.Debug|Universal-ARM.Build.0 = Debug|Any CPU
 		{B1A5A4DC-2C9F-4343-AF3F-372944C4607D}.Debug|Universal-ARM.Deploy.0 = Debug|Any CPU
@@ -221,7 +229,6 @@ Global
 		{B1A5A4DC-2C9F-4343-AF3F-372944C4607D}.Release|x86.Deploy.0 = Release|x86
 		{209C21D7-B0A7-4500-85BF-2F12B248A90D}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{209C21D7-B0A7-4500-85BF-2F12B248A90D}.Debug|ARM.ActiveCfg = Debug|ARM
-		{209C21D7-B0A7-4500-85BF-2F12B248A90D}.Debug|ARM.Build.0 = Debug|ARM
 		{209C21D7-B0A7-4500-85BF-2F12B248A90D}.Debug|Universal-ARM.ActiveCfg = Debug|Win32
 		{209C21D7-B0A7-4500-85BF-2F12B248A90D}.Debug|Universal-x64.ActiveCfg = Debug|Win32
 		{209C21D7-B0A7-4500-85BF-2F12B248A90D}.Debug|Universal-x86.ActiveCfg = Debug|Win32
@@ -239,6 +246,48 @@ Global
 		{209C21D7-B0A7-4500-85BF-2F12B248A90D}.Release|x64.Build.0 = Release|x64
 		{209C21D7-B0A7-4500-85BF-2F12B248A90D}.Release|x86.ActiveCfg = Release|Win32
 		{209C21D7-B0A7-4500-85BF-2F12B248A90D}.Release|x86.Build.0 = Release|Win32
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|ARM.ActiveCfg = Debug|ARM
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|ARM.Build.0 = Debug|ARM
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|ARM.Deploy.0 = Debug|ARM
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Universal-ARM.ActiveCfg = Debug|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Universal-ARM.Build.0 = Debug|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Universal-ARM.Deploy.0 = Debug|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Universal-x64.ActiveCfg = Debug|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Universal-x64.Build.0 = Debug|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Universal-x64.Deploy.0 = Debug|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Universal-x86.ActiveCfg = Debug|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Universal-x86.Build.0 = Debug|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|Universal-x86.Deploy.0 = Debug|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|x64.Build.0 = Debug|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|x86.ActiveCfg = Debug|x86
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|x86.Build.0 = Debug|x86
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Debug|x86.Deploy.0 = Debug|x86
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|ARM.ActiveCfg = Release|ARM
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|ARM.Build.0 = Release|ARM
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|ARM.Deploy.0 = Release|ARM
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Universal-ARM.ActiveCfg = Release|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Universal-ARM.Build.0 = Release|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Universal-ARM.Deploy.0 = Release|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Universal-x64.ActiveCfg = Release|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Universal-x64.Build.0 = Release|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Universal-x64.Deploy.0 = Release|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Universal-x86.ActiveCfg = Release|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Universal-x86.Build.0 = Release|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|Universal-x86.Deploy.0 = Release|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|x64.ActiveCfg = Release|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|x64.Build.0 = Release|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|x64.Deploy.0 = Release|Any CPU
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|x86.ActiveCfg = Release|x86
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|x86.Build.0 = Release|x86
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A}.Release|x86.Deploy.0 = Release|x86
 		{9DE8785E-2E87-4ECB-9BA8-583E712B280C}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{9DE8785E-2E87-4ECB-9BA8-583E712B280C}.Debug|ARM.ActiveCfg = Debug|ARM
 		{9DE8785E-2E87-4ECB-9BA8-583E712B280C}.Debug|ARM.Build.0 = Debug|ARM
@@ -282,6 +331,7 @@ Global
 		{B1A5A4DC-2C9F-4343-AF3F-372944C4607D} = {9A1B62F1-83B6-4974-AC1B-764914D8BF2D}
 		{5C340DC6-70F6-4F5B-BD7D-0A0B2640C851} = {A16894C8-BD09-4CB5-A74F-3FA51835AAE1}
 		{209C21D7-B0A7-4500-85BF-2F12B248A90D} = {A16894C8-BD09-4CB5-A74F-3FA51835AAE1}
+		{C8711A23-F511-4FA1-A3F5-F2578F820A5A} = {9A1B62F1-83B6-4974-AC1B-764914D8BF2D}
 		{9DE8785E-2E87-4ECB-9BA8-583E712B280C} = {A16894C8-BD09-4CB5-A74F-3FA51835AAE1}
 	EndGlobalSection
 EndGlobal

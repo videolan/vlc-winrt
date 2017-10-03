@@ -40,18 +40,12 @@ namespace VLC
         public static IContainer Container;
         
         public App()
-        {
+        {    
             InitializeComponent();
             Suspending += OnSuspending;
             Container = AutoFacConfiguration.Configure();
-
-            //if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox &&
-            //    ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 3))
-            //{
-            //    RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
-            //}
         }
-
+        
         public static Frame ApplicationFrame => RootPage?.NavigationFrame;
 
         public static MainPage RootPage => Window.Current?.Content as MainPage;
@@ -62,12 +56,14 @@ namespace VLC
         {
             if (Window.Current.Content == null)
             {
-                if (args.PrelaunchActivated)
+#if WINDOWS_APP
+                 if (args.PrelaunchActivated)
                 {
                     Window.Current.VisibilityChanged += Current_VisibilityChanged;
                     await LaunchTheApp(true);
                     return;
                 }
+#endif
                 await LaunchTheApp();
             }
             if (args.Arguments.Contains("SecondaryTile"))
@@ -173,6 +169,7 @@ namespace VLC
                     {
                         switch (decoder[0]?.Value)
                         {
+#if WINDOWS_APP
                             case "clipboard":
                                 await Task.Delay(1000);
                                 var dataPackage = Clipboard.GetContent();
@@ -192,6 +189,7 @@ namespace VLC
                                 if (url != null)
                                     await Locator.MediaPlaybackViewModel.PlayStream(url.AbsoluteUri);
                                 break;
+#endif
                             case "useraction":
                                 Locator.MainVM.GoToStreamPanel.Execute(null);
                                 break;

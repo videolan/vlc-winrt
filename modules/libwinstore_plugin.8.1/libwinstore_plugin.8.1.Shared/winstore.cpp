@@ -55,8 +55,8 @@ DEFINE_GUID(DEVINTERFACE_AUDIO_RENDER, 0xe6327cad, 0xdcec, 0x4949, 0xae, 0x8a, 0
 #include <vlc_aout.h>
 #include <vlc_modules.h>
 #include <vlc_aout.h>
-#include <audiopolicy.h>
 
+#include <audiopolicy.h>
 #include "mmdevice.h"
 
 #include <tchar.h>

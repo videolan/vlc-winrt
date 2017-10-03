@@ -43,16 +43,13 @@ namespace VLC.Model.Library
 
                 StorageFolder folder;
                 // Windows.Devices.Portable.StorageDevice.FromId blocks forever on Xbox... so work around
-                if (Helpers.DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox &&
-                    Helpers.DeviceHelper.GetDeviceType() != DeviceTypeEnum.Phone)
-                    folder = Windows.Devices.Portable.StorageDevice.FromId(deviceId);
-                else
-                {
+#if WINDOWS_APP
+                folder = Windows.Devices.Portable.StorageDevice.FromId(deviceId);
+#else
                     var devices = KnownFolders.RemovableDevices;
                     var allFolders = await devices.GetFoldersAsync();
                     folder = allFolders.Last();
-                }
-
+#endif
                 if (!StorageApplicationPermissions.FutureAccessList.CheckAccess(folder))
                     StorageApplicationPermissions.FutureAccessList.Add(folder);
                 await MediaLibraryHelper.ForeachSupportedFile(folder, async (IReadOnlyList<StorageFile> files) => await DiscoverMediaItems(files));
@@ -67,7 +64,7 @@ namespace VLC.Model.Library
             return Task.Run(async () => await cleanMediaLibrary().ConfigureAwait(false));
         }
 
-        #region properties
+#region properties
         private object discovererLock = new object();
         private bool _alreadyIndexedOnce = false;
         public bool AlreadyIndexedOnce => _alreadyIndexedOnce;
@@ -84,15 +81,15 @@ namespace VLC.Model.Library
             }
         }
         public event Action<LoadingState> OnIndexing;
-        #endregion
+#endregion
 
-        #region databases
+#region databases
         readonly MusicDatabase musicDatabase = new MusicDatabase();
 
         readonly VideoDatabase videoDatabase = new VideoDatabase();
-        #endregion
+#endregion
 
-        #region collections
+#region collections
         public SmartCollection<ArtistItem> Artists { get; private set; } = new SmartCollection<ArtistItem>();
         public SmartCollection<AlbumItem> Albums { get; private set; } = new SmartCollection<AlbumItem>();
         public SmartCollection<TrackItem> Tracks { get; private set; } = new SmartCollection<TrackItem>();
@@ -108,8 +105,8 @@ namespace VLC.Model.Library
         Dictionary<string, MediaDiscoverer> discoverers;
         public event MediaListItemAdded MediaListItemAdded;
         public event MediaListItemDeleted MediaListItemDeleted;
-        #endregion
-        #region mutexes
+#endregion
+#region mutexes
         public TaskCompletionSource<bool> ContinueIndexing { get; set; }
         public TaskCompletionSource<bool> MusicCollectionLoaded = new TaskCompletionSource<bool>();
 
@@ -202,9 +199,9 @@ namespace VLC.Model.Library
             });
         }
 
-        #endregion
+#endregion
 
-        #region IndexationLogic
+#region IndexationLogic
 
         public void LoadAndCleanLibrariesAsync()
         {
@@ -612,11 +609,11 @@ namespace VLC.Model.Library
             }
             return media.subItems();
         }
-        #endregion
+#endregion
 
         //============================================
-        #region DataLogic
-        #region audio
+#region DataLogic
+#region audio
         public SmartCollection<AlbumItem> OrderAlbums(OrderType orderType, OrderListing orderListing)
         {
             if (Albums == null)
@@ -698,8 +695,8 @@ namespace VLC.Model.Library
             }
             return groupedTracks;
         }
-        #endregion
-        #region DatabaseLogic
+#endregion
+#region DatabaseLogic
         public void LoadAlbumsFromDatabase()
         {
             Albums.Clear();
@@ -756,8 +753,8 @@ namespace VLC.Model.Library
             }
             TrackCollections = trackColl;
         }
-        #endregion
-        #region video
+#endregion
+#region video
         bool IsVideoDatabaseEmpty()
         {
             return videoDatabase.IsEmpty();
@@ -791,8 +788,8 @@ namespace VLC.Model.Library
             foreach (var item in newVideos)
                 CameraRoll.Add(item);
         }
-        #endregion
-        #region streams
+#endregion
+#region streams
         public async Task LoadStreamsFromDatabase()
         {
             await DispatchHelper.InvokeInUIThreadHighPriority(() => Streams.Clear());
@@ -815,10 +812,10 @@ namespace VLC.Model.Library
         {
             videoDatabase.Update(stream);
         }
-        #endregion
-        #endregion
+#endregion
+#endregion
 
-        #region TODO:STUFF???
+#region TODO:STUFF???
         // Returns false is no snapshot generation was required, true otherwise
         private async Task<Boolean> GenerateThumbnail(VideoItem videoItem)
         {
@@ -1138,9 +1135,9 @@ namespace VLC.Model.Library
             }
             DeleteStream(stream);
         }
-        #endregion
-        #region database operations
-        #region audio
+#endregion
+#region database operations
+#region audio
         public List<TracklistItem> LoadTracks(PlaylistItem trackCollection)
         {
             return musicDatabase.LoadTracks(trackCollection);
@@ -1236,8 +1233,8 @@ namespace VLC.Model.Library
             return musicDatabase.LoadTracks();
         }
 
-        #endregion
-        #region video
+#endregion
+#region video
         public List<VideoItem> LoadVideos(Expression<Func<VideoItem, bool>> predicate)
         {
             return videoDatabase.Load(predicate);
@@ -1257,8 +1254,8 @@ namespace VLC.Model.Library
         {
             return videoDatabase.Contains(column, val);
         }
-        #endregion
-        #region streams
+#endregion
+#region streams
         private List<StreamMedia> LoadStreams()
         {
             return videoDatabase.LoadStreams();
@@ -1273,7 +1270,7 @@ namespace VLC.Model.Library
         {
             videoDatabase.Delete(media);
         }
-        #endregion
-        #endregion
+#endregion
+#endregion
     }
 }
