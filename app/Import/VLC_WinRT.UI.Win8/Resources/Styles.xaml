@@ -504,6 +504,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+
     <Style x:Key="ListViewItemContainerStyle"
            TargetType="ListViewItem">
         <Setter Property="FontFamily"
@@ -517,7 +518,7 @@
         <Setter Property="IsHoldingEnabled"
                 Value="True" />
         <Setter Property="Margin"
-                Value="0" />
+                Value="5" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Stretch" />
         <Setter Property="VerticalContentAlignment"

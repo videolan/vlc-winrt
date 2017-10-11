@@ -340,7 +340,7 @@
     <value>no internet connection</value>
   </data>
   <data name="NoPlaylists" xml:space="preserve">
-    <value>no playlists</value>
+    <value>no playlist</value>
   </data>
   <data name="NoShowsFound" xml:space="preserve">
     <value>no shows found</value>
