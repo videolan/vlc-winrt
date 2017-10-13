@@ -1,4 +1,4 @@
-From 9c5edc4e1ae1c62aa0d9fcf8a70bf139d02b09cf Mon Sep 17 00:00:00 2001
+From bc6b733f616deb0155400fb4137fab41b5822a79 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Feb 2015 11:58:54 +0100
 Subject: [PATCH 1/9] wasapi: Don't fail if the client is already initialized
@@ -9,7 +9,7 @@ make the extra test only for Winstore builds
  1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/modules/audio_output/wasapi.c b/modules/audio_output/wasapi.c
-index abe7825b0e..bf6b06eec7 100644
+index abe7825..bf6b06e 100644
 --- a/modules/audio_output/wasapi.c
 +++ b/modules/audio_output/wasapi.c
 @@ -584,7 +584,11 @@ static HRESULT Restart(aout_stream_t *s, audio_sample_format_t *restrict pfmt,
@@ -26,5 +26,5 @@ index abe7825b0e..bf6b06eec7 100644
          msg_Err(s, "cannot initialize audio client (error 0x%lx)", hr);
          goto error;
 -- 
-2.11.0
+2.10.1.windows.1
 

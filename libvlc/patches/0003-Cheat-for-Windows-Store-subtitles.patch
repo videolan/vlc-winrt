@@ -1,28 +1,30 @@
-From 6bf35ea010195f84e7ceb0a4d3a51cefb1d09b69 Mon Sep 17 00:00:00 2001
+From 86be39a31507df2c2fa2ba6be703be5a93dd4bf4 Mon Sep 17 00:00:00 2001
 From: Jean-Baptiste Kempf <jb@videolan.org>
 Date: Wed, 16 Apr 2014 16:09:53 +0200
 Subject: [PATCH 3/9] Cheat for Windows Store subtitles
 
 ---
- lib/video.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ lib/video.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/lib/video.c b/lib/video.c
-index c41c6e35ff..b001af07c0 100644
+index acbba3a..f4e9e2f 100644
 --- a/lib/video.c
 +++ b/lib/video.c
-@@ -407,7 +407,11 @@ int libvlc_video_set_subtitle_file( libvlc_media_player_t *p_mi,
+@@ -406,8 +406,13 @@ int libvlc_video_set_subtitle_file( libvlc_media_player_t *p_mi,
+         char* psz_mrl = vlc_path2uri( psz_subtitle, NULL );
          if( psz_mrl )
          {
-             if( !input_AddSlave( p_input_thread, SLAVE_TYPE_SPU, psz_mrl,
 +#if VLC_WINSTORE_APP
-+                                 false, false ) )
++            if( !input_AddSlave( p_input_thread, SLAVE_TYPE_SPU, psz_mrl,
++                                 false, false, false ) )
 +#else
-                                  true, false ) )
+             if( !input_AddSlave( p_input_thread, SLAVE_TYPE_SPU, psz_mrl,
+                                  true, false, false ) )
 +#endif
                  b_ret = true;
              free( psz_mrl );
          }
 -- 
-2.11.0
+2.10.1.windows.1
 
