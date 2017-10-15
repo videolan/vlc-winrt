@@ -540,6 +540,12 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Japonais</value>
   </data>
+  <data name="GermanLanguage" xml:space="preserve">
+    <value>Allemand</value>
+  </data>
+  <data name="PolishLanguage" xml:space="preserve">
+    <value>Polonais</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Langages</value>
   </data>

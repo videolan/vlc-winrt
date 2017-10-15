@@ -19,6 +19,10 @@ namespace VLC.Converters
                         return Strings.JapaneseLanguage;
                     case Languages.French:
                         return Strings.FrenchLanguage;
+                    case Languages.German:
+                        return Strings.GermanLanguage;
+                    case Languages.Polish:
+                        return Strings.PolishLanguage;
                     default:
                         throw new NotImplementedException();
                 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="fr-FR" original="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+  <file datatype="xml" source-language="en-US" target-language="de-DE" original="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" tool-company="Microsoft" />
     </header>
@@ -8,803 +8,803 @@
       <group id="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
         <trans-unit id="AboutTheApp" translate="yes" xml:space="preserve">
           <source>about the app</source>
-          <target state="translated">À propos de l'application</target>
+          <target state="translated">über die App</target>
         </trans-unit>
         <trans-unit id="Add" translate="yes" xml:space="preserve">
           <source>add</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ajouter</target>
+          <target state="translated" state-qualifier="tm-suggestion">hinzufügen</target>
         </trans-unit>
         <trans-unit id="AddFolder" translate="yes" xml:space="preserve">
           <source>add folder</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ajouter un dossier</target>
+          <target state="translated" state-qualifier="mt-suggestion">Ordner hinzufügen</target>
         </trans-unit>
         <trans-unit id="AddToCollection" translate="yes" xml:space="preserve">
           <source>add to collection</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ajouter à la collection</target>
+          <target state="translated" state-qualifier="tm-suggestion">zur Sammlung hinzufügen</target>
         </trans-unit>
         <trans-unit id="AddToCurrentPlaylist" translate="yes" xml:space="preserve">
           <source>add to current playlist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ajouter à la liste de lecture courante</target>
+          <target state="translated" state-qualifier="mt-suggestion">zur aktuellen Wiedergabeliste hinzufügen</target>
         </trans-unit>
         <trans-unit id="AddToPlaylist" translate="yes" xml:space="preserve">
           <source>add to playlist</source>
-          <target state="translated">Ajouter à la liste de lecture</target>
+          <target state="translated">zur Wiedergabeliste hinzufügen</target>
         </trans-unit>
         <trans-unit id="Albums" translate="yes" xml:space="preserve">
           <source>albums</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">albums</target>
+          <target state="translated" state-qualifier="tm-suggestion">Alben</target>
         </trans-unit>
         <trans-unit id="AlbumsFound" translate="yes" xml:space="preserve">
           <source>albums found : {0}</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Albums trouvés : {0}</target>
+          <target state="translated" state-qualifier="mt-suggestion">Alben gefunden: {0}</target>
         </trans-unit>
         <trans-unit id="Animations" translate="yes" xml:space="preserve">
           <source>animations</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">animations</target>
+          <target state="translated" state-qualifier="mt-suggestion">Animationen</target>
         </trans-unit>
         <trans-unit id="AppTheme" translate="yes" xml:space="preserve">
           <source>application theme</source>
-          <target state="translated">thème de l'application</target>
+          <target state="translated">Anwendungsthema</target>
         </trans-unit>
         <trans-unit id="Artists" translate="yes" xml:space="preserve">
           <source>artists</source>
-          <target state="translated" state-qualifier="tm-suggestion">artistes</target>
+          <target state="translated" state-qualifier="tm-suggestion">Künstler</target>
         </trans-unit>
         <trans-unit id="Audio" translate="yes" xml:space="preserve">
           <source>audio</source>
-          <target state="translated" state-qualifier="tm-suggestion">audio</target>
+          <target state="translated" state-qualifier="tm-suggestion">Audio</target>
         </trans-unit>
         <trans-unit id="AudioDelay" translate="yes" xml:space="preserve">
           <source>audio delay</source>
-          <target state="translated" state-qualifier="mt-suggestion">décalage audio</target>
+          <target state="translated" state-qualifier="mt-suggestion">Audioverzögerung</target>
         </trans-unit>
         <trans-unit id="AudioTracks" translate="yes" xml:space="preserve">
           <source>Audio Tracks</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">pistes audio</target>
+          <target state="translated" state-qualifier="mt-suggestion">Audiospuren</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Back" translate="yes" xml:space="preserve">
           <source>back</source>
-          <target state="translated" state-qualifier="tm-suggestion">précédent</target>
+          <target state="translated" state-qualifier="tm-suggestion">zurück</target>
         </trans-unit>
         <trans-unit id="CameraRoll" translate="yes" xml:space="preserve">
           <source>camera roll</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">pellicule</target>
+          <target state="translated" state-qualifier="tm-suggestion">Filmrolle</target>
         </trans-unit>
         <trans-unit id="ChangeAlbumCover" translate="yes" xml:space="preserve">
           <source>change album cover</source>
-          <target state="translated" state-qualifier="mt-suggestion">changer la couverture de l'album</target>
+          <target state="translated" state-qualifier="mt-suggestion">Albumcover ändern</target>
         </trans-unit>
         <trans-unit id="Chapters" translate="yes" xml:space="preserve">
           <source>Chapters</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">chapitres</target>
+          <target state="translated" state-qualifier="mt-suggestion">Kapitel</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="CheckCredentials" translate="yes" xml:space="preserve">
           <source>an error occured, please check your credentials</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">une erreur s'est produite, veuillez vérifier vos informations d'identification</target>
+          <target state="translated" state-qualifier="mt-suggestion">Ein Fehler ist aufgetreten, überprüfen Sie bitte Ihre Zugangsdaten</target>
         </trans-unit>
         <trans-unit id="Connect" translate="yes" xml:space="preserve">
           <source>connect</source>
-          <target state="translated" state-qualifier="tm-suggestion">connecter</target>
+          <target state="translated" state-qualifier="tm-suggestion">verbinden</target>
         </trans-unit>
         <trans-unit id="ConnectedToLastFM" translate="yes" xml:space="preserve">
           <source>connected to Last.FM</source>
-          <target state="translated" state-qualifier="mt-suggestion">connecté à Last.FM</target>
+          <target state="translated" state-qualifier="mt-suggestion">verbunden mit Last.FM</target>
         </trans-unit>
         <trans-unit id="Connecting" translate="yes" xml:space="preserve">
           <source>connecting</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">connexion en cours</target>
+          <target state="translated" state-qualifier="tm-suggestion">verbinde</target>
         </trans-unit>
         <trans-unit id="ConnectToLastFM" translate="yes" xml:space="preserve">
           <source>connect to Last.FM</source>
-          <target state="translated" state-qualifier="mt-suggestion">se connecter à Last.FM</target>
+          <target state="translated" state-qualifier="mt-suggestion">Verbindung zu Last.FM herstellen</target>
         </trans-unit>
         <trans-unit id="CrashReport" translate="yes" xml:space="preserve">
           <source>crash report</source>
-          <target state="translated">rapport de bogue</target>
+          <target state="translated">Absturzbericht</target>
         </trans-unit>
         <trans-unit id="DecreaseSpeed" translate="yes" xml:space="preserve">
           <source>decrease speed</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">diminuer la vitesse</target>
+          <target state="translated" state-qualifier="mt-suggestion">Geschwindigkeit verringern</target>
         </trans-unit>
         <trans-unit id="DecreaseVolume" translate="yes" xml:space="preserve">
           <source>decrease volume</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">diminuer le volume</target>
+          <target state="translated" state-qualifier="mt-suggestion">Lautstärke verringern</target>
         </trans-unit>
         <trans-unit id="DeletePlaylist" translate="yes" xml:space="preserve">
           <source>delete playlist</source>
-          <target state="translated">supprimer la liste de lecture</target>
+          <target state="translated">Wiedergabeliste löschen</target>
         </trans-unit>
         <trans-unit id="DeleteSelected" translate="yes" xml:space="preserve">
           <source>delete selected</source>
-          <target state="translated">supprimer la selection</target>
+          <target state="translated">Ausgewählte löschen</target>
         </trans-unit>
         <trans-unit id="EditMetadata" translate="yes" xml:space="preserve">
           <source>edit metadata</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">modifier les métadonnées</target>
+          <target state="translated" state-qualifier="mt-suggestion">Metadaten bearbeiten</target>
         </trans-unit>
         <trans-unit id="ElementsNotFound" translate="yes" xml:space="preserve">
           <source>we did not find elements in there</source>
-          <target state="translated">Nous n'avons pas trouvé d'élément ici</target>
+          <target state="translated">Es sieht so aus, als hätten wir dort keine Elemente gefunden.</target>
         </trans-unit>
         <trans-unit id="EnterURL" translate="yes" xml:space="preserve">
           <source>enter a url</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Entrez une url</target>
+          <target state="translated" state-qualifier="mt-suggestion">Geben Sie eine URL ein</target>
         </trans-unit>
         <trans-unit id="Episode" translate="yes" xml:space="preserve">
           <source>episode</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">épisode</target>
+          <target state="translated" state-qualifier="tm-suggestion">Episode</target>
         </trans-unit>
         <trans-unit id="EvenIfBackground" translate="yes" xml:space="preserve">
           <source>even if the app is in background</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">même si l'application est en arrière-plan</target>
+          <target state="translated" state-qualifier="mt-suggestion">auch wenn sich die App im Hintergrund befindet</target>
         </trans-unit>
         <trans-unit id="EvenIfNotBackground" translate="yes" xml:space="preserve">
           <source>even if the app is not in background</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">même si l'app n'est pas en arrière-plan</target>
+          <target state="translated" state-qualifier="mt-suggestion">auch wenn sich die App nicht im Hintergrund befindet</target>
         </trans-unit>
         <trans-unit id="FailFilePlayBackground" translate="yes" xml:space="preserve">
           <source>This file may not play in the background</source>
-          <target state="translated">Ce fichier ne peut pas être joué en arrière-plan</target>
+          <target state="translated">Diese Datei wird möglicherweise nicht im Hintergrund abgespielt</target>
         </trans-unit>
         <trans-unit id="FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
           <source>VLC failed to navigate to the Video Player page</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC n'a pas pu accéder à la page Video Player</target>
+          <target state="translated" state-qualifier="mt-suggestion">VLC konnte nicht zur Video Player-Seite navigieren</target>
         </trans-unit>
         <trans-unit id="FailOpenVideo" translate="yes" xml:space="preserve">
           <source>VLC failed to open the video</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC n'a pas pu ouvrir la vidéo</target>
+          <target state="translated" state-qualifier="mt-suggestion">VLC konnte das Video nicht öffnen</target>
         </trans-unit>
         <trans-unit id="FailStartVLCEngine" translate="yes" xml:space="preserve">
           <source>The app failed to start the VLC engine</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">L'app n'a pas pu démarrer le moteur VLC</target>
+          <target state="translated" state-qualifier="mt-suggestion">Die App konnte die VLC-Engine nicht starten</target>
         </trans-unit>
         <trans-unit id="FeedbackThankYou" translate="yes" xml:space="preserve">
           <source>feedback sent! thank you</source>
-          <target state="translated">vos commentaires ont été envoyés ! Merci</target>
+          <target state="translated">Feedback gesendet! Vielen Dank</target>
         </trans-unit>
         <trans-unit id="FileExplorer" translate="yes" xml:space="preserve">
           <source>browse</source>
-          <target state="translated">naviguer</target>
+          <target state="translated">durchsuchen</target>
         </trans-unit>
         <trans-unit id="HardwareDecoding" translate="yes" xml:space="preserve">
           <source>hardware decoding</source>
-          <target state="translated">décodage matériel</target>
+          <target state="translated">Hardware-Dekodierung</target>
         </trans-unit>
         <trans-unit id="HardwareDecodingDescription" translate="yes" xml:space="preserve">
           <source>Hardware decoding may not work on your device.</source>
-          <target state="translated">Le décodage matériel peut ne pas fonctionner sur votre appareil.</target>
+          <target state="translated">Die Hardware-Dekodierung funktioniert möglicherweise nicht auf Ihrem Gerät.</target>
         </trans-unit>
         <trans-unit id="HaveToSelectPlaylist" translate="yes" xml:space="preserve">
           <source>please select a playlist</source>
-          <target state="translated">Veuillez sélectionner une playlist</target>
+          <target state="translated">Bitte wählen Sie eine Wiedergabeliste</target>
         </trans-unit>
         <trans-unit id="Home" translate="yes" xml:space="preserve">
           <source>home</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">accueil</target>
+          <target state="translated" state-qualifier="tm-suggestion">Start</target>
         </trans-unit>
         <trans-unit id="HomePage" translate="yes" xml:space="preserve">
           <source>home page</source>
-          <target state="translated">page principale</target>
+          <target state="translated">Startseite</target>
         </trans-unit>
         <trans-unit id="HomePageDescription" translate="yes" xml:space="preserve">
           <source>VLC will start on the selected page</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC commencera sur la page sélectionnée</target>
+          <target state="translated" state-qualifier="mt-suggestion">VLC startet auf der ausgewählten Seite</target>
         </trans-unit>
         <trans-unit id="HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
           <source>however you may find what you're looking for here</source>
-          <target state="translated">Toutefois, vous pouvez peut-être trouver ce que vous cherchez ici</target>
+          <target state="translated">vielleicht finden Sie hier das, wonach Sie gesucht haben</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum1" translate="yes" xml:space="preserve">
           <source>to favorite an album, just press</source>
-          <target state="translated">pour marquer un album comme favori, appuyez simplement sur</target>
+          <target state="translated">um ein Album zu den Favoriten hinzufügen, drücken Sie</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum2" translate="yes" xml:space="preserve">
           <source>and you'll get an instant access to it</source>
-          <target state="translated">et vous y aurez accès rapidement</target>
+          <target state="translated">und Sie erhalten einen sofortigen Zugriff darauf</target>
         </trans-unit>
         <trans-unit id="ImportantSponsors" translate="yes" xml:space="preserve">
           <source>important sponsors</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">auteurs importants</target>
+          <target state="translated" state-qualifier="mt-suggestion">wichtige Sponsoren</target>
         </trans-unit>
         <trans-unit id="IncreaseSpeed" translate="yes" xml:space="preserve">
           <source>increase speed</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">augmenter la vitesse</target>
+          <target state="translated" state-qualifier="mt-suggestion">Geschwindigkeit erhöhen</target>
         </trans-unit>
         <trans-unit id="IncreaseVolume" translate="yes" xml:space="preserve">
           <source>increase volume</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">augmenter le volume</target>
+          <target state="translated" state-qualifier="mt-suggestion">Lautstärke erhöhen</target>
         </trans-unit>
         <trans-unit id="ItsEmpty" translate="yes" xml:space="preserve">
           <source>it's empty here</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">C'est vide ici</target>
+          <target state="translated" state-qualifier="mt-suggestion">Es ist so einsam hier.</target>
         </trans-unit>
         <trans-unit id="KeyboardShortcuts" translate="yes" xml:space="preserve">
           <source>keyboard shortcuts</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">raccourcis clavier</target>
+          <target state="translated" state-qualifier="mt-suggestion">Tastenkürzel</target>
         </trans-unit>
         <trans-unit id="License" translate="yes" xml:space="preserve">
           <source>license</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Licence</target>
+          <target state="translated" state-qualifier="tm-suggestion">Lizenz</target>
         </trans-unit>
         <trans-unit id="Loading" translate="yes" xml:space="preserve">
           <source>loading</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">chargement</target>
+          <target state="translated" state-qualifier="mt-suggestion">wird geladen</target>
         </trans-unit>
         <trans-unit id="LoadingMusic" translate="yes" xml:space="preserve">
           <source>loading music</source>
-          <target state="translated">chargement de votre musique</target>
+          <target state="translated">Musik wird geladen</target>
         </trans-unit>
         <trans-unit id="MostPlayedArtists" translate="yes" xml:space="preserve">
           <source>most played artists</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">artistes les plus joués</target>
+          <target state="translated" state-qualifier="mt-suggestion">Meistgespielte Künstler</target>
         </trans-unit>
         <trans-unit id="Music" translate="yes" xml:space="preserve">
           <source>music</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">musique</target>
+          <target state="translated" state-qualifier="tm-suggestion">Musik</target>
         </trans-unit>
         <trans-unit id="MusicFolders" translate="yes" xml:space="preserve">
           <source>music folders</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">dossiers de musique</target>
+          <target state="translated" state-qualifier="tm-suggestion">Musikordner</target>
         </trans-unit>
         <trans-unit id="MusicFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search songs that are in your music library. You can add folders to your library here</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC recherchera uniquement des chansons qui se trouvent dans votre bibliothèque musicale. Vous pouvez ajouter des dossiers à votre bibliothèque ici</target>
+          <target state="translated" state-qualifier="mt-suggestion">VLC sucht nur Songs, die sich bereits in Ihrer Musikbibliothek befinden. Sie können hier Ordner zu Ihrer Bibliothek hinzufügen</target>
         </trans-unit>
         <trans-unit id="MusicSettings" translate="yes" xml:space="preserve">
           <source>Music Settings</source>
-          <target state="needs-review-translation">paramètres audio</target>
+          <target state="translated">Musikeinstellungen</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="MusicShows" translate="yes" xml:space="preserve">
           <source>music shows</source>
-          <target state="translated">concerts</target>
+          <target state="translated">Konzerte</target>
         </trans-unit>
         <trans-unit id="Mute" translate="yes" xml:space="preserve">
           <source>mute</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">muet</target>
+          <target state="translated" state-qualifier="tm-suggestion">stumm</target>
         </trans-unit>
         <trans-unit id="MyPlaylists" translate="yes" xml:space="preserve">
           <source>my playlists</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">mes listes de lecture</target>
+          <target state="translated" state-qualifier="mt-suggestion">Meine Wiedergabelisten</target>
         </trans-unit>
         <trans-unit id="Network" translate="yes" xml:space="preserve">
           <source>network</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">réseau</target>
+          <target state="translated" state-qualifier="tm-suggestion">Netzwerk</target>
         </trans-unit>
         <trans-unit id="NewPlaylist" translate="yes" xml:space="preserve">
           <source>new playlist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">nouvelle liste de lecture</target>
+          <target state="translated" state-qualifier="mt-suggestion">neue Wiedergabeliste</target>
         </trans-unit>
         <trans-unit id="NewVideos" translate="yes" xml:space="preserve">
           <source>new videos</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">nouvelles vidéos</target>
+          <target state="translated" state-qualifier="mt-suggestion">neue Videos</target>
         </trans-unit>
         <trans-unit id="No" translate="yes" xml:space="preserve">
           <source>no</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">non</target>
+          <target state="translated" state-qualifier="tm-suggestion">Nein</target>
         </trans-unit>
         <trans-unit id="NoBiographyFound" translate="yes" xml:space="preserve">
           <source>no bio found for this artist</source>
-          <target state="translated">pas bio trouvée pour cet artiste</target>
+          <target state="translated">Es scheint, als konnten wir keine Biografie für diesen Künstler finden.</target>
         </trans-unit>
         <trans-unit id="NoCameraVideosFound" translate="yes" xml:space="preserve">
           <source>no camera videos found</source>
-          <target state="translated">aucune caméra vidéo trouvée</target>
+          <target state="translated">keine Kameravideos gefunden</target>
         </trans-unit>
         <trans-unit id="NoFavoriteAlbums" translate="yes" xml:space="preserve">
           <source>no favorite albums</source>
-          <target state="translated">aucun album préféré</target>
+          <target state="translated">keine Alben in den Favoriten</target>
         </trans-unit>
         <trans-unit id="NoInternetConnection" translate="yes" xml:space="preserve">
           <source>no internet connection</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">pas de connexion internet</target>
+          <target state="translated" state-qualifier="mt-suggestion">keine Internetverbindung</target>
         </trans-unit>
         <trans-unit id="NoPlaylists" translate="yes" xml:space="preserve">
           <source>no playlists</source>
-          <target state="translated">aucune liste de lecture</target>
+          <target state="translated">keine Wiedergabelisten</target>
         </trans-unit>
         <trans-unit id="NoShowsFound" translate="yes" xml:space="preserve">
           <source>no shows found</source>
-          <target state="translated">aucun concert trouvé</target>
+          <target state="translated">keine Konzerte gefunden</target>
         </trans-unit>
         <trans-unit id="NothingToSeeHere" translate="yes" xml:space="preserve">
           <source>there's nothing to see here</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Il n'y a rien à voir ici</target>
+          <target state="translated" state-qualifier="mt-suggestion">Hier gibt es nichts zu sehen</target>
         </trans-unit>
         <trans-unit id="Notifications" translate="yes" xml:space="preserve">
           <source>notifications</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">notifications</target>
+          <target state="translated" state-qualifier="tm-suggestion">Benachrichtigungen</target>
         </trans-unit>
         <trans-unit id="NotificationWhenSongStarts" translate="yes" xml:space="preserve">
           <source>when the song starts</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">au démarrage de la chanson</target>
+          <target state="translated" state-qualifier="mt-suggestion">wenn das Lied beginnt</target>
         </trans-unit>
         <trans-unit id="NoVideosFound" translate="yes" xml:space="preserve">
           <source>we did not find video</source>
-          <target state="needs-review-translation">Nous n'avons trouvé aucune vidéo</target>
+          <target state="translated">kein Video gefunden</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="NowPlaying" translate="yes" xml:space="preserve">
           <source>now playing</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">lecture en cours</target>
+          <target state="translated" state-qualifier="tm-suggestion">Gerade läuft</target>
         </trans-unit>
         <trans-unit id="OpenFile" translate="yes" xml:space="preserve">
           <source>open file</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ouvrir le fichier</target>
+          <target state="translated" state-qualifier="mt-suggestion">Datei öffnen</target>
         </trans-unit>
         <trans-unit id="OpenStream" translate="yes" xml:space="preserve">
           <source>open stream</source>
-          <target state="translated">ouvrir le flux</target>
+          <target state="translated">Stream öffnen</target>
         </trans-unit>
         <trans-unit id="OpenSubtitle" translate="yes" xml:space="preserve">
           <source>open subtitle</source>
-          <target state="translated">ouvrir des sous-titres</target>
+          <target state="translated">Untertitel öffnen</target>
         </trans-unit>
         <trans-unit id="OrderAscending" translate="yes" xml:space="preserve">
           <source>ascending</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">croissant</target>
+          <target state="translated" state-qualifier="tm-suggestion">aufsteigend</target>
         </trans-unit>
         <trans-unit id="OrderByAlbum" translate="yes" xml:space="preserve">
           <source>by album</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">par album</target>
+          <target state="translated" state-qualifier="mt-suggestion">nach Album</target>
         </trans-unit>
         <trans-unit id="OrderByArtist" translate="yes" xml:space="preserve">
           <source>by artist</source>
-          <target state="translated">par artiste</target>
+          <target state="translated">nach Künstler</target>
         </trans-unit>
         <trans-unit id="OrderByDate" translate="yes" xml:space="preserve">
           <source>by date</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">par date</target>
+          <target state="translated" state-qualifier="tm-suggestion">nach Datum</target>
         </trans-unit>
         <trans-unit id="OrderDescending" translate="yes" xml:space="preserve">
           <source>descending</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">décroissant</target>
+          <target state="translated" state-qualifier="tm-suggestion">absteigend</target>
         </trans-unit>
         <trans-unit id="Password" translate="yes" xml:space="preserve">
           <source>password</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">mot de passe</target>
+          <target state="translated" state-qualifier="tm-suggestion">Passwort</target>
         </trans-unit>
         <trans-unit id="Pause" translate="yes" xml:space="preserve">
           <source>pause</source>
-          <target state="translated">pause</target>
+          <target state="translated">Pause</target>
         </trans-unit>
         <trans-unit id="PinAlbum" translate="yes" xml:space="preserve">
           <source>pin album</source>
-          <target state="translated">épingler l'album</target>
+          <target state="translated">Album anheften</target>
         </trans-unit>
         <trans-unit id="PinArtist" translate="yes" xml:space="preserve">
           <source>pin artist</source>
-          <target state="translated">épingler l'artiste</target>
+          <target state="translated">Künstler anheften</target>
         </trans-unit>
         <trans-unit id="Play" translate="yes" xml:space="preserve">
           <source>play</source>
-          <target state="translated">lecture</target>
+          <target state="translated">Abspielen</target>
         </trans-unit>
         <trans-unit id="PlayAlbum" translate="yes" xml:space="preserve">
           <source>play album</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">lire l’album</target>
+          <target state="translated" state-qualifier="tm-suggestion">Album abspielen</target>
         </trans-unit>
         <trans-unit id="PlayAll" translate="yes" xml:space="preserve">
           <source>play all</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">lire tout</target>
+          <target state="translated" state-qualifier="tm-suggestion">Alle abspielen</target>
         </trans-unit>
         <trans-unit id="Playback" translate="yes" xml:space="preserve">
           <source>playback</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">lecture</target>
+          <target state="translated" state-qualifier="tm-suggestion">Wiedergabe</target>
         </trans-unit>
         <trans-unit id="PlayerSettings" translate="yes" xml:space="preserve">
           <source>Player Settings</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">paramètres du lecteur</target>
+          <target state="translated" state-qualifier="mt-suggestion">Player-Einstellungen</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="PlayFolder" translate="yes" xml:space="preserve">
           <source>play folder</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">lire le dossier</target>
+          <target state="translated" state-qualifier="mt-suggestion">Ordner abspielen</target>
         </trans-unit>
         <trans-unit id="Playlist" translate="yes" xml:space="preserve">
           <source>playlist</source>
-          <target state="translated">liste de lecture</target>
+          <target state="translated">Wiedergabeliste</target>
         </trans-unit>
         <trans-unit id="PlaylistAlreadyExists" translate="yes" xml:space="preserve">
           <source>this playlist already exists</source>
-          <target state="translated">cette liste de lecture existe déjà</target>
+          <target state="translated">Diese Wiedergabeliste existiert bereits</target>
         </trans-unit>
         <trans-unit id="PlaylistNamePlaceholder" translate="yes" xml:space="preserve">
           <source>playlist name</source>
-          <target state="translated">nom de la liste de lecture</target>
+          <target state="translated">Name der Wiedergabeliste</target>
         </trans-unit>
         <trans-unit id="Playlists" translate="yes" xml:space="preserve">
           <source>playlists</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">sélections</target>
+          <target state="translated" state-qualifier="tm-suggestion">Wiedergabelisten</target>
         </trans-unit>
         <trans-unit id="PlayTrack" translate="yes" xml:space="preserve">
           <source>play track</source>
-          <target state="translated">jouer le morceau</target>
+          <target state="translated">Titel abspielen</target>
         </trans-unit>
         <trans-unit id="PlayVideo" translate="yes" xml:space="preserve">
           <source>play video</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">jouer la vidéo</target>
+          <target state="translated" state-qualifier="mt-suggestion">Video abspielen</target>
         </trans-unit>
         <trans-unit id="PrivacyStatement" translate="yes" xml:space="preserve">
           <source>privacy statement</source>
-          <target state="translated">politique de confidentialité</target>
+          <target state="translated">Datenschutzerklärung</target>
         </trans-unit>
         <trans-unit id="Favorites" translate="yes" xml:space="preserve">
           <source>Favorites</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Favoris</target>
+          <target state="translated" state-qualifier="mt-suggestion">Favoriten</target>
         </trans-unit>
         <trans-unit id="RefreshMusicLibrary" translate="yes" xml:space="preserve">
           <source>refresh music library</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">actualiser la bibliothèque musicale</target>
+          <target state="translated" state-qualifier="mt-suggestion">Musikbibliothek aktualisieren</target>
         </trans-unit>
         <trans-unit id="RefreshVideoLibrary" translate="yes" xml:space="preserve">
           <source>refresh video library</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">actualiser la vidéothèque</target>
+          <target state="translated" state-qualifier="mt-suggestion">Videobibliothek aktualisieren</target>
         </trans-unit>
         <trans-unit id="RemovableStorage" translate="yes" xml:space="preserve">
           <source>removable storage</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">stockage amovible</target>
+          <target state="translated" state-qualifier="mt-suggestion">Wechselspeicher</target>
         </trans-unit>
         <trans-unit id="RemoveFolder" translate="yes" xml:space="preserve">
           <source>remove folder</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">supprimer le dossier</target>
+          <target state="translated" state-qualifier="mt-suggestion">Ordner entfernen</target>
         </trans-unit>
         <trans-unit id="RemoveMusicFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</source>
-          <target state="translated">Si vous ne voulez pas de ce dossier dans votre bibliothèque de musique, vous pouvez le supprimer. Cela affectera toutes les applications, non seulement de VLC</target>
+          <target state="translated">Wenn Sie diesen Ordner nicht in Ihrer Musikbibliothek möchten, können Sie ihn entfernen. Es wird alle Apps betreffen, nicht nur VLC</target>
         </trans-unit>
         <trans-unit id="RemoveVideoFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Si vous ne voulez pas de ce dossier dans votre vidéothèque, vous pouvez le supprimer. Il affecte toutes les applications, non seulement de VLC</target>
+          <target state="translated" state-qualifier="mt-suggestion">Wenn Sie diesen Ordner nicht in Ihrer Videobibliothek möchten, können Sie ihn entfernen. Es wird alle Apps betreffen, nicht nur VLC</target>
         </trans-unit>
         <trans-unit id="Reset" translate="yes" xml:space="preserve">
           <source>reset</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">réinitialiser</target>
+          <target state="translated" state-qualifier="tm-suggestion">zurücksetzen</target>
         </trans-unit>
         <trans-unit id="ResetMusicDatabase" translate="yes" xml:space="preserve">
           <source>reset music database</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">réinitialiser la base de données musicale</target>
+          <target state="translated" state-qualifier="mt-suggestion">Musikdatenbank zurücksetzen</target>
         </trans-unit>
         <trans-unit id="ResetSpeed" translate="yes" xml:space="preserve">
           <source>reset speed</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">réinitialiser la vitesse</target>
+          <target state="translated" state-qualifier="mt-suggestion">Geschwindigkeit zurücksetzen</target>
         </trans-unit>
         <trans-unit id="RichAnimationsDescription" translate="yes" xml:space="preserve">
           <source>Use rich animations in the slideshows</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Utiliser des animations riches dans les diaporamas</target>
+          <target state="translated" state-qualifier="mt-suggestion">In den Diashows umfangreiche Animationen verwenden</target>
         </trans-unit>
         <trans-unit id="Search" translate="yes" xml:space="preserve">
           <source>search</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">rechercher</target>
+          <target state="translated" state-qualifier="tm-suggestion">Suchen</target>
         </trans-unit>
         <trans-unit id="Season" translate="yes" xml:space="preserve">
           <source>season</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Saison</target>
+          <target state="translated" state-qualifier="tm-suggestion">Staffel</target>
         </trans-unit>
         <trans-unit id="Settings" translate="yes" xml:space="preserve">
           <source>settings</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">paramètres</target>
+          <target state="translated" state-qualifier="tm-suggestion">Einstellungen</target>
         </trans-unit>
         <trans-unit id="ShowPlaylist" translate="yes" xml:space="preserve">
           <source>show playlist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Voir la playlist</target>
+          <target state="translated" state-qualifier="mt-suggestion">Wiedergabeliste anzeigen</target>
         </trans-unit>
         <trans-unit id="Shows" translate="yes" xml:space="preserve">
           <source>shows</source>
-          <target state="translated">Séries</target>
+          <target state="translated">Konzerte</target>
         </trans-unit>
         <trans-unit id="Shuffle" translate="yes" xml:space="preserve">
           <source>shuffle</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">lecture aléatoire</target>
+          <target state="translated" state-qualifier="tm-suggestion">Zufällig</target>
         </trans-unit>
         <trans-unit id="Songs" translate="yes" xml:space="preserve">
           <source>songs</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Morceaux                 </target>
+          <target state="translated" state-qualifier="tm-suggestion">Songs</target>
         </trans-unit>
         <trans-unit id="SpecialThanks" translate="yes" xml:space="preserve">
           <source>special thanks</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">merci spécial</target>
+          <target state="translated" state-qualifier="mt-suggestion">Besonderer Dank</target>
         </trans-unit>
         <trans-unit id="Speed" translate="yes" xml:space="preserve">
           <source>speed</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">vitesse</target>
+          <target state="translated" state-qualifier="tm-suggestion">Geschwindigkeit</target>
         </trans-unit>
         <trans-unit id="Stop" translate="yes" xml:space="preserve">
           <source>stop</source>
-          <target state="translated">stop</target>
+          <target state="translated">Stopp</target>
         </trans-unit>
         <trans-unit id="SubtitleDelay" translate="yes" xml:space="preserve">
           <source>subtitle delay</source>
-          <target state="translated">délai de sous-titre</target>
+          <target state="translated">Untertitelverzögerung</target>
         </trans-unit>
         <trans-unit id="Subtitles" translate="yes" xml:space="preserve">
           <source>Subtitles</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">sous-titres</target>
+          <target state="translated" state-qualifier="tm-suggestion">Untertitel</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="SubtitlesEncoding" translate="yes" xml:space="preserve">
           <source>subtitles encoding</source>
-          <target state="translated">Encodage des sous-titres</target>
+          <target state="translated">Untertitelcodierung</target>
         </trans-unit>
         <trans-unit id="Theme" translate="yes" xml:space="preserve">
           <source>theme</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">thème</target>
+          <target state="translated" state-qualifier="tm-suggestion">Motiv</target>
         </trans-unit>
         <trans-unit id="TileRemoved" translate="yes" xml:space="preserve">
           <source>tile removed</source>
-          <target state="translated">tuile supprimée</target>
+          <target state="translated">Kachel entfernt</target>
         </trans-unit>
         <trans-unit id="TopVideos" translate="yes" xml:space="preserve">
           <source>top videos</source>
-          <target state="translated">vidéos préférées</target>
+          <target state="translated">Top-Videos</target>
         </trans-unit>
         <trans-unit id="TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
           <source>track added to the playlist</source>
-          <target state="translated">morceau ajouté à la liste de lecture</target>
+          <target state="translated">Titel zur Wiedergabeliste hinzugefügt</target>
         </trans-unit>
         <trans-unit id="TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
           <source>this track is already in that playlist</source>
-          <target state="translated">ce morceau est déjà dans la liste de lecture</target>
+          <target state="translated">Dieser Titel befindet sich bereits in dieser Wiedergabeliste</target>
         </trans-unit>
         <trans-unit id="Tracks" translate="yes" xml:space="preserve">
           <source>tracks</source>
-          <target state="translated">morceaux</target>
+          <target state="translated">Titel</target>
         </trans-unit>
         <trans-unit id="UnknownAlbum" translate="yes" xml:space="preserve">
           <source>Unknown album</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Album inconnu</target>
+          <target state="translated" state-qualifier="tm-suggestion">Unbekanntes Album</target>
         </trans-unit>
         <trans-unit id="UnknownArtist" translate="yes" xml:space="preserve">
           <source>Unknown artist</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Artiste inconnu</target>
+          <target state="translated" state-qualifier="tm-suggestion">Unbekannter Künstler</target>
         </trans-unit>
         <trans-unit id="UnknownShow" translate="yes" xml:space="preserve">
           <source>Unknown show</source>
-          <target state="translated">Concert inconnu</target>
+          <target state="translated">Unbekanntes Konzert</target>
         </trans-unit>
         <trans-unit id="UnknownTrack" translate="yes" xml:space="preserve">
           <source>Unknown track</source>
-          <target state="translated">Morceau inconnue</target>
+          <target state="translated">Unbekannter Titel</target>
         </trans-unit>
         <trans-unit id="UserInterface" translate="yes" xml:space="preserve">
           <source>User Interface</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">interface utilisateur</target>
+          <target state="translated" state-qualifier="tm-suggestion">Benutzeroberfläche</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Username" translate="yes" xml:space="preserve">
           <source>username</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">nom d'utilisateur</target>
+          <target state="translated" state-qualifier="tm-suggestion">Benutzername</target>
         </trans-unit>
         <trans-unit id="Video" translate="yes" xml:space="preserve">
           <source>video</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">vidéo</target>
+          <target state="translated" state-qualifier="tm-suggestion">Video</target>
         </trans-unit>
         <trans-unit id="VideoFolders" translate="yes" xml:space="preserve">
           <source>video folders</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">dossiers de vidéos</target>
+          <target state="translated" state-qualifier="tm-suggestion">Video-Ordner</target>
         </trans-unit>
         <trans-unit id="VideoFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search videos that are in your video library. You can add folders to your library here</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC recherchera uniquement des vidéos qui sont dans votre vidéothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici</target>
+          <target state="translated" state-qualifier="mt-suggestion">VLC sucht nur Videos, die sich bereits in Ihrer Videobibliothek befinden. Sie können hier Ordner zu Ihrer Bibliothek hinzufügen</target>
         </trans-unit>
         <trans-unit id="VideoPlayback" translate="yes" xml:space="preserve">
           <source>video playback</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">lecture vidéo</target>
+          <target state="translated" state-qualifier="mt-suggestion">Video-Wiedergabe</target>
         </trans-unit>
         <trans-unit id="VideoPlaybackInBackground" translate="yes" xml:space="preserve">
           <source>play video in background</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">lecture en arrière-plan</target>
+          <target state="translated" state-qualifier="mt-suggestion">Video im Hintergrund abspielen</target>
         </trans-unit>
         <trans-unit id="Videos" translate="yes" xml:space="preserve">
           <source>videos</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">vidéos</target>
+          <target state="translated" state-qualifier="tm-suggestion">Videos</target>
         </trans-unit>
         <trans-unit id="VideoSettings" translate="yes" xml:space="preserve">
           <source>Video Settings</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">paramètres vidéo</target>
+          <target state="translated" state-qualifier="mt-suggestion">Video-Einstellungen</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="ViewAlbum" translate="yes" xml:space="preserve">
           <source>view album</source>
-          <target state="translated">voir les albums</target>
+          <target state="translated">Album anzeigen</target>
         </trans-unit>
         <trans-unit id="ViewArtist" translate="yes" xml:space="preserve">
           <source>view artist</source>
-          <target state="translated">voir les artistes</target>
+          <target state="translated">Künstler anzeigen</target>
         </trans-unit>
         <trans-unit id="Volume" translate="yes" xml:space="preserve">
           <source>volume</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">volume</target>
+          <target state="translated" state-qualifier="tm-suggestion">Lautstärke</target>
         </trans-unit>
         <trans-unit id="WeNeedYourHelp" translate="yes" xml:space="preserve">
           <source>we need your help</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nous avons besoin de votre aide</target>
+          <target state="translated" state-qualifier="mt-suggestion">Wir brauchen deine Hilfe</target>
         </trans-unit>
         <trans-unit id="Yes" translate="yes" xml:space="preserve">
           <source>yes</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">oui</target>
+          <target state="translated" state-qualifier="tm-suggestion">Ja</target>
         </trans-unit>
         <trans-unit id="YourMusic" translate="yes" xml:space="preserve">
           <source>your music</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">votre musique</target>
+          <target state="translated" state-qualifier="mt-suggestion">Ihre Musik</target>
         </trans-unit>
         <trans-unit id="AccentColor" translate="yes" xml:space="preserve">
           <source>accent color</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">couleur d'accentuation</target>
+          <target state="translated" state-qualifier="tm-suggestion">Akzentfarbe</target>
         </trans-unit>
         <trans-unit id="BackgroundColor" translate="yes" xml:space="preserve">
           <source>background color</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">couleur d'arrière-plan</target>
+          <target state="translated" state-qualifier="tm-suggestion">Hintergrundfarbe</target>
         </trans-unit>
         <trans-unit id="Dark" translate="yes" xml:space="preserve">
           <source>dark</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">sombre</target>
+          <target state="translated" state-qualifier="tm-suggestion">dunkel</target>
         </trans-unit>
         <trans-unit id="Light" translate="yes" xml:space="preserve">
           <source>light</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">clair</target>
+          <target state="translated" state-qualifier="tm-suggestion">hell</target>
         </trans-unit>
         <trans-unit id="TitleBar" translate="yes" xml:space="preserve">
           <source>title bar</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">barre de titre</target>
+          <target state="translated" state-qualifier="tm-suggestion">Titelleiste</target>
         </trans-unit>
         <trans-unit id="NeedRestart" translate="yes" xml:space="preserve">
           <source>You need to restart the app to apply changes</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Vous devez redémarrer l'application pour appliquer les modifications</target>
+          <target state="translated" state-qualifier="mt-suggestion">Sie müssen die App neu starten, um die Änderungen zu übernehmen.</target>
         </trans-unit>
         <trans-unit id="Zoom" translate="yes" xml:space="preserve">
           <source>zoom</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">zoom</target>
+          <target state="translated" state-qualifier="tm-suggestion">Skalierung</target>
         </trans-unit>
         <trans-unit id="AreYouSure" translate="yes" xml:space="preserve">
           <source>are you sure?</source>
-          <target state="translated">Êtes vous sûr?</target>
+          <target state="translated">Sind Sie sicher?</target>
         </trans-unit>
         <trans-unit id="MediaCantBeRead" translate="yes" xml:space="preserve">
           <source>the media can't be read</source>
-          <target state="translated">le média n'a pas pu être lu</target>
+          <target state="translated">Die Medien können nicht gelesen werden</target>
         </trans-unit>
         <trans-unit id="Sorry" translate="yes" xml:space="preserve">
           <source>we're sorry</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Nous sommes désolés</target>
+          <target state="translated" state-qualifier="mt-suggestion">Es tut uns leid</target>
         </trans-unit>
         <trans-unit id="SURFACE_BEST_FIT" translate="yes" xml:space="preserve">
           <source>best fit</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">meilleur ajustement</target>
+          <target state="translated" state-qualifier="mt-suggestion">beste Anpassung</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_HORIZONTAL" translate="yes" xml:space="preserve">
           <source>horizontal cropping</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">recadrage horizontal</target>
+          <target state="translated" state-qualifier="mt-suggestion">horizontales Zuschneiden</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_VERTICAL" translate="yes" xml:space="preserve">
           <source>vertical cropping</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">recadrage vertical</target>
+          <target state="translated" state-qualifier="mt-suggestion">vertikales Zuschneiden</target>
         </trans-unit>
         <trans-unit id="YourPlaylistWontBeAccessible" translate="yes" xml:space="preserve">
           <source>your playlist won't be accessible</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">votre liste de lecture ne sera pas accessible</target>
+          <target state="translated" state-qualifier="mt-suggestion">Ihre Wiedergabeliste wird nicht zugänglich sein</target>
         </trans-unit>
         <trans-unit id="NoArtistShowsFound" translate="yes" xml:space="preserve">
           <source>we didn't find shows for this artist</source>
-          <target state="translated">Nous n'avons pas trouvé de spectacles pour cet artiste</target>
+          <target state="translated">Wir haben keine Konzerte für diesen Künstler gefunden</target>
         </trans-unit>
         <trans-unit id="NoResults" translate="yes" xml:space="preserve">
           <source>no results</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">aucun résultat</target>
+          <target state="translated" state-qualifier="mt-suggestion">keine Ergebnisse</target>
         </trans-unit>
         <trans-unit id="ForceLandscape" translate="yes" xml:space="preserve">
           <source>Force landscape</source>
-          <target state="translated">Force l'affichage en mode paysage</target>
+          <target state="translated">Querformat erzwingen</target>
         </trans-unit>
         <trans-unit id="SURFACE_STRETCH" translate="yes" xml:space="preserve">
           <source>stretch</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">étirer</target>
+          <target state="translated" state-qualifier="tm-suggestion">strecken</target>
         </trans-unit>
         <trans-unit id="SimilarArtists" translate="yes" xml:space="preserve">
           <source>Similar artists</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Artistes similaires</target>
+          <target state="translated" state-qualifier="tm-suggestion">Ähnliche Künstler</target>
         </trans-unit>
         <trans-unit id="EnglishLanguage" translate="yes" xml:space="preserve">
           <source>English</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Anglais</target>
+          <target state="translated" state-qualifier="tm-suggestion">Englisch</target>
         </trans-unit>
         <trans-unit id="FrenchLanguage" translate="yes" xml:space="preserve">
           <source>French</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Français</target>
+          <target state="translated" state-qualifier="tm-suggestion">Französisch</target>
         </trans-unit>
         <trans-unit id="JapaneseLanguage" translate="yes" xml:space="preserve">
           <source>Japanese</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Japonais</target>
+          <target state="translated" state-qualifier="tm-suggestion">Japanisch</target>
         </trans-unit>
         <trans-unit id="GermanLanguage" translate="yes" xml:space="preserve">
           <source>German</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Allemand</target>
+          <target state="translated" state-qualifier="tm-suggestion">Deutsch</target>
         </trans-unit>
         <trans-unit id="PolishLanguage" translate="yes" xml:space="preserve">
           <source>Polish</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Polonais</target>
+          <target state="translated" state-qualifier="tm-suggestion">Polnisch</target>
         </trans-unit>
         <trans-unit id="Languages" translate="yes" xml:space="preserve">
           <source>Languages</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Langages</target>
+          <target state="translated" state-qualifier="tm-suggestion">Sprachen</target>
         </trans-unit>
         <trans-unit id="SelectLanguageDescription" translate="yes" xml:space="preserve">
           <source>VLC will be displayed in</source>
-          <target state="translated">VLC sera affiché en </target>
+          <target state="translated">VLC wird angezeigt in</target>
         </trans-unit>
         <trans-unit id="ApplyAndRestart" translate="yes" xml:space="preserve">
           <source>Apply And Restart</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Appliquer et redémarrer</target>
+          <target state="translated" state-qualifier="mt-suggestion">Übernehmen und neu starten</target>
         </trans-unit>
         <trans-unit id="RefreshLanguage" translate="yes" xml:space="preserve">
           <source>Refresh Language</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Actualiser la langue</target>
+          <target state="translated" state-qualifier="mt-suggestion">Sprache aktualisieren</target>
         </trans-unit>
         <trans-unit id="Local" translate="yes" xml:space="preserve">
           <source>local</source>
-          <target state="translated">Bibliothèques locales</target>
+          <target state="translated">lokal</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES" translate="yes" xml:space="preserve">
           <source>Download Files</source>
-          <target state="translated">Téléchargement de fichiers</target>
+          <target state="translated">Dateien herunterladen</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES_LONG" translate="yes" xml:space="preserve">
           <source>Just click the file you want to download from your Xbox.</source>
-          <target state="translated">Séléctionnez simplement le fichier que vous voulez télécharger depuis votre Xbox</target>
+          <target state="translated">Klicken Sie einfach auf die Datei, die Sie von Ihrer Xbox herunterladen möchten.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES" translate="yes" xml:space="preserve">
           <source>Drop Files</source>
-          <target state="translated">Déposez des fichiers</target>
+          <target state="translated">Dateien ablegen</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
           <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the "+" button to use the file picker dialog.</source>
-          <target state="translated">Déposez des fichiers ici pour les ajouter au stockage interne de votre Xbox.<it id="1" pos="open">&lt;br&gt;</it>ou cliquez sur le bouton "+" pour choisir un fichier.</target>
+          <target state="translated">Legen Sie Dateien im Fenster ab, um sie zu Ihrer Xbox hinzuzufügen.<it id="1" pos="open">&lt;br&gt;</it>Oder klicken Sie auf die Schaltfläche "+", um den Dateiauswahldialog zu verwenden.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
-          <target state="translated">Partage réseau</target>
+          <target state="translated">Netzwerkfreigabe über WLAN</target>
         </trans-unit>
         <trans-unit id="CopyToLocalStorage" translate="yes" xml:space="preserve">
           <source>copy to local storage</source>
-          <target state="translated">copier vers le stockage interne</target>
+          <target state="translated">in lokalen Speicher kopieren</target>
         </trans-unit>
         <trans-unit id="ExternalStorageDeviceDetected" translate="yes" xml:space="preserve">
           <source>VLC has detected an external storage device.</source>
-          <target state="translated">VLC a détecté un périphérique de stockage amovible.</target>
+          <target state="translated">VLC hat ein externes Speichergerät erkannt.</target>
         </trans-unit>
         <trans-unit id="ReadFromExternalStorage" translate="yes" xml:space="preserve">
           <source>Use external storage as media library.</source>
-          <target state="translated">Intégrer le périphérique de stockage à la bibliothèque de media</target>
+          <target state="translated">Verwenden Sie den externen Speicher als Medienbibliothek.</target>
         </trans-unit>
         <trans-unit id="SelectContentToCopy" translate="yes" xml:space="preserve">
           <source>Copy media to the internal storage.</source>
-          <target state="translated">Copier les media sur le stockage interne</target>
+          <target state="translated">Medien in den internen Speicher kopieren.</target>
         </trans-unit>
         <trans-unit id="WhatToDo" translate="yes" xml:space="preserve">
           <source>What would you like to do?</source>
-          <target state="translated">Que souhaitez vous faire ?</target>
+          <target state="translated">Was möchten Sie tun?</target>
         </trans-unit>
         <trans-unit id="AskMe" translate="yes" xml:space="preserve">
           <source>Ask me</source>
-          <target state="translated">Me demander</target>
+          <target state="translated">Fragen Sie mich</target>
         </trans-unit>
         <trans-unit id="ExternalStorage" translate="yes" xml:space="preserve">
           <source>external storage</source>
-          <target state="translated">stockage amovible</target>
+          <target state="translated">externer Speicher</target>
         </trans-unit>
         <trans-unit id="WhatToDoWhenExternalStorage" translate="yes" xml:space="preserve">
           <source>What should VLC do when an external storage device has been detected?</source>
-          <target state="translated">Que doit faire VLC lorsqu'un périphérique de stockage amovible est détecté ?</target>
+          <target state="translated">Was soll VLC tun, wenn ein externes Speichergerät erkannt wurde?</target>
         </trans-unit>
         <trans-unit id="Cancel" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target state="translated">Annuler</target>
+          <target state="translated">Abbrechen</target>
         </trans-unit>
         <trans-unit id="DoNothing" translate="yes" xml:space="preserve">
           <source>Do nothing</source>
-          <target state="translated">Ne rien faire</target>
+          <target state="translated">Nichts tun</target>
         </trans-unit>
         <trans-unit id="Ok" translate="yes" xml:space="preserve">
           <source>Ok</source>
@@ -812,51 +812,51 @@
         </trans-unit>
         <trans-unit id="Ignore" translate="yes" xml:space="preserve">
           <source>Ignore</source>
-          <target state="translated">Ignorer</target>
+          <target state="translated">Ignorieren</target>
         </trans-unit>
         <trans-unit id="Remember" translate="yes" xml:space="preserve">
           <source>Remember</source>
-          <target state="translated">S'en souvenir</target>
+          <target state="translated">Merken</target>
         </trans-unit>
         <trans-unit id="AddMediaHelp" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device</source>
-          <target state="translated">Veuillez insérer un périphérique de stockage amovible</target>
+          <target state="translated">Bitte schließen Sie ein externes Speichergerät an</target>
         </trans-unit>
         <trans-unit id="AddMediaHelpWithIP" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device, or go to http://{0}:8080 to upload some media</source>
-          <target state="translated">Veuillez insérer un disque de stockage externe, ou allez sur http://{0}:8080 pour télécharger des media vers votre Xbox</target>
+          <target state="translated">Bitte schließen Sie ein externes Speichergerät an oder gehen Sie zum Hochladen einiger Medien auf http://{0}:8080</target>
         </trans-unit>
         <trans-unit id="CopyHelpDesktop" translate="yes" xml:space="preserve">
           <source>Right-click on a file or a folder to copy it to the local storage.</source>
-          <target state="translated">Cliquez droit sur un fichier ou un dossier pour le copier vers le stockage interne</target>
+          <target state="translated">Klicken Sie mit der rechten Maustaste auf eine Datei oder einen Ordner, um sie in den lokalen Speicher zu kopieren.</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
           <source>Press "Y" on a file or a folder to copy it to the local storage.</source>
-          <target state="translated">Appuyez sur Y sur un fichier ou un dossier pour le copier vers le stockage interne</target>
+          <target state="translated">Drücken Sie "Y" in einer Datei oder einem Ordner, um sie in den lokalen Speicher zu kopieren.</target>
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
           <source>No subtitle tracks</source>
-          <target state="translated">Aucune piste de sous titre</target>
+          <target state="translated">Keine Untertitelspuren</target>
         </trans-unit>
         <trans-unit id="ClearKeystore" translate="yes" xml:space="preserve">
           <source>Clear saved credentials</source>
-          <target state="new">Clear saved credentials</target>
+          <target state="new">Gespeicherte Zugangsdaten löschen</target>
         </trans-unit>
         <trans-unit id="Credentials" translate="yes" xml:space="preserve">
           <source>Credentials</source>
-          <target state="new">Credentials</target>
+          <target state="new">Zugangsdaten</target>
         </trans-unit>
         <trans-unit id="CopyHelpPhone" translate="yes" xml:space="preserve">
           <source>Long press on a file or a folder to copy it to the local storage.</source>
-          <target state="new">Long press on a file or a folder to copy it to the local storage.</target>
+          <target state="new">Drücken Sie lange auf eine Datei oder einen Ordner, um sie in den lokalen Speicher zu kopieren.</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_SCREEN" translate="yes" xml:space="preserve">
           <source>fit screen</source>
-          <target state="new">fit screen</target>
+          <target state="new">an Bildschirm anpassen</target>
         </trans-unit>
         <trans-unit id="SURFACE_FILL" translate="yes" xml:space="preserve">
           <source>fill</source>
-          <target state="new">fill</target>
+          <target state="new">ausfüllen</target>
         </trans-unit>
         <trans-unit id="SURFACE_16_9" translate="yes" xml:space="preserve">
           <source>16:9</source>

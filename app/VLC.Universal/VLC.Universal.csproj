@@ -334,6 +334,8 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <PRIResource Include="Strings\de-DE\Resources.resw" />
+    <PRIResource Include="Strings\pl-PL\Resources.resw" />
     <None Include="VLC_WinRT.Universal_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -1527,6 +1529,8 @@
   <ItemGroup>
     <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VLC.Universal.fr-FR.xlf" />
     <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VLC.Universal.ja-JP.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.de-DE.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.pl-PL.xlf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\MainPages\MainVideoControls\VideoPanesControls\" />

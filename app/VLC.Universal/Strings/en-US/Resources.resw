@@ -753,4 +753,10 @@
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Long press on a file or a folder to copy it to the local storage.</value>
   </data>
+  <data name="GermanLanguage" xml:space="preserve">
+    <value>German</value>
+  </data>
+  <data name="PolishLanguage" xml:space="preserve">
+    <value>Polish</value>
+  </data>
 </root>

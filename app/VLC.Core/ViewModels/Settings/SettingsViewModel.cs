@@ -281,11 +281,13 @@ namespace VLC.ViewModels.Settings
         public List<ExternalDeviceMode> ExternalDeviceModeCollection { get; set; }
             = Enum.GetValues(typeof(ExternalDeviceMode)).Cast<ExternalDeviceMode>().ToList();
 
-        public List<Languages> LanguageCollection { get; set; } = new List<Languages>()
+        public List<Languages> LanguageCollection { get; set; } = new List<Languages>
         {
             Languages.English,
             Languages.French,
-            Languages.Japanese
+            Languages.Japanese,
+            Languages.German,
+            Languages.Polish
         };
 
         public List<OrderType> AlbumsOrderTypeCollection
@@ -591,6 +593,13 @@ namespace VLC.ViewModels.Settings
                 case Languages.French:
                     currentCulture = "fr-FR";
                     break;
+                case Languages.German:
+                    currentCulture = "de-DE";
+                    break;
+                case Languages.Polish:
+                    currentCulture = "pl-PL";
+                    break;
+                    
             }
             var culture = new CultureInfo(currentCulture);
             Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = culture.Name;

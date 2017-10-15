@@ -718,6 +718,14 @@
           <source>Japanese</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">日本語</target>
         </trans-unit>
+        <trans-unit id="GermanLanguage" translate="yes" xml:space="preserve">
+          <source>German</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ドイツ人</target>
+        </trans-unit>
+        <trans-unit id="PolishLanguage" translate="yes" xml:space="preserve">
+          <source>Polish</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">研磨</target>
+        </trans-unit>
         <trans-unit id="Languages" translate="yes" xml:space="preserve">
           <source>Languages</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Languages</target>

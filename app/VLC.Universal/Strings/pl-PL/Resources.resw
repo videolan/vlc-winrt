@@ -13,549 +13,618 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTheApp" xml:space="preserve">
-    <value>アプリについて</value>
+    <value>o aplikacji</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>追加</value>
+    <value>dodaj</value>
   </data>
   <data name="AddFolder" xml:space="preserve">
-    <value>フォルダーを追加します。</value>
+    <value>dodaj folder</value>
   </data>
   <data name="AddToCollection" xml:space="preserve">
-    <value>コレクションに追加</value>
+    <value>dodaj do kolekcji</value>
   </data>
   <data name="AddToCurrentPlaylist" xml:space="preserve">
-    <value>現在のプレイリストに追加します。</value>
+    <value>dodaj do bieżącej listy odtwarzania</value>
   </data>
   <data name="AddToPlaylist" xml:space="preserve">
-    <value>プレイリストに追加します。</value>
+    <value>dodaj do listy odtwarzania</value>
   </data>
   <data name="Albums" xml:space="preserve">
-    <value>アルバム</value>
+    <value>albumy</value>
   </data>
   <data name="AlbumsFound" xml:space="preserve">
-    <value>アルバムが見つかりました: {0}</value>
+    <value>znalezionych albumów: {0}</value>
   </data>
   <data name="Animations" xml:space="preserve">
-    <value>アニメーション</value>
+    <value>animacje</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>アプリケーション テーマ</value>
+    <value>tryb aplikacji</value>
   </data>
   <data name="Artists" xml:space="preserve">
-    <value>アーティスト</value>
+    <value>wykonawcy</value>
   </data>
   <data name="Audio" xml:space="preserve">
-    <value>オーディオ</value>
+    <value>audio</value>
   </data>
   <data name="AudioDelay" xml:space="preserve">
-    <value>オーディオ遅延</value>
+    <value>synchronizacja audio</value>
   </data>
   <data name="AudioTracks" xml:space="preserve">
-    <value>オーディオ トラック</value>
+    <value>ścieżki audio</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>戻る</value>
+    <value>wstecz</value>
   </data>
   <data name="CameraRoll" xml:space="preserve">
-    <value>カメラ ロール</value>
+    <value>z aparatu</value>
   </data>
   <data name="ChangeAlbumCover" xml:space="preserve">
-    <value>アルバム カバーを変更します。</value>
+    <value>zmień okładkę albumu</value>
   </data>
   <data name="Chapters" xml:space="preserve">
-    <value>章</value>
+    <value>rozdziały</value>
   </data>
   <data name="CheckCredentials" xml:space="preserve">
-    <value>エラーが発生しました、ユーザーの資格情報を確認してください。</value>
+    <value>wystąpił błąd, sprawdź swoje poświadczenia</value>
   </data>
   <data name="Connect" xml:space="preserve">
-    <value>接続</value>
+    <value>połącz</value>
   </data>
   <data name="ConnectedToLastFM" xml:space="preserve">
-    <value>Last.FM に接続されています。</value>
+    <value>połączono z Last.FM</value>
   </data>
   <data name="Connecting" xml:space="preserve">
-    <value>接続中</value>
+    <value>łączenie</value>
   </data>
   <data name="ConnectToLastFM" xml:space="preserve">
-    <value>Last.FM への接続します。</value>
+    <value>połącz z Last.FM</value>
   </data>
   <data name="CrashReport" xml:space="preserve">
-    <value>クラッシュ レポート</value>
+    <value>raport awarii</value>
   </data>
   <data name="DecreaseSpeed" xml:space="preserve">
-    <value>速度を下げる</value>
+    <value>zmniejsz szybkość</value>
   </data>
   <data name="DecreaseVolume" xml:space="preserve">
-    <value>音量を下げる</value>
+    <value>zmniejsz głośność</value>
   </data>
   <data name="DeletePlaylist" xml:space="preserve">
-    <value>プレイリストを削除します。</value>
+    <value>usuń listę odtwarzania</value>
   </data>
   <data name="DeleteSelected" xml:space="preserve">
-    <value>選択項目の削除</value>
+    <value>usuń zaznaczone</value>
   </data>
   <data name="EditMetadata" xml:space="preserve">
-    <value>メタデータを編集します。</value>
+    <value>edytuj metadane</value>
   </data>
   <data name="ElementsNotFound" xml:space="preserve">
-    <value>そこに要素が見つかりませんでした。</value>
+    <value>nie znaleźliśmy tu żadnych elementów</value>
   </data>
   <data name="EnterURL" xml:space="preserve">
-    <value>url を入力してください。</value>
+    <value>wprowadź adres URL</value>
   </data>
   <data name="Episode" xml:space="preserve">
-    <value>この回のタイトル|エピソード</value>
+    <value>epizod</value>
   </data>
   <data name="EvenIfBackground" xml:space="preserve">
-    <value>場合でも、アプリがバック グラウンドに</value>
+    <value>nawet jeśli aplikacja działa w tle</value>
   </data>
   <data name="EvenIfNotBackground" xml:space="preserve">
-    <value>アプリがバック グラウンドでない場合でも</value>
+    <value>nawet jeśli aplikacja nie działa w tle</value>
   </data>
   <data name="FailFilePlayBackground" xml:space="preserve">
-    <value>このファイルがバック グラウンドで再生されません。</value>
+    <value>Może się nie udać odtworzyć w tle tego pliku</value>
   </data>
   <data name="FailNavigateVideoPlayerPage" xml:space="preserve">
-    <value>VLC がビデオ プレーヤーのページに移動できませんでした。</value>
+    <value>VLC nie udało się przejść do strony Odtwarzacza Wideo</value>
   </data>
   <data name="FailOpenVideo" xml:space="preserve">
-    <value>VLC がビデオを開くに失敗しました</value>
+    <value>VLC nie udało się odtworzyć wideo</value>
   </data>
   <data name="FailStartVLCEngine" xml:space="preserve">
-    <value>アプリは、VLC のエンジンを開始できませんでした。</value>
+    <value>Aplikacji nie udało się zainicjować interfejsu VLC</value>
   </data>
   <data name="FeedbackThankYou" xml:space="preserve">
-    <value>送られたフィードバック!ありがとう</value>
+    <value>opinia wysłana! dziękujemy</value>
   </data>
   <data name="FileExplorer" xml:space="preserve">
-    <value>ファイル</value>
+    <value>przeglądaj</value>
   </data>
   <data name="HardwareDecoding" xml:space="preserve">
-    <value>ハードウェアのデコード</value>
+    <value>dekodowanie sprzętowe</value>
   </data>
   <data name="HardwareDecodingDescription" xml:space="preserve">
-    <value>ハードウェア デコードは、デバイスで動作しないかもしれない。</value>
+    <value>Dekodowanie sprzętowe może nie działać na twoim urządzeniu.</value>
   </data>
   <data name="HaveToSelectPlaylist" xml:space="preserve">
-    <value>再生リストを選択してください。</value>
+    <value>proszę wybrać listę odtwarzania</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>ホーム</value>
+    <value>start</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-    <value>ホーム ページ</value>
+    <value>strona startowa</value>
   </data>
   <data name="HomePageDescription" xml:space="preserve">
-    <value>VLC は、選択したページに開始されます。</value>
+    <value>VLC rozpocznie działanie na wybranej stronie</value>
   </data>
   <data name="HoweverYouMayFindWhatYouWantHere" xml:space="preserve">
-    <value>しかしここで探しているものを見つける可能性があります。</value>
+    <value>jednak możesz znaleźć to czego szukasz tutaj</value>
   </data>
   <data name="HowToFavoriteAlbum1" xml:space="preserve">
-    <value>お気に入りのアルバムを押すだけ</value>
+    <value>aby dodać album do ulubionych, po prostu naciśnij</value>
   </data>
   <data name="HowToFavoriteAlbum2" xml:space="preserve">
-    <value>それに瞬時にアクセスを取得しますと</value>
+    <value>i uzyskasz szybki dostęp do niego</value>
   </data>
   <data name="ImportantSponsors" xml:space="preserve">
-    <value>重要なスポンサー</value>
+    <value>ważni sponsorzy</value>
   </data>
   <data name="IncreaseSpeed" xml:space="preserve">
-    <value>速度を上げる</value>
+    <value>zwiększ szybkość</value>
   </data>
   <data name="IncreaseVolume" xml:space="preserve">
-    <value>音量を上げる</value>
+    <value>zwiększ głośność</value>
   </data>
   <data name="ItsEmpty" xml:space="preserve">
-    <value>それがここで空</value>
+    <value>pusto tu</value>
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
-    <value>キーボード ショート カット</value>
+    <value>skróty klawiaturowe</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>ライセンス</value>
+    <value>licencja</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>読み込み中</value>
+    <value>wczytywanie</value>
   </data>
   <data name="LoadingMusic" xml:space="preserve">
-    <value>音楽を読み込む</value>
+    <value>wczytywanie muzyki</value>
   </data>
   <data name="MostPlayedArtists" xml:space="preserve">
-    <value>最も演奏アーティスト</value>
+    <value>najczęściej odtwarzani wykonawcy</value>
   </data>
   <data name="Music" xml:space="preserve">
-    <value>ミュージック</value>
+    <value>muzyka</value>
   </data>
   <data name="MusicFolders" xml:space="preserve">
-    <value>ミュージック フォルダ</value>
+    <value>foldery muzyki</value>
   </data>
   <data name="MusicFoldersDescription" xml:space="preserve">
-    <value>VLC は、あなたの音楽ライブラリにある曲をのみ検索されます。ここにあなたのライブラリにフォルダーを追加することができます。</value>
+    <value>VLC będzie szukał utworów tylko w twojej bibliotece muzyki. Tutaj możesz dodać foldery do swojej biblioteki.</value>
   </data>
   <data name="MusicSettings" xml:space="preserve">
-    <value>音楽の設定</value>
+    <value>Ustawienia Muzyki</value>
   </data>
   <data name="MusicShows" xml:space="preserve">
-    <value>音楽番組</value>
+    <value>przedstawienia muzyczne</value>
   </data>
   <data name="Mute" xml:space="preserve">
-    <value>ミュート</value>
+    <value>wycisz</value>
   </data>
   <data name="MyPlaylists" xml:space="preserve">
-    <value>私のプレイリスト</value>
+    <value>moje listy odtwarzania</value>
   </data>
   <data name="Network" xml:space="preserve">
-    <value>ストリーム</value>
+    <value>sieć</value>
   </data>
   <data name="NewPlaylist" xml:space="preserve">
-    <value>新しい再生リスト</value>
+    <value>nowa lista odtwarzania</value>
   </data>
   <data name="NewVideos" xml:space="preserve">
-    <value>新しい動画</value>
+    <value>nowe wideo</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>いいえ</value>
+    <value>nie</value>
   </data>
   <data name="NoBiographyFound" xml:space="preserve">
-    <value>このアーティストの発見ないバイオ</value>
+    <value>nie znaleziono biografii dla tego wykonawcy</value>
   </data>
   <data name="NoCameraVideosFound" xml:space="preserve">
-    <value>ないカメラの動画発見</value>
+    <value>nie znaleziono wideo z aparatu</value>
   </data>
   <data name="NoFavoriteAlbums" xml:space="preserve">
-    <value>好きなアルバム</value>
+    <value>brak ulubionych albumów</value>
   </data>
   <data name="NoInternetConnection" xml:space="preserve">
-    <value>いいえ、インターネット接続</value>
+    <value>brak połączenia z internetem</value>
   </data>
   <data name="NoPlaylists" xml:space="preserve">
-    <value>再生リストがありません。</value>
+    <value>brak list odtwarzania</value>
   </data>
   <data name="NoShowsFound" xml:space="preserve">
-    <value>ないショーを発見</value>
+    <value>nie znaleziono seriali</value>
   </data>
   <data name="NothingToSeeHere" xml:space="preserve">
-    <value>ここを参照してくださいすることはないです。</value>
+    <value>nie ma tu nic do zobaczenia</value>
   </data>
   <data name="Notifications" xml:space="preserve">
-    <value>通知</value>
+    <value>powiadomienia</value>
   </data>
   <data name="NotificationWhenSongStarts" xml:space="preserve">
-    <value>通知 = 歌が始まるときに</value>
+    <value>na początku utworu</value>
   </data>
   <data name="NoVideosFound" xml:space="preserve">
-    <value>我々 はビデオを見つけられませんでした。</value>
+    <value>nie znaleziono wideo</value>
   </data>
   <data name="NowPlaying" xml:space="preserve">
-    <value>プレイ ビュー</value>
+    <value>teraz odtwarzane</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>ファイルを開く</value>
+    <value>otwórz plik</value>
   </data>
   <data name="OpenStream" xml:space="preserve">
-    <value>ストリームを開く</value>
+    <value>otwórz strumień</value>
   </data>
   <data name="OpenSubtitle" xml:space="preserve">
-    <value>字幕を開く</value>
+    <value>otwórz napisy</value>
   </data>
   <data name="OrderAscending" xml:space="preserve">
-    <value>昇順</value>
+    <value>rosnąco</value>
   </data>
   <data name="OrderByAlbum" xml:space="preserve">
-    <value>アルバム別</value>
+    <value>wg albumu</value>
   </data>
   <data name="OrderByArtist" xml:space="preserve">
-    <value>アーティスト別</value>
+    <value>wg wykonawcy</value>
   </data>
   <data name="OrderByDate" xml:space="preserve">
-    <value>日付順</value>
+    <value>wg daty</value>
   </data>
   <data name="OrderDescending" xml:space="preserve">
-    <value>降順</value>
+    <value>malejąco</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>パスワード</value>
+    <value>hasło</value>
   </data>
   <data name="Pause" xml:space="preserve">
-    <value>一時停止</value>
+    <value>wstrzymaj</value>
   </data>
   <data name="PinAlbum" xml:space="preserve">
-    <value>ピン アルバム</value>
+    <value>przypnij album</value>
   </data>
   <data name="PinArtist" xml:space="preserve">
-    <value>ピン アーティスト</value>
+    <value>przypnij wykonawcę</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>再生</value>
+    <value>odtwarzaj</value>
   </data>
   <data name="PlayAlbum" xml:space="preserve">
-    <value>アルバムを再生</value>
+    <value>odtwarzaj album</value>
   </data>
   <data name="PlayAll" xml:space="preserve">
-    <value>すべて再生</value>
+    <value>odtwarzaj wszystko</value>
   </data>
   <data name="Playback" xml:space="preserve">
-    <value>再生</value>
+    <value>odtwarzanie</value>
   </data>
   <data name="PlayerSettings" xml:space="preserve">
-    <value>プレーヤーの設定</value>
+    <value>Ustawienia Odtwarzacza</value>
   </data>
   <data name="PlayFolder" xml:space="preserve">
-    <value>フォルダーを再生します。</value>
+    <value>odtwarzaj folder</value>
   </data>
   <data name="Playlist" xml:space="preserve">
-    <value>再生リスト</value>
+    <value>lista odtwarzania</value>
   </data>
   <data name="PlaylistAlreadyExists" xml:space="preserve">
-    <value>この再生リストはすでに存在します。</value>
+    <value>ta lista odtwarzania już istnieje</value>
   </data>
   <data name="PlaylistNamePlaceholder" xml:space="preserve">
-    <value>プレイリストの名前</value>
+    <value>nazwa listy odtwarzania</value>
   </data>
   <data name="Playlists" xml:space="preserve">
-    <value>再生リスト</value>
+    <value>listy odtwarzania</value>
   </data>
   <data name="PlayTrack" xml:space="preserve">
-    <value>トラックを再生します。</value>
+    <value>odtwarzaj utwór</value>
   </data>
   <data name="PlayVideo" xml:space="preserve">
-    <value>ビデオを再生します。</value>
+    <value>odtwarzaj wideo</value>
   </data>
   <data name="PrivacyStatement" xml:space="preserve">
-    <value>プライバシーに関する声明</value>
+    <value>oświadczenie o prywatności</value>
   </data>
   <data name="Favorites" xml:space="preserve">
-    <value>お気に入りのメディア</value>
+    <value>Ulubione</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">
-    <value>音楽ライブラリを更新します。</value>
+    <value>odśwież bibliotekę muzyki</value>
   </data>
   <data name="RefreshVideoLibrary" xml:space="preserve">
-    <value>ビデオ ライブラリを更新します。</value>
+    <value>odśwież bibliotekę wideo</value>
   </data>
   <data name="RemovableStorage" xml:space="preserve">
-    <value>リムーバブル ストレージ</value>
+    <value>wymienne nośniki pamięci</value>
   </data>
   <data name="RemoveFolder" xml:space="preserve">
-    <value>フォルダーを削除します。</value>
+    <value>usuń folder</value>
   </data>
   <data name="RemoveMusicFolderDescription" xml:space="preserve">
-    <value>あなたの音楽ライブラリでこのフォルダーをしたくない場合は、それを削除できます。それは VLC だけでなくすべてのアプリケーションに影響を与える</value>
+    <value>Jeśli nie chcesz tego folderu w swojej bibliotece muzyki, możesz go usunąć. Ta zmiana będzie dotyczyć wszystkich aplikacji, a nie tylko VLC.</value>
   </data>
   <data name="RemoveVideoFolderDescription" xml:space="preserve">
-    <value>ビデオ ライブラリでこのフォルダーをしたくない場合は、それを削除できます。それは VLC だけでなくすべてのアプリケーションに影響を与える</value>
+    <value>Jeśli nie chcesz tego folderu w swojej bibliotece wideo, możesz go usunąć. Ta zmiana będzie dotyczyć wszystkich aplikacji, a nie tylko VLC.</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>リセット</value>
+    <value>resetuj</value>
   </data>
   <data name="ResetMusicDatabase" xml:space="preserve">
-    <value>音楽データベースをリセットします。</value>
+    <value>resetuj bazę danych muzyki</value>
   </data>
   <data name="ResetSpeed" xml:space="preserve">
-    <value>速度をリセットします。</value>
+    <value>resetuj szybkość</value>
   </data>
   <data name="RichAnimationsDescription" xml:space="preserve">
-    <value>豊富なアニメーションを使用して、スライド ショーで</value>
+    <value>Użyj zaawansowanych animacji w pokazach slajdów</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>検索</value>
+    <value>szukaj</value>
   </data>
   <data name="Season" xml:space="preserve">
-    <value>シーズン</value>
+    <value>sezon</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>設定</value>
+    <value>ustawienia</value>
   </data>
   <data name="ShowPlaylist" xml:space="preserve">
-    <value>再生リストを表示します。</value>
+    <value>pokaż listę odtwarzania</value>
   </data>
   <data name="Shows" xml:space="preserve">
-    <value>示しています</value>
+    <value>seriale</value>
   </data>
   <data name="Shuffle" xml:space="preserve">
-    <value>シャッフル</value>
+    <value>losowe odtwarzanie</value>
   </data>
   <data name="Songs" xml:space="preserve">
-    <value>曲</value>
+    <value>piosenki</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>特別な感謝</value>
+    <value>specjalne podziękowania</value>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value>速度</value>
+    <value>szybkość</value>
   </data>
   <data name="Stop" xml:space="preserve">
-    <value>停止</value>
+    <value>zatrzymaj</value>
   </data>
   <data name="SubtitleDelay" xml:space="preserve">
-    <value>字幕の遅延</value>
+    <value>synchronizacja napisów</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
-    <value>字幕</value>
+    <value>napisy</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
-    <value>字幕のエンコーディング</value>
+    <value>kodowanie napisów</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>テーマ</value>
+    <value>kompozycja</value>
   </data>
   <data name="TileRemoved" xml:space="preserve">
-    <value>タイルの削除</value>
+    <value>kafelek usunięty</value>
   </data>
   <data name="TopVideos" xml:space="preserve">
-    <value>トップ動画</value>
+    <value>najlepsze wideo</value>
   </data>
   <data name="TrackAddedToYourPlaylist" xml:space="preserve">
-    <value>トラックをプレイリストに追加</value>
+    <value>utwór dodany do listy odtwarzania</value>
   </data>
   <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
-    <value>このトラックは既にその再生リストです。</value>
+    <value>ten utwór już znajduje się na liście odtwarzania</value>
   </data>
   <data name="Tracks" xml:space="preserve">
-    <value>トラック</value>
+    <value>utwory</value>
   </data>
   <data name="UnknownAlbum" xml:space="preserve">
-    <value>アルバム情報なし</value>
+    <value>Nieznany album</value>
   </data>
   <data name="UnknownArtist" xml:space="preserve">
-    <value>アーティスト情報なし</value>
+    <value>Nieznany wykonawca</value>
   </data>
   <data name="UnknownShow" xml:space="preserve">
-    <value>不明なショー</value>
+    <value>Nieznane przedstawienie</value>
   </data>
   <data name="UnknownTrack" xml:space="preserve">
-    <value>不明なトラック</value>
+    <value>Nieznany utwór</value>
   </data>
   <data name="UserInterface" xml:space="preserve">
-    <value>ユーザー インターフェイス</value>
+    <value>Interfejs Użytkownika</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>ユーザー名</value>
+    <value>nazwa użytkownika</value>
   </data>
   <data name="Video" xml:space="preserve">
-    <value>ビデオ</value>
+    <value>wideo</value>
   </data>
   <data name="VideoFolders" xml:space="preserve">
-    <value>ビデオ フォルダ</value>
+    <value>foldery wideo</value>
   </data>
   <data name="VideoFoldersDescription" xml:space="preserve">
-    <value>VLC は、あなたのビデオのライブラリにある曲をのみ検索されます。ここにあなたのライブラリにフォルダーを追加することができます。</value>
+    <value>VLC będzie szukał wideo tylko w twojej bibliotece wideo. Tutaj możesz dodać foldery do swojej biblioteki.</value>
   </data>
   <data name="VideoPlayback" xml:space="preserve">
-    <value>ビデオの再生</value>
+    <value>odtwarzanie wideo</value>
   </data>
   <data name="VideoPlaybackInBackground" xml:space="preserve">
-    <value>バック グラウンドでビデオを再生します。</value>
+    <value>odtwarzaj wideo w tle</value>
   </data>
   <data name="Videos" xml:space="preserve">
-    <value>ビデオ</value>
+    <value>wideo</value>
   </data>
   <data name="VideoSettings" xml:space="preserve">
-    <value>ビデオの設定</value>
+    <value>Ustawienia Wideo</value>
   </data>
   <data name="ViewAlbum" xml:space="preserve">
-    <value>アルバムを見る</value>
+    <value>zobacz album</value>
   </data>
   <data name="ViewArtist" xml:space="preserve">
-    <value>ビュー アーティスト</value>
+    <value>zobacz wykonawcę</value>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>ボリューム</value>
+    <value>głośność</value>
   </data>
   <data name="WeNeedYourHelp" xml:space="preserve">
-    <value>私たちはあなたの助けを必要があります。</value>
+    <value>potrzebujemy twojej pomocy</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>はい</value>
+    <value>tak</value>
   </data>
   <data name="YourMusic" xml:space="preserve">
-    <value>あなたの音楽</value>
+    <value>twoja muzyka</value>
   </data>
   <data name="AccentColor" xml:space="preserve">
-    <value>アクセント カラー</value>
+    <value>kolor akcentujący</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>背景色</value>
+    <value>kolor tła</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>黒</value>
+    <value>ciemny</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>信号</value>
+    <value>jasny</value>
   </data>
   <data name="TitleBar" xml:space="preserve">
-    <value>タイトル バー</value>
+    <value>pasek tytułu</value>
   </data>
   <data name="NeedRestart" xml:space="preserve">
-    <value>変更を適用するアプリケーションを再起動する必要があります。</value>
+    <value>Musisz zrestartować aplikację, aby zastosować zmiany</value>
   </data>
   <data name="Zoom" xml:space="preserve">
-    <value>ズーム</value>
+    <value>skalowanie obrazu</value>
   </data>
   <data name="AreYouSure" xml:space="preserve">
-    <value>確かですか。</value>
+    <value>Czy jesteś pewny(a)?</value>
   </data>
   <data name="MediaCantBeRead" xml:space="preserve">
-    <value>メディアを読み取ることができません。</value>
+    <value>medium nie może być odczytane</value>
   </data>
   <data name="Sorry" xml:space="preserve">
-    <value>申し訳ありません。</value>
+    <value>przykro nam</value>
   </data>
   <data name="SURFACE_BEST_FIT" xml:space="preserve">
-    <value>ベスト フィット</value>
+    <value>najlepsze dopasowanie</value>
   </data>
   <data name="SURFACE_FIT_HORIZONTAL" xml:space="preserve">
-    <value>水平トリミング</value>
+    <value>dopasowanie w poziomie</value>
   </data>
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
-    <value>垂直トリミング</value>
+    <value>dopasowanie w pionie</value>
   </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
-    <value>あなたの再生リストはアクセスできません。</value>
+    <value>twoja lista odtwarzania będzie niedostępna</value>
   </data>
   <data name="NoArtistShowsFound" xml:space="preserve">
-    <value>我々 は、このアーティストのショーを見つけられませんでした。</value>
+    <value>nie znaleźliśmy przedstawień tego wykonawcy</value>
   </data>
   <data name="NoResults" xml:space="preserve">
-    <value>結果はありません。</value>
+    <value>brak wyników</value>
   </data>
   <data name="ForceLandscape" xml:space="preserve">
-    <value>力の風景</value>
+    <value>Wymuś orientację poziomą</value>
   </data>
   <data name="SURFACE_STRETCH" xml:space="preserve">
-    <value>ストレッチ</value>
+    <value>rozciągnięcie</value>
   </data>
   <data name="SimilarArtists" xml:space="preserve">
-    <value>類似するアーティスト</value>
+    <value>Podobni wykonawcy</value>
   </data>
   <data name="EnglishLanguage" xml:space="preserve">
-    <value>英語</value>
+    <value>angielskim</value>
   </data>
   <data name="FrenchLanguage" xml:space="preserve">
-    <value>フランス語</value>
+    <value>francuskim</value>
   </data>
   <data name="JapaneseLanguage" xml:space="preserve">
-    <value>日本語</value>
+    <value>japońskim</value>
   </data>
   <data name="GermanLanguage" xml:space="preserve">
-    <value>ドイツ人</value>
+    <value>niemieckim</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
-    <value>研磨</value>
+    <value>polskim</value>
   </data>
   <data name="Languages" xml:space="preserve">
-    <value>Languages</value>
+    <value>języki</value>
   </data>
   <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC がで表示される言語を選択します。</value>
+    <value>VLC będzie wyświetlane w</value>
   </data>
   <data name="ApplyAndRestart" xml:space="preserve">
-    <value>適用し、再起動</value>
+    <value>Zastosuj i zrestartuj</value>
   </data>
   <data name="RefreshLanguage" xml:space="preserve">
-    <value>言語を更新します。</value>
+    <value>Wczytaj język</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>lokalne</value>
+  </data>
+  <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
+    <value>Pobierz pliki</value>
+  </data>
+  <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
+    <value>Po prostu kliknij na pliku, żeby pobrać go ze swojego Xbox'a.</value>
+  </data>
+  <data name="WEBINTF_DROPFILES" xml:space="preserve">
+    <value>Upuść pliki</value>
+  </data>
+  <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
+    <value>Upuść pliki na oknie, żeby dodać je do swojego Xbox'a.&lt;br&gt;Lub kliknij na przycisku "+", żeby użyć okna dialogowego wyboru plików.</value>
+  </data>
+  <data name="WEBINTF_TITLE" xml:space="preserve">
+    <value>Udostępnianie przez WiFi</value>
+  </data>
+  <data name="CopyToLocalStorage" xml:space="preserve">
+    <value>kopiuj do lokalnej pamięci</value>
+  </data>
+  <data name="ExternalStorageDeviceDetected" xml:space="preserve">
+    <value>VLC wykrył zewnętrzny nośnik danych.</value>
+  </data>
+  <data name="ReadFromExternalStorage" xml:space="preserve">
+    <value>Użyj zewnętrznej pamięci w swojej bibliotece mediów.</value>
+  </data>
+  <data name="SelectContentToCopy" xml:space="preserve">
+    <value>Kopiuj media do wewnętrznej pamięci.</value>
+  </data>
+  <data name="WhatToDo" xml:space="preserve">
+    <value>Co chcesz zrobić?</value>
+  </data>
+  <data name="AskMe" xml:space="preserve">
+    <value>Spytaj mnie</value>
+  </data>
+  <data name="ExternalStorage" xml:space="preserve">
+    <value>zewnętrzna pamięć</value>
+  </data>
+  <data name="WhatToDoWhenExternalStorage" xml:space="preserve">
+    <value>Co ma zrobić VLC, kiedy wykryje zewnętrzny nośnik danych?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="DoNothing" xml:space="preserve">
+    <value>Nic nie rób</value>
+  </data>
+  <data name="Ignore" xml:space="preserve">
+    <value>Ignoruj</value>
+  </data>
+  <data name="Remember" xml:space="preserve">
+    <value>Zapamiętaj</value>
+  </data>
+  <data name="AddMediaHelp" xml:space="preserve">
+    <value>Proszę podłączyć zewnętrzny nośnik danych</value>
+  </data>
+  <data name="AddMediaHelpWithIP" xml:space="preserve">
+    <value>Proszę podłączyć zewnętrzny nośnik danych, lub przejść na adres http://{0}:8080 w celu przekazania mediów</value>
+  </data>
+  <data name="CopyHelpDesktop" xml:space="preserve">
+    <value>Kliknij prawym przyciskiem myszy na pliku lub folderze, żeby skopiować go do lokalnej pamięci.</value>
+  </data>
+  <data name="CopyHelpMediaCenter" xml:space="preserve">
+    <value>Naciśnij "Y" na pliku lub folderze, żeby skopiować go do lokalnej pamięci.</value>
+  </data>
+  <data name="NoSubtitles" xml:space="preserve">
+    <value>Brak ścieżek napisów</value>
   </data>
 </root>
