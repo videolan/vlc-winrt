@@ -144,7 +144,6 @@ cd $CONTRIB_FOLDER
     --disable-aribb25 \
     --enable-gpl \
     --disable-gnuv3 \
-    --enable-ad-clauses \
     --enable-ssh2 \
     --disable-vncclient \
     --enable-jpeg \
