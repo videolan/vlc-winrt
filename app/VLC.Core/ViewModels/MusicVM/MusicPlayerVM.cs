@@ -93,6 +93,9 @@ namespace VLC.ViewModels.MusicVM
 
         private async void Playback_MediaSet(IMediaItem media)
         {
+            if (!(media is TrackItem))
+                return;
+
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, async () =>
             {
                 OnPropertyChanged(nameof(CurrentMediaTitle));
@@ -102,7 +105,7 @@ namespace VLC.ViewModels.MusicVM
                 SetCurrentAlbum();
                 UpdatePlayingUI();
                 await Scrobble();
-                await UpdateWindows8UI();
+                await UpdateNotification();
                 if (CurrentArtist != null)
                 {
                     CurrentArtist.PlayCount++;
@@ -111,7 +114,7 @@ namespace VLC.ViewModels.MusicVM
             });
         }
 
-        public async Task UpdateWindows8UI()
+        private async Task UpdateNotification()
         {
             string artistName = CurrentTrack?.ArtistName ?? Strings.UnknownArtist;
             string albumName = CurrentTrack?.AlbumName ?? Strings.UnknownAlbum;

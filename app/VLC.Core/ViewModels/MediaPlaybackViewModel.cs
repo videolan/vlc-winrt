@@ -710,17 +710,18 @@ namespace VLC.ViewModels
             });
         }
 
-        public async Task SetMediaTransportControlsInfo(string title)
+        public async Task SetMediaTransportControlsInfo(string title, string pictureUri = null)
         {
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
                 var updater = CommonTransportControlInit();
                 updater.Type = MediaPlaybackType.Video;
-                //Video metadata
                 updater.VideoProperties.Title = title;
-                //TODO: add full thumbnail suport
-                updater.Thumbnail = null;
+                if (!string.IsNullOrEmpty(pictureUri))
+                {
+                    updater.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri(pictureUri));
+                }
                 updater.Update();
             });
         }

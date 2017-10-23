@@ -134,6 +134,7 @@ namespace VLC.ViewModels.VideoVM
         #region constructors
         public VideoPlayerVM()
         {
+            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet += PlaybackService_Playback_MediaSet;
         }
 
         private void PlaybackService_Playback_MediaFileNotFound(IMediaItem media)
@@ -164,9 +165,7 @@ namespace VLC.ViewModels.VideoVM
             if (Locator.PlaybackService.CurrentPlaybackMedia is VideoItem)
                 Task.Run(async () => await UpdateCurrentVideo(Locator.PlaybackService.CurrentPlaybackMedia as VideoItem));
 
-            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet += PlaybackService_Playback_MediaSet;
             Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaFileNotFound += PlaybackService_Playback_MediaFileNotFound;
-            
         }
 
         public void OnNavigatedFrom()
@@ -181,7 +180,6 @@ namespace VLC.ViewModels.VideoVM
             DeviceHelper.PrivateDisplayCall(false);
             LoadingSubtitleText = string.Empty;
 
-            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaSet -= PlaybackService_Playback_MediaSet;
             Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaFileNotFound -= PlaybackService_Playback_MediaFileNotFound;
         }
 
@@ -299,10 +297,13 @@ namespace VLC.ViewModels.VideoVM
 
         private async void PlaybackService_Playback_MediaSet(IMediaItem media)
         {
-            await UpdateCurrentVideo(media as VideoItem);
             if (!(media is VideoItem))
                 return;
-            await Locator.MediaPlaybackViewModel.SetMediaTransportControlsInfo(CurrentVideo.Name);
+
+            var video = (VideoItem) media;
+
+            await UpdateCurrentVideo(video);    
+            await Locator.MediaPlaybackViewModel.SetMediaTransportControlsInfo(video.Name, video.PictureUri);
         }
 
         private async Task UpdateCurrentVideo(VideoItem video)
