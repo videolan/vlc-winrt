@@ -140,6 +140,7 @@ cd $CONTRIB_FOLDER
     --disable-projectM \
     --enable-ass \
     --disable-qt \
+    --disable-qtsvg \
     --disable-protobuf \
     --disable-aribb25 \
     --disable-gnuv3 \
