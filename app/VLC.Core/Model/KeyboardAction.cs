@@ -5,7 +5,7 @@ namespace VLC.Model
     public class KeyboardAction
     {
         public VirtualKey MainKey { get; set; }
-
+        public int KeyCode { get; set; }
         public VirtualKey SecondKey { get; set; }
 
         public VLCAction Action { get; set; }

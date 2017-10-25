@@ -1,16 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Core;
 using VLC.Model;
 using VLC.ViewModels;
 using libVLCX;
-using VLC.Database;
 using VLC.Helpers;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml;
-using System;
 using System.Linq;
 using Windows.Foundation;
 
@@ -57,12 +52,14 @@ namespace VLC.Services.RunTime
                 new KeyboardAction
                 {
                     Action = VLCAction.Faster,
-                    MainKey = VirtualKey.Add
+                    MainKey = VirtualKey.Add ,
+                    KeyCode = 0xBB //OEM plus
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.Slow,
-                    MainKey = VirtualKey.Subtract
+                    MainKey = VirtualKey.Subtract,
+                    KeyCode = 0xBD //OEM minus
                 },
                 new KeyboardAction
                 {
@@ -98,13 +95,15 @@ namespace VLC.Services.RunTime
                 {
                     Action = VLCAction.VolumeUp,
                     MainKey = VirtualKey.Control,
-                    SecondKey = VirtualKey.Add
+                    SecondKey = VirtualKey.Add,
+                    KeyCode = 0xBB //OEM plus
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.VolumeDown,
                     MainKey = VirtualKey.Control,
-                    SecondKey = VirtualKey.Subtract
+                    SecondKey = VirtualKey.Subtract,
+                    KeyCode = 0xBD //OEM minus
                 },
                 new KeyboardAction
                 {
@@ -195,7 +194,11 @@ namespace VLC.Services.RunTime
                     break;
                 default:
                     Debug.WriteLine($"{args.VirtualKey} key was pressed");
-                    var action = Shortcuts.FirstOrDefault(x => x.MainKey == _virtualKeys[0] && x.SecondKey == _virtualKeys[1]);
+                   
+                    var action = Shortcuts.FirstOrDefault(x => 
+                        (x.MainKey == _virtualKeys[0] || x.KeyCode == (int)_virtualKeys[0]) && 
+                        (x.SecondKey == _virtualKeys[1] || x.KeyCode == (int)_virtualKeys[1]));
+
                     if (action != null)
                     {
                         // if there's a match, get the ActionId
@@ -322,7 +325,8 @@ namespace VLC.Services.RunTime
             else if (_virtualKeys[2] == VirtualKey.None)
             {
                 // two keys shortcut
-                if (_virtualKeys[0] == VirtualKey.Control && _virtualKeys[1] == keyboardAction.SecondKey)
+                if (_virtualKeys[0] == VirtualKey.Control 
+                    && (_virtualKeys[1] == keyboardAction.SecondKey || (int)_virtualKeys[1] == keyboardAction.KeyCode))
                 {
                     //two keys shortcut, first key is Ctrl
                     switch (keyboardAction.Action)
