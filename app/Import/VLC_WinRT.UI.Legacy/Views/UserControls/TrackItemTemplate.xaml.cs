@@ -65,8 +65,8 @@ namespace VLC_WinRT.Views.UserControls
 
                 if (Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == null || Locator.MediaPlaybackViewModel.PlaybackService.Playlist?.Count == 0)
                     return;
-
-                if (Track.IsCurrentPlaying())
+              
+                if (Track.IsCurrentPlaying)
                 {
                     previousBrush = NameTextBlock.Foreground;
                     NameTextBlock.Foreground = (Brush)App.Current.Resources["MainColor"];

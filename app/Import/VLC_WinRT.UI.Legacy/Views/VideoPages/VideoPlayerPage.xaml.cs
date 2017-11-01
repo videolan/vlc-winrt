@@ -78,9 +78,11 @@ namespace VLC_WinRT.Views.VideoPages
             AppViewHelper.SetTitleBarTitle(Locator.VideoPlayerVm.CurrentVideo?.Name);
 
             // UI interactions
+#if WINDOWS_APP
             Locator.MediaPlaybackViewModel.MouseService.Start();
             Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseCursorHidden;
-            Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
+            Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;            
+#endif
             RootGrid.Tapped += RootGrid_Tapped;
             _controlsTimer.Interval = TimeSpan.FromSeconds(4);
             _controlsTimer.Tick += ControlsTimer_Tick;
@@ -128,10 +130,11 @@ namespace VLC_WinRT.Views.VideoPages
             Locator.PlaybackService.Stop();
             this.SizeChanged -= OnSizeChanged;
             KeyDown -= OnKeyDown;
+#if WINDOWS_APP
             Locator.MediaPlaybackViewModel.MouseService.Stop();
             Locator.MediaPlaybackViewModel.MouseService.OnHidden -= MouseCursorHidden;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved -= MouseMoved;
-
+#endif
             _controlsTimer.Tick -= ControlsTimer_Tick;
             _controlsTimer.Stop();
             Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
@@ -196,15 +199,18 @@ namespace VLC_WinRT.Views.VideoPages
                 ControlsGridFadeOut.Value = ControlsBorder.ActualHeight;
                 HeaderGridFadeOut.Value = -HeaderGrid.ActualHeight;
                 FadeOut.Begin();
-
+#if WINDOWS_APP
                 Locator.MediaPlaybackViewModel.MouseService.HideCursor();
+#endif
                 await VolumeGrid.FadeOut();
                 await BackButton.FadeOut();
             }
             else
             {
                 FadeIn.Begin();
+#if WINDOWS_APP
                 Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
+#endif
                 await VolumeGrid.FadeIn();
                 await BackButton.FadeIn();
             }

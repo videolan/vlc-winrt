@@ -17,13 +17,13 @@
           RightTapped="Grid_RightTapped">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <interactivity:Interaction.Behaviors>
+        <!--<interactivity:Interaction.Behaviors>
             <core:EventTriggerBehavior EventName="Holding">
                 <utils:OpenMenuFlyoutAction />
             </core:EventTriggerBehavior>
-        </interactivity:Interaction.Behaviors>
+        </interactivity:Interaction.Behaviors>-->
         <TextBlock Grid.Column="0"
                    x:Name="NameTextBlock"
                    TextWrapping="NoWrap"

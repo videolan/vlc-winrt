@@ -105,7 +105,7 @@ namespace VLC.Services.RunTime
                 Window.Current.CoreWindow.PointerCursor = _oldCursor;
         }
 
-        public static Point GetPointerPosition()
+        static Point GetPointerPosition()
         {
             Window currentWindow = Window.Current;
             Point point;
@@ -123,7 +123,7 @@ namespace VLC.Services.RunTime
             return new Point(point.X - bounds.X, point.Y - bounds.Y);
         }
 
-        public static bool IsCursorInWindow()
+        static bool IsCursorInWindow()
         {
             var pos = GetPointerPosition();
             if (pos == null) return false;

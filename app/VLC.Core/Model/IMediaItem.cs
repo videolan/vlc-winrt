@@ -10,11 +10,11 @@ namespace VLC.Model
         string Path { get; set; }
         string Name { get; set; }
         TimeSpan Duration { get; set; }
+        bool IsCurrentPlaying { get; }
 
         StorageFile File { get; }
         Media VlcMedia { get; set; }
         string Token { get; set; }
         Tuple<FromType, string> GetMrlAndFromType(bool preferToken = false);
-        bool IsCurrentPlaying();
     }
 }

@@ -43,7 +43,6 @@ namespace VLC.ViewModels
         private KeyboardListenerService keyboardListenerService;
         private Panel _currentPanel;
         private bool _isBackground = false;
-        static bool? _isWindows10;
 
         #endregion
 
@@ -117,10 +116,10 @@ namespace VLC.ViewModels
 
         private async void NotifyCommandBarDisplayModeChanged()
         {
-            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
-            {
+            //await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
+            //{
               //  OnPropertyChanged(nameof(CommandBarDisplayMode));
-            });
+            //});
         }
 
         private void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)

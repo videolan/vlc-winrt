@@ -25,10 +25,12 @@ using VLC.Services.RunTime;
 using VLC.Model.Stream;
 using Windows.Storage;
 using System.IO;
+using Windows.ApplicationModel.Core;
 using libVLCX;
 using VLC.ViewModels;
 using VLC.Database;
 using Windows.Media.Devices;
+using VLC_WinRT.UI.Legacy.Views.UserControls.MusicControls;
 
 namespace VLC.Services.RunTime
 {
@@ -82,8 +84,11 @@ namespace VLC.Services.RunTime
 
         public Task Initialize()
         {
-            return DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
+            //return DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
+            //{
+            return Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                CoreDispatcherPriority.Normal, () => 
+                {
                 var param = new List<string>
                 {
                     "-I",
@@ -91,9 +96,11 @@ namespace VLC.Services.RunTime
                     "--no-osd",
                     "--verbose=3",
                     "--no-stats",
-                    "--avcodec-fast",
+                    //"--avcodec-fast",
                     "--subsdec-encoding",
-                    Locator.SettingsVM.SubtitleEncodingValue == "System" ? "" : Locator.SettingsVM.SubtitleEncodingValue,
+                    Locator.SettingsVM.SubtitleEncodingValue == "System"
+                        ? ""
+                        : Locator.SettingsVM.SubtitleEncodingValue,
                     "--aout=winstore",
                     string.Format("--keystore-file={0}\\keystore", ApplicationData.Current.LocalFolder.Path),
                 };
@@ -101,28 +108,39 @@ namespace VLC.Services.RunTime
                 // So far, this NEEDS to be called from the main thread
                 try
                 {
-                    App.RootPage.SwapChainPanel.CompositionScaleChanged += SwapChainPanel_CompositionScaleChanged;
+                    App.RootPage.SwapChainPanel.CompositionScaleChanged +=
+                    SwapChainPanel_CompositionScaleChanged;
                     App.RootPage.SwapChainPanel.SizeChanged += SwapChainPanel_SizeChanged;
                     Instance = new Instance(param, App.RootPage.SwapChainPanel);
                     Instance?.setDialogHandlers(
-                        async (title, text) => await _dialogService.ShowErrorDialog(title, text),
-                        async (dialog, title, text, defaultUserName, askToStore) => await _dialogService.ShowLoginDialog(dialog, title, text, defaultUserName, askToStore),
-                        async (dialog, title, text, qType, cancel, action1, action2) => await _dialogService.ShowQuestionDialog(dialog, title, text, qType, cancel, action1, action2),
-                        (dialog, title, text, intermidiate, position, cancel) => { },
-                        async (dialog) => await _dialogService.CancelCurrentDialog(),
-                        (dialog, position, text) => { }
-                    );
-
+                    async (title, text) => await _dialogService.ShowErrorDialog(title, text),
+                    async (dialog, title, text, defaultUserName, askToStore) =>
+                        await _dialogService.ShowLoginDialog(dialog, title, text, defaultUserName,
+                            askToStore),
+                    async (dialog, title, text, qType, cancel, action1, action2) =>
+                        await _dialogService.ShowQuestionDialog(dialog, title, text, qType, cancel, action1,
+                            action2),
+                    (dialog, title, text, intermidiate, position, cancel) => { },
+                    async (dialog) => await _dialogService.CancelCurrentDialog(),
+                    (dialog, position, text) => { }
+                );
                     // Audio device management also needs to be called from the main thread
                     MediaDevice.DefaultAudioRenderDeviceChanged += onDefaultAudioRenderDeviceChanged;
                     PlayerInstanceReady.TrySetResult(Instance != null);
                 }
                 catch (Exception e)
                 {
-                    LogHelper.Log("VLC Service : Couldn't create VLC Instance\n" + StringsHelper.ExceptionToString(e));
+                    Debug.WriteLine("Well well well");
+                    Debug.WriteLine(e);
+                    Debug.WriteLine(e.Data);
+                    Debug.WriteLine(e.InnerException);
+                    LogHelper.Log("VLC Service : Couldn't create VLC Instance\n" +
+                                  StringsHelper.ExceptionToString(e));
                     ToastHelper.Basic(Strings.FailStartVLCEngine);
+                    throw;
                 }
-            });
+                    //return Task.Delay(0);
+                }).AsTask();
         }
 
         private void SwapChainPanel_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
@@ -207,10 +225,17 @@ namespace VLC.Services.RunTime
         }
         private async void onCurrentMediaChanged(IMediaItem media, bool isRewind)
         {
-            await SetMedia(media);
-            if (isRewind == false)
-                Play();
-            Playback_MediaSet?.Invoke(media);
+            try
+            {
+                await SetMedia(media);
+                if (isRewind == false)
+                    Play();
+                Playback_MediaSet?.Invoke(media);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
         }
 
         public void SetPlaylistIndex(int index)
@@ -380,7 +405,7 @@ namespace VLC.Services.RunTime
             else
                 _mediaPlayer.setMedia(CurrentMedia);
             _mediaPlayer.outputDeviceSet(AudioDeviceID);
-            SetEqualizer(Locator.SettingsVM.Equalizer);
+            //SetEqualizer(Locator.SettingsVM.Equalizer);
         }
 
         /// <summary>
@@ -467,9 +492,18 @@ namespace VLC.Services.RunTime
                 return mP;
             if (media.parsedStatus() != ParsedStatus.Done)
             {
-                var res = await media.parseWithOptionsAsync(ParseFlags.FetchLocal | ParseFlags.Local | ParseFlags.Network, 5000);
-                if (res != ParsedStatus.Done)
-                    return mP;
+                try
+                {
+                    var res = await media.parseWithOptionsAsync(
+                        ParseFlags.FetchLocal | ParseFlags.Local | ParseFlags.Network, 5000);
+                    if (res != ParsedStatus.Done)
+                        return mP;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+               
             }
 
             mP.Title = media.meta(MediaMeta.Title);
@@ -627,24 +661,25 @@ namespace VLC.Services.RunTime
 
         public void Play()
         {
-            _mediaPlayer?.play();
+            var r = _mediaPlayer?.play();
         }
 
         public void SetEqualizer(VLCEqualizer vlcEq)
         {
-            var eq = new Equalizer(vlcEq.Index);
-            _mediaPlayer?.setEqualizer(eq);
+            //var eq = new Equalizer(vlcEq.Index);
+            //_mediaPlayer?.setEqualizer(eq);
         }
 
         public IList<VLCEqualizer> GetEqualizerPresets()
         {
-            var presetCount = Equalizer.presetCount();
-            var presets = new List<VLCEqualizer>();
-            for (uint i = 0; i < presetCount; i++)
-            {
-                presets.Add(new VLCEqualizer(i));
-            }
-            return presets;
+            //var presetCount = Equalizer.presetCount();
+            //var presets = new List<VLCEqualizer>();
+            //for (uint i = 0; i < presetCount; i++)
+            //{
+            //    presets.Add(new VLCEqualizer(i));
+            //}
+            //return presets;
+            return null;
         }
 
         public string VideoAspectRatio

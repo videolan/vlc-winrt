@@ -82,7 +82,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
                 if (/*Locator.MediaPlaybackViewModel.PlaybackService.CurrentMedia == -1 ||*/ Locator.MediaPlaybackViewModel.PlaybackService.Playlist?.Count == 0)
                     return;
 
-                if (Track.IsCurrentPlaying())
+                if (Track.IsCurrentPlaying)
                 {
                     RootGrid.Background = (Brush)App.Current.Resources["MainColor"];
                 }

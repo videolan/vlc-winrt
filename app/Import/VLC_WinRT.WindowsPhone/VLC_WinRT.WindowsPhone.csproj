@@ -3,7 +3,7 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{C8711A23-F511-4FA1-A3F5-F2578F820A5A}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -19,25 +19,6 @@
     </NuGetPackageImportStamp>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>arm</AppxBundlePlatforms>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -144,9 +125,9 @@
     <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\libimem_plugin.dll">
       <Link>plugins\access\libimem_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\liblive555_plugin.dll">
+    <!--<Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\liblive555_plugin.dll">
       <Link>plugins\access\liblive555_plugin.dll</Link>
-    </Content>
+    </Content>-->
     <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\libnfs_plugin.dll">
       <Link>plugins\access\libnfs_plugin.dll</Link>
     </Content>
@@ -279,9 +260,9 @@
     <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libaraw_plugin.dll">
       <Link>plugins\codec\libaraw_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libaribsub_plugin.dll">
+    <!--<Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libaribsub_plugin.dll">
       <Link>plugins\codec\libaribsub_plugin.dll</Link>
-    </Content>
+    </Content>-->
     <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libavcodec_plugin.dll">
       <Link>plugins\codec\libavcodec_plugin.dll</Link>
     </Content>
@@ -330,9 +311,9 @@
     <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libmft_plugin.dll">
       <Link>plugins\codec\libmft_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libmpg123_plugin.dll">
+    <!--<Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libmpg123_plugin.dll">
       <Link>plugins\codec\libmpg123_plugin.dll</Link>
-    </Content>
+    </Content>-->
     <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\liboggspots_plugin.dll">
       <Link>plugins\codec\liboggspots_plugin.dll</Link>
     </Content>
@@ -516,9 +497,9 @@
     <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libsubtitle_plugin.dll">
       <Link>plugins\demux\libsubtitle_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libts_plugin.dll">
+    <!--<Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libts_plugin.dll">
       <Link>plugins\demux\libts_plugin.dll</Link>
-    </Content>
+    </Content>-->
     <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libtta_plugin.dll">
       <Link>plugins\demux\libtta_plugin.dll</Link>
     </Content>
@@ -909,6 +890,15 @@
     <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\visualization\libvisual_plugin.dll">
       <Link>plugins\visualization\libvisual_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\..\libvlc\WindowsPhone\vlc-x86\$(Configuration)\plugins\demux\libmod_plugin.dll">
+      <Link>plugins\demux\libmod_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\libvlc\WindowsPhone\vlc-x86\$(Configuration)\plugins\control\liboldrc_plugin.dll">
+      <Link>plugins\control\liboldrc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\libvlc\WindowsPhone\vlc-x86\$(Configuration)\plugins\codec\libdmo_plugin.dll">
+      <Link>plugins\codec\libdmo_plugin.dll</Link>
+    </Content>
     <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\BadgeLogo.scale-140.png" />
     <Content Include="Assets\Logo.scale-100.png" />
@@ -969,10 +959,6 @@
       <HintPath>..\..\..\build\packages\Microsoft.Net.Http.2.2.29\lib\wpa81\System.Net.Http.Primitives.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
-      <HintPath>..\..\..\..\build\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\wpa81\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="WinRT.Triggers">
       <HintPath>..\..\..\build\packages\WinRTTriggers.1.6.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
     </Reference>
@@ -1012,9 +998,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
     <PRIResource Include="Strings\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
@@ -1022,16 +1005,7 @@
       <Project>{1c3f97bb-2faa-4ec0-825d-d5b13e304f3c}</Project>
       <Name>libVLCX.8.1.WindowsPhone</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VLC_WinRT.BackgroundAudioPlayer\VLC_WinRT.BackgroundAudioPlayer.csproj">
-      <Project>{6bdaba8a-b559-4007-a17f-42125d3aa7a3}</Project>
-      <Name>VLC_WinRT.BackgroundAudioPlayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VLC_WinRT.ShareBackground\VLC_WinRT.ShareBackground.csproj">
-      <Project>{b1e774a5-87a6-4d23-bec1-ad157333f69f}</Project>
-      <Name>VLC_WinRT.ShareBackground</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

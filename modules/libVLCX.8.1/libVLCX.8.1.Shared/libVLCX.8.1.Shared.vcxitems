@@ -55,9 +55,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\PlatformHelpers.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\StructuresCX.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DirectXManager.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Thumbnailer.cpp" />
   </ItemGroup>
   <ItemGroup>

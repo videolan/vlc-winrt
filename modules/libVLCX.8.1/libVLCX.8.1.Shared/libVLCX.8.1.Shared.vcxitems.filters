@@ -79,9 +79,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Thumbnailer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\modules\libvlcppcx\DialogCX.cpp">
       <Filter>libvlcppx</Filter>
     </ClCompile>

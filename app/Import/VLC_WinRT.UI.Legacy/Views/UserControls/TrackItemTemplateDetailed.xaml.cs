@@ -82,7 +82,7 @@ namespace VLC_WinRT.Views.UserControls
             {
                 if (Track == null)
                     return;
-                if (Track.IsCurrentPlaying())
+                if (Track.IsCurrentPlaying)
                 {
                     previousBrush = NameTextBlock.Foreground;
                     NameTextBlock.Foreground = (Brush)App.Current.Resources["MainColor"];

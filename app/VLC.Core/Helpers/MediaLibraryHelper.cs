@@ -1,7 +1,6 @@
 ﻿using libVLCX;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using VLC.Helpers.VideoLibrary;
 using VLC.Model;
@@ -20,23 +19,29 @@ namespace VLC.Helpers
         {
             Stack<StorageFolder> folders = new Stack<StorageFolder>();
             folders.Push(root);
+#if WINDOWS_APP
             var queryOptions = new QueryOptions(CommonFileQuery.DefaultQuery, VLCFileExtensions.Supported);
-
+#endif
             while (folders.Count > 0)
             {
                 var folder = folders.Pop();
+#if WINDOWS_APP
                 var fileQueryResult = folder.CreateFileQueryWithOptions(queryOptions);
-
+#endif
                 uint maxFiles = 50;
                 uint filesStartIndex = 0;
-                IReadOnlyList<StorageFile> files;
+                IReadOnlyList<StorageFile> files = null;
                 do
                 {
                     try
                     {
+#if WINDOWS_PHONE_APP
+                        files = await folder.GetFilesAsync(CommonFileQuery.DefaultQuery, filesStartIndex, maxFiles);
+#elif WINDOWS_APP
                         files = await fileQueryResult.GetFilesAsync(filesStartIndex, maxFiles);
+#endif
                     }
-                    catch (System.ArgumentException)
+                    catch (Exception ex)
                     {
                         // Silently ignore some folders which refuse to be browsed for no apparent reasons
                         break;

@@ -20,13 +20,14 @@ namespace VLC.Utils
     {
         public async static Task InvokeInUIThreadAsync(CoreDispatcherPriority priority, Action action)
         {
-            await CoreApplication.MainView.Dispatcher.RunAsync(priority, () => {action();});
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(priority, () => {action();});
         }
 
         public async static Task<bool> InvokeInUIThread(CoreDispatcherPriority priority, Action action)
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
-            await CoreApplication.MainView.Dispatcher.RunAsync(priority, () => {
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(priority, () => 
+            { 
                 try
                 {
                     action();
@@ -43,7 +44,7 @@ namespace VLC.Utils
         public async static Task<T> InvokeInUIThread<T>(CoreDispatcherPriority priority, Func<T> action)
         {
             var taskCompletionSource = new TaskCompletionSource<T>();
-            await CoreApplication.MainView.Dispatcher.RunAsync(priority, () => {
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(priority, () => {
                 try
                 {
                     T ret = action();

@@ -37,7 +37,7 @@
                     FontSize="22"
                     Margin="0,-3,0,0"
                     HorizontalAlignment="Right"
-                    Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerVolumeSettingsVisible}" />
+                    Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.ToggleIsVideoPlayerOptionsPanelVisible}" />
             <Slider Grid.Row="1"
                     Value="{Binding Volume, Mode=TwoWay}"
                     Maximum="100"/>

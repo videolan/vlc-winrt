@@ -28,7 +28,6 @@
                     Orientation="Horizontal">
             <Button x:Name="GoBackButton"
                     Margin="0,12,0,0"
-                    Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.IsWindows10, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
                     Style="{StaticResource TextBlockButtonStyle}"
                     Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoBackCommand}">
                 <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
@@ -50,7 +49,7 @@
             <FlipView.ItemTemplate>
                 <DataTemplate>
                     <Image DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.CurrentTrack}"
-                           Source="{Binding Thumbnail}"
+                           Source="{Binding AlbumImage}"
                            Stretch="Uniform"
                            VerticalAlignment="Top"
                            MaxHeight="400"
@@ -87,8 +86,7 @@
                      FontSize="19"
                      Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
             </TextBlock>
-            <Grid Grid.Row="2"
-                  Visibility="{Binding IsCurrentPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid Grid.Row="2">
                 <userControls:SliderControl VerticalAlignment="Center" />
             </Grid>
             <Grid Grid.Row="3"

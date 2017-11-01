@@ -87,9 +87,9 @@ namespace VLC.Model.Stream
             return new Tuple<FromType, string>(FromType.FromLocation, Path);
         }
         
-        public bool IsCurrentPlaying()
+        public bool IsCurrentPlaying
         {
-            throw new NotImplementedException();
+            get { return false; }
         }
     }
 }

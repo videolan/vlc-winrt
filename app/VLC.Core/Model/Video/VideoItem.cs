@@ -8,6 +8,8 @@
  **********************************************************************/
 
 using System;
+using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Core;
@@ -234,13 +236,26 @@ namespace VLC.Model.Video
 
         private async Task<StorageFile> TryGetVideoThumbFile()
         {
-#if WINDOWS_APP
             StorageFile ret = null;
-            StorageFolder subFolder = (StorageFolder)await ApplicationData.Current.LocalFolder.TryGetItemAsync("videoThumbs");
-            if (subFolder != null)
-                ret = (StorageFile)await subFolder.TryGetItemAsync($"{Id}.jpg");
-            return ret;
-#endif
+            try
+            {
+                var subFolder = await ApplicationData.Current.LocalFolder.GetFolderAsync("videoThumbs");
+                if (subFolder != null)
+                    ret = (StorageFile) await subFolder.GetItemAsync($"{Id}.jpg");
+                return ret;
+            }
+            catch (FileNotFoundException ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            catch (ArgumentException ex)
+            {
+                Debug.WriteLine(ex);
+            }
             return null;
         }
 
@@ -353,9 +368,12 @@ namespace VLC.Model.Video
             return null;
         }
 
-        public bool IsCurrentPlaying()
+        public bool IsCurrentPlaying
         {
-            return this == Locator.PlaybackService.CurrentPlaybackMedia;
+            get
+            {
+                return this == Locator.PlaybackService.CurrentPlaybackMedia;
+            }
         }
 
         public async Task<bool> LoadFileFromPath()

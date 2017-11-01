@@ -295,7 +295,6 @@ namespace VLC.ViewModels.MusicVM
         public async Task OnNavigatedTo()
         {
             ResetLibrary();
-
             switch (_musicView)
             {
                 case MusicView.Albums:
@@ -347,14 +346,13 @@ namespace VLC.ViewModels.MusicVM
                         Locator.MediaLibrary.Albums.CollectionChanged -= Albums_CollectionChanged;
                         Locator.MediaLibrary.Albums.Clear();
                     }
-
-                    RecommendedAlbums?.Clear();
-
+                    
                     await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
                     {
-                        GroupedAlbums = null;
+                        GroupedAlbums?.Clear();
                         LoadingStateAlbums = LoadingState.NotLoaded;
                     });
+
                     break;
                 case MusicView.Artists:
                     if (Locator.MediaLibrary.Artists != null)
