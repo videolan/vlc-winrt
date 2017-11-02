@@ -666,6 +666,9 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Japanese</value>
   </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Slovak</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Languages</value>
   </data>

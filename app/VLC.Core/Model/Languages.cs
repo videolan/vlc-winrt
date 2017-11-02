@@ -6,6 +6,7 @@
         French,
         Japanese,
         German,
-        Polish
+        Polish,
+        Slovak
     }
 }

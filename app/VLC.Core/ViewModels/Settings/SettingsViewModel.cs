@@ -287,7 +287,8 @@ namespace VLC.ViewModels.Settings
             Languages.French,
             Languages.Japanese,
             Languages.German,
-            Languages.Polish
+            Languages.Polish,
+            Languages.Slovak
         };
 
         public List<OrderType> AlbumsOrderTypeCollection
@@ -598,6 +599,9 @@ namespace VLC.ViewModels.Settings
                     break;
                 case Languages.Polish:
                     currentCulture = "pl-PL";
+                    break;
+                case Languages.Slovak:
+                    currentCulture = "sk-SK";
                     break;
                     
             }

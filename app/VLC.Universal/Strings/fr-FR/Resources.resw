@@ -546,6 +546,9 @@
   <data name="PolishLanguage" xml:space="preserve">
     <value>Polonais</value>
   </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Slovaque</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Langages</value>
   </data>

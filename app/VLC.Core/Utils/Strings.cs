@@ -309,6 +309,7 @@ namespace VLC.Utils
         public static string JapaneseLanguage => _resourcesLoader.GetString(nameof(JapaneseLanguage));
         public static string GermanLanguage => _resourcesLoader.GetString(nameof(GermanLanguage));
         public static string PolishLanguage => _resourcesLoader.GetString(nameof(PolishLanguage));
+        public static string SlovakLanguage => _resourcesLoader.GetString(nameof(SlovakLanguage));
         public static string HomePage => _resourcesLoader.GetString(nameof(HomePage));
         public static string HomePageDescription => _resourcesLoader.GetString(nameof(HomePageDescription));
         public static string Animations => _resourcesLoader.GetString(nameof(Animations));

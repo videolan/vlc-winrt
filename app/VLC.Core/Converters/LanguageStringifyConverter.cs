@@ -23,6 +23,8 @@ namespace VLC.Converters
                         return Strings.GermanLanguage;
                     case Languages.Polish:
                         return Strings.PolishLanguage;
+                    case Languages.Slovak:
+                        return Strings.SlovakLanguage;
                     default:
                         throw new NotImplementedException();
                 }

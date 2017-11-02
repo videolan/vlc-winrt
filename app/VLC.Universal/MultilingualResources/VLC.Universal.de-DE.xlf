@@ -726,6 +726,10 @@
           <source>Polish</source>
           <target state="translated" state-qualifier="tm-suggestion">Polnisch</target>
         </trans-unit>
+        <trans-unit id="SlovakLanguage" translate="yes" xml:space="preserve">
+          <source>Slovak</source>
+          <target state="translated" state-qualifier="tm-suggestion">Slowakisch</target>
+        </trans-unit>
         <trans-unit id="Languages" translate="yes" xml:space="preserve">
           <source>Languages</source>
           <target state="translated" state-qualifier="tm-suggestion">Sprachen</target>
