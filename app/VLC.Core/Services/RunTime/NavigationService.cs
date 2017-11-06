@@ -117,12 +117,9 @@ namespace VLC.Services.RunTime
 
         public void ShowBackButtonIfCanGoBack()
         {
-            if (CanGoBack())
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-            else
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = CanGoBack ? 
+                AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }
-
 
         public bool GoBack_Specific()
         {
@@ -244,24 +241,26 @@ namespace VLC.Services.RunTime
             return true;
         }
 
-        public bool CanGoBack()
+        private bool CanGoBack
         {
-            if (IsFlyout(CurrentPage))
-                return true;
-            if (IsCurrentPageAMainPage() && !Locator.SettingsVM.MediaCenterMode)
-                return false;
-            return App.ApplicationFrame.CanGoBack;
+            get
+            {
+                if (IsFlyout(CurrentPage))
+                    return true;
+                if (IsCurrentPageAMainPage() && !Locator.SettingsVM.MediaCenterMode)
+                    return false;
+                return App.ApplicationFrame != null && App.ApplicationFrame.CanGoBack;
+            }
         }
-
+       
         // Returns false if it can't go back
         public bool GoBack_Default()
         {
-            bool canGoBack = CanGoBack();
-            if (canGoBack)
+            if (CanGoBack)
             {
                 App.ApplicationFrame.GoBack();
             }
-            return canGoBack;
+            return CanGoBack;
         }
 
         public void GoBack_HideFlyout()
