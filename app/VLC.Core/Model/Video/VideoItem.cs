@@ -234,11 +234,17 @@ namespace VLC.Model.Video
 
         private async Task<StorageFile> TryGetVideoThumbFile()
         {
-            StorageFile ret = null;
-            StorageFolder subFolder = (StorageFolder)await ApplicationData.Current.LocalFolder.TryGetItemAsync("videoThumbs");
-            if (subFolder != null)
-                ret = (StorageFile)await subFolder.TryGetItemAsync($"{Id}.jpg");
-            return ret;
+            async Task<StorageFile> GetImage(string fdName)
+            {
+                var subFolder = (StorageFolder)await ApplicationData.Current.LocalFolder.TryGetItemAsync(fdName);
+                if (subFolder == null) return null;
+                var ret = (StorageFile)await subFolder.TryGetItemAsync($"{Id}.jpg");
+                return ret;
+            }
+
+            var file = await GetImage("moviePic") ?? await GetImage("videoThumbs");
+
+            return file;
         }
 
         [Ignore]

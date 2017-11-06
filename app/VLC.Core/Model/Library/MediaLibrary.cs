@@ -192,10 +192,12 @@ namespace VLC.Model.Library
                         await DispatchHelper.InvokeInUIThreadHighPriority(() => videoVm.HasThumbnail = true);
                     else
                     {
-                        // The thumbnail file does not exist, we must generate one.
-                        await GenerateThumbnail(videoVm);
-                        if (videoVm.Type == ".mkv")
-                            await Locator.VideoMetaService.GetMoviePicture(videoVm);
+                        var match = await Locator.VideoMetaService.GetMoviePicture(videoVm);
+                        if (!match)
+                        {
+                            // The thumbnail file does not exist and MovieDb does not return a match, we must generate one.
+                            await GenerateThumbnail(videoVm);
+                        }
                     }
                 }
                 catch (Exception e)
