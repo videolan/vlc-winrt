@@ -150,7 +150,7 @@ cd $CONTRIB_FOLDER
     --enable-postproc \
     --enable-vpx \
     --enable-libdsm \
-    --disable-mfx \ 
+    --disable-mfx \
     --disable-x264
 
 echo "EXTRA_CFLAGS=${EXTRA_CPPFLAGS}" >> config.mak
