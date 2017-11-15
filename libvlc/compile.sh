@@ -151,7 +151,8 @@ cd $CONTRIB_FOLDER
     --enable-vpx \
     --enable-libdsm \
     --disable-mfx \
-    --disable-x264
+    --disable-x264 \
+    --disable-x265
 
 echo "EXTRA_CFLAGS=${EXTRA_CPPFLAGS}" >> config.mak
 echo "EXTRA_LDFLAGS=${EXTRA_LDFLAGS}" >> config.mak
