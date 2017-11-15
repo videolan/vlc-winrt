@@ -15,7 +15,6 @@ OPTIONS="
       --enable-libass
       --disable-x264
       --enable-realrtsp
-      --enable-live555
       --enable-shout
       --disable-goom
       --disable-caca
