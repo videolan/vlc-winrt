@@ -8,7 +8,6 @@ OPTIONS="
       --disable-faad
       --enable-theora
       --disable-twolame
-      --enable-quicktime
       --enable-avcodec --enable-merge-ffmpeg
       --enable-dca
       --enable-mpc
@@ -18,7 +17,6 @@ OPTIONS="
       --enable-shout
       --disable-goom
       --disable-caca
-      --disable-sdl
       --disable-qt
       --disable-skins2
       --enable-sse --enable-mmx
@@ -26,7 +24,6 @@ OPTIONS="
       --enable-zvbi --disable-telx
       --enable-mad
       --disable-a52
-      --disable-dirac
       --enable-dsm
       --disable-smbclient
       --disable-vcd
@@ -36,7 +33,6 @@ OPTIONS="
       --enable-jpeg
       --enable-vpx
       --enable-postproc
-      --enable-gme
-      --enable-sidplay2"
+      --enable-gme"
 
 sh ../configure ${OPTIONS} $*
