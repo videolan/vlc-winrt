@@ -1,4 +1,4 @@
-From 96ea3d724e6a1e8af2c93b89254430b459066982 Mon Sep 17 00:00:00 2001
+From d4ee4db43e41a695fccd017c6b875c12653eb8c7 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Wed, 11 May 2016 17:37:47 +0200
 Subject: [PATCH 2/9] gnutls: Set cannot_unload_broken_library for winrt
@@ -8,7 +8,7 @@ Subject: [PATCH 2/9] gnutls: Set cannot_unload_broken_library for winrt
  1 file changed, 3 insertions(+)
 
 diff --git a/modules/misc/gnutls.c b/modules/misc/gnutls.c
-index f0fea1a..dcaf556 100644
+index 2e5b6e9f6b..2eb9a0b3bd 100644
 --- a/modules/misc/gnutls.c
 +++ b/modules/misc/gnutls.c
 @@ -788,6 +788,9 @@ vlc_module_begin ()
@@ -22,5 +22,5 @@ index f0fea1a..dcaf556 100644
      add_submodule ()
          set_description( N_("GNU TLS server") )
 -- 
-2.10.1.windows.1
+2.11.0
 
