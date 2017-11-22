@@ -1,0 +1,44 @@
+From de3e8764aab87ea9b91bec348d52edd9623a8aa1 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
+Date: Wed, 22 Nov 2017 14:13:15 +0100
+Subject: [PATCH 10/10] contrib: ffmpeg: Fix winstore build
+
+---
+ contrib/src/ffmpeg/disable-wincrypt.patch | 10 ++++++++++
+ contrib/src/ffmpeg/rules.mak              |  3 +++
+ 2 files changed, 13 insertions(+)
+ create mode 100644 contrib/src/ffmpeg/disable-wincrypt.patch
+
+diff --git a/contrib/src/ffmpeg/disable-wincrypt.patch b/contrib/src/ffmpeg/disable-wincrypt.patch
+new file mode 100644
+index 0000000000..7c5a80204b
+--- /dev/null
++++ b/contrib/src/ffmpeg/disable-wincrypt.patch
+@@ -0,0 +1,10 @@
++--- ffmpeg/configure	2017-07-12 20:36:13.000000000 +0200
+++++ ffmpeg/configure.new	2017-11-22 14:12:43.884159531 +0100
++@@ -5717,7 +5717,6 @@
++ 
++ check_lib ole32    "windows.h"            CoTaskMemFree        -lole32
++ check_lib shell32  "windows.h shellapi.h" CommandLineToArgvW   -lshell32
++-check_lib wincrypt "windows.h wincrypt.h" CryptGenRandom       -ladvapi32
++ check_lib psapi    "windows.h psapi.h"    GetProcessMemoryInfo -lpsapi
++ 
++ check_lib coreservices "CoreServices/CoreServices.h" UTGetOSTypeFromString "-framework CoreServices"
+diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
+index 9fdade64fa..f246fcb6f6 100644
+--- a/contrib/src/ffmpeg/rules.mak
++++ b/contrib/src/ffmpeg/rules.mak
+@@ -227,6 +227,9 @@ ffmpeg: ffmpeg-$(FFMPEG_BASENAME).tar.xz .sum-ffmpeg
+ ifdef USE_FFMPEG
+ 	$(APPLY) $(SRC)/ffmpeg/force-unicode.patch
+ endif
++ifdef HAVE_WINSTORE
++	$(APPLY) $(SRC)/ffmpeg/disable-wincrypt.patch
++endif
+ 	$(MOVE)
+ 
+ .ffmpeg: ffmpeg
+-- 
+2.11.0
+
