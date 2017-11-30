@@ -781,6 +781,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\demux\libxa_plugin.dll">
       <Link>plugins\demux\libxa_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\d3d11\libdirect3d11_filters_plugin.dll">
+      <Link>plugins\d3d11\libdirect3d11_filters_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\keystore\libfile_keystore_plugin.dll">
       <Link>plugins\keystore\libfile_keystore_plugin.dll</Link>
     </Content>
@@ -937,9 +940,6 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_chroma\libchain_plugin.dll">
       <Link>plugins\video_chroma\libchain_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_chroma\libd3d11_surface_plugin.dll">
-      <Link>plugins\video_chroma\libd3d11_surface_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_chroma\libgrey_yuv_plugin.dll">
       <Link>plugins\video_chroma\libgrey_yuv_plugin.dll</Link>
     </Content>
@@ -1029,12 +1029,6 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libdeinterlace_plugin.dll">
       <Link>plugins\video_filter\libdeinterlace_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libdirect3d11_adjust_plugin.dll">
-      <Link>plugins\video_filter\libdirect3d11_adjust_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libdirect3d11_deinterlace_plugin.dll">
-      <Link>plugins\video_filter\libdirect3d11_deinterlace_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\video_filter\libedgedetection_plugin.dll">
       <Link>plugins\video_filter\libedgedetection_plugin.dll</Link>
