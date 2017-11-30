@@ -385,9 +385,6 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\access\libimem_plugin.dll">
       <Link>plugins\access\libimem_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\access\liblive555_plugin.dll">
-      <Link>plugins\access\liblive555_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\access\libnfs_plugin.dll">
       <Link>plugins\access\libnfs_plugin.dll</Link>
     </Content>
@@ -519,9 +516,6 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libaraw_plugin.dll">
       <Link>plugins\codec\libaraw_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libaribsub_plugin.dll">
-      <Link>plugins\codec\libaribsub_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libavcodec_plugin.dll">
       <Link>plugins\codec\libavcodec_plugin.dll</Link>
