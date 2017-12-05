@@ -186,6 +186,7 @@ namespace VLC.UI.Views.VideoPages
 
         void HideControlPanel()
         {
+            Locator.MediaPlaybackViewModel.SliderBindingEnabled = false;
             if (isVisible == false || Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible)
                 return;
             isVisible = false;
@@ -197,6 +198,7 @@ namespace VLC.UI.Views.VideoPages
 
         void ShowControlPanel()
         {
+            Locator.MediaPlaybackViewModel.SliderBindingEnabled = true;
             controlsTimer.Stop();
             controlsTimer.Start();
             Locator.MediaPlaybackViewModel.MouseService.ShowCursor();

@@ -186,7 +186,11 @@ namespace VLC.ViewModels
         public float Position
         {
             get { return PlaybackService.Position; }
-            set { PlaybackService.Position = value; }
+            set
+            {
+                if (!SliderBindingEnabled) return; // *ugly* workaround for #212 to bypass two-way databinding madness
+                PlaybackService.Position = value;
+            }
         }
 
 
@@ -316,6 +320,8 @@ namespace VLC.ViewModels
                 return MiniPlayerVisibility;
             }
         }
+
+        public bool SliderBindingEnabled { get; set; }
 
 
         private async void PlaylistService_OnPlaylistChanged()
