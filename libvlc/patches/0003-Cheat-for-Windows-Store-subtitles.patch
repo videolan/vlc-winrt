@@ -1,7 +1,7 @@
-From 978a501db2b6b0663decf8e0e2dd85b2179fd34d Mon Sep 17 00:00:00 2001
+From 59e8495e1af50171da588bbd8a935e9b252a1b48 Mon Sep 17 00:00:00 2001
 From: Jean-Baptiste Kempf <jb@videolan.org>
 Date: Wed, 16 Apr 2014 16:09:53 +0200
-Subject: [PATCH 3/9] Cheat for Windows Store subtitles
+Subject: [PATCH 03/10] Cheat for Windows Store subtitles
 
 ---
  lib/video.c | 5 +++++
