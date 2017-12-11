@@ -60,7 +60,7 @@ esac
 TESTED_HASH=45df8a6415
 if [ ! -d "vlc" ]; then
     echo "VLC source not found, cloning"
-    git clone http://git.videolan.org/git/vlc.git vlc
+    git clone http://git.videolan.org/git/vlc/vlc-3.0.git vlc
     cd vlc
     git am -3 ../patches/*.patch
     if [ $? -ne 0 ]; then
