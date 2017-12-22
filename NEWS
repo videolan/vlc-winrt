@@ -1,3 +1,17 @@
+Changes between 2.5.5 and 2.6.0
+-------------------------------
+Release: December 22nd 2017
+
+Bugfixes:
+* Add German, Polish, Slovak translations.
+* libvlc 3.0 pre-release update.
+* Update icons.
+* Fix remote desktop crash.
+* Fix notification/media transport control bug.
+* Fix item deletion bug on Xbox.
+* Fix video cover image retrieval issue.
+* Update dependencies.
+
 Changes between 2.5.3 and 2.5.4
 -------------------------------
 Release: August 30th 2017
