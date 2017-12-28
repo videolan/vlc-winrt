@@ -34,6 +34,7 @@ namespace VLC.UI.Views.MusicPages
             AppViewHelper.ResizeWindow(false, 400, 80);
             await AppViewHelper.SetAppView(true);
             AppViewHelper.SetTitleBar(DraggableGrid);
+            Locator.MediaPlaybackViewModel.SliderBindingEnabled = true;
         }
 
         async void Initialize()

@@ -28,8 +28,9 @@ namespace VLC.UI.Views.MusicPages
             Responsive();
             this.SizeChanged += OnSizeChanged;
             this.Unloaded += OnUnloaded;
+            Locator.MediaPlaybackViewModel.SliderBindingEnabled = true;
         }
-        
+
         private void Slideshower_Loaded_1(object sender, RoutedEventArgs e)
         {
             Locator.Slideshow.Initialize(ref Slideshower);
