@@ -93,8 +93,8 @@ namespace VLC.Services.RunTime
                     "--no-stats",
                     "--avcodec-fast",
                     "--subsdec-encoding",
-                    DeviceHelper.GetDeviceType() == DeviceTypeEnum.Phone ? "--deinterlace-mode=bob" : string.Empty,
                     Locator.SettingsVM.SubtitleEncodingValue == "System" ? "" : Locator.SettingsVM.SubtitleEncodingValue,
+                    DeviceHelper.GetDeviceType() == DeviceTypeEnum.Phone ? "--deinterlace-mode=bob" : string.Empty,
                     "--aout=winstore",
                     string.Format("--keystore-file={0}\\keystore", ApplicationData.Current.LocalFolder.Path),
                 };
