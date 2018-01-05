@@ -38,10 +38,18 @@ namespace VLC.UI.Views.MainPages.MainVideoControls
         private void AllVideosListView_GotFocus(object sender, RoutedEventArgs e)
         {
             ListView list = (ListView)sender;
-            if (FocusManager.GetFocusedElement() as ListViewItem != null)
+            if (FocusManager.GetFocusedElement() is ListViewItem)
             {
                 focussedListViewItem = (ListViewItem)FocusManager.GetFocusedElement();
+                var videoItem = focussedListViewItem?.ContentTemplateRoot as UserControls.VideoItem;
+                videoItem?.StartAutoScroll();
             }
+        }
+
+        void AllVideosListView_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            var videoItem = focussedListViewItem?.ContentTemplateRoot as UserControls.VideoItem;
+            videoItem?.StopAutoScroll();
         }
     }
 }

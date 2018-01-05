@@ -27,14 +27,16 @@
                       FontFamily="{StaticResource VLCFont}"
                       Glyph="{Binding Converter={StaticResource StorageTypeToIconConverter}}"
                       FontSize="32" />
-        <TextBlock Grid.Column="2"
-                       Grid.ColumnSpan="2"
-                       Grid.Row="0"
-                       Text="{Binding Name}"
+        <ScrollViewer x:Name="scrollviewer" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Hidden"
+                      VerticalScrollMode="Disabled" HorizontalScrollMode="Enabled"
+                      Grid.Column="2"
+                      Grid.ColumnSpan="2"
+                      Grid.Row="0">
+            <TextBlock Text="{Binding Name}"
                        FontSize="15"
                        FontWeight="SemiBold"
-                       VerticalAlignment="Center"
-                       TextTrimming="CharacterEllipsis" />
+                       VerticalAlignment="Center"/>
+        </ScrollViewer>
         <TextBlock Grid.Column="2"
                        Grid.Row="1"
                        FontSize="14"

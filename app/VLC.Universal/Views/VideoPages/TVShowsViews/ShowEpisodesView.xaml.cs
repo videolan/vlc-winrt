@@ -26,9 +26,11 @@ namespace VLC.UI.Views.VideoPages.TVShowsViews
         private void EpisodesListView_GotFocus(object sender, RoutedEventArgs e)
         {
             ListView list = (ListView)sender;
-            if (FocusManager.GetFocusedElement() as ListViewItem != null)
+            if (FocusManager.GetFocusedElement() is ListViewItem)
             {
                 focussedListViewItem = (ListViewItem)FocusManager.GetFocusedElement();
+                var videoItem = focussedListViewItem?.ContentTemplateRoot as UserControls.VideoItem;
+                videoItem?.StartAutoScroll();
             }
         }
 
@@ -41,6 +43,12 @@ namespace VLC.UI.Views.VideoPages.TVShowsViews
                 var menu = new VideoInformationFlyout(EpisodesListView.ItemFromContainer(focussedListViewItem));
                 menu.ShowAt(focussedListViewItem);
             }
+        }
+
+        void EpisodesListView_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            var videoItem = focussedListViewItem?.ContentTemplateRoot as UserControls.VideoItem;
+            videoItem?.StopAutoScroll();
         }
     }
 }

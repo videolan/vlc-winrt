@@ -59,6 +59,7 @@
                   Padding="{StaticResource FrameMarginTop}"
                   Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
                   GotFocus="EpisodesListView_GotFocus"
+                  LostFocus="EpisodesListView_OnLostFocus"
                   KeyDown="EpisodesListView_KeyDown">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">

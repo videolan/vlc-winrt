@@ -5,6 +5,8 @@ using VLC.Utils;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using VLC.Helpers;
 
 namespace VLC.UI.Views.UserControls
 {
@@ -21,6 +23,8 @@ namespace VLC.UI.Views.UserControls
             if(Video != null) Video.PropertyChanged -= Video_PropertyChanged;
             if(ThumbnailImage?.Source != null) ThumbnailImage.Source = null;
             ThumbnailImage = null;
+            PointerEntered -= OnPointerEntered;
+            PointerExited -= OnPointerExited;
         }
 
         private void RootAlbumItem_Holding(object sender, HoldingRoutedEventArgs e)
@@ -59,6 +63,35 @@ namespace VLC.UI.Views.UserControls
             Video.PropertyChanged += Video_PropertyChanged;
             if (Video.VideoImage != null)
                 FadeOutCover.Begin();
+
+            PointerEntered += OnPointerEntered;
+            PointerExited += OnPointerExited;
+        }
+
+        void OnPointerExited(object sender, PointerRoutedEventArgs pointerRoutedEventArgs)
+        {
+            StopAutoScroll();
+        }
+        
+        void OnPointerEntered(object sender, PointerRoutedEventArgs pointerRoutedEventArgs)
+        {
+            StartAutoScroll();
+        }
+
+        public void StopAutoScroll()
+        {
+            CompositionTarget.Rendering -= CompositionTargetOnRendering;
+            scrollviewer.ChangeView(0, null, null, false);
+        }
+
+        public void StartAutoScroll()
+        {
+            CompositionTarget.Rendering += CompositionTargetOnRendering;
+        }
+
+        void CompositionTargetOnRendering(object sender, object o)
+        {
+            scrollviewer.ChangeView(scrollviewer.HorizontalOffset + 1, null, null, false);
         }
 
         private async void Video_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

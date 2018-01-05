@@ -22,7 +22,9 @@
                   ItemTemplate="{StaticResource ShowItem}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   IsItemClickEnabled="True"
-                  SelectionMode="None">
+                  SelectionMode="None"
+                  GotFocus="ShowsListView_OnGotFocus"
+                  LostFocus="ShowsListView_OnLostFocus">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding TVShowClickedCommand}"

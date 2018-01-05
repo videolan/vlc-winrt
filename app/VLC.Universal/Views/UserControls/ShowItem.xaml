@@ -41,12 +41,14 @@
                Stretch="UniformToFill"
                HorizontalAlignment="Center" />
         <Grid Grid.Row="1">
-            <TextBlock x:Name="NameTextBlock"
-                       TextWrapping="NoWrap"
-                       TextTrimming="CharacterEllipsis"
-                       FontSize="15"
-                       FontWeight="SemiBold"
-                       HorizontalAlignment="Center"/>
+            <ScrollViewer x:Name="scrollviewer" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Hidden"
+                           VerticalScrollMode="Disabled" HorizontalScrollMode="Enabled">
+                <TextBlock x:Name="NameTextBlock"
+                           TextWrapping="NoWrap"
+                           FontSize="15"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Center"/>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

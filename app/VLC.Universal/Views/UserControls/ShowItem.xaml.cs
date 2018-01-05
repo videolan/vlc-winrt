@@ -2,6 +2,8 @@
 using VLC.Utils;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 
 namespace VLC.UI.Views.UserControls
 {
@@ -10,6 +12,15 @@ namespace VLC.UI.Views.UserControls
         public ShowItem()
         {
             this.InitializeComponent();
+            Unloaded += OnUnloaded;
+        }
+
+        void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            if (ThumbnailImage?.Source != null) ThumbnailImage.Source = null;
+            ThumbnailImage = null;
+            PointerEntered += OnPointerEntered;
+            PointerExited += OnPointerExited;
         }
 
         public TvShow TVShow
@@ -36,6 +47,34 @@ namespace VLC.UI.Views.UserControls
             TVShow.PropertyChanged += TVShow_PropertyChanged;
             if(TVShow.ShowImage != null)
                 FadeOutCover.Begin();
+            PointerEntered += OnPointerEntered;
+            PointerExited += OnPointerExited;
+        }
+
+        void OnPointerExited(object sender, PointerRoutedEventArgs pointerRoutedEventArgs)
+        {
+            StopAutoScroll();
+        }
+
+        void OnPointerEntered(object sender, PointerRoutedEventArgs pointerRoutedEventArgs)
+        {
+            StartAutoScroll();
+        }
+
+        public void StopAutoScroll()
+        {
+            CompositionTarget.Rendering -= CompositionTargetOnRendering;
+            scrollviewer.ChangeView(0, null, null, false);
+        }
+
+        public void StartAutoScroll()
+        {
+            CompositionTarget.Rendering += CompositionTargetOnRendering;
+        }
+
+        void CompositionTargetOnRendering(object sender, object o)
+        {
+            scrollviewer.ChangeView(scrollviewer.HorizontalOffset + 1, null, null, false);
         }
 
         private async void TVShow_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -51,7 +90,7 @@ namespace VLC.UI.Views.UserControls
 
         private void FadeOutCover_Completed(object sender, object e)
         {
-            if (TVShow != null && TVShow.ShowImage != null)
+            if (TVShow?.ShowImage != null)
             {
                 ThumbnailImage.Source = TVShow.ShowImage;
                 FadeInCover.Begin();
