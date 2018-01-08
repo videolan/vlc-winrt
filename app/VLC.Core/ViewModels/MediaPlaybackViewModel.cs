@@ -267,6 +267,16 @@ namespace VLC.ViewModels
             Locator.PlaybackService.OnPlaylistEndReached += OnPlaylistEndReached;
             Locator.PlaybackService.OnRepeatChanged += OnRepeatChanged;
             Locator.PlaybackService.PlayingTypeChanged += OnPlayingTypeChanged;
+
+            Window.Current.SizeChanged += OnSizeChanged;
+        }
+
+        async void OnSizeChanged(object sender, WindowSizeChangedEventArgs windowSizeChangedEventArgs)
+        {
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged(nameof(MiniPlayerVisibilityMediaCenter));
+            });
         }
 
         private async void OnRepeatChanged(bool obj)
@@ -315,13 +325,16 @@ namespace VLC.ViewModels
         {
             get
             {
-                if (Helpers.DeviceHelper.IsMediaCenterModeCompliant == true)
+                // hide option on xbox and tablet mode
+                if (DeviceHelper.IsMediaCenterModeCompliant || IsTabletMode)
                     return Visibility.Collapsed;
                 return MiniPlayerVisibility;
             }
         }
 
         public bool SliderBindingEnabled { get; set; }
+        bool IsTabletMode => UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Touch &&
+                             DeviceHelper.GetDeviceType() != DeviceTypeEnum.Phone;
 
 
         private async void PlaylistService_OnPlaylistChanged()
