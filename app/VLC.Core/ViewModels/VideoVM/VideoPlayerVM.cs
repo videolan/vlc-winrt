@@ -166,6 +166,10 @@ namespace VLC.ViewModels.VideoVM
                 Task.Run(async () => await UpdateCurrentVideo(Locator.PlaybackService.CurrentPlaybackMedia as VideoItem));
 
             Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaFileNotFound += PlaybackService_Playback_MediaFileNotFound;
+
+            var media = Locator.PlaybackService.CurrentPlaybackMedia;
+            // this could be a stream instead of a videoitem..
+            Task.Run(() => Locator.MediaPlaybackViewModel.SetMediaTransportControlsInfo(media.Name, (media as VideoItem)?.PictureUri));
         }
 
         public void OnNavigatedFrom()
@@ -303,7 +307,6 @@ namespace VLC.ViewModels.VideoVM
             var video = (VideoItem) media;
 
             await UpdateCurrentVideo(video);    
-            await Locator.MediaPlaybackViewModel.SetMediaTransportControlsInfo(video.Name, video.PictureUri);
         }
 
         private async Task UpdateCurrentVideo(VideoItem video)
