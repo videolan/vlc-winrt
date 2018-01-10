@@ -1,0 +1,63 @@
+From efcf848aaa6a3cd0c150f623dfb4517fd59643ef
+From: Martin Finkel <martin@videolabs.io>
+Date: Wed Jan 10 13:02:27 2018 +0100
+Subject: Revert "direct3d11: switch the pixel shader to point interpolation when reaching visible sides"
+
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index d4ff4a5..ba7f716 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -186,9 +186,7 @@ typedef struct d3d_vertex_t {
+ 
+ typedef struct {
+     FLOAT Opacity;
+-    FLOAT BoundaryX;
+-    FLOAT BoundaryY;
+-    FLOAT padding;
++    FLOAT opacityPadding[3];
+ } PS_CONSTANT_BUFFER;
+ 
+ typedef struct {
+@@ -307,9 +305,7 @@ static const char* globPixelShaderDefault = "\
+   cbuffer PS_CONSTANT_BUFFER : register(b0)\
+   {\
+     float Opacity;\
+-    float BoundaryX;\
+-    float BoundaryY;\
+-    float padding;\
++    float opacityPadding[3];\
+   };\
+   cbuffer PS_COLOR_TRANSFORM : register(b1)\
+   {\
+@@ -381,10 +377,7 @@ static const char* globPixelShaderDefault = "\
+   {\
+     float4 sample;\
+     \
+-    if (In.Texture.x > BoundaryX || In.Texture.y > BoundaryY) \
+-        sample = sampleTexture( SamplerStates[1], In.Texture );\
+-    else\
+-        sample = sampleTexture( SamplerStates[0], In.Texture );\
++    sample = sampleTexture( SamplerStates[0], In.Texture );\
+     float4 rgba = mul(mul(sample, WhitePoint), Colorspace);\
+     float opacity = rgba.a * Opacity;\
+     float3 rgb = (float3)rgba;\
+@@ -2524,16 +2517,9 @@ static int SetupQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+     const bool RGB_shader = IsRGBShader(cfg);
+ 
+     /* pixel shader constant buffer */
+-    PS_CONSTANT_BUFFER defaultConstants;
+-    defaultConstants.Opacity = 1.0;
+-    if (fmt->i_visible_width == fmt->i_width)
+-        defaultConstants.BoundaryX = 1.0; /* let texture clamping happen */
+-    else
+-        defaultConstants.BoundaryX = (FLOAT) (fmt->i_visible_width - 1) / fmt->i_width;
+-    if (fmt->i_visible_height == fmt->i_height)
+-        defaultConstants.BoundaryY = 1.0; /* let texture clamping happen */
+-    else
+-        defaultConstants.BoundaryY = (FLOAT) (fmt->i_visible_height - 1) / fmt->i_height;
++    PS_CONSTANT_BUFFER defaultConstants = {
++      .Opacity = 1,
++    };
+     static_assert((sizeof(PS_CONSTANT_BUFFER)%16)==0,"Constant buffers require 16-byte alignment");
+     D3D11_BUFFER_DESC constantDesc = {
+         .Usage = D3D11_USAGE_DYNAMIC,
