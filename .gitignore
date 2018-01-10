@@ -26,6 +26,8 @@ Thumbs.db
 *.ncrunchsolution
 *.ncrunchproject
 *.pfx
+build/.vs/*
+
 AppPackages/
 [Bb]in
 [Dd]ebug*/
