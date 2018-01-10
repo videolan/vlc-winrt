@@ -34,6 +34,7 @@ using VLC.Model.Stream;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using System.Collections.ObjectModel;
+using Windows.UI.ViewManagement;
 using VLC.Model.Music;
 
 namespace VLC.ViewModels
