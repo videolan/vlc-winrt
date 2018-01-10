@@ -346,9 +346,10 @@
                                   Margin="{StaticResource FrameMarginHorizontal}">
                                 <Slider x:Name="VolumeSlider"
                                         Value="{Binding Volume, Mode=TwoWay}"
-                                        Maximum="100"
+                                        Maximum="200"
                                         Style="{StaticResource VLCSlider}"
-                                        MinWidth="110" />
+                                        MinWidth="110" 
+                                        Foreground="White"/>
                             </Grid>
                         </StackPanel>
                     </Grid>

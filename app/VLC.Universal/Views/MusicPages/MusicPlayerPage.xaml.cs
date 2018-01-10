@@ -1,26 +1,24 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.ComponentModel;
 using Windows.UI;
-using Windows.UI.Input;
-using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
-using Microsoft.Graphics.Canvas.Text;
+using Windows.UI.Xaml.Media;
 using Microsoft.Xaml.Interactivity;
-using VLC.Slideshow.Texts;
 using VLC.ViewModels;
-using VLC.Helpers;
 
 namespace VLC.UI.Views.MusicPages
 {
     public sealed partial class MusicPlayerPage : Page
     {
+        readonly SolidColorBrush _white;
+        readonly SolidColorBrush _red;
+
         public MusicPlayerPage()
         {
             this.InitializeComponent();
             this.Loaded += MusicPlayerPage_Loaded;
+            _white = new SolidColorBrush(Colors.White);
+            _red = new SolidColorBrush(Colors.Red);
         }
 
         void MusicPlayerPage_Loaded(object sender, RoutedEventArgs e)
@@ -29,6 +27,27 @@ namespace VLC.UI.Views.MusicPages
             this.SizeChanged += OnSizeChanged;
             this.Unloaded += OnUnloaded;
             Locator.MediaPlaybackViewModel.SliderBindingEnabled = true;
+            Locator.MediaPlaybackViewModel.PropertyChanged += MediaPlaybackViewModelOnPropertyChanged;
+        }
+
+        void MediaPlaybackViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Locator.MediaPlaybackViewModel.Volume))
+            {
+                var volume = Locator.MediaPlaybackViewModel.Volume;
+                if (volume > 100)
+                {
+                    if (VolumeSlider.Foreground == _red)
+                        return;
+                    VolumeSlider.Foreground = _red;
+                }
+                else
+                {
+                    if (VolumeSlider.Foreground == _white)
+                        return;
+                    VolumeSlider.Foreground = _white;
+                }
+            }
         }
 
         private void Slideshower_Loaded_1(object sender, RoutedEventArgs e)
@@ -45,6 +64,7 @@ namespace VLC.UI.Views.MusicPages
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
         {
             this.SizeChanged -= OnSizeChanged;
+            Locator.MediaPlaybackViewModel.PropertyChanged -= MediaPlaybackViewModelOnPropertyChanged;
         }
 
         void Responsive()

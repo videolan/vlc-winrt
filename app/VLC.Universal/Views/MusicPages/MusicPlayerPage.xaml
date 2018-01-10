@@ -204,8 +204,9 @@
                         Grid.Column="1"
                         DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                         Value="{Binding Volume, Mode=TwoWay}"
-                        Maximum="100"
-                        Style="{StaticResource VLCSlider}" />
+                        Maximum="200"
+                        Style="{StaticResource VLCSlider}"
+                        Foreground="White"/>
             </Grid>
         </Grid>
     </Grid>

@@ -853,7 +853,7 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Thumb">
-                                            <Ellipse Fill="White"
+                                            <Ellipse Fill="{TemplateBinding Background}"
                                                      Height="11"
                                                      Width="11" />
                                         </ControlTemplate>
@@ -965,7 +965,8 @@
                                    Style="{StaticResource SliderThumbStyle}"
                                    AutomationProperties.AccessibilityView="Raw"
                                    Grid.Column="1"
-                                   DataContext="{TemplateBinding Value}" />
+                                   DataContext="{TemplateBinding Value}" 
+                                   Background="{TemplateBinding Foreground}"/>
                             <Rectangle x:Name="HorizontalBorder"
                                        Grid.ColumnSpan="3"
                                        Stroke="{TemplateBinding BorderBrush}"

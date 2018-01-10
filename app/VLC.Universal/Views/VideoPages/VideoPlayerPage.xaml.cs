@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Foundation;
@@ -28,6 +29,7 @@ using VLC.Commands;
 using System.Linq;
 using System.Numerics;
 using Windows.Foundation.Metadata;
+using Windows.UI;
 using Windows.UI.Xaml.Media;
 using libVLCX;
 
@@ -43,6 +45,8 @@ namespace VLC.UI.Views.VideoPages
         private readonly PlaybackService _playbackService = Locator.PlaybackService;
         private readonly float DIVIDER = DeviceHelper.GetDeviceType() == DeviceTypeEnum.Phone ? 70f : 10f;
         private long _borderVisibilityChangedToken;
+        readonly SolidColorBrush _white;
+        readonly SolidColorBrush _red;
 
         public delegate void PlayerControlVisibilityChanged(bool visibility);
         public event PlayerControlVisibilityChanged OnPlayerControlVisibilityChanged;
@@ -50,6 +54,8 @@ namespace VLC.UI.Views.VideoPages
         public VideoPlayerPage()
         {
             InitializeComponent();
+            _white = new SolidColorBrush(Colors.White);
+            _red = new SolidColorBrush(Colors.Red);
         }
 
         private void OnBorderVisibilityChanged(DependencyObject sender, DependencyProperty dp)
@@ -91,7 +97,8 @@ namespace VLC.UI.Views.VideoPages
             controlsTimer.Interval = TimeSpan.FromSeconds(5);
             controlsTimer.Tick += ControlsTimer_Tick;
             controlsTimer.Start();
-           
+            Locator.MediaPlaybackViewModel.PropertyChanged += MediaPlaybackViewModelOnPropertyChanged;
+
             // VM initialization
             Locator.VideoPlayerVm.OnNavigatedTo();
             Locator.VideoPlayerVm.PlayerControlVisibilityChangeRequested += VideoPlayerVm_PlayerControlVisibilityChangeRequested;
@@ -107,6 +114,26 @@ namespace VLC.UI.Views.VideoPages
 
             // Swapchain animations
             App.RootPage.StartCompositionAnimationOnSwapChain(false);
+        }
+
+        void MediaPlaybackViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Locator.MediaPlaybackViewModel.Volume))
+            {
+                var volume = Locator.MediaPlaybackViewModel.Volume;
+                if (volume > 100)
+                {
+                    if (VolumeSlider.Foreground == _red)
+                        return;
+                    VolumeSlider.Foreground = _red;
+                }
+                else
+                {
+                    if (VolumeSlider.Foreground == _white)
+                        return;
+                    VolumeSlider.Foreground = _white;
+                }
+            }
         }
 
         private void VideoPlayerVm_PlayerControlVisibilityChangeRequested(object sender, bool visibility)
@@ -131,6 +158,7 @@ namespace VLC.UI.Views.VideoPages
 
             AppViewHelper.LeaveFullscreen();
 
+            Locator.MediaPlaybackViewModel.PropertyChanged -= MediaPlaybackViewModelOnPropertyChanged;
 
             Locator.MediaPlaybackViewModel.MouseService.Stop();
             Locator.MediaPlaybackViewModel.MouseService.OnMoved -= ShowControlPanel;

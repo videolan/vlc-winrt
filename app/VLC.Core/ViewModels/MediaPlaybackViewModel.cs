@@ -115,7 +115,7 @@ namespace VLC.ViewModels
             set
             {
                 Debug.WriteLine("new volume set: " + value);
-                if (value > 0 && value <= 100)
+                if (value > 0 && value <= 200)
                 {
                     PlaybackService.Volume = value;
                     SetProperty(ref _volume, value);

@@ -18,7 +18,7 @@ namespace VLC.Commands.MediaPlayback
             switch (request)
             {
                 case "higher":
-                    if (Locator.MediaPlaybackViewModel.Volume < 100)
+                    if (Locator.MediaPlaybackViewModel.Volume < 200)
                     {
                         Locator.MediaPlaybackViewModel.Volume += 5;
                     }
