@@ -47,6 +47,7 @@ namespace VLC.UI.Views.VideoPages
         private long _borderVisibilityChangedToken;
         readonly SolidColorBrush _white;
         readonly SolidColorBrush _red;
+        MediaPlaybackViewModel _viewModel => Locator.MediaPlaybackViewModel;
 
         public delegate void PlayerControlVisibilityChanged(bool visibility);
         public event PlayerControlVisibilityChanged OnPlayerControlVisibilityChanged;
@@ -115,13 +116,13 @@ namespace VLC.UI.Views.VideoPages
             // Swapchain animations
             App.RootPage.StartCompositionAnimationOnSwapChain(false);
         }
-
+        
         void MediaPlaybackViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
+        {    
             if (e.PropertyName == nameof(Locator.MediaPlaybackViewModel.Volume))
             {
-                var volume = Locator.MediaPlaybackViewModel.Volume;
-                if (volume > 100)
+                var volume = _viewModel.Volume;
+                if (volume > _viewModel.VOLUME_THRESHOLD)
                 {
                     if (VolumeSlider.Foreground == _red)
                         return;
@@ -160,17 +161,17 @@ namespace VLC.UI.Views.VideoPages
 
             Locator.MediaPlaybackViewModel.PropertyChanged -= MediaPlaybackViewModelOnPropertyChanged;
 
-            Locator.MediaPlaybackViewModel.MouseService.Stop();
-            Locator.MediaPlaybackViewModel.MouseService.OnMoved -= ShowControlPanel;
+            _viewModel.MouseService.Stop();
+            _viewModel.MouseService.OnMoved -= ShowControlPanel;
             RootGrid.Tapped -= RootGrid_Tapped;
 
             controlsTimer.Tick -= ControlsTimer_Tick;
             controlsTimer.Stop();
-            Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
+            _viewModel.MouseService.ShowCursor();
 
             this.SizeChanged -= OnSizeChanged;
             ControlsBorder.UnregisterPropertyChangedCallback(VisibilityProperty, _borderVisibilityChangedToken);
-            Locator.MediaPlaybackViewModel.PlaybackService.Playback_MediaStopped -= OnPlaybackStopped;
+            _viewModel.PlaybackService.Playback_MediaStopped -= OnPlaybackStopped;
             FadeOut.Completed -= FadeOut_Completed;
         }
 
@@ -214,22 +215,23 @@ namespace VLC.UI.Views.VideoPages
 
         void HideControlPanel()
         {
-            Locator.MediaPlaybackViewModel.SliderBindingEnabled = false;
+            _viewModel.SliderBindingEnabled = false;
             if (isVisible == false || Locator.VideoPlayerVm.IsVideoPlayerOptionsPanelVisible)
                 return;
             isVisible = false;
             ControlsGridFadeOut.Value = ControlsBorder.ActualHeight;
             HeaderGridFadeOut.Value = -HeaderGrid.ActualHeight;
             FadeOut.Begin();
-            Locator.MediaPlaybackViewModel.MouseService.HideCursor();
+            _viewModel.MouseService.HideCursor();
         }
 
         void ShowControlPanel()
         {
-            Locator.MediaPlaybackViewModel.SliderBindingEnabled = true;
+            VolumeSlider.Foreground = _viewModel.Volume > _viewModel.VOLUME_THRESHOLD ? _red : _white;
+            _viewModel.SliderBindingEnabled = true;
             controlsTimer.Stop();
             controlsTimer.Start();
-            Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
+            _viewModel.MouseService.ShowCursor();
             if (isVisible == true)
                 return;
             isVisible = true;
@@ -360,7 +362,7 @@ namespace VLC.UI.Views.VideoPages
                 case GestureActionType.Null:
                     break;
                 case GestureActionType.Volume:
-                    Locator.MediaPlaybackViewModel.Volume = computeVolumeFromGesture(e.Cumulative);
+                    _viewModel.Volume = computeVolumeFromGesture(e.Cumulative);
                     break;
                 case GestureActionType.Brightness:
                     break;
@@ -380,12 +382,12 @@ namespace VLC.UI.Views.VideoPages
 
         int computeVolumeFromGesture(ManipulationDelta cumulative)
         {
-            var currentVol = Locator.MediaPlaybackViewModel.Volume;
+            var currentVol = _viewModel.Volume;
             var volumeDelta = (int)Math.Floor(-cumulative.Translation.Y / 5);
             var newVol = currentVol + volumeDelta;
-            if (newVol > 100)
-                newVol = 100;
-            else if (newVol < 0)
+            if (newVol > _viewModel.VOLUME_MAX)
+                newVol = _viewModel.VOLUME_MAX;
+            else if (newVol < _viewModel.VOLUME_MIN)
                 newVol = 0;
             return newVol;
         }
@@ -397,12 +399,12 @@ namespace VLC.UI.Views.VideoPages
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            Locator.MediaPlaybackViewModel.PlayNextCommand.Execute(null);
+            _viewModel.PlayNextCommand.Execute(null);
         }
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
-            Locator.MediaPlaybackViewModel.PlayPreviousCommand.Execute(null);
+            _viewModel.PlayPreviousCommand.Execute(null);
         }
 
         private void PlaceholderInteractionGrid_OnPointerWheelChanged(object sender, PointerRoutedEventArgs e)

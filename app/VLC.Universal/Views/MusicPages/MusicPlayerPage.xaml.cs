@@ -12,6 +12,7 @@ namespace VLC.UI.Views.MusicPages
     {
         readonly SolidColorBrush _white;
         readonly SolidColorBrush _red;
+        MediaPlaybackViewModel _viewModel => Locator.MediaPlaybackViewModel;
 
         public MusicPlayerPage()
         {
@@ -26,16 +27,16 @@ namespace VLC.UI.Views.MusicPages
             Responsive();
             this.SizeChanged += OnSizeChanged;
             this.Unloaded += OnUnloaded;
-            Locator.MediaPlaybackViewModel.SliderBindingEnabled = true;
-            Locator.MediaPlaybackViewModel.PropertyChanged += MediaPlaybackViewModelOnPropertyChanged;
+            _viewModel.SliderBindingEnabled = true;
+            _viewModel.PropertyChanged += MediaPlaybackViewModelOnPropertyChanged;
         }
 
         void MediaPlaybackViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Locator.MediaPlaybackViewModel.Volume))
+            if (e.PropertyName == nameof(_viewModel.Volume))
             {
-                var volume = Locator.MediaPlaybackViewModel.Volume;
-                if (volume > 100)
+                var volume = _viewModel.Volume;
+                if (volume > _viewModel.VOLUME_THRESHOLD)
                 {
                     if (VolumeSlider.Foreground == _red)
                         return;
@@ -64,7 +65,7 @@ namespace VLC.UI.Views.MusicPages
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
         {
             this.SizeChanged -= OnSizeChanged;
-            Locator.MediaPlaybackViewModel.PropertyChanged -= MediaPlaybackViewModelOnPropertyChanged;
+            _viewModel.PropertyChanged -= MediaPlaybackViewModelOnPropertyChanged;
         }
 
         void Responsive()

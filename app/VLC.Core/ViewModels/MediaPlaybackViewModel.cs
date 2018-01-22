@@ -115,7 +115,7 @@ namespace VLC.ViewModels
             set
             {
                 Debug.WriteLine("new volume set: " + value);
-                if (value > 0 && value <= 200)
+                if (value >= VOLUME_MIN && value <= VOLUME_MAX)
                 {
                     PlaybackService.Volume = value;
                     SetProperty(ref _volume, value);
@@ -233,6 +233,11 @@ namespace VLC.ViewModels
                     PlaybackService.SetCurrentChapter(value);
             }
         }
+
+        public int VOLUME_MAX { get; } = 200;
+        public int VOLUME_THRESHOLD { get; } = 100;
+        public int VOLUME_MIN { get; } = 0;
+
         #endregion
 
         #region public fields

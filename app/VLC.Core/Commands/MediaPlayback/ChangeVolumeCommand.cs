@@ -18,19 +18,19 @@ namespace VLC.Commands.MediaPlayback
             switch (request)
             {
                 case "higher":
-                    if (Locator.MediaPlaybackViewModel.Volume < 200)
+                    if (Locator.MediaPlaybackViewModel.Volume < Locator.MediaPlaybackViewModel.VOLUME_MAX)
                     {
                         Locator.MediaPlaybackViewModel.Volume += 5;
                     }
                     break;
                 case "lower":
-                    if (Locator.MediaPlaybackViewModel.Volume > 0)
+                    if (Locator.MediaPlaybackViewModel.Volume > Locator.MediaPlaybackViewModel.VOLUME_MIN)
                     {
                         Locator.MediaPlaybackViewModel.Volume -= 5;
                     }
                     break;
                 case "reset":
-                    Locator.MediaPlaybackViewModel.Volume = 100;
+                    Locator.MediaPlaybackViewModel.Volume = Locator.MediaPlaybackViewModel.VOLUME_THRESHOLD;
                     break;
                 case "mute":
                     Locator.MediaPlaybackViewModel.Volume = Locator.MediaPlaybackViewModel.Volume == 1 ? 100 : 1;
