@@ -1,3 +1,17 @@
+Changes between 2.6.0 and 2.6.1
+-------------------------------
+Release: January 23rd 2017
+
+Bugfixes:
+* final icon fix.
+* fix remote control issue.
+* fix blinking subs on xbox.
+* fix crash when reading https streams.
+
+features:
+* long name support (scrolling).
+* allow volume up to 200.
+
 Changes between 2.5.5 and 2.6.0
 -------------------------------
 Release: December 22nd 2017
