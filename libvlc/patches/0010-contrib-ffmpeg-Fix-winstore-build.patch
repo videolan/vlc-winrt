@@ -1,7 +1,7 @@
-From 9fca97fc0a23d0475310ceef97a83c75fc69bfd2 Mon Sep 17 00:00:00 2001
+From 85f4c7b0fc6f8222fc71a0302da4ac075bf6f2e7 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Wed, 22 Nov 2017 14:13:15 +0100
-Subject: [PATCH 10/11] contrib: ffmpeg: Fix winstore build
+Subject: [PATCH 10/13] contrib: ffmpeg: Fix winstore build
 
 ---
  contrib/src/ffmpeg/disable-wincrypt.patch | 10 ++++++++++
@@ -26,10 +26,10 @@ index 0000000..7c5a802
 + 
 + check_lib coreservices "CoreServices/CoreServices.h" UTGetOSTypeFromString "-framework CoreServices"
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index e8251de..d820181 100644
+index f5309f5..e95569d 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
-@@ -235,6 +235,9 @@ endif
+@@ -238,6 +238,9 @@ endif
  ifdef USE_LIBAV
  	$(APPLY) $(SRC)/ffmpeg/libav_gsm.patch
  endif
