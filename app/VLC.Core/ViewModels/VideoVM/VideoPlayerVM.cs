@@ -29,6 +29,7 @@ using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using VLC.MediaMetaFetcher.Fetchers;
 using Projection = libVLCX.Projection;
+using Windows.Foundation.Metadata;
 
 namespace VLC.ViewModels.VideoVM
 {
@@ -87,6 +88,10 @@ namespace VLC.ViewModels.VideoVM
         public SurfaceZoomToggleCommand SurfaceZoomToggleCommand { get; private set; } = new SurfaceZoomToggleCommand();
 
         public InitPiPCommand InitPiPCommand { get; private set; } = new InitPiPCommand();
+
+        public bool IsCompactOverlaySupported {
+            get { return ApiInformation.IsEnumNamedValuePresent("Windows.UI.ViewManagement.ApplicationViewMode", "CompactOverlay") && ApplicationView.GetForCurrentView().IsViewModeSupported(ApplicationViewMode.CompactOverlay); }
+        }
 
         public DownloadSubtitleCommand DownloadSubtitleCommand { get; private set; } = new DownloadSubtitleCommand();
 

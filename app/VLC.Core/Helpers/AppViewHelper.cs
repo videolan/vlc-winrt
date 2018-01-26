@@ -113,6 +113,18 @@ namespace VLC.Helpers
             v.ExitFullScreenMode();
         }
 
+        public static async void LeaveCompactOverlay()
+        {
+            if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.ViewManagement.ApplicationViewMode", "CompactOverlay"))
+            {
+                if (ApplicationView.GetForCurrentView().ViewMode == ApplicationViewMode.CompactOverlay)
+                {
+                    await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
+                }
+            }
+
+        }
+
         public static void EnterFullscreen()
         {
             var v = ApplicationView.GetForCurrentView();

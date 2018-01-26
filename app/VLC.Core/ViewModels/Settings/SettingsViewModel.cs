@@ -31,6 +31,8 @@ using VLC.Utils;
 using Windows.UI.Xaml.Navigation;
 using Autofac;
 using VLC.Services.RunTime;
+using Windows.UI.ViewManagement;
+using Windows.Foundation.Metadata;
 
 namespace VLC.ViewModels.Settings
 {
@@ -60,6 +62,7 @@ namespace VLC.ViewModels.Settings
         private List<string> _subtitlesEncodingValues;
         private VLCEqualizer _vlcEqualizer;
         private IList<VLCEqualizer> _equalizerPresets;
+        private bool _useCompactOverlayPiP;
 
         public ApplicationTheme ApplicationTheme
         {
@@ -182,6 +185,36 @@ namespace VLC.ViewModels.Settings
             {
                 SetProperty(ref _continueVideoPlaybackInBackground, value);
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(ContinueVideoPlaybackInBackground), value);
+            }
+        }
+
+        public bool CompactOverlayPiP
+        {
+            get
+            {
+                var useCompactOverlayPiP = ApplicationSettingsHelper.ReadSettingsValue(nameof(CompactOverlayPiP));
+                if (useCompactOverlayPiP == null)
+                {
+                    if (Locator.VideoPlayerVm.IsCompactOverlaySupported)
+                    {
+                        _useCompactOverlayPiP = true;
+                    }
+                    else
+                    {
+                        _useCompactOverlayPiP = false;
+                    }
+                }
+                else
+                {
+                    _useCompactOverlayPiP = (bool)useCompactOverlayPiP;
+                }
+
+                return _useCompactOverlayPiP;
+            }
+            set
+            {
+                SetProperty(ref _useCompactOverlayPiP, value);
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(CompactOverlayPiP), value);
             }
         }
 

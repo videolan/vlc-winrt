@@ -13,6 +13,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Input;
 using Windows.Storage;
+using Windows.Foundation.Metadata;
+using Windows.UI.ViewManagement;
 
 namespace VLC.UI.Views.SettingsPages
 {
@@ -24,6 +26,18 @@ namespace VLC.UI.Views.SettingsPages
             this.Loaded += SettingsPage_Loaded;
             this.UsernameBoxLastFm.KeyUp += UsernameBoxLastFm_KeyUp;
             this.PasswordBoxLastFm.KeyUp += PasswordBoxLastFm_KeyUp;
+            ToggleSwitch compactOverlayToggleSwitch = compactOverlayToggle;
+
+            if (Locator.VideoPlayerVm.IsCompactOverlaySupported)
+            {
+
+                compactOverlayToggleSwitch.Visibility = Visibility.Visible;
+
+            }
+            else
+            {
+                compactOverlayToggleSwitch.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void UsernameBoxLastFm_KeyUp(object sender, KeyRoutedEventArgs e)
