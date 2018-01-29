@@ -148,6 +148,7 @@ namespace VLC.UI.Views.VideoPages
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
+
             AppViewHelper.SetTitleBarTitle();
             App.RootPage.SwapChainPanel.Visibility = Visibility.Collapsed;
             Locator.NavigationService.CloseVideoFlyouts();
@@ -179,7 +180,7 @@ namespace VLC.UI.Views.VideoPages
         {
             await DispatchHelper.InvokeInUIThread(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                if (!Locator.NavigationService.GoBack_Default())
+                if (!Locator.NavigationService.GoBack_Default() && Locator.MainVM.CurrentPanel != null)
                     Locator.NavigationService.Go(Locator.MainVM.CurrentPanel.Target);
             });
         }

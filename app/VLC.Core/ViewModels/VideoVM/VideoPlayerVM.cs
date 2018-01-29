@@ -169,7 +169,8 @@ namespace VLC.ViewModels.VideoVM
 
             var media = Locator.PlaybackService.CurrentPlaybackMedia;
             // this could be a stream instead of a videoitem..
-            Task.Run(() => Locator.MediaPlaybackViewModel.SetMediaTransportControlsInfo(media.Name, (media as VideoItem)?.PictureUri));
+            if(media != null)
+                Task.Run(() => Locator.MediaPlaybackViewModel.SetMediaTransportControlsInfo(media.Name, (media as VideoItem)?.PictureUri));
         }
 
         public void OnNavigatedFrom()

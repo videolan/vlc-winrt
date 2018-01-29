@@ -44,7 +44,7 @@ namespace VLC
         public static Model.Music.AlbumItem SelectedAlbumItem;
         public static IContainer Container;
         private bool _firstBoot = true;
-
+        
         public App()
         {
             InitializeComponent();
@@ -62,28 +62,15 @@ namespace VLC
 
         private async void OnLeavingBackground(object sender, LeavingBackgroundEventArgs leavingBackgroundEventArgs)
         {
-            ApplicationSettingsHelper.SaveSettingsValue("AppBackgrounded", false);
-            if (_firstBoot)
-            {
-                _firstBoot = false;
-                return;
-            }
-
-            await LaunchTheApp(true);
+            
         }
 
         private void OnEnteredBackground(object sender, EnteredBackgroundEventArgs enteredBackgroundEventArgs)
         {
-            ApplicationSettingsHelper.SaveSettingsValue("AppBackgrounded", true);
-            Locator.GamepadService.StopListening();
-            Locator.NavigationService.UnbindSplitShellEvents();
-            Locator.ExternalDeviceService.Dispose();
-            if(Locator.PlaybackService.PlayingType == PlayingType.Video)
-                Locator.PlaybackService.Stop();
-            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
-                Locator.HttpServer.Unbind();
-
-            Window.Current.Content = null;
+            if (Locator.PlaybackService.PlayingType == PlayingType.Video && Locator.PlaybackService.IsPlaying)
+            {
+                Locator.PlaybackService.Pause();
+            }
         }
 
         public static Frame ApplicationFrame => RootPage?.NavigationFrame;
