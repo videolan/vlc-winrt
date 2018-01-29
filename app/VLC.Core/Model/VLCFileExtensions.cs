@@ -81,6 +81,7 @@ namespace VLC.Model
             ".xesc",
             ".mp3",
             ".ogg",
+            ".opus",
             ".aac",
             ".wma",
             ".wav",
@@ -110,7 +111,7 @@ namespace VLC.Model
 
                 ".mid", ".mka", ".mlp", ".mod", ".mpa", ".mp1", ".mp2", ".mp3", ".mpc", ".mpga",
 
-                ".oga", ".ogg", ".oma", ".opus", ".ra", ".ram", ".rmi", ".s3m", ".spx", ".tta",
+                ".oga", ".ogg", ".opus", ".oma", ".opus", ".ra", ".ram", ".rmi", ".s3m", ".spx", ".tta",
 
                 ".voc", ".vqf", ".w64", ".wav", ".wma", ".wv", ".xa", ".xm" };
 

@@ -78,6 +78,7 @@
               <uap:FileType>.nuv</uap:FileType>
               <uap:FileType>.ogm</uap:FileType>
               <uap:FileType>.ogv</uap:FileType>
+              <uap:FileType>.opus</uap:FileType>
               <uap:FileType>.ogx</uap:FileType>
               <uap:FileType>.ps</uap:FileType>
               <uap:FileType>.rec</uap:FileType>
