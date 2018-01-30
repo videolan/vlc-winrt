@@ -60,13 +60,15 @@ namespace VLC
             }
         }
 
-        private async void OnLeavingBackground(object sender, LeavingBackgroundEventArgs leavingBackgroundEventArgs)
+        private void OnLeavingBackground(object sender, LeavingBackgroundEventArgs leavingBackgroundEventArgs)
         {
-            
+            ApplicationSettingsHelper.SaveSettingsValue("AppBackgrounded", false);
         }
 
         private void OnEnteredBackground(object sender, EnteredBackgroundEventArgs enteredBackgroundEventArgs)
         {
+            ApplicationSettingsHelper.SaveSettingsValue("AppBackgrounded", true);
+
             if (Locator.PlaybackService.PlayingType == PlayingType.Video && Locator.PlaybackService.IsPlaying)
             {
                 Locator.PlaybackService.Pause();

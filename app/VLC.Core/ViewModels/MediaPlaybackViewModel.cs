@@ -601,10 +601,6 @@ namespace VLC.ViewModels
                 {
                     App.RootPage.StopCompositionAnimationOnSwapChain();
                 }
-                if (!Locator.NavigationService.GoBack_Default())
-                {
-                    Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
-                }
             });
         }
 
