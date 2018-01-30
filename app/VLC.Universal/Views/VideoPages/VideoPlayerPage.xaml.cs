@@ -28,10 +28,14 @@ using Windows.UI.Xaml.Controls.Primitives;
 using VLC.Commands;
 using System.Linq;
 using System.Numerics;
+using Windows.Devices.Input;
 using Windows.Foundation.Metadata;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 using libVLCX;
+using ScrollWatcher;
+using WinRTXamlToolkit.AwaitableUI;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC.UI.Views.VideoPages
 {
@@ -57,6 +61,20 @@ namespace VLC.UI.Views.VideoPages
             InitializeComponent();
             _white = new SolidColorBrush(Colors.White);
             _red = new SolidColorBrush(Colors.Red);
+        }
+
+        void MouseWheelChanged(object sender, PointerRoutedEventArgs e)
+        {
+            if (e.Pointer.PointerDeviceType != PointerDeviceType.Mouse)
+                return;
+
+            e.Handled = true;
+
+            var mouseWheelDelta = e.GetCurrentPoint(this).Properties.MouseWheelDelta;
+            if(mouseWheelDelta > 0)
+                _viewModel.IncreaseVolumeCommand.Execute(null);
+            else
+                _viewModel.DecreaseVolumeCommand.Execute(null);
         }
 
         private void OnBorderVisibilityChanged(DependencyObject sender, DependencyProperty dp)
@@ -99,6 +117,8 @@ namespace VLC.UI.Views.VideoPages
             controlsTimer.Tick += ControlsTimer_Tick;
             controlsTimer.Start();
             Locator.MediaPlaybackViewModel.PropertyChanged += MediaPlaybackViewModelOnPropertyChanged;
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Tablet)
+                PointerWheelChanged += MouseWheelChanged;
 
             // VM initialization
             Locator.VideoPlayerVm.OnNavigatedTo();
@@ -165,6 +185,8 @@ namespace VLC.UI.Views.VideoPages
             _viewModel.MouseService.Stop();
             _viewModel.MouseService.OnMoved -= ShowControlPanel;
             RootGrid.Tapped -= RootGrid_Tapped;
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Tablet)
+                PointerWheelChanged -= MouseWheelChanged;
 
             controlsTimer.Tick -= ControlsTimer_Tick;
             controlsTimer.Stop();

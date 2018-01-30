@@ -35,6 +35,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using System.Collections.ObjectModel;
 using Windows.UI.ViewManagement;
+using VLC.Commands;
 using VLC.Model.Music;
 
 namespace VLC.ViewModels
@@ -81,6 +82,11 @@ namespace VLC.ViewModels
         public ChangeSpuDelayCommand ChangeSpuDelayCommand { get; } = new ChangeSpuDelayCommand();
 
         public FastSeekCommand FastSeekCommand { get; } = new FastSeekCommand();
+
+        public ActionCommand IncreaseVolumeCommand { get; } = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("higher"));
+
+        public ActionCommand DecreaseVolumeCommand { get; } = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("lower"));
+
         #endregion
 
         #region public props

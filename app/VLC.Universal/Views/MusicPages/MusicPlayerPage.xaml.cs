@@ -1,9 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using Windows.Devices.Input;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Microsoft.Xaml.Interactivity;
+using VLC.Helpers;
 using VLC.ViewModels;
 
 namespace VLC.UI.Views.MusicPages
@@ -29,6 +33,22 @@ namespace VLC.UI.Views.MusicPages
             this.Unloaded += OnUnloaded;
             _viewModel.SliderBindingEnabled = true;
             _viewModel.PropertyChanged += MediaPlaybackViewModelOnPropertyChanged;
+            if(DeviceHelper.GetDeviceType() == DeviceTypeEnum.Tablet)
+                PointerWheelChanged += OnPointerWheelChanged;
+        }
+
+        void OnPointerWheelChanged(object sender, PointerRoutedEventArgs e)
+        {
+            if (e.Pointer.PointerDeviceType != PointerDeviceType.Mouse)
+                return;
+
+            e.Handled = true;
+
+            var mouseWheelDelta = e.GetCurrentPoint(this).Properties.MouseWheelDelta;
+            if (mouseWheelDelta > 0)
+                _viewModel.IncreaseVolumeCommand.Execute(null);
+            else
+                _viewModel.DecreaseVolumeCommand.Execute(null);
         }
 
         void MediaPlaybackViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -66,6 +86,8 @@ namespace VLC.UI.Views.MusicPages
         {
             this.SizeChanged -= OnSizeChanged;
             _viewModel.PropertyChanged -= MediaPlaybackViewModelOnPropertyChanged;
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Tablet)
+                PointerWheelChanged -= OnPointerWheelChanged;
         }
 
         void Responsive()

@@ -97,8 +97,6 @@ namespace VLC.ViewModels.VideoVM
         public string LoadingSubtitleText { get { return _loadingSubtitleText; } set { SetProperty(ref _loadingSubtitleText, value); } }
         public ActionCommand PlayPauseCommand { get; } = new ActionCommand(() => Locator.MediaPlaybackViewModel.PlaybackService.Pause());
         public ActionCommand GoBackCommand { get; } = new ActionCommand(() => Locator.MediaPlaybackViewModel.GoBack.Execute(null));
-        public ActionCommand IncreaseVolumeCommand { get; } = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("higher"));
-        public ActionCommand DecreaseVolumeCommand { get; } = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("lower"));
         public ActionCommand MuteCommand { get; } = new ActionCommand(() => Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("mute"));
         public ActionCommand ToggleFullscreenCommand { get; } = new ActionCommand(AppViewHelper.ToggleFullscreen);
         public ActionCommand ZoomCommand { get; } = new ActionCommand(() => Locator.VideoPlayerVm.ToggleIsVideoPlayerOptionsPanelVisible.Execute(null));

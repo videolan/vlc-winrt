@@ -167,8 +167,8 @@
                         <MenuFlyoutSubItem Text="{Binding Source ={StaticResource Strings}, Path=Audio}">
                             <MenuFlyoutSubItem x:Name="AudioTracksSubItem" Text="{Binding Source ={StaticResource Strings}, Path=AudioTracks}"/>
                             <MenuFlyoutSeparator/>
-                            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=IncreaseVolume}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.IncreaseVolumeCommand}"/>
-                            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=DecreaseVolume}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.DecreaseVolumeCommand}"/>
+                            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=IncreaseVolume}" Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.IncreaseVolumeCommand}"/>
+                            <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=DecreaseVolume}" Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.DecreaseVolumeCommand}"/>
                             <MenuFlyoutItem Text="{Binding Source={StaticResource Strings}, Path=Mute}" Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.MuteCommand}"/>
                         </MenuFlyoutSubItem>
                         <MenuFlyoutSubItem x:Name="VideoSubItem" Text="{Binding Source ={StaticResource Strings}, Path=Video}">
