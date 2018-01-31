@@ -874,6 +874,10 @@
           <source>original</source>
           <target state="new">oryginalne</target>
         </trans-unit>
+        <trans-unit id="CompactOverlayPiP" translate="yes" xml:space="preserve">
+          <source>use windows 10 pip</source>
+          <target state="new">use windows 10 pip</target>
+        </trans-unit>
       </group>
     </body>
   </file>

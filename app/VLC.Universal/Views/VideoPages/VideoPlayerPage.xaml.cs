@@ -36,6 +36,7 @@ using libVLCX;
 using ScrollWatcher;
 using WinRTXamlToolkit.AwaitableUI;
 using WinRTXamlToolkit.Controls.Extensions;
+using Windows.UI.ViewManagement;
 
 namespace VLC.UI.Views.VideoPages
 {
@@ -177,6 +178,8 @@ namespace VLC.UI.Views.VideoPages
 
             Locator.VideoPlayerVm.PlayerControlVisibilityChangeRequested -= VideoPlayerVm_PlayerControlVisibilityChangeRequested;
             OnPlayerControlVisibilityChanged -= Locator.VideoPlayerVm.OnPlayerControlVisibilityChanged;
+
+            AppViewHelper.LeaveCompactOverlay();
 
             AppViewHelper.LeaveFullscreen();
 

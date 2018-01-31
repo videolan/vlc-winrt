@@ -286,7 +286,7 @@ namespace VLC.Utils
         public static string Notifications => _resourcesLoader.GetString(nameof(Notifications));
         public static string NotificationWhenSongStarts => _resourcesLoader.GetString(nameof(NotificationWhenSongStarts));
         public static string VideoPlaybackInBackground => _resourcesLoader.GetString(nameof(VideoPlaybackInBackground));
-
+        public static string CompactOverlayPiP => _resourcesLoader.GetString(nameof(CompactOverlayPiP));
         public static string EvenIfBackground => _resourcesLoader.GetString(nameof(EvenIfBackground));
         public static string EvenIfNotBackground => _resourcesLoader.GetString(nameof(EvenIfNotBackground));
         public static string NeedRestart => _resourcesLoader.GetString(nameof(NeedRestart));

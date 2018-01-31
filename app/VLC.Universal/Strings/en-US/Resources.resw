@@ -762,4 +762,7 @@
   <data name="PolishLanguage" xml:space="preserve">
     <value>Polish</value>
   </data>
+  <data name="CompactOverlayPiP" xml:space="preserve">
+    <value>use windows 10 pip</value>
+  </data>
 </root>
