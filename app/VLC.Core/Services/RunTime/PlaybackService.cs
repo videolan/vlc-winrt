@@ -128,6 +128,8 @@ namespace VLC.Services.RunTime
 
         private void SwapChainPanel_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
         {
+            if (Instance == null || App.RootPage?.SwapChainPanel == null) return;
+
             Instance.UpdateSize((float)e.NewSize.Width * App.RootPage.SwapChainPanel.CompositionScaleX, 
                 (float)e.NewSize.Height * App.RootPage.SwapChainPanel.CompositionScaleY);
         }
