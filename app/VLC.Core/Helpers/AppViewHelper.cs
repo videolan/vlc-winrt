@@ -56,19 +56,26 @@ namespace VLC.Helpers
                 if (extend)
                 {
                     titleBar.BackgroundColor = Colors.Transparent;
+                    titleBar.InactiveBackgroundColor = Colors.Transparent;
+
                     titleBar.ButtonBackgroundColor = Colors.Transparent;
+                    titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 
                     titleBar.ButtonForegroundColor = Colors.White;
+                    titleBar.ButtonInactiveForegroundColor = Colors.White;
                 }
                 else
                 {
                     titleBar.BackgroundColor = Colors.DimGray;
+                    titleBar.InactiveBackgroundColor = Colors.DimGray;
+
                     titleBar.InactiveBackgroundColor = Colors.DarkGray;
                     
                     titleBar.ButtonBackgroundColor = Colors.DimGray;
                     titleBar.ButtonInactiveBackgroundColor = Colors.DarkGray;
 
                     titleBar.ButtonForegroundColor = Colors.White;
+                    titleBar.ButtonInactiveForegroundColor = Colors.White;
                 }
             }
             else
