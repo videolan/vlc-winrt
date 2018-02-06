@@ -13,640 +13,640 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTheApp" xml:space="preserve">
-    <value>À propos de l'application</value>
+    <value>perihal apl</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>Ajouter</value>
+    <value>tambah</value>
   </data>
   <data name="AddFolder" xml:space="preserve">
-    <value>Ajouter un dossier</value>
+    <value>tambah folder</value>
   </data>
   <data name="AddToCollection" xml:space="preserve">
-    <value>Ajouter à la collection</value>
+    <value>tambah ke dalam koleksi</value>
   </data>
   <data name="AddToCurrentPlaylist" xml:space="preserve">
-    <value>Ajouter à la liste de lecture en cours</value>
+    <value>tambah ke senarai main semasa</value>
   </data>
   <data name="AddToPlaylist" xml:space="preserve">
-    <value>Ajouter à une liste de lecture</value>
+    <value>tambah ke senarai main</value>
   </data>
   <data name="Albums" xml:space="preserve">
-    <value>Albums</value>
+    <value>album</value>
   </data>
   <data name="AlbumsFound" xml:space="preserve">
-    <value>Albums trouvés : {0}</value>
+    <value>album ditemui : {0}</value>
   </data>
   <data name="Animations" xml:space="preserve">
-    <value>Animations</value>
+    <value>animasi</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Thème de l'application</value>
+    <value>tema aplikasi</value>
   </data>
   <data name="Artists" xml:space="preserve">
-    <value>Artistes</value>
+    <value>artis</value>
   </data>
   <data name="Audio" xml:space="preserve">
-    <value>Audio</value>
+    <value>audio</value>
   </data>
   <data name="AudioDelay" xml:space="preserve">
-    <value>Décalage audio</value>
+    <value>lengahan audio</value>
   </data>
   <data name="AudioTracks" xml:space="preserve">
-    <value>Pistes audio</value>
+    <value>Trek Audio</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Précédent</value>
+    <value>undur</value>
   </data>
   <data name="CameraRoll" xml:space="preserve">
-    <value>Pellicule</value>
+    <value>gulungan kamera</value>
   </data>
   <data name="ChangeAlbumCover" xml:space="preserve">
-    <value>Changer la pochette de l'album</value>
+    <value>ubah kulit hadapan album</value>
   </data>
   <data name="Chapters" xml:space="preserve">
-    <value>Chapitres</value>
+    <value>Bab</value>
   </data>
   <data name="CheckCredentials" xml:space="preserve">
-    <value>Une erreur s'est produite, veuillez vérifier vos informations d'identification.</value>
+    <value>satu ralat telah berlaku, sila periksa kelayakan anda</value>
   </data>
   <data name="Connect" xml:space="preserve">
-    <value>Connexion</value>
+    <value>sambung</value>
   </data>
   <data name="ConnectedToLastFM" xml:space="preserve">
-    <value>Connecté à Last.FM</value>
+    <value>bersambung dengan Last.FM</value>
   </data>
   <data name="Connecting" xml:space="preserve">
-    <value>Connexion en cours</value>
+    <value>menyambung</value>
   </data>
   <data name="ConnectToLastFM" xml:space="preserve">
-    <value>Se connecter à Last.FM</value>
+    <value>sambung ke Last.FM</value>
   </data>
   <data name="CrashReport" xml:space="preserve">
-    <value>Rapport de bogue</value>
+    <value>laporan kerosakan</value>
   </data>
   <data name="DecreaseSpeed" xml:space="preserve">
-    <value>Diminuer la vitesse</value>
+    <value>kurangkan kelajuan</value>
   </data>
   <data name="DecreaseVolume" xml:space="preserve">
-    <value>Diminuer le volume</value>
+    <value>kurangkan volum</value>
   </data>
   <data name="DeletePlaylist" xml:space="preserve">
-    <value>Supprimer la liste de lecture</value>
+    <value>padam senarai main</value>
   </data>
   <data name="DeleteSelected" xml:space="preserve">
-    <value>Supprimer</value>
+    <value>padam terpilih</value>
   </data>
   <data name="EditMetadata" xml:space="preserve">
-    <value>Modifier les métadonnées</value>
+    <value>sunting data meta</value>
   </data>
   <data name="ElementsNotFound" xml:space="preserve">
-    <value>Nous n'avons pas trouvé d'élément ici</value>
+    <value>kami tidak menemui apa-apa elemen di sini</value>
   </data>
   <data name="EnterURL" xml:space="preserve">
-    <value>Entrez une URL</value>
+    <value>masukkan satu url</value>
   </data>
   <data name="Episode" xml:space="preserve">
-    <value>Épisode</value>
+    <value>episod</value>
   </data>
   <data name="EvenIfBackground" xml:space="preserve">
-    <value>Même si l'application est en arrière-plan</value>
+    <value>walaupun jika apl masih dibalik tabir</value>
   </data>
   <data name="EvenIfNotBackground" xml:space="preserve">
-    <value>Même si l'application n'est pas en arrière-plan</value>
+    <value>Walaupun jika apl tidak berada dibalik tabir</value>
   </data>
   <data name="FailFilePlayBackground" xml:space="preserve">
-    <value>Ce fichier ne peut pas être joué en arrière-plan</value>
+    <value>Fail ini mungkin tidak dapat dimainkan secara balik tabir</value>
   </data>
   <data name="FailNavigateVideoPlayerPage" xml:space="preserve">
-    <value>VLC n'a pas pu accéder à la page Video Player</value>
+    <value>VLC gagal menavigasi ke laman Pemain Video</value>
   </data>
   <data name="FailOpenVideo" xml:space="preserve">
-    <value>VLC n'a pas pu ouvrir la vidéo</value>
+    <value>VLC gagal membuka video</value>
   </data>
   <data name="FailStartVLCEngine" xml:space="preserve">
-    <value>L'app n'a pas pu démarrer le moteur VLC</value>
+    <value>Apl gagal memulakan enjin VLC</value>
   </data>
   <data name="FeedbackThankYou" xml:space="preserve">
-    <value>Vos commentaires ont été envoyés ! Merci.</value>
+    <value>maklumbalas dihantar! terima kasih</value>
   </data>
   <data name="FileExplorer" xml:space="preserve">
-    <value>Parcourir</value>
+    <value>layar</value>
   </data>
   <data name="HardwareDecoding" xml:space="preserve">
-    <value>Décodage matériel</value>
+    <value>penyahkodan perkakasan</value>
   </data>
   <data name="HardwareDecodingDescription" xml:space="preserve">
-    <value>Le décodage matériel peut ne pas fonctionner sur votre appareil.</value>
+    <value>Penyahkodan perkakasan mungkin tidak berfungis pada peranti anda.</value>
   </data>
   <data name="HaveToSelectPlaylist" xml:space="preserve">
-    <value>Veuillez sélectionner une liste de lecture</value>
+    <value>sila pilih satu senarai main</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Accueil</value>
+    <value>rumah</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-    <value>Page principale</value>
+    <value>laman utama</value>
   </data>
   <data name="HomePageDescription" xml:space="preserve">
-    <value>VLC commencera sur la page sélectionnée</value>
+    <value>VLC akan bermula pada halaman terpilih</value>
   </data>
   <data name="HoweverYouMayFindWhatYouWantHere" xml:space="preserve">
-    <value>Toutefois, vous pouvez peut-être trouver ce que vous cherchez ici</value>
+    <value>walaubagaimanapun anda boleh cari apa yang anda kehendaki di sini</value>
   </data>
   <data name="HowToFavoriteAlbum1" xml:space="preserve">
-    <value>Pour marquer un album comme favori, appuyez simplement</value>
+    <value>untuk jadikan album kegemaran, hanya ketik</value>
   </data>
   <data name="HowToFavoriteAlbum2" xml:space="preserve">
-    <value>Et vous y aurez accès rapidement</value>
+    <value>dan anda dapat mencapainya serta-merta</value>
   </data>
   <data name="ImportantSponsors" xml:space="preserve">
-    <value>Auteurs importants</value>
+    <value>penaja utama</value>
   </data>
   <data name="IncreaseSpeed" xml:space="preserve">
-    <value>Augmenter la vitesse</value>
+    <value>tingkatkan kelajuan</value>
   </data>
   <data name="IncreaseVolume" xml:space="preserve">
-    <value>Augmenter le volume</value>
+    <value>tingkatkan volum</value>
   </data>
   <data name="ItsEmpty" xml:space="preserve">
-    <value>C'est vide ici</value>
+    <value>tiada apa-apa di sini</value>
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
-    <value>Raccourcis clavier</value>
+    <value>pintasan papan kekunci</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>Licence</value>
+    <value>lesen</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Chargement</value>
+    <value>memuatkan</value>
   </data>
   <data name="LoadingMusic" xml:space="preserve">
-    <value>Chargement de votre musique</value>
+    <value>memuatkan muzik</value>
   </data>
   <data name="MostPlayedArtists" xml:space="preserve">
-    <value>Artistes les plus joués</value>
+    <value>artis terbanyak dimainkan</value>
   </data>
   <data name="Music" xml:space="preserve">
-    <value>Musique</value>
+    <value>muzik</value>
   </data>
   <data name="MusicFolders" xml:space="preserve">
-    <value>Dossiers de musique</value>
+    <value>folder muzik</value>
   </data>
   <data name="MusicFoldersDescription" xml:space="preserve">
-    <value>VLC recherchera uniquement les morceaux qui se trouvent dans votre bibliothèque musicale. Vous pouvez ajouter des dossiers à votre bibliothèque ici.</value>
+    <value>VLC hanya akan menggelintar lagu yang berada dalam pustaka muzik anda. Anda boleh tambah folder ke dalam pustaka anda di sini</value>
   </data>
   <data name="MusicSettings" xml:space="preserve">
-    <value>Paramètres Audio</value>
+    <value>Tetapan Muzik</value>
   </data>
   <data name="MusicShows" xml:space="preserve">
-    <value>Concerts</value>
+    <value>rancangan muzik</value>
   </data>
   <data name="Mute" xml:space="preserve">
-    <value>Muet</value>
+    <value>senyap</value>
   </data>
   <data name="MyPlaylists" xml:space="preserve">
-    <value>Mes listes de lecture</value>
+    <value>senarai main saya</value>
   </data>
   <data name="Network" xml:space="preserve">
-    <value>Réseau</value>
+    <value>rangkaian</value>
   </data>
   <data name="NewPlaylist" xml:space="preserve">
-    <value>Nouvelle liste de lecture</value>
+    <value>senarai main baharu</value>
   </data>
   <data name="NewVideos" xml:space="preserve">
-    <value>Nouvelles vidéos</value>
+    <value>video baharu</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>Non</value>
+    <value>Tidak</value>
   </data>
   <data name="NoBiographyFound" xml:space="preserve">
-    <value>Pas de bio trouvée pour cet artiste</value>
+    <value>tiada bio ditemui bagi artis ini</value>
   </data>
   <data name="NoCameraVideosFound" xml:space="preserve">
-    <value>Aucune vidéo de caméra trouvée</value>
+    <value>tiada video kamera ditemui</value>
   </data>
   <data name="NoFavoriteAlbums" xml:space="preserve">
-    <value>Aucun album préféré</value>
+    <value>tiada album kegemaran</value>
   </data>
   <data name="NoInternetConnection" xml:space="preserve">
-    <value>Pas de connexion Internet</value>
+    <value>tiada sambungan internet</value>
   </data>
   <data name="NoPlaylists" xml:space="preserve">
-    <value>Aucune liste de lecture</value>
+    <value>tiada senarai main</value>
   </data>
   <data name="NoShowsFound" xml:space="preserve">
-    <value>Aucun concert trouvé</value>
+    <value>tiada rancangan ditemui</value>
   </data>
   <data name="NothingToSeeHere" xml:space="preserve">
-    <value>Il n'y a rien à voir ici</value>
+    <value>tiada apa-apa untuk lihat di sini</value>
   </data>
   <data name="Notifications" xml:space="preserve">
-    <value>Notifications</value>
+    <value>pemberitahuan</value>
   </data>
   <data name="NotificationWhenSongStarts" xml:space="preserve">
-    <value>Au démarrage du morceau</value>
+    <value>bila lagu bermula</value>
   </data>
   <data name="NoVideosFound" xml:space="preserve">
-    <value>Nous n'avons trouvé aucune vidéo</value>
+    <value>kami tidak menemui video</value>
   </data>
   <data name="NowPlaying" xml:space="preserve">
-    <value>Lecture en cours</value>
+    <value>kini dimainkan</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Ouvrir un fichier</value>
+    <value>buka fail</value>
   </data>
   <data name="OpenStream" xml:space="preserve">
-    <value>Ouvrir un flux</value>
+    <value>buka strim</value>
   </data>
   <data name="OpenSubtitle" xml:space="preserve">
-    <value>Ouvrir des sous-titres</value>
+    <value>buka sarikata</value>
   </data>
   <data name="OrderAscending" xml:space="preserve">
-    <value>Croissant</value>
+    <value>menaik</value>
   </data>
   <data name="OrderByAlbum" xml:space="preserve">
-    <value>Par album</value>
+    <value>mengikut album</value>
   </data>
   <data name="OrderByArtist" xml:space="preserve">
-    <value>Par artiste</value>
+    <value>mengikut artis</value>
   </data>
   <data name="OrderByDate" xml:space="preserve">
-    <value>Par date</value>
+    <value>mengikut tarikh</value>
   </data>
   <data name="OrderDescending" xml:space="preserve">
-    <value>Décroissant</value>
+    <value>menurun</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Mot de passe</value>
+    <value>kata laluan</value>
   </data>
   <data name="Pause" xml:space="preserve">
-    <value>Pause</value>
+    <value>jeda</value>
   </data>
   <data name="PinAlbum" xml:space="preserve">
-    <value>Épingler l'album</value>
+    <value>cemat album</value>
   </data>
   <data name="PinArtist" xml:space="preserve">
-    <value>Épingler l'artiste</value>
+    <value>cemat artis</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>Lecture</value>
+    <value>main</value>
   </data>
   <data name="PlayAlbum" xml:space="preserve">
-    <value>Lire l’album</value>
+    <value>main album</value>
   </data>
   <data name="PlayAll" xml:space="preserve">
-    <value>Lire tout</value>
+    <value>main semua</value>
   </data>
   <data name="Playback" xml:space="preserve">
-    <value>Lecture</value>
+    <value>main balik</value>
   </data>
   <data name="PlayerSettings" xml:space="preserve">
-    <value>Paramètres du Lecteur</value>
+    <value>Tetapan Pemain</value>
   </data>
   <data name="PlayFolder" xml:space="preserve">
-    <value>Lire le dossier</value>
+    <value>main folder</value>
   </data>
   <data name="Playlist" xml:space="preserve">
-    <value>Liste de lecture</value>
+    <value>senarai main</value>
   </data>
   <data name="PlaylistAlreadyExists" xml:space="preserve">
-    <value>Cette liste de lecture existe déjà</value>
+    <value>senarai main ini sudah wujud</value>
   </data>
   <data name="PlaylistNamePlaceholder" xml:space="preserve">
-    <value>Nom de la liste de lecture</value>
+    <value>nama senarai main</value>
   </data>
   <data name="Playlists" xml:space="preserve">
-    <value>Listes de lecture</value>
+    <value>senarai main</value>
   </data>
   <data name="PlayTrack" xml:space="preserve">
-    <value>Lire le morceau</value>
+    <value>main trek</value>
   </data>
   <data name="PlayVideo" xml:space="preserve">
-    <value>Lire la vidéo</value>
+    <value>main video</value>
   </data>
   <data name="PrivacyStatement" xml:space="preserve">
-    <value>Politique de confidentialité</value>
+    <value>penyataan kerahsiaan</value>
   </data>
   <data name="Favorites" xml:space="preserve">
-    <value>Favoris</value>
+    <value>Kegemaran</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">
-    <value>Actualiser la bibliothèque musicale</value>
+    <value>segar semula pustaka muzik</value>
   </data>
   <data name="RefreshVideoLibrary" xml:space="preserve">
-    <value>Actualiser la vidéothèque</value>
+    <value>segar semula pustaka video</value>
   </data>
   <data name="RemovableStorage" xml:space="preserve">
-    <value>Stockage amovible</value>
+    <value>storan mudah alih</value>
   </data>
   <data name="RemoveFolder" xml:space="preserve">
-    <value>Supprimer le dossier</value>
+    <value>buang folder</value>
   </data>
   <data name="RemoveMusicFolderDescription" xml:space="preserve">
-    <value>Si vous ne voulez pas de ce dossier dans votre bibliothèque de musique, vous pouvez le supprimer. Cela affectera toutes les applications, pas seulement VLC.</value>
+    <value>Jika anda tidak mahu folder ini berada di dalam pustaka Muzik anda, anda boleh membuangnya. Tetapi ia akan memberi kesan pada semua apl, tidak hanya VLC semata-mata.</value>
   </data>
   <data name="RemoveVideoFolderDescription" xml:space="preserve">
-    <value>Si vous ne voulez pas de ce dossier dans votre vidéothèque, vous pouvez le supprimer. Cela affectera toutes les applications, pas seulement VLC.</value>
+    <value>Jika anda tidak mahu folder ini berada di dalam pustaka Video anda, anda boleh membuangnya. Tetapi ia akan memberi kesan pada semua apl, tidak hanya VLC semata-mata.</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Réinitialiser</value>
+    <value>tetap semula</value>
   </data>
   <data name="ResetMusicDatabase" xml:space="preserve">
-    <value>Réinitialiser la base de données musicale</value>
+    <value>tetap semula pangkalan data</value>
   </data>
   <data name="ResetSpeed" xml:space="preserve">
-    <value>Réinitialiser la vitesse</value>
+    <value>tetap semula kelajuan</value>
   </data>
   <data name="RichAnimationsDescription" xml:space="preserve">
-    <value>Utiliser des animations riches dans les diaporamas</value>
+    <value>Guna animasi sempurna di dalam paparan slaid</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Rechercher</value>
+    <value>gelintar</value>
   </data>
   <data name="Season" xml:space="preserve">
-    <value>Saison</value>
+    <value>musim</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Paramètres</value>
+    <value>tetapan</value>
   </data>
   <data name="ShowPlaylist" xml:space="preserve">
-    <value>Voir la liste de lecture</value>
+    <value>tunjuk senarai main</value>
   </data>
   <data name="Shows" xml:space="preserve">
-    <value>Séries</value>
+    <value>rancangan</value>
   </data>
   <data name="Shuffle" xml:space="preserve">
-    <value>Lecture aléatoire</value>
+    <value>kocok</value>
   </data>
   <data name="Songs" xml:space="preserve">
-    <value>Morceaux                 </value>
+    <value>lagu</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Remerciements</value>
+    <value>ucapan istimewa</value>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value>Vitesse</value>
+    <value>kelajuan</value>
   </data>
   <data name="Stop" xml:space="preserve">
-    <value>Stop</value>
+    <value>henti</value>
   </data>
   <data name="SubtitleDelay" xml:space="preserve">
-    <value>Décalage des sous-titres</value>
+    <value>lengahan sarikata</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
-    <value>Sous-titres</value>
+    <value>Sarikata</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
-    <value>Encodage des sous-titres</value>
+    <value>pengekodan sarikata</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>Thème</value>
+    <value>tema</value>
   </data>
   <data name="TileRemoved" xml:space="preserve">
-    <value>Tuile supprimée</value>
+    <value>jubin dibuang</value>
   </data>
   <data name="TopVideos" xml:space="preserve">
-    <value>Vidéos préférées</value>
+    <value>video teratas</value>
   </data>
   <data name="TrackAddedToYourPlaylist" xml:space="preserve">
-    <value>Morceau ajouté à la liste de lecture</value>
+    <value>trek ditambah ke dalam senarai main</value>
   </data>
   <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
-    <value>Ce morceau est déjà dans la liste de lecture</value>
+    <value>trek ini sudah ada dalam senarai main</value>
   </data>
   <data name="Tracks" xml:space="preserve">
-    <value>Morceaux</value>
+    <value>trek</value>
   </data>
   <data name="UnknownAlbum" xml:space="preserve">
-    <value>Album inconnu</value>
+    <value>Album tidak diketahui</value>
   </data>
   <data name="UnknownArtist" xml:space="preserve">
-    <value>Artiste inconnu</value>
+    <value>Artis tidak diketahui</value>
   </data>
   <data name="UnknownShow" xml:space="preserve">
-    <value>Concert inconnu</value>
+    <value>Rancangan tidak diketahui</value>
   </data>
   <data name="UnknownTrack" xml:space="preserve">
-    <value>Piste inconnue</value>
+    <value>Trek tidak diketahui</value>
   </data>
   <data name="UserInterface" xml:space="preserve">
-    <value>Interface utilisateur</value>
+    <value>Antaramuka Pengguna</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Nom d'utilisateur</value>
+    <value>nama pengguna</value>
   </data>
   <data name="Video" xml:space="preserve">
-    <value>Vidéo</value>
+    <value>video</value>
   </data>
   <data name="VideoFolders" xml:space="preserve">
-    <value>Dossiers de vidéos</value>
+    <value>folder video</value>
   </data>
   <data name="VideoFoldersDescription" xml:space="preserve">
-    <value>VLC recherchera uniquement des vidéos qui sont dans votre vidéothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici.</value>
+    <value>VLC hanya akan menggelintar video yang berada dalam pustaka video anda. Anda boleh tambah folder ke dalam pustaka anda di sini</value>
   </data>
   <data name="VideoPlayback" xml:space="preserve">
-    <value>Lecture vidéo</value>
+    <value>main balik video</value>
   </data>
   <data name="VideoPlaybackInBackground" xml:space="preserve">
-    <value>Lecture en arrière-plan</value>
+    <value>main video dibalik tabir</value>
   </data>
   <data name="Videos" xml:space="preserve">
-    <value>Vidéos</value>
+    <value>video</value>
   </data>
   <data name="VideoSettings" xml:space="preserve">
-    <value>Paramètres Vidéo</value>
+    <value>Tetapan Video</value>
   </data>
   <data name="ViewAlbum" xml:space="preserve">
-    <value>Voir l'album</value>
+    <value>lihat album</value>
   </data>
   <data name="ViewArtist" xml:space="preserve">
-    <value>Voir l'artiste</value>
+    <value>lihat artis</value>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>Volume</value>
+    <value>Volum</value>
   </data>
   <data name="WeNeedYourHelp" xml:space="preserve">
-    <value>Nous avons besoin de votre aide</value>
+    <value>kami memerlukan bantuan anda</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Oui</value>
+    <value>ya</value>
   </data>
   <data name="YourMusic" xml:space="preserve">
-    <value>Votre musique</value>
+    <value>muzik anda</value>
   </data>
   <data name="AccentColor" xml:space="preserve">
-    <value>Couleur d'accentuation</value>
+    <value>warna aksen</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>Couleur d'arrière-plan</value>
+    <value>warna latar belakang</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Sombre</value>
+    <value>gelap</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Clair</value>
+    <value>cerah</value>
   </data>
   <data name="TitleBar" xml:space="preserve">
-    <value>Barre de titre</value>
+    <value>palang tajuk</value>
   </data>
   <data name="NeedRestart" xml:space="preserve">
-    <value>Vous devez redémarrer l'application pour appliquer les modifications</value>
+    <value>Anda perlu mulakan semula apl supaya perubahan yang dilakukan berkesan</value>
   </data>
   <data name="Zoom" xml:space="preserve">
-    <value>Zoom</value>
+    <value>zum</value>
   </data>
   <data name="AreYouSure" xml:space="preserve">
-    <value>Êtes-vous sûr ?</value>
+    <value>anda pasti?</value>
   </data>
   <data name="MediaCantBeRead" xml:space="preserve">
-    <value>Le média n'a pas pu être lu</value>
+    <value>media tidak dapat dibaca</value>
   </data>
   <data name="Sorry" xml:space="preserve">
-    <value>Nous sommes désolés</value>
+    <value>kami mohon maaf</value>
   </data>
   <data name="SURFACE_BEST_FIT" xml:space="preserve">
-    <value>Meilleur ajustement</value>
+    <value>suai muat terbaik</value>
   </data>
   <data name="SURFACE_FIT_HORIZONTAL" xml:space="preserve">
-    <value>Recadrage horizontal</value>
+    <value>pengeratan mengufuk</value>
   </data>
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
-    <value>Recadrage vertical</value>
+    <value>pengeratan menegak</value>
   </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
-    <value>Votre liste de lecture ne sera plus accessible</value>
+    <value>senarai main anda tidak boleh dicapai</value>
   </data>
   <data name="NoArtistShowsFound" xml:space="preserve">
-    <value>Nous n'avons pas trouvé de spectacles pour cet artiste</value>
+    <value>kami tidak menemui rancangan bagi artis ini</value>
   </data>
   <data name="NoResults" xml:space="preserve">
-    <value>Aucun résultat</value>
+    <value>tiada keputusan</value>
   </data>
   <data name="ForceLandscape" xml:space="preserve">
-    <value>Forcer l'affichage en mode paysage</value>
+    <value>Paksa lanskap</value>
   </data>
   <data name="SURFACE_STRETCH" xml:space="preserve">
-    <value>Étirer</value>
+    <value>regang</value>
   </data>
   <data name="SimilarArtists" xml:space="preserve">
-    <value>Artistes similaires</value>
+    <value>Artis serupa</value>
   </data>
   <data name="EnglishLanguage" xml:space="preserve">
-    <value>Anglais</value>
+    <value>Inggeris</value>
   </data>
   <data name="FrenchLanguage" xml:space="preserve">
-    <value>Français</value>
+    <value>Perancis</value>
   </data>
   <data name="JapaneseLanguage" xml:space="preserve">
-    <value>Japonais</value>
+    <value>Jepun</value>
   </data>
   <data name="GermanLanguage" xml:space="preserve">
-    <value>Allemand</value>
+    <value>Jerman</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
-    <value>Polonais</value>
+    <value>Poland</value>
   </data>
   <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slovaque</value>
+    <value>Slovak</value>
   </data>
   <data name="Languages" xml:space="preserve">
-    <value>Langues</value>
+    <value>Bahasa</value>
   </data>
   <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC sera affiché en </value>
+    <value>VLC akan dipaparkan dalam bahasa</value>
   </data>
   <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Appliquer et redémarrer</value>
+    <value>Laksana Dan Mula Semula</value>
   </data>
   <data name="RefreshLanguage" xml:space="preserve">
-    <value>Actualiser la langue</value>
+    <value>Segar Semula Bahasa</value>
   </data>
   <data name="Local" xml:space="preserve">
-    <value>Bibliothèques locales</value>
+    <value>setempat</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
-    <value>Téléchargement de fichiers</value>
+    <value>Muat Turun Fail</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
-    <value>Sélectionnez simplement le fichier que vous voulez télécharger depuis votre Xbox.</value>
+    <value>Hanya klik fail yang mahu dimuat turun dari  Xbox anda.</value>
   </data>
   <data name="WEBINTF_DROPFILES" xml:space="preserve">
-    <value>Déposez des fichiers</value>
+    <value>Lepas Fail</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Déposez des fichiers ici pour les ajouter au stockage interne de votre Xbox.&amp;lt;br&amp;gt;ou cliquez sur le bouton "+" pour choisir un fichier.</value>
+    <value>Lepas fail ke dalam tetingkap untuk menambahnya ke dalam Xbox anda. &amp;lt;br&amp;gt; Atau klik pada butang &amp;quot;+&amp;quot; untuk guna dialog pengambil fail.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
-    <value>Partage réseau</value>
+    <value>Perkongsian melalui WiFi</value>
   </data>
   <data name="CopyToLocalStorage" xml:space="preserve">
-    <value>Copier vers le stockage interne</value>
+    <value>salin ke storan setempat</value>
   </data>
   <data name="ExternalStorageDeviceDetected" xml:space="preserve">
-    <value>VLC a détecté un périphérique de stockage amovible.</value>
+    <value>VLC telah mengesan satu peranti storan luar.</value>
   </data>
   <data name="ReadFromExternalStorage" xml:space="preserve">
-    <value>Intégrer le périphérique de stockage à la bibliothèque de media</value>
+    <value>Guna storan luar sebagai pustaka media</value>
   </data>
   <data name="SelectContentToCopy" xml:space="preserve">
-    <value>Copier les médias sur le stockage interne</value>
+    <value>Salin media ke storan dalaman</value>
   </data>
   <data name="WhatToDo" xml:space="preserve">
-    <value>Que souhaitez vous faire ?</value>
+    <value>Apa yang anda mahu lakukan?</value>
   </data>
   <data name="AskMe" xml:space="preserve">
-    <value>Me demander</value>
+    <value>Tanya saya</value>
   </data>
   <data name="ExternalStorage" xml:space="preserve">
-    <value>Stockage amovible</value>
+    <value>storan luar</value>
   </data>
   <data name="WhatToDoWhenExternalStorage" xml:space="preserve">
-    <value>Que doit faire VLC lorsqu'un périphérique de stockage amovible est détecté ?</value>
+    <value>Apa sepatutnya VLC lakukan jika satu peranti storan luar telah dikesan?</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Batal</value>
   </data>
   <data name="DoNothing" xml:space="preserve">
-    <value>Ne rien faire</value>
+    <value>Jangan buat apa-apa</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>Ok</value>
   </data>
   <data name="Ignore" xml:space="preserve">
-    <value>Ignorer</value>
+    <value>Abai</value>
   </data>
   <data name="Remember" xml:space="preserve">
-    <value>S'en souvenir</value>
+    <value>Ingat</value>
   </data>
   <data name="AddMediaHelp" xml:space="preserve">
-    <value>Veuillez insérer un périphérique de stockage amovible</value>
+    <value>Sila masukkan satu peranti storan luar</value>
   </data>
   <data name="AddMediaHelpWithIP" xml:space="preserve">
-    <value>Veuillez insérer un disque de stockage externe, ou allez sur http://{0}:8080 pour télécharger des media vers votre Xbox</value>
+    <value>Sila sisipkan satu peranti storan luar, atau pergi ke http://{0}:8080 untuk memuat naik beberapa media</value>
   </data>
   <data name="CopyHelpDesktop" xml:space="preserve">
-    <value>Cliquez droit sur un fichier ou un dossier pour le copier vers le stockage interne</value>
+    <value>Klik-kanan pada fail atau folder untuk menyalinnya ke dalam storan setempat.</value>
   </data>
   <data name="CopyHelpMediaCenter" xml:space="preserve">
-    <value>Appuyez sur Y sur un fichier ou un dossier pour le copier vers le stockage interne</value>
+    <value>Ketik "Y" pada fail atau folder untuk menyalinnya ke dalam storan setempat.</value>
   </data>
   <data name="NoSubtitles" xml:space="preserve">
-    <value>Aucune piste de sous-titres</value>
+    <value>Tiada trek sarikata</value>
   </data>
   <data name="ClearKeystore" xml:space="preserve">
-    <value>Effacer les identifiants enregistrés</value>
+    <value>Kosongkan kelayakan tersimpan</value>
   </data>
   <data name="Credentials" xml:space="preserve">
-    <value>Identifiants</value>
+    <value>Kelayakan</value>
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
-    <value>Appuyez longuement sur un fichier ou un dossier pour le copier vers le stockage interne.</value>
+    <value>Tahan pada fail atau folder untuk menyalinnya ke dalam storan setempat.</value>
   </data>
   <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>Ajuster à l'écran</value>
+    <value>suai muat skrin</value>
   </data>
   <data name="SURFACE_FILL" xml:space="preserve">
-    <value>Remplir</value>
+    <value>penuhkan</value>
   </data>
   <data name="SURFACE_16_9" xml:space="preserve">
     <value>16:9</value>
@@ -655,9 +655,9 @@
     <value>4:3</value>
   </data>
   <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>Original</value>
+    <value>asal</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
-    <value>Utiliser PIP Windows 10</value>
+    <value>guna pip windows 10</value>
   </data>
 </root>

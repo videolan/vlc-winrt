@@ -13,601 +13,601 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTheApp" xml:space="preserve">
-    <value>À propos de l'application</value>
+    <value>Om appen</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>Ajouter</value>
+    <value>Legg til</value>
   </data>
   <data name="AddFolder" xml:space="preserve">
-    <value>Ajouter un dossier</value>
+    <value>Legg til mappe</value>
   </data>
   <data name="AddToCollection" xml:space="preserve">
-    <value>Ajouter à la collection</value>
+    <value>Legg til i samling</value>
   </data>
   <data name="AddToCurrentPlaylist" xml:space="preserve">
-    <value>Ajouter à la liste de lecture en cours</value>
+    <value>Legg til i den nåværende spillelisten</value>
   </data>
   <data name="AddToPlaylist" xml:space="preserve">
-    <value>Ajouter à une liste de lecture</value>
+    <value>Legg til i spilleliste</value>
   </data>
   <data name="Albums" xml:space="preserve">
-    <value>Albums</value>
+    <value>Albumer</value>
   </data>
   <data name="AlbumsFound" xml:space="preserve">
-    <value>Albums trouvés : {0}</value>
+    <value>Albumer funnet: {0}</value>
   </data>
   <data name="Animations" xml:space="preserve">
-    <value>Animations</value>
+    <value>Animasjoner</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Thème de l'application</value>
+    <value>App-tema</value>
   </data>
   <data name="Artists" xml:space="preserve">
-    <value>Artistes</value>
+    <value>Artister</value>
   </data>
   <data name="Audio" xml:space="preserve">
-    <value>Audio</value>
+    <value>lyd</value>
   </data>
   <data name="AudioDelay" xml:space="preserve">
-    <value>Décalage audio</value>
+    <value>Lydforsinkelse</value>
   </data>
   <data name="AudioTracks" xml:space="preserve">
-    <value>Pistes audio</value>
+    <value>Lydspor</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Précédent</value>
+    <value>Tilbake</value>
   </data>
   <data name="CameraRoll" xml:space="preserve">
-    <value>Pellicule</value>
+    <value>Kamerarull</value>
   </data>
   <data name="ChangeAlbumCover" xml:space="preserve">
-    <value>Changer la pochette de l'album</value>
+    <value>Endre albumomslaget</value>
   </data>
   <data name="Chapters" xml:space="preserve">
-    <value>Chapitres</value>
+    <value>Kapitler</value>
   </data>
   <data name="CheckCredentials" xml:space="preserve">
-    <value>Une erreur s'est produite, veuillez vérifier vos informations d'identification.</value>
+    <value>En feil oppstod, vennligst sjekk dine legitimasjoner</value>
   </data>
   <data name="Connect" xml:space="preserve">
-    <value>Connexion</value>
+    <value>Koble til</value>
   </data>
   <data name="ConnectedToLastFM" xml:space="preserve">
-    <value>Connecté à Last.FM</value>
+    <value>Tilkoblet til Last.FM</value>
   </data>
   <data name="Connecting" xml:space="preserve">
-    <value>Connexion en cours</value>
+    <value>Kobler til</value>
   </data>
   <data name="ConnectToLastFM" xml:space="preserve">
-    <value>Se connecter à Last.FM</value>
+    <value>Koble til Last.FM</value>
   </data>
   <data name="CrashReport" xml:space="preserve">
-    <value>Rapport de bogue</value>
+    <value>Krasjrapport</value>
   </data>
   <data name="DecreaseSpeed" xml:space="preserve">
-    <value>Diminuer la vitesse</value>
+    <value>Senk hastigheten</value>
   </data>
   <data name="DecreaseVolume" xml:space="preserve">
-    <value>Diminuer le volume</value>
+    <value>Skru ned lyden</value>
   </data>
   <data name="DeletePlaylist" xml:space="preserve">
-    <value>Supprimer la liste de lecture</value>
+    <value>Slett spillelisten</value>
   </data>
   <data name="DeleteSelected" xml:space="preserve">
-    <value>Supprimer</value>
+    <value>Slett de valgte</value>
   </data>
   <data name="EditMetadata" xml:space="preserve">
-    <value>Modifier les métadonnées</value>
+    <value>Rediger metadataene</value>
   </data>
   <data name="ElementsNotFound" xml:space="preserve">
-    <value>Nous n'avons pas trouvé d'élément ici</value>
+    <value>Vi fant ikke noen elementer der</value>
   </data>
   <data name="EnterURL" xml:space="preserve">
-    <value>Entrez une URL</value>
+    <value>Skriv inn en URL</value>
   </data>
   <data name="Episode" xml:space="preserve">
-    <value>Épisode</value>
+    <value>Episode</value>
   </data>
   <data name="EvenIfBackground" xml:space="preserve">
-    <value>Même si l'application est en arrière-plan</value>
+    <value>Selv om appen er i bakgrunnen</value>
   </data>
   <data name="EvenIfNotBackground" xml:space="preserve">
-    <value>Même si l'application n'est pas en arrière-plan</value>
+    <value>Selv om appen ikke er i bakgrunnen</value>
   </data>
   <data name="FailFilePlayBackground" xml:space="preserve">
-    <value>Ce fichier ne peut pas être joué en arrière-plan</value>
+    <value>Denne filen vil kanskje ikke kunne spilles av i bakgrunnen</value>
   </data>
   <data name="FailNavigateVideoPlayerPage" xml:space="preserve">
-    <value>VLC n'a pas pu accéder à la page Video Player</value>
+    <value>VLC klarte ikke å navigere til videoavspillingssiden</value>
   </data>
   <data name="FailOpenVideo" xml:space="preserve">
-    <value>VLC n'a pas pu ouvrir la vidéo</value>
+    <value>VLC klarte ikke å åpne videoen</value>
   </data>
   <data name="FailStartVLCEngine" xml:space="preserve">
-    <value>L'app n'a pas pu démarrer le moteur VLC</value>
+    <value>Appen mislyktes i å starte opp VLC-motoren</value>
   </data>
   <data name="FeedbackThankYou" xml:space="preserve">
-    <value>Vos commentaires ont été envoyés ! Merci.</value>
+    <value>Tilbakemelding sendt! Tusen takk.</value>
   </data>
   <data name="FileExplorer" xml:space="preserve">
-    <value>Parcourir</value>
+    <value>Bla gjennom</value>
   </data>
   <data name="HardwareDecoding" xml:space="preserve">
-    <value>Décodage matériel</value>
+    <value>Maskinvaredekoding</value>
   </data>
   <data name="HardwareDecodingDescription" xml:space="preserve">
-    <value>Le décodage matériel peut ne pas fonctionner sur votre appareil.</value>
+    <value>Maskinvaredekoding kan kanskje ikke virke på din enhet.</value>
   </data>
   <data name="HaveToSelectPlaylist" xml:space="preserve">
-    <value>Veuillez sélectionner une liste de lecture</value>
+    <value>Vennligst velg en spilleliste</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Accueil</value>
+    <value>Hjem</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-    <value>Page principale</value>
+    <value>Hjemmeside</value>
   </data>
   <data name="HomePageDescription" xml:space="preserve">
-    <value>VLC commencera sur la page sélectionnée</value>
+    <value>VLC vil starte opp på den valgte siden</value>
   </data>
   <data name="HoweverYouMayFindWhatYouWantHere" xml:space="preserve">
-    <value>Toutefois, vous pouvez peut-être trouver ce que vous cherchez ici</value>
+    <value>men du kan kanskje finne det du ser etter her</value>
   </data>
   <data name="HowToFavoriteAlbum1" xml:space="preserve">
-    <value>Pour marquer un album comme favori, appuyez simplement</value>
+    <value>for å merke et album som en favoritt, bare trykk på</value>
   </data>
   <data name="HowToFavoriteAlbum2" xml:space="preserve">
-    <value>Et vous y aurez accès rapidement</value>
+    <value>og du vil få umiddelbar tilgang til den</value>
   </data>
   <data name="ImportantSponsors" xml:space="preserve">
-    <value>Auteurs importants</value>
+    <value>Viktige sponsorer</value>
   </data>
   <data name="IncreaseSpeed" xml:space="preserve">
-    <value>Augmenter la vitesse</value>
+    <value>Øk hastigheten</value>
   </data>
   <data name="IncreaseVolume" xml:space="preserve">
-    <value>Augmenter le volume</value>
+    <value>Skru opp lyden</value>
   </data>
   <data name="ItsEmpty" xml:space="preserve">
-    <value>C'est vide ici</value>
+    <value>Det er tomt her</value>
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
-    <value>Raccourcis clavier</value>
+    <value>Tastatursnarveier</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>Licence</value>
+    <value>Lisens</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Chargement</value>
+    <value>Laster inn</value>
   </data>
   <data name="LoadingMusic" xml:space="preserve">
-    <value>Chargement de votre musique</value>
+    <value>Laster inn musikk</value>
   </data>
   <data name="MostPlayedArtists" xml:space="preserve">
-    <value>Artistes les plus joués</value>
+    <value>Mest spilte artister</value>
   </data>
   <data name="Music" xml:space="preserve">
-    <value>Musique</value>
+    <value>Musikk</value>
   </data>
   <data name="MusicFolders" xml:space="preserve">
-    <value>Dossiers de musique</value>
+    <value>Musikkmapper</value>
   </data>
   <data name="MusicFoldersDescription" xml:space="preserve">
-    <value>VLC recherchera uniquement les morceaux qui se trouvent dans votre bibliothèque musicale. Vous pouvez ajouter des dossiers à votre bibliothèque ici.</value>
+    <value>VLC vil kun søke etter sanger som er i ditt musikkbibliotek. Du kan legge til mapper i ditt bibliotek her.</value>
   </data>
   <data name="MusicSettings" xml:space="preserve">
-    <value>Paramètres Audio</value>
+    <value>Musikkinnstillinger</value>
   </data>
   <data name="MusicShows" xml:space="preserve">
-    <value>Concerts</value>
+    <value>Musikkserier</value>
   </data>
   <data name="Mute" xml:space="preserve">
-    <value>Muet</value>
+    <value>Demp</value>
   </data>
   <data name="MyPlaylists" xml:space="preserve">
-    <value>Mes listes de lecture</value>
+    <value>Mine spillelister</value>
   </data>
   <data name="Network" xml:space="preserve">
-    <value>Réseau</value>
+    <value>Nettverk</value>
   </data>
   <data name="NewPlaylist" xml:space="preserve">
-    <value>Nouvelle liste de lecture</value>
+    <value>Ny spilleliste</value>
   </data>
   <data name="NewVideos" xml:space="preserve">
-    <value>Nouvelles vidéos</value>
+    <value>Nye videoer</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>Non</value>
+    <value>Nei</value>
   </data>
   <data name="NoBiographyFound" xml:space="preserve">
-    <value>Pas de bio trouvée pour cet artiste</value>
+    <value>Ingen beskrivelse ble funnet for denne artisten</value>
   </data>
   <data name="NoCameraVideosFound" xml:space="preserve">
-    <value>Aucune vidéo de caméra trouvée</value>
+    <value>Ingen kameravideoer ble funnet</value>
   </data>
   <data name="NoFavoriteAlbums" xml:space="preserve">
-    <value>Aucun album préféré</value>
+    <value>Ingen favorittalbumer</value>
   </data>
   <data name="NoInternetConnection" xml:space="preserve">
-    <value>Pas de connexion Internet</value>
+    <value>Ingen internettforbindelse</value>
   </data>
   <data name="NoPlaylists" xml:space="preserve">
-    <value>Aucune liste de lecture</value>
+    <value>Ingen spillelister</value>
   </data>
   <data name="NoShowsFound" xml:space="preserve">
-    <value>Aucun concert trouvé</value>
+    <value>Ingen serier ble funnet</value>
   </data>
   <data name="NothingToSeeHere" xml:space="preserve">
-    <value>Il n'y a rien à voir ici</value>
+    <value>Ingenting å se her</value>
   </data>
   <data name="Notifications" xml:space="preserve">
-    <value>Notifications</value>
+    <value>Beskjeder</value>
   </data>
   <data name="NotificationWhenSongStarts" xml:space="preserve">
-    <value>Au démarrage du morceau</value>
+    <value>Når sangen begynner</value>
   </data>
   <data name="NoVideosFound" xml:space="preserve">
-    <value>Nous n'avons trouvé aucune vidéo</value>
+    <value>Vi fant ikke noen video</value>
   </data>
   <data name="NowPlaying" xml:space="preserve">
-    <value>Lecture en cours</value>
+    <value>Spiller av:</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Ouvrir un fichier</value>
+    <value>Åpne en fil</value>
   </data>
   <data name="OpenStream" xml:space="preserve">
-    <value>Ouvrir un flux</value>
+    <value>Åpne kringkasting</value>
   </data>
   <data name="OpenSubtitle" xml:space="preserve">
-    <value>Ouvrir des sous-titres</value>
+    <value>Åpne undertekster</value>
   </data>
   <data name="OrderAscending" xml:space="preserve">
-    <value>Croissant</value>
+    <value>Stigende</value>
   </data>
   <data name="OrderByAlbum" xml:space="preserve">
-    <value>Par album</value>
+    <value>Etter album</value>
   </data>
   <data name="OrderByArtist" xml:space="preserve">
-    <value>Par artiste</value>
+    <value>Etter artist</value>
   </data>
   <data name="OrderByDate" xml:space="preserve">
-    <value>Par date</value>
+    <value>Etter dato</value>
   </data>
   <data name="OrderDescending" xml:space="preserve">
-    <value>Décroissant</value>
+    <value>Synkende</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Mot de passe</value>
+    <value>Passord</value>
   </data>
   <data name="Pause" xml:space="preserve">
     <value>Pause</value>
   </data>
   <data name="PinAlbum" xml:space="preserve">
-    <value>Épingler l'album</value>
+    <value>Snarvei til albumet</value>
   </data>
   <data name="PinArtist" xml:space="preserve">
-    <value>Épingler l'artiste</value>
+    <value>Snarvei til artisten</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>Lecture</value>
+    <value>Spill av</value>
   </data>
   <data name="PlayAlbum" xml:space="preserve">
-    <value>Lire l’album</value>
+    <value>Spill av albumet</value>
   </data>
   <data name="PlayAll" xml:space="preserve">
-    <value>Lire tout</value>
+    <value>Spill av alle</value>
   </data>
   <data name="Playback" xml:space="preserve">
-    <value>Lecture</value>
+    <value>Avspilling</value>
   </data>
   <data name="PlayerSettings" xml:space="preserve">
-    <value>Paramètres du Lecteur</value>
+    <value>Avspillerinnstillinger</value>
   </data>
   <data name="PlayFolder" xml:space="preserve">
-    <value>Lire le dossier</value>
+    <value>Spill av mappe</value>
   </data>
   <data name="Playlist" xml:space="preserve">
-    <value>Liste de lecture</value>
+    <value>Spilleliste</value>
   </data>
   <data name="PlaylistAlreadyExists" xml:space="preserve">
-    <value>Cette liste de lecture existe déjà</value>
+    <value>Spillelisten finnes allerede</value>
   </data>
   <data name="PlaylistNamePlaceholder" xml:space="preserve">
-    <value>Nom de la liste de lecture</value>
+    <value>Spillelistens navn</value>
   </data>
   <data name="Playlists" xml:space="preserve">
-    <value>Listes de lecture</value>
+    <value>Spillelister</value>
   </data>
   <data name="PlayTrack" xml:space="preserve">
-    <value>Lire le morceau</value>
+    <value>Spill av spor</value>
   </data>
   <data name="PlayVideo" xml:space="preserve">
-    <value>Lire la vidéo</value>
+    <value>Spill av video</value>
   </data>
   <data name="PrivacyStatement" xml:space="preserve">
-    <value>Politique de confidentialité</value>
+    <value>Personvern</value>
   </data>
   <data name="Favorites" xml:space="preserve">
-    <value>Favoris</value>
+    <value>Favoritter</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">
-    <value>Actualiser la bibliothèque musicale</value>
+    <value>Oppfrisk musikkbiblioteket</value>
   </data>
   <data name="RefreshVideoLibrary" xml:space="preserve">
-    <value>Actualiser la vidéothèque</value>
+    <value>Oppfrisk videobiblioteket</value>
   </data>
   <data name="RemovableStorage" xml:space="preserve">
-    <value>Stockage amovible</value>
+    <value>flyttbar lagring</value>
   </data>
   <data name="RemoveFolder" xml:space="preserve">
-    <value>Supprimer le dossier</value>
+    <value>Fjern mappen</value>
   </data>
   <data name="RemoveMusicFolderDescription" xml:space="preserve">
-    <value>Si vous ne voulez pas de ce dossier dans votre bibliothèque de musique, vous pouvez le supprimer. Cela affectera toutes les applications, pas seulement VLC.</value>
+    <value>Hvis du ikke vil ha denne mappen i ditt musikkbibliotek, kan du fjerne den. Det vil påvirke alle apper, og ikke bare VLC.</value>
   </data>
   <data name="RemoveVideoFolderDescription" xml:space="preserve">
-    <value>Si vous ne voulez pas de ce dossier dans votre vidéothèque, vous pouvez le supprimer. Cela affectera toutes les applications, pas seulement VLC.</value>
+    <value>Hvis du ikke vil ha denne mappen i ditt videobibliotek, kan du fjerne den. Det vil påvirke alle apper, og ikke bare VLC.</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Réinitialiser</value>
+    <value>Tilbakestill</value>
   </data>
   <data name="ResetMusicDatabase" xml:space="preserve">
-    <value>Réinitialiser la base de données musicale</value>
+    <value>Tilbakestill musikkdatabasen</value>
   </data>
   <data name="ResetSpeed" xml:space="preserve">
-    <value>Réinitialiser la vitesse</value>
+    <value>Tilbakestill hastigheten</value>
   </data>
   <data name="RichAnimationsDescription" xml:space="preserve">
-    <value>Utiliser des animations riches dans les diaporamas</value>
+    <value>Bruk fyldige animasjoner i lysbildefremvisningene</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Rechercher</value>
+    <value>Søk</value>
   </data>
   <data name="Season" xml:space="preserve">
-    <value>Saison</value>
+    <value>Sesong</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Paramètres</value>
+    <value>Innstillinger</value>
   </data>
   <data name="ShowPlaylist" xml:space="preserve">
-    <value>Voir la liste de lecture</value>
+    <value>Vis spilleliste</value>
   </data>
   <data name="Shows" xml:space="preserve">
-    <value>Séries</value>
+    <value>TV-serier</value>
   </data>
   <data name="Shuffle" xml:space="preserve">
-    <value>Lecture aléatoire</value>
+    <value>Tilfeldig</value>
   </data>
   <data name="Songs" xml:space="preserve">
-    <value>Morceaux                 </value>
+    <value>Sanger</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Remerciements</value>
+    <value>Tusen takk til</value>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value>Vitesse</value>
+    <value>Hastighet</value>
   </data>
   <data name="Stop" xml:space="preserve">
-    <value>Stop</value>
+    <value>Stopp</value>
   </data>
   <data name="SubtitleDelay" xml:space="preserve">
-    <value>Décalage des sous-titres</value>
+    <value>Undertekstsforsinkelse</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
-    <value>Sous-titres</value>
+    <value>Undertekster</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
-    <value>Encodage des sous-titres</value>
+    <value>Undertekstkoding</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>Thème</value>
+    <value>Tema</value>
   </data>
   <data name="TileRemoved" xml:space="preserve">
-    <value>Tuile supprimée</value>
+    <value>Flisen er fjernet</value>
   </data>
   <data name="TopVideos" xml:space="preserve">
-    <value>Vidéos préférées</value>
+    <value>Toppvideoer</value>
   </data>
   <data name="TrackAddedToYourPlaylist" xml:space="preserve">
-    <value>Morceau ajouté à la liste de lecture</value>
+    <value>Sporet er lagt til i spillelisten</value>
   </data>
   <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
-    <value>Ce morceau est déjà dans la liste de lecture</value>
+    <value>Dette sporet er allerede i den spillelisten</value>
   </data>
   <data name="Tracks" xml:space="preserve">
-    <value>Morceaux</value>
+    <value>Spor</value>
   </data>
   <data name="UnknownAlbum" xml:space="preserve">
-    <value>Album inconnu</value>
+    <value>Ukjent album</value>
   </data>
   <data name="UnknownArtist" xml:space="preserve">
-    <value>Artiste inconnu</value>
+    <value>Ukjent artist</value>
   </data>
   <data name="UnknownShow" xml:space="preserve">
-    <value>Concert inconnu</value>
+    <value>Ukjent serie</value>
   </data>
   <data name="UnknownTrack" xml:space="preserve">
-    <value>Piste inconnue</value>
+    <value>Ukjent spor</value>
   </data>
   <data name="UserInterface" xml:space="preserve">
-    <value>Interface utilisateur</value>
+    <value>Brukergrensesnitt</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Nom d'utilisateur</value>
+    <value>Brukernavn</value>
   </data>
   <data name="Video" xml:space="preserve">
-    <value>Vidéo</value>
+    <value>video</value>
   </data>
   <data name="VideoFolders" xml:space="preserve">
-    <value>Dossiers de vidéos</value>
+    <value>Videomapper</value>
   </data>
   <data name="VideoFoldersDescription" xml:space="preserve">
-    <value>VLC recherchera uniquement des vidéos qui sont dans votre vidéothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici.</value>
+    <value>VLC vil bare se gjennom filmer i videobiblioteket ditt. Du kan legge til mapper i biblioteket ditt her:</value>
   </data>
   <data name="VideoPlayback" xml:space="preserve">
-    <value>Lecture vidéo</value>
+    <value>Videoavspilling</value>
   </data>
   <data name="VideoPlaybackInBackground" xml:space="preserve">
-    <value>Lecture en arrière-plan</value>
+    <value>Spill av videoen i bakgrunnen</value>
   </data>
   <data name="Videos" xml:space="preserve">
-    <value>Vidéos</value>
+    <value>Videoer</value>
   </data>
   <data name="VideoSettings" xml:space="preserve">
-    <value>Paramètres Vidéo</value>
+    <value>Videoinnstillinger</value>
   </data>
   <data name="ViewAlbum" xml:space="preserve">
-    <value>Voir l'album</value>
+    <value>Vis album</value>
   </data>
   <data name="ViewArtist" xml:space="preserve">
-    <value>Voir l'artiste</value>
+    <value>Vis artisten</value>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>Volume</value>
+    <value>Lydstyrke</value>
   </data>
   <data name="WeNeedYourHelp" xml:space="preserve">
-    <value>Nous avons besoin de votre aide</value>
+    <value>Vi trenger din hjelp</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Oui</value>
+    <value>Ja</value>
   </data>
   <data name="YourMusic" xml:space="preserve">
-    <value>Votre musique</value>
+    <value>Din musikk</value>
   </data>
   <data name="AccentColor" xml:space="preserve">
-    <value>Couleur d'accentuation</value>
+    <value>Aksentfarge</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>Couleur d'arrière-plan</value>
+    <value>Bakgrunnsfarge</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Sombre</value>
+    <value>Mørk</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Clair</value>
+    <value>Lys</value>
   </data>
   <data name="TitleBar" xml:space="preserve">
-    <value>Barre de titre</value>
+    <value>Tittellinje</value>
   </data>
   <data name="NeedRestart" xml:space="preserve">
-    <value>Vous devez redémarrer l'application pour appliquer les modifications</value>
+    <value>Du må starte appen på nytt for å bruke endringene</value>
   </data>
   <data name="Zoom" xml:space="preserve">
-    <value>Zoom</value>
+    <value>Forstørr</value>
   </data>
   <data name="AreYouSure" xml:space="preserve">
-    <value>Êtes-vous sûr ?</value>
+    <value>Er du sikker?</value>
   </data>
   <data name="MediaCantBeRead" xml:space="preserve">
-    <value>Le média n'a pas pu être lu</value>
+    <value>Mediet kan ikke bli lest inn</value>
   </data>
   <data name="Sorry" xml:space="preserve">
-    <value>Nous sommes désolés</value>
+    <value>Vi beklager</value>
   </data>
   <data name="SURFACE_BEST_FIT" xml:space="preserve">
-    <value>Meilleur ajustement</value>
+    <value>Beste treff</value>
   </data>
   <data name="SURFACE_FIT_HORIZONTAL" xml:space="preserve">
-    <value>Recadrage horizontal</value>
+    <value>Vannrett beskjæring</value>
   </data>
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
-    <value>Recadrage vertical</value>
+    <value>Loddrett beskjæring</value>
   </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
-    <value>Votre liste de lecture ne sera plus accessible</value>
+    <value>Spillelisten din vil ikke bli tilgjengelig</value>
   </data>
   <data name="NoArtistShowsFound" xml:space="preserve">
-    <value>Nous n'avons pas trouvé de spectacles pour cet artiste</value>
+    <value>Vi fant ikke noen serier for denne artisten</value>
   </data>
   <data name="NoResults" xml:space="preserve">
-    <value>Aucun résultat</value>
+    <value>Ingen resultater</value>
   </data>
   <data name="ForceLandscape" xml:space="preserve">
-    <value>Forcer l'affichage en mode paysage</value>
+    <value>Fremtving landskap</value>
   </data>
   <data name="SURFACE_STRETCH" xml:space="preserve">
-    <value>Étirer</value>
+    <value>Strekk</value>
   </data>
   <data name="SimilarArtists" xml:space="preserve">
-    <value>Artistes similaires</value>
+    <value>Lignende artister</value>
   </data>
   <data name="EnglishLanguage" xml:space="preserve">
-    <value>Anglais</value>
+    <value>Engelsk</value>
   </data>
   <data name="FrenchLanguage" xml:space="preserve">
-    <value>Français</value>
+    <value>Fransk</value>
   </data>
   <data name="JapaneseLanguage" xml:space="preserve">
-    <value>Japonais</value>
+    <value>Japansk</value>
   </data>
   <data name="GermanLanguage" xml:space="preserve">
-    <value>Allemand</value>
+    <value>Tysk</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
-    <value>Polonais</value>
+    <value>Polsk</value>
   </data>
   <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slovaque</value>
+    <value>Slovakisk</value>
   </data>
   <data name="Languages" xml:space="preserve">
-    <value>Langues</value>
+    <value>Språk</value>
   </data>
   <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC sera affiché en </value>
+    <value>VLC vil bli vist på</value>
   </data>
   <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Appliquer et redémarrer</value>
+    <value>Bruk og start på nytt</value>
   </data>
   <data name="RefreshLanguage" xml:space="preserve">
-    <value>Actualiser la langue</value>
+    <value>Oppfrisk språket</value>
   </data>
   <data name="Local" xml:space="preserve">
-    <value>Bibliothèques locales</value>
+    <value>Lokalt</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
-    <value>Téléchargement de fichiers</value>
+    <value>Last ned filer</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
-    <value>Sélectionnez simplement le fichier que vous voulez télécharger depuis votre Xbox.</value>
+    <value>Klikk på filen du ønsker å laste ned fra din Xbox.</value>
   </data>
   <data name="WEBINTF_DROPFILES" xml:space="preserve">
-    <value>Déposez des fichiers</value>
+    <value>Slipp filer</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Déposez des fichiers ici pour les ajouter au stockage interne de votre Xbox.&amp;lt;br&amp;gt;ou cliquez sur le bouton "+" pour choisir un fichier.</value>
+    <value>Slipp filer i vinduet for å legge dem til på din Xbox. &amp;lt;br&amp;gt; Eller klikk på "+"-knappen for å bruke fildialog-velgeren.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
-    <value>Partage réseau</value>
+    <value>Deling via Wi-Fi</value>
   </data>
   <data name="CopyToLocalStorage" xml:space="preserve">
-    <value>Copier vers le stockage interne</value>
+    <value>Kopier til lokal lagring</value>
   </data>
   <data name="ExternalStorageDeviceDetected" xml:space="preserve">
-    <value>VLC a détecté un périphérique de stockage amovible.</value>
+    <value>VLC har oppdaget en ekstern lagringsenhet.</value>
   </data>
   <data name="ReadFromExternalStorage" xml:space="preserve">
-    <value>Intégrer le périphérique de stockage à la bibliothèque de media</value>
+    <value>Bruk ekstern lagring som et mediebibliotek.</value>
   </data>
   <data name="SelectContentToCopy" xml:space="preserve">
-    <value>Copier les médias sur le stockage interne</value>
+    <value>Kopier media til den interne lagringen.</value>
   </data>
   <data name="WhatToDo" xml:space="preserve">
-    <value>Que souhaitez vous faire ?</value>
+    <value>Hva vil du gjøre?</value>
   </data>
   <data name="AskMe" xml:space="preserve">
-    <value>Me demander</value>
+    <value>Spør meg</value>
   </data>
   <data name="ExternalStorage" xml:space="preserve">
-    <value>Stockage amovible</value>
+    <value>Ekstern lagring</value>
   </data>
   <data name="WhatToDoWhenExternalStorage" xml:space="preserve">
-    <value>Que doit faire VLC lorsqu'un périphérique de stockage amovible est détecté ?</value>
+    <value>Hva burde VLC gjøre når en ekstern lagringsenhet har blitt oppdaget?</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Lukk</value>
   </data>
   <data name="DoNothing" xml:space="preserve">
-    <value>Ne rien faire</value>
+    <value>Ikke gjør noe</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
@@ -616,37 +616,37 @@
     <value>Ignorer</value>
   </data>
   <data name="Remember" xml:space="preserve">
-    <value>S'en souvenir</value>
+    <value>Husk</value>
   </data>
   <data name="AddMediaHelp" xml:space="preserve">
-    <value>Veuillez insérer un périphérique de stockage amovible</value>
+    <value>Vennligst sett inn en ekstern lagringsenhet</value>
   </data>
   <data name="AddMediaHelpWithIP" xml:space="preserve">
-    <value>Veuillez insérer un disque de stockage externe, ou allez sur http://{0}:8080 pour télécharger des media vers votre Xbox</value>
+    <value>Vennligst sett inn en ekstern lagringsenhet, eller gå til http://{0}:8080 for å laste opp noen medier</value>
   </data>
   <data name="CopyHelpDesktop" xml:space="preserve">
-    <value>Cliquez droit sur un fichier ou un dossier pour le copier vers le stockage interne</value>
+    <value>Høyreklikk på en fil eller en mappe, for å kopiere den til den lokale lagringen.</value>
   </data>
   <data name="CopyHelpMediaCenter" xml:space="preserve">
-    <value>Appuyez sur Y sur un fichier ou un dossier pour le copier vers le stockage interne</value>
+    <value>Trykk på Y-knappen på en fil eller en mappe, for å kopiere den til den lokale lagringen.</value>
   </data>
   <data name="NoSubtitles" xml:space="preserve">
-    <value>Aucune piste de sous-titres</value>
+    <value>Ingen undertekstspor</value>
   </data>
   <data name="ClearKeystore" xml:space="preserve">
-    <value>Effacer les identifiants enregistrés</value>
+    <value>Tøm de lagrede legitimasjonene</value>
   </data>
   <data name="Credentials" xml:space="preserve">
-    <value>Identifiants</value>
+    <value>Legitimasjoner</value>
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
-    <value>Appuyez longuement sur un fichier ou un dossier pour le copier vers le stockage interne.</value>
+    <value>Langtrykk på en fil eller en mappe, for å kopiere den til den lokale lagringen.</value>
   </data>
   <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>Ajuster à l'écran</value>
+    <value>Tilpass til skjermen</value>
   </data>
   <data name="SURFACE_FILL" xml:space="preserve">
-    <value>Remplir</value>
+    <value>Fyll ut</value>
   </data>
   <data name="SURFACE_16_9" xml:space="preserve">
     <value>16:9</value>
@@ -655,9 +655,9 @@
     <value>4:3</value>
   </data>
   <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>Original</value>
+    <value>Opprinnelig</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
-    <value>Utiliser PIP Windows 10</value>
+    <value>Bruk Windows 10 sin bilde-i-bilde</value>
   </data>
 </root>

@@ -762,6 +762,46 @@
   <data name="PolishLanguage" xml:space="preserve">
     <value>Polish</value>
   </data>
+  
+  <data name="DanishLanguage" xml:space="preserve">
+    <value>Danish</value>
+  </data>
+  <data name="SpanishLanguage" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
+  <data name="HungarianLanguage" xml:space="preserve">
+    <value>Hungarian</value>
+  </data>
+  <data name="ItalianLanguage" xml:space="preserve">
+    <value>Italian</value>
+  </data>
+  <data name="KoreanLanguage" xml:space="preserve">
+    <value>Korean</value>
+  </data>
+  <data name="MalayLanguage" xml:space="preserve">
+    <value>Malay</value>
+  </data>
+  <data name="NorwegianLanguage" xml:space="preserve">
+    <value>Norwegian</value>
+  </data>
+  <data name="DutchLanguage" xml:space="preserve">
+    <value>Dutch</value>
+  </data>
+  <data name="RussianLanguage" xml:space="preserve">
+    <value>Russian</value>
+  </data>
+  <data name="SwedishLanguage" xml:space="preserve">
+    <value>Swedish</value>
+  </data>
+  <data name="TurkishLanguage" xml:space="preserve">
+    <value>Turkish</value>
+  </data>
+  <data name="UkrainianLanguage" xml:space="preserve">
+    <value>Ukrainian</value>
+  </data>
+  <data name="ChineseLanguage" xml:space="preserve">
+    <value>Chinese</value>
+  </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>use windows 10 pip</value>
   </data>

@@ -13,640 +13,640 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTheApp" xml:space="preserve">
-    <value>À propos de l'application</value>
+    <value>az app névjegye</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>Ajouter</value>
+    <value>hozzáadás</value>
   </data>
   <data name="AddFolder" xml:space="preserve">
-    <value>Ajouter un dossier</value>
+    <value>mappa hozzáadása</value>
   </data>
   <data name="AddToCollection" xml:space="preserve">
-    <value>Ajouter à la collection</value>
+    <value>gyűjteményhez adás</value>
   </data>
   <data name="AddToCurrentPlaylist" xml:space="preserve">
-    <value>Ajouter à la liste de lecture en cours</value>
+    <value>hozzáadás a jelenlegi lejátszólistához</value>
   </data>
   <data name="AddToPlaylist" xml:space="preserve">
-    <value>Ajouter à une liste de lecture</value>
+    <value>lejátszólistához adás</value>
   </data>
   <data name="Albums" xml:space="preserve">
-    <value>Albums</value>
+    <value>albumok</value>
   </data>
   <data name="AlbumsFound" xml:space="preserve">
-    <value>Albums trouvés : {0}</value>
+    <value>talált albumok: {0}</value>
   </data>
   <data name="Animations" xml:space="preserve">
-    <value>Animations</value>
+    <value>animációk</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Thème de l'application</value>
+    <value>alkalmazástéma</value>
   </data>
   <data name="Artists" xml:space="preserve">
-    <value>Artistes</value>
+    <value>előadó</value>
   </data>
   <data name="Audio" xml:space="preserve">
-    <value>Audio</value>
+    <value>hang</value>
   </data>
   <data name="AudioDelay" xml:space="preserve">
-    <value>Décalage audio</value>
+    <value>hang késleltetése</value>
   </data>
   <data name="AudioTracks" xml:space="preserve">
-    <value>Pistes audio</value>
+    <value>Hangsávok</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Précédent</value>
+    <value>vissza</value>
   </data>
   <data name="CameraRoll" xml:space="preserve">
-    <value>Pellicule</value>
+    <value>filmtekercs</value>
   </data>
   <data name="ChangeAlbumCover" xml:space="preserve">
-    <value>Changer la pochette de l'album</value>
+    <value>albumborító módosítása</value>
   </data>
   <data name="Chapters" xml:space="preserve">
-    <value>Chapitres</value>
+    <value>Fejezetek</value>
   </data>
   <data name="CheckCredentials" xml:space="preserve">
-    <value>Une erreur s'est produite, veuillez vérifier vos informations d'identification.</value>
+    <value>hiba történt, ellenőrizze a hitelesítési adatokat</value>
   </data>
   <data name="Connect" xml:space="preserve">
-    <value>Connexion</value>
+    <value>kapcsolat</value>
   </data>
   <data name="ConnectedToLastFM" xml:space="preserve">
-    <value>Connecté à Last.FM</value>
+    <value>kapcsolódva a Last.FM-hez</value>
   </data>
   <data name="Connecting" xml:space="preserve">
-    <value>Connexion en cours</value>
+    <value>kapcsolódás</value>
   </data>
   <data name="ConnectToLastFM" xml:space="preserve">
-    <value>Se connecter à Last.FM</value>
+    <value>kapcsolódás a Last.FM-hez</value>
   </data>
   <data name="CrashReport" xml:space="preserve">
-    <value>Rapport de bogue</value>
+    <value>összeomlás-jelentés</value>
   </data>
   <data name="DecreaseSpeed" xml:space="preserve">
-    <value>Diminuer la vitesse</value>
+    <value>sebesség csökkentése</value>
   </data>
   <data name="DecreaseVolume" xml:space="preserve">
-    <value>Diminuer le volume</value>
+    <value>hangerő csökkentése</value>
   </data>
   <data name="DeletePlaylist" xml:space="preserve">
-    <value>Supprimer la liste de lecture</value>
+    <value>lejátszólista törlése</value>
   </data>
   <data name="DeleteSelected" xml:space="preserve">
-    <value>Supprimer</value>
+    <value>kiválasztott törlése</value>
   </data>
   <data name="EditMetadata" xml:space="preserve">
-    <value>Modifier les métadonnées</value>
+    <value>metaadatok szerkesztése</value>
   </data>
   <data name="ElementsNotFound" xml:space="preserve">
-    <value>Nous n'avons pas trouvé d'élément ici</value>
+    <value>nem találhatóak elemek itt</value>
   </data>
   <data name="EnterURL" xml:space="preserve">
-    <value>Entrez une URL</value>
+    <value>adjon meg egy URL-t</value>
   </data>
   <data name="Episode" xml:space="preserve">
-    <value>Épisode</value>
+    <value>epizód</value>
   </data>
   <data name="EvenIfBackground" xml:space="preserve">
-    <value>Même si l'application est en arrière-plan</value>
+    <value>még akkor is, ha az app a háttérben van</value>
   </data>
   <data name="EvenIfNotBackground" xml:space="preserve">
-    <value>Même si l'application n'est pas en arrière-plan</value>
+    <value>még akkor is, ha az app nem a háttérben van</value>
   </data>
   <data name="FailFilePlayBackground" xml:space="preserve">
-    <value>Ce fichier ne peut pas être joué en arrière-plan</value>
+    <value>Ez a fájl lehet hogy nem játszható le a háttérben</value>
   </data>
   <data name="FailNavigateVideoPlayerPage" xml:space="preserve">
-    <value>VLC n'a pas pu accéder à la page Video Player</value>
+    <value>A VLC nem tudott a Videólejátszó oldalra navigálni</value>
   </data>
   <data name="FailOpenVideo" xml:space="preserve">
-    <value>VLC n'a pas pu ouvrir la vidéo</value>
+    <value>A VLC nem tudta megnyitni a videót</value>
   </data>
   <data name="FailStartVLCEngine" xml:space="preserve">
-    <value>L'app n'a pas pu démarrer le moteur VLC</value>
+    <value>Az app nem tudta elindítani a VLC motort</value>
   </data>
   <data name="FeedbackThankYou" xml:space="preserve">
-    <value>Vos commentaires ont été envoyés ! Merci.</value>
+    <value>visszajelzés elküldve! köszönjük</value>
   </data>
   <data name="FileExplorer" xml:space="preserve">
-    <value>Parcourir</value>
+    <value>böngészés</value>
   </data>
   <data name="HardwareDecoding" xml:space="preserve">
-    <value>Décodage matériel</value>
+    <value>hardveres dekódolás</value>
   </data>
   <data name="HardwareDecodingDescription" xml:space="preserve">
-    <value>Le décodage matériel peut ne pas fonctionner sur votre appareil.</value>
+    <value>A hardveres dekódolás lehet hogy nem működik az eszközén.</value>
   </data>
   <data name="HaveToSelectPlaylist" xml:space="preserve">
-    <value>Veuillez sélectionner une liste de lecture</value>
+    <value>válasszon lejátszólistát</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Accueil</value>
+    <value>kezdőlap</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-    <value>Page principale</value>
+    <value>kezdőlap</value>
   </data>
   <data name="HomePageDescription" xml:space="preserve">
-    <value>VLC commencera sur la page sélectionnée</value>
+    <value>A VLC a kiválasztott oldallal fog indulni</value>
   </data>
   <data name="HoweverYouMayFindWhatYouWantHere" xml:space="preserve">
-    <value>Toutefois, vous pouvez peut-être trouver ce que vous cherchez ici</value>
+    <value>viszont itt megtalálhatja amit keres</value>
   </data>
   <data name="HowToFavoriteAlbum1" xml:space="preserve">
-    <value>Pour marquer un album comme favori, appuyez simplement</value>
+    <value>az album kedvencként beállításához csak nyomja meg</value>
   </data>
   <data name="HowToFavoriteAlbum2" xml:space="preserve">
-    <value>Et vous y aurez accès rapidement</value>
+    <value>és azonnal hozzá fog férni</value>
   </data>
   <data name="ImportantSponsors" xml:space="preserve">
-    <value>Auteurs importants</value>
+    <value>fontos támogatók</value>
   </data>
   <data name="IncreaseSpeed" xml:space="preserve">
-    <value>Augmenter la vitesse</value>
+    <value>sebesség növelése</value>
   </data>
   <data name="IncreaseVolume" xml:space="preserve">
-    <value>Augmenter le volume</value>
+    <value>hangerő növelése</value>
   </data>
   <data name="ItsEmpty" xml:space="preserve">
-    <value>C'est vide ici</value>
+    <value>ez üres</value>
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
-    <value>Raccourcis clavier</value>
+    <value>gyorsbillentyűk</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>Licence</value>
+    <value>licenc</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Chargement</value>
+    <value>betöltés</value>
   </data>
   <data name="LoadingMusic" xml:space="preserve">
-    <value>Chargement de votre musique</value>
+    <value>zene betöltése</value>
   </data>
   <data name="MostPlayedArtists" xml:space="preserve">
-    <value>Artistes les plus joués</value>
+    <value>legtöbbet játszott előadó</value>
   </data>
   <data name="Music" xml:space="preserve">
-    <value>Musique</value>
+    <value>zene</value>
   </data>
   <data name="MusicFolders" xml:space="preserve">
-    <value>Dossiers de musique</value>
+    <value>zenemappák</value>
   </data>
   <data name="MusicFoldersDescription" xml:space="preserve">
-    <value>VLC recherchera uniquement les morceaux qui se trouvent dans votre bibliothèque musicale. Vous pouvez ajouter des dossiers à votre bibliothèque ici.</value>
+    <value>A VLC csak a zenetárban lévő számokat fogja keresni. Mappákat itt adhat hozzá a zenetárhoz:</value>
   </data>
   <data name="MusicSettings" xml:space="preserve">
-    <value>Paramètres Audio</value>
+    <value>Zenebeállítások</value>
   </data>
   <data name="MusicShows" xml:space="preserve">
-    <value>Concerts</value>
+    <value>zenei műsorok</value>
   </data>
   <data name="Mute" xml:space="preserve">
-    <value>Muet</value>
+    <value>némítás</value>
   </data>
   <data name="MyPlaylists" xml:space="preserve">
-    <value>Mes listes de lecture</value>
+    <value>lejátszólistáim</value>
   </data>
   <data name="Network" xml:space="preserve">
-    <value>Réseau</value>
+    <value>hálózat</value>
   </data>
   <data name="NewPlaylist" xml:space="preserve">
-    <value>Nouvelle liste de lecture</value>
+    <value>új lejátszólista</value>
   </data>
   <data name="NewVideos" xml:space="preserve">
-    <value>Nouvelles vidéos</value>
+    <value>új videók</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>Non</value>
+    <value>nem</value>
   </data>
   <data name="NoBiographyFound" xml:space="preserve">
-    <value>Pas de bio trouvée pour cet artiste</value>
+    <value>nem található életrajz ehhez az előadóhoz</value>
   </data>
   <data name="NoCameraVideosFound" xml:space="preserve">
-    <value>Aucune vidéo de caméra trouvée</value>
+    <value>nem találhatóak felvett videók</value>
   </data>
   <data name="NoFavoriteAlbums" xml:space="preserve">
-    <value>Aucun album préféré</value>
+    <value>nincsenek kedvenc albumok</value>
   </data>
   <data name="NoInternetConnection" xml:space="preserve">
-    <value>Pas de connexion Internet</value>
+    <value>nincs internetkapcsolat</value>
   </data>
   <data name="NoPlaylists" xml:space="preserve">
-    <value>Aucune liste de lecture</value>
+    <value>nincsenek lejátszólisták</value>
   </data>
   <data name="NoShowsFound" xml:space="preserve">
-    <value>Aucun concert trouvé</value>
+    <value>nincsenek sorozatok</value>
   </data>
   <data name="NothingToSeeHere" xml:space="preserve">
-    <value>Il n'y a rien à voir ici</value>
+    <value>nincs itt semmi látnivaló</value>
   </data>
   <data name="Notifications" xml:space="preserve">
-    <value>Notifications</value>
+    <value>értesítések</value>
   </data>
   <data name="NotificationWhenSongStarts" xml:space="preserve">
-    <value>Au démarrage du morceau</value>
+    <value>amikor a szám elkezdődik</value>
   </data>
   <data name="NoVideosFound" xml:space="preserve">
-    <value>Nous n'avons trouvé aucune vidéo</value>
+    <value>nem találtunk videót</value>
   </data>
   <data name="NowPlaying" xml:space="preserve">
-    <value>Lecture en cours</value>
+    <value>most játszott</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Ouvrir un fichier</value>
+    <value>fájl megnyitása</value>
   </data>
   <data name="OpenStream" xml:space="preserve">
-    <value>Ouvrir un flux</value>
+    <value>adatfolyam megnyitása</value>
   </data>
   <data name="OpenSubtitle" xml:space="preserve">
-    <value>Ouvrir des sous-titres</value>
+    <value>felirat megnyitása</value>
   </data>
   <data name="OrderAscending" xml:space="preserve">
-    <value>Croissant</value>
+    <value>növekvő</value>
   </data>
   <data name="OrderByAlbum" xml:space="preserve">
-    <value>Par album</value>
+    <value>album szerint</value>
   </data>
   <data name="OrderByArtist" xml:space="preserve">
-    <value>Par artiste</value>
+    <value>előadó szerint</value>
   </data>
   <data name="OrderByDate" xml:space="preserve">
-    <value>Par date</value>
+    <value>dátum szerint</value>
   </data>
   <data name="OrderDescending" xml:space="preserve">
-    <value>Décroissant</value>
+    <value>csökkenő</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Mot de passe</value>
+    <value>jelszó</value>
   </data>
   <data name="Pause" xml:space="preserve">
-    <value>Pause</value>
+    <value>szünet</value>
   </data>
   <data name="PinAlbum" xml:space="preserve">
-    <value>Épingler l'album</value>
+    <value>album rögzítése</value>
   </data>
   <data name="PinArtist" xml:space="preserve">
-    <value>Épingler l'artiste</value>
+    <value>előadó rögzítése</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>Lecture</value>
+    <value>lejátszás</value>
   </data>
   <data name="PlayAlbum" xml:space="preserve">
-    <value>Lire l’album</value>
+    <value>album lejátszása</value>
   </data>
   <data name="PlayAll" xml:space="preserve">
-    <value>Lire tout</value>
+    <value>összes lejátszása</value>
   </data>
   <data name="Playback" xml:space="preserve">
-    <value>Lecture</value>
+    <value>lejátszás</value>
   </data>
   <data name="PlayerSettings" xml:space="preserve">
-    <value>Paramètres du Lecteur</value>
+    <value>Lejátszóbeállítások </value>
   </data>
   <data name="PlayFolder" xml:space="preserve">
-    <value>Lire le dossier</value>
+    <value>mappa lejátszása</value>
   </data>
   <data name="Playlist" xml:space="preserve">
-    <value>Liste de lecture</value>
+    <value>lejátszólista</value>
   </data>
   <data name="PlaylistAlreadyExists" xml:space="preserve">
-    <value>Cette liste de lecture existe déjà</value>
+    <value>ez a lejátszólista már létezik</value>
   </data>
   <data name="PlaylistNamePlaceholder" xml:space="preserve">
-    <value>Nom de la liste de lecture</value>
+    <value>lejátszólista neve</value>
   </data>
   <data name="Playlists" xml:space="preserve">
-    <value>Listes de lecture</value>
+    <value>lejátszólisták</value>
   </data>
   <data name="PlayTrack" xml:space="preserve">
-    <value>Lire le morceau</value>
+    <value>szám lejátszása</value>
   </data>
   <data name="PlayVideo" xml:space="preserve">
-    <value>Lire la vidéo</value>
+    <value>videó lejátszása</value>
   </data>
   <data name="PrivacyStatement" xml:space="preserve">
-    <value>Politique de confidentialité</value>
+    <value>adatvédelmi nyilatkozat</value>
   </data>
   <data name="Favorites" xml:space="preserve">
-    <value>Favoris</value>
+    <value>Kedvencek</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">
-    <value>Actualiser la bibliothèque musicale</value>
+    <value>zenetár frissítése</value>
   </data>
   <data name="RefreshVideoLibrary" xml:space="preserve">
-    <value>Actualiser la vidéothèque</value>
+    <value>videótár frissítése</value>
   </data>
   <data name="RemovableStorage" xml:space="preserve">
-    <value>Stockage amovible</value>
+    <value>cserélhető tároló</value>
   </data>
   <data name="RemoveFolder" xml:space="preserve">
-    <value>Supprimer le dossier</value>
+    <value>mappa eltávolítása</value>
   </data>
   <data name="RemoveMusicFolderDescription" xml:space="preserve">
-    <value>Si vous ne voulez pas de ce dossier dans votre bibliothèque de musique, vous pouvez le supprimer. Cela affectera toutes les applications, pas seulement VLC.</value>
+    <value>Ha nem akarja hogy ez a mappa a zenetárban legyen, akkor eltávolíthatja. Ez az összes appot érinteni fogja, nem csak a VLC-t</value>
   </data>
   <data name="RemoveVideoFolderDescription" xml:space="preserve">
-    <value>Si vous ne voulez pas de ce dossier dans votre vidéothèque, vous pouvez le supprimer. Cela affectera toutes les applications, pas seulement VLC.</value>
+    <value>Ha nem akarja hogy ez a mappa a videótárban legyen, akkor eltávolíthatja. Ez az összes appot érinteni fogja, nem csak a VLC-t</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Réinitialiser</value>
+    <value>visszaállítás</value>
   </data>
   <data name="ResetMusicDatabase" xml:space="preserve">
-    <value>Réinitialiser la base de données musicale</value>
+    <value>zeneadatbázis visszaállítása</value>
   </data>
   <data name="ResetSpeed" xml:space="preserve">
-    <value>Réinitialiser la vitesse</value>
+    <value>sebesség visszaállítása</value>
   </data>
   <data name="RichAnimationsDescription" xml:space="preserve">
-    <value>Utiliser des animations riches dans les diaporamas</value>
+    <value>Gazdag animációk használata a diavetítéseknél</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Rechercher</value>
+    <value>keresés</value>
   </data>
   <data name="Season" xml:space="preserve">
-    <value>Saison</value>
+    <value>évad</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Paramètres</value>
+    <value>beállítások</value>
   </data>
   <data name="ShowPlaylist" xml:space="preserve">
-    <value>Voir la liste de lecture</value>
+    <value>lejátszólista megjelenítése</value>
   </data>
   <data name="Shows" xml:space="preserve">
-    <value>Séries</value>
+    <value>sorozatok</value>
   </data>
   <data name="Shuffle" xml:space="preserve">
-    <value>Lecture aléatoire</value>
+    <value>véletlen sorrend</value>
   </data>
   <data name="Songs" xml:space="preserve">
-    <value>Morceaux                 </value>
+    <value>számok</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Remerciements</value>
+    <value>külön köszönet</value>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value>Vitesse</value>
+    <value>sebesség</value>
   </data>
   <data name="Stop" xml:space="preserve">
-    <value>Stop</value>
+    <value>leállítás</value>
   </data>
   <data name="SubtitleDelay" xml:space="preserve">
-    <value>Décalage des sous-titres</value>
+    <value>felirat késleltetése</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
-    <value>Sous-titres</value>
+    <value>Feliratok</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
-    <value>Encodage des sous-titres</value>
+    <value>feliratkódolás</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>Thème</value>
+    <value>téma</value>
   </data>
   <data name="TileRemoved" xml:space="preserve">
-    <value>Tuile supprimée</value>
+    <value>csempe eltávolítása</value>
   </data>
   <data name="TopVideos" xml:space="preserve">
-    <value>Vidéos préférées</value>
+    <value>legjobb videók</value>
   </data>
   <data name="TrackAddedToYourPlaylist" xml:space="preserve">
-    <value>Morceau ajouté à la liste de lecture</value>
+    <value>sáv hozzáadva a lejátszólistához</value>
   </data>
   <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
-    <value>Ce morceau est déjà dans la liste de lecture</value>
+    <value>ez a sáv már szerepel a lejátszólistában</value>
   </data>
   <data name="Tracks" xml:space="preserve">
-    <value>Morceaux</value>
+    <value>szám</value>
   </data>
   <data name="UnknownAlbum" xml:space="preserve">
-    <value>Album inconnu</value>
+    <value>Ismeretlen album</value>
   </data>
   <data name="UnknownArtist" xml:space="preserve">
-    <value>Artiste inconnu</value>
+    <value>Ismeretlen előadó</value>
   </data>
   <data name="UnknownShow" xml:space="preserve">
-    <value>Concert inconnu</value>
+    <value>Ismeretlen műsor</value>
   </data>
   <data name="UnknownTrack" xml:space="preserve">
-    <value>Piste inconnue</value>
+    <value>Ismeretlen sáv</value>
   </data>
   <data name="UserInterface" xml:space="preserve">
-    <value>Interface utilisateur</value>
+    <value>Felhasználói felület</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Nom d'utilisateur</value>
+    <value>felhasználónév</value>
   </data>
   <data name="Video" xml:space="preserve">
-    <value>Vidéo</value>
+    <value>videó</value>
   </data>
   <data name="VideoFolders" xml:space="preserve">
-    <value>Dossiers de vidéos</value>
+    <value>videómappák</value>
   </data>
   <data name="VideoFoldersDescription" xml:space="preserve">
-    <value>VLC recherchera uniquement des vidéos qui sont dans votre vidéothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici.</value>
+    <value>A VLC csak a videótárban lévő számokat fogja keresni. Mappákat itt adhat hozzá a videótárhoz:</value>
   </data>
   <data name="VideoPlayback" xml:space="preserve">
-    <value>Lecture vidéo</value>
+    <value>videólejátszás </value>
   </data>
   <data name="VideoPlaybackInBackground" xml:space="preserve">
-    <value>Lecture en arrière-plan</value>
+    <value>videó lejátszása a háttérben</value>
   </data>
   <data name="Videos" xml:space="preserve">
-    <value>Vidéos</value>
+    <value>videók</value>
   </data>
   <data name="VideoSettings" xml:space="preserve">
-    <value>Paramètres Vidéo</value>
+    <value>Videobeállítások</value>
   </data>
   <data name="ViewAlbum" xml:space="preserve">
-    <value>Voir l'album</value>
+    <value>album megtekintése</value>
   </data>
   <data name="ViewArtist" xml:space="preserve">
-    <value>Voir l'artiste</value>
+    <value>előadó megtekintése</value>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>Volume</value>
+    <value>hangerő</value>
   </data>
   <data name="WeNeedYourHelp" xml:space="preserve">
-    <value>Nous avons besoin de votre aide</value>
+    <value>szükségünk van a segítségére</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Oui</value>
+    <value>igen</value>
   </data>
   <data name="YourMusic" xml:space="preserve">
-    <value>Votre musique</value>
+    <value>az Ön zenéi</value>
   </data>
   <data name="AccentColor" xml:space="preserve">
-    <value>Couleur d'accentuation</value>
+    <value>kiegészítő szín</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>Couleur d'arrière-plan</value>
+    <value>háttérszín</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Sombre</value>
+    <value>sötét</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Clair</value>
+    <value>világos</value>
   </data>
   <data name="TitleBar" xml:space="preserve">
-    <value>Barre de titre</value>
+    <value>címsáv</value>
   </data>
   <data name="NeedRestart" xml:space="preserve">
-    <value>Vous devez redémarrer l'application pour appliquer les modifications</value>
+    <value>Újra kell indítani az appot a változtatások alkalmazásához</value>
   </data>
   <data name="Zoom" xml:space="preserve">
-    <value>Zoom</value>
+    <value>nagyítás</value>
   </data>
   <data name="AreYouSure" xml:space="preserve">
-    <value>Êtes-vous sûr ?</value>
+    <value>biztos benne?</value>
   </data>
   <data name="MediaCantBeRead" xml:space="preserve">
-    <value>Le média n'a pas pu être lu</value>
+    <value>a média nem olvasható</value>
   </data>
   <data name="Sorry" xml:space="preserve">
-    <value>Nous sommes désolés</value>
+    <value>sajnáljuk</value>
   </data>
   <data name="SURFACE_BEST_FIT" xml:space="preserve">
-    <value>Meilleur ajustement</value>
+    <value>legjobban illeszkedő</value>
   </data>
   <data name="SURFACE_FIT_HORIZONTAL" xml:space="preserve">
-    <value>Recadrage horizontal</value>
+    <value>vízszintes levágás</value>
   </data>
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
-    <value>Recadrage vertical</value>
+    <value>függőleges levágás</value>
   </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
-    <value>Votre liste de lecture ne sera plus accessible</value>
+    <value>a lejátszólista nem lesz elérhető</value>
   </data>
   <data name="NoArtistShowsFound" xml:space="preserve">
-    <value>Nous n'avons pas trouvé de spectacles pour cet artiste</value>
+    <value>nem található műsor ehhez az előadóhoz</value>
   </data>
   <data name="NoResults" xml:space="preserve">
-    <value>Aucun résultat</value>
+    <value>nincs eredmény</value>
   </data>
   <data name="ForceLandscape" xml:space="preserve">
-    <value>Forcer l'affichage en mode paysage</value>
+    <value>Fekvő mód kényszerítése</value>
   </data>
   <data name="SURFACE_STRETCH" xml:space="preserve">
-    <value>Étirer</value>
+    <value>nyújtás</value>
   </data>
   <data name="SimilarArtists" xml:space="preserve">
-    <value>Artistes similaires</value>
+    <value>Hasonló előadók</value>
   </data>
   <data name="EnglishLanguage" xml:space="preserve">
-    <value>Anglais</value>
+    <value>angol</value>
   </data>
   <data name="FrenchLanguage" xml:space="preserve">
-    <value>Français</value>
+    <value>francia</value>
   </data>
   <data name="JapaneseLanguage" xml:space="preserve">
-    <value>Japonais</value>
+    <value>japán</value>
   </data>
   <data name="GermanLanguage" xml:space="preserve">
-    <value>Allemand</value>
+    <value>német</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
-    <value>Polonais</value>
+    <value>lengyel</value>
   </data>
   <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slovaque</value>
+    <value>szlovák</value>
   </data>
   <data name="Languages" xml:space="preserve">
-    <value>Langues</value>
+    <value>Nyelvek</value>
   </data>
   <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC sera affiché en </value>
+    <value>A VLC ezen a nyelven lesz megjelenítve:</value>
   </data>
   <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Appliquer et redémarrer</value>
+    <value>Alkalmaz és újraindítás</value>
   </data>
   <data name="RefreshLanguage" xml:space="preserve">
-    <value>Actualiser la langue</value>
+    <value>Nyelv frissítése</value>
   </data>
   <data name="Local" xml:space="preserve">
-    <value>Bibliothèques locales</value>
+    <value>helyi</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
-    <value>Téléchargement de fichiers</value>
+    <value>Fájlok letöltése</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
-    <value>Sélectionnez simplement le fichier que vous voulez télécharger depuis votre Xbox.</value>
+    <value>Csak kattintson arra a fájlra, amelyet le akar tölteni az Xboxáról.</value>
   </data>
   <data name="WEBINTF_DROPFILES" xml:space="preserve">
-    <value>Déposez des fichiers</value>
+    <value>Húzza ide a fájlokat</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Déposez des fichiers ici pour les ajouter au stockage interne de votre Xbox.&amp;lt;br&amp;gt;ou cliquez sur le bouton "+" pour choisir un fichier.</value>
+    <value>Húzzon fájlokat az ablakba az Xboxára másoláshoz.&amp;lt;br&amp;gt;Vagy kattintson a „+” gombra a fájlválasztó párbeszédablak használatához.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
-    <value>Partage réseau</value>
+    <value>Megosztás Wi-Fin keresztül</value>
   </data>
   <data name="CopyToLocalStorage" xml:space="preserve">
-    <value>Copier vers le stockage interne</value>
+    <value>másolás helyi tárolóra</value>
   </data>
   <data name="ExternalStorageDeviceDetected" xml:space="preserve">
-    <value>VLC a détecté un périphérique de stockage amovible.</value>
+    <value>A VLC külső tárolót észlelt</value>
   </data>
   <data name="ReadFromExternalStorage" xml:space="preserve">
-    <value>Intégrer le périphérique de stockage à la bibliothèque de media</value>
+    <value>Külső tároló használata médiatárként.</value>
   </data>
   <data name="SelectContentToCopy" xml:space="preserve">
-    <value>Copier les médias sur le stockage interne</value>
+    <value>Média átmásolása a belső tárolóra.</value>
   </data>
   <data name="WhatToDo" xml:space="preserve">
-    <value>Que souhaitez vous faire ?</value>
+    <value>Mit szeretne tenni?</value>
   </data>
   <data name="AskMe" xml:space="preserve">
-    <value>Me demander</value>
+    <value>Kérdezzen</value>
   </data>
   <data name="ExternalStorage" xml:space="preserve">
-    <value>Stockage amovible</value>
+    <value>külső tároló</value>
   </data>
   <data name="WhatToDoWhenExternalStorage" xml:space="preserve">
-    <value>Que doit faire VLC lorsqu'un périphérique de stockage amovible est détecté ?</value>
+    <value>Mit tegyen a VLC, ha külső tárolót észlel?</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Mégsem</value>
   </data>
   <data name="DoNothing" xml:space="preserve">
-    <value>Ne rien faire</value>
+    <value>Ne tegyen semmit</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>Ok</value>
   </data>
   <data name="Ignore" xml:space="preserve">
-    <value>Ignorer</value>
+    <value>Mellőzés</value>
   </data>
   <data name="Remember" xml:space="preserve">
-    <value>S'en souvenir</value>
+    <value>Megjegyzés</value>
   </data>
   <data name="AddMediaHelp" xml:space="preserve">
-    <value>Veuillez insérer un périphérique de stockage amovible</value>
+    <value>Helyezzen be egy külső tárolóeszközt</value>
   </data>
   <data name="AddMediaHelpWithIP" xml:space="preserve">
-    <value>Veuillez insérer un disque de stockage externe, ou allez sur http://{0}:8080 pour télécharger des media vers votre Xbox</value>
+    <value>Helyezzen be egy külső tárolóeszközt, vagy menjen ide: http://{0}:8080, és töltsön fel néhány médiát</value>
   </data>
   <data name="CopyHelpDesktop" xml:space="preserve">
-    <value>Cliquez droit sur un fichier ou un dossier pour le copier vers le stockage interne</value>
+    <value>Jobb kattintás a fájlon vagy mappán a helyi tárolóra másoláshoz.</value>
   </data>
   <data name="CopyHelpMediaCenter" xml:space="preserve">
-    <value>Appuyez sur Y sur un fichier ou un dossier pour le copier vers le stockage interne</value>
+    <value>Nyomjon „Y”-t egy fájlon vagy mappán hogy a helyi tárolóra másolja.</value>
   </data>
   <data name="NoSubtitles" xml:space="preserve">
-    <value>Aucune piste de sous-titres</value>
+    <value>Nincsenek feliratsávok</value>
   </data>
   <data name="ClearKeystore" xml:space="preserve">
-    <value>Effacer les identifiants enregistrés</value>
+    <value>Mentett hitelesítési adatok törlése</value>
   </data>
   <data name="Credentials" xml:space="preserve">
-    <value>Identifiants</value>
+    <value>Hitelesítési adatok</value>
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
-    <value>Appuyez longuement sur un fichier ou un dossier pour le copier vers le stockage interne.</value>
+    <value>Nyomja meg hosszan a fájl vagy mappát a helyi tárolóra másoláshoz.</value>
   </data>
   <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>Ajuster à l'écran</value>
+    <value>képernyőhöz igazítás</value>
   </data>
   <data name="SURFACE_FILL" xml:space="preserve">
-    <value>Remplir</value>
+    <value>kitöltés</value>
   </data>
   <data name="SURFACE_16_9" xml:space="preserve">
     <value>16:9</value>
@@ -655,9 +655,9 @@
     <value>4:3</value>
   </data>
   <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>Original</value>
+    <value>eredeti</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
-    <value>Utiliser PIP Windows 10</value>
+    <value>windows 10 pip használata</value>
   </data>
 </root>

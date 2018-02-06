@@ -334,9 +334,25 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <PRIResource Include="Strings\zh-CN\Resources.resw" />
+    <PRIResource Include="Strings\da-DK\Resources.resw" />
     <PRIResource Include="Strings\de-DE\Resources.resw" />
+    <PRIResource Include="Strings\nl-NL\Resources.resw" />
+    <PRIResource Include="Strings\es-ES\Resources.resw" />
+    <PRIResource Include="Strings\fr-FR\Resources.resw" />
+    <PRIResource Include="Strings\hu-HU\Resources.resw" />
+    <PRIResource Include="Strings\it-IT\Resources.resw" />
+    <PRIResource Include="Strings\ja-JP\Resources.resw" />
+    <PRIResource Include="Strings\ko-KR\Resources.resw" />
+    <PRIResource Include="Strings\ms-MY\Resources.resw" />
+    <PRIResource Include="Strings\nb-NO\Resources.resw" />
     <PRIResource Include="Strings\pl-PL\Resources.resw" />
+    <PRIResource Include="Strings\ru-RU\Resources.resw" />
     <PRIResource Include="Strings\sk-SK\Resources.resw" />
+    <PRIResource Include="Strings\sv-SE\Resources.resw" />
+    <PRIResource Include="Strings\tr-TR\Resources.resw" />
+    <PRIResource Include="Strings\uk-UA\Resources.resw" />
+    <PRIResource Include="Strings\en-US\Resources.resw"/>
     <None Include="VLC_WinRT.Universal_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -1511,20 +1527,29 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
-    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\fr-FR\Resources.resw" />
-    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\ja-JP\Resources.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VLC.Universal.fr-FR.xlf" />
-    <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VLC.Universal.ja-JP.xlf" />
-    <XliffResource Include="MultilingualResources\VLC.Universal.de-DE.xlf" />
-    <XliffResource Include="MultilingualResources\VLC.Universal.pl-PL.xlf" />
-    <XliffResource Include="MultilingualResources\VLC.Universal.sk-SK.xlf" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Views\MainPages\MainVideoControls\VideoPanesControls\" />
   </ItemGroup>
+  <ItemGroup>
+    <XliffResource Include="MultilingualResources\VLC.Universal.fr-FR.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.ja-JP.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.da-DK.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.de-DE.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.es-ES.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.hu-HU.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.it-IT.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.ko-KR.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.ms-MY.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.nb-NO.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.nl-NL.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.pl-PL.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.ru-RU.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.sk-SK.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.sv-SE.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.tr-TR.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.uk-UA.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.zh-CN.xlf" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="..\VLC.Core\VLC_WinRT.Shared.projitems" Label="Shared" />
   <Import Project="..\VLC.MediaMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems" Label="Shared" />
   <Import Project="..\VLC.Slideshow\VLC_WinRT.Slideshow.projitems" Label="Shared" />
@@ -1533,7 +1558,7 @@
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets')" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\v$(MultilingualAppToolkitVersion)\Microsoft.Multilingual.PriResources.targets')" />
   <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets')" Label="MultilingualAppToolkit">
     <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
   </Target>

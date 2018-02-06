@@ -7,6 +7,19 @@
         Japanese,
         German,
         Polish,
-        Slovak
+        Slovak,
+        Danish,
+        Spanish,
+        Hungarian,
+        Italian,
+        Korean,
+        Malay,
+        Norwegian,
+        Dutch,
+        Russian,
+        Swedish,
+        Turkish,
+        Ukrainian,
+        Chinese
     }
 }

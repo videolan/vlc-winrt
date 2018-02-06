@@ -314,15 +314,7 @@ namespace VLC.ViewModels.Settings
         public List<ExternalDeviceMode> ExternalDeviceModeCollection { get; set; }
             = Enum.GetValues(typeof(ExternalDeviceMode)).Cast<ExternalDeviceMode>().ToList();
 
-        public List<Languages> LanguageCollection { get; set; } = new List<Languages>
-        {
-            Languages.English,
-            Languages.French,
-            Languages.Japanese,
-            Languages.German,
-            Languages.Polish,
-            Languages.Slovak
-        };
+        public List<Languages> LanguageCollection { get; } = Enum.GetValues(typeof(Languages)).Cast<Languages>().ToList();
 
         public List<OrderType> AlbumsOrderTypeCollection
         { get; set; }
@@ -636,7 +628,47 @@ namespace VLC.ViewModels.Settings
                 case Languages.Slovak:
                     currentCulture = "sk-SK";
                     break;
-                    
+                case Languages.Danish:
+                    currentCulture = "da-DK";
+                    break;
+                case Languages.Spanish:
+                    currentCulture = "es-ES";
+                    break;
+                case Languages.Hungarian:
+                    currentCulture = "hu-HU";
+                    break;
+                case Languages.Italian:
+                    currentCulture = "it-IT";
+                    break;
+                case Languages.Korean:
+                    currentCulture = "ko-KR";
+                    break;
+                case Languages.Malay:
+                    currentCulture = "ms-MY";
+                    break;
+                case Languages.Norwegian:
+                    currentCulture = "nb-NO";
+                    break;
+                case Languages.Dutch:
+                    currentCulture = "nl-NL";
+                    break;
+                case Languages.Russian:
+                    currentCulture = "ru-RU";
+                    break;
+                case Languages.Swedish:
+                    currentCulture = "sv-SE";
+                    break;
+                case Languages.Turkish:
+                    currentCulture = "tr-TR";
+                    break;
+                case Languages.Ukrainian:
+                    currentCulture = "uk-UA";
+                    break;
+                case Languages.Chinese:
+                    currentCulture = "zh-CN";
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(language), language, null);
             }
             var culture = new CultureInfo(currentCulture);
             Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = culture.Name;

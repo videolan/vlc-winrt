@@ -304,12 +304,27 @@ namespace VLC.Utils
         public static string AppTheme => _resourcesLoader.GetString(nameof(AppTheme));
         public static string Languages => _resourcesLoader.GetString(nameof(Languages));
         public static string SelectLanguageDescription => _resourcesLoader.GetString(nameof(SelectLanguageDescription));
+
         public static string EnglishLanguage => _resourcesLoader.GetString(nameof(EnglishLanguage));
         public static string FrenchLanguage => _resourcesLoader.GetString(nameof(FrenchLanguage));
         public static string JapaneseLanguage => _resourcesLoader.GetString(nameof(JapaneseLanguage));
         public static string GermanLanguage => _resourcesLoader.GetString(nameof(GermanLanguage));
         public static string PolishLanguage => _resourcesLoader.GetString(nameof(PolishLanguage));
         public static string SlovakLanguage => _resourcesLoader.GetString(nameof(SlovakLanguage));
+        public static string DanishLanguage => _resourcesLoader.GetString(nameof(DanishLanguage));
+        public static string SpanishLanguage => _resourcesLoader.GetString(nameof(SpanishLanguage));
+        public static string HungarianLanguage => _resourcesLoader.GetString(nameof(HungarianLanguage));
+        public static string ItalianLanguage => _resourcesLoader.GetString(nameof(ItalianLanguage));
+        public static string KoreanLanguage => _resourcesLoader.GetString(nameof(KoreanLanguage));
+        public static string MalayLanguage => _resourcesLoader.GetString(nameof(MalayLanguage));
+        public static string NorwegianLanguage => _resourcesLoader.GetString(nameof(NorwegianLanguage));
+        public static string DutchLanguage => _resourcesLoader.GetString(nameof(DutchLanguage));
+        public static string RussianLanguage => _resourcesLoader.GetString(nameof(RussianLanguage));
+        public static string SwedishLanguage => _resourcesLoader.GetString(nameof(SwedishLanguage));
+        public static string TurkishLanguage => _resourcesLoader.GetString(nameof(TurkishLanguage));
+        public static string UkrainianLanguage => _resourcesLoader.GetString(nameof(UkrainianLanguage));
+        public static string ChineseLanguage => _resourcesLoader.GetString(nameof(ChineseLanguage));
+
         public static string HomePage => _resourcesLoader.GetString(nameof(HomePage));
         public static string HomePageDescription => _resourcesLoader.GetString(nameof(HomePageDescription));
         public static string Animations => _resourcesLoader.GetString(nameof(Animations));
