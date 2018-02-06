@@ -718,18 +718,14 @@ namespace VLC.ViewModels
                 var updater = CommonTransportControlInit();
                 updater.Type = MediaPlaybackType.Music;
                 // Music metadata.
-                updater.MusicProperties.AlbumArtist = artistName;
-                updater.MusicProperties.Artist = artistName;
-                updater.MusicProperties.Title = trackName;
+                updater.MusicProperties.AlbumArtist = albumName ?? string.Empty;
+                updater.MusicProperties.Artist = artistName ?? string.Empty;
+                updater.MusicProperties.Title = trackName ?? string.Empty;
 
                 // Set the album art thumbnail.
                 // RandomAccessStreamReference is defined in Windows.Storage.Streams
-
-                Uri thumbnailUri;
-                if (albumUri != null && !string.IsNullOrEmpty(albumUri))
-                    thumbnailUri = new Uri(albumUri);
-                else
-                    thumbnailUri = new Uri("ms-appx:///Assets/Icons/music.png");
+                
+                var thumbnailUri = !string.IsNullOrEmpty(albumUri) ? new Uri(albumUri) : new Uri("ms-appx:///Assets/Icons/music.png");
                 updater.Thumbnail = RandomAccessStreamReference.CreateFromUri(thumbnailUri);
 
                 // Update the system media transport controls.
@@ -744,7 +740,7 @@ namespace VLC.ViewModels
                 LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
                 var updater = CommonTransportControlInit();
                 updater.Type = MediaPlaybackType.Video;
-                updater.VideoProperties.Title = title;
+                updater.VideoProperties.Title = title ?? string.Empty;
                 if (!string.IsNullOrEmpty(pictureUri))
                 {
                     updater.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri(pictureUri));
