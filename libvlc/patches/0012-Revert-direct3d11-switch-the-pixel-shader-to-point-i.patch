@@ -1,4 +1,4 @@
-From 0e09fe5d7c3cb5402c5e24cc1f31b54cbb0ea3f8 Mon Sep 17 00:00:00 2001
+From 7ae4dd06635c31a385a2e63b29872d61bd4d1ee4 Mon Sep 17 00:00:00 2001
 From: Martin Finkel <martin@videolabs.io>
 Date: Wed, 10 Jan 2018 13:02:27 +0100
 Subject: [PATCH 12/13] Revert "direct3d11: switch the pixel shader to point
@@ -9,7 +9,7 @@ Subject: [PATCH 12/13] Revert "direct3d11: switch the pixel shader to point
  1 file changed, 4 insertions(+), 14 deletions(-)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 4a4887c..f51b743 100644
+index 949419f..5c7b429 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
 @@ -382,10 +382,7 @@ static const char* globPixelShaderDefault = "\
@@ -24,7 +24,7 @@ index 4a4887c..f51b743 100644
      float4 rgba = mul(mul(sample, WhitePoint), Colorspace);\
      float opacity = rgba.a * Opacity;\
      float3 rgb = (float3)rgba;\
-@@ -2542,16 +2539,9 @@ static int SetupQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
+@@ -2543,16 +2540,9 @@ static int SetupQuad(vout_display_t *vd, const video_format_t *fmt, d3d_quad_t *
      quad->f_luminance_scale = (float)src_luminance_peak / (float)sys->display.luminance_peak;
  
      /* pixel shader constant buffer */

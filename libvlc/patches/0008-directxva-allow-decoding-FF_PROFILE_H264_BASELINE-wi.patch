@@ -1,4 +1,4 @@
-From 4647fe2ff4525d5e567fb61c424e2dc4ca9a80fe Mon Sep 17 00:00:00 2001
+From 1a846df45c6c295d920d9d8a0b18e717fca0a40b Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 30 Jan 2017 09:57:41 +0100
 Subject: [PATCH 08/13] directxva: allow decoding FF_PROFILE_H264_BASELINE

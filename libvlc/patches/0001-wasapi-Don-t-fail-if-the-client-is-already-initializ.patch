@@ -1,4 +1,4 @@
-From 9edb3aefc4c1e497f6a45cb159f22de069de3a64 Mon Sep 17 00:00:00 2001
+From aa847f7f20e548a3c81cfa316cc98f84199087e1 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Feb 2015 11:58:54 +0100
 Subject: [PATCH 01/13] wasapi: Don't fail if the client is already initialized
@@ -9,7 +9,7 @@ make the extra test only for Winstore builds
  1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/modules/audio_output/wasapi.c b/modules/audio_output/wasapi.c
-index 1d8795c..7e1a25c 100644
+index b74c08a..efa9d57 100644
 --- a/modules/audio_output/wasapi.c
 +++ b/modules/audio_output/wasapi.c
 @@ -585,7 +585,11 @@ static HRESULT Start(aout_stream_t *s, audio_sample_format_t *restrict pfmt,
