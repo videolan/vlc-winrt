@@ -28,10 +28,6 @@
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        Margin="{StaticResource FrameMarginLeft}"
                        VerticalAlignment="Center" />
-                    <TextBlock Text="beta"
-                           FontSize="10"
-                           Margin="{StaticResource FrameMarginLeft}"
-                           HorizontalAlignment="Right"/>
                 </StackPanel>
             </StackPanel>
             <ListView x:Name="PanelsListView"
