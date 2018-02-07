@@ -1,3 +1,14 @@
+Changes between 2.7.0 and 3.0.0
+-------------------------------
+Release: February 8th 2018
+
+* Support for 13 new languages
+* New Picture-in-Picture mode
+* Update managed dependencies
+* Support for Opus audio format
+* Support volume change from mouse wheel
+* Various bugfixes and UX improvements
+
 Changes between 2.6.0 and 2.7.0
 -------------------------------
 Release: January 23rd 2017
