@@ -1137,6 +1137,22 @@
           <source>Chinese</source>
           <target state="new">Chinese</target>
         </trans-unit>
+        <trans-unit id="TvUnsafeArea" translate="yes" xml:space="preserve">
+          <source>TV unsafe area</source>
+          <target state="new">TV unsafe area</target>
+        </trans-unit>
+        <trans-unit id="AddMarginExplanation" translate="yes" xml:space="preserve">
+          <source>Some TVs will not display the app correctly. To add some margin, turn this on</source>
+          <target state="new">Some TVs will not display the app correctly. To add some margin, turn this on</target>
+        </trans-unit>
+        <trans-unit id="ExtraMargin" translate="yes" xml:space="preserve">
+          <source>Extra margin</source>
+          <target state="new">Extra margin</target>
+        </trans-unit>
+        <trans-unit id="NoExtraMargin" translate="yes" xml:space="preserve">
+          <source>No extra margin</source>
+          <target state="new">No extra margin</target>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -292,6 +292,10 @@ namespace VLC.Utils
         public static string NeedRestart => _resourcesLoader.GetString(nameof(NeedRestart));
         public static string ClearKeystore => _resourcesLoader.GetString(nameof(ClearKeystore));
         public static string Credentials => _resourcesLoader.GetString(nameof(Credentials));
+        public static string TvUnsafeArea => _resourcesLoader.GetString(nameof(TvUnsafeArea));
+        public static string AddMarginExplanation => _resourcesLoader.GetString(nameof(AddMarginExplanation));
+        public static string ExtraMargin => _resourcesLoader.GetString(nameof(ExtraMargin));
+        public static string NoExtraMargin => _resourcesLoader.GetString(nameof(NoExtraMargin));
 
         // LastFM
         public static string ConnectToLastFM => _resourcesLoader.GetString(nameof(ConnectToLastFM));

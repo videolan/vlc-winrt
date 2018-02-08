@@ -1,10 +1,9 @@
-﻿using System;
-using System.Diagnostics;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
+
 using VLC.Helpers;
 using VLC.ViewModels;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
 
 namespace VLC.UI.Views.MainPages
 {
@@ -21,8 +20,14 @@ namespace VLC.UI.Views.MainPages
             await AppViewHelper.SetAppView(true);
             App.SplitShell.FlyoutAsHeader = true;
             base.OnNavigatedTo(e);
+            if (Locator.SettingsVM.ExtraMargin)
+            {
+                var extraMargin = Locator.SettingsVM.ExtraMarginValue;
+                Margin = new Thickness(Margin.Left + extraMargin, Margin.Top + extraMargin, + Margin.Right + extraMargin, Margin.Bottom + extraMargin);
+            }
             PanelsListView.ItemsSource = Locator.MainVM.Panels;
             PanelsListView.SelectedItem = Locator.MainVM.CurrentPanel;
+            
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)

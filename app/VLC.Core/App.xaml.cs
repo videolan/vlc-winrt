@@ -43,7 +43,6 @@ namespace VLC
         public static OpenFilePickerReason OpenFilePickerReason = OpenFilePickerReason.Null;
         public static Model.Music.AlbumItem SelectedAlbumItem;
         public static IContainer Container;
-        private bool _firstBoot = true;
         
         public App()
         {

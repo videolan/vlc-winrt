@@ -111,18 +111,33 @@
                                                            Text="{Binding Source={StaticResource Strings}, Path=HomePageDescription}" 
                                                            IsTabStop="False" />
 
-                        <ComboBox Margin="{StaticResource FrameMarginTop}"
+                    <ComboBox Margin="{StaticResource FrameMarginTop}"
                                   ItemsSource="{Binding HomePageCollection}"
                                   SelectedItem="{Binding HomePage, Mode=TwoWay}"
                                   Style="{StaticResource VLCLightComboBox}"
                                   Width="160">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={StaticResource VLCPageStringifyConverter}}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource VLCPageStringifyConverter}}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                                                       Header="{Binding Source={StaticResource Strings}, Path=TvUnsafeArea}"
+                                                       Text="{Binding Source={StaticResource Strings}, Path=AddMarginExplanation}" 
+                                                       IsTabStop="False" 
+                                                       Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.MediaCenterMode, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <ToggleSwitch OffContent="{Binding Source={StaticResource Strings}, Path=NoExtraMargin}"
+                                      OnContent="{Binding Source={StaticResource Strings}, Path=ExtraMargin}"
+                                      Margin="{StaticResource FrameMarginRight}"
+                                      VerticalAlignment="Center"
+                                      Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.MediaCenterMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <ToggleSwitch.IsOn>
+                            <Binding Source="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+                                         Path="ExtraMargin"
+                                         Mode="TwoWay" />
+                        </ToggleSwitch.IsOn>
+                    </ToggleSwitch>
                     <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            Header="{Binding Source={StaticResource Strings}, Path=Credentials}"
                                                            IsTabStop="False"/>

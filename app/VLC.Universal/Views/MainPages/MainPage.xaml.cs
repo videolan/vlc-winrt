@@ -42,6 +42,7 @@ namespace VLC.UI.Views.MainPages
             this.GotFocus += MainPage_GotFocus;
             this.Loaded += MainPage_Loaded;
             Unloaded += OnUnloaded;
+            AdjustMargin(Locator.SettingsVM.ExtraMargin, true);
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
@@ -134,7 +135,34 @@ namespace VLC.UI.Views.MainPages
             if(_pipEnabled)
                 Locator.NavigationService.RefreshCurrentPage();
         }
-        
+
+        bool _isCurrentExtraMarginEnabled;
+        /// <summary>
+        /// https://code.videolan.org/videolan/vlc-winrt/issues/166
+        /// </summary>
+        public void AdjustMargin(bool enableExtraMargin, bool firstRun = false)
+        {
+            if (enableExtraMargin == _isCurrentExtraMarginEnabled && !firstRun) return;
+            if (firstRun && !enableExtraMargin) return;
+
+            _isCurrentExtraMarginEnabled = enableExtraMargin;
+            
+            var extraMargin = Locator.SettingsVM.ExtraMarginValue;
+
+            if (_isCurrentExtraMarginEnabled)
+            {
+                NavigationFrame.Margin = new Thickness(NavigationFrame.Margin.Left + extraMargin,
+                    NavigationFrame.Margin.Top + extraMargin, NavigationFrame.Margin.Right + extraMargin,
+                    NavigationFrame.Margin.Bottom + extraMargin);
+            }
+            else
+            {
+                NavigationFrame.Margin = new Thickness(NavigationFrame.Margin.Left - extraMargin,
+                    NavigationFrame.Margin.Top - extraMargin, NavigationFrame.Margin.Right - extraMargin,
+                    NavigationFrame.Margin.Bottom - extraMargin);
+            }
+        }
+
         public async void StopCompositionAnimationOnSwapChain()
         {
             if (_compositor == null || _pipEnabled == false)

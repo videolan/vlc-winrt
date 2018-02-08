@@ -78,6 +78,24 @@ namespace VLC.ViewModels.Settings
             }
         }
 
+        public double ExtraMarginValue { get; } = 20;
+        /// <summary>
+        /// https://code.videolan.org/videolan/vlc-winrt/issues/166
+        /// </summary>
+        public bool ExtraMargin
+        {
+            get
+            {
+                var r = ApplicationSettingsHelper.ReadSettingsValue(nameof(ExtraMargin), false);
+                return r as bool? ?? false;
+            } 
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue(nameof(ExtraMargin), value, false);
+                App.RootPage.AdjustMargin(value);
+            }
+        }
+
         public List<VLCAccentColor> AccentColors
         {
             get

@@ -805,4 +805,16 @@
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>use windows 10 pip</value>
   </data>
+  <data name="TvUnsafeArea" xml:space="preserve">
+    <value>TV unsafe area</value>
+  </data>
+  <data name="AddMarginExplanation" xml:space="preserve">
+    <value>Some TVs will not display the app correctly. To add some margin, turn this on</value>
+  </data>
+  <data name="ExtraMargin" xml:space="preserve">
+    <value>Extra margin</value>
+  </data>
+  <data name="NoExtraMargin" xml:space="preserve">
+    <value>No extra margin</value>
+  </data>
 </root>
