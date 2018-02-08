@@ -1,7 +1,7 @@
-From d367d27f74a39c3d0e5abb753216079a5cd0541d Mon Sep 17 00:00:00 2001
+From 5bda8697a2c0fa2796f6b5893e8589646429a65d Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Wed, 22 Nov 2017 14:13:15 +0100
-Subject: [PATCH 10/13] contrib: ffmpeg: Fix winstore build
+Subject: [PATCH 10/14] contrib: ffmpeg: Fix winstore build
 
 ---
  contrib/src/ffmpeg/disable-wincrypt.patch | 10 ++++++++++
