@@ -1,4 +1,4 @@
-From df2d3938422dc32fe9490ad65d3bce9af6b3cbe3 Mon Sep 17 00:00:00 2001
+From 07d8c5ebb98e9baf339853184d54210fd60fb4b9 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <slhomme@matroska.org>
 Date: Fri, 2 Dec 2016 11:14:40 +0100
 Subject: [PATCH 07/14] TEMPORARY: disable cuda/nvenc when building for

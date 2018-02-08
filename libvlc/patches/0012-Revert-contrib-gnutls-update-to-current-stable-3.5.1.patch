@@ -1,4 +1,4 @@
-From 03282cc2cb067f0fa651afbcebbfe47554504c59 Mon Sep 17 00:00:00 2001
+From f0b8ed47319c890072c59eaa34cb05839393d383 Mon Sep 17 00:00:00 2001
 From: Martin Finkel <martin@videolabs.io>
 Date: Tue, 16 Jan 2018 11:35:03 +0100
 Subject: [PATCH 12/14] Revert "contrib: gnutls: update to current stable
