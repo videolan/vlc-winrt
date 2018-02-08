@@ -5166,7 +5166,7 @@
                         <StackPanel x:Name="ContentRoot"
                                     MinHeight="{ThemeResource AppBarThemeCompactHeight}">
                             <ContentPresenter x:Name="Content"
-                                              Height="20"
+                                              Height="25"
                                               Margin="0,14,0,4"
                                               Content="{TemplateBinding Icon}"
                                               Foreground="{TemplateBinding Foreground}"
