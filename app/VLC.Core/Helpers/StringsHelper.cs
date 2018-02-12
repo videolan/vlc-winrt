@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Text;
 using VLC.Utils;
 
@@ -74,6 +75,20 @@ namespace VLC.Helpers
                 inner = true;
             }
             return strBuilder.ToString();
+        }
+
+        // not available in the currently used .NET Core
+        // see https://github.com/dotnet/corefx/blob/472c3d95749910ba600df296bbf01d78d7c4f6d8/src/Common/src/CoreLib/System/Globalization/TextInfo.cs#L441
+        public static string ToTitleCase(this TextInfo textInfo, string str)
+        {
+            var tokens = str.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < tokens.Length; i++)
+            {
+                var token = tokens[i];
+                tokens[i] = token.Substring(0, 1).ToUpper() + token.Substring(1);
+            }
+
+            return string.Join(" ", tokens);
         }
     }
 }

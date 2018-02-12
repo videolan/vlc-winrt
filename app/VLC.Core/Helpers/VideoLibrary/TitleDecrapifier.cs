@@ -9,6 +9,7 @@
 
 
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using VLC.Model.Music;
 using VLC.Utils;
@@ -112,7 +113,7 @@ namespace VLC.Helpers.VideoLibrary
                     string tvShowName = i > 0 ? title.Substring(0, i) : Strings.UnknownShow;
                     if (tvShowName != null)
                     {
-                        tvShowName = CapitalizedString(Decrapify(tvShowName));
+                        tvShowName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Decrapify(tvShowName));
                     }
 
                     string episodeName = stringLength > i + 4 ? title.Substring(0, i + 6) : null;
@@ -140,7 +141,7 @@ namespace VLC.Helpers.VideoLibrary
                     }
                     if (!string.IsNullOrEmpty(episodeName))
                     {
-                        mP.Title = CapitalizedString(episodeName);
+                        mP.Title = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(episodeName);
                     }
                     successfulSearch = true;
                 }
@@ -164,7 +165,7 @@ namespace VLC.Helpers.VideoLibrary
                         ;
                         if (tvShowName != null)
                         {
-                            tvShowName = CapitalizedString(Decrapify(tvShowName));
+                            tvShowName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Decrapify(tvShowName));
                         }
 
                         string episodeName = stringLength > i + 4 ? title.Substring(0, i + 4) : null;
@@ -192,7 +193,7 @@ namespace VLC.Helpers.VideoLibrary
                         }
                         if (!string.IsNullOrEmpty(episodeName))
                         {
-                            mP.Title = CapitalizedString(episodeName);
+                            mP.Title = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(episodeName);
                         }
                         successfulSearch = true;
                     }
@@ -205,14 +206,6 @@ namespace VLC.Helpers.VideoLibrary
         static bool isDigit(char c)
         {
             return c >= '0' && c <= '9';
-        }
-
-        private static string CapitalizedString(string input)
-        {
-            string[] arr = input.Split(' ');
-            // Converted from foreach to LINQ
-            string result = arr.Where(s => s.Length > 1).Aggregate(string.Empty, (current, s) => current + (s.First().ToString().ToUpper() + s.Substring(1) + " "));
-            return result.Trim();
         }
     }
 }
