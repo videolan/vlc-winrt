@@ -607,6 +607,7 @@ namespace VLC.ViewModels
                 {
                     App.RootPage.StopCompositionAnimationOnSwapChain();
                 }
+                Locator.NavigationService.GoBack_Default();
             });
         }
 
