@@ -1,3 +1,11 @@
+Changes between 3.0.0 and 3.0.1
+-------------------------------
+Release: February 16th 2018
+
+* fix regression #230
+* fix medialibrary parsing bug
+* fix #232
+
 Changes between 2.7.0 and 3.0.0
 -------------------------------
 Release: February 8th 2018
