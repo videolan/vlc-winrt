@@ -2,9 +2,10 @@ Changes between 3.0.0 and 3.0.1
 -------------------------------
 Release: February 16th 2018
 
-* fix regression #230
-* fix medialibrary parsing bug
-* fix #232
+* fix stuck at the end of file regression
+* fix medialibrary title parsing bug
+* fix hardware accelation image issue with Radeon graphic cards
+* fix layout cycle bug
 
 Changes between 2.7.0 and 3.0.0
 -------------------------------
