@@ -517,7 +517,7 @@ namespace VLC.ViewModels
 
         private async void Playback_MediaTimeChanged(long time)
         {
-            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Low, () =>
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged(nameof(Time));
                 // Assume position also changes when time does.
