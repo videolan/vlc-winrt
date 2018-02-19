@@ -119,12 +119,12 @@ static void *Lock(void *opaque, void **pixels)
 
 static WriteableBitmap^ CopyToBitmap(thumbnailer_sys_t* sys)
 {
-	if (sys->thumbWidth > INT32_MAX || sys->thumbWidth > INT32_MAX)
-	{
-		assert(sys->thumbWidth < INT32_MAX && sys->thumbWidth < INT32_MAX);
-		return nullptr;
-	}
-	WriteableBitmap^ bmp = ref new WriteableBitmap(static_cast<int>(sys->thumbWidth), static_cast<int>(sys->thumbHeight));
+    if (sys->thumbWidth > INT32_MAX || sys->thumbWidth > INT32_MAX)
+    {
+        assert(sys->thumbWidth < INT32_MAX && sys->thumbWidth < INT32_MAX);
+        return nullptr;
+    }
+    WriteableBitmap^ bmp = ref new WriteableBitmap(static_cast<int>(sys->thumbWidth), static_cast<int>(sys->thumbHeight));
 
 #if FAST_COPY
     InMemoryRandomAccessStream^ stream = ref new InMemoryRandomAccessStream();
