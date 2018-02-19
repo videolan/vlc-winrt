@@ -677,8 +677,8 @@
     <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libchain_plugin.dll">
       <Link>plugins\video_chroma\libchain_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libd3d11_surface_plugin.dll">
-      <Link>plugins\video_chroma\libd3d11_surface_plugin.dll</Link>
+    <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\d3d11\libdirect3d11_filters_plugin.dll">
+      <Link>plugins\d3d11\libdirect3d11_filters_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_chroma\libgrey_yuv_plugin.dll">
       <Link>plugins\video_chroma\libgrey_yuv_plugin.dll</Link>
@@ -769,12 +769,6 @@
     </Content>
     <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libdeinterlace_plugin.dll">
       <Link>plugins\video_filter\libdeinterlace_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libdirect3d11_adjust_plugin.dll">
-      <Link>plugins\video_filter\libdirect3d11_adjust_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libdirect3d11_deinterlace_plugin.dll">
-      <Link>plugins\video_filter\libdirect3d11_deinterlace_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\video_filter\libedgedetection_plugin.dll">
       <Link>plugins\video_filter\libedgedetection_plugin.dll</Link>
@@ -890,15 +884,6 @@
     <Content Include="..\..\..\libvlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\visualization\libvisual_plugin.dll">
       <Link>plugins\visualization\libvisual_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\libvlc\WindowsPhone\vlc-x86\$(Configuration)\plugins\demux\libmod_plugin.dll">
-      <Link>plugins\demux\libmod_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\..\libvlc\WindowsPhone\vlc-x86\$(Configuration)\plugins\control\liboldrc_plugin.dll">
-      <Link>plugins\control\liboldrc_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\..\libvlc\WindowsPhone\vlc-x86\$(Configuration)\plugins\codec\libdmo_plugin.dll">
-      <Link>plugins\codec\libdmo_plugin.dll</Link>
-    </Content>
     <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\BadgeLogo.scale-140.png" />
     <Content Include="Assets\Logo.scale-100.png" />
@@ -992,7 +977,7 @@
     <SDKReference Include="Microsoft.VCLibs, version=12.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Phone</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.WP81, Version=3.20.1">
+    <SDKReference Include="SQLite.WP81, Version=3.21.0">
       <Name>SQLite for Windows Phone 8.1</Name>
     </SDKReference>
   </ItemGroup>
