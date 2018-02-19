@@ -1,7 +1,7 @@
-From 07d8c5ebb98e9baf339853184d54210fd60fb4b9 Mon Sep 17 00:00:00 2001
+From 0cc1aaa214b24789104371f3ad4c31fc63ef6a50 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <slhomme@matroska.org>
 Date: Fri, 2 Dec 2016 11:14:40 +0100
-Subject: [PATCH 07/14] TEMPORARY: disable cuda/nvenc when building for
+Subject: [PATCH 07/20] TEMPORARY: disable cuda/nvenc when building for
  Winstore
 
 ---

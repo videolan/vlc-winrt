@@ -1,0 +1,25 @@
+From 81113b0341fc775613b3db60a45b179156bc27e0 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Mon, 19 Feb 2018 12:37:04 +0100
+Subject: [PATCH 16/20] direct3d11: only lock the picture if it's plane based
+
+---
+ modules/video_output/win32/direct3d11.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index ab2a31e..3d13959 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -661,7 +661,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned pool_size)
+             .picture       = pictures,
+             .picture_count = pool_size,
+         };
+-        if (vd->info.is_slow) {
++        if (vd->info.is_slow && !is_d3d11_opaque(surface_fmt.i_chroma)) {
+             pool_cfg.lock          = Direct3D11MapPoolTexture;
+             //pool_cfg.unlock        = Direct3D11UnmapPoolTexture;
+         }
+-- 
+2.10.1.windows.1
+

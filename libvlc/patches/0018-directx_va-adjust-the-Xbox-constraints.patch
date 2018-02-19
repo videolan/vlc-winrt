@@ -1,0 +1,81 @@
+From 518bbcce8b2ea3fbffe1ec22559a66f6824c2bd8 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Mon, 19 Feb 2018 12:39:10 +0100
+Subject: [PATCH 18/20] directx_va: adjust the Xbox constraints
+
+It can't handle 4K aligned to 128 but is fine when aligned to 16.
+---
+ modules/codec/avcodec/d3d11va.c    | 2 +-
+ modules/codec/avcodec/directx_va.c | 8 ++++++--
+ modules/codec/avcodec/directx_va.h | 2 +-
+ modules/codec/avcodec/dxva2.c      | 2 +-
+ 4 files changed, 9 insertions(+), 5 deletions(-)
+
+diff --git a/modules/codec/avcodec/d3d11va.c b/modules/codec/avcodec/d3d11va.c
+index 4a83ab1..de4ebea 100644
+--- a/modules/codec/avcodec/d3d11va.c
++++ b/modules/codec/avcodec/d3d11va.c
+@@ -378,7 +378,7 @@ static int Open(vlc_va_t *va, AVCodecContext *ctx, enum PixelFormat pix_fmt,
+     if (err!=VLC_SUCCESS)
+         goto error;
+ 
+-    err = directx_va_Setup(va, &sys->dx_sys, ctx, fmt);
++    err = directx_va_Setup(va, &sys->dx_sys, ctx, fmt, isXboxHardware(sys->d3d_dev.d3ddevice));
+     if (err != VLC_SUCCESS)
+         goto error;
+ 
+diff --git a/modules/codec/avcodec/directx_va.c b/modules/codec/avcodec/directx_va.c
+index a2bb530..75a56f9 100644
+--- a/modules/codec/avcodec/directx_va.c
++++ b/modules/codec/avcodec/directx_va.c
+@@ -284,7 +284,7 @@ char *directx_va_GetDecoderName(const GUID *guid)
+ 
+ /* */
+ int directx_va_Setup(vlc_va_t *va, directx_sys_t *dx_sys, const AVCodecContext *avctx,
+-                     const es_format_t *fmt)
++                     const es_format_t *fmt, int flag_xbox)
+ {
+     /* */
+     if (FindVideoServiceConversion(va, dx_sys, fmt, avctx)) {
+@@ -307,7 +307,11 @@ int directx_va_Setup(vlc_va_t *va, directx_sys_t *dx_sys, const AVCodecContext *
+     case AV_CODEC_ID_HEVC:
+         /* the HEVC DXVA2 spec asks for 128 pixel aligned surfaces to ensure
+            all coding features have enough room to work with */
+-        surface_alignment = 128;
++           /* On the Xbox 1/S, the decoder cannot do 4K aligned to 128 but is OK with 64 */
++        if (flag_xbox)
++            surface_alignment = 16;
++        else
++            surface_alignment = 128;
+         surface_count += 16;
+         break;
+     case AV_CODEC_ID_H264:
+diff --git a/modules/codec/avcodec/directx_va.h b/modules/codec/avcodec/directx_va.h
+index 7dbef97..b8e62aa 100644
+--- a/modules/codec/avcodec/directx_va.h
++++ b/modules/codec/avcodec/directx_va.h
+@@ -80,7 +80,7 @@ typedef struct
+ 
+ int directx_va_Open(vlc_va_t *, directx_sys_t *);
+ void directx_va_Close(vlc_va_t *, directx_sys_t *);
+-int directx_va_Setup(vlc_va_t *, directx_sys_t *, const AVCodecContext *avctx, const es_format_t *);
++int directx_va_Setup(vlc_va_t *, directx_sys_t *, const AVCodecContext *avctx, const es_format_t *, int flag_xbox);
+ char *directx_va_GetDecoderName(const GUID *guid);
+ 
+ #endif /* AVCODEC_DIRECTX_VA_H */
+diff --git a/modules/codec/avcodec/dxva2.c b/modules/codec/avcodec/dxva2.c
+index 25de31d..42f5172 100644
+--- a/modules/codec/avcodec/dxva2.c
++++ b/modules/codec/avcodec/dxva2.c
+@@ -315,7 +315,7 @@ static int Open(vlc_va_t *va, AVCodecContext *ctx, enum PixelFormat pix_fmt,
+     if (err!=VLC_SUCCESS)
+         goto error;
+ 
+-    err = directx_va_Setup(va, &sys->dx_sys, ctx, fmt);
++    err = directx_va_Setup(va, &sys->dx_sys, ctx, fmt, 0);
+     if (err != VLC_SUCCESS)
+         goto error;
+ 
+-- 
+2.10.1.windows.1
+

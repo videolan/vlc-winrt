@@ -1,0 +1,29 @@
+From c5b8856cf468de16db1a95de8e709405ca8bab93 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Mon, 19 Feb 2018 14:47:48 +0100
+Subject: [PATCH 19/20] avcodec: limit the amount of threads to 6 for UWP apps
+
+This will also limit the amount of memory used
+---
+ modules/codec/avcodec/video.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/modules/codec/avcodec/video.c b/modules/codec/avcodec/video.c
+index abb6bdd..9df2c41 100644
+--- a/modules/codec/avcodec/video.c
++++ b/modules/codec/avcodec/video.c
+@@ -542,7 +542,11 @@ int InitVideoDec( vlc_object_t *obj )
+             i_thread_count++;
+ 
+         //FIXME: take in count the decoding time
++#if VLC_WINSTORE_APP
++        i_thread_count = __MIN( i_thread_count, 6 );
++#else
+         i_thread_count = __MIN( i_thread_count, p_codec->id == AV_CODEC_ID_HEVC ? 10 : 6 );
++#endif
+     }
+     i_thread_count = __MIN( i_thread_count, p_codec->id == AV_CODEC_ID_HEVC ? 32 : 16 );
+     msg_Dbg( p_dec, "allowing %d thread(s) for decoding", i_thread_count );
+-- 
+2.10.1.windows.1
+

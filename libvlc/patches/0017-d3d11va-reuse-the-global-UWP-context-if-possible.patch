@@ -1,0 +1,48 @@
+From 25c418eee1c7e6285a0417082606521400379cec Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Mon, 19 Feb 2018 17:31:33 +0100
+Subject: [PATCH 17/20] d3d11va: reuse the global UWP context if possible
+
+---
+ modules/codec/avcodec/d3d11va.c | 24 +++++++++++++++++++-----
+ 1 file changed, 19 insertions(+), 5 deletions(-)
+
+diff --git a/modules/codec/avcodec/d3d11va.c b/modules/codec/avcodec/d3d11va.c
+index bf6dcf5..4a83ab1 100644
+--- a/modules/codec/avcodec/d3d11va.c
++++ b/modules/codec/avcodec/d3d11va.c
+@@ -409,12 +409,26 @@ static int D3dCreateDevice(vlc_va_t *va)
+         return VLC_SUCCESS;
+     }
+ 
+-    /* */
+-    hr = D3D11_CreateDevice(va, &sys->hd3d, true, &sys->d3d_dev);
+-    if (FAILED(hr)) {
+-        msg_Err(va, "D3D11CreateDevice failed. (hr=0x%lX)", hr);
+-        return VLC_EGENERIC;
++#if VLC_WINSTORE_APP
++    sys->d3d_dev.d3dcontext = var_InheritInteger(va, "winrt-d3dcontext");
++    if (likely(sys->d3d_dev.d3dcontext))
++    {
++        ID3D11Device* d3ddevice = NULL;
++        ID3D11DeviceContext_GetDevice(sys->d3d_dev.d3dcontext, &sys->d3d_dev.d3ddevice);
++        ID3D11DeviceContext_AddRef(sys->d3d_dev.d3dcontext);
++        ID3D11Device_Release(sys->d3d_dev.d3ddevice);
+     }
++#endif
++
++    /* */
++    if (!sys->d3d_dev.d3ddevice)
++    {
++        hr = D3D11_CreateDevice(va, &sys->hd3d, true, &sys->d3d_dev);
++        if (FAILED(hr)) {
++            msg_Err(va, "D3D11CreateDevice failed. (hr=0x%lX)", hr);
++            return VLC_EGENERIC;
++        }
++	}
+ 
+     void *d3dvidctx = NULL;
+     hr = ID3D11DeviceContext_QueryInterface(sys->d3d_dev.d3dcontext, &IID_ID3D11VideoContext, &d3dvidctx);
+-- 
+2.10.1.windows.1
+
