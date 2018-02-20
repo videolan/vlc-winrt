@@ -1,7 +1,7 @@
-From c7f2bd58a902c298a42da4fbf05928feaa14f094 Mon Sep 17 00:00:00 2001
+From d1c73307799dd515e9db62164acd225ec6a8147a Mon Sep 17 00:00:00 2001
 From: Martin Finkel <martin@videolabs.io>
 Date: Tue, 16 Jan 2018 11:35:03 +0100
-Subject: [PATCH 12/20] Revert "contrib: gnutls: update to current stable
+Subject: [PATCH 12/13] Revert "contrib: gnutls: update to current stable
  3.5.16 (fixes #19350)"
 
 This reverts commit 496d5f426d7fde1bb60c90a0009d222a52fd582d.
