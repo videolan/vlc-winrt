@@ -1,12 +1,31 @@
-From ee89799901e2567743f26055839d25599d0e270c Mon Sep 17 00:00:00 2001
+From cf16961077e136d57182ae7cfd1cdf214b00c74a Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Tue, 20 Feb 2018 11:24:43 +0100
 Subject: [PATCH 13/13] contrib:mpg123: don't use forbidden APIs on Phone apps
 
 ---
- contrib/src/mpg123/rules.mak | 1 +
- 1 file changed, 1 insertion(+)
+ contrib/src/mpg123/mpg123-winstore.patch | 11 +++++++++++
+ contrib/src/mpg123/rules.mak             |  1 +
+ 2 files changed, 12 insertions(+)
+ create mode 100644 contrib/src/mpg123/mpg123-winstore.patch
 
+diff --git a/contrib/src/mpg123/mpg123-winstore.patch b/contrib/src/mpg123/mpg123-winstore.patch
+new file mode 100644
+index 0000000..1657ccb
+--- /dev/null
++++ b/contrib/src/mpg123/mpg123-winstore.patch
+@@ -0,0 +1,11 @@
++--- mpg123/src/compat/compat.c	2018-02-20 11:16:04.530278600 +0100
+++++ mpg123/src/compat/compat.c.w81	2018-02-20 11:15:20.170079400 +0100
++@@ -15,7 +15,7 @@
++ #include "compat.h"
++ 
++ #include <winapifamily.h>
++-#if(defined(WINAPI_FAMILY) && (WINAPI_FAMILY==WINAPI_FAMILY_APP))
+++#if(defined(WINAPI_FAMILY) && (WINAPI_FAMILY==WINAPI_FAMILY_APP || WINAPI_FAMILY==WINAPI_FAMILY_PHONE_APP))
++ #define WINDOWS_UWP
++ #endif
++ 
 diff --git a/contrib/src/mpg123/rules.mak b/contrib/src/mpg123/rules.mak
 index 2d43c8c..278e2eb 100644
 --- a/contrib/src/mpg123/rules.mak
