@@ -685,6 +685,13 @@ namespace VLC.ViewModels.Settings
                 case Languages.Chinese:
                     currentCulture = "zh-CN";
                     break;
+                case Languages.Portuguese:
+                    currentCulture = "pt-PT";
+                    break;
+                case Languages.Czech:
+                    currentCulture = "cs-CZ";
+                    break;
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(language), language, null);
             }

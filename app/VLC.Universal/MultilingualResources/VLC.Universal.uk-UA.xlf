@@ -1153,6 +1153,14 @@
           <source>No extra margin</source>
           <target state="new">No extra margin</target>
         </trans-unit>
+        <trans-unit id="PortugueseLanguage" translate="yes" xml:space="preserve">
+          <source>Portuguese</source>
+          <target state="new">Portuguese</target>
+        </trans-unit>
+        <trans-unit id="CzechLanguage" translate="yes" xml:space="preserve">
+          <source>Czech</source>
+          <target state="new">Czech</target>
+        </trans-unit>
       </group>
     </body>
   </file>

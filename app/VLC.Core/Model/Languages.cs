@@ -20,6 +20,8 @@
         Swedish,
         Turkish,
         Ukrainian,
-        Chinese
+        Chinese,
+        Portuguese,
+        Czech
     }
 }

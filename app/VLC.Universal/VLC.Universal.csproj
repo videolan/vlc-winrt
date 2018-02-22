@@ -354,6 +354,8 @@
     <PRIResource Include="Strings\uk-UA\Resources.resw" />
     <PRIResource Include="Strings\en-US\Resources.resw"/>
     <None Include="VLC_WinRT.Universal_TemporaryKey.pfx" />
+    <PRIResource Include="Strings\cs-CZ\Resources.resw" />
+    <PRIResource Include="Strings\pt-PT\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\libvlc.dll">
