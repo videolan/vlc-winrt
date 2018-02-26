@@ -61,6 +61,8 @@ namespace VLC_WinRT.Views.UserControls
 
         void UpdatePivot()
         {
+            if (Locator.MainVM.CurrentPanel == null) return;
+
             if (Panel.Target == Locator.MainVM.CurrentPanel.Target)
             {
                 Icon.Glyph = Panel.FilledIcon;
