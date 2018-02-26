@@ -432,7 +432,8 @@ void Stop(audio_output_t *aout)
 	LeaveMTA();
 	vlc_object_release(sys->stream);
 	sys->stream = NULL;
-	sys->client->Release();
+	if(sys->client != nullptr)
+		sys->client->Release();
 }
 
 int DeviceSelect(audio_output_t *aout, const char* psz_device)
