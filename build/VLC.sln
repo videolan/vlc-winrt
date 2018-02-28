@@ -27,6 +27,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX.8.1.Shared", "..\modules\libVLCX.8.1\libVLCX.8.1.Shared\libVLCX.8.1.Shared.vcxitems", "{D8088313-CB38-4FDF-9F97-2D5E4CC63173}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX.8.1.Windows", "..\modules\libVLCX.8.1\libVLCX.8.1.Windows\libVLCX.8.1.Windows.vcxproj", "{252C421D-B48D-44FB-A1A0-0752D66A972D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A593376E-2BBE-4844-B25F-1342B7716287} = {A593376E-2BBE-4844-B25F-1342B7716287}
+		{209C21D7-B0A7-4500-85BF-2F12B248A90D} = {209C21D7-B0A7-4500-85BF-2F12B248A90D}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX.8.1.WindowsPhone", "..\modules\libVLCX.8.1\libVLCX.8.1.WindowsPhone\libVLCX.8.1.WindowsPhone.vcxproj", "{1C3F97BB-2FAA-4EC0-825D-D5B13E304F3C}"
 	ProjectSection(ProjectDependencies) = postProject

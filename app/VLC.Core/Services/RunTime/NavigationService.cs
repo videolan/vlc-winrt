@@ -20,6 +20,11 @@ using VLC_WinRT.Views.MusicPages.ArtistPages;
 using VLC_WinRT.Views.MusicPages.PlaylistControls;
 using VLC_WinRT.Views.VariousPages;
 using VLC_WinRT.Views.VideoPages;
+#if WINDOWS_PHONE_APP
+using Windows.Phone.UI.Input;
+#endif
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml;
 
 namespace VLC.Services.RunTime
 {
@@ -45,15 +50,14 @@ namespace VLC.Services.RunTime
             //    e.Handled = GoBack_Specific();
             //};
 
-            //if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
-            //{
-            //    Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-            //}
+#if WINDOWS_PHONE_APP
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+#endif
 
             App.RootPage.NavigationFrame.Navigated += NavigationFrame_Navigated;
             HomePageNavigated += NavigationService_HomePageNavigated;
         }
-
+        
         public void Reset()
         {
             CurrentPage = VLCPage.None;
@@ -97,11 +101,12 @@ namespace VLC.Services.RunTime
                 App.SplitShell.ShowTopBar();
             ShowBackButtonIfCanGoBack();
         }
-
-        //private void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
-        //{
-        //    e.Handled = GoBack_Specific();
-        //}
+#if WINDOWS_PHONE_APP
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            e.Handled = GoBack_Specific();
+        }
+#endif
 
         public void ShowBackButtonIfCanGoBack()
         {
@@ -156,19 +161,15 @@ namespace VLC.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.VideoPlayerPage:
-                    if (Helpers.DeviceHelper.IsMediaCenterModeCompliant && 
-                        Locator.VideoPlayerVm.PlayerControlVisibility == true )
-                    {
-                        Locator.VideoPlayerVm.RequestChangeControlBarVisibility(false);
-                        break;
-                    }
-                    if (currentFlyout == VLCPage.VideoPlayerOptionsPanel || 
-                        currentFlyout == VLCPage.SubtitlesSettings ||
-                        currentFlyout == VLCPage.AudioTracksSettings ||
-                        currentFlyout == VLCPage.ChaptersSettings )
-                        GoBack_HideFlyout();
+                   
+                    //if (currentFlyout == VLCPage.VideoPlayerOptionsPanel || 
+                    //    currentFlyout == VLCPage.SubtitlesSettings ||
+                    //    currentFlyout == VLCPage.AudioTracksSettings ||
+                    //    currentFlyout == VLCPage.ChaptersSettings )
+                    //    GoBack_HideFlyout();
 
                     Locator.MediaPlaybackViewModel.GoBack.Execute(null);
+                    GoBack_Default();
                     break;
                 case VLCPage.MusicPlayerPage:
                     GoBack_Default();
