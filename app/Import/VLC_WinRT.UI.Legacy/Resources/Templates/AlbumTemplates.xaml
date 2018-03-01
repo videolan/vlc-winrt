@@ -9,7 +9,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="AlbumItemTemplateKeyBinding">
-        <userControls:AlbumItem Album="{Binding Group.Key}" />
+        <userControls:AlbumItem Album="{Binding}" />
     </DataTemplate>
 
     <DataTemplate x:Key="AlbumItemTemplateFixedSize">

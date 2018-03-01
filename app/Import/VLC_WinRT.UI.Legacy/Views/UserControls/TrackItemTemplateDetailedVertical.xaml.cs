@@ -11,7 +11,7 @@ using VLC.Model.Music;
 using VLC.Utils;
 using VLC.ViewModels;
 
-namespace VLC_WinRT.UI.Legacy.Views.UserControls
+namespace VLC_WinRT.Views.UserControls
 {
     public sealed partial class TrackItemTemplateDetailedVertical : UserControl
     {
