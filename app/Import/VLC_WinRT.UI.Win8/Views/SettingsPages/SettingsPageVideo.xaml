@@ -38,7 +38,7 @@
                            FontWeight="SemiLight" />
                 <ToggleSwitch Header="{Binding Source={StaticResource Strings}, Path=HardwareDecoding}"
                               IsOn="{Binding HardwareAccelerationEnabled, Mode=TwoWay}" />
-                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
                            Margin="0,-6,0,12">
                     <Run Text="{Binding Source={StaticResource Strings}, Path=HardwareDecodingDescription}" />
@@ -77,7 +77,7 @@
                            FontWeight="SemiLight" />
                 <TextBlock Tag="WindowsOnly"
                            Text="{Binding Source={StaticResource Strings}, Path=VideoFoldersDescription}"
-                           Style="{StaticResource BodyTextBlockStyle}"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
                 <ListView Tag="WindowsOnly"
                           ItemsSource="{Binding VideoFolders}"
@@ -101,7 +101,7 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RemoveVideoFolderDescription}"
-                                                           Style="{StaticResource BodyTextBlockStyle}" />
+                                                           Style="{StaticResource SubheaderTextBlockStyle}" />
                                                 <Button Grid.Row="2"
                                                         Content="{Binding Source={StaticResource Strings}, Path=RemoveFolder}"
                                                         Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.RemoveFolderFromVideoLibrary}"
@@ -135,7 +135,8 @@
                         Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
                         Command="{Binding AddFolderToLibrary}"
                         CommandParameter="{Binding VideoLibraryId}"
-                        Margin="{StaticResource FrameMarginTop}"/>
+                        Margin="{StaticResource FrameMarginTop}"
+                        Style="{StaticResource TextBlockButtonStyle}"/>
 
 
             </StackPanel>

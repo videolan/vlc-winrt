@@ -68,8 +68,9 @@
                 </GridView>
                 <Button x:Name="ApplyColor" 
                         Click="ApplyColorButton_Click"
-                        Content="Apply and restart"/>
-                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                        Content="Apply and restart"
+                        Style="{StaticResource TextBlockButtonStyle}"/>
+                <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
                            Margin="0,0,0,12">
                     <Run Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}" />
@@ -82,7 +83,7 @@
                            FontWeight="SemiLight" />
                 <TextBlock Text="{Binding Source={StaticResource Strings}, Path=HomePageDescription}"
                            Margin="0,6,0,0"
-                           Style="{StaticResource BodyTextBlockStyle}" />
+                           Style="{StaticResource SubheaderTextBlockStyle}" />
                 <ComboBox Margin="0,12,0,0"
                           ItemsSource="{Binding HomePageCollection}"
                           SelectedItem="{Binding HomePage, Mode=TwoWay}"

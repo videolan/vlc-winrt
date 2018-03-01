@@ -40,7 +40,7 @@
                            FontWeight="SemiLight" />
                 <TextBlock Tag="WindowsOnly"
                            Text="{Binding Source={StaticResource Strings}, Path=MusicFoldersDescription}"
-                           Style="{StaticResource BodyTextBlockStyle}"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
                 <ListView Tag="WindowsOnly"
                           ItemsSource="{Binding MusicFolders}"
@@ -64,8 +64,9 @@
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <TextBlock Text="{Binding Source={StaticResource Strings}, Path=RemoveMusicFolderDescription}"
-                                                           Style="{StaticResource BodyTextBlockStyle}" />
+                                                           Style="{StaticResource SubheaderTextBlockStyle}" />
                                                 <Button Grid.Row="2"
+                                                        Style="{StaticResource TextBlockButtonStyle}"
                                                         Content="{Binding Source={StaticResource Strings}, Path=RemoveFolder}"
                                                         Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.RemoveFolderFromMusicLibrary}"
                                                         CommandParameter="{Binding}" />
@@ -97,7 +98,8 @@
                 <Button Tag="WindowsOnly"
                         Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
                         Command="{Binding AddFolderToLibrary}"
-                        CommandParameter="{Binding MusicLibraryId}" />
+                        CommandParameter="{Binding MusicLibraryId}" 
+                        Style="{StaticResource TextBlockButtonStyle}"/>
                 <TextBlock Tag="WindowsOnly"
                            Text="{Binding Source={StaticResource Strings}, Path=Notifications}"
                            FontSize="22"
@@ -158,9 +160,10 @@
                         DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                         Command="{Binding StartMusicIndexingCommand}"
                         CommandParameter="True"
-                        Margin="0,6,0,0" />
+                        Margin="0,6,0,0" 
+                        Style="{StaticResource TextBlockButtonStyle}"/>
                 <TextBlock x:Uid="ResetMusicDbHelp" Text="This will delete all the playlists made with VLC, and index the music library again."
-                           Style="{StaticResource BodyTextBlockStyle}"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
             </StackPanel>
         </ScrollViewer>

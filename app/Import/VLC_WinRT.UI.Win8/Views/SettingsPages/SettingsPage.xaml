@@ -79,7 +79,7 @@
                 <TextBlock Text="{Binding Source={StaticResource Strings}, Path=AboutTheApp}"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Margin="{StaticResource FrameMarginBothSides}"/>
-                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
                            Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
                            VerticalAlignment="Center"
                            Margin="{StaticResource FrameMarginLeft}">
