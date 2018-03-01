@@ -201,15 +201,26 @@ namespace VLC_WinRT.Views.VideoPages
                 FadeOut.Begin();
 #if WINDOWS_APP
                 Locator.MediaPlaybackViewModel.MouseService.HideCursor();
+#elif WINDOWS_PHONE_APP
+                var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+
+                // Hide the status bar
+                await statusBar.HideAsync();
 #endif
+                
                 await VolumeGrid.FadeOut();
                 await BackButton.FadeOut();
             }
             else
-            {
+            {                
                 FadeIn.Begin();
 #if WINDOWS_APP
                 Locator.MediaPlaybackViewModel.MouseService.ShowCursor();
+#elif WINDOWS_PHONE_APP
+                var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+
+                // Hide the status bar
+                await statusBar.ShowAsync();
 #endif
                 await VolumeGrid.FadeIn();
                 await BackButton.FadeIn();
