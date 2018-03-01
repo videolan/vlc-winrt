@@ -22,7 +22,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using VLC_WinRT.Controls;
-using VLC_WinRT.UI.Legacy.Views.UserControls;
 using VLC_WinRT.Views.MainPages;
 
 namespace VLC
@@ -302,29 +301,10 @@ namespace VLC
 
         static void ToggleMediaCenterMode()
         {
-            if (Locator.SettingsVM.MediaCenterMode)
-            {
-                if (Locator.MainVM.CurrentPanel != null)
-                {
-                    Locator.NavigationService.RefreshCurrentPage();
-                    return;
-                }
+            Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
 
-                Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
-                Locator.MainVM.GoToHomePageMediaCenterCommand.Execute(null);
-
-                AppViewHelper.EnterFullscreen();
-
-                App.SplitShell.FooterContent = null;
-            }
-            else
-            {
-                Locator.MainVM.CurrentPanel = Locator.MainVM.Panels.FirstOrDefault(x => x.Target == Locator.SettingsVM.HomePage);
-
-                AppViewHelper.LeaveFullscreen();
-
-                //App.SplitShell.FooterContent = new CommandBarBottom();
-            }
+            AppViewHelper.LeaveFullscreen();
+            
             Locator.NavigationService.RefreshCurrentPage();
         }
 
