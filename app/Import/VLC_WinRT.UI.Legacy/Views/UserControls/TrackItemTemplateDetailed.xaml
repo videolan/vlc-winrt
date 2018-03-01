@@ -48,6 +48,7 @@
                    Style="{StaticResource BaseTextBlockStyle}"
                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                    FontWeight="Light"
+                   FontSize="15"
                    TextWrapping="NoWrap"
                    TextTrimming="CharacterEllipsis" />
         <TextBlock Grid.Column="2"
@@ -57,6 +58,7 @@
                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                    FontWeight="Light"
                    TextWrapping="NoWrap"
+                   FontSize="15"
                    TextTrimming="CharacterEllipsis" />
         <TextBlock Grid.Column="4"
                    x:Name="DurationTextBlock"
