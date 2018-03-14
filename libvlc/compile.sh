@@ -148,7 +148,6 @@ cd $CONTRIB_FOLDER
     --enable-ass \
     --disable-qt \
     --disable-qtsvg \
-    --disable-protobuf \
     --disable-aribb25 \
     --disable-gnuv3 \
     --enable-ssh2 \
