@@ -88,6 +88,13 @@ then
 MAKEFLAGS=-j`nproc`
 fi
 
+# Build tools with the native compiler
+echo "Compiling missing tools..."
+cd extras/tools
+./bootstrap && make $MAKEFLAGS
+export PATH=`pwd`/build/bin:$PATH
+cd ../../
+
 TARGET_TUPLE=${1}-w64-mingw32
 case "${1}" in
     armv7)
