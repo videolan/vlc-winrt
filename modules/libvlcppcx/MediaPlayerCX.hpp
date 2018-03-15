@@ -25,6 +25,7 @@
 #include <collection.h>
 #include "StructuresCX.hpp"
 #include "MediaCX.hpp"
+#include "RendererDiscovererCX.hpp"
 #include <vlcpp/vlc.hpp>
 
 namespace libVLCX
@@ -1110,6 +1111,8 @@ namespace libVLCX
         * \version LibVLC 1.1.1 and later.
         */
         void setAdjustFloat(unsigned option, float value);
+
+        bool setRenderer(RendererItem^ item);
 
     private:
         ~MediaPlayer(){}

@@ -42,6 +42,11 @@ namespace libVLCX
     {
     }
 
+    RendererDiscovererEventManager::RendererDiscovererEventManager(VLC::RendererDiscovererEventManager& em)
+        : m_em(em)
+    {
+    }
+
     void EventRemover::removeToken(std::vector<VLC::EventManager::RegisteredEvent>& events, Windows::Foundation::EventRegistrationToken token)
     {
         auto h = (VLC::EventManager::RegisteredEvent)token.Value;

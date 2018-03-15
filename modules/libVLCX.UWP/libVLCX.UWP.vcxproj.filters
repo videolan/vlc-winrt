@@ -46,6 +46,9 @@
     <ClCompile Include="..\libvlcppcx\PlatformHelpers.cpp">
       <Filter>libvlcppcx</Filter>
     </ClCompile>
+    <ClCompile Include="..\libvlcppcx\RendererDiscovererCX.cpp">
+      <Filter>libvlcppcx</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -121,6 +124,12 @@
       <Filter>libvlcppcx</Filter>
     </ClInclude>
     <ClInclude Include="..\libvlcppcx\PlatformHelpers.hpp">
+      <Filter>libvlcppcx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libvlcpp\vlcpp\RendererDiscoverer.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libvlcppcx\RendererDiscovererCX.hpp">
       <Filter>libvlcppcx</Filter>
     </ClInclude>
   </ItemGroup>

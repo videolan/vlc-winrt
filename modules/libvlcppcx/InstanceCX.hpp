@@ -305,6 +305,8 @@ namespace libVLCX
 
         Windows::Foundation::Collections::IVector<MediaDiscovererDescription^>^ mediaDiscoverers(MediaDiscovererCategory category);
 
+        Windows::Foundation::Collections::IVector<RendererDiscovererDescription^>^ rendererDiscoverers();
+
         void UpdateScale(float x, float y);
     private:
         void InitializeHack(char** argv, unsigned int & nbArgs);

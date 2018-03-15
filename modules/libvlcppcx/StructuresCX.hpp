@@ -268,4 +268,17 @@ namespace libVLCX
         Platform::String^ m_longName;
         MediaDiscovererCategory m_category;
     };
+
+    public ref class RendererDiscovererDescription sealed
+    {
+    public:
+        Platform::String^ name();
+        Platform::String^ longName();
+    internal:
+        explicit RendererDiscovererDescription(const VLC::RendererDiscovererDescription& desc);
+
+    private:
+        Platform::String^ m_name;
+        Platform::String^ m_longName;
+    };
 }

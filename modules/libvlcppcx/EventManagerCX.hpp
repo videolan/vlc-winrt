@@ -25,12 +25,14 @@
 #include <vlcpp/vlc.hpp>
 #include "StructuresCX.hpp"
 #include "MediaCX.hpp"
+#include "RendererDiscovererCX.hpp"
 
 #include <memory>
 
 namespace libVLCX
 {
     ref class Media;
+    ref class RendererItem;
 
     public delegate void MediaChanged(Media^);
     public delegate void NothingSpecial();
@@ -62,6 +64,10 @@ namespace libVLCX
     public delegate void MediaListWillDeleteItem(Media^, int);
 
 	public delegate void ParsedChanged(ParsedStatus);
+
+    public delegate void RendererItemAdded(RendererItem^);
+    public delegate void RendererItemDeleted(RendererItem^);
+
     ref class EventManager;
 
     private ref class EventRemover sealed
@@ -70,7 +76,6 @@ namespace libVLCX
         static void removeToken(std::vector<VLC::EventManager::RegisteredEvent>& events, Windows::Foundation::EventRegistrationToken token);
     };
     
-
     public ref class MediaPlayerEventManager sealed
     {
     private:
@@ -559,6 +564,47 @@ namespace libVLCX
 
             void remove(Windows::Foundation::EventRegistrationToken token)
             {
+                EventRemover::removeToken(m_events, token);
+            }
+        }
+    };
+
+    public ref class RendererDiscovererEventManager sealed
+    {
+    private:
+        std::vector<VLC::EventManager::RegisteredEvent> m_events;
+    internal:
+        RendererDiscovererEventManager(VLC::RendererDiscovererEventManager& em);
+    private:
+        VLC::RendererDiscovererEventManager& m_em;
+    public:
+        event RendererItemAdded^ OnItemAdded 
+        {
+            Windows::Foundation::EventRegistrationToken add(RendererItemAdded^ handler)
+            {
+                auto h = m_em.onItemAdded([handler](VLC::RendererDiscoverer::Item i) {
+                    handler(ref new RendererItem(i));
+                });
+                m_events.push_back(h);
+                return Windows::Foundation::EventRegistrationToken{ (int64)h };
+            }
+
+            void remove(Windows::Foundation::EventRegistrationToken token) {
+                EventRemover::removeToken(m_events, token);
+            }
+        }
+        event RendererItemDeleted^ OnRendererItemDeleted
+        {
+            Windows::Foundation::EventRegistrationToken add(RendererItemDeleted^ handler)
+            {
+                auto h = m_em.onItemDeleted([handler](VLC::RendererDiscoverer::Item i) {
+                    handler(ref new RendererItem(i));
+                });
+                m_events.push_back(h);
+                return Windows::Foundation::EventRegistrationToken{ (int64)h };
+            }
+
+            void remove(Windows::Foundation::EventRegistrationToken token) {
                 EventRemover::removeToken(m_events, token);
             }
         }

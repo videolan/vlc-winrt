@@ -330,4 +330,20 @@ namespace libVLCX
         , m_category(static_cast<MediaDiscovererCategory>(desc.category()))
     {
     }
+
+    Platform::String^ RendererDiscovererDescription::name()
+    {
+        return m_name;
+    }
+
+    Platform::String^ RendererDiscovererDescription::longName()
+    {
+        return m_longName;
+    }
+
+    RendererDiscovererDescription::RendererDiscovererDescription(const VLC::RendererDiscovererDescription& desc)
+        : m_name(ToPlatformString(desc.name().c_str()))
+        , m_longName(ToPlatformString(desc.longName().c_str()))
+    {
+    }
 }

@@ -25,6 +25,7 @@
 #include "InstanceCX.hpp"
 #include "EventManagerCX.hpp"
 #include "EqualizerCX.hpp"
+#include "RendererDiscovererCX.hpp"
 
 #include "Helpers.h"
 
@@ -542,6 +543,11 @@ namespace libVLCX
     void MediaPlayer::setAdjustFloat(unsigned option, float value)
     {
         m_mp.setAdjustFloat(option, value);
+    }
+
+    bool MediaPlayer::setRenderer(RendererItem^ item)
+    {
+        return m_mp.setRenderer(item->m_item);
     }
 
 } // namespace VLC

@@ -170,6 +170,11 @@ namespace libVLCX
         return MarshallVector<MediaDiscovererDescription, VLC::MediaDiscoverer::Description>(m_instance.mediaDiscoverers(static_cast<VLC::MediaDiscoverer::Category>(category)));
     }
 
+    Windows::Foundation::Collections::IVector<RendererDiscovererDescription^>^ Instance::rendererDiscoverers()
+    {
+        return MarshallVector<RendererDiscovererDescription, VLC::RendererDiscovererDescription>(m_instance.rendererDiscoverers());
+    }
+
     Instance::~Instance()
     {
     }

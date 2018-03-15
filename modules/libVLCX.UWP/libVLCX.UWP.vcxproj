@@ -251,6 +251,7 @@
     <ClInclude Include="..\libvlcppcx\MediaListCX.hpp" />
     <ClInclude Include="..\libvlcppcx\MediaPlayerCX.hpp" />
     <ClInclude Include="..\libvlcppcx\PlatformHelpers.hpp" />
+    <ClInclude Include="..\libvlcppcx\RendererDiscovererCX.hpp" />
     <ClInclude Include="..\libvlcppcx\StructuresCX.hpp" />
     <ClInclude Include="..\libvlcpp\vlcpp\common.hpp" />
     <ClInclude Include="..\libvlcpp\vlcpp\Dialog.hpp" />
@@ -264,6 +265,7 @@
     <ClInclude Include="..\libvlcpp\vlcpp\MediaList.hpp" />
     <ClInclude Include="..\libvlcpp\vlcpp\MediaListPlayer.hpp" />
     <ClInclude Include="..\libvlcpp\vlcpp\MediaPlayer.hpp" />
+    <ClInclude Include="..\libvlcpp\vlcpp\RendererDiscoverer.hpp" />
     <ClInclude Include="..\libvlcpp\vlcpp\structures.hpp" />
     <ClInclude Include="..\libvlcpp\vlcpp\vlc.hpp" />
     <ClInclude Include="..\libVLCX\DirectXManager.h" />
@@ -280,6 +282,7 @@
     <ClCompile Include="..\libvlcppcx\MediaListCX.cpp" />
     <ClCompile Include="..\libvlcppcx\MediaPlayerCX.cpp" />
     <ClCompile Include="..\libvlcppcx\PlatformHelpers.cpp" />
+    <ClCompile Include="..\libvlcppcx\RendererDiscovererCX.cpp" />
     <ClCompile Include="..\libvlcppcx\StructuresCX.cpp" />
     <ClCompile Include="..\libVLCX\DirectXManager.cpp" />
     <ClCompile Include="..\libVLCX\Thumbnailer.cpp" />
