@@ -1,0 +1,76 @@
+From 7e273841066d77bf7a5e4e14679771e4d4873dce Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Tue, 27 Mar 2018 18:57:41 +0200
+Subject: [PATCH 13/13] rand: use bcrypt instead of CryptographicBufferStatics
+
+It's available to winstore apps
+---
+ src/win32/rand.c | 44 ++++++++------------------------------------
+ 1 file changed, 8 insertions(+), 36 deletions(-)
+
+diff --git a/src/win32/rand.c b/src/win32/rand.c
+index 1aeb656..75466b7 100644
+--- a/src/win32/rand.c
++++ b/src/win32/rand.c
+@@ -27,11 +27,7 @@
+ #include <vlc_rand.h>
+ 
+ #if VLC_WINSTORE_APP
+-# define COBJMACROS
+-# define INITGUID
+-# include <winstring.h>
+-# include <roapi.h>
+-# include <windows.security.cryptography.h>
++# include <bcrypt.h>
+ #else
+ # include <wincrypt.h>
+ #endif
+@@ -58,38 +54,14 @@ void vlc_rand_bytes (void *buf, size_t len)
+     }
+ 
+ #if VLC_WINSTORE_APP
+-    static const WCHAR *className = L"Windows.Security.Cryptography.CryptographicBuffer";
+-    const UINT32 clen = wcslen(className);
+-
+-    HSTRING hClassName = NULL;
+-    HSTRING_HEADER header;
+-    HRESULT hr = WindowsCreateStringReference(className, clen, &header, &hClassName);
+-    if (hr) {
+-        WindowsDeleteString(hClassName);
+-        return;
+-    }
+-
+-    ICryptographicBufferStatics *cryptoStatics = NULL;
+-    hr = RoGetActivationFactory(hClassName, &IID_ICryptographicBufferStatics, (void**)&cryptoStatics);
+-    WindowsDeleteString(hClassName);
+-
+-    if (hr)
+-        return;
+-
+-    IBuffer *buffer = NULL;
+-    hr = ICryptographicBufferStatics_GenerateRandom(cryptoStatics, len, &buffer);
+-    if (hr) {
+-        ICryptographicBufferStatics_Release(cryptoStatics);
+-        return;
++    BCRYPT_ALG_HANDLE algo_handle;
++    NTSTATUS ret = BCryptOpenAlgorithmProvider(&algo_handle, BCRYPT_RNG_ALGORITHM,
++                                               MS_PRIMITIVE_PROVIDER, 0);
++    if (BCRYPT_SUCCESS(ret))
++    {
++        BCryptGenRandom(algo_handle, buf, len, 0);
++        BCryptCloseAlgorithmProvider(algo_handle, 0);
+     }
+-
+-    UINT32 olength;
+-    unsigned char *rnd = NULL;
+-    hr = ICryptographicBufferStatics_CopyToByteArray(cryptoStatics, buffer, &olength, (BYTE**)&rnd);
+-    memcpy(buf, rnd, len);
+-
+-    IBuffer_Release(buffer);
+-    ICryptographicBufferStatics_Release(cryptoStatics);
+ #else
+     HCRYPTPROV hProv;
+     /* acquire default encryption context */
+-- 
+2.10.1.windows.1
+
