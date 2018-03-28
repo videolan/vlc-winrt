@@ -811,6 +811,9 @@
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>use windows 10 pip</value>
   </data>
+  <data name="ResumeOrRestartPlayback" xml:space="preserve">
+    <value>Resume or restart playback</value>
+  </data>
   <data name="TvUnsafeArea" xml:space="preserve">
     <value>TV unsafe area</value>
   </data>

@@ -356,8 +356,11 @@ namespace VLC.Services.RunTime
             CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
             if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Phone)
                 CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-threads=0" : ":avcodec-threads=1");
-            var pos = await FetchPreviousPosition(media);
-            CurrentMedia.addOption($":start-time={pos}");
+            if (Locator.SettingsVM.ResumePreviousPosition)
+            {
+                var pos = await FetchPreviousPosition(media);
+                CurrentMedia.addOption($":start-time={pos}");
+            }
 
             if (_mediaPlayer == null)
             {

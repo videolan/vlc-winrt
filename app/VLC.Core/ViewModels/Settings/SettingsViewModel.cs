@@ -623,6 +623,12 @@ namespace VLC.ViewModels.Settings
 
         public ChangeSettingsViewCommand ChangeSettingsViewCommand { get; } = new ChangeSettingsViewCommand();
 
+        public bool ResumePreviousPosition
+        {
+            get => ApplicationSettingsHelper.ReadSettingsValue(nameof(ResumePreviousPosition)) as bool? ?? true;
+            set => ApplicationSettingsHelper.SaveSettingsValue(nameof(ResumePreviousPosition), value);
+        }
+
         public static void SwitchLanguage(Languages language)
         {
             var currentCulture = "en-US";

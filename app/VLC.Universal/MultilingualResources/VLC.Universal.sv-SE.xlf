@@ -1161,6 +1161,10 @@
           <source>Czech</source>
           <target state="new">Czech</target>
         </trans-unit>
+        <trans-unit id="ResumeOrRestartPlayback" translate="yes" xml:space="preserve">
+          <source>Resume or restart playback</source>
+          <target state="new">Resume or restart playback</target>
+        </trans-unit>
       </group>
     </body>
   </file>
