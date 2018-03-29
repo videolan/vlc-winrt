@@ -1,7 +1,7 @@
-From 66ec850fcead8e65b74756d9033d2c277803ca66 Mon Sep 17 00:00:00 2001
+From 6148cbcca157d7f9f4904f34c57dfa81985179c2 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Wed, 11 May 2016 17:37:47 +0200
-Subject: [PATCH 02/13] gnutls: Set cannot_unload_broken_library for winrt
+Subject: [PATCH 02/15] gnutls: Set cannot_unload_broken_library for winrt
 
 ---
  modules/misc/gnutls.c | 3 +++

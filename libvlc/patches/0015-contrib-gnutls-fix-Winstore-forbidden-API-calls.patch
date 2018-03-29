@@ -1,0 +1,455 @@
+From 0e8b67f5b51afdeaf62945f835f562a6798a4dc1 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Mon, 23 May 2016 09:18:17 +0200
+Subject: [PATCH 15/15] contrib: gnutls: fix Winstore forbidden API calls
+
+---
+ contrib/src/gnutls/rules.mak      |   3 +
+ contrib/src/gnutls/winstore.patch | 421 ++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 424 insertions(+)
+ create mode 100644 contrib/src/gnutls/winstore.patch
+
+diff --git a/contrib/src/gnutls/rules.mak b/contrib/src/gnutls/rules.mak
+index 9cd29be..b04b3c0 100644
+--- a/contrib/src/gnutls/rules.mak
++++ b/contrib/src/gnutls/rules.mak
+@@ -38,6 +38,9 @@ ifdef HAVE_MACOSX
+ 	$(APPLY) $(SRC)/gnutls/gnutls-disable-connectx-macos.patch
+ endif
+ 	$(APPLY) $(SRC)/gnutls/gnutls-libidn.patch
++ifdef HAVE_WINSTORE
++	$(APPLY) $(SRC)/gnutls/winstore.patch
++endif
+ 	$(call pkg_static,"lib/gnutls.pc.in")
+ 	$(UPDATE_AUTOCONFIG)
+ 	$(MOVE)
+diff --git a/contrib/src/gnutls/winstore.patch b/contrib/src/gnutls/winstore.patch
+new file mode 100644
+index 0000000..30861c7
+--- /dev/null
++++ b/contrib/src/gnutls/winstore.patch
+@@ -0,0 +1,421 @@
++--- gnutls/lib/nettle/sysrng-windows.c.winstore	2016-11-05 19:12:02.000000000 +0100
+++++ gnutls/lib/nettle/sysrng-windows.c	2018-03-28 14:31:43.044698600 +0200
++@@ -29,6 +29,34 @@
++  * Original author Niels Möller.
++  */
++ 
+++#include <windows.h>
+++#include <winapifamily.h>
+++#if WINAPI_PARTITION_DESKTOP
+++#include <wincrypt.h>
+++#else /* !WINAPI_PARTITION_DESKTOP */
+++#include <bcrypt.h>
+++typedef BCRYPT_ALG_HANDLE HCRYPTPROV;
+++#define PROV_RSA_FULL 0
+++#define CRYPT_SILENT 0
+++#define CRYPT_VERIFYCONTEXT 0
+++
+++static BOOL CryptGenRandom(BCRYPT_ALG_HANDLE handle, DWORD dwLen, BYTE *pbBuffer)
+++{
+++    return BCRYPT_SUCCESS(BCryptGenRandom(handle, pbBuffer, dwLen, 0));
+++}
+++
+++static BOOL CryptAcquireContext(BCRYPT_ALG_HANDLE *pHandle, LPCTSTR pszContainer, LPCTSTR pszProvider, DWORD dwProvType, DWORD dwFlags)
+++{
+++    return BCRYPT_SUCCESS(BCryptOpenAlgorithmProvider(pHandle, BCRYPT_RNG_ALGORITHM,
+++                                                      MS_PRIMITIVE_PROVIDER, 0));
+++}
+++
+++static BOOL CryptReleaseContext(BCRYPT_ALG_HANDLE handle, DWORD dwFlags)
+++{
+++    return BCRYPT_SUCCESS(BCryptCloseAlgorithmProvider(handle, 0));
+++}
+++#endif /* !WINAPI_PARTITION_DESKTOP */
+++
++ #include "gnutls_int.h"
++ #include "errors.h"
++ #include <locks.h>
++@@ -45,9 +73,6 @@
++ /* The windows randomness gatherer.
++  */
++ 
++-#include <windows.h>
++-#include <wincrypt.h>
++-
++ static HCRYPTPROV device_fd = 0;
++ 
++ static
++--- gnutls/lib/system/certs.c.winstore	2017-04-07 07:52:07.000000000 +0200
+++++ gnutls/lib/system/certs.c	2018-03-28 11:56:50.571166700 +0200
++@@ -21,6 +21,110 @@
++  *
++  */
++ 
+++#ifdef _WIN32
+++# include <windows.h>
+++# include <wincrypt.h>
+++
+++#include <winapifamily.h>
+++#if !WINAPI_PARTITION_DESKTOP
+++# if defined(_WIN32_WINNT) && _WIN32_WINNT >= 0x0A00 /* Univeral Winstore */
+++/* CertOpenSystemStore() is not available */
+++static HCERTSTORE CertOpenSystemStore( HCRYPTPROV_LEGACY hprov, LPCSTR szSubsystemProtocol )
+++{
+++    return CertOpenStore( CERT_STORE_PROV_SYSTEM_A, X509_ASN_ENCODING, 0,
+++        CERT_SYSTEM_STORE_CURRENT_USER, szSubsystemProtocol );
+++}
+++# else /*_WIN32_WINNT < 0x0A00 */
+++/* CertOpenStore() is not available */
+++#  define COBJMACROS
+++#  define INITGUID
+++#  include <winstring.h>
+++#  include <windows.security.cryptography.certificates.h>
+++#  include <roapi.h>
+++
+++static HCERTSTORE CertOpenSystemStore(void *hprov, LPCSTR szSubsystemProtocol)
+++{
+++    static const WCHAR *className = L"Windows.Security.Cryptography.Certificates";
+++    const UINT32 clen = wcslen(className);
+++
+++    HSTRING hClassName = NULL;
+++    HSTRING_HEADER header;
+++    HRESULT hr = WindowsCreateStringReference(className, clen, &header, &hClassName);
+++    if (FAILED(hr)) {
+++        WindowsDeleteString(hClassName);
+++        return NULL;
+++    }
+++
+++    ICertificateStoresStatics *certStoresStatics = NULL;
+++    hr = RoGetActivationFactory(hClassName, &IID_ICertificateStoresStatics, (void**)&certStoresStatics);
+++    WindowsDeleteString(hClassName);
+++
+++    if (FAILED(hr))
+++        return NULL;
+++    
+++    if (!strcmp(szSubsystemProtocol, "ROOT"))
+++    {
+++        ICertificateStore *result;
+++        hr = ICertificateStoresStatics_get_TrustedRootCertificationAuthorities(certStoresStatics, &result);
+++        ICertificateStoresStatics_Release(certStoresStatics);
+++        if (SUCCEEDED(hr))
+++        {
+++            return result;
+++        }
+++    }
+++    else if (!strcmp(szSubsystemProtocol, "CA"))
+++    {
+++        ICertificateStore *result;
+++        hr = ICertificateStoresStatics_get_IntermediateCertificationAuthorities(certStoresStatics, &result);
+++        ICertificateStoresStatics_Release(certStoresStatics);
+++        if (SUCCEEDED(hr))
+++        {
+++            return result;
+++        }
+++    }
+++    else
+++    {
+++        ICertificateStoresStatics_Release(certStoresStatics);
+++    }
+++
+++    return NULL;
+++}
+++
+++static PCCERT_CONTEXT CertEnumCertificatesInStore(HCERTSTORE hCertStore, PCCERT_CONTEXT pPrevCertContext)
+++{
+++    return NULL;
+++}
+++
+++static PCCERT_CONTEXT CertFindCertificateInStore(HCERTSTORE hCertStore, DWORD dwCertEncodingType, DWORD dwFindFlags, DWORD dwFindType, const void *pvFindPara, PCCERT_CONTEXT pPrevCertContext)
+++{
+++    return NULL;
+++}
+++
+++static BOOL CertGetCertificateContextProperty(PCCERT_CONTEXT pCertContext, DWORD dwPropId, void *pvData, DWORD *pcbData)
+++{
+++    return FALSE;
+++}
+++
+++static BOOL CertCloseStore(HCERTSTORE hCertStore, DWORD dwFlags)
+++{
+++    ICertificateStore *store = (ICertificateStore *)hCertStore;
+++    HRESULT hr = ICertificateStoresStatics_Release(store);
+++    return SUCCEEDED(hr);
+++}
+++
+++static BOOL CertDeleteCertificateFromStore(PCCERT_CONTEXT pCertContext)
+++{
+++    return FALSE;
+++}
+++
+++static HCERTSTORE PFXImportCertStore(CRYPT_DATA_BLOB* pPFX, LPCWSTR szPassword, DWORD dwFlags)
+++{
+++    return NULL;
+++}
+++# endif /* _WIN32_WINNT < 0x0A00 */
+++#endif /* !WINAPI_PARTITION_DESKTOP */
+++#endif /* _WIN32 */
+++
++ #include <config.h>
++ #include "gnutls_int.h"
++ #include "errors.h"
++@@ -32,9 +136,6 @@
++ #include "system.h"
++ 
++ #ifdef _WIN32
++-# include <windows.h>
++-# include <wincrypt.h>
++-
++ #else /* !_WIN32 */
++ 
++ # include <poll.h>
++--- gnutls/lib/system/keys-win.c.winstore	2018-03-28 14:33:51.385023100 +0200
+++++ gnutls/lib/system/keys-win.c	2018-03-28 14:15:06.835899200 +0200
++@@ -26,6 +26,183 @@
++ #define _WIN32_WINNT 0x600
++ #endif
++ 
+++#include <wincrypt.h>
+++
+++#include <winapifamily.h>
+++#if !WINAPI_PARTITION_DESKTOP
+++# if defined(_WIN32_WINNT) && _WIN32_WINNT >= 0x0A00 /* Univeral Winstore */
+++/* CertOpenSystemStore() is not available */
+++static HCERTSTORE CertOpenSystemStore( HCRYPTPROV_LEGACY hprov, LPCSTR szSubsystemProtocol )
+++{
+++    return CertOpenStore( CERT_STORE_PROV_SYSTEM_A, X509_ASN_ENCODING, 0,
+++        CERT_SYSTEM_STORE_CURRENT_USER, szSubsystemProtocol );
+++}
+++# else /*_WIN32_WINNT < 0x0A00 */
+++# include <bcrypt.h>
+++typedef BCRYPT_ALG_HANDLE  HCRYPTPROV;
+++typedef BCRYPT_HASH_HANDLE HCRYPTHASH;
+++typedef unsigned int ALG_ID;
+++
+++static BOOL CryptCreateHash(BCRYPT_ALG_HANDLE handle, ALG_ID Algid, HCRYPTKEY hKey, DWORD dwFlags, BCRYPT_HASH_HANDLE *phHash)
+++{
+++    BCRYPT_ALG_HANDLE hh;
+++    LPCWSTR pAlgo;
+++    switch (Algid)
+++    {
+++    case CALG_MD5:         pAlgo = BCRYPT_MD5_ALGORITHM; break;
+++    case CALG_SHA1:        pAlgo = BCRYPT_SHA1_ALGORITHM; break;
+++    case CALG_SHA_256:     pAlgo = BCRYPT_SHA256_ALGORITHM; break;
+++    case CALG_SHA_384:     pAlgo = BCRYPT_SHA384_ALGORITHM; break;
+++    case CALG_SHA_512:     pAlgo = BCRYPT_SHA512_ALGORITHM; break;
+++    case CALG_SSL3_SHAMD5: pAlgo = BCRYPT_MD5_ALGORITHM; break;
+++    case CALG_RSA_SIGN:    pAlgo = BCRYPT_RSA_SIGN_ALGORITHM; break; /* not supported ? */
+++    case CALG_DSS_SIGN:    pAlgo = BCRYPT_DSA_ALGORITHM; break;
+++    default:        pAlgo = NULL; break;
+++    }
+++    if (pAlgo==NULL)
+++        return FALSE;
+++    NTSTATUS ret = BCryptOpenAlgorithmProvider(&hh, pAlgo, NULL, 0);
+++    if (!BCRYPT_SUCCESS(ret))
+++        return FALSE;
+++    ret = BCryptCreateHash(hh, phHash, NULL, 0, NULL, 0, 0);
+++    return BCRYPT_SUCCESS(ret);
+++}
+++
+++static BOOL CryptDestroyHash(BCRYPT_HASH_HANDLE hHash)
+++{
+++    NTSTATUS ret = BCryptDestroyHash(hHash);
+++    return BCRYPT_SUCCESS(ret);
+++}
+++
+++static BOOL CryptDecrypt(HCRYPTKEY hKey, BCRYPT_HASH_HANDLE hHash, BOOL Final, DWORD dwFlags, BYTE *pbData, DWORD *pdwDataLen)
+++{
+++    return FALSE;
+++}
+++
+++static BOOL CryptSignHash(HCRYPTHASH hHash, DWORD dwKeySpec, LPCTSTR sDescription, DWORD dwFlags, BYTE *pbSignature, DWORD *pdwSigLen)
+++{
+++    return FALSE;
+++}
+++
+++static BOOL CryptGetHashParam(HCRYPTHASH hHash, DWORD dwParam, BYTE *pbData, DWORD *pdwDataLen, DWORD dwFlags)
+++{
+++    LPCWSTR pszProperty;
+++    switch (dwParam)
+++    {
+++    case HP_HASHSIZE: pszProperty = BCRYPT_HASH_LENGTH; break;
+++    default:          pszProperty = NULL; break;
+++    }
+++    if (pszProperty==NULL)
+++        return FALSE;
+++    NTSTATUS ret = BCryptGetProperty(hHash, pszProperty, pbData, *pdwDataLen, NULL, 0);
+++}
+++
+++static BOOL CryptSetHashParam(BCRYPT_HASH_HANDLE hHash, DWORD dwParam, const BYTE *pbData, DWORD dwFlags)
+++{
+++    LPCWSTR pszProperty;
+++    switch (dwParam)
+++    {
+++    case HP_HASHVAL: pszProperty = BCRYPT_HASH_OID_LIST; break;
+++    default:         pszProperty = NULL; break;
+++    }
+++    if (pszProperty==NULL)
+++        return FALSE;
+++    NTSTATUS ret = BCryptSetProperty(hHash, pszProperty, pbData, 0, 0);
+++}
+++
+++/* CertOpenStore() is not available */
+++#  define COBJMACROS
+++#  define INITGUID
+++#  include <winstring.h>
+++#  include <windows.security.cryptography.certificates.h>
+++#  include <roapi.h>
+++
+++static HCERTSTORE CertOpenSystemStore(void *hprov, LPCSTR szSubsystemProtocol)
+++{
+++    static const WCHAR *className = L"Windows.Security.Cryptography.Certificates";
+++    const UINT32 clen = wcslen(className);
+++
+++    HSTRING hClassName = NULL;
+++    HSTRING_HEADER header;
+++    HRESULT hr = WindowsCreateStringReference(className, clen, &header, &hClassName);
+++    if (FAILED(hr)) {
+++        WindowsDeleteString(hClassName);
+++        return NULL;
+++    }
+++
+++    ICertificateStoresStatics *certStoresStatics = NULL;
+++    hr = RoGetActivationFactory(hClassName, &IID_ICertificateStoresStatics, (void**)&certStoresStatics);
+++    WindowsDeleteString(hClassName);
+++
+++    if (FAILED(hr))
+++        return NULL;
+++    
+++    if (!strcmp(szSubsystemProtocol, "ROOT"))
+++    {
+++        ICertificateStore *result;
+++        hr = ICertificateStoresStatics_get_TrustedRootCertificationAuthorities(certStoresStatics, &result);
+++        ICertificateStoresStatics_Release(certStoresStatics);
+++        if (SUCCEEDED(hr))
+++        {
+++            return result;
+++        }
+++    }
+++    else if (!strcmp(szSubsystemProtocol, "CA"))
+++    {
+++        ICertificateStore *result;
+++        hr = ICertificateStoresStatics_get_IntermediateCertificationAuthorities(certStoresStatics, &result);
+++        ICertificateStoresStatics_Release(certStoresStatics);
+++        if (SUCCEEDED(hr))
+++        {
+++            return result;
+++        }
+++    }
+++    else
+++    {
+++        ICertificateStoresStatics_Release(certStoresStatics);
+++    }
+++
+++    return NULL;
+++}
+++
+++static PCCERT_CONTEXT CertEnumCertificatesInStore(HCERTSTORE hCertStore, PCCERT_CONTEXT pPrevCertContext)
+++{
+++    return NULL;
+++}
+++
+++static PCCERT_CONTEXT CertFindCertificateInStore(HCERTSTORE hCertStore, DWORD dwCertEncodingType, DWORD dwFindFlags, DWORD dwFindType, const void *pvFindPara, PCCERT_CONTEXT pPrevCertContext)
+++{
+++    return NULL;
+++}
+++
+++static BOOL CertGetCertificateContextProperty(PCCERT_CONTEXT pCertContext, DWORD dwPropId, void *pvData, DWORD *pcbData)
+++{
+++    return FALSE;
+++}
+++
+++static BOOL CertCloseStore(HCERTSTORE hCertStore, DWORD dwFlags)
+++{
+++    ICertificateStore *store = (ICertificateStore *)hCertStore;
+++    HRESULT hr = ICertificateStoresStatics_Release(store);
+++    return SUCCEEDED(hr);
+++}
+++
+++static void CertFreeCertificateContext(PCCERT_CONTEXT pCertContext)
+++{
+++}
+++
+++static BOOL CertDeleteCertificateFromStore(PCCERT_CONTEXT pCertContext)
+++{
+++    return FALSE;
+++}
+++
+++static HCERTSTORE PFXImportCertStore(CRYPT_DATA_BLOB* pPFX, LPCWSTR szPassword, DWORD dwFlags)
+++{
+++    return NULL;
+++}
+++# endif /* _WIN32_WINNT < 0x0A00 */
+++#endif /* !WINAPI_PARTITION_DESKTOP */
+++
++ #include "gnutls_int.h"
++ #include "errors.h"
++ #include <gnutls/gnutls.h>
++@@ -41,20 +218,6 @@
++ #error should not be included
++ #endif
++ 
++-#include <wincrypt.h>
++-#include <winbase.h>
++-
++-#include <winapifamily.h>
++-#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
++-# if defined(_WIN32_WINNT) && _WIN32_WINNT >= 0x0A00 /* Univeral Winstore */
++-# undef CertOpenSystemStore
++-HCERTSTORE CertOpenSystemStore( HCRYPTPROV_LEGACY hprov, LPCSTR szSubsystemProtocol )
++-{
++-    return CertOpenStore( CERT_STORE_PROV_SYSTEM_A, X509_ASN_ENCODING, 0,
++-        CERT_SYSTEM_STORE_CURRENT_USER, szSubsystemProtocol );
++-}
++-# endif /* _WIN32_WINNT */
++-#endif /* WINAPI_FAMILY */
++ 
++ #define DYN_NCRYPT
++ 
++--- gnutls/lib/system.c.winstore	2018-03-28 14:33:51.324022200 +0200
+++++ gnutls/lib/system.c	2018-03-28 11:56:50.586164500 +0200
++@@ -21,6 +21,25 @@
++  *
++  */
++ 
+++#ifdef _WIN32
+++# include <windows.h>
+++# include <wincrypt.h>
+++# if defined(NEED_CERT_ENUM_CRLS)
+++CertEnumCRLsInStoreFunc pCertEnumCRLsInStore;
+++static HMODULE Crypt32_dll;
+++# endif
+++#if defined(_WIN32_WINNT) && _WIN32_WINNT < 0x0A00
+++#include <winapifamily.h>
+++#if !WINAPI_PARTITION_DESKTOP
+++/* not available on store apps below Windows 10 */
+++PCCRL_CONTEXT CertEnumCRLsInStore(HCERTSTORE hCertStore, PCCRL_CONTEXT pPrevCrlContext)
+++{
+++    return NULL;
+++}
+++#endif /* !WINAPI_PARTITION_DESKTOP */
+++#endif /* _WIN32_WINNT < 0x0A00 */
+++#endif
+++
++ #include <config.h>
++ #include <system.h>
++ #include "gnutls_int.h"
++@@ -32,15 +51,6 @@
++ #include <sys/types.h>
++ #include <time.h>
++ 
++-#ifdef _WIN32
++-# include <windows.h>
++-# include <wincrypt.h>
++-# if defined(NEED_CERT_ENUM_CRLS)
++-CertEnumCRLsInStoreFunc pCertEnumCRLsInStore;
++-static HMODULE Crypt32_dll;
++-# endif
++-#endif
++-
++ /* System specific function wrappers for certificate stores.
++  */
++ gnutls_time_func gnutls_time;
+-- 
+2.10.1.windows.1
+
