@@ -1,0 +1,46 @@
+From fa422e17ea13c492f2d633460a6cac80479d495e Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Thu, 29 Mar 2018 15:03:37 +0200
+Subject: [PATCH 19/22] contrib: shout: usleep() is not a Windows API
+
+---
+ contrib/src/shout/rules.mak         |  1 +
+ contrib/src/shout/shout-win32.patch | 14 ++++++++++++++
+ 2 files changed, 15 insertions(+)
+ create mode 100644 contrib/src/shout/shout-win32.patch
+
+diff --git a/contrib/src/shout/rules.mak b/contrib/src/shout/rules.mak
+index ac34c59..5ee5e7d 100644
+--- a/contrib/src/shout/rules.mak
++++ b/contrib/src/shout/rules.mak
+@@ -24,6 +24,7 @@ libshout: libshout-$(SHOUT_VERSION).tar.gz .sum-shout
+ 	$(APPLY) $(SRC)/shout/libshout-arpa.patch
+ 	$(APPLY) $(SRC)/shout/fix-xiph_openssl.patch
+ 	$(APPLY) $(SRC)/shout/shout-strings.patch
++	$(APPLY) $(SRC)/shout/shout-win32.patch
+ 	$(call pkg_static,"shout.pc.in")
+ 	$(UPDATE_AUTOCONFIG)
+ 	$(MOVE)
+diff --git a/contrib/src/shout/shout-win32.patch b/contrib/src/shout/shout-win32.patch
+new file mode 100644
+index 0000000..f29926e
+--- /dev/null
++++ b/contrib/src/shout/shout-win32.patch
+@@ -0,0 +1,14 @@
++--- libshout-2.4.1/examples/nonblocking.c.win32	2018-03-29 11:06:58.356033300 +0200
+++++ libshout-2.4.1/examples/nonblocking.c	2018-03-29 11:10:39.018958800 +0200
++@@ -70,7 +70,11 @@ int main()
++ 	  printf("Connection pending...\n");
++ 
++ 	while (ret == SHOUTERR_BUSY) {
+++#ifdef _WIN32
+++	  Sleep(10);
+++#else
++ 	  usleep(10000);
+++#endif
++ 	  ret = shout_get_connected(shout);
++ 	}
++ 	
+-- 
+2.10.1.windows.1
+

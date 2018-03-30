@@ -1,0 +1,93 @@
+From bf4df2a56204e108fd486832fd8c34208281da7b Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Thu, 29 Mar 2018 15:46:11 +0200
+Subject: [PATCH 09/22] contrib: ffmpeg: use bcrypt instead of the old wincrypt
+ API
+
+When targeting Windows Vista and above
+---
+ contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch | 59 ++++++++++++++++++++++++++++
+ contrib/src/ffmpeg/rules.mak                 |  1 +
+ 2 files changed, 60 insertions(+)
+ create mode 100644 contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch
+
+diff --git a/contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch b/contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch
+new file mode 100644
+index 0000000..4565577
+--- /dev/null
++++ b/contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch
+@@ -0,0 +1,59 @@
++--- ffmpeg/configure.bcrypt	2018-03-29 15:37:15.629068200 +0200
+++++ ffmpeg/configure	2018-03-29 15:34:37.695102800 +0200
++@@ -2058,6 +2058,7 @@ SYSTEM_LIBRARIES="
++     vaapi_drm
++     vaapi_x11
++     vdpau_x11
+++    bcrypt
++     wincrypt
++ "
++ 
++@@ -3325,7 +3326,7 @@ avformat_deps="avcodec avutil"
++ avformat_suggest="libm network zlib"
++ avresample_deps="avutil"
++ avresample_suggest="libm"
++-avutil_suggest="clock_gettime cuda libm libdrm libmfx opencl user32 vaapi videotoolbox corefoundation corevideo coremedia wincrypt"
+++avutil_suggest="clock_gettime cuda libm libdrm libmfx opencl user32 vaapi videotoolbox corefoundation corevideo coremedia bcrypt wincrypt"
++ postproc_deps="avutil gpl"
++ postproc_suggest="libm"
++ swresample_deps="avutil"
++@@ -5707,6 +5708,7 @@ check_lib ole32    "windows.h"
++ check_lib shell32  "windows.h shellapi.h" CommandLineToArgvW   -lshell32
++ check_lib wincrypt "windows.h wincrypt.h" CryptGenRandom       -ladvapi32
++ check_lib psapi    "windows.h psapi.h"    GetProcessMemoryInfo -lpsapi
+++check_cpp_condition windows.h "_WIN32_WINNT >= 0x0600" && check_lib bcrypt "windows.h bcrypt.h" BCryptGenRandom  -lbcrypt
++ 
++ enabled appkit       && check_apple_framework AppKit
++ enabled audiotoolbox && check_apple_framework AudioToolbox
++--- ffmpeg/libavutil/random_seed.c.bcrypt	2018-03-29 11:47:52.269305500 +0200
+++++ ffmpeg/libavutil/random_seed.c	2018-03-29 11:31:40.524546100 +0200
++@@ -26,7 +26,9 @@
++ #if HAVE_IO_H
++ #include <io.h>
++ #endif
++-#if HAVE_WINCRYPT
+++#if HAVE_BCRYPT
+++#include <bcrypt.h>
+++#elif HAVE_WINCRYPT
++ #include <windows.h>
++ #include <wincrypt.h>
++ #endif
++@@ -121,7 +123,17 @@ uint32_t av_get_random_seed(void)
++ {
++     uint32_t seed;
++ 
++-#if HAVE_WINCRYPT
+++#if HAVE_BCRYPT
+++    BCRYPT_ALG_HANDLE algo_handle;
+++    NTSTATUS ret = BCryptOpenAlgorithmProvider(&algo_handle, BCRYPT_RNG_ALGORITHM,
+++                                               MS_PRIMITIVE_PROVIDER, 0);
+++    if (BCRYPT_SUCCESS(ret)) {
+++        NTSTATUS ret = BCryptGenRandom(algo_handle, &seed, sizeof(seed), 0);
+++        BCryptCloseAlgorithmProvider(algo_handle, 0);
+++        if (BCRYPT_SUCCESS(ret))
+++            return seed;
+++    }
+++#elif HAVE_WINCRYPT
++     HCRYPTPROV provider;
++     if (CryptAcquireContext(&provider, NULL, NULL, PROV_RSA_FULL,
++                             CRYPT_VERIFYCONTEXT | CRYPT_SILENT)) {
+diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
+index 92c400d..9513d63 100644
+--- a/contrib/src/ffmpeg/rules.mak
++++ b/contrib/src/ffmpeg/rules.mak
+@@ -241,6 +241,7 @@ endif
+ ifdef USE_LIBAV
+ 	$(APPLY) $(SRC)/ffmpeg/libav_gsm.patch
+ endif
++	$(APPLY) $(SRC)/ffmpeg/ffmpeg-win32-bcrypt.patch
+ 	$(MOVE)
+ 
+ .ffmpeg: ffmpeg
+-- 
+2.10.1.windows.1
+

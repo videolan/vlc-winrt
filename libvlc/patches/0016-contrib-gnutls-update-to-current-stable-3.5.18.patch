@@ -1,0 +1,90 @@
+From b5ba278849cb6d1d9b3adce95436a7c655b05798 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Thu, 29 Mar 2018 09:05:06 +0200
+Subject: [PATCH 16/22] contrib: gnutls: update to current stable 3.5.18
+
+---
+ contrib/src/gnutls/32b5628-upstream.patch | 42 -------------------------------
+ contrib/src/gnutls/SHA512SUMS             |  2 +-
+ contrib/src/gnutls/rules.mak              |  3 +--
+ 3 files changed, 2 insertions(+), 45 deletions(-)
+ delete mode 100644 contrib/src/gnutls/32b5628-upstream.patch
+
+diff --git a/contrib/src/gnutls/32b5628-upstream.patch b/contrib/src/gnutls/32b5628-upstream.patch
+deleted file mode 100644
+index 70ffdce..0000000
+--- a/contrib/src/gnutls/32b5628-upstream.patch
++++ /dev/null
+@@ -1,42 +0,0 @@
+-From 32b56287cc9d07dfbbc2ee21b70a8fbe1f2d9f2f Mon Sep 17 00:00:00 2001
+-From: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+-Date: Sat, 30 Dec 2017 19:57:08 +0100
+-Subject: [PATCH] x509/verify: when verifying against a self signed certificate ignore issuer
+-
+-That is, ignore issuer when checking the issuer's parameters strength. That
+-resolves the issue of marking self-signed certificates as with insecure
+-parameters during verification.
+-
+-Resolves #347
+-
+-Signed-off-by: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+----
+- lib/x509/verify.c | 12 +++++++-----
+- 1 file changed, 7 insertions(+), 5 deletions(-)
+-
+-diff --git a/lib/x509/verify.c b/lib/x509/verify.c
+-index 26b1ab3..a59e637 100644
+---- a/lib/x509/verify.c
+-+++ b/lib/x509/verify.c
+-@@ -431,11 +431,13 @@ unsigned _gnutls_is_broken_sig_allowed(const gnutls_sign_entry_st *se, unsigned 
+- 			_gnutls_debug_log(#level": certificate's security level is unacceptable\n"); \
+- 			return gnutls_assert_val(0); \
+- 		} \
+--		sp = gnutls_pk_bits_to_sec_param(issuer_pkalg, issuer_bits); \
+--		if (sp < level) { \
+--			_gnutls_cert_log("issuer", issuer); \
+--			_gnutls_debug_log(#level": certificate's issuer security level is unacceptable\n"); \
+--			return gnutls_assert_val(0); \
+-+		if (issuer) { \
+-+			sp = gnutls_pk_bits_to_sec_param(issuer_pkalg, issuer_bits); \
+-+			if (sp < level) { \
+-+				_gnutls_cert_log("issuer", issuer); \
+-+				_gnutls_debug_log(#level": certificate's issuer security level is unacceptable\n"); \
+-+				return gnutls_assert_val(0); \
+-+			} \
+- 		} \
+- 		break;
+- 
+---
+-libgit2 0.26.0
+-
+diff --git a/contrib/src/gnutls/SHA512SUMS b/contrib/src/gnutls/SHA512SUMS
+index e5e3af8..79bb5ee 100644
+--- a/contrib/src/gnutls/SHA512SUMS
++++ b/contrib/src/gnutls/SHA512SUMS
+@@ -1 +1 @@
+-451d3167be599ed8e0333dd7c9f8501fcb47b7aa871aeb461c368381c0b7ecd7e2026ec35dbbb2aa685cb2c3a22e9296e0a0699409e3744b731c1bb7e7e69f07  gnutls-3.5.16.tar.xz
++434cf33a4221fe2edce1b531cb53690d14a0991cb2056006021f625fb018987351f8ec917c3a7803e5e64179cf1647a3002ae783736ffca3188d2d294b76df52  gnutls-3.5.18.tar.xz
+diff --git a/contrib/src/gnutls/rules.mak b/contrib/src/gnutls/rules.mak
+index b04b3c0..78941c1 100644
+--- a/contrib/src/gnutls/rules.mak
++++ b/contrib/src/gnutls/rules.mak
+@@ -1,6 +1,6 @@
+ # GnuTLS
+ 
+-GNUTLS_VERSION := 3.5.16
++GNUTLS_VERSION := 3.5.18
+ GNUTLS_URL := ftp://ftp.gnutls.org/gcrypt/gnutls/v3.5/gnutls-$(GNUTLS_VERSION).tar.xz
+ 
+ ifdef BUILD_NETWORK
+@@ -19,7 +19,6 @@ $(TARBALLS)/gnutls-$(GNUTLS_VERSION).tar.xz:
+ 
+ gnutls: gnutls-$(GNUTLS_VERSION).tar.xz .sum-gnutls
+ 	$(UNPACK)
+-	$(APPLY) $(SRC)/gnutls/32b5628-upstream.patch
+ 	$(APPLY) $(SRC)/gnutls/gnutls-pkgconfig-static.patch
+ ifdef HAVE_WIN32
+ 	$(APPLY) $(SRC)/gnutls/gnutls-win32.patch
+-- 
+2.10.1.windows.1
+

@@ -1,7 +1,7 @@
-From 36a877447e8e5f4a0fce15db2c0ba71edd09d42d Mon Sep 17 00:00:00 2001
+From fbb521380f9d63f94273227802db6dc633a061de Mon Sep 17 00:00:00 2001
 From: Jean-Baptiste Kempf <jb@videolan.org>
 Date: Wed, 12 Mar 2014 00:11:26 +0100
-Subject: [PATCH 04/15] Accept the weird WinRT pathes
+Subject: [PATCH 04/22] Accept the weird WinRT pathes
 
 ---
  src/text/url.c | 5 +++++
