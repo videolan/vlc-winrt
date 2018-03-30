@@ -1,12 +1,12 @@
-From 21d52aa1f7660f8033d8e9f12aff20c0092526fc Mon Sep 17 00:00:00 2001
+From f24d37eb06407f1fba4fcad4c83a58edfba3084a Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 23 May 2016 09:18:17 +0200
 Subject: [PATCH 15/22] contrib: gnutls: fix Winstore forbidden API calls
 
 ---
  contrib/src/gnutls/rules.mak      |   3 +
- contrib/src/gnutls/winstore.patch | 421 ++++++++++++++++++++++++++++++++++++++
- 2 files changed, 424 insertions(+)
+ contrib/src/gnutls/winstore.patch | 432 ++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 435 insertions(+)
  create mode 100644 contrib/src/gnutls/winstore.patch
 
 diff --git a/contrib/src/gnutls/rules.mak b/contrib/src/gnutls/rules.mak
@@ -25,10 +25,10 @@ index 9cd29be..b04b3c0 100644
  	$(MOVE)
 diff --git a/contrib/src/gnutls/winstore.patch b/contrib/src/gnutls/winstore.patch
 new file mode 100644
-index 0000000..30861c7
+index 0000000..9d61069
 --- /dev/null
 +++ b/contrib/src/gnutls/winstore.patch
-@@ -0,0 +1,421 @@
+@@ -0,0 +1,432 @@
 +--- gnutls/lib/nettle/sysrng-windows.c.winstore	2016-11-05 19:12:02.000000000 +0100
 ++++ gnutls/lib/nettle/sysrng-windows.c	2018-03-28 14:31:43.044698600 +0200
 +@@ -29,6 +29,34 @@
@@ -406,16 +406,17 @@ index 0000000..30861c7
 + 
 + #define DYN_NCRYPT
 + 
-+--- gnutls/lib/system.c.winstore	2018-03-28 14:33:51.324022200 +0200
-++++ gnutls/lib/system.c	2018-03-28 11:56:50.586164500 +0200
-+@@ -21,6 +21,25 @@
++--- gnutls/lib/system.c.winstore	2018-03-30 11:34:26.354394100 +0200
+++++ gnutls/lib/system.c	2018-03-30 11:27:07.794862100 +0200
++@@ -21,6 +21,26 @@
 +  *
 +  */
 + 
 ++#ifdef _WIN32
 ++# include <windows.h>
 ++# include <wincrypt.h>
-++# if defined(NEED_CERT_ENUM_CRLS)
+++# if defined(__MINGW32__) && !defined(__MINGW64__) && __MINGW32_MAJOR_VERSION <= 3 && __MINGW32_MINOR_VERSION <= 20
+++#  define NEED_CERT_ENUM_CRLS
 ++CertEnumCRLsInStoreFunc pCertEnumCRLsInStore;
 ++static HMODULE Crypt32_dll;
 ++# endif
@@ -434,7 +435,7 @@ index 0000000..30861c7
 + #include <config.h>
 + #include <system.h>
 + #include "gnutls_int.h"
-+@@ -32,15 +51,6 @@
++@@ -32,15 +52,6 @@
 + #include <sys/types.h>
 + #include <time.h>
 + 
@@ -450,6 +451,16 @@ index 0000000..30861c7
 + /* System specific function wrappers for certificate stores.
 +  */
 + gnutls_time_func gnutls_time;
++--- gnutls/lib/system.h.winstore	2018-03-30 11:33:41.074982000 +0200
+++++ gnutls/lib/system.h	2018-03-30 11:26:50.778890200 +0200
++@@ -30,7 +30,6 @@
++ 
++ #ifdef _WIN32
++ # if defined(__MINGW32__) && !defined(__MINGW64__) && __MINGW32_MAJOR_VERSION <= 3 && __MINGW32_MINOR_VERSION <= 20
++-#  define NEED_CERT_ENUM_CRLS
++ typedef PCCRL_CONTEXT WINAPI(*CertEnumCRLsInStoreFunc) (HCERTSTORE
++ 							 hCertStore,
++ 							 PCCRL_CONTEXT
 -- 
 2.10.1.windows.1
 

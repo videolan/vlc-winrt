@@ -1,4 +1,4 @@
-From b5ba278849cb6d1d9b3adce95436a7c655b05798 Mon Sep 17 00:00:00 2001
+From 3e419035921f82b4ff3e7530cc83913c3f953523 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 09:05:06 +0200
 Subject: [PATCH 16/22] contrib: gnutls: update to current stable 3.5.18

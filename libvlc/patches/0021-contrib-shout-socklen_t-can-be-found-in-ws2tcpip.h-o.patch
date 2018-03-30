@@ -1,4 +1,4 @@
-From ab426c24c23d473596583576b1809d418ebf6258 Mon Sep 17 00:00:00 2001
+From e51432e6e9079453968de586471a3a9675bb1969 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:13:55 +0200
 Subject: [PATCH 21/22] contrib: shout: socklen_t can be found in ws2tcpip.h on

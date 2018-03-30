@@ -1,4 +1,4 @@
-From 388289b746587ff8e010ab375d6bc8a2949cd7ee Mon Sep 17 00:00:00 2001
+From 42c4617e5589464f441f5729068b648cd34ebe55 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:46:50 +0200
 Subject: [PATCH 22/22] contrib: ffmpeg: don't use libvpx at all in libavcodec
