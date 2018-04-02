@@ -1,7 +1,5 @@
-﻿using Windows.UI.Core;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Microsoft.Xaml.Interactivity;
 using VLC.Helpers;
 using VLC.ViewModels;
 using Windows.UI.Xaml.Input;
@@ -18,6 +16,8 @@ namespace VLC.UI.Views.MainPages.MusicPanes
         public SongCollectionBase()
         {
             this.InitializeComponent();
+            
+            Cast.Flyout = Locator.RendererService.CreateRendererFlyout();
         }
 
         private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)

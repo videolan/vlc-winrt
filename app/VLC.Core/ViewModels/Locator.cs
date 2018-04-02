@@ -55,6 +55,7 @@ namespace VLC.ViewModels
         private static MetroSlideshow _metroSlideshow;
         private static HttpServer _httpServer;
         private static FileCopyService _fileCopyService;
+        static RendererService _rendererService;
 
         public Locator()
         {
@@ -99,5 +100,6 @@ namespace VLC.ViewModels
         public static MetroSlideshow Slideshow => _metroSlideshow ?? (_metroSlideshow = App.Container.Resolve<MetroSlideshow>());
         public static HttpServer HttpServer => _httpServer ?? (_httpServer = App.Container.Resolve<HttpServer>());
         public static FileCopyService FileCopyService => _fileCopyService ?? (_fileCopyService = App.Container.Resolve<FileCopyService>());
+        public static RendererService RendererService => _rendererService ?? (_rendererService = App.Container.Resolve<RendererService>());
     }
 }

@@ -68,6 +68,7 @@ namespace VLC.Utils
             builder.RegisterType<HttpServer>().SingleInstance();
             builder.RegisterType<FileCopyService>().SingleInstance();
             builder.RegisterType<PlaylistService>().SingleInstance();
+            builder.RegisterType<RendererService>().SingleInstance();
 
             return builder.Build();
         }

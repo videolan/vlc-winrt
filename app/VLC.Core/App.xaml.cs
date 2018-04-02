@@ -1,9 +1,7 @@
 ﻿
 using Autofac;
 using System;
-using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using VLC.Controls;
 using VLC.Helpers;
@@ -19,13 +17,11 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
-using Windows.Gaming.Input;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using Windows.UI;
 using Windows.UI.Core;
-using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -43,7 +39,7 @@ namespace VLC
         public static OpenFilePickerReason OpenFilePickerReason = OpenFilePickerReason.Null;
         public static Model.Music.AlbumItem SelectedAlbumItem;
         public static IContainer Container;
-        
+
         public App()
         {
             InitializeComponent();
@@ -319,11 +315,12 @@ namespace VLC
             ToggleMediaCenterMode();
 
             Locator.ExternalDeviceService.StartWatcher();
+            Locator.RendererService.Start();
 
             if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
                 await Locator.HttpServer.Bind(8080).ConfigureAwait(false);
         }
-
+        
         public static void ReloadApplicationPage()
         {
             Locator.PlaybackService.Stop();
