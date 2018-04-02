@@ -147,6 +147,7 @@ namespace VLC.Services.RunTime
 
 
         private PlayingType _playingType;
+
         public PlayingType PlayingType
         {
             get { return _playingType; }
@@ -202,6 +203,7 @@ namespace VLC.Services.RunTime
             Task.Run(() => _playlistService.Restore());
         }
 #endif
+
         private async void onCurrentMediaChanged(IMediaItem media, bool isRewind)
         {
             await SetMedia(media);
@@ -334,29 +336,36 @@ namespace VLC.Services.RunTime
             var pos = FetchPreviousPosition(media);
             CurrentMedia.addOption($":start-time={pos}");
 
+            
             if (_mediaPlayer == null)
             {
-                _mediaPlayer = new MediaPlayer(CurrentMedia);
-                var em = _mediaPlayer.eventManager();
-
-                em.OnBuffering += Playback_MediaBuffering;
-                em.OnStopped += OnStopped;
-                em.OnPlaying += OnPlaying;
-                em.OnPaused += OnPaused;
-                em.OnTimeChanged += Playback_MediaTimeChanged;
-                em.OnEndReached += OnEndReached;
-                em.OnEncounteredError += Playback_MediaFailed;
-                em.OnLengthChanged += Playback_MediaLengthChanged;
-                em.OnTrackAdded += OnTrackAdded;
-                em.OnTrackDeleted += OnTrackDeleted;
-                em.OnPlaying += Playback_MediaPlaying;
-                em.OnPaused += Playback_MediaPaused;
-                em.OnOpening += Playback_Opening;
+                InitializeMediaPlayer();
             }
             else
                 _mediaPlayer.setMedia(CurrentMedia);
             _mediaPlayer.outputDeviceSet(AudioDeviceID);
             SetEqualizer(Locator.SettingsVM.Equalizer);
+        }
+
+        void InitializeMediaPlayer()
+        {
+            _mediaPlayer = CurrentMedia != null ? new MediaPlayer(CurrentMedia) : new MediaPlayer(Instance);
+
+            var em = _mediaPlayer.eventManager();
+
+            em.OnBuffering += Playback_MediaBuffering;
+            em.OnStopped += OnStopped;
+            em.OnPlaying += OnPlaying;
+            em.OnPaused += OnPaused;
+            em.OnTimeChanged += Playback_MediaTimeChanged;
+            em.OnEndReached += OnEndReached;
+            em.OnEncounteredError += Playback_MediaFailed;
+            em.OnLengthChanged += Playback_MediaLengthChanged;
+            em.OnTrackAdded += OnTrackAdded;
+            em.OnTrackDeleted += OnTrackDeleted;
+            em.OnPlaying += Playback_MediaPlaying;
+            em.OnPaused += Playback_MediaPaused;
+            em.OnOpening += Playback_Opening;
         }
 
         /// <summary>
@@ -640,6 +649,16 @@ namespace VLC.Services.RunTime
         public void UpdateViewpoint(VideoViewpoint viewpoint, bool absolute)
         {
             _mediaPlayer.updateViewpoint(viewpoint, absolute);
+        }
+
+        public void SetRenderer(string rendererItemName)
+        {
+            var rendererItem = Locator.RendererService.RendererItems.FirstOrDefault(ri => ri.name().Equals(rendererItemName));
+            if (rendererItem == null) return;
+            if(_mediaPlayer == null)
+                InitializeMediaPlayer();
+
+            _mediaPlayer.setRenderer(rendererItem);
         }
 
         #endregion

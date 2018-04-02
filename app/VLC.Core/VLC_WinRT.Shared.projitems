@@ -202,6 +202,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\PlaybackService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\PlaylistService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\RendererService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\VideoMetaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MouseService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MusicMetaService.cs" />
