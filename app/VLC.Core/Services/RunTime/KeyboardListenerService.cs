@@ -199,6 +199,8 @@ namespace VLC.Services.RunTime
                         (x.MainKey == _virtualKeys[0] || x.KeyCode == (int)_virtualKeys[0]) && 
                         (x.SecondKey == _virtualKeys[1] || x.KeyCode == (int)_virtualKeys[1]));
 
+                    if (_virtualKeys.All(key => key == VirtualKey.None)) return; 
+
                     if (action != null)
                     {
                         // if there's a match, get the ActionId
