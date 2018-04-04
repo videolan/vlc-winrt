@@ -234,6 +234,7 @@ namespace VLC.Services.RunTime
                                     Locator.MediaPlaybackViewModel.PlayOrPauseCommand.Execute(null);
                                     break;
                                 case VirtualKey.GamepadLeftShoulder:
+                                case VirtualKey.Left:
                                     Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
                                     Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(-5000);
                                     break;
@@ -242,6 +243,7 @@ namespace VLC.Services.RunTime
                                     Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(-30000);
                                     break;
                                 case VirtualKey.GamepadRightShoulder:
+                                case VirtualKey.Right:
                                     Locator.VideoPlayerVm.RequestChangeControlBarVisibility(true);
                                     Locator.MediaPlaybackViewModel.FastSeekCommand.Execute(5000);
                                     break;
