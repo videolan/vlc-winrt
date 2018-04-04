@@ -259,19 +259,12 @@
                         <ToggleSwitch Tag="WindowsOnly"
                                       Header="{Binding Source={StaticResource Strings}, Path=VideoPlaybackInBackground}"
                                       IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}" />
-                        
+
                         <ToggleSwitch Tag="WindowsOnly"
                                       Name="compactOverlayToggle"
                                       Header="{Binding Source={StaticResource Strings}, Path=CompactOverlayPiP}"
                                       IsOn="{Binding CompactOverlayPiP, Mode=TwoWay}" />
-
-                        <ToggleSwitch Name="ResumeOrRestartPlayback"
-                                      Header="{Binding Source={StaticResource Strings}, Path=ResumeOrRestartPlayback}"
-                                      OffContent="Restart"
-                                      OnContent="Resume"
-                                      IsOn="{Binding ResumePreviousPosition, Mode=TwoWay}"/>
-                        
-                    <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                        <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            Header="{Binding Source={StaticResource Strings}, Path=SubtitlesEncoding}"
                                                            Text="{Binding Source={StaticResource Strings}, Path=NeedRestart}"
                                                            IsTabStop="False" />

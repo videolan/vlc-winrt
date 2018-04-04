@@ -18,7 +18,7 @@ namespace VLC.Commands.VideoPlayer
     {
         public override async void Execute(object parameter)
         {
-            await Locator.MediaPlaybackViewModel.UpdatePosition();
+            Locator.MediaPlaybackViewModel.UpdatePosition();
 
             Locator.MediaPlaybackViewModel.PlaybackService.Stop();
         }

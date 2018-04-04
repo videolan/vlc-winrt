@@ -468,26 +468,12 @@ namespace VLC.ViewModels
             await Locator.PlaybackService.SetPlaylist(new List<IMediaItem> { video });
         }
 
-        public async Task UpdatePosition()
+        public void UpdatePosition()
         {
             if (Locator.VideoPlayerVm.CurrentVideo != null)
             {
-                Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = (int)((double)Time / 1000); ;
+                Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds = (int)((double)Time / 1000);
                 Locator.MediaLibrary.UpdateVideo(Locator.VideoPlayerVm.CurrentVideo);
-                try
-                {
-                    var file = await ApplicationData.Current.RoamingFolder.CreateFileAsync("roamVideo.txt",
-                        CreationCollisionOption.ReplaceExisting);
-                    await FileIO.WriteLinesAsync(file, new[]
-                    {
-                        Locator.VideoPlayerVm.CurrentVideo.Name,
-                        Locator.VideoPlayerVm.CurrentVideo.TimeWatchedSeconds.ToString()
-                    });
-                }
-                catch (Exception e)
-                {
-                    LogHelper.Log(e.Message);
-                }
             }
         }
 

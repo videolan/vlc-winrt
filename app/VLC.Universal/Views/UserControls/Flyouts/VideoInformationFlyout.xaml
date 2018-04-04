@@ -74,6 +74,7 @@
                                   FontFamily="{StaticResource VLCFont}" />
                     </AppBarButton.Icon>
                 </AppBarButton>
+                
                 <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=DeleteSelected}"
                               Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.DeleteFromLibraryCommand}"
                               CommandParameter="{Binding}"
@@ -87,7 +88,21 @@
                     </AppBarButton.Icon>
                 </AppBarButton>
             </Grid>
-            <TextBlock Grid.Row="2"
+            <AppBarButton Grid.Row="2"
+                          Name="RestartPlayback"
+                          Label="{Binding Source={StaticResource Strings}, Path=Restart}"
+                          Click="ActionButton_Click"
+                          Margin="{StaticResource FrameMarginBottomLeft}"
+                          Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.RestartAndPlayCommand}"
+                          CommandParameter="{Binding}"
+                          Visibility="{Binding TimeWatchedSeconds, Converter={StaticResource NegatedCountToVisibilityConverter}}"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE777;"
+                              FontFamily="Segoe MDL2 Assets" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <TextBlock Grid.Row="3"
                        Margin="{StaticResource FrameMarginLeft}"
                        Style="{StaticResource BodyTextBlockStyle}">
                 <Run Text="{Binding Type}" />
@@ -96,7 +111,7 @@
                 <Run Text="x" />
                 <Run Text="{Binding Height}" />
             </TextBlock>
-            <TextBlock Grid.Row="3"
+            <TextBlock Grid.Row="4"
                        Text="{Binding Path}"
                        MaxLines="2"
                        Margin="{StaticResource FrameMarginBothSides}"
