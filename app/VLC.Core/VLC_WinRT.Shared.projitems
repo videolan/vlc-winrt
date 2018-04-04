@@ -72,6 +72,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\CloseFlyoutAndPlayVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\FavoriteVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\PickMediaCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\RestartAndPlayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoLibrary\TVShowClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\DownloadSubtitleCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\InitPiPCommand.cs" />

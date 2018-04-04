@@ -762,7 +762,6 @@
   <data name="PolishLanguage" xml:space="preserve">
     <value>Polish</value>
   </data>
-  
   <data name="DanishLanguage" xml:space="preserve">
     <value>Danish</value>
   </data>
@@ -811,9 +810,6 @@
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>use windows 10 pip</value>
   </data>
-  <data name="ResumeOrRestartPlayback" xml:space="preserve">
-    <value>Resume or restart playback</value>
-  </data>
   <data name="TvUnsafeArea" xml:space="preserve">
     <value>TV unsafe area</value>
   </data>
@@ -825,5 +821,8 @@
   </data>
   <data name="NoExtraMargin" xml:space="preserve">
     <value>No extra margin</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>restart</value>
   </data>
 </root>

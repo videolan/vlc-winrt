@@ -7,12 +7,9 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using Windows.UI.Core;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using SQLite;
-using VLC.Commands.MusicPlayer;
 using VLC.Model.Music;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +17,9 @@ using VLC.Helpers;
 using VLC.Model;
 using VLC.Model.Video;
 using VLC.Utils;
-using System.Diagnostics;
-using VLC.Services.RunTime;
-using VLC.Model.Stream;
 using Windows.Storage;
-using System.IO;
 using libVLCX;
 using VLC.ViewModels;
-using VLC.Database;
 using Windows.Media.Devices;
 
 namespace VLC.Services.RunTime
@@ -271,28 +263,10 @@ namespace VLC.Services.RunTime
 
         #region Playback methods
 
-        private async Task<float> FetchPreviousPosition(IMediaItem media)
+        float FetchPreviousPosition(IMediaItem media)
         {
-            var video = media as VideoItem;
-
-            if (video == null)
+            if (!(media is VideoItem video))
                 return 0;
-            var roamFile = await ApplicationData.Current.RoamingFolder.TryGetItemAsync("roamVideo.txt");
-            if (roamFile != null)
-            {
-                var roamVideos = await FileIO.ReadLinesAsync(roamFile as StorageFile);
-                if (roamVideos.Any())
-                {
-                    if (roamVideos[0] == media.Name)
-                    {
-                        int leftTime = 0;
-                        if (int.TryParse(roamVideos[1], out leftTime))
-                        {
-                            video.TimeWatchedSeconds = leftTime;
-                        }
-                    }
-                }
-            }
 
             TileHelper.UpdateVideoTile();
             // VLC expects a start-time in seconds
@@ -358,11 +332,9 @@ namespace VLC.Services.RunTime
             CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-hw=none" : ":avcodec-hw=d3d11va");
             if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Phone)
                 CurrentMedia.addOption(!Locator.SettingsVM.HardwareAccelerationEnabled ? ":avcodec-threads=0" : ":avcodec-threads=1");
-            if (Locator.SettingsVM.ResumePreviousPosition)
-            {
-                var pos = await FetchPreviousPosition(media);
-                CurrentMedia.addOption($":start-time={pos}");
-            }
+
+            var pos = FetchPreviousPosition(media);
+            CurrentMedia.addOption($":start-time={pos}");
 
             
             if (_mediaPlayer == null)
