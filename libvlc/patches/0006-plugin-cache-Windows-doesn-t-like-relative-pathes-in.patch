@@ -1,7 +1,7 @@
-From 199c0f8d20bb7439963826e8a73a9fc4bd18c601 Mon Sep 17 00:00:00 2001
+From 88a9c4a7aa767a1506cb6464595105575adbe8fb Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Fri, 30 Sep 2016 09:49:19 +0200
-Subject: [PATCH 06/22] plugin cache: Windows doesn't like relative pathes in
+Subject: [PATCH 06/28] plugin cache: Windows doesn't like relative pathes in
  LoadLibraryEx()
 
 Fixes "vlc-cache-gen ../modules" on Windows and general VLC_PLUGIN_PATH usage.
