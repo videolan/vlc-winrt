@@ -1,7 +1,7 @@
-From 2c85ec8cd63c37bbc44ff0c2cf96261b04a8765f Mon Sep 17 00:00:00 2001
+From 87e261e528f5ff3213862b8bff9ab3833279592b Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Tue, 19 Dec 2017 12:39:06 +0100
-Subject: [PATCH 10/22] contrib:avcodec: use a more recent FFmpeg version
+Subject: [PATCH 10/28] contrib:avcodec: use a more recent FFmpeg version
 
 So that it doesn't use bogus atomics based code
 ---

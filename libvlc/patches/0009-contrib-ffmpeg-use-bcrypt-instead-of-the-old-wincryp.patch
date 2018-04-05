@@ -1,7 +1,7 @@
-From bf4df2a56204e108fd486832fd8c34208281da7b Mon Sep 17 00:00:00 2001
+From 2818fc0a9e21fe117d651fc44981d869019660cb Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:46:11 +0200
-Subject: [PATCH 09/22] contrib: ffmpeg: use bcrypt instead of the old wincrypt
+Subject: [PATCH 09/28] contrib: ffmpeg: use bcrypt instead of the old wincrypt
  API
 
 When targeting Windows Vista and above

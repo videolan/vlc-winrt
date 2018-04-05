@@ -1,0 +1,71 @@
+From 9ffbbe40a51836f23b7f80cd914d22add50287fe Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Thu, 5 Apr 2018 09:49:44 +0200
+Subject: [PATCH 26/26] chromecast: try to encode with QSV if possible
+
+It will be handled by the GPU so use less resource.
+---
+ modules/stream_out/chromecast/cast.cpp | 40 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+
+diff --git a/modules/stream_out/chromecast/cast.cpp b/modules/stream_out/chromecast/cast.cpp
+index 8eb4901..34f9960 100644
+--- a/modules/stream_out/chromecast/cast.cpp
++++ b/modules/stream_out/chromecast/cast.cpp
+@@ -917,6 +917,45 @@ static std::string GetVencVPXOption( sout_stream_t * /* p_stream */,
+     return "venc=vpx{quality-mode=1}";
+ }
+ 
++static std::string GetVencQSVH264Option( sout_stream_t * /* p_stream */,
++                                         const video_format_t * /* p_vid */,
++                                         int i_quality )
++{
++    std::stringstream ssout;
++    static const char video_target_usage_quality[]  = "quality";
++    static const char video_target_usage_balanced[] = "balanced";
++    static const char video_target_usage_speed[]    = "speed";
++    static const char video_bitrate_high[] = "vb=8000000";
++    static const char video_bitrate_low[]  = "vb=3000000";
++    const char *psz_video_target_usage;
++    const char *psz_video_bitrate;
++
++    switch ( i_quality )
++    {
++        case CONVERSION_QUALITY_HIGH:
++            psz_video_target_usage = video_target_usage_quality;
++            psz_video_bitrate = video_bitrate_high;
++            break;
++        case CONVERSION_QUALITY_MEDIUM:
++            psz_video_target_usage = video_target_usage_balanced;
++            psz_video_bitrate = video_bitrate_high;
++            break;
++        case CONVERSION_QUALITY_LOW:
++            psz_video_target_usage = video_target_usage_balanced;
++            psz_video_bitrate = video_bitrate_low;
++            break;
++        default:
++        case CONVERSION_QUALITY_LOWCPU:
++            psz_video_target_usage = video_target_usage_speed;
++            psz_video_bitrate = video_bitrate_low;
++            break;
++    }
++
++    ssout << "venc=qsv{target-usage=" << psz_video_target_usage <<
++             "}," << psz_video_bitrate;
++    return ssout.str();
++}
++
+ static std::string GetVencX264Option( sout_stream_t * /* p_stream */,
+                                       const video_format_t *p_vid,
+                                       int i_quality )
+@@ -963,6 +1002,7 @@ static struct
+     vlc_fourcc_t fcc;
+     std::string (*get_opt)( sout_stream_t *, const video_format_t *, int);
+ } venc_opt_list[] = {
++    { .fcc = VLC_CODEC_H264, .get_opt = GetVencQSVH264Option },
+     { .fcc = VLC_CODEC_H264, .get_opt = GetVencX264Option },
+     { .fcc = VLC_CODEC_VP8,  .get_opt = GetVencVPXOption },
+     { .fcc = VLC_CODEC_H264, .get_opt = NULL },
+-- 
+2.10.1.windows.1
+

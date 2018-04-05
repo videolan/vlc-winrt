@@ -1,7 +1,7 @@
-From 0d08e043d8a7916a7cf879213d690fc5051761a1 Mon Sep 17 00:00:00 2001
+From 8f169dcc6a9bdaf040e5a6b69b1970c8845ea446 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Tue, 20 Feb 2018 11:24:43 +0100
-Subject: [PATCH 11/22] contrib:mpg123: don't use forbidden APIs on Phone apps
+Subject: [PATCH 11/28] contrib:mpg123: don't use forbidden APIs on Phone apps
 
 ---
  contrib/src/mpg123/mpg123-winstore.patch | 11 +++++++++++
