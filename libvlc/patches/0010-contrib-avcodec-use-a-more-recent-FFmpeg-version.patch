@@ -1,4 +1,4 @@
-From 87e261e528f5ff3213862b8bff9ab3833279592b Mon Sep 17 00:00:00 2001
+From 227573a1b4ef2e47571cbaaf86fe9d009b3ccbb2 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Tue, 19 Dec 2017 12:39:06 +0100
 Subject: [PATCH 10/28] contrib:avcodec: use a more recent FFmpeg version

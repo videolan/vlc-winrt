@@ -1,4 +1,4 @@
-From e517b735fdf1692ce8c34bbf383b91797877ba12 Mon Sep 17 00:00:00 2001
+From a8eace19aa8c3d735afa02860e7f3509f407044d Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Tue, 27 Mar 2018 18:57:41 +0200
 Subject: [PATCH 13/28] rand: use bcrypt instead of CryptographicBufferStatics

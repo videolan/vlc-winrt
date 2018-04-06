@@ -1,4 +1,4 @@
-From 8f169dcc6a9bdaf040e5a6b69b1970c8845ea446 Mon Sep 17 00:00:00 2001
+From 50b6b5898f2dc06b9cf506efcff61eabe340c7ff Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Tue, 20 Feb 2018 11:24:43 +0100
 Subject: [PATCH 11/28] contrib:mpg123: don't use forbidden APIs on Phone apps
