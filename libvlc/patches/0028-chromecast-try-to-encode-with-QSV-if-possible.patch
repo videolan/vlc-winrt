@@ -1,4 +1,4 @@
-From 180a1fb4d199f41bb5e4648ba951d10795803ea0 Mon Sep 17 00:00:00 2001
+From cb7f521e16f5301f226383b8f24d7f3886d1b638 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 5 Apr 2018 09:49:44 +0200
 Subject: [PATCH 28/28] chromecast: try to encode with QSV if possible

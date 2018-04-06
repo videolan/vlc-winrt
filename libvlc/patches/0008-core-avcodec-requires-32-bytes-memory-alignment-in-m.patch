@@ -1,4 +1,4 @@
-From 9d5bf6681222d5ca390bcfac84cf1b2fef101c91 Mon Sep 17 00:00:00 2001
+From 42cd4cd46ef9987628b20bd8ada88fb1c7b21ff9 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 25 Jan 2017 10:49:37 +0100
 Subject: [PATCH 08/28] core: avcodec requires 32-bytes memory alignment in

@@ -1,4 +1,4 @@
-From d599bc7f82c0b68129d06a0385a8383e1f9235b9 Mon Sep 17 00:00:00 2001
+From b3144e2334da8784acebc8e7d828d14eedd452d8 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 4 Sep 2017 13:59:25 +0200
 Subject: [PATCH 26/28] codec: add a set of functions to use a plain FIFO
