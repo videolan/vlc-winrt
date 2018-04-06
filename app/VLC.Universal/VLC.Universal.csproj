@@ -613,6 +613,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libpng_plugin.dll">
       <Link>plugins\codec\libpng_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libqsv_plugin.dll">
+      <Link>plugins\codec\libqsv_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\librawvideo_plugin.dll">
       <Link>plugins\codec\librawvideo_plugin.dll</Link>
     </Content>
@@ -1207,7 +1210,6 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\stream_out\libstream_out_gather_plugin.dll">
       <Link>plugins\stream_out\libstream_out_gather_plugin.dll</Link>
     </Content>
-    
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\stream_out\libstream_out_mosaic_bridge_plugin.dll">
       <Link>plugins\stream_out\libstream_out_mosaic_bridge_plugin.dll</Link>
     </Content>
@@ -1220,7 +1222,6 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\stream_out\libstream_out_setid_plugin.dll">
       <Link>plugins\stream_out\libstream_out_setid_plugin.dll</Link>
     </Content>
-
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\stream_out\libstream_out_smem_plugin.dll">
       <Link>plugins\stream_out\libstream_out_smem_plugin.dll</Link>
     </Content>
