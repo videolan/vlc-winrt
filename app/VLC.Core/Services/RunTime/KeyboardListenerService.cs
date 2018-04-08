@@ -168,7 +168,7 @@ namespace VLC.Services.RunTime
 
         void KeyboardListenerService_KeyDown(CoreWindow sender, KeyEventArgs args)
         {
-            if (!CanListen) return;
+            if (!CanListen || args.Handled) return;
 
             KeyDownPressed?.Invoke(sender, args);
             // Guidelines:
