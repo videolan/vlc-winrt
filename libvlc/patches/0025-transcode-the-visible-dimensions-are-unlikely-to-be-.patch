@@ -1,4 +1,4 @@
-From ad548be31d730e87dd5e07632659a497866bbabd Mon Sep 17 00:00:00 2001
+From 7524990dd9acb105b618f07924902b98946ea9e1 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 14 Dec 2017 14:20:25 +0100
 Subject: [PATCH 25/28] transcode: the visible dimensions are unlikely to be 0
