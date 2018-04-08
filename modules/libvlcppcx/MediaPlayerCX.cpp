@@ -550,5 +550,9 @@ namespace libVLCX
         return m_mp.setRenderer(item->m_item);
     }
 
-} // namespace VLC
+	void MediaPlayer::unsetRenderer()
+	{
+		return m_mp.unsetRenderer();
+	}
 
+} // namespace VLC

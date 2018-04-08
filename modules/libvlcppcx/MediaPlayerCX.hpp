@@ -1114,6 +1114,8 @@ namespace libVLCX
 
         bool setRenderer(RendererItem^ item);
 
+		void unsetRenderer();
+
     private:
         ~MediaPlayer(){}
 
