@@ -1,4 +1,4 @@
-From ab9b5a436fe510c3751b5246a68897b0543febf9 Mon Sep 17 00:00:00 2001
+From e9f804567b4378bd871dc6517cf3033867c5dfe1 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 5 Apr 2018 13:29:40 +0200
 Subject: [PATCH 22/28] contrib: gcrypt: use bcrypt rather than wincrypt
@@ -8,15 +8,15 @@ Subject: [PATCH 22/28] contrib: gcrypt: use bcrypt rather than wincrypt
  1 file changed, 124 insertions(+), 53 deletions(-)
 
 diff --git a/contrib/src/gcrypt/winrt.patch b/contrib/src/gcrypt/winrt.patch
-index fdceb26..7041e88 100644
+index fdceb26..6c02a40 100644
 --- a/contrib/src/gcrypt/winrt.patch
 +++ b/contrib/src/gcrypt/winrt.patch
 @@ -1,75 +1,146 @@
 ---- libgcrypt/random/rndw32.c	2015-09-08 08:17:06.000000000 +0200
 -+++ libgcrypt/random/rndw32.c.winrt	2016-05-24 14:07:35.202767500 +0200
 -@@ -96,8 +96,13 @@
-+--- libgcrypt-1.7.8/random/rndw32.c.winrt	2017-05-03 12:45:22.000000000 +0200
-++++ libgcrypt-1.7.8/random/rndw32.c	2018-04-05 13:11:54.339814800 +0200
++--- gcrypt/random/rndw32.c	2017-05-03 12:45:22.000000000 +0200
+++++ gcrypt/random/rndw32.c.bcrypt	2018-04-05 13:11:54.339814800 +0200
 +@@ -96,8 +96,8 @@
      value in a newer release. So we use a far larger value. */
   #define SIZEOF_DISK_PERFORMANCE_STRUCT 256
