@@ -1,0 +1,45 @@
+From 66514fd3355e9d2fae83b075fb0b3885525f4553 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Sun, 8 Apr 2018 15:29:38 +0200
+Subject: [PATCH 29/29] contrib: libarchive: fix building with bcrypt.h on UNIX
+ systems
+
+mingw64 provides the header in lowercase
+---
+ contrib/src/libarchive/libarchive-mingw64-case.patch | 11 +++++++++++
+ contrib/src/libarchive/rules.mak                     |  1 +
+ 2 files changed, 12 insertions(+)
+ create mode 100644 contrib/src/libarchive/libarchive-mingw64-case.patch
+
+diff --git a/contrib/src/libarchive/libarchive-mingw64-case.patch b/contrib/src/libarchive/libarchive-mingw64-case.patch
+new file mode 100644
+index 0000000..6b3d672d
+--- /dev/null
++++ b/contrib/src/libarchive/libarchive-mingw64-case.patch
+@@ -0,0 +1,11 @@
++--- libarchive/libarchive/archive_cryptor_private.h	2018-04-08 15:24:33.160610700 +0200
+++++ libarchive/libarchive/archive_cryptor_private.h.mingw64	2018-04-08 15:23:30.040523400 +0200
++@@ -64,7 +64,7 @@ typedef struct {
++ } archive_crypto_ctx;
++ 
++ #elif defined(_WIN32) && !defined(__CYGWIN__) && defined(HAVE_BCRYPT_H)
++-#include <Bcrypt.h>
+++#include <bcrypt.h>
++ 
++ /* Common in other bcrypt implementations, but missing from VS2008. */
++ #ifndef BCRYPT_SUCCESS
+diff --git a/contrib/src/libarchive/rules.mak b/contrib/src/libarchive/rules.mak
+index befacd4..9151592 100644
+--- a/contrib/src/libarchive/rules.mak
++++ b/contrib/src/libarchive/rules.mak
+@@ -20,6 +20,7 @@ libarchive: libarchive-$(LIBARCHIVE_VERSION).tar.gz .sum-libarchive
+ ifdef HAVE_ANDROID
+ 	$(APPLY) $(SRC)/libarchive/android.patch
+ endif
++	$(APPLY) $(SRC)/libarchive/libarchive-mingw64-case.patch
+ ifdef HAVE_WINSTORE
+ 	$(APPLY) $(SRC)/libarchive/no-windows-files.patch
+ 	$(APPLY) $(SRC)/libarchive/libarchive-win32-bcrypt.patch
+-- 
+2.10.1.windows.1
+
