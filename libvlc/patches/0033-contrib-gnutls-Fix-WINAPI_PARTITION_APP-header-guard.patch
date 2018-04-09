@@ -1,0 +1,42 @@
+From 7480b4965969559841136c102d86da9340f7c1a8 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
+Date: Mon, 9 Apr 2018 13:48:11 +0200
+Subject: [PATCH 33/34] contrib: gnutls: Fix WINAPI_PARTITION_APP header guard
+
+---
+ contrib/src/gnutls/winstore.patch | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/contrib/src/gnutls/winstore.patch b/contrib/src/gnutls/winstore.patch
+index d9932b642c..a3a9fda130 100644
+--- a/contrib/src/gnutls/winstore.patch
++++ b/contrib/src/gnutls/winstore.patch
+@@ -450,3 +450,25 @@
+  #include <wincrypt.h>
+  
+  #include <winapifamily.h>
++--- gnutls/lib/system/keys-win.c.old	2018-04-09 13:44:23.893996509 +0200
+++++ gnutls/lib/system/keys-win.c	2018-04-09 13:43:52.917997609 +0200
++@@ -30,7 +30,7 @@
++ #include <wincrypt.h>
++ 
++ #include <winapifamily.h>
++-#if !WINAPI_PARTITION_DESKTOP
+++#if WINAPI_FAMILY_PARTITION (WINAPI_PARTITION_APP)
++ # if defined(_WIN32_WINNT) && _WIN32_WINNT >= 0x0A00 /* Univeral Winstore */
++ /* CertOpenSystemStore() is not available */
++ static HCERTSTORE CertOpenSystemStore( HCRYPTPROV_LEGACY hprov, LPCSTR szSubsystemProtocol )
++--- gnutls/lib/system/certs.c.old	2018-04-09 13:52:14.609979798 +0200
+++++ gnutls/lib/system/certs.c	2018-04-09 13:52:27.101979354 +0200
++@@ -26,7 +26,7 @@
++ # include <wincrypt.h>
++ 
++ #include <winapifamily.h>
++-#if !WINAPI_PARTITION_DESKTOP
+++#if WINAPI_FAMILY_PARTITION (WINAPI_PARTITION_APP)
++ # if defined(_WIN32_WINNT) && _WIN32_WINNT >= 0x0A00 /* Univeral Winstore */
++ /* CertOpenSystemStore() is not available */
++ static HCERTSTORE CertOpenSystemStore( HCRYPTPROV_LEGACY hprov, LPCSTR szSubsystemProtocol )
+-- 
+2.11.0
+
