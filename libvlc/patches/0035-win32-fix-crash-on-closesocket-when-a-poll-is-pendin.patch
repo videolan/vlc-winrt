@@ -1,0 +1,34 @@
+From 4162133f11f5234d34654777f3fe2cfa5e8f52ac Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Mon, 9 Apr 2018 18:46:34 +0200
+Subject: [PATCH 35/35] win32: fix crash on closesocket() when a poll() is
+ pending
+
+Only for winstore builds for now
+---
+ src/win32/filesystem.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/src/win32/filesystem.c b/src/win32/filesystem.c
+index 8d56cc8..bb1ad12 100644
+--- a/src/win32/filesystem.c
++++ b/src/win32/filesystem.c
+@@ -339,6 +339,15 @@ int vlc_socket (int pf, int type, int proto, bool nonblock)
+ 
+     if (nonblock)
+         ioctlsocket (fd, FIONBIO, &(unsigned long){ 1 });
++
++#if VLC_WINSTORE_APP
++    /* the pool() can crash on WSAEnumNetworkEvents() when we use closesocket() */
++    struct linger dolin;
++    dolin.l_onoff = 1;
++    dolin.l_linger = 10;
++    setsockopt((SOCKET)fd, SOL_SOCKET, SO_LINGER, (char*)&dolin, sizeof(dolin));
++#endif
++
+     return fd;
+ }
+ 
+-- 
+2.10.1.windows.1
+
