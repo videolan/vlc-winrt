@@ -81,10 +81,28 @@ Thumbnailer::Thumbnailer()
     }
 }
 
+#ifndef NDEBUG
+void OutputFormattedDebug(LPTSTR pMsg, ...) {
+    LPTSTR pBuffer = NULL;
+    va_list args = NULL;
+    va_start(args, pMsg);
+    FormatMessage(FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ALLOCATE_BUFFER, pMsg, 0, 0, (LPTSTR)&pBuffer, 0, &args);
+    va_end(args);
+
+    if (pBuffer) {
+        OutputDebugString(pBuffer);
+        LocalFree(pBuffer);
+    }
+}
+#endif /* NDEBUG */
+
 static void CancelPreparse(const libvlc_event_t*, void* data)
 {
     auto sys = reinterpret_cast<thumbnailer_sys_t*>(data);
     // Don't cancel if we are rendering
+#ifndef NDEBUG
+    OutputFormattedDebug(L"canceling thumb_sys 0x%1!p! %2!d!x%3!d!\n", sys, sys->thumbWidth, sys->thumbHeight);
+#endif /* NDEBUG */
     int s = THUMB_SEEKING;
     if (sys->state.compare_exchange_strong(s, THUMB_CANCELLED) == false)
     {
@@ -116,21 +134,6 @@ static void *Lock(void *opaque, void **pixels)
     *pixels = sys->thumbData.get();
     return nullptr;
 }
-
-#ifndef NDEBUG
-void OutputFormattedDebug(LPTSTR pMsg, ...) {
-    LPTSTR pBuffer = NULL;
-    va_list args = NULL;
-    va_start(args, pMsg);
-    FormatMessage(FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ALLOCATE_BUFFER, pMsg, 0, 0, (LPTSTR)&pBuffer, 0, &args);
-    va_end(args);
-
-    if (pBuffer) {
-        OutputDebugString(pBuffer);
-        LocalFree(pBuffer);
-    }
-}
-#endif /* NDEBUG */
 
 static WriteableBitmap^ CopyToBitmap(thumbnailer_sys_t* sys)
 {
@@ -195,6 +198,9 @@ static void Unlock(void *opaque, void *){
         sys->state = THUMB_RENDERED;
         SetEvent(sys->hLock);
     }));
+#ifndef NDEBUG
+    OutputFormattedDebug(L"started async thumb_sys 0x%1!p! %2!d!x%3!d!\n", sys, sys->thumbWidth, sys->thumbHeight);
+#endif /* NDEBUG */
     // Wait for the signaling to be done before resuming. Otherwise we could have
     // another call to lock/unlock while we're wrapping up
     WaitForSingleObjectEx(sys->hLock, INFINITE, TRUE);
