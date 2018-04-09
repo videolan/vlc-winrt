@@ -655,10 +655,15 @@ namespace VLC.Services.RunTime
         {
             var rendererItem = Locator.RendererService.RendererItems.FirstOrDefault(ri => ri.name().Equals(rendererItemName));
             if (rendererItem == null) return;
-            if(_mediaPlayer == null)
+            if (_mediaPlayer == null)
                 InitializeMediaPlayer();
 
             _mediaPlayer.setRenderer(rendererItem);
+        }
+
+        public void DisconnectRenderer()
+        {
+            _mediaPlayer?.unsetRenderer();
         }
 
         #endregion

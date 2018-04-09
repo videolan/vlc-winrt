@@ -39,6 +39,7 @@ namespace VLC.UI.Views.MainPages
             }
             
             Locator.VideoLibraryVM.PropertyChanged += VideoLibraryVM_PropertyChanged;
+            Cast.Click += CastOnClick;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -47,6 +48,12 @@ namespace VLC.UI.Views.MainPages
 
             Locator.VideoLibraryVM.OnNavigatedFrom();
             Locator.VideoLibraryVM.PropertyChanged -= VideoLibraryVM_PropertyChanged;
+            Cast.Click -= CastOnClick;
+        }
+
+        void CastOnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            Cast.Flyout = Locator.RendererService.CreateRendererFlyout();
         }
 
         private void VideoLibraryVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

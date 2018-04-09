@@ -121,8 +121,7 @@ namespace VLC.UI.Views.VideoPages
             Locator.MediaPlaybackViewModel.PropertyChanged += MediaPlaybackViewModelOnPropertyChanged;
             if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Tablet)
                 PointerWheelChanged += MouseWheelChanged;
-            Locator.RendererService.RendererItems.CollectionChanged += RendererItemsOnCollectionChanged;
-            CastButton.Flyout = Locator.RendererService.CreateRendererFlyout();
+            CastButton.Click += CastButtonOnClick;
 
             // VM initialization
             Locator.VideoPlayerVm.OnNavigatedTo();
@@ -141,7 +140,7 @@ namespace VLC.UI.Views.VideoPages
             App.RootPage.StartCompositionAnimationOnSwapChain(false);
         }
 
-        void RendererItemsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
+        void CastButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
         {
             CastButton.Flyout = Locator.RendererService.CreateRendererFlyout();
         }
@@ -192,7 +191,7 @@ namespace VLC.UI.Views.VideoPages
             AppViewHelper.LeaveFullscreen();
 
             Locator.MediaPlaybackViewModel.PropertyChanged -= MediaPlaybackViewModelOnPropertyChanged;
-            Locator.RendererService.RendererItems.CollectionChanged -= RendererItemsOnCollectionChanged;
+            CastButton.Click -= CastButtonOnClick;
 
             _viewModel.MouseService.Stop();
             _viewModel.MouseService.OnMoved -= ShowControlPanel;

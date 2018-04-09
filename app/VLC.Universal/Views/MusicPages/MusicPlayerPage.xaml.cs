@@ -25,6 +25,10 @@ namespace VLC.UI.Views.MusicPages
             this.Loaded += MusicPlayerPage_Loaded;
             _white = new SolidColorBrush(Colors.White);
             _red = new SolidColorBrush(Colors.Red);
+        }
+
+        void CastOnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
             Cast.Flyout = Locator.RendererService.CreateRendererFlyout();
         }
 
@@ -37,12 +41,7 @@ namespace VLC.UI.Views.MusicPages
             _viewModel.PropertyChanged += MediaPlaybackViewModelOnPropertyChanged;
             if(DeviceHelper.GetDeviceType() == DeviceTypeEnum.Tablet)
                 PointerWheelChanged += OnPointerWheelChanged;
-            Locator.RendererService.RendererItems.CollectionChanged += RendererItemsOnCollectionChanged; 
-        }
-
-        void RendererItemsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
-        {
-            Cast.Flyout = Locator.RendererService.CreateRendererFlyout();
+            Cast.Click += CastOnClick;
         }
 
         void OnPointerWheelChanged(object sender, PointerRoutedEventArgs e)
@@ -96,7 +95,7 @@ namespace VLC.UI.Views.MusicPages
             _viewModel.PropertyChanged -= MediaPlaybackViewModelOnPropertyChanged;
             if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Tablet)
                 PointerWheelChanged -= OnPointerWheelChanged;
-            Locator.RendererService.RendererItems.CollectionChanged -= RendererItemsOnCollectionChanged;
+            Cast.Click -= CastOnClick;
         }
 
         void Responsive()
