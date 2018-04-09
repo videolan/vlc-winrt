@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -34,6 +35,7 @@ namespace VLC.UI.Views.MainPages
 
             Locator.MusicLibraryVM.PropertyChanged -= MusicLibraryVM_PropertyChanged;
             await Locator.MusicLibraryVM.OnNavigatedFrom();
+            Cast.Click -= CastOnClick;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -41,6 +43,12 @@ namespace VLC.UI.Views.MainPages
             base.OnNavigatedTo(e);
 
             Locator.MusicLibraryVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
+            Cast.Click += CastOnClick;
+        }
+
+        void CastOnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            Cast.Flyout = Locator.RendererService.CreateRendererFlyout();
         }
 
         private async void MusicPanesFrame_OnLoaded(object sender, RoutedEventArgs e)

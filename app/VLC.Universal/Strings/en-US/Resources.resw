@@ -825,4 +825,7 @@
   <data name="Restart" xml:space="preserve">
     <value>restart</value>
   </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>disconnect</value>
+</data>
 </root>

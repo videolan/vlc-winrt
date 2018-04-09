@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using libVLCX;
@@ -11,14 +13,26 @@ using VLC.Commands;
 using VLC.Helpers;
 using VLC.Utils;
 using VLC.ViewModels;
+using WinRTXamlToolkit.Tools;
 
 namespace VLC.Services.RunTime
 {
-    public class RendererService
+    public class RendererService : BindableBase
     {
         public ObservableCollection<RendererItem> RendererItems { get; } = new ObservableCollection<RendererItem>();
         RendererDiscoverer _rendererDiscoverer;
         public bool IsStarted;
+        public bool IsRendererSet { get; set; }
+
+        readonly MenuFlyoutItem _disconnect = new MenuFlyoutItem
+        {
+            Text = Strings.Disconnect,
+            Command = new ActionCommand(() =>
+            {
+                Locator.PlaybackService.DisconnectRenderer();
+                Locator.RendererService.IsRendererSet = false;
+            })
+        };
 
         public void Start()
         {
@@ -38,11 +52,11 @@ namespace VLC.Services.RunTime
 
                 _rendererDiscoverer.eventManager().OnItemAdded += OnOnItemAdded;
                 _rendererDiscoverer.eventManager().OnRendererItemDeleted += OnOnRendererItemDeleted;
-                Debug.Assert(_rendererDiscoverer.start());
+                _rendererDiscoverer.start();
             });
         }
         
-        public void StopRendererDiscoverer()
+        public void Stop()
         {
             if (!IsStarted) return;
 
@@ -56,15 +70,23 @@ namespace VLC.Services.RunTime
             RendererItems.Clear();
         }
 
-        void OnOnRendererItemDeleted(RendererItem rendererItem)
+        async void OnOnRendererItemDeleted(RendererItem rendererItem)
         {
-            RendererItems.Remove(rendererItem);
+            var match = RendererItems.FirstOrDefault(item => item.name().Equals(rendererItem.name()));
+            if (match != null)
+                RendererItems.Remove(match);
+
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => OnPropertyChanged(nameof(HasRenderer)));
         }
 
-        void OnOnItemAdded(RendererItem rendererItem)
+        async void OnOnItemAdded(RendererItem rendererItem)
         {
+            LogHelper.Log("Found new rendererItem " + rendererItem.name() + 
+                          " can render audio " + rendererItem.canRenderAudio() +
+                          " can render video " + rendererItem.canRenderVideo());
+
             RendererItems.Add(rendererItem);
-            Debug.WriteLine("Found new rendererItem " + rendererItem.name() + " can render audio " + rendererItem.canRenderAudio() + " can render video " + rendererItem.canRenderVideo());
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => OnPropertyChanged(nameof(HasRenderer)));
         }
 
         public Visibility HasRenderer => DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox && RendererItems.Any()
@@ -78,11 +100,14 @@ namespace VLC.Services.RunTime
                 flyout.Items.Add(new MenuFlyoutItem
                 {
                     Text = ri.name(),
-                    Command = new ActionCommand(() => Locator.PlaybackService.SetRenderer(ri.name()))
-
+                    Command = new ActionCommand(() =>
+                    {
+                        Locator.PlaybackService.SetRenderer(ri.name());
+                        Locator.RendererService.IsRendererSet = true;
+                    })
                 });
             }
-
+            flyout.Items.Add(_disconnect);
             return flyout;
         }
     }

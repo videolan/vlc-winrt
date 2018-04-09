@@ -16,8 +16,6 @@ namespace VLC.UI.Views.MainPages.MusicPanes
         public SongCollectionBase()
         {
             this.InitializeComponent();
-            
-            Cast.Flyout = Locator.RendererService.CreateRendererFlyout();
         }
 
         private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)

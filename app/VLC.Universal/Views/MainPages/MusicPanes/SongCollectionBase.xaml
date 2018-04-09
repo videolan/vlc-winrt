@@ -113,16 +113,6 @@
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarButton.Content>
         </AppBarButton>
-        <AppBarButton x:Name="Cast"
-                      Style="{StaticResource CircleButtonStyle}"
-                      VerticalAlignment="Bottom"
-                      HorizontalAlignment="Left"
-                      Visibility="{Binding Source={StaticResource Locator}, Path=RendererService.HasRenderer}"
-                      Margin="{StaticResource FrameMarginHorizontalPlusFooter}">
-            <AppBarButton.Content>
-                <FontIcon Glyph="&#xEC15;"
-                          FontFamily="Segoe MDL2 Assets" />
-            </AppBarButton.Content>
-        </AppBarButton>
+       
     </Grid>
 </Page>

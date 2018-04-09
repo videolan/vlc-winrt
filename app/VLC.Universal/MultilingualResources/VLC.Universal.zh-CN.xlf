@@ -1165,6 +1165,10 @@
           <source>restart</source>
           <target state="new">restart</target>
         </trans-unit>
+        <trans-unit id="Disconnect" translate="yes" xml:space="preserve">
+          <source>disconnect</source>
+          <target state="new">disconnect</target>
+        </trans-unit>
       </group>
     </body>
   </file>

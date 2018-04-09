@@ -242,6 +242,7 @@ namespace VLC.Utils
         public static string RemoveMusicFolderDescription => _resourcesLoader.GetString(nameof(RemoveMusicFolderDescription));
         public static string AddFolder => _resourcesLoader.GetString(nameof(AddFolder));
         public static string Connect => _resourcesLoader.GetString(nameof(Connect));
+        public static string Disconnect => _resourcesLoader.GetString(nameof(Disconnect));
         public static string Reset => _resourcesLoader.GetString(nameof(Reset));
         public static string ResetMusicDatabase => _resourcesLoader.GetString(nameof(ResetMusicDatabase));
         public static string RefreshMusicLibrary => _resourcesLoader.GetString(nameof(RefreshMusicLibrary));

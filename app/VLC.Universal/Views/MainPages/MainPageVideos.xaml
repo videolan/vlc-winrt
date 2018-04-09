@@ -90,6 +90,14 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <AppBarButton Grid.Column="2" 
+                          x:Name="Cast"
+                          Visibility="{Binding Source={StaticResource Locator}, Path=RendererService.HasRenderer}">
+                <AppBarButton.Content>
+                    <FontIcon Glyph="&#xEC15;"
+                              FontFamily="Segoe MDL2 Assets" />
+                </AppBarButton.Content>
+            </AppBarButton>
         </Grid>
         <ProgressRing Grid.Row="1"
             IsActive="True"
