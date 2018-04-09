@@ -117,13 +117,32 @@ static void *Lock(void *opaque, void **pixels)
     return nullptr;
 }
 
+#ifndef NDEBUG
+void OutputFormattedDebug(LPTSTR pMsg, ...) {
+    LPTSTR pBuffer = NULL;
+    va_list args = NULL;
+    va_start(args, pMsg);
+    FormatMessage(FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ALLOCATE_BUFFER, pMsg, 0, 0, (LPTSTR)&pBuffer, 0, &args);
+    va_end(args);
+
+    if (pBuffer) {
+        OutputDebugString(pBuffer);
+        LocalFree(pBuffer);
+    }
+}
+#endif /* NDEBUG */
+
 static WriteableBitmap^ CopyToBitmap(thumbnailer_sys_t* sys)
 {
+#ifndef NDEBUG
+    OutputFormattedDebug(L"received bitmap thumb_sys 0x%1!p! %2!d!x%3!d!\n", sys, sys->thumbWidth, sys->thumbHeight);
+#else /* !NDEBUG */
     if (sys->thumbWidth > INT32_MAX || sys->thumbWidth > INT32_MAX)
     {
         assert(sys->thumbWidth < INT32_MAX && sys->thumbWidth < INT32_MAX);
         return nullptr;
     }
+#endif /* !NDEBUG */
     WriteableBitmap^ bmp = ref new WriteableBitmap(static_cast<int>(sys->thumbWidth), static_cast<int>(sys->thumbHeight));
 
 #if FAST_COPY
@@ -221,6 +240,9 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
         unsigned int pitch = width * PIXEL_SIZE;
         sys->thumbHeight = height;
         sys->thumbWidth = width;
+#ifndef NDEBUG
+        OutputFormattedDebug(L"created thumb_sys 0x%1!p! %2!d!x%3!d!\n", sys, sys->thumbWidth, sys->thumbHeight);
+#endif /* NDEBUG */
         sys->thumbSize = pitch * sys->thumbHeight;
         sys->thumbData.reset(new char[sys->thumbSize]);
         sys->hLock = CreateEventEx(nullptr, nullptr, 0, EVENT_MODIFY_STATE);
@@ -259,6 +281,9 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
             libvlc_media_player_release(mp);
             CloseHandle(sys->hLock);
             delete sys;
+#ifndef NDEBUG
+            OutputFormattedDebug(L"release thumb_sys 0x%1!p!\n", sys);
+#endif /* NDEBUG */
         });
         return completionTask;
     });
