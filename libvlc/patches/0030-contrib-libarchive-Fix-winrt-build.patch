@@ -1,0 +1,43 @@
+From a53b962b6885f07dde44e14ae148704ff0a9fb32 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Mon, 9 Apr 2018 09:59:27 +0200
+Subject: [PATCH 30/30] contrib: libarchive: Fix winrt build
+
+---
+ contrib/src/libarchive/winrt.patch | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/contrib/src/libarchive/winrt.patch b/contrib/src/libarchive/winrt.patch
+index 50258df..28bc2d7 100644
+--- a/contrib/src/libarchive/winrt.patch
++++ b/contrib/src/libarchive/winrt.patch
+@@ -323,3 +323,26 @@
+ +    return ARCHIVE_FATAL;
+ +#endif
+  }
++--- libarchive/configure.ac	2018-04-09 09:57:53.529353800 +0200
+++++ libarchive/configure.ac.winstore	2018-04-08 10:36:48.637325400 +0200
++@@ -243,13 +243,13 @@ AM_CONDITIONAL([BUILD_BSDCPIO], [ test "
++ AM_CONDITIONAL([STATIC_BSDCPIO], [ test "$static_bsdcpio" = yes ])
++ 
++ # Set up defines needed before including any headers
++-#case $host in
++-#  *mingw* | *cygwin* | *msys*  )
++-#  AC_DEFINE([_WIN32_WINNT], 0x0502, [Define to '0x0502' for Windows Server 2003 APIs.])
++-#  AC_DEFINE([WINVER], 0x0502, [Define to '0x0502' for Windows Server 2003 APIs.])
++-#  AC_DEFINE([NTDDI_VERSION], 0x05020000, [Define to '0x05020000' for Windows Server 2003 APIs.])
++-#  ;;
++-#esac
+++case $host in
+++  *mingw* | *cygwin* | *msys*  )
+++  AC_DEFINE([_WIN32_WINNT], 0x0502, [Define to '0x0502' for Windows Server 2003 APIs.])
+++  AC_DEFINE([WINVER], 0x0502, [Define to '0x0502' for Windows Server 2003 APIs.])
+++  AC_DEFINE([NTDDI_VERSION], 0x05020000, [Define to '0x05020000' for Windows Server 2003 APIs.])
+++  ;;
+++esac
++ 
++ # Checks for header files.
++ AC_HEADER_DIRENT
+-- 
+2.10.1.windows.1
+
