@@ -1,0 +1,32 @@
+From 18f24500b392f45bccd241136b6a3cf817cef1fa Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
+Date: Mon, 9 Apr 2018 13:04:02 +0200
+Subject: [PATCH 31/32] contribs: Fix ffmpeg build with gcrypt.h
+
+---
+ contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch b/contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch
+index 456557716d..ff5ad0f9a4 100644
+--- a/contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch
++++ b/contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch
+@@ -57,3 +57,15 @@
+      HCRYPTPROV provider;
+      if (CryptAcquireContext(&provider, NULL, NULL, PROV_RSA_FULL,
+                              CRYPT_VERIFYCONTEXT | CRYPT_SILENT)) {
++--- ffmpeg/libavutil/random_seed.c.old	2018-04-09 12:05:53.366206339 +0200
+++++ ffmpeg/libavutil/random_seed.c	2018-04-09 12:05:15.826207672 +0200
++@@ -27,6 +27,9 @@
++ #include <io.h>
++ #endif
++ #if HAVE_BCRYPT
+++#if _WIN32
+++#include <windows.h>
+++#endif
++ #include <bcrypt.h>
++ #elif HAVE_WINCRYPT
++ #include <windows.h>
+-- 
+2.11.0
+

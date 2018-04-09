@@ -1,0 +1,40 @@
+From 007563b691a2deced7f36496df8c01190f821ac1 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
+Date: Mon, 9 Apr 2018 13:25:00 +0200
+Subject: [PATCH 32/32] contribs: Fix gnutls UWP build with mingw-w64
+
+---
+ contrib/src/gnutls/winstore.patch | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/contrib/src/gnutls/winstore.patch b/contrib/src/gnutls/winstore.patch
+index 9d610691a6..d9932b642c 100644
+--- a/contrib/src/gnutls/winstore.patch
++++ b/contrib/src/gnutls/winstore.patch
+@@ -430,3 +430,23 @@
+  typedef PCCRL_CONTEXT WINAPI(*CertEnumCRLsInStoreFunc) (HCERTSTORE
+  							 hCertStore,
+  							 PCCRL_CONTEXT
++--- gnutls/lib/system.c.old	2018-04-09 13:21:50.450044558 +0200
+++++ gnutls/lib/system.c	2018-04-09 13:17:55.502052899 +0200
++@@ -23,6 +23,7 @@
++ 
++ #ifdef _WIN32
++ # include <windows.h>
+++# include <system.h>
++ # include <wincrypt.h>
++ # if defined(__MINGW32__) && !defined(__MINGW64__) && __MINGW32_MAJOR_VERSION <= 3 && __MINGW32_MINOR_VERSION <= 20
++ #  define NEED_CERT_ENUM_CRLS
++--- gnutls/lib/system/keys-win.c.old	2018-04-09 13:21:04.298046196 +0200
+++++ gnutls/lib/system/keys-win.c	2018-04-09 13:21:31.366045235 +0200
++@@ -26,6 +26,7 @@
++ #define _WIN32_WINNT 0x600
++ #endif
++ 
+++#include <windows.h>
++ #include <wincrypt.h>
++ 
++ #include <winapifamily.h>
+-- 
+2.11.0
+
