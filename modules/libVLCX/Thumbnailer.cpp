@@ -103,7 +103,11 @@ static void CancelPreparse(const libvlc_event_t*, void* data)
 #ifndef NDEBUG
     OutputFormattedDebug(L"canceling thumb_sys 0x%1!p! %2!d!x%3!d!\n", sys, sys->thumbWidth, sys->thumbHeight);
 #endif /* NDEBUG */
-    int s = THUMB_SEEKING;
+    int s = THUMB_RENDERING;
+    if (sys->state.compare_exchange_strong(s, THUMB_RENDERING))
+        return;
+
+    s = THUMB_SEEKING;
     if (sys->state.compare_exchange_strong(s, THUMB_CANCELLED) == false)
     {
         if (s == THUMB_SEEKED)
