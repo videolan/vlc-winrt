@@ -1,7 +1,7 @@
-From 351811034e4e60a7f04b6c39a672df5d87a33c07 Mon Sep 17 00:00:00 2001
+From cb3611272860b1f7f8b7ae604527e1e70cc15bca Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 23 May 2016 09:18:17 +0200
-Subject: [PATCH 15/28] contrib: gnutls: fix Winstore forbidden API calls
+Subject: [PATCH 15/33] contrib: gnutls: fix Winstore forbidden API calls
 
 ---
  contrib/src/gnutls/rules.mak      |   3 +
@@ -25,7 +25,7 @@ index c8454d4..78941c1 100644
  	$(MOVE)
 diff --git a/contrib/src/gnutls/winstore.patch b/contrib/src/gnutls/winstore.patch
 new file mode 100644
-index 0000000..9d61069
+index 0000000..d59863d
 --- /dev/null
 +++ b/contrib/src/gnutls/winstore.patch
 @@ -0,0 +1,432 @@
@@ -37,9 +37,9 @@ index 0000000..9d61069
 + 
 ++#include <windows.h>
 ++#include <winapifamily.h>
-++#if WINAPI_PARTITION_DESKTOP
+++#if !WINAPI_FAMILY_PARTITION (WINAPI_PARTITION_APP)
 ++#include <wincrypt.h>
-++#else /* !WINAPI_PARTITION_DESKTOP */
+++#else /* WINAPI_PARTITION_APP */
 ++#include <bcrypt.h>
 ++typedef BCRYPT_ALG_HANDLE HCRYPTPROV;
 ++#define PROV_RSA_FULL 0
@@ -61,7 +61,7 @@ index 0000000..9d61069
 ++{
 ++    return BCRYPT_SUCCESS(BCryptCloseAlgorithmProvider(handle, 0));
 ++}
-++#endif /* !WINAPI_PARTITION_DESKTOP */
+++#endif /* WINAPI_PARTITION_APP */
 ++
 + #include "gnutls_int.h"
 + #include "errors.h"
@@ -87,7 +87,7 @@ index 0000000..9d61069
 ++# include <wincrypt.h>
 ++
 ++#include <winapifamily.h>
-++#if !WINAPI_PARTITION_DESKTOP
+++#if WINAPI_FAMILY_PARTITION (WINAPI_PARTITION_APP)
 ++# if defined(_WIN32_WINNT) && _WIN32_WINNT >= 0x0A00 /* Univeral Winstore */
 ++/* CertOpenSystemStore() is not available */
 ++static HCERTSTORE CertOpenSystemStore( HCRYPTPROV_LEGACY hprov, LPCSTR szSubsystemProtocol )
@@ -183,7 +183,7 @@ index 0000000..9d61069
 ++    return NULL;
 ++}
 ++# endif /* _WIN32_WINNT < 0x0A00 */
-++#endif /* !WINAPI_PARTITION_DESKTOP */
+++#endif /* WINAPI_PARTITION_APP */
 ++#endif /* _WIN32 */
 ++
 + #include <config.h>
@@ -208,7 +208,7 @@ index 0000000..9d61069
 ++#include <wincrypt.h>
 ++
 ++#include <winapifamily.h>
-++#if !WINAPI_PARTITION_DESKTOP
+++#if WINAPI_FAMILY_PARTITION (WINAPI_PARTITION_APP)
 ++# if defined(_WIN32_WINNT) && _WIN32_WINNT >= 0x0A00 /* Univeral Winstore */
 ++/* CertOpenSystemStore() is not available */
 ++static HCERTSTORE CertOpenSystemStore( HCRYPTPROV_LEGACY hprov, LPCSTR szSubsystemProtocol )
@@ -380,7 +380,7 @@ index 0000000..9d61069
 ++    return NULL;
 ++}
 ++# endif /* _WIN32_WINNT < 0x0A00 */
-++#endif /* !WINAPI_PARTITION_DESKTOP */
+++#endif /* WINAPI_PARTITION_APP */
 ++
 + #include "gnutls_int.h"
 + #include "errors.h"
@@ -422,13 +422,13 @@ index 0000000..9d61069
 ++# endif
 ++#if defined(_WIN32_WINNT) && _WIN32_WINNT < 0x0A00
 ++#include <winapifamily.h>
-++#if !WINAPI_PARTITION_DESKTOP
+++#if WINAPI_FAMILY_PARTITION (WINAPI_PARTITION_APP)
 ++/* not available on store apps below Windows 10 */
 ++PCCRL_CONTEXT CertEnumCRLsInStore(HCERTSTORE hCertStore, PCCRL_CONTEXT pPrevCrlContext)
 ++{
 ++    return NULL;
 ++}
-++#endif /* !WINAPI_PARTITION_DESKTOP */
+++#endif /* WINAPI_PARTITION_APP */
 ++#endif /* _WIN32_WINNT < 0x0A00 */
 ++#endif
 ++

@@ -1,7 +1,7 @@
-From 218eeb64d0302a1a3cac7b59a09c71f6675b7813 Mon Sep 17 00:00:00 2001
+From 7b0fdf1be1d10be7d9e20f0064a4d2b1c9511b19 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:06:53 +0200
-Subject: [PATCH 19/28] contrib: shout: timeval is defined in winsock2.h on
+Subject: [PATCH 19/33] contrib: shout: timeval is defined in winsock2.h on
  Windows
 
 ---

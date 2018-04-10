@@ -1,14 +1,14 @@
-From 0be564327b0446815c4a79be2c1aaa88c709b70e Mon Sep 17 00:00:00 2001
+From 6ac058920ff67b3350338f9ba509f485678b94e9 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Mon, 9 Apr 2018 13:25:00 +0200
-Subject: [PATCH 32/34] contribs: Fix gnutls UWP build with mingw-w64
+Subject: [PATCH 32/33] contribs: Fix gnutls UWP build with mingw-w64
 
 ---
  contrib/src/gnutls/winstore.patch | 20 ++++++++++++++++++++
  1 file changed, 20 insertions(+)
 
 diff --git a/contrib/src/gnutls/winstore.patch b/contrib/src/gnutls/winstore.patch
-index 9d61069..d9932b6 100644
+index d59863d..68e4b3c 100644
 --- a/contrib/src/gnutls/winstore.patch
 +++ b/contrib/src/gnutls/winstore.patch
 @@ -430,3 +430,23 @@

@@ -1,7 +1,7 @@
-From 907613101d218570cdb38106213ef0258351db34 Mon Sep 17 00:00:00 2001
+From 0eb2c71d6fd5fc0c577f169eaeaf820cd299638e Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 13:09:59 +0200
-Subject: [PATCH 16/28] sap: use the same declaration signature as the
+Subject: [PATCH 16/33] sap: use the same declaration signature as the
  definition
 
 ---
