@@ -153,7 +153,7 @@ namespace VLC
         {
             SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
             Locator.PlaybackService?.Trim();
-            Locator.RendererService.Stop();
+            Task.Run(() => Locator.RendererService.Stop());
             deferral.Complete();
         }
 
@@ -316,12 +316,13 @@ namespace VLC
             ToggleMediaCenterMode();
 
             Locator.ExternalDeviceService.StartWatcher();
-            Locator.RendererService.Start();
-
+            
             if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
                 await Locator.HttpServer.Bind(8080).ConfigureAwait(false);
+            else
+                Locator.RendererService.Start();
         }
-        
+
         public static void ReloadApplicationPage()
         {
             Locator.PlaybackService.Stop();
