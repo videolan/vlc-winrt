@@ -1,3 +1,14 @@
+Changes between 3.0.1 and 3.0.2
+-------------------------------
+Release: April 11th 2018
+
+* Fix RTSP support
+* Fix fullscreen toggle bug
+* Other minor fixes
+* Add restart video option
+* Add arrow key shortcut for seeking
+* *Experimental* Chromecast support for desktop and phones.
+
 Changes between 3.0.0 and 3.0.1
 -------------------------------
 Release: February 16th 2018
