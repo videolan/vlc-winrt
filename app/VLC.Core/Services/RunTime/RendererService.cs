@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Diagnostics;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Autofac;
 using libVLCX;
 using VLC.Commands;
 using VLC.Helpers;
+using VLC.Model.Events;
 using VLC.Utils;
 using VLC.ViewModels;
-using WinRTXamlToolkit.Tools;
 
 namespace VLC.Services.RunTime
 {
@@ -23,22 +20,33 @@ namespace VLC.Services.RunTime
         RendererDiscoverer _rendererDiscoverer;
         public bool IsStarted;
         public bool IsRendererSet { get; set; }
+        readonly PlaybackService _playbackService = Locator.PlaybackService;
+
+        public RendererService()
+        {
+            App.Container.Resolve<NetworkListenerService>().InternetConnectionChanged += OnInternetConnectionChanged;
+        }
+
+        async void OnInternetConnectionChanged(object sender, InternetConnectionChangedEventArgs internetConnectionChangedEventArgs)
+        {
+            if (!internetConnectionChangedEventArgs.IsConnected && IsStarted)
+                await Stop();
+            else if(internetConnectionChangedEventArgs.IsConnected && !IsStarted)
+                Start();
+        }
 
         readonly MenuFlyoutItem _disconnect = new MenuFlyoutItem
         {
             Text = Strings.Disconnect,
-            Command = new ActionCommand(() =>
-            {
-                Locator.PlaybackService.DisconnectRenderer();
-                Locator.RendererService.IsRendererSet = false;
-            })
+            Command = new ActionCommand(() => Locator.RendererService.DisconnectRenderer())
         };
 
         public void Start()
         {
-            if (IsStarted) return;
+            if (IsStarted || !NetworkListenerService.IsConnected) return;
 
             IsStarted = true;
+            IsRendererSet = false;
 
             Task.Run(async () =>
             {
@@ -56,11 +64,13 @@ namespace VLC.Services.RunTime
             });
         }
         
-        public void Stop()
+        public async Task Stop()
         {
             if (!IsStarted) return;
 
             IsStarted = false;
+
+            DisconnectRenderer();
 
             _rendererDiscoverer.stop();
             _rendererDiscoverer.eventManager().OnItemAdded -= OnOnItemAdded;
@@ -68,6 +78,7 @@ namespace VLC.Services.RunTime
             _rendererDiscoverer = null;
 
             RendererItems.Clear();
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => OnPropertyChanged(nameof(HasRenderer)));
         }
 
         async void OnOnRendererItemDeleted(RendererItem rendererItem)
@@ -75,6 +86,9 @@ namespace VLC.Services.RunTime
             var match = RendererItems.FirstOrDefault(item => item.name().Equals(rendererItem.name()));
             if (match != null)
                 RendererItems.Remove(match);
+
+            if (IsRendererSet && !RendererItems.Any())
+                DisconnectRenderer();
 
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () => OnPropertyChanged(nameof(HasRenderer)));
         }
@@ -91,7 +105,7 @@ namespace VLC.Services.RunTime
 
         public Visibility HasRenderer => DeviceHelper.GetDeviceType() != DeviceTypeEnum.Xbox && RendererItems.Any()
             ? Visibility.Visible : Visibility.Collapsed;
-
+       
         public MenuFlyout CreateRendererFlyout()
         {
             var flyout = new MenuFlyout();
@@ -109,6 +123,12 @@ namespace VLC.Services.RunTime
             }
             flyout.Items.Add(_disconnect);
             return flyout;
+        }
+
+        public void DisconnectRenderer()
+        {
+            _playbackService.DisconnectRenderer();
+            IsRendererSet = false;
         }
     }
 }
