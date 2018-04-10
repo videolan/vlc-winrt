@@ -256,20 +256,6 @@
                                               FontSize="22" />
                                 </AppBarButton.Icon>
                             </AppBarButton>
-
-                            <AppBarButton x:Name="CastButton"
-                                          IsCompact="True"
-                                          HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Stretch"
-                                          Style="{StaticResource AppBarButtonStyleHuge}"
-                                          Margin="{StaticResource FrameMarginHorizontal}" 
-                                          Visibility="{Binding Source={StaticResource Locator}, Path=RendererService.HasRenderer}">
-                                <AppBarButton.Content>
-                                    <FontIcon Glyph="&#xEC15;"
-                                              FontFamily="Segoe MDL2 Assets" />
-                                </AppBarButton.Content>
-                            </AppBarButton>
-
                         </StackPanel>
                         <StackPanel Grid.Column="1" Orientation="Horizontal">
                             <AppBarButton x:Name="PreviousButton"
@@ -306,6 +292,18 @@
                         <StackPanel Grid.Column="2"
                                     Orientation="Horizontal"
                                     HorizontalAlignment="Right">
+                            <AppBarButton x:Name="CastButton"
+                                          IsCompact="True"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch"
+                                          Style="{StaticResource AppBarButtonStyleHuge}"
+                                          Margin="{StaticResource FrameMarginHorizontal}" 
+                                          Visibility="{Binding Source={StaticResource Locator}, Path=RendererService.HasRenderer}">
+                                <AppBarButton.Content>
+                                    <FontIcon Glyph="&#xEC15;"
+                                              FontFamily="Segoe MDL2 Assets" />
+                                </AppBarButton.Content>
+                            </AppBarButton>
                             <AppBarButton x:Name="SubtitlesButton"
                                           HorizontalAlignment="Stretch"
                                           VerticalAlignment="Stretch"
