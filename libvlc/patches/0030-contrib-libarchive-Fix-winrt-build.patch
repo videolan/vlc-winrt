@@ -1,19 +1,19 @@
-From 3ce765d82e807d53b332c22d812642a12969b6f3 Mon Sep 17 00:00:00 2001
+From 2882ae4e3e93b9d4ab1a8ee0a7af820d14a43d13 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Mon, 9 Apr 2018 09:59:27 +0200
-Subject: [PATCH 30/35] contrib: libarchive: Fix winrt build
+Subject: [PATCH 30/34] contrib: libarchive: Fix winrt build
 
 don't force compilation for Windows XP
 don't call DebugBreak() (in debug builds)
 ---
- contrib/src/libarchive/winrt.patch | 34 ++++++++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+ contrib/src/libarchive/winrt.patch | 42 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
 diff --git a/contrib/src/libarchive/winrt.patch b/contrib/src/libarchive/winrt.patch
-index 50258df..eea0ba5 100644
+index 50258df..6dbc3c8 100644
 --- a/contrib/src/libarchive/winrt.patch
 +++ b/contrib/src/libarchive/winrt.patch
-@@ -323,3 +323,37 @@
+@@ -323,3 +323,45 @@
  +    return ARCHIVE_FATAL;
  +#endif
   }
@@ -40,9 +40,17 @@ index 50258df..eea0ba5 100644
 + 
 + # Checks for header files.
 + AC_HEADER_DIRENT
-+--- libarchive/libarchive/archive_check_magic.c	2018-04-10 10:19:17.618068500 +0200
++--- libarchive/libarchive/archive_check_magic.c	2018-04-10 10:52:18.395890700 +0200
 ++++ libarchive/libarchive/archive_check_magic.c.winstore	2018-04-10 10:17:41.289866600 +0200
-+@@ -66,7 +66,7 @@ errmsg(const char *m)
++@@ -43,6 +43,7 @@ __FBSDID("$FreeBSD: head/lib/libarchive/
++ #if defined(_WIN32) && !defined(__CYGWIN__)
++ #include <windows.h>
++ #include <winbase.h>
+++#include <winapifamily.h>
++ #endif
++ 
++ #include "archive_private.h"
++@@ -65,7 +66,7 @@ errmsg(const char *m)
 + static __LA_DEAD void
 + diediedie(void)
 + {

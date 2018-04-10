@@ -1,4 +1,4 @@
-From 7480b4965969559841136c102d86da9340f7c1a8 Mon Sep 17 00:00:00 2001
+From 5ae17765fecd2233035812b4a213c506153072eb Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Mon, 9 Apr 2018 13:48:11 +0200
 Subject: [PATCH 33/34] contrib: gnutls: Fix WINAPI_PARTITION_APP header guard
@@ -8,7 +8,7 @@ Subject: [PATCH 33/34] contrib: gnutls: Fix WINAPI_PARTITION_APP header guard
  1 file changed, 22 insertions(+)
 
 diff --git a/contrib/src/gnutls/winstore.patch b/contrib/src/gnutls/winstore.patch
-index d9932b642c..a3a9fda130 100644
+index d9932b6..a3a9fda 100644
 --- a/contrib/src/gnutls/winstore.patch
 +++ b/contrib/src/gnutls/winstore.patch
 @@ -450,3 +450,25 @@
@@ -38,5 +38,5 @@ index d9932b642c..a3a9fda130 100644
 + /* CertOpenSystemStore() is not available */
 + static HCERTSTORE CertOpenSystemStore( HCRYPTPROV_LEGACY hprov, LPCSTR szSubsystemProtocol )
 -- 
-2.11.0
+2.10.1.windows.1
 

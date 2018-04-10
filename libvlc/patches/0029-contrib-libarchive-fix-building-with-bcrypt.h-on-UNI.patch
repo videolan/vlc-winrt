@@ -1,7 +1,7 @@
-From 66514fd3355e9d2fae83b075fb0b3885525f4553 Mon Sep 17 00:00:00 2001
+From 77ac302f9bfd3834d89bb691601c15ad78ecd82c Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Sun, 8 Apr 2018 15:29:38 +0200
-Subject: [PATCH 29/29] contrib: libarchive: fix building with bcrypt.h on UNIX
+Subject: [PATCH 29/34] contrib: libarchive: fix building with bcrypt.h on UNIX
  systems
 
 mingw64 provides the header in lowercase

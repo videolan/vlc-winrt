@@ -1,7 +1,7 @@
-From ed15581f4e1db12db8c0d7e7f5c2c31c4841c528 Mon Sep 17 00:00:00 2001
+From 5ea02883e67e20ec73b0fc9149f4a2b019e81e67 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 5 Apr 2018 14:49:26 +0200
-Subject: [PATCH 23/28] contrib: libarchive: use bcrypt rather than wincrypt
+Subject: [PATCH 23/34] contrib: libarchive: use bcrypt rather than wincrypt
 
 ---
  .../src/libarchive/libarchive-win32-bcrypt.patch   | 62 ++++++++++++++++++++++
@@ -11,7 +11,7 @@ Subject: [PATCH 23/28] contrib: libarchive: use bcrypt rather than wincrypt
 
 diff --git a/contrib/src/libarchive/libarchive-win32-bcrypt.patch b/contrib/src/libarchive/libarchive-win32-bcrypt.patch
 new file mode 100644
-index 0000000..836347b
+index 0000000..b280f0f
 --- /dev/null
 +++ b/contrib/src/libarchive/libarchive-win32-bcrypt.patch
 @@ -0,0 +1,62 @@
@@ -22,7 +22,7 @@ index 0000000..836347b
 + AC_CHECK_HEADERS([windows.h])
 + # check windows.h first; the other headers require it.
 +-AC_CHECK_HEADERS([wincrypt.h winioctl.h],[],[],
-++AC_CHECK_HEADERS([bcrypt.h winioctl.h],[],[],
+++AC_CHECK_HEADERS([bcrypt.h winioctl.h],[LIBS="-lbcrypt $LIBS"],[],
 + [[#ifdef HAVE_WINDOWS_H
 + # include <windows.h>
 + #endif
