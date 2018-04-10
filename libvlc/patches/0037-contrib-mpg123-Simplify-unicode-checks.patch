@@ -1,0 +1,66 @@
+From e3d8fbf0c91d850da149c259bc0ba3a5a11de901 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
+Date: Tue, 10 Apr 2018 17:14:15 +0200
+Subject: [PATCH 37/37] contrib: mpg123: Simplify unicode checks
+
+---
+ contrib/src/mpg123/winstore.patch | 46 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+
+diff --git a/contrib/src/mpg123/winstore.patch b/contrib/src/mpg123/winstore.patch
+index 416faeaba9..3171e1c5fc 100644
+--- a/contrib/src/mpg123/winstore.patch
++++ b/contrib/src/mpg123/winstore.patch
+@@ -75,3 +75,49 @@
+  #endif
+  #ifdef HAVE_SYS_STAT_H
+  #  include <sys/stat.h>
++--- mpg123/configure.ac.old	2018-04-10 16:59:46.368787495 +0200
+++++ mpg123/configure.ac	2018-04-10 17:02:46.640781095 +0200
++@@ -2188,21 +2188,15 @@
++   AC_CHECK_FUNC([_wopen], [win32_unicode=enabled],[win32_unicode=disabled])
++   AC_MSG_CHECKING([if we want Unicode File Open for Win32])
++   if test "x$win32_unicode" = xenabled; then
++-    dnl We need to include the header for PathCombineW checking as
++-    dnl the actual symbol has a very funny name.
++-    oldlibs=$LIBS
++-    LIBS="$LIBS -lshlwapi"
++     AC_MSG_RESULT([yes])
++     AC_MSG_CHECKING([if Unicode functions working])
++     AC_LINK_IFELSE([AC_LANG_SOURCE([
++       #include <windows.h>
++-      #include <shlwapi.h>
++       #include <stdlib.h>
++       int main()
++       {
++         MultiByteToWideChar (0, 0, NULL, 0, NULL, 0);
++         WideCharToMultiByte (0, 0, NULL, 0, NULL, 0, NULL, NULL);
++-        PathCombineW(0,0,0);
++         return 0;
++       }
++     ])], [win32_wide_working=yes], [win32_winver_bump=yes])
++@@ -2211,13 +2205,11 @@
++         #define WINVER 0x501
++         #define _WIN32_WINNT 0x501
++         #include <windows.h>
++-        #include <shlwapi.h>
++         #include <stdlib.h>
++         int main()
++         {
++           MultiByteToWideChar (0, 0, NULL, 0, NULL, 0);
++           WideCharToMultiByte (0, 0, NULL, 0, NULL, 0, NULL, NULL);
++-          PathCombineW(0,0,0);
++           return 0;
++         }
++       ])], [win32_wide_working=yes], [AC_MSG_RESULT([no])])
++@@ -2226,7 +2218,6 @@
++       AC_MSG_RESULT([yes])
++       AC_DEFINE([WANT_WIN32_UNICODE], [1], [ Define to use Unicode for Windows ])
++     else
++-      LIBS=$oldlibs
++       AC_MSG_ERROR([Unicode support for Win32 not working])
++     fi
++   else
+-- 
+2.11.0
+
