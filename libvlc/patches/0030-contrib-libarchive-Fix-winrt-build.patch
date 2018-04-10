@@ -1,18 +1,19 @@
-From 5c249482bdacf86a992ca6df2fd00261bc92732c Mon Sep 17 00:00:00 2001
+From 3ce765d82e807d53b332c22d812642a12969b6f3 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Mon, 9 Apr 2018 09:59:27 +0200
-Subject: [PATCH 30/30] contrib: libarchive: Fix winrt build
+Subject: [PATCH 30/35] contrib: libarchive: Fix winrt build
 
 don't force compilation for Windows XP
+don't call DebugBreak() (in debug builds)
 ---
- contrib/src/libarchive/winrt.patch | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ contrib/src/libarchive/winrt.patch | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
 diff --git a/contrib/src/libarchive/winrt.patch b/contrib/src/libarchive/winrt.patch
-index 50258df..c1bf944 100644
+index 50258df..eea0ba5 100644
 --- a/contrib/src/libarchive/winrt.patch
 +++ b/contrib/src/libarchive/winrt.patch
-@@ -323,3 +323,26 @@
+@@ -323,3 +323,37 @@
  +    return ARCHIVE_FATAL;
  +#endif
   }
@@ -39,6 +40,17 @@ index 50258df..c1bf944 100644
 + 
 + # Checks for header files.
 + AC_HEADER_DIRENT
++--- libarchive/libarchive/archive_check_magic.c	2018-04-10 10:19:17.618068500 +0200
+++++ libarchive/libarchive/archive_check_magic.c.winstore	2018-04-10 10:17:41.289866600 +0200
++@@ -66,7 +66,7 @@ errmsg(const char *m)
++ static __LA_DEAD void
++ diediedie(void)
++ {
++-#if defined(_WIN32) && !defined(__CYGWIN__) && defined(_DEBUG)
+++#if defined(_WIN32) && !defined(__CYGWIN__) && defined(_DEBUG) && !WINAPI_FAMILY_PARTITION (WINAPI_PARTITION_APP)
++ 	/* Cause a breakpoint exception  */
++ 	DebugBreak();
++ #endif
 -- 
 2.10.1.windows.1
 
