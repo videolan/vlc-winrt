@@ -46,6 +46,22 @@ namespace libVLCX
         delete [] c_argv;
     }
 
+    Instance::Instance(Windows::Foundation::Collections::IVector<Platform::String^>^ argv)
+    {
+        int extraArgs = 2;
+        auto c_argv = new char*[argv->Size + extraArgs];
+        unsigned int i = 0;
+        for (auto arg : argv)
+        {
+            c_argv[i++] = _strdup((const char*) VLCString(arg));
+        }
+
+        m_instance = VLC::Instance(i, c_argv);
+        for (unsigned j = 0; j < i; ++j)
+            free(c_argv[j]);
+        delete [] c_argv;
+    }
+
     void Instance::Trim()
     {
         m_dxManager->Trim();

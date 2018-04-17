@@ -8,20 +8,13 @@
  **********************************************************************/
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources.Core;
-using Windows.System;
 using Windows.UI.Xaml;
-using VLC.Database;
 using VLC.Helpers;
-using VLC.Helpers.MusicLibrary;
-using VLC.Model.Music;
-using VLC.Model.Video;
 using VLC.Model;
-using VLC.UI.Views.MusicPages;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Core;
@@ -29,10 +22,6 @@ using VLC.Commands.Navigation;
 using VLC.Commands.Settings;
 using VLC.Utils;
 using Windows.UI.Xaml.Navigation;
-using Autofac;
-using VLC.Services.RunTime;
-using Windows.UI.ViewManagement;
-using Windows.Foundation.Metadata;
 
 namespace VLC.ViewModels.Settings
 {
@@ -745,5 +734,14 @@ namespace VLC.ViewModels.Settings
                 Locator.MainVM.Panels.Remove(settingsPanel);
         }
         #endregion
+
+        public List<string> Profiles { get; } = new List<string>
+        {
+            "VP9",
+            "720p",
+            "1080p"
+        };
+
+        public string VLCTranscoded => "-VLC-transcoded-";
     }
 }

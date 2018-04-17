@@ -101,6 +101,7 @@ namespace VLC.ViewModels.VideoVM
         public static TVShowClickedCommand TVShowClickedCommand { get; private set; } = new TVShowClickedCommand();
         public PlayVideoCommand OpenVideo { get; private set; } = new PlayVideoCommand();
         public RestartAndPlayCommand RestartAndPlayCommand { get; } = new RestartAndPlayCommand();
+        public OpenConvertDialogCommand OpenConvertDialogCommand { get; } = new OpenConvertDialogCommand();
         public CloseFlyoutAndPlayVideoCommand CloseFlyoutAndPlayVideoCommand { get; private set; } = new CloseFlyoutAndPlayVideoCommand();
         public DeleteFromLibraryCommand DeleteFromLibraryCommand { get; private set; } = new DeleteFromLibraryCommand();
         public ChangeVideoViewCommand ChangeVideoViewCommand { get; private set; } = new ChangeVideoViewCommand();

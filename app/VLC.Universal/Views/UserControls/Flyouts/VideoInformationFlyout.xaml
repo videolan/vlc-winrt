@@ -88,20 +88,32 @@
                     </AppBarButton.Icon>
                 </AppBarButton>
             </Grid>
-            <AppBarButton Grid.Row="2"
-                          Name="RestartPlayback"
-                          Label="{Binding Source={StaticResource Strings}, Path=Restart}"
-                          Click="ActionButton_Click"
-                          Margin="{StaticResource FrameMarginBottomLeft}"
-                          Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.RestartAndPlayCommand}"
-                          CommandParameter="{Binding}"
-                          Visibility="{Binding TimeWatchedSeconds, Converter={StaticResource NegatedCountToVisibilityConverter}}"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="&#xE777;"
-                              FontFamily="Segoe MDL2 Assets" />
-                </AppBarButton.Icon>
-            </AppBarButton>
+            <Grid Grid.Row="2"
+                  Margin="{StaticResource FrameMarginVertical}">
+                <AppBarButton Name="RestartPlayback"
+                              Label="{Binding Source={StaticResource Strings}, Path=Restart}"
+                              Click="ActionButton_Click"
+                              Margin="{StaticResource FrameMarginLeft}"
+                              Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.RestartAndPlayCommand}"
+                              CommandParameter="{Binding}"
+                              Visibility="{Binding TimeWatchedSeconds, Converter={StaticResource NegatedCountToVisibilityConverter}}"
+                              Style="{StaticResource AppBarButtonStyleHorizontal}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xE777;"
+                                  FontFamily="Segoe MDL2 Assets" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Name="Convert"
+                              Label="Convert"
+                              Click="ActionButton_Click"
+                              Margin="{StaticResource FrameMarginRight}"
+                              Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.DesktopMode}"
+                              Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.OpenConvertDialogCommand}"
+                              CommandParameter="{Binding}"
+                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              HorizontalAlignment="Right">
+                </AppBarButton>
+            </Grid>
             <TextBlock Grid.Row="3"
                        Margin="{StaticResource FrameMarginLeft}"
                        Style="{StaticResource BodyTextBlockStyle}">

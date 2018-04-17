@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaLibrary\CopyToLocalStorageCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaLibrary\DeleteFromLibraryCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaLibrary\IndexMediaLibraryCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaLibrary\OpenConvertDialogCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\ChangeAudioDelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\ChangePlaybackSpeedRateCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\ChangeSpuDelayCommand.cs" />
