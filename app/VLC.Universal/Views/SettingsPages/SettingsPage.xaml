@@ -61,7 +61,7 @@
                                     x:Uid="ApplyAndRestart"
                                     Click="ApplyColorButton_Click"
                                     Content="Apply"
-                                    Foreground="{ThemeResource MainColor}"
+                                    Style="{StaticResource TextBlockButtonStyle}"
                                     Margin="{StaticResource FrameMarginRight}" />
                         </winControls:WrapPanel>
 
@@ -86,6 +86,7 @@
                             <Button x:Name="RefreshLanguage"
                                     x:Uid="RefreshLanguage"
                                     Click="ForceRefreshLanguage"
+                                    Style="{StaticResource TextBlockButtonStyle}"
                                     Content="{Binding Source={StaticResource Strings}, Path=RefreshLanguage}" />
                         </winControls:WrapPanel>
 
@@ -144,7 +145,7 @@
                     <Button x:Name="Clearkeystore"
                             x:Uid="ClearKeystore"
                             Click="OnClearKeystoreClicked"
-                            Foreground="{ThemeResource MainColor}"
+                            Style="{StaticResource TextBlockButtonStyle}"
                             Content="{Binding Source={StaticResource Strings}, Path=ClearKeystore}" />
 
                     <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
@@ -241,7 +242,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Button Tag="STARTS"
-                                Foreground="{ThemeResource MainColor}"
+                                Style="{StaticResource TextBlockButtonStyle}"
                                 Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
                                 Command="{Binding AddFolderToLibrary}"
                                 CommandParameter="{Binding VideoLibraryId}" />
@@ -369,7 +370,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Button Tag="STARTS"
-                                Foreground="{ThemeResource MainColor}"
+                                Style="{StaticResource TextBlockButtonStyle}"
                                 Content="{Binding Source={StaticResource Strings}, Path=AddFolder}"
                                 Command="{Binding AddFolderToLibrary}"
                                 CommandParameter="{Binding MusicLibraryId}" />
@@ -430,7 +431,7 @@
                         <Button Content="{Binding Source={StaticResource Strings}, Path=ResetMusicDatabase}"
                                 DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                                 Command="{Binding IndexMediaLibraryCommand}"
-                                Foreground="{ThemeResource MainColor}"
+                                Style="{StaticResource TextBlockButtonStyle}"
                                 Margin="{StaticResource FrameMarginVertical}" />
                     </StackPanel>
                 </ScrollViewer>
