@@ -26,6 +26,8 @@ namespace VLC.UI.Views.UserControls.Flyouts
             var RootGrid = sender as Border;
             RootGrid.MaxWidth = 400;
             RootGrid.MaxHeight = 400;
+            if (RestartPlayback.Visibility == Visibility.Collapsed)
+                Convert.HorizontalAlignment = HorizontalAlignment.Left;
         }
     }
 }

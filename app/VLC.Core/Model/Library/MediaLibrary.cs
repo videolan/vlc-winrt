@@ -501,6 +501,24 @@ namespace VLC.Model.Library
                 }
             }
 
+            // Clean roaming
+            foreach (var tmpCopyRoaming in await ApplicationData.Current.RoamingFolder.GetFilesAsync())
+            {
+                try
+                {
+                    if (tmpCopyRoaming?.Name.Contains("VLC-transcoded") == true)
+                    {
+                        await tmpCopyRoaming.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.Log("failed to cleanup roaming transcoded file copy " + tmpCopyRoaming?.Name);
+                    LogHelper.Log(ex.Message);
+                    LogHelper.Log(ex.StackTrace);
+                }
+            }
+            
             // Clean tracks
             var tracks = LoadTracks();
             foreach (var track in tracks)
