@@ -1,0 +1,25 @@
+From 9b72bc417a12482b14d2501f9a4a74686724843d Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Wed, 18 Apr 2018 14:19:56 +0200
+Subject: [PATCH 38/38] direct3d11: get the feature level from the external
+ D3D11 device on winstore builds
+
+---
+ modules/video_output/win32/direct3d11.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
+index d2b6d63..ed6145c 100644
+--- a/modules/video_output/win32/direct3d11.c
++++ b/modules/video_output/win32/direct3d11.c
+@@ -471,6 +471,7 @@ static int OpenCoreW(vout_display_t *vd)
+     sys->dxgiswapChain = dxgiswapChain;
+     sys->d3d_dev.d3ddevice     = d3ddevice;
+     sys->d3d_dev.d3dcontext    = d3dcontext;
++    sys->d3d_dev.feature_level = ID3D11Device_GetFeatureLevel(sys->d3d_dev.d3ddevice );
+     IDXGISwapChain_AddRef     (sys->dxgiswapChain);
+     ID3D11Device_AddRef       (sys->d3d_dev.d3ddevice);
+     ID3D11DeviceContext_AddRef(sys->d3d_dev.d3dcontext);
+-- 
+2.10.1.windows.1
+

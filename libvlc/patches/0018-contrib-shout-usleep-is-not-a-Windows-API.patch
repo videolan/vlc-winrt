@@ -1,7 +1,7 @@
-From 9b5265523b85e79a082d6d9115e6956bcaea044c Mon Sep 17 00:00:00 2001
+From 2def3dc1962d9518d33d6e24192126b151a471ef Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:03:37 +0200
-Subject: [PATCH 18/33] contrib: shout: usleep() is not a Windows API
+Subject: [PATCH 18/38] contrib: shout: usleep() is not a Windows API
 
 ---
  contrib/src/shout/rules.mak         |  1 +

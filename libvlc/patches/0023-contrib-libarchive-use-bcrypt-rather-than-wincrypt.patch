@@ -1,7 +1,7 @@
-From c9b4a06ba5313adce0fdb3c668001148ed8493e9 Mon Sep 17 00:00:00 2001
+From 2e5a109f3c539225cebe5d08dcab20f9f1018cab Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 5 Apr 2018 14:49:26 +0200
-Subject: [PATCH 23/33] contrib: libarchive: use bcrypt rather than wincrypt
+Subject: [PATCH 23/38] contrib: libarchive: use bcrypt rather than wincrypt
 
 ---
  .../src/libarchive/libarchive-win32-bcrypt.patch   | 62 ++++++++++++++++++++++

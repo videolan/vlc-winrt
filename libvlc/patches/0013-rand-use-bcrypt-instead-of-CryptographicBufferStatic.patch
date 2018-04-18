@@ -1,7 +1,7 @@
-From 6b07449f6aeb4857766c6feb70c472925e2ae067 Mon Sep 17 00:00:00 2001
+From 540ba21d6a1d3a4ac4e723e21947ebdc9c4ed8e2 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Tue, 27 Mar 2018 18:57:41 +0200
-Subject: [PATCH 13/33] rand: use bcrypt instead of CryptographicBufferStatics
+Subject: [PATCH 13/38] rand: use bcrypt instead of CryptographicBufferStatics
  for Winstore builds
 
 It's available to winstore apps and on desktop since Vista.
