@@ -1,7 +1,7 @@
-From c04369979dfefac21b3cb8916f57d77e8e886012 Mon Sep 17 00:00:00 2001
+From b0b2598501d10b157dc5c293c6ab113658851af1 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:00:53 +0200
-Subject: [PATCH 17/33] contrib: shout: respect the availability of strings.h
+Subject: [PATCH 17/38] contrib: shout: respect the availability of strings.h
  everywhere
 
 ---

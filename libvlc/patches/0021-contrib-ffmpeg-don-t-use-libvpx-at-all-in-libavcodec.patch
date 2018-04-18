@@ -1,7 +1,7 @@
-From d892e2fdf214b7232d8def5be15087667807ada0 Mon Sep 17 00:00:00 2001
+From 41d99cd5a2a2866c78a60a0e1e2a42d1f5d3abb9 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:46:50 +0200
-Subject: [PATCH 21/33] contrib: ffmpeg: don't use libvpx at all in libavcodec
+Subject: [PATCH 21/38] contrib: ffmpeg: don't use libvpx at all in libavcodec
 
 We have our own decoder/encoder
 ---

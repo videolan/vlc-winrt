@@ -1,14 +1,14 @@
-From e3d8fbf0c91d850da149c259bc0ba3a5a11de901 Mon Sep 17 00:00:00 2001
+From 2bdf78a2a41e82f5b542bd7561970c1c57ec6592 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Apr 2018 17:14:15 +0200
-Subject: [PATCH 37/37] contrib: mpg123: Simplify unicode checks
+Subject: [PATCH 36/38] contrib: mpg123: Simplify unicode checks
 
 ---
  contrib/src/mpg123/winstore.patch | 46 +++++++++++++++++++++++++++++++++++++++
  1 file changed, 46 insertions(+)
 
 diff --git a/contrib/src/mpg123/winstore.patch b/contrib/src/mpg123/winstore.patch
-index 416faeaba9..3171e1c5fc 100644
+index 416faea..3171e1c 100644
 --- a/contrib/src/mpg123/winstore.patch
 +++ b/contrib/src/mpg123/winstore.patch
 @@ -75,3 +75,49 @@
@@ -62,5 +62,5 @@ index 416faeaba9..3171e1c5fc 100644
 +     fi
 +   else
 -- 
-2.11.0
+2.10.1.windows.1
 
