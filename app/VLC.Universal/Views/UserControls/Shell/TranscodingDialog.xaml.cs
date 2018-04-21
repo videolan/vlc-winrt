@@ -20,6 +20,10 @@ namespace VLC.Universal.Views.UserControls.Shell
         Instance _instance;
         string _currentTranscodedFileName;
         string _transcodedFilePathRoaming;
+        string _selectedProfile;
+        const string Mp4 = ".mp4";
+        const string Webm = ".webm";
+        string Extension => _selectedProfile == "VP9" ? Webm : Mp4;
 
         public IMediaItem Media { get; set; }
 
@@ -29,7 +33,7 @@ namespace VLC.Universal.Views.UserControls.Shell
         }
         
         // needs to be accessed from UI thread
-        string TranscodedFileName => Media.Name + Locator.SettingsVM.VLCTranscoded + Profiles.SelectedItem + ".mp4";
+        string TranscodedFileName => Media.Name + Locator.SettingsVM.VLCTranscoded + Profiles.SelectedItem + Extension;
 
         string GetTranscodedFilePathAsync()
         {          
@@ -42,20 +46,19 @@ namespace VLC.Universal.Views.UserControls.Shell
         {
             args.Cancel = true;
 
-            var options = new List<string>
-            {
-                "--verbose=3",            
-            };
+            _selectedProfile = Profiles.SelectedItem as string;
+
+            var options = new List<string>{"-vv"};
 
             _instance = new Instance(options);
 
             Media.VlcMedia = new Media(_instance, Media.Path, FromType.FromPath);
             _transcodedFilePathRoaming = GetTranscodedFilePathAsync();
           
-            var transcodeOption = GetTranscodeOptionString(_transcodedFilePathRoaming, Profiles.SelectedItem as string);
+            var transcodeOption = GetTranscodeOptionString(_transcodedFilePathRoaming, _selectedProfile);
             if (string.IsNullOrEmpty(transcodeOption)) //abort
             {
-                LogHelper.Log("could not setup transcode options with path " + _transcodedFilePathRoaming + " and selectedProfile " + Profiles.SelectedItem);
+                LogHelper.Log("could not setup transcode options with path " + _transcodedFilePathRoaming + " and selectedProfile " + _selectedProfile);
                 return;
             } 
             
@@ -111,20 +114,20 @@ namespace VLC.Universal.Views.UserControls.Shell
         {
             if (string.IsNullOrEmpty(selectedProfile) || string.IsNullOrEmpty(selectedProfile)) return string.Empty;
 
-            if (selectedProfile.Equals("VP90"))
+            if (selectedProfile.Equals("VP9"))
                 return
-                    ":sout=#transcode{vcodec=VP90,vb=2000,acodec=vorb,ab=128,channels=2,samplerate=44100}:std{access=file,mux=webm,dst='" +
+                    ":sout=#transcode{venc=qsv{rc-method=vbr,bitrate-max=40000000,gop-size=24,target-usage=speed},vcodec=VP90,vb=2000,acodec=vorb}:std{access=file,mux=webm,dst='" +
                     transcodedFilePath + "'}'";
             if (selectedProfile.Equals("720p"))
             {
                 return
-                    ":sout=#transcode{vcodec=h264,acodec=mp4a,width=1280,height=720,ab=128,channels=2,samplerate=44100}:std{access=file,mux=mp4,dst='" +
+                    ":sout=#transcode{venc=qsv{rc-method=vbr,bitrate-max=40000000,gop-size=24,target-usage=speed},vcodec=h264,acodec=mp4a,maxwidth=1280,maxheight=720}:std{access=file,mux=mp4,dst='" +
                     transcodedFilePath + "'}'";
             }
             if (selectedProfile.Equals("1080p"))
             {
                 return
-                    ":sout=#transcode{vcodec=h264,acodec=mp4a,width=1920,height=1080,ab=128,channels=2,samplerate=44100}:std{access=file,mux=mp4,dst='" +
+                    ":sout=#transcode{venc=qsv{rc-method=vbr,bitrate-max=40000000,gop-size=24,target-usage=speed},vcodec=h264,acodec=mp4a,maxwidth=1920,maxheight=1080}:std{access=file,mux=mp4,dst='" +
                     transcodedFilePath + "'}'";
             }
 
