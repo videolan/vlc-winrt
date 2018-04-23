@@ -253,7 +253,12 @@ namespace VLC.ViewModels
 
         public List<VLCChapterDescription> Chapters => PlaybackService.GetChapters();
 
-        public Visibility LoadingMedia { get { return _loadingMedia; } set { SetProperty(ref _loadingMedia, value); } }
+        public Visibility LoadingMedia
+        {
+            get => _loadingMedia;
+            set => SetProperty(ref _loadingMedia, value);
+        }
+
         #endregion
 
         #region constructors
@@ -437,7 +442,7 @@ namespace VLC.ViewModels
             catch (Exception e)
             {
                 LogHelper.Log(StringsHelper.ExceptionToString(e));
-                return;
+                LoadingMedia = Visibility.Collapsed;
             }
         }
 
@@ -556,6 +561,7 @@ namespace VLC.ViewModels
                 {
                     await Locator.MediaLibrary.RemoveStreamFromCollectionAndDatabase(Locator.PlaybackService.CurrentPlaybackMedia as StreamMedia);
                 }
+                LoadingMedia = Visibility.Collapsed;
                 GoBack.Execute(null);
             });
         }
