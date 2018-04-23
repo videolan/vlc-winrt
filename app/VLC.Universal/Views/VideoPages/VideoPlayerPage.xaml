@@ -228,6 +228,17 @@
                                               FontSize="20" />
                                 </AppBarToggleButton.Icon>
                             </AppBarToggleButton>
+                            <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}"
+                                                IsCompact="True"
+                                                VerticalAlignment="Center"
+                                                DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlaybackService}"
+                                                IsChecked="{Binding Repeat, Mode=TwoWay}">
+                                <AppBarToggleButton.Icon>
+                                    <FontIcon Glyph="{StaticResource RefreshSymbol}"
+                                              FontFamily="{StaticResource VLCFont}"
+                                              FontSize="20"/>
+                                </AppBarToggleButton.Icon>
+                            </AppBarToggleButton>
                             <AppBarButton Name="PiPButton"
                                           Command="{Binding Source={StaticResource Locator}, Path=VideoPlayerVm.InitPiPCommand}"
                                           IsCompact="True"
