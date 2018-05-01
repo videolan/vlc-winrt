@@ -23,7 +23,7 @@ It's currently written in C# and uses [libvlcpp](https://code.videolan.org/video
 
 ## Requirements
 * A recent enough Windows 10 
-* Visual Studio 2017 (UWP workload, C++ workload with VC++ 2017 and C++ runtime for UWP), Windows 10 SDK)
+* Visual Studio 2017 (UWP workload, C++ workload with VC++ 2017 and C++ runtime for UWP, Windows 10 SDK)
 * [Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
 * [SQLite for UWP](https://marketplace.visualstudio.com/items?itemName=SQLiteDevelopmentTeam.SQLiteforUniversalWindowsPlatform)
 
@@ -32,13 +32,24 @@ It's currently written in C# and uses [libvlcpp](https://code.videolan.org/video
 
 ### VLC-WinRT
 
-First initialize `libvlcpp` 
+First, get the code
+```cmd
+git clone https://code.videolan.org/videolan/vlc-winrt
+```
+
+Enter the repository directory
+```cmd 
+cd vlc-winrt
+```
+
+Then, initialize `libvlcpp` 
 ```cmd 
 git submodule update --init
 ```
-Then you need to get a recent nightly build of vlc-winrt: [x86](http://nightlies.videolan.org/build/winrt-i686) or [x64](http://nightlies.videolan.org/build/winrt-x86_64)
 
-Extract the content from the archive to `vlc-winrt/libvlc/Universal/vlc-x86/Debug/` (create the directories as necessary).
+After this, you need to get a recent nightly build of vlc-winrt: [x86](http://nightlies.videolan.org/build/winrt-i686) or [x64](http://nightlies.videolan.org/build/winrt-x86_64)
+
+Extract the content from the archive to `vlc-winrt/libvlc/Universal/vlc-x86/Debug/` and create the directories as necessary (where `vlc-winrt` is the repositorty root).
 
 If you have downloaded an x64 build, replace the `vlc-x86` folder name by `vlc-amd64`.
 
