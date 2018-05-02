@@ -42,7 +42,7 @@ namespace VLC.Services.RunTime
 
             volumeItem = RadialControllerMenuItem.CreateFromFontGlyph("Volume", "\xE767", "Segoe MDL2 Assets");
             volumeItem.Tag = volumeTag;
-            playbackItem = RadialControllerMenuItem.CreateFromFontGlyph("Playback", "\xE714", "Segoe MDL2 Assets");
+            playbackItem = RadialControllerMenuItem.CreateFromFontGlyph("Playback Speed", "\xE714", "Segoe MDL2 Assets");
             playbackItem.Tag = videoPlaybackTag;
 
             volumeItem.Invoked += Item_Invoked;
@@ -107,8 +107,11 @@ namespace VLC.Services.RunTime
                         vm.Volume = (int)volume;
                     break;
                 case Mode.Playback:
-                    vm.Position += (float)((args.RotationDeltaInDegrees) / 1000);
-                    //vm.UpdatePosition();
+                    var speedRate = vm.SpeedRate + (int)((args.RotationDeltaInDegrees) / 5);
+                    if (speedRate <= 0)
+                        vm.SpeedRate = 0;
+                    else
+                        vm.SpeedRate = speedRate;
                     break;
             }
         }
