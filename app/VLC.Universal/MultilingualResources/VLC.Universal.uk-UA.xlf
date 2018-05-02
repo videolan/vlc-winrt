@@ -1169,6 +1169,10 @@
           <source>disconnect</source>
           <target state="new">disconnect</target>
         </trans-unit>
+        <trans-unit id="SURFACE_2_35_1" translate="yes" xml:space="preserve">
+          <source>2.35:1</source>
+          <target state="new">2.35:1</target>
+        </trans-unit>
       </group>
     </body>
   </file>

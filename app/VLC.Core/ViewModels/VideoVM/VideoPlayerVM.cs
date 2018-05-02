@@ -119,15 +119,7 @@ namespace VLC.ViewModels.VideoVM
             {
                 if (zooms == null || !zooms.Any())
                 {
-                    zooms = new List<VLCSurfaceZoom>
-                    {
-                        VLCSurfaceZoom.SURFACE_BEST_FIT,
-                        VLCSurfaceZoom.SURFACE_FIT_SCREEN,
-                        VLCSurfaceZoom.SURFACE_FILL,
-                        VLCSurfaceZoom.SURFACE_16_9,
-                        VLCSurfaceZoom.SURFACE_4_3,
-                        VLCSurfaceZoom.SURFACE_ORIGINAL
-                    };
+                    zooms = Enum.GetValues(typeof(VLCSurfaceZoom)).Cast<VLCSurfaceZoom>().ToList();
                 }
                 return zooms;
             }
@@ -291,6 +283,10 @@ namespace VLC.ViewModels.VideoVM
                 case VLCSurfaceZoom.SURFACE_ORIGINAL:
                     playbackService.VideoAspectRatio = string.Empty;
                     playbackService.VideoScale = 1;
+                    break;
+                case VLCSurfaceZoom.SURFACE_2_35_1:
+                    playbackService.VideoScale = 0;
+                    playbackService.VideoAspectRatio = "21:9"; /* equals 2.35:1 */
                     break;
             }
         }
