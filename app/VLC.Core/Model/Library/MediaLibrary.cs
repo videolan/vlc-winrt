@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
@@ -343,10 +344,28 @@ namespace VLC.Model.Library
             }
         }
 
+        bool isFileAvailable(string filePath)
+        {
+            if (!File.Exists(filePath))
+                return false;
+            var attributes = File.GetAttributes(filePath);
+#if DEBUG
+            Debug.WriteLine($"{filePath}: {attributes}");
+#endif
+            // "offline" is used to say that the file "exists", but is not directly available.
+            // For example, if a user has a file on OneDrive but hasn't downloaded it to the system,
+            // we don't want to automatically touch the file for them, which would trigger a download.
+            // This should prevent that from happening.
+            return !attributes.HasFlag(System.IO.FileAttributes.SparseFile);
+        }
+
         async Task<bool> ParseMediaFile(StorageFile item, bool isCameraRoll)
         {
             try
             {
+                if (!isFileAvailable(item.Path))
+                    return false;
+
                 var fileType = item.FileType.ToLower();
                 if (VLCFileExtensions.AudioExtensions.Contains(fileType))
                 {
