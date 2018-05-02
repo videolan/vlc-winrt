@@ -827,5 +827,8 @@
   </data>
   <data name="Disconnect" xml:space="preserve">
     <value>disconnect</value>
-</data>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
 </root>

@@ -25,6 +25,8 @@ namespace VLC.Converters
                         return Strings.SURFACE_4_3.ToUpperFirstChar();
                     case VLCSurfaceZoom.SURFACE_ORIGINAL:
                         return Strings.SURFACE_ORIGINAL.ToUpperFirstChar();
+                    case VLCSurfaceZoom.SURFACE_2_35_1:
+                        return Strings.SURFACE_2_35_1.ToUpperFirstChar();
                     default:
                         throw new ArgumentOutOfRangeException(nameof(value), value, null);
                 }

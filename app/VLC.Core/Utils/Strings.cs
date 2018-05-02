@@ -135,8 +135,8 @@ namespace VLC.Utils
         public static string SURFACE_16_9 => _resourcesLoader.GetString(nameof(SURFACE_16_9));
         public static string SURFACE_4_3 => _resourcesLoader.GetString(nameof(SURFACE_4_3));
         public static string SURFACE_ORIGINAL => _resourcesLoader.GetString(nameof(SURFACE_ORIGINAL));
+        public static string SURFACE_2_35_1 => _resourcesLoader.GetString(nameof(SURFACE_2_35_1));
 
-        
 
         // PLAYBACK
         public static string Playlist => _resourcesLoader.GetString(nameof(Playlist));
