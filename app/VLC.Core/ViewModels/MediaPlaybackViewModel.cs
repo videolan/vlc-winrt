@@ -44,6 +44,7 @@ namespace VLC.ViewModels
     {
         #region private props
         private MouseService _mouseService;
+        private RadialControllerService _radialControllerService;
         private SystemMediaTransportControls _systemMediaTransportControls;
         private TimeSpan _timeTotal;
 
@@ -55,7 +56,7 @@ namespace VLC.ViewModels
 
         public PlaybackService PlaybackService { get { return Locator.PlaybackService; } }
         public MouseService MouseService { get { return _mouseService; } }
-
+        public RadialControllerService RadialControllerService { get { return _radialControllerService; } }
 
         #region commands
 
@@ -265,6 +266,7 @@ namespace VLC.ViewModels
         public MediaPlaybackViewModel()
         {
             _mouseService = App.Container.Resolve<MouseService>();
+            _radialControllerService = App.Container.Resolve<RadialControllerService>();
             PlaybackService.Playback_MediaPlaying += OnPlaying;
             PlaybackService.Playback_MediaPaused += OnPaused;
             PlaybackService.Playback_MediaTimeChanged += Playback_MediaTimeChanged;

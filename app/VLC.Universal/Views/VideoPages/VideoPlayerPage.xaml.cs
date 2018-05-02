@@ -114,6 +114,9 @@ namespace VLC.UI.Views.VideoPages
             // UI interactions
             Locator.MediaPlaybackViewModel.MouseService.Start();
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += ShowControlPanel;
+
+            Locator.MediaPlaybackViewModel.RadialControllerService.Start(RadialControllerService.MediaMode.Video);
+
             RootGrid.Tapped += RootGrid_Tapped;
             controlsTimer.Interval = TimeSpan.FromSeconds(5);
             controlsTimer.Tick += ControlsTimer_Tick;
@@ -195,6 +198,9 @@ namespace VLC.UI.Views.VideoPages
 
             _viewModel.MouseService.Stop();
             _viewModel.MouseService.OnMoved -= ShowControlPanel;
+
+            _viewModel.RadialControllerService.Stop();
+
             RootGrid.Tapped -= RootGrid_Tapped;
             if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Tablet)
                 PointerWheelChanged -= MouseWheelChanged;
