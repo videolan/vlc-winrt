@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTheApp" xml:space="preserve">
-    <value>O programu</value>
+    <value>o programu</value>
   </data>
   <data name="Add" xml:space="preserve">
     <value>přidat</value>
@@ -136,7 +136,7 @@
     <value>přidat do seznamu skladeb</value>
   </data>
   <data name="Albums" xml:space="preserve">
-    <value>Alba</value>
+    <value>alba</value>
   </data>
   <data name="AlbumsFound" xml:space="preserve">
     <value>nalezené alba : {0}</value>
@@ -145,10 +145,10 @@
     <value>animace</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>téma programu</value>
+    <value>motiv programu</value>
   </data>
   <data name="Artists" xml:space="preserve">
-    <value>umělců</value>
+    <value>umělci</value>
   </data>
   <data name="Audio" xml:space="preserve">
     <value>zvuk</value>
@@ -163,16 +163,16 @@
     <value>zpět</value>
   </data>
   <data name="CameraRoll" xml:space="preserve">
-    <value>role kamery</value>
+    <value>fotoaparát</value>
   </data>
   <data name="ChangeAlbumCover" xml:space="preserve">
     <value>změnit obal alba</value>
   </data>
   <data name="Chapters" xml:space="preserve">
-    <value>Kapitoly</value>
+    <value>Chapters</value>
   </data>
   <data name="CheckCredentials" xml:space="preserve">
-    <value>došlo k chybě, zkontrolujte prosím vaše pověření</value>
+    <value>nastala chyba, zkontrolujte prosím přihlašovací údaje</value>
   </data>
   <data name="Connect" xml:space="preserve">
     <value>připojit</value>
@@ -184,16 +184,16 @@
     <value>připojování</value>
   </data>
   <data name="ConnectToLastFM" xml:space="preserve">
-    <value>připojeno k Last.FM</value>
+    <value>připojit k Last.FM</value>
   </data>
   <data name="CrashReport" xml:space="preserve">
-    <value>zpráva o selhání</value>
+    <value>zpráva o pádu</value>
   </data>
   <data name="DecreaseSpeed" xml:space="preserve">
-    <value>snížení rychlosti</value>
+    <value>snížit rychlost</value>
   </data>
   <data name="DecreaseVolume" xml:space="preserve">
-    <value>snížení hlasitosti</value>
+    <value>snížit hlasitost</value>
   </data>
   <data name="DeletePlaylist" xml:space="preserve">
     <value>smazat seznam skladeb</value>
@@ -205,7 +205,7 @@
     <value>upravit metadata</value>
   </data>
   <data name="ElementsNotFound" xml:space="preserve">
-    <value>jsme nenašli prvky zde</value>
+    <value>bohužel jsme tam nenalezli žádné prvky</value>
   </data>
   <data name="EnterURL" xml:space="preserve">
     <value>zadejte adresu URL</value>
@@ -214,28 +214,28 @@
     <value>epizoda</value>
   </data>
   <data name="EvenIfBackground" xml:space="preserve">
-    <value>iv případě, že program je v pozadí</value>
+    <value>i pokud aplikace je na pozadí</value>
   </data>
   <data name="EvenIfNotBackground" xml:space="preserve">
-    <value>iv případě, že program není v pozadí</value>
+    <value>i pokud aplikace není na pozadí</value>
   </data>
   <data name="FailFilePlayBackground" xml:space="preserve">
     <value>Tento soubor nemusí být přehrán na pozadí</value>
   </data>
   <data name="FailNavigateVideoPlayerPage" xml:space="preserve">
-    <value>VLC se nepodařilo navigovat na stránku Přehrávač videí</value>
+    <value>VLC se nepodařilo přesunout na stránku Přehrávač videa</value>
   </data>
   <data name="FailOpenVideo" xml:space="preserve">
     <value>VLC se nepodařilo otevřít video</value>
   </data>
   <data name="FailStartVLCEngine" xml:space="preserve">
-    <value>Programu se nepodařilo spustit motor VLC</value>
+    <value>Programu se nepodařilo spustit jádro VLC</value>
   </data>
   <data name="FeedbackThankYou" xml:space="preserve">
     <value>zpětná vazba odeslána! Děkujeme vám</value>
   </data>
   <data name="FileExplorer" xml:space="preserve">
-    <value>Procházet</value>
+    <value>procházet</value>
   </data>
   <data name="HardwareDecoding" xml:space="preserve">
     <value>hardwarové dekódování</value>
@@ -247,7 +247,7 @@
     <value>vyberte prosím seznam skladeb</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Domov</value>
+    <value>domů</value>
   </data>
   <data name="HomePage" xml:space="preserve">
     <value>domovská stránka</value>
@@ -256,31 +256,31 @@
     <value>VLC se spustí na vybrané stránce</value>
   </data>
   <data name="HoweverYouMayFindWhatYouWantHere" xml:space="preserve">
-    <value>Nicméně, můžete najít to, co hledáte zde</value>
+    <value>nicméně zde můžete najít to, co hledáte</value>
   </data>
   <data name="HowToFavoriteAlbum1" xml:space="preserve">
-    <value>na oblíbené album, stačí stisknout</value>
+    <value>pro oblíbení alba stačí zmáčknout</value>
   </data>
   <data name="HowToFavoriteAlbum2" xml:space="preserve">
-    <value>a dostanete k tomu okamžitý přístup</value>
+    <value>a dostanete k němu okamžitý přístup</value>
   </data>
   <data name="ImportantSponsors" xml:space="preserve">
-    <value>důležitých sponzorů</value>
+    <value>důležití sponzoři</value>
   </data>
   <data name="IncreaseSpeed" xml:space="preserve">
     <value>zvýšit rychlost</value>
   </data>
   <data name="IncreaseVolume" xml:space="preserve">
-    <value>zvýšení hlasitosti</value>
+    <value>zvýšit hlasitost</value>
   </data>
   <data name="ItsEmpty" xml:space="preserve">
-    <value>je to prázdné zde</value>
+    <value>nic tu není</value>
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>klávesové zkratky</value>
   </data>
   <data name="Local" xml:space="preserve">
-    <value>lokální</value>
+    <value>místní</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>licence</value>
@@ -298,19 +298,19 @@
     <value>hudba</value>
   </data>
   <data name="MusicFolders" xml:space="preserve">
-    <value>hudební složky</value>
+    <value>složky s hudbou</value>
   </data>
   <data name="MusicFoldersDescription" xml:space="preserve">
-    <value>VLC vyhledá pouze skladby, které jsou ve vaší hudební knihovně. Zde můžete přidávat složky do knihovny</value>
+    <value>VLC vyhledá pouze skladby z vaší hudební knihovny. Zde do ní můžete přidávat další složky</value>
   </data>
   <data name="MusicSettings" xml:space="preserve">
     <value>Nastavení hudby</value>
   </data>
   <data name="MusicShows" xml:space="preserve">
-    <value>hudební přehlídky</value>
+    <value>hudební pořady</value>
   </data>
   <data name="Mute" xml:space="preserve">
-    <value>Ztlumit</value>
+    <value>ztlumit</value>
   </data>
   <data name="MyPlaylists" xml:space="preserve">
     <value>moje seznamy skladeb</value>
@@ -322,49 +322,49 @@
     <value>nový seznam skladeb</value>
   </data>
   <data name="NewVideos" xml:space="preserve">
-    <value>nový videa</value>
+    <value>nová videa</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>ne</value>
   </data>
   <data name="NoBiographyFound" xml:space="preserve">
-    <value>pro tohoto umělce nebylo nalezeno žádné bio</value>
+    <value>nenalezena žádná umělecká biografie</value>
   </data>
   <data name="NoCameraVideosFound" xml:space="preserve">
-    <value>nebyly nalezeny žádné videokamery</value>
+    <value>nenalezena žádná videa z kamery</value>
   </data>
   <data name="NoFavoriteAlbums" xml:space="preserve">
-    <value>žádné oblíbené alba</value>
+    <value>žádná oblíbená alba</value>
   </data>
   <data name="NoInternetConnection" xml:space="preserve">
-    <value>žádné internetové připojení</value>
+    <value>žádné připojení k internetu</value>
   </data>
   <data name="NoPlaylists" xml:space="preserve">
     <value>žádné seznamy skladeb</value>
   </data>
   <data name="NoShowsFound" xml:space="preserve">
-    <value>žádné přehlídky nebyly nalezeny</value>
+    <value>žádné pořady nebyly nalezeny</value>
   </data>
   <data name="NothingToSeeHere" xml:space="preserve">
-    <value>není nic k vidění zde</value>
+    <value>zde není nic k vidění</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>oznámení</value>
   </data>
   <data name="NotificationWhenSongStarts" xml:space="preserve">
-    <value>kdy začne píseň</value>
+    <value>při spuštění skladby</value>
   </data>
   <data name="NoVideosFound" xml:space="preserve">
-    <value>nenalezli jsme video</value>
+    <value>video nenalezeno</value>
   </data>
   <data name="NowPlaying" xml:space="preserve">
-    <value>nyní přehráva</value>
+    <value>nyní hraje</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>otevřít soubor</value>
   </data>
   <data name="OpenStream" xml:space="preserve">
-    <value>otevřít proud</value>
+    <value>otevřený proud</value>
   </data>
   <data name="OpenSubtitle" xml:space="preserve">
     <value>otevřít titulky</value>
@@ -382,28 +382,28 @@
     <value>podle data</value>
   </data>
   <data name="OrderDescending" xml:space="preserve">
-    <value>klesající</value>
+    <value>sestupně</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>heslo</value>
   </data>
   <data name="Pause" xml:space="preserve">
-    <value>Pozastavit</value>
+    <value>pozastavit</value>
   </data>
   <data name="PinAlbum" xml:space="preserve">
-    <value>pin album</value>
+    <value>připnout album</value>
   </data>
   <data name="PinArtist" xml:space="preserve">
-    <value>pin umělce</value>
+    <value>připnout umělce</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>Přehrát</value>
+    <value>přehrát</value>
   </data>
   <data name="PlayAlbum" xml:space="preserve">
-    <value>přehrát alba</value>
+    <value>přehrát album</value>
   </data>
   <data name="PlayAll" xml:space="preserve">
-    <value>Přehrát všechno</value>
+    <value>přehrát vše</value>
   </data>
   <data name="Playback" xml:space="preserve">
     <value>přehrávání</value>
@@ -418,7 +418,7 @@
     <value>seznam skladeb</value>
   </data>
   <data name="PlaylistAlreadyExists" xml:space="preserve">
-    <value>tento seznam skladeb již existuje</value>
+    <value>seznam skladeb již existuje</value>
   </data>
   <data name="PlaylistNamePlaceholder" xml:space="preserve">
     <value>název seznam skladeb</value>
@@ -427,16 +427,16 @@
     <value>seznamy skladeb</value>
   </data>
   <data name="PlayTrack" xml:space="preserve">
-    <value>přehrát stopy</value>
+    <value>přehrát stopu</value>
   </data>
   <data name="PlayVideo" xml:space="preserve">
     <value>přehrát video</value>
   </data>
   <data name="PrivacyStatement" xml:space="preserve">
-    <value>Prohlášení o ochraně soukromí</value>
+    <value>prohlášení o ochraně soukromí</value>
   </data>
   <data name="Favorites" xml:space="preserve">
-    <value>Oblíbené</value>
+    <value>Favorites</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">
     <value>obnovit hudební knihovnu</value>
@@ -445,31 +445,31 @@
     <value>obnovit knihovnu videí</value>
   </data>
   <data name="RemovableStorage" xml:space="preserve">
-    <value>odnímatelné úložiště</value>
+    <value>vyměnitelné úložiště</value>
   </data>
   <data name="RemoveFolder" xml:space="preserve">
     <value>odebrat složku</value>
   </data>
   <data name="RemoveMusicFolderDescription" xml:space="preserve">
-    <value>Pokud tuto složku nechcete v hudební knihovně, můžete ji odstranit. To ovlivní všechny aplikace, a to nejen VLC</value>
+    <value>Pokud složku nechcete v hudební knihovně, můžete ji odstranit. Budou ovlivněny všechny aplikace, a nejen VLC</value>
   </data>
   <data name="RemoveVideoFolderDescription" xml:space="preserve">
-    <value>Pokud tuto složku nechcete v knihovně videa, můžete ji odstranit. To ovlivní všechny aplikace, a to nejen VLC</value>
+    <value>Pokud složku nechcete v knihovně videa, můžete ji odstranit. Budou ovlivněny všechny aplikace, a nejen VLC</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>resetovat</value>
+    <value>obnovit</value>
   </data>
   <data name="ResetMusicDatabase" xml:space="preserve">
-    <value>resetovat hudební databázi</value>
+    <value>obnovit databázi hudby</value>
   </data>
   <data name="ResetSpeed" xml:space="preserve">
-    <value>resetovat rychlost</value>
+    <value>obnovit rychlost</value>
   </data>
   <data name="RichAnimationsDescription" xml:space="preserve">
-    <value>V prezentaci použijte bohaté animace</value>
+    <value>V prezentacích použít bohaté animace</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Vyhledávání</value>
+    <value>vyhledat</value>
   </data>
   <data name="Season" xml:space="preserve">
     <value>sezóna</value>
@@ -481,19 +481,19 @@
     <value>zobrazit seznam skladeb</value>
   </data>
   <data name="Shows" xml:space="preserve">
-    <value>Ukázat</value>
+    <value>pořady</value>
   </data>
   <data name="Shuffle" xml:space="preserve">
-    <value>míchání, šoupání nohama</value>
+    <value>zamíchat</value>
   </data>
   <data name="Songs" xml:space="preserve">
     <value>písně</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Zvláštní poděkování</value>
+    <value>zvláštní poděkování</value>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value>Rychlost</value>
+    <value>rychlost</value>
   </data>
   <data name="Stop" xml:space="preserve">
     <value> zastavit</value>
@@ -502,13 +502,13 @@
     <value>zpoždění titulků</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
-    <value>Titulky</value>
+    <value>Subtitles</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
     <value>kódování titulků</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>téma</value>
+    <value>motiv</value>
   </data>
   <data name="TileRemoved" xml:space="preserve">
     <value>dlaždice byla odstraněna</value>
@@ -517,22 +517,22 @@
     <value>nejlepší videa</value>
   </data>
   <data name="TrackAddedToYourPlaylist" xml:space="preserve">
-    <value>skladba byla přidána do seznamu videí</value>
+    <value>stopa přidána do seznamu skladeb</value>
   </data>
   <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
-    <value>tato skladba je již v tomto seznamu skladeb</value>
+    <value>tato stopa je je již v seznamu skladeb</value>
   </data>
   <data name="Tracks" xml:space="preserve">
     <value>stopy</value>
   </data>
   <data name="UnknownAlbum" xml:space="preserve">
-    <value>Neznámý album</value>
+    <value>Neznámé album</value>
   </data>
   <data name="UnknownArtist" xml:space="preserve">
     <value>Neznámý umělec</value>
   </data>
   <data name="UnknownShow" xml:space="preserve">
-    <value>Neznámé přehlídky</value>
+    <value>Neznámý pořad</value>
   </data>
   <data name="UnknownTrack" xml:space="preserve">
     <value>Neznámá skladba</value>
@@ -544,19 +544,19 @@
     <value>uživatelské jméno</value>
   </data>
   <data name="Video" xml:space="preserve">
-    <value>videa</value>
+    <value>video</value>
   </data>
   <data name="VideoFolders" xml:space="preserve">
     <value>složky videa</value>
   </data>
   <data name="VideoFoldersDescription" xml:space="preserve">
-    <value>VLC vyhledá pouze videa, která jsou ve vaší knihovně videí. Zde můžete přidávat složky do knihovny</value>
+    <value>VLC vyhledá pouze skladby z knihovny videí. Zde do ní můžete přidávat další složky</value>
   </data>
   <data name="VideoPlayback" xml:space="preserve">
     <value>přehrávání videa</value>
   </data>
   <data name="VideoPlaybackInBackground" xml:space="preserve">
-    <value>přehrávání videa v pozadí</value>
+    <value>přehrát video na pozadí</value>
   </data>
   <data name="Videos" xml:space="preserve">
     <value>videa</value>
@@ -565,10 +565,10 @@
     <value>Nastavení videa</value>
   </data>
   <data name="ViewAlbum" xml:space="preserve">
-    <value>prohlédnout album</value>
+    <value>zobrazit album</value>
   </data>
   <data name="ViewArtist" xml:space="preserve">
-    <value>prohlédnout interpreta</value>
+    <value>zobrazit umělce</value>
   </data>
   <data name="Volume" xml:space="preserve">
     <value>hlasitost</value>
@@ -577,52 +577,52 @@
     <value>potřebujeme vaši pomoc</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Ano</value>
+    <value>ano</value>
   </data>
   <data name="YourMusic" xml:space="preserve">
     <value>vaše hudba</value>
   </data>
   <data name="AccentColor" xml:space="preserve">
-    <value>barvu přízvuku</value>
+    <value>zvýraznění barvy</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
     <value>barva pozadí</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>tmavý</value>
+    <value>tmavé</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>světlý</value>
+    <value>světlé</value>
   </data>
   <data name="TitleBar" xml:space="preserve">
-    <value>záhlaví</value>
+    <value>panel s názvem</value>
   </data>
   <data name="NeedRestart" xml:space="preserve">
-    <value>Chcete-li provést změny, musíte restartovat program</value>
+    <value>Pro provedení změn musíte restartovat program</value>
   </data>
   <data name="Zoom" xml:space="preserve">
     <value>zvětšit</value>
   </data>
   <data name="AreYouSure" xml:space="preserve">
-    <value>Jste si jisti?</value>
+    <value>jste si jisti?</value>
   </data>
   <data name="MediaCantBeRead" xml:space="preserve">
-    <value>média nelze přečíst</value>
+    <value>médium nelze přečíst</value>
   </data>
   <data name="Sorry" xml:space="preserve">
-    <value>Omlouváme se</value>
+    <value>omlouváme se</value>
   </data>
   <data name="SURFACE_BEST_FIT" xml:space="preserve">
-    <value>nejlépe přispůsobit</value>
+    <value>nejlepší přizpůsobení</value>
   </data>
   <data name="SURFACE_FIT_HORIZONTAL" xml:space="preserve">
-    <value>horizontální oříznutí</value>
+    <value>vodorovné oříznutí</value>
   </data>
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
-    <value>vertikální oříznutí</value>
+    <value>svislé oříznutí</value>
   </data>
   <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>přizpůsobit obrazovku</value>
+    <value>přizpůsobit obrazovce</value>
   </data>
   <data name="SURFACE_FILL" xml:space="preserve">
     <value>vyplnit</value>
@@ -634,28 +634,28 @@
     <value>4:3</value>
   </data>
   <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>originál</value>
+    <value>původní</value>
   </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
-    <value>váš seznam skladeb nebude přístupný</value>
+    <value>váš seznam skladeb nebude dostupný</value>
   </data>
   <data name="NoArtistShowsFound" xml:space="preserve">
-    <value>nenalezli jsme pro něj výstava</value>
+    <value>pro umělce nenalezeny žádné show</value>
   </data>
   <data name="NoResults" xml:space="preserve">
     <value>žádné výsledky</value>
   </data>
   <data name="ForceLandscape" xml:space="preserve">
-    <value>Vynutit krajinu</value>
+    <value>Vynutit na šířku</value>
   </data>
   <data name="SURFACE_STRETCH" xml:space="preserve">
-    <value>protáhnout/natáhnout se</value>
+    <value>roztáhnout</value>
   </data>
   <data name="SimilarArtists" xml:space="preserve">
     <value>Podobní umělci</value>
   </data>
   <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Aplikovat a restartovat</value>
+    <value>Použít a restartovat</value>
   </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Angličtina</value>
@@ -670,7 +670,7 @@
     <value>Slovenština</value>
   </data>
   <data name="Languages" xml:space="preserve">
-    <value>Jazyky</value>
+    <value>Languages</value>
   </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Obnovit jazyk</value>
@@ -685,40 +685,40 @@
     <value>Stačí kliknout na soubor, který chcete stáhnout ze svého Xboxu.</value>
   </data>
   <data name="WEBINTF_DROPFILES" xml:space="preserve">
-    <value>Opustit soubory</value>
+    <value>Pustit soubory</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Odeberte soubory do okna a přidejte je do konzoly Xbox.1 Klepnutím na tlačítko "+" použijte dialogové okno pro výběr souborů.</value>
+    <value>Do okna přetáhněte soubory a přidejte je do svého Xboxu&lt;it id="1" pos="open"&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Nebo klikněte na tlačítko &amp;quot;+&amp;quot; chcete-li použít dialog pro výběr souborů.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Sdílení prostřednictvím WiFi</value>
   </data>
   <data name="CopyToLocalStorage" xml:space="preserve">
-    <value>kopírovat do místního úložiště</value>
+    <value>kopírovat na místní úložiště</value>
   </data>
   <data name="ExternalStorageDeviceDetected" xml:space="preserve">
-    <value>VLC detekovala externí paměťové zařízení.</value>
+    <value>VLC zjistilo externí úložiště.</value>
   </data>
   <data name="ReadFromExternalStorage" xml:space="preserve">
-    <value>Použijte externí úložiště jako knihovnu médií.</value>
+    <value>Použít externí úložiště jako knihovnu médií.</value>
   </data>
   <data name="SelectContentToCopy" xml:space="preserve">
-    <value>Kopírování médií do interního úložiště.</value>
+    <value>Kopírovat média na interní úložiště.</value>
   </data>
   <data name="WhatToDo" xml:space="preserve">
-    <value>Co bys rád dělal?</value>
+    <value>Co chcete dělat?</value>
   </data>
   <data name="AskMe" xml:space="preserve">
-    <value>Zeptej se mě</value>
+    <value>Zeptat se</value>
   </data>
   <data name="ExternalStorage" xml:space="preserve">
     <value>externí úložiště</value>
   </data>
   <data name="WhatToDoWhenExternalStorage" xml:space="preserve">
-    <value>Co by mělo udělat VLC při zjištění externího úložného zařízení?</value>
+    <value>Co by mělo VLC udělat při zjištění externího úložiště?</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Zrušit</value>
+    <value>Cancel</value>
   </data>
   <data name="DoNothing" xml:space="preserve">
     <value>Nedělat nic</value>
@@ -727,42 +727,41 @@
     <value>Ok</value>
   </data>
   <data name="Ignore" xml:space="preserve">
-    <value>Ignorovat</value>
+    <value>Ignore</value>
   </data>
   <data name="Remember" xml:space="preserve">
-    <value>Zapamatovat si</value>
+    <value>Remember</value>
   </data>
   <data name="AddMediaHelp" xml:space="preserve">
-    <value>Prosím vložte externí paměťové zařízení</value>
+    <value>Vložte prosím externí úložiště</value>
   </data>
   <data name="AddMediaHelpWithIP" xml:space="preserve">
-    <value>Prosím vložte externí paměťové zařízení, nebo jít do http://{0}:8080 k načtení některých médií</value>
+    <value>Vložte prosím externí úložiště, nebo přejděte na stránku http://{0}:8080 a nahrajte nějaká média</value>
   </data>
   <data name="CopyHelpDesktop" xml:space="preserve">
-    <value>Klepněte pravým tlačítkem na soubor nebo složku, chcete-li jej zkopírovat do místního úložiště.</value>
+    <value>Klepněte pravým tlačítkem na soubor nebo složku pro kopírování na místní úložiště.</value>
   </data>
   <data name="CopyHelpMediaCenter" xml:space="preserve">
-    <value>Stisknutím "Y" na souboru nebo složce, chcete-li jej zkopírovat do místního úložiště.</value>
+    <value>Stiskněte "Y" na souboru nebo složce pro kopírování na místní úložiště.</value>
   </data>
   <data name="NoSubtitles" xml:space="preserve">
     <value>Žádné stopy titulků</value>
   </data>
   <data name="ClearKeystore" xml:space="preserve">
-    <value>Vymazat uložená pověření</value>
+    <value>Vymazat uložené identifikační údaje</value>
   </data>
   <data name="Credentials" xml:space="preserve">
-    <value>Pověření</value>
+    <value>Credentials</value>
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
-    <value>Dlouhým stisknutím souboru nebo složky jej zkopírujte do místního úložiště.</value>
+    <value>Dlouhým stisknutím na soubor nebo složku jej zkopírujte na místní úložiště.</value>
   </data>
   <data name="GermanLanguage" xml:space="preserve">
-    <value>Němčina</value>
+    <value>Němečina</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Polština</value>
   </data>
-  
   <data name="DanishLanguage" xml:space="preserve">
     <value>Dánština</value>
   </data>
@@ -802,19 +801,34 @@
   <data name="ChineseLanguage" xml:space="preserve">
     <value>Čínština</value>
   </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>Portugalština</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>Čeština</value>
+  </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
-    <value>použít Windows 10 pip</value>
+    <value>použit windows 10 pip</value>
   </data>
   <data name="TvUnsafeArea" xml:space="preserve">
     <value>Nebezpečná oblast TV</value>
   </data>
   <data name="AddMarginExplanation" xml:space="preserve">
-    <value>Některé TV aplikace správně nezobrazí. Chcete-li přidat určitý okraj, zapněte jej</value>
+    <value>Některé TV aplikaci nezobrazí správně. Chcete-li přidat okraj, zapněte jej</value>
   </data>
   <data name="ExtraMargin" xml:space="preserve">
-    <value>Extra marže</value>
+    <value>Dodatečný okraj</value>
   </data>
   <data name="NoExtraMargin" xml:space="preserve">
-    <value>Žádné extra marže</value>
+    <value>Bez dodatečného okraje</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Restartovat</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>odpojit</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
   </data>
 </root>

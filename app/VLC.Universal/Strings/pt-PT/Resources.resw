@@ -762,7 +762,6 @@
   <data name="PolishLanguage" xml:space="preserve">
     <value>Polaco</value>
   </data>
-  
   <data name="DanishLanguage" xml:space="preserve">
     <value>Dinamarquês</value>
   </data>
@@ -802,6 +801,12 @@
   <data name="ChineseLanguage" xml:space="preserve">
     <value>Chinês</value>
   </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>Português</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>Checo</value>
+  </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>utilizar pip do windows 10</value>
   </data>
@@ -816,5 +821,14 @@
   </data>
   <data name="NoExtraMargin" xml:space="preserve">
     <value>Sem margem extra</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>reiniciar</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>desconectar</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
   </data>
 </root>
