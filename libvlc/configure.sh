@@ -34,6 +34,7 @@ OPTIONS="
       --enable-jpeg
       --enable-vpx
       --enable-postproc
-      --enable-gme"
+      --enable-gme
+      --disable-srt"
 
 sh ../configure ${OPTIONS} $*
