@@ -116,7 +116,7 @@ namespace VLC.Universal.Views.UserControls.Shell
 
             if (selectedProfile.Equals("VP9"))
                 return
-                    ":sout=#transcode{venc=qsv{rc-method=vbr,bitrate-max=40000000,gop-size=24,target-usage=speed},vcodec=VP90,vb=2000,acodec=vorb}:std{access=file,mux=webm,dst='" +
+                    ":sout=#transcode{vcodec=VP90,vb=2000,acodec=vorb}:std{access=file,mux=avformat{mux=webm},dst='" +
                     transcodedFilePath + "'}'";
             if (selectedProfile.Equals("720p"))
             {
