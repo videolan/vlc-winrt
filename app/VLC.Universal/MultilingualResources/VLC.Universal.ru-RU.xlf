@@ -925,6 +925,10 @@
           <source>4:3</source>
           <target>4:3</target>
         </trans-unit>
+        <trans-unit id="SURFACE_2_35_1" translate="yes" xml:space="preserve">
+          <source>2.35:1</source>
+          <target>2.35:1</target>
+        </trans-unit>
         <trans-unit id="SURFACE_ORIGINAL" translate="yes" xml:space="preserve">
           <source>original</source>
           <target>исходный</target>
@@ -956,10 +960,6 @@
         <trans-unit id="Disconnect" translate="yes" xml:space="preserve">
           <source>disconnect</source>
           <target>отключение</target>
-        </trans-unit>
-        <trans-unit id="SURFACE_2_35_1" translate="yes" xml:space="preserve">
-          <source>2.35:1</source>
-          <target>2.35:1</target>
         </trans-unit>
       </group>
     </body>

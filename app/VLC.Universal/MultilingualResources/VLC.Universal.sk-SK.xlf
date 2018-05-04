@@ -147,11 +147,11 @@
         </trans-unit>
         <trans-unit id="FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
           <source>VLC failed to navigate to the Video Player page</source>
-          <target>Programu VLC sa nepodarilo prejsť na stránku prehrávača videa</target>
+          <target>Programu VLC sa nepodarilo prejsť na stránku prehrávača videa</target>
         </trans-unit>
         <trans-unit id="FailOpenVideo" translate="yes" xml:space="preserve">
           <source>VLC failed to open the video</source>
-          <target>Programu VLC sa nepodarilo otvoriť video</target>
+          <target>Programu VLC sa nepodarilo otvoriť video</target>
         </trans-unit>
         <trans-unit id="FailStartVLCEngine" translate="yes" xml:space="preserve">
           <source>The app failed to start the VLC engine</source>
@@ -159,7 +159,7 @@
         </trans-unit>
         <trans-unit id="FeedbackThankYou" translate="yes" xml:space="preserve">
           <source>feedback sent! thank you</source>
-          <target>spätná odozva bola odoslaná, Ďakujeme!</target>
+          <target>spätná odozva bola odoslaná, ďakujeme</target>
         </trans-unit>
         <trans-unit id="FileExplorer" translate="yes" xml:space="preserve">
           <source>browse</source>
@@ -187,7 +187,7 @@
         </trans-unit>
         <trans-unit id="HomePageDescription" translate="yes" xml:space="preserve">
           <source>VLC will start on the selected page</source>
-          <target>VLC sa spustí na vybranej stránke</target>
+          <target>VLC sa spustí na vybranej stránke</target>
         </trans-unit>
         <trans-unit id="HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
           <source>however you may find what you're looking for here</source>
@@ -363,7 +363,7 @@
         </trans-unit>
         <trans-unit id="Pause" translate="yes" xml:space="preserve">
           <source>pause</source>
-          <target>pauza</target>
+          <target>pozastavenie</target>
         </trans-unit>
         <trans-unit id="PinAlbum" translate="yes" xml:space="preserve">
           <source>pin album</source>
@@ -579,7 +579,7 @@
         </trans-unit>
         <trans-unit id="VideoFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search videos that are in your video library. You can add folders to your library here</source>
-          <target>Program VLC vyhľadá len videá, ktoré sú umiestnené vo vašej knižnici s videami. Tu môžete pridať priečinky do vašej knižnice</target>
+          <target>Program VLC vyhľadá len videá, ktoré sú umiestnené vo vašej knižnici s videami. Tu môžete pridať priečinky do vašej knižnice</target>
         </trans-unit>
         <trans-unit id="VideoPlayback" translate="yes" xml:space="preserve">
           <source>video playback</source>
@@ -791,7 +791,7 @@
         </trans-unit>
         <trans-unit id="SelectLanguageDescription" translate="yes" xml:space="preserve">
           <source>VLC will be displayed in</source>
-          <target>VLC sa zobrazí v jazyku: </target>
+          <target>VLC sa zobrazí v jazyku</target>
         </trans-unit>
         <trans-unit id="ApplyAndRestart" translate="yes" xml:space="preserve">
           <source>Apply And Restart</source>
@@ -819,7 +819,7 @@
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
           <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the &quot;+&quot; button to use the file picker dialog.</source>
-          <target>Súbory, ktoré chcete pridať do svojho Xboxu, pustite v tomto okne.&lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Alebo kliknite na tlačidlo &quot;+&quot;, ktorým otvoríte dialóg na pridávanie súborov.</target>
+          <target>Súbory, ktoré chcete pridať do svojho Xboxu, pustite v tomto okne.&lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Alebo kliknite na tlačidlo &amp;quot;+&amp;quot; ktorým otvoríte dialóg na pridávanie súborov.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
@@ -883,11 +883,11 @@
         </trans-unit>
         <trans-unit id="AddMediaHelpWithIP" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device, or go to http://{0}:8080 to upload some media</source>
-          <target>Prosím vložte externé úložné zariadenie, alebo prejdite na http://{0}:8080 pre nahranie nejakých médií</target>
+          <target>Prosím vložte externé úložné zariadenie, alebo prejdite na http://{0}:8080 pre nahratie nejakých médií</target>
         </trans-unit>
         <trans-unit id="CopyHelpDesktop" translate="yes" xml:space="preserve">
           <source>Right-click on a file or a folder to copy it to the local storage.</source>
-          <target>Kliknutím pravým tlačidlom na súbor alebo priečinok, ho skopírujete do lokálneho úložiska.</target>
+          <target>Kliknutím pravým tlačidlom na súbor alebo priečinok ho skopírujete do lokálneho úložiska.</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
           <source>Press &quot;Y&quot; on a file or a folder to copy it to the local storage.</source>
@@ -925,6 +925,10 @@
           <source>4:3</source>
           <target>4:3</target>
         </trans-unit>
+        <trans-unit id="SURFACE_2_35_1" translate="yes" xml:space="preserve">
+          <source>2.35:1</source>
+          <target>2.35:1</target>
+        </trans-unit>
         <trans-unit id="SURFACE_ORIGINAL" translate="yes" xml:space="preserve">
           <source>original</source>
           <target>pôvodné</target>
@@ -956,10 +960,6 @@
         <trans-unit id="Disconnect" translate="yes" xml:space="preserve">
           <source>disconnect</source>
           <target>odpojiť</target>
-        </trans-unit>
-        <trans-unit id="SURFACE_2_35_1" translate="yes" xml:space="preserve">
-          <source>2.35:1</source>
-          <target>2.35:1</target>
         </trans-unit>
       </group>
     </body>
