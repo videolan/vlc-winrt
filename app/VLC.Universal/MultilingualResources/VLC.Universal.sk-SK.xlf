@@ -7,959 +7,959 @@
       <group datatype="resx" id="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW">
         <trans-unit id="AboutTheApp" translate="yes" xml:space="preserve">
           <source>about the app</source>
-          <target>o aplikácii</target>
+          <target state="translated">o aplikácii</target>
         </trans-unit>
         <trans-unit id="Add" translate="yes" xml:space="preserve">
           <source>add</source>
-          <target>pridať</target>
+          <target state="translated">pridať</target>
         </trans-unit>
         <trans-unit id="AddFolder" translate="yes" xml:space="preserve">
           <source>add folder</source>
-          <target>pridať priečinok</target>
+          <target state="translated">pridať priečinok</target>
         </trans-unit>
         <trans-unit id="AddToCollection" translate="yes" xml:space="preserve">
           <source>add to collection</source>
-          <target>pridať do zbierky</target>
+          <target state="translated">pridať do zbierky</target>
         </trans-unit>
         <trans-unit id="AddToCurrentPlaylist" translate="yes" xml:space="preserve">
           <source>add to current playlist</source>
-          <target>pridať do aktuálneho playlistu</target>
+          <target state="translated">pridať do aktuálneho playlistu</target>
         </trans-unit>
         <trans-unit id="AddToPlaylist" translate="yes" xml:space="preserve">
           <source>add to playlist</source>
-          <target>pridať do playlistu</target>
+          <target state="translated">pridať do playlistu</target>
         </trans-unit>
         <trans-unit id="Albums" translate="yes" xml:space="preserve">
           <source>albums</source>
-          <target>albumy</target>
+          <target state="translated">albumy</target>
         </trans-unit>
         <trans-unit id="AlbumsFound" translate="yes" xml:space="preserve">
           <source>albums found : {0}</source>
-          <target>nájdené albumy: {0}</target>
+          <target state="translated">nájdené albumy: {0}</target>
         </trans-unit>
         <trans-unit id="Animations" translate="yes" xml:space="preserve">
           <source>animations</source>
-          <target>animácie</target>
+          <target state="translated">animácie</target>
         </trans-unit>
         <trans-unit id="AppTheme" translate="yes" xml:space="preserve">
           <source>application theme</source>
-          <target>téma aplikácie</target>
+          <target state="translated">téma aplikácie</target>
         </trans-unit>
         <trans-unit id="Artists" translate="yes" xml:space="preserve">
           <source>artists</source>
-          <target>umelci</target>
+          <target state="translated">umelci</target>
         </trans-unit>
         <trans-unit id="Audio" translate="yes" xml:space="preserve">
           <source>audio</source>
-          <target>zvuk</target>
+          <target state="translated">zvuk</target>
         </trans-unit>
         <trans-unit id="AudioDelay" translate="yes" xml:space="preserve">
           <source>audio delay</source>
-          <target>oneskorenie zvuku</target>
+          <target state="translated">oneskorenie zvuku</target>
         </trans-unit>
         <trans-unit id="AudioTracks" translate="yes" xml:space="preserve">
           <source>Audio Tracks</source>
-          <target>Zvukové stopy</target>
+          <target state="translated">Zvukové stopy</target>
        </trans-unit>
         <trans-unit id="Back" translate="yes" xml:space="preserve">
           <source>back</source>
-          <target>späť</target>
+          <target state="translated">späť</target>
         </trans-unit>
         <trans-unit id="CameraRoll" translate="yes" xml:space="preserve">
           <source>camera roll</source>
-          <target>z fotoaparátu</target>
+          <target state="translated">z fotoaparátu</target>
         </trans-unit>
         <trans-unit id="ChangeAlbumCover" translate="yes" xml:space="preserve">
           <source>change album cover</source>
-          <target>zmeniť obal albumu</target>
+          <target state="translated">zmeniť obal albumu</target>
         </trans-unit>
         <trans-unit id="Chapters" translate="yes" xml:space="preserve">
           <source>Chapters</source>
-          <target>Kapitoly</target>
+          <target state="translated">Kapitoly</target>
        </trans-unit>
         <trans-unit id="CheckCredentials" translate="yes" xml:space="preserve">
           <source>an error occured, please check your credentials</source>
-          <target>nastala chyba, prosím skontrolujte prihlasovacie údaje</target>
+          <target state="translated">nastala chyba, prosím skontrolujte prihlasovacie údaje</target>
         </trans-unit>
         <trans-unit id="Connect" translate="yes" xml:space="preserve">
           <source>connect</source>
-          <target>pripojiť</target>
+          <target state="translated">pripojiť</target>
         </trans-unit>
         <trans-unit id="ConnectedToLastFM" translate="yes" xml:space="preserve">
           <source>connected to Last.FM</source>
-          <target>pripojené k Last.FM</target>
+          <target state="translated">pripojené k Last.FM</target>
         </trans-unit>
         <trans-unit id="Connecting" translate="yes" xml:space="preserve">
           <source>connecting</source>
-          <target>pripája sa</target>
+          <target state="translated">pripája sa</target>
         </trans-unit>
         <trans-unit id="ConnectToLastFM" translate="yes" xml:space="preserve">
           <source>connect to Last.FM</source>
-          <target>pripojiť k Last.FM</target>
+          <target state="translated">pripojiť k Last.FM</target>
         </trans-unit>
         <trans-unit id="CrashReport" translate="yes" xml:space="preserve">
           <source>crash report</source>
-          <target>správa o zlyhaní</target>
+          <target state="translated">správa o zlyhaní</target>
         </trans-unit>
         <trans-unit id="DecreaseSpeed" translate="yes" xml:space="preserve">
           <source>decrease speed</source>
-          <target>znížiť rýchlosť</target>
+          <target state="translated">znížiť rýchlosť</target>
         </trans-unit>
         <trans-unit id="DecreaseVolume" translate="yes" xml:space="preserve">
           <source>decrease volume</source>
-          <target>znížiť hlasitosť</target>
+          <target state="translated">znížiť hlasitosť</target>
         </trans-unit>
         <trans-unit id="DeletePlaylist" translate="yes" xml:space="preserve">
           <source>delete playlist</source>
-          <target>vymazať playlist</target>
+          <target state="translated">vymazať playlist</target>
         </trans-unit>
         <trans-unit id="DeleteSelected" translate="yes" xml:space="preserve">
           <source>delete selected</source>
-          <target>vymazať vybrané</target>
+          <target state="translated">vymazať vybrané</target>
         </trans-unit>
         <trans-unit id="EditMetadata" translate="yes" xml:space="preserve">
           <source>edit metadata</source>
-          <target>upraviť meta-údaje</target>
+          <target state="translated">upraviť meta-údaje</target>
         </trans-unit>
         <trans-unit id="ElementsNotFound" translate="yes" xml:space="preserve">
           <source>we did not find elements in there</source>
-          <target>vo vnútri sa nenašli žiadne prvky</target>
+          <target state="translated">vo vnútri sa nenašli žiadne prvky</target>
         </trans-unit>
         <trans-unit id="EnterURL" translate="yes" xml:space="preserve">
           <source>enter a url</source>
-          <target>zadajte adresu URL</target>
+          <target state="translated">zadajte adresu URL</target>
         </trans-unit>
         <trans-unit id="Episode" translate="yes" xml:space="preserve">
           <source>episode</source>
-          <target>epizóda</target>
+          <target state="translated">epizóda</target>
         </trans-unit>
         <trans-unit id="EvenIfBackground" translate="yes" xml:space="preserve">
           <source>even if the app is in background</source>
-          <target>aj v prípade, že aplikácia je na pozadí</target>
+          <target state="translated">aj v prípade, že aplikácia je na pozadí</target>
         </trans-unit>
         <trans-unit id="EvenIfNotBackground" translate="yes" xml:space="preserve">
           <source>even if the app is not in background</source>
-          <target>aj v prípade, že aplikácia nie je na pozadí</target>
+          <target state="translated">aj v prípade, že aplikácia nie je na pozadí</target>
         </trans-unit>
         <trans-unit id="FailFilePlayBackground" translate="yes" xml:space="preserve">
           <source>This file may not play in the background</source>
-          <target>Tento súbor sa možno nedá prehrávať na pozadí</target>
+          <target state="translated">Tento súbor sa možno nedá prehrávať na pozadí</target>
         </trans-unit>
         <trans-unit id="FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
           <source>VLC failed to navigate to the Video Player page</source>
-          <target>Programu VLC sa nepodarilo prejsť na stránku prehrávača videa</target>
+          <target state="translated">Programu VLC sa nepodarilo prejsť na stránku prehrávača videa</target>
         </trans-unit>
         <trans-unit id="FailOpenVideo" translate="yes" xml:space="preserve">
           <source>VLC failed to open the video</source>
-          <target>Programu VLC sa nepodarilo otvoriť video</target>
+          <target state="translated">Programu VLC sa nepodarilo otvoriť video</target>
         </trans-unit>
         <trans-unit id="FailStartVLCEngine" translate="yes" xml:space="preserve">
           <source>The app failed to start the VLC engine</source>
-          <target>Aplikácii sa nepodarilo spustiť engine VLC</target>
+          <target state="translated">Aplikácii sa nepodarilo spustiť engine VLC</target>
         </trans-unit>
         <trans-unit id="FeedbackThankYou" translate="yes" xml:space="preserve">
           <source>feedback sent! thank you</source>
-          <target>spätná odozva bola odoslaná, ďakujeme</target>
+          <target state="translated">spätná odozva bola odoslaná, ďakujeme</target>
         </trans-unit>
         <trans-unit id="FileExplorer" translate="yes" xml:space="preserve">
           <source>browse</source>
-          <target>prehľadávať</target>
+          <target state="translated">prehľadávať</target>
         </trans-unit>
         <trans-unit id="HardwareDecoding" translate="yes" xml:space="preserve">
           <source>hardware decoding</source>
-          <target>HW dekódovanie</target>
+          <target state="translated">HW dekódovanie</target>
         </trans-unit>
         <trans-unit id="HardwareDecodingDescription" translate="yes" xml:space="preserve">
           <source>Hardware decoding may not work on your device.</source>
-          <target>Hardvérové dekódovanie možno nebude fungovať na vašom zariadení.</target>
+          <target state="translated">Hardvérové dekódovanie možno nebude fungovať na vašom zariadení.</target>
         </trans-unit>
         <trans-unit id="HaveToSelectPlaylist" translate="yes" xml:space="preserve">
           <source>please select a playlist</source>
-          <target>prosím vyberte si playlist</target>
+          <target state="translated">prosím vyberte si playlist</target>
         </trans-unit>
         <trans-unit id="Home" translate="yes" xml:space="preserve">
           <source>home</source>
-          <target>domov</target>
+          <target state="translated">domov</target>
         </trans-unit>
         <trans-unit id="HomePage" translate="yes" xml:space="preserve">
           <source>home page</source>
-          <target>domovská stránka</target>
+          <target state="translated">domovská stránka</target>
         </trans-unit>
         <trans-unit id="HomePageDescription" translate="yes" xml:space="preserve">
           <source>VLC will start on the selected page</source>
-          <target>VLC sa spustí na vybranej stránke</target>
+          <target state="translated">VLC sa spustí na vybranej stránke</target>
         </trans-unit>
         <trans-unit id="HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
           <source>however you may find what you're looking for here</source>
-          <target>možno však tu nájdete to, čo hľadáte</target>
+          <target state="translated">možno však tu nájdete to, čo hľadáte</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum1" translate="yes" xml:space="preserve">
           <source>to favorite an album, just press</source>
-          <target>favorizovanie albumu vykonáte stlačením</target>
+          <target state="translated">favorizovanie albumu vykonáte stlačením</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum2" translate="yes" xml:space="preserve">
           <source>and you'll get an instant access to it</source>
-          <target>a budete mať k nemu okamžitý prístup</target>
+          <target state="translated">a budete mať k nemu okamžitý prístup</target>
         </trans-unit>
         <trans-unit id="ImportantSponsors" translate="yes" xml:space="preserve">
           <source>important sponsors</source>
-          <target>dôležití sponzori</target>
+          <target state="translated">dôležití sponzori</target>
         </trans-unit>
         <trans-unit id="IncreaseSpeed" translate="yes" xml:space="preserve">
           <source>increase speed</source>
-          <target>zvýšiť rýchlosť</target>
+          <target state="translated">zvýšiť rýchlosť</target>
         </trans-unit>
         <trans-unit id="IncreaseVolume" translate="yes" xml:space="preserve">
           <source>increase volume</source>
-          <target>zvýšiť hlasitosť</target>
+          <target state="translated">zvýšiť hlasitosť</target>
         </trans-unit>
         <trans-unit id="ItsEmpty" translate="yes" xml:space="preserve">
           <source>it's empty here</source>
-          <target>je to tu také prázdne</target>
+          <target state="translated">je to tu také prázdne</target>
         </trans-unit>
         <trans-unit id="KeyboardShortcuts" translate="yes" xml:space="preserve">
           <source>keyboard shortcuts</source>
-          <target>klávesové skratky</target>
+          <target state="translated">klávesové skratky</target>
         </trans-unit>
         <trans-unit id="License" translate="yes" xml:space="preserve">
           <source>license</source>
-          <target>licencia</target>
+          <target state="translated">licencia</target>
         </trans-unit>
         <trans-unit id="Loading" translate="yes" xml:space="preserve">
           <source>loading</source>
-          <target>načítavanie</target>
+          <target state="translated">načítavanie</target>
         </trans-unit>
         <trans-unit id="LoadingMusic" translate="yes" xml:space="preserve">
           <source>loading music</source>
-          <target>načítavanie hudby</target>
+          <target state="translated">načítavanie hudby</target>
         </trans-unit>
         <trans-unit id="MostPlayedArtists" translate="yes" xml:space="preserve">
           <source>most played artists</source>
-          <target>najčastejšie prehrávaní umelci</target>
+          <target state="translated">najčastejšie prehrávaní umelci</target>
         </trans-unit>
         <trans-unit id="Music" translate="yes" xml:space="preserve">
           <source>music</source>
-          <target>hudba</target>
+          <target state="translated">hudba</target>
         </trans-unit>
         <trans-unit id="MusicFolders" translate="yes" xml:space="preserve">
           <source>music folders</source>
-          <target>priečinky s hudbou</target>
+          <target state="translated">priečinky s hudbou</target>
         </trans-unit>
         <trans-unit id="MusicFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search songs that are in your music library. You can add folders to your library here</source>
-          <target>VLC vyhľadá len skladby, ktoré sú umiestnené vo vašej knižnici s hudbou. Na tomto mieste môžete pridať priečinky do knižnice</target>
+          <target state="translated">VLC vyhľadá len skladby, ktoré sú umiestnené vo vašej knižnici s hudbou. Na tomto mieste môžete pridať priečinky do knižnice</target>
         </trans-unit>
         <trans-unit id="MusicSettings" translate="yes" xml:space="preserve">
           <source>Music Settings</source>
-          <target>Nastavenia pre hudbu</target>
+          <target state="translated">Nastavenia pre hudbu</target>
        </trans-unit>
         <trans-unit id="MusicShows" translate="yes" xml:space="preserve">
           <source>music shows</source>
-          <target>hudobné show</target>
+          <target state="translated">hudobné show</target>
         </trans-unit>
         <trans-unit id="Mute" translate="yes" xml:space="preserve">
           <source>mute</source>
-          <target>stlmiť</target>
+          <target state="translated">stlmiť</target>
         </trans-unit>
         <trans-unit id="MyPlaylists" translate="yes" xml:space="preserve">
           <source>my playlists</source>
-          <target>moje playlisty</target>
+          <target state="translated">moje playlisty</target>
         </trans-unit>
         <trans-unit id="Network" translate="yes" xml:space="preserve">
           <source>network</source>
-          <target>sieť</target>
+          <target state="translated">sieť</target>
         </trans-unit>
         <trans-unit id="NewPlaylist" translate="yes" xml:space="preserve">
           <source>new playlist</source>
-          <target>nový playlist</target>
+          <target state="translated">nový playlist</target>
         </trans-unit>
         <trans-unit id="NewVideos" translate="yes" xml:space="preserve">
           <source>new videos</source>
-          <target>nové videá</target>
+          <target state="translated">nové videá</target>
         </trans-unit>
         <trans-unit id="No" translate="yes" xml:space="preserve">
           <source>no</source>
-          <target>nie</target>
+          <target state="translated">nie</target>
         </trans-unit>
         <trans-unit id="NoBiographyFound" translate="yes" xml:space="preserve">
           <source>no bio found for this artist</source>
-          <target>pre tohto umelca sa nenašiel žiadny životopis</target>
+          <target state="translated">pre tohto umelca sa nenašiel žiadny životopis</target>
         </trans-unit>
         <trans-unit id="NoCameraVideosFound" translate="yes" xml:space="preserve">
           <source>no camera videos found</source>
-          <target>nenašli sa žiadne videá z kamery</target>
+          <target state="translated">nenašli sa žiadne videá z kamery</target>
         </trans-unit>
         <trans-unit id="NoFavoriteAlbums" translate="yes" xml:space="preserve">
           <source>no favorite albums</source>
-          <target>žiadne obľúbené albumy</target>
+          <target state="translated">žiadne obľúbené albumy</target>
         </trans-unit>
         <trans-unit id="NoInternetConnection" translate="yes" xml:space="preserve">
           <source>no internet connection</source>
-          <target>žiadne pripojenie na internet</target>
+          <target state="translated">žiadne pripojenie na internet</target>
         </trans-unit>
         <trans-unit id="NoPlaylists" translate="yes" xml:space="preserve">
           <source>no playlists</source>
-          <target>žiadne playlisty</target>
+          <target state="translated">žiadne playlisty</target>
         </trans-unit>
         <trans-unit id="NoShowsFound" translate="yes" xml:space="preserve">
           <source>no shows found</source>
-          <target>nenašli sa žiadne show</target>
+          <target state="translated">nenašli sa žiadne show</target>
         </trans-unit>
         <trans-unit id="NothingToSeeHere" translate="yes" xml:space="preserve">
           <source>there's nothing to see here</source>
-          <target>nie je čo zobraziť</target>
+          <target state="translated">nie je čo zobraziť</target>
         </trans-unit>
         <trans-unit id="Notifications" translate="yes" xml:space="preserve">
           <source>notifications</source>
-          <target>notifikácie</target>
+          <target state="translated">notifikácie</target>
         </trans-unit>
         <trans-unit id="NotificationWhenSongStarts" translate="yes" xml:space="preserve">
           <source>when the song starts</source>
-          <target>pri spustení skladby</target>
+          <target state="translated">pri spustení skladby</target>
         </trans-unit>
         <trans-unit id="NoVideosFound" translate="yes" xml:space="preserve">
           <source>we did not find video</source>
-          <target>nenašli sme žiadne video</target>
+          <target state="translated">nenašli sme žiadne video</target>
        </trans-unit>
         <trans-unit id="NowPlaying" translate="yes" xml:space="preserve">
           <source>now playing</source>
-          <target>prehráva sa</target>
+          <target state="translated">prehráva sa</target>
         </trans-unit>
         <trans-unit id="OpenFile" translate="yes" xml:space="preserve">
           <source>open file</source>
-          <target>otvoriť súbor</target>
+          <target state="translated">otvoriť súbor</target>
         </trans-unit>
         <trans-unit id="OpenStream" translate="yes" xml:space="preserve">
           <source>open stream</source>
-          <target>otvoriť stream</target>
+          <target state="translated">otvoriť stream</target>
         </trans-unit>
         <trans-unit id="OpenSubtitle" translate="yes" xml:space="preserve">
           <source>open subtitle</source>
-          <target>otvoriť titulky</target>
+          <target state="translated">otvoriť titulky</target>
         </trans-unit>
         <trans-unit id="OrderAscending" translate="yes" xml:space="preserve">
           <source>ascending</source>
-          <target>vzostupne</target>
+          <target state="translated">vzostupne</target>
         </trans-unit>
         <trans-unit id="OrderByAlbum" translate="yes" xml:space="preserve">
           <source>by album</source>
-          <target>podľa albumu</target>
+          <target state="translated">podľa albumu</target>
         </trans-unit>
         <trans-unit id="OrderByArtist" translate="yes" xml:space="preserve">
           <source>by artist</source>
-          <target>podľa umelca</target>
+          <target state="translated">podľa umelca</target>
         </trans-unit>
         <trans-unit id="OrderByDate" translate="yes" xml:space="preserve">
           <source>by date</source>
-          <target>podľa dátumu</target>
+          <target state="translated">podľa dátumu</target>
         </trans-unit>
         <trans-unit id="OrderDescending" translate="yes" xml:space="preserve">
           <source>descending</source>
-          <target>zostupne</target>
+          <target state="translated">zostupne</target>
         </trans-unit>
         <trans-unit id="Password" translate="yes" xml:space="preserve">
           <source>password</source>
-          <target>heslo</target>
+          <target state="translated">heslo</target>
         </trans-unit>
         <trans-unit id="Pause" translate="yes" xml:space="preserve">
           <source>pause</source>
-          <target>pozastavenie</target>
+          <target state="translated">pozastavenie</target>
         </trans-unit>
         <trans-unit id="PinAlbum" translate="yes" xml:space="preserve">
           <source>pin album</source>
-          <target>pripnúť album</target>
+          <target state="translated">pripnúť album</target>
         </trans-unit>
         <trans-unit id="PinArtist" translate="yes" xml:space="preserve">
           <source>pin artist</source>
-          <target>pripnúť umelca</target>
+          <target state="translated">pripnúť umelca</target>
         </trans-unit>
         <trans-unit id="Play" translate="yes" xml:space="preserve">
           <source>play</source>
-          <target>prehrať</target>
+          <target state="translated">prehrať</target>
         </trans-unit>
         <trans-unit id="PlayAlbum" translate="yes" xml:space="preserve">
           <source>play album</source>
-          <target>prehrať album</target>
+          <target state="translated">prehrať album</target>
         </trans-unit>
         <trans-unit id="PlayAll" translate="yes" xml:space="preserve">
           <source>play all</source>
-          <target>prehrať všetko</target>
+          <target state="translated">prehrať všetko</target>
         </trans-unit>
         <trans-unit id="Playback" translate="yes" xml:space="preserve">
           <source>playback</source>
-          <target>prehrávanie</target>
+          <target state="translated">prehrávanie</target>
         </trans-unit>
         <trans-unit id="PlayerSettings" translate="yes" xml:space="preserve">
           <source>Player Settings</source>
-          <target>Nastavenia prehrávača</target>
+          <target state="translated">Nastavenia prehrávača</target>
        </trans-unit>
         <trans-unit id="PlayFolder" translate="yes" xml:space="preserve">
           <source>play folder</source>
-          <target>prehrať priečinok</target>
+          <target state="translated">prehrať priečinok</target>
         </trans-unit>
         <trans-unit id="Playlist" translate="yes" xml:space="preserve">
           <source>playlist</source>
-          <target>playlist</target>
+          <target state="translated">playlist</target>
         </trans-unit>
         <trans-unit id="PlaylistAlreadyExists" translate="yes" xml:space="preserve">
           <source>this playlist already exists</source>
-          <target>takýto playlist už existuje</target>
+          <target state="translated">takýto playlist už existuje</target>
         </trans-unit>
         <trans-unit id="PlaylistNamePlaceholder" translate="yes" xml:space="preserve">
           <source>playlist name</source>
-          <target>názov playlistu</target>
+          <target state="translated">názov playlistu</target>
         </trans-unit>
         <trans-unit id="Playlists" translate="yes" xml:space="preserve">
           <source>playlists</source>
-          <target>playlisty</target>
+          <target state="translated">playlisty</target>
         </trans-unit>
         <trans-unit id="PlayTrack" translate="yes" xml:space="preserve">
           <source>play track</source>
-          <target>prehrať stopu</target>
+          <target state="translated">prehrať stopu</target>
         </trans-unit>
         <trans-unit id="PlayVideo" translate="yes" xml:space="preserve">
           <source>play video</source>
-          <target>prehrať video</target>
+          <target state="translated">prehrať video</target>
         </trans-unit>
         <trans-unit id="PrivacyStatement" translate="yes" xml:space="preserve">
           <source>privacy statement</source>
-          <target>vyhlásenie o ochrane súkromia</target>
+          <target state="translated">vyhlásenie o ochrane súkromia</target>
         </trans-unit>
         <trans-unit id="Favorites" translate="yes" xml:space="preserve">
           <source>Favorites</source>
-          <target>Obľúbené</target>
+          <target state="translated">Obľúbené</target>
         </trans-unit>
         <trans-unit id="RefreshMusicLibrary" translate="yes" xml:space="preserve">
           <source>refresh music library</source>
-          <target>obnoviť knižnicu s hudbou</target>
+          <target state="translated">obnoviť knižnicu s hudbou</target>
         </trans-unit>
         <trans-unit id="RefreshVideoLibrary" translate="yes" xml:space="preserve">
           <source>refresh video library</source>
-          <target>obnoviť knižnicu s videom</target>
+          <target state="translated">obnoviť knižnicu s videom</target>
         </trans-unit>
         <trans-unit id="RemovableStorage" translate="yes" xml:space="preserve">
           <source>removable storage</source>
-          <target>vymeniteľné úložisko</target>
+          <target state="translated">vymeniteľné úložisko</target>
         </trans-unit>
         <trans-unit id="RemoveFolder" translate="yes" xml:space="preserve">
           <source>remove folder</source>
-          <target>odstrániť priečinok</target>
+          <target state="translated">odstrániť priečinok</target>
         </trans-unit>
         <trans-unit id="RemoveMusicFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</source>
-          <target>Ak nechcete mať tento priečinok vo vašej knižnici s hudbou, môžete ho odstrániť. Dotkne sa to všetkých aplikácií, nielen VLC</target>
+          <target state="translated">Ak nechcete mať tento priečinok vo vašej knižnici s hudbou, môžete ho odstrániť. Dotkne sa to všetkých aplikácií, nielen VLC</target>
         </trans-unit>
         <trans-unit id="RemoveVideoFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</source>
-          <target>Ak nechcete mať tento priečinok vo vašej knižnici s videom, môžete ho odstrániť. Dotkne sa to všetkých aplikácií, nielen VLC</target>
+          <target state="translated">Ak nechcete mať tento priečinok vo vašej knižnici s videom, môžete ho odstrániť. Dotkne sa to všetkých aplikácií, nielen VLC</target>
         </trans-unit>
         <trans-unit id="Reset" translate="yes" xml:space="preserve">
           <source>reset</source>
-          <target>reset</target>
+          <target state="translated">reset</target>
         </trans-unit>
         <trans-unit id="ResetMusicDatabase" translate="yes" xml:space="preserve">
           <source>reset music database</source>
-          <target>reset databázy s hudbou</target>
+          <target state="translated">reset databázy s hudbou</target>
         </trans-unit>
         <trans-unit id="ResetSpeed" translate="yes" xml:space="preserve">
           <source>reset speed</source>
-          <target>resetovať rýchlosť</target>
+          <target state="translated">resetovať rýchlosť</target>
         </trans-unit>
         <trans-unit id="RichAnimationsDescription" translate="yes" xml:space="preserve">
           <source>Use rich animations in the slideshows</source>
-          <target>Použiť animácie v slideshow</target>
+          <target state="translated">Použiť animácie v slideshow</target>
         </trans-unit>
         <trans-unit id="Search" translate="yes" xml:space="preserve">
           <source>search</source>
-          <target>hľadať</target>
+          <target state="translated">hľadať</target>
         </trans-unit>
         <trans-unit id="Season" translate="yes" xml:space="preserve">
           <source>season</source>
-          <target>obdobie</target>
+          <target state="translated">obdobie</target>
         </trans-unit>
         <trans-unit id="Settings" translate="yes" xml:space="preserve">
           <source>settings</source>
-          <target>nastavenia</target>
+          <target state="translated">nastavenia</target>
         </trans-unit>
         <trans-unit id="ShowPlaylist" translate="yes" xml:space="preserve">
           <source>show playlist</source>
-          <target>zobraziť playlist</target>
+          <target state="translated">zobraziť playlist</target>
         </trans-unit>
         <trans-unit id="Shows" translate="yes" xml:space="preserve">
           <source>shows</source>
-          <target>show</target>
+          <target state="translated">show</target>
         </trans-unit>
         <trans-unit id="Shuffle" translate="yes" xml:space="preserve">
           <source>shuffle</source>
-          <target>náhodne</target>
+          <target state="translated">náhodne</target>
         </trans-unit>
         <trans-unit id="Songs" translate="yes" xml:space="preserve">
           <source>songs</source>
-          <target>skladby</target>
+          <target state="translated">skladby</target>
         </trans-unit>
         <trans-unit id="SpecialThanks" translate="yes" xml:space="preserve">
           <source>special thanks</source>
-          <target>špeciálne poďakovanie</target>
+          <target state="translated">špeciálne poďakovanie</target>
         </trans-unit>
         <trans-unit id="Speed" translate="yes" xml:space="preserve">
           <source>speed</source>
-          <target>rýchlosť</target>
+          <target state="translated">rýchlosť</target>
         </trans-unit>
         <trans-unit id="Stop" translate="yes" xml:space="preserve">
           <source>stop</source>
-          <target>stop</target>
+          <target state="translated">stop</target>
         </trans-unit>
         <trans-unit id="SubtitleDelay" translate="yes" xml:space="preserve">
           <source>subtitle delay</source>
-          <target>oneskorenie titulkov</target>
+          <target state="translated">oneskorenie titulkov</target>
         </trans-unit>
         <trans-unit id="Subtitles" translate="yes" xml:space="preserve">
           <source>Subtitles</source>
-          <target>Titulky</target>
+          <target state="translated">Titulky</target>
        </trans-unit>
         <trans-unit id="SubtitlesEncoding" translate="yes" xml:space="preserve">
           <source>subtitles encoding</source>
-          <target>kódovanie titulkov</target>
+          <target state="translated">kódovanie titulkov</target>
         </trans-unit>
         <trans-unit id="Theme" translate="yes" xml:space="preserve">
           <source>theme</source>
-          <target>téma</target>
+          <target state="translated">téma</target>
         </trans-unit>
         <trans-unit id="TileRemoved" translate="yes" xml:space="preserve">
           <source>tile removed</source>
-          <target>dlaždica bola odstránená</target>
+          <target state="translated">dlaždica bola odstránená</target>
         </trans-unit>
         <trans-unit id="TopVideos" translate="yes" xml:space="preserve">
           <source>top videos</source>
-          <target>top videá</target>
+          <target state="translated">top videá</target>
         </trans-unit>
         <trans-unit id="TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
           <source>track added to the playlist</source>
-          <target>stopa pridaná do playlistu</target>
+          <target state="translated">stopa pridaná do playlistu</target>
         </trans-unit>
         <trans-unit id="TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
           <source>this track is already in that playlist</source>
-          <target>táto skladba/stopa už je obsiahnutá v playliste</target>
+          <target state="translated">táto skladba/stopa už je obsiahnutá v playliste</target>
         </trans-unit>
         <trans-unit id="Tracks" translate="yes" xml:space="preserve">
           <source>tracks</source>
-          <target>skladby</target>
+          <target state="translated">skladby</target>
         </trans-unit>
         <trans-unit id="UnknownAlbum" translate="yes" xml:space="preserve">
           <source>Unknown album</source>
-          <target>Neznámy album</target>
+          <target state="translated">Neznámy album</target>
         </trans-unit>
         <trans-unit id="UnknownArtist" translate="yes" xml:space="preserve">
           <source>Unknown artist</source>
-          <target>Neznámy umelec</target>
+          <target state="translated">Neznámy umelec</target>
         </trans-unit>
         <trans-unit id="UnknownShow" translate="yes" xml:space="preserve">
           <source>Unknown show</source>
-          <target>Neznáma show</target>
+          <target state="translated">Neznáma show</target>
         </trans-unit>
         <trans-unit id="UnknownTrack" translate="yes" xml:space="preserve">
           <source>Unknown track</source>
-          <target>Neznáma stopa</target>
+          <target state="translated">Neznáma stopa</target>
         </trans-unit>
         <trans-unit id="UserInterface" translate="yes" xml:space="preserve">
           <source>User Interface</source>
-          <target>Používateľské rozhranie</target>
+          <target state="translated">Používateľské rozhranie</target>
        </trans-unit>
         <trans-unit id="Username" translate="yes" xml:space="preserve">
           <source>username</source>
-          <target>meno používateľa</target>
+          <target state="translated">meno používateľa</target>
         </trans-unit>
         <trans-unit id="Video" translate="yes" xml:space="preserve">
           <source>video</source>
-          <target>video</target>
+          <target state="translated">video</target>
         </trans-unit>
         <trans-unit id="VideoFolders" translate="yes" xml:space="preserve">
           <source>video folders</source>
-          <target>priečinky s videom</target>
+          <target state="translated">priečinky s videom</target>
         </trans-unit>
         <trans-unit id="VideoFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search videos that are in your video library. You can add folders to your library here</source>
-          <target>Program VLC vyhľadá len videá, ktoré sú umiestnené vo vašej knižnici s videami. Tu môžete pridať priečinky do vašej knižnice</target>
+          <target state="translated">Program VLC vyhľadá len videá, ktoré sú umiestnené vo vašej knižnici s videami. Tu môžete pridať priečinky do vašej knižnice</target>
         </trans-unit>
         <trans-unit id="VideoPlayback" translate="yes" xml:space="preserve">
           <source>video playback</source>
-          <target>prehrávanie videa</target>
+          <target state="translated">prehrávanie videa</target>
         </trans-unit>
         <trans-unit id="VideoPlaybackInBackground" translate="yes" xml:space="preserve">
           <source>play video in background</source>
-          <target>prehrať video na pozadí</target>
+          <target state="translated">prehrať video na pozadí</target>
         </trans-unit>
         <trans-unit id="Videos" translate="yes" xml:space="preserve">
           <source>videos</source>
-          <target>videá</target>
+          <target state="translated">videá</target>
         </trans-unit>
         <trans-unit id="VideoSettings" translate="yes" xml:space="preserve">
           <source>Video Settings</source>
-          <target>Nastavenia videa</target>
+          <target state="translated">Nastavenia videa</target>
        </trans-unit>
         <trans-unit id="ViewAlbum" translate="yes" xml:space="preserve">
           <source>view album</source>
-          <target>zobraziť album</target>
+          <target state="translated">zobraziť album</target>
         </trans-unit>
         <trans-unit id="ViewArtist" translate="yes" xml:space="preserve">
           <source>view artist</source>
-          <target>zobraziť umelca</target>
+          <target state="translated">zobraziť umelca</target>
         </trans-unit>
         <trans-unit id="Volume" translate="yes" xml:space="preserve">
           <source>volume</source>
-          <target>hlasitosť</target>
+          <target state="translated">hlasitosť</target>
         </trans-unit>
         <trans-unit id="WeNeedYourHelp" translate="yes" xml:space="preserve">
           <source>we need your help</source>
-          <target>potrebujeme vašu pomoc</target>
+          <target state="translated">potrebujeme vašu pomoc</target>
         </trans-unit>
         <trans-unit id="Yes" translate="yes" xml:space="preserve">
           <source>yes</source>
-          <target>áno</target>
+          <target state="translated">áno</target>
         </trans-unit>
         <trans-unit id="YourMusic" translate="yes" xml:space="preserve">
           <source>your music</source>
-          <target>vaša hudba</target>
+          <target state="translated">vaša hudba</target>
         </trans-unit>
         <trans-unit id="AccentColor" translate="yes" xml:space="preserve">
           <source>accent color</source>
-          <target>zvýraznenie farby</target>
+          <target state="translated">zvýraznenie farby</target>
         </trans-unit>
         <trans-unit id="BackgroundColor" translate="yes" xml:space="preserve">
           <source>background color</source>
-          <target>farba pozadia</target>
+          <target state="translated">farba pozadia</target>
         </trans-unit>
         <trans-unit id="Dark" translate="yes" xml:space="preserve">
           <source>dark</source>
-          <target>tmavé</target>
+          <target state="translated">tmavé</target>
         </trans-unit>
         <trans-unit id="Light" translate="yes" xml:space="preserve">
           <source>light</source>
-          <target>svetlé</target>
+          <target state="translated">svetlé</target>
         </trans-unit>
         <trans-unit id="TitleBar" translate="yes" xml:space="preserve">
           <source>title bar</source>
-          <target>panel s názvom</target>
+          <target state="translated">panel s názvom</target>
         </trans-unit>
         <trans-unit id="NeedRestart" translate="yes" xml:space="preserve">
           <source>You need to restart the app to apply changes</source>
-          <target>Aby sa zmeny uplatnili, musíte reštartovať aplikáciu</target>
+          <target state="translated">Aby sa zmeny uplatnili, musíte reštartovať aplikáciu</target>
         </trans-unit>
         <trans-unit id="Zoom" translate="yes" xml:space="preserve">
           <source>zoom</source>
-          <target>priblíženie</target>
+          <target state="translated">priblíženie</target>
         </trans-unit>
         <trans-unit id="AreYouSure" translate="yes" xml:space="preserve">
           <source>are you sure?</source>
-          <target>naozaj?</target>
+          <target state="translated">naozaj?</target>
         </trans-unit>
         <trans-unit id="MediaCantBeRead" translate="yes" xml:space="preserve">
           <source>the media can't be read</source>
-          <target>médium nemožno prečítať</target>
+          <target state="translated">médium nemožno prečítať</target>
         </trans-unit>
         <trans-unit id="Sorry" translate="yes" xml:space="preserve">
           <source>we're sorry</source>
-          <target>prepáčte</target>
+          <target state="translated">prepáčte</target>
         </trans-unit>
         <trans-unit id="SURFACE_BEST_FIT" translate="yes" xml:space="preserve">
           <source>best fit</source>
-          <target>najlepšie prispôsobenie</target>
+          <target state="translated">najlepšie prispôsobenie</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_HORIZONTAL" translate="yes" xml:space="preserve">
           <source>horizontal cropping</source>
-          <target>horizontálne orezanie</target>
+          <target state="translated">horizontálne orezanie</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_VERTICAL" translate="yes" xml:space="preserve">
           <source>vertical cropping</source>
-          <target>vertikálne orezanie</target>
+          <target state="translated">vertikálne orezanie</target>
         </trans-unit>
         <trans-unit id="YourPlaylistWontBeAccessible" translate="yes" xml:space="preserve">
           <source>your playlist won't be accessible</source>
-          <target>váš playlist nebude prístupný</target>
+          <target state="translated">váš playlist nebude prístupný</target>
         </trans-unit>
         <trans-unit id="NoArtistShowsFound" translate="yes" xml:space="preserve">
           <source>we didn't find shows for this artist</source>
-          <target>nenašli sme žiadne show pre tohto umelca</target>
+          <target state="translated">nenašli sme žiadne show pre tohto umelca</target>
         </trans-unit>
         <trans-unit id="NoResults" translate="yes" xml:space="preserve">
           <source>no results</source>
-          <target>žiadne výsledky</target>
+          <target state="translated">žiadne výsledky</target>
         </trans-unit>
         <trans-unit id="ForceLandscape" translate="yes" xml:space="preserve">
           <source>Force landscape</source>
-          <target>Vynútiť si zobrazenie na šírku</target>
+          <target state="translated">Vynútiť si zobrazenie na šírku</target>
         </trans-unit>
         <trans-unit id="SURFACE_STRETCH" translate="yes" xml:space="preserve">
           <source>stretch</source>
-          <target>roztiahnuť</target>
+          <target state="translated">roztiahnuť</target>
         </trans-unit>
         <trans-unit id="SimilarArtists" translate="yes" xml:space="preserve">
           <source>Similar artists</source>
-          <target>Podobní umelci</target>
+          <target state="translated">Podobní umelci</target>
         </trans-unit>
         <trans-unit id="EnglishLanguage" translate="yes" xml:space="preserve">
           <source>English</source>
-          <target>Anglicky</target>
+          <target state="translated">Anglicky</target>
         </trans-unit>
         <trans-unit id="FrenchLanguage" translate="yes" xml:space="preserve">
           <source>French</source>
-          <target>Francúzsky</target>
+          <target state="translated">Francúzsky</target>
         </trans-unit>
         <trans-unit id="JapaneseLanguage" translate="yes" xml:space="preserve">
           <source>Japanese</source>
-          <target>Japonsky</target>
+          <target state="translated">Japonsky</target>
         </trans-unit>
         <trans-unit id="GermanLanguage" translate="yes" xml:space="preserve">
           <source>German</source>
-          <target>Nemecky</target>
+          <target state="translated">Nemecky</target>
         </trans-unit>
         <trans-unit id="PolishLanguage" translate="yes" xml:space="preserve">
           <source>Polish</source>
-          <target>Poľsky</target>
+          <target state="translated">Poľsky</target>
         </trans-unit>
         <trans-unit id="SlovakLanguage" translate="yes" xml:space="preserve">
           <source>Slovak</source>
-          <target>Slovensky</target>
+          <target state="translated">Slovensky</target>
         </trans-unit>
         <trans-unit id="DanishLanguage" translate="yes" xml:space="preserve">
           <source>Danish</source>
-          <target>Dánsky</target>
+          <target state="translated">Dánsky</target>
         </trans-unit>
         <trans-unit id="SpanishLanguage" translate="yes" xml:space="preserve">
           <source>Spanish</source>
-          <target>Španielsky</target>
+          <target state="translated">Španielsky</target>
         </trans-unit>
         <trans-unit id="HungarianLanguage" translate="yes" xml:space="preserve">
           <source>Hungarian</source>
-          <target>Maďarsky</target>
+          <target state="translated">Maďarsky</target>
         </trans-unit>
         <trans-unit id="ItalianLanguage" translate="yes" xml:space="preserve">
           <source>Italian</source>
-          <target>Taliansky</target>
+          <target state="translated">Taliansky</target>
         </trans-unit>
         <trans-unit id="KoreanLanguage" translate="yes" xml:space="preserve">
           <source>Korean</source>
-          <target>Kórejsky</target>
+          <target state="translated">Kórejsky</target>
         </trans-unit>
         <trans-unit id="MalayLanguage" translate="yes" xml:space="preserve">
           <source>Malay</source>
-          <target>Malajsky</target>
+          <target state="translated">Malajsky</target>
         </trans-unit>
         <trans-unit id="NorwegianLanguage" translate="yes" xml:space="preserve">
           <source>Norwegian</source>
-          <target>Nórsky</target>
+          <target state="translated">Nórsky</target>
         </trans-unit>
         <trans-unit id="DutchLanguage" translate="yes" xml:space="preserve">
           <source>Dutch</source>
-          <target>Holandská nemčina</target>
+          <target state="translated">Holandská nemčina</target>
         </trans-unit>
         <trans-unit id="RussianLanguage" translate="yes" xml:space="preserve">
           <source>Russian</source>
-          <target>Rusky</target>
+          <target state="translated">Rusky</target>
         </trans-unit>
         <trans-unit id="SwedishLanguage" translate="yes" xml:space="preserve">
           <source>Swedish</source>
-          <target>Švédsky</target>
+          <target state="translated">Švédsky</target>
         </trans-unit>
         <trans-unit id="TurkishLanguage" translate="yes" xml:space="preserve">
           <source>Turkish</source>
-          <target>Turecky</target>
+          <target state="translated">Turecky</target>
         </trans-unit>
         <trans-unit id="UkrainianLanguage" translate="yes" xml:space="preserve">
           <source>Ukrainian</source>
-          <target>Ukrajinsky</target>
+          <target state="translated">Ukrajinsky</target>
         </trans-unit>
         <trans-unit id="ChineseLanguage" translate="yes" xml:space="preserve">
           <source>Chinese</source>
-          <target>Čínsky</target>
+          <target state="translated">Čínsky</target>
         </trans-unit>
         <trans-unit id="PortugueseLanguage" translate="yes" xml:space="preserve">
           <source>Portuguese</source>
-          <target>Portugalsky</target>
+          <target state="translated">Portugalsky</target>
         </trans-unit>		
         <trans-unit id="CzechLanguage" translate="yes" xml:space="preserve">
           <source>Czech</source>
-          <target>Česky</target>
+          <target state="translated">Česky</target>
         </trans-unit>
         <trans-unit id="IcelandicLanguage" translate="yes" xml:space="preserve">
           <source>Icelandic</source>
-          <target>Islandsky</target>
+          <target state="translated">Islandsky</target>
         </trans-unit>
         <trans-unit id="Languages" translate="yes" xml:space="preserve">
           <source>Languages</source>
-          <target>Jazyky</target>
+          <target state="translated">Jazyky</target>
         </trans-unit>
         <trans-unit id="SelectLanguageDescription" translate="yes" xml:space="preserve">
           <source>VLC will be displayed in</source>
-          <target>VLC sa zobrazí v jazyku</target>
+          <target state="translated">VLC sa zobrazí v jazyku</target>
         </trans-unit>
         <trans-unit id="ApplyAndRestart" translate="yes" xml:space="preserve">
           <source>Apply And Restart</source>
-          <target>Použiť a reštartovať</target>
+          <target state="translated">Použiť a reštartovať</target>
         </trans-unit>
         <trans-unit id="RefreshLanguage" translate="yes" xml:space="preserve">
           <source>Refresh Language</source>
-          <target>Obnoviť jazyk</target>
+          <target state="translated">Obnoviť jazyk</target>
         </trans-unit>
         <trans-unit id="Local" translate="yes" xml:space="preserve">
           <source>local</source>
-          <target>lokálne</target>
+          <target state="translated">lokálne</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES" translate="yes" xml:space="preserve">
           <source>Download Files</source>
-          <target>Stiahnuť súbory</target>
+          <target state="translated">Stiahnuť súbory</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES_LONG" translate="yes" xml:space="preserve">
           <source>Just click the file you want to download from your Xbox.</source>
-          <target>Kliknite na súbor, ktorý chcete stiahnuť z konzoly Xbox.</target>
+          <target state="translated">Kliknite na súbor, ktorý chcete stiahnuť z konzoly Xbox.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES" translate="yes" xml:space="preserve">
           <source>Drop Files</source>
-          <target>Pustiť súbory</target>
+          <target state="translated">Pustiť súbory</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
           <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the &quot;+&quot; button to use the file picker dialog.</source>
-          <target>Súbory, ktoré chcete pridať do svojho Xboxu, pustite v tomto okne.&lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Alebo kliknite na tlačidlo &amp;quot;+&amp;quot; ktorým otvoríte dialóg na pridávanie súborov.</target>
+          <target state="translated">Súbory, ktoré chcete pridať do svojho Xboxu, pustite v tomto okne.&lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Alebo kliknite na tlačidlo &amp;quot;+&amp;quot; ktorým otvoríte dialóg na pridávanie súborov.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
-          <target>Zdieľanie cez WiFi</target>
+          <target state="translated">Zdieľanie cez WiFi</target>
         </trans-unit>
         <trans-unit id="CopyToLocalStorage" translate="yes" xml:space="preserve">
           <source>copy to local storage</source>
-          <target>kopírovať do lokálneho úložiska</target>
+          <target state="translated">kopírovať do lokálneho úložiska</target>
         </trans-unit>
         <trans-unit id="ExternalStorageDeviceDetected" translate="yes" xml:space="preserve">
           <source>VLC has detected an external storage device.</source>
-          <target>VLC detegoval externé úložné zariadenie.</target>
+          <target state="translated">VLC detegoval externé úložné zariadenie.</target>
         </trans-unit>
         <trans-unit id="ReadFromExternalStorage" translate="yes" xml:space="preserve">
           <source>Use external storage as media library.</source>
-          <target>Použiť externé úložisko ako knižnicu s médiami.</target>
+          <target state="translated">Použiť externé úložisko ako knižnicu s médiami.</target>
         </trans-unit>
         <trans-unit id="SelectContentToCopy" translate="yes" xml:space="preserve">
           <source>Copy media to the internal storage.</source>
-          <target>Kopírovať médium na interné úložisko.</target>
+          <target state="translated">Kopírovať médium na interné úložisko.</target>
         </trans-unit>
         <trans-unit id="WhatToDo" translate="yes" xml:space="preserve">
           <source>What would you like to do?</source>
-          <target>Čo chcete urobiť?</target>
+          <target state="translated">Čo chcete urobiť?</target>
         </trans-unit>
         <trans-unit id="AskMe" translate="yes" xml:space="preserve">
           <source>Ask me</source>
-          <target>Opýtať sa</target>
+          <target state="translated">Opýtať sa</target>
         </trans-unit>
         <trans-unit id="ExternalStorage" translate="yes" xml:space="preserve">
           <source>external storage</source>
-          <target>externé úložisko</target>
+          <target state="translated">externé úložisko</target>
         </trans-unit>
         <trans-unit id="WhatToDoWhenExternalStorage" translate="yes" xml:space="preserve">
           <source>What should VLC do when an external storage device has been detected?</source>
-          <target>Čo má urobiť VLC pri zistení prítomnosti externého úložného zariadenia?</target>
+          <target state="translated">Čo má urobiť VLC pri zistení prítomnosti externého úložného zariadenia?</target>
         </trans-unit>
         <trans-unit id="Cancel" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target>Zrušiť</target>
+          <target state="translated">Zrušiť</target>
         </trans-unit>
         <trans-unit id="DoNothing" translate="yes" xml:space="preserve">
           <source>Do nothing</source>
-          <target>Neurobiť nič</target>
+          <target state="translated">Neurobiť nič</target>
         </trans-unit>
         <trans-unit id="Ok" translate="yes" xml:space="preserve">
           <source>Ok</source>
-          <target>OK</target>
+          <target state="translated">OK</target>
         </trans-unit>
         <trans-unit id="Ignore" translate="yes" xml:space="preserve">
           <source>Ignore</source>
-          <target>Ignorovať</target>
+          <target state="translated">Ignorovať</target>
         </trans-unit>
         <trans-unit id="Remember" translate="yes" xml:space="preserve">
           <source>Remember</source>
-          <target>Zapamätať si</target>
+          <target state="translated">Zapamätať si</target>
         </trans-unit>
         <trans-unit id="AddMediaHelp" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device</source>
-          <target>Prosím vložte externé úložné zariadenie</target>
+          <target state="translated">Prosím vložte externé úložné zariadenie</target>
         </trans-unit>
         <trans-unit id="AddMediaHelpWithIP" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device, or go to http://{0}:8080 to upload some media</source>
-          <target>Prosím vložte externé úložné zariadenie, alebo prejdite na http://{0}:8080 pre nahratie nejakých médií</target>
+          <target state="translated">Prosím vložte externé úložné zariadenie, alebo prejdite na http://{0}:8080 pre nahratie nejakých médií</target>
         </trans-unit>
         <trans-unit id="CopyHelpDesktop" translate="yes" xml:space="preserve">
           <source>Right-click on a file or a folder to copy it to the local storage.</source>
-          <target>Kliknutím pravým tlačidlom na súbor alebo priečinok ho skopírujete do lokálneho úložiska.</target>
+          <target state="translated">Kliknutím pravým tlačidlom na súbor alebo priečinok ho skopírujete do lokálneho úložiska.</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
           <source>Press &quot;Y&quot; on a file or a folder to copy it to the local storage.</source>
-          <target>Stlačením &quot;Y&quot; na súbore alebo priečinku ho skopírujete do lokálneho úložiska.</target>
+          <target state="translated">Stlačením &quot;Y&quot; na súbore alebo priečinku ho skopírujete do lokálneho úložiska.</target>
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
           <source>No subtitle tracks</source>
-          <target>Žiadne stopy s titulkami</target>
+          <target state="translated">Žiadne stopy s titulkami</target>
         </trans-unit>
         <trans-unit id="ClearKeystore" translate="yes" xml:space="preserve">
           <source>Clear saved credentials</source>
-          <target>Vyčistiť uložené prihlasovacie údaje</target>
+          <target state="translated">Vyčistiť uložené prihlasovacie údaje</target>
         </trans-unit>
         <trans-unit id="Credentials" translate="yes" xml:space="preserve">
           <source>Credentials</source>
-          <target>Prihlasovacie údaje</target>
+          <target state="translated">Prihlasovacie údaje</target>
         </trans-unit>
         <trans-unit id="CopyHelpPhone" translate="yes" xml:space="preserve">
           <source>Long press on a file or a folder to copy it to the local storage.</source>
-          <target>Dlhým zatlačením na súbor alebo priečinok ho skopírujete do lokálneho úložiska.</target>
+          <target state="translated">Dlhým zatlačením na súbor alebo priečinok ho skopírujete do lokálneho úložiska.</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_SCREEN" translate="yes" xml:space="preserve">
           <source>fit screen</source>
-          <target>prispôsobiť obrazovke</target>
+          <target state="translated">prispôsobiť obrazovke</target>
         </trans-unit>
         <trans-unit id="SURFACE_FILL" translate="yes" xml:space="preserve">
           <source>fill</source>
-          <target>vyplniť</target>
+          <target state="translated">vyplniť</target>
         </trans-unit>
         <trans-unit id="SURFACE_16_9" translate="yes" xml:space="preserve">
           <source>16:9</source>
-          <target>16:9</target>
+          <target state="translated">16:9</target>
         </trans-unit>
         <trans-unit id="SURFACE_4_3" translate="yes" xml:space="preserve">
           <source>4:3</source>
-          <target>4:3</target>
+          <target state="translated">4:3</target>
         </trans-unit>
         <trans-unit id="SURFACE_2_35_1" translate="yes" xml:space="preserve">
           <source>2.35:1</source>
-          <target>2.35:1</target>
+          <target state="translated">2.35:1</target>
         </trans-unit>
         <trans-unit id="SURFACE_ORIGINAL" translate="yes" xml:space="preserve">
           <source>original</source>
-          <target>pôvodné</target>
+          <target state="translated">pôvodné</target>
         </trans-unit>
         <trans-unit id="CompactOverlayPiP" translate="yes" xml:space="preserve">
           <source>use windows 10 pip</source>
-          <target>použiť windows 10 pip</target>
+          <target state="translated">použiť windows 10 pip</target>
         </trans-unit>
         <trans-unit id="TvUnsafeArea" translate="yes" xml:space="preserve">
           <source>TV unsafe area</source>
-          <target>Nezabezpečená oblasť TV</target>
+          <target state="translated">Nezabezpečená oblasť TV</target>
         </trans-unit>
         <trans-unit id="AddMarginExplanation" translate="yes" xml:space="preserve">
           <source>Some TVs will not display the app correctly. To add some margin, turn this on</source>
-          <target>Niektoré TV nezobrazujú aplikáciu korektne. Ak chcete pridať nejaký okraj, zapnite túto voľbu</target>
+          <target state="translated">Niektoré TV nezobrazujú aplikáciu korektne. Ak chcete pridať nejaký okraj, zapnite túto voľbu</target>
         </trans-unit>
         <trans-unit id="ExtraMargin" translate="yes" xml:space="preserve">
           <source>Extra margin</source>
-          <target>Osobitný okraj</target>
+          <target state="translated">Osobitný okraj</target>
         </trans-unit>
         <trans-unit id="NoExtraMargin" translate="yes" xml:space="preserve">
           <source>No extra margin</source>
-          <target>Žiadny osobitný okraj</target>
+          <target state="translated">Žiadny osobitný okraj</target>
         </trans-unit>
 		<trans-unit id="Restart" translate="yes" xml:space="preserve">
           <source>restart</source>
-          <target>reštart</target>
+          <target state="translated">reštart</target>
         </trans-unit>
         <trans-unit id="Disconnect" translate="yes" xml:space="preserve">
           <source>disconnect</source>
-          <target>odpojiť</target>
+          <target state="translated">odpojiť</target>
         </trans-unit>
       </group>
     </body>

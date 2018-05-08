@@ -7,959 +7,959 @@
       <group datatype="resx" id="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW">
         <trans-unit id="AboutTheApp" translate="yes" xml:space="preserve">
           <source>about the app</source>
-          <target>perihal apl</target>
+          <target state="translated">perihal apl</target>
         </trans-unit>
         <trans-unit id="Add" translate="yes" xml:space="preserve">
           <source>add</source>
-          <target>tambah</target>
+          <target state="translated">tambah</target>
         </trans-unit>
         <trans-unit id="AddFolder" translate="yes" xml:space="preserve">
           <source>add folder</source>
-          <target>tambah folder</target>
+          <target state="translated">tambah folder</target>
         </trans-unit>
         <trans-unit id="AddToCollection" translate="yes" xml:space="preserve">
           <source>add to collection</source>
-          <target>tambah ke dalam koleksi</target>
+          <target state="translated">tambah ke dalam koleksi</target>
         </trans-unit>
         <trans-unit id="AddToCurrentPlaylist" translate="yes" xml:space="preserve">
           <source>add to current playlist</source>
-          <target>tambah ke senarai main semasa</target>
+          <target state="translated">tambah ke senarai main semasa</target>
         </trans-unit>
         <trans-unit id="AddToPlaylist" translate="yes" xml:space="preserve">
           <source>add to playlist</source>
-          <target>tambah ke senarai main</target>
+          <target state="translated">tambah ke senarai main</target>
         </trans-unit>
         <trans-unit id="Albums" translate="yes" xml:space="preserve">
           <source>albums</source>
-          <target>album</target>
+          <target state="translated">album</target>
         </trans-unit>
         <trans-unit id="AlbumsFound" translate="yes" xml:space="preserve">
           <source>albums found : {0}</source>
-          <target>album ditemui : {0}</target>
+          <target state="translated">album ditemui : {0}</target>
         </trans-unit>
         <trans-unit id="Animations" translate="yes" xml:space="preserve">
           <source>animations</source>
-          <target>animasi</target>
+          <target state="translated">animasi</target>
         </trans-unit>
         <trans-unit id="AppTheme" translate="yes" xml:space="preserve">
           <source>application theme</source>
-          <target>tema aplikasi</target>
+          <target state="translated">tema aplikasi</target>
         </trans-unit>
         <trans-unit id="Artists" translate="yes" xml:space="preserve">
           <source>artists</source>
-          <target>artis</target>
+          <target state="translated">artis</target>
         </trans-unit>
         <trans-unit id="Audio" translate="yes" xml:space="preserve">
           <source>audio</source>
-          <target>audio</target>
+          <target state="translated">audio</target>
         </trans-unit>
         <trans-unit id="AudioDelay" translate="yes" xml:space="preserve">
           <source>audio delay</source>
-          <target>lengahan audio</target>
+          <target state="translated">lengahan audio</target>
         </trans-unit>
         <trans-unit id="AudioTracks" translate="yes" xml:space="preserve">
           <source>Audio Tracks</source>
-          <target>Trek Audio</target>
+          <target state="translated">Trek Audio</target>
        </trans-unit>
         <trans-unit id="Back" translate="yes" xml:space="preserve">
           <source>back</source>
-          <target>undur</target>
+          <target state="translated">undur</target>
         </trans-unit>
         <trans-unit id="CameraRoll" translate="yes" xml:space="preserve">
           <source>camera roll</source>
-          <target>gulungan kamera</target>
+          <target state="translated">gulungan kamera</target>
         </trans-unit>
         <trans-unit id="ChangeAlbumCover" translate="yes" xml:space="preserve">
           <source>change album cover</source>
-          <target>ubah kulit hadapan album</target>
+          <target state="translated">ubah kulit hadapan album</target>
         </trans-unit>
         <trans-unit id="Chapters" translate="yes" xml:space="preserve">
           <source>Chapters</source>
-          <target>Bab</target>
+          <target state="translated">Bab</target>
        </trans-unit>
         <trans-unit id="CheckCredentials" translate="yes" xml:space="preserve">
           <source>an error occured, please check your credentials</source>
-          <target>satu ralat telah berlaku, sila periksa kelayakan anda</target>
+          <target state="translated">satu ralat telah berlaku, sila periksa kelayakan anda</target>
         </trans-unit>
         <trans-unit id="Connect" translate="yes" xml:space="preserve">
           <source>connect</source>
-          <target>sambung</target>
+          <target state="translated">sambung</target>
         </trans-unit>
         <trans-unit id="ConnectedToLastFM" translate="yes" xml:space="preserve">
           <source>connected to Last.FM</source>
-          <target>bersambung dengan Last.FM</target>
+          <target state="translated">bersambung dengan Last.FM</target>
         </trans-unit>
         <trans-unit id="Connecting" translate="yes" xml:space="preserve">
           <source>connecting</source>
-          <target>menyambung</target>
+          <target state="translated">menyambung</target>
         </trans-unit>
         <trans-unit id="ConnectToLastFM" translate="yes" xml:space="preserve">
           <source>connect to Last.FM</source>
-          <target>sambung ke Last.FM</target>
+          <target state="translated">sambung ke Last.FM</target>
         </trans-unit>
         <trans-unit id="CrashReport" translate="yes" xml:space="preserve">
           <source>crash report</source>
-          <target>laporan kerosakan</target>
+          <target state="translated">laporan kerosakan</target>
         </trans-unit>
         <trans-unit id="DecreaseSpeed" translate="yes" xml:space="preserve">
           <source>decrease speed</source>
-          <target>kurangkan kelajuan</target>
+          <target state="translated">kurangkan kelajuan</target>
         </trans-unit>
         <trans-unit id="DecreaseVolume" translate="yes" xml:space="preserve">
           <source>decrease volume</source>
-          <target>kurangkan volum</target>
+          <target state="translated">kurangkan volum</target>
         </trans-unit>
         <trans-unit id="DeletePlaylist" translate="yes" xml:space="preserve">
           <source>delete playlist</source>
-          <target>padam senarai main</target>
+          <target state="translated">padam senarai main</target>
         </trans-unit>
         <trans-unit id="DeleteSelected" translate="yes" xml:space="preserve">
           <source>delete selected</source>
-          <target>padam terpilih</target>
+          <target state="translated">padam terpilih</target>
         </trans-unit>
         <trans-unit id="EditMetadata" translate="yes" xml:space="preserve">
           <source>edit metadata</source>
-          <target>sunting data meta</target>
+          <target state="translated">sunting data meta</target>
         </trans-unit>
         <trans-unit id="ElementsNotFound" translate="yes" xml:space="preserve">
           <source>we did not find elements in there</source>
-          <target>kami tidak menemui apa-apa elemen di sini</target>
+          <target state="translated">kami tidak menemui apa-apa elemen di sini</target>
         </trans-unit>
         <trans-unit id="EnterURL" translate="yes" xml:space="preserve">
           <source>enter a url</source>
-          <target>masukkan satu url</target>
+          <target state="translated">masukkan satu url</target>
         </trans-unit>
         <trans-unit id="Episode" translate="yes" xml:space="preserve">
           <source>episode</source>
-          <target>episod</target>
+          <target state="translated">episod</target>
         </trans-unit>
         <trans-unit id="EvenIfBackground" translate="yes" xml:space="preserve">
           <source>even if the app is in background</source>
-          <target>walaupun jika apl masih dibalik tabir</target>
+          <target state="translated">walaupun jika apl masih dibalik tabir</target>
         </trans-unit>
         <trans-unit id="EvenIfNotBackground" translate="yes" xml:space="preserve">
           <source>even if the app is not in background</source>
-          <target>Walaupun jika apl tidak berada dibalik tabir</target>
+          <target state="translated">Walaupun jika apl tidak berada dibalik tabir</target>
         </trans-unit>
         <trans-unit id="FailFilePlayBackground" translate="yes" xml:space="preserve">
           <source>This file may not play in the background</source>
-          <target>Fail ini mungkin tidak dapat dimainkan secara balik tabir</target>
+          <target state="translated">Fail ini mungkin tidak dapat dimainkan secara balik tabir</target>
         </trans-unit>
         <trans-unit id="FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
           <source>VLC failed to navigate to the Video Player page</source>
-          <target>VLC gagal menavigasi ke laman Pemain Video</target>
+          <target state="translated">VLC gagal menavigasi ke laman Pemain Video</target>
         </trans-unit>
         <trans-unit id="FailOpenVideo" translate="yes" xml:space="preserve">
           <source>VLC failed to open the video</source>
-          <target>VLC gagal membuka video</target>
+          <target state="translated">VLC gagal membuka video</target>
         </trans-unit>
         <trans-unit id="FailStartVLCEngine" translate="yes" xml:space="preserve">
           <source>The app failed to start the VLC engine</source>
-          <target>Apl gagal memulakan enjin VLC</target>
+          <target state="translated">Apl gagal memulakan enjin VLC</target>
         </trans-unit>
         <trans-unit id="FeedbackThankYou" translate="yes" xml:space="preserve">
           <source>feedback sent! thank you</source>
-          <target>maklumbalas dihantar! terima kasih</target>
+          <target state="translated">maklumbalas dihantar! terima kasih</target>
         </trans-unit>
         <trans-unit id="FileExplorer" translate="yes" xml:space="preserve">
           <source>browse</source>
-          <target>layar</target>
+          <target state="translated">layar</target>
         </trans-unit>
         <trans-unit id="HardwareDecoding" translate="yes" xml:space="preserve">
           <source>hardware decoding</source>
-          <target>penyahkodan perkakasan</target>
+          <target state="translated">penyahkodan perkakasan</target>
         </trans-unit>
         <trans-unit id="HardwareDecodingDescription" translate="yes" xml:space="preserve">
           <source>Hardware decoding may not work on your device.</source>
-          <target>Penyahkodan perkakasan mungkin tidak berfungis pada peranti anda.</target>
+          <target state="translated">Penyahkodan perkakasan mungkin tidak berfungis pada peranti anda.</target>
         </trans-unit>
         <trans-unit id="HaveToSelectPlaylist" translate="yes" xml:space="preserve">
           <source>please select a playlist</source>
-          <target>sila pilih satu senarai main</target>
+          <target state="translated">sila pilih satu senarai main</target>
         </trans-unit>
         <trans-unit id="Home" translate="yes" xml:space="preserve">
           <source>home</source>
-          <target>rumah</target>
+          <target state="translated">rumah</target>
         </trans-unit>
         <trans-unit id="HomePage" translate="yes" xml:space="preserve">
           <source>home page</source>
-          <target>laman utama</target>
+          <target state="translated">laman utama</target>
         </trans-unit>
         <trans-unit id="HomePageDescription" translate="yes" xml:space="preserve">
           <source>VLC will start on the selected page</source>
-          <target>VLC akan bermula pada halaman terpilih</target>
+          <target state="translated">VLC akan bermula pada halaman terpilih</target>
         </trans-unit>
         <trans-unit id="HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
           <source>however you may find what you're looking for here</source>
-          <target>walaubagaimanapun anda boleh cari apa yang anda kehendaki di sini</target>
+          <target state="translated">walaubagaimanapun anda boleh cari apa yang anda kehendaki di sini</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum1" translate="yes" xml:space="preserve">
           <source>to favorite an album, just press</source>
-          <target>untuk jadikan album kegemaran, hanya ketik</target>
+          <target state="translated">untuk jadikan album kegemaran, hanya ketik</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum2" translate="yes" xml:space="preserve">
           <source>and you'll get an instant access to it</source>
-          <target>dan anda dapat mencapainya serta-merta</target>
+          <target state="translated">dan anda dapat mencapainya serta-merta</target>
         </trans-unit>
         <trans-unit id="ImportantSponsors" translate="yes" xml:space="preserve">
           <source>important sponsors</source>
-          <target>penaja utama</target>
+          <target state="translated">penaja utama</target>
         </trans-unit>
         <trans-unit id="IncreaseSpeed" translate="yes" xml:space="preserve">
           <source>increase speed</source>
-          <target>tingkatkan kelajuan</target>
+          <target state="translated">tingkatkan kelajuan</target>
         </trans-unit>
         <trans-unit id="IncreaseVolume" translate="yes" xml:space="preserve">
           <source>increase volume</source>
-          <target>tingkatkan volum</target>
+          <target state="translated">tingkatkan volum</target>
         </trans-unit>
         <trans-unit id="ItsEmpty" translate="yes" xml:space="preserve">
           <source>it's empty here</source>
-          <target>tiada apa-apa di sini</target>
+          <target state="translated">tiada apa-apa di sini</target>
         </trans-unit>
         <trans-unit id="KeyboardShortcuts" translate="yes" xml:space="preserve">
           <source>keyboard shortcuts</source>
-          <target>pintasan papan kekunci</target>
+          <target state="translated">pintasan papan kekunci</target>
         </trans-unit>
         <trans-unit id="License" translate="yes" xml:space="preserve">
           <source>license</source>
-          <target>lesen</target>
+          <target state="translated">lesen</target>
         </trans-unit>
         <trans-unit id="Loading" translate="yes" xml:space="preserve">
           <source>loading</source>
-          <target>memuatkan</target>
+          <target state="translated">memuatkan</target>
         </trans-unit>
         <trans-unit id="LoadingMusic" translate="yes" xml:space="preserve">
           <source>loading music</source>
-          <target>memuatkan muzik</target>
+          <target state="translated">memuatkan muzik</target>
         </trans-unit>
         <trans-unit id="MostPlayedArtists" translate="yes" xml:space="preserve">
           <source>most played artists</source>
-          <target>artis terbanyak dimainkan</target>
+          <target state="translated">artis terbanyak dimainkan</target>
         </trans-unit>
         <trans-unit id="Music" translate="yes" xml:space="preserve">
           <source>music</source>
-          <target>muzik</target>
+          <target state="translated">muzik</target>
         </trans-unit>
         <trans-unit id="MusicFolders" translate="yes" xml:space="preserve">
           <source>music folders</source>
-          <target>folder muzik</target>
+          <target state="translated">folder muzik</target>
         </trans-unit>
         <trans-unit id="MusicFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search songs that are in your music library. You can add folders to your library here</source>
-          <target>VLC hanya akan menggelintar lagu yang berada dalam pustaka muzik anda. Anda boleh tambah folder ke dalam pustaka anda di sini</target>
+          <target state="translated">VLC hanya akan menggelintar lagu yang berada dalam pustaka muzik anda. Anda boleh tambah folder ke dalam pustaka anda di sini</target>
         </trans-unit>
         <trans-unit id="MusicSettings" translate="yes" xml:space="preserve">
           <source>Music Settings</source>
-          <target>Tetapan Muzik</target>
+          <target state="translated">Tetapan Muzik</target>
        </trans-unit>
         <trans-unit id="MusicShows" translate="yes" xml:space="preserve">
           <source>music shows</source>
-          <target>rancangan muzik</target>
+          <target state="translated">rancangan muzik</target>
         </trans-unit>
         <trans-unit id="Mute" translate="yes" xml:space="preserve">
           <source>mute</source>
-          <target>senyap</target>
+          <target state="translated">senyap</target>
         </trans-unit>
         <trans-unit id="MyPlaylists" translate="yes" xml:space="preserve">
           <source>my playlists</source>
-          <target>senarai main saya</target>
+          <target state="translated">senarai main saya</target>
         </trans-unit>
         <trans-unit id="Network" translate="yes" xml:space="preserve">
           <source>network</source>
-          <target>rangkaian</target>
+          <target state="translated">rangkaian</target>
         </trans-unit>
         <trans-unit id="NewPlaylist" translate="yes" xml:space="preserve">
           <source>new playlist</source>
-          <target>senarai main baharu</target>
+          <target state="translated">senarai main baharu</target>
         </trans-unit>
         <trans-unit id="NewVideos" translate="yes" xml:space="preserve">
           <source>new videos</source>
-          <target>video baharu</target>
+          <target state="translated">video baharu</target>
         </trans-unit>
         <trans-unit id="No" translate="yes" xml:space="preserve">
           <source>no</source>
-          <target>Tidak</target>
+          <target state="translated">Tidak</target>
         </trans-unit>
         <trans-unit id="NoBiographyFound" translate="yes" xml:space="preserve">
           <source>no bio found for this artist</source>
-          <target>tiada bio ditemui bagi artis ini</target>
+          <target state="translated">tiada bio ditemui bagi artis ini</target>
         </trans-unit>
         <trans-unit id="NoCameraVideosFound" translate="yes" xml:space="preserve">
           <source>no camera videos found</source>
-          <target>tiada video kamera ditemui</target>
+          <target state="translated">tiada video kamera ditemui</target>
         </trans-unit>
         <trans-unit id="NoFavoriteAlbums" translate="yes" xml:space="preserve">
           <source>no favorite albums</source>
-          <target>tiada album kegemaran</target>
+          <target state="translated">tiada album kegemaran</target>
         </trans-unit>
         <trans-unit id="NoInternetConnection" translate="yes" xml:space="preserve">
           <source>no internet connection</source>
-          <target>tiada sambungan internet</target>
+          <target state="translated">tiada sambungan internet</target>
         </trans-unit>
         <trans-unit id="NoPlaylists" translate="yes" xml:space="preserve">
           <source>no playlists</source>
-          <target>tiada senarai main</target>
+          <target state="translated">tiada senarai main</target>
         </trans-unit>
         <trans-unit id="NoShowsFound" translate="yes" xml:space="preserve">
           <source>no shows found</source>
-          <target>tiada rancangan ditemui</target>
+          <target state="translated">tiada rancangan ditemui</target>
         </trans-unit>
         <trans-unit id="NothingToSeeHere" translate="yes" xml:space="preserve">
           <source>there's nothing to see here</source>
-          <target>tiada apa-apa untuk lihat di sini</target>
+          <target state="translated">tiada apa-apa untuk lihat di sini</target>
         </trans-unit>
         <trans-unit id="Notifications" translate="yes" xml:space="preserve">
           <source>notifications</source>
-          <target>pemberitahuan</target>
+          <target state="translated">pemberitahuan</target>
         </trans-unit>
         <trans-unit id="NotificationWhenSongStarts" translate="yes" xml:space="preserve">
           <source>when the song starts</source>
-          <target>bila lagu bermula</target>
+          <target state="translated">bila lagu bermula</target>
         </trans-unit>
         <trans-unit id="NoVideosFound" translate="yes" xml:space="preserve">
           <source>we did not find video</source>
-          <target>kami tidak menemui video</target>
+          <target state="translated">kami tidak menemui video</target>
        </trans-unit>
         <trans-unit id="NowPlaying" translate="yes" xml:space="preserve">
           <source>now playing</source>
-          <target>kini dimainkan</target>
+          <target state="translated">kini dimainkan</target>
         </trans-unit>
         <trans-unit id="OpenFile" translate="yes" xml:space="preserve">
           <source>open file</source>
-          <target>buka fail</target>
+          <target state="translated">buka fail</target>
         </trans-unit>
         <trans-unit id="OpenStream" translate="yes" xml:space="preserve">
           <source>open stream</source>
-          <target>buka strim</target>
+          <target state="translated">buka strim</target>
         </trans-unit>
         <trans-unit id="OpenSubtitle" translate="yes" xml:space="preserve">
           <source>open subtitle</source>
-          <target>buka sarikata</target>
+          <target state="translated">buka sarikata</target>
         </trans-unit>
         <trans-unit id="OrderAscending" translate="yes" xml:space="preserve">
           <source>ascending</source>
-          <target>menaik</target>
+          <target state="translated">menaik</target>
         </trans-unit>
         <trans-unit id="OrderByAlbum" translate="yes" xml:space="preserve">
           <source>by album</source>
-          <target>mengikut album</target>
+          <target state="translated">mengikut album</target>
         </trans-unit>
         <trans-unit id="OrderByArtist" translate="yes" xml:space="preserve">
           <source>by artist</source>
-          <target>mengikut artis</target>
+          <target state="translated">mengikut artis</target>
         </trans-unit>
         <trans-unit id="OrderByDate" translate="yes" xml:space="preserve">
           <source>by date</source>
-          <target>mengikut tarikh</target>
+          <target state="translated">mengikut tarikh</target>
         </trans-unit>
         <trans-unit id="OrderDescending" translate="yes" xml:space="preserve">
           <source>descending</source>
-          <target>menurun</target>
+          <target state="translated">menurun</target>
         </trans-unit>
         <trans-unit id="Password" translate="yes" xml:space="preserve">
           <source>password</source>
-          <target>kata laluan</target>
+          <target state="translated">kata laluan</target>
         </trans-unit>
         <trans-unit id="Pause" translate="yes" xml:space="preserve">
           <source>pause</source>
-          <target>jeda</target>
+          <target state="translated">jeda</target>
         </trans-unit>
         <trans-unit id="PinAlbum" translate="yes" xml:space="preserve">
           <source>pin album</source>
-          <target>cemat album</target>
+          <target state="translated">cemat album</target>
         </trans-unit>
         <trans-unit id="PinArtist" translate="yes" xml:space="preserve">
           <source>pin artist</source>
-          <target>cemat artis</target>
+          <target state="translated">cemat artis</target>
         </trans-unit>
         <trans-unit id="Play" translate="yes" xml:space="preserve">
           <source>play</source>
-          <target>main</target>
+          <target state="translated">main</target>
         </trans-unit>
         <trans-unit id="PlayAlbum" translate="yes" xml:space="preserve">
           <source>play album</source>
-          <target>main album</target>
+          <target state="translated">main album</target>
         </trans-unit>
         <trans-unit id="PlayAll" translate="yes" xml:space="preserve">
           <source>play all</source>
-          <target>main semua</target>
+          <target state="translated">main semua</target>
         </trans-unit>
         <trans-unit id="Playback" translate="yes" xml:space="preserve">
           <source>playback</source>
-          <target>main balik</target>
+          <target state="translated">main balik</target>
         </trans-unit>
         <trans-unit id="PlayerSettings" translate="yes" xml:space="preserve">
           <source>Player Settings</source>
-          <target>Tetapan Pemain</target>
+          <target state="translated">Tetapan Pemain</target>
        </trans-unit>
         <trans-unit id="PlayFolder" translate="yes" xml:space="preserve">
           <source>play folder</source>
-          <target>main folder</target>
+          <target state="translated">main folder</target>
         </trans-unit>
         <trans-unit id="Playlist" translate="yes" xml:space="preserve">
           <source>playlist</source>
-          <target>senarai main</target>
+          <target state="translated">senarai main</target>
         </trans-unit>
         <trans-unit id="PlaylistAlreadyExists" translate="yes" xml:space="preserve">
           <source>this playlist already exists</source>
-          <target>senarai main ini sudah wujud</target>
+          <target state="translated">senarai main ini sudah wujud</target>
         </trans-unit>
         <trans-unit id="PlaylistNamePlaceholder" translate="yes" xml:space="preserve">
           <source>playlist name</source>
-          <target>nama senarai main</target>
+          <target state="translated">nama senarai main</target>
         </trans-unit>
         <trans-unit id="Playlists" translate="yes" xml:space="preserve">
           <source>playlists</source>
-          <target>senarai main</target>
+          <target state="translated">senarai main</target>
         </trans-unit>
         <trans-unit id="PlayTrack" translate="yes" xml:space="preserve">
           <source>play track</source>
-          <target>main trek</target>
+          <target state="translated">main trek</target>
         </trans-unit>
         <trans-unit id="PlayVideo" translate="yes" xml:space="preserve">
           <source>play video</source>
-          <target>main video</target>
+          <target state="translated">main video</target>
         </trans-unit>
         <trans-unit id="PrivacyStatement" translate="yes" xml:space="preserve">
           <source>privacy statement</source>
-          <target>penyataan kerahsiaan</target>
+          <target state="translated">penyataan kerahsiaan</target>
         </trans-unit>
         <trans-unit id="Favorites" translate="yes" xml:space="preserve">
           <source>Favorites</source>
-          <target>Kegemaran</target>
+          <target state="translated">Kegemaran</target>
         </trans-unit>
         <trans-unit id="RefreshMusicLibrary" translate="yes" xml:space="preserve">
           <source>refresh music library</source>
-          <target>segar semula pustaka muzik</target>
+          <target state="translated">segar semula pustaka muzik</target>
         </trans-unit>
         <trans-unit id="RefreshVideoLibrary" translate="yes" xml:space="preserve">
           <source>refresh video library</source>
-          <target>segar semula pustaka video</target>
+          <target state="translated">segar semula pustaka video</target>
         </trans-unit>
         <trans-unit id="RemovableStorage" translate="yes" xml:space="preserve">
           <source>removable storage</source>
-          <target>storan mudah alih</target>
+          <target state="translated">storan mudah alih</target>
         </trans-unit>
         <trans-unit id="RemoveFolder" translate="yes" xml:space="preserve">
           <source>remove folder</source>
-          <target>buang folder</target>
+          <target state="translated">buang folder</target>
         </trans-unit>
         <trans-unit id="RemoveMusicFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</source>
-          <target>Jika anda tidak mahu folder ini berada di dalam pustaka Muzik anda, anda boleh membuangnya. Tetapi ia akan memberi kesan pada semua apl, tidak hanya VLC semata-mata.</target>
+          <target state="translated">Jika anda tidak mahu folder ini berada di dalam pustaka Muzik anda, anda boleh membuangnya. Tetapi ia akan memberi kesan pada semua apl, tidak hanya VLC semata-mata.</target>
         </trans-unit>
         <trans-unit id="RemoveVideoFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</source>
-          <target>Jika anda tidak mahu folder ini berada di dalam pustaka Video anda, anda boleh membuangnya. Tetapi ia akan memberi kesan pada semua apl, tidak hanya VLC semata-mata.</target>
+          <target state="translated">Jika anda tidak mahu folder ini berada di dalam pustaka Video anda, anda boleh membuangnya. Tetapi ia akan memberi kesan pada semua apl, tidak hanya VLC semata-mata.</target>
         </trans-unit>
         <trans-unit id="Reset" translate="yes" xml:space="preserve">
           <source>reset</source>
-          <target>tetap semula</target>
+          <target state="translated">tetap semula</target>
         </trans-unit>
         <trans-unit id="ResetMusicDatabase" translate="yes" xml:space="preserve">
           <source>reset music database</source>
-          <target>tetap semula pangkalan data</target>
+          <target state="translated">tetap semula pangkalan data</target>
         </trans-unit>
         <trans-unit id="ResetSpeed" translate="yes" xml:space="preserve">
           <source>reset speed</source>
-          <target>tetap semula kelajuan</target>
+          <target state="translated">tetap semula kelajuan</target>
         </trans-unit>
         <trans-unit id="RichAnimationsDescription" translate="yes" xml:space="preserve">
           <source>Use rich animations in the slideshows</source>
-          <target>Guna animasi sempurna di dalam paparan slaid</target>
+          <target state="translated">Guna animasi sempurna di dalam paparan slaid</target>
         </trans-unit>
         <trans-unit id="Search" translate="yes" xml:space="preserve">
           <source>search</source>
-          <target>gelintar</target>
+          <target state="translated">gelintar</target>
         </trans-unit>
         <trans-unit id="Season" translate="yes" xml:space="preserve">
           <source>season</source>
-          <target>musim</target>
+          <target state="translated">musim</target>
         </trans-unit>
         <trans-unit id="Settings" translate="yes" xml:space="preserve">
           <source>settings</source>
-          <target>tetapan</target>
+          <target state="translated">tetapan</target>
         </trans-unit>
         <trans-unit id="ShowPlaylist" translate="yes" xml:space="preserve">
           <source>show playlist</source>
-          <target>tunjuk senarai main</target>
+          <target state="translated">tunjuk senarai main</target>
         </trans-unit>
         <trans-unit id="Shows" translate="yes" xml:space="preserve">
           <source>shows</source>
-          <target>rancangan</target>
+          <target state="translated">rancangan</target>
         </trans-unit>
         <trans-unit id="Shuffle" translate="yes" xml:space="preserve">
           <source>shuffle</source>
-          <target>kocok</target>
+          <target state="translated">kocok</target>
         </trans-unit>
         <trans-unit id="Songs" translate="yes" xml:space="preserve">
           <source>songs</source>
-          <target>lagu</target>
+          <target state="translated">lagu</target>
         </trans-unit>
         <trans-unit id="SpecialThanks" translate="yes" xml:space="preserve">
           <source>special thanks</source>
-          <target>ucapan istimewa</target>
+          <target state="translated">ucapan istimewa</target>
         </trans-unit>
         <trans-unit id="Speed" translate="yes" xml:space="preserve">
           <source>speed</source>
-          <target>kelajuan</target>
+          <target state="translated">kelajuan</target>
         </trans-unit>
         <trans-unit id="Stop" translate="yes" xml:space="preserve">
           <source>stop</source>
-          <target>henti</target>
+          <target state="translated">henti</target>
         </trans-unit>
         <trans-unit id="SubtitleDelay" translate="yes" xml:space="preserve">
           <source>subtitle delay</source>
-          <target>lengahan sarikata</target>
+          <target state="translated">lengahan sarikata</target>
         </trans-unit>
         <trans-unit id="Subtitles" translate="yes" xml:space="preserve">
           <source>Subtitles</source>
-          <target>Sarikata</target>
+          <target state="translated">Sarikata</target>
        </trans-unit>
         <trans-unit id="SubtitlesEncoding" translate="yes" xml:space="preserve">
           <source>subtitles encoding</source>
-          <target>pengekodan sarikata</target>
+          <target state="translated">pengekodan sarikata</target>
         </trans-unit>
         <trans-unit id="Theme" translate="yes" xml:space="preserve">
           <source>theme</source>
-          <target>tema</target>
+          <target state="translated">tema</target>
         </trans-unit>
         <trans-unit id="TileRemoved" translate="yes" xml:space="preserve">
           <source>tile removed</source>
-          <target>jubin dibuang</target>
+          <target state="translated">jubin dibuang</target>
         </trans-unit>
         <trans-unit id="TopVideos" translate="yes" xml:space="preserve">
           <source>top videos</source>
-          <target>video teratas</target>
+          <target state="translated">video teratas</target>
         </trans-unit>
         <trans-unit id="TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
           <source>track added to the playlist</source>
-          <target>trek ditambah ke dalam senarai main</target>
+          <target state="translated">trek ditambah ke dalam senarai main</target>
         </trans-unit>
         <trans-unit id="TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
           <source>this track is already in that playlist</source>
-          <target>trek ini sudah ada dalam senarai main</target>
+          <target state="translated">trek ini sudah ada dalam senarai main</target>
         </trans-unit>
         <trans-unit id="Tracks" translate="yes" xml:space="preserve">
           <source>tracks</source>
-          <target>trek</target>
+          <target state="translated">trek</target>
         </trans-unit>
         <trans-unit id="UnknownAlbum" translate="yes" xml:space="preserve">
           <source>Unknown album</source>
-          <target>Album tidak diketahui</target>
+          <target state="translated">Album tidak diketahui</target>
         </trans-unit>
         <trans-unit id="UnknownArtist" translate="yes" xml:space="preserve">
           <source>Unknown artist</source>
-          <target>Artis tidak diketahui</target>
+          <target state="translated">Artis tidak diketahui</target>
         </trans-unit>
         <trans-unit id="UnknownShow" translate="yes" xml:space="preserve">
           <source>Unknown show</source>
-          <target>Rancangan tidak diketahui</target>
+          <target state="translated">Rancangan tidak diketahui</target>
         </trans-unit>
         <trans-unit id="UnknownTrack" translate="yes" xml:space="preserve">
           <source>Unknown track</source>
-          <target>Trek tidak diketahui</target>
+          <target state="translated">Trek tidak diketahui</target>
         </trans-unit>
         <trans-unit id="UserInterface" translate="yes" xml:space="preserve">
           <source>User Interface</source>
-          <target>Antaramuka Pengguna</target>
+          <target state="translated">Antaramuka Pengguna</target>
        </trans-unit>
         <trans-unit id="Username" translate="yes" xml:space="preserve">
           <source>username</source>
-          <target>nama pengguna</target>
+          <target state="translated">nama pengguna</target>
         </trans-unit>
         <trans-unit id="Video" translate="yes" xml:space="preserve">
           <source>video</source>
-          <target>video</target>
+          <target state="translated">video</target>
         </trans-unit>
         <trans-unit id="VideoFolders" translate="yes" xml:space="preserve">
           <source>video folders</source>
-          <target>folder video</target>
+          <target state="translated">folder video</target>
         </trans-unit>
         <trans-unit id="VideoFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search videos that are in your video library. You can add folders to your library here</source>
-          <target>VLC hanya akan menggelintar video yang berada dalam pustaka video anda. Anda boleh tambah folder ke dalam pustaka anda di sini</target>
+          <target state="translated">VLC hanya akan menggelintar video yang berada dalam pustaka video anda. Anda boleh tambah folder ke dalam pustaka anda di sini</target>
         </trans-unit>
         <trans-unit id="VideoPlayback" translate="yes" xml:space="preserve">
           <source>video playback</source>
-          <target>main balik video</target>
+          <target state="translated">main balik video</target>
         </trans-unit>
         <trans-unit id="VideoPlaybackInBackground" translate="yes" xml:space="preserve">
           <source>play video in background</source>
-          <target>main video dibalik tabir</target>
+          <target state="translated">main video dibalik tabir</target>
         </trans-unit>
         <trans-unit id="Videos" translate="yes" xml:space="preserve">
           <source>videos</source>
-          <target>video</target>
+          <target state="translated">video</target>
         </trans-unit>
         <trans-unit id="VideoSettings" translate="yes" xml:space="preserve">
           <source>Video Settings</source>
-          <target>Tetapan Video</target>
+          <target state="translated">Tetapan Video</target>
        </trans-unit>
         <trans-unit id="ViewAlbum" translate="yes" xml:space="preserve">
           <source>view album</source>
-          <target>lihat album</target>
+          <target state="translated">lihat album</target>
         </trans-unit>
         <trans-unit id="ViewArtist" translate="yes" xml:space="preserve">
           <source>view artist</source>
-          <target>lihat artis</target>
+          <target state="translated">lihat artis</target>
         </trans-unit>
         <trans-unit id="Volume" translate="yes" xml:space="preserve">
           <source>volume</source>
-          <target>Volum</target>
+          <target state="translated">Volum</target>
         </trans-unit>
         <trans-unit id="WeNeedYourHelp" translate="yes" xml:space="preserve">
           <source>we need your help</source>
-          <target>kami memerlukan bantuan anda</target>
+          <target state="translated">kami memerlukan bantuan anda</target>
         </trans-unit>
         <trans-unit id="Yes" translate="yes" xml:space="preserve">
           <source>yes</source>
-          <target>ya</target>
+          <target state="translated">ya</target>
         </trans-unit>
         <trans-unit id="YourMusic" translate="yes" xml:space="preserve">
           <source>your music</source>
-          <target>muzik anda</target>
+          <target state="translated">muzik anda</target>
         </trans-unit>
         <trans-unit id="AccentColor" translate="yes" xml:space="preserve">
           <source>accent color</source>
-          <target>warna aksen</target>
+          <target state="translated">warna aksen</target>
         </trans-unit>
         <trans-unit id="BackgroundColor" translate="yes" xml:space="preserve">
           <source>background color</source>
-          <target>warna latar belakang</target>
+          <target state="translated">warna latar belakang</target>
         </trans-unit>
         <trans-unit id="Dark" translate="yes" xml:space="preserve">
           <source>dark</source>
-          <target>gelap</target>
+          <target state="translated">gelap</target>
         </trans-unit>
         <trans-unit id="Light" translate="yes" xml:space="preserve">
           <source>light</source>
-          <target>cerah</target>
+          <target state="translated">cerah</target>
         </trans-unit>
         <trans-unit id="TitleBar" translate="yes" xml:space="preserve">
           <source>title bar</source>
-          <target>palang tajuk</target>
+          <target state="translated">palang tajuk</target>
         </trans-unit>
         <trans-unit id="NeedRestart" translate="yes" xml:space="preserve">
           <source>You need to restart the app to apply changes</source>
-          <target>Anda perlu mulakan semula apl supaya perubahan yang dilakukan berkesan</target>
+          <target state="translated">Anda perlu mulakan semula apl supaya perubahan yang dilakukan berkesan</target>
         </trans-unit>
         <trans-unit id="Zoom" translate="yes" xml:space="preserve">
           <source>zoom</source>
-          <target>zum</target>
+          <target state="translated">zum</target>
         </trans-unit>
         <trans-unit id="AreYouSure" translate="yes" xml:space="preserve">
           <source>are you sure?</source>
-          <target>anda pasti?</target>
+          <target state="translated">anda pasti?</target>
         </trans-unit>
         <trans-unit id="MediaCantBeRead" translate="yes" xml:space="preserve">
           <source>the media can't be read</source>
-          <target>media tidak dapat dibaca</target>
+          <target state="translated">media tidak dapat dibaca</target>
         </trans-unit>
         <trans-unit id="Sorry" translate="yes" xml:space="preserve">
           <source>we're sorry</source>
-          <target>kami mohon maaf</target>
+          <target state="translated">kami mohon maaf</target>
         </trans-unit>
         <trans-unit id="SURFACE_BEST_FIT" translate="yes" xml:space="preserve">
           <source>best fit</source>
-          <target>suai muat terbaik</target>
+          <target state="translated">suai muat terbaik</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_HORIZONTAL" translate="yes" xml:space="preserve">
           <source>horizontal cropping</source>
-          <target>pengeratan mengufuk</target>
+          <target state="translated">pengeratan mengufuk</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_VERTICAL" translate="yes" xml:space="preserve">
           <source>vertical cropping</source>
-          <target>pengeratan menegak</target>
+          <target state="translated">pengeratan menegak</target>
         </trans-unit>
         <trans-unit id="YourPlaylistWontBeAccessible" translate="yes" xml:space="preserve">
           <source>your playlist won't be accessible</source>
-          <target>senarai main anda tidak boleh dicapai</target>
+          <target state="translated">senarai main anda tidak boleh dicapai</target>
         </trans-unit>
         <trans-unit id="NoArtistShowsFound" translate="yes" xml:space="preserve">
           <source>we didn't find shows for this artist</source>
-          <target>kami tidak menemui rancangan bagi artis ini</target>
+          <target state="translated">kami tidak menemui rancangan bagi artis ini</target>
         </trans-unit>
         <trans-unit id="NoResults" translate="yes" xml:space="preserve">
           <source>no results</source>
-          <target>tiada keputusan</target>
+          <target state="translated">tiada keputusan</target>
         </trans-unit>
         <trans-unit id="ForceLandscape" translate="yes" xml:space="preserve">
           <source>Force landscape</source>
-          <target>Paksa lanskap</target>
+          <target state="translated">Paksa lanskap</target>
         </trans-unit>
         <trans-unit id="SURFACE_STRETCH" translate="yes" xml:space="preserve">
           <source>stretch</source>
-          <target>regang</target>
+          <target state="translated">regang</target>
         </trans-unit>
         <trans-unit id="SimilarArtists" translate="yes" xml:space="preserve">
           <source>Similar artists</source>
-          <target>Artis serupa</target>
+          <target state="translated">Artis serupa</target>
         </trans-unit>
         <trans-unit id="EnglishLanguage" translate="yes" xml:space="preserve">
           <source>English</source>
-          <target>Inggeris</target>
+          <target state="translated">Inggeris</target>
         </trans-unit>
         <trans-unit id="FrenchLanguage" translate="yes" xml:space="preserve">
           <source>French</source>
-          <target>Perancis</target>
+          <target state="translated">Perancis</target>
         </trans-unit>
         <trans-unit id="JapaneseLanguage" translate="yes" xml:space="preserve">
           <source>Japanese</source>
-          <target>Jepun</target>
+          <target state="translated">Jepun</target>
         </trans-unit>
         <trans-unit id="GermanLanguage" translate="yes" xml:space="preserve">
           <source>German</source>
-          <target>Jerman</target>
+          <target state="translated">Jerman</target>
         </trans-unit>
         <trans-unit id="PolishLanguage" translate="yes" xml:space="preserve">
           <source>Polish</source>
-          <target>Poland</target>
+          <target state="translated">Poland</target>
         </trans-unit>
         <trans-unit id="SlovakLanguage" translate="yes" xml:space="preserve">
           <source>Slovak</source>
-          <target>Slovak</target>
+          <target state="translated">Slovak</target>
         </trans-unit>
         <trans-unit id="DanishLanguage" translate="yes" xml:space="preserve">
           <source>Danish</source>
-          <target>Denmark</target>
+          <target state="translated">Denmark</target>
         </trans-unit>
         <trans-unit id="SpanishLanguage" translate="yes" xml:space="preserve">
           <source>Spanish</source>
-          <target>Sepanyol</target>
+          <target state="translated">Sepanyol</target>
         </trans-unit>
         <trans-unit id="HungarianLanguage" translate="yes" xml:space="preserve">
           <source>Hungarian</source>
-          <target>Hungary</target>
+          <target state="translated">Hungary</target>
         </trans-unit>
         <trans-unit id="ItalianLanguage" translate="yes" xml:space="preserve">
           <source>Italian</source>
-          <target>Itali</target>
+          <target state="translated">Itali</target>
         </trans-unit>
         <trans-unit id="KoreanLanguage" translate="yes" xml:space="preserve">
           <source>Korean</source>
-          <target>Korea</target>
+          <target state="translated">Korea</target>
         </trans-unit>
         <trans-unit id="MalayLanguage" translate="yes" xml:space="preserve">
           <source>Malay</source>
-          <target>Melayu</target>
+          <target state="translated">Melayu</target>
         </trans-unit>
         <trans-unit id="NorwegianLanguage" translate="yes" xml:space="preserve">
           <source>Norwegian</source>
-          <target>Norway</target>
+          <target state="translated">Norway</target>
         </trans-unit>
         <trans-unit id="DutchLanguage" translate="yes" xml:space="preserve">
           <source>Dutch</source>
-          <target>Belanda</target>
+          <target state="translated">Belanda</target>
         </trans-unit>
         <trans-unit id="RussianLanguage" translate="yes" xml:space="preserve">
           <source>Russian</source>
-          <target>Russia</target>
+          <target state="translated">Russia</target>
         </trans-unit>
         <trans-unit id="SwedishLanguage" translate="yes" xml:space="preserve">
           <source>Swedish</source>
-          <target>Sweden</target>
+          <target state="translated">Sweden</target>
         </trans-unit>
         <trans-unit id="TurkishLanguage" translate="yes" xml:space="preserve">
           <source>Turkish</source>
-          <target>Turki</target>
+          <target state="translated">Turki</target>
         </trans-unit>
         <trans-unit id="UkrainianLanguage" translate="yes" xml:space="preserve">
           <source>Ukrainian</source>
-          <target>Ukraine</target>
+          <target state="translated">Ukraine</target>
         </trans-unit>
         <trans-unit id="ChineseLanguage" translate="yes" xml:space="preserve">
           <source>Chinese</source>
-          <target>Cina</target>
+          <target state="translated">Cina</target>
         </trans-unit>
         <trans-unit id="PortugueseLanguage" translate="yes" xml:space="preserve">
           <source>Portuguese</source>
-          <target>Portugis</target>
+          <target state="translated">Portugis</target>
         </trans-unit>		
         <trans-unit id="CzechLanguage" translate="yes" xml:space="preserve">
           <source>Czech</source>
-          <target>Czech</target>
+          <target state="translated">Czech</target>
         </trans-unit>
         <trans-unit id="IcelandicLanguage" translate="yes" xml:space="preserve">
           <source>Icelandic</source>
-          <target>Iceland</target>
+          <target state="translated">Iceland</target>
         </trans-unit>
         <trans-unit id="Languages" translate="yes" xml:space="preserve">
           <source>Languages</source>
-          <target>Bahasa</target>
+          <target state="translated">Bahasa</target>
         </trans-unit>
         <trans-unit id="SelectLanguageDescription" translate="yes" xml:space="preserve">
           <source>VLC will be displayed in</source>
-          <target>VLC akan dipaparkan dalam bahasa</target>
+          <target state="translated">VLC akan dipaparkan dalam bahasa</target>
         </trans-unit>
         <trans-unit id="ApplyAndRestart" translate="yes" xml:space="preserve">
           <source>Apply And Restart</source>
-          <target>Laksana Dan Mula Semula</target>
+          <target state="translated">Laksana Dan Mula Semula</target>
         </trans-unit>
         <trans-unit id="RefreshLanguage" translate="yes" xml:space="preserve">
           <source>Refresh Language</source>
-          <target>Segar Semula Bahasa</target>
+          <target state="translated">Segar Semula Bahasa</target>
         </trans-unit>
         <trans-unit id="Local" translate="yes" xml:space="preserve">
           <source>local</source>
-          <target>setempat</target>
+          <target state="translated">setempat</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES" translate="yes" xml:space="preserve">
           <source>Download Files</source>
-          <target>Muat Turun Fail</target>
+          <target state="translated">Muat Turun Fail</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES_LONG" translate="yes" xml:space="preserve">
           <source>Just click the file you want to download from your Xbox.</source>
-          <target>Hanya klik fail yang mahu dimuat turun dari  Xbox anda.</target>
+          <target state="translated">Hanya klik fail yang mahu dimuat turun dari  Xbox anda.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES" translate="yes" xml:space="preserve">
           <source>Drop Files</source>
-          <target>Lepas Fail</target>
+          <target state="translated">Lepas Fail</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
           <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the &quot;+&quot; button to use the file picker dialog.</source>
-          <target>Lepas fail ke dalam tetingkap untuk menambahnya ke dalam Xbox anda. &lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt; Atau klik pada butang &amp;quot;+&amp;quot; untuk guna dialog pengambil fail.</target>
+          <target state="translated">Lepas fail ke dalam tetingkap untuk menambahnya ke dalam Xbox anda. &lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt; Atau klik pada butang &amp;quot;+&amp;quot; untuk guna dialog pengambil fail.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
-          <target>Perkongsian melalui WiFi</target>
+          <target state="translated">Perkongsian melalui WiFi</target>
         </trans-unit>
         <trans-unit id="CopyToLocalStorage" translate="yes" xml:space="preserve">
           <source>copy to local storage</source>
-          <target>salin ke storan setempat</target>
+          <target state="translated">salin ke storan setempat</target>
         </trans-unit>
         <trans-unit id="ExternalStorageDeviceDetected" translate="yes" xml:space="preserve">
           <source>VLC has detected an external storage device.</source>
-          <target>VLC telah mengesan satu peranti storan luar.</target>
+          <target state="translated">VLC telah mengesan satu peranti storan luar.</target>
         </trans-unit>
         <trans-unit id="ReadFromExternalStorage" translate="yes" xml:space="preserve">
           <source>Use external storage as media library.</source>
-          <target>Guna storan luar sebagai pustaka media</target>
+          <target state="translated">Guna storan luar sebagai pustaka media</target>
         </trans-unit>
         <trans-unit id="SelectContentToCopy" translate="yes" xml:space="preserve">
           <source>Copy media to the internal storage.</source>
-          <target>Salin media ke storan dalaman</target>
+          <target state="translated">Salin media ke storan dalaman</target>
         </trans-unit>
         <trans-unit id="WhatToDo" translate="yes" xml:space="preserve">
           <source>What would you like to do?</source>
-          <target>Apa yang anda mahu lakukan?</target>
+          <target state="translated">Apa yang anda mahu lakukan?</target>
         </trans-unit>
         <trans-unit id="AskMe" translate="yes" xml:space="preserve">
           <source>Ask me</source>
-          <target>Tanya saya</target>
+          <target state="translated">Tanya saya</target>
         </trans-unit>
         <trans-unit id="ExternalStorage" translate="yes" xml:space="preserve">
           <source>external storage</source>
-          <target>storan luar</target>
+          <target state="translated">storan luar</target>
         </trans-unit>
         <trans-unit id="WhatToDoWhenExternalStorage" translate="yes" xml:space="preserve">
           <source>What should VLC do when an external storage device has been detected?</source>
-          <target>Apa sepatutnya VLC lakukan jika satu peranti storan luar telah dikesan?</target>
+          <target state="translated">Apa sepatutnya VLC lakukan jika satu peranti storan luar telah dikesan?</target>
         </trans-unit>
         <trans-unit id="Cancel" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target>Batal</target>
+          <target state="translated">Batal</target>
         </trans-unit>
         <trans-unit id="DoNothing" translate="yes" xml:space="preserve">
           <source>Do nothing</source>
-          <target>Jangan buat apa-apa</target>
+          <target state="translated">Jangan buat apa-apa</target>
         </trans-unit>
         <trans-unit id="Ok" translate="yes" xml:space="preserve">
           <source>Ok</source>
-          <target>Ok</target>
+          <target state="translated">Ok</target>
         </trans-unit>
         <trans-unit id="Ignore" translate="yes" xml:space="preserve">
           <source>Ignore</source>
-          <target>Abai</target>
+          <target state="translated">Abai</target>
         </trans-unit>
         <trans-unit id="Remember" translate="yes" xml:space="preserve">
           <source>Remember</source>
-          <target>Ingat</target>
+          <target state="translated">Ingat</target>
         </trans-unit>
         <trans-unit id="AddMediaHelp" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device</source>
-          <target>Sila masukkan satu peranti storan luar</target>
+          <target state="translated">Sila masukkan satu peranti storan luar</target>
         </trans-unit>
         <trans-unit id="AddMediaHelpWithIP" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device, or go to http://{0}:8080 to upload some media</source>
-          <target>Sila sisipkan satu peranti storan luar, atau pergi ke http://{0}:8080 untuk memuat naik beberapa media</target>
+          <target state="translated">Sila sisipkan satu peranti storan luar, atau pergi ke http://{0}:8080 untuk memuat naik beberapa media</target>
         </trans-unit>
         <trans-unit id="CopyHelpDesktop" translate="yes" xml:space="preserve">
           <source>Right-click on a file or a folder to copy it to the local storage.</source>
-          <target>Klik-kanan pada fail atau folder untuk menyalinnya ke dalam storan setempat.</target>
+          <target state="translated">Klik-kanan pada fail atau folder untuk menyalinnya ke dalam storan setempat.</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
           <source>Press &quot;Y&quot; on a file or a folder to copy it to the local storage.</source>
-          <target>Ketik &quot;Y&quot; pada fail atau folder untuk menyalinnya ke dalam storan setempat.</target>
+          <target state="translated">Ketik &quot;Y&quot; pada fail atau folder untuk menyalinnya ke dalam storan setempat.</target>
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
           <source>No subtitle tracks</source>
-          <target>Tiada trek sarikata</target>
+          <target state="translated">Tiada trek sarikata</target>
         </trans-unit>
         <trans-unit id="ClearKeystore" translate="yes" xml:space="preserve">
           <source>Clear saved credentials</source>
-          <target>Kosongkan kelayakan tersimpan</target>
+          <target state="translated">Kosongkan kelayakan tersimpan</target>
         </trans-unit>
         <trans-unit id="Credentials" translate="yes" xml:space="preserve">
           <source>Credentials</source>
-          <target>Kelayakan</target>
+          <target state="translated">Kelayakan</target>
         </trans-unit>
         <trans-unit id="CopyHelpPhone" translate="yes" xml:space="preserve">
           <source>Long press on a file or a folder to copy it to the local storage.</source>
-          <target>Tahan pada fail atau folder untuk menyalinnya ke dalam storan setempat.</target>
+          <target state="translated">Tahan pada fail atau folder untuk menyalinnya ke dalam storan setempat.</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_SCREEN" translate="yes" xml:space="preserve">
           <source>fit screen</source>
-          <target>suai muat skrin</target>
+          <target state="translated">suai muat skrin</target>
         </trans-unit>
         <trans-unit id="SURFACE_FILL" translate="yes" xml:space="preserve">
           <source>fill</source>
-          <target>penuhkan</target>
+          <target state="translated">penuhkan</target>
         </trans-unit>
         <trans-unit id="SURFACE_16_9" translate="yes" xml:space="preserve">
           <source>16:9</source>
-          <target>16:9</target>
+          <target state="translated">16:9</target>
         </trans-unit>
         <trans-unit id="SURFACE_4_3" translate="yes" xml:space="preserve">
           <source>4:3</source>
-          <target>4:3</target>
+          <target state="translated">4:3</target>
         </trans-unit>
         <trans-unit id="SURFACE_2_35_1" translate="yes" xml:space="preserve">
           <source>2.35:1</source>
-          <target>2.35:1</target>
+          <target state="translated">2.35:1</target>
         </trans-unit>
         <trans-unit id="SURFACE_ORIGINAL" translate="yes" xml:space="preserve">
           <source>original</source>
-          <target>asal</target>
+          <target state="translated">asal</target>
         </trans-unit>
         <trans-unit id="CompactOverlayPiP" translate="yes" xml:space="preserve">
           <source>use windows 10 pip</source>
-          <target>guna pip windows 10</target>
+          <target state="translated">guna pip windows 10</target>
         </trans-unit>
         <trans-unit id="TvUnsafeArea" translate="yes" xml:space="preserve">
           <source>TV unsafe area</source>
-          <target>Kawasan tidak selamat TV</target>
+          <target state="translated">Kawasan tidak selamat TV</target>
         </trans-unit>
         <trans-unit id="AddMarginExplanation" translate="yes" xml:space="preserve">
           <source>Some TVs will not display the app correctly. To add some margin, turn this on</source>
-          <target>Sesetengah TV tidak paparkan apl secara betul. Untuk menambah lagi jidar, hidupkan ini</target>
+          <target state="translated">Sesetengah TV tidak paparkan apl secara betul. Untuk menambah lagi jidar, hidupkan ini</target>
         </trans-unit>
         <trans-unit id="ExtraMargin" translate="yes" xml:space="preserve">
           <source>Extra margin</source>
-          <target>Jidar tambahan</target>
+          <target state="translated">Jidar tambahan</target>
         </trans-unit>
         <trans-unit id="NoExtraMargin" translate="yes" xml:space="preserve">
           <source>No extra margin</source>
-          <target>Tiada jidar tambahan</target>
+          <target state="translated">Tiada jidar tambahan</target>
         </trans-unit>
 		<trans-unit id="Restart" translate="yes" xml:space="preserve">
           <source>restart</source>
-          <target>mula semula</target>
+          <target state="translated">mula semula</target>
         </trans-unit>
         <trans-unit id="Disconnect" translate="yes" xml:space="preserve">
           <source>disconnect</source>
-          <target>putuskan</target>
+          <target state="translated">putuskan</target>
         </trans-unit>
       </group>
     </body>

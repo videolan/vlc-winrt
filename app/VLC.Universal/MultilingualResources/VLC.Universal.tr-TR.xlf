@@ -7,959 +7,959 @@
       <group datatype="resx" id="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW">
         <trans-unit id="AboutTheApp" translate="yes" xml:space="preserve">
           <source>about the app</source>
-          <target>uygulama hakkında</target>
+          <target state="translated">uygulama hakkında</target>
         </trans-unit>
         <trans-unit id="Add" translate="yes" xml:space="preserve">
           <source>add</source>
-          <target>ekle</target>
+          <target state="translated">ekle</target>
         </trans-unit>
         <trans-unit id="AddFolder" translate="yes" xml:space="preserve">
           <source>add folder</source>
-          <target>klasör ekle</target>
+          <target state="translated">klasör ekle</target>
         </trans-unit>
         <trans-unit id="AddToCollection" translate="yes" xml:space="preserve">
           <source>add to collection</source>
-          <target>derlemeye ekle</target>
+          <target state="translated">derlemeye ekle</target>
         </trans-unit>
         <trans-unit id="AddToCurrentPlaylist" translate="yes" xml:space="preserve">
           <source>add to current playlist</source>
-          <target>geçerli oynatma listesine ekle</target>
+          <target state="translated">geçerli oynatma listesine ekle</target>
         </trans-unit>
         <trans-unit id="AddToPlaylist" translate="yes" xml:space="preserve">
           <source>add to playlist</source>
-          <target>oynatma listesine ekle</target>
+          <target state="translated">oynatma listesine ekle</target>
         </trans-unit>
         <trans-unit id="Albums" translate="yes" xml:space="preserve">
           <source>albums</source>
-          <target>albümler</target>
+          <target state="translated">albümler</target>
         </trans-unit>
         <trans-unit id="AlbumsFound" translate="yes" xml:space="preserve">
           <source>albums found : {0}</source>
-          <target>bulunan albüm: {0}</target>
+          <target state="translated">bulunan albüm: {0}</target>
         </trans-unit>
         <trans-unit id="Animations" translate="yes" xml:space="preserve">
           <source>animations</source>
-          <target>canlandırmalar</target>
+          <target state="translated">canlandırmalar</target>
         </trans-unit>
         <trans-unit id="AppTheme" translate="yes" xml:space="preserve">
           <source>application theme</source>
-          <target>uygulama teması</target>
+          <target state="translated">uygulama teması</target>
         </trans-unit>
         <trans-unit id="Artists" translate="yes" xml:space="preserve">
           <source>artists</source>
-          <target>sanatçılar</target>
+          <target state="translated">sanatçılar</target>
         </trans-unit>
         <trans-unit id="Audio" translate="yes" xml:space="preserve">
           <source>audio</source>
-          <target>ses</target>
+          <target state="translated">ses</target>
         </trans-unit>
         <trans-unit id="AudioDelay" translate="yes" xml:space="preserve">
           <source>audio delay</source>
-          <target>ses gecikmesi</target>
+          <target state="translated">ses gecikmesi</target>
         </trans-unit>
         <trans-unit id="AudioTracks" translate="yes" xml:space="preserve">
           <source>Audio Tracks</source>
-          <target>Ses İzleri</target>
+          <target state="translated">Ses İzleri</target>
        </trans-unit>
         <trans-unit id="Back" translate="yes" xml:space="preserve">
           <source>back</source>
-          <target>geri</target>
+          <target state="translated">geri</target>
         </trans-unit>
         <trans-unit id="CameraRoll" translate="yes" xml:space="preserve">
           <source>camera roll</source>
-          <target>film şeridi</target>
+          <target state="translated">film şeridi</target>
         </trans-unit>
         <trans-unit id="ChangeAlbumCover" translate="yes" xml:space="preserve">
           <source>change album cover</source>
-          <target>albüm kapağını değiştir</target>
+          <target state="translated">albüm kapağını değiştir</target>
         </trans-unit>
         <trans-unit id="Chapters" translate="yes" xml:space="preserve">
           <source>Chapters</source>
-          <target>Bölümler</target>
+          <target state="translated">Bölümler</target>
        </trans-unit>
         <trans-unit id="CheckCredentials" translate="yes" xml:space="preserve">
           <source>an error occured, please check your credentials</source>
-          <target>bir sorun çıktı, kimlik doğrulama bilgilerinizi denetleyin</target>
+          <target state="translated">bir sorun çıktı, kimlik doğrulama bilgilerinizi denetleyin</target>
         </trans-unit>
         <trans-unit id="Connect" translate="yes" xml:space="preserve">
           <source>connect</source>
-          <target>bağlan</target>
+          <target state="translated">bağlan</target>
         </trans-unit>
         <trans-unit id="ConnectedToLastFM" translate="yes" xml:space="preserve">
           <source>connected to Last.FM</source>
-          <target>Last.FM bağlantısı kuruldu</target>
+          <target state="translated">Last.FM bağlantısı kuruldu</target>
         </trans-unit>
         <trans-unit id="Connecting" translate="yes" xml:space="preserve">
           <source>connecting</source>
-          <target>bağlanıyor</target>
+          <target state="translated">bağlanıyor</target>
         </trans-unit>
         <trans-unit id="ConnectToLastFM" translate="yes" xml:space="preserve">
           <source>connect to Last.FM</source>
-          <target>Last.FM bağlantısı kur</target>
+          <target state="translated">Last.FM bağlantısı kur</target>
         </trans-unit>
         <trans-unit id="CrashReport" translate="yes" xml:space="preserve">
           <source>crash report</source>
-          <target>hata raporu</target>
+          <target state="translated">hata raporu</target>
         </trans-unit>
         <trans-unit id="DecreaseSpeed" translate="yes" xml:space="preserve">
           <source>decrease speed</source>
-          <target>hızı azalt</target>
+          <target state="translated">hızı azalt</target>
         </trans-unit>
         <trans-unit id="DecreaseVolume" translate="yes" xml:space="preserve">
           <source>decrease volume</source>
-          <target>hızı arttır</target>
+          <target state="translated">hızı arttır</target>
         </trans-unit>
         <trans-unit id="DeletePlaylist" translate="yes" xml:space="preserve">
           <source>delete playlist</source>
-          <target>oynatma listesini sil</target>
+          <target state="translated">oynatma listesini sil</target>
         </trans-unit>
         <trans-unit id="DeleteSelected" translate="yes" xml:space="preserve">
           <source>delete selected</source>
-          <target>seçilmişleri sil</target>
+          <target state="translated">seçilmişleri sil</target>
         </trans-unit>
         <trans-unit id="EditMetadata" translate="yes" xml:space="preserve">
           <source>edit metadata</source>
-          <target>üst veriyi düzenle</target>
+          <target state="translated">üst veriyi düzenle</target>
         </trans-unit>
         <trans-unit id="ElementsNotFound" translate="yes" xml:space="preserve">
           <source>we did not find elements in there</source>
-          <target>bileşenler burada bulunamadı</target>
+          <target state="translated">bileşenler burada bulunamadı</target>
         </trans-unit>
         <trans-unit id="EnterURL" translate="yes" xml:space="preserve">
           <source>enter a url</source>
-          <target>bir adres yazın</target>
+          <target state="translated">bir adres yazın</target>
         </trans-unit>
         <trans-unit id="Episode" translate="yes" xml:space="preserve">
           <source>episode</source>
-          <target>bölüm</target>
+          <target state="translated">bölüm</target>
         </trans-unit>
         <trans-unit id="EvenIfBackground" translate="yes" xml:space="preserve">
           <source>even if the app is in background</source>
-          <target>uygulama art alanda iken</target>
+          <target state="translated">uygulama art alanda iken</target>
         </trans-unit>
         <trans-unit id="EvenIfNotBackground" translate="yes" xml:space="preserve">
           <source>even if the app is not in background</source>
-          <target>uygulama art alanda değilken</target>
+          <target state="translated">uygulama art alanda değilken</target>
         </trans-unit>
         <trans-unit id="FailFilePlayBackground" translate="yes" xml:space="preserve">
           <source>This file may not play in the background</source>
-          <target>Bu dosya art alanda oynatılamaz</target>
+          <target state="translated">Bu dosya art alanda oynatılamaz</target>
         </trans-unit>
         <trans-unit id="FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
           <source>VLC failed to navigate to the Video Player page</source>
-          <target>VLC görüntü oynatıcı sayfasına geçemedi</target>
+          <target state="translated">VLC görüntü oynatıcı sayfasına geçemedi</target>
         </trans-unit>
         <trans-unit id="FailOpenVideo" translate="yes" xml:space="preserve">
           <source>VLC failed to open the video</source>
-          <target>VLC görüntüyü açamadı</target>
+          <target state="translated">VLC görüntüyü açamadı</target>
         </trans-unit>
         <trans-unit id="FailStartVLCEngine" translate="yes" xml:space="preserve">
           <source>The app failed to start the VLC engine</source>
-          <target>Uygulama VLC motorunu başlatamadı</target>
+          <target state="translated">Uygulama VLC motorunu başlatamadı</target>
         </trans-unit>
         <trans-unit id="FeedbackThankYou" translate="yes" xml:space="preserve">
           <source>feedback sent! thank you</source>
-          <target>geri bildiriminiz gönderildi! teşekkürler</target>
+          <target state="translated">geri bildiriminiz gönderildi! teşekkürler</target>
         </trans-unit>
         <trans-unit id="FileExplorer" translate="yes" xml:space="preserve">
           <source>browse</source>
-          <target>gözat</target>
+          <target state="translated">gözat</target>
         </trans-unit>
         <trans-unit id="HardwareDecoding" translate="yes" xml:space="preserve">
           <source>hardware decoding</source>
-          <target>donanımsal kod çözme</target>
+          <target state="translated">donanımsal kod çözme</target>
         </trans-unit>
         <trans-unit id="HardwareDecodingDescription" translate="yes" xml:space="preserve">
           <source>Hardware decoding may not work on your device.</source>
-          <target>Donanımsal kod çözme aygıtınız üzerinde çalışmayabilir.</target>
+          <target state="translated">Donanımsal kod çözme aygıtınız üzerinde çalışmayabilir.</target>
         </trans-unit>
         <trans-unit id="HaveToSelectPlaylist" translate="yes" xml:space="preserve">
           <source>please select a playlist</source>
-          <target>lütfen bir oynatma listesi seçin</target>
+          <target state="translated">lütfen bir oynatma listesi seçin</target>
         </trans-unit>
         <trans-unit id="Home" translate="yes" xml:space="preserve">
           <source>home</source>
-          <target>ana sayfa</target>
+          <target state="translated">ana sayfa</target>
         </trans-unit>
         <trans-unit id="HomePage" translate="yes" xml:space="preserve">
           <source>home page</source>
-          <target>ana sayfa</target>
+          <target state="translated">ana sayfa</target>
         </trans-unit>
         <trans-unit id="HomePageDescription" translate="yes" xml:space="preserve">
           <source>VLC will start on the selected page</source>
-          <target>VLC seçilmiş sayfada başlatılacak</target>
+          <target state="translated">VLC seçilmiş sayfada başlatılacak</target>
         </trans-unit>
         <trans-unit id="HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
           <source>however you may find what you're looking for here</source>
-          <target>bununla birlikte burada aradığınızı bulabilirsiniz</target>
+          <target state="translated">bununla birlikte burada aradığınızı bulabilirsiniz</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum1" translate="yes" xml:space="preserve">
           <source>to favorite an album, just press</source>
-          <target>bir albümü beğendiklerinize eklemek için şuna basın</target>
+          <target state="translated">bir albümü beğendiklerinize eklemek için şuna basın</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum2" translate="yes" xml:space="preserve">
           <source>and you'll get an instant access to it</source>
-          <target>anında erişebileceksiniz</target>
+          <target state="translated">anında erişebileceksiniz</target>
         </trans-unit>
         <trans-unit id="ImportantSponsors" translate="yes" xml:space="preserve">
           <source>important sponsors</source>
-          <target>önemli destekçiler</target>
+          <target state="translated">önemli destekçiler</target>
         </trans-unit>
         <trans-unit id="IncreaseSpeed" translate="yes" xml:space="preserve">
           <source>increase speed</source>
-          <target>hızı arttır</target>
+          <target state="translated">hızı arttır</target>
         </trans-unit>
         <trans-unit id="IncreaseVolume" translate="yes" xml:space="preserve">
           <source>increase volume</source>
-          <target>sesi aç</target>
+          <target state="translated">sesi aç</target>
         </trans-unit>
         <trans-unit id="ItsEmpty" translate="yes" xml:space="preserve">
           <source>it's empty here</source>
-          <target>burası boş</target>
+          <target state="translated">burası boş</target>
         </trans-unit>
         <trans-unit id="KeyboardShortcuts" translate="yes" xml:space="preserve">
           <source>keyboard shortcuts</source>
-          <target>tuş takımı kısayolları</target>
+          <target state="translated">tuş takımı kısayolları</target>
         </trans-unit>
         <trans-unit id="License" translate="yes" xml:space="preserve">
           <source>license</source>
-          <target>lisans</target>
+          <target state="translated">lisans</target>
         </trans-unit>
         <trans-unit id="Loading" translate="yes" xml:space="preserve">
           <source>loading</source>
-          <target>yükleniyor</target>
+          <target state="translated">yükleniyor</target>
         </trans-unit>
         <trans-unit id="LoadingMusic" translate="yes" xml:space="preserve">
           <source>loading music</source>
-          <target>müzik yükleniyor</target>
+          <target state="translated">müzik yükleniyor</target>
         </trans-unit>
         <trans-unit id="MostPlayedArtists" translate="yes" xml:space="preserve">
           <source>most played artists</source>
-          <target>en çok dinlenen sanatçılar</target>
+          <target state="translated">en çok dinlenen sanatçılar</target>
         </trans-unit>
         <trans-unit id="Music" translate="yes" xml:space="preserve">
           <source>music</source>
-          <target>müzik</target>
+          <target state="translated">müzik</target>
         </trans-unit>
         <trans-unit id="MusicFolders" translate="yes" xml:space="preserve">
           <source>music folders</source>
-          <target>müzik klasörleri</target>
+          <target state="translated">müzik klasörleri</target>
         </trans-unit>
         <trans-unit id="MusicFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search songs that are in your music library. You can add folders to your library here</source>
-          <target>VLC yalnız müzik kitaplığınızdaki şarkılarda arama yapar. Kitaplığınıza başka klasörler eklemek için buraya tıklayın</target>
+          <target state="translated">VLC yalnız müzik kitaplığınızdaki şarkılarda arama yapar. Kitaplığınıza başka klasörler eklemek için buraya tıklayın</target>
         </trans-unit>
         <trans-unit id="MusicSettings" translate="yes" xml:space="preserve">
           <source>Music Settings</source>
-          <target>Müzik Ayarları</target>
+          <target state="translated">Müzik Ayarları</target>
        </trans-unit>
         <trans-unit id="MusicShows" translate="yes" xml:space="preserve">
           <source>music shows</source>
-          <target>müzik gösterileri</target>
+          <target state="translated">müzik gösterileri</target>
         </trans-unit>
         <trans-unit id="Mute" translate="yes" xml:space="preserve">
           <source>mute</source>
-          <target>kıs</target>
+          <target state="translated">kıs</target>
         </trans-unit>
         <trans-unit id="MyPlaylists" translate="yes" xml:space="preserve">
           <source>my playlists</source>
-          <target>oynatma listem</target>
+          <target state="translated">oynatma listem</target>
         </trans-unit>
         <trans-unit id="Network" translate="yes" xml:space="preserve">
           <source>network</source>
-          <target>ağ</target>
+          <target state="translated">ağ</target>
         </trans-unit>
         <trans-unit id="NewPlaylist" translate="yes" xml:space="preserve">
           <source>new playlist</source>
-          <target>yeni oynatma listesi</target>
+          <target state="translated">yeni oynatma listesi</target>
         </trans-unit>
         <trans-unit id="NewVideos" translate="yes" xml:space="preserve">
           <source>new videos</source>
-          <target>yeni görüntüler</target>
+          <target state="translated">yeni görüntüler</target>
         </trans-unit>
         <trans-unit id="No" translate="yes" xml:space="preserve">
           <source>no</source>
-          <target>hayır</target>
+          <target state="translated">hayır</target>
         </trans-unit>
         <trans-unit id="NoBiographyFound" translate="yes" xml:space="preserve">
           <source>no bio found for this artist</source>
-          <target>bu sanatçının özgeçmişi bulunamadı</target>
+          <target state="translated">bu sanatçının özgeçmişi bulunamadı</target>
         </trans-unit>
         <trans-unit id="NoCameraVideosFound" translate="yes" xml:space="preserve">
           <source>no camera videos found</source>
-          <target>henüz bir kamera görüntüsü yok</target>
+          <target state="translated">henüz bir kamera görüntüsü yok</target>
         </trans-unit>
         <trans-unit id="NoFavoriteAlbums" translate="yes" xml:space="preserve">
           <source>no favorite albums</source>
-          <target>henüz beğenilmiş bir albüm yok</target>
+          <target state="translated">henüz beğenilmiş bir albüm yok</target>
         </trans-unit>
         <trans-unit id="NoInternetConnection" translate="yes" xml:space="preserve">
           <source>no internet connection</source>
-          <target>internet bağlantısı yok</target>
+          <target state="translated">internet bağlantısı yok</target>
         </trans-unit>
         <trans-unit id="NoPlaylists" translate="yes" xml:space="preserve">
           <source>no playlists</source>
-          <target>henüz bir oynatma listesi yok</target>
+          <target state="translated">henüz bir oynatma listesi yok</target>
         </trans-unit>
         <trans-unit id="NoShowsFound" translate="yes" xml:space="preserve">
           <source>no shows found</source>
-          <target>henüz bir gösteri yok</target>
+          <target state="translated">henüz bir gösteri yok</target>
         </trans-unit>
         <trans-unit id="NothingToSeeHere" translate="yes" xml:space="preserve">
           <source>there's nothing to see here</source>
-          <target>burada görülebilecek bir şey yok</target>
+          <target state="translated">burada görülebilecek bir şey yok</target>
         </trans-unit>
         <trans-unit id="Notifications" translate="yes" xml:space="preserve">
           <source>notifications</source>
-          <target>bildirimler</target>
+          <target state="translated">bildirimler</target>
         </trans-unit>
         <trans-unit id="NotificationWhenSongStarts" translate="yes" xml:space="preserve">
           <source>when the song starts</source>
-          <target>şarkı başladığında</target>
+          <target state="translated">şarkı başladığında</target>
         </trans-unit>
         <trans-unit id="NoVideosFound" translate="yes" xml:space="preserve">
           <source>we did not find video</source>
-          <target>görüntü bulunamadı</target>
+          <target state="translated">görüntü bulunamadı</target>
        </trans-unit>
         <trans-unit id="NowPlaying" translate="yes" xml:space="preserve">
           <source>now playing</source>
-          <target>şu anda oynatılan</target>
+          <target state="translated">şu anda oynatılan</target>
         </trans-unit>
         <trans-unit id="OpenFile" translate="yes" xml:space="preserve">
           <source>open file</source>
-          <target>dosya aç</target>
+          <target state="translated">dosya aç</target>
         </trans-unit>
         <trans-unit id="OpenStream" translate="yes" xml:space="preserve">
           <source>open stream</source>
-          <target>akış aç</target>
+          <target state="translated">akış aç</target>
         </trans-unit>
         <trans-unit id="OpenSubtitle" translate="yes" xml:space="preserve">
           <source>open subtitle</source>
-          <target>altyazı aç</target>
+          <target state="translated">altyazı aç</target>
         </trans-unit>
         <trans-unit id="OrderAscending" translate="yes" xml:space="preserve">
           <source>ascending</source>
-          <target>artan</target>
+          <target state="translated">artan</target>
         </trans-unit>
         <trans-unit id="OrderByAlbum" translate="yes" xml:space="preserve">
           <source>by album</source>
-          <target>albüme göre</target>
+          <target state="translated">albüme göre</target>
         </trans-unit>
         <trans-unit id="OrderByArtist" translate="yes" xml:space="preserve">
           <source>by artist</source>
-          <target>sanatçıya göre</target>
+          <target state="translated">sanatçıya göre</target>
         </trans-unit>
         <trans-unit id="OrderByDate" translate="yes" xml:space="preserve">
           <source>by date</source>
-          <target>tarihe göre</target>
+          <target state="translated">tarihe göre</target>
         </trans-unit>
         <trans-unit id="OrderDescending" translate="yes" xml:space="preserve">
           <source>descending</source>
-          <target>azalan</target>
+          <target state="translated">azalan</target>
         </trans-unit>
         <trans-unit id="Password" translate="yes" xml:space="preserve">
           <source>password</source>
-          <target>parola</target>
+          <target state="translated">parola</target>
         </trans-unit>
         <trans-unit id="Pause" translate="yes" xml:space="preserve">
           <source>pause</source>
-          <target>duraklat</target>
+          <target state="translated">duraklat</target>
         </trans-unit>
         <trans-unit id="PinAlbum" translate="yes" xml:space="preserve">
           <source>pin album</source>
-          <target>albümü sabitle</target>
+          <target state="translated">albümü sabitle</target>
         </trans-unit>
         <trans-unit id="PinArtist" translate="yes" xml:space="preserve">
           <source>pin artist</source>
-          <target>sanatçıyı sabitle</target>
+          <target state="translated">sanatçıyı sabitle</target>
         </trans-unit>
         <trans-unit id="Play" translate="yes" xml:space="preserve">
           <source>play</source>
-          <target>oynat</target>
+          <target state="translated">oynat</target>
         </trans-unit>
         <trans-unit id="PlayAlbum" translate="yes" xml:space="preserve">
           <source>play album</source>
-          <target>albümü oynat</target>
+          <target state="translated">albümü oynat</target>
         </trans-unit>
         <trans-unit id="PlayAll" translate="yes" xml:space="preserve">
           <source>play all</source>
-          <target>tümünü oynat</target>
+          <target state="translated">tümünü oynat</target>
         </trans-unit>
         <trans-unit id="Playback" translate="yes" xml:space="preserve">
           <source>playback</source>
-          <target>oynatım</target>
+          <target state="translated">oynatım</target>
         </trans-unit>
         <trans-unit id="PlayerSettings" translate="yes" xml:space="preserve">
           <source>Player Settings</source>
-          <target>Oynatıcı Ayarları</target>
+          <target state="translated">Oynatıcı Ayarları</target>
        </trans-unit>
         <trans-unit id="PlayFolder" translate="yes" xml:space="preserve">
           <source>play folder</source>
-          <target>klasörü oynat</target>
+          <target state="translated">klasörü oynat</target>
         </trans-unit>
         <trans-unit id="Playlist" translate="yes" xml:space="preserve">
           <source>playlist</source>
-          <target>oynatma listesi</target>
+          <target state="translated">oynatma listesi</target>
         </trans-unit>
         <trans-unit id="PlaylistAlreadyExists" translate="yes" xml:space="preserve">
           <source>this playlist already exists</source>
-          <target>bu oynatma listesi zaten var</target>
+          <target state="translated">bu oynatma listesi zaten var</target>
         </trans-unit>
         <trans-unit id="PlaylistNamePlaceholder" translate="yes" xml:space="preserve">
           <source>playlist name</source>
-          <target>oynatma listesi adı</target>
+          <target state="translated">oynatma listesi adı</target>
         </trans-unit>
         <trans-unit id="Playlists" translate="yes" xml:space="preserve">
           <source>playlists</source>
-          <target>oynatma listeleri</target>
+          <target state="translated">oynatma listeleri</target>
         </trans-unit>
         <trans-unit id="PlayTrack" translate="yes" xml:space="preserve">
           <source>play track</source>
-          <target>kaydı oynat</target>
+          <target state="translated">kaydı oynat</target>
         </trans-unit>
         <trans-unit id="PlayVideo" translate="yes" xml:space="preserve">
           <source>play video</source>
-          <target>görüntüyü oynat</target>
+          <target state="translated">görüntüyü oynat</target>
         </trans-unit>
         <trans-unit id="PrivacyStatement" translate="yes" xml:space="preserve">
           <source>privacy statement</source>
-          <target>gizlilik bildirimi</target>
+          <target state="translated">gizlilik bildirimi</target>
         </trans-unit>
         <trans-unit id="Favorites" translate="yes" xml:space="preserve">
           <source>Favorites</source>
-          <target>Beğenilenler</target>
+          <target state="translated">Beğenilenler</target>
         </trans-unit>
         <trans-unit id="RefreshMusicLibrary" translate="yes" xml:space="preserve">
           <source>refresh music library</source>
-          <target>müzik kitaplığını yenile</target>
+          <target state="translated">müzik kitaplığını yenile</target>
         </trans-unit>
         <trans-unit id="RefreshVideoLibrary" translate="yes" xml:space="preserve">
           <source>refresh video library</source>
-          <target>görüntü kitaplığını yenile</target>
+          <target state="translated">görüntü kitaplığını yenile</target>
         </trans-unit>
         <trans-unit id="RemovableStorage" translate="yes" xml:space="preserve">
           <source>removable storage</source>
-          <target>çıkarılabilir aygıtlar</target>
+          <target state="translated">çıkarılabilir aygıtlar</target>
         </trans-unit>
         <trans-unit id="RemoveFolder" translate="yes" xml:space="preserve">
           <source>remove folder</source>
-          <target>klasörü sil</target>
+          <target state="translated">klasörü sil</target>
         </trans-unit>
         <trans-unit id="RemoveMusicFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</source>
-          <target>Bu klasörün müzik kitaplığınızda bulunmasını istemiyorsanız kaldırabilirsiniz. Bu işlem yalnız VLC uygulamasını değil tüm uygulamaları etkiler</target>
+          <target state="translated">Bu klasörün müzik kitaplığınızda bulunmasını istemiyorsanız kaldırabilirsiniz. Bu işlem yalnız VLC uygulamasını değil tüm uygulamaları etkiler</target>
         </trans-unit>
         <trans-unit id="RemoveVideoFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</source>
-          <target>Bu klasörün görüntü kitaplığınızda bulunmasını istemiyorsanız kaldırabilirsiniz. Bu işlem yalnız VLC uygulamasını değil tüm uygulamaları etkiler</target>
+          <target state="translated">Bu klasörün görüntü kitaplığınızda bulunmasını istemiyorsanız kaldırabilirsiniz. Bu işlem yalnız VLC uygulamasını değil tüm uygulamaları etkiler</target>
         </trans-unit>
         <trans-unit id="Reset" translate="yes" xml:space="preserve">
           <source>reset</source>
-          <target>sıfırla</target>
+          <target state="translated">sıfırla</target>
         </trans-unit>
         <trans-unit id="ResetMusicDatabase" translate="yes" xml:space="preserve">
           <source>reset music database</source>
-          <target>müzik veritabanını sıfırla</target>
+          <target state="translated">müzik veritabanını sıfırla</target>
         </trans-unit>
         <trans-unit id="ResetSpeed" translate="yes" xml:space="preserve">
           <source>reset speed</source>
-          <target>hızı sıfırla</target>
+          <target state="translated">hızı sıfırla</target>
         </trans-unit>
         <trans-unit id="RichAnimationsDescription" translate="yes" xml:space="preserve">
           <source>Use rich animations in the slideshows</source>
-          <target>Saydam sunumlarında zengin canlandırmalar kullanılsın</target>
+          <target state="translated">Saydam sunumlarında zengin canlandırmalar kullanılsın</target>
         </trans-unit>
         <trans-unit id="Search" translate="yes" xml:space="preserve">
           <source>search</source>
-          <target>arama</target>
+          <target state="translated">arama</target>
         </trans-unit>
         <trans-unit id="Season" translate="yes" xml:space="preserve">
           <source>season</source>
-          <target>sezon</target>
+          <target state="translated">sezon</target>
         </trans-unit>
         <trans-unit id="Settings" translate="yes" xml:space="preserve">
           <source>settings</source>
-          <target>ayarlar</target>
+          <target state="translated">ayarlar</target>
         </trans-unit>
         <trans-unit id="ShowPlaylist" translate="yes" xml:space="preserve">
           <source>show playlist</source>
-          <target>oynatma listesini görüntüle</target>
+          <target state="translated">oynatma listesini görüntüle</target>
         </trans-unit>
         <trans-unit id="Shows" translate="yes" xml:space="preserve">
           <source>shows</source>
-          <target>gösterimler</target>
+          <target state="translated">gösterimler</target>
         </trans-unit>
         <trans-unit id="Shuffle" translate="yes" xml:space="preserve">
           <source>shuffle</source>
-          <target>karıştır</target>
+          <target state="translated">karıştır</target>
         </trans-unit>
         <trans-unit id="Songs" translate="yes" xml:space="preserve">
           <source>songs</source>
-          <target>şarkılar</target>
+          <target state="translated">şarkılar</target>
         </trans-unit>
         <trans-unit id="SpecialThanks" translate="yes" xml:space="preserve">
           <source>special thanks</source>
-          <target>özel teşekkürler</target>
+          <target state="translated">özel teşekkürler</target>
         </trans-unit>
         <trans-unit id="Speed" translate="yes" xml:space="preserve">
           <source>speed</source>
-          <target>hız</target>
+          <target state="translated">hız</target>
         </trans-unit>
         <trans-unit id="Stop" translate="yes" xml:space="preserve">
           <source>stop</source>
-          <target>durdur</target>
+          <target state="translated">durdur</target>
         </trans-unit>
         <trans-unit id="SubtitleDelay" translate="yes" xml:space="preserve">
           <source>subtitle delay</source>
-          <target>altyazı gecikmesi</target>
+          <target state="translated">altyazı gecikmesi</target>
         </trans-unit>
         <trans-unit id="Subtitles" translate="yes" xml:space="preserve">
           <source>Subtitles</source>
-          <target>Altyazılar</target>
+          <target state="translated">Altyazılar</target>
        </trans-unit>
         <trans-unit id="SubtitlesEncoding" translate="yes" xml:space="preserve">
           <source>subtitles encoding</source>
-          <target>altyazı kodlaması</target>
+          <target state="translated">altyazı kodlaması</target>
         </trans-unit>
         <trans-unit id="Theme" translate="yes" xml:space="preserve">
           <source>theme</source>
-          <target>tema</target>
+          <target state="translated">tema</target>
         </trans-unit>
         <trans-unit id="TileRemoved" translate="yes" xml:space="preserve">
           <source>tile removed</source>
-          <target>kutucuk kaldırıldı</target>
+          <target state="translated">kutucuk kaldırıldı</target>
         </trans-unit>
         <trans-unit id="TopVideos" translate="yes" xml:space="preserve">
           <source>top videos</source>
-          <target>en çok izlenen görüntüler</target>
+          <target state="translated">en çok izlenen görüntüler</target>
         </trans-unit>
         <trans-unit id="TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
           <source>track added to the playlist</source>
-          <target>kayıt oynatma listesine eklendi</target>
+          <target state="translated">kayıt oynatma listesine eklendi</target>
         </trans-unit>
         <trans-unit id="TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
           <source>this track is already in that playlist</source>
-          <target>bu kayıt oynatma listesinde zaten var</target>
+          <target state="translated">bu kayıt oynatma listesinde zaten var</target>
         </trans-unit>
         <trans-unit id="Tracks" translate="yes" xml:space="preserve">
           <source>tracks</source>
-          <target>kayıtlar</target>
+          <target state="translated">kayıtlar</target>
         </trans-unit>
         <trans-unit id="UnknownAlbum" translate="yes" xml:space="preserve">
           <source>Unknown album</source>
-          <target>Bilinmeyen albüm</target>
+          <target state="translated">Bilinmeyen albüm</target>
         </trans-unit>
         <trans-unit id="UnknownArtist" translate="yes" xml:space="preserve">
           <source>Unknown artist</source>
-          <target>Bilinmeyen sanatçı</target>
+          <target state="translated">Bilinmeyen sanatçı</target>
         </trans-unit>
         <trans-unit id="UnknownShow" translate="yes" xml:space="preserve">
           <source>Unknown show</source>
-          <target>Bilinmeyen gösteri</target>
+          <target state="translated">Bilinmeyen gösteri</target>
         </trans-unit>
         <trans-unit id="UnknownTrack" translate="yes" xml:space="preserve">
           <source>Unknown track</source>
-          <target>Bilinmeyen kayıt</target>
+          <target state="translated">Bilinmeyen kayıt</target>
         </trans-unit>
         <trans-unit id="UserInterface" translate="yes" xml:space="preserve">
           <source>User Interface</source>
-          <target>Kullanıcı Arayüzü</target>
+          <target state="translated">Kullanıcı Arayüzü</target>
        </trans-unit>
         <trans-unit id="Username" translate="yes" xml:space="preserve">
           <source>username</source>
-          <target>kullanıcı adı</target>
+          <target state="translated">kullanıcı adı</target>
         </trans-unit>
         <trans-unit id="Video" translate="yes" xml:space="preserve">
           <source>video</source>
-          <target>görüntü</target>
+          <target state="translated">görüntü</target>
         </trans-unit>
         <trans-unit id="VideoFolders" translate="yes" xml:space="preserve">
           <source>video folders</source>
-          <target>görüntü klasörleri</target>
+          <target state="translated">görüntü klasörleri</target>
         </trans-unit>
         <trans-unit id="VideoFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search videos that are in your video library. You can add folders to your library here</source>
-          <target>VLC yalnız müzik kitaplığınızdaki görüntülerde arama yapar. Kitaplığınıza başka klasörler eklemek için buraya tıklayın</target>
+          <target state="translated">VLC yalnız müzik kitaplığınızdaki görüntülerde arama yapar. Kitaplığınıza başka klasörler eklemek için buraya tıklayın</target>
         </trans-unit>
         <trans-unit id="VideoPlayback" translate="yes" xml:space="preserve">
           <source>video playback</source>
-          <target>görüntü oynatma</target>
+          <target state="translated">görüntü oynatma</target>
         </trans-unit>
         <trans-unit id="VideoPlaybackInBackground" translate="yes" xml:space="preserve">
           <source>play video in background</source>
-          <target>görüntü art alanda oynatılsın</target>
+          <target state="translated">görüntü art alanda oynatılsın</target>
         </trans-unit>
         <trans-unit id="Videos" translate="yes" xml:space="preserve">
           <source>videos</source>
-          <target>görüntüler</target>
+          <target state="translated">görüntüler</target>
         </trans-unit>
         <trans-unit id="VideoSettings" translate="yes" xml:space="preserve">
           <source>Video Settings</source>
-          <target>Görüntü Ayarları</target>
+          <target state="translated">Görüntü Ayarları</target>
        </trans-unit>
         <trans-unit id="ViewAlbum" translate="yes" xml:space="preserve">
           <source>view album</source>
-          <target>albümü görüntüle</target>
+          <target state="translated">albümü görüntüle</target>
         </trans-unit>
         <trans-unit id="ViewArtist" translate="yes" xml:space="preserve">
           <source>view artist</source>
-          <target>sanatçıyı görüntüle</target>
+          <target state="translated">sanatçıyı görüntüle</target>
         </trans-unit>
         <trans-unit id="Volume" translate="yes" xml:space="preserve">
           <source>volume</source>
-          <target>ses</target>
+          <target state="translated">ses</target>
         </trans-unit>
         <trans-unit id="WeNeedYourHelp" translate="yes" xml:space="preserve">
           <source>we need your help</source>
-          <target>yardımınız gerekli</target>
+          <target state="translated">yardımınız gerekli</target>
         </trans-unit>
         <trans-unit id="Yes" translate="yes" xml:space="preserve">
           <source>yes</source>
-          <target>evet</target>
+          <target state="translated">evet</target>
         </trans-unit>
         <trans-unit id="YourMusic" translate="yes" xml:space="preserve">
           <source>your music</source>
-          <target>müziğiniz</target>
+          <target state="translated">müziğiniz</target>
         </trans-unit>
         <trans-unit id="AccentColor" translate="yes" xml:space="preserve">
           <source>accent color</source>
-          <target>aksan rengi</target>
+          <target state="translated">aksan rengi</target>
         </trans-unit>
         <trans-unit id="BackgroundColor" translate="yes" xml:space="preserve">
           <source>background color</source>
-          <target>art alan rengi</target>
+          <target state="translated">art alan rengi</target>
         </trans-unit>
         <trans-unit id="Dark" translate="yes" xml:space="preserve">
           <source>dark</source>
-          <target>koyu</target>
+          <target state="translated">koyu</target>
         </trans-unit>
         <trans-unit id="Light" translate="yes" xml:space="preserve">
           <source>light</source>
-          <target>açık</target>
+          <target state="translated">açık</target>
         </trans-unit>
         <trans-unit id="TitleBar" translate="yes" xml:space="preserve">
           <source>title bar</source>
-          <target>başlık çubuğu</target>
+          <target state="translated">başlık çubuğu</target>
         </trans-unit>
         <trans-unit id="NeedRestart" translate="yes" xml:space="preserve">
           <source>You need to restart the app to apply changes</source>
-          <target>Değişikliklerin geçerli olması için uygulamayı yeniden başlatın</target>
+          <target state="translated">Değişikliklerin geçerli olması için uygulamayı yeniden başlatın</target>
         </trans-unit>
         <trans-unit id="Zoom" translate="yes" xml:space="preserve">
           <source>zoom</source>
-          <target>yakınlaştır</target>
+          <target state="translated">yakınlaştır</target>
         </trans-unit>
         <trans-unit id="AreYouSure" translate="yes" xml:space="preserve">
           <source>are you sure?</source>
-          <target>emin misiniz?</target>
+          <target state="translated">emin misiniz?</target>
         </trans-unit>
         <trans-unit id="MediaCantBeRead" translate="yes" xml:space="preserve">
           <source>the media can't be read</source>
-          <target>ortam okunamadı</target>
+          <target state="translated">ortam okunamadı</target>
         </trans-unit>
         <trans-unit id="Sorry" translate="yes" xml:space="preserve">
           <source>we're sorry</source>
-          <target>maalesef</target>
+          <target state="translated">maalesef</target>
         </trans-unit>
         <trans-unit id="SURFACE_BEST_FIT" translate="yes" xml:space="preserve">
           <source>best fit</source>
-          <target>en uygun</target>
+          <target state="translated">en uygun</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_HORIZONTAL" translate="yes" xml:space="preserve">
           <source>horizontal cropping</source>
-          <target>yatay kırpma</target>
+          <target state="translated">yatay kırpma</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_VERTICAL" translate="yes" xml:space="preserve">
           <source>vertical cropping</source>
-          <target>dikey kırpma</target>
+          <target state="translated">dikey kırpma</target>
         </trans-unit>
         <trans-unit id="YourPlaylistWontBeAccessible" translate="yes" xml:space="preserve">
           <source>your playlist won't be accessible</source>
-          <target>oynatma listenize erişilemiyor</target>
+          <target state="translated">oynatma listenize erişilemiyor</target>
         </trans-unit>
         <trans-unit id="NoArtistShowsFound" translate="yes" xml:space="preserve">
           <source>we didn't find shows for this artist</source>
-          <target>bu sanatçının gösterileri bulunamadı</target>
+          <target state="translated">bu sanatçının gösterileri bulunamadı</target>
         </trans-unit>
         <trans-unit id="NoResults" translate="yes" xml:space="preserve">
           <source>no results</source>
-          <target>herhangi bir sonuç bulunamadı</target>
+          <target state="translated">herhangi bir sonuç bulunamadı</target>
         </trans-unit>
         <trans-unit id="ForceLandscape" translate="yes" xml:space="preserve">
           <source>Force landscape</source>
-          <target>Yatay dayatılsın</target>
+          <target state="translated">Yatay dayatılsın</target>
         </trans-unit>
         <trans-unit id="SURFACE_STRETCH" translate="yes" xml:space="preserve">
           <source>stretch</source>
-          <target>ger</target>
+          <target state="translated">ger</target>
         </trans-unit>
         <trans-unit id="SimilarArtists" translate="yes" xml:space="preserve">
           <source>Similar artists</source>
-          <target>Benzer sanatçılar</target>
+          <target state="translated">Benzer sanatçılar</target>
         </trans-unit>
         <trans-unit id="EnglishLanguage" translate="yes" xml:space="preserve">
           <source>English</source>
-          <target>İngilizce</target>
+          <target state="translated">İngilizce</target>
         </trans-unit>
         <trans-unit id="FrenchLanguage" translate="yes" xml:space="preserve">
           <source>French</source>
-          <target>Fransızca</target>
+          <target state="translated">Fransızca</target>
         </trans-unit>
         <trans-unit id="JapaneseLanguage" translate="yes" xml:space="preserve">
           <source>Japanese</source>
-          <target>Japonca</target>
+          <target state="translated">Japonca</target>
         </trans-unit>
         <trans-unit id="GermanLanguage" translate="yes" xml:space="preserve">
           <source>German</source>
-          <target>Almanca</target>
+          <target state="translated">Almanca</target>
         </trans-unit>
         <trans-unit id="PolishLanguage" translate="yes" xml:space="preserve">
           <source>Polish</source>
-          <target>Lehçe</target>
+          <target state="translated">Lehçe</target>
         </trans-unit>
         <trans-unit id="SlovakLanguage" translate="yes" xml:space="preserve">
           <source>Slovak</source>
-          <target>Slovakça</target>
+          <target state="translated">Slovakça</target>
         </trans-unit>
         <trans-unit id="DanishLanguage" translate="yes" xml:space="preserve">
           <source>Danish</source>
-          <target>Danimarkaca</target>
+          <target state="translated">Danimarkaca</target>
         </trans-unit>
         <trans-unit id="SpanishLanguage" translate="yes" xml:space="preserve">
           <source>Spanish</source>
-          <target>İspanyolca</target>
+          <target state="translated">İspanyolca</target>
         </trans-unit>
         <trans-unit id="HungarianLanguage" translate="yes" xml:space="preserve">
           <source>Hungarian</source>
-          <target>Macarca</target>
+          <target state="translated">Macarca</target>
         </trans-unit>
         <trans-unit id="ItalianLanguage" translate="yes" xml:space="preserve">
           <source>Italian</source>
-          <target>İtalyanca</target>
+          <target state="translated">İtalyanca</target>
         </trans-unit>
         <trans-unit id="KoreanLanguage" translate="yes" xml:space="preserve">
           <source>Korean</source>
-          <target>Korece</target>
+          <target state="translated">Korece</target>
         </trans-unit>
         <trans-unit id="MalayLanguage" translate="yes" xml:space="preserve">
           <source>Malay</source>
-          <target>Malayca</target>
+          <target state="translated">Malayca</target>
         </trans-unit>
         <trans-unit id="NorwegianLanguage" translate="yes" xml:space="preserve">
           <source>Norwegian</source>
-          <target>Norveççe</target>
+          <target state="translated">Norveççe</target>
         </trans-unit>
         <trans-unit id="DutchLanguage" translate="yes" xml:space="preserve">
           <source>Dutch</source>
-          <target>Hollandaca</target>
+          <target state="translated">Hollandaca</target>
         </trans-unit>
         <trans-unit id="RussianLanguage" translate="yes" xml:space="preserve">
           <source>Russian</source>
-          <target>Rusça</target>
+          <target state="translated">Rusça</target>
         </trans-unit>
         <trans-unit id="SwedishLanguage" translate="yes" xml:space="preserve">
           <source>Swedish</source>
-          <target>İsveççe</target>
+          <target state="translated">İsveççe</target>
         </trans-unit>
         <trans-unit id="TurkishLanguage" translate="yes" xml:space="preserve">
           <source>Turkish</source>
-          <target>Türkçe</target>
+          <target state="translated">Türkçe</target>
         </trans-unit>
         <trans-unit id="UkrainianLanguage" translate="yes" xml:space="preserve">
           <source>Ukrainian</source>
-          <target>Ukraynaca</target>
+          <target state="translated">Ukraynaca</target>
         </trans-unit>
         <trans-unit id="ChineseLanguage" translate="yes" xml:space="preserve">
           <source>Chinese</source>
-          <target>Çince</target>
+          <target state="translated">Çince</target>
         </trans-unit>
         <trans-unit id="PortugueseLanguage" translate="yes" xml:space="preserve">
           <source>Portuguese</source>
-          <target>Portekizce</target>
+          <target state="translated">Portekizce</target>
         </trans-unit>		
         <trans-unit id="CzechLanguage" translate="yes" xml:space="preserve">
           <source>Czech</source>
-          <target>Çekce</target>
+          <target state="translated">Çekce</target>
         </trans-unit>
         <trans-unit id="IcelandicLanguage" translate="yes" xml:space="preserve">
           <source>Icelandic</source>
-          <target>İzlandaca</target>
+          <target state="translated">İzlandaca</target>
         </trans-unit>
         <trans-unit id="Languages" translate="yes" xml:space="preserve">
           <source>Languages</source>
-          <target>Diller</target>
+          <target state="translated">Diller</target>
         </trans-unit>
         <trans-unit id="SelectLanguageDescription" translate="yes" xml:space="preserve">
           <source>VLC will be displayed in</source>
-          <target>VLC şu dilde görüntülenecek</target>
+          <target state="translated">VLC şu dilde görüntülenecek</target>
         </trans-unit>
         <trans-unit id="ApplyAndRestart" translate="yes" xml:space="preserve">
           <source>Apply And Restart</source>
-          <target>Uygula ve Yeniden Başlat</target>
+          <target state="translated">Uygula ve Yeniden Başlat</target>
         </trans-unit>
         <trans-unit id="RefreshLanguage" translate="yes" xml:space="preserve">
           <source>Refresh Language</source>
-          <target>Dili Yenile</target>
+          <target state="translated">Dili Yenile</target>
         </trans-unit>
         <trans-unit id="Local" translate="yes" xml:space="preserve">
           <source>local</source>
-          <target>yerel</target>
+          <target state="translated">yerel</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES" translate="yes" xml:space="preserve">
           <source>Download Files</source>
-          <target>Dosyaları İndir</target>
+          <target state="translated">Dosyaları İndir</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES_LONG" translate="yes" xml:space="preserve">
           <source>Just click the file you want to download from your Xbox.</source>
-          <target>Xbox üzerinden indirmek istediğiniz dosyanın üzerine tıklayın.</target>
+          <target state="translated">Xbox üzerinden indirmek istediğiniz dosyanın üzerine tıklayın.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES" translate="yes" xml:space="preserve">
           <source>Drop Files</source>
-          <target>Dosyaları Sürükleyin</target>
+          <target state="translated">Dosyaları Sürükleyin</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
           <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the &quot;+&quot; button to use the file picker dialog.</source>
-          <target>Xbox üzerindeki dosyaları sürükleyip pencereye bırakarak ekleyebilirsiniz.&lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt; Dosya seçme aracını kullanmak isterseniz &quot;+&quot; düğmesine tıklayabilirsiniz.</target>
+          <target state="translated">Xbox üzerindeki dosyaları sürükleyip pencereye bırakarak ekleyebilirsiniz.&lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt; Dosya seçme aracını kullanmak isterseniz &quot;+&quot; düğmesine tıklayabilirsiniz.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
-          <target>WiFi üzerinden paylaş</target>
+          <target state="translated">WiFi üzerinden paylaş</target>
         </trans-unit>
         <trans-unit id="CopyToLocalStorage" translate="yes" xml:space="preserve">
           <source>copy to local storage</source>
-          <target>yerel depolamaya kopyala</target>
+          <target state="translated">yerel depolamaya kopyala</target>
         </trans-unit>
         <trans-unit id="ExternalStorageDeviceDetected" translate="yes" xml:space="preserve">
           <source>VLC has detected an external storage device.</source>
-          <target>VLC bir dış depolama aygıtı algıladı.</target>
+          <target state="translated">VLC bir dış depolama aygıtı algıladı.</target>
         </trans-unit>
         <trans-unit id="ReadFromExternalStorage" translate="yes" xml:space="preserve">
           <source>Use external storage as media library.</source>
-          <target>Dış depolama aygıtı ortam kitaplığı olarak kullanılsın.</target>
+          <target state="translated">Dış depolama aygıtı ortam kitaplığı olarak kullanılsın.</target>
         </trans-unit>
         <trans-unit id="SelectContentToCopy" translate="yes" xml:space="preserve">
           <source>Copy media to the internal storage.</source>
-          <target>Ortamı iç depolamaya kopyala.</target>
+          <target state="translated">Ortamı iç depolamaya kopyala.</target>
         </trans-unit>
         <trans-unit id="WhatToDo" translate="yes" xml:space="preserve">
           <source>What would you like to do?</source>
-          <target>Ne yapmak istiyorsunuz?</target>
+          <target state="translated">Ne yapmak istiyorsunuz?</target>
         </trans-unit>
         <trans-unit id="AskMe" translate="yes" xml:space="preserve">
           <source>Ask me</source>
-          <target>Bana sorulsun</target>
+          <target state="translated">Bana sorulsun</target>
         </trans-unit>
         <trans-unit id="ExternalStorage" translate="yes" xml:space="preserve">
           <source>external storage</source>
-          <target>dış depolama</target>
+          <target state="translated">dış depolama</target>
         </trans-unit>
         <trans-unit id="WhatToDoWhenExternalStorage" translate="yes" xml:space="preserve">
           <source>What should VLC do when an external storage device has been detected?</source>
-          <target>Bir dış depolama aygıtı algılandığında VLC hangi işlemi yapsın?</target>
+          <target state="translated">Bir dış depolama aygıtı algılandığında VLC hangi işlemi yapsın?</target>
         </trans-unit>
         <trans-unit id="Cancel" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target>İptal</target>
+          <target state="translated">İptal</target>
         </trans-unit>
         <trans-unit id="DoNothing" translate="yes" xml:space="preserve">
           <source>Do nothing</source>
-          <target>Bir şey yapılmasın</target>
+          <target state="translated">Bir şey yapılmasın</target>
         </trans-unit>
         <trans-unit id="Ok" translate="yes" xml:space="preserve">
           <source>Ok</source>
-          <target>Tamam</target>
+          <target state="translated">Tamam</target>
         </trans-unit>
         <trans-unit id="Ignore" translate="yes" xml:space="preserve">
           <source>Ignore</source>
-          <target>Görmezden Gelinsin</target>
+          <target state="translated">Görmezden Gelinsin</target>
         </trans-unit>
         <trans-unit id="Remember" translate="yes" xml:space="preserve">
           <source>Remember</source>
-          <target>Hatırlansın</target>
+          <target state="translated">Hatırlansın</target>
         </trans-unit>
         <trans-unit id="AddMediaHelp" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device</source>
-          <target>Lütfen bir dış depolama aygıtı takın</target>
+          <target state="translated">Lütfen bir dış depolama aygıtı takın</target>
         </trans-unit>
         <trans-unit id="AddMediaHelpWithIP" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device, or go to http://{0}:8080 to upload some media</source>
-          <target>Lütfen bir dış depolama aygıtı bağlayın ya da bir ortam yüklemek için http://{0}:8080 adresine gidin</target>
+          <target state="translated">Lütfen bir dış depolama aygıtı bağlayın ya da bir ortam yüklemek için http://{0}:8080 adresine gidin</target>
         </trans-unit>
         <trans-unit id="CopyHelpDesktop" translate="yes" xml:space="preserve">
           <source>Right-click on a file or a folder to copy it to the local storage.</source>
-          <target>Yerel depolamaya kopyalamak için bir dosya ya da klasör üzerinde sağ tıklayın.</target>
+          <target state="translated">Yerel depolamaya kopyalamak için bir dosya ya da klasör üzerinde sağ tıklayın.</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
           <source>Press &quot;Y&quot; on a file or a folder to copy it to the local storage.</source>
-          <target>Yerel depolamaya kopyalamak için bir dosya ya da klasör üzerinde &quot;Y&quot; harfine basın.</target>
+          <target state="translated">Yerel depolamaya kopyalamak için bir dosya ya da klasör üzerinde &quot;Y&quot; harfine basın.</target>
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
           <source>No subtitle tracks</source>
-          <target>Altyazı kaydı bulunamadı</target>
+          <target state="translated">Altyazı kaydı bulunamadı</target>
         </trans-unit>
         <trans-unit id="ClearKeystore" translate="yes" xml:space="preserve">
           <source>Clear saved credentials</source>
-          <target>Kaydedilmiş kimlik doğrulama bilgilerini sil</target>
+          <target state="translated">Kaydedilmiş kimlik doğrulama bilgilerini sil</target>
         </trans-unit>
         <trans-unit id="Credentials" translate="yes" xml:space="preserve">
           <source>Credentials</source>
-          <target>Kimlik doğrulama bilgileri</target>
+          <target state="translated">Kimlik doğrulama bilgileri</target>
         </trans-unit>
         <trans-unit id="CopyHelpPhone" translate="yes" xml:space="preserve">
           <source>Long press on a file or a folder to copy it to the local storage.</source>
-          <target>Yerel depolamaya kaydetmek için bir dosya ya da klasör üzerine uzun basın.</target>
+          <target state="translated">Yerel depolamaya kaydetmek için bir dosya ya da klasör üzerine uzun basın.</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_SCREEN" translate="yes" xml:space="preserve">
           <source>fit screen</source>
-          <target>ekrana sığdır</target>
+          <target state="translated">ekrana sığdır</target>
         </trans-unit>
         <trans-unit id="SURFACE_FILL" translate="yes" xml:space="preserve">
           <source>fill</source>
-          <target>doldur</target>
+          <target state="translated">doldur</target>
         </trans-unit>
         <trans-unit id="SURFACE_16_9" translate="yes" xml:space="preserve">
           <source>16:9</source>
-          <target>16:9</target>
+          <target state="translated">16:9</target>
         </trans-unit>
         <trans-unit id="SURFACE_4_3" translate="yes" xml:space="preserve">
           <source>4:3</source>
-          <target>4:3</target>
+          <target state="translated">4:3</target>
         </trans-unit>
         <trans-unit id="SURFACE_2_35_1" translate="yes" xml:space="preserve">
           <source>2.35:1</source>
-          <target>2.35:1</target>
+          <target state="translated">2.35:1</target>
         </trans-unit>
         <trans-unit id="SURFACE_ORIGINAL" translate="yes" xml:space="preserve">
           <source>original</source>
-          <target>özgün</target>
+          <target state="translated">özgün</target>
         </trans-unit>
         <trans-unit id="CompactOverlayPiP" translate="yes" xml:space="preserve">
           <source>use windows 10 pip</source>
-          <target>Windows 10 pip kullanılsın</target>
+          <target state="translated">Windows 10 pip kullanılsın</target>
         </trans-unit>
         <trans-unit id="TvUnsafeArea" translate="yes" xml:space="preserve">
           <source>TV unsafe area</source>
-          <target>Güvenli olmayan TV alanı</target>
+          <target state="translated">Güvenli olmayan TV alanı</target>
         </trans-unit>
         <trans-unit id="AddMarginExplanation" translate="yes" xml:space="preserve">
           <source>Some TVs will not display the app correctly. To add some margin, turn this on</source>
-          <target>Bu seçenek etkinleştirildiğinde, uygulamanın düzgün görüntülenmediği televizyonlar için kenar boşlukları eklenir</target>
+          <target state="translated">Bu seçenek etkinleştirildiğinde, uygulamanın düzgün görüntülenmediği televizyonlar için kenar boşlukları eklenir</target>
         </trans-unit>
         <trans-unit id="ExtraMargin" translate="yes" xml:space="preserve">
           <source>Extra margin</source>
-          <target>Ek kenar boşluğu</target>
+          <target state="translated">Ek kenar boşluğu</target>
         </trans-unit>
         <trans-unit id="NoExtraMargin" translate="yes" xml:space="preserve">
           <source>No extra margin</source>
-          <target>Ek kenar boşluğu yok</target>
+          <target state="translated">Ek kenar boşluğu yok</target>
         </trans-unit>
 		<trans-unit id="Restart" translate="yes" xml:space="preserve">
           <source>restart</source>
-          <target>yeniden başlat</target>
+          <target state="translated">yeniden başlat</target>
         </trans-unit>
         <trans-unit id="Disconnect" translate="yes" xml:space="preserve">
           <source>disconnect</source>
-          <target>bağlantıyı kes</target>
+          <target state="translated">bağlantıyı kes</target>
         </trans-unit>
       </group>
     </body>

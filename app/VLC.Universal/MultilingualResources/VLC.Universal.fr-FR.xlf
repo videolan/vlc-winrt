@@ -7,959 +7,959 @@
       <group datatype="resx" id="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW">
         <trans-unit id="AboutTheApp" translate="yes" xml:space="preserve">
           <source>about the app</source>
-          <target>À propos de l'application</target>
+          <target state="translated">À propos de l'application</target>
         </trans-unit>
         <trans-unit id="Add" translate="yes" xml:space="preserve">
           <source>add</source>
-          <target>Ajouter</target>
+          <target state="translated">Ajouter</target>
         </trans-unit>
         <trans-unit id="AddFolder" translate="yes" xml:space="preserve">
           <source>add folder</source>
-          <target>Ajouter un dossier</target>
+          <target state="translated">Ajouter un dossier</target>
         </trans-unit>
         <trans-unit id="AddToCollection" translate="yes" xml:space="preserve">
           <source>add to collection</source>
-          <target>Ajouter à la collection</target>
+          <target state="translated">Ajouter à la collection</target>
         </trans-unit>
         <trans-unit id="AddToCurrentPlaylist" translate="yes" xml:space="preserve">
           <source>add to current playlist</source>
-          <target>Ajouter à la liste de lecture en cours</target>
+          <target state="translated">Ajouter à la liste de lecture en cours</target>
         </trans-unit>
         <trans-unit id="AddToPlaylist" translate="yes" xml:space="preserve">
           <source>add to playlist</source>
-          <target>Ajouter à une liste de lecture</target>
+          <target state="translated">Ajouter à une liste de lecture</target>
         </trans-unit>
         <trans-unit id="Albums" translate="yes" xml:space="preserve">
           <source>albums</source>
-          <target>Albums</target>
+          <target state="translated">Albums</target>
         </trans-unit>
         <trans-unit id="AlbumsFound" translate="yes" xml:space="preserve">
           <source>albums found : {0}</source>
-          <target>Albums trouvés : {0}</target>
+          <target state="translated">Albums trouvés : {0}</target>
         </trans-unit>
         <trans-unit id="Animations" translate="yes" xml:space="preserve">
           <source>animations</source>
-          <target>Animations</target>
+          <target state="translated">Animations</target>
         </trans-unit>
         <trans-unit id="AppTheme" translate="yes" xml:space="preserve">
           <source>application theme</source>
-          <target>Thème de l'application</target>
+          <target state="translated">Thème de l'application</target>
         </trans-unit>
         <trans-unit id="Artists" translate="yes" xml:space="preserve">
           <source>artists</source>
-          <target>Artistes</target>
+          <target state="translated">Artistes</target>
         </trans-unit>
         <trans-unit id="Audio" translate="yes" xml:space="preserve">
           <source>audio</source>
-          <target>Audio</target>
+          <target state="translated">Audio</target>
         </trans-unit>
         <trans-unit id="AudioDelay" translate="yes" xml:space="preserve">
           <source>audio delay</source>
-          <target>Décalage audio</target>
+          <target state="translated">Décalage audio</target>
         </trans-unit>
         <trans-unit id="AudioTracks" translate="yes" xml:space="preserve">
           <source>Audio Tracks</source>
-          <target>Pistes audio</target>
+          <target state="translated">Pistes audio</target>
        </trans-unit>
         <trans-unit id="Back" translate="yes" xml:space="preserve">
           <source>back</source>
-          <target>Précédent</target>
+          <target state="translated">Précédent</target>
         </trans-unit>
         <trans-unit id="CameraRoll" translate="yes" xml:space="preserve">
           <source>camera roll</source>
-          <target>Pellicule</target>
+          <target state="translated">Pellicule</target>
         </trans-unit>
         <trans-unit id="ChangeAlbumCover" translate="yes" xml:space="preserve">
           <source>change album cover</source>
-          <target>Changer la pochette de l'album</target>
+          <target state="translated">Changer la pochette de l'album</target>
         </trans-unit>
         <trans-unit id="Chapters" translate="yes" xml:space="preserve">
           <source>Chapters</source>
-          <target>Chapitres</target>
+          <target state="translated">Chapitres</target>
        </trans-unit>
         <trans-unit id="CheckCredentials" translate="yes" xml:space="preserve">
           <source>an error occured, please check your credentials</source>
-          <target>Une erreur s'est produite, veuillez vérifier vos informations d'identification.</target>
+          <target state="translated">Une erreur s'est produite, veuillez vérifier vos informations d'identification.</target>
         </trans-unit>
         <trans-unit id="Connect" translate="yes" xml:space="preserve">
           <source>connect</source>
-          <target>Connexion</target>
+          <target state="translated">Connexion</target>
         </trans-unit>
         <trans-unit id="ConnectedToLastFM" translate="yes" xml:space="preserve">
           <source>connected to Last.FM</source>
-          <target>Connecté à Last.FM</target>
+          <target state="translated">Connecté à Last.FM</target>
         </trans-unit>
         <trans-unit id="Connecting" translate="yes" xml:space="preserve">
           <source>connecting</source>
-          <target>Connexion en cours</target>
+          <target state="translated">Connexion en cours</target>
         </trans-unit>
         <trans-unit id="ConnectToLastFM" translate="yes" xml:space="preserve">
           <source>connect to Last.FM</source>
-          <target>Se connecter à Last.FM</target>
+          <target state="translated">Se connecter à Last.FM</target>
         </trans-unit>
         <trans-unit id="CrashReport" translate="yes" xml:space="preserve">
           <source>crash report</source>
-          <target>Rapport de bogue</target>
+          <target state="translated">Rapport de bogue</target>
         </trans-unit>
         <trans-unit id="DecreaseSpeed" translate="yes" xml:space="preserve">
           <source>decrease speed</source>
-          <target>Diminuer la vitesse</target>
+          <target state="translated">Diminuer la vitesse</target>
         </trans-unit>
         <trans-unit id="DecreaseVolume" translate="yes" xml:space="preserve">
           <source>decrease volume</source>
-          <target>Diminuer le volume</target>
+          <target state="translated">Diminuer le volume</target>
         </trans-unit>
         <trans-unit id="DeletePlaylist" translate="yes" xml:space="preserve">
           <source>delete playlist</source>
-          <target>Supprimer la liste de lecture</target>
+          <target state="translated">Supprimer la liste de lecture</target>
         </trans-unit>
         <trans-unit id="DeleteSelected" translate="yes" xml:space="preserve">
           <source>delete selected</source>
-          <target>Supprimer</target>
+          <target state="translated">Supprimer</target>
         </trans-unit>
         <trans-unit id="EditMetadata" translate="yes" xml:space="preserve">
           <source>edit metadata</source>
-          <target>Modifier les métadonnées</target>
+          <target state="translated">Modifier les métadonnées</target>
         </trans-unit>
         <trans-unit id="ElementsNotFound" translate="yes" xml:space="preserve">
           <source>we did not find elements in there</source>
-          <target>Nous n'avons pas trouvé d'élément ici</target>
+          <target state="translated">Nous n'avons pas trouvé d'élément ici</target>
         </trans-unit>
         <trans-unit id="EnterURL" translate="yes" xml:space="preserve">
           <source>enter a url</source>
-          <target>Entrez une URL</target>
+          <target state="translated">Entrez une URL</target>
         </trans-unit>
         <trans-unit id="Episode" translate="yes" xml:space="preserve">
           <source>episode</source>
-          <target>Épisode</target>
+          <target state="translated">Épisode</target>
         </trans-unit>
         <trans-unit id="EvenIfBackground" translate="yes" xml:space="preserve">
           <source>even if the app is in background</source>
-          <target>Même si l'application est en arrière-plan</target>
+          <target state="translated">Même si l'application est en arrière-plan</target>
         </trans-unit>
         <trans-unit id="EvenIfNotBackground" translate="yes" xml:space="preserve">
           <source>even if the app is not in background</source>
-          <target>Même si l'application n'est pas en arrière-plan</target>
+          <target state="translated">Même si l'application n'est pas en arrière-plan</target>
         </trans-unit>
         <trans-unit id="FailFilePlayBackground" translate="yes" xml:space="preserve">
           <source>This file may not play in the background</source>
-          <target>Ce fichier ne peut pas être joué en arrière-plan</target>
+          <target state="translated">Ce fichier ne peut pas être joué en arrière-plan</target>
         </trans-unit>
         <trans-unit id="FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
           <source>VLC failed to navigate to the Video Player page</source>
-          <target>VLC n'a pas pu accéder à la page Video Player</target>
+          <target state="translated">VLC n'a pas pu accéder à la page Video Player</target>
         </trans-unit>
         <trans-unit id="FailOpenVideo" translate="yes" xml:space="preserve">
           <source>VLC failed to open the video</source>
-          <target>VLC n'a pas pu ouvrir la vidéo</target>
+          <target state="translated">VLC n'a pas pu ouvrir la vidéo</target>
         </trans-unit>
         <trans-unit id="FailStartVLCEngine" translate="yes" xml:space="preserve">
           <source>The app failed to start the VLC engine</source>
-          <target>L'app n'a pas pu démarrer le moteur VLC</target>
+          <target state="translated">L'app n'a pas pu démarrer le moteur VLC</target>
         </trans-unit>
         <trans-unit id="FeedbackThankYou" translate="yes" xml:space="preserve">
           <source>feedback sent! thank you</source>
-          <target>Vos commentaires ont été envoyés ! Merci.</target>
+          <target state="translated">Vos commentaires ont été envoyés ! Merci.</target>
         </trans-unit>
         <trans-unit id="FileExplorer" translate="yes" xml:space="preserve">
           <source>browse</source>
-          <target>Parcourir</target>
+          <target state="translated">Parcourir</target>
         </trans-unit>
         <trans-unit id="HardwareDecoding" translate="yes" xml:space="preserve">
           <source>hardware decoding</source>
-          <target>Décodage matériel</target>
+          <target state="translated">Décodage matériel</target>
         </trans-unit>
         <trans-unit id="HardwareDecodingDescription" translate="yes" xml:space="preserve">
           <source>Hardware decoding may not work on your device.</source>
-          <target>Le décodage matériel peut ne pas fonctionner sur votre appareil.</target>
+          <target state="translated">Le décodage matériel peut ne pas fonctionner sur votre appareil.</target>
         </trans-unit>
         <trans-unit id="HaveToSelectPlaylist" translate="yes" xml:space="preserve">
           <source>please select a playlist</source>
-          <target>Veuillez sélectionner une liste de lecture</target>
+          <target state="translated">Veuillez sélectionner une liste de lecture</target>
         </trans-unit>
         <trans-unit id="Home" translate="yes" xml:space="preserve">
           <source>home</source>
-          <target>Accueil</target>
+          <target state="translated">Accueil</target>
         </trans-unit>
         <trans-unit id="HomePage" translate="yes" xml:space="preserve">
           <source>home page</source>
-          <target>Page principale</target>
+          <target state="translated">Page principale</target>
         </trans-unit>
         <trans-unit id="HomePageDescription" translate="yes" xml:space="preserve">
           <source>VLC will start on the selected page</source>
-          <target>VLC commencera sur la page sélectionnée</target>
+          <target state="translated">VLC commencera sur la page sélectionnée</target>
         </trans-unit>
         <trans-unit id="HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
           <source>however you may find what you're looking for here</source>
-          <target>Toutefois, vous pouvez peut-être trouver ce que vous cherchez ici</target>
+          <target state="translated">Toutefois, vous pouvez peut-être trouver ce que vous cherchez ici</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum1" translate="yes" xml:space="preserve">
           <source>to favorite an album, just press</source>
-          <target>Pour marquer un album comme favori, appuyez simplement</target>
+          <target state="translated">Pour marquer un album comme favori, appuyez simplement</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum2" translate="yes" xml:space="preserve">
           <source>and you'll get an instant access to it</source>
-          <target>Et vous y aurez accès rapidement</target>
+          <target state="translated">Et vous y aurez accès rapidement</target>
         </trans-unit>
         <trans-unit id="ImportantSponsors" translate="yes" xml:space="preserve">
           <source>important sponsors</source>
-          <target>Auteurs importants</target>
+          <target state="translated">Auteurs importants</target>
         </trans-unit>
         <trans-unit id="IncreaseSpeed" translate="yes" xml:space="preserve">
           <source>increase speed</source>
-          <target>Augmenter la vitesse</target>
+          <target state="translated">Augmenter la vitesse</target>
         </trans-unit>
         <trans-unit id="IncreaseVolume" translate="yes" xml:space="preserve">
           <source>increase volume</source>
-          <target>Augmenter le volume</target>
+          <target state="translated">Augmenter le volume</target>
         </trans-unit>
         <trans-unit id="ItsEmpty" translate="yes" xml:space="preserve">
           <source>it's empty here</source>
-          <target>C'est vide ici</target>
+          <target state="translated">C'est vide ici</target>
         </trans-unit>
         <trans-unit id="KeyboardShortcuts" translate="yes" xml:space="preserve">
           <source>keyboard shortcuts</source>
-          <target>Raccourcis clavier</target>
+          <target state="translated">Raccourcis clavier</target>
         </trans-unit>
         <trans-unit id="License" translate="yes" xml:space="preserve">
           <source>license</source>
-          <target>Licence</target>
+          <target state="translated">Licence</target>
         </trans-unit>
         <trans-unit id="Loading" translate="yes" xml:space="preserve">
           <source>loading</source>
-          <target>Chargement</target>
+          <target state="translated">Chargement</target>
         </trans-unit>
         <trans-unit id="LoadingMusic" translate="yes" xml:space="preserve">
           <source>loading music</source>
-          <target>Chargement de votre musique</target>
+          <target state="translated">Chargement de votre musique</target>
         </trans-unit>
         <trans-unit id="MostPlayedArtists" translate="yes" xml:space="preserve">
           <source>most played artists</source>
-          <target>Artistes les plus joués</target>
+          <target state="translated">Artistes les plus joués</target>
         </trans-unit>
         <trans-unit id="Music" translate="yes" xml:space="preserve">
           <source>music</source>
-          <target>Musique</target>
+          <target state="translated">Musique</target>
         </trans-unit>
         <trans-unit id="MusicFolders" translate="yes" xml:space="preserve">
           <source>music folders</source>
-          <target>Dossiers de musique</target>
+          <target state="translated">Dossiers de musique</target>
         </trans-unit>
         <trans-unit id="MusicFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search songs that are in your music library. You can add folders to your library here</source>
-          <target>VLC recherchera uniquement les morceaux qui se trouvent dans votre musicothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici</target>
+          <target state="translated">VLC recherchera uniquement les morceaux qui se trouvent dans votre musicothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici</target>
         </trans-unit>
         <trans-unit id="MusicSettings" translate="yes" xml:space="preserve">
           <source>Music Settings</source>
-          <target>Paramètres Audio</target>
+          <target state="translated">Paramètres Audio</target>
        </trans-unit>
         <trans-unit id="MusicShows" translate="yes" xml:space="preserve">
           <source>music shows</source>
-          <target>Concerts</target>
+          <target state="translated">Concerts</target>
         </trans-unit>
         <trans-unit id="Mute" translate="yes" xml:space="preserve">
           <source>mute</source>
-          <target>Muet</target>
+          <target state="translated">Muet</target>
         </trans-unit>
         <trans-unit id="MyPlaylists" translate="yes" xml:space="preserve">
           <source>my playlists</source>
-          <target>Mes listes de lecture</target>
+          <target state="translated">Mes listes de lecture</target>
         </trans-unit>
         <trans-unit id="Network" translate="yes" xml:space="preserve">
           <source>network</source>
-          <target>Réseau</target>
+          <target state="translated">Réseau</target>
         </trans-unit>
         <trans-unit id="NewPlaylist" translate="yes" xml:space="preserve">
           <source>new playlist</source>
-          <target>Nouvelle liste de lecture</target>
+          <target state="translated">Nouvelle liste de lecture</target>
         </trans-unit>
         <trans-unit id="NewVideos" translate="yes" xml:space="preserve">
           <source>new videos</source>
-          <target>Nouvelles vidéos</target>
+          <target state="translated">Nouvelles vidéos</target>
         </trans-unit>
         <trans-unit id="No" translate="yes" xml:space="preserve">
           <source>no</source>
-          <target>Non</target>
+          <target state="translated">Non</target>
         </trans-unit>
         <trans-unit id="NoBiographyFound" translate="yes" xml:space="preserve">
           <source>no bio found for this artist</source>
-          <target>Pas de bio trouvée pour cet artiste</target>
+          <target state="translated">Pas de bio trouvée pour cet artiste</target>
         </trans-unit>
         <trans-unit id="NoCameraVideosFound" translate="yes" xml:space="preserve">
           <source>no camera videos found</source>
-          <target>Aucune vidéo de caméra trouvée</target>
+          <target state="translated">Aucune vidéo de caméra trouvée</target>
         </trans-unit>
         <trans-unit id="NoFavoriteAlbums" translate="yes" xml:space="preserve">
           <source>no favorite albums</source>
-          <target>Aucun album préféré</target>
+          <target state="translated">Aucun album préféré</target>
         </trans-unit>
         <trans-unit id="NoInternetConnection" translate="yes" xml:space="preserve">
           <source>no internet connection</source>
-          <target>Pas de connexion Internet</target>
+          <target state="translated">Pas de connexion Internet</target>
         </trans-unit>
         <trans-unit id="NoPlaylists" translate="yes" xml:space="preserve">
           <source>no playlists</source>
-          <target>Aucune liste de lecture</target>
+          <target state="translated">Aucune liste de lecture</target>
         </trans-unit>
         <trans-unit id="NoShowsFound" translate="yes" xml:space="preserve">
           <source>no shows found</source>
-          <target>Aucun concert trouvé</target>
+          <target state="translated">Aucun concert trouvé</target>
         </trans-unit>
         <trans-unit id="NothingToSeeHere" translate="yes" xml:space="preserve">
           <source>there's nothing to see here</source>
-          <target>Il n'y a rien à voir ici</target>
+          <target state="translated">Il n'y a rien à voir ici</target>
         </trans-unit>
         <trans-unit id="Notifications" translate="yes" xml:space="preserve">
           <source>notifications</source>
-          <target>Notifications</target>
+          <target state="translated">Notifications</target>
         </trans-unit>
         <trans-unit id="NotificationWhenSongStarts" translate="yes" xml:space="preserve">
           <source>when the song starts</source>
-          <target>Au démarrage du morceau</target>
+          <target state="translated">Au démarrage du morceau</target>
         </trans-unit>
         <trans-unit id="NoVideosFound" translate="yes" xml:space="preserve">
           <source>we did not find video</source>
-          <target>Nous n'avons trouvé aucune vidéo</target>
+          <target state="translated">Nous n'avons trouvé aucune vidéo</target>
        </trans-unit>
         <trans-unit id="NowPlaying" translate="yes" xml:space="preserve">
           <source>now playing</source>
-          <target>Lecture en cours</target>
+          <target state="translated">Lecture en cours</target>
         </trans-unit>
         <trans-unit id="OpenFile" translate="yes" xml:space="preserve">
           <source>open file</source>
-          <target>Ouvrir un fichier</target>
+          <target state="translated">Ouvrir un fichier</target>
         </trans-unit>
         <trans-unit id="OpenStream" translate="yes" xml:space="preserve">
           <source>open stream</source>
-          <target>Ouvrir un flux</target>
+          <target state="translated">Ouvrir un flux</target>
         </trans-unit>
         <trans-unit id="OpenSubtitle" translate="yes" xml:space="preserve">
           <source>open subtitle</source>
-          <target>Ouvrir des sous-titres</target>
+          <target state="translated">Ouvrir des sous-titres</target>
         </trans-unit>
         <trans-unit id="OrderAscending" translate="yes" xml:space="preserve">
           <source>ascending</source>
-          <target>Croissant</target>
+          <target state="translated">Croissant</target>
         </trans-unit>
         <trans-unit id="OrderByAlbum" translate="yes" xml:space="preserve">
           <source>by album</source>
-          <target>Par album</target>
+          <target state="translated">Par album</target>
         </trans-unit>
         <trans-unit id="OrderByArtist" translate="yes" xml:space="preserve">
           <source>by artist</source>
-          <target>Par artiste</target>
+          <target state="translated">Par artiste</target>
         </trans-unit>
         <trans-unit id="OrderByDate" translate="yes" xml:space="preserve">
           <source>by date</source>
-          <target>Par date</target>
+          <target state="translated">Par date</target>
         </trans-unit>
         <trans-unit id="OrderDescending" translate="yes" xml:space="preserve">
           <source>descending</source>
-          <target>Décroissant</target>
+          <target state="translated">Décroissant</target>
         </trans-unit>
         <trans-unit id="Password" translate="yes" xml:space="preserve">
           <source>password</source>
-          <target>Mot de passe</target>
+          <target state="translated">Mot de passe</target>
         </trans-unit>
         <trans-unit id="Pause" translate="yes" xml:space="preserve">
           <source>pause</source>
-          <target>Pause</target>
+          <target state="translated">Pause</target>
         </trans-unit>
         <trans-unit id="PinAlbum" translate="yes" xml:space="preserve">
           <source>pin album</source>
-          <target>Épingler l'album</target>
+          <target state="translated">Épingler l'album</target>
         </trans-unit>
         <trans-unit id="PinArtist" translate="yes" xml:space="preserve">
           <source>pin artist</source>
-          <target>Épingler l'artiste</target>
+          <target state="translated">Épingler l'artiste</target>
         </trans-unit>
         <trans-unit id="Play" translate="yes" xml:space="preserve">
           <source>play</source>
-          <target>Lecture</target>
+          <target state="translated">Lecture</target>
         </trans-unit>
         <trans-unit id="PlayAlbum" translate="yes" xml:space="preserve">
           <source>play album</source>
-          <target>Lire l’album</target>
+          <target state="translated">Lire l’album</target>
         </trans-unit>
         <trans-unit id="PlayAll" translate="yes" xml:space="preserve">
           <source>play all</source>
-          <target>Lire tout</target>
+          <target state="translated">Lire tout</target>
         </trans-unit>
         <trans-unit id="Playback" translate="yes" xml:space="preserve">
           <source>playback</source>
-          <target>Lecture</target>
+          <target state="translated">Lecture</target>
         </trans-unit>
         <trans-unit id="PlayerSettings" translate="yes" xml:space="preserve">
           <source>Player Settings</source>
-          <target>Paramètres du Lecteur</target>
+          <target state="translated">Paramètres du Lecteur</target>
        </trans-unit>
         <trans-unit id="PlayFolder" translate="yes" xml:space="preserve">
           <source>play folder</source>
-          <target>Lire le dossier</target>
+          <target state="translated">Lire le dossier</target>
         </trans-unit>
         <trans-unit id="Playlist" translate="yes" xml:space="preserve">
           <source>playlist</source>
-          <target>Liste de lecture</target>
+          <target state="translated">Liste de lecture</target>
         </trans-unit>
         <trans-unit id="PlaylistAlreadyExists" translate="yes" xml:space="preserve">
           <source>this playlist already exists</source>
-          <target>Cette liste de lecture existe déjà</target>
+          <target state="translated">Cette liste de lecture existe déjà</target>
         </trans-unit>
         <trans-unit id="PlaylistNamePlaceholder" translate="yes" xml:space="preserve">
           <source>playlist name</source>
-          <target>Nom de la liste de lecture</target>
+          <target state="translated">Nom de la liste de lecture</target>
         </trans-unit>
         <trans-unit id="Playlists" translate="yes" xml:space="preserve">
           <source>playlists</source>
-          <target>Listes de lecture</target>
+          <target state="translated">Listes de lecture</target>
         </trans-unit>
         <trans-unit id="PlayTrack" translate="yes" xml:space="preserve">
           <source>play track</source>
-          <target>Lire le morceau</target>
+          <target state="translated">Lire le morceau</target>
         </trans-unit>
         <trans-unit id="PlayVideo" translate="yes" xml:space="preserve">
           <source>play video</source>
-          <target>Lire la vidéo</target>
+          <target state="translated">Lire la vidéo</target>
         </trans-unit>
         <trans-unit id="PrivacyStatement" translate="yes" xml:space="preserve">
           <source>privacy statement</source>
-          <target>Politique de confidentialité</target>
+          <target state="translated">Politique de confidentialité</target>
         </trans-unit>
         <trans-unit id="Favorites" translate="yes" xml:space="preserve">
           <source>Favorites</source>
-          <target>Favoris</target>
+          <target state="translated">Favoris</target>
         </trans-unit>
         <trans-unit id="RefreshMusicLibrary" translate="yes" xml:space="preserve">
           <source>refresh music library</source>
-          <target>actualiser la musicothèque</target>
+          <target state="translated">actualiser la musicothèque</target>
         </trans-unit>
         <trans-unit id="RefreshVideoLibrary" translate="yes" xml:space="preserve">
           <source>refresh video library</source>
-          <target>actualiser la vidéothèque</target>
+          <target state="translated">actualiser la vidéothèque</target>
         </trans-unit>
         <trans-unit id="RemovableStorage" translate="yes" xml:space="preserve">
           <source>removable storage</source>
-          <target>Stockage amovible</target>
+          <target state="translated">Stockage amovible</target>
         </trans-unit>
         <trans-unit id="RemoveFolder" translate="yes" xml:space="preserve">
           <source>remove folder</source>
-          <target>Supprimer le dossier</target>
+          <target state="translated">Supprimer le dossier</target>
         </trans-unit>
         <trans-unit id="RemoveMusicFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</source>
-          <target>Si vous ne voulez pas de ce dossier dans votre musicothèque, vous pouvez le supprimer. Cela affectera toutes les applications, pas seulement VLC.</target>
+          <target state="translated">Si vous ne voulez pas de ce dossier dans votre musicothèque, vous pouvez le supprimer. Cela affectera toutes les applications, pas seulement VLC.</target>
         </trans-unit>
         <trans-unit id="RemoveVideoFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</source>
-          <target>Si vous ne voulez pas de ce dossier dans votre vidéothèque, vous pouvez le supprimer. Cela affectera toutes les applications, pas seulement VLC.</target>
+          <target state="translated">Si vous ne voulez pas de ce dossier dans votre vidéothèque, vous pouvez le supprimer. Cela affectera toutes les applications, pas seulement VLC.</target>
         </trans-unit>
         <trans-unit id="Reset" translate="yes" xml:space="preserve">
           <source>reset</source>
-          <target>Réinitialiser</target>
+          <target state="translated">Réinitialiser</target>
         </trans-unit>
         <trans-unit id="ResetMusicDatabase" translate="yes" xml:space="preserve">
           <source>reset music database</source>
-          <target>Réinitialiser la base de données musicale</target>
+          <target state="translated">Réinitialiser la base de données musicale</target>
         </trans-unit>
         <trans-unit id="ResetSpeed" translate="yes" xml:space="preserve">
           <source>reset speed</source>
-          <target>Réinitialiser la vitesse</target>
+          <target state="translated">Réinitialiser la vitesse</target>
         </trans-unit>
         <trans-unit id="RichAnimationsDescription" translate="yes" xml:space="preserve">
           <source>Use rich animations in the slideshows</source>
-          <target>Utiliser des animations riches dans les diaporamas</target>
+          <target state="translated">Utiliser des animations riches dans les diaporamas</target>
         </trans-unit>
         <trans-unit id="Search" translate="yes" xml:space="preserve">
           <source>search</source>
-          <target>Rechercher</target>
+          <target state="translated">Rechercher</target>
         </trans-unit>
         <trans-unit id="Season" translate="yes" xml:space="preserve">
           <source>season</source>
-          <target>Saison</target>
+          <target state="translated">Saison</target>
         </trans-unit>
         <trans-unit id="Settings" translate="yes" xml:space="preserve">
           <source>settings</source>
-          <target>Paramètres</target>
+          <target state="translated">Paramètres</target>
         </trans-unit>
         <trans-unit id="ShowPlaylist" translate="yes" xml:space="preserve">
           <source>show playlist</source>
-          <target>Voir la liste de lecture</target>
+          <target state="translated">Voir la liste de lecture</target>
         </trans-unit>
         <trans-unit id="Shows" translate="yes" xml:space="preserve">
           <source>shows</source>
-          <target>Séries</target>
+          <target state="translated">Séries</target>
         </trans-unit>
         <trans-unit id="Shuffle" translate="yes" xml:space="preserve">
           <source>shuffle</source>
-          <target>Lecture aléatoire</target>
+          <target state="translated">Lecture aléatoire</target>
         </trans-unit>
         <trans-unit id="Songs" translate="yes" xml:space="preserve">
           <source>songs</source>
-          <target>Morceaux                 </target>
+          <target state="translated">Morceaux                 </target>
         </trans-unit>
         <trans-unit id="SpecialThanks" translate="yes" xml:space="preserve">
           <source>special thanks</source>
-          <target>Remerciements</target>
+          <target state="translated">Remerciements</target>
         </trans-unit>
         <trans-unit id="Speed" translate="yes" xml:space="preserve">
           <source>speed</source>
-          <target>Vitesse</target>
+          <target state="translated">Vitesse</target>
         </trans-unit>
         <trans-unit id="Stop" translate="yes" xml:space="preserve">
           <source>stop</source>
-          <target>Stop</target>
+          <target state="translated">Stop</target>
         </trans-unit>
         <trans-unit id="SubtitleDelay" translate="yes" xml:space="preserve">
           <source>subtitle delay</source>
-          <target>Décalage des sous-titres</target>
+          <target state="translated">Décalage des sous-titres</target>
         </trans-unit>
         <trans-unit id="Subtitles" translate="yes" xml:space="preserve">
           <source>Subtitles</source>
-          <target>Sous-titres</target>
+          <target state="translated">Sous-titres</target>
        </trans-unit>
         <trans-unit id="SubtitlesEncoding" translate="yes" xml:space="preserve">
           <source>subtitles encoding</source>
-          <target>Encodage des sous-titres</target>
+          <target state="translated">Encodage des sous-titres</target>
         </trans-unit>
         <trans-unit id="Theme" translate="yes" xml:space="preserve">
           <source>theme</source>
-          <target>Thème</target>
+          <target state="translated">Thème</target>
         </trans-unit>
         <trans-unit id="TileRemoved" translate="yes" xml:space="preserve">
           <source>tile removed</source>
-          <target>Tuile supprimée</target>
+          <target state="translated">Tuile supprimée</target>
         </trans-unit>
         <trans-unit id="TopVideos" translate="yes" xml:space="preserve">
           <source>top videos</source>
-          <target>Vidéos préférées</target>
+          <target state="translated">Vidéos préférées</target>
         </trans-unit>
         <trans-unit id="TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
           <source>track added to the playlist</source>
-          <target>Morceau ajouté à la liste de lecture</target>
+          <target state="translated">Morceau ajouté à la liste de lecture</target>
         </trans-unit>
         <trans-unit id="TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
           <source>this track is already in that playlist</source>
-          <target>Ce morceau est déjà dans la liste de lecture</target>
+          <target state="translated">Ce morceau est déjà dans la liste de lecture</target>
         </trans-unit>
         <trans-unit id="Tracks" translate="yes" xml:space="preserve">
           <source>tracks</source>
-          <target>Morceaux</target>
+          <target state="translated">Morceaux</target>
         </trans-unit>
         <trans-unit id="UnknownAlbum" translate="yes" xml:space="preserve">
           <source>Unknown album</source>
-          <target>Album inconnu</target>
+          <target state="translated">Album inconnu</target>
         </trans-unit>
         <trans-unit id="UnknownArtist" translate="yes" xml:space="preserve">
           <source>Unknown artist</source>
-          <target>Artiste inconnu</target>
+          <target state="translated">Artiste inconnu</target>
         </trans-unit>
         <trans-unit id="UnknownShow" translate="yes" xml:space="preserve">
           <source>Unknown show</source>
-          <target>Concert inconnu</target>
+          <target state="translated">Concert inconnu</target>
         </trans-unit>
         <trans-unit id="UnknownTrack" translate="yes" xml:space="preserve">
           <source>Unknown track</source>
-          <target>Piste inconnue</target>
+          <target state="translated">Piste inconnue</target>
         </trans-unit>
         <trans-unit id="UserInterface" translate="yes" xml:space="preserve">
           <source>User Interface</source>
-          <target>Interface utilisateur</target>
+          <target state="translated">Interface utilisateur</target>
        </trans-unit>
         <trans-unit id="Username" translate="yes" xml:space="preserve">
           <source>username</source>
-          <target>Nom d'utilisateur</target>
+          <target state="translated">Nom d'utilisateur</target>
         </trans-unit>
         <trans-unit id="Video" translate="yes" xml:space="preserve">
           <source>video</source>
-          <target>Vidéo</target>
+          <target state="translated">Vidéo</target>
         </trans-unit>
         <trans-unit id="VideoFolders" translate="yes" xml:space="preserve">
           <source>video folders</source>
-          <target>Dossiers de vidéos</target>
+          <target state="translated">Dossiers de vidéos</target>
         </trans-unit>
         <trans-unit id="VideoFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search videos that are in your video library. You can add folders to your library here</source>
-          <target>VLC recherchera uniquement des vidéos qui sont dans votre vidéothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici.</target>
+          <target state="translated">VLC recherchera uniquement des vidéos qui sont dans votre vidéothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici.</target>
         </trans-unit>
         <trans-unit id="VideoPlayback" translate="yes" xml:space="preserve">
           <source>video playback</source>
-          <target>Lecture vidéo</target>
+          <target state="translated">Lecture vidéo</target>
         </trans-unit>
         <trans-unit id="VideoPlaybackInBackground" translate="yes" xml:space="preserve">
           <source>play video in background</source>
-          <target>Lecture en arrière-plan</target>
+          <target state="translated">Lecture en arrière-plan</target>
         </trans-unit>
         <trans-unit id="Videos" translate="yes" xml:space="preserve">
           <source>videos</source>
-          <target>Vidéos</target>
+          <target state="translated">Vidéos</target>
         </trans-unit>
         <trans-unit id="VideoSettings" translate="yes" xml:space="preserve">
           <source>Video Settings</source>
-          <target>Paramètres Vidéo</target>
+          <target state="translated">Paramètres Vidéo</target>
        </trans-unit>
         <trans-unit id="ViewAlbum" translate="yes" xml:space="preserve">
           <source>view album</source>
-          <target>Voir l'album</target>
+          <target state="translated">Voir l'album</target>
         </trans-unit>
         <trans-unit id="ViewArtist" translate="yes" xml:space="preserve">
           <source>view artist</source>
-          <target>Voir l'artiste</target>
+          <target state="translated">Voir l'artiste</target>
         </trans-unit>
         <trans-unit id="Volume" translate="yes" xml:space="preserve">
           <source>volume</source>
-          <target>Volume</target>
+          <target state="translated">Volume</target>
         </trans-unit>
         <trans-unit id="WeNeedYourHelp" translate="yes" xml:space="preserve">
           <source>we need your help</source>
-          <target>Nous avons besoin de votre aide</target>
+          <target state="translated">Nous avons besoin de votre aide</target>
         </trans-unit>
         <trans-unit id="Yes" translate="yes" xml:space="preserve">
           <source>yes</source>
-          <target>Oui</target>
+          <target state="translated">Oui</target>
         </trans-unit>
         <trans-unit id="YourMusic" translate="yes" xml:space="preserve">
           <source>your music</source>
-          <target>Votre musique</target>
+          <target state="translated">Votre musique</target>
         </trans-unit>
         <trans-unit id="AccentColor" translate="yes" xml:space="preserve">
           <source>accent color</source>
-          <target>Couleur d'accentuation</target>
+          <target state="translated">Couleur d'accentuation</target>
         </trans-unit>
         <trans-unit id="BackgroundColor" translate="yes" xml:space="preserve">
           <source>background color</source>
-          <target>Couleur d'arrière-plan</target>
+          <target state="translated">Couleur d'arrière-plan</target>
         </trans-unit>
         <trans-unit id="Dark" translate="yes" xml:space="preserve">
           <source>dark</source>
-          <target>Sombre</target>
+          <target state="translated">Sombre</target>
         </trans-unit>
         <trans-unit id="Light" translate="yes" xml:space="preserve">
           <source>light</source>
-          <target>Clair</target>
+          <target state="translated">Clair</target>
         </trans-unit>
         <trans-unit id="TitleBar" translate="yes" xml:space="preserve">
           <source>title bar</source>
-          <target>Barre de titre</target>
+          <target state="translated">Barre de titre</target>
         </trans-unit>
         <trans-unit id="NeedRestart" translate="yes" xml:space="preserve">
           <source>You need to restart the app to apply changes</source>
-          <target>Vous devez redémarrer l'application pour appliquer les modifications</target>
+          <target state="translated">Vous devez redémarrer l'application pour appliquer les modifications</target>
         </trans-unit>
         <trans-unit id="Zoom" translate="yes" xml:space="preserve">
           <source>zoom</source>
-          <target>Zoom</target>
+          <target state="translated">Zoom</target>
         </trans-unit>
         <trans-unit id="AreYouSure" translate="yes" xml:space="preserve">
           <source>are you sure?</source>
-          <target>Êtes-vous sûr ?</target>
+          <target state="translated">Êtes-vous sûr ?</target>
         </trans-unit>
         <trans-unit id="MediaCantBeRead" translate="yes" xml:space="preserve">
           <source>the media can't be read</source>
-          <target>Le média n'a pas pu être lu</target>
+          <target state="translated">Le média n'a pas pu être lu</target>
         </trans-unit>
         <trans-unit id="Sorry" translate="yes" xml:space="preserve">
           <source>we're sorry</source>
-          <target>Nous sommes désolés</target>
+          <target state="translated">Nous sommes désolés</target>
         </trans-unit>
         <trans-unit id="SURFACE_BEST_FIT" translate="yes" xml:space="preserve">
           <source>best fit</source>
-          <target>Meilleur ajustement</target>
+          <target state="translated">Meilleur ajustement</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_HORIZONTAL" translate="yes" xml:space="preserve">
           <source>horizontal cropping</source>
-          <target>Recadrage horizontal</target>
+          <target state="translated">Recadrage horizontal</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_VERTICAL" translate="yes" xml:space="preserve">
           <source>vertical cropping</source>
-          <target>Recadrage vertical</target>
+          <target state="translated">Recadrage vertical</target>
         </trans-unit>
         <trans-unit id="YourPlaylistWontBeAccessible" translate="yes" xml:space="preserve">
           <source>your playlist won't be accessible</source>
-          <target>Votre liste de lecture ne sera plus accessible</target>
+          <target state="translated">Votre liste de lecture ne sera plus accessible</target>
         </trans-unit>
         <trans-unit id="NoArtistShowsFound" translate="yes" xml:space="preserve">
           <source>we didn't find shows for this artist</source>
-          <target>Nous n'avons pas trouvé de spectacles pour cet artiste</target>
+          <target state="translated">Nous n'avons pas trouvé de spectacles pour cet artiste</target>
         </trans-unit>
         <trans-unit id="NoResults" translate="yes" xml:space="preserve">
           <source>no results</source>
-          <target>Aucun résultat</target>
+          <target state="translated">Aucun résultat</target>
         </trans-unit>
         <trans-unit id="ForceLandscape" translate="yes" xml:space="preserve">
           <source>Force landscape</source>
-          <target>Forcer l'affichage en mode paysage</target>
+          <target state="translated">Forcer l'affichage en mode paysage</target>
         </trans-unit>
         <trans-unit id="SURFACE_STRETCH" translate="yes" xml:space="preserve">
           <source>stretch</source>
-          <target>Étirer</target>
+          <target state="translated">Étirer</target>
         </trans-unit>
         <trans-unit id="SimilarArtists" translate="yes" xml:space="preserve">
           <source>Similar artists</source>
-          <target>Artistes similaires</target>
+          <target state="translated">Artistes similaires</target>
         </trans-unit>
         <trans-unit id="EnglishLanguage" translate="yes" xml:space="preserve">
           <source>English</source>
-          <target>Anglais</target>
+          <target state="translated">Anglais</target>
         </trans-unit>
         <trans-unit id="FrenchLanguage" translate="yes" xml:space="preserve">
           <source>French</source>
-          <target>Français</target>
+          <target state="translated">Français</target>
         </trans-unit>
         <trans-unit id="JapaneseLanguage" translate="yes" xml:space="preserve">
           <source>Japanese</source>
-          <target>Japonais</target>
+          <target state="translated">Japonais</target>
         </trans-unit>
         <trans-unit id="GermanLanguage" translate="yes" xml:space="preserve">
           <source>German</source>
-          <target>Allemand</target>
+          <target state="translated">Allemand</target>
         </trans-unit>
         <trans-unit id="PolishLanguage" translate="yes" xml:space="preserve">
           <source>Polish</source>
-          <target>Polonais</target>
+          <target state="translated">Polonais</target>
         </trans-unit>
         <trans-unit id="SlovakLanguage" translate="yes" xml:space="preserve">
           <source>Slovak</source>
-          <target>Slovaque</target>
+          <target state="translated">Slovaque</target>
         </trans-unit>
         <trans-unit id="DanishLanguage" translate="yes" xml:space="preserve">
           <source>Danish</source>
-          <target>Danois</target>
+          <target state="translated">Danois</target>
         </trans-unit>
         <trans-unit id="SpanishLanguage" translate="yes" xml:space="preserve">
           <source>Spanish</source>
-          <target>Espagnol</target>
+          <target state="translated">Espagnol</target>
         </trans-unit>
         <trans-unit id="HungarianLanguage" translate="yes" xml:space="preserve">
           <source>Hungarian</source>
-          <target>Hongrois</target>
+          <target state="translated">Hongrois</target>
         </trans-unit>
         <trans-unit id="ItalianLanguage" translate="yes" xml:space="preserve">
           <source>Italian</source>
-          <target>Italien</target>
+          <target state="translated">Italien</target>
         </trans-unit>
         <trans-unit id="KoreanLanguage" translate="yes" xml:space="preserve">
           <source>Korean</source>
-          <target>Coréen</target>
+          <target state="translated">Coréen</target>
         </trans-unit>
         <trans-unit id="MalayLanguage" translate="yes" xml:space="preserve">
           <source>Malay</source>
-          <target>Malais</target>
+          <target state="translated">Malais</target>
         </trans-unit>
         <trans-unit id="NorwegianLanguage" translate="yes" xml:space="preserve">
           <source>Norwegian</source>
-          <target>Norvégien</target>
+          <target state="translated">Norvégien</target>
         </trans-unit>
         <trans-unit id="DutchLanguage" translate="yes" xml:space="preserve">
           <source>Dutch</source>
-          <target>Néerlandais</target>
+          <target state="translated">Néerlandais</target>
         </trans-unit>
         <trans-unit id="RussianLanguage" translate="yes" xml:space="preserve">
           <source>Russian</source>
-          <target>Russe</target>
+          <target state="translated">Russe</target>
         </trans-unit>
         <trans-unit id="SwedishLanguage" translate="yes" xml:space="preserve">
           <source>Swedish</source>
-          <target>Suédois</target>
+          <target state="translated">Suédois</target>
         </trans-unit>
         <trans-unit id="TurkishLanguage" translate="yes" xml:space="preserve">
           <source>Turkish</source>
-          <target>Turc</target>
+          <target state="translated">Turc</target>
         </trans-unit>
         <trans-unit id="UkrainianLanguage" translate="yes" xml:space="preserve">
           <source>Ukrainian</source>
-          <target>Ukrainien</target>
+          <target state="translated">Ukrainien</target>
         </trans-unit>
         <trans-unit id="ChineseLanguage" translate="yes" xml:space="preserve">
           <source>Chinese</source>
-          <target>Chinois</target>
+          <target state="translated">Chinois</target>
         </trans-unit>
         <trans-unit id="PortugueseLanguage" translate="yes" xml:space="preserve">
           <source>Portuguese</source>
-          <target>Portugais</target>
+          <target state="translated">Portugais</target>
         </trans-unit>		
         <trans-unit id="CzechLanguage" translate="yes" xml:space="preserve">
           <source>Czech</source>
-          <target>Tchèque</target>
+          <target state="translated">Tchèque</target>
         </trans-unit>
         <trans-unit id="IcelandicLanguage" translate="yes" xml:space="preserve">
           <source>Icelandic</source>
-          <target>Islandais</target>
+          <target state="translated">Islandais</target>
         </trans-unit>
         <trans-unit id="Languages" translate="yes" xml:space="preserve">
           <source>Languages</source>
-          <target>Langues</target>
+          <target state="translated">Langues</target>
         </trans-unit>
         <trans-unit id="SelectLanguageDescription" translate="yes" xml:space="preserve">
           <source>VLC will be displayed in</source>
-          <target>VLC sera affiché en </target>
+          <target state="translated">VLC sera affiché en </target>
         </trans-unit>
         <trans-unit id="ApplyAndRestart" translate="yes" xml:space="preserve">
           <source>Apply And Restart</source>
-          <target>Appliquer et redémarrer</target>
+          <target state="translated">Appliquer et redémarrer</target>
         </trans-unit>
         <trans-unit id="RefreshLanguage" translate="yes" xml:space="preserve">
           <source>Refresh Language</source>
-          <target>Actualiser la langue</target>
+          <target state="translated">Actualiser la langue</target>
         </trans-unit>
         <trans-unit id="Local" translate="yes" xml:space="preserve">
           <source>local</source>
-          <target>Bibliothèques locales</target>
+          <target state="translated">Bibliothèques locales</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES" translate="yes" xml:space="preserve">
           <source>Download Files</source>
-          <target>Téléchargement de fichiers</target>
+          <target state="translated">Téléchargement de fichiers</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES_LONG" translate="yes" xml:space="preserve">
           <source>Just click the file you want to download from your Xbox.</source>
-          <target>Sélectionnez simplement le fichier que vous voulez télécharger depuis votre Xbox.</target>
+          <target state="translated">Sélectionnez simplement le fichier que vous voulez télécharger depuis votre Xbox.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES" translate="yes" xml:space="preserve">
           <source>Drop Files</source>
-          <target>Déposez des fichiers</target>
+          <target state="translated">Déposez des fichiers</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
           <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the &quot;+&quot; button to use the file picker dialog.</source>
-          <target>Déposez des fichiers ici pour les ajouter au stockage interne de votre Xbox.&lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt;ou cliquez sur le bouton &quot;+&quot; pour choisir un fichier.</target>
+          <target state="translated">Déposez des fichiers ici pour les ajouter au stockage interne de votre Xbox.&lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt;ou cliquez sur le bouton &quot;+&quot; pour choisir un fichier.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
-          <target>Partage réseau</target>
+          <target state="translated">Partage réseau</target>
         </trans-unit>
         <trans-unit id="CopyToLocalStorage" translate="yes" xml:space="preserve">
           <source>copy to local storage</source>
-          <target>Copier vers le stockage interne</target>
+          <target state="translated">Copier vers le stockage interne</target>
         </trans-unit>
         <trans-unit id="ExternalStorageDeviceDetected" translate="yes" xml:space="preserve">
           <source>VLC has detected an external storage device.</source>
-          <target>VLC a détecté un périphérique de stockage amovible.</target>
+          <target state="translated">VLC a détecté un périphérique de stockage amovible.</target>
         </trans-unit>
         <trans-unit id="ReadFromExternalStorage" translate="yes" xml:space="preserve">
           <source>Use external storage as media library.</source>
-          <target>Utiliser un support externe comme médiathèque.</target>
+          <target state="translated">Utiliser un support externe comme médiathèque.</target>
         </trans-unit>
         <trans-unit id="SelectContentToCopy" translate="yes" xml:space="preserve">
           <source>Copy media to the internal storage.</source>
-          <target>Copier les médias sur le stockage interne</target>
+          <target state="translated">Copier les médias sur le stockage interne</target>
         </trans-unit>
         <trans-unit id="WhatToDo" translate="yes" xml:space="preserve">
           <source>What would you like to do?</source>
-          <target>Que souhaitez vous faire ?</target>
+          <target state="translated">Que souhaitez vous faire ?</target>
         </trans-unit>
         <trans-unit id="AskMe" translate="yes" xml:space="preserve">
           <source>Ask me</source>
-          <target>Me demander</target>
+          <target state="translated">Me demander</target>
         </trans-unit>
         <trans-unit id="ExternalStorage" translate="yes" xml:space="preserve">
           <source>external storage</source>
-          <target>Stockage amovible</target>
+          <target state="translated">Stockage amovible</target>
         </trans-unit>
         <trans-unit id="WhatToDoWhenExternalStorage" translate="yes" xml:space="preserve">
           <source>What should VLC do when an external storage device has been detected?</source>
-          <target>Que doit faire VLC lorsqu'un périphérique de stockage amovible est détecté ?</target>
+          <target state="translated">Que doit faire VLC lorsqu'un périphérique de stockage amovible est détecté ?</target>
         </trans-unit>
         <trans-unit id="Cancel" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target>Annuler</target>
+          <target state="translated">Annuler</target>
         </trans-unit>
         <trans-unit id="DoNothing" translate="yes" xml:space="preserve">
           <source>Do nothing</source>
-          <target>Ne rien faire</target>
+          <target state="translated">Ne rien faire</target>
         </trans-unit>
         <trans-unit id="Ok" translate="yes" xml:space="preserve">
           <source>Ok</source>
-          <target>OK</target>
+          <target state="translated">OK</target>
         </trans-unit>
         <trans-unit id="Ignore" translate="yes" xml:space="preserve">
           <source>Ignore</source>
-          <target>Ignorer</target>
+          <target state="translated">Ignorer</target>
         </trans-unit>
         <trans-unit id="Remember" translate="yes" xml:space="preserve">
           <source>Remember</source>
-          <target>S'en souvenir</target>
+          <target state="translated">S'en souvenir</target>
         </trans-unit>
         <trans-unit id="AddMediaHelp" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device</source>
-          <target>Veuillez insérer un périphérique de stockage amovible</target>
+          <target state="translated">Veuillez insérer un périphérique de stockage amovible</target>
         </trans-unit>
         <trans-unit id="AddMediaHelpWithIP" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device, or go to http://{0}:8080 to upload some media</source>
-          <target>Veuillez insérer un disque de stockage externe, ou allez sur http://{0}:8080 pour télécharger des media vers votre Xbox</target>
+          <target state="translated">Veuillez insérer un disque de stockage externe, ou allez sur http://{0}:8080 pour télécharger des media vers votre Xbox</target>
         </trans-unit>
         <trans-unit id="CopyHelpDesktop" translate="yes" xml:space="preserve">
           <source>Right-click on a file or a folder to copy it to the local storage.</source>
-          <target>Cliquez droit sur un fichier ou un dossier pour le copier vers le stockage interne</target>
+          <target state="translated">Cliquez droit sur un fichier ou un dossier pour le copier vers le stockage interne</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
           <source>Press &quot;Y&quot; on a file or a folder to copy it to the local storage.</source>
-          <target>Appuyez sur Y sur un fichier ou un dossier pour le copier vers le stockage interne</target>
+          <target state="translated">Appuyez sur Y sur un fichier ou un dossier pour le copier vers le stockage interne</target>
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
           <source>No subtitle tracks</source>
-          <target>Aucune piste de sous-titres</target>
+          <target state="translated">Aucune piste de sous-titres</target>
         </trans-unit>
         <trans-unit id="ClearKeystore" translate="yes" xml:space="preserve">
           <source>Clear saved credentials</source>
-          <target>Effacer les identifiants enregistrés</target>
+          <target state="translated">Effacer les identifiants enregistrés</target>
         </trans-unit>
         <trans-unit id="Credentials" translate="yes" xml:space="preserve">
           <source>Credentials</source>
-          <target>Identifiants</target>
+          <target state="translated">Identifiants</target>
         </trans-unit>
         <trans-unit id="CopyHelpPhone" translate="yes" xml:space="preserve">
           <source>Long press on a file or a folder to copy it to the local storage.</source>
-          <target>Appuyez longuement sur un fichier ou un dossier pour le copier vers le stockage interne.</target>
+          <target state="translated">Appuyez longuement sur un fichier ou un dossier pour le copier vers le stockage interne.</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_SCREEN" translate="yes" xml:space="preserve">
           <source>fit screen</source>
-          <target>Ajuster à l'écran</target>
+          <target state="translated">Ajuster à l'écran</target>
         </trans-unit>
         <trans-unit id="SURFACE_FILL" translate="yes" xml:space="preserve">
           <source>fill</source>
-          <target>Remplir</target>
+          <target state="translated">Remplir</target>
         </trans-unit>
         <trans-unit id="SURFACE_16_9" translate="yes" xml:space="preserve">
           <source>16:9</source>
-          <target>16:9</target>
+          <target state="translated">16:9</target>
         </trans-unit>
         <trans-unit id="SURFACE_4_3" translate="yes" xml:space="preserve">
           <source>4:3</source>
-          <target>4:3</target>
+          <target state="translated">4:3</target>
         </trans-unit>
         <trans-unit id="SURFACE_2_35_1" translate="yes" xml:space="preserve">
           <source>2.35:1</source>
-          <target>2.35:1</target>
+          <target state="translated">2.35:1</target>
         </trans-unit>
         <trans-unit id="SURFACE_ORIGINAL" translate="yes" xml:space="preserve">
           <source>original</source>
-          <target>Original</target>
+          <target state="translated">Original</target>
         </trans-unit>
         <trans-unit id="CompactOverlayPiP" translate="yes" xml:space="preserve">
           <source>use windows 10 pip</source>
-          <target>Utiliser PIP Windows 10</target>
+          <target state="translated">Utiliser PIP Windows 10</target>
         </trans-unit>
         <trans-unit id="TvUnsafeArea" translate="yes" xml:space="preserve">
           <source>TV unsafe area</source>
-          <target>Zone non-sûre TV</target>
+          <target state="translated">Zone non-sûre TV</target>
         </trans-unit>
         <trans-unit id="AddMarginExplanation" translate="yes" xml:space="preserve">
           <source>Some TVs will not display the app correctly. To add some margin, turn this on</source>
-          <target>Certaines TV n'affichent pas l'application correctement. Activez cette option pour ajouter une marge.</target>
+          <target state="translated">Certaines TV n'affichent pas l'application correctement. Activez cette option pour ajouter une marge.</target>
         </trans-unit>
         <trans-unit id="ExtraMargin" translate="yes" xml:space="preserve">
           <source>Extra margin</source>
-          <target>Marge additionnelle</target>
+          <target state="translated">Marge additionnelle</target>
         </trans-unit>
         <trans-unit id="NoExtraMargin" translate="yes" xml:space="preserve">
           <source>No extra margin</source>
-          <target>Pas de marge additionnelle</target>
+          <target state="translated">Pas de marge additionnelle</target>
         </trans-unit>
 		<trans-unit id="Restart" translate="yes" xml:space="preserve">
           <source>restart</source>
-          <target>Recommencer</target>
+          <target state="translated">Recommencer</target>
         </trans-unit>
         <trans-unit id="Disconnect" translate="yes" xml:space="preserve">
           <source>disconnect</source>
-          <target>Déconnecter</target>
+          <target state="translated">Déconnecter</target>
         </trans-unit>
       </group>
     </body>

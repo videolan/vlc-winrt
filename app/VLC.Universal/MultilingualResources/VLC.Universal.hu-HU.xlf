@@ -7,959 +7,959 @@
       <group datatype="resx" id="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW">
         <trans-unit id="AboutTheApp" translate="yes" xml:space="preserve">
           <source>about the app</source>
-          <target>az app névjegye</target>
+          <target state="translated">az app névjegye</target>
         </trans-unit>
         <trans-unit id="Add" translate="yes" xml:space="preserve">
           <source>add</source>
-          <target>hozzáadás</target>
+          <target state="translated">hozzáadás</target>
         </trans-unit>
         <trans-unit id="AddFolder" translate="yes" xml:space="preserve">
           <source>add folder</source>
-          <target>mappa hozzáadása</target>
+          <target state="translated">mappa hozzáadása</target>
         </trans-unit>
         <trans-unit id="AddToCollection" translate="yes" xml:space="preserve">
           <source>add to collection</source>
-          <target>gyűjteményhez adás</target>
+          <target state="translated">gyűjteményhez adás</target>
         </trans-unit>
         <trans-unit id="AddToCurrentPlaylist" translate="yes" xml:space="preserve">
           <source>add to current playlist</source>
-          <target>hozzáadás a jelenlegi lejátszólistához</target>
+          <target state="translated">hozzáadás a jelenlegi lejátszólistához</target>
         </trans-unit>
         <trans-unit id="AddToPlaylist" translate="yes" xml:space="preserve">
           <source>add to playlist</source>
-          <target>lejátszólistához adás</target>
+          <target state="translated">lejátszólistához adás</target>
         </trans-unit>
         <trans-unit id="Albums" translate="yes" xml:space="preserve">
           <source>albums</source>
-          <target>albumok</target>
+          <target state="translated">albumok</target>
         </trans-unit>
         <trans-unit id="AlbumsFound" translate="yes" xml:space="preserve">
           <source>albums found : {0}</source>
-          <target>talált albumok: {0}</target>
+          <target state="translated">talált albumok: {0}</target>
         </trans-unit>
         <trans-unit id="Animations" translate="yes" xml:space="preserve">
           <source>animations</source>
-          <target>animációk</target>
+          <target state="translated">animációk</target>
         </trans-unit>
         <trans-unit id="AppTheme" translate="yes" xml:space="preserve">
           <source>application theme</source>
-          <target>alkalmazástéma</target>
+          <target state="translated">alkalmazástéma</target>
         </trans-unit>
         <trans-unit id="Artists" translate="yes" xml:space="preserve">
           <source>artists</source>
-          <target>előadó</target>
+          <target state="translated">előadó</target>
         </trans-unit>
         <trans-unit id="Audio" translate="yes" xml:space="preserve">
           <source>audio</source>
-          <target>hang</target>
+          <target state="translated">hang</target>
         </trans-unit>
         <trans-unit id="AudioDelay" translate="yes" xml:space="preserve">
           <source>audio delay</source>
-          <target>hang késleltetése</target>
+          <target state="translated">hang késleltetése</target>
         </trans-unit>
         <trans-unit id="AudioTracks" translate="yes" xml:space="preserve">
           <source>Audio Tracks</source>
-          <target>Hangsávok</target>
+          <target state="translated">Hangsávok</target>
        </trans-unit>
         <trans-unit id="Back" translate="yes" xml:space="preserve">
           <source>back</source>
-          <target>vissza</target>
+          <target state="translated">vissza</target>
         </trans-unit>
         <trans-unit id="CameraRoll" translate="yes" xml:space="preserve">
           <source>camera roll</source>
-          <target>filmtekercs</target>
+          <target state="translated">filmtekercs</target>
         </trans-unit>
         <trans-unit id="ChangeAlbumCover" translate="yes" xml:space="preserve">
           <source>change album cover</source>
-          <target>albumborító módosítása</target>
+          <target state="translated">albumborító módosítása</target>
         </trans-unit>
         <trans-unit id="Chapters" translate="yes" xml:space="preserve">
           <source>Chapters</source>
-          <target>Fejezetek</target>
+          <target state="translated">Fejezetek</target>
        </trans-unit>
         <trans-unit id="CheckCredentials" translate="yes" xml:space="preserve">
           <source>an error occured, please check your credentials</source>
-          <target>hiba történt, ellenőrizze a hitelesítési adatokat</target>
+          <target state="translated">hiba történt, ellenőrizze a hitelesítési adatokat</target>
         </trans-unit>
         <trans-unit id="Connect" translate="yes" xml:space="preserve">
           <source>connect</source>
-          <target>kapcsolat</target>
+          <target state="translated">kapcsolat</target>
         </trans-unit>
         <trans-unit id="ConnectedToLastFM" translate="yes" xml:space="preserve">
           <source>connected to Last.FM</source>
-          <target>kapcsolódva a Last.FM-hez</target>
+          <target state="translated">kapcsolódva a Last.FM-hez</target>
         </trans-unit>
         <trans-unit id="Connecting" translate="yes" xml:space="preserve">
           <source>connecting</source>
-          <target>kapcsolódás</target>
+          <target state="translated">kapcsolódás</target>
         </trans-unit>
         <trans-unit id="ConnectToLastFM" translate="yes" xml:space="preserve">
           <source>connect to Last.FM</source>
-          <target>kapcsolódás a Last.FM-hez</target>
+          <target state="translated">kapcsolódás a Last.FM-hez</target>
         </trans-unit>
         <trans-unit id="CrashReport" translate="yes" xml:space="preserve">
           <source>crash report</source>
-          <target>összeomlás-jelentés</target>
+          <target state="translated">összeomlás-jelentés</target>
         </trans-unit>
         <trans-unit id="DecreaseSpeed" translate="yes" xml:space="preserve">
           <source>decrease speed</source>
-          <target>sebesség csökkentése</target>
+          <target state="translated">sebesség csökkentése</target>
         </trans-unit>
         <trans-unit id="DecreaseVolume" translate="yes" xml:space="preserve">
           <source>decrease volume</source>
-          <target>hangerő csökkentése</target>
+          <target state="translated">hangerő csökkentése</target>
         </trans-unit>
         <trans-unit id="DeletePlaylist" translate="yes" xml:space="preserve">
           <source>delete playlist</source>
-          <target>lejátszólista törlése</target>
+          <target state="translated">lejátszólista törlése</target>
         </trans-unit>
         <trans-unit id="DeleteSelected" translate="yes" xml:space="preserve">
           <source>delete selected</source>
-          <target>kiválasztott törlése</target>
+          <target state="translated">kiválasztott törlése</target>
         </trans-unit>
         <trans-unit id="EditMetadata" translate="yes" xml:space="preserve">
           <source>edit metadata</source>
-          <target>metaadatok szerkesztése</target>
+          <target state="translated">metaadatok szerkesztése</target>
         </trans-unit>
         <trans-unit id="ElementsNotFound" translate="yes" xml:space="preserve">
           <source>we did not find elements in there</source>
-          <target>nem találhatóak elemek itt</target>
+          <target state="translated">nem találhatóak elemek itt</target>
         </trans-unit>
         <trans-unit id="EnterURL" translate="yes" xml:space="preserve">
           <source>enter a url</source>
-          <target>adjon meg egy URL-t</target>
+          <target state="translated">adjon meg egy URL-t</target>
         </trans-unit>
         <trans-unit id="Episode" translate="yes" xml:space="preserve">
           <source>episode</source>
-          <target>epizód</target>
+          <target state="translated">epizód</target>
         </trans-unit>
         <trans-unit id="EvenIfBackground" translate="yes" xml:space="preserve">
           <source>even if the app is in background</source>
-          <target>még akkor is, ha az app a háttérben van</target>
+          <target state="translated">még akkor is, ha az app a háttérben van</target>
         </trans-unit>
         <trans-unit id="EvenIfNotBackground" translate="yes" xml:space="preserve">
           <source>even if the app is not in background</source>
-          <target>még akkor is, ha az app nem a háttérben van</target>
+          <target state="translated">még akkor is, ha az app nem a háttérben van</target>
         </trans-unit>
         <trans-unit id="FailFilePlayBackground" translate="yes" xml:space="preserve">
           <source>This file may not play in the background</source>
-          <target>Ez a fájl lehet hogy nem játszható le a háttérben</target>
+          <target state="translated">Ez a fájl lehet hogy nem játszható le a háttérben</target>
         </trans-unit>
         <trans-unit id="FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
           <source>VLC failed to navigate to the Video Player page</source>
-          <target>A VLC nem tudott a Videólejátszó oldalra navigálni</target>
+          <target state="translated">A VLC nem tudott a Videólejátszó oldalra navigálni</target>
         </trans-unit>
         <trans-unit id="FailOpenVideo" translate="yes" xml:space="preserve">
           <source>VLC failed to open the video</source>
-          <target>A VLC nem tudta megnyitni a videót</target>
+          <target state="translated">A VLC nem tudta megnyitni a videót</target>
         </trans-unit>
         <trans-unit id="FailStartVLCEngine" translate="yes" xml:space="preserve">
           <source>The app failed to start the VLC engine</source>
-          <target>Az app nem tudta elindítani a VLC motort</target>
+          <target state="translated">Az app nem tudta elindítani a VLC motort</target>
         </trans-unit>
         <trans-unit id="FeedbackThankYou" translate="yes" xml:space="preserve">
           <source>feedback sent! thank you</source>
-          <target>visszajelzés elküldve! köszönjük</target>
+          <target state="translated">visszajelzés elküldve! köszönjük</target>
         </trans-unit>
         <trans-unit id="FileExplorer" translate="yes" xml:space="preserve">
           <source>browse</source>
-          <target>böngészés</target>
+          <target state="translated">böngészés</target>
         </trans-unit>
         <trans-unit id="HardwareDecoding" translate="yes" xml:space="preserve">
           <source>hardware decoding</source>
-          <target>hardveres dekódolás</target>
+          <target state="translated">hardveres dekódolás</target>
         </trans-unit>
         <trans-unit id="HardwareDecodingDescription" translate="yes" xml:space="preserve">
           <source>Hardware decoding may not work on your device.</source>
-          <target>A hardveres dekódolás lehet hogy nem működik az eszközén.</target>
+          <target state="translated">A hardveres dekódolás lehet hogy nem működik az eszközén.</target>
         </trans-unit>
         <trans-unit id="HaveToSelectPlaylist" translate="yes" xml:space="preserve">
           <source>please select a playlist</source>
-          <target>válasszon lejátszólistát</target>
+          <target state="translated">válasszon lejátszólistát</target>
         </trans-unit>
         <trans-unit id="Home" translate="yes" xml:space="preserve">
           <source>home</source>
-          <target>kezdőlap</target>
+          <target state="translated">kezdőlap</target>
         </trans-unit>
         <trans-unit id="HomePage" translate="yes" xml:space="preserve">
           <source>home page</source>
-          <target>kezdőlap</target>
+          <target state="translated">kezdőlap</target>
         </trans-unit>
         <trans-unit id="HomePageDescription" translate="yes" xml:space="preserve">
           <source>VLC will start on the selected page</source>
-          <target>A VLC a kiválasztott oldallal fog indulni</target>
+          <target state="translated">A VLC a kiválasztott oldallal fog indulni</target>
         </trans-unit>
         <trans-unit id="HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
           <source>however you may find what you're looking for here</source>
-          <target>viszont itt megtalálhatja amit keres</target>
+          <target state="translated">viszont itt megtalálhatja amit keres</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum1" translate="yes" xml:space="preserve">
           <source>to favorite an album, just press</source>
-          <target>az album kedvencként beállításához csak nyomja meg</target>
+          <target state="translated">az album kedvencként beállításához csak nyomja meg</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum2" translate="yes" xml:space="preserve">
           <source>and you'll get an instant access to it</source>
-          <target>és azonnal hozzá fog férni</target>
+          <target state="translated">és azonnal hozzá fog férni</target>
         </trans-unit>
         <trans-unit id="ImportantSponsors" translate="yes" xml:space="preserve">
           <source>important sponsors</source>
-          <target>fontos támogatók</target>
+          <target state="translated">fontos támogatók</target>
         </trans-unit>
         <trans-unit id="IncreaseSpeed" translate="yes" xml:space="preserve">
           <source>increase speed</source>
-          <target>sebesség növelése</target>
+          <target state="translated">sebesség növelése</target>
         </trans-unit>
         <trans-unit id="IncreaseVolume" translate="yes" xml:space="preserve">
           <source>increase volume</source>
-          <target>hangerő növelése</target>
+          <target state="translated">hangerő növelése</target>
         </trans-unit>
         <trans-unit id="ItsEmpty" translate="yes" xml:space="preserve">
           <source>it's empty here</source>
-          <target>ez üres</target>
+          <target state="translated">ez üres</target>
         </trans-unit>
         <trans-unit id="KeyboardShortcuts" translate="yes" xml:space="preserve">
           <source>keyboard shortcuts</source>
-          <target>gyorsbillentyűk</target>
+          <target state="translated">gyorsbillentyűk</target>
         </trans-unit>
         <trans-unit id="License" translate="yes" xml:space="preserve">
           <source>license</source>
-          <target>licenc</target>
+          <target state="translated">licenc</target>
         </trans-unit>
         <trans-unit id="Loading" translate="yes" xml:space="preserve">
           <source>loading</source>
-          <target>betöltés</target>
+          <target state="translated">betöltés</target>
         </trans-unit>
         <trans-unit id="LoadingMusic" translate="yes" xml:space="preserve">
           <source>loading music</source>
-          <target>zene betöltése</target>
+          <target state="translated">zene betöltése</target>
         </trans-unit>
         <trans-unit id="MostPlayedArtists" translate="yes" xml:space="preserve">
           <source>most played artists</source>
-          <target>legtöbbet játszott előadó</target>
+          <target state="translated">legtöbbet játszott előadó</target>
         </trans-unit>
         <trans-unit id="Music" translate="yes" xml:space="preserve">
           <source>music</source>
-          <target>zene</target>
+          <target state="translated">zene</target>
         </trans-unit>
         <trans-unit id="MusicFolders" translate="yes" xml:space="preserve">
           <source>music folders</source>
-          <target>zenemappák</target>
+          <target state="translated">zenemappák</target>
         </trans-unit>
         <trans-unit id="MusicFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search songs that are in your music library. You can add folders to your library here</source>
-          <target>A VLC csak a zenetárban lévő számokat fogja keresni. Mappákat itt adhat hozzá a zenetárhoz:</target>
+          <target state="translated">A VLC csak a zenetárban lévő számokat fogja keresni. Mappákat itt adhat hozzá a zenetárhoz:</target>
         </trans-unit>
         <trans-unit id="MusicSettings" translate="yes" xml:space="preserve">
           <source>Music Settings</source>
-          <target>Zenebeállítások</target>
+          <target state="translated">Zenebeállítások</target>
        </trans-unit>
         <trans-unit id="MusicShows" translate="yes" xml:space="preserve">
           <source>music shows</source>
-          <target>zenei műsorok</target>
+          <target state="translated">zenei műsorok</target>
         </trans-unit>
         <trans-unit id="Mute" translate="yes" xml:space="preserve">
           <source>mute</source>
-          <target>némítás</target>
+          <target state="translated">némítás</target>
         </trans-unit>
         <trans-unit id="MyPlaylists" translate="yes" xml:space="preserve">
           <source>my playlists</source>
-          <target>lejátszólistáim</target>
+          <target state="translated">lejátszólistáim</target>
         </trans-unit>
         <trans-unit id="Network" translate="yes" xml:space="preserve">
           <source>network</source>
-          <target>hálózat</target>
+          <target state="translated">hálózat</target>
         </trans-unit>
         <trans-unit id="NewPlaylist" translate="yes" xml:space="preserve">
           <source>new playlist</source>
-          <target>új lejátszólista</target>
+          <target state="translated">új lejátszólista</target>
         </trans-unit>
         <trans-unit id="NewVideos" translate="yes" xml:space="preserve">
           <source>new videos</source>
-          <target>új videók</target>
+          <target state="translated">új videók</target>
         </trans-unit>
         <trans-unit id="No" translate="yes" xml:space="preserve">
           <source>no</source>
-          <target>nem</target>
+          <target state="translated">nem</target>
         </trans-unit>
         <trans-unit id="NoBiographyFound" translate="yes" xml:space="preserve">
           <source>no bio found for this artist</source>
-          <target>nem található életrajz ehhez az előadóhoz</target>
+          <target state="translated">nem található életrajz ehhez az előadóhoz</target>
         </trans-unit>
         <trans-unit id="NoCameraVideosFound" translate="yes" xml:space="preserve">
           <source>no camera videos found</source>
-          <target>nem találhatóak felvett videók</target>
+          <target state="translated">nem találhatóak felvett videók</target>
         </trans-unit>
         <trans-unit id="NoFavoriteAlbums" translate="yes" xml:space="preserve">
           <source>no favorite albums</source>
-          <target>nincsenek kedvenc albumok</target>
+          <target state="translated">nincsenek kedvenc albumok</target>
         </trans-unit>
         <trans-unit id="NoInternetConnection" translate="yes" xml:space="preserve">
           <source>no internet connection</source>
-          <target>nincs internetkapcsolat</target>
+          <target state="translated">nincs internetkapcsolat</target>
         </trans-unit>
         <trans-unit id="NoPlaylists" translate="yes" xml:space="preserve">
           <source>no playlists</source>
-          <target>nincsenek lejátszólisták</target>
+          <target state="translated">nincsenek lejátszólisták</target>
         </trans-unit>
         <trans-unit id="NoShowsFound" translate="yes" xml:space="preserve">
           <source>no shows found</source>
-          <target>nincsenek sorozatok</target>
+          <target state="translated">nincsenek sorozatok</target>
         </trans-unit>
         <trans-unit id="NothingToSeeHere" translate="yes" xml:space="preserve">
           <source>there's nothing to see here</source>
-          <target>nincs itt semmi látnivaló</target>
+          <target state="translated">nincs itt semmi látnivaló</target>
         </trans-unit>
         <trans-unit id="Notifications" translate="yes" xml:space="preserve">
           <source>notifications</source>
-          <target>értesítések</target>
+          <target state="translated">értesítések</target>
         </trans-unit>
         <trans-unit id="NotificationWhenSongStarts" translate="yes" xml:space="preserve">
           <source>when the song starts</source>
-          <target>amikor a szám elkezdődik</target>
+          <target state="translated">amikor a szám elkezdődik</target>
         </trans-unit>
         <trans-unit id="NoVideosFound" translate="yes" xml:space="preserve">
           <source>we did not find video</source>
-          <target>nem találtunk videót</target>
+          <target state="translated">nem találtunk videót</target>
        </trans-unit>
         <trans-unit id="NowPlaying" translate="yes" xml:space="preserve">
           <source>now playing</source>
-          <target>most játszott</target>
+          <target state="translated">most játszott</target>
         </trans-unit>
         <trans-unit id="OpenFile" translate="yes" xml:space="preserve">
           <source>open file</source>
-          <target>fájl megnyitása</target>
+          <target state="translated">fájl megnyitása</target>
         </trans-unit>
         <trans-unit id="OpenStream" translate="yes" xml:space="preserve">
           <source>open stream</source>
-          <target>adatfolyam megnyitása</target>
+          <target state="translated">adatfolyam megnyitása</target>
         </trans-unit>
         <trans-unit id="OpenSubtitle" translate="yes" xml:space="preserve">
           <source>open subtitle</source>
-          <target>felirat megnyitása</target>
+          <target state="translated">felirat megnyitása</target>
         </trans-unit>
         <trans-unit id="OrderAscending" translate="yes" xml:space="preserve">
           <source>ascending</source>
-          <target>növekvő</target>
+          <target state="translated">növekvő</target>
         </trans-unit>
         <trans-unit id="OrderByAlbum" translate="yes" xml:space="preserve">
           <source>by album</source>
-          <target>album szerint</target>
+          <target state="translated">album szerint</target>
         </trans-unit>
         <trans-unit id="OrderByArtist" translate="yes" xml:space="preserve">
           <source>by artist</source>
-          <target>előadó szerint</target>
+          <target state="translated">előadó szerint</target>
         </trans-unit>
         <trans-unit id="OrderByDate" translate="yes" xml:space="preserve">
           <source>by date</source>
-          <target>dátum szerint</target>
+          <target state="translated">dátum szerint</target>
         </trans-unit>
         <trans-unit id="OrderDescending" translate="yes" xml:space="preserve">
           <source>descending</source>
-          <target>csökkenő</target>
+          <target state="translated">csökkenő</target>
         </trans-unit>
         <trans-unit id="Password" translate="yes" xml:space="preserve">
           <source>password</source>
-          <target>jelszó</target>
+          <target state="translated">jelszó</target>
         </trans-unit>
         <trans-unit id="Pause" translate="yes" xml:space="preserve">
           <source>pause</source>
-          <target>szünet</target>
+          <target state="translated">szünet</target>
         </trans-unit>
         <trans-unit id="PinAlbum" translate="yes" xml:space="preserve">
           <source>pin album</source>
-          <target>album rögzítése</target>
+          <target state="translated">album rögzítése</target>
         </trans-unit>
         <trans-unit id="PinArtist" translate="yes" xml:space="preserve">
           <source>pin artist</source>
-          <target>előadó rögzítése</target>
+          <target state="translated">előadó rögzítése</target>
         </trans-unit>
         <trans-unit id="Play" translate="yes" xml:space="preserve">
           <source>play</source>
-          <target>lejátszás</target>
+          <target state="translated">lejátszás</target>
         </trans-unit>
         <trans-unit id="PlayAlbum" translate="yes" xml:space="preserve">
           <source>play album</source>
-          <target>album lejátszása</target>
+          <target state="translated">album lejátszása</target>
         </trans-unit>
         <trans-unit id="PlayAll" translate="yes" xml:space="preserve">
           <source>play all</source>
-          <target>összes lejátszása</target>
+          <target state="translated">összes lejátszása</target>
         </trans-unit>
         <trans-unit id="Playback" translate="yes" xml:space="preserve">
           <source>playback</source>
-          <target>lejátszás</target>
+          <target state="translated">lejátszás</target>
         </trans-unit>
         <trans-unit id="PlayerSettings" translate="yes" xml:space="preserve">
           <source>Player Settings</source>
-          <target>Lejátszóbeállítások </target>
+          <target state="translated">Lejátszóbeállítások </target>
        </trans-unit>
         <trans-unit id="PlayFolder" translate="yes" xml:space="preserve">
           <source>play folder</source>
-          <target>mappa lejátszása</target>
+          <target state="translated">mappa lejátszása</target>
         </trans-unit>
         <trans-unit id="Playlist" translate="yes" xml:space="preserve">
           <source>playlist</source>
-          <target>lejátszólista</target>
+          <target state="translated">lejátszólista</target>
         </trans-unit>
         <trans-unit id="PlaylistAlreadyExists" translate="yes" xml:space="preserve">
           <source>this playlist already exists</source>
-          <target>ez a lejátszólista már létezik</target>
+          <target state="translated">ez a lejátszólista már létezik</target>
         </trans-unit>
         <trans-unit id="PlaylistNamePlaceholder" translate="yes" xml:space="preserve">
           <source>playlist name</source>
-          <target>lejátszólista neve</target>
+          <target state="translated">lejátszólista neve</target>
         </trans-unit>
         <trans-unit id="Playlists" translate="yes" xml:space="preserve">
           <source>playlists</source>
-          <target>lejátszólisták</target>
+          <target state="translated">lejátszólisták</target>
         </trans-unit>
         <trans-unit id="PlayTrack" translate="yes" xml:space="preserve">
           <source>play track</source>
-          <target>szám lejátszása</target>
+          <target state="translated">szám lejátszása</target>
         </trans-unit>
         <trans-unit id="PlayVideo" translate="yes" xml:space="preserve">
           <source>play video</source>
-          <target>videó lejátszása</target>
+          <target state="translated">videó lejátszása</target>
         </trans-unit>
         <trans-unit id="PrivacyStatement" translate="yes" xml:space="preserve">
           <source>privacy statement</source>
-          <target>adatvédelmi nyilatkozat</target>
+          <target state="translated">adatvédelmi nyilatkozat</target>
         </trans-unit>
         <trans-unit id="Favorites" translate="yes" xml:space="preserve">
           <source>Favorites</source>
-          <target>Kedvencek</target>
+          <target state="translated">Kedvencek</target>
         </trans-unit>
         <trans-unit id="RefreshMusicLibrary" translate="yes" xml:space="preserve">
           <source>refresh music library</source>
-          <target>zenetár frissítése</target>
+          <target state="translated">zenetár frissítése</target>
         </trans-unit>
         <trans-unit id="RefreshVideoLibrary" translate="yes" xml:space="preserve">
           <source>refresh video library</source>
-          <target>videótár frissítése</target>
+          <target state="translated">videótár frissítése</target>
         </trans-unit>
         <trans-unit id="RemovableStorage" translate="yes" xml:space="preserve">
           <source>removable storage</source>
-          <target>cserélhető tároló</target>
+          <target state="translated">cserélhető tároló</target>
         </trans-unit>
         <trans-unit id="RemoveFolder" translate="yes" xml:space="preserve">
           <source>remove folder</source>
-          <target>mappa eltávolítása</target>
+          <target state="translated">mappa eltávolítása</target>
         </trans-unit>
         <trans-unit id="RemoveMusicFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</source>
-          <target>Ha nem akarja hogy ez a mappa a zenetárban legyen, akkor eltávolíthatja. Ez az összes appot érinteni fogja, nem csak a VLC-t</target>
+          <target state="translated">Ha nem akarja hogy ez a mappa a zenetárban legyen, akkor eltávolíthatja. Ez az összes appot érinteni fogja, nem csak a VLC-t</target>
         </trans-unit>
         <trans-unit id="RemoveVideoFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</source>
-          <target>Ha nem akarja hogy ez a mappa a videótárban legyen, akkor eltávolíthatja. Ez az összes appot érinteni fogja, nem csak a VLC-t</target>
+          <target state="translated">Ha nem akarja hogy ez a mappa a videótárban legyen, akkor eltávolíthatja. Ez az összes appot érinteni fogja, nem csak a VLC-t</target>
         </trans-unit>
         <trans-unit id="Reset" translate="yes" xml:space="preserve">
           <source>reset</source>
-          <target>visszaállítás</target>
+          <target state="translated">visszaállítás</target>
         </trans-unit>
         <trans-unit id="ResetMusicDatabase" translate="yes" xml:space="preserve">
           <source>reset music database</source>
-          <target>zeneadatbázis visszaállítása</target>
+          <target state="translated">zeneadatbázis visszaállítása</target>
         </trans-unit>
         <trans-unit id="ResetSpeed" translate="yes" xml:space="preserve">
           <source>reset speed</source>
-          <target>sebesség visszaállítása</target>
+          <target state="translated">sebesség visszaállítása</target>
         </trans-unit>
         <trans-unit id="RichAnimationsDescription" translate="yes" xml:space="preserve">
           <source>Use rich animations in the slideshows</source>
-          <target>Gazdag animációk használata a diavetítéseknél</target>
+          <target state="translated">Gazdag animációk használata a diavetítéseknél</target>
         </trans-unit>
         <trans-unit id="Search" translate="yes" xml:space="preserve">
           <source>search</source>
-          <target>keresés</target>
+          <target state="translated">keresés</target>
         </trans-unit>
         <trans-unit id="Season" translate="yes" xml:space="preserve">
           <source>season</source>
-          <target>évad</target>
+          <target state="translated">évad</target>
         </trans-unit>
         <trans-unit id="Settings" translate="yes" xml:space="preserve">
           <source>settings</source>
-          <target>beállítások</target>
+          <target state="translated">beállítások</target>
         </trans-unit>
         <trans-unit id="ShowPlaylist" translate="yes" xml:space="preserve">
           <source>show playlist</source>
-          <target>lejátszólista megjelenítése</target>
+          <target state="translated">lejátszólista megjelenítése</target>
         </trans-unit>
         <trans-unit id="Shows" translate="yes" xml:space="preserve">
           <source>shows</source>
-          <target>sorozatok</target>
+          <target state="translated">sorozatok</target>
         </trans-unit>
         <trans-unit id="Shuffle" translate="yes" xml:space="preserve">
           <source>shuffle</source>
-          <target>véletlen sorrend</target>
+          <target state="translated">véletlen sorrend</target>
         </trans-unit>
         <trans-unit id="Songs" translate="yes" xml:space="preserve">
           <source>songs</source>
-          <target>számok</target>
+          <target state="translated">számok</target>
         </trans-unit>
         <trans-unit id="SpecialThanks" translate="yes" xml:space="preserve">
           <source>special thanks</source>
-          <target>külön köszönet</target>
+          <target state="translated">külön köszönet</target>
         </trans-unit>
         <trans-unit id="Speed" translate="yes" xml:space="preserve">
           <source>speed</source>
-          <target>sebesség</target>
+          <target state="translated">sebesség</target>
         </trans-unit>
         <trans-unit id="Stop" translate="yes" xml:space="preserve">
           <source>stop</source>
-          <target>leállítás</target>
+          <target state="translated">leállítás</target>
         </trans-unit>
         <trans-unit id="SubtitleDelay" translate="yes" xml:space="preserve">
           <source>subtitle delay</source>
-          <target>felirat késleltetése</target>
+          <target state="translated">felirat késleltetése</target>
         </trans-unit>
         <trans-unit id="Subtitles" translate="yes" xml:space="preserve">
           <source>Subtitles</source>
-          <target>Feliratok</target>
+          <target state="translated">Feliratok</target>
        </trans-unit>
         <trans-unit id="SubtitlesEncoding" translate="yes" xml:space="preserve">
           <source>subtitles encoding</source>
-          <target>feliratkódolás</target>
+          <target state="translated">feliratkódolás</target>
         </trans-unit>
         <trans-unit id="Theme" translate="yes" xml:space="preserve">
           <source>theme</source>
-          <target>téma</target>
+          <target state="translated">téma</target>
         </trans-unit>
         <trans-unit id="TileRemoved" translate="yes" xml:space="preserve">
           <source>tile removed</source>
-          <target>csempe eltávolítása</target>
+          <target state="translated">csempe eltávolítása</target>
         </trans-unit>
         <trans-unit id="TopVideos" translate="yes" xml:space="preserve">
           <source>top videos</source>
-          <target>legjobb videók</target>
+          <target state="translated">legjobb videók</target>
         </trans-unit>
         <trans-unit id="TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
           <source>track added to the playlist</source>
-          <target>sáv hozzáadva a lejátszólistához</target>
+          <target state="translated">sáv hozzáadva a lejátszólistához</target>
         </trans-unit>
         <trans-unit id="TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
           <source>this track is already in that playlist</source>
-          <target>ez a sáv már szerepel a lejátszólistában</target>
+          <target state="translated">ez a sáv már szerepel a lejátszólistában</target>
         </trans-unit>
         <trans-unit id="Tracks" translate="yes" xml:space="preserve">
           <source>tracks</source>
-          <target>szám</target>
+          <target state="translated">szám</target>
         </trans-unit>
         <trans-unit id="UnknownAlbum" translate="yes" xml:space="preserve">
           <source>Unknown album</source>
-          <target>Ismeretlen album</target>
+          <target state="translated">Ismeretlen album</target>
         </trans-unit>
         <trans-unit id="UnknownArtist" translate="yes" xml:space="preserve">
           <source>Unknown artist</source>
-          <target>Ismeretlen előadó</target>
+          <target state="translated">Ismeretlen előadó</target>
         </trans-unit>
         <trans-unit id="UnknownShow" translate="yes" xml:space="preserve">
           <source>Unknown show</source>
-          <target>Ismeretlen műsor</target>
+          <target state="translated">Ismeretlen műsor</target>
         </trans-unit>
         <trans-unit id="UnknownTrack" translate="yes" xml:space="preserve">
           <source>Unknown track</source>
-          <target>Ismeretlen sáv</target>
+          <target state="translated">Ismeretlen sáv</target>
         </trans-unit>
         <trans-unit id="UserInterface" translate="yes" xml:space="preserve">
           <source>User Interface</source>
-          <target>Felhasználói felület</target>
+          <target state="translated">Felhasználói felület</target>
        </trans-unit>
         <trans-unit id="Username" translate="yes" xml:space="preserve">
           <source>username</source>
-          <target>felhasználónév</target>
+          <target state="translated">felhasználónév</target>
         </trans-unit>
         <trans-unit id="Video" translate="yes" xml:space="preserve">
           <source>video</source>
-          <target>videó</target>
+          <target state="translated">videó</target>
         </trans-unit>
         <trans-unit id="VideoFolders" translate="yes" xml:space="preserve">
           <source>video folders</source>
-          <target>videómappák</target>
+          <target state="translated">videómappák</target>
         </trans-unit>
         <trans-unit id="VideoFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search videos that are in your video library. You can add folders to your library here</source>
-          <target>A VLC csak a videótárban lévő számokat fogja keresni. Mappákat itt adhat hozzá a videótárhoz:</target>
+          <target state="translated">A VLC csak a videótárban lévő számokat fogja keresni. Mappákat itt adhat hozzá a videótárhoz:</target>
         </trans-unit>
         <trans-unit id="VideoPlayback" translate="yes" xml:space="preserve">
           <source>video playback</source>
-          <target>videólejátszás </target>
+          <target state="translated">videólejátszás </target>
         </trans-unit>
         <trans-unit id="VideoPlaybackInBackground" translate="yes" xml:space="preserve">
           <source>play video in background</source>
-          <target>videó lejátszása a háttérben</target>
+          <target state="translated">videó lejátszása a háttérben</target>
         </trans-unit>
         <trans-unit id="Videos" translate="yes" xml:space="preserve">
           <source>videos</source>
-          <target>videók</target>
+          <target state="translated">videók</target>
         </trans-unit>
         <trans-unit id="VideoSettings" translate="yes" xml:space="preserve">
           <source>Video Settings</source>
-          <target>Videobeállítások</target>
+          <target state="translated">Videobeállítások</target>
        </trans-unit>
         <trans-unit id="ViewAlbum" translate="yes" xml:space="preserve">
           <source>view album</source>
-          <target>album megtekintése</target>
+          <target state="translated">album megtekintése</target>
         </trans-unit>
         <trans-unit id="ViewArtist" translate="yes" xml:space="preserve">
           <source>view artist</source>
-          <target>előadó megtekintése</target>
+          <target state="translated">előadó megtekintése</target>
         </trans-unit>
         <trans-unit id="Volume" translate="yes" xml:space="preserve">
           <source>volume</source>
-          <target>hangerő</target>
+          <target state="translated">hangerő</target>
         </trans-unit>
         <trans-unit id="WeNeedYourHelp" translate="yes" xml:space="preserve">
           <source>we need your help</source>
-          <target>szükségünk van a segítségére</target>
+          <target state="translated">szükségünk van a segítségére</target>
         </trans-unit>
         <trans-unit id="Yes" translate="yes" xml:space="preserve">
           <source>yes</source>
-          <target>igen</target>
+          <target state="translated">igen</target>
         </trans-unit>
         <trans-unit id="YourMusic" translate="yes" xml:space="preserve">
           <source>your music</source>
-          <target>az Ön zenéi</target>
+          <target state="translated">az Ön zenéi</target>
         </trans-unit>
         <trans-unit id="AccentColor" translate="yes" xml:space="preserve">
           <source>accent color</source>
-          <target>kiegészítő szín</target>
+          <target state="translated">kiegészítő szín</target>
         </trans-unit>
         <trans-unit id="BackgroundColor" translate="yes" xml:space="preserve">
           <source>background color</source>
-          <target>háttérszín</target>
+          <target state="translated">háttérszín</target>
         </trans-unit>
         <trans-unit id="Dark" translate="yes" xml:space="preserve">
           <source>dark</source>
-          <target>sötét</target>
+          <target state="translated">sötét</target>
         </trans-unit>
         <trans-unit id="Light" translate="yes" xml:space="preserve">
           <source>light</source>
-          <target>világos</target>
+          <target state="translated">világos</target>
         </trans-unit>
         <trans-unit id="TitleBar" translate="yes" xml:space="preserve">
           <source>title bar</source>
-          <target>címsáv</target>
+          <target state="translated">címsáv</target>
         </trans-unit>
         <trans-unit id="NeedRestart" translate="yes" xml:space="preserve">
           <source>You need to restart the app to apply changes</source>
-          <target>Újra kell indítani az appot a változtatások alkalmazásához</target>
+          <target state="translated">Újra kell indítani az appot a változtatások alkalmazásához</target>
         </trans-unit>
         <trans-unit id="Zoom" translate="yes" xml:space="preserve">
           <source>zoom</source>
-          <target>nagyítás</target>
+          <target state="translated">nagyítás</target>
         </trans-unit>
         <trans-unit id="AreYouSure" translate="yes" xml:space="preserve">
           <source>are you sure?</source>
-          <target>biztos benne?</target>
+          <target state="translated">biztos benne?</target>
         </trans-unit>
         <trans-unit id="MediaCantBeRead" translate="yes" xml:space="preserve">
           <source>the media can't be read</source>
-          <target>a média nem olvasható</target>
+          <target state="translated">a média nem olvasható</target>
         </trans-unit>
         <trans-unit id="Sorry" translate="yes" xml:space="preserve">
           <source>we're sorry</source>
-          <target>sajnáljuk</target>
+          <target state="translated">sajnáljuk</target>
         </trans-unit>
         <trans-unit id="SURFACE_BEST_FIT" translate="yes" xml:space="preserve">
           <source>best fit</source>
-          <target>legjobban illeszkedő</target>
+          <target state="translated">legjobban illeszkedő</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_HORIZONTAL" translate="yes" xml:space="preserve">
           <source>horizontal cropping</source>
-          <target>vízszintes levágás</target>
+          <target state="translated">vízszintes levágás</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_VERTICAL" translate="yes" xml:space="preserve">
           <source>vertical cropping</source>
-          <target>függőleges levágás</target>
+          <target state="translated">függőleges levágás</target>
         </trans-unit>
         <trans-unit id="YourPlaylistWontBeAccessible" translate="yes" xml:space="preserve">
           <source>your playlist won't be accessible</source>
-          <target>a lejátszólista nem lesz elérhető</target>
+          <target state="translated">a lejátszólista nem lesz elérhető</target>
         </trans-unit>
         <trans-unit id="NoArtistShowsFound" translate="yes" xml:space="preserve">
           <source>we didn't find shows for this artist</source>
-          <target>nem található műsor ehhez az előadóhoz</target>
+          <target state="translated">nem található műsor ehhez az előadóhoz</target>
         </trans-unit>
         <trans-unit id="NoResults" translate="yes" xml:space="preserve">
           <source>no results</source>
-          <target>nincs eredmény</target>
+          <target state="translated">nincs eredmény</target>
         </trans-unit>
         <trans-unit id="ForceLandscape" translate="yes" xml:space="preserve">
           <source>Force landscape</source>
-          <target>Fekvő mód kényszerítése</target>
+          <target state="translated">Fekvő mód kényszerítése</target>
         </trans-unit>
         <trans-unit id="SURFACE_STRETCH" translate="yes" xml:space="preserve">
           <source>stretch</source>
-          <target>nyújtás</target>
+          <target state="translated">nyújtás</target>
         </trans-unit>
         <trans-unit id="SimilarArtists" translate="yes" xml:space="preserve">
           <source>Similar artists</source>
-          <target>Hasonló előadók</target>
+          <target state="translated">Hasonló előadók</target>
         </trans-unit>
         <trans-unit id="EnglishLanguage" translate="yes" xml:space="preserve">
           <source>English</source>
-          <target>angol</target>
+          <target state="translated">angol</target>
         </trans-unit>
         <trans-unit id="FrenchLanguage" translate="yes" xml:space="preserve">
           <source>French</source>
-          <target>francia</target>
+          <target state="translated">francia</target>
         </trans-unit>
         <trans-unit id="JapaneseLanguage" translate="yes" xml:space="preserve">
           <source>Japanese</source>
-          <target>japán</target>
+          <target state="translated">japán</target>
         </trans-unit>
         <trans-unit id="GermanLanguage" translate="yes" xml:space="preserve">
           <source>German</source>
-          <target>német</target>
+          <target state="translated">német</target>
         </trans-unit>
         <trans-unit id="PolishLanguage" translate="yes" xml:space="preserve">
           <source>Polish</source>
-          <target>lengyel</target>
+          <target state="translated">lengyel</target>
         </trans-unit>
         <trans-unit id="SlovakLanguage" translate="yes" xml:space="preserve">
           <source>Slovak</source>
-          <target>szlovák</target>
+          <target state="translated">szlovák</target>
         </trans-unit>
         <trans-unit id="DanishLanguage" translate="yes" xml:space="preserve">
           <source>Danish</source>
-          <target>dán</target>
+          <target state="translated">dán</target>
         </trans-unit>
         <trans-unit id="SpanishLanguage" translate="yes" xml:space="preserve">
           <source>Spanish</source>
-          <target>spanyol</target>
+          <target state="translated">spanyol</target>
         </trans-unit>
         <trans-unit id="HungarianLanguage" translate="yes" xml:space="preserve">
           <source>Hungarian</source>
-          <target>magyar</target>
+          <target state="translated">magyar</target>
         </trans-unit>
         <trans-unit id="ItalianLanguage" translate="yes" xml:space="preserve">
           <source>Italian</source>
-          <target>olasz</target>
+          <target state="translated">olasz</target>
         </trans-unit>
         <trans-unit id="KoreanLanguage" translate="yes" xml:space="preserve">
           <source>Korean</source>
-          <target>koreai</target>
+          <target state="translated">koreai</target>
         </trans-unit>
         <trans-unit id="MalayLanguage" translate="yes" xml:space="preserve">
           <source>Malay</source>
-          <target>maláj</target>
+          <target state="translated">maláj</target>
         </trans-unit>
         <trans-unit id="NorwegianLanguage" translate="yes" xml:space="preserve">
           <source>Norwegian</source>
-          <target>norvég</target>
+          <target state="translated">norvég</target>
         </trans-unit>
         <trans-unit id="DutchLanguage" translate="yes" xml:space="preserve">
           <source>Dutch</source>
-          <target>holland</target>
+          <target state="translated">holland</target>
         </trans-unit>
         <trans-unit id="RussianLanguage" translate="yes" xml:space="preserve">
           <source>Russian</source>
-          <target>orosz</target>
+          <target state="translated">orosz</target>
         </trans-unit>
         <trans-unit id="SwedishLanguage" translate="yes" xml:space="preserve">
           <source>Swedish</source>
-          <target>svéd</target>
+          <target state="translated">svéd</target>
         </trans-unit>
         <trans-unit id="TurkishLanguage" translate="yes" xml:space="preserve">
           <source>Turkish</source>
-          <target>török</target>
+          <target state="translated">török</target>
         </trans-unit>
         <trans-unit id="UkrainianLanguage" translate="yes" xml:space="preserve">
           <source>Ukrainian</source>
-          <target>ukrán</target>
+          <target state="translated">ukrán</target>
         </trans-unit>
         <trans-unit id="ChineseLanguage" translate="yes" xml:space="preserve">
           <source>Chinese</source>
-          <target>kínai</target>
+          <target state="translated">kínai</target>
         </trans-unit>
         <trans-unit id="PortugueseLanguage" translate="yes" xml:space="preserve">
           <source>Portuguese</source>
-          <target>portugál</target>
+          <target state="translated">portugál</target>
         </trans-unit>		
         <trans-unit id="CzechLanguage" translate="yes" xml:space="preserve">
           <source>Czech</source>
-          <target>cseh</target>
+          <target state="translated">cseh</target>
         </trans-unit>
         <trans-unit id="IcelandicLanguage" translate="yes" xml:space="preserve">
           <source>Icelandic</source>
-          <target>izlandi</target>
+          <target state="translated">izlandi</target>
         </trans-unit>
         <trans-unit id="Languages" translate="yes" xml:space="preserve">
           <source>Languages</source>
-          <target>Nyelvek</target>
+          <target state="translated">Nyelvek</target>
         </trans-unit>
         <trans-unit id="SelectLanguageDescription" translate="yes" xml:space="preserve">
           <source>VLC will be displayed in</source>
-          <target>A VLC ezen a nyelven lesz megjelenítve:</target>
+          <target state="translated">A VLC ezen a nyelven lesz megjelenítve:</target>
         </trans-unit>
         <trans-unit id="ApplyAndRestart" translate="yes" xml:space="preserve">
           <source>Apply And Restart</source>
-          <target>Alkalmaz és újraindítás</target>
+          <target state="translated">Alkalmaz és újraindítás</target>
         </trans-unit>
         <trans-unit id="RefreshLanguage" translate="yes" xml:space="preserve">
           <source>Refresh Language</source>
-          <target>Nyelv frissítése</target>
+          <target state="translated">Nyelv frissítése</target>
         </trans-unit>
         <trans-unit id="Local" translate="yes" xml:space="preserve">
           <source>local</source>
-          <target>helyi</target>
+          <target state="translated">helyi</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES" translate="yes" xml:space="preserve">
           <source>Download Files</source>
-          <target>Fájlok letöltése</target>
+          <target state="translated">Fájlok letöltése</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES_LONG" translate="yes" xml:space="preserve">
           <source>Just click the file you want to download from your Xbox.</source>
-          <target>Csak kattintson arra a fájlra, amelyet le akar tölteni az Xboxáról.</target>
+          <target state="translated">Csak kattintson arra a fájlra, amelyet le akar tölteni az Xboxáról.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES" translate="yes" xml:space="preserve">
           <source>Drop Files</source>
-          <target>Húzza ide a fájlokat</target>
+          <target state="translated">Húzza ide a fájlokat</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
           <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the &quot;+&quot; button to use the file picker dialog.</source>
-          <target>Húzzon fájlokat az ablakba az Xboxára másoláshoz.&lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Vagy kattintson a „+” gombra a fájlválasztó párbeszédablak használatához.</target>
+          <target state="translated">Húzzon fájlokat az ablakba az Xboxára másoláshoz.&lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Vagy kattintson a „+” gombra a fájlválasztó párbeszédablak használatához.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
-          <target>Megosztás Wi-Fin keresztül</target>
+          <target state="translated">Megosztás Wi-Fin keresztül</target>
         </trans-unit>
         <trans-unit id="CopyToLocalStorage" translate="yes" xml:space="preserve">
           <source>copy to local storage</source>
-          <target>másolás helyi tárolóra</target>
+          <target state="translated">másolás helyi tárolóra</target>
         </trans-unit>
         <trans-unit id="ExternalStorageDeviceDetected" translate="yes" xml:space="preserve">
           <source>VLC has detected an external storage device.</source>
-          <target>A VLC külső tárolót észlelt</target>
+          <target state="translated">A VLC külső tárolót észlelt</target>
         </trans-unit>
         <trans-unit id="ReadFromExternalStorage" translate="yes" xml:space="preserve">
           <source>Use external storage as media library.</source>
-          <target>Külső tároló használata médiatárként.</target>
+          <target state="translated">Külső tároló használata médiatárként.</target>
         </trans-unit>
         <trans-unit id="SelectContentToCopy" translate="yes" xml:space="preserve">
           <source>Copy media to the internal storage.</source>
-          <target>Média átmásolása a belső tárolóra.</target>
+          <target state="translated">Média átmásolása a belső tárolóra.</target>
         </trans-unit>
         <trans-unit id="WhatToDo" translate="yes" xml:space="preserve">
           <source>What would you like to do?</source>
-          <target>Mit szeretne tenni?</target>
+          <target state="translated">Mit szeretne tenni?</target>
         </trans-unit>
         <trans-unit id="AskMe" translate="yes" xml:space="preserve">
           <source>Ask me</source>
-          <target>Kérdezzen</target>
+          <target state="translated">Kérdezzen</target>
         </trans-unit>
         <trans-unit id="ExternalStorage" translate="yes" xml:space="preserve">
           <source>external storage</source>
-          <target>külső tároló</target>
+          <target state="translated">külső tároló</target>
         </trans-unit>
         <trans-unit id="WhatToDoWhenExternalStorage" translate="yes" xml:space="preserve">
           <source>What should VLC do when an external storage device has been detected?</source>
-          <target>Mit tegyen a VLC, ha külső tárolót észlel?</target>
+          <target state="translated">Mit tegyen a VLC, ha külső tárolót észlel?</target>
         </trans-unit>
         <trans-unit id="Cancel" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target>Mégsem</target>
+          <target state="translated">Mégsem</target>
         </trans-unit>
         <trans-unit id="DoNothing" translate="yes" xml:space="preserve">
           <source>Do nothing</source>
-          <target>Ne tegyen semmit</target>
+          <target state="translated">Ne tegyen semmit</target>
         </trans-unit>
         <trans-unit id="Ok" translate="yes" xml:space="preserve">
           <source>Ok</source>
-          <target>Ok</target>
+          <target state="translated">Ok</target>
         </trans-unit>
         <trans-unit id="Ignore" translate="yes" xml:space="preserve">
           <source>Ignore</source>
-          <target>Mellőzés</target>
+          <target state="translated">Mellőzés</target>
         </trans-unit>
         <trans-unit id="Remember" translate="yes" xml:space="preserve">
           <source>Remember</source>
-          <target>Megjegyzés</target>
+          <target state="translated">Megjegyzés</target>
         </trans-unit>
         <trans-unit id="AddMediaHelp" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device</source>
-          <target>Helyezzen be egy külső tárolóeszközt</target>
+          <target state="translated">Helyezzen be egy külső tárolóeszközt</target>
         </trans-unit>
         <trans-unit id="AddMediaHelpWithIP" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device, or go to http://{0}:8080 to upload some media</source>
-          <target>Helyezzen be egy külső tárolóeszközt, vagy menjen ide: http://{0}:8080, és töltsön fel néhány médiát</target>
+          <target state="translated">Helyezzen be egy külső tárolóeszközt, vagy menjen ide: http://{0}:8080, és töltsön fel néhány médiát</target>
         </trans-unit>
         <trans-unit id="CopyHelpDesktop" translate="yes" xml:space="preserve">
           <source>Right-click on a file or a folder to copy it to the local storage.</source>
-          <target>Jobb kattintás a fájlon vagy mappán a helyi tárolóra másoláshoz.</target>
+          <target state="translated">Jobb kattintás a fájlon vagy mappán a helyi tárolóra másoláshoz.</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
           <source>Press &quot;Y&quot; on a file or a folder to copy it to the local storage.</source>
-          <target>Nyomjon „Y”-t egy fájlon vagy mappán hogy a helyi tárolóra másolja.</target>
+          <target state="translated">Nyomjon „Y”-t egy fájlon vagy mappán hogy a helyi tárolóra másolja.</target>
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
           <source>No subtitle tracks</source>
-          <target>Nincsenek feliratsávok</target>
+          <target state="translated">Nincsenek feliratsávok</target>
         </trans-unit>
         <trans-unit id="ClearKeystore" translate="yes" xml:space="preserve">
           <source>Clear saved credentials</source>
-          <target>Mentett hitelesítési adatok törlése</target>
+          <target state="translated">Mentett hitelesítési adatok törlése</target>
         </trans-unit>
         <trans-unit id="Credentials" translate="yes" xml:space="preserve">
           <source>Credentials</source>
-          <target>Hitelesítési adatok</target>
+          <target state="translated">Hitelesítési adatok</target>
         </trans-unit>
         <trans-unit id="CopyHelpPhone" translate="yes" xml:space="preserve">
           <source>Long press on a file or a folder to copy it to the local storage.</source>
-          <target>Nyomja meg hosszan a fájl vagy mappát a helyi tárolóra másoláshoz.</target>
+          <target state="translated">Nyomja meg hosszan a fájl vagy mappát a helyi tárolóra másoláshoz.</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_SCREEN" translate="yes" xml:space="preserve">
           <source>fit screen</source>
-          <target>képernyőhöz igazítás</target>
+          <target state="translated">képernyőhöz igazítás</target>
         </trans-unit>
         <trans-unit id="SURFACE_FILL" translate="yes" xml:space="preserve">
           <source>fill</source>
-          <target>kitöltés</target>
+          <target state="translated">kitöltés</target>
         </trans-unit>
         <trans-unit id="SURFACE_16_9" translate="yes" xml:space="preserve">
           <source>16:9</source>
-          <target>16:9</target>
+          <target state="translated">16:9</target>
         </trans-unit>
         <trans-unit id="SURFACE_4_3" translate="yes" xml:space="preserve">
           <source>4:3</source>
-          <target>4:3</target>
+          <target state="translated">4:3</target>
         </trans-unit>
         <trans-unit id="SURFACE_2_35_1" translate="yes" xml:space="preserve">
           <source>2.35:1</source>
-          <target>2.35:1</target>
+          <target state="translated">2.35:1</target>
         </trans-unit>
         <trans-unit id="SURFACE_ORIGINAL" translate="yes" xml:space="preserve">
           <source>original</source>
-          <target>eredeti</target>
+          <target state="translated">eredeti</target>
         </trans-unit>
         <trans-unit id="CompactOverlayPiP" translate="yes" xml:space="preserve">
           <source>use windows 10 pip</source>
-          <target>windows 10 pip használata</target>
+          <target state="translated">windows 10 pip használata</target>
         </trans-unit>
         <trans-unit id="TvUnsafeArea" translate="yes" xml:space="preserve">
           <source>TV unsafe area</source>
-          <target>TV nem biztonságos területe</target>
+          <target state="translated">TV nem biztonságos területe</target>
         </trans-unit>
         <trans-unit id="AddMarginExplanation" translate="yes" xml:space="preserve">
           <source>Some TVs will not display the app correctly. To add some margin, turn this on</source>
-          <target>Néhány TV nem megfelelően jeleníti meg az alkalmazást. Margó hozzáadásához kapcsolja ezt be.</target>
+          <target state="translated">Néhány TV nem megfelelően jeleníti meg az alkalmazást. Margó hozzáadásához kapcsolja ezt be.</target>
         </trans-unit>
         <trans-unit id="ExtraMargin" translate="yes" xml:space="preserve">
           <source>Extra margin</source>
-          <target>További margó</target>
+          <target state="translated">További margó</target>
         </trans-unit>
         <trans-unit id="NoExtraMargin" translate="yes" xml:space="preserve">
           <source>No extra margin</source>
-          <target>Nincs további margó</target>
+          <target state="translated">Nincs további margó</target>
         </trans-unit>
 		<trans-unit id="Restart" translate="yes" xml:space="preserve">
           <source>restart</source>
-          <target>újraindítás</target>
+          <target state="translated">újraindítás</target>
         </trans-unit>
         <trans-unit id="Disconnect" translate="yes" xml:space="preserve">
           <source>disconnect</source>
-          <target>kapcsolat bontása</target>
+          <target state="translated">kapcsolat bontása</target>
         </trans-unit>
       </group>
     </body>
