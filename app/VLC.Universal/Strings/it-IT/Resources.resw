@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -173,6 +173,9 @@
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>scorciatoie da tastiera</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>locale</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>licenza</value>
@@ -513,6 +516,24 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>ritaglio verticale</value>
   </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>adatta allo schermo</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>adatta</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>originale</value>
+  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>la scaletta non sarà accessibile</value>
   </data>
@@ -531,6 +552,9 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Artisti simili</value>
   </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Applica e riavvia</value>
+  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Inglese</value>
   </data>
@@ -540,29 +564,71 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Giapponese</value>
   </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Slovacco</value>
+  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Tedesco</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Polacco</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slovacco</value>
+  <data name="DanishLanguage" xml:space="preserve">
+    <value>Danese</value>
+  </data>
+  <data name="SpanishLanguage" xml:space="preserve">
+    <value>Spagnolo</value>
+  </data>
+  <data name="HungarianLanguage" xml:space="preserve">
+    <value>Ungherese</value>
+  </data>
+  <data name="ItalianLanguage" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
+  <data name="KoreanLanguage" xml:space="preserve">
+    <value>Coreano</value>
+  </data>
+  <data name="MalayLanguage" xml:space="preserve">
+    <value>Malay</value>
+  </data>
+  <data name="NorwegianLanguage" xml:space="preserve">
+    <value>Norvegese</value>
+  </data>
+  <data name="DutchLanguage" xml:space="preserve">
+    <value>Olandese</value>
+  </data>
+  <data name="RussianLanguage" xml:space="preserve">
+    <value>Russo</value>
+  </data>
+  <data name="SwedishLanguage" xml:space="preserve">
+    <value>Svedese</value>
+  </data>
+  <data name="TurkishLanguage" xml:space="preserve">
+    <value>Turco</value>
+  </data>
+  <data name="UkrainianLanguage" xml:space="preserve">
+    <value>Ucraino</value>
+  </data>
+  <data name="ChineseLanguage" xml:space="preserve">
+    <value>Cinese</value>
+  </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>Portoghese</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>Ceco</value>
+  </data>
+  <data name="IcelandicLanguage" xml:space="preserve">
+    <value>Islandese</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Lingue</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC sarà visualizzato in</value>
-  </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Applica e riavvia</value>
-  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Aggiorna lingua</value>
   </data>
-  <data name="Local" xml:space="preserve">
-    <value>locale</value>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC sarà visualizzato in</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>Scarica file</value>
@@ -574,7 +640,7 @@
     <value>Rilascia file</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Rilascia i file nella finestra per aggiungerli alla tua Xbox.&amp;lt;br&amp;gt;Oppure fai clic sul pulsante &amp;quot;+&amp;quot; per usare il selettore dei file.</value>
+    <value>Rilascia i file nella finestra per aggiungerli alla tua Xbox.&lt;br&gt;Oppure fai clic sul pulsante "+" per usare il selettore dei file.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Condivisione tramite WiFi</value>
@@ -642,22 +708,25 @@
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Pressione lunga su un file o una cartella per copiarlo nell'archiviazione locale.</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>adatta allo schermo</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>adatta</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>originale</value>
-  </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>usa windows 10 pip</value>
+  </data>
+  <data name="TvUnsafeArea" xml:space="preserve">
+    <value>Area non sicura TV</value>
+  </data>
+  <data name="AddMarginExplanation" xml:space="preserve">
+    <value>Alcune TV non visualizzeranno correttamente l'applicazione. Per aggiungere un margine, attiva questa opzione</value>
+  </data>
+  <data name="ExtraMargin" xml:space="preserve">
+    <value>Margine aggiuntivo</value>
+  </data>
+  <data name="NoExtraMargin" xml:space="preserve">
+    <value>Nessun margine aggiuntivo</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>riavvia</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>disconnetti</value>
   </data>
 </root>

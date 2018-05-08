@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -142,7 +142,7 @@
     <value>выберите плейлист</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Главная</value>
+    <value>домой</value>
   </data>
   <data name="HomePage" xml:space="preserve">
     <value>домашняя страница</value>
@@ -173,6 +173,9 @@
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>сочетания клавиш</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>внутренняя память</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>лицензия</value>
@@ -289,7 +292,7 @@
     <value>закрепить исполнителя</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>Воспроизвести</value>
+    <value>воспроизвести</value>
   </data>
   <data name="PlayAlbum" xml:space="preserve">
     <value>воспроизвести альбом</value>
@@ -313,16 +316,16 @@
     <value>плейлист уже существует</value>
   </data>
   <data name="PlaylistNamePlaceholder" xml:space="preserve">
-    <value>название плейлиста</value>
+    <value>имя плейлиста</value>
   </data>
   <data name="Playlists" xml:space="preserve">
     <value>плейлисты</value>
   </data>
   <data name="PlayTrack" xml:space="preserve">
-    <value>проиграть дорожку</value>
+    <value>воспроизвести дорожку</value>
   </data>
   <data name="PlayVideo" xml:space="preserve">
-    <value>проиграть видео</value>
+    <value>воспроизвести видео</value>
   </data>
   <data name="PrivacyStatement" xml:space="preserve">
     <value>уведомление о конфиденциальности</value>
@@ -361,13 +364,13 @@
     <value>Использовать сложную анимацию в слайд-шоу</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>искать</value>
+    <value>поиск</value>
   </data>
   <data name="Season" xml:space="preserve">
     <value>сезон</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>параметры</value>
+    <value>настройки</value>
   </data>
   <data name="ShowPlaylist" xml:space="preserve">
     <value>показать плейлист</value>
@@ -513,6 +516,24 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>кадрирование по вертикали</value>
   </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>подогнать под экран</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>заполнение</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>исходный</value>
+  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>ваш плейлист не будет доступен</value>
   </data>
@@ -531,6 +552,9 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Похожие исполнители</value>
   </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Применить и перезапустить</value>
+  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Английский</value>
   </data>
@@ -540,44 +564,86 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Японский</value>
   </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Словацский</value>
+  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Немецкий</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Польский</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Словацкий</value>
+  <data name="DanishLanguage" xml:space="preserve">
+    <value>Датский</value>
+  </data>
+  <data name="SpanishLanguage" xml:space="preserve">
+    <value>Испанский</value>
+  </data>
+  <data name="HungarianLanguage" xml:space="preserve">
+    <value>Венгерский</value>
+  </data>
+  <data name="ItalianLanguage" xml:space="preserve">
+    <value>Итальянский</value>
+  </data>
+  <data name="KoreanLanguage" xml:space="preserve">
+    <value>Корейский</value>
+  </data>
+  <data name="MalayLanguage" xml:space="preserve">
+    <value>Малайский</value>
+  </data>
+  <data name="NorwegianLanguage" xml:space="preserve">
+    <value>Норвежский</value>
+  </data>
+  <data name="DutchLanguage" xml:space="preserve">
+    <value>Голландский</value>
+  </data>
+  <data name="RussianLanguage" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="SwedishLanguage" xml:space="preserve">
+    <value>Шведский</value>
+  </data>
+  <data name="TurkishLanguage" xml:space="preserve">
+    <value>Турецкий</value>
+  </data>
+  <data name="UkrainianLanguage" xml:space="preserve">
+    <value>Украинский</value>
+  </data>
+  <data name="ChineseLanguage" xml:space="preserve">
+    <value>Китайский</value>
+  </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>Португальский</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>Чешский</value>
+  </data>
+  <data name="IcelandicLanguage" xml:space="preserve">
+    <value>Исландский</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Языки</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>Язык VLC</value>
-  </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Применить и перезапустить</value>
-  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Сменить язык</value>
   </data>
-  <data name="Local" xml:space="preserve">
-    <value>внутренняя память</value>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>Язык VLC</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
-    <value>Загрузка файлов</value>
+    <value>Загрузить файлы</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
     <value>Просто щёлкните файл, который вы хотите загрузить с вашей Xbox.</value>
   </data>
   <data name="WEBINTF_DROPFILES" xml:space="preserve">
-    <value>Добавление файлов</value>
+    <value>Перенос файлов</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Перенесите файлы в это окно, чтобы загрузить их на вашу Xbox.&amp;lt;br&amp;gt;ы также можете нажать кнопку &amp;quot;+&amp;quot;, чтобы воспользоваться диалогом выбора файла..</value>
+    <value>Перенесите файлы в это окно, чтобы загрузить их на вашу Xbox.&lt;br&gt;Вы также можете нажать кнопку "+", чтобы воспользоваться диалогом выбора файла.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
-    <value>Доступ через WiFi</value>
+    <value>Общий доступ через WiFi</value>
   </data>
   <data name="CopyToLocalStorage" xml:space="preserve">
     <value>копировать в локальное хранилище</value>
@@ -607,13 +673,13 @@
     <value>Отмена</value>
   </data>
   <data name="DoNothing" xml:space="preserve">
-    <value>Ничего не делать</value>
+    <value>Ничего</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="Ignore" xml:space="preserve">
-    <value>Нет</value>
+    <value>Игнорировать</value>
   </data>
   <data name="Remember" xml:space="preserve">
     <value>Запомнить</value>
@@ -642,22 +708,25 @@
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>При долгом нажатии на файле (или папке) он копируется в локальное хранилище.</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>подогнать под экран</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>заполнение</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>исходный</value>
-  </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>использовать PIP (в Windows 10)</value>
+  </data>
+  <data name="TvUnsafeArea" xml:space="preserve">
+    <value>Небезопасная зона ТВ</value>
+  </data>
+  <data name="AddMarginExplanation" xml:space="preserve">
+    <value>Некоторые телевизоры не будут отображать приложение корректно. Чтобы добавить отступ нужно включить это</value>
+  </data>
+  <data name="ExtraMargin" xml:space="preserve">
+    <value>Дополнительный отступ</value>
+  </data>
+  <data name="NoExtraMargin" xml:space="preserve">
+    <value>Нет дополнительного отступа</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>перезапуск</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>отключение</value>
   </data>
 </root>

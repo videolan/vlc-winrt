@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -13,106 +13,106 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTheApp" xml:space="preserve">
-    <value>À propos de l'application</value>
+    <value>à propos de l'application</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>Ajouter</value>
+    <value>ajouter</value>
   </data>
   <data name="AddFolder" xml:space="preserve">
-    <value>Ajouter un dossier</value>
+    <value>ajouter un dossier</value>
   </data>
   <data name="AddToCollection" xml:space="preserve">
-    <value>Ajouter à la collection</value>
+    <value>ajouter à la collection</value>
   </data>
   <data name="AddToCurrentPlaylist" xml:space="preserve">
-    <value>Ajouter à la liste de lecture en cours</value>
+    <value>ajouter à la liste de lecture en cours</value>
   </data>
   <data name="AddToPlaylist" xml:space="preserve">
-    <value>Ajouter à une liste de lecture</value>
+    <value>ajouter à une liste de lecture</value>
   </data>
   <data name="Albums" xml:space="preserve">
-    <value>Albums</value>
+    <value>albums</value>
   </data>
   <data name="AlbumsFound" xml:space="preserve">
-    <value>Albums trouvés : {0}</value>
+    <value>albums trouvés : {0}</value>
   </data>
   <data name="Animations" xml:space="preserve">
-    <value>Animations</value>
+    <value>animations</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Thème de l'application</value>
+    <value>thème de l'application</value>
   </data>
   <data name="Artists" xml:space="preserve">
-    <value>Artistes</value>
+    <value>artistes</value>
   </data>
   <data name="Audio" xml:space="preserve">
-    <value>Audio</value>
+    <value>audio</value>
   </data>
   <data name="AudioDelay" xml:space="preserve">
-    <value>Décalage audio</value>
+    <value>décalage audio</value>
   </data>
   <data name="AudioTracks" xml:space="preserve">
-    <value>Pistes audio</value>
+    <value>pistes audio</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Précédent</value>
+    <value>précédent</value>
   </data>
   <data name="CameraRoll" xml:space="preserve">
-    <value>Pellicule</value>
+    <value>pellicule</value>
   </data>
   <data name="ChangeAlbumCover" xml:space="preserve">
-    <value>Changer la pochette de l'album</value>
+    <value>changer la pochette de l'album</value>
   </data>
   <data name="Chapters" xml:space="preserve">
-    <value>Chapitres</value>
+    <value>chapitres</value>
   </data>
   <data name="CheckCredentials" xml:space="preserve">
-    <value>Une erreur s'est produite, veuillez vérifier vos informations d'identification.</value>
+    <value>une erreur s'est produite, veuillez vérifier vos informations d'identification</value>
   </data>
   <data name="Connect" xml:space="preserve">
-    <value>Connexion</value>
+    <value>connexion</value>
   </data>
   <data name="ConnectedToLastFM" xml:space="preserve">
-    <value>Connecté à Last.FM</value>
+    <value>connecté à Last.FM</value>
   </data>
   <data name="Connecting" xml:space="preserve">
-    <value>Connexion en cours</value>
+    <value>connexion en cours</value>
   </data>
   <data name="ConnectToLastFM" xml:space="preserve">
-    <value>Se connecter à Last.FM</value>
+    <value>se connecter à Last.FM</value>
   </data>
   <data name="CrashReport" xml:space="preserve">
-    <value>Rapport de bogue</value>
+    <value>rapport de bogue</value>
   </data>
   <data name="DecreaseSpeed" xml:space="preserve">
-    <value>Diminuer la vitesse</value>
+    <value>diminuer la vitesse</value>
   </data>
   <data name="DecreaseVolume" xml:space="preserve">
-    <value>Diminuer le volume</value>
+    <value>diminuer le volume</value>
   </data>
   <data name="DeletePlaylist" xml:space="preserve">
-    <value>Supprimer la liste de lecture</value>
+    <value>supprimer la liste de lecture</value>
   </data>
   <data name="DeleteSelected" xml:space="preserve">
-    <value>Supprimer</value>
+    <value>supprimer</value>
   </data>
   <data name="EditMetadata" xml:space="preserve">
-    <value>Modifier les métadonnées</value>
+    <value>modifier les métadonnées</value>
   </data>
   <data name="ElementsNotFound" xml:space="preserve">
-    <value>Nous n'avons pas trouvé d'élément ici</value>
+    <value>nous n'avons pas trouvé d'élément ici</value>
   </data>
   <data name="EnterURL" xml:space="preserve">
-    <value>Entrez une URL</value>
+    <value>entrez une url</value>
   </data>
   <data name="Episode" xml:space="preserve">
-    <value>Épisode</value>
+    <value>épisode</value>
   </data>
   <data name="EvenIfBackground" xml:space="preserve">
-    <value>Même si l'application est en arrière-plan</value>
+    <value>même si l'application est en arrière-plan</value>
   </data>
   <data name="EvenIfNotBackground" xml:space="preserve">
-    <value>Même si l'application n'est pas en arrière-plan</value>
+    <value>même si l'app n'est pas en arrière-plan</value>
   </data>
   <data name="FailFilePlayBackground" xml:space="preserve">
     <value>Ce fichier ne peut pas être joué en arrière-plan</value>
@@ -127,25 +127,25 @@
     <value>L'app n'a pas pu démarrer le moteur VLC</value>
   </data>
   <data name="FeedbackThankYou" xml:space="preserve">
-    <value>Vos commentaires ont été envoyés ! Merci.</value>
+    <value>vos commentaires ont été envoyés ! Merci</value>
   </data>
   <data name="FileExplorer" xml:space="preserve">
-    <value>Parcourir</value>
+    <value>parcourir</value>
   </data>
   <data name="HardwareDecoding" xml:space="preserve">
-    <value>Décodage matériel</value>
+    <value>décodage matériel</value>
   </data>
   <data name="HardwareDecodingDescription" xml:space="preserve">
     <value>Le décodage matériel peut ne pas fonctionner sur votre appareil.</value>
   </data>
   <data name="HaveToSelectPlaylist" xml:space="preserve">
-    <value>Veuillez sélectionner une liste de lecture</value>
+    <value>veuillez sélectionner une liste de lecture</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Accueil</value>
+    <value>accueil</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-    <value>Page principale</value>
+    <value>page principale</value>
   </data>
   <data name="HomePageDescription" xml:space="preserve">
     <value>VLC commencera sur la page sélectionnée</value>
@@ -154,268 +154,271 @@
     <value>Toutefois, vous pouvez peut-être trouver ce que vous cherchez ici</value>
   </data>
   <data name="HowToFavoriteAlbum1" xml:space="preserve">
-    <value>Pour marquer un album comme favori, appuyez simplement</value>
+    <value>pour marquer un album comme favori, appuyez simplement sur</value>
   </data>
   <data name="HowToFavoriteAlbum2" xml:space="preserve">
-    <value>Et vous y aurez accès rapidement</value>
+    <value>et vous y aurez accès rapidement</value>
   </data>
   <data name="ImportantSponsors" xml:space="preserve">
-    <value>Auteurs importants</value>
+    <value>auteurs importants</value>
   </data>
   <data name="IncreaseSpeed" xml:space="preserve">
-    <value>Augmenter la vitesse</value>
+    <value>augmenter la vitesse</value>
   </data>
   <data name="IncreaseVolume" xml:space="preserve">
-    <value>Augmenter le volume</value>
+    <value>augmenter le volume</value>
   </data>
   <data name="ItsEmpty" xml:space="preserve">
-    <value>C'est vide ici</value>
+    <value>c'est vide ici</value>
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
-    <value>Raccourcis clavier</value>
+    <value>raccourcis clavier</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>Bibliothèques locales</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>Licence</value>
+    <value>licence</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Chargement</value>
+    <value>chargement</value>
   </data>
   <data name="LoadingMusic" xml:space="preserve">
-    <value>Chargement de votre musique</value>
+    <value>chargement de votre musique</value>
   </data>
   <data name="MostPlayedArtists" xml:space="preserve">
-    <value>Artistes les plus joués</value>
+    <value>artistes les plus joués</value>
   </data>
   <data name="Music" xml:space="preserve">
-    <value>Musique</value>
+    <value>musique</value>
   </data>
   <data name="MusicFolders" xml:space="preserve">
-    <value>Dossiers de musique</value>
+    <value>dossiers de musique</value>
   </data>
   <data name="MusicFoldersDescription" xml:space="preserve">
-    <value>VLC recherchera uniquement les morceaux qui se trouvent dans votre bibliothèque musicale. Vous pouvez ajouter des dossiers à votre bibliothèque ici.</value>
+    <value>VLC recherchera uniquement les morceaux qui se trouvent dans votre musicothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici</value>
   </data>
   <data name="MusicSettings" xml:space="preserve">
     <value>Paramètres Audio</value>
   </data>
   <data name="MusicShows" xml:space="preserve">
-    <value>Concerts</value>
+    <value>concerts</value>
   </data>
   <data name="Mute" xml:space="preserve">
-    <value>Muet</value>
+    <value>muet</value>
   </data>
   <data name="MyPlaylists" xml:space="preserve">
-    <value>Mes listes de lecture</value>
+    <value>mes listes de lecture</value>
   </data>
   <data name="Network" xml:space="preserve">
-    <value>Réseau</value>
+    <value>réseau</value>
   </data>
   <data name="NewPlaylist" xml:space="preserve">
-    <value>Nouvelle liste de lecture</value>
+    <value>nouvelle liste de lecture</value>
   </data>
   <data name="NewVideos" xml:space="preserve">
-    <value>Nouvelles vidéos</value>
+    <value>nouvelles vidéos</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>Non</value>
+    <value>non</value>
   </data>
   <data name="NoBiographyFound" xml:space="preserve">
-    <value>Pas de bio trouvée pour cet artiste</value>
+    <value>pas de bio trouvée pour cet artiste</value>
   </data>
   <data name="NoCameraVideosFound" xml:space="preserve">
-    <value>Aucune vidéo de caméra trouvée</value>
+    <value>aucune vidéo de caméra trouvée</value>
   </data>
   <data name="NoFavoriteAlbums" xml:space="preserve">
-    <value>Aucun album préféré</value>
+    <value>aucun album préféré</value>
   </data>
   <data name="NoInternetConnection" xml:space="preserve">
-    <value>Pas de connexion Internet</value>
+    <value>pas de connexion internet</value>
   </data>
   <data name="NoPlaylists" xml:space="preserve">
-    <value>Aucune liste de lecture</value>
+    <value>aucune liste de lecture</value>
   </data>
   <data name="NoShowsFound" xml:space="preserve">
-    <value>Aucun concert trouvé</value>
+    <value>aucun concert trouvé</value>
   </data>
   <data name="NothingToSeeHere" xml:space="preserve">
-    <value>Il n'y a rien à voir ici</value>
+    <value>il n'y a rien à voir ici</value>
   </data>
   <data name="Notifications" xml:space="preserve">
-    <value>Notifications</value>
+    <value>notifications</value>
   </data>
   <data name="NotificationWhenSongStarts" xml:space="preserve">
-    <value>Au démarrage du morceau</value>
+    <value>au démarrage du morceau</value>
   </data>
   <data name="NoVideosFound" xml:space="preserve">
-    <value>Nous n'avons trouvé aucune vidéo</value>
+    <value>nous n'avons trouvé aucune vidéo</value>
   </data>
   <data name="NowPlaying" xml:space="preserve">
-    <value>Lecture en cours</value>
+    <value>lecture en cours</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Ouvrir un fichier</value>
+    <value>ouvrir un fichier</value>
   </data>
   <data name="OpenStream" xml:space="preserve">
-    <value>Ouvrir un flux</value>
+    <value>ouvrir un flux</value>
   </data>
   <data name="OpenSubtitle" xml:space="preserve">
-    <value>Ouvrir des sous-titres</value>
+    <value>ouvrir des sous-titres</value>
   </data>
   <data name="OrderAscending" xml:space="preserve">
-    <value>Croissant</value>
+    <value>croissant</value>
   </data>
   <data name="OrderByAlbum" xml:space="preserve">
-    <value>Par album</value>
+    <value>par album</value>
   </data>
   <data name="OrderByArtist" xml:space="preserve">
-    <value>Par artiste</value>
+    <value>par artiste</value>
   </data>
   <data name="OrderByDate" xml:space="preserve">
-    <value>Par date</value>
+    <value>par date</value>
   </data>
   <data name="OrderDescending" xml:space="preserve">
-    <value>Décroissant</value>
+    <value>décroissant</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Mot de passe</value>
+    <value>mot de passe</value>
   </data>
   <data name="Pause" xml:space="preserve">
-    <value>Pause</value>
+    <value>pause</value>
   </data>
   <data name="PinAlbum" xml:space="preserve">
-    <value>Épingler l'album</value>
+    <value>épingler l'album</value>
   </data>
   <data name="PinArtist" xml:space="preserve">
-    <value>Épingler l'artiste</value>
+    <value>épingler l'artiste</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>Lecture</value>
+    <value>lecture</value>
   </data>
   <data name="PlayAlbum" xml:space="preserve">
-    <value>Lire l’album</value>
+    <value>lire l’album</value>
   </data>
   <data name="PlayAll" xml:space="preserve">
-    <value>Lire tout</value>
+    <value>lire tout</value>
   </data>
   <data name="Playback" xml:space="preserve">
-    <value>Lecture</value>
+    <value>lecture</value>
   </data>
   <data name="PlayerSettings" xml:space="preserve">
     <value>Paramètres du Lecteur</value>
   </data>
   <data name="PlayFolder" xml:space="preserve">
-    <value>Lire le dossier</value>
+    <value>lire le dossier</value>
   </data>
   <data name="Playlist" xml:space="preserve">
-    <value>Liste de lecture</value>
+    <value>liste de lecture</value>
   </data>
   <data name="PlaylistAlreadyExists" xml:space="preserve">
-    <value>Cette liste de lecture existe déjà</value>
+    <value>cette liste de lecture existe déjà</value>
   </data>
   <data name="PlaylistNamePlaceholder" xml:space="preserve">
-    <value>Nom de la liste de lecture</value>
+    <value>nom de la liste de lecture</value>
   </data>
   <data name="Playlists" xml:space="preserve">
-    <value>Listes de lecture</value>
+    <value>listes de lecture</value>
   </data>
   <data name="PlayTrack" xml:space="preserve">
-    <value>Lire le morceau</value>
+    <value>lire le morceau</value>
   </data>
   <data name="PlayVideo" xml:space="preserve">
-    <value>Lire la vidéo</value>
+    <value>lire la vidéo</value>
   </data>
   <data name="PrivacyStatement" xml:space="preserve">
-    <value>Politique de confidentialité</value>
+    <value>politique de confidentialité</value>
   </data>
   <data name="Favorites" xml:space="preserve">
     <value>Favoris</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">
-    <value>Actualiser la bibliothèque musicale</value>
+    <value>actualiser la musicothèque</value>
   </data>
   <data name="RefreshVideoLibrary" xml:space="preserve">
-    <value>Actualiser la vidéothèque</value>
+    <value>actualiser la vidéothèque</value>
   </data>
   <data name="RemovableStorage" xml:space="preserve">
-    <value>Stockage amovible</value>
+    <value>stockage amovible</value>
   </data>
   <data name="RemoveFolder" xml:space="preserve">
-    <value>Supprimer le dossier</value>
+    <value>supprimer le dossier</value>
   </data>
   <data name="RemoveMusicFolderDescription" xml:space="preserve">
-    <value>Si vous ne voulez pas de ce dossier dans votre bibliothèque de musique, vous pouvez le supprimer. Cela affectera toutes les applications, pas seulement VLC.</value>
+    <value>Si vous ne voulez pas de ce dossier dans votre musicothèque, vous pouvez le supprimer. Cela affectera toutes les applications, non seulement de VLC</value>
   </data>
   <data name="RemoveVideoFolderDescription" xml:space="preserve">
     <value>Si vous ne voulez pas de ce dossier dans votre vidéothèque, vous pouvez le supprimer. Cela affectera toutes les applications, pas seulement VLC.</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Réinitialiser</value>
+    <value>réinitialiser</value>
   </data>
   <data name="ResetMusicDatabase" xml:space="preserve">
-    <value>Réinitialiser la base de données musicale</value>
+    <value>réinitialiser la base de données musicale</value>
   </data>
   <data name="ResetSpeed" xml:space="preserve">
-    <value>Réinitialiser la vitesse</value>
+    <value>réinitialiser la vitesse</value>
   </data>
   <data name="RichAnimationsDescription" xml:space="preserve">
     <value>Utiliser des animations riches dans les diaporamas</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Rechercher</value>
+    <value>rechercher</value>
   </data>
   <data name="Season" xml:space="preserve">
-    <value>Saison</value>
+    <value>saison</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Paramètres</value>
+    <value>paramètres</value>
   </data>
   <data name="ShowPlaylist" xml:space="preserve">
-    <value>Voir la liste de lecture</value>
+    <value>voir la liste de lecture</value>
   </data>
   <data name="Shows" xml:space="preserve">
-    <value>Séries</value>
+    <value>séries</value>
   </data>
   <data name="Shuffle" xml:space="preserve">
-    <value>Lecture aléatoire</value>
+    <value>lecture aléatoire</value>
   </data>
   <data name="Songs" xml:space="preserve">
-    <value>Morceaux                 </value>
+    <value>morceaux                 </value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Remerciements</value>
+    <value>remerciements</value>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value>Vitesse</value>
+    <value>vitesse</value>
   </data>
   <data name="Stop" xml:space="preserve">
-    <value>Stop</value>
+    <value>stop</value>
   </data>
   <data name="SubtitleDelay" xml:space="preserve">
-    <value>Décalage des sous-titres</value>
+    <value>décalage des sous-titres</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
-    <value>Sous-titres</value>
+    <value>sous-titres</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
-    <value>Encodage des sous-titres</value>
+    <value>encodage des sous-titres</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>Thème</value>
+    <value>thème</value>
   </data>
   <data name="TileRemoved" xml:space="preserve">
-    <value>Tuile supprimée</value>
+    <value>tuile supprimée</value>
   </data>
   <data name="TopVideos" xml:space="preserve">
-    <value>Vidéos préférées</value>
+    <value>vidéos préférées</value>
   </data>
   <data name="TrackAddedToYourPlaylist" xml:space="preserve">
-    <value>Morceau ajouté à la liste de lecture</value>
+    <value>morceau ajouté à la liste de lecture</value>
   </data>
   <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
-    <value>Ce morceau est déjà dans la liste de lecture</value>
+    <value>ce morceau est déjà dans la liste de lecture</value>
   </data>
   <data name="Tracks" xml:space="preserve">
-    <value>Morceaux</value>
+    <value>morceaux</value>
   </data>
   <data name="UnknownAlbum" xml:space="preserve">
     <value>Album inconnu</value>
@@ -433,103 +436,124 @@
     <value>Interface utilisateur</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Nom d'utilisateur</value>
+    <value>nom d'utilisateur</value>
   </data>
   <data name="Video" xml:space="preserve">
-    <value>Vidéo</value>
+    <value>vidéo</value>
   </data>
   <data name="VideoFolders" xml:space="preserve">
-    <value>Dossiers de vidéos</value>
+    <value>dossiers de vidéos</value>
   </data>
   <data name="VideoFoldersDescription" xml:space="preserve">
-    <value>VLC recherchera uniquement des vidéos qui sont dans votre vidéothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici.</value>
+    <value>VLC recherchera uniquement des vidéos qui sont dans votre vidéothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici</value>
   </data>
   <data name="VideoPlayback" xml:space="preserve">
-    <value>Lecture vidéo</value>
+    <value>lecture vidéo</value>
   </data>
   <data name="VideoPlaybackInBackground" xml:space="preserve">
-    <value>Lecture en arrière-plan</value>
+    <value>lecture en arrière-plan</value>
   </data>
   <data name="Videos" xml:space="preserve">
-    <value>Vidéos</value>
+    <value>vidéos</value>
   </data>
   <data name="VideoSettings" xml:space="preserve">
     <value>Paramètres Vidéo</value>
   </data>
   <data name="ViewAlbum" xml:space="preserve">
-    <value>Voir l'album</value>
+    <value>voir l'album</value>
   </data>
   <data name="ViewArtist" xml:space="preserve">
-    <value>Voir l'artiste</value>
+    <value>voir l'artiste</value>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>Volume</value>
+    <value>volume</value>
   </data>
   <data name="WeNeedYourHelp" xml:space="preserve">
-    <value>Nous avons besoin de votre aide</value>
+    <value>nous avons besoin de votre aide</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Oui</value>
+    <value>oui</value>
   </data>
   <data name="YourMusic" xml:space="preserve">
-    <value>Votre musique</value>
+    <value>votre musique</value>
   </data>
   <data name="AccentColor" xml:space="preserve">
-    <value>Couleur d'accentuation</value>
+    <value>couleur d'accentuation</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>Couleur d'arrière-plan</value>
+    <value>couleur d'arrière-plan</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Sombre</value>
+    <value>sombre</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Clair</value>
+    <value>clair</value>
   </data>
   <data name="TitleBar" xml:space="preserve">
-    <value>Barre de titre</value>
+    <value>barre de titre</value>
   </data>
   <data name="NeedRestart" xml:space="preserve">
     <value>Vous devez redémarrer l'application pour appliquer les modifications</value>
   </data>
   <data name="Zoom" xml:space="preserve">
-    <value>Zoom</value>
+    <value>zoom</value>
   </data>
   <data name="AreYouSure" xml:space="preserve">
-    <value>Êtes-vous sûr ?</value>
+    <value>êtes-vous sûr ?</value>
   </data>
   <data name="MediaCantBeRead" xml:space="preserve">
-    <value>Le média n'a pas pu être lu</value>
+    <value>le média n'a pas pu être lu</value>
   </data>
   <data name="Sorry" xml:space="preserve">
-    <value>Nous sommes désolés</value>
+    <value>nous sommes désolés</value>
   </data>
   <data name="SURFACE_BEST_FIT" xml:space="preserve">
-    <value>Meilleur ajustement</value>
+    <value>meilleur ajustement</value>
   </data>
   <data name="SURFACE_FIT_HORIZONTAL" xml:space="preserve">
-    <value>Recadrage horizontal</value>
+    <value>recadrage horizontal</value>
   </data>
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
-    <value>Recadrage vertical</value>
+    <value>recadrage vertical</value>
+  </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>ajuster à l'écran</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>remplir</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>original</value>
   </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
-    <value>Votre liste de lecture ne sera plus accessible</value>
+    <value>votre liste de lecture ne sera plus accessible</value>
   </data>
   <data name="NoArtistShowsFound" xml:space="preserve">
-    <value>Nous n'avons pas trouvé de spectacles pour cet artiste</value>
+    <value>nous n'avons pas trouvé de spectacles pour cet artiste</value>
   </data>
   <data name="NoResults" xml:space="preserve">
-    <value>Aucun résultat</value>
+    <value>aucun résultat</value>
   </data>
   <data name="ForceLandscape" xml:space="preserve">
     <value>Forcer l'affichage en mode paysage</value>
   </data>
   <data name="SURFACE_STRETCH" xml:space="preserve">
-    <value>Étirer</value>
+    <value>étirer</value>
   </data>
   <data name="SimilarArtists" xml:space="preserve">
     <value>Artistes similaires</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Appliquer et redémarrer</value>
   </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Anglais</value>
@@ -540,29 +564,71 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Japonais</value>
   </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Slovaque</value>
+  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Allemand</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Polonais</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slovaque</value>
+  <data name="DanishLanguage" xml:space="preserve">
+    <value>Danois</value>
+  </data>
+  <data name="SpanishLanguage" xml:space="preserve">
+    <value>Espagnol</value>
+  </data>
+  <data name="HungarianLanguage" xml:space="preserve">
+    <value>Hungrois</value>
+  </data>
+  <data name="ItalianLanguage" xml:space="preserve">
+    <value>Italien</value>
+  </data>
+  <data name="KoreanLanguage" xml:space="preserve">
+    <value>Coréen</value>
+  </data>
+  <data name="MalayLanguage" xml:space="preserve">
+    <value>Malais</value>
+  </data>
+  <data name="NorwegianLanguage" xml:space="preserve">
+    <value>Norvégien</value>
+  </data>
+  <data name="DutchLanguage" xml:space="preserve">
+    <value>Néerlandais</value>
+  </data>
+  <data name="RussianLanguage" xml:space="preserve">
+    <value>Russe</value>
+  </data>
+  <data name="SwedishLanguage" xml:space="preserve">
+    <value>Suédois</value>
+  </data>
+  <data name="TurkishLanguage" xml:space="preserve">
+    <value>Turc</value>
+  </data>
+  <data name="UkrainianLanguage" xml:space="preserve">
+    <value>Ukrainien</value>
+  </data>
+  <data name="ChineseLanguage" xml:space="preserve">
+    <value>Chinois</value>
+  </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>Portugais</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>Tchèque</value>
+  </data>
+  <data name="IcelandicLanguage" xml:space="preserve">
+    <value>Islandais</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Langues</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC sera affiché en </value>
-  </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Appliquer et redémarrer</value>
-  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Actualiser la langue</value>
   </data>
-  <data name="Local" xml:space="preserve">
-    <value>Bibliothèques locales</value>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC sera affiché en </value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>Téléchargement de fichiers</value>
@@ -574,19 +640,19 @@
     <value>Déposez des fichiers</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Déposez des fichiers ici pour les ajouter au stockage interne de votre Xbox.&amp;lt;br&amp;gt;ou cliquez sur le bouton "+" pour choisir un fichier.</value>
+    <value>Déposez des fichiers ici pour les ajouter au stockage interne de votre Xbox.&lt;br&gt;ou cliquez sur le bouton "+" pour choisir un fichier.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Partage réseau</value>
   </data>
   <data name="CopyToLocalStorage" xml:space="preserve">
-    <value>Copier vers le stockage interne</value>
+    <value>copier vers le stockage interne</value>
   </data>
   <data name="ExternalStorageDeviceDetected" xml:space="preserve">
     <value>VLC a détecté un périphérique de stockage amovible.</value>
   </data>
   <data name="ReadFromExternalStorage" xml:space="preserve">
-    <value>Intégrer le périphérique de stockage à la bibliothèque de media</value>
+    <value>Utiliser un support externe comme médiathèque.</value>
   </data>
   <data name="SelectContentToCopy" xml:space="preserve">
     <value>Copier les médias sur le stockage interne</value>
@@ -598,7 +664,7 @@
     <value>Me demander</value>
   </data>
   <data name="ExternalStorage" xml:space="preserve">
-    <value>Stockage amovible</value>
+    <value>stockage amovible</value>
   </data>
   <data name="WhatToDoWhenExternalStorage" xml:space="preserve">
     <value>Que doit faire VLC lorsqu'un périphérique de stockage amovible est détecté ?</value>
@@ -610,7 +676,7 @@
     <value>Ne rien faire</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>Ok</value>
   </data>
   <data name="Ignore" xml:space="preserve">
     <value>Ignorer</value>
@@ -642,22 +708,25 @@
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Appuyez longuement sur un fichier ou un dossier pour le copier vers le stockage interne.</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>Ajuster à l'écran</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>Remplir</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>Original</value>
-  </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
-    <value>Utiliser PIP Windows 10</value>
+    <value>utiliser pip windows 10</value>
+  </data>
+  <data name="TvUnsafeArea" xml:space="preserve">
+    <value>Zone non-sûre TV</value>
+  </data>
+  <data name="AddMarginExplanation" xml:space="preserve">
+    <value>Certaines TV n'affichent pas l'application correctement. Activez cette option pour ajouter une marge.</value>
+  </data>
+  <data name="ExtraMargin" xml:space="preserve">
+    <value>Marge additionnelle</value>
+  </data>
+  <data name="NoExtraMargin" xml:space="preserve">
+    <value>Pas de marge additionnelle</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Recommencer</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>Déconnecter</value>
   </data>
 </root>

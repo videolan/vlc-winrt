@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -174,6 +174,9 @@
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>gyorsbillentyűk</value>
   </data>
+  <data name="Local" xml:space="preserve">
+    <value>helyi</value>
+  </data>
   <data name="License" xml:space="preserve">
     <value>licenc</value>
   </data>
@@ -217,7 +220,7 @@
     <value>új videók</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>nem</value>
+    <value>ne</value>
   </data>
   <data name="NoBiographyFound" xml:space="preserve">
     <value>nem található életrajz ehhez az előadóhoz</value>
@@ -373,7 +376,7 @@
     <value>lejátszólista megjelenítése</value>
   </data>
   <data name="Shows" xml:space="preserve">
-    <value>sorozatok</value>
+    <value>sorazatok</value>
   </data>
   <data name="Shuffle" xml:space="preserve">
     <value>véletlen sorrend</value>
@@ -397,7 +400,7 @@
     <value>Feliratok</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
-    <value>feliratkódolás</value>
+    <value>feliratkódolás </value>
   </data>
   <data name="Theme" xml:space="preserve">
     <value>téma</value>
@@ -442,7 +445,7 @@
     <value>videómappák</value>
   </data>
   <data name="VideoFoldersDescription" xml:space="preserve">
-    <value>A VLC csak a videótárban lévő számokat fogja keresni. Mappákat itt adhat hozzá a videótárhoz:</value>
+    <value>A VLC csak azokat a videókat fogja keresni, amelyek a videótárban vannak. Mappákat itt adhat hozzá a videótárhoz:</value>
   </data>
   <data name="VideoPlayback" xml:space="preserve">
     <value>videólejátszás </value>
@@ -513,6 +516,24 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>függőleges levágás</value>
   </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>képernyőhöz igazítás</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>kitöltés</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2,35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>eredeti</value>
+  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>a lejátszólista nem lesz elérhető</value>
   </data>
@@ -531,6 +552,9 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Hasonló előadók</value>
   </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Alkalmaz és újraindítás</value>
+  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>angol</value>
   </data>
@@ -540,29 +564,71 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>japán</value>
   </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>szlovák</value>
+  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>német</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>lengyel</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>szlovák</value>
+  <data name="DanishLanguage" xml:space="preserve">
+    <value>dá</value>
+  </data>
+  <data name="SpanishLanguage" xml:space="preserve">
+    <value>spanyol</value>
+  </data>
+  <data name="HungarianLanguage" xml:space="preserve">
+    <value>magyar</value>
+  </data>
+  <data name="ItalianLanguage" xml:space="preserve">
+    <value>olasz</value>
+  </data>
+  <data name="KoreanLanguage" xml:space="preserve">
+    <value>koreai</value>
+  </data>
+  <data name="MalayLanguage" xml:space="preserve">
+    <value>maláj</value>
+  </data>
+  <data name="NorwegianLanguage" xml:space="preserve">
+    <value>norvég</value>
+  </data>
+  <data name="DutchLanguage" xml:space="preserve">
+    <value>holland</value>
+  </data>
+  <data name="RussianLanguage" xml:space="preserve">
+    <value>orosz</value>
+  </data>
+  <data name="SwedishLanguage" xml:space="preserve">
+    <value>svéd</value>
+  </data>
+  <data name="TurkishLanguage" xml:space="preserve">
+    <value>török</value>
+  </data>
+  <data name="UkrainianLanguage" xml:space="preserve">
+    <value>ukrán</value>
+  </data>
+  <data name="ChineseLanguage" xml:space="preserve">
+    <value>kínai</value>
+  </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>portugál</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>cseh</value>
+  </data>
+  <data name="IcelandicLanguage" xml:space="preserve">
+    <value>izlandi</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Nyelvek</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>A VLC ezen a nyelven lesz megjelenítve:</value>
-  </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Alkalmaz és újraindítás</value>
-  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Nyelv frissítése</value>
   </data>
-  <data name="Local" xml:space="preserve">
-    <value>helyi</value>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>A VLC ezen a nyelven lesz megjelenítve:</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>Fájlok letöltése</value>
@@ -574,7 +640,7 @@
     <value>Húzza ide a fájlokat</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Húzzon fájlokat az ablakba az Xboxára másoláshoz.&amp;lt;br&amp;gt;Vagy kattintson a „+” gombra a fájlválasztó párbeszédablak használatához.</value>
+    <value>Húzzon fájlokat az ablakba az Xboxára másoláshoz.&lt;br&gt;Vagy kattintson a „+” gombra a fájlválasztó párbeszédablak használatához.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Megosztás Wi-Fin keresztül</value>
@@ -604,7 +670,7 @@
     <value>Mit tegyen a VLC, ha külső tárolót észlel?</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Mégsem</value>
+    <value>Mégse</value>
   </data>
   <data name="DoNothing" xml:space="preserve">
     <value>Ne tegyen semmit</value>
@@ -642,22 +708,25 @@
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Nyomja meg hosszan a fájl vagy mappát a helyi tárolóra másoláshoz.</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>képernyőhöz igazítás</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>kitöltés</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>eredeti</value>
-  </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>windows 10 pip használata</value>
+  </data>
+  <data name="TvUnsafeArea" xml:space="preserve">
+    <value>TV nem biztonságos területe</value>
+  </data>
+  <data name="AddMarginExplanation" xml:space="preserve">
+    <value>Néhány TV nem megfelelően jeleníti meg az alkalmazást. Margó hozzáadásához kapcsolja ezt be.</value>
+  </data>
+  <data name="ExtraMargin" xml:space="preserve">
+    <value>További margó</value>
+  </data>
+  <data name="NoExtraMargin" xml:space="preserve">
+    <value>Nincs további margó</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>újraindítás</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>kapcsolat bontása</value>
   </data>
 </root>
