@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -13,514 +13,688 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTheApp" xml:space="preserve">
-    <value>o programu</value>
+    <value>um forritið</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>přidat</value>
+    <value>bæta við</value>
   </data>
   <data name="AddFolder" xml:space="preserve">
-    <value>přidat složku</value>
+    <value>bæta við möppu</value>
   </data>
   <data name="AddToCollection" xml:space="preserve">
-    <value>přidat do kolekce</value>
+    <value>bæta við safn</value>
   </data>
   <data name="AddToCurrentPlaylist" xml:space="preserve">
-    <value>přidat do aktuálního seznamů skladeb</value>
+    <value>bæta við núverandi spilunarlista</value>
   </data>
   <data name="AddToPlaylist" xml:space="preserve">
-    <value>přidat do seznamu skladeb</value>
+    <value>bæta við spilunarlista</value>
   </data>
   <data name="Albums" xml:space="preserve">
-    <value>alba</value>
+    <value>hljómplötur</value>
   </data>
   <data name="AlbumsFound" xml:space="preserve">
-    <value>nalezené alba : {0}</value>
+    <value>hljómplötur fundust : {0}</value>
   </data>
   <data name="Animations" xml:space="preserve">
-    <value>animace</value>
+    <value>hreyfingar</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>motiv programu</value>
+    <value>þema forrits</value>
   </data>
   <data name="Artists" xml:space="preserve">
-    <value>umělci</value>
+    <value>flytjandi</value>
   </data>
   <data name="Audio" xml:space="preserve">
-    <value>zvuk</value>
+    <value>hljóð</value>
   </data>
   <data name="AudioDelay" xml:space="preserve">
-    <value>zpoždění zvuku</value>
+    <value>hljóðtöf</value>
   </data>
   <data name="AudioTracks" xml:space="preserve">
-    <value>Zvukové stopy</value>
+    <value>Hljóðspor</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>zpět</value>
+    <value>til baka</value>
   </data>
   <data name="CameraRoll" xml:space="preserve">
-    <value>fotoaparát</value>
+    <value>tökusería</value>
   </data>
   <data name="ChangeAlbumCover" xml:space="preserve">
-    <value>změnit obal alba</value>
+    <value>skipta um umslag</value>
   </data>
   <data name="Chapters" xml:space="preserve">
-    <value>Chapters</value>
+    <value>Kaflar</value>
   </data>
   <data name="CheckCredentials" xml:space="preserve">
-    <value>nastala chyba, zkontrolujte prosím přihlašovací údaje</value>
+    <value>villa kom upp, athugaðu auðkennin þín</value>
   </data>
   <data name="Connect" xml:space="preserve">
-    <value>připojit</value>
+    <value>tengjast</value>
   </data>
   <data name="ConnectedToLastFM" xml:space="preserve">
-    <value>připojeno k Last.FM</value>
+    <value>tengt við Last.FM</value>
   </data>
   <data name="Connecting" xml:space="preserve">
-    <value>připojování</value>
+    <value>tengist</value>
   </data>
   <data name="ConnectToLastFM" xml:space="preserve">
-    <value>připojit k Last.FM</value>
+    <value>tengjast við Last.FM</value>
   </data>
   <data name="CrashReport" xml:space="preserve">
-    <value>zpráva o pádu</value>
+    <value>hrunskýrsla</value>
   </data>
   <data name="DecreaseSpeed" xml:space="preserve">
-    <value>snížit rychlost</value>
+    <value>minnka hraða</value>
   </data>
   <data name="DecreaseVolume" xml:space="preserve">
-    <value>snížit hlasitost</value>
+    <value>minnka hljóðstyrk</value>
   </data>
   <data name="DeletePlaylist" xml:space="preserve">
-    <value>smazat seznam skladeb</value>
+    <value>eyða spilunarlista</value>
   </data>
   <data name="DeleteSelected" xml:space="preserve">
-    <value>smazat vybrané</value>
+    <value>eyða völdu</value>
   </data>
   <data name="EditMetadata" xml:space="preserve">
-    <value>upravit metadata</value>
+    <value>breyta lýsigögnum</value>
   </data>
   <data name="ElementsNotFound" xml:space="preserve">
-    <value>bohužel jsme tam nenalezli žádné prvky</value>
+    <value>við fundum ekki nein einindi hér</value>
   </data>
   <data name="EnterURL" xml:space="preserve">
-    <value>zadejte adresu URL</value>
+    <value>settu inn slóð</value>
   </data>
   <data name="Episode" xml:space="preserve">
-    <value>epizoda</value>
+    <value>þáttur</value>
   </data>
   <data name="EvenIfBackground" xml:space="preserve">
-    <value>i pokud aplikace je na pozadí</value>
+    <value>jafnvel þó forritið sé í bakgrunni</value>
   </data>
   <data name="EvenIfNotBackground" xml:space="preserve">
-    <value>i pokud aplikace není na pozadí</value>
+    <value>jafnvel þó forritið sé ekki í bakgrunni</value>
   </data>
   <data name="FailFilePlayBackground" xml:space="preserve">
-    <value>Tento soubor nemusí být přehrán na pozadí</value>
+    <value>Þessi skrá gæti ekki spilast í bakgrunni</value>
   </data>
   <data name="FailNavigateVideoPlayerPage" xml:space="preserve">
-    <value>VLC se nepodařilo přesunout na stránku Přehrávač videa</value>
+    <value>VLC gat ekki farið á síðu myndskeiðaspilarans</value>
   </data>
   <data name="FailOpenVideo" xml:space="preserve">
-    <value>VLC se nepodařilo otevřít video</value>
+    <value>VLC gat ekki opnað myndskeiðið</value>
   </data>
   <data name="FailStartVLCEngine" xml:space="preserve">
-    <value>Programu se nepodařilo spustit jádro VLC</value>
+    <value>Forritinu tókst ekki að ræsa VLC-vélina</value>
   </data>
   <data name="FeedbackThankYou" xml:space="preserve">
-    <value>zpětná vazba odeslána! Děkujeme vám</value>
+    <value>umsögn send! takk fyrir það</value>
   </data>
   <data name="FileExplorer" xml:space="preserve">
-    <value>procházet</value>
+    <value>flakka</value>
   </data>
   <data name="HardwareDecoding" xml:space="preserve">
-    <value>hardwarové dekódování</value>
+    <value>vélbúnaðarafkóðun</value>
   </data>
   <data name="HardwareDecodingDescription" xml:space="preserve">
-    <value>Hardwarové dekódování nemusí fungovat ve vašem zařízení.</value>
+    <value>Afkóðun með vélbúnaði er kannski ekki möguleg á tækinu þínu.</value>
   </data>
   <data name="HaveToSelectPlaylist" xml:space="preserve">
-    <value>vyberte prosím seznam skladeb</value>
+    <value>veldu spilunarlista</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>domů</value>
+    <value>heim</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-    <value>domovská stránka</value>
+    <value>heimasíða</value>
   </data>
   <data name="HomePageDescription" xml:space="preserve">
-    <value>VLC se spustí na vybrané stránce</value>
+    <value>VLC mun byrja á völdu síðunni</value>
   </data>
   <data name="HoweverYouMayFindWhatYouWantHere" xml:space="preserve">
-    <value>nicméně zde můžete najít to, co hledáte</value>
+    <value>hinsvegar gætirðu fundið hér það sem þú leitar að</value>
   </data>
   <data name="HowToFavoriteAlbum1" xml:space="preserve">
-    <value>pro oblíbení alba stačí zmáčknout</value>
+    <value>til að setja hljómplötu í eftirlæti, ýttu á</value>
   </data>
   <data name="HowToFavoriteAlbum2" xml:space="preserve">
-    <value>a dostanete k němu okamžitý přístup</value>
+    <value>og þú færð þá beinan aðgang að henni strax</value>
   </data>
   <data name="ImportantSponsors" xml:space="preserve">
-    <value>důležití sponzoři</value>
+    <value>mikilvægir stuðningsaðilar</value>
   </data>
   <data name="IncreaseSpeed" xml:space="preserve">
-    <value>zvýšit rychlost</value>
+    <value>auka hraða</value>
   </data>
   <data name="IncreaseVolume" xml:space="preserve">
-    <value>zvýšit hlasitost</value>
+    <value>auka hljóðstyrk</value>
   </data>
   <data name="ItsEmpty" xml:space="preserve">
-    <value>nic tu není</value>
+    <value>hér er allt tómt</value>
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
-    <value>klávesové zkratky</value>
-  </data>
-  <data name="Local" xml:space="preserve">
-    <value>místní</value>
+    <value>flýtileiðir á lyklaborði</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>licence</value>
+    <value>notkunarleyfi</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>načítání</value>
+    <value>hleð inn</value>
   </data>
   <data name="LoadingMusic" xml:space="preserve">
-    <value>načítání hudby</value>
+    <value>hleð inn tónlist</value>
   </data>
   <data name="MostPlayedArtists" xml:space="preserve">
-    <value>nejhranější umělci</value>
+    <value>mest spiluðu flytjendur</value>
   </data>
   <data name="Music" xml:space="preserve">
-    <value>hudba</value>
+    <value>tónlist</value>
   </data>
   <data name="MusicFolders" xml:space="preserve">
-    <value>složky s hudbou</value>
+    <value>möppur með tónlist</value>
   </data>
   <data name="MusicFoldersDescription" xml:space="preserve">
-    <value>VLC vyhledá pouze skladby z vaší hudební knihovny. Zde do ní můžete přidávat další složky</value>
+    <value>VLC mun einungis leita í lögum sem eru í tónlistarsafninu þínu. Þú getur bætt möppum í safnið hér</value>
   </data>
   <data name="MusicSettings" xml:space="preserve">
-    <value>Nastavení hudby</value>
+    <value>Stillingar fyrir tónlist</value>
   </data>
   <data name="MusicShows" xml:space="preserve">
-    <value>hudební pořady</value>
+    <value>tónlistarþættir</value>
   </data>
   <data name="Mute" xml:space="preserve">
-    <value>ztlumit</value>
+    <value>þagga niður</value>
   </data>
   <data name="MyPlaylists" xml:space="preserve">
-    <value>moje seznamy skladeb</value>
+    <value>spilunarlistarnir mínir</value>
   </data>
   <data name="Network" xml:space="preserve">
-    <value>síť</value>
+    <value>netkerfi</value>
   </data>
   <data name="NewPlaylist" xml:space="preserve">
-    <value>nový seznam skladeb</value>
+    <value>nýr spilunarlisti</value>
   </data>
   <data name="NewVideos" xml:space="preserve">
-    <value>nová videa</value>
+    <value>ný myndskeið</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>ne</value>
+    <value>nei</value>
   </data>
   <data name="NoBiographyFound" xml:space="preserve">
-    <value>nenalezena žádná umělecká biografie</value>
+    <value>ekkert æviágrip fannst fyrir þennan flytjanda</value>
   </data>
   <data name="NoCameraVideosFound" xml:space="preserve">
-    <value>nenalezena žádná videa z kamery</value>
+    <value>engin myndskeið úr myndavél fundust</value>
   </data>
   <data name="NoFavoriteAlbums" xml:space="preserve">
-    <value>žádná oblíbená alba</value>
+    <value>engar hljómplötur í eftirlætum</value>
   </data>
   <data name="NoInternetConnection" xml:space="preserve">
-    <value>žádné připojení k internetu</value>
+    <value>engin internettenging</value>
   </data>
   <data name="NoPlaylists" xml:space="preserve">
-    <value>žádné seznamy skladeb</value>
+    <value>engir spilunarlistar</value>
   </data>
   <data name="NoShowsFound" xml:space="preserve">
-    <value>žádné pořady nebyly nalezeny</value>
+    <value>engir þættir fundust</value>
   </data>
   <data name="NothingToSeeHere" xml:space="preserve">
-    <value>zde není nic k vidění</value>
+    <value>hér er ekkert að sjá</value>
   </data>
   <data name="Notifications" xml:space="preserve">
-    <value>oznámení</value>
+    <value>tilkynningar</value>
   </data>
   <data name="NotificationWhenSongStarts" xml:space="preserve">
-    <value>při spuštění skladby</value>
+    <value>þegar lagið byrjar</value>
   </data>
   <data name="NoVideosFound" xml:space="preserve">
-    <value>video nenalezeno</value>
+    <value>við fundum ekki myndskeið</value>
   </data>
   <data name="NowPlaying" xml:space="preserve">
-    <value>nyní hraje</value>
+    <value>núna í spilun</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>otevřít soubor</value>
+    <value>opna skrá</value>
   </data>
   <data name="OpenStream" xml:space="preserve">
-    <value>otevřený proud</value>
+    <value>opna streymi</value>
   </data>
   <data name="OpenSubtitle" xml:space="preserve">
-    <value>otevřít titulky</value>
+    <value>opna skjátexta</value>
   </data>
   <data name="OrderAscending" xml:space="preserve">
-    <value>vzestupně</value>
+    <value>hækkandi</value>
   </data>
   <data name="OrderByAlbum" xml:space="preserve">
-    <value>podle alba</value>
+    <value>eftir hljómplötu</value>
   </data>
   <data name="OrderByArtist" xml:space="preserve">
-    <value>podle umělce</value>
+    <value>eftir flytjanda</value>
   </data>
   <data name="OrderByDate" xml:space="preserve">
-    <value>podle data</value>
+    <value>eftir dagsetningu</value>
   </data>
   <data name="OrderDescending" xml:space="preserve">
-    <value>sestupně</value>
+    <value>lækkandi</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>heslo</value>
+    <value>lykilorð</value>
   </data>
   <data name="Pause" xml:space="preserve">
-    <value>pozastavit</value>
+    <value>í bið</value>
   </data>
   <data name="PinAlbum" xml:space="preserve">
-    <value>připnout album</value>
+    <value>festa hljómplötu</value>
   </data>
   <data name="PinArtist" xml:space="preserve">
-    <value>připnout umělce</value>
+    <value>festa flytjanda</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>přehrát</value>
+    <value>spila</value>
   </data>
   <data name="PlayAlbum" xml:space="preserve">
-    <value>přehrát album</value>
+    <value>spila hljómplötu</value>
   </data>
   <data name="PlayAll" xml:space="preserve">
-    <value>přehrát vše</value>
+    <value>spila allt</value>
   </data>
   <data name="Playback" xml:space="preserve">
-    <value>přehrávání</value>
+    <value>afspilun</value>
   </data>
   <data name="PlayerSettings" xml:space="preserve">
-    <value>Nastavení přehrávače</value>
+    <value>Stillingar spilara</value>
   </data>
   <data name="PlayFolder" xml:space="preserve">
-    <value>přehrát složku</value>
+    <value>spila möppu</value>
   </data>
   <data name="Playlist" xml:space="preserve">
-    <value>seznam skladeb</value>
+    <value>spilunarlisti</value>
   </data>
   <data name="PlaylistAlreadyExists" xml:space="preserve">
-    <value>seznam skladeb již existuje</value>
+    <value>þessi spilunarlisti er þegar til staðar</value>
   </data>
   <data name="PlaylistNamePlaceholder" xml:space="preserve">
-    <value>název seznam skladeb</value>
+    <value>heiti spilunarlista</value>
   </data>
   <data name="Playlists" xml:space="preserve">
-    <value>seznamy skladeb</value>
+    <value>spilunarlistar</value>
   </data>
   <data name="PlayTrack" xml:space="preserve">
-    <value>přehrát stopu</value>
+    <value>spila lag</value>
   </data>
   <data name="PlayVideo" xml:space="preserve">
-    <value>přehrát video</value>
+    <value>spila myndskeið</value>
   </data>
   <data name="PrivacyStatement" xml:space="preserve">
-    <value>prohlášení o ochraně soukromí</value>
+    <value>yfirlýsing um meðferð persónuupplýsinga</value>
   </data>
   <data name="Favorites" xml:space="preserve">
-    <value>Favorites</value>
+    <value>Eftirlæti</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">
-    <value>obnovit hudební knihovnu</value>
+    <value>endurlesa tónlistarsafn</value>
   </data>
   <data name="RefreshVideoLibrary" xml:space="preserve">
-    <value>obnovit knihovnu videí</value>
+    <value>endurlesa myndskeiðasafn</value>
   </data>
   <data name="RemovableStorage" xml:space="preserve">
-    <value>vyměnitelné úložiště</value>
+    <value>útskiptanleg geymsla</value>
   </data>
   <data name="RemoveFolder" xml:space="preserve">
-    <value>odebrat složku</value>
+    <value>fjarlægja möppu</value>
   </data>
   <data name="RemoveMusicFolderDescription" xml:space="preserve">
-    <value>Pokud složku nechcete v hudební knihovně, můžete ji odstranit. Budou ovlivněny všechny aplikace, a nejen VLC</value>
+    <value>Ef þú vilt ekki hafa þessa möppu í tónlistarsafninu þínu, geturðu fjarlægt hana. Það mun hafa áhrif á öll forrit - ekki bara VLC</value>
   </data>
   <data name="RemoveVideoFolderDescription" xml:space="preserve">
-    <value>Pokud složku nechcete v knihovně videa, můžete ji odstranit. Budou ovlivněny všechny aplikace, a nejen VLC</value>
+    <value>Ef þú vilt ekki hafa þessa möppu í myndskeiðasafninu þínu, geturðu fjarlægt hana. Það mun hafa áhrif á öll forrit - ekki bara VLC</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>obnovit</value>
+    <value>endurstilla</value>
   </data>
   <data name="ResetMusicDatabase" xml:space="preserve">
-    <value>obnovit databázi hudby</value>
+    <value>frumstilla tónlistargagnagrunn</value>
   </data>
   <data name="ResetSpeed" xml:space="preserve">
-    <value>obnovit rychlost</value>
+    <value>endurstilla hraða</value>
   </data>
   <data name="RichAnimationsDescription" xml:space="preserve">
-    <value>V prezentacích použít bohaté animace</value>
+    <value>Nota myndhreyfingar í skyggnusýningum</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>vyhledat</value>
+    <value>leita</value>
   </data>
   <data name="Season" xml:space="preserve">
-    <value>sezóna</value>
+    <value>árgangur</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>nastavení</value>
+    <value>stillingar</value>
   </data>
   <data name="ShowPlaylist" xml:space="preserve">
-    <value>zobrazit seznam skladeb</value>
+    <value>birta spilunarlista</value>
   </data>
   <data name="Shows" xml:space="preserve">
-    <value>pořady</value>
+    <value>þættir</value>
   </data>
   <data name="Shuffle" xml:space="preserve">
-    <value>zamíchat</value>
+    <value>stokka</value>
   </data>
   <data name="Songs" xml:space="preserve">
-    <value>písně</value>
+    <value>lög</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>zvláštní poděkování</value>
+    <value>sérstakar þakkir</value>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value>rychlost</value>
+    <value>hraði</value>
   </data>
   <data name="Stop" xml:space="preserve">
-    <value> zastavit</value>
+    <value>stöðva</value>
   </data>
   <data name="SubtitleDelay" xml:space="preserve">
-    <value>zpoždění titulků</value>
+    <value>töf skjátexta</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
-    <value>Subtitles</value>
+    <value>Skjátextar</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
-    <value>kódování titulků</value>
+    <value>kóðun skjátexta</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>motiv</value>
+    <value>þema</value>
   </data>
   <data name="TileRemoved" xml:space="preserve">
-    <value>dlaždice byla odstraněna</value>
+    <value>flís fjarlægð</value>
   </data>
   <data name="TopVideos" xml:space="preserve">
-    <value>nejlepší videa</value>
+    <value>vinsælustu myndskeiðin</value>
   </data>
   <data name="TrackAddedToYourPlaylist" xml:space="preserve">
-    <value>stopa přidána do seznamu skladeb</value>
+    <value>lagi bætt í spilunarlistann</value>
   </data>
   <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
-    <value>tato stopa je je již v seznamu skladeb</value>
+    <value>þetta lag er þegar í þessum spilunarlista</value>
   </data>
   <data name="Tracks" xml:space="preserve">
-    <value>stopy</value>
+    <value>lög</value>
   </data>
   <data name="UnknownAlbum" xml:space="preserve">
-    <value>Neznámé album</value>
+    <value>Óþekkt hljómplata</value>
   </data>
   <data name="UnknownArtist" xml:space="preserve">
-    <value>Neznámý umělec</value>
+    <value>Óþekktur flytjandi</value>
   </data>
   <data name="UnknownShow" xml:space="preserve">
-    <value>Neznámý pořad</value>
+    <value>Óþekktur þáttur</value>
   </data>
   <data name="UnknownTrack" xml:space="preserve">
-    <value>Neznámá skladba</value>
+    <value>Óþekkt lag</value>
   </data>
   <data name="UserInterface" xml:space="preserve">
-    <value>Uživatelské rozhraní</value>
+    <value>Notandaviðmót</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>uživatelské jméno</value>
+    <value>notandanafn</value>
   </data>
   <data name="Video" xml:space="preserve">
-    <value>video</value>
+    <value>myndskeið</value>
   </data>
   <data name="VideoFolders" xml:space="preserve">
-    <value>složky videa</value>
+    <value>möppur með myndskeiðum</value>
   </data>
   <data name="VideoFoldersDescription" xml:space="preserve">
-    <value>VLC vyhledá pouze skladby z knihovny videí. Zde do ní můžete přidávat další složky</value>
+    <value>VLC mun einungis leita í myndskeiðum sem eru í safninu þínu. Þú getur bætt möppum í safnið hér</value>
   </data>
   <data name="VideoPlayback" xml:space="preserve">
-    <value>přehrávání videa</value>
+    <value>afspilun myndskeiða</value>
   </data>
   <data name="VideoPlaybackInBackground" xml:space="preserve">
-    <value>přehrát video na pozadí</value>
+    <value>spila myndskeið í bakgrunni</value>
   </data>
   <data name="Videos" xml:space="preserve">
-    <value>videa</value>
+    <value>myndskeið</value>
   </data>
   <data name="VideoSettings" xml:space="preserve">
-    <value>Nastavení videa</value>
+    <value>Stillingar myndskeiða</value>
   </data>
   <data name="ViewAlbum" xml:space="preserve">
-    <value>zobrazit album</value>
+    <value>skoða hljómplötu</value>
   </data>
   <data name="ViewArtist" xml:space="preserve">
-    <value>zobrazit umělce</value>
+    <value>skoða flytjanda</value>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>hlasitost</value>
+    <value>hljóðstyrkur</value>
   </data>
   <data name="WeNeedYourHelp" xml:space="preserve">
-    <value>potřebujeme vaši pomoc</value>
+    <value>við þörfnumst hjálpar þinnar</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>ano</value>
+    <value>já</value>
   </data>
   <data name="YourMusic" xml:space="preserve">
-    <value>vaše hudba</value>
+    <value>tónlistin þín</value>
   </data>
   <data name="AccentColor" xml:space="preserve">
-    <value>zvýraznění barvy</value>
+    <value>áherslulitur</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>barva pozadí</value>
+    <value>bakgrunnslitur</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>tmavé</value>
+    <value>dökkt</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>světlé</value>
+    <value>ljóst</value>
   </data>
   <data name="TitleBar" xml:space="preserve">
-    <value>panel s názvem</value>
+    <value>titilslá</value>
   </data>
   <data name="NeedRestart" xml:space="preserve">
-    <value>Pro provedení změn musíte restartovat program</value>
+    <value>Þú þarft að endurræsa forritið svo að breytingar verði virkar</value>
   </data>
   <data name="Zoom" xml:space="preserve">
-    <value>zvětšit</value>
+    <value>aðdráttur</value>
   </data>
   <data name="AreYouSure" xml:space="preserve">
-    <value>jste si jisti?</value>
+    <value>ertu viss?</value>
   </data>
   <data name="MediaCantBeRead" xml:space="preserve">
-    <value>médium nelze přečíst</value>
+    <value>ekki hægt að lesa gagnamiðilinn</value>
   </data>
   <data name="Sorry" xml:space="preserve">
-    <value>omlouváme se</value>
+    <value>okkur þykir það miður</value>
   </data>
   <data name="SURFACE_BEST_FIT" xml:space="preserve">
-    <value>nejlepší přizpůsobení</value>
+    <value>passar best</value>
   </data>
   <data name="SURFACE_FIT_HORIZONTAL" xml:space="preserve">
-    <value>vodorovné oříznutí</value>
+    <value>láréttur utanskurður</value>
   </data>
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
-    <value>svislé oříznutí</value>
+    <value>lóðréttur utanskurður</value>
+  </data>
+  <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
+    <value>spilunarlistinn þinn verður ekki aðgengilegur</value>
+  </data>
+  <data name="NoArtistShowsFound" xml:space="preserve">
+    <value>við fundum ekki neina þætti með þessum flytjanda</value>
+  </data>
+  <data name="NoResults" xml:space="preserve">
+    <value>engar niðurstöður</value>
+  </data>
+  <data name="ForceLandscape" xml:space="preserve">
+    <value>Þvinga lárétt</value>
+  </data>
+  <data name="SURFACE_STRETCH" xml:space="preserve">
+    <value>teygja</value>
+  </data>
+  <data name="SimilarArtists" xml:space="preserve">
+    <value>svipaðir flytjendur</value>
+  </data>
+  <data name="EnglishLanguage" xml:space="preserve">
+    <value>Enska</value>
+  </data>
+  <data name="FrenchLanguage" xml:space="preserve">
+    <value>Franska</value>
+  </data>
+  <data name="JapaneseLanguage" xml:space="preserve">
+    <value>Japanska</value>
+  </data>
+  <data name="GermanLanguage" xml:space="preserve">
+    <value>Þýska</value>
+  </data>
+  <data name="PolishLanguage" xml:space="preserve">
+    <value>Pólska</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Slóvakíska</value>
+  </data>
+  <data name="DanishLanguage" xml:space="preserve">
+    <value>Danska</value>
+  </data>
+  <data name="SpanishLanguage" xml:space="preserve">
+    <value>Spænska</value>
+  </data>
+  <data name="HungarianLanguage" xml:space="preserve">
+    <value>Ungverska</value>
+  </data>
+  <data name="ItalianLanguage" xml:space="preserve">
+    <value>Ítalska</value>
+  </data>
+  <data name="KoreanLanguage" xml:space="preserve">
+    <value>Kóreska</value>
+  </data>
+  <data name="MalayLanguage" xml:space="preserve">
+    <value>Malaíska</value>
+  </data>
+  <data name="NorwegianLanguage" xml:space="preserve">
+    <value>Norska</value>
+  </data>
+  <data name="DutchLanguage" xml:space="preserve">
+    <value>Hollenska</value>
+  </data>
+  <data name="RussianLanguage" xml:space="preserve">
+    <value>Rússneska</value>
+  </data>
+  <data name="SwedishLanguage" xml:space="preserve">
+    <value>Sænska</value>
+  </data>
+  <data name="TurkishLanguage" xml:space="preserve">
+    <value>Tyrkneska</value>
+  </data>
+  <data name="UkrainianLanguage" xml:space="preserve">
+    <value>Úkraínska</value>
+  </data>
+  <data name="ChineseLanguage" xml:space="preserve">
+    <value>Kínverska</value>
+  </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>Portúgalska</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>Tékkneska</value>
+  </data>
+  <data name="IcelandicLanguage" xml:space="preserve">
+    <value>Íslenska</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Tungumál</value>
+  </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC verður birt sem</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Virkja og endurræsa</value>
+  </data>
+  <data name="RefreshLanguage" xml:space="preserve">
+    <value>Endurlesa tungumál</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>staðvært</value>
+  </data>
+  <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
+    <value>Sækja skrár</value>
+  </data>
+  <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
+    <value>Smelltu bara á skrána sem þú vilt sækja af Xbox-inu þínu.</value>
+  </data>
+  <data name="WEBINTF_DROPFILES" xml:space="preserve">
+    <value>Sleppa skrám</value>
+  </data>
+  <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
+    <value>Slepptu skrám á gluggann til að bæta þeim inn á Xbox-ið þitt.&amp;lt;br&amp;gt;Eða smelltu á &amp;quot;+&amp;quot; hnappinn til að nota skráaveljarann.</value>
+  </data>
+  <data name="WEBINTF_TITLE" xml:space="preserve">
+    <value>Deila með þráðlausu neti</value>
+  </data>
+  <data name="CopyToLocalStorage" xml:space="preserve">
+    <value>afrita í innri gagnageymslu</value>
+  </data>
+  <data name="ExternalStorageDeviceDetected" xml:space="preserve">
+    <value>VLC fann tæki með ytri gagnageymslu.</value>
+  </data>
+  <data name="ReadFromExternalStorage" xml:space="preserve">
+    <value>Nota ytri gagnageymslu sem margmiðlunarsafn.</value>
+  </data>
+  <data name="SelectContentToCopy" xml:space="preserve">
+    <value>Afrita gögn í innri gagnageymslu.</value>
+  </data>
+  <data name="WhatToDo" xml:space="preserve">
+    <value>Hvað viltu gera?</value>
+  </data>
+  <data name="AskMe" xml:space="preserve">
+    <value>Spyrja mig</value>
+  </data>
+  <data name="ExternalStorage" xml:space="preserve">
+    <value>ytri gagnageymsla</value>
+  </data>
+  <data name="WhatToDoWhenExternalStorage" xml:space="preserve">
+    <value>Hvað ætti VLC að gera þegar það finnur tæki með ytri gagnageymslu?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Hætta við</value>
+  </data>
+  <data name="DoNothing" xml:space="preserve">
+    <value>Gera ekkert</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Í lagi</value>
+  </data>
+  <data name="Ignore" xml:space="preserve">
+    <value>Hunsa</value>
+  </data>
+  <data name="Remember" xml:space="preserve">
+    <value>Muna</value>
+  </data>
+  <data name="AddMediaHelp" xml:space="preserve">
+    <value>Settu tæki með ytri gagnageymslu</value>
+  </data>
+  <data name="AddMediaHelpWithIP" xml:space="preserve">
+    <value>Settu tæki með ytri gagnageymslu eða farðu á http://{0}:8080 til að senda inn einhver margmiðlunargögn</value>
+  </data>
+  <data name="CopyHelpDesktop" xml:space="preserve">
+    <value>Hægri-smelltu á skrá eða möppu til að afrita hana í staðværu gagnageymsluna.</value>
+  </data>
+  <data name="CopyHelpMediaCenter" xml:space="preserve">
+    <value>Ýttu á "Y" á skrá eða möppu til að afrita hana í staðværu gagnageymsluna.</value>
+  </data>
+  <data name="NoSubtitles" xml:space="preserve">
+    <value>Engin skjátextaspor</value>
+  </data>
+  <data name="ClearKeystore" xml:space="preserve">
+    <value>Hreinsa vistuð auðkenni</value>
+  </data>
+  <data name="Credentials" xml:space="preserve">
+    <value>Auðkenni</value>
+  </data>
+  <data name="CopyHelpPhone" xml:space="preserve">
+    <value>Ýttu lengi á skrá eða möppu til að afrita hana í staðværu gagnageymsluna.</value>
   </data>
   <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>přizpůsobit obrazovce</value>
+    <value>laga að skjá</value>
   </data>
   <data name="SURFACE_FILL" xml:space="preserve">
-    <value>vyplnit</value>
+    <value>fylla</value>
   </data>
   <data name="SURFACE_16_9" xml:space="preserve">
     <value>16:9</value>
@@ -532,201 +706,27 @@
     <value>2.35:1</value>
   </data>
   <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>původní</value>
-  </data>
-  <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
-    <value>váš seznam skladeb nebude dostupný</value>
-  </data>
-  <data name="NoArtistShowsFound" xml:space="preserve">
-    <value>pro umělce nenalezeny žádné show</value>
-  </data>
-  <data name="NoResults" xml:space="preserve">
-    <value>žádné výsledky</value>
-  </data>
-  <data name="ForceLandscape" xml:space="preserve">
-    <value>Vynutit na šířku</value>
-  </data>
-  <data name="SURFACE_STRETCH" xml:space="preserve">
-    <value>roztáhnout</value>
-  </data>
-  <data name="SimilarArtists" xml:space="preserve">
-    <value>Podobní umělci</value>
-  </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Použít a restartovat</value>
-  </data>
-  <data name="EnglishLanguage" xml:space="preserve">
-    <value>Angličtina</value>
-  </data>
-  <data name="FrenchLanguage" xml:space="preserve">
-    <value>Francouzština</value>
-  </data>
-  <data name="JapaneseLanguage" xml:space="preserve">
-    <value>Japonština</value>
-  </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slovenština</value>
-  </data>
-  <data name="GermanLanguage" xml:space="preserve">
-    <value>Němečina</value>
-  </data>
-  <data name="PolishLanguage" xml:space="preserve">
-    <value>Polština</value>
-  </data>
-  <data name="DanishLanguage" xml:space="preserve">
-    <value>Dánština</value>
-  </data>
-  <data name="SpanishLanguage" xml:space="preserve">
-    <value>Španělština</value>
-  </data>
-  <data name="HungarianLanguage" xml:space="preserve">
-    <value>Maďarština</value>
-  </data>
-  <data name="ItalianLanguage" xml:space="preserve">
-    <value>Italština</value>
-  </data>
-  <data name="KoreanLanguage" xml:space="preserve">
-    <value>Korejština</value>
-  </data>
-  <data name="MalayLanguage" xml:space="preserve">
-    <value>Malajština</value>
-  </data>
-  <data name="NorwegianLanguage" xml:space="preserve">
-    <value>Norština</value>
-  </data>
-  <data name="DutchLanguage" xml:space="preserve">
-    <value>Holandština</value>
-  </data>
-  <data name="RussianLanguage" xml:space="preserve">
-    <value>Ruština</value>
-  </data>
-  <data name="SwedishLanguage" xml:space="preserve">
-    <value>Švédština</value>
-  </data>
-  <data name="TurkishLanguage" xml:space="preserve">
-    <value>Turečtina</value>
-  </data>
-  <data name="UkrainianLanguage" xml:space="preserve">
-    <value>Ukrajinština</value>
-  </data>
-  <data name="ChineseLanguage" xml:space="preserve">
-    <value>Čínština</value>
-  </data>
-  <data name="PortugueseLanguage" xml:space="preserve">
-    <value>Portugalština</value>
-  </data>
-  <data name="CzechLanguage" xml:space="preserve">
-    <value>Čeština</value>
-  </data>
-  <data name="IcelandicLanguage" xml:space="preserve">
-    <value>Islandština</value>
-  </data>
-  <data name="Languages" xml:space="preserve">
-    <value>Languages</value>
-  </data>
-  <data name="RefreshLanguage" xml:space="preserve">
-    <value>Obnovit jazyk</value>
-  </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC se zobrazí v</value>
-  </data>
-  <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
-    <value>Stáhnout soubory</value>
-  </data>
-  <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
-    <value>Stačí kliknout na soubor, který chcete stáhnout ze svého Xboxu.</value>
-  </data>
-  <data name="WEBINTF_DROPFILES" xml:space="preserve">
-    <value>Pustit soubory</value>
-  </data>
-  <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Do okna přetáhněte soubory a přidejte je do svého Xboxu&lt;it id="1" pos="open"&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Nebo klikněte na tlačítko &amp;quot;+&amp;quot; chcete-li použít dialog pro výběr souborů.</value>
-  </data>
-  <data name="WEBINTF_TITLE" xml:space="preserve">
-    <value>Sdílení prostřednictvím WiFi</value>
-  </data>
-  <data name="CopyToLocalStorage" xml:space="preserve">
-    <value>kopírovat na místní úložiště</value>
-  </data>
-  <data name="ExternalStorageDeviceDetected" xml:space="preserve">
-    <value>VLC zjistilo externí úložiště.</value>
-  </data>
-  <data name="ReadFromExternalStorage" xml:space="preserve">
-    <value>Použít externí úložiště jako knihovnu médií.</value>
-  </data>
-  <data name="SelectContentToCopy" xml:space="preserve">
-    <value>Kopírovat média na interní úložiště.</value>
-  </data>
-  <data name="WhatToDo" xml:space="preserve">
-    <value>Co chcete dělat?</value>
-  </data>
-  <data name="AskMe" xml:space="preserve">
-    <value>Zeptat se</value>
-  </data>
-  <data name="ExternalStorage" xml:space="preserve">
-    <value>externí úložiště</value>
-  </data>
-  <data name="WhatToDoWhenExternalStorage" xml:space="preserve">
-    <value>Co by mělo VLC udělat při zjištění externího úložiště?</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="DoNothing" xml:space="preserve">
-    <value>Nedělat nic</value>
-  </data>
-  <data name="Ok" xml:space="preserve">
-    <value>Ok</value>
-  </data>
-  <data name="Ignore" xml:space="preserve">
-    <value>Ignore</value>
-  </data>
-  <data name="Remember" xml:space="preserve">
-    <value>Remember</value>
-  </data>
-  <data name="AddMediaHelp" xml:space="preserve">
-    <value>Vložte prosím externí úložiště</value>
-  </data>
-  <data name="AddMediaHelpWithIP" xml:space="preserve">
-    <value>Vložte prosím externí úložiště, nebo přejděte na stránku http://{0}:8080 a nahrajte nějaká média</value>
-  </data>
-  <data name="CopyHelpDesktop" xml:space="preserve">
-    <value>Klepněte pravým tlačítkem na soubor nebo složku pro kopírování na místní úložiště.</value>
-  </data>
-  <data name="CopyHelpMediaCenter" xml:space="preserve">
-    <value>Stiskněte "Y" na souboru nebo složce pro kopírování na místní úložiště.</value>
-  </data>
-  <data name="NoSubtitles" xml:space="preserve">
-    <value>Žádné stopy titulků</value>
-  </data>
-  <data name="ClearKeystore" xml:space="preserve">
-    <value>Vymazat uložené identifikační údaje</value>
-  </data>
-  <data name="Credentials" xml:space="preserve">
-    <value>Credentials</value>
-  </data>
-  <data name="CopyHelpPhone" xml:space="preserve">
-    <value>Dlouhým stisknutím na soubor nebo složku jej zkopírujte na místní úložiště.</value>
+    <value>upprunalegt</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
-    <value>použit windows 10 pip</value>
+    <value>nota windows 10 pip</value>
   </data>
   <data name="TvUnsafeArea" xml:space="preserve">
-    <value>Nebezpečná oblast TV</value>
+    <value>Ótryggt svæði á sjónvarpsskjá</value>
   </data>
   <data name="AddMarginExplanation" xml:space="preserve">
-    <value>Některé TV aplikaci nezobrazí správně. Chcete-li přidat okraj, zapněte jej</value>
+    <value>Sum sjónvörp munu ekki birta forritið rétt. Til að bæta við svolitlum spássíum, ættirðu að virkja þetta</value>
   </data>
   <data name="ExtraMargin" xml:space="preserve">
-    <value>Dodatečný okraj</value>
+    <value>Aukaspássía</value>
   </data>
   <data name="NoExtraMargin" xml:space="preserve">
-    <value>Bez dodatečného okraje</value>
+    <value>Engin aukaspássía</value>
   </data>
   <data name="Restart" xml:space="preserve">
-    <value>Restartovat</value>
+    <value>endurræsa</value>
   </data>
   <data name="Disconnect" xml:space="preserve">
-    <value>odpojit</value>
+    <value>aftengjast</value>
   </data>
 </root>

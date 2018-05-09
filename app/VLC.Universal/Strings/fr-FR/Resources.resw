@@ -193,7 +193,7 @@
     <value>Dossiers de musique</value>
   </data>
   <data name="MusicFoldersDescription" xml:space="preserve">
-    <value>VLC recherchera uniquement les morceaux qui se trouvent dans votre bibliothèque musicale. Vous pouvez ajouter des dossiers à votre bibliothèque ici.</value>
+    <value>VLC recherchera uniquement les morceaux qui se trouvent dans votre musicothèque. Vous pouvez ajouter des dossiers à votre bibliothèque ici</value>
   </data>
   <data name="MusicSettings" xml:space="preserve">
     <value>Paramètres Audio</value>
@@ -331,10 +331,10 @@
     <value>Favoris</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">
-    <value>Actualiser la bibliothèque musicale</value>
+    <value>actualiser la musicothèque</value>
   </data>
   <data name="RefreshVideoLibrary" xml:space="preserve">
-    <value>Actualiser la vidéothèque</value>
+    <value>actualiser la vidéothèque</value>
   </data>
   <data name="RemovableStorage" xml:space="preserve">
     <value>Stockage amovible</value>
@@ -343,7 +343,7 @@
     <value>Supprimer le dossier</value>
   </data>
   <data name="RemoveMusicFolderDescription" xml:space="preserve">
-    <value>Si vous ne voulez pas de ce dossier dans votre bibliothèque de musique, vous pouvez le supprimer. Cela affectera toutes les applications, pas seulement VLC.</value>
+    <value>Si vous ne voulez pas de ce dossier dans votre musicothèque, vous pouvez le supprimer. Cela affectera toutes les applications, pas seulement VLC.</value>
   </data>
   <data name="RemoveVideoFolderDescription" xml:space="preserve">
     <value>Si vous ne voulez pas de ce dossier dans votre vidéothèque, vous pouvez le supprimer. Cela affectera toutes les applications, pas seulement VLC.</value>
@@ -549,6 +549,54 @@
   <data name="SlovakLanguage" xml:space="preserve">
     <value>Slovaque</value>
   </data>
+  <data name="DanishLanguage" xml:space="preserve">
+    <value>Danois</value>
+  </data>
+  <data name="SpanishLanguage" xml:space="preserve">
+    <value>Espagnol</value>
+  </data>
+  <data name="HungarianLanguage" xml:space="preserve">
+    <value>Hongrois</value>
+  </data>
+  <data name="ItalianLanguage" xml:space="preserve">
+    <value>Italien</value>
+  </data>
+  <data name="KoreanLanguage" xml:space="preserve">
+    <value>Coréen</value>
+  </data>
+  <data name="MalayLanguage" xml:space="preserve">
+    <value>Malais</value>
+  </data>
+  <data name="NorwegianLanguage" xml:space="preserve">
+    <value>Norvégien</value>
+  </data>
+  <data name="DutchLanguage" xml:space="preserve">
+    <value>Néerlandais</value>
+  </data>
+  <data name="RussianLanguage" xml:space="preserve">
+    <value>Russe</value>
+  </data>
+  <data name="SwedishLanguage" xml:space="preserve">
+    <value>Suédois</value>
+  </data>
+  <data name="TurkishLanguage" xml:space="preserve">
+    <value>Turc</value>
+  </data>
+  <data name="UkrainianLanguage" xml:space="preserve">
+    <value>Ukrainien</value>
+  </data>
+  <data name="ChineseLanguage" xml:space="preserve">
+    <value>Chinois</value>
+  </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>Portugais</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>Tchèque</value>
+  </data>
+  <data name="IcelandicLanguage" xml:space="preserve">
+    <value>Islandais</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Langues</value>
   </data>
@@ -586,7 +634,7 @@
     <value>VLC a détecté un périphérique de stockage amovible.</value>
   </data>
   <data name="ReadFromExternalStorage" xml:space="preserve">
-    <value>Intégrer le périphérique de stockage à la bibliothèque de media</value>
+    <value>Utiliser un support externe comme médiathèque.</value>
   </data>
   <data name="SelectContentToCopy" xml:space="preserve">
     <value>Copier les médias sur le stockage interne</value>
@@ -654,10 +702,31 @@
   <data name="SURFACE_4_3" xml:space="preserve">
     <value>4:3</value>
   </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
   <data name="SURFACE_ORIGINAL" xml:space="preserve">
     <value>Original</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>Utiliser PIP Windows 10</value>
+  </data>
+  <data name="TvUnsafeArea" xml:space="preserve">
+    <value>Zone non-sûre TV</value>
+  </data>
+  <data name="AddMarginExplanation" xml:space="preserve">
+    <value>Certaines TV n'affichent pas l'application correctement. Activez cette option pour ajouter une marge.</value>
+  </data>
+  <data name="ExtraMargin" xml:space="preserve">
+    <value>Marge additionnelle</value>
+  </data>
+  <data name="NoExtraMargin" xml:space="preserve">
+    <value>Pas de marge additionnelle</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Recommencer</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>Déconnecter</value>
   </data>
 </root>

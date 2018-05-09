@@ -115,7 +115,7 @@
     <value>även om appen inte är i bakgrunden</value>
   </data>
   <data name="FailFilePlayBackground" xml:space="preserve">
-    <value>Denna fil kanske inte kan spelas i bakgrunden</value>
+    <value>Denna fil kanske inte kan spelas upp i bakgrunden</value>
   </data>
   <data name="FailNavigateVideoPlayerPage" xml:space="preserve">
     <value>VLC misslyckades att navigera till sidan för videouppspelning</value>
@@ -127,7 +127,7 @@
     <value>Appen misslyckades att starta VLC-motorn</value>
   </data>
   <data name="FeedbackThankYou" xml:space="preserve">
-    <value>återkoppling skickades! tack</value>
+    <value>återkopplingen skickades! tack</value>
   </data>
   <data name="FileExplorer" xml:space="preserve">
     <value>bläddra</value>
@@ -244,13 +244,13 @@
     <value>aviseringar</value>
   </data>
   <data name="NotificationWhenSongStarts" xml:space="preserve">
-    <value>när låten startades</value>
+    <value>när låten startas</value>
   </data>
   <data name="NoVideosFound" xml:space="preserve">
     <value>vi hittade inte videon</value>
   </data>
   <data name="NowPlaying" xml:space="preserve">
-    <value>spelas nu</value>
+    <value>spelas upp nu</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>öppna fil</value>
@@ -379,7 +379,7 @@
     <value>blanda</value>
   </data>
   <data name="Songs" xml:space="preserve">
-    <value>sånger</value>
+    <value>låtar</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
     <value>stort tack</value>
@@ -412,7 +412,7 @@
     <value>spåret lades till i spellistan</value>
   </data>
   <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
-    <value>detta spår finns redan i vald spellista</value>
+    <value>detta spår finns redan i denna spellista</value>
   </data>
   <data name="Tracks" xml:space="preserve">
     <value>spår</value>
@@ -526,7 +526,7 @@
     <value>Tvinga landskap</value>
   </data>
   <data name="SURFACE_STRETCH" xml:space="preserve">
-    <value>sträck</value>
+    <value>sträck ut</value>
   </data>
   <data name="SimilarArtists" xml:space="preserve">
     <value>Liknande artister</value>
@@ -548,6 +548,54 @@
   </data>
   <data name="SlovakLanguage" xml:space="preserve">
     <value>slovakiska</value>
+  </data>
+  <data name="DanishLanguage" xml:space="preserve">
+    <value>danska</value>
+  </data>
+  <data name="SpanishLanguage" xml:space="preserve">
+    <value>spanska</value>
+  </data>
+  <data name="HungarianLanguage" xml:space="preserve">
+    <value>ungerska</value>
+  </data>
+  <data name="ItalianLanguage" xml:space="preserve">
+    <value>italienska</value>
+  </data>
+  <data name="KoreanLanguage" xml:space="preserve">
+    <value>koreanska</value>
+  </data>
+  <data name="MalayLanguage" xml:space="preserve">
+    <value>malajiska</value>
+  </data>
+  <data name="NorwegianLanguage" xml:space="preserve">
+    <value>norska</value>
+  </data>
+  <data name="DutchLanguage" xml:space="preserve">
+    <value>nederländska</value>
+  </data>
+  <data name="RussianLanguage" xml:space="preserve">
+    <value>ryska</value>
+  </data>
+  <data name="SwedishLanguage" xml:space="preserve">
+    <value>svenska</value>
+  </data>
+  <data name="TurkishLanguage" xml:space="preserve">
+    <value>turkiska</value>
+  </data>
+  <data name="UkrainianLanguage" xml:space="preserve">
+    <value>ukrainska</value>
+  </data>
+  <data name="ChineseLanguage" xml:space="preserve">
+    <value>kinesiska</value>
+  </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>portugisiska</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>tjeckiska</value>
+  </data>
+  <data name="IcelandicLanguage" xml:space="preserve">
+    <value>isländska</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Språk</value>
@@ -589,7 +637,7 @@
     <value>Använd extern lagring som mediabibliotek.</value>
   </data>
   <data name="SelectContentToCopy" xml:space="preserve">
-    <value>Kopiera media till intern lagring.</value>
+    <value>Kopiera media till den interna lagringen.</value>
   </data>
   <data name="WhatToDo" xml:space="preserve">
     <value>Vad vill du göra?</value>
@@ -640,10 +688,10 @@
     <value>Inloggningsuppgifter</value>
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
-    <value>Håll ned på en fil eller mapp för att kopiera den till den lokala lagringen.</value>
+    <value>Tryck och håll ned på en fil eller mapp för att kopiera den till den lokala lagringen.</value>
   </data>
   <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>passa skärmen</value>
+    <value>anpassa till skärm</value>
   </data>
   <data name="SURFACE_FILL" xml:space="preserve">
     <value>fyll</value>
@@ -654,10 +702,31 @@
   <data name="SURFACE_4_3" xml:space="preserve">
     <value>4:3</value>
   </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
   <data name="SURFACE_ORIGINAL" xml:space="preserve">
     <value>original</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
-    <value>använd windows 10 bib</value>
+    <value>använd windows 10:s bib</value>
+  </data>
+  <data name="TvUnsafeArea" xml:space="preserve">
+    <value>Osäkert TV-område</value>
+  </data>
+  <data name="AddMarginExplanation" xml:space="preserve">
+    <value>Vissa TV-apparater visar inte appen på rätt sätt. Aktivera detta för att lägga till lite marginal</value>
+  </data>
+  <data name="ExtraMargin" xml:space="preserve">
+    <value>Extra marginal</value>
+  </data>
+  <data name="NoExtraMargin" xml:space="preserve">
+    <value>Ingen extra marginal</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>starta om</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>koppla från</value>
   </data>
 </root>

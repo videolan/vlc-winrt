@@ -1,1177 +1,966 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="ja-JP" original="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+  <file build-num="n/a" datatype="xml" original="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW" product-name="n/a" product-version="n/a" source-language="en-US" target-language="ja-JP" tool-id="MultilingualAppToolkit">
     <header>
-      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" tool-company="Microsoft" />
+      <tool tool-company="Microsoft" tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" />
     </header>
     <body>
-      <group id="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
+      <group datatype="resx" id="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW">
         <trans-unit id="AboutTheApp" translate="yes" xml:space="preserve">
           <source>about the app</source>
-          <target state="needs-review-translation">アプリについて</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アプリについて</target>
         </trans-unit>
         <trans-unit id="Add" translate="yes" xml:space="preserve">
           <source>add</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">追加</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">追加</target>
         </trans-unit>
         <trans-unit id="AddFolder" translate="yes" xml:space="preserve">
           <source>add folder</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">フォルダーを追加</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">フォルダーを追加</target>
         </trans-unit>
         <trans-unit id="AddToCollection" translate="yes" xml:space="preserve">
           <source>add to collection</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">コレクションに追加</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">コレクションに追加</target>
         </trans-unit>
         <trans-unit id="AddToCurrentPlaylist" translate="yes" xml:space="preserve">
           <source>add to current playlist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">現在のプレイリストに追加</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">現在のプレイリストに追加</target>
         </trans-unit>
         <trans-unit id="AddToPlaylist" translate="yes" xml:space="preserve">
           <source>add to playlist</source>
-          <target state="needs-review-translation">プレイリストに追加</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">プレイリストに追加</target>
         </trans-unit>
         <trans-unit id="Albums" translate="yes" xml:space="preserve">
           <source>albums</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">アルバム</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アルバム</target>
         </trans-unit>
         <trans-unit id="AlbumsFound" translate="yes" xml:space="preserve">
           <source>albums found : {0}</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">アルバムが見つかりました: {0}</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アルバムが見つかりました: {0}</target>
         </trans-unit>
         <trans-unit id="Animations" translate="yes" xml:space="preserve">
           <source>animations</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">アニメーション</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アニメーション</target>
         </trans-unit>
         <trans-unit id="AppTheme" translate="yes" xml:space="preserve">
           <source>application theme</source>
-          <target state="needs-review-translation">アプリケーション テーマ</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アプリケーション テーマ</target>
         </trans-unit>
         <trans-unit id="Artists" translate="yes" xml:space="preserve">
           <source>artists</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">アーティスト</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アーティスト</target>
         </trans-unit>
         <trans-unit id="Audio" translate="yes" xml:space="preserve">
           <source>audio</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">オーディオ</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">オーディオ</target>
         </trans-unit>
         <trans-unit id="AudioDelay" translate="yes" xml:space="preserve">
           <source>audio delay</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">オーディオ遅延</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">オーディオ遅延</target>
         </trans-unit>
         <trans-unit id="AudioTracks" translate="yes" xml:space="preserve">
           <source>Audio Tracks</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">オーディオ トラック</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">オーディオ トラック</target>
         </trans-unit>
         <trans-unit id="Back" translate="yes" xml:space="preserve">
           <source>back</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">戻る</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">戻る</target>
         </trans-unit>
         <trans-unit id="CameraRoll" translate="yes" xml:space="preserve">
           <source>camera roll</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">カメラ ロール</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">カメラ ロール</target>
         </trans-unit>
         <trans-unit id="ChangeAlbumCover" translate="yes" xml:space="preserve">
           <source>change album cover</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">アルバム カバーを変更</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アルバム カバーを変更</target>
         </trans-unit>
         <trans-unit id="Chapters" translate="yes" xml:space="preserve">
           <source>Chapters</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">章</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">章</target>
         </trans-unit>
         <trans-unit id="CheckCredentials" translate="yes" xml:space="preserve">
           <source>an error occured, please check your credentials</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">エラーが発生しました、ユーザーの資格情報を確認してください</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">エラーが発生しました、ユーザーの資格情報を確認してください</target>
         </trans-unit>
         <trans-unit id="Connect" translate="yes" xml:space="preserve">
           <source>connect</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">接続</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">接続</target>
         </trans-unit>
         <trans-unit id="ConnectedToLastFM" translate="yes" xml:space="preserve">
           <source>connected to Last.FM</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Last.FM に接続されています</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Last.FM に接続されています</target>
         </trans-unit>
         <trans-unit id="Connecting" translate="yes" xml:space="preserve">
           <source>connecting</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">接続中</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">接続中</target>
         </trans-unit>
         <trans-unit id="ConnectToLastFM" translate="yes" xml:space="preserve">
           <source>connect to Last.FM</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Last.FM へ接続</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Last.FM へ接続</target>
         </trans-unit>
         <trans-unit id="CrashReport" translate="yes" xml:space="preserve">
           <source>crash report</source>
-          <target state="needs-review-translation">クラッシュ レポート</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">クラッシュ レポート</target>
         </trans-unit>
         <trans-unit id="DecreaseSpeed" translate="yes" xml:space="preserve">
           <source>decrease speed</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">速度を下げる</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">速度を下げる</target>
         </trans-unit>
         <trans-unit id="DecreaseVolume" translate="yes" xml:space="preserve">
           <source>decrease volume</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">音量を下げる</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">音量を下げる</target>
         </trans-unit>
         <trans-unit id="DeletePlaylist" translate="yes" xml:space="preserve">
           <source>delete playlist</source>
-          <target state="needs-review-translation">プレイリストを削除</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">プレイリストを削除</target>
         </trans-unit>
         <trans-unit id="DeleteSelected" translate="yes" xml:space="preserve">
           <source>delete selected</source>
-          <target state="needs-review-translation">選択項目の削除</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">選択項目の削除</target>
         </trans-unit>
         <trans-unit id="EditMetadata" translate="yes" xml:space="preserve">
           <source>edit metadata</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">メタデータの編集</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">メタデータの編集</target>
         </trans-unit>
         <trans-unit id="ElementsNotFound" translate="yes" xml:space="preserve">
           <source>we did not find elements in there</source>
-          <target state="needs-review-translation">そこに要素が見つかりませんでした</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">そこに要素が見つかりませんでした</target>
         </trans-unit>
         <trans-unit id="EnterURL" translate="yes" xml:space="preserve">
           <source>enter a url</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">url を入力してください</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">url を入力してください</target>
         </trans-unit>
         <trans-unit id="Episode" translate="yes" xml:space="preserve">
           <source>episode</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">エピソード</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">エピソード</target>
         </trans-unit>
         <trans-unit id="EvenIfBackground" translate="yes" xml:space="preserve">
           <source>even if the app is in background</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">アプリがバック グラウンドの場合でも</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アプリがバック グラウンドの場合でも</target>
         </trans-unit>
         <trans-unit id="EvenIfNotBackground" translate="yes" xml:space="preserve">
           <source>even if the app is not in background</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">アプリがバック グラウンドでない場合でも</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アプリがバック グラウンドでない場合でも</target>
         </trans-unit>
         <trans-unit id="FailFilePlayBackground" translate="yes" xml:space="preserve">
           <source>This file may not play in the background</source>
-          <target state="needs-review-translation">このファイルはバック グラウンドで再生されないかもしれません</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">このファイルはバック グラウンドで再生されないかもしれません</target>
         </trans-unit>
         <trans-unit id="FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
           <source>VLC failed to navigate to the Video Player page</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLCがビデオ プレーヤーのページに移動できませんでした</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">VLCがビデオ プレーヤーのページに移動できませんでした</target>
         </trans-unit>
         <trans-unit id="FailOpenVideo" translate="yes" xml:space="preserve">
           <source>VLC failed to open the video</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLCがビデオを開くに失敗しました</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">VLCがビデオを開けませんでした</target>
         </trans-unit>
         <trans-unit id="FailStartVLCEngine" translate="yes" xml:space="preserve">
           <source>The app failed to start the VLC engine</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">アプリはVLC のエンジンを開始できませんでした</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アプリはVLC のエンジンを開始できませんでした</target>
         </trans-unit>
         <trans-unit id="FeedbackThankYou" translate="yes" xml:space="preserve">
           <source>feedback sent! thank you</source>
-          <target state="needs-review-translation">フィードバックが送られました!ありがとうございます</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">フィードバックが送られました!ありがとうございます</target>
         </trans-unit>
         <trans-unit id="FileExplorer" translate="yes" xml:space="preserve">
           <source>browse</source>
-          <target state="needs-review-translation">参照</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">参照</target>
         </trans-unit>
         <trans-unit id="HardwareDecoding" translate="yes" xml:space="preserve">
           <source>hardware decoding</source>
-          <target state="needs-review-translation">ハードウェア デコード</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ハードウェア デコード</target>
         </trans-unit>
         <trans-unit id="HardwareDecodingDescription" translate="yes" xml:space="preserve">
           <source>Hardware decoding may not work on your device.</source>
-          <target state="needs-review-translation">ハードウェア デコードはデバイスで動作しないかもしれません</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ハードウェア デコードはデバイスで動作しないかもしれません</target>
         </trans-unit>
         <trans-unit id="HaveToSelectPlaylist" translate="yes" xml:space="preserve">
           <source>please select a playlist</source>
-          <target state="needs-review-translation">プレイリストを選択してください</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">プレイリストを選択してください</target>
         </trans-unit>
         <trans-unit id="Home" translate="yes" xml:space="preserve">
           <source>home</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ホーム</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ホーム</target>
         </trans-unit>
         <trans-unit id="HomePage" translate="yes" xml:space="preserve">
           <source>home page</source>
-          <target state="needs-review-translation">ホーム ページ</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ホーム ページ</target>
         </trans-unit>
         <trans-unit id="HomePageDescription" translate="yes" xml:space="preserve">
           <source>VLC will start on the selected page</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC は、選択したページで開始されます</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">VLC は、選択したページで開始されます</target>
         </trans-unit>
         <trans-unit id="HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
           <source>however you may find what you're looking for here</source>
-          <target state="needs-review-translation">しかし、探しているものをここで見つけられるかもしれません</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">しかし、探しているものをここで見つけられるかもしれません</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum1" translate="yes" xml:space="preserve">
           <source>to favorite an album, just press</source>
-          <target state="needs-review-translation">アルバムをお気に入りにするには、クリックするだけ</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アルバムをお気に入りにするには、クリックするだけ</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum2" translate="yes" xml:space="preserve">
           <source>and you'll get an instant access to it</source>
-          <target state="needs-review-translation">そうすればすぐにアクセスできるようになります</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">そうすればすぐにアクセスできるようになります</target>
         </trans-unit>
         <trans-unit id="ImportantSponsors" translate="yes" xml:space="preserve">
           <source>important sponsors</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">重要なスポンサー</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">重要なスポンサー</target>
         </trans-unit>
         <trans-unit id="IncreaseSpeed" translate="yes" xml:space="preserve">
           <source>increase speed</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">速度を上げる</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">速度を上げる</target>
         </trans-unit>
         <trans-unit id="IncreaseVolume" translate="yes" xml:space="preserve">
           <source>increase volume</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">音量を上げる</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">音量を上げる</target>
         </trans-unit>
         <trans-unit id="ItsEmpty" translate="yes" xml:space="preserve">
           <source>it's empty here</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ここでは空です</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ここでは空です</target>
         </trans-unit>
         <trans-unit id="KeyboardShortcuts" translate="yes" xml:space="preserve">
           <source>keyboard shortcuts</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">キーボード ショート カット</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">キーボード ショート カット</target>
         </trans-unit>
         <trans-unit id="License" translate="yes" xml:space="preserve">
           <source>license</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ライセンス</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ライセンス</target>
         </trans-unit>
         <trans-unit id="Loading" translate="yes" xml:space="preserve">
           <source>loading</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">読み込み中</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">読み込み中</target>
         </trans-unit>
         <trans-unit id="LoadingMusic" translate="yes" xml:space="preserve">
           <source>loading music</source>
-          <target state="needs-review-translation">音楽を読み込む</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">音楽を読み込む</target>
         </trans-unit>
         <trans-unit id="MostPlayedArtists" translate="yes" xml:space="preserve">
           <source>most played artists</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">最も再生されたアーティスト</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">最も再生されたアーティスト</target>
         </trans-unit>
         <trans-unit id="Music" translate="yes" xml:space="preserve">
           <source>music</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ミュージック</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ミュージック</target>
         </trans-unit>
         <trans-unit id="MusicFolders" translate="yes" xml:space="preserve">
           <source>music folders</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ミュージック フォルダ</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ミュージック フォルダ</target>
         </trans-unit>
         <trans-unit id="MusicFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search songs that are in your music library. You can add folders to your library here</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLCは音楽ライブラリにある曲のみを検索します。フォルダーをライブラリーに追加することができます</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">VLCは音楽ライブラリにある曲のみを検索します。フォルダーをライブラリーに追加することができます</target>
         </trans-unit>
         <trans-unit id="MusicSettings" translate="yes" xml:space="preserve">
           <source>Music Settings</source>
-          <target state="needs-review-translation">音楽の設定</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">音楽の設定</target>
         </trans-unit>
         <trans-unit id="MusicShows" translate="yes" xml:space="preserve">
           <source>music shows</source>
-          <target state="needs-review-translation">音楽番組</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">音楽番組</target>
         </trans-unit>
         <trans-unit id="Mute" translate="yes" xml:space="preserve">
           <source>mute</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ミュート</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ミュート</target>
         </trans-unit>
         <trans-unit id="MyPlaylists" translate="yes" xml:space="preserve">
           <source>my playlists</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">私のプレイリスト</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">私のプレイリスト</target>
         </trans-unit>
         <trans-unit id="Network" translate="yes" xml:space="preserve">
           <source>network</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ネットワーク</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ネットワーク</target>
         </trans-unit>
         <trans-unit id="NewPlaylist" translate="yes" xml:space="preserve">
           <source>new playlist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">新しいプレイリスト</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">新しいプレイリスト</target>
         </trans-unit>
         <trans-unit id="NewVideos" translate="yes" xml:space="preserve">
           <source>new videos</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">新しいビデオ</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">新しいビデオ</target>
         </trans-unit>
         <trans-unit id="No" translate="yes" xml:space="preserve">
           <source>no</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">いいえ</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">いいえ</target>
         </trans-unit>
         <trans-unit id="NoBiographyFound" translate="yes" xml:space="preserve">
           <source>no bio found for this artist</source>
-          <target state="needs-review-translation">このアーティストバイオが見つかりません</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">このアーティストバイオが見つかりません</target>
         </trans-unit>
         <trans-unit id="NoCameraVideosFound" translate="yes" xml:space="preserve">
           <source>no camera videos found</source>
-          <target state="needs-review-translation">カメラのないビデオが見つかりました</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">カメラのないビデオが見つかりました</target>
         </trans-unit>
         <trans-unit id="NoFavoriteAlbums" translate="yes" xml:space="preserve">
           <source>no favorite albums</source>
-          <target state="needs-review-translation">お気に入りのアルバムがありません</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">お気に入りのアルバムがありません</target>
         </trans-unit>
         <trans-unit id="NoInternetConnection" translate="yes" xml:space="preserve">
           <source>no internet connection</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">インターネット接続がありません</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">インターネット接続がありません</target>
         </trans-unit>
         <trans-unit id="NoPlaylists" translate="yes" xml:space="preserve">
           <source>no playlists</source>
-          <target state="needs-review-translation">再生リストがありません。</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">再生リストがありません。</target>
         </trans-unit>
         <trans-unit id="NoShowsFound" translate="yes" xml:space="preserve">
           <source>no shows found</source>
-          <target state="needs-review-translation">ショーが見つかりません</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ショーが見つかりません</target>
         </trans-unit>
         <trans-unit id="NothingToSeeHere" translate="yes" xml:space="preserve">
           <source>there's nothing to see here</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">見るためにすることはありません</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">見るためにすることはありません</target>
         </trans-unit>
         <trans-unit id="Notifications" translate="yes" xml:space="preserve">
           <source>notifications</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">通知</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">通知</target>
         </trans-unit>
         <trans-unit id="NotificationWhenSongStarts" translate="yes" xml:space="preserve">
           <source>when the song starts</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">音楽が開始される時</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">音楽が開始される時</target>
         </trans-unit>
         <trans-unit id="NoVideosFound" translate="yes" xml:space="preserve">
           <source>we did not find video</source>
-          <target state="needs-review-translation">ビデオを見つけられませんでした</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ビデオを見つけられませんでした</target>
         </trans-unit>
         <trans-unit id="NowPlaying" translate="yes" xml:space="preserve">
           <source>now playing</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">再生中</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">再生中</target>
         </trans-unit>
         <trans-unit id="OpenFile" translate="yes" xml:space="preserve">
           <source>open file</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ファイルを開く</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ファイルを開く</target>
         </trans-unit>
         <trans-unit id="OpenStream" translate="yes" xml:space="preserve">
           <source>open stream</source>
-          <target state="needs-review-translation">ストリームを開く</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ストリームを開く</target>
         </trans-unit>
         <trans-unit id="OpenSubtitle" translate="yes" xml:space="preserve">
           <source>open subtitle</source>
-          <target state="needs-review-translation">字幕を開く</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">字幕を開く</target>
         </trans-unit>
         <trans-unit id="OrderAscending" translate="yes" xml:space="preserve">
           <source>ascending</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">昇順</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">昇順</target>
         </trans-unit>
         <trans-unit id="OrderByAlbum" translate="yes" xml:space="preserve">
           <source>by album</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">アルバム別</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アルバム別</target>
         </trans-unit>
         <trans-unit id="OrderByArtist" translate="yes" xml:space="preserve">
           <source>by artist</source>
-          <target state="needs-review-translation">アーティスト別</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アーティスト別</target>
         </trans-unit>
         <trans-unit id="OrderByDate" translate="yes" xml:space="preserve">
           <source>by date</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">日付順</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">日付順</target>
         </trans-unit>
         <trans-unit id="OrderDescending" translate="yes" xml:space="preserve">
           <source>descending</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">降順</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">降順</target>
         </trans-unit>
         <trans-unit id="Password" translate="yes" xml:space="preserve">
           <source>password</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">パスワード</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">パスワード</target>
         </trans-unit>
         <trans-unit id="Pause" translate="yes" xml:space="preserve">
           <source>pause</source>
-          <target state="needs-review-translation">一時停止</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">一時停止</target>
         </trans-unit>
         <trans-unit id="PinAlbum" translate="yes" xml:space="preserve">
           <source>pin album</source>
-          <target state="needs-review-translation">アルバムをピン止め</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アルバムをピン止め</target>
         </trans-unit>
         <trans-unit id="PinArtist" translate="yes" xml:space="preserve">
           <source>pin artist</source>
-          <target state="needs-review-translation">アーティストをピン止め</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アーティストをピン止め</target>
         </trans-unit>
         <trans-unit id="Play" translate="yes" xml:space="preserve">
           <source>play</source>
-          <target state="needs-review-translation">再生</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">再生</target>
         </trans-unit>
         <trans-unit id="PlayAlbum" translate="yes" xml:space="preserve">
           <source>play album</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">アルバムを再生</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アルバムを再生</target>
         </trans-unit>
         <trans-unit id="PlayAll" translate="yes" xml:space="preserve">
           <source>play all</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">すべて再生</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">すべて再生</target>
         </trans-unit>
         <trans-unit id="Playback" translate="yes" xml:space="preserve">
           <source>playback</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">再生</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">再生</target>
         </trans-unit>
         <trans-unit id="PlayerSettings" translate="yes" xml:space="preserve">
           <source>Player Settings</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">プレーヤー設定</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">プレーヤー設定</target>
         </trans-unit>
         <trans-unit id="PlayFolder" translate="yes" xml:space="preserve">
           <source>play folder</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">フォルダーを再生</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">フォルダーを再生</target>
         </trans-unit>
         <trans-unit id="Playlist" translate="yes" xml:space="preserve">
           <source>playlist</source>
-          <target state="needs-review-translation">プレイリスト</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">プレイリスト</target>
         </trans-unit>
         <trans-unit id="PlaylistAlreadyExists" translate="yes" xml:space="preserve">
           <source>this playlist already exists</source>
-          <target state="needs-review-translation">このプレイリストはすでに存在します</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">このプレイリストはすでに存在します</target>
         </trans-unit>
         <trans-unit id="PlaylistNamePlaceholder" translate="yes" xml:space="preserve">
           <source>playlist name</source>
-          <target state="needs-review-translation">プレイリストの名前</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">プレイリストの名前</target>
         </trans-unit>
         <trans-unit id="Playlists" translate="yes" xml:space="preserve">
           <source>playlists</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">プレイリスト</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">プレイリスト</target>
         </trans-unit>
         <trans-unit id="PlayTrack" translate="yes" xml:space="preserve">
           <source>play track</source>
-          <target state="needs-review-translation">トラックを再生</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">トラックを再生</target>
         </trans-unit>
         <trans-unit id="PlayVideo" translate="yes" xml:space="preserve">
           <source>play video</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ビデオを再生</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ビデオを再生</target>
         </trans-unit>
         <trans-unit id="PrivacyStatement" translate="yes" xml:space="preserve">
           <source>privacy statement</source>
-          <target state="needs-review-translation">プライバシーに関する声明</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">プライバシーに関する声明</target>
         </trans-unit>
         <trans-unit id="Favorites" translate="yes" xml:space="preserve">
           <source>Favorites</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">お気に入り</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">お気に入り</target>
         </trans-unit>
         <trans-unit id="RefreshMusicLibrary" translate="yes" xml:space="preserve">
           <source>refresh music library</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">音楽ライブラリを更新</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">音楽ライブラリを更新</target>
         </trans-unit>
         <trans-unit id="RefreshVideoLibrary" translate="yes" xml:space="preserve">
           <source>refresh video library</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ビデオ ライブラリを更新</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ビデオ ライブラリを更新</target>
         </trans-unit>
         <trans-unit id="RemovableStorage" translate="yes" xml:space="preserve">
           <source>removable storage</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">リムーバブル ストレージ</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">リムーバブル ストレージ</target>
         </trans-unit>
         <trans-unit id="RemoveFolder" translate="yes" xml:space="preserve">
           <source>remove folder</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">フォルダーを削除</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">フォルダーを削除</target>
         </trans-unit>
         <trans-unit id="RemoveMusicFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</source>
-          <target state="needs-review-translation">音楽ライブラリにこのフォルダーを含めたくない場合、削除できますが、VLCだけではなく、すべてのアプリに影響します</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">音楽ライブラリにこのフォルダーを含めたくない場合、削除できますが、VLCだけではなく、すべてのアプリに影響します</target>
         </trans-unit>
         <trans-unit id="RemoveVideoFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ビデオ ライブラリにこのフォルダーを含めたくない場合、削除できますが、VLCだけではなく、すべてのアプリに影響します</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ビデオ ライブラリにこのフォルダーを含めたくない場合、削除できますが、VLCだけではなく、すべてのアプリに影響します</target>
         </trans-unit>
         <trans-unit id="Reset" translate="yes" xml:space="preserve">
           <source>reset</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">リセット</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">リセット</target>
         </trans-unit>
         <trans-unit id="ResetMusicDatabase" translate="yes" xml:space="preserve">
           <source>reset music database</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">音楽データベースをリセット</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">音楽データベースをリセット</target>
         </trans-unit>
         <trans-unit id="ResetSpeed" translate="yes" xml:space="preserve">
           <source>reset speed</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">速度をリセット</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">速度をリセット</target>
         </trans-unit>
         <trans-unit id="RichAnimationsDescription" translate="yes" xml:space="preserve">
           <source>Use rich animations in the slideshows</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">スライドショーでリッチ アニメーションを使用</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">スライドショーでリッチ アニメーションを使用</target>
         </trans-unit>
         <trans-unit id="Search" translate="yes" xml:space="preserve">
           <source>search</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">検索</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">検索</target>
         </trans-unit>
         <trans-unit id="Season" translate="yes" xml:space="preserve">
           <source>season</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">シーズン</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">シーズン</target>
         </trans-unit>
         <trans-unit id="Settings" translate="yes" xml:space="preserve">
           <source>settings</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">設定</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">設定</target>
         </trans-unit>
         <trans-unit id="ShowPlaylist" translate="yes" xml:space="preserve">
           <source>show playlist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">プレイリストを表示</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">プレイリストを表示</target>
         </trans-unit>
         <trans-unit id="Shows" translate="yes" xml:space="preserve">
           <source>shows</source>
-          <target state="needs-review-translation">ショー</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ショー</target>
         </trans-unit>
         <trans-unit id="Shuffle" translate="yes" xml:space="preserve">
           <source>shuffle</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">シャッフル</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">シャッフル</target>
         </trans-unit>
         <trans-unit id="Songs" translate="yes" xml:space="preserve">
           <source>songs</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">曲</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">曲</target>
         </trans-unit>
         <trans-unit id="SpecialThanks" translate="yes" xml:space="preserve">
           <source>special thanks</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">特別な感謝</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">特別な感謝</target>
         </trans-unit>
         <trans-unit id="Speed" translate="yes" xml:space="preserve">
           <source>speed</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">速度</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">速度</target>
         </trans-unit>
         <trans-unit id="Stop" translate="yes" xml:space="preserve">
           <source>stop</source>
-          <target state="needs-review-translation">停止</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">停止</target>
         </trans-unit>
         <trans-unit id="SubtitleDelay" translate="yes" xml:space="preserve">
           <source>subtitle delay</source>
-          <target state="needs-review-translation">字幕の遅延</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">字幕の遅延</target>
         </trans-unit>
         <trans-unit id="Subtitles" translate="yes" xml:space="preserve">
           <source>Subtitles</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">字幕</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">字幕</target>
         </trans-unit>
         <trans-unit id="SubtitlesEncoding" translate="yes" xml:space="preserve">
           <source>subtitles encoding</source>
-          <target state="needs-review-translation">字幕のエンコーディング</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">字幕のエンコーディング</target>
         </trans-unit>
         <trans-unit id="Theme" translate="yes" xml:space="preserve">
           <source>theme</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">テーマ</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">テーマ</target>
         </trans-unit>
         <trans-unit id="TileRemoved" translate="yes" xml:space="preserve">
           <source>tile removed</source>
-          <target state="needs-review-translation">タイルの削除</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">タイルの削除</target>
         </trans-unit>
         <trans-unit id="TopVideos" translate="yes" xml:space="preserve">
           <source>top videos</source>
-          <target state="needs-review-translation">トップ動画</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">トップ動画</target>
         </trans-unit>
         <trans-unit id="TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
           <source>track added to the playlist</source>
-          <target state="needs-review-translation">プレイリストにトラックが追加されました</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">プレイリストにトラックが追加されました</target>
         </trans-unit>
         <trans-unit id="TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
           <source>this track is already in that playlist</source>
-          <target state="needs-review-translation">このトラックは既にプレイリストに存在します</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">このトラックは既にプレイリストに存在します</target>
         </trans-unit>
         <trans-unit id="Tracks" translate="yes" xml:space="preserve">
           <source>tracks</source>
-          <target state="needs-review-translation">トラック</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">トラック</target>
         </trans-unit>
         <trans-unit id="UnknownAlbum" translate="yes" xml:space="preserve">
           <source>Unknown album</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">不明なアルバム</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">不明なアルバム</target>
         </trans-unit>
         <trans-unit id="UnknownArtist" translate="yes" xml:space="preserve">
           <source>Unknown artist</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">不明なアーティスト</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">不明なアーティスト</target>
         </trans-unit>
         <trans-unit id="UnknownShow" translate="yes" xml:space="preserve">
           <source>Unknown show</source>
-          <target state="needs-review-translation">不明なショー</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">不明なショー</target>
         </trans-unit>
         <trans-unit id="UnknownTrack" translate="yes" xml:space="preserve">
           <source>Unknown track</source>
-          <target state="needs-review-translation">不明なトラック</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">不明なトラック</target>
         </trans-unit>
         <trans-unit id="UserInterface" translate="yes" xml:space="preserve">
           <source>User Interface</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ユーザー インターフェイス</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ユーザー インターフェイス</target>
         </trans-unit>
         <trans-unit id="Username" translate="yes" xml:space="preserve">
           <source>username</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ユーザー名</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ユーザー名</target>
         </trans-unit>
         <trans-unit id="Video" translate="yes" xml:space="preserve">
           <source>video</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ビデオ</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ビデオ</target>
         </trans-unit>
         <trans-unit id="VideoFolders" translate="yes" xml:space="preserve">
           <source>video folders</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ビデオ フォルダ</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ビデオ フォルダ</target>
         </trans-unit>
         <trans-unit id="VideoFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search videos that are in your video library. You can add folders to your library here</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLCはビデオライブラリーにあるビデオのみを検索します。フォルダーをライブラリーに追加することができます</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">VLCはビデオライブラリーにあるビデオのみを検索します。フォルダーをライブラリーに追加することができます</target>
         </trans-unit>
         <trans-unit id="VideoPlayback" translate="yes" xml:space="preserve">
           <source>video playback</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ビデオの再生</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ビデオの再生</target>
         </trans-unit>
         <trans-unit id="VideoPlaybackInBackground" translate="yes" xml:space="preserve">
           <source>play video in background</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ビデオをバック グラウンドで再生</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ビデオをバック グラウンドで再生</target>
         </trans-unit>
         <trans-unit id="Videos" translate="yes" xml:space="preserve">
           <source>videos</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ビデオ</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ビデオ</target>
         </trans-unit>
         <trans-unit id="VideoSettings" translate="yes" xml:space="preserve">
           <source>Video Settings</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ビデオの設定</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ビデオの設定</target>
         </trans-unit>
         <trans-unit id="ViewAlbum" translate="yes" xml:space="preserve">
           <source>view album</source>
-          <target state="needs-review-translation">アルバムを見る</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アルバムを見る</target>
         </trans-unit>
         <trans-unit id="ViewArtist" translate="yes" xml:space="preserve">
           <source>view artist</source>
-          <target state="needs-review-translation">アーティストを見る</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アーティストを見る</target>
         </trans-unit>
         <trans-unit id="Volume" translate="yes" xml:space="preserve">
           <source>volume</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">音量</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">音量</target>
         </trans-unit>
         <trans-unit id="WeNeedYourHelp" translate="yes" xml:space="preserve">
           <source>we need your help</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">協力をお願いします</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">協力をお願いします</target>
         </trans-unit>
         <trans-unit id="Yes" translate="yes" xml:space="preserve">
           <source>yes</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">はい</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">はい</target>
         </trans-unit>
         <trans-unit id="YourMusic" translate="yes" xml:space="preserve">
           <source>your music</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">あなたの音楽</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">あなたの音楽</target>
         </trans-unit>
         <trans-unit id="AccentColor" translate="yes" xml:space="preserve">
           <source>accent color</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">アクセント カラー</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">アクセント カラー</target>
         </trans-unit>
         <trans-unit id="BackgroundColor" translate="yes" xml:space="preserve">
           <source>background color</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">背景色</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">背景色</target>
         </trans-unit>
         <trans-unit id="Dark" translate="yes" xml:space="preserve">
           <source>dark</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">暗い</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">暗い</target>
         </trans-unit>
         <trans-unit id="Light" translate="yes" xml:space="preserve">
           <source>light</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">明い</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">明い</target>
         </trans-unit>
         <trans-unit id="TitleBar" translate="yes" xml:space="preserve">
           <source>title bar</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">タイトル バー</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">タイトル バー</target>
         </trans-unit>
         <trans-unit id="NeedRestart" translate="yes" xml:space="preserve">
           <source>You need to restart the app to apply changes</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">変更を適用するためにアプリケーションを再起動する必要があります</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">変更を適用するためにアプリケーションを再起動する必要があります</target>
         </trans-unit>
         <trans-unit id="Zoom" translate="yes" xml:space="preserve">
           <source>zoom</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ズーム</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ズーム</target>
         </trans-unit>
         <trans-unit id="AreYouSure" translate="yes" xml:space="preserve">
           <source>are you sure?</source>
-          <target state="needs-review-translation">本当に実行しますか?</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">本当に実行しますか?</target>
         </trans-unit>
         <trans-unit id="MediaCantBeRead" translate="yes" xml:space="preserve">
           <source>the media can't be read</source>
-          <target state="needs-review-translation">メディアを読み取ることができません</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">メディアを読み取ることができません</target>
         </trans-unit>
         <trans-unit id="Sorry" translate="yes" xml:space="preserve">
           <source>we're sorry</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">申し訳ありません</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">申し訳ありません</target>
         </trans-unit>
         <trans-unit id="SURFACE_BEST_FIT" translate="yes" xml:space="preserve">
           <source>best fit</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ベスト フィット</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ベスト フィット</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_HORIZONTAL" translate="yes" xml:space="preserve">
           <source>horizontal cropping</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">水平トリミング</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">水平トリミング</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_VERTICAL" translate="yes" xml:space="preserve">
           <source>vertical cropping</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">垂直トリミング</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">垂直トリミング</target>
         </trans-unit>
         <trans-unit id="YourPlaylistWontBeAccessible" translate="yes" xml:space="preserve">
           <source>your playlist won't be accessible</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">プレイリストにアクセスできません</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">プレイリストにアクセスできません</target>
         </trans-unit>
         <trans-unit id="NoArtistShowsFound" translate="yes" xml:space="preserve">
           <source>we didn't find shows for this artist</source>
-          <target state="needs-review-translation">このアーティストのショーを見つけられませんでした</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">このアーティストのショーを見つけられませんでした</target>
         </trans-unit>
         <trans-unit id="NoResults" translate="yes" xml:space="preserve">
           <source>no results</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">結果はありません</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">結果はありません</target>
         </trans-unit>
         <trans-unit id="ForceLandscape" translate="yes" xml:space="preserve">
           <source>Force landscape</source>
-          <target state="needs-review-translation">ランドスケープを強制</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ランドスケープを強制</target>
         </trans-unit>
         <trans-unit id="SURFACE_STRETCH" translate="yes" xml:space="preserve">
           <source>stretch</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ストレッチ</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ストレッチ</target>
         </trans-unit>
         <trans-unit id="SimilarArtists" translate="yes" xml:space="preserve">
           <source>Similar artists</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">類似するアーティスト</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">類似するアーティスト</target>
         </trans-unit>
         <trans-unit id="EnglishLanguage" translate="yes" xml:space="preserve">
           <source>English</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">英語</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">英語</target>
         </trans-unit>
         <trans-unit id="FrenchLanguage" translate="yes" xml:space="preserve">
           <source>French</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">フランス語</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">フランス語</target>
         </trans-unit>
         <trans-unit id="JapaneseLanguage" translate="yes" xml:space="preserve">
           <source>Japanese</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">日本語</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">日本語</target>
         </trans-unit>
         <trans-unit id="GermanLanguage" translate="yes" xml:space="preserve">
           <source>German</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ドイツ語</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ドイツ語</target>
         </trans-unit>
         <trans-unit id="PolishLanguage" translate="yes" xml:space="preserve">
           <source>Polish</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ポーランド語</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ポーランド語</target>
         </trans-unit>
         <trans-unit id="SlovakLanguage" translate="yes" xml:space="preserve">
           <source>Slovak</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">スロバキア語</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">スロバキア語</target>
+        </trans-unit>
+        <trans-unit id="DanishLanguage" translate="yes" xml:space="preserve">
+          <source>Danish</source>
+          <target state="translated">デンマーク語</target>
+        </trans-unit>
+        <trans-unit id="SpanishLanguage" translate="yes" xml:space="preserve">
+          <source>Spanish</source>
+          <target state="translated">スペイン語</target>
+        </trans-unit>
+        <trans-unit id="HungarianLanguage" translate="yes" xml:space="preserve">
+          <source>Hungarian</source>
+          <target state="translated">ハンガリー語</target>
+        </trans-unit>
+        <trans-unit id="ItalianLanguage" translate="yes" xml:space="preserve">
+          <source>Italian</source>
+          <target state="translated">イタリア語</target>
+        </trans-unit>
+        <trans-unit id="KoreanLanguage" translate="yes" xml:space="preserve">
+          <source>Korean</source>
+          <target state="translated">韓国語</target>
+        </trans-unit>
+        <trans-unit id="MalayLanguage" translate="yes" xml:space="preserve">
+          <source>Malay</source>
+          <target state="translated">マレー語</target>
+        </trans-unit>
+        <trans-unit id="NorwegianLanguage" translate="yes" xml:space="preserve">
+          <source>Norwegian</source>
+          <target state="translated">ノルウェー語</target>
+        </trans-unit>
+        <trans-unit id="DutchLanguage" translate="yes" xml:space="preserve">
+          <source>Dutch</source>
+          <target state="translated">オランダ語</target>
+        </trans-unit>
+        <trans-unit id="RussianLanguage" translate="yes" xml:space="preserve">
+          <source>Russian</source>
+          <target state="translated">ロシア語</target>
+        </trans-unit>
+        <trans-unit id="SwedishLanguage" translate="yes" xml:space="preserve">
+          <source>Swedish</source>
+          <target state="translated">スウェーデン語</target>
+        </trans-unit>
+        <trans-unit id="TurkishLanguage" translate="yes" xml:space="preserve">
+          <source>Turkish</source>
+          <target state="translated">トルコ語</target>
+        </trans-unit>
+        <trans-unit id="UkrainianLanguage" translate="yes" xml:space="preserve">
+          <source>Ukrainian</source>
+          <target state="translated">ウクライナ語</target>
+        </trans-unit>
+        <trans-unit id="ChineseLanguage" translate="yes" xml:space="preserve">
+          <source>Chinese</source>
+          <target state="translated">中国語</target>
+        </trans-unit>
+        <trans-unit id="PortugueseLanguage" translate="yes" xml:space="preserve">
+          <source>Portuguese</source>
+          <target state="translated">ポルトガル語</target>
+        </trans-unit>
+        <trans-unit id="CzechLanguage" translate="yes" xml:space="preserve">
+          <source>Czech</source>
+          <target state="translated">チェコ語</target>
+        </trans-unit>
+        <trans-unit id="IcelandicLanguage" translate="yes" xml:space="preserve">
+          <source>Icelandic</source>
+          <target state="translated">アイスランド語</target>
         </trans-unit>
         <trans-unit id="Languages" translate="yes" xml:space="preserve">
           <source>Languages</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">言語</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">言語</target>
         </trans-unit>
         <trans-unit id="SelectLanguageDescription" translate="yes" xml:space="preserve">
           <source>VLC will be displayed in</source>
-          <target state="needs-review-translation">VLCの表示する言語</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">VLCの表示する言語</target>
         </trans-unit>
         <trans-unit id="ApplyAndRestart" translate="yes" xml:space="preserve">
           <source>Apply And Restart</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">適用し、再起動</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">適用し、再起動</target>
         </trans-unit>
         <trans-unit id="RefreshLanguage" translate="yes" xml:space="preserve">
           <source>Refresh Language</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">言語を更新</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">言語を更新</target>
         </trans-unit>
         <trans-unit id="Local" translate="yes" xml:space="preserve">
           <source>local</source>
-          <target state="needs-review-translation">ローカル</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ローカル</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES" translate="yes" xml:space="preserve">
           <source>Download Files</source>
-          <target state="needs-review-translation">ファイルをダウンロード</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ファイルをダウンロード</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES_LONG" translate="yes" xml:space="preserve">
           <source>Just click the file you want to download from your Xbox.</source>
-          <target state="needs-review-translation">Xboxからダウンロードしたいファイルをクリックしてください。</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Xboxからダウンロードしたいファイルをクリックしてください。</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES" translate="yes" xml:space="preserve">
           <source>Drop Files</source>
-          <target state="needs-review-translation">ファイルをドロップ</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ファイルをドロップ</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
           <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the "+" button to use the file picker dialog.</source>
-          <target state="needs-review-translation">Xboxに追加したいファイルをウィンドウにドロップしてください。&lt;it id="1" pos="open"&gt;&amp;lt;br&amp;gt;&lt;/it&gt;または、 &amp;quot;+&amp;quot; ボタンをクリックし、ファイルを選択するダイアログを表示してください。</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Xboxに追加したいファイルをウィンドウにドロップしてください。&lt;it id="1" pos="open"&gt;&amp;lt;br&amp;gt;&lt;/it&gt;または、 &amp;quot;+&amp;quot; ボタンをクリックし、ファイルを選択するダイアログを表示してください。</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
-          <target state="needs-review-translation">WiFi経由で共有</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">WiFi経由で共有</target>
         </trans-unit>
         <trans-unit id="CopyToLocalStorage" translate="yes" xml:space="preserve">
           <source>copy to local storage</source>
-          <target state="needs-review-translation">ローカルストレージにコピー</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ローカルストレージにコピー</target>
         </trans-unit>
         <trans-unit id="ExternalStorageDeviceDetected" translate="yes" xml:space="preserve">
           <source>VLC has detected an external storage device.</source>
-          <target state="needs-review-translation">VLCは外部ストレージデバイスを検出しました。</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">VLCは外部ストレージデバイスを検出しました。</target>
         </trans-unit>
         <trans-unit id="ReadFromExternalStorage" translate="yes" xml:space="preserve">
           <source>Use external storage as media library.</source>
-          <target state="needs-review-translation">外部ストレージをメディアライブラリーとして使用します。</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">外部ストレージをメディアライブラリーとして使用します。</target>
         </trans-unit>
         <trans-unit id="SelectContentToCopy" translate="yes" xml:space="preserve">
           <source>Copy media to the internal storage.</source>
-          <target state="needs-review-translation">メディアを内部ストレージにコピーします。</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">メディアを内部ストレージにコピーします。</target>
         </trans-unit>
         <trans-unit id="WhatToDo" translate="yes" xml:space="preserve">
           <source>What would you like to do?</source>
-          <target state="needs-review-translation">どのようにしますか?</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">どのようにしますか?</target>
         </trans-unit>
         <trans-unit id="AskMe" translate="yes" xml:space="preserve">
           <source>Ask me</source>
-          <target state="needs-review-translation">確認する</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">確認する</target>
         </trans-unit>
         <trans-unit id="ExternalStorage" translate="yes" xml:space="preserve">
           <source>external storage</source>
-          <target state="needs-review-translation">外部ストレージ</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">外部ストレージ</target>
         </trans-unit>
         <trans-unit id="WhatToDoWhenExternalStorage" translate="yes" xml:space="preserve">
           <source>What should VLC do when an external storage device has been detected?</source>
-          <target state="needs-review-translation">外部ストレージデバイスを検出した際にVLCはどのように動作しますか?</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">外部ストレージデバイスを検出した際にVLCはどのように動作しますか?</target>
         </trans-unit>
         <trans-unit id="Cancel" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target state="needs-review-translation">キャンセル</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">キャンセル</target>
         </trans-unit>
         <trans-unit id="DoNothing" translate="yes" xml:space="preserve">
           <source>Do nothing</source>
-          <target state="needs-review-translation">何もしない</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">何もしない</target>
         </trans-unit>
         <trans-unit id="Ok" translate="yes" xml:space="preserve">
           <source>Ok</source>
-          <target state="needs-review-translation">Ok</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Ok</target>
         </trans-unit>
         <trans-unit id="Ignore" translate="yes" xml:space="preserve">
           <source>Ignore</source>
-          <target state="needs-review-translation">無視</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">無視</target>
         </trans-unit>
         <trans-unit id="Remember" translate="yes" xml:space="preserve">
           <source>Remember</source>
-          <target state="needs-review-translation">記憶する</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">記憶する</target>
         </trans-unit>
         <trans-unit id="AddMediaHelp" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device</source>
-          <target state="needs-review-translation">外部ストレージデバイスを挿入してください</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">外部ストレージデバイスを挿入してください</target>
         </trans-unit>
         <trans-unit id="AddMediaHelpWithIP" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device, or go to http://{0}:8080 to upload some media</source>
-          <target state="needs-review-translation">外部ストレージデバイスを挿入するか、http://{0}:8080 にアクセスしファイルをアップロードしてください。</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">外部ストレージデバイスを挿入するか、http://{0}:8080 にアクセスしファイルをアップロードしてください。</target>
         </trans-unit>
         <trans-unit id="CopyHelpDesktop" translate="yes" xml:space="preserve">
           <source>Right-click on a file or a folder to copy it to the local storage.</source>
-          <target state="needs-review-translation">ファイルまたはフォルダで右クリックすることでローカルストレージにコピーします。</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ファイルまたはフォルダで右クリックすることでローカルストレージにコピーします。</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
           <source>Press "Y" on a file or a folder to copy it to the local storage.</source>
-          <target state="needs-review-translation">ファイルまたはフォルダで"Y"キーを押下することでローカルストレージにコピーします。</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ファイルまたはフォルダで"Y"キーを押下することでローカルストレージにコピーします。</target>
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
           <source>No subtitle tracks</source>
-          <target state="needs-review-translation">字幕トラックがありません</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">字幕トラックがありません</target>
         </trans-unit>
         <trans-unit id="ClearKeystore" translate="yes" xml:space="preserve">
           <source>Clear saved credentials</source>
-          <target state="needs-review-translation">保存された資格情報を消去</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">保存された資格情報を消去</target>
         </trans-unit>
         <trans-unit id="Credentials" translate="yes" xml:space="preserve">
           <source>Credentials</source>
-          <target state="needs-review-translation">資格情報</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">資格情報</target>
         </trans-unit>
         <trans-unit id="CopyHelpPhone" translate="yes" xml:space="preserve">
           <source>Long press on a file or a folder to copy it to the local storage.</source>
-          <target state="needs-review-translation">ファイルまたはフォルダーを長押しすることでローカルストレージにコピーします。</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ファイルまたはフォルダーを長押しすることでローカルストレージにコピーします。</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_SCREEN" translate="yes" xml:space="preserve">
           <source>fit screen</source>
-          <target state="needs-review-translation">スクリーンに合わせる</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">スクリーンに合わせる</target>
         </trans-unit>
         <trans-unit id="SURFACE_FILL" translate="yes" xml:space="preserve">
           <source>fill</source>
-          <target state="needs-review-translation">画面一杯に合わせる</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">画面一杯に合わせる</target>
         </trans-unit>
         <trans-unit id="SURFACE_16_9" translate="yes" xml:space="preserve">
           <source>16:9</source>
-          <target state="needs-review-translation">16:9</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">16:9</target>
         </trans-unit>
         <trans-unit id="SURFACE_4_3" translate="yes" xml:space="preserve">
           <source>4:3</source>
-          <target state="needs-review-translation">4:3</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">4:3</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_2_35_1" translate="yes" xml:space="preserve">
+          <source>2.35:1</source>
+          <target state="translated">2.35:1</target>
         </trans-unit>
         <trans-unit id="SURFACE_ORIGINAL" translate="yes" xml:space="preserve">
           <source>original</source>
-          <target state="needs-review-translation">オリジナル</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">オリジナル</target>
         </trans-unit>
         <trans-unit id="CompactOverlayPiP" translate="yes" xml:space="preserve">
           <source>use windows 10 pip</source>
           <target state="translated">Windows 10 pipの使用</target>
         </trans-unit>
-        <trans-unit id="DanishLanguage" translate="yes" xml:space="preserve">
-          <source>Danish</source>
-          <target state="new">Danish</target>
-        </trans-unit>
-        <trans-unit id="SpanishLanguage" translate="yes" xml:space="preserve">
-          <source>Spanish</source>
-          <target state="new">Spanish</target>
-        </trans-unit>
-        <trans-unit id="HungarianLanguage" translate="yes" xml:space="preserve">
-          <source>Hungarian</source>
-          <target state="new">Hungarian</target>
-        </trans-unit>
-        <trans-unit id="ItalianLanguage" translate="yes" xml:space="preserve">
-          <source>Italian</source>
-          <target state="new">Italian</target>
-        </trans-unit>
-        <trans-unit id="KoreanLanguage" translate="yes" xml:space="preserve">
-          <source>Korean</source>
-          <target state="new">Korean</target>
-        </trans-unit>
-        <trans-unit id="MalayLanguage" translate="yes" xml:space="preserve">
-          <source>Malay</source>
-          <target state="new">Malay</target>
-        </trans-unit>
-        <trans-unit id="NorwegianLanguage" translate="yes" xml:space="preserve">
-          <source>Norwegian</source>
-          <target state="new">Norwegian</target>
-        </trans-unit>
-        <trans-unit id="DutchLanguage" translate="yes" xml:space="preserve">
-          <source>Dutch</source>
-          <target state="new">Dutch</target>
-        </trans-unit>
-        <trans-unit id="RussianLanguage" translate="yes" xml:space="preserve">
-          <source>Russian</source>
-          <target state="new">Russian</target>
-        </trans-unit>
-        <trans-unit id="SwedishLanguage" translate="yes" xml:space="preserve">
-          <source>Swedish</source>
-          <target state="new">Swedish</target>
-        </trans-unit>
-        <trans-unit id="TurkishLanguage" translate="yes" xml:space="preserve">
-          <source>Turkish</source>
-          <target state="new">Turkish</target>
-        </trans-unit>
-        <trans-unit id="UkrainianLanguage" translate="yes" xml:space="preserve">
-          <source>Ukrainian</source>
-          <target state="new">Ukrainian</target>
-        </trans-unit>
-        <trans-unit id="ChineseLanguage" translate="yes" xml:space="preserve">
-          <source>Chinese</source>
-          <target state="new">Chinese</target>
-        </trans-unit>
         <trans-unit id="TvUnsafeArea" translate="yes" xml:space="preserve">
           <source>TV unsafe area</source>
-          <target state="new">TV unsafe area</target>
+          <target state="translated">TV不安定エリア</target>
         </trans-unit>
         <trans-unit id="AddMarginExplanation" translate="yes" xml:space="preserve">
           <source>Some TVs will not display the app correctly. To add some margin, turn this on</source>
-          <target state="new">Some TVs will not display the app correctly. To add some margin, turn this on</target>
+          <target state="translated">TVによってはアプリを正しく表示できません。マージンを追加するにはオンにしてください。</target>
         </trans-unit>
         <trans-unit id="ExtraMargin" translate="yes" xml:space="preserve">
           <source>Extra margin</source>
-          <target state="new">Extra margin</target>
+          <target state="translated">追加マージン</target>
         </trans-unit>
         <trans-unit id="NoExtraMargin" translate="yes" xml:space="preserve">
           <source>No extra margin</source>
-          <target state="new">No extra margin</target>
-        </trans-unit>
-        <trans-unit id="PortugueseLanguage" translate="yes" xml:space="preserve">
-          <source>Portuguese</source>
-          <target state="new">Portuguese</target>
-        </trans-unit>
-        <trans-unit id="CzechLanguage" translate="yes" xml:space="preserve">
-          <source>Czech</source>
-          <target state="new">Czech</target>
+          <target state="translated">追加マージンなし</target>
         </trans-unit>
         <trans-unit id="Restart" translate="yes" xml:space="preserve">
           <source>restart</source>
-          <target state="new">restart</target>
+          <target state="translated">再起動</target>
         </trans-unit>
         <trans-unit id="Disconnect" translate="yes" xml:space="preserve">
           <source>disconnect</source>
-          <target state="new">disconnect</target>
-        </trans-unit>
-        <trans-unit id="SURFACE_2_35_1" translate="yes" xml:space="preserve">
-          <source>2.35:1</source>
-          <target state="new">2.35:1</target>
+          <target state="translated">切断</target>
         </trans-unit>
       </group>
     </body>

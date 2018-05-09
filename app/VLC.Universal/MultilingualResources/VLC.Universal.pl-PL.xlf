@@ -1,1177 +1,966 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="pl-PL" original="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+  <file build-num="n/a" datatype="xml" original="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW" product-name="n/a" product-version="n/a" source-language="en-US" target-language="pl-PL" tool-id="MultilingualAppToolkit">
     <header>
-      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" tool-company="Microsoft" />
+      <tool tool-company="Microsoft" tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" />
     </header>
     <body>
-      <group id="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
+      <group datatype="resx" id="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW">
         <trans-unit id="AboutTheApp" translate="yes" xml:space="preserve">
           <source>about the app</source>
-          <target state="needs-review-translation">o aplikacji</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">o aplikacji</target>
         </trans-unit>
         <trans-unit id="Add" translate="yes" xml:space="preserve">
           <source>add</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">dodaj</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">dodaj</target>
         </trans-unit>
         <trans-unit id="AddFolder" translate="yes" xml:space="preserve">
           <source>add folder</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">dodaj folder</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">dodaj folder</target>
         </trans-unit>
         <trans-unit id="AddToCollection" translate="yes" xml:space="preserve">
           <source>add to collection</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">dodaj do kolekcji</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">dodaj do kolekcji</target>
         </trans-unit>
         <trans-unit id="AddToCurrentPlaylist" translate="yes" xml:space="preserve">
           <source>add to current playlist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">dodaj do bieżącej listy odtwarzania</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">dodaj do bieżącej listy odtwarzania</target>
         </trans-unit>
         <trans-unit id="AddToPlaylist" translate="yes" xml:space="preserve">
           <source>add to playlist</source>
-          <target state="needs-review-translation">dodaj do listy odtwarzania</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">dodaj do listy odtwarzania</target>
         </trans-unit>
         <trans-unit id="Albums" translate="yes" xml:space="preserve">
           <source>albums</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">albumy</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">albumy</target>
         </trans-unit>
         <trans-unit id="AlbumsFound" translate="yes" xml:space="preserve">
           <source>albums found : {0}</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">znalezionych albumów: {0}</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">znalezionych albumów: {0}</target>
         </trans-unit>
         <trans-unit id="Animations" translate="yes" xml:space="preserve">
           <source>animations</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">animacje</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">animacje</target>
         </trans-unit>
         <trans-unit id="AppTheme" translate="yes" xml:space="preserve">
           <source>application theme</source>
-          <target state="needs-review-translation">tryb aplikacji</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">tryb aplikacji</target>
         </trans-unit>
         <trans-unit id="Artists" translate="yes" xml:space="preserve">
           <source>artists</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">wykonawcy</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">wykonawcy</target>
         </trans-unit>
         <trans-unit id="Audio" translate="yes" xml:space="preserve">
           <source>audio</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">audio</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">audio</target>
         </trans-unit>
         <trans-unit id="AudioDelay" translate="yes" xml:space="preserve">
           <source>audio delay</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">synchronizacja audio</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">synchronizacja audio</target>
         </trans-unit>
         <trans-unit id="AudioTracks" translate="yes" xml:space="preserve">
           <source>Audio Tracks</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ścieżki audio</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ścieżki audio</target>
         </trans-unit>
         <trans-unit id="Back" translate="yes" xml:space="preserve">
           <source>back</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">wstecz</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">wstecz</target>
         </trans-unit>
         <trans-unit id="CameraRoll" translate="yes" xml:space="preserve">
           <source>camera roll</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">z aparatu</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">z aparatu</target>
         </trans-unit>
         <trans-unit id="ChangeAlbumCover" translate="yes" xml:space="preserve">
           <source>change album cover</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">zmień okładkę albumu</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">zmień okładkę albumu</target>
         </trans-unit>
         <trans-unit id="Chapters" translate="yes" xml:space="preserve">
           <source>Chapters</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">rozdziały</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">rozdziały</target>
         </trans-unit>
         <trans-unit id="CheckCredentials" translate="yes" xml:space="preserve">
           <source>an error occured, please check your credentials</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">wystąpił błąd, sprawdź swoje poświadczenia</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">wystąpił błąd, sprawdź swoje poświadczenia</target>
         </trans-unit>
         <trans-unit id="Connect" translate="yes" xml:space="preserve">
           <source>connect</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">połącz</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">połącz</target>
         </trans-unit>
         <trans-unit id="ConnectedToLastFM" translate="yes" xml:space="preserve">
           <source>connected to Last.FM</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">połączono z Last.FM</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">połączono z Last.FM</target>
         </trans-unit>
         <trans-unit id="Connecting" translate="yes" xml:space="preserve">
           <source>connecting</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">łączenie</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">łączenie</target>
         </trans-unit>
         <trans-unit id="ConnectToLastFM" translate="yes" xml:space="preserve">
           <source>connect to Last.FM</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">połącz z Last.FM</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">połącz z Last.FM</target>
         </trans-unit>
         <trans-unit id="CrashReport" translate="yes" xml:space="preserve">
           <source>crash report</source>
-          <target state="needs-review-translation">raport awarii</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">raport awarii</target>
         </trans-unit>
         <trans-unit id="DecreaseSpeed" translate="yes" xml:space="preserve">
           <source>decrease speed</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">zmniejsz szybkość</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">zmniejsz szybkość</target>
         </trans-unit>
         <trans-unit id="DecreaseVolume" translate="yes" xml:space="preserve">
           <source>decrease volume</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">zmniejsz głośność</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">zmniejsz głośność</target>
         </trans-unit>
         <trans-unit id="DeletePlaylist" translate="yes" xml:space="preserve">
           <source>delete playlist</source>
-          <target state="needs-review-translation">usuń listę odtwarzania</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">usuń listę odtwarzania</target>
         </trans-unit>
         <trans-unit id="DeleteSelected" translate="yes" xml:space="preserve">
           <source>delete selected</source>
-          <target state="needs-review-translation">usuń zaznaczone</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">usuń zaznaczone</target>
         </trans-unit>
         <trans-unit id="EditMetadata" translate="yes" xml:space="preserve">
           <source>edit metadata</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">edytuj metadane</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">edytuj metadane</target>
         </trans-unit>
         <trans-unit id="ElementsNotFound" translate="yes" xml:space="preserve">
           <source>we did not find elements in there</source>
-          <target state="needs-review-translation">nie znaleźliśmy tu żadnych elementów</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">nie znaleźliśmy tu żadnych elementów</target>
         </trans-unit>
         <trans-unit id="EnterURL" translate="yes" xml:space="preserve">
           <source>enter a url</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">wprowadź adres URL</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">wprowadź adres URL</target>
         </trans-unit>
         <trans-unit id="Episode" translate="yes" xml:space="preserve">
           <source>episode</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">epizod</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">epizod</target>
         </trans-unit>
         <trans-unit id="EvenIfBackground" translate="yes" xml:space="preserve">
           <source>even if the app is in background</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">nawet jeśli aplikacja działa w tle</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">nawet jeśli aplikacja działa w tle</target>
         </trans-unit>
         <trans-unit id="EvenIfNotBackground" translate="yes" xml:space="preserve">
           <source>even if the app is not in background</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">nawet jeśli aplikacja nie działa w tle</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">nawet jeśli aplikacja nie działa w tle</target>
         </trans-unit>
         <trans-unit id="FailFilePlayBackground" translate="yes" xml:space="preserve">
           <source>This file may not play in the background</source>
-          <target state="needs-review-translation">Może się nie udać odtworzyć w tle tego pliku</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Może się nie udać odtworzyć w tle tego pliku</target>
         </trans-unit>
         <trans-unit id="FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
           <source>VLC failed to navigate to the Video Player page</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC nie udało się przejść do strony Odtwarzacza Wideo</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">VLC nie udało się przejść do strony Odtwarzacza Wideo</target>
         </trans-unit>
         <trans-unit id="FailOpenVideo" translate="yes" xml:space="preserve">
           <source>VLC failed to open the video</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC nie udało się odtworzyć wideo</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">VLC nie udało się odtworzyć wideo</target>
         </trans-unit>
         <trans-unit id="FailStartVLCEngine" translate="yes" xml:space="preserve">
           <source>The app failed to start the VLC engine</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Aplikacji nie udało się zainicjować interfejsu VLC</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Aplikacji nie udało się zainicjować interfejsu VLC</target>
         </trans-unit>
         <trans-unit id="FeedbackThankYou" translate="yes" xml:space="preserve">
           <source>feedback sent! thank you</source>
-          <target state="needs-review-translation">opinia wysłana! dziękujemy</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">opinia wysłana! dziękujemy</target>
         </trans-unit>
         <trans-unit id="FileExplorer" translate="yes" xml:space="preserve">
           <source>browse</source>
-          <target state="needs-review-translation">przeglądaj</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">przeglądaj</target>
         </trans-unit>
         <trans-unit id="HardwareDecoding" translate="yes" xml:space="preserve">
           <source>hardware decoding</source>
-          <target state="needs-review-translation">dekodowanie sprzętowe</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">dekodowanie sprzętowe</target>
         </trans-unit>
         <trans-unit id="HardwareDecodingDescription" translate="yes" xml:space="preserve">
           <source>Hardware decoding may not work on your device.</source>
-          <target state="needs-review-translation">Dekodowanie sprzętowe może nie działać na twoim urządzeniu.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Dekodowanie sprzętowe może nie działać na twoim urządzeniu.</target>
         </trans-unit>
         <trans-unit id="HaveToSelectPlaylist" translate="yes" xml:space="preserve">
           <source>please select a playlist</source>
-          <target state="needs-review-translation">proszę wybrać listę odtwarzania</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">proszę wybrać listę odtwarzania</target>
         </trans-unit>
         <trans-unit id="Home" translate="yes" xml:space="preserve">
           <source>home</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">start</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">start</target>
         </trans-unit>
         <trans-unit id="HomePage" translate="yes" xml:space="preserve">
           <source>home page</source>
-          <target state="needs-review-translation">strona startowa</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">strona startowa</target>
         </trans-unit>
         <trans-unit id="HomePageDescription" translate="yes" xml:space="preserve">
           <source>VLC will start on the selected page</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC rozpocznie działanie na wybranej stronie</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">VLC rozpocznie działanie na wybranej stronie</target>
         </trans-unit>
         <trans-unit id="HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
           <source>however you may find what you're looking for here</source>
-          <target state="needs-review-translation">jednak możesz znaleźć to czego szukasz tutaj</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">jednak możesz znaleźć to czego szukasz tutaj</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum1" translate="yes" xml:space="preserve">
           <source>to favorite an album, just press</source>
-          <target state="needs-review-translation">aby dodać album do ulubionych, po prostu naciśnij</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">aby dodać album do ulubionych, po prostu naciśnij</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum2" translate="yes" xml:space="preserve">
           <source>and you'll get an instant access to it</source>
-          <target state="needs-review-translation">i uzyskasz szybki dostęp do niego</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">i uzyskasz szybki dostęp do niego</target>
         </trans-unit>
         <trans-unit id="ImportantSponsors" translate="yes" xml:space="preserve">
           <source>important sponsors</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">ważni sponsorzy</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ważni sponsorzy</target>
         </trans-unit>
         <trans-unit id="IncreaseSpeed" translate="yes" xml:space="preserve">
           <source>increase speed</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">zwiększ szybkość</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">zwiększ szybkość</target>
         </trans-unit>
         <trans-unit id="IncreaseVolume" translate="yes" xml:space="preserve">
           <source>increase volume</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">zwiększ głośność</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">zwiększ głośność</target>
         </trans-unit>
         <trans-unit id="ItsEmpty" translate="yes" xml:space="preserve">
           <source>it's empty here</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">pusto tu</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">pusto tu</target>
         </trans-unit>
         <trans-unit id="KeyboardShortcuts" translate="yes" xml:space="preserve">
           <source>keyboard shortcuts</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">skróty klawiaturowe</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">skróty klawiaturowe</target>
         </trans-unit>
         <trans-unit id="License" translate="yes" xml:space="preserve">
           <source>license</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">licencja</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">licencja</target>
         </trans-unit>
         <trans-unit id="Loading" translate="yes" xml:space="preserve">
           <source>loading</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">wczytywanie</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">wczytywanie</target>
         </trans-unit>
         <trans-unit id="LoadingMusic" translate="yes" xml:space="preserve">
           <source>loading music</source>
-          <target state="needs-review-translation">wczytywanie muzyki</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">wczytywanie muzyki</target>
         </trans-unit>
         <trans-unit id="MostPlayedArtists" translate="yes" xml:space="preserve">
           <source>most played artists</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">najczęściej odtwarzani wykonawcy</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">najczęściej odtwarzani wykonawcy</target>
         </trans-unit>
         <trans-unit id="Music" translate="yes" xml:space="preserve">
           <source>music</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">muzyka</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">muzyka</target>
         </trans-unit>
         <trans-unit id="MusicFolders" translate="yes" xml:space="preserve">
           <source>music folders</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">foldery muzyki</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">foldery muzyki</target>
         </trans-unit>
         <trans-unit id="MusicFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search songs that are in your music library. You can add folders to your library here</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC będzie szukał utworów tylko w twojej bibliotece muzyki. Tutaj możesz dodać foldery do swojej biblioteki.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">VLC będzie szukał utworów tylko w twojej bibliotece muzyki. Tutaj możesz dodać foldery do swojej biblioteki.</target>
         </trans-unit>
         <trans-unit id="MusicSettings" translate="yes" xml:space="preserve">
           <source>Music Settings</source>
-          <target state="needs-review-translation">Ustawienia Muzyki</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Ustawienia Muzyki</target>
         </trans-unit>
         <trans-unit id="MusicShows" translate="yes" xml:space="preserve">
           <source>music shows</source>
-          <target state="needs-review-translation">przedstawienia muzyczne</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">przedstawienia muzyczne</target>
         </trans-unit>
         <trans-unit id="Mute" translate="yes" xml:space="preserve">
           <source>mute</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">wycisz</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">wycisz</target>
         </trans-unit>
         <trans-unit id="MyPlaylists" translate="yes" xml:space="preserve">
           <source>my playlists</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">moje listy odtwarzania</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">moje listy odtwarzania</target>
         </trans-unit>
         <trans-unit id="Network" translate="yes" xml:space="preserve">
           <source>network</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">sieć</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">sieć</target>
         </trans-unit>
         <trans-unit id="NewPlaylist" translate="yes" xml:space="preserve">
           <source>new playlist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">nowa lista odtwarzania</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">nowa lista odtwarzania</target>
         </trans-unit>
         <trans-unit id="NewVideos" translate="yes" xml:space="preserve">
           <source>new videos</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">nowe wideo</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">nowe wideo</target>
         </trans-unit>
         <trans-unit id="No" translate="yes" xml:space="preserve">
           <source>no</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">nie</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">nie</target>
         </trans-unit>
         <trans-unit id="NoBiographyFound" translate="yes" xml:space="preserve">
           <source>no bio found for this artist</source>
-          <target state="needs-review-translation">nie znaleziono biografii dla tego wykonawcy</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">nie znaleziono biografii dla tego wykonawcy</target>
         </trans-unit>
         <trans-unit id="NoCameraVideosFound" translate="yes" xml:space="preserve">
           <source>no camera videos found</source>
-          <target state="needs-review-translation">nie znaleziono wideo z aparatu</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">nie znaleziono wideo z aparatu</target>
         </trans-unit>
         <trans-unit id="NoFavoriteAlbums" translate="yes" xml:space="preserve">
           <source>no favorite albums</source>
-          <target state="needs-review-translation">brak ulubionych albumów</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">brak ulubionych albumów</target>
         </trans-unit>
         <trans-unit id="NoInternetConnection" translate="yes" xml:space="preserve">
           <source>no internet connection</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">brak połączenia z internetem</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">brak połączenia z internetem</target>
         </trans-unit>
         <trans-unit id="NoPlaylists" translate="yes" xml:space="preserve">
           <source>no playlists</source>
-          <target state="needs-review-translation">brak list odtwarzania</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">brak list odtwarzania</target>
         </trans-unit>
         <trans-unit id="NoShowsFound" translate="yes" xml:space="preserve">
           <source>no shows found</source>
-          <target state="needs-review-translation">nie znaleziono seriali</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">nie znaleziono seriali</target>
         </trans-unit>
         <trans-unit id="NothingToSeeHere" translate="yes" xml:space="preserve">
           <source>there's nothing to see here</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">nie ma tu nic do zobaczenia</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">nie ma tu nic do zobaczenia</target>
         </trans-unit>
         <trans-unit id="Notifications" translate="yes" xml:space="preserve">
           <source>notifications</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">powiadomienia</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">powiadomienia</target>
         </trans-unit>
         <trans-unit id="NotificationWhenSongStarts" translate="yes" xml:space="preserve">
           <source>when the song starts</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">na początku utworu</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">na początku utworu</target>
         </trans-unit>
         <trans-unit id="NoVideosFound" translate="yes" xml:space="preserve">
           <source>we did not find video</source>
-          <target state="needs-review-translation">nie znaleziono wideo</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">nie znaleziono wideo</target>
         </trans-unit>
         <trans-unit id="NowPlaying" translate="yes" xml:space="preserve">
           <source>now playing</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">teraz odtwarzane</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">teraz odtwarzane</target>
         </trans-unit>
         <trans-unit id="OpenFile" translate="yes" xml:space="preserve">
           <source>open file</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">otwórz plik</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">otwórz plik</target>
         </trans-unit>
         <trans-unit id="OpenStream" translate="yes" xml:space="preserve">
           <source>open stream</source>
-          <target state="needs-review-translation">otwórz strumień</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">otwórz strumień</target>
         </trans-unit>
         <trans-unit id="OpenSubtitle" translate="yes" xml:space="preserve">
           <source>open subtitle</source>
-          <target state="needs-review-translation">otwórz napisy</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">otwórz napisy</target>
         </trans-unit>
         <trans-unit id="OrderAscending" translate="yes" xml:space="preserve">
           <source>ascending</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">rosnąco</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">rosnąco</target>
         </trans-unit>
         <trans-unit id="OrderByAlbum" translate="yes" xml:space="preserve">
           <source>by album</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">wg albumu</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">wg albumu</target>
         </trans-unit>
         <trans-unit id="OrderByArtist" translate="yes" xml:space="preserve">
           <source>by artist</source>
-          <target state="needs-review-translation">wg wykonawcy</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">wg wykonawcy</target>
         </trans-unit>
         <trans-unit id="OrderByDate" translate="yes" xml:space="preserve">
           <source>by date</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">wg daty</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">wg daty</target>
         </trans-unit>
         <trans-unit id="OrderDescending" translate="yes" xml:space="preserve">
           <source>descending</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">malejąco</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">malejąco</target>
         </trans-unit>
         <trans-unit id="Password" translate="yes" xml:space="preserve">
           <source>password</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">hasło</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">hasło</target>
         </trans-unit>
         <trans-unit id="Pause" translate="yes" xml:space="preserve">
           <source>pause</source>
-          <target state="needs-review-translation">wstrzymaj</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">wstrzymaj</target>
         </trans-unit>
         <trans-unit id="PinAlbum" translate="yes" xml:space="preserve">
           <source>pin album</source>
-          <target state="needs-review-translation">przypnij album</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">przypnij album</target>
         </trans-unit>
         <trans-unit id="PinArtist" translate="yes" xml:space="preserve">
           <source>pin artist</source>
-          <target state="needs-review-translation">przypnij wykonawcę</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">przypnij wykonawcę</target>
         </trans-unit>
         <trans-unit id="Play" translate="yes" xml:space="preserve">
           <source>play</source>
-          <target state="needs-review-translation">odtwarzaj</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">odtwarzaj</target>
         </trans-unit>
         <trans-unit id="PlayAlbum" translate="yes" xml:space="preserve">
           <source>play album</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">odtwarzaj album</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">odtwarzaj album</target>
         </trans-unit>
         <trans-unit id="PlayAll" translate="yes" xml:space="preserve">
           <source>play all</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">odtwarzaj wszystko</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">odtwarzaj wszystko</target>
         </trans-unit>
         <trans-unit id="Playback" translate="yes" xml:space="preserve">
           <source>playback</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">odtwarzanie</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">odtwarzanie</target>
         </trans-unit>
         <trans-unit id="PlayerSettings" translate="yes" xml:space="preserve">
           <source>Player Settings</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ustawienia Odtwarzacza</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Ustawienia Odtwarzacza</target>
         </trans-unit>
         <trans-unit id="PlayFolder" translate="yes" xml:space="preserve">
           <source>play folder</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">odtwarzaj folder</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">odtwarzaj folder</target>
         </trans-unit>
         <trans-unit id="Playlist" translate="yes" xml:space="preserve">
           <source>playlist</source>
-          <target state="needs-review-translation">lista odtwarzania</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">lista odtwarzania</target>
         </trans-unit>
         <trans-unit id="PlaylistAlreadyExists" translate="yes" xml:space="preserve">
           <source>this playlist already exists</source>
-          <target state="needs-review-translation">ta lista odtwarzania już istnieje</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ta lista odtwarzania już istnieje</target>
         </trans-unit>
         <trans-unit id="PlaylistNamePlaceholder" translate="yes" xml:space="preserve">
           <source>playlist name</source>
-          <target state="needs-review-translation">nazwa listy odtwarzania</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">nazwa listy odtwarzania</target>
         </trans-unit>
         <trans-unit id="Playlists" translate="yes" xml:space="preserve">
           <source>playlists</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">listy odtwarzania</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">listy odtwarzania</target>
         </trans-unit>
         <trans-unit id="PlayTrack" translate="yes" xml:space="preserve">
           <source>play track</source>
-          <target state="needs-review-translation">odtwarzaj utwór</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">odtwarzaj utwór</target>
         </trans-unit>
         <trans-unit id="PlayVideo" translate="yes" xml:space="preserve">
           <source>play video</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">odtwarzaj wideo</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">odtwarzaj wideo</target>
         </trans-unit>
         <trans-unit id="PrivacyStatement" translate="yes" xml:space="preserve">
           <source>privacy statement</source>
-          <target state="needs-review-translation">oświadczenie o prywatności</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">oświadczenie o prywatności</target>
         </trans-unit>
         <trans-unit id="Favorites" translate="yes" xml:space="preserve">
           <source>Favorites</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ulubione</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Ulubione</target>
         </trans-unit>
         <trans-unit id="RefreshMusicLibrary" translate="yes" xml:space="preserve">
           <source>refresh music library</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">odśwież bibliotekę muzyki</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">odśwież bibliotekę muzyki</target>
         </trans-unit>
         <trans-unit id="RefreshVideoLibrary" translate="yes" xml:space="preserve">
           <source>refresh video library</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">odśwież bibliotekę wideo</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">odśwież bibliotekę wideo</target>
         </trans-unit>
         <trans-unit id="RemovableStorage" translate="yes" xml:space="preserve">
           <source>removable storage</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">wymienne nośniki pamięci</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">wymienne nośniki pamięci</target>
         </trans-unit>
         <trans-unit id="RemoveFolder" translate="yes" xml:space="preserve">
           <source>remove folder</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">usuń folder</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">usuń folder</target>
         </trans-unit>
         <trans-unit id="RemoveMusicFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</source>
-          <target state="needs-review-translation">Jeśli nie chcesz tego folderu w swojej bibliotece muzyki, możesz go usunąć. Ta zmiana będzie dotyczyć wszystkich aplikacji, a nie tylko VLC.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Jeśli nie chcesz tego folderu w swojej bibliotece muzyki, możesz go usunąć. Ta zmiana będzie dotyczyć wszystkich aplikacji, a nie tylko VLC.</target>
         </trans-unit>
         <trans-unit id="RemoveVideoFolderDescription" translate="yes" xml:space="preserve">
           <source>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Jeśli nie chcesz tego folderu w swojej bibliotece wideo, możesz go usunąć. Ta zmiana będzie dotyczyć wszystkich aplikacji, a nie tylko VLC.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Jeśli nie chcesz tego folderu w swojej bibliotece wideo, możesz go usunąć. Ta zmiana będzie dotyczyć wszystkich aplikacji, a nie tylko VLC.</target>
         </trans-unit>
         <trans-unit id="Reset" translate="yes" xml:space="preserve">
           <source>reset</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">resetuj</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">resetuj</target>
         </trans-unit>
         <trans-unit id="ResetMusicDatabase" translate="yes" xml:space="preserve">
           <source>reset music database</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">resetuj bazę danych muzyki</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">resetuj bazę danych muzyki</target>
         </trans-unit>
         <trans-unit id="ResetSpeed" translate="yes" xml:space="preserve">
           <source>reset speed</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">resetuj szybkość</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">resetuj szybkość</target>
         </trans-unit>
         <trans-unit id="RichAnimationsDescription" translate="yes" xml:space="preserve">
           <source>Use rich animations in the slideshows</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Użyj zaawansowanych animacji w pokazach slajdów</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Użyj zaawansowanych animacji w pokazach slajdów</target>
         </trans-unit>
         <trans-unit id="Search" translate="yes" xml:space="preserve">
           <source>search</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">szukaj</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">szukaj</target>
         </trans-unit>
         <trans-unit id="Season" translate="yes" xml:space="preserve">
           <source>season</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">sezon</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">sezon</target>
         </trans-unit>
         <trans-unit id="Settings" translate="yes" xml:space="preserve">
           <source>settings</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ustawienia</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ustawienia</target>
         </trans-unit>
         <trans-unit id="ShowPlaylist" translate="yes" xml:space="preserve">
           <source>show playlist</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">pokaż listę odtwarzania</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">pokaż listę odtwarzania</target>
         </trans-unit>
         <trans-unit id="Shows" translate="yes" xml:space="preserve">
           <source>shows</source>
-          <target state="needs-review-translation">seriale</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">seriale</target>
         </trans-unit>
         <trans-unit id="Shuffle" translate="yes" xml:space="preserve">
           <source>shuffle</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">losowe odtwarzanie</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">losowe odtwarzanie</target>
         </trans-unit>
         <trans-unit id="Songs" translate="yes" xml:space="preserve">
           <source>songs</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">piosenki</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">piosenki</target>
         </trans-unit>
         <trans-unit id="SpecialThanks" translate="yes" xml:space="preserve">
           <source>special thanks</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">specjalne podziękowania</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">specjalne podziękowania</target>
         </trans-unit>
         <trans-unit id="Speed" translate="yes" xml:space="preserve">
           <source>speed</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">szybkość</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">szybkość</target>
         </trans-unit>
         <trans-unit id="Stop" translate="yes" xml:space="preserve">
           <source>stop</source>
-          <target state="needs-review-translation">zatrzymaj</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">zatrzymaj</target>
         </trans-unit>
         <trans-unit id="SubtitleDelay" translate="yes" xml:space="preserve">
           <source>subtitle delay</source>
-          <target state="needs-review-translation">synchronizacja napisów</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">synchronizacja napisów</target>
         </trans-unit>
         <trans-unit id="Subtitles" translate="yes" xml:space="preserve">
           <source>Subtitles</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">napisy</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">napisy</target>
         </trans-unit>
         <trans-unit id="SubtitlesEncoding" translate="yes" xml:space="preserve">
           <source>subtitles encoding</source>
-          <target state="needs-review-translation">kodowanie napisów</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">kodowanie napisów</target>
         </trans-unit>
         <trans-unit id="Theme" translate="yes" xml:space="preserve">
           <source>theme</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">kompozycja</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">kompozycja</target>
         </trans-unit>
         <trans-unit id="TileRemoved" translate="yes" xml:space="preserve">
           <source>tile removed</source>
-          <target state="needs-review-translation">kafelek usunięty</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">kafelek usunięty</target>
         </trans-unit>
         <trans-unit id="TopVideos" translate="yes" xml:space="preserve">
           <source>top videos</source>
-          <target state="needs-review-translation">najlepsze wideo</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">najlepsze wideo</target>
         </trans-unit>
         <trans-unit id="TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
           <source>track added to the playlist</source>
-          <target state="needs-review-translation">utwór dodany do listy odtwarzania</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">utwór dodany do listy odtwarzania</target>
         </trans-unit>
         <trans-unit id="TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
           <source>this track is already in that playlist</source>
-          <target state="needs-review-translation">ten utwór już znajduje się na liście odtwarzania</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ten utwór już znajduje się na liście odtwarzania</target>
         </trans-unit>
         <trans-unit id="Tracks" translate="yes" xml:space="preserve">
           <source>tracks</source>
-          <target state="needs-review-translation">utwory</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">utwory</target>
         </trans-unit>
         <trans-unit id="UnknownAlbum" translate="yes" xml:space="preserve">
           <source>Unknown album</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Nieznany album</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Nieznany album</target>
         </trans-unit>
         <trans-unit id="UnknownArtist" translate="yes" xml:space="preserve">
           <source>Unknown artist</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Nieznany wykonawca</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Nieznany wykonawca</target>
         </trans-unit>
         <trans-unit id="UnknownShow" translate="yes" xml:space="preserve">
           <source>Unknown show</source>
-          <target state="needs-review-translation">Nieznane przedstawienie</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Nieznane przedstawienie</target>
         </trans-unit>
         <trans-unit id="UnknownTrack" translate="yes" xml:space="preserve">
           <source>Unknown track</source>
-          <target state="needs-review-translation">Nieznany utwór</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Nieznany utwór</target>
         </trans-unit>
         <trans-unit id="UserInterface" translate="yes" xml:space="preserve">
           <source>User Interface</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Interfejs Użytkownika</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Interfejs Użytkownika</target>
         </trans-unit>
         <trans-unit id="Username" translate="yes" xml:space="preserve">
           <source>username</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">nazwa użytkownika</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">nazwa użytkownika</target>
         </trans-unit>
         <trans-unit id="Video" translate="yes" xml:space="preserve">
           <source>video</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">wideo</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">wideo</target>
         </trans-unit>
         <trans-unit id="VideoFolders" translate="yes" xml:space="preserve">
           <source>video folders</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">foldery wideo</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">foldery wideo</target>
         </trans-unit>
         <trans-unit id="VideoFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search videos that are in your video library. You can add folders to your library here</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">VLC będzie szukał wideo tylko w twojej bibliotece wideo. Tutaj możesz dodać foldery do swojej biblioteki.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">VLC będzie szukał wideo tylko w twojej bibliotece wideo. Tutaj możesz dodać foldery do swojej biblioteki.</target>
         </trans-unit>
         <trans-unit id="VideoPlayback" translate="yes" xml:space="preserve">
           <source>video playback</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">odtwarzanie wideo</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">odtwarzanie wideo</target>
         </trans-unit>
         <trans-unit id="VideoPlaybackInBackground" translate="yes" xml:space="preserve">
           <source>play video in background</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">odtwarzaj wideo w tle</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">odtwarzaj wideo w tle</target>
         </trans-unit>
         <trans-unit id="Videos" translate="yes" xml:space="preserve">
           <source>videos</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">wideo</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">wideo</target>
         </trans-unit>
         <trans-unit id="VideoSettings" translate="yes" xml:space="preserve">
           <source>Video Settings</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Ustawienia Wideo</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Ustawienia Wideo</target>
         </trans-unit>
         <trans-unit id="ViewAlbum" translate="yes" xml:space="preserve">
           <source>view album</source>
-          <target state="needs-review-translation">zobacz album</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">zobacz album</target>
         </trans-unit>
         <trans-unit id="ViewArtist" translate="yes" xml:space="preserve">
           <source>view artist</source>
-          <target state="needs-review-translation">zobacz wykonawcę</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">zobacz wykonawcę</target>
         </trans-unit>
         <trans-unit id="Volume" translate="yes" xml:space="preserve">
           <source>volume</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">głośność</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">głośność</target>
         </trans-unit>
         <trans-unit id="WeNeedYourHelp" translate="yes" xml:space="preserve">
           <source>we need your help</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">potrzebujemy twojej pomocy</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">potrzebujemy twojej pomocy</target>
         </trans-unit>
         <trans-unit id="Yes" translate="yes" xml:space="preserve">
           <source>yes</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">tak</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">tak</target>
         </trans-unit>
         <trans-unit id="YourMusic" translate="yes" xml:space="preserve">
           <source>your music</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">twoja muzyka</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">twoja muzyka</target>
         </trans-unit>
         <trans-unit id="AccentColor" translate="yes" xml:space="preserve">
           <source>accent color</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">kolor akcentujący</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">kolor akcentujący</target>
         </trans-unit>
         <trans-unit id="BackgroundColor" translate="yes" xml:space="preserve">
           <source>background color</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">kolor tła</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">kolor tła</target>
         </trans-unit>
         <trans-unit id="Dark" translate="yes" xml:space="preserve">
           <source>dark</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">ciemny</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ciemny</target>
         </trans-unit>
         <trans-unit id="Light" translate="yes" xml:space="preserve">
           <source>light</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">jasny</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">jasny</target>
         </trans-unit>
         <trans-unit id="TitleBar" translate="yes" xml:space="preserve">
           <source>title bar</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">pasek tytułu</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">pasek tytułu</target>
         </trans-unit>
         <trans-unit id="NeedRestart" translate="yes" xml:space="preserve">
           <source>You need to restart the app to apply changes</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Musisz zrestartować aplikację, aby zastosować zmiany</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Musisz zrestartować aplikację, aby zastosować zmiany</target>
         </trans-unit>
         <trans-unit id="Zoom" translate="yes" xml:space="preserve">
           <source>zoom</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">skalowanie obrazu</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">skalowanie obrazu</target>
         </trans-unit>
         <trans-unit id="AreYouSure" translate="yes" xml:space="preserve">
           <source>are you sure?</source>
-          <target state="needs-review-translation">Czy jesteś pewny(a)?</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Czy jesteś pewny(a)?</target>
         </trans-unit>
         <trans-unit id="MediaCantBeRead" translate="yes" xml:space="preserve">
           <source>the media can't be read</source>
-          <target state="needs-review-translation">medium nie może być odczytane</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">medium nie może być odczytane</target>
         </trans-unit>
         <trans-unit id="Sorry" translate="yes" xml:space="preserve">
           <source>we're sorry</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">przykro nam</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">przykro nam</target>
         </trans-unit>
         <trans-unit id="SURFACE_BEST_FIT" translate="yes" xml:space="preserve">
           <source>best fit</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">najlepsze dopasowanie</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">najlepsze dopasowanie</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_HORIZONTAL" translate="yes" xml:space="preserve">
           <source>horizontal cropping</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">dopasowanie w poziomie</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">dopasowanie w poziomie</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_VERTICAL" translate="yes" xml:space="preserve">
           <source>vertical cropping</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">dopasowanie w pionie</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">dopasowanie w pionie</target>
         </trans-unit>
         <trans-unit id="YourPlaylistWontBeAccessible" translate="yes" xml:space="preserve">
           <source>your playlist won't be accessible</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">twoja lista odtwarzania będzie niedostępna</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">twoja lista odtwarzania będzie niedostępna</target>
         </trans-unit>
         <trans-unit id="NoArtistShowsFound" translate="yes" xml:space="preserve">
           <source>we didn't find shows for this artist</source>
-          <target state="needs-review-translation">nie znaleźliśmy przedstawień tego wykonawcy</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">nie znaleźliśmy przedstawień tego wykonawcy</target>
         </trans-unit>
         <trans-unit id="NoResults" translate="yes" xml:space="preserve">
           <source>no results</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">brak wyników</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">brak wyników</target>
         </trans-unit>
         <trans-unit id="ForceLandscape" translate="yes" xml:space="preserve">
           <source>Force landscape</source>
-          <target state="needs-review-translation">Wymuś orientację poziomą</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Wymuś orientację poziomą</target>
         </trans-unit>
         <trans-unit id="SURFACE_STRETCH" translate="yes" xml:space="preserve">
           <source>stretch</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">rozciągnięcie</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">rozciągnięcie</target>
         </trans-unit>
         <trans-unit id="SimilarArtists" translate="yes" xml:space="preserve">
           <source>Similar artists</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Podobni wykonawcy</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Podobni wykonawcy</target>
         </trans-unit>
         <trans-unit id="EnglishLanguage" translate="yes" xml:space="preserve">
           <source>English</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">angielskim</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">angielskim</target>
         </trans-unit>
         <trans-unit id="FrenchLanguage" translate="yes" xml:space="preserve">
           <source>French</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">francuskim</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">francuskim</target>
         </trans-unit>
         <trans-unit id="JapaneseLanguage" translate="yes" xml:space="preserve">
           <source>Japanese</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">japońskim</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">japońskim</target>
         </trans-unit>
         <trans-unit id="GermanLanguage" translate="yes" xml:space="preserve">
           <source>German</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">niemieckim</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">niemieckim</target>
         </trans-unit>
         <trans-unit id="PolishLanguage" translate="yes" xml:space="preserve">
           <source>Polish</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">polskim</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">polskim</target>
         </trans-unit>
         <trans-unit id="SlovakLanguage" translate="yes" xml:space="preserve">
           <source>Slovak</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">słowackim</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">słowackim</target>
+        </trans-unit>
+        <trans-unit id="DanishLanguage" translate="yes" xml:space="preserve">
+          <source>Danish</source>
+          <target state="translated">duńskim</target>
+        </trans-unit>
+        <trans-unit id="SpanishLanguage" translate="yes" xml:space="preserve">
+          <source>Spanish</source>
+          <target state="translated">hiszpańskim</target>
+        </trans-unit>
+        <trans-unit id="HungarianLanguage" translate="yes" xml:space="preserve">
+          <source>Hungarian</source>
+          <target state="translated">węgierskim</target>
+        </trans-unit>
+        <trans-unit id="ItalianLanguage" translate="yes" xml:space="preserve">
+          <source>Italian</source>
+          <target state="translated">włoskim</target>
+        </trans-unit>
+        <trans-unit id="KoreanLanguage" translate="yes" xml:space="preserve">
+          <source>Korean</source>
+          <target state="translated">koreańskim</target>
+        </trans-unit>
+        <trans-unit id="MalayLanguage" translate="yes" xml:space="preserve">
+          <source>Malay</source>
+          <target state="translated">malajskim</target>
+        </trans-unit>
+        <trans-unit id="NorwegianLanguage" translate="yes" xml:space="preserve">
+          <source>Norwegian</source>
+          <target state="translated">norweskim</target>
+        </trans-unit>
+        <trans-unit id="DutchLanguage" translate="yes" xml:space="preserve">
+          <source>Dutch</source>
+          <target state="translated">holenderskim</target>
+        </trans-unit>
+        <trans-unit id="RussianLanguage" translate="yes" xml:space="preserve">
+          <source>Russian</source>
+          <target state="translated">rosyjskim</target>
+        </trans-unit>
+        <trans-unit id="SwedishLanguage" translate="yes" xml:space="preserve">
+          <source>Swedish</source>
+          <target state="translated">szwedzkim</target>
+        </trans-unit>
+        <trans-unit id="TurkishLanguage" translate="yes" xml:space="preserve">
+          <source>Turkish</source>
+          <target state="translated">tureckim</target>
+        </trans-unit>
+        <trans-unit id="UkrainianLanguage" translate="yes" xml:space="preserve">
+          <source>Ukrainian</source>
+          <target state="translated">ukraińskim</target>
+        </trans-unit>
+        <trans-unit id="ChineseLanguage" translate="yes" xml:space="preserve">
+          <source>Chinese</source>
+          <target state="translated">chińskim</target>
+        </trans-unit>
+        <trans-unit id="PortugueseLanguage" translate="yes" xml:space="preserve">
+          <source>Portuguese</source>
+          <target state="translated">portugalskim</target>
+        </trans-unit>
+        <trans-unit id="CzechLanguage" translate="yes" xml:space="preserve">
+          <source>Czech</source>
+          <target state="translated">czeskim</target>
+        </trans-unit>
+        <trans-unit id="IcelandicLanguage" translate="yes" xml:space="preserve">
+          <source>Icelandic</source>
+          <target state="translated">islandzkim</target>
         </trans-unit>
         <trans-unit id="Languages" translate="yes" xml:space="preserve">
           <source>Languages</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">języki</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">języki</target>
         </trans-unit>
         <trans-unit id="SelectLanguageDescription" translate="yes" xml:space="preserve">
           <source>VLC will be displayed in</source>
-          <target state="needs-review-translation">VLC będzie wyświetlany w języku</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">VLC będzie wyświetlany w języku</target>
         </trans-unit>
         <trans-unit id="ApplyAndRestart" translate="yes" xml:space="preserve">
           <source>Apply And Restart</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Zastosuj i zrestartuj</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Zastosuj i zrestartuj</target>
         </trans-unit>
         <trans-unit id="RefreshLanguage" translate="yes" xml:space="preserve">
           <source>Refresh Language</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Wczytaj język</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Wczytaj język</target>
         </trans-unit>
         <trans-unit id="Local" translate="yes" xml:space="preserve">
           <source>local</source>
-          <target state="needs-review-translation">lokalne</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">lokalne</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES" translate="yes" xml:space="preserve">
           <source>Download Files</source>
-          <target state="needs-review-translation">Pobierz pliki</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Pobierz pliki</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DOWNLOADFILES_LONG" translate="yes" xml:space="preserve">
           <source>Just click the file you want to download from your Xbox.</source>
-          <target state="needs-review-translation">Po prostu kliknij na pliku, żeby pobrać go ze swojego Xbox'a.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Po prostu kliknij na pliku, żeby pobrać go ze swojego Xbox'a.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES" translate="yes" xml:space="preserve">
           <source>Drop Files</source>
-          <target state="needs-review-translation">Upuść pliki</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Upuść pliki</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
           <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the "+" button to use the file picker dialog.</source>
-          <target state="needs-review-translation">Upuść pliki na oknie, żeby dodać je do swojego Xbox'a.&lt;it id="1" pos="open"&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Lub kliknij na przycisku "+", żeby użyć okna dialogowego wyboru plików.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Upuść pliki na oknie, żeby dodać je do swojego Xbox'a.&lt;it id="1" pos="open"&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Lub kliknij na przycisku "+", żeby użyć okna dialogowego wyboru plików.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
-          <target state="needs-review-translation">Udostępnianie przez WiFi</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Udostępnianie przez WiFi</target>
         </trans-unit>
         <trans-unit id="CopyToLocalStorage" translate="yes" xml:space="preserve">
           <source>copy to local storage</source>
-          <target state="needs-review-translation">kopiuj do lokalnej pamięci</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">kopiuj do lokalnej pamięci</target>
         </trans-unit>
         <trans-unit id="ExternalStorageDeviceDetected" translate="yes" xml:space="preserve">
           <source>VLC has detected an external storage device.</source>
-          <target state="needs-review-translation">VLC wykrył zewnętrzny nośnik danych.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">VLC wykrył zewnętrzny nośnik danych.</target>
         </trans-unit>
         <trans-unit id="ReadFromExternalStorage" translate="yes" xml:space="preserve">
           <source>Use external storage as media library.</source>
-          <target state="needs-review-translation">Użyj zewnętrznej pamięci w swojej bibliotece mediów.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Użyj zewnętrznej pamięci w swojej bibliotece mediów.</target>
         </trans-unit>
         <trans-unit id="SelectContentToCopy" translate="yes" xml:space="preserve">
           <source>Copy media to the internal storage.</source>
-          <target state="needs-review-translation">Kopiuj media do wewnętrznej pamięci.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Kopiuj media do wewnętrznej pamięci.</target>
         </trans-unit>
         <trans-unit id="WhatToDo" translate="yes" xml:space="preserve">
           <source>What would you like to do?</source>
-          <target state="needs-review-translation">Co chcesz zrobić?</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Co chcesz zrobić?</target>
         </trans-unit>
         <trans-unit id="AskMe" translate="yes" xml:space="preserve">
           <source>Ask me</source>
-          <target state="needs-review-translation">Spytaj mnie</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Spytaj mnie</target>
         </trans-unit>
         <trans-unit id="ExternalStorage" translate="yes" xml:space="preserve">
           <source>external storage</source>
-          <target state="needs-review-translation">zewnętrzna pamięć</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">zewnętrzna pamięć</target>
         </trans-unit>
         <trans-unit id="WhatToDoWhenExternalStorage" translate="yes" xml:space="preserve">
           <source>What should VLC do when an external storage device has been detected?</source>
-          <target state="needs-review-translation">Co ma zrobić VLC, kiedy wykryje zewnętrzny nośnik danych?</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Co ma zrobić VLC, kiedy wykryje zewnętrzny nośnik danych?</target>
         </trans-unit>
         <trans-unit id="Cancel" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target state="needs-review-translation">Anuluj</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Anuluj</target>
         </trans-unit>
         <trans-unit id="DoNothing" translate="yes" xml:space="preserve">
           <source>Do nothing</source>
-          <target state="needs-review-translation">Nic nie rób</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Nic nie rób</target>
         </trans-unit>
         <trans-unit id="Ok" translate="yes" xml:space="preserve">
           <source>Ok</source>
-          <target state="needs-review-translation">Ok</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Ok</target>
         </trans-unit>
         <trans-unit id="Ignore" translate="yes" xml:space="preserve">
           <source>Ignore</source>
-          <target state="needs-review-translation">Ignoruj</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Ignoruj</target>
         </trans-unit>
         <trans-unit id="Remember" translate="yes" xml:space="preserve">
           <source>Remember</source>
-          <target state="needs-review-translation">Zapamiętaj</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Zapamiętaj</target>
         </trans-unit>
         <trans-unit id="AddMediaHelp" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device</source>
-          <target state="needs-review-translation">Proszę podłączyć zewnętrzny nośnik danych</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Proszę podłączyć zewnętrzny nośnik danych</target>
         </trans-unit>
         <trans-unit id="AddMediaHelpWithIP" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device, or go to http://{0}:8080 to upload some media</source>
-          <target state="needs-review-translation">Proszę podłączyć zewnętrzny nośnik danych, lub przejść na adres http://{0}:8080 w celu przekazania mediów</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Proszę podłączyć zewnętrzny nośnik danych, lub przejść na adres http://{0}:8080 w celu przekazania mediów</target>
         </trans-unit>
         <trans-unit id="CopyHelpDesktop" translate="yes" xml:space="preserve">
           <source>Right-click on a file or a folder to copy it to the local storage.</source>
-          <target state="needs-review-translation">Kliknij prawym przyciskiem myszy na pliku lub folderze, żeby skopiować go do lokalnej pamięci.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Kliknij prawym przyciskiem myszy na pliku lub folderze, żeby skopiować go do lokalnej pamięci.</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
           <source>Press "Y" on a file or a folder to copy it to the local storage.</source>
-          <target state="needs-review-translation">Naciśnij "Y" na pliku lub folderze, żeby skopiować go do lokalnej pamięci.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Naciśnij "Y" na pliku lub folderze, żeby skopiować go do lokalnej pamięci.</target>
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
           <source>No subtitle tracks</source>
-          <target state="needs-review-translation">Brak ścieżek napisów</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Brak ścieżek napisów</target>
         </trans-unit>
         <trans-unit id="ClearKeystore" translate="yes" xml:space="preserve">
           <source>Clear saved credentials</source>
-          <target state="needs-review-translation">Wyczyść zachowane poświadczenia</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Wyczyść zachowane poświadczenia</target>
         </trans-unit>
         <trans-unit id="Credentials" translate="yes" xml:space="preserve">
           <source>Credentials</source>
-          <target state="needs-review-translation">poświadczenia</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">poświadczenia</target>
         </trans-unit>
         <trans-unit id="CopyHelpPhone" translate="yes" xml:space="preserve">
           <source>Long press on a file or a folder to copy it to the local storage.</source>
-          <target state="needs-review-translation">Naciśnij i przytrzymaj plik lub folder, żeby skopiować go do lokalnej pamięci.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Naciśnij i przytrzymaj plik lub folder, żeby skopiować go do lokalnej pamięci.</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_SCREEN" translate="yes" xml:space="preserve">
           <source>fit screen</source>
-          <target state="needs-review-translation">dopasowanie do ekranu</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">dopasowanie do ekranu</target>
         </trans-unit>
         <trans-unit id="SURFACE_FILL" translate="yes" xml:space="preserve">
           <source>fill</source>
-          <target state="needs-review-translation">wypełnienie</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">wypełnienie</target>
         </trans-unit>
         <trans-unit id="SURFACE_16_9" translate="yes" xml:space="preserve">
           <source>16:9</source>
-          <target state="needs-review-translation">16:9</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">16:9</target>
         </trans-unit>
         <trans-unit id="SURFACE_4_3" translate="yes" xml:space="preserve">
           <source>4:3</source>
-          <target state="needs-review-translation">4:3</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">4:3</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_2_35_1" translate="yes" xml:space="preserve">
+          <source>2.35:1</source>
+          <target state="translated">2.35:1</target>
         </trans-unit>
         <trans-unit id="SURFACE_ORIGINAL" translate="yes" xml:space="preserve">
           <source>original</source>
-          <target state="needs-review-translation">oryginalne</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">oryginalne</target>
         </trans-unit>
         <trans-unit id="CompactOverlayPiP" translate="yes" xml:space="preserve">
           <source>use windows 10 pip</source>
           <target state="translated">użyj funkcji Windows 10 PiP</target>
         </trans-unit>
-        <trans-unit id="DanishLanguage" translate="yes" xml:space="preserve">
-          <source>Danish</source>
-          <target state="new">Danish</target>
-        </trans-unit>
-        <trans-unit id="SpanishLanguage" translate="yes" xml:space="preserve">
-          <source>Spanish</source>
-          <target state="new">Spanish</target>
-        </trans-unit>
-        <trans-unit id="HungarianLanguage" translate="yes" xml:space="preserve">
-          <source>Hungarian</source>
-          <target state="new">Hungarian</target>
-        </trans-unit>
-        <trans-unit id="ItalianLanguage" translate="yes" xml:space="preserve">
-          <source>Italian</source>
-          <target state="new">Italian</target>
-        </trans-unit>
-        <trans-unit id="KoreanLanguage" translate="yes" xml:space="preserve">
-          <source>Korean</source>
-          <target state="new">Korean</target>
-        </trans-unit>
-        <trans-unit id="MalayLanguage" translate="yes" xml:space="preserve">
-          <source>Malay</source>
-          <target state="new">Malay</target>
-        </trans-unit>
-        <trans-unit id="NorwegianLanguage" translate="yes" xml:space="preserve">
-          <source>Norwegian</source>
-          <target state="new">Norwegian</target>
-        </trans-unit>
-        <trans-unit id="DutchLanguage" translate="yes" xml:space="preserve">
-          <source>Dutch</source>
-          <target state="new">Dutch</target>
-        </trans-unit>
-        <trans-unit id="RussianLanguage" translate="yes" xml:space="preserve">
-          <source>Russian</source>
-          <target state="new">Russian</target>
-        </trans-unit>
-        <trans-unit id="SwedishLanguage" translate="yes" xml:space="preserve">
-          <source>Swedish</source>
-          <target state="new">Swedish</target>
-        </trans-unit>
-        <trans-unit id="TurkishLanguage" translate="yes" xml:space="preserve">
-          <source>Turkish</source>
-          <target state="new">Turkish</target>
-        </trans-unit>
-        <trans-unit id="UkrainianLanguage" translate="yes" xml:space="preserve">
-          <source>Ukrainian</source>
-          <target state="new">Ukrainian</target>
-        </trans-unit>
-        <trans-unit id="ChineseLanguage" translate="yes" xml:space="preserve">
-          <source>Chinese</source>
-          <target state="new">Chinese</target>
-        </trans-unit>
         <trans-unit id="TvUnsafeArea" translate="yes" xml:space="preserve">
           <source>TV unsafe area</source>
-          <target state="new">TV unsafe area</target>
+          <target state="translated">niepewny obszar TV</target>
         </trans-unit>
         <trans-unit id="AddMarginExplanation" translate="yes" xml:space="preserve">
           <source>Some TVs will not display the app correctly. To add some margin, turn this on</source>
-          <target state="new">Some TVs will not display the app correctly. To add some margin, turn this on</target>
+          <target state="translated">Niektóre telewizory nie wyświetlają poprawnie aplikacji. Aby dodać margines, włącz tę opcję.</target>
         </trans-unit>
         <trans-unit id="ExtraMargin" translate="yes" xml:space="preserve">
           <source>Extra margin</source>
-          <target state="new">Extra margin</target>
+          <target state="translated">Dodatkowy margines</target>
         </trans-unit>
         <trans-unit id="NoExtraMargin" translate="yes" xml:space="preserve">
           <source>No extra margin</source>
-          <target state="new">No extra margin</target>
-        </trans-unit>
-        <trans-unit id="PortugueseLanguage" translate="yes" xml:space="preserve">
-          <source>Portuguese</source>
-          <target state="new">Portuguese</target>
-        </trans-unit>
-        <trans-unit id="CzechLanguage" translate="yes" xml:space="preserve">
-          <source>Czech</source>
-          <target state="new">Czech</target>
+          <target state="translated">Bez marginesu</target>
         </trans-unit>
         <trans-unit id="Restart" translate="yes" xml:space="preserve">
           <source>restart</source>
-          <target state="new">restart</target>
+          <target state="translated">Uruchom ponownie</target>
         </trans-unit>
         <trans-unit id="Disconnect" translate="yes" xml:space="preserve">
           <source>disconnect</source>
-          <target state="new">disconnect</target>
-        </trans-unit>
-        <trans-unit id="SURFACE_2_35_1" translate="yes" xml:space="preserve">
-          <source>2.35:1</source>
-          <target state="new">2.35:1</target>
+          <target state="translated">Rozłącz</target>
         </trans-unit>
       </group>
     </body>

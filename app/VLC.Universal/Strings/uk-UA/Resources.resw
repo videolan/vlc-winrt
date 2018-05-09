@@ -549,6 +549,54 @@
   <data name="SlovakLanguage" xml:space="preserve">
     <value>Словацька</value>
   </data>
+  <data name="DanishLanguage" xml:space="preserve">
+    <value>Данська</value>
+  </data>
+  <data name="SpanishLanguage" xml:space="preserve">
+    <value>Іспанська</value>
+  </data>
+  <data name="HungarianLanguage" xml:space="preserve">
+    <value>Угорська</value>
+  </data>
+  <data name="ItalianLanguage" xml:space="preserve">
+    <value>Італійська</value>
+  </data>
+  <data name="KoreanLanguage" xml:space="preserve">
+    <value>Корейська</value>
+  </data>
+  <data name="MalayLanguage" xml:space="preserve">
+    <value>Малайська</value>
+  </data>
+  <data name="NorwegianLanguage" xml:space="preserve">
+    <value>Норвезька</value>
+  </data>
+  <data name="DutchLanguage" xml:space="preserve">
+    <value>Нідерландська</value>
+  </data>
+  <data name="RussianLanguage" xml:space="preserve">
+    <value>Російська</value>
+  </data>
+  <data name="SwedishLanguage" xml:space="preserve">
+    <value>Шведська</value>
+  </data>
+  <data name="TurkishLanguage" xml:space="preserve">
+    <value>Турецька</value>
+  </data>
+  <data name="UkrainianLanguage" xml:space="preserve">
+    <value>Українська</value>
+  </data>
+  <data name="ChineseLanguage" xml:space="preserve">
+    <value>Китайська</value>
+  </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>Португальська</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>Чеська</value>
+  </data>
+  <data name="IcelandicLanguage" xml:space="preserve">
+    <value>Ісландська</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Мови</value>
   </data>
@@ -654,10 +702,31 @@
   <data name="SURFACE_4_3" xml:space="preserve">
     <value>4:3</value>
   </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
   <data name="SURFACE_ORIGINAL" xml:space="preserve">
     <value>оригінальний</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>використовувати блимок windows 10</value>
+  </data>
+  <data name="TvUnsafeArea" xml:space="preserve">
+    <value>Небезпечна область ТВ</value>
+  </data>
+  <data name="AddMarginExplanation" xml:space="preserve">
+    <value>Деякі ТВ не будуть відображати правильно цю програму. Щоби додати додаткове поле, увімкніть цей параметр</value>
+  </data>
+  <data name="ExtraMargin" xml:space="preserve">
+    <value>Додаткове поле</value>
+  </data>
+  <data name="NoExtraMargin" xml:space="preserve">
+    <value>Без додаткового поля</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>перезапуск</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>від’єднатися</value>
   </data>
 </root>

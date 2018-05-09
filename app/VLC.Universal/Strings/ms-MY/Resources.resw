@@ -549,6 +549,54 @@
   <data name="SlovakLanguage" xml:space="preserve">
     <value>Slovak</value>
   </data>
+  <data name="DanishLanguage" xml:space="preserve">
+    <value>Denmark</value>
+  </data>
+  <data name="SpanishLanguage" xml:space="preserve">
+    <value>Sepanyol</value>
+  </data>
+  <data name="HungarianLanguage" xml:space="preserve">
+    <value>Hungary</value>
+  </data>
+  <data name="ItalianLanguage" xml:space="preserve">
+    <value>Itali</value>
+  </data>
+  <data name="KoreanLanguage" xml:space="preserve">
+    <value>Korea</value>
+  </data>
+  <data name="MalayLanguage" xml:space="preserve">
+    <value>Melayu</value>
+  </data>
+  <data name="NorwegianLanguage" xml:space="preserve">
+    <value>Norway</value>
+  </data>
+  <data name="DutchLanguage" xml:space="preserve">
+    <value>Belanda</value>
+  </data>
+  <data name="RussianLanguage" xml:space="preserve">
+    <value>Russia</value>
+  </data>
+  <data name="SwedishLanguage" xml:space="preserve">
+    <value>Sweden</value>
+  </data>
+  <data name="TurkishLanguage" xml:space="preserve">
+    <value>Turki</value>
+  </data>
+  <data name="UkrainianLanguage" xml:space="preserve">
+    <value>Ukraine</value>
+  </data>
+  <data name="ChineseLanguage" xml:space="preserve">
+    <value>Cina</value>
+  </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>Portugis</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>Czech</value>
+  </data>
+  <data name="IcelandicLanguage" xml:space="preserve">
+    <value>Iceland</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Bahasa</value>
   </data>
@@ -654,10 +702,31 @@
   <data name="SURFACE_4_3" xml:space="preserve">
     <value>4:3</value>
   </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
   <data name="SURFACE_ORIGINAL" xml:space="preserve">
     <value>asal</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>guna pip windows 10</value>
+  </data>
+  <data name="TvUnsafeArea" xml:space="preserve">
+    <value>Kawasan tidak selamat TV</value>
+  </data>
+  <data name="AddMarginExplanation" xml:space="preserve">
+    <value>Sesetengah TV tidak paparkan apl secara betul. Untuk menambah lagi jidar, hidupkan ini</value>
+  </data>
+  <data name="ExtraMargin" xml:space="preserve">
+    <value>Jidar tambahan</value>
+  </data>
+  <data name="NoExtraMargin" xml:space="preserve">
+    <value>Tiada jidar tambahan</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>mula semula</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>putuskan</value>
   </data>
 </root>

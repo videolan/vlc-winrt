@@ -352,7 +352,8 @@
     <PRIResource Include="Strings\sv-SE\Resources.resw" />
     <PRIResource Include="Strings\tr-TR\Resources.resw" />
     <PRIResource Include="Strings\uk-UA\Resources.resw" />
-    <PRIResource Include="Strings\en-US\Resources.resw"/>
+    <PRIResource Include="Strings\en-US\Resources.resw" />
+    <PRIResource Include="Strings\is-IS\Resources.resw" />
     <None Include="VLC_WinRT.Universal_TemporaryKey.pfx" />
     <PRIResource Include="Strings\cs-CZ\Resources.resw" />
     <PRIResource Include="Strings\pt-PT\Resources.resw" />
@@ -1237,7 +1238,6 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\stream_out\libstream_out_transcode_plugin.dll">
       <Link>plugins\stream_out\libstream_out_transcode_plugin.dll</Link>
     </Content>
-    
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="VLCCommands.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1615,6 +1615,7 @@
   </ItemGroup>
   <ItemGroup>
     <XliffResource Include="MultilingualResources\VLC.Universal.fr-FR.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.is-IS.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.ja-JP.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.da-DK.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.de-DE.xlf" />

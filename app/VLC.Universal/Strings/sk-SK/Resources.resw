@@ -118,16 +118,16 @@
     <value>Tento súbor sa možno nedá prehrávať na pozadí</value>
   </data>
   <data name="FailNavigateVideoPlayerPage" xml:space="preserve">
-    <value>Programu VLC sa nepodarilo prejsť na stránku prehrávača videa</value>
+    <value>Programu VLC sa nepodarilo prejsť na stránku prehrávača videa</value>
   </data>
   <data name="FailOpenVideo" xml:space="preserve">
-    <value>Programu VLC sa nepodarilo otvoriť video</value>
+    <value>Programu VLC sa nepodarilo otvoriť video</value>
   </data>
   <data name="FailStartVLCEngine" xml:space="preserve">
     <value>Aplikácii sa nepodarilo spustiť engine VLC</value>
   </data>
   <data name="FeedbackThankYou" xml:space="preserve">
-    <value>spätná odozva bola odoslaná, Ďakujeme!</value>
+    <value>spätná odozva bola odoslaná, ďakujeme</value>
   </data>
   <data name="FileExplorer" xml:space="preserve">
     <value>prehľadávať</value>
@@ -148,7 +148,7 @@
     <value>domovská stránka</value>
   </data>
   <data name="HomePageDescription" xml:space="preserve">
-    <value>VLC sa spustí na vybranej stránke</value>
+    <value>VLC sa spustí na vybranej stránke</value>
   </data>
   <data name="HoweverYouMayFindWhatYouWantHere" xml:space="preserve">
     <value>možno však tu nájdete to, čo hľadáte</value>
@@ -280,7 +280,7 @@
     <value>heslo</value>
   </data>
   <data name="Pause" xml:space="preserve">
-    <value>pauza</value>
+    <value>pozastavenie</value>
   </data>
   <data name="PinAlbum" xml:space="preserve">
     <value>pripnúť album</value>
@@ -442,7 +442,7 @@
     <value>priečinky s videom</value>
   </data>
   <data name="VideoFoldersDescription" xml:space="preserve">
-    <value>Program VLC vyhľadá len videá, ktoré sú umiestnené vo vašej knižnici s videami. Tu môžete pridať priečinky do vašej knižnice</value>
+    <value>Program VLC vyhľadá len videá, ktoré sú umiestnené vo vašej knižnici s videami. Tu môžete pridať priečinky do vašej knižnice</value>
   </data>
   <data name="VideoPlayback" xml:space="preserve">
     <value>prehrávanie videa</value>
@@ -549,11 +549,59 @@
   <data name="SlovakLanguage" xml:space="preserve">
     <value>Slovensky</value>
   </data>
+  <data name="DanishLanguage" xml:space="preserve">
+    <value>Dánsky</value>
+  </data>
+  <data name="SpanishLanguage" xml:space="preserve">
+    <value>Španielsky</value>
+  </data>
+  <data name="HungarianLanguage" xml:space="preserve">
+    <value>Maďarsky</value>
+  </data>
+  <data name="ItalianLanguage" xml:space="preserve">
+    <value>Taliansky</value>
+  </data>
+  <data name="KoreanLanguage" xml:space="preserve">
+    <value>Kórejsky</value>
+  </data>
+  <data name="MalayLanguage" xml:space="preserve">
+    <value>Malajsky</value>
+  </data>
+  <data name="NorwegianLanguage" xml:space="preserve">
+    <value>Nórsky</value>
+  </data>
+  <data name="DutchLanguage" xml:space="preserve">
+    <value>Holandská nemčina</value>
+  </data>
+  <data name="RussianLanguage" xml:space="preserve">
+    <value>Rusky</value>
+  </data>
+  <data name="SwedishLanguage" xml:space="preserve">
+    <value>Švédsky</value>
+  </data>
+  <data name="TurkishLanguage" xml:space="preserve">
+    <value>Turecky</value>
+  </data>
+  <data name="UkrainianLanguage" xml:space="preserve">
+    <value>Ukrajinsky</value>
+  </data>
+  <data name="ChineseLanguage" xml:space="preserve">
+    <value>Čínsky</value>
+  </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>Portugalsky</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>Česky</value>
+  </data>
+  <data name="IcelandicLanguage" xml:space="preserve">
+    <value>Islandsky</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Jazyky</value>
   </data>
   <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC sa zobrazí v jazyku: </value>
+    <value>VLC sa zobrazí v jazyku</value>
   </data>
   <data name="ApplyAndRestart" xml:space="preserve">
     <value>Použiť a reštartovať</value>
@@ -574,7 +622,7 @@
     <value>Pustiť súbory</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Súbory, ktoré chcete pridať do svojho Xboxu, pustite v tomto okne.&amp;lt;br&amp;gt;Alebo kliknite na tlačidlo "+", ktorým otvoríte dialóg na pridávanie súborov.</value>
+    <value>Súbory, ktoré chcete pridať do svojho Xboxu, pustite v tomto okne.&amp;lt;br&amp;gt;Alebo kliknite na tlačidlo &amp;quot;+&amp;quot; ktorým otvoríte dialóg na pridávanie súborov.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Zdieľanie cez WiFi</value>
@@ -622,10 +670,10 @@
     <value>Prosím vložte externé úložné zariadenie</value>
   </data>
   <data name="AddMediaHelpWithIP" xml:space="preserve">
-    <value>Prosím vložte externé úložné zariadenie, alebo prejdite na http://{0}:8080 pre nahranie nejakých médií</value>
+    <value>Prosím vložte externé úložné zariadenie, alebo prejdite na http://{0}:8080 pre nahratie nejakých médií</value>
   </data>
   <data name="CopyHelpDesktop" xml:space="preserve">
-    <value>Kliknutím pravým tlačidlom na súbor alebo priečinok, ho skopírujete do lokálneho úložiska.</value>
+    <value>Kliknutím pravým tlačidlom na súbor alebo priečinok ho skopírujete do lokálneho úložiska.</value>
   </data>
   <data name="CopyHelpMediaCenter" xml:space="preserve">
     <value>Stlačením "Y" na súbore alebo priečinku ho skopírujete do lokálneho úložiska.</value>
@@ -654,10 +702,31 @@
   <data name="SURFACE_4_3" xml:space="preserve">
     <value>4:3</value>
   </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
   <data name="SURFACE_ORIGINAL" xml:space="preserve">
     <value>pôvodné</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>použiť windows 10 pip</value>
+  </data>
+  <data name="TvUnsafeArea" xml:space="preserve">
+    <value>Nezabezpečená oblasť TV</value>
+  </data>
+  <data name="AddMarginExplanation" xml:space="preserve">
+    <value>Niektoré TV nezobrazujú aplikáciu korektne. Ak chcete pridať nejaký okraj, zapnite túto voľbu</value>
+  </data>
+  <data name="ExtraMargin" xml:space="preserve">
+    <value>Osobitný okraj</value>
+  </data>
+  <data name="NoExtraMargin" xml:space="preserve">
+    <value>Žiadny osobitný okraj</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>reštart</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>odpojiť</value>
   </data>
 </root>

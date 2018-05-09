@@ -549,6 +549,54 @@
   <data name="SlovakLanguage" xml:space="preserve">
     <value>Словацкий</value>
   </data>
+  <data name="DanishLanguage" xml:space="preserve">
+    <value>Датский</value>
+  </data>
+  <data name="SpanishLanguage" xml:space="preserve">
+    <value>Испанский</value>
+  </data>
+  <data name="HungarianLanguage" xml:space="preserve">
+    <value>Венгерский</value>
+  </data>
+  <data name="ItalianLanguage" xml:space="preserve">
+    <value>Итальянский</value>
+  </data>
+  <data name="KoreanLanguage" xml:space="preserve">
+    <value>Корейский</value>
+  </data>
+  <data name="MalayLanguage" xml:space="preserve">
+    <value>Малайский</value>
+  </data>
+  <data name="NorwegianLanguage" xml:space="preserve">
+    <value>Норвежский</value>
+  </data>
+  <data name="DutchLanguage" xml:space="preserve">
+    <value>Голландский</value>
+  </data>
+  <data name="RussianLanguage" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="SwedishLanguage" xml:space="preserve">
+    <value>Шведский</value>
+  </data>
+  <data name="TurkishLanguage" xml:space="preserve">
+    <value>Турецкий</value>
+  </data>
+  <data name="UkrainianLanguage" xml:space="preserve">
+    <value>Украинский</value>
+  </data>
+  <data name="ChineseLanguage" xml:space="preserve">
+    <value>Китайский</value>
+  </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>Португальский</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>Чешский</value>
+  </data>
+  <data name="IcelandicLanguage" xml:space="preserve">
+    <value>Исландский</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Языки</value>
   </data>
@@ -654,10 +702,31 @@
   <data name="SURFACE_4_3" xml:space="preserve">
     <value>4:3</value>
   </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
   <data name="SURFACE_ORIGINAL" xml:space="preserve">
     <value>исходный</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>использовать PIP (в Windows 10)</value>
+  </data>
+  <data name="TvUnsafeArea" xml:space="preserve">
+    <value>Небезопасная зона ТВ</value>
+  </data>
+  <data name="AddMarginExplanation" xml:space="preserve">
+    <value>Некоторые телевизоры не будут отображать приложение корректно. Чтобы добавить отступ нужно включить это</value>
+  </data>
+  <data name="ExtraMargin" xml:space="preserve">
+    <value>Дополнительный отступ</value>
+  </data>
+  <data name="NoExtraMargin" xml:space="preserve">
+    <value>Нет дополнительного отступа</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>перезапуск</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>отключение</value>
   </data>
 </root>

@@ -22,6 +22,7 @@
         Ukrainian,
         Chinese,
         Portuguese,
-        Czech
+        Czech,
+        Icelandic
     }
 }

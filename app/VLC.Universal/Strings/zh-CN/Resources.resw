@@ -549,6 +549,54 @@
   <data name="SlovakLanguage" xml:space="preserve">
     <value>斯洛伐克语</value>
   </data>
+  <data name="DanishLanguage" xml:space="preserve">
+    <value>丹麦语</value>
+  </data>
+  <data name="SpanishLanguage" xml:space="preserve">
+    <value>西班牙语</value>
+  </data>
+  <data name="HungarianLanguage" xml:space="preserve">
+    <value>匈牙利语</value>
+  </data>
+  <data name="ItalianLanguage" xml:space="preserve">
+    <value>意大利语</value>
+  </data>
+  <data name="KoreanLanguage" xml:space="preserve">
+    <value>朝鲜语</value>
+  </data>
+  <data name="MalayLanguage" xml:space="preserve">
+    <value>马来语</value>
+  </data>
+  <data name="NorwegianLanguage" xml:space="preserve">
+    <value>挪威语</value>
+  </data>
+  <data name="DutchLanguage" xml:space="preserve">
+    <value>荷兰语</value>
+  </data>
+  <data name="RussianLanguage" xml:space="preserve">
+    <value>俄语</value>
+  </data>
+  <data name="SwedishLanguage" xml:space="preserve">
+    <value>瑞典语</value>
+  </data>
+  <data name="TurkishLanguage" xml:space="preserve">
+    <value>土耳其语</value>
+  </data>
+  <data name="UkrainianLanguage" xml:space="preserve">
+    <value>乌克兰语</value>
+  </data>
+  <data name="ChineseLanguage" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>葡萄牙语</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>捷克语</value>
+  </data>
+  <data name="IcelandicLanguage" xml:space="preserve">
+    <value>冰岛语</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>语言</value>
   </data>
@@ -654,10 +702,31 @@
   <data name="SURFACE_4_3" xml:space="preserve">
     <value>4:3</value>
   </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
   <data name="SURFACE_ORIGINAL" xml:space="preserve">
     <value>原始</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>使用 windows 10 画中画模式</value>
+  </data>
+  <data name="TvUnsafeArea" xml:space="preserve">
+    <value>TV 非安全区域</value>
+  </data>
+  <data name="AddMarginExplanation" xml:space="preserve">
+    <value>某些电视无法正确显示应用界面。打开本项可增加边距</value>
+  </data>
+  <data name="ExtraMargin" xml:space="preserve">
+    <value>额外边距</value>
+  </data>
+  <data name="NoExtraMargin" xml:space="preserve">
+    <value>无需额外边距</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>重启</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>断开连接</value>
   </data>
 </root>

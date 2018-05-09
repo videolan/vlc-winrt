@@ -549,6 +549,54 @@
   <data name="SlovakLanguage" xml:space="preserve">
     <value>Slovakisk</value>
   </data>
+  <data name="DanishLanguage" xml:space="preserve">
+    <value>Dansk</value>
+  </data>
+  <data name="SpanishLanguage" xml:space="preserve">
+    <value>Spansk</value>
+  </data>
+  <data name="HungarianLanguage" xml:space="preserve">
+    <value>Ungarnsk</value>
+  </data>
+  <data name="ItalianLanguage" xml:space="preserve">
+    <value>Italiensk</value>
+  </data>
+  <data name="KoreanLanguage" xml:space="preserve">
+    <value>Koreansk</value>
+  </data>
+  <data name="MalayLanguage" xml:space="preserve">
+    <value>Malajisk</value>
+  </data>
+  <data name="NorwegianLanguage" xml:space="preserve">
+    <value>Norsk</value>
+  </data>
+  <data name="DutchLanguage" xml:space="preserve">
+    <value>Hollandsk</value>
+  </data>
+  <data name="RussianLanguage" xml:space="preserve">
+    <value>Russisk</value>
+  </data>
+  <data name="SwedishLanguage" xml:space="preserve">
+    <value>Svensk</value>
+  </data>
+  <data name="TurkishLanguage" xml:space="preserve">
+    <value>Tyrkisk</value>
+  </data>
+  <data name="UkrainianLanguage" xml:space="preserve">
+    <value>Ukrainsk</value>
+  </data>
+  <data name="ChineseLanguage" xml:space="preserve">
+    <value>Kinesisk</value>
+  </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>Portugisisk</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>Tjekkisk</value>
+  </data>
+  <data name="IcelandicLanguage" xml:space="preserve">
+    <value>Islandsk</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Sprog</value>
   </data>
@@ -654,10 +702,31 @@
   <data name="SURFACE_4_3" xml:space="preserve">
     <value>4:3</value>
   </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
   <data name="SURFACE_ORIGINAL" xml:space="preserve">
     <value>original</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>brug windows 10-pip</value>
+  </data>
+  <data name="TvUnsafeArea" xml:space="preserve">
+    <value>Usikkert område på TV</value>
+  </data>
+  <data name="AddMarginExplanation" xml:space="preserve">
+    <value>Nogle TV'er viser ikke appen korrekt. Slå den her til, for at tilføje margener</value>
+  </data>
+  <data name="ExtraMargin" xml:space="preserve">
+    <value>Ekstra margen</value>
+  </data>
+  <data name="NoExtraMargin" xml:space="preserve">
+    <value>Ingen ekstra margen</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>genstart</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>afbryd forbindelsen</value>
   </data>
 </root>

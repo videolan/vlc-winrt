@@ -549,6 +549,54 @@
   <data name="SlovakLanguage" xml:space="preserve">
     <value>słowackim</value>
   </data>
+  <data name="DanishLanguage" xml:space="preserve">
+    <value>duńskim</value>
+  </data>
+  <data name="SpanishLanguage" xml:space="preserve">
+    <value>hiszpańskim</value>
+  </data>
+  <data name="HungarianLanguage" xml:space="preserve">
+    <value>węgierskim</value>
+  </data>
+  <data name="ItalianLanguage" xml:space="preserve">
+    <value>włoskim</value>
+  </data>
+  <data name="KoreanLanguage" xml:space="preserve">
+    <value>koreańskim</value>
+  </data>
+  <data name="MalayLanguage" xml:space="preserve">
+    <value>malajskim</value>
+  </data>
+  <data name="NorwegianLanguage" xml:space="preserve">
+    <value>norweskim</value>
+  </data>
+  <data name="DutchLanguage" xml:space="preserve">
+    <value>holenderskim</value>
+  </data>
+  <data name="RussianLanguage" xml:space="preserve">
+    <value>rosyjskim</value>
+  </data>
+  <data name="SwedishLanguage" xml:space="preserve">
+    <value>szwedzkim</value>
+  </data>
+  <data name="TurkishLanguage" xml:space="preserve">
+    <value>tureckim</value>
+  </data>
+  <data name="UkrainianLanguage" xml:space="preserve">
+    <value>ukraińskim</value>
+  </data>
+  <data name="ChineseLanguage" xml:space="preserve">
+    <value>chińskim</value>
+  </data>
+  <data name="PortugueseLanguage" xml:space="preserve">
+    <value>portugalskim</value>
+  </data>
+  <data name="CzechLanguage" xml:space="preserve">
+    <value>czeskim</value>
+  </data>
+  <data name="IcelandicLanguage" xml:space="preserve">
+    <value>islandzkim</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>języki</value>
   </data>
@@ -654,10 +702,31 @@
   <data name="SURFACE_4_3" xml:space="preserve">
     <value>4:3</value>
   </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
   <data name="SURFACE_ORIGINAL" xml:space="preserve">
     <value>oryginalne</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>użyj funkcji Windows 10 PiP</value>
+  </data>
+  <data name="TvUnsafeArea" xml:space="preserve">
+    <value>niepewny obszar TV</value>
+  </data>
+  <data name="AddMarginExplanation" xml:space="preserve">
+    <value>Niektóre telewizory nie wyświetlają poprawnie aplikacji. Aby dodać margines, włącz tę opcję.</value>
+  </data>
+  <data name="ExtraMargin" xml:space="preserve">
+    <value>Dodatkowy margines</value>
+  </data>
+  <data name="NoExtraMargin" xml:space="preserve">
+    <value>Bez marginesu</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Uruchom ponownie</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>Rozłącz</value>
   </data>
 </root>
