@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -160,7 +160,7 @@
     <value>就能直接找到它</value>
   </data>
   <data name="ImportantSponsors" xml:space="preserve">
-    <value>重要捐助者</value>
+    <value>重要赞助者</value>
   </data>
   <data name="IncreaseSpeed" xml:space="preserve">
     <value>提高速度</value>
@@ -173,9 +173,6 @@
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>快捷键</value>
-  </data>
-  <data name="Local" xml:space="preserve">
-    <value>本地</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>许可</value>
@@ -334,7 +331,7 @@
     <value>收藏</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">
-    <value>刷新媒体库</value>
+    <value>刷新音乐库</value>
   </data>
   <data name="RefreshVideoLibrary" xml:space="preserve">
     <value>刷新视频库</value>
@@ -516,24 +513,6 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>垂直裁剪</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>适合屏幕</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>填充</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>原始</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>播放列表将无法访问</value>
   </data>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>相似艺术家</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>应用并重启</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>英语</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>日语</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>斯洛伐克语</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>德语</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>波兰语</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>斯洛伐克语</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>丹麦语</value>
@@ -610,7 +586,7 @@
     <value>乌克兰语</value>
   </data>
   <data name="ChineseLanguage" xml:space="preserve">
-    <value>汉语</value>
+    <value>中文</value>
   </data>
   <data name="PortugueseLanguage" xml:space="preserve">
     <value>葡萄牙语</value>
@@ -624,11 +600,17 @@
   <data name="Languages" xml:space="preserve">
     <value>语言</value>
   </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC 显示的语言</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>应用并重启</value>
+  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>刷新语言</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC 显示的语言</value>
+  <data name="Local" xml:space="preserve">
+    <value>本地</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>下载文件</value>
@@ -640,10 +622,10 @@
     <value>拖放文件</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>将文件拖入窗口可将其添加到您的 Xbox。&lt;br&gt;也可以点击「+」按钮打开文件选择对话框。</value>
+    <value>将文件拖入窗口可将其添加到您的 Xbox。&amp;lt;br&amp;gt;也可以点击 &amp;quot;+&amp;quot; 按钮打开文件选择对话框。</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
-    <value>通过 WiFi 分享</value>
+    <value>通过 WiFi 共享</value>
   </data>
   <data name="CopyToLocalStorage" xml:space="preserve">
     <value>复制到本地存储</value>
@@ -707,6 +689,24 @@
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>长按文件或文件夹可将其复制到本地存储。</value>
+  </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>适合屏幕</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>填充</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>原始</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>使用 windows 10 画中画模式</value>

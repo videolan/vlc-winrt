@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -13,7 +13,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTheApp" xml:space="preserve">
-    <value>um hugbúnaðinn</value>
+    <value>um forritið</value>
   </data>
   <data name="Add" xml:space="preserve">
     <value>bæta við</value>
@@ -43,7 +43,7 @@
     <value>þema forrits</value>
   </data>
   <data name="Artists" xml:space="preserve">
-    <value>flytjendur</value>
+    <value>flytjandi</value>
   </data>
   <data name="Audio" xml:space="preserve">
     <value>hljóð</value>
@@ -174,9 +174,6 @@
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>flýtileiðir á lyklaborði</value>
   </data>
-  <data name="Local" xml:space="preserve">
-    <value>staðvært</value>
-  </data>
   <data name="License" xml:space="preserve">
     <value>notkunarleyfi</value>
   </data>
@@ -256,7 +253,7 @@
     <value>núna í spilun</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Opna skrá</value>
+    <value>opna skrá</value>
   </data>
   <data name="OpenStream" xml:space="preserve">
     <value>opna streymi</value>
@@ -340,7 +337,7 @@
     <value>endurlesa myndskeiðasafn</value>
   </data>
   <data name="RemovableStorage" xml:space="preserve">
-    <value>útskiptanleg gagnageymsla</value>
+    <value>útskiptanleg geymsla</value>
   </data>
   <data name="RemoveFolder" xml:space="preserve">
     <value>fjarlægja möppu</value>
@@ -502,7 +499,7 @@
     <value>ertu viss?</value>
   </data>
   <data name="MediaCantBeRead" xml:space="preserve">
-    <value>ekki er hægt að lesa gagnamiðilinn</value>
+    <value>ekki hægt að lesa gagnamiðilinn</value>
   </data>
   <data name="Sorry" xml:space="preserve">
     <value>okkur þykir það miður</value>
@@ -515,24 +512,6 @@
   </data>
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>lóðréttur utanskurður</value>
-  </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>laga að skjá</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>fylla</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>upprunalegt</value>
   </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>spilunarlistinn þinn verður ekki aðgengilegur</value>
@@ -550,10 +529,7 @@
     <value>teygja</value>
   </data>
   <data name="SimilarArtists" xml:space="preserve">
-    <value>Svipaðir flytjendur</value>
-  </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Virkja og endurræsa</value>
+    <value>svipaðir flytjendur</value>
   </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Enska</value>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Japanska</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slóvakíska</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Þýska</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Pólska</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Slóvakíska</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>Danska</value>
@@ -624,11 +600,17 @@
   <data name="Languages" xml:space="preserve">
     <value>Tungumál</value>
   </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC verður birt sem</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Virkja og endurræsa</value>
+  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Endurlesa tungumál</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC verður birt sem</value>
+  <data name="Local" xml:space="preserve">
+    <value>staðvært</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>Sækja skrár</value>
@@ -640,7 +622,7 @@
     <value>Sleppa skrám</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Slepptu skrám á gluggann til að bæta þeim inn á Xbox-ið þitt. &lt;br&gt;Eða smelltu á "+" hnappinn til að nota skráaveljarann.</value>
+    <value>Slepptu skrám á gluggann til að bæta þeim inn á Xbox-ið þitt.&amp;lt;br&amp;gt;Eða smelltu á &amp;quot;+&amp;quot; hnappinn til að nota skráaveljarann.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Deila með þráðlausu neti</value>
@@ -707,6 +689,24 @@
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Ýttu lengi á skrá eða möppu til að afrita hana í staðværu gagnageymsluna.</value>
+  </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>laga að skjá</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>fylla</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>upprunalegt</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>nota windows 10 pip</value>

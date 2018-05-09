@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -174,9 +174,6 @@
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>pintasan papan kekunci</value>
   </data>
-  <data name="Local" xml:space="preserve">
-    <value>setempat</value>
-  </data>
   <data name="License" xml:space="preserve">
     <value>lesen</value>
   </data>
@@ -220,7 +217,7 @@
     <value>video baharu</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>tiada</value>
+    <value>Tidak</value>
   </data>
   <data name="NoBiographyFound" xml:space="preserve">
     <value>tiada bio ditemui bagi artis ini</value>
@@ -466,7 +463,7 @@
     <value>lihat artis</value>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>volu</value>
+    <value>Volum</value>
   </data>
   <data name="WeNeedYourHelp" xml:space="preserve">
     <value>kami memerlukan bantuan anda</value>
@@ -516,24 +513,6 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>pengeratan menegak</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>suai muat skrin</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>penuhkan</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>asal</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>senarai main anda tidak boleh dicapai</value>
   </data>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Artis serupa</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Laksana Dan Mula Semula</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Inggeris</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Jepun</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slovak</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Jerman</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Poland</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Slovak</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>Denmark</value>
@@ -610,7 +586,7 @@
     <value>Ukraine</value>
   </data>
   <data name="ChineseLanguage" xml:space="preserve">
-    <value>China</value>
+    <value>Cina</value>
   </data>
   <data name="PortugueseLanguage" xml:space="preserve">
     <value>Portugis</value>
@@ -624,23 +600,29 @@
   <data name="Languages" xml:space="preserve">
     <value>Bahasa</value>
   </data>
-  <data name="RefreshLanguage" xml:space="preserve">
-    <value>Segar Semula Bahasa</value>
-  </data>
   <data name="SelectLanguageDescription" xml:space="preserve">
     <value>VLC akan dipaparkan dalam bahasa</value>
   </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Laksana Dan Mula Semula</value>
+  </data>
+  <data name="RefreshLanguage" xml:space="preserve">
+    <value>Segar Semula Bahasa</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>setempat</value>
+  </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
-    <value>Muat Turun Fai</value>
+    <value>Muat Turun Fail</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
     <value>Hanya klik fail yang mahu dimuat turun dari  Xbox anda.</value>
   </data>
   <data name="WEBINTF_DROPFILES" xml:space="preserve">
-    <value>Lepas Fai</value>
+    <value>Lepas Fail</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Lepas fail ke tetingkap untuk menambahnya ke dalam Xbox anda.&lt;br&gt;Atau klik pada butang "+" untuk guna dialog pengambil fail.</value>
+    <value>Lepas fail ke dalam tetingkap untuk menambahnya ke dalam Xbox anda. &amp;lt;br&amp;gt; Atau klik pada butang &amp;quot;+&amp;quot; untuk guna dialog pengambil fail.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Perkongsian melalui WiFi</value>
@@ -707,6 +689,24 @@
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Tahan pada fail atau folder untuk menyalinnya ke dalam storan setempat.</value>
+  </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>suai muat skrin</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>penuhkan</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>asal</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>guna pip windows 10</value>

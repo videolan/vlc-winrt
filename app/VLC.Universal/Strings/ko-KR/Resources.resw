@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -34,7 +34,7 @@
     <value>앨범</value>
   </data>
   <data name="AlbumsFound" xml:space="preserve">
-    <value>찾은 앨범 : {0}</value>
+    <value>앨범 발견: {0}</value>
   </data>
   <data name="Animations" xml:space="preserve">
     <value>애니메이션</value>
@@ -85,16 +85,16 @@
     <value>충돌 보고서</value>
   </data>
   <data name="DecreaseSpeed" xml:space="preserve">
-    <value>속도 낮추기</value>
+    <value>속도 감소</value>
   </data>
   <data name="DecreaseVolume" xml:space="preserve">
-    <value>볼륨 줄이기</value>
+    <value>볼륨 낮추기</value>
   </data>
   <data name="DeletePlaylist" xml:space="preserve">
     <value>재생목록 삭제</value>
   </data>
   <data name="DeleteSelected" xml:space="preserve">
-    <value>선택 항목 삭제</value>
+    <value>선택 삭제</value>
   </data>
   <data name="EditMetadata" xml:space="preserve">
     <value>메타데이터 편집</value>
@@ -173,9 +173,6 @@
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>키보드 단축키</value>
-  </data>
-  <data name="Local" xml:space="preserve">
-    <value>로컬</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>라이선스</value>
@@ -385,7 +382,7 @@
     <value>노래</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>특별 감사</value>
+    <value>특별한 감사</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>속도</value>
@@ -442,7 +439,7 @@
     <value>비디오</value>
   </data>
   <data name="VideoFolders" xml:space="preserve">
-    <value>비디오 폴더</value>
+    <value>비디오 ㅍ더</value>
   </data>
   <data name="VideoFoldersDescription" xml:space="preserve">
     <value>VLC는 비디오 라이브러리에 있는 비디오만 검색합니다. 여기 라이브러리에 폴더를 추가할 수 있습니다</value>
@@ -516,24 +513,6 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>수직 자르기</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>화면에 맞추기</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>채우기</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>원본</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>재생목록에 접근할 수 없습니다</value>
   </data>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>비슷한 아티스트</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>적용 및 재시작</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>영어</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>일본어</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>슬로바키아어</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>독일어</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>폴란드어</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>슬로바키아어</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>덴마크어</value>
@@ -624,11 +600,17 @@
   <data name="Languages" xml:space="preserve">
     <value>언어</value>
   </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC가 표시됩니다</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>적용 및 재시작</value>
+  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>언어 새로고침</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC가 표시됩니다</value>
+  <data name="Local" xml:space="preserve">
+    <value>로컬</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>파일 다운로드</value>
@@ -640,7 +622,7 @@
     <value>파일 드롭하기</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Xbox에 파일을 추가하려면 창에 파일을 드롭하세요.&lt;br&gt;또는 파일 선택 대화상자를 사용하려면 "+" 버튼을 누르세요.</value>
+    <value>Xbox에 파일을 추가하려면 창에 파일을 드롭하세요. &amp;lt;br&amp;gt;또는 파일 선택 대화상자를 사용하려면 &amp;quot;+&amp;quot; 버튼을 누르세요.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>WiFi를 통한 공유</value>
@@ -688,7 +670,7 @@
     <value>외부 저장 장치를 넣어 주세요</value>
   </data>
   <data name="AddMediaHelpWithIP" xml:space="preserve">
-    <value>외부 저장 장치를 넣거나,  http://{0}:8080 으로 이동하여 일부 미디어를 업로드하세요</value>
+    <value>외부 저장 장치를 넣거나,  http://{0}:8080으로 이동하여 일부 미디어를 업로드하세요.</value>
   </data>
   <data name="CopyHelpDesktop" xml:space="preserve">
     <value>파일이나 폴더에서 우클릭하여 로컬 저장소에 복사합니다.</value>
@@ -708,6 +690,24 @@
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>파일이나 폴더에서 길게 눌러서 로컬 저장소에 복사합니다.</value>
   </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>화면에 맞추기</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>채우기</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>원본</value>
+  </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>윈도우 10 PIP 사용</value>
   </data>
@@ -715,7 +715,7 @@
     <value>TV의 불안전한 영역</value>
   </data>
   <data name="AddMarginExplanation" xml:space="preserve">
-    <value>일부 TV는 앱을 제대로 출력하지 못합니다. 여백을 약간 추가하려면, 이걸 켜세요</value>
+    <value>일부 TV는 앱을 제대로 표시하지 못합니다. 여백을 약간 추가하려면, 이걸 켜세요</value>
   </data>
   <data name="ExtraMargin" xml:space="preserve">
     <value>추가 여백</value>

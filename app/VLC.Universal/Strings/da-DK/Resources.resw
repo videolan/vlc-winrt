@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -79,7 +79,7 @@
     <value>opretter forbindelse</value>
   </data>
   <data name="ConnectToLastFM" xml:space="preserve">
-    <value>opret forbindelse til Last.FM</value>
+    <value>forbundet til Last.FM</value>
   </data>
   <data name="CrashReport" xml:space="preserve">
     <value>nedbrudsrapport</value>
@@ -174,9 +174,6 @@
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>tastaturgenveje</value>
   </data>
-  <data name="Local" xml:space="preserve">
-    <value>lokalt</value>
-  </data>
   <data name="License" xml:space="preserve">
     <value>licens</value>
   </data>
@@ -253,7 +250,7 @@
     <value>vi fandt ikke videoen</value>
   </data>
   <data name="NowPlaying" xml:space="preserve">
-    <value>aktuel afspilning</value>
+    <value>nu afspilles</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>åbn fil</value>
@@ -516,24 +513,6 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>lodret beskæring</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>tilpas skærm</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>fyld</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>original</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>der vil ikke være adgang til din spilleliste</value>
   </data>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Lignende kunstnere</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Anvend og genstart</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Engelsk</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Japansk</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slovakisk</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Tysk</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Polsk</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Slovakisk</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>Dansk</value>
@@ -624,11 +600,17 @@
   <data name="Languages" xml:space="preserve">
     <value>Sprog</value>
   </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC vil blive vist i</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Anvend og genstart</value>
+  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Genopfrisk sprog</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC vil blive vist i</value>
+  <data name="Local" xml:space="preserve">
+    <value>lokalt</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>Download filer</value>
@@ -640,10 +622,10 @@
     <value>Slip filer</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Slip filer i vinduet for at tilføje dem til din Xbox.&lt;br&gt;Eller klik på "+"-knappen for at bruge filvælgerdialogen.</value>
+    <value>Slip filer i vinduet for at tilføje dem til din Xbox.&amp;lt;br&amp;gt;Eller klik på "+"-knappen for at bruge filvælgerdialogen.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
-    <value>Deling via WiFi</value>
+    <value>Deler via WiFi</value>
   </data>
   <data name="CopyToLocalStorage" xml:space="preserve">
     <value>kopiér til lokalt lager</value>
@@ -708,6 +690,24 @@
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Tryk længe på en fil eller en mappe for at kopiere den til det lokale lager.</value>
   </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>tilpas skærm</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>fyld</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>original</value>
+  </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>brug windows 10-pip</value>
   </data>
@@ -715,8 +715,7 @@
     <value>Usikkert område på TV</value>
   </data>
   <data name="AddMarginExplanation" xml:space="preserve">
-    <value>Nogle TV'er viser ikke appen korrekt. 
-Slå den her til, for at tilføje margener</value>
+    <value>Nogle TV'er viser ikke appen korrekt. Slå den her til, for at tilføje margener</value>
   </data>
   <data name="ExtraMargin" xml:space="preserve">
     <value>Ekstra margen</value>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -173,9 +173,6 @@
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>tuş takımı kısayolları</value>
-  </data>
-  <data name="Local" xml:space="preserve">
-    <value>yerel</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>lisans</value>
@@ -397,7 +394,7 @@
     <value>altyazı gecikmesi</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
-    <value>Alt yazılar</value>
+    <value>Altyazılar</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
     <value>altyazı kodlaması</value>
@@ -424,13 +421,13 @@
     <value>Bilinmeyen albüm</value>
   </data>
   <data name="UnknownArtist" xml:space="preserve">
-    <value>sanatçı bilinmiyor</value>
+    <value>Bilinmeyen sanatçı</value>
   </data>
   <data name="UnknownShow" xml:space="preserve">
     <value>Bilinmeyen gösteri</value>
   </data>
   <data name="UnknownTrack" xml:space="preserve">
-    <value>kayıt bilinmiyor</value>
+    <value>Bilinmeyen kayıt</value>
   </data>
   <data name="UserInterface" xml:space="preserve">
     <value>Kullanıcı Arayüzü</value>
@@ -516,24 +513,6 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>dikey kırpma</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>ekrana sığdır</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>doldur</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>özgün</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>oynatma listenize erişilemiyor</value>
   </data>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Benzer sanatçılar</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Uygula ve Yeniden Başlat</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>İngilizce</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Japonca</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slovakça</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Almanca</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Lehçe</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Slovakça</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>Danimarkaca</value>
@@ -624,11 +600,17 @@
   <data name="Languages" xml:space="preserve">
     <value>Diller</value>
   </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC şu dilde görüntülenecek</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Uygula ve Yeniden Başlat</value>
+  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Dili Yenile</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC şu dilde görüntülenecek</value>
+  <data name="Local" xml:space="preserve">
+    <value>yerel</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>Dosyaları İndir</value>
@@ -640,7 +622,7 @@
     <value>Dosyaları Sürükleyin</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Xbox üzerindeki dosyaları sürükleyip pencereye bırakarak ekleyebilirsiniz. &lt;br&gt;Dosya seçme aracını kullanmak isterseniz "+" düğmesine tıklayabilirsiniz.</value>
+    <value>Xbox üzerindeki dosyaları sürükleyip pencereye bırakarak ekleyebilirsiniz.&amp;lt;br&amp;gt; Dosya seçme aracını kullanmak isterseniz "+" düğmesine tıklayabilirsiniz.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>WiFi üzerinden paylaş</value>
@@ -707,6 +689,24 @@
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Yerel depolamaya kaydetmek için bir dosya ya da klasör üzerine uzun basın.</value>
+  </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>ekrana sığdır</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>doldur</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>özgün</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>Windows 10 pip kullanılsın</value>

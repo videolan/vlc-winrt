@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -49,7 +49,7 @@
     <value>аудіо</value>
   </data>
   <data name="AudioDelay" xml:space="preserve">
-    <value>затримка аудіо</value>
+    <value>затримка звуку</value>
   </data>
   <data name="AudioTracks" xml:space="preserve">
     <value>Звукові доріжки</value>
@@ -172,10 +172,7 @@
     <value>тут порожньо</value>
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
-    <value>скорочення клавіатури</value>
-  </data>
-  <data name="Local" xml:space="preserve">
-    <value>локально</value>
+    <value>клавіатурні скорочення</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>ліцензія</value>
@@ -289,7 +286,7 @@
     <value>пришпилити альбом</value>
   </data>
   <data name="PinArtist" xml:space="preserve">
-    <value>прикріпити виконавця</value>
+    <value>закріпити виконавця</value>
   </data>
   <data name="Play" xml:space="preserve">
     <value>відтворити</value>
@@ -307,7 +304,7 @@
     <value>Параметри програвача</value>
   </data>
   <data name="PlayFolder" xml:space="preserve">
-    <value>тека програвача</value>
+    <value>відтворити теку</value>
   </data>
   <data name="Playlist" xml:space="preserve">
     <value>список відтворення</value>
@@ -508,7 +505,7 @@
     <value>на жаль</value>
   </data>
   <data name="SURFACE_BEST_FIT" xml:space="preserve">
-    <value>найкраще</value>
+    <value>найкраще заповнення</value>
   </data>
   <data name="SURFACE_FIT_HORIZONTAL" xml:space="preserve">
     <value>горизонтальне обтинання</value>
@@ -516,29 +513,11 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>вертикальне обтинання</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>екранний розмір</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>заповнити</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>оригінальний</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>ваш список не буде доступним</value>
   </data>
   <data name="NoArtistShowsFound" xml:space="preserve">
-    <value>ми не знайшли шоу цього артиста</value>
+    <value>ми не знайшли шоу цього виконавця</value>
   </data>
   <data name="NoResults" xml:space="preserve">
     <value>без результатів</value>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Подібні виконавці</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Застосувати та Перезапустити</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Англійська</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Японська</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Словацька</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Німецька</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Польська</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Словацька</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>Данська</value>
@@ -624,23 +600,29 @@
   <data name="Languages" xml:space="preserve">
     <value>Мови</value>
   </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC появиться на мові</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Застосувати та Перезапустити</value>
+  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Оновити мову</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC появиться на мові</value>
+  <data name="Local" xml:space="preserve">
+    <value>локально</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>Завантажити файли</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
-    <value>Просто клацніть файл, який кортить звантажити зі свого Xbox.</value>
+    <value>Просто клацніть на файлі, який кортить звантажити зі свого Xbox.</value>
   </data>
   <data name="WEBINTF_DROPFILES" xml:space="preserve">
     <value>Вкинути файли</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Вкиньте файли у вікно для додавання їх до свого пристрою Xbox.&lt;br&gt; Або клацніть на кнопці "+" для використання діалогу вибору.</value>
+    <value>Вкиньте файли у вікно, щоби додати їх до вашого Xbox.&amp;lt;br&amp;gt;Або клацніть на кнопці &amp;quot;+&amp;quot; для використання вікна вибору файлів.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Поширення через Wi-Fi</value>
@@ -708,6 +690,24 @@
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Тривалий натиск на файлі чи теці для копіювання на локальний носій.</value>
   </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>екранний розмір</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>заповнити</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>оригінальний</value>
+  </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>використовувати блимок windows 10</value>
   </data>
@@ -715,7 +715,7 @@
     <value>Небезпечна область ТВ</value>
   </data>
   <data name="AddMarginExplanation" xml:space="preserve">
-    <value>Деякі ТВ не будуть відображати правильно цю програму. Щоби додати додаткове поле, увімкніть цей параметр.</value>
+    <value>Деякі ТВ не будуть відображати правильно цю програму. Щоби додати додаткове поле, увімкніть цей параметр</value>
   </data>
   <data name="ExtraMargin" xml:space="preserve">
     <value>Додаткове поле</value>

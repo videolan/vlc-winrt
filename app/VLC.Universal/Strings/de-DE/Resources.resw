@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -130,7 +130,7 @@
     <value>Feedback gesendet! Vielen Dank</value>
   </data>
   <data name="FileExplorer" xml:space="preserve">
-    <value>durchsuchen</value>
+    <value>Durchsuchen</value>
   </data>
   <data name="HardwareDecoding" xml:space="preserve">
     <value>Hardware-Dekodierung</value>
@@ -173,9 +173,6 @@
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>Tastenkürzel</value>
-  </data>
-  <data name="Local" xml:space="preserve">
-    <value>lokal</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>Lizenz</value>
@@ -516,24 +513,6 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>vertikales Zuschneiden</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>an Bildschirm anpassen</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>ausfüllen</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>original</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>Ihre Wiedergabeliste wird nicht zugänglich sein</value>
   </data>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Ähnliche Künstler</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Übernehmen und neu starten</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Englisch</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Japanisch</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slowakisch</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Deutsch</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Polnisch</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Slowakisch</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>Dänisch</value>
@@ -624,11 +600,17 @@
   <data name="Languages" xml:space="preserve">
     <value>Sprachen</value>
   </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC wird angezeigt in</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Übernehmen und neu starten</value>
+  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Sprache aktualisieren</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC wird angezeigt in</value>
+  <data name="Local" xml:space="preserve">
+    <value>lokal</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>Dateien herunterladen</value>
@@ -640,7 +622,7 @@
     <value>Dateien ablegen</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Legen Sie Dateien im Fenster ab, um sie zu Ihrer Xbox hinzuzufügen.&lt;br&gt;Oder klicken Sie auf die Schaltfläche "+", um den Dateiauswahldialog zu verwenden.</value>
+    <value>Legen Sie Dateien im Fenster ab, um sie zu Ihrer Xbox hinzuzufügen.&amp;lt;br&amp;gt;Oder klicken Sie auf die Schaltfläche "+", um den Dateiauswahldialog zu verwenden.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Netzwerkfreigabe über WLAN</value>
@@ -707,6 +689,24 @@
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Drücken Sie lange auf eine Datei oder einen Ordner, um sie in den lokalen Speicher zu kopieren.</value>
+  </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>an Bildschirm anpassen</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>ausfüllen</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>original</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>Bild im Bild von Windows 10 verwenden</value>

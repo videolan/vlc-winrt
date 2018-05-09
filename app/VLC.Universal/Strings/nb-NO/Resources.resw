@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -46,7 +46,7 @@
     <value>Artister</value>
   </data>
   <data name="Audio" xml:space="preserve">
-    <value>Lyd</value>
+    <value>lyd</value>
   </data>
   <data name="AudioDelay" xml:space="preserve">
     <value>Lydforsinkelse</value>
@@ -173,9 +173,6 @@
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>Tastatursnarveier</value>
-  </data>
-  <data name="Local" xml:space="preserve">
-    <value>Lokalt</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>Lisens</value>
@@ -394,7 +391,7 @@
     <value>Stopp</value>
   </data>
   <data name="SubtitleDelay" xml:space="preserve">
-    <value>Undertekstforsinkelse</value>
+    <value>Undertekstsforsinkelse</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
     <value>Undertekster</value>
@@ -439,7 +436,7 @@
     <value>Brukernavn</value>
   </data>
   <data name="Video" xml:space="preserve">
-    <value>Video</value>
+    <value>video</value>
   </data>
   <data name="VideoFolders" xml:space="preserve">
     <value>Videomapper</value>
@@ -460,7 +457,7 @@
     <value>Videoinnstillinger</value>
   </data>
   <data name="ViewAlbum" xml:space="preserve">
-    <value>Vis albumet</value>
+    <value>Vis album</value>
   </data>
   <data name="ViewArtist" xml:space="preserve">
     <value>Vis artisten</value>
@@ -516,29 +513,11 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>Loddrett beskjæring</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>Tilpass skjermen</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>Fyll ut</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>Opprinnelig</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>Spillelisten din vil ikke bli tilgjengelig</value>
   </data>
   <data name="NoArtistShowsFound" xml:space="preserve">
-    <value>Vi fant ikke noen programmer for denne artisten</value>
+    <value>Vi fant ikke noen serier for denne artisten</value>
   </data>
   <data name="NoResults" xml:space="preserve">
     <value>Ingen resultater</value>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Lignende artister</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Bruk og start på nytt</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Engelsk</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Japansk</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slovakisk</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Tysk</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Polsk</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Slovakisk</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>Dansk</value>
@@ -624,11 +600,17 @@
   <data name="Languages" xml:space="preserve">
     <value>Språk</value>
   </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC vil bli vist på</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Bruk og start på nytt</value>
+  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Oppfrisk språket</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC vil bli vist på</value>
+  <data name="Local" xml:space="preserve">
+    <value>Lokalt</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>Last ned filer</value>
@@ -640,7 +622,7 @@
     <value>Slipp filer</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Slipp filer i vinduet for å legge dem til på din Xbox.&lt;br&gt;Eller klikk på "+"-knappen for å bruke fildialog-velgeren.</value>
+    <value>Slipp filer i vinduet for å legge dem til på din Xbox. &amp;lt;br&amp;gt; Eller klikk på "+"-knappen for å bruke fildialog-velgeren.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Deling via Wi-Fi</value>
@@ -708,6 +690,24 @@
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Langtrykk på en fil eller en mappe, for å kopiere den til den lokale lagringen.</value>
   </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>Tilpass til skjermen</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>Fyll ut</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>Opprinnelig</value>
+  </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>Bruk Windows 10 sin bilde-i-bilde</value>
   </data>
@@ -715,7 +715,7 @@
     <value>TV-innsnevring</value>
   </data>
   <data name="AddMarginExplanation" xml:space="preserve">
-    <value>Noen TVer viser ikke denne appen riktig. For å legge til litt kantmarginer, skru dette på</value>
+    <value>Noen TVer viser ikke appen riktig. For å legge til litt kantmarginer, skru dette på</value>
   </data>
   <data name="ExtraMargin" xml:space="preserve">
     <value>Ekstra margin</value>

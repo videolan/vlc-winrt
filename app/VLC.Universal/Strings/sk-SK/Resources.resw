@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -173,9 +173,6 @@
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>klávesové skratky</value>
-  </data>
-  <data name="Local" xml:space="preserve">
-    <value>lokálne</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>licencia</value>
@@ -516,24 +513,6 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>vertikálne orezanie</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>prispôsobiť obrazovke</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>vyplniť</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>pôvodné</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>váš playlist nebude prístupný</value>
   </data>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Podobní umelci</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Použiť a reštartovať</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Anglicky</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Japonsky</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slovensky</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Nemecky</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Poľsky</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Slovensky</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>Dánsky</value>
@@ -624,11 +600,17 @@
   <data name="Languages" xml:space="preserve">
     <value>Jazyky</value>
   </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC sa zobrazí v jazyku</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Použiť a reštartovať</value>
+  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Obnoviť jazyk</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC sa zobrazí v jazyku</value>
+  <data name="Local" xml:space="preserve">
+    <value>lokálne</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>Stiahnuť súbory</value>
@@ -640,7 +622,7 @@
     <value>Pustiť súbory</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Súbory, ktoré chcete pridať do svojho Xboxu, pustite v tomto okne.&lt;br&gt;Alebo kliknite na tlačidlo "+", ktorým otvoríte dialóg na pridávanie súborov.</value>
+    <value>Súbory, ktoré chcete pridať do svojho Xboxu, pustite v tomto okne.&amp;lt;br&amp;gt;Alebo kliknite na tlačidlo &amp;quot;+&amp;quot; ktorým otvoríte dialóg na pridávanie súborov.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Zdieľanie cez WiFi</value>
@@ -708,6 +690,24 @@
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Dlhým zatlačením na súbor alebo priečinok ho skopírujete do lokálneho úložiska.</value>
   </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>prispôsobiť obrazovke</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>vyplniť</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>pôvodné</value>
+  </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>použiť windows 10 pip</value>
   </data>
@@ -715,7 +715,7 @@
     <value>Nezabezpečená oblasť TV</value>
   </data>
   <data name="AddMarginExplanation" xml:space="preserve">
-    <value>Niektoré televízory nezobrazujú aplikáciu korektne. Ak chcete pridať nejaký okraj, zapnite túto voľbu</value>
+    <value>Niektoré TV nezobrazujú aplikáciu korektne. Ak chcete pridať nejaký okraj, zapnite túto voľbu</value>
   </data>
   <data name="ExtraMargin" xml:space="preserve">
     <value>Osobitný okraj</value>

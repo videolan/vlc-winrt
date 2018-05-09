@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -173,9 +173,6 @@
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>kortkommandon</value>
-  </data>
-  <data name="Local" xml:space="preserve">
-    <value>lokalt</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>licens</value>
@@ -516,24 +513,6 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>vertikal beskärning</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>anpassa till skärm</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>fyll</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>original</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>din spellista kommer inte att vara tillgänglig</value>
   </data>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Liknande artister</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Verkställ och starta om</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>engelska</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>japanska</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>slovakiska</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>tyska</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>polska</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>slovakiska</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>danska</value>
@@ -624,11 +600,17 @@
   <data name="Languages" xml:space="preserve">
     <value>Språk</value>
   </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC kommer att visas på</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Verkställ och starta om</value>
+  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Uppdatera språk</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC kommer att visas på</value>
+  <data name="Local" xml:space="preserve">
+    <value>lokalt</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>Ladda ned filer</value>
@@ -640,7 +622,7 @@
     <value>Släpp filer</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Släpp filer i fönstret för att lägga till dem i ditt Xbox.&lt;br&gt;Eller klicka på knappen "+" för att använda filväljardialogen.</value>
+    <value>Släpp filer i fönstret för att lägga till dem i ditt Xbox.&amp;lt;br&amp;gt;Eller klicka på knappen &amp;quot;+&amp;quot; för att använda filväljardialogen.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Dela via WiFi</value>
@@ -707,6 +689,24 @@
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Tryck och håll ned på en fil eller mapp för att kopiera den till den lokala lagringen.</value>
+  </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>anpassa till skärm</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>fyll</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>original</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>använd windows 10:s bib</value>

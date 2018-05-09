@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -174,9 +174,6 @@
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>sneltoetsen</value>
   </data>
-  <data name="Local" xml:space="preserve">
-    <value>lokaal</value>
-  </data>
   <data name="License" xml:space="preserve">
     <value>licentie</value>
   </data>
@@ -214,7 +211,7 @@
     <value>netwerk</value>
   </data>
   <data name="NewPlaylist" xml:space="preserve">
-    <value>nieuwe afspeellijst</value>
+    <value>nieuwe afspeelijst</value>
   </data>
   <data name="NewVideos" xml:space="preserve">
     <value>nieuwe video's</value>
@@ -253,7 +250,7 @@
     <value>we vonden geen video</value>
   </data>
   <data name="NowPlaying" xml:space="preserve">
-    <value>nu afspelend</value>
+    <value>nu speelt</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>bestand openen</value>
@@ -286,10 +283,10 @@
     <value>pauzeren</value>
   </data>
   <data name="PinAlbum" xml:space="preserve">
-    <value>album pinnen</value>
+    <value>album vastmaken</value>
   </data>
   <data name="PinArtist" xml:space="preserve">
-    <value>artiest pinnen</value>
+    <value>artiest vastmaken</value>
   </data>
   <data name="Play" xml:space="preserve">
     <value>afspelen</value>
@@ -352,7 +349,7 @@
     <value>Als u deze map niet in uw videobibliotheek wilt, kunt u ze verwijderen. Dit zal invloed hebben op alle apps, niet alleen VLC</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>herstelle</value>
+    <value>herstellen</value>
   </data>
   <data name="ResetMusicDatabase" xml:space="preserve">
     <value>muziekdatabase herstellen</value>
@@ -376,7 +373,7 @@
     <value>afspeellijst weergeven</value>
   </data>
   <data name="Shows" xml:space="preserve">
-    <value>series</value>
+    <value>shows</value>
   </data>
   <data name="Shuffle" xml:space="preserve">
     <value>willekeurige volgorde</value>
@@ -415,7 +412,7 @@
     <value>track toegevoegd aan de afspeellijst</value>
   </data>
   <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
-    <value>deze track is al in die afspeellijst</value>
+    <value>deze track zit al in die afspeellijst</value>
   </data>
   <data name="Tracks" xml:space="preserve">
     <value>tracks</value>
@@ -454,7 +451,7 @@
     <value>video op achtergrond afspelen</value>
   </data>
   <data name="Videos" xml:space="preserve">
-    <value>video's</value>
+    <value>video\'s</value>
   </data>
   <data name="VideoSettings" xml:space="preserve">
     <value>Video-instellingen</value>
@@ -516,24 +513,6 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>verticaal bijsnijden</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>passend op scherm</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>vullen</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>origineel</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>uw afspeellijst zal niet toegankelijk zijn</value>
   </data>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Vergelijkbare artiesten</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Toepassen en opnieuw starten</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Engels</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Japans</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slowaaks</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Duits</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Pools</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Slowaaks</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>Deens</value>
@@ -624,11 +600,17 @@
   <data name="Languages" xml:space="preserve">
     <value>Talen</value>
   </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC zal weergegeven worden in het</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Toepassen en opnieuw starten</value>
+  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Taal verversen</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC zal weergegeven worden in het</value>
+  <data name="Local" xml:space="preserve">
+    <value>lokaal</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>Bestanden downloaden</value>
@@ -640,7 +622,7 @@
     <value>Bestanden neerzetten</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Zet bestanden in het venster om ze toe te voegen aan uw Xbox.&lt;br&gt;Of klik op de "+"-knop om het bestandskeuzevenster te gebruiken.</value>
+    <value>Zet bestanden in het venster om ze toe te voegen aan uw Xbox.&amp;lt;br&amp;gt;Of klik op de &amp;quot;+&amp;quot;-knop om het bestandskeuzevenster te gebruiken.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Delen via WiFi</value>
@@ -707,6 +689,24 @@
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Lang drukken op een bestand of een map om te kopiëren naar de lokale opslag.</value>
+  </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>passend op scherm</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>vullen</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>origineel</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>windows 10 pip gebruiken</value>

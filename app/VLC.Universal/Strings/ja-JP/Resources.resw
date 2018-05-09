@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -61,13 +61,13 @@
     <value>カメラ ロール</value>
   </data>
   <data name="ChangeAlbumCover" xml:space="preserve">
-    <value>アルバム カバーを変更します。</value>
+    <value>アルバム カバーを変更</value>
   </data>
   <data name="Chapters" xml:space="preserve">
     <value>章</value>
   </data>
   <data name="CheckCredentials" xml:space="preserve">
-    <value>エラーが発生しました、ユーザーの資格情報を確認してください。</value>
+    <value>エラーが発生しました、ユーザーの資格情報を確認してください</value>
   </data>
   <data name="Connect" xml:space="preserve">
     <value>接続</value>
@@ -118,10 +118,10 @@
     <value>このファイルはバック グラウンドで再生されないかもしれません</value>
   </data>
   <data name="FailNavigateVideoPlayerPage" xml:space="preserve">
-    <value>VLC がビデオ プレーヤーのページに移動できませんでした。</value>
+    <value>VLCがビデオ プレーヤーのページに移動できませんでした</value>
   </data>
   <data name="FailOpenVideo" xml:space="preserve">
-    <value>VLC がビデオを開くに失敗しました</value>
+    <value>VLCがビデオを開けませんでした</value>
   </data>
   <data name="FailStartVLCEngine" xml:space="preserve">
     <value>アプリはVLC のエンジンを開始できませんでした</value>
@@ -173,9 +173,6 @@
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>キーボード ショート カット</value>
-  </data>
-  <data name="Local" xml:space="preserve">
-    <value>ローカル</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>ライセンス</value>
@@ -235,7 +232,7 @@
     <value>インターネット接続がありません</value>
   </data>
   <data name="NoPlaylists" xml:space="preserve">
-    <value>プレイリストがありません</value>
+    <value>再生リストがありません。</value>
   </data>
   <data name="NoShowsFound" xml:space="preserve">
     <value>ショーが見つかりません</value>
@@ -286,7 +283,7 @@
     <value>一時停止</value>
   </data>
   <data name="PinAlbum" xml:space="preserve">
-    <value>アルバムをピン留め</value>
+    <value>アルバムをピン止め</value>
   </data>
   <data name="PinArtist" xml:space="preserve">
     <value>アーティストをピン止め</value>
@@ -304,7 +301,7 @@
     <value>再生</value>
   </data>
   <data name="PlayerSettings" xml:space="preserve">
-    <value>プレーヤーの設定</value>
+    <value>プレーヤー設定</value>
   </data>
   <data name="PlayFolder" xml:space="preserve">
     <value>フォルダーを再生</value>
@@ -406,7 +403,7 @@
     <value>テーマ</value>
   </data>
   <data name="TileRemoved" xml:space="preserve">
-    <value>タイルは削除されました</value>
+    <value>タイルの削除</value>
   </data>
   <data name="TopVideos" xml:space="preserve">
     <value>トップ動画</value>
@@ -457,7 +454,7 @@
     <value>ビデオ</value>
   </data>
   <data name="VideoSettings" xml:space="preserve">
-    <value>ビデオ設定</value>
+    <value>ビデオの設定</value>
   </data>
   <data name="ViewAlbum" xml:space="preserve">
     <value>アルバムを見る</value>
@@ -516,24 +513,6 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>垂直トリミング</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>スクリーンに合わせる</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>画面一杯に合わせる</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>オリジナル</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>プレイリストにアクセスできません</value>
   </data>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>類似するアーティスト</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>適用し、再起動</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>英語</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>日本語</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>スロバキア語</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>ドイツ語</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>ポーランド語</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>スロバキア語</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>デンマーク語</value>
@@ -624,11 +600,17 @@
   <data name="Languages" xml:space="preserve">
     <value>言語</value>
   </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLCの表示する言語</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>適用し、再起動</value>
+  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>言語を更新</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLCの表示する言語</value>
+  <data name="Local" xml:space="preserve">
+    <value>ローカル</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>ファイルをダウンロード</value>
@@ -640,7 +622,7 @@
     <value>ファイルをドロップ</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Xboxに追加したいファイルをウィンドウにドロップしてください。&lt;br&gt;または、"+" ボタンをクリックしてファイルを選択するダイアログを表示してください。</value>
+    <value>Xboxに追加したいファイルをウィンドウにドロップしてください。&amp;lt;br&amp;gt;または、 &amp;quot;+&amp;quot; ボタンをクリックし、ファイルを選択するダイアログを表示してください。</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>WiFi経由で共有</value>
@@ -708,8 +690,26 @@
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>ファイルまたはフォルダーを長押しすることでローカルストレージにコピーします。</value>
   </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>スクリーンに合わせる</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>画面一杯に合わせる</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>オリジナル</value>
+  </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
-    <value>Windows 10 pipを使用</value>
+    <value>Windows 10 pipの使用</value>
   </data>
   <data name="TvUnsafeArea" xml:space="preserve">
     <value>TV不安定エリア</value>

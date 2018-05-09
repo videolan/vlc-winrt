@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -142,7 +142,7 @@
     <value>выберите плейлист</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>домой</value>
+    <value>Главная</value>
   </data>
   <data name="HomePage" xml:space="preserve">
     <value>домашняя страница</value>
@@ -173,9 +173,6 @@
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>сочетания клавиш</value>
-  </data>
-  <data name="Local" xml:space="preserve">
-    <value>внутренняя память</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>лицензия</value>
@@ -292,7 +289,7 @@
     <value>закрепить исполнителя</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>воспроизвести</value>
+    <value>Воспроизвести</value>
   </data>
   <data name="PlayAlbum" xml:space="preserve">
     <value>воспроизвести альбом</value>
@@ -316,16 +313,16 @@
     <value>плейлист уже существует</value>
   </data>
   <data name="PlaylistNamePlaceholder" xml:space="preserve">
-    <value>имя плейлиста</value>
+    <value>название плейлиста</value>
   </data>
   <data name="Playlists" xml:space="preserve">
     <value>плейлисты</value>
   </data>
   <data name="PlayTrack" xml:space="preserve">
-    <value>воспроизвести дорожку</value>
+    <value>проиграть дорожку</value>
   </data>
   <data name="PlayVideo" xml:space="preserve">
-    <value>воспроизвести видео</value>
+    <value>проиграть видео</value>
   </data>
   <data name="PrivacyStatement" xml:space="preserve">
     <value>уведомление о конфиденциальности</value>
@@ -364,13 +361,13 @@
     <value>Использовать сложную анимацию в слайд-шоу</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>поиск</value>
+    <value>искать</value>
   </data>
   <data name="Season" xml:space="preserve">
     <value>сезон</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>настройки</value>
+    <value>параметры</value>
   </data>
   <data name="ShowPlaylist" xml:space="preserve">
     <value>показать плейлист</value>
@@ -516,24 +513,6 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>кадрирование по вертикали</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>подогнать под экран</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>заполнение</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>исходный</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>ваш плейлист не будет доступен</value>
   </data>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Похожие исполнители</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Применить и перезапустить</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Английский</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Японский</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Словацский</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Немецкий</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Польский</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Словацкий</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>Датский</value>
@@ -624,26 +600,32 @@
   <data name="Languages" xml:space="preserve">
     <value>Языки</value>
   </data>
-  <data name="RefreshLanguage" xml:space="preserve">
-    <value>Сменить язык</value>
-  </data>
   <data name="SelectLanguageDescription" xml:space="preserve">
     <value>Язык VLC</value>
   </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Применить и перезапустить</value>
+  </data>
+  <data name="RefreshLanguage" xml:space="preserve">
+    <value>Сменить язык</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>внутренняя память</value>
+  </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
-    <value>Загрузить файлы</value>
+    <value>Загрузка файлов</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
     <value>Просто щёлкните файл, который вы хотите загрузить с вашей Xbox.</value>
   </data>
   <data name="WEBINTF_DROPFILES" xml:space="preserve">
-    <value>Перенос файлов</value>
+    <value>Добавление файлов</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Перенесите файлы в это окно, чтобы загрузить их на вашу Xbox.&lt;br&gt;Вы также можете нажать кнопку "+", чтобы воспользоваться диалогом выбора файла.</value>
+    <value>Перенесите файлы в это окно, чтобы загрузить их на вашу Xbox.&amp;lt;br&amp;gt;ы также можете нажать кнопку &amp;quot;+&amp;quot;, чтобы воспользоваться диалогом выбора файла..</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
-    <value>Общий доступ через WiFi</value>
+    <value>Доступ через WiFi</value>
   </data>
   <data name="CopyToLocalStorage" xml:space="preserve">
     <value>копировать в локальное хранилище</value>
@@ -673,13 +655,13 @@
     <value>Отмена</value>
   </data>
   <data name="DoNothing" xml:space="preserve">
-    <value>Ничего</value>
+    <value>Ничего не делать</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="Ignore" xml:space="preserve">
-    <value>Игнорировать</value>
+    <value>Нет</value>
   </data>
   <data name="Remember" xml:space="preserve">
     <value>Запомнить</value>
@@ -707,6 +689,24 @@
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>При долгом нажатии на файле (или папке) он копируется в локальное хранилище.</value>
+  </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>подогнать под экран</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>заполнение</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>исходный</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>использовать PIP (в Windows 10)</value>

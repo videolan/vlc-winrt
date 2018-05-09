@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -13,10 +13,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTheApp" xml:space="preserve">
-    <value>acerca de la app</value>
+    <value>Acerca de la app</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>añadir</value>
+    <value>Añadir</value>
   </data>
   <data name="AddFolder" xml:space="preserve">
     <value>añadir carpeta</value>
@@ -173,9 +173,6 @@
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>teclas de acceso rápido</value>
-  </data>
-  <data name="Local" xml:space="preserve">
-    <value>local</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>licencia</value>
@@ -397,7 +394,7 @@
     <value>retraso de subtítulos</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
-    <value>Subtítulos</value>
+    <value>subtítulos</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
     <value>codificación de subtítulos</value>
@@ -409,7 +406,7 @@
     <value>baldosa eliminada</value>
   </data>
   <data name="TopVideos" xml:space="preserve">
-    <value>vídeos más populares</value>
+    <value>vídeos populares</value>
   </data>
   <data name="TrackAddedToYourPlaylist" xml:space="preserve">
     <value>pista añadida a la lista de reproducción</value>
@@ -424,16 +421,16 @@
     <value>Álbum desconocido</value>
   </data>
   <data name="UnknownArtist" xml:space="preserve">
-    <value>Artista desconocido</value>
+    <value>artista desconocido</value>
   </data>
   <data name="UnknownShow" xml:space="preserve">
-    <value>Programa desconocido</value>
+    <value>programa desconocido</value>
   </data>
   <data name="UnknownTrack" xml:space="preserve">
-    <value>Pista desconocida</value>
+    <value>pista desconocida</value>
   </data>
   <data name="UserInterface" xml:space="preserve">
-    <value>Interfaz de usuario</value>
+    <value>interfaz de usuario</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>nombre de usuario</value>
@@ -516,24 +513,6 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>recorte vertical</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>ajustar a pantalla</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>rellenar</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>original</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>su lista de reproducción no será accesible</value>
   </data>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Artistas similares</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Aplicar y reiniciar</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Inglés</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Japonés</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Eslovaco</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Alemán</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Polaco</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Eslovaco</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>Danés</value>
@@ -624,11 +600,17 @@
   <data name="Languages" xml:space="preserve">
     <value>Idiomas</value>
   </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC se mostrará en</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Aplicar y reiniciar</value>
+  </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Actualizar idioma</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC se mostrará en</value>
+  <data name="Local" xml:space="preserve">
+    <value>local</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>Descargar archivos</value>
@@ -640,7 +622,7 @@
     <value>Dejar caer archivos</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Deje caer archivos en la ventana para añadirlos a su dispositivo %@.&lt;br&gt;O haga clic en el botón «+» para usar el diálogo de selección de archivos.</value>
+    <value>Deje caer archivos en la ventana para añadirlos a su Xbox.&amp;lt;br&amp;gt;O haga clic en el botón «+» para usar el diálogo de selección de archivos.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Compartir mediante WiFi</value>
@@ -707,6 +689,24 @@
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Presión larga en un archivo o carpeta para copiar al almacenamiento local.</value>
+  </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>ajustar a pantalla</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>rellenar</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>original</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>usar pip de windows 10</value>

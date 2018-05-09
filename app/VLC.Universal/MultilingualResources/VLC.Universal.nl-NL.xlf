@@ -1,7 +1,8 @@
-<?xml version="1.0" ?><xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
   <file build-num="n/a" datatype="xml" original="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW" product-name="n/a" product-version="n/a" source-language="en-US" target-language="nl-NL" tool-id="MultilingualAppToolkit">
     <header>
-      <tool tool-company="Microsoft" tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0"/>
+      <tool tool-company="Microsoft" tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" />
     </header>
     <body>
       <group datatype="resx" id="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW">
@@ -60,7 +61,7 @@
         <trans-unit id="AudioTracks" translate="yes" xml:space="preserve">
           <source>Audio Tracks</source>
           <target state="translated">Audiosporen</target>
-       </trans-unit>
+        </trans-unit>
         <trans-unit id="Back" translate="yes" xml:space="preserve">
           <source>back</source>
           <target state="translated">terug</target>
@@ -76,7 +77,7 @@
         <trans-unit id="Chapters" translate="yes" xml:space="preserve">
           <source>Chapters</source>
           <target state="translated">Hoofdstukken</target>
-       </trans-unit>
+        </trans-unit>
         <trans-unit id="CheckCredentials" translate="yes" xml:space="preserve">
           <source>an error occured, please check your credentials</source>
           <target state="translated">er trad een fout op, controleer uw gegevens</target>
@@ -252,7 +253,7 @@
         <trans-unit id="MusicSettings" translate="yes" xml:space="preserve">
           <source>Music Settings</source>
           <target state="translated">Muziek-instellingen</target>
-       </trans-unit>
+        </trans-unit>
         <trans-unit id="MusicShows" translate="yes" xml:space="preserve">
           <source>music shows</source>
           <target state="translated">muziek-shows</target>
@@ -320,7 +321,7 @@
         <trans-unit id="NoVideosFound" translate="yes" xml:space="preserve">
           <source>we did not find video</source>
           <target state="translated">we vonden geen video</target>
-       </trans-unit>
+        </trans-unit>
         <trans-unit id="NowPlaying" translate="yes" xml:space="preserve">
           <source>now playing</source>
           <target state="translated">nu speelt</target>
@@ -392,7 +393,7 @@
         <trans-unit id="PlayerSettings" translate="yes" xml:space="preserve">
           <source>Player Settings</source>
           <target state="translated">Speler-instellingen</target>
-       </trans-unit>
+        </trans-unit>
         <trans-unit id="PlayFolder" translate="yes" xml:space="preserve">
           <source>play folder</source>
           <target state="translated">map afspelen</target>
@@ -516,7 +517,7 @@
         <trans-unit id="Subtitles" translate="yes" xml:space="preserve">
           <source>Subtitles</source>
           <target state="translated">Ondertitels</target>
-       </trans-unit>
+        </trans-unit>
         <trans-unit id="SubtitlesEncoding" translate="yes" xml:space="preserve">
           <source>subtitles encoding</source>
           <target state="translated">ondertitelcodering</target>
@@ -564,7 +565,7 @@
         <trans-unit id="UserInterface" translate="yes" xml:space="preserve">
           <source>User Interface</source>
           <target state="translated">Gebruikersinterface</target>
-       </trans-unit>
+        </trans-unit>
         <trans-unit id="Username" translate="yes" xml:space="preserve">
           <source>username</source>
           <target state="translated">gebruikersnaam</target>
@@ -596,7 +597,7 @@
         <trans-unit id="VideoSettings" translate="yes" xml:space="preserve">
           <source>Video Settings</source>
           <target state="translated">Video-instellingen</target>
-       </trans-unit>
+        </trans-unit>
         <trans-unit id="ViewAlbum" translate="yes" xml:space="preserve">
           <source>view album</source>
           <target state="translated">album weergeven</target>
@@ -776,7 +777,7 @@
         <trans-unit id="PortugueseLanguage" translate="yes" xml:space="preserve">
           <source>Portuguese</source>
           <target state="translated">Portugees</target>
-        </trans-unit>		
+        </trans-unit>
         <trans-unit id="CzechLanguage" translate="yes" xml:space="preserve">
           <source>Czech</source>
           <target state="translated">Tsjechisch</target>
@@ -818,8 +819,8 @@
           <target state="translated">Bestanden neerzetten</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
-          <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the &quot;+&quot; button to use the file picker dialog.</source>
-          <target state="translated">Zet bestanden in het venster om ze toe te voegen aan uw Xbox.&lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Of klik op de &amp;quot;+&amp;quot;-knop om het bestandskeuzevenster te gebruiken.</target>
+          <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the "+" button to use the file picker dialog.</source>
+          <target state="translated">Zet bestanden in het venster om ze toe te voegen aan uw Xbox.&lt;it id="1" pos="open"&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Of klik op de &amp;quot;+&amp;quot;-knop om het bestandskeuzevenster te gebruiken.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
@@ -890,8 +891,8 @@
           <target state="translated">Rechtsklikken op een bestand of een map om te kopiëren naar de lokale opslag.</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
-          <source>Press &quot;Y&quot; on a file or a folder to copy it to the local storage.</source>
-          <target state="translated">Druk &quot;Y&quot; op een bestand of een map om te kopiëren naar de lokale opslag.</target>
+          <source>Press "Y" on a file or a folder to copy it to the local storage.</source>
+          <target state="translated">Druk "Y" op een bestand of een map om te kopiëren naar de lokale opslag.</target>
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
           <source>No subtitle tracks</source>
@@ -953,7 +954,7 @@
           <source>No extra margin</source>
           <target state="translated">Geen extra marge</target>
         </trans-unit>
-		<trans-unit id="Restart" translate="yes" xml:space="preserve">
+        <trans-unit id="Restart" translate="yes" xml:space="preserve">
           <source>restart</source>
           <target state="translated">opnieuw starten</target>
         </trans-unit>
