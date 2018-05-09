@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
   <file build-num="n/a" datatype="xml" original="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW" product-name="n/a" product-version="n/a" source-language="en-US" target-language="it-IT" tool-id="MultilingualAppToolkit">
     <header>
@@ -819,8 +819,8 @@
           <target state="translated">Rilascia file</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
-          <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the "+" button to use the file picker dialog.</source>
-          <target state="translated">Rilascia i file nella finestra per aggiungerli alla tua Xbox.&lt;it id="1" pos="open"&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Oppure fai clic sul pulsante &amp;quot;+&amp;quot; per usare il selettore dei file.</target>
+          <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the &quot;+&quot; button to use the file picker dialog.</source>
+          <target state="translated">Rilascia i file nella finestra per aggiungerli alla tua Xbox.&lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Oppure fai clic sul pulsante &amp;quot;+&amp;quot; per usare il selettore dei file.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
@@ -891,8 +891,8 @@
           <target state="translated">Fai clic con il tasto destro su un file o una cartella per copiarlo nell'archiviazione locale.</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
-          <source>Press "Y" on a file or a folder to copy it to the local storage.</source>
-          <target state="translated">Premi "Y" su un file o una cartella per copiarlo nell'archiviazione locale.</target>
+          <source>Press &quot;Y&quot; on a file or a folder to copy it to the local storage.</source>
+          <target state="translated">Premi &quot;Y&quot; su un file o una cartella per copiarlo nell'archiviazione locale.</target>
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
           <source>No subtitle tracks</source>
