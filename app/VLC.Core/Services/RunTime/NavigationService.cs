@@ -117,7 +117,7 @@ namespace VLC.Services.RunTime
 
         public void ShowBackButtonIfCanGoBack()
         {
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = CanGoBack ? 
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = CanGoBack ?
                 AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }
 
@@ -165,16 +165,16 @@ namespace VLC.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.VideoPlayerPage:
-                    if (Helpers.DeviceHelper.IsMediaCenterModeCompliant && 
-                        Locator.VideoPlayerVm.PlayerControlVisibility == true )
+                    if (Helpers.DeviceHelper.IsMediaCenterModeCompliant &&
+                        Locator.VideoPlayerVm.PlayerControlVisibility == true)
                     {
                         Locator.VideoPlayerVm.RequestChangeControlBarVisibility(false);
                         break;
                     }
-                    if (currentFlyout == VLCPage.VideoPlayerOptionsPanel || 
+                    if (currentFlyout == VLCPage.VideoPlayerOptionsPanel ||
                         currentFlyout == VLCPage.SubtitlesSettings ||
                         currentFlyout == VLCPage.AudioTracksSettings ||
-                        currentFlyout == VLCPage.ChaptersSettings )
+                        currentFlyout == VLCPage.ChaptersSettings)
                         GoBack_HideFlyout();
 
                     Locator.MediaPlaybackViewModel.GoBack.Execute(null);
@@ -249,10 +249,10 @@ namespace VLC.Services.RunTime
                     return true;
                 if (IsCurrentPageAMainPage() && !Locator.SettingsVM.MediaCenterMode)
                     return false;
-                return App.ApplicationFrame != null && App.ApplicationFrame.CanGoBack;
+                return App.ApplicationFrame?.CanGoBack ?? false;
             }
         }
-       
+
         // Returns false if it can't go back
         public bool GoBack_Default()
         {
@@ -267,6 +267,25 @@ namespace VLC.Services.RunTime
         {
             currentFlyout = VLCPage.None;
             App.SplitShell.HideFlyout();
+        }
+
+        private bool CanGoForward => App.ApplicationFrame?.CanGoForward ?? false;
+
+        public bool GoForward_Default()
+        {
+            if (CanGoForward)
+            {
+                App.ApplicationFrame.GoForward();
+            }
+            return CanGoForward;
+        }
+
+        public void GoHome()
+        {
+            while (CanGoBack)
+            {
+                GoBack_Specific();
+            }
         }
 
         /// <summary>
@@ -474,9 +493,9 @@ namespace VLC.Services.RunTime
 
         public void CloseVideoFlyouts()
         {
-            if (currentFlyout == VLCPage.SubtitlesSettings || 
+            if (currentFlyout == VLCPage.SubtitlesSettings ||
                 currentFlyout == VLCPage.AudioTracksSettings ||
-                currentFlyout == VLCPage.ChaptersSettings )
+                currentFlyout == VLCPage.ChaptersSettings)
             {
                 GoBack_HideFlyout();
             }
