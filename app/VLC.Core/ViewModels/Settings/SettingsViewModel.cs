@@ -77,7 +77,7 @@ namespace VLC.ViewModels.Settings
             {
                 var r = ApplicationSettingsHelper.ReadSettingsValue(nameof(ExtraMargin), false);
                 return r as bool? ?? false;
-            } 
+            }
             set
             {
                 ApplicationSettingsHelper.SaveSettingsValue(nameof(ExtraMargin), value, false);
@@ -225,8 +225,8 @@ namespace VLC.ViewModels.Settings
             }
         }
 
-        public List<KeyboardAction> KeyboardActions => Locator.MainVM.KeyboardListenerService.Shortcuts;
-    
+        public IEnumerable<KeyboardAction> KeyboardActions => Locator.MainVM.KeyboardListenerService.Shortcuts.Values;
+
         public IList<VLCEqualizer> Presets => _equalizerPresets ?? (_equalizerPresets = Locator.PlaybackService.GetEqualizerPresets());
 
         public VLCEqualizer Equalizer
@@ -532,7 +532,7 @@ namespace VLC.ViewModels.Settings
                 SetProperty(ref _forceLandscape, value);
             }
         }
-        
+
         public Languages SelectedLanguage
         {
             get { return GetSelectedLanguage(); }
