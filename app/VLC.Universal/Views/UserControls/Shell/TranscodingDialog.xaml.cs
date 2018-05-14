@@ -21,10 +21,11 @@ namespace VLC.Universal.Views.UserControls.Shell
         string _currentTranscodedFileName;
         string _transcodedFilePathRoaming;
         string _selectedProfile;
-        const string Mp4 = ".mp4";
+        const string Mkv = ".mkv";
         const string Webm = ".webm";
-        string Extension => _selectedProfile == "VP9" ? Webm : Mp4;
-
+        string Extension => _selectedProfile == "VP9" ? Webm : Mkv;
+        string TranscodingMaxWidth => _selectedProfile == "720p" ? "1280" : "1920";
+        string TranscodingMaxHeight => _selectedProfile == "720p" ? "720" : "1080";
         public IMediaItem Media { get; set; }
 
         public TranscodingDialog()
@@ -114,24 +115,25 @@ namespace VLC.Universal.Views.UserControls.Shell
         {
             if (string.IsNullOrEmpty(selectedProfile) || string.IsNullOrEmpty(selectedProfile)) return string.Empty;
 
-            if (selectedProfile.Equals("VP9"))
-                return
-                    ":sout=#transcode{vcodec=VP90,vb=2000,acodec=vorb}:std{access=file,mux=avformat{mux=webm},dst='" +
-                    transcodedFilePath + "'}'";
-            if (selectedProfile.Equals("720p"))
+            switch (selectedProfile)
             {
-                return
-                    ":sout=#transcode{venc=qsv{rc-method=vbr,bitrate-max=40000000,gop-size=24,target-usage=speed},vcodec=h264,acodec=mp4a,maxwidth=1280,maxheight=720}:std{access=file,mux=mp4,dst='" +
-                    transcodedFilePath + "'}'";
+                case "VP9":
+                    return
+                        ":sout=#transcode{vcodec=VP90,vb=2000,acodec=vorb}" +
+                        ":std{access=file,mux=avformat{mux=webm},dst='" + transcodedFilePath + "'}'";
+                case "720p":
+                    return
+                        ":sout=#transcode{venc=qsv{rc-method=vbr,bitrate-max=40000000,gop-size=24,target-usage=speed}," +
+                        "vcodec=h264,acodec=mp4a,maxwidth=" + TranscodingMaxWidth + ",maxheight=" + TranscodingMaxHeight + "}" +
+                        ":std{access=file,mux=mkv,dst='" + transcodedFilePath + "'}'";
+                case "1080p":
+                    return
+                        ":sout=#transcode{venc=qsv{rc-method=vbr,bitrate-max=40000000,gop-size=24,target-usage=speed}," +
+                        "vcodec=h264,acodec=mp4a,maxwidth=" + TranscodingMaxWidth + ",maxheight=" + TranscodingMaxHeight + "}" +
+                        ":std{access=file,mux=mkv,dst='" + transcodedFilePath + "'}'";
+                default:
+                    return string.Empty;
             }
-            if (selectedProfile.Equals("1080p"))
-            {
-                return
-                    ":sout=#transcode{venc=qsv{rc-method=vbr,bitrate-max=40000000,gop-size=24,target-usage=speed},vcodec=h264,acodec=mp4a,maxwidth=1920,maxheight=1080}:std{access=file,mux=mp4,dst='" +
-                    transcodedFilePath + "'}'";
-            }
-
-            return string.Empty;
         }
 
         async void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
