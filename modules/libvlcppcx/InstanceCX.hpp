@@ -160,6 +160,8 @@ namespace libVLCX
         */
         Instance(Windows::Foundation::Collections::IVector<Platform::String^>^ argv, SwapChainPanel^ panel);
 
+        Instance(Windows::Foundation::Collections::IVector<Platform::String^>^ argv);
+
         /**
         * Try to start a user interface for the libvlc instance.
         *

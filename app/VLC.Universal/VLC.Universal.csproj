@@ -275,6 +275,9 @@
     <Compile Include="Views\UserControls\Shell\DesktopHomePageController.xaml.cs">
       <DependentUpon>DesktopHomePageController.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\Shell\TranscodingDialog.xaml.cs">
+      <DependentUpon>TranscodingDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\Shell\VLCDialog.xaml.cs">
       <DependentUpon>VLCDialog.xaml</DependentUpon>
     </Compile>
@@ -868,6 +871,33 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\misc\libxml_plugin.dll">
       <Link>plugins\misc\libxml_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\mux\libmux_asf_plugin.dll" Condition="$(Platform) != 'ARM'">
+      <Link>plugins\mux\libmux_asf_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\mux\libmux_avi_plugin.dll" Condition="$(Platform) != 'ARM'">
+      <Link>plugins\mux\libmux_avi_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\mux\libmux_dummy_plugin.dll" Condition="$(Platform) != 'ARM'">
+      <Link>plugins\mux\libmux_dummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\mux\libmux_mp4_plugin.dll" Condition="$(Platform) != 'ARM'">
+      <Link>plugins\mux\libmux_mp4_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\mux\libmux_mpjpeg_plugin.dll" Condition="$(Platform) != 'ARM'">
+      <Link>plugins\mux\libmux_mpjpeg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\mux\libmux_ogg_plugin.dll" Condition="$(Platform) != 'ARM'">
+      <Link>plugins\mux\libmux_ogg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\mux\libmux_ps_plugin.dll" Condition="$(Platform) != 'ARM'">
+      <Link>plugins\mux\libmux_ps_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\mux\libmux_ts_plugin.dll" Condition="$(Platform) != 'ARM'">
+      <Link>plugins\mux\libmux_ts_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\mux\libmux_wav_plugin.dll" Condition="$(Platform) != 'ARM'">
+      <Link>plugins\mux\libmux_wav_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\packetizer\libpacketizer_a52_plugin.dll">
       <Link>plugins\packetizer\libpacketizer_a52_plugin.dll</Link>
@@ -1536,6 +1566,10 @@
     <Page Include="Views\UserControls\Shell\DesktopHomePageController.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Shell\TranscodingDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\Shell\VLCDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
