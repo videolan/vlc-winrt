@@ -153,7 +153,6 @@ namespace VLC
         {
             SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
             Locator.PlaybackService?.Trim();
-            Task.Run(() => Locator.RendererService.Stop());
             deferral.Complete();
         }
 
