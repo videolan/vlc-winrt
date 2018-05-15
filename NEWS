@@ -1,3 +1,17 @@
+Changes between 3.0.2 and 3.0.3
+-------------------------------
+Release: May 15th 2018
+
+* Fix white theme button styling issues
+* #249: Fix bug disabling button when network stream not found and added loaded ring
+*  #171: Add loop video button
+* Bump target min platform to 14393
+* Add 2.35:1 aspect ratio option
+* #227: Fix OneDrive indexing issue
+* Internationalization update + new Icelandic language
+* Chromecast improvements
+* *Experimental* transcoding/convert feature
+
 Changes between 3.0.1 and 3.0.2
 -------------------------------
 Release: April 11th 2018
