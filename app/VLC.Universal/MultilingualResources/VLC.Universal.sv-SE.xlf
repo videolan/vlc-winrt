@@ -819,8 +819,8 @@
           <target state="translated">Släpp filer</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
-          <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the &quot;+&quot; button to use the file picker dialog.</source>
-          <target state="translated">Släpp filer i fönstret för att lägga till dem i ditt Xbox.&lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Eller klicka på knappen &amp;quot;+&amp;quot; för att använda filväljardialogen.</target>
+          <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the "+" button to use the file picker dialog.</source>
+          <target state="translated">Släpp filer i fönstret för att lägga till dem i ditt Xbox.<it id="1" pos="open">&lt;br&gt;</it>Eller klicka på knappen "+" för att använda filväljardialogen.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
@@ -891,8 +891,8 @@
           <target state="translated">Högerklicka på en fil eller mapp för att kopiera den till den lokala lagringen.</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
-          <source>Press &quot;Y&quot; on a file or a folder to copy it to the local storage.</source>
-          <target state="translated">Tryck på &quot;Y&quot; på en fil eller mapp för att kopiera den till den lokala lagringen.</target>
+          <source>Press "Y" on a file or a folder to copy it to the local storage.</source>
+          <target state="translated">Tryck på "Y" på en fil eller mapp för att kopiera den till den lokala lagringen.</target>
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
           <source>No subtitle tracks</source>

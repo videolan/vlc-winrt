@@ -819,8 +819,8 @@
           <target state="translated">Húzza ide a fájlokat</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
-          <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the &quot;+&quot; button to use the file picker dialog.</source>
-          <target state="translated">Húzzon fájlokat az ablakba az Xboxára másoláshoz.&lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Vagy kattintson a „+” gombra a fájlválasztó párbeszédablak használatához.</target>
+          <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the "+" button to use the file picker dialog.</source>
+          <target state="translated">Húzzon fájlokat az ablakba az Xboxára másoláshoz.<it id="1" pos="open">&lt;br&gt;</it>Vagy kattintson a „+” gombra a fájlválasztó párbeszédablak használatához.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
@@ -891,7 +891,7 @@
           <target state="translated">Jobb kattintás a fájlon vagy mappán a helyi tárolóra másoláshoz.</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
-          <source>Press &quot;Y&quot; on a file or a folder to copy it to the local storage.</source>
+          <source>Press "Y" on a file or a folder to copy it to the local storage.</source>
           <target state="translated">Nyomjon „Y”-t egy fájlon vagy mappán hogy a helyi tárolóra másolja.</target>
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">

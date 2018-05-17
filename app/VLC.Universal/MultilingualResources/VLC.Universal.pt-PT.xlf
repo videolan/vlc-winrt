@@ -819,8 +819,8 @@
           <target state="translated">Solte os ficheiros</target>
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
-          <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the &quot;+&quot; button to use the file picker dialog.</source>
-          <target state="translated">Solte os ficheiros na janela para adicioná-los à sua Xbox.&lt;it id=&quot;1&quot; pos=&quot;open&quot;&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Ou clique no botão &quot;+&quot; para usar o selecionador de ficheiros.</target>
+          <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the "+" button to use the file picker dialog.</source>
+          <target state="translated">Solte os ficheiros na janela para adicioná-los à sua Xbox.<it id="1" pos="open">&lt;br&gt;</it>Ou clique no botão "+" para usar o selecionador de ficheiros.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
@@ -891,8 +891,8 @@
           <target state="translated">Clique com o botão direito do rato num ficheiro ou pasta para copiá-lo para o armazenamento local</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
-          <source>Press &quot;Y&quot; on a file or a folder to copy it to the local storage.</source>
-          <target state="translated">Pressione &quot;Y&quot; num ficheiro ou pasta para copiá-lo para o armazenamento local</target>
+          <source>Press "Y" on a file or a folder to copy it to the local storage.</source>
+          <target state="translated">Pressione "Y" num ficheiro ou pasta para copiá-lo para o armazenamento local</target>
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
           <source>No subtitle tracks</source>
