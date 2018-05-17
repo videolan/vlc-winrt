@@ -64,3 +64,4 @@ build/ui/Package.StoreAssociation.xml
 
 project.lock.json
 *VLC.Universal.nuget.*
+/vlc
