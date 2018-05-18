@@ -5,3 +5,4 @@ vlc/
 *.def
 *.exp
 newspecfile
+*.7z
