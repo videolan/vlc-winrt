@@ -892,7 +892,7 @@
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
           <source>Press "Y" on a file or a folder to copy it to the local storage.</source>
-          <target state="translated">Tryk på &quot;J&quot; på en fil eller en mappe for at kopiere den til det lokale lager.</target>
+          <target state="translated">Tryk på "J" på en fil eller en mappe for at kopiere den til det lokale lager.</target>
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
           <source>No subtitle tracks</source>
