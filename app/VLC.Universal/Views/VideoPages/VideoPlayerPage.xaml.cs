@@ -126,6 +126,7 @@ namespace VLC.UI.Views.VideoPages
             // VM initialization
             Locator.VideoPlayerVm.OnNavigatedTo();
             Locator.VideoPlayerVm.PlayerControlVisibilityChangeRequested += VideoPlayerVm_PlayerControlVisibilityChangeRequested;
+            Locator.VideoPlayerVm.PlayerControlVisibilityExtendCurrentRequested += VideoPlayerVmOnPlayerControlVisibilityExtendCurrentRequested;
             OnPlayerControlVisibilityChanged += Locator.VideoPlayerVm.OnPlayerControlVisibilityChanged;
 
             // Responsive design
@@ -173,6 +174,14 @@ namespace VLC.UI.Views.VideoPages
                 HideControlPanel();
         }
 
+        void VideoPlayerVmOnPlayerControlVisibilityExtendCurrentRequested(object sender, EventArgs eventArgs)
+        {
+            if(isVisible)
+                ShowControlPanel();
+            else
+                HideControlPanel();
+        }
+
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
@@ -184,6 +193,7 @@ namespace VLC.UI.Views.VideoPages
             Locator.VideoPlayerVm.OnNavigatedFrom();
 
             Locator.VideoPlayerVm.PlayerControlVisibilityChangeRequested -= VideoPlayerVm_PlayerControlVisibilityChangeRequested;
+            Locator.VideoPlayerVm.PlayerControlVisibilityExtendCurrentRequested -= VideoPlayerVmOnPlayerControlVisibilityExtendCurrentRequested;
             OnPlayerControlVisibilityChanged -= Locator.VideoPlayerVm.OnPlayerControlVisibilityChanged;
 
             AppViewHelper.LeaveCompactOverlay();

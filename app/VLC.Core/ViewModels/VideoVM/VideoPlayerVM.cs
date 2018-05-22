@@ -37,6 +37,7 @@ namespace VLC.ViewModels.VideoVM
     {
         #region events
         public event EventHandler<bool> PlayerControlVisibilityChangeRequested;
+        public event EventHandler PlayerControlVisibilityExtendCurrentRequested;
         #endregion
         #region private props
         private VideoItem _currentVideo;
@@ -294,6 +295,11 @@ namespace VLC.ViewModels.VideoVM
         public void RequestChangeControlBarVisibility(bool visibility)
         {
             PlayerControlVisibilityChangeRequested?.Invoke(this, visibility);
+        }
+
+        public void RequestExtendCurrentControlBarVisibility()
+        {
+            PlayerControlVisibilityExtendCurrentRequested?.Invoke(this, EventArgs.Empty);
         }
         #endregion
 
