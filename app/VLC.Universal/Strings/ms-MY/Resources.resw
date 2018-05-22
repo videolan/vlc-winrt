@@ -622,7 +622,7 @@
     <value>Lepas Fail</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Lepas fail ke dalam tetingkap untuk menambahnya ke dalam Xbox anda. &amp;lt;br&amp;gt; Atau klik pada butang &amp;quot;+&amp;quot; untuk guna dialog pengambil fail.</value>
+    <value>Lepas fail ke dalam tetingkap untuk menambahnya ke dalam Xbox anda. &lt;br&gt; Atau klik pada butang "+" untuk guna dialog pengambil fail.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Perkongsian melalui WiFi</value>

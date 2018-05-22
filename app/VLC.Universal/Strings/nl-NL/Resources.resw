@@ -622,7 +622,7 @@
     <value>Bestanden neerzetten</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Zet bestanden in het venster om ze toe te voegen aan uw Xbox.&amp;lt;br&amp;gt;Of klik op de &amp;quot;+&amp;quot;-knop om het bestandskeuzevenster te gebruiken.</value>
+    <value>Zet bestanden in het venster om ze toe te voegen aan uw Xbox.&lt;br&gt;Of klik op de "+"-knop om het bestandskeuzevenster te gebruiken.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Delen via WiFi</value>

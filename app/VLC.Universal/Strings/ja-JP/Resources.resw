@@ -622,7 +622,7 @@
     <value>ファイルをドロップ</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Xboxに追加したいファイルをウィンドウにドロップしてください。&amp;lt;br&amp;gt;または、 &amp;quot;+&amp;quot; ボタンをクリックし、ファイルを選択するダイアログを表示してください。</value>
+    <value>Xboxに追加したいファイルをウィンドウにドロップしてください。&lt;br&gt;または、 "+" ボタンをクリックし、ファイルを選択するダイアログを表示してください。</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>WiFi経由で共有</value>

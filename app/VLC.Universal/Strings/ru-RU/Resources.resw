@@ -622,7 +622,7 @@
     <value>Добавление файлов</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Перенесите файлы в это окно, чтобы загрузить их на вашу Xbox.&amp;lt;br&amp;gt;ы также можете нажать кнопку &amp;quot;+&amp;quot;, чтобы воспользоваться диалогом выбора файла..</value>
+    <value>Перенесите файлы в это окно, чтобы загрузить их на вашу Xbox.&lt;br&gt;ы также можете нажать кнопку "+", чтобы воспользоваться диалогом выбора файла..</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Доступ через WiFi</value>

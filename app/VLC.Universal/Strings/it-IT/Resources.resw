@@ -622,7 +622,7 @@
     <value>Rilascia file</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Rilascia i file nella finestra per aggiungerli alla tua Xbox.&amp;lt;br&amp;gt;Oppure fai clic sul pulsante &amp;quot;+&amp;quot; per usare il selettore dei file.</value>
+    <value>Rilascia i file nella finestra per aggiungerli alla tua Xbox.&lt;br&gt;Oppure fai clic sul pulsante "+" per usare il selettore dei file.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Condivisione tramite WiFi</value>

@@ -622,7 +622,7 @@
     <value>Вкинути файли</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Вкиньте файли у вікно, щоби додати їх до вашого Xbox.&amp;lt;br&amp;gt;Або клацніть на кнопці &amp;quot;+&amp;quot; для використання вікна вибору файлів.</value>
+    <value>Вкиньте файли у вікно, щоби додати їх до вашого Xbox.&lt;br&gt;Або клацніть на кнопці "+" для використання вікна вибору файлів.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Поширення через Wi-Fi</value>

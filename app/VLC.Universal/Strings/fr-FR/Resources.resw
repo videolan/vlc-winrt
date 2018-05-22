@@ -622,7 +622,7 @@
     <value>Déposez des fichiers</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Déposez des fichiers ici pour les ajouter au stockage interne de votre Xbox.&amp;lt;br&amp;gt;ou cliquez sur le bouton "+" pour choisir un fichier.</value>
+    <value>Déposez des fichiers ici pour les ajouter au stockage interne de votre Xbox.&lt;br&gt;ou cliquez sur le bouton "+" pour choisir un fichier.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Partage réseau</value>

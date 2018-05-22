@@ -622,7 +622,7 @@
     <value>Slipp filer</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Slipp filer i vinduet for å legge dem til på din Xbox. &amp;lt;br&amp;gt; Eller klikk på "+"-knappen for å bruke fildialog-velgeren.</value>
+    <value>Slipp filer i vinduet for å legge dem til på din Xbox. &lt;br&gt; Eller klikk på "+"-knappen for å bruke fildialog-velgeren.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Deling via Wi-Fi</value>

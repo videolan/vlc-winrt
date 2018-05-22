@@ -622,7 +622,7 @@
     <value>Húzza ide a fájlokat</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Húzzon fájlokat az ablakba az Xboxára másoláshoz.&amp;lt;br&amp;gt;Vagy kattintson a „+” gombra a fájlválasztó párbeszédablak használatához.</value>
+    <value>Húzzon fájlokat az ablakba az Xboxára másoláshoz.&lt;br&gt;Vagy kattintson a „+” gombra a fájlválasztó párbeszédablak használatához.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Megosztás Wi-Fin keresztül</value>
