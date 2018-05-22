@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Networking;
+using Windows.Networking.Connectivity;
 using VLC.Helpers;
 using VLC.Utils;
 using VLC.ViewModels;
@@ -107,6 +110,17 @@ namespace VLC.Services.RunTime
                         }
                     }
                 }
+            }
+        }
+
+        public string XboxIp
+        {
+            get
+            {
+                return NetworkInformation
+                           .GetHostNames()
+                           .FirstOrDefault(hn => hn.IPInformation != null && hn.Type == HostNameType.Ipv4)
+                           ?.ToString() ?? string.Empty;
             }
         }
     }

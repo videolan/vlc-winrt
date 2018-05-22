@@ -149,6 +149,12 @@
                             Content="{Binding Source={StaticResource Strings}, Path=ClearKeystore}" />
 
                     <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
+                                                       Header="{Binding Source={StaticResource Strings}, Path=XboxUpload}"
+                                                       Text="{Binding Source={StaticResource Locator}, Path=SettingsVM.XboxUploadText}"
+                                                       IsTabStop="False" 
+                                                       Visibility="{Binding Source={StaticResource Locator}, Path=SettingsVM.MediaCenterMode, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                            
+                    <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"
                                                            Header="{Binding Source={StaticResource Strings}, Path=KeyboardShortcuts}"
                                                            Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.CollapsedOnXbox}" />
                         <ListView ItemsSource="{Binding KeyboardActions}"

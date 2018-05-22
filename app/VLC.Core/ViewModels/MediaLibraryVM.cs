@@ -1,4 +1,5 @@
-﻿using VLC.Model;
+﻿using System.Linq;
+using VLC.Model;
 using VLC.Utils;
 using Windows.Networking;
 using Windows.Networking.Connectivity;
@@ -29,23 +30,8 @@ namespace VLC.ViewModels
             get { return Locator.MediaLibrary.MediaLibraryIndexingState == LoadingState.Loading ? Visibility.Visible : Visibility.Collapsed; }
         }
 
-        public string AddMediaHelpString
-        {
-            get
-            {
-                foreach (HostName localHostName in NetworkInformation.GetHostNames())
-                {
-                    if (localHostName.IPInformation != null)
-                    {
-                        if (localHostName.Type == HostNameType.Ipv4)
-                        {
-                            var str = string.Format(Strings.AddMediaHelpWithIP, localHostName.ToString());
-                            return str;
-                        }
-                    }
-                }
-                return string.Format(Strings.AddMediaHelp);
-            }
-        }
+        public string AddMediaHelpString => string.IsNullOrEmpty(Locator.FileCopyService.XboxIp)
+            ? Strings.AddMediaHelp
+            : string.Format(Strings.AddMediaHelpWithIP, Locator.FileCopyService.XboxIp);
     }
 }

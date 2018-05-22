@@ -834,4 +834,7 @@
   <data name="Disconnect" xml:space="preserve">
     <value>disconnect</value>
   </data>
+  <data name="XboxUpload" xml:space="preserve">
+    <value>Xbox upload</value>
+  </data>
 </root>

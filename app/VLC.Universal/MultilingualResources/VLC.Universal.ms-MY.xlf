@@ -962,6 +962,10 @@
           <source>disconnect</source>
           <target state="translated">putuskan</target>
         </trans-unit>
+        <trans-unit id="XboxUpload" translate="yes" xml:space="preserve">
+          <source>Xbox upload</source>
+          <target state="new">Xbox upload</target>
+        </trans-unit>
       </group>
     </body>
   </file>

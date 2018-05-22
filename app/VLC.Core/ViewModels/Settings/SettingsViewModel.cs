@@ -743,5 +743,9 @@ namespace VLC.ViewModels.Settings
         };
 
         public string VLCTranscoded => "-VLC-transcoded-";
+
+        public string XboxUploadText => string.IsNullOrEmpty(Locator.FileCopyService.XboxIp)
+            ? Strings.AddMediaHelp
+            : string.Format(Strings.AddMediaHelpWithIP, Locator.FileCopyService.XboxIp);
     }
 }

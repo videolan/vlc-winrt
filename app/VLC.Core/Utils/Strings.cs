@@ -299,6 +299,7 @@ namespace VLC.Utils
         public static string AddMarginExplanation => _resourcesLoader.GetString(nameof(AddMarginExplanation));
         public static string ExtraMargin => _resourcesLoader.GetString(nameof(ExtraMargin));
         public static string NoExtraMargin => _resourcesLoader.GetString(nameof(NoExtraMargin));
+        public static string XboxUpload => _resourcesLoader.GetString(nameof(XboxUpload));
 
         // LastFM
         public static string ConnectToLastFM => _resourcesLoader.GetString(nameof(ConnectToLastFM));
