@@ -12,17 +12,7 @@ namespace VLC.Helpers
     {
         public static string MillisecondsToString(long value)
         {
-            var milliseconds = (Int64)value;
-            if (milliseconds >= TimeSpan.MaxValue.TotalMilliseconds)
-            {
-                //TODO: figure out what could cause this value to exceed MaxValue and cause
-                //an OverflowException in TimeSpan.FromMilliseconds
-                if (Debugger.IsAttached)
-                {
-                    Debugger.Break();
-                }
-                return null;
-            }
+            double milliseconds = value;
 
             TimeSpan time = TimeSpan.FromMilliseconds(milliseconds);
             if (time.Hours > 0)
