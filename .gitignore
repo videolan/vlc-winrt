@@ -14,6 +14,7 @@ Thumbs.db
 *.ncb
 *.suo
 *.tlb
+*.tli
 *.tlh
 *.ipch
 *.bak
@@ -51,6 +52,13 @@ universal/VLC.Universal/Package.StoreAssociation.xml
 universal/VLC.Universal/ApplicationInsights.config
 universal/packages/
 build/VLC.VC.db
+
+# Visual Studio and extesions cache/options directory
+.vs/
+# CodeRush
+.cr/
+# DevTracker
+*.dt
 
 # VLC files
 vlc/plugins/
