@@ -14,22 +14,17 @@ using System.Linq;
 using VLC.Commands;
 using VLC.Helpers;
 using VLC.Model.Video;
-using VLC.Services.RunTime;
 using VLC.Utils;
 using Windows.Storage;
-using Windows.Storage.AccessCache;
-using Windows.UI.Xaml;
 using libVLCX;
-using System.Diagnostics;
 using Windows.Graphics.Display;
-using Windows.UI.Xaml.Media;
 using VLC.Commands.VideoPlayer;
 using VLC.Model;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
-using VLC.MediaMetaFetcher.Fetchers;
 using Projection = libVLCX.Projection;
 using Windows.Foundation.Metadata;
+using Windows.Storage.Search;
 
 namespace VLC.ViewModels.VideoVM
 {
@@ -187,7 +182,7 @@ namespace VLC.ViewModels.VideoVM
         public async Task<bool> TryUseSubtitleFromFolder()
         {
             // Trying to get the path of the current video
-            var videoPath = "";
+            string videoPath;
             if (CurrentVideo.File != null)
             {
                 videoPath = CurrentVideo.File.Path;
@@ -198,11 +193,11 @@ namespace VLC.ViewModels.VideoVM
             }
             else return false;
 
-            var folderPath = "";
-            var fileNameWithoutExtensions = "";
+            string subtitlesFolderPath; // assuming subtitle folder is the same as video folder for autoloading
+            string fileNameWithoutExtensions;
             try
             {
-                folderPath = System.IO.Path.GetDirectoryName(videoPath);
+                subtitlesFolderPath = System.IO.Path.GetDirectoryName(videoPath);
                 fileNameWithoutExtensions = System.IO.Path.GetFileNameWithoutExtension(videoPath);
             }
             catch
@@ -214,13 +209,12 @@ namespace VLC.ViewModels.VideoVM
                 // Since we checked Video Libraries capability and SD Card compatibility, and DLNA discovery
                 // I think WinRT will let us create a StorageFolder instance of the parent folder of the file we're playing
                 // Unfortunately, if the video is opened via a filepicker AND that the video is in an unusual folder, like C:/randomfolder/
-                // This might now work, hence the try catch
-                var storageFolderParent = await StorageFolder.GetFolderFromPathAsync(folderPath);
-                // Here we need to search for a file with the same name, but with .srt or .ssa (when supported) extension
-                var storageFolderParentSubtitle = await storageFolderParent.TryGetItemAsync(fileNameWithoutExtensions + ".srt");
-                if (storageFolderParentSubtitle != null)
+                // This might now work, hence the try catch                
+                var storageFolderParent = await StorageFolder.GetFolderFromPathAsync(subtitlesFolderPath);
+                var subs = await LocateSubtitlesFile(storageFolderParent);
+                if(subs != null)
                 {
-                    Locator.MediaPlaybackViewModel.OpenSubtitleCommand.Execute(storageFolderParentSubtitle);
+                    Locator.MediaPlaybackViewModel.OpenSubtitleCommand.Execute(subs);
                     return true;
                 }
             }
@@ -230,7 +224,48 @@ namespace VLC.ViewModels.VideoVM
                 // OR
                 // File doesn't exist
             }
+
+            // last chance: external device search
+            try
+            {
+                var externalDevices = KnownFolders.RemovableDevices;
+
+                // Get the first child folder, which represents the SD card, USB hard drive or other external device.
+                var sdCard = (await externalDevices.GetFoldersAsync()).FirstOrDefault();
+                if (sdCard == null) return false; // no external device
+
+                var subtitlesFolder = await LocateSubtitlesFolder(sdCard, subtitlesFolderPath);
+                if (subtitlesFolder == null) return false;
+
+                var subtitlesFile = await LocateSubtitlesFile(subtitlesFolder);
+                if (subtitlesFile == null) return false;
+
+                Locator.MediaPlaybackViewModel.OpenSubtitleCommand.Execute(subtitlesFile);
+                return true;
+            }
+            catch
+            {
+            }
+
             return false;
+        }
+
+        /// <summary>
+        /// returns first match for autoload feature. Go manually if you want a specific one out of several subs with same name
+        /// </summary>
+        async Task<StorageFile> LocateSubtitlesFile(StorageFolder subtitlesFolder)
+        {
+            var queryResult = subtitlesFolder.CreateFileQueryWithOptions(new QueryOptions(CommonFileQuery.DefaultQuery, VLCFileExtensions.SubtitleExtensions));
+            var matches = await queryResult.GetFilesAsync();
+            return matches.FirstOrDefault();
+        }
+
+        async Task<StorageFolder> LocateSubtitlesFolder(StorageFolder startFolder, string subtitlesFolderPath)
+        {
+            var query = startFolder.CreateItemQuery();
+            query.ApplyNewQueryOptions(new QueryOptions(CommonFileQuery.DefaultQuery, VLCFileExtensions.SubtitleExtensions));
+            var items = await query.GetItemsAsync();
+            return items.FirstOrDefault(i => i.Path.Equals(subtitlesFolderPath)) as StorageFolder;
         }
 
         public void ChangeSurfaceZoom(VLCSurfaceZoom desiredZoom)

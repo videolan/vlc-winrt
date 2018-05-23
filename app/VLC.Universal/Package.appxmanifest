@@ -84,6 +84,9 @@
               <uap:FileType>.rec</uap:FileType>
               <uap:FileType>.rm</uap:FileType>
               <uap:FileType>.rmvb</uap:FileType>
+              <uap:FileType>.srt</uap:FileType>
+              <uap:FileType>.ass</uap:FileType>
+              <uap:FileType>.ssa</uap:FileType>
               <uap:FileType>.tob</uap:FileType>
               <uap:FileType>.ts</uap:FileType>
               <uap:FileType>.tts</uap:FileType>

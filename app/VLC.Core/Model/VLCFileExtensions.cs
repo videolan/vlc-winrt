@@ -117,7 +117,7 @@ namespace VLC.Model
 
         public static string[] SubtitleExtensions =
         {
-            ".srt", ".ass"
+            ".srt", ".ass", ".ssa"
         };
 
         public enum VLCFileType
