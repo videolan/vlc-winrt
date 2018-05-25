@@ -12,6 +12,7 @@
     "NotificationsExtensions.Win10": "14332.0.2",
     "ScrollWatcher": "1.0.5",
     "sqlite-net-pcl": "1.4.118",
+    "System.ValueTuple": "4.4.0",
     "Win2D.uwp": "1.21.0",
     "WinRTTriggers": "1.6.0",
     "WinRTXamlToolkit": "2.3.0"

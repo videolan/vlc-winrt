@@ -17,7 +17,7 @@ namespace VLC.Controls
     public delegate void FlyoutNavigated(object sender, EventArgs p);
     public delegate void FlyoutClosed(object sender, EventArgs e);
     public delegate void ContentSizeChanged(double newWidth);
-    
+
     [TemplatePart(Name = ContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = FlyoutContentPresenterName, Type = typeof(Frame))]
     [TemplatePart(Name = FlyoutFadeInName, Type = typeof(Storyboard))]
@@ -32,7 +32,7 @@ namespace VLC.Controls
         public event FlyoutClosed FlyoutClosed;
         public event ContentSizeChanged ContentSizeChanged;
         public TaskCompletionSource<bool> TemplateApplied = new TaskCompletionSource<bool>();
-        
+
         private DispatcherTimer _windowResizerTimer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(200) };
 
         private const string PageName = "Page";
@@ -65,7 +65,7 @@ namespace VLC.Controls
             await TemplateApplied.Task;
             _contentPresenter.Content = contentPresenter;
         }
-        
+
         public void SetFlyoutContentPresenter(object content, object param)
         {
             //FIXME: Remove all those, but that's a looooong refactoring.
@@ -194,7 +194,7 @@ namespace VLC.Controls
                 return;
             _flyoutContentPresenter.Navigate(typeof(BlankPage));
         }
-        
+
         private void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
         {
             Responsive();
@@ -287,7 +287,7 @@ namespace VLC.Controls
             _topBarFadeIn.Begin();
             IsTopBarOpen = true;
         }
-        
+
         private void _topBarFadeIn_Completed(object sender, object e)
         {
             _contentPresenter.Margin = new Thickness(0);

@@ -21,6 +21,8 @@
         OpenNetwork=16,
         TabPrevious = 17,
         TabNext = 18,
-        Back,
+        Back = 19,
+        Forward = 20,
+        Home = 21,
     }
 }

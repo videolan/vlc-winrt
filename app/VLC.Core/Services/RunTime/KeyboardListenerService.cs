@@ -13,144 +13,149 @@ namespace VLC.Services.RunTime
 {
     public class KeyboardListenerService
     {
-        private const uint MaxVirtualKeys = 3;
-        private VirtualKey[] _virtualKeys = new VirtualKey[MaxVirtualKeys];
-        
         public KeyboardListenerService()
         {
             CanListen = true;
-            CoreWindow.GetForCurrentThread().KeyUp += KeyboardListenerService_KeyUp;
-            CoreWindow.GetForCurrentThread().KeyDown += KeyboardListenerService_KeyDown;
-            InitializeDefaultShortcuts();
+            CoreWindow coreWindow = CoreWindow.GetForCurrentThread();
+            coreWindow.KeyUp += KeyboardListenerService_KeyUp;
+            coreWindow.KeyDown += KeyboardListenerService_KeyDown;
+            shortcuts = CreateDefaultShortcuts();
         }
 
-        public List<KeyboardAction> Shortcuts = new List<KeyboardAction>();
+        private readonly Dictionary<(VirtualKey, VirtualKeyModifiers), KeyboardAction> shortcuts = new Dictionary<(VirtualKey, VirtualKeyModifiers), KeyboardAction>();
+
+        public IReadOnlyDictionary<(VirtualKey, VirtualKeyModifiers), KeyboardAction> Shortcuts => shortcuts;
 
         public bool CanListen { get; set; }
 
         public event TypedEventHandler<CoreWindow, KeyEventArgs> KeyDownPressed;
 
-        void InitializeDefaultShortcuts()
+        Dictionary<(VirtualKey, VirtualKeyModifiers), KeyboardAction> CreateDefaultShortcuts()
         {
-            Shortcuts = new List<KeyboardAction>
+            var shortcuts = new List<KeyboardAction>
             {
                 new KeyboardAction
                 {
                     Action = VLCAction.FullscreenToggle,
-                    MainKey = VirtualKey.F
+                    Key = VirtualKey.F
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.LeaveFullscreen,
-                    MainKey = VirtualKey.Escape
+                    Key = VirtualKey.Escape
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.PauseToggle,
-                    MainKey = VirtualKey.Space
+                    Key = VirtualKey.Space
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.Faster,
-                    MainKey = VirtualKey.Add ,
+                    Key = VirtualKey.Add ,
                     KeyCode = 0xBB //OEM plus
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.Slow,
-                    MainKey = VirtualKey.Subtract,
+                    Key = VirtualKey.Subtract,
                     KeyCode = 0xBD //OEM minus
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.NormalRate,
-                    MainKey = VirtualKey.Execute
+                    Key = VirtualKey.Execute
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.Next,
-                    MainKey = VirtualKey.N
+                    Key = VirtualKey.N
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.Previous,
-                    MainKey = VirtualKey.P
+                    Key = VirtualKey.P
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.Stop,
-                    MainKey = VirtualKey.S
+                    Key = VirtualKey.S
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.Quit,
-                    MainKey = VirtualKey.Q
+                    Key = VirtualKey.Q
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.Back,
-                    MainKey = VirtualKey.Back
+                    Key = VirtualKey.Back
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.Back,
+                    Key = VirtualKey.GoBack
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.VolumeUp,
-                    MainKey = VirtualKey.Control,
-                    SecondKey = VirtualKey.Add,
+                    Key = VirtualKey.Add,
+                    Modifiers = VirtualKeyModifiers.Control,
                     KeyCode = 0xBB //OEM plus
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.VolumeDown,
-                    MainKey = VirtualKey.Control,
-                    SecondKey = VirtualKey.Subtract,
+                    Key = VirtualKey.Subtract,
+                    Modifiers = VirtualKeyModifiers.Control,
                     KeyCode = 0xBD //OEM minus
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.Mute,
-                    MainKey = VirtualKey.M
+                    Key = VirtualKey.M
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.ChangeAudioTrack,
-                    MainKey = VirtualKey.B
+                    Key = VirtualKey.B
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.ChangeSubtitle,
-                    MainKey = VirtualKey.V
+                    Key = VirtualKey.V
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.OpenFile,
-                    MainKey = VirtualKey.Control,
-                    SecondKey = VirtualKey.O
+                    Key = VirtualKey.O,
+                    Modifiers = VirtualKeyModifiers.Control
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.OpenNetwork,
-                    MainKey = VirtualKey.Control,
-                    SecondKey = VirtualKey.N
+                    Key = VirtualKey.N,
+                    Modifiers = VirtualKeyModifiers.Control
                 },
                 new KeyboardAction
                 {
                     Action = VLCAction.TabNext,
-                    MainKey = VirtualKey.Control,
-                    SecondKey = VirtualKey.Tab
+                    Key = VirtualKey.Tab,
+                    Modifiers = VirtualKeyModifiers.Control
+                },
+                new KeyboardAction
+                {
+                    Action = VLCAction.TabPrevious,
+                    Key = VirtualKey.Tab,
+                    Modifiers = VirtualKeyModifiers.Control | VirtualKeyModifiers.Shift
                 }
             };
+            return shortcuts.ToDictionary(ka => (ka.Key, ka.Modifiers), ka => ka);
         }
 
         void KeyboardListenerService_KeyUp(CoreWindow sender, KeyEventArgs args)
         {
             if (!CanListen) return;
-            for (int i = 0; i < MaxVirtualKeys; i++)
-            {
-                if (_virtualKeys[i] == args.VirtualKey)
-                {
-                    _virtualKeys[i] = VirtualKey.None;
-                }
-            }
             switch (args.VirtualKey)
             {
                 case VirtualKey.GamepadMenu:
@@ -171,21 +176,11 @@ namespace VLC.Services.RunTime
             if (!CanListen || args.Handled) return;
 
             KeyDownPressed?.Invoke(sender, args);
-            // Guidelines:
-            // If first VirtualKey is Ctrl, Alt, or Shift, then we're waiting for another key
-            var i = 0;
-            while (i < MaxVirtualKeys && _virtualKeys[i] != VirtualKey.None)
-            {
-                i++;
-            }
-
-            if (i == MaxVirtualKeys)
-                _virtualKeys = new VirtualKey[3];
-            else
-                _virtualKeys[i] = args.VirtualKey;
-
+            CoreWindow coreWindow = CoreWindow.GetForCurrentThread();
             switch (args.VirtualKey)
             {
+                case VirtualKey.None:
+                    return;
                 case VirtualKey.Control:
                     Debug.WriteLine("Ctrl key was pressed, waiting another key ...");
                     break;
@@ -194,14 +189,13 @@ namespace VLC.Services.RunTime
                     break;
                 default:
                     Debug.WriteLine($"{args.VirtualKey} key was pressed");
-                   
-                    var action = Shortcuts.FirstOrDefault(x => 
-                        (x.MainKey == _virtualKeys[0] || x.KeyCode == (int)_virtualKeys[0]) && 
-                        (x.SecondKey == _virtualKeys[1] || x.KeyCode == (int)_virtualKeys[1]));
 
-                    if (_virtualKeys.All(key => key == VirtualKey.None)) return; 
+                    VirtualKeyModifiers modifiers = VirtualKeyModifiers.None;
+                    if (coreWindow.GetKeyState(VirtualKey.Shift) == CoreVirtualKeyStates.Locked) modifiers |= VirtualKeyModifiers.Shift;
+                    if (coreWindow.GetKeyState(VirtualKey.Control) == CoreVirtualKeyStates.Locked) modifiers |= VirtualKeyModifiers.Control;
+                    if (coreWindow.GetKeyState(VirtualKey.Menu) == CoreVirtualKeyStates.Locked) modifiers |= VirtualKeyModifiers.Menu;
 
-                    if (action != null)
+                    if (shortcuts.TryGetValue((args.VirtualKey, modifiers), out KeyboardAction action))
                     {
                         // if there's a match, get the ActionId
                         DoKeyboardAction(action);
@@ -278,86 +272,76 @@ namespace VLC.Services.RunTime
 
         void DoKeyboardAction(KeyboardAction keyboardAction)
         {
-            // determine if it's a combination of keys or not
-
-            if (_virtualKeys[1] == VirtualKey.None && _virtualKeys[2] == VirtualKey.None)
+            // this is a simple shortcut
+            switch (keyboardAction.Action)
             {
-                // this is a simple shortcut
-                switch (keyboardAction.Action)
-                {
-                    case VLCAction.FullscreenToggle:
-                        AppViewHelper.ToggleFullscreen();
-                        break;
-                    case VLCAction.LeaveFullscreen:
-                        AppViewHelper.LeaveFullscreen();
-                        break;
-                    case VLCAction.PauseToggle:
-                        Locator.MediaPlaybackViewModel.PlaybackService.Pause();
-                        break;
-                    case VLCAction.Quit:
-                        App.Current.Exit();
-                        break;
-                    case VLCAction.Stop:
-                        if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Video)
-                        {
-                            Locator.MediaPlaybackViewModel.GoBack.Execute(null);
-                        }
-                        break;
-                    case VLCAction.Previous:
-                        Locator.PlaybackService.Previous();
-                        break;
-                    case VLCAction.Next:
-                        Locator.PlaybackService.Next();
-                        break;
-                    case VLCAction.Faster:
-                        Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("faster");
-                        break;
-                    case VLCAction.Slow:
-                        Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("slower");
-                        break;
-                    case VLCAction.NormalRate:
-                        Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("reset");
-                        break;
-                    case VLCAction.Mute:
-                        Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("mute");
-                        break;
-                    case VLCAction.Back:
-                        Locator.NavigationService.GoBack_Specific();
-                        break;
-                }
-            }
-            else if (_virtualKeys[2] == VirtualKey.None)
-            {
-                // two keys shortcut
-                if (_virtualKeys[0] == VirtualKey.Control 
-                    && (_virtualKeys[1] == keyboardAction.SecondKey || (int)_virtualKeys[1] == keyboardAction.KeyCode))
-                {
-                    //two keys shortcut, first key is Ctrl
-                    switch (keyboardAction.Action)
+                case VLCAction.FullscreenToggle:
+                    AppViewHelper.ToggleFullscreen();
+                    break;
+                case VLCAction.LeaveFullscreen:
+                    AppViewHelper.LeaveFullscreen();
+                    break;
+                case VLCAction.PauseToggle:
+                    Locator.MediaPlaybackViewModel.PlaybackService.Pause();
+                    break;
+                case VLCAction.Quit:
+                    App.Current.Exit();
+                    break;
+                case VLCAction.Stop:
+                    if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.Video)
                     {
-                        case VLCAction.OpenFile:
-                            {
-                                Locator.MediaPlaybackViewModel.PickMediaCommand.Execute(null);
-                            }
-                            break;
-                        case VLCAction.OpenNetwork:
-                            {
-                                Locator.MainVM.GoToStreamPanel.Execute(null);
-                            }
-                            break;
-                        case VLCAction.VolumeUp:
-                            Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("higher");
-                            break;
-                        case VLCAction.VolumeDown:
-                            Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("lower");
-                            break;
-                        case VLCAction.TabNext:
-                            var pivotIndex = Locator.MainVM.Panels.IndexOf(Locator.MainVM.CurrentPanel);
-                            pivotIndex = (pivotIndex < Locator.MainVM.Panels.Count - 1) ? ++pivotIndex : 0;
-                            Locator.NavigationService.Go(Locator.MainVM.Panels[pivotIndex].Target);
-                            break;
+                        Locator.MediaPlaybackViewModel.GoBack.Execute(null);
                     }
-                }
+                    break;
+                case VLCAction.Previous:
+                    Locator.PlaybackService.Previous();
+                    break;
+                case VLCAction.Next:
+                    Locator.PlaybackService.Next();
+                    break;
+                case VLCAction.Faster:
+                    Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("faster");
+                    break;
+                case VLCAction.Slow:
+                    Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("slower");
+                    break;
+                case VLCAction.NormalRate:
+                    Locator.MediaPlaybackViewModel.ChangePlaybackSpeedRateCommand.Execute("reset");
+                    break;
+                case VLCAction.Mute:
+                    Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("mute");
+                    break;
+                case VLCAction.Back:
+                    Locator.NavigationService.GoBack_Specific();
+                    break;
+                case VLCAction.Forward:
+                    Locator.NavigationService.GoForward_Default();
+                    break;
+                case VLCAction.Home:
+                    Locator.NavigationService.GoHome();
+                    break;
+                case VLCAction.OpenFile:
+                    Locator.MediaPlaybackViewModel.PickMediaCommand.Execute(null);
+                    break;
+                case VLCAction.OpenNetwork:
+                    Locator.MainVM.GoToStreamPanel.Execute(null);
+                    break;
+                case VLCAction.VolumeUp:
+                    Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("higher");
+                    break;
+                case VLCAction.VolumeDown:
+                    Locator.MediaPlaybackViewModel.ChangeVolumeCommand.Execute("lower");
+                    break;
+                case VLCAction.TabNext:
+                    var pivotIndex = Locator.MainVM.Panels.IndexOf(Locator.MainVM.CurrentPanel);
+                    pivotIndex = (pivotIndex < Locator.MainVM.Panels.Count - 1) ? ++pivotIndex : 0;
+                    Locator.NavigationService.Go(Locator.MainVM.Panels[pivotIndex].Target);
+                    break;
+                case VLCAction.TabPrevious:
+                    pivotIndex = Locator.MainVM.Panels.IndexOf(Locator.MainVM.CurrentPanel);
+                    pivotIndex = (pivotIndex > 0) ? --pivotIndex : Locator.MainVM.Panels.Count - 1;
+                    Locator.NavigationService.Go(Locator.MainVM.Panels[pivotIndex].Target);
+                    break;
             }
         }
     }
