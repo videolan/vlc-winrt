@@ -19,12 +19,12 @@ namespace VLC.Services.RunTime
             CoreWindow coreWindow = CoreWindow.GetForCurrentThread();
             coreWindow.KeyUp += KeyboardListenerService_KeyUp;
             coreWindow.KeyDown += KeyboardListenerService_KeyDown;
-            shortcuts = CreateDefaultShortcuts();
+            _shortcuts = CreateDefaultShortcuts();
         }
 
-        private readonly Dictionary<(VirtualKey, VirtualKeyModifiers), KeyboardAction> shortcuts = new Dictionary<(VirtualKey, VirtualKeyModifiers), KeyboardAction>();
+        readonly Dictionary<(VirtualKey, VirtualKeyModifiers), KeyboardAction> _shortcuts;
 
-        public IReadOnlyDictionary<(VirtualKey, VirtualKeyModifiers), KeyboardAction> Shortcuts => shortcuts;
+        public IReadOnlyDictionary<(VirtualKey, VirtualKeyModifiers), KeyboardAction> Shortcuts => _shortcuts;
 
         public bool CanListen { get; set; }
 
@@ -191,11 +191,12 @@ namespace VLC.Services.RunTime
                     Debug.WriteLine($"{args.VirtualKey} key was pressed");
 
                     VirtualKeyModifiers modifiers = VirtualKeyModifiers.None;
-                    if (coreWindow.GetKeyState(VirtualKey.Shift) == CoreVirtualKeyStates.Locked) modifiers |= VirtualKeyModifiers.Shift;
-                    if (coreWindow.GetKeyState(VirtualKey.Control) == CoreVirtualKeyStates.Locked) modifiers |= VirtualKeyModifiers.Control;
-                    if (coreWindow.GetKeyState(VirtualKey.Menu) == CoreVirtualKeyStates.Locked) modifiers |= VirtualKeyModifiers.Menu;
+                    
+                    if (coreWindow.GetKeyState(VirtualKey.Shift).HasFlag(CoreVirtualKeyStates.Down)) modifiers |= VirtualKeyModifiers.Shift;
+                    if (coreWindow.GetKeyState(VirtualKey.Control).HasFlag(CoreVirtualKeyStates.Down)) modifiers |= VirtualKeyModifiers.Control;
+                    if (coreWindow.GetKeyState(VirtualKey.Menu).HasFlag(CoreVirtualKeyStates.Down)) modifiers |= VirtualKeyModifiers.Menu;
 
-                    if (shortcuts.TryGetValue((args.VirtualKey, modifiers), out KeyboardAction action))
+                    if (_shortcuts.TryGetValue((args.VirtualKey, modifiers), out KeyboardAction action))
                     {
                         // if there's a match, get the ActionId
                         DoKeyboardAction(action);
@@ -334,12 +335,12 @@ namespace VLC.Services.RunTime
                     break;
                 case VLCAction.TabNext:
                     var pivotIndex = Locator.MainVM.Panels.IndexOf(Locator.MainVM.CurrentPanel);
-                    pivotIndex = (pivotIndex < Locator.MainVM.Panels.Count - 1) ? ++pivotIndex : 0;
+                    pivotIndex = pivotIndex < Locator.MainVM.Panels.Count - 1 ? ++pivotIndex : 0;
                     Locator.NavigationService.Go(Locator.MainVM.Panels[pivotIndex].Target);
                     break;
                 case VLCAction.TabPrevious:
                     pivotIndex = Locator.MainVM.Panels.IndexOf(Locator.MainVM.CurrentPanel);
-                    pivotIndex = (pivotIndex > 0) ? --pivotIndex : Locator.MainVM.Panels.Count - 1;
+                    pivotIndex = pivotIndex > 0 ? --pivotIndex : Locator.MainVM.Panels.Count - 1;
                     Locator.NavigationService.Go(Locator.MainVM.Panels[pivotIndex].Target);
                     break;
             }
