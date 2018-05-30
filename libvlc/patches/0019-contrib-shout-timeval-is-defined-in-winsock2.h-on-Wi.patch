@@ -1,4 +1,4 @@
-From 689206c23ab613506e5fb7284d020d1eeb3532ea Mon Sep 17 00:00:00 2001
+From d5322cdd0cb0a0e8bc4e28c9c94d97f455367375 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:06:53 +0200
 Subject: [PATCH 19/38] contrib: shout: timeval is defined in winsock2.h on
@@ -11,7 +11,7 @@ Subject: [PATCH 19/38] contrib: shout: timeval is defined in winsock2.h on
  create mode 100644 contrib/src/shout/shout-timeval.patch
 
 diff --git a/contrib/src/shout/rules.mak b/contrib/src/shout/rules.mak
-index 5ee5e7d..afd75f1 100644
+index 5ee5e7da9c..afd75f1d74 100644
 --- a/contrib/src/shout/rules.mak
 +++ b/contrib/src/shout/rules.mak
 @@ -25,6 +25,7 @@ libshout: libshout-$(SHOUT_VERSION).tar.gz .sum-shout
@@ -24,7 +24,7 @@ index 5ee5e7d..afd75f1 100644
  	$(MOVE)
 diff --git a/contrib/src/shout/shout-timeval.patch b/contrib/src/shout/shout-timeval.patch
 new file mode 100644
-index 0000000..6d05058
+index 0000000000..6d05058446
 --- /dev/null
 +++ b/contrib/src/shout/shout-timeval.patch
 @@ -0,0 +1,10 @@
@@ -39,5 +39,5 @@ index 0000000..6d05058
 + #ifdef TIME_WITH_SYS_TIME
 + #  include <sys/time.h>
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 

@@ -1,4 +1,4 @@
-From b06d86c7434b4a26d964e67951116fb586663485 Mon Sep 17 00:00:00 2001
+From ad5be45bc8e018a8de1f40255eba5864622e0ca9 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Mon, 9 Apr 2018 18:46:34 +0200
 Subject: [PATCH 33/38] win32: fix crash on closesocket() when a poll() is
@@ -10,7 +10,7 @@ Only for winstore builds for now
  1 file changed, 9 insertions(+)
 
 diff --git a/src/win32/filesystem.c b/src/win32/filesystem.c
-index 8d56cc8..bb1ad12 100644
+index 8d56cc859a..bb1ad12985 100644
 --- a/src/win32/filesystem.c
 +++ b/src/win32/filesystem.c
 @@ -339,6 +339,15 @@ int vlc_socket (int pf, int type, int proto, bool nonblock)
@@ -30,5 +30,5 @@ index 8d56cc8..bb1ad12 100644
  }
  
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 

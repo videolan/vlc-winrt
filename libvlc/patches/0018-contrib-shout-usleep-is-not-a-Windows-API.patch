@@ -1,4 +1,4 @@
-From 2def3dc1962d9518d33d6e24192126b151a471ef Mon Sep 17 00:00:00 2001
+From 9641e7f6e0ae242dd767d45d800483ecf22d02dc Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:03:37 +0200
 Subject: [PATCH 18/38] contrib: shout: usleep() is not a Windows API
@@ -10,7 +10,7 @@ Subject: [PATCH 18/38] contrib: shout: usleep() is not a Windows API
  create mode 100644 contrib/src/shout/shout-win32.patch
 
 diff --git a/contrib/src/shout/rules.mak b/contrib/src/shout/rules.mak
-index ac34c59..5ee5e7d 100644
+index ac34c59a29..5ee5e7da9c 100644
 --- a/contrib/src/shout/rules.mak
 +++ b/contrib/src/shout/rules.mak
 @@ -24,6 +24,7 @@ libshout: libshout-$(SHOUT_VERSION).tar.gz .sum-shout
@@ -23,7 +23,7 @@ index ac34c59..5ee5e7d 100644
  	$(MOVE)
 diff --git a/contrib/src/shout/shout-win32.patch b/contrib/src/shout/shout-win32.patch
 new file mode 100644
-index 0000000..f29926e
+index 0000000000..f29926ef1d
 --- /dev/null
 +++ b/contrib/src/shout/shout-win32.patch
 @@ -0,0 +1,14 @@
@@ -42,5 +42,5 @@ index 0000000..f29926e
 + 	}
 + 	
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 

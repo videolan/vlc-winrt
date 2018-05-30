@@ -1,4 +1,4 @@
-From b0b2598501d10b157dc5c293c6ab113658851af1 Mon Sep 17 00:00:00 2001
+From 204439a7ec0392e4cf559c198a839b308c249516 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:00:53 +0200
 Subject: [PATCH 17/38] contrib: shout: respect the availability of strings.h
@@ -6,12 +6,12 @@ Subject: [PATCH 17/38] contrib: shout: respect the availability of strings.h
 
 ---
  contrib/src/shout/rules.mak           |  1 +
- contrib/src/shout/shout-strings.patch | 36 +++++++++++++++++++++++++++++++++++
+ contrib/src/shout/shout-strings.patch | 36 +++++++++++++++++++++++++++
  2 files changed, 37 insertions(+)
  create mode 100644 contrib/src/shout/shout-strings.patch
 
 diff --git a/contrib/src/shout/rules.mak b/contrib/src/shout/rules.mak
-index 500420c..ac34c59 100644
+index 500420cbe2..ac34c59a29 100644
 --- a/contrib/src/shout/rules.mak
 +++ b/contrib/src/shout/rules.mak
 @@ -23,6 +23,7 @@ libshout: libshout-$(SHOUT_VERSION).tar.gz .sum-shout
@@ -24,7 +24,7 @@ index 500420c..ac34c59 100644
  	$(MOVE)
 diff --git a/contrib/src/shout/shout-strings.patch b/contrib/src/shout/shout-strings.patch
 new file mode 100644
-index 0000000..438a364
+index 0000000000..438a364899
 --- /dev/null
 +++ b/contrib/src/shout/shout-strings.patch
 @@ -0,0 +1,36 @@
@@ -65,5 +65,5 @@ index 0000000..438a364
 + 
 + #include <shout/shout.h>
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 

@@ -1,17 +1,17 @@
-From 182d5222c1e72c167bc0142479801e67d18cee84 Mon Sep 17 00:00:00 2001
+From 607e59cc2456d9d561d2974bbaa5586871f6ddaa Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 4 Sep 2017 13:59:25 +0200
 Subject: [PATCH 26/38] codec: add a set of functions to use a plain FIFO
 
 It's similar to the block FIFO but with no locking.
 ---
- modules/codec/vlc_fifo_helper.h | 125 ++++++++++++++++++++++++++++++++++++++++
+ modules/codec/vlc_fifo_helper.h | 125 ++++++++++++++++++++++++++++++++
  1 file changed, 125 insertions(+)
  create mode 100644 modules/codec/vlc_fifo_helper.h
 
 diff --git a/modules/codec/vlc_fifo_helper.h b/modules/codec/vlc_fifo_helper.h
 new file mode 100644
-index 0000000..49a99b4
+index 0000000000..49a99b454f
 --- /dev/null
 +++ b/modules/codec/vlc_fifo_helper.h
 @@ -0,0 +1,125 @@
@@ -141,5 +141,5 @@ index 0000000..49a99b4
 +
 +#endif /* VLC_FIFO_HELPER_H */
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 

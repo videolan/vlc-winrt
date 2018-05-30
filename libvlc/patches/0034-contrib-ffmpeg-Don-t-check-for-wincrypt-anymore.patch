@@ -1,17 +1,17 @@
-From 6d6a11dcf9a2ad9d7f99b08aacc9fe4b1bb0c379 Mon Sep 17 00:00:00 2001
+From 94b08c2e28c370c83407af2871d24b086022a9b1 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Apr 2018 15:14:25 +0200
 Subject: [PATCH 34/38] contrib: ffmpeg: Don't check for wincrypt anymore
 
 ---
- contrib/src/ffmpeg/ffmpeg-winrt-wincrypt.patch | 27 ++++++++++++++++++++++++++
- contrib/src/ffmpeg/rules.mak                   |  2 ++
+ .../src/ffmpeg/ffmpeg-winrt-wincrypt.patch    | 27 +++++++++++++++++++
+ contrib/src/ffmpeg/rules.mak                  |  2 ++
  2 files changed, 29 insertions(+)
  create mode 100644 contrib/src/ffmpeg/ffmpeg-winrt-wincrypt.patch
 
 diff --git a/contrib/src/ffmpeg/ffmpeg-winrt-wincrypt.patch b/contrib/src/ffmpeg/ffmpeg-winrt-wincrypt.patch
 new file mode 100644
-index 0000000..081c64d
+index 0000000000..081c64d703
 --- /dev/null
 +++ b/contrib/src/ffmpeg/ffmpeg-winrt-wincrypt.patch
 @@ -0,0 +1,27 @@
@@ -43,7 +43,7 @@ index 0000000..081c64d
 + check_cpp_condition windows.h "_WIN32_WINNT >= 0x0600" && check_lib bcrypt "windows.h bcrypt.h" BCryptGenRandom  -lbcrypt
 + 
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index ea288c7..c61b0d6 100644
+index ea288c7284..c61b0d6969 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
 @@ -240,6 +240,8 @@ ifdef USE_LIBAV
@@ -56,5 +56,5 @@ index ea288c7..c61b0d6 100644
  
  .ffmpeg: ffmpeg
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 

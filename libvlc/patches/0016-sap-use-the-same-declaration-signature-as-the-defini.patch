@@ -1,4 +1,4 @@
-From 280e2f69f14f5402943fd066d736fa3f264443b2 Mon Sep 17 00:00:00 2001
+From cbdb93b4fccac472e5cb7cb7854c0e08f078561d Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 13:09:59 +0200
 Subject: [PATCH 16/38] sap: use the same declaration signature as the
@@ -9,7 +9,7 @@ Subject: [PATCH 16/38] sap: use the same declaration signature as the
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/stream_output/sap.c b/src/stream_output/sap.c
-index ee5312e..2b5b0e1 100644
+index ee5312eb7d..2b5b0e13a2 100644
 --- a/src/stream_output/sap.c
 +++ b/src/stream_output/sap.c
 @@ -79,7 +79,7 @@ static vlc_mutex_t sap_mutex = VLC_STATIC_MUTEX;
@@ -22,5 +22,5 @@ index ee5312e..2b5b0e1 100644
  static sap_address_t *AddressCreate (vlc_object_t *obj, const char *group)
  {
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 

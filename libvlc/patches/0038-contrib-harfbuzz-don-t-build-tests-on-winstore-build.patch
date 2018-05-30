@@ -1,4 +1,4 @@
-From ef22109600aebd2760eed257bc93a589149265e1 Mon Sep 17 00:00:00 2001
+From 31edd7b0d88c3fbfada456478cfabf9b7ab069c2 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 24 May 2018 15:17:02 +0200
 Subject: [PATCH 38/38] contrib: harfbuzz: don't build tests on winstore builds
@@ -35,13 +35,13 @@ index 0000000000..5ba52030da
 + ## Tests
 + if (UNIX OR MINGW)
 diff --git a/contrib/src/harfbuzz/rules.mak b/contrib/src/harfbuzz/rules.mak
-index 473d0ac617..6230b5c816 100644
+index c8695afdae..446a926566 100644
 --- a/contrib/src/harfbuzz/rules.mak
 +++ b/contrib/src/harfbuzz/rules.mak
-@@ -21,6 +21,7 @@ harfbuzz: harfbuzz-$(HARFBUZZ_VERSION).tar.bz2 .sum-harfbuzz
- 	$(APPLY) $(SRC)/harfbuzz/harfbuzz-aarch64.patch
- 	$(APPLY) $(SRC)/harfbuzz/harfbuzz-clang.patch
+@@ -19,6 +19,7 @@ harfbuzz: harfbuzz-$(HARFBUZZ_VERSION).tar.bz2 .sum-harfbuzz
  	$(APPLY) $(SRC)/harfbuzz/harfbuzz-fix-freetype-detect.patch
+ 	$(APPLY) $(SRC)/harfbuzz/harfbuzz-fix-coretext-detection.patch
+ 	$(APPLY) $(SRC)/harfbuzz/harfbuzz-create-pkgconfig-file.patch
 +	$(APPLY) $(SRC)/harfbuzz/harfbuzz-no-tests.patch
  	$(MOVE)
  

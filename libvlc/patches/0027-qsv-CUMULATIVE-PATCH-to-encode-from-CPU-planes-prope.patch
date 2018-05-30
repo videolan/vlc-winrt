@@ -1,4 +1,4 @@
-From c3218acb646c30959621edac0199e7ff61f8335f Mon Sep 17 00:00:00 2001
+From bc029f5cdab65417fdebbd01b2e04b17e7663085 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 31 Aug 2017 18:02:31 +0200
 Subject: [PATCH 27/38] qsv: CUMULATIVE PATCH to encode from CPU planes
@@ -6,11 +6,11 @@ Subject: [PATCH 27/38] qsv: CUMULATIVE PATCH to encode from CPU planes
 
 ---
  modules/codec/Makefile.am |   2 +-
- modules/codec/qsv.c       | 455 +++++++++++++++++++++++++++++-----------------
+ modules/codec/qsv.c       | 455 ++++++++++++++++++++++++--------------
  2 files changed, 294 insertions(+), 163 deletions(-)
 
 diff --git a/modules/codec/Makefile.am b/modules/codec/Makefile.am
-index 10132a9..c42f40e 100644
+index 10132a92f3..c42f40e5cd 100644
 --- a/modules/codec/Makefile.am
 +++ b/modules/codec/Makefile.am
 @@ -595,7 +595,7 @@ libcrystalhd_plugin_la_LIBADD = $(LIBS_crystalhd)
@@ -23,7 +23,7 @@ index 10132a9..c42f40e 100644
  libqsv_plugin_la_LDFLAGS = $(AM_LDFLAGS) -rpath '$(codecdir)'
  libqsv_plugin_la_LIBADD = $(MFX_LIBS)
 diff --git a/modules/codec/qsv.c b/modules/codec/qsv.c
-index 93752e7..0f865dd 100644
+index 93752e792e..0f865dd4ab 100644
 --- a/modules/codec/qsv.c
 +++ b/modules/codec/qsv.c
 @@ -32,15 +32,20 @@
@@ -738,5 +738,5 @@ index 93752e7..0f865dd 100644
      return block;
  }
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 

@@ -1,4 +1,4 @@
-From 831edff7f8fa92b5cd9d5e443fee669815e7b264 Mon Sep 17 00:00:00 2001
+From 639a2ca65bc3a992819ec1833e4788e147201ac7 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Wed, 4 Apr 2018 12:10:17 +0200
 Subject: [PATCH 24/38] transcode: do not include the decoder padding in the
@@ -9,7 +9,7 @@ Subject: [PATCH 24/38] transcode: do not include the decoder padding in the
  1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/modules/stream_out/transcode/video.c b/modules/stream_out/transcode/video.c
-index 779ff7c..74734ee 100644
+index 779ff7c6eb..74734ee656 100644
 --- a/modules/stream_out/transcode/video.c
 +++ b/modules/stream_out/transcode/video.c
 @@ -570,8 +570,10 @@ static void transcode_video_sar_init( sout_stream_t *p_stream,
@@ -26,5 +26,5 @@ index 779ff7c..74734ee 100644
      }
      else
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 

@@ -1,14 +1,14 @@
-From 01f7d0f2a8512d932a76670e1ea9393961939e9f Mon Sep 17 00:00:00 2001
+From 07fe4a1e8214d89d78f3c81a6287b7ae5e0d517b Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 5 Apr 2018 13:29:40 +0200
 Subject: [PATCH 22/38] contrib: gcrypt: use bcrypt rather than wincrypt
 
 ---
- contrib/src/gcrypt/winrt.patch | 177 +++++++++++++++++++++++++++++------------
+ contrib/src/gcrypt/winrt.patch | 177 +++++++++++++++++++++++----------
  1 file changed, 124 insertions(+), 53 deletions(-)
 
 diff --git a/contrib/src/gcrypt/winrt.patch b/contrib/src/gcrypt/winrt.patch
-index fdceb26..6c02a40 100644
+index fdceb26fea..6c02a407ce 100644
 --- a/contrib/src/gcrypt/winrt.patch
 +++ b/contrib/src/gcrypt/winrt.patch
 @@ -1,75 +1,146 @@
@@ -316,5 +316,5 @@ index fdceb26..6c02a40 100644
         addedFixedItems = 1;
       }
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 

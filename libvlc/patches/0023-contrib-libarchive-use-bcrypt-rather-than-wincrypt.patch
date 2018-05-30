@@ -1,17 +1,17 @@
-From 2e5a109f3c539225cebe5d08dcab20f9f1018cab Mon Sep 17 00:00:00 2001
+From 12a3b6b0e5924f20a34737d9d2a7d487c60b3d1c Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 5 Apr 2018 14:49:26 +0200
 Subject: [PATCH 23/38] contrib: libarchive: use bcrypt rather than wincrypt
 
 ---
- .../src/libarchive/libarchive-win32-bcrypt.patch   | 62 ++++++++++++++++++++++
- contrib/src/libarchive/rules.mak                   |  1 +
+ .../libarchive/libarchive-win32-bcrypt.patch  | 62 +++++++++++++++++++
+ contrib/src/libarchive/rules.mak              |  1 +
  2 files changed, 63 insertions(+)
  create mode 100644 contrib/src/libarchive/libarchive-win32-bcrypt.patch
 
 diff --git a/contrib/src/libarchive/libarchive-win32-bcrypt.patch b/contrib/src/libarchive/libarchive-win32-bcrypt.patch
 new file mode 100644
-index 0000000..b280f0f
+index 0000000000..b280f0f193
 --- /dev/null
 +++ b/contrib/src/libarchive/libarchive-win32-bcrypt.patch
 @@ -0,0 +1,62 @@
@@ -78,7 +78,7 @@ index 0000000..b280f0f
 + 	}
 + 	/* TODO: Does this case really happen? */
 diff --git a/contrib/src/libarchive/rules.mak b/contrib/src/libarchive/rules.mak
-index aced4db..befacd4 100644
+index aced4db253..befacd4279 100644
 --- a/contrib/src/libarchive/rules.mak
 +++ b/contrib/src/libarchive/rules.mak
 @@ -22,6 +22,7 @@ ifdef HAVE_ANDROID
@@ -90,5 +90,5 @@ index aced4db..befacd4 100644
  endif
  	$(APPLY) $(SRC)/libarchive/fix-types.patch
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 

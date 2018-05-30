@@ -1,4 +1,4 @@
-From 540ba21d6a1d3a4ac4e723e21947ebdc9c4ed8e2 Mon Sep 17 00:00:00 2001
+From 3c389c8cc82b43ddb549078132568c42dedf8b24 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Tue, 27 Mar 2018 18:57:41 +0200
 Subject: [PATCH 13/38] rand: use bcrypt instead of CryptographicBufferStatics
@@ -8,11 +8,11 @@ It's available to winstore apps and on desktop since Vista.
 The old API is deprecated.
 ---
  configure.ac     |  5 ++++-
- src/win32/rand.c | 50 +++++++++++---------------------------------------
+ src/win32/rand.c | 50 +++++++++++-------------------------------------
  2 files changed, 15 insertions(+), 40 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index 8baf233..0a1b43e 100644
+index 206690b468..ac2c86147a 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -1124,7 +1124,10 @@ AH_BOTTOM([
@@ -28,7 +28,7 @@ index 8baf233..0a1b43e 100644
  ])
  
 diff --git a/src/win32/rand.c b/src/win32/rand.c
-index 1aeb656..723a32b 100644
+index 1aeb656a8a..723a32b26e 100644
 --- a/src/win32/rand.c
 +++ b/src/win32/rand.c
 @@ -27,17 +27,23 @@
@@ -102,5 +102,5 @@ index 1aeb656..723a32b 100644
      /* acquire default encryption context */
      if( CryptAcquireContext(
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 

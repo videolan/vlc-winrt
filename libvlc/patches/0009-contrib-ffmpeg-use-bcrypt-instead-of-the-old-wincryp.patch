@@ -1,4 +1,4 @@
-From d2d7633c07f08e6b6bf2ead88e131d860dfb76b4 Mon Sep 17 00:00:00 2001
+From 90abb43062cdca5a968c7bcc1208079c958c090f Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:46:11 +0200
 Subject: [PATCH 09/38] contrib: ffmpeg: use bcrypt instead of the old wincrypt
@@ -6,14 +6,14 @@ Subject: [PATCH 09/38] contrib: ffmpeg: use bcrypt instead of the old wincrypt
 
 When targeting Windows Vista and above
 ---
- contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch | 59 ++++++++++++++++++++++++++++
+ contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch | 59 ++++++++++++++++++++
  contrib/src/ffmpeg/rules.mak                 |  1 +
  2 files changed, 60 insertions(+)
  create mode 100644 contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch
 
 diff --git a/contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch b/contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch
 new file mode 100644
-index 0000000..4565577
+index 0000000000..456557716d
 --- /dev/null
 +++ b/contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch
 @@ -0,0 +1,59 @@
@@ -77,7 +77,7 @@ index 0000000..4565577
 +     if (CryptAcquireContext(&provider, NULL, NULL, PROV_RSA_FULL,
 +                             CRYPT_VERIFYCONTEXT | CRYPT_SILENT)) {
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index 92c400d..9513d63 100644
+index 92c400d21b..9513d63aaf 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
 @@ -241,6 +241,7 @@ endif
@@ -89,5 +89,5 @@ index 92c400d..9513d63 100644
  
  .ffmpeg: ffmpeg
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 

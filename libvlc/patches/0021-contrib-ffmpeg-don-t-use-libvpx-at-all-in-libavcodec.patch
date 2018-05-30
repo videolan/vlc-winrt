@@ -1,4 +1,4 @@
-From 41d99cd5a2a2866c78a60a0e1e2a42d1f5d3abb9 Mon Sep 17 00:00:00 2001
+From 8a663623d792e23ff8cb417cb88cb900b1f438ab Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:46:50 +0200
 Subject: [PATCH 21/38] contrib: ffmpeg: don't use libvpx at all in libavcodec
@@ -9,7 +9,7 @@ We have our own decoder/encoder
  1 file changed, 3 insertions(+), 5 deletions(-)
 
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index 6676484..ea288c7 100644
+index 667648409f..ea288c7284 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
 @@ -35,6 +35,7 @@ FFMPEGCONF = \
@@ -35,5 +35,5 @@ index 6676484..ea288c7 100644
  FFMPEGCONF += --disable-encoders --disable-muxers
  endif
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 

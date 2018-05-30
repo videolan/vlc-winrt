@@ -1,4 +1,4 @@
-From a41990c2f009d4019b6c163a6c433e7cca8113c9 Mon Sep 17 00:00:00 2001
+From b43077d9bebb3545fc428f55d6491bb826050df8 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Apr 2018 15:58:44 +0200
 Subject: [PATCH 35/38] contrib: gnutls: Use winstorecompat overload when
@@ -9,7 +9,7 @@ Subject: [PATCH 35/38] contrib: gnutls: Use winstorecompat overload when
  1 file changed, 18 insertions(+)
 
 diff --git a/contrib/src/gnutls/winstore.patch b/contrib/src/gnutls/winstore.patch
-index 68e4b3c..6d7210b 100644
+index 68e4b3c609..6d7210b154 100644
 --- a/contrib/src/gnutls/winstore.patch
 +++ b/contrib/src/gnutls/winstore.patch
 @@ -450,3 +450,21 @@
@@ -35,5 +35,5 @@ index 68e4b3c..6d7210b 100644
 + 
 + #include "gnutls_int.h"
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 

@@ -1,4 +1,4 @@
-From f07479a5cf215ad23e66f82ce34cbc6eefa02abb Mon Sep 17 00:00:00 2001
+From 30d6dfa33ba9affc7d1851e940b084e3c93de56d Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Mon, 9 Apr 2018 13:04:02 +0200
 Subject: [PATCH 31/38] contribs: Fix ffmpeg build with gcrypt.h
@@ -8,7 +8,7 @@ Subject: [PATCH 31/38] contribs: Fix ffmpeg build with gcrypt.h
  1 file changed, 12 insertions(+)
 
 diff --git a/contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch b/contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch
-index 4565577..ff5ad0f 100644
+index 456557716d..ff5ad0f9a4 100644
 --- a/contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch
 +++ b/contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch
 @@ -57,3 +57,15 @@
@@ -28,5 +28,5 @@ index 4565577..ff5ad0f 100644
 + #elif HAVE_WINCRYPT
 + #include <windows.h>
 -- 
-2.10.1.windows.1
+2.17.0.windows.1
 
