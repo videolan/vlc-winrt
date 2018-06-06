@@ -58,9 +58,9 @@ namespace VLC.Utils
             return await taskCompletionSource.Task;
         }
 
-        public async static Task InvokeInUIThreadHighPriority(Action action)
+        public async static Task InvokeInUIThread(Action action)
         {
-            await InvokeInUIThread(CoreDispatcherPriority.High, action);
+            await InvokeInUIThread(CoreDispatcherPriority.Normal, action);
         }
     }
 }

@@ -170,7 +170,7 @@ namespace VLC.Model.Video
 
                 Task.Run(async () =>
                 {
-                    await DispatchHelper.InvokeInUIThreadHighPriority(async () =>
+                    await DispatchHelper.InvokeInUIThread(async () =>
                      {
                          VideoImage = await GetBitmap();
                      });

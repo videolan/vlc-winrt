@@ -179,7 +179,7 @@ namespace VLC.Model.Library
                 try
                 {
                     if (await videoVm.VideoThumbFileExist())
-                        await DispatchHelper.InvokeInUIThreadHighPriority(() => videoVm.HasThumbnail = true);
+                        await DispatchHelper.InvokeInUIThread(() => videoVm.HasThumbnail = true);
                     else
                     {
                         // The thumbnail file does not exist, we must generate one.
@@ -271,7 +271,7 @@ namespace VLC.Model.Library
             musicDatabase.DeleteAll();
             musicDatabase.Initialize();
 
-            await DispatchHelper.InvokeInUIThreadHighPriority(() =>
+            await DispatchHelper.InvokeInUIThread(() =>
             {
                 Artists.Clear();
                 Albums.Clear();
@@ -281,7 +281,7 @@ namespace VLC.Model.Library
 
             videoDatabase.DeleteAll();
 
-            await DispatchHelper.InvokeInUIThreadHighPriority(() =>
+            await DispatchHelper.InvokeInUIThread(() =>
             {
                 Videos.Clear();
                 CameraRoll.Clear();
@@ -373,7 +373,7 @@ namespace VLC.Model.Library
                             artist.Name = string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName;
                             artist.PlayCount = 0;
                             musicDatabase.Add(artist);
-                            await DispatchHelper.InvokeInUIThreadHighPriority(() => Artists.Add(artist));
+                            await DispatchHelper.InvokeInUIThread(() => Artists.Add(artist));
                         }
 
                         var albumName = mP.Album?.Trim();
@@ -405,7 +405,7 @@ namespace VLC.Model.Library
                                 AlbumCoverUri = albumSimplifiedUrl
                             };
                             musicDatabase.Add(album);
-                            await DispatchHelper.InvokeInUIThreadHighPriority(() => Albums.Add(album));
+                            await DispatchHelper.InvokeInUIThread(() => Albums.Add(album));
                         }
 
                         TrackItem track = new TrackItem
@@ -425,7 +425,7 @@ namespace VLC.Model.Library
                             IsAvailable = true,
                         };
                         musicDatabase.Add(track);
-                        await DispatchHelper.InvokeInUIThreadHighPriority(() => Tracks.Add(track));
+                        await DispatchHelper.InvokeInUIThread(() => Tracks.Add(track));
                     }
                 }
                 else if (VLCFileExtensions.VideoExtensions.Contains(fileType))
@@ -444,10 +444,10 @@ namespace VLC.Model.Library
                     else if (isCameraRoll)
                     {
                         video.IsCameraRoll = true;
-                        await DispatchHelper.InvokeInUIThreadHighPriority(() => CameraRoll.Add(video));
+                        await DispatchHelper.InvokeInUIThread(() => CameraRoll.Add(video));
                     }
                     else
-                        await DispatchHelper.InvokeInUIThreadHighPriority(() => Videos.Add(video));
+                        await DispatchHelper.InvokeInUIThread(() => Videos.Add(video));
                 }
                 else if (VLCFileExtensions.SubtitleExtensions.Contains(fileType))
                 {
@@ -512,7 +512,7 @@ namespace VLC.Model.Library
             episode.IsTvShow = true;
             try
             {
-                TvShow show = await DispatchHelper.InvokeInUIThread<TvShow>(CoreDispatcherPriority.High,
+                TvShow show = await DispatchHelper.InvokeInUIThread<TvShow>(CoreDispatcherPriority.Normal,
                     () => Shows.FirstOrDefault(x => x.ShowTitle == episode.ShowTitle));
 
                 if (show == null)
@@ -521,15 +521,15 @@ namespace VLC.Model.Library
                     Locator.MediaLibrary.GenerateVideoThumbnailAsync(episode);
 
                     show = new TvShow(episode.ShowTitle);
-                    await DispatchHelper.InvokeInUIThreadHighPriority(() => show.Episodes.Add(episode));
-                    await DispatchHelper.InvokeInUIThreadHighPriority(() => Shows.Add(show));
+                    await DispatchHelper.InvokeInUIThread(() => show.Episodes.Add(episode));
+                    await DispatchHelper.InvokeInUIThread(() => Shows.Add(show));
                 }
                 else
                 {
-                    VideoItem epVideoItem = await DispatchHelper.InvokeInUIThread<VideoItem>(CoreDispatcherPriority.High,
+                    VideoItem epVideoItem = await DispatchHelper.InvokeInUIThread<VideoItem>(CoreDispatcherPriority.Normal,
                         () => show.Episodes.FirstOrDefault(x => x.Id == episode.Id));
                     if (epVideoItem == null)
-                        await DispatchHelper.InvokeInUIThreadHighPriority(() => show.Episodes.Add(episode));
+                        await DispatchHelper.InvokeInUIThread(() => show.Episodes.Add(episode));
                 }
             }
             catch (Exception e)
@@ -762,17 +762,17 @@ namespace VLC.Model.Library
 
         private async Task loadVideosFromDatabase()
         {
-            await DispatchHelper.InvokeInUIThreadHighPriority(() => Videos.Clear());
+            await DispatchHelper.InvokeInUIThread(() => Videos.Clear());
             var videos = LoadVideos(x => x.IsCameraRoll == false && x.IsTvShow == false);
             LogHelper.Log($"Found {videos.Count} videos.");
             var newVideos = videos.OrderBy(x => x.Name);
             foreach (var v in newVideos)
-                await DispatchHelper.InvokeInUIThreadHighPriority(() => Videos.Add(v));
+                await DispatchHelper.InvokeInUIThread(() => Videos.Add(v));
         }
 
         private async Task loadShowsFromDatabase()
         {
-            await DispatchHelper.InvokeInUIThreadHighPriority(() => Shows.Clear());
+            await DispatchHelper.InvokeInUIThread(() => Shows.Clear());
             var shows = LoadVideos(x => x.IsTvShow);
             LogHelper.Log($"Found {shows.Count} videos.");
             foreach (var item in shows)
@@ -781,7 +781,7 @@ namespace VLC.Model.Library
 
         private async Task loadCameraRollFromDatabase()
         {
-            await DispatchHelper.InvokeInUIThreadHighPriority(() => CameraRoll.Clear());
+            await DispatchHelper.InvokeInUIThread(() => CameraRoll.Clear());
             var camVideos = LoadVideos(x => x.IsCameraRoll);
             LogHelper.Log($"Found {camVideos.Count} camera videos.");
             var newVideos = camVideos.OrderBy(x => x.Name);
@@ -792,9 +792,9 @@ namespace VLC.Model.Library
 #region streams
         public async Task LoadStreamsFromDatabase()
         {
-            await DispatchHelper.InvokeInUIThreadHighPriority(() => Streams.Clear());
+            await DispatchHelper.InvokeInUIThread(() => Streams.Clear());
             var streams = LoadStreams();
-            await DispatchHelper.InvokeInUIThreadHighPriority(() => Streams.AddRange(streams));
+            await DispatchHelper.InvokeInUIThread(() => Streams.AddRange(streams));
         }
 
         public StreamMedia LoadStreamFromDatabaseOrCreateOne(string mrl)
@@ -985,7 +985,7 @@ namespace VLC.Model.Library
                 if (trackDB == null)
                     return;
                 musicDatabase.Remove(trackDB);
-                await DispatchHelper.InvokeInUIThreadHighPriority(() =>
+                await DispatchHelper.InvokeInUIThread(() =>
                     Tracks.Remove(Tracks.FirstOrDefault(x => x.Path == trackItem.Path)));
 
                 var albumDB = LoadAlbum(trackItem.AlbumId);
@@ -995,7 +995,7 @@ namespace VLC.Model.Library
                     if (!albumTracks.Any())
                     {
                         musicDatabase.Remove(albumDB);
-                        await DispatchHelper.InvokeInUIThreadHighPriority(() =>
+                        await DispatchHelper.InvokeInUIThread(() =>
                             Albums.Remove(Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId)));
                     }
                 }
@@ -1007,7 +1007,7 @@ namespace VLC.Model.Library
                     if (!artistAlbums.Any())
                     {
                         musicDatabase.Remove(artistDB);
-                        await DispatchHelper.InvokeInUIThreadHighPriority(() =>
+                        await DispatchHelper.InvokeInUIThread(() =>
                             Artists.Remove(Artists.FirstOrDefault(x => x.Id == trackItem.ArtistId)));
                     }
                 }
@@ -1023,7 +1023,7 @@ namespace VLC.Model.Library
                 videoDatabase.Remove(videoDb);
                 await videoItem.DeleteVideoThumbFile();
 
-                await DispatchHelper.InvokeInUIThreadHighPriority(() =>
+                await DispatchHelper.InvokeInUIThread(() =>
                 {
                     if (!videoItem.IsTvShow)
                         Videos.Remove(Videos.FirstOrDefault(x => x.Path == videoItem.Path));
@@ -1127,11 +1127,11 @@ namespace VLC.Model.Library
 
         public async Task RemoveStreamFromCollectionAndDatabase(StreamMedia stream)
         {
-            var collectionStream = await DispatchHelper.InvokeInUIThread<StreamMedia>(CoreDispatcherPriority.High,
+            var collectionStream = await DispatchHelper.InvokeInUIThread<StreamMedia>(CoreDispatcherPriority.Normal,
                 () => Streams?.FirstOrDefault(x => x.Path == stream.Path));
             if (collectionStream != null)
             {
-                await DispatchHelper.InvokeInUIThreadHighPriority(() => Streams.Remove(collectionStream));
+                await DispatchHelper.InvokeInUIThread(() => Streams.Remove(collectionStream));
             }
             DeleteStream(stream);
         }
