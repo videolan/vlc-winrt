@@ -35,12 +35,13 @@ namespace VLC_WinRT.Views.MainPages
             await Locator.MusicLibraryVM.OnNavigatedFrom();
             Window.Current.SizeChanged -= Current_SizeChanged;
         }
-        async void MainPageMusic_Loaded(object sender, RoutedEventArgs e)
+
+        void MainPageMusic_Loaded(object sender, RoutedEventArgs e)
         {
             Responsive(Window.Current.Bounds.Width);
             Window.Current.SizeChanged += Current_SizeChanged;
         }
-        
+
         void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
             Responsive(e.Size.Width);
@@ -54,20 +55,20 @@ namespace VLC_WinRT.Views.MainPages
                 VisualStateUtilities.GoToState(this, "Wide", false);
         }
 
-        private void MusicPanesFrame_OnLoaded(object sender, RoutedEventArgs e)
+        private async void MusicPanesFrame_OnLoaded(object sender, RoutedEventArgs e)
         {
             if (MainPageMusicContentPresenter.Content == null)
             {
-                Switch(Locator.MusicLibraryVM.MusicView);
+                await Switch(Locator.MusicLibraryVM.MusicView);
             }
             Locator.MusicLibraryVM.PropertyChanged += MusicLibraryVM_PropertyChanged;
         }
 
-        private void MusicLibraryVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private async void MusicLibraryVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(MusicLibraryVM.MusicView))
             {
-                Switch(Locator.MusicLibraryVM.MusicView);
+                await Switch(Locator.MusicLibraryVM.MusicView);
             }
         }
 

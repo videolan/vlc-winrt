@@ -350,6 +350,7 @@ namespace VLC.ViewModels.MusicVM
                     await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
                     {
                         GroupedAlbums?.Clear();
+                        GroupedAlbums = null;
                         LoadingStateAlbums = LoadingState.NotLoaded;
                     });
 
