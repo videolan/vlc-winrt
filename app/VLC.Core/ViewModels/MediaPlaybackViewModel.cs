@@ -508,6 +508,7 @@ namespace VLC.ViewModels
 
         private async void Playback_MediaStopped()
         {
+            await Task.Delay(500);
             await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, async () =>
             {
                 AudioTracks.Clear();
@@ -583,6 +584,8 @@ namespace VLC.ViewModels
 
         private async void OnMediaTrackAdded(TrackType type, int trackId, string name)
         {
+            await Task.Delay(500);
+
             var item = new DictionaryKeyValue
             {
                 Id = trackId,
