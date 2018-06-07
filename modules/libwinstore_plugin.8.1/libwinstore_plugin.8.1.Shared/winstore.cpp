@@ -179,7 +179,7 @@ IAudioClient2* MMDeviceLocator::WaitForAudioClient()
 {
 	DWORD res;
 	while ((res = WaitForSingleObjectEx(m_audioClientReady, 1000, TRUE)) == WAIT_TIMEOUT) {
-		OutputDebugStringW(L"Waiting for audio\n");
+		//OutputDebugStringW(L"Waiting for audio\n");
 	}
 	CloseHandle(m_audioClientReady);
 
