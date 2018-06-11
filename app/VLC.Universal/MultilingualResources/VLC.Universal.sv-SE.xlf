@@ -188,7 +188,7 @@
         </trans-unit>
         <trans-unit id="HomePageDescription" translate="yes" xml:space="preserve">
           <source>VLC will start on the selected page</source>
-          <target state="translated"> VLC kommer att starta på vald sida</target>
+          <target state="translated">VLC kommer att starta på vald sida</target>
         </trans-unit>
         <trans-unit id="HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
           <source>however you may find what you're looking for here</source>
@@ -964,7 +964,7 @@
         </trans-unit>
         <trans-unit id="XboxUpload" translate="yes" xml:space="preserve">
           <source>Xbox upload</source>
-          <target state="new">Xbox upload</target>
+          <target state="translated">Ladda upp till Xbox</target>
         </trans-unit>
       </group>
     </body>

@@ -148,7 +148,7 @@
     <value>hemsida</value>
   </data>
   <data name="HomePageDescription" xml:space="preserve">
-    <value> VLC kommer att starta på vald sida</value>
+    <value>VLC kommer att starta på vald sida</value>
   </data>
   <data name="HoweverYouMayFindWhatYouWantHere" xml:space="preserve">
     <value>men du kanske hittar det du letar efter här</value>
@@ -728,5 +728,8 @@
   </data>
   <data name="Disconnect" xml:space="preserve">
     <value>koppla från</value>
+  </data>
+  <data name="XboxUpload" xml:space="preserve">
+    <value>Ladda upp till Xbox</value>
   </data>
 </root>

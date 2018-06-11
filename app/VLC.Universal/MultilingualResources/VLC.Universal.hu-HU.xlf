@@ -392,7 +392,7 @@
         </trans-unit>
         <trans-unit id="PlayerSettings" translate="yes" xml:space="preserve">
           <source>Player Settings</source>
-          <target state="translated">Lejátszóbeállítások </target>
+          <target state="translated">Lejátszóbeállítások</target>
         </trans-unit>
         <trans-unit id="PlayFolder" translate="yes" xml:space="preserve">
           <source>play folder</source>
@@ -584,7 +584,7 @@
         </trans-unit>
         <trans-unit id="VideoPlayback" translate="yes" xml:space="preserve">
           <source>video playback</source>
-          <target state="translated">videólejátszás </target>
+          <target state="translated">videólejátszás</target>
         </trans-unit>
         <trans-unit id="VideoPlaybackInBackground" translate="yes" xml:space="preserve">
           <source>play video in background</source>
@@ -964,7 +964,7 @@
         </trans-unit>
         <trans-unit id="XboxUpload" translate="yes" xml:space="preserve">
           <source>Xbox upload</source>
-          <target state="new">Xbox upload</target>
+          <target state="translated">Feltöltés Xboxra</target>
         </trans-unit>
       </group>
     </body>

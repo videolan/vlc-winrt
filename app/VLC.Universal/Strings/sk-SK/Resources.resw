@@ -729,4 +729,7 @@
   <data name="Disconnect" xml:space="preserve">
     <value>odpojiť</value>
   </data>
+  <data name="XboxUpload" xml:space="preserve">
+    <value>Upload do konzoly Xbox</value>
+  </data>
 </root>

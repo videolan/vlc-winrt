@@ -820,7 +820,7 @@
         </trans-unit>
         <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
           <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the "+" button to use the file picker dialog.</source>
-          <target state="translated">Lepas fail ke dalam tetingkap untuk menambahnya ke dalam Xbox anda. <it id="1" pos="open">&lt;br&gt;</it> Atau klik pada butang "+" untuk guna dialog pengambil fail.</target>
+          <target state="translated">Lepas fail ke dalam tetingkap untuk menambahnya ke dalam Xbox anda.<it id="1" pos="open">&lt;br&gt;</it>Atau klik pada butang "+" untuk guna dialog pengambil fail.</target>
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
@@ -964,7 +964,7 @@
         </trans-unit>
         <trans-unit id="XboxUpload" translate="yes" xml:space="preserve">
           <source>Xbox upload</source>
-          <target state="new">Xbox upload</target>
+          <target state="translated">Muat naik Xbox</target>
         </trans-unit>
       </group>
     </body>

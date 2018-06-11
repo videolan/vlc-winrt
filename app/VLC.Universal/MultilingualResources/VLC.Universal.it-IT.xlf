@@ -964,7 +964,7 @@
         </trans-unit>
         <trans-unit id="XboxUpload" translate="yes" xml:space="preserve">
           <source>Xbox upload</source>
-          <target state="new">Xbox upload</target>
+          <target state="translated">Caricamento Xbox</target>
         </trans-unit>
       </group>
     </body>

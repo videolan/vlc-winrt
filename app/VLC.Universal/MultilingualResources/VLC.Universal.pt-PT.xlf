@@ -76,7 +76,7 @@
         </trans-unit>
         <trans-unit id="Chapters" translate="yes" xml:space="preserve">
           <source>Chapters</source>
-          <target state="translated">Capítulos </target>
+          <target state="translated">Capítulos</target>
         </trans-unit>
         <trans-unit id="CheckCredentials" translate="yes" xml:space="preserve">
           <source>an error occured, please check your credentials</source>
@@ -512,7 +512,7 @@
         </trans-unit>
         <trans-unit id="SubtitleDelay" translate="yes" xml:space="preserve">
           <source>subtitle delay</source>
-          <target state="translated">atraso na legenda</target>
+          <target state="translated">atraso da legenda</target>
         </trans-unit>
         <trans-unit id="Subtitles" translate="yes" xml:space="preserve">
           <source>Subtitles</source>
@@ -520,7 +520,7 @@
         </trans-unit>
         <trans-unit id="SubtitlesEncoding" translate="yes" xml:space="preserve">
           <source>subtitles encoding</source>
-          <target state="translated">Codificação de subtítulos</target>
+          <target state="translated">codificação de legendas</target>
         </trans-unit>
         <trans-unit id="Theme" translate="yes" xml:space="preserve">
           <source>theme</source>
@@ -884,7 +884,7 @@
         </trans-unit>
         <trans-unit id="AddMediaHelpWithIP" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device, or go to http://{0}:8080 to upload some media</source>
-          <target state="translated">Por favor insira um dispositivo de armazenamento externo ou vá a http://{0}:8080 para enviar média</target>
+          <target state="translated">Por favor, insira um dispositivo de armazenamento externo, ou vá para http://{0}:8080 para enviar alguns ficheiros</target>
         </trans-unit>
         <trans-unit id="CopyHelpDesktop" translate="yes" xml:space="preserve">
           <source>Right-click on a file or a folder to copy it to the local storage.</source>
@@ -961,6 +961,10 @@
         <trans-unit id="Disconnect" translate="yes" xml:space="preserve">
           <source>disconnect</source>
           <target state="translated">desconectar</target>
+        </trans-unit>
+        <trans-unit id="XboxUpload" translate="yes" xml:space="preserve">
+          <source>Xbox upload</source>
+          <target state="translated">Envio para X-Box</target>
         </trans-unit>
       </group>
     </body>

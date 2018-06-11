@@ -729,4 +729,7 @@
   <data name="Disconnect" xml:space="preserve">
     <value>aftengjast</value>
   </data>
+  <data name="XboxUpload" xml:space="preserve">
+    <value>Innsending á Xbox</value>
+  </data>
 </root>

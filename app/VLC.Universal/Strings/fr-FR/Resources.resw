@@ -379,7 +379,7 @@
     <value>Lecture aléatoire</value>
   </data>
   <data name="Songs" xml:space="preserve">
-    <value>Morceaux                 </value>
+    <value>Morceaux</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
     <value>Remerciements</value>
@@ -601,7 +601,7 @@
     <value>Langues</value>
   </data>
   <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC sera affiché en </value>
+    <value>VLC sera affiché en</value>
   </data>
   <data name="ApplyAndRestart" xml:space="preserve">
     <value>Appliquer et redémarrer</value>
@@ -728,5 +728,8 @@
   </data>
   <data name="Disconnect" xml:space="preserve">
     <value>Déconnecter</value>
+  </data>
+  <data name="XboxUpload" xml:space="preserve">
+    <value>Téléchargement Xbox</value>
   </data>
 </root>

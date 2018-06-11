@@ -508,7 +508,7 @@
         </trans-unit>
         <trans-unit id="Stop" translate="yes" xml:space="preserve">
           <source>stop</source>
-          <target state="translated"> zastavit</target>
+          <target state="translated">zastavit</target>
         </trans-unit>
         <trans-unit id="SubtitleDelay" translate="yes" xml:space="preserve">
           <source>subtitle delay</source>
@@ -961,6 +961,10 @@
         <trans-unit id="Disconnect" translate="yes" xml:space="preserve">
           <source>disconnect</source>
           <target state="translated">odpojit</target>
+        </trans-unit>
+        <trans-unit id="XboxUpload" translate="yes" xml:space="preserve">
+          <source>Xbox upload</source>
+          <target state="translated">Upload xbox</target>
         </trans-unit>
       </group>
     </body>

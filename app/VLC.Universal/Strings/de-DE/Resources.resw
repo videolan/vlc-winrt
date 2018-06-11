@@ -729,4 +729,7 @@
   <data name="Disconnect" xml:space="preserve">
     <value>Trennen</value>
   </data>
+  <data name="XboxUpload" xml:space="preserve">
+    <value>Zur XBox hochladen</value>
+  </data>
 </root>

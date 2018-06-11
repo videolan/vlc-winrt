@@ -496,7 +496,7 @@
         </trans-unit>
         <trans-unit id="Songs" translate="yes" xml:space="preserve">
           <source>songs</source>
-          <target state="translated">Morceaux                 </target>
+          <target state="translated">Morceaux</target>
         </trans-unit>
         <trans-unit id="SpecialThanks" translate="yes" xml:space="preserve">
           <source>special thanks</source>
@@ -792,7 +792,7 @@
         </trans-unit>
         <trans-unit id="SelectLanguageDescription" translate="yes" xml:space="preserve">
           <source>VLC will be displayed in</source>
-          <target state="translated">VLC sera affiché en </target>
+          <target state="translated">VLC sera affiché en</target>
         </trans-unit>
         <trans-unit id="ApplyAndRestart" translate="yes" xml:space="preserve">
           <source>Apply And Restart</source>
@@ -964,7 +964,7 @@
         </trans-unit>
         <trans-unit id="XboxUpload" translate="yes" xml:space="preserve">
           <source>Xbox upload</source>
-          <target state="new">Xbox upload</target>
+          <target state="translated">Téléchargement Xbox</target>
         </trans-unit>
       </group>
     </body>

@@ -301,7 +301,7 @@
     <value>lejátszás</value>
   </data>
   <data name="PlayerSettings" xml:space="preserve">
-    <value>Lejátszóbeállítások </value>
+    <value>Lejátszóbeállítások</value>
   </data>
   <data name="PlayFolder" xml:space="preserve">
     <value>mappa lejátszása</value>
@@ -445,7 +445,7 @@
     <value>A VLC csak a videótárban lévő számokat fogja keresni. Mappákat itt adhat hozzá a videótárhoz:</value>
   </data>
   <data name="VideoPlayback" xml:space="preserve">
-    <value>videólejátszás </value>
+    <value>videólejátszás</value>
   </data>
   <data name="VideoPlaybackInBackground" xml:space="preserve">
     <value>videó lejátszása a háttérben</value>
@@ -728,5 +728,8 @@
   </data>
   <data name="Disconnect" xml:space="preserve">
     <value>kapcsolat bontása</value>
+  </data>
+  <data name="XboxUpload" xml:space="preserve">
+    <value>Feltöltés Xboxra</value>
   </data>
 </root>
