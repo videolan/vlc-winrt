@@ -34,7 +34,7 @@
     <x:Double x:Key="TextControlThemeMinHeight">35</x:Double>
     <SolidColorBrush x:Key="ListViewItemPlaceholderBackgroundThemeBrush"
                      Color="Transparent" />
-    <x:Double x:Key="ControlContentThemeFontSize">50</x:Double>
+    <x:Double x:Key="ControlContentThemeFontSize">20</x:Double>
 
     <x:String x:Key="VLCFont">ms-appx:VLC.ttf#VLC</x:String>
     

@@ -300,7 +300,7 @@ namespace VLC.ViewModels.MusicVM
                 case MusicView.Albums:
                     if (LoadingStateAlbums == LoadingState.NotLoaded && GroupedAlbums == null)
                     {
-                        await initializeAlbums();
+                        initializeAlbums();
                     }
                     break;
                 case MusicView.Artists:
@@ -338,57 +338,45 @@ namespace VLC.ViewModels.MusicVM
         {
             ResetLibrary();
 
-            switch (_musicView)
+            if (Locator.MediaLibrary.Albums != null)
             {
-                case MusicView.Albums:
-                    if (Locator.MediaLibrary.Albums != null)
-                    {
-                        Locator.MediaLibrary.Albums.CollectionChanged -= Albums_CollectionChanged;
-                        Locator.MediaLibrary.Albums.Clear();
-                    }
-                    
-                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
-                    {
-                        GroupedAlbums?.Clear();
-                        GroupedAlbums = null;
-                        LoadingStateAlbums = LoadingState.NotLoaded;
-                    });
-
-                    break;
-                case MusicView.Artists:
-                    if (Locator.MediaLibrary.Artists != null)
-                    {
-                        Locator.MediaLibrary.Artists.CollectionChanged -= Artists_CollectionChanged;
-                        Locator.MediaLibrary.Artists.Clear();
-                    }
-
-                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
-                    {
-                        GroupedArtists = null;
-                        LoadingStateArtists = LoadingState.NotLoaded;
-                    });
-                    break;
-                case MusicView.Songs:
-                    if (Locator.MediaLibrary.Tracks != null)
-                    {
-                        Locator.MediaLibrary.Tracks.CollectionChanged -= Tracks_CollectionChanged;
-                        Locator.MediaLibrary.Tracks.Clear();
-                    }
-
-                    await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
-                    {
-                        GroupedTracks = null;
-                        LoadingStateTracks = LoadingState.NotLoaded;
-                    });
-                    break;
-                case MusicView.Playlists:
-                    break;
-                default:
-                    break;
+                Locator.MediaLibrary.Albums.CollectionChanged -= Albums_CollectionChanged;
+                Locator.MediaLibrary.Albums.Clear();
             }
+                    
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
+            {
+                GroupedAlbums?.Clear();
+                GroupedAlbums = null;
+                LoadingStateAlbums = LoadingState.NotLoaded;
+            });
+
+            if (Locator.MediaLibrary.Artists != null)
+            {
+                Locator.MediaLibrary.Artists.CollectionChanged -= Artists_CollectionChanged;
+                Locator.MediaLibrary.Artists.Clear();
+            }
+
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
+            {
+                GroupedArtists = null;
+                LoadingStateArtists = LoadingState.NotLoaded;
+            });
+
+            if (Locator.MediaLibrary.Tracks != null)
+            {
+                Locator.MediaLibrary.Tracks.CollectionChanged -= Tracks_CollectionChanged;
+                Locator.MediaLibrary.Tracks.Clear();
+            }
+
+            await DispatchHelper.InvokeInUIThread(CoreDispatcherPriority.Normal, () =>
+            {
+                GroupedTracks = null;
+                LoadingStateTracks = LoadingState.NotLoaded;
+            });            
         }
 
-        private async Task initializeAlbums()
+        private void initializeAlbums()
         {
             LoadingStateAlbums = LoadingState.Loading;
             GroupedAlbums = new ObservableCollection<AlbumItem>();

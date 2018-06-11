@@ -115,6 +115,7 @@ namespace VLC.ViewModels.VideoVM
         public void OnNavigatedFrom()
         {
             CurrentShow = null;
+            Videos?.Clear();
         }
         #endregion
     }

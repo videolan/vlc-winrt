@@ -9,8 +9,14 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
     {
         public AlbumCollectionBase()
         {
-            this.InitializeComponent();
-            this.SizeChanged += AlbumCollectionBase_SizeChanged;
+            InitializeComponent();
+            Unloaded += AlbumCollectionBase_Unloaded;
+            SizeChanged += AlbumCollectionBase_SizeChanged;
+        }
+
+        private void AlbumCollectionBase_Unloaded(object sender, RoutedEventArgs e)
+        {
+            SizeChanged -= AlbumCollectionBase_SizeChanged;
         }
 
         private void AlbumCollectionBase_SizeChanged(object sender, SizeChangedEventArgs e)

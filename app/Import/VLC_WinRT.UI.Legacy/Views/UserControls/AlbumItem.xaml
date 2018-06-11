@@ -27,7 +27,8 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <Grid Background="Transparent"
+    <Grid FlyoutBase.AttachedFlyout="{StaticResource AlbumMenuFlyout}"
+            Background="Transparent"
           Holding="RootAlbumItem_Holding"
           RightTapped="Grid_RightTapped"
           PointerExited="Cover_PointerExited"

@@ -29,7 +29,7 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <Grid FlyoutBase.AttachedFlyout="{StaticResource ArtistMenuFlyout}">
+    <Grid>
         <interactivity:Interaction.Behaviors>
             <core:EventTriggerBehavior EventName="Holding">
                 <utils:OpenMenuFlyoutAction />
