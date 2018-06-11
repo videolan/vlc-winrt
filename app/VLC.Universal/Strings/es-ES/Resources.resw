@@ -199,7 +199,7 @@
     <value>Preferencias de música</value>
   </data>
   <data name="MusicShows" xml:space="preserve">
-    <value>progmramas de música</value>
+    <value>programas de música</value>
   </data>
   <data name="Mute" xml:space="preserve">
     <value>silenciar</value>
@@ -373,7 +373,7 @@
     <value>mostrar lista de reproducción</value>
   </data>
   <data name="Shows" xml:space="preserve">
-    <value>progmramas</value>
+    <value>programas</value>
   </data>
   <data name="Shuffle" xml:space="preserve">
     <value>aleatorio</value>
@@ -728,5 +728,8 @@
   </data>
   <data name="Disconnect" xml:space="preserve">
     <value>desconectar</value>
+  </data>
+  <data name="XboxUpload" xml:space="preserve">
+    <value>Subida Xbox</value>
   </data>
 </root>

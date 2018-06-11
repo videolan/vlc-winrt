@@ -729,4 +729,7 @@
   <data name="Disconnect" xml:space="preserve">
     <value>від’єднатися</value>
   </data>
+  <data name="XboxUpload" xml:space="preserve">
+    <value>Вивантажити Xbox</value>
+  </data>
 </root>
