@@ -11,6 +11,7 @@ Release: May 15th 2018
 * Internationalization update + new Icelandic language
 * Chromecast improvements
 * *Experimental* transcoding/convert feature
+* QSV/Intel Media SDK support
 
 Changes between 3.0.1 and 3.0.2
 -------------------------------
