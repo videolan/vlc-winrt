@@ -162,7 +162,7 @@ HRESULT MMDeviceLocator::ActivateCompleted(IActivateAudioInterfaceAsyncOperation
 			AudioClientProperties props = AudioClientProperties{
 				sizeof(props),
 				FALSE,
-				(AUDIO_STREAM_CATEGORY)AudioCategory_Movie,
+				/*AudioCategory_BackgroundCapableMedia*/ (AUDIO_STREAM_CATEGORY)2, /* win8.1 ONLY */
 				AUDCLNT_STREAMOPTIONS_NONE
 			};
 			auto res = m_AudioClient->SetClientProperties(&props);
