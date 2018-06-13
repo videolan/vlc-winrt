@@ -173,7 +173,7 @@ namespace VLC.Services.RunTime
 
         void KeyboardListenerService_KeyDown(CoreWindow sender, KeyEventArgs args)
         {
-            if (!CanListen || args.Handled) return;
+            if (!CanListen || (args.Handled && !DeviceHelper.IsMediaCenterModeCompliant)) return;
 
             KeyDownPressed?.Invoke(sender, args);
             CoreWindow coreWindow = CoreWindow.GetForCurrentThread();
