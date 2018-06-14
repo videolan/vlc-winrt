@@ -599,10 +599,13 @@ namespace VLC.ViewModels
                 {
                     App.RootPage.StopCompositionAnimationOnSwapChain();
                 }
-                Locator.NavigationService.GoBack_Default();
+
+                if (Locator.NavigationService.IsCurrentPageAPlayerPage)
+                {
+                    Locator.NavigationService.GoBack_Default();
+                }
             });
         }
-
 
         private async void OnMediaTrackAdded(TrackType type, int trackId, string name)
         {

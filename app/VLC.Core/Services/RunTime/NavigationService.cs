@@ -491,6 +491,9 @@ namespace VLC.Services.RunTime
                    || p == VLCPage.MainPageNetwork;
         }
 
+        public bool IsCurrentPageAPlayerPage => CurrentPage == VLCPage.VideoPlayerPage 
+                                                || CurrentPage == VLCPage.MusicPlayerPage;
+
         public void CloseVideoFlyouts()
         {
             if (currentFlyout == VLCPage.SubtitlesSettings ||
