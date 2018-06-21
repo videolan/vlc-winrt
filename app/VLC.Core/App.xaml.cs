@@ -1,5 +1,4 @@
-﻿
-using Autofac;
+﻿using Autofac;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,6 +21,7 @@ using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -53,6 +53,19 @@ namespace VLC
                 EnteredBackground += OnEnteredBackground;
                 LeavingBackground += OnLeavingBackground;
             }
+        }
+
+        void UpdateBounds(ApplicationView view)
+        {         
+            var visibleBound = view.VisibleBounds;
+            var windowBound = Window.Current.Bounds;
+
+            var top = Math.Ceiling(visibleBound.Top - windowBound.Top);
+            var bottom = Math.Ceiling(windowBound.Bottom - visibleBound.Bottom);
+            var left = Math.Ceiling(visibleBound.Left - windowBound.Left);
+            var right = Math.Ceiling(windowBound.Right - visibleBound.Right);
+
+            ApplicationFrame.Margin = new Thickness(left, top, right, bottom);
         }
 
         private void OnLeavingBackground(object sender, LeavingBackgroundEventArgs leavingBackgroundEventArgs)
@@ -320,6 +333,12 @@ namespace VLC
                 await Locator.HttpServer.Bind(8080).ConfigureAwait(false);
             else
                 Locator.RendererService.Start();
+
+            // used to handle software button margin on mobile
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Phone)
+            {
+                ApplicationView.GetForCurrentView().VisibleBoundsChanged += (view, sender) => UpdateBounds(view);
+            }
         }
 
         public static void ReloadApplicationPage()

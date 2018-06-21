@@ -41,6 +41,11 @@ namespace VLC.Helpers
                 ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
             }
 
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Phone)
+            {
+                ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+            }
+
             if (DeviceHelper.GetDeviceType() != DeviceTypeEnum.Tablet)
                 return;
             if (Numbers.OSVersion <= 10586)
