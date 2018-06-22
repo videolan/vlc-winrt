@@ -34,6 +34,7 @@ namespace VLC.UI.Views.UserControls
 
         private void Grid_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
+            e.Handled = true;
             Flyout.ShowAttachedFlyout((Grid)sender);
         }
 
