@@ -59,7 +59,7 @@ namespace VLC.Model.Library
                     if (!StorageApplicationPermissions.FutureAccessList.CheckAccess(folder))
                         StorageApplicationPermissions.FutureAccessList.Add(folder);
                     await MediaLibraryHelper.ForeachSupportedFile(folder,
-                        async files => await DiscoverMediaItems(files));
+                        async files => await DiscoverMediaItems(files, isCameraRoll: false, isExternalDrive: true));
                 }
                 catch (Exception exception)
                 {
@@ -162,13 +162,13 @@ namespace VLC.Model.Library
             });
         }
 
-        public async Task<bool> DiscoverMediaItemOrWaitAsync(StorageFile storageItem, bool isCameraRoll)
+        public async Task<bool> DiscoverMediaItemOrWaitAsync(StorageFile storageItem, bool isCameraRoll, bool isExternalDrive = false)
         {
             await MediaItemDiscovererSemaphoreSlim.WaitAsync();
             bool success;
             try
             {
-                success = await ParseMediaFile(storageItem, isCameraRoll);
+                success = await ParseMediaFile(storageItem, isCameraRoll, isExternalDrive);
             }
             catch (Exception e)
             {
@@ -331,7 +331,7 @@ namespace VLC.Model.Library
                 await CortanaHelper.SetPhraseList("albumName", albums.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList());
         }
 
-        async Task DiscoverMediaItems(IReadOnlyList<StorageFile> files, bool isCameraRoll = false)
+        async Task DiscoverMediaItems(IReadOnlyList<StorageFile> files, bool isCameraRoll = false, bool isExternalDrive = false)
         {
             foreach (var item in files)
             {
@@ -340,11 +340,11 @@ namespace VLC.Model.Library
                     await ContinueIndexing.Task;
                     ContinueIndexing = null;
                 }
-                await DiscoverMediaItemOrWaitAsync(item, isCameraRoll);
+                await DiscoverMediaItemOrWaitAsync(item, isCameraRoll, isExternalDrive);
             }
         }
 
-        bool isFileAvailable(string filePath)
+        bool IsFileAvailable(string filePath)
         {
             if (!File.Exists(filePath))
                 return false;
@@ -359,11 +359,11 @@ namespace VLC.Model.Library
             return !attributes.HasFlag(System.IO.FileAttributes.SparseFile);
         }
 
-        async Task<bool> ParseMediaFile(StorageFile item, bool isCameraRoll)
+        async Task<bool> ParseMediaFile(StorageFile item, bool isCameraRoll, bool isExternalDrive)
         {
             try
             {
-                if (!isFileAvailable(item.Path))
+                if(!isExternalDrive && !IsFileAvailable(item.Path))
                     return false;
 
                 var fileType = item.FileType.ToLower();
