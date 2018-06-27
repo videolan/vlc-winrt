@@ -1,10 +1,22 @@
+Changes between 3.0.3 and 3.1.0
+-------------------------------
+Release: June 27th 2018
+
+* Localization update
+* SQlite update
+* Fix UI event handling issue on Xbox
+* Fix navigation crash from store
+* #136 Add dynamic margin update for software buttons on mobile
+* #267 Prevent race condition on latest RS5 Insider builds
+* Fix USB drive indexing 
+
 Changes between 3.0.2 and 3.0.3
 -------------------------------
 Release: May 15th 2018
 
 * Fix white theme button styling issues
 * #249: Fix bug disabling button when network stream not found and added loaded ring
-*  #171: Add loop video button
+* #171: Add loop video button
 * Bump target min platform to 14393
 * Add 2.35:1 aspect ratio option
 * #227: Fix OneDrive indexing issue
