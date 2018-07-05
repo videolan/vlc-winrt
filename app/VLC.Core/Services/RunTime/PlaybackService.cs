@@ -164,8 +164,7 @@ namespace VLC.Services.RunTime
             AudioDeviceID = args.Id;
             // Always fetch the new audio client, as we always assign it when starting a new playback
             // But if a playback is in progress, inform VLC backend that we changed device
-            if (_mediaPlayer != null)
-                _mediaPlayer.outputDeviceSet(AudioDeviceID);
+            _mediaPlayer?.outputDeviceSet(AudioDeviceID);
         }
 
 
@@ -405,7 +404,7 @@ namespace VLC.Services.RunTime
                 em.OnOpening += Playback_Opening;
             }
             else
-                _mediaPlayer.setMedia(CurrentMedia);
+                Task.Run(() => _mediaPlayer.setMedia(CurrentMedia)).ConfigureAwait(false);
             _mediaPlayer.outputDeviceSet(AudioDeviceID);
             //SetEqualizer(Locator.SettingsVM.Equalizer);
         }
@@ -651,7 +650,8 @@ namespace VLC.Services.RunTime
         {
             if (PlayerState != MediaState.Ended && PlayerState != MediaState.NothingSpecial)
             {
-                _mediaPlayer.stop();
+                Task.Run(() => _mediaPlayer.stop()).ConfigureAwait(false);
+                //_mediaPlayer.stop();
             }
             //TileHelper.ClearTile();
         }
