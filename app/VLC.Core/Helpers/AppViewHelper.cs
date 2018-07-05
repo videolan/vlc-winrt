@@ -113,7 +113,7 @@ namespace VLC.Helpers
             var appView = ApplicationView.GetForCurrentView();
             if (string.IsNullOrEmpty(title))
                 title = string.Empty;
-            appView.Title = title;
+      //      appView.Title = title;
         }
 
         public static void ToggleFullscreen()
