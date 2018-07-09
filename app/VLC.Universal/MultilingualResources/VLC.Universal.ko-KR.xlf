@@ -908,7 +908,7 @@
         </trans-unit>
         <trans-unit id="CopyHelpPhone" translate="yes" xml:space="preserve">
           <source>Long press on a file or a folder to copy it to the local storage.</source>
-          <target state="translated">파일이나 폴더에서 길게 눌러서 로컬 저장소에 복사합니다.</target>
+          <target state="translated"> 파일이나 폴더에서 길게 눌러서 로컬 저장소에 복사합니다.</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_SCREEN" translate="yes" xml:space="preserve">
           <source>fit screen</source>
@@ -940,7 +940,7 @@
         </trans-unit>
         <trans-unit id="TvUnsafeArea" translate="yes" xml:space="preserve">
           <source>TV unsafe area</source>
-          <target state="translated">TV의 불안전한 영역</target>
+          <target state="translated">TV 영상에 불안전한 영역</target>
         </trans-unit>
         <trans-unit id="AddMarginExplanation" translate="yes" xml:space="preserve">
           <source>Some TVs will not display the app correctly. To add some margin, turn this on</source>

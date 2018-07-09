@@ -688,7 +688,7 @@
     <value>자격 증명</value>
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
-    <value>파일이나 폴더에서 길게 눌러서 로컬 저장소에 복사합니다.</value>
+    <value> 파일이나 폴더에서 길게 눌러서 로컬 저장소에 복사합니다.</value>
   </data>
   <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
     <value>화면에 맞추기</value>
@@ -712,7 +712,7 @@
     <value>윈도우 10 PIP 사용</value>
   </data>
   <data name="TvUnsafeArea" xml:space="preserve">
-    <value>TV의 불안전한 영역</value>
+    <value>TV 영상에 불안전한 영역</value>
   </data>
   <data name="AddMarginExplanation" xml:space="preserve">
     <value>일부 TV는 앱을 제대로 표시하지 못합니다. 여백을 약간 추가하려면, 이걸 켜세요</value>
