@@ -89,7 +89,7 @@
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalDependencies>d3d11.lib;dxgi.lib;libvlc.lib;MMDevAPI.lib;WindowsPhoneCore.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\WindowsPhone\vlc-$(TargetedSDKArchitecture)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -107,7 +107,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\libvlc\WindowsPhone\vlc-$(TargetedSDKArchitecture)\$(Configuration)\include;$(ProjectDir)..\libvlcpp\;$(ProjectDir)..\libvlcX;%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalDependencies>d3d11.lib;dxgi.lib;libvlc.lib;MMDevAPI.lib;WindowsPhoneCore.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\WindowsPhone\vlc-$(TargetedSDKArchitecture)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -125,7 +125,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\libvlc\WindowsPhone\vlc-$(TargetedSDKArchitecture)\$(Configuration)\include;$(ProjectDir)..\libvlcpp\;$(ProjectDir)..\libvlcX;%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalDependencies>d3d11.lib;dxgi.lib;libvlc.lib;MMDevAPI.lib;WindowsPhoneCore.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\WindowsPhone\vlc-$(TargetedSDKArchitecture)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -143,7 +143,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\libvlc\WindowsPhone\vlc-$(TargetedSDKArchitecture)\$(Configuration)\include;$(ProjectDir)..\libvlcpp\;$(ProjectDir)..\libvlcX;%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalDependencies>d3d11.lib;dxgi.lib;libvlc.lib;MMDevAPI.lib;WindowsPhoneCore.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\WindowsPhone\vlc-$(TargetedSDKArchitecture)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

@@ -134,7 +134,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>MinCore.lib;Mmdevapi.lib;libvlccore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)</AdditionalLibraryDirectories>
@@ -156,7 +156,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>MinCore.lib;Mmdevapi.lib;libvlccore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)</AdditionalLibraryDirectories>
@@ -178,7 +178,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;Mmdevapi.lib;libvlccore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)</AdditionalLibraryDirectories>
@@ -199,12 +199,12 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;Mmdevapi.lib;libvlccore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
-     <PostBuildEvent>
+    <PostBuildEvent>
       <Command>copy /Y $(TargetPath) $(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\audio_output\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -220,7 +220,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>MinCore.lib;Mmdevapi.lib;libvlccore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)</AdditionalLibraryDirectories>
@@ -241,7 +241,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>MinCore.lib;Mmdevapi.lib;libvlccore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)</AdditionalLibraryDirectories>

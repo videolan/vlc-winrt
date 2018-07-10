@@ -133,7 +133,6 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <ImageHasSafeExceptionHandlers>true</ImageHasSafeExceptionHandlers>
@@ -155,7 +154,6 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)</AdditionalLibraryDirectories>
@@ -176,12 +174,11 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
-     <PostBuildEvent>
+    <PostBuildEvent>
       <Command>copy /Y $(TargetPath) $(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -197,12 +194,11 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
-     <PostBuildEvent>
+    <PostBuildEvent>
       <Command>copy /Y $(TargetPath) $(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -218,7 +214,6 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)</AdditionalLibraryDirectories>
@@ -239,7 +234,6 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\libvlc\Windows\vlc-$(TargetedSDKArchitecture)\$(Configuration)</AdditionalLibraryDirectories>
