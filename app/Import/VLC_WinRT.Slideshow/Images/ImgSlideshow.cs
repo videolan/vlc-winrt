@@ -198,11 +198,11 @@ namespace Slide2D.Images
         {
             if (currentImg?.ScaleEffect != null)
             {
-                args.DrawingSession.DrawImage(currentImg.ScaleEffect, new System.Numerics.Vector2(), new Rect()
-                {
-                    Height = MetroSlideshow.WindowHeight,
-                    Width = MetroSlideshow.WindowWidth
-                }, currentImg.Opacity);
+                //args.DrawingSession.DrawImage(currentImg.ScaleEffect, new System.Numerics.Vector2(), new Rect()
+                //{
+                //    Height = MetroSlideshow.WindowHeight,
+                //    Width = MetroSlideshow.WindowWidth
+                //}, currentImg.Opacity);
             }
             threshold++;
 

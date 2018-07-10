@@ -12,7 +12,6 @@
 
     <Grid>
         <canvas:CanvasAnimatedControl x:Name="Slideshower"
-                                      Loaded="Slideshower_Loaded_1"
                                       IsFixedTimeStep="False"
                                       TargetElapsedTime="0:0:0.3" />
         <Grid x:Name="PlayerControls"
