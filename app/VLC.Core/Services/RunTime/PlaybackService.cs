@@ -403,7 +403,7 @@ namespace VLC.Services.RunTime
                 em.OnOpening += Playback_Opening;
             }
             else
-                Task.Run(() => _mediaPlayer.setMedia(CurrentMedia)).ConfigureAwait(false);
+                _mediaPlayer.setMedia(CurrentMedia);
             _mediaPlayer.outputDeviceSet(AudioDeviceID);
             //SetEqualizer(Locator.SettingsVM.Equalizer);
         }
@@ -649,8 +649,7 @@ namespace VLC.Services.RunTime
         {
             if (PlayerState != MediaState.Ended && PlayerState != MediaState.NothingSpecial)
             {
-                Task.Run(() => _mediaPlayer.stop()).ConfigureAwait(false);
-                //_mediaPlayer.stop();
+                _mediaPlayer.stop();
             }
             //TileHelper.ClearTile();
         }
