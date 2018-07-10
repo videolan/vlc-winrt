@@ -66,6 +66,7 @@
                               IsActive="{Binding IsLoadingSubtitle}"/>
                 <TextBlock Grid.Column="4"
                            Text="{Binding LoadingSubtitleText}"
+                           Foreground="{ThemeResource MainColor}"
                            TextWrapping="Wrap"
                            VerticalAlignment="Center"/>
             </Grid>
