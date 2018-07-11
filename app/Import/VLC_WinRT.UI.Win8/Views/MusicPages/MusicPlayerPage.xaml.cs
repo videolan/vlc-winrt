@@ -59,7 +59,7 @@ namespace VLC_WinRT.Views.MusicPages
         private void MouseMoved()
         {
             App.SplitShell.ShowTopBar();
-            FadeIn.Begin();
+      //      FadeIn.Begin();
         }
 
         private void PlaceholderInteractionGrid_OnTapped(object sender, TappedRoutedEventArgs args)
