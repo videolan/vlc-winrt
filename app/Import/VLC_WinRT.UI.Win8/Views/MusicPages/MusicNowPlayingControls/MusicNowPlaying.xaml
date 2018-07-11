@@ -171,6 +171,23 @@
                                                HorizontalAlignment="Stretch"
                                                FontSize="22"
                                                DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}" />
+
+            <AppBarButton x:Name="ShowPlaylistButton"
+                          Grid.Row="3"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Label="{Binding Source={StaticResource Strings}, Path=ShowPlaylist}"
+                          Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.GoToMusicPlaylistPageCommand}"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Bottom"
+                          FontSize="16">
+                <AppBarButton.RenderTransform>
+                    <TranslateTransform x:Name="ShowPlaylistButtonTranslateTransform" />
+                </AppBarButton.RenderTransform>
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource OrderedListSymbol}"
+                              FontFamily="{StaticResource VLCFont}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
