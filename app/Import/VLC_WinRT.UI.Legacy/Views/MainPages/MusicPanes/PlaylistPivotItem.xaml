@@ -43,6 +43,7 @@
         <AppBarButton x:Name="MusicPlaylistFloatingActionButton"
                       Style="{StaticResource CircleButtonStyle}"
                       VerticalAlignment="Bottom"
+                      Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.FabVisibility}"
                       HorizontalAlignment="Right"
                       Margin="{StaticResource FrameMarginHorizontalPlusFooter}"
                       Command="{Binding ShowCreateNewPlaylistPaneCommand}">

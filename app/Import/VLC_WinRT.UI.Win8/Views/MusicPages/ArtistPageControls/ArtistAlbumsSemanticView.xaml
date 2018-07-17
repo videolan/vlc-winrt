@@ -82,6 +82,7 @@
                   Style="{StaticResource CircleButtonStyle}"
                   VerticalAlignment="Bottom"
                   HorizontalAlignment="Right"
+                  Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.FabVisibility}"
                   Margin="{StaticResource FrameMarginHorizontalPlusFooter}">
         <AppBarButton.Flyout>
             <MenuFlyout Placement="Top">

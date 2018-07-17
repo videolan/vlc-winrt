@@ -34,6 +34,7 @@
     <converters:PageToVisibilityConverter x:Key="PageToVisibilityConverter"/>
     <converters:PositionToTimeStampStringConverter x:Key="PositionToTimeStampStringConverter" />
     <converters:RootFolderTypeToNameConverter x:Key="RootFolderTypeToNameConverter"/>
+    <converters:PlayingStateToGlyphConverter x:Key="PlayingStateToGlyphConverter" />
 
     <!-- Strings converter -->
     <converters:VideoViewStringifyConverter x:Key="VideoViewStringifyConverter" />

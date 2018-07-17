@@ -103,6 +103,7 @@
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
         <AppBarButton x:Name="MusicCollectionFloatingActionButton"
+                      Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.FabVisibility}"
                       Style="{StaticResource CircleButtonStyle}"
                       VerticalAlignment="Bottom"
                       HorizontalAlignment="Right"

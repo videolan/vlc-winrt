@@ -307,6 +307,8 @@ namespace VLC.ViewModels
             }
         }
 
+        public Visibility FabVisibility => MiniPlayerVisibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+
         public Visibility MiniPlayerVisibilityMediaCenter
         {
             get
