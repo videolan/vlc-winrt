@@ -119,5 +119,6 @@
     <Capability Name="removableStorage" />
     <Capability Name="internetClientServer" />
     <Capability Name="picturesLibrary" />
+    <Capability Name="privateNetworkClientServer" />
   </Capabilities>
 </Package>
