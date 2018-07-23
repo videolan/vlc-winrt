@@ -138,7 +138,6 @@
         <ListView x:Name="PlaylistGrid"
                   Grid.Row="2"
                   Margin="{StaticResource FrameMargin}"
-                  ItemsSource="{Binding TrackCollection.Playlist}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemTemplate="{StaticResource TrackTemplateDetailed}"
