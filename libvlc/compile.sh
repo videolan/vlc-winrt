@@ -43,7 +43,8 @@ esac
 case "$2" in
     win10)
         WINVER=0xA00
-        RUNTIME=msvcr120_app
+        RUNTIME=ucrt
+        RUNTIME_EXTRA='-lvcruntime140_app'
         LIBKERNEL32='-lwindowsapp'
         LIBLOLE32=
         ;;
@@ -104,7 +105,7 @@ case "${1}" in
     *)
         COMPILER=${TARGET_TUPLE}-gcc
         COMPILERXX=${TARGET_TUPLE}-g++
-        ${COMPILER} -dumpspecs | sed -e "s/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat $LIBLOLE32 -lruntimeobject -lsynchronization/" -e "s/-lmsvcrt/-l$RUNTIME/" -e "s/-lkernel32/$LIBKERNEL32/" > ../newspecfile
+        ${COMPILER} -dumpspecs | sed -e "s/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat $LIBLOLE32 -lruntimeobject -lsynchronization/" -e "s/-lmsvcrt/$RUNTIME_EXTRA -l$RUNTIME/" -e "s/-lkernel32/$LIBKERNEL32/" > ../newspecfile
         NEWSPECFILE="`pwd`/../newspecfile"
         COMPILER="${COMPILER} -specs=$NEWSPECFILE"
         COMPILERXX="${COMPILERXX} -specs=$NEWSPECFILE"
