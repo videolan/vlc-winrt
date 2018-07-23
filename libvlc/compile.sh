@@ -105,17 +105,25 @@ case "${1}" in
     *)
         COMPILER=${TARGET_TUPLE}-gcc
         COMPILERXX=${TARGET_TUPLE}-g++
-        ${COMPILER} -dumpspecs | sed -e "s/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat $LIBLOLE32 -lruntimeobject -lsynchronization/" -e "s/-lmsvcrt/$RUNTIME_EXTRA -l$RUNTIME/" -e "s/-lkernel32/$LIBKERNEL32/" > ../newspecfile
-        NEWSPECFILE="`pwd`/../newspecfile"
-        COMPILER="${COMPILER} -specs=$NEWSPECFILE"
-        COMPILERXX="${COMPILERXX} -specs=$NEWSPECFILE"
+        if ${COMPILER} --version | grep -q gcc; then
+            ${COMPILER} -dumpspecs | sed -e "s/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat $LIBLOLE32 -lruntimeobject -lsynchronization/" -e "s/-lmsvcrt/$RUNTIME_EXTRA -l$RUNTIME/" -e "s/-lkernel32/$LIBKERNEL32/" > ../newspecfile
+            NEWSPECFILE="`pwd`/../newspecfile"
+            COMPILER="${COMPILER} -specs=$NEWSPECFILE"
+            COMPILERXX="${COMPILERXX} -specs=$NEWSPECFILE"
+        fi
         BUILD_ARCH=`gcc -dumpmachine`
         ;;
 esac
 
 
 EXTRA_CPPFLAGS="-D_WIN32_WINNT=$WINVER -DWINVER=$WINVER -DWINSTORECOMPAT -D_UNICODE -DUNICODE -DWINAPI_FAMILY=WINAPI_FAMILY_APP"
-EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat -lruntimeobject"
+if ${COMPILER} --version | grep -q gcc; then
+    EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat -lruntimeobject"
+else
+    # Clang doesn't support spec files, but will skip the builtin -lmsvcrt and -lkernel32 etc if it detects -lmsvcr* or -lucrt*, and
+    # -lwindowsapp on the command line.
+    EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat $LIBOLE32 -lruntimeobject -lsynchronization $RUNTIME_EXTRA -l$RUNTIME $LIBKERNEL32"
+fi
 
 echo "Building the contribs"
 CONTRIB_FOLDER=contrib/winrt-$1-$RUNTIME
