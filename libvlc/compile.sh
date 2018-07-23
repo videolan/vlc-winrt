@@ -5,7 +5,7 @@ set -e
 usage()
 {
     echo "Usage: compile <arch> <TargetOS>"
-    echo "archs: i686,x86_64,armv7"
+    echo "archs: i686,x86_64,armv7,aarch64"
     echo "os: win81,win10"
 }
 
@@ -28,6 +28,10 @@ x86_64)
     ;;
 armv7)
     MSVC_TUPLE="ARM"
+    using
+    ;;
+aarch64)
+    MSVC_TUPLE="ARM64"
     using
     ;;
 *) echo "Unknown arch: $1"
