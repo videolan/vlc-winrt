@@ -101,13 +101,6 @@ cd ../../
 
 TARGET_TUPLE=${1}-w64-mingw32
 case "${1}" in
-    armv7)
-        COMPILER="armv7-w64-mingw32-clang"
-        COMPILERXX="armv7-w64-mingw32-clang++"
-        # Clang will yield armv7-windows-gnu as build arch, which seems
-        # to confuse some configure scripts
-        BUILD_ARCH=x86_64-linux-gnu
-        ;;
     *)
         COMPILER=${TARGET_TUPLE}-gcc
         COMPILERXX=${TARGET_TUPLE}-g++
