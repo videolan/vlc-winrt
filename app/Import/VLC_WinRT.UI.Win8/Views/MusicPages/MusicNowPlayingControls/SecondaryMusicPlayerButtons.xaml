@@ -9,6 +9,10 @@
       d:DesignWidth="400">
     <Grid.ColumnDefinitions>
         <ColumnDefinition />
+        <ColumnDefinition />
+        <ColumnDefinition />
+        <ColumnDefinition Width="12" />
+        <ColumnDefinition />
         <ColumnDefinition Width="12" />
         <ColumnDefinition />
         <ColumnDefinition Width="12" />
@@ -16,7 +20,20 @@
         <ColumnDefinition Width="12" />
         <ColumnDefinition />
     </Grid.ColumnDefinitions>
-    <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}" Grid.Column="0"
+    <FontIcon Grid.Column="0"
+              Glyph="{StaticResource VolumeSymbol}"
+              FontFamily="{StaticResource VLCFont}"
+              FontSize="17"
+              Margin="{StaticResource FrameMarginRight}"
+              Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
+    <Slider Grid.Column="2" x:Name="VolumeSlider"
+            DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+            Value="{Binding Volume, Mode=TwoWay}"
+            Maximum="200"
+            MinWidth="100"
+            Style="{StaticResource VLCSlider}"
+            Foreground="White"/>
+    <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}" Grid.Column="4"
                         Margin="0,6,0,0"
                         IsCompact="True"
                         DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlaybackService}"
@@ -30,7 +47,7 @@
                       x:Name="ShuffleFontIcon" />
         </AppBarToggleButton.Icon>
     </AppBarToggleButton>
-    <Button Grid.Column="6"
+    <Button Grid.Column="10"
             Style="{StaticResource TextBlockButtonStyle}"
             HorizontalAlignment="Center"
             DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
@@ -44,7 +61,7 @@
             </Grid>
         </Button.Content>
     </Button>
-    <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}" Grid.Column="4"
+    <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}" Grid.Column="8"
                         Margin="0,6,0,0"
                         IsCompact="True"
                         VerticalAlignment="Center"
@@ -59,7 +76,7 @@
                       x:Name="FavoriteFontIcon" />
         </AppBarToggleButton.Icon>
     </AppBarToggleButton>
-    <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}" Grid.Column="2"
+    <AppBarToggleButton Style="{StaticResource VLCAppBarToggleButton}" Grid.Column="6"
                         Margin="0,6,0,0"
                         IsCompact="True"
                         VerticalAlignment="Center"
