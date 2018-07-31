@@ -166,12 +166,6 @@
                                                    FontSize="22"
                                                    DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}" />
             </Grid>
-            <local:SecondaryMusicPlayerButtons x:Name="SecondaryMusicPlayerButtons"
-                                               Grid.Row="4"
-                                               HorizontalAlignment="Stretch"
-                                               FontSize="22"
-                                               DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}" />
-
             <AppBarButton x:Name="ShowPlaylistButton"
                           Grid.Row="3"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"

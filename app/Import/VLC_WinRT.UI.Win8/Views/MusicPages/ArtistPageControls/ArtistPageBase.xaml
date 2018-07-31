@@ -20,11 +20,13 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <local:MainArtistHeader Margin="{StaticResource FrameMarginBothSides}"
-                                BackButtonVisibility="Visible"/>
+                                BackButtonVisibility="Visible"
+                                Background="{ThemeResource ApplicationChromeThemeBrush}"/>
 
         <local:ArtistAlbumsSemanticView Grid.Row="1"
                                         Grid.Column="0"
-                                        Margin="{StaticResource FrameMarginLeft}" />
+                                        Margin="{StaticResource FrameMarginLeft}" 
+                                        Background="{ThemeResource ApplicationChromeThemeBrush}"/>
 
         <local:ArtistInfoControl x:Name="ExtraInfoGrid"
                                  Grid.Row="0"

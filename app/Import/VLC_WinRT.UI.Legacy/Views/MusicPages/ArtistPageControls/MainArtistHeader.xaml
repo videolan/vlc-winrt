@@ -9,7 +9,7 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
     <Grid x:Name="HeaderGrid"
-          Background="{ThemeResource ApplicationPageBackgroundThemeColor}"
+          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           RequestedTheme="Dark">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />

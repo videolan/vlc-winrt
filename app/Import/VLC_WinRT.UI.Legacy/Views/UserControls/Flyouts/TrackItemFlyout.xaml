@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid Background="{ThemeResource ApplicationFourthForegroundThemeColor}">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -115,8 +115,7 @@
             </AppBarButton>
         </Grid>
         <Grid Grid.Row="2"
-              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
-              Background="{ThemeResource ApplicationFourthForegroundThemeColor}">
+              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition />

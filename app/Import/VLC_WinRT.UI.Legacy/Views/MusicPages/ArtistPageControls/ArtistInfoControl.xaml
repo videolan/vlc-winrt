@@ -9,7 +9,7 @@
              d:DesignWidth="400">
 
     <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
-        <Grid>
+        <Grid Background="{ThemeResource ApplicationChromeThemeBrush}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="{StaticResource FrameMarginGridLengthDouble}" />
