@@ -211,7 +211,7 @@ namespace VLC.ViewModels.VideoVM
                 // Unfortunately, if the video is opened via a filepicker AND that the video is in an unusual folder, like C:/randomfolder/
                 // This might now work, hence the try catch                
                 var storageFolderParent = await StorageFolder.GetFolderFromPathAsync(subtitlesFolderPath);
-                var subs = await LocateSubtitlesFile(storageFolderParent);
+                var subs = await LocateSubtitlesFile(storageFolderParent, fileNameWithoutExtensions);
                 if(subs != null)
                 {
                     Locator.MediaPlaybackViewModel.OpenSubtitleCommand.Execute(subs);
@@ -237,7 +237,7 @@ namespace VLC.ViewModels.VideoVM
                 var subtitlesFolder = await LocateSubtitlesFolder(sdCard, subtitlesFolderPath);
                 if (subtitlesFolder == null) return false;
 
-                var subtitlesFile = await LocateSubtitlesFile(subtitlesFolder);
+                var subtitlesFile = await LocateSubtitlesFile(subtitlesFolder, fileNameWithoutExtensions);
                 if (subtitlesFile == null) return false;
 
                 Locator.MediaPlaybackViewModel.OpenSubtitleCommand.Execute(subtitlesFile);
@@ -253,11 +253,11 @@ namespace VLC.ViewModels.VideoVM
         /// <summary>
         /// returns first match for autoload feature. Go manually if you want a specific one out of several subs with same name
         /// </summary>
-        async Task<StorageFile> LocateSubtitlesFile(StorageFolder subtitlesFolder)
+        async Task<StorageFile> LocateSubtitlesFile(StorageFolder subtitlesFolder, string fileNameWithoutExtensions)
         {
-            var queryResult = subtitlesFolder.CreateFileQueryWithOptions(new QueryOptions(CommonFileQuery.DefaultQuery, VLCFileExtensions.SubtitleExtensions));
+            var queryResult = subtitlesFolder.CreateFileQueryWithOptions(new QueryOptions(CommonFileQuery.OrderByName, VLCFileExtensions.SubtitleExtensions));
             var matches = await queryResult.GetFilesAsync();
-            return matches.FirstOrDefault();
+            return matches.FirstOrDefault(file => file.DisplayName.Equals(fileNameWithoutExtensions));
         }
 
         async Task<StorageFolder> LocateSubtitlesFolder(StorageFolder startFolder, string subtitlesFolderPath)
