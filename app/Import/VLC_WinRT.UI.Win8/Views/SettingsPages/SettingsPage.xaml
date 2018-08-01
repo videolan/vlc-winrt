@@ -11,29 +11,40 @@
           DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
             <StackPanel x:Name="RootPanel">
-                <Grid Margin="{StaticResource TitleBarMarginTop}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <AppBarButton Grid.Column="0"
-                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                  VerticalAlignment="Center"
+
+                <AppBarButton 
+                              Label="{Binding Source={StaticResource Strings}, Path=Settings}"
+                              Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
+                              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                              Command="{Binding GoBackCommand}"
+                              FontWeight="Light"
+                              FontSize="17"
+                              Margin="{StaticResource FrameMarginVertical}"
+                              HorizontalAlignment="Stretch">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                                  FontFamily="{StaticResource VLCFont}" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                
+
+                <!--<AppBarButton     
+                                  Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
                                   HorizontalAlignment="Stretch"
                                   DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
                                   Command="{Binding GoBackCommand}"
                                   Width="50"
                                   Margin="{StaticResource FrameMarginLeft}">
-                        <AppBarButton.Icon>
-                            <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
-                                      Margin="0,3,0,0"
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
                                       FontFamily="{StaticResource VLCFont}" />
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                    <TextBlock Grid.Column="1"
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <TextBlock 
                                Text="{Binding Source={StaticResource Strings}, Path=Settings}"
-                               Style="{StaticResource SubheaderTextBlockStyle}" />
-                </Grid>
+                               Style="{StaticResource SubheaderTextBlockStyle}" />-->
+                
+
                 <AppBarButton x:Name="UserInterface" 
                               Label="{Binding Source={StaticResource Strings}, Path=UserInterface}"
                               Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
@@ -43,12 +54,12 @@
                               FontSize="17"
                               Margin="{StaticResource FrameMarginVertical}"
                               HorizontalAlignment="Stretch">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="{StaticResource ExpandWindow}"
+        <AppBarButton.Icon>
+            <FontIcon Glyph="{StaticResource ExpandWindow}"
                                   FontFamily="{StaticResource VLCFont}" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
-                <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=VideoSettings}"
+        </AppBarButton.Icon>
+    </AppBarButton>
+    <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=VideoSettings}"
                               Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
                               Command="{Binding ChangeSettingsViewCommand}"
                               CommandParameter="1"
@@ -56,12 +67,12 @@
                               FontSize="17"
                               Margin="{StaticResource FrameMarginVertical}"
                               HorizontalAlignment="Stretch">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="{StaticResource VideoSymbol}"
+        <AppBarButton.Icon>
+            <FontIcon Glyph="{StaticResource VideoSymbol}"
                                   FontFamily="{StaticResource VLCFont}" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
-                <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=MusicSettings}"
+        </AppBarButton.Icon>
+    </AppBarButton>
+    <AppBarButton Label="{Binding Source={StaticResource Strings}, Path=MusicSettings}"
                               Style="{StaticResource AppBarButtonStyleHorizontalMenu}"
                               Command="{Binding ChangeSettingsViewCommand}"
                               CommandParameter="2"
@@ -69,37 +80,24 @@
                               FontSize="17"
                               Margin="{StaticResource FrameMarginVertical}"
                               HorizontalAlignment="Stretch">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="{StaticResource MusicSymbol}"
+        <AppBarButton.Icon>
+            <FontIcon Glyph="{StaticResource MusicSymbol}"
                                   FontFamily="{StaticResource VLCFont}" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
-
-
-                <TextBlock Text="{Binding Source={StaticResource Strings}, Path=AboutTheApp}"
-                           Style="{StaticResource SubheaderTextBlockStyle}"
-                           Margin="{StaticResource FrameMarginBothSides}"/>
+        </AppBarButton.Icon>
+    </AppBarButton>
+                
                 <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
-                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
-                           VerticalAlignment="Center"
-                           Margin="{StaticResource FrameMarginLeft}">
+                           Margin="{StaticResource FrameMarginBothSides}"
+                           Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}">
                     <Run Text="VLC"/>
                     <Run x:Name="AppVersion" />
                     <Run Text="for Windows Store" />
                 </TextBlock>
-                <Grid Margin="{StaticResource FrameMarginBothSides}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="2"
+                <!--<Button 
                             Margin="12,0,0,0"
                             Content="{Binding Source={StaticResource Strings}, Path=License}"
-                            Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToAboutViewCommand}" />
-                </Grid>
+                            Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToAboutViewCommand}" />-->
             </StackPanel>
         </ScrollViewer>
     </Grid>

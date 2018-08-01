@@ -26,6 +26,12 @@
                           FontFamily="{StaticResource VLCFont}" />
             </AppBarButton.Icon>
         </AppBarButton>
+        <AppBarButton Label="Go to settings" 
+                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource SettingsSymbol}" FontFamily="{StaticResource VLCFont}" />
+            </AppBarButton.Icon>
+        </AppBarButton>
         <AppBarButton x:Name="PlayPauseButton"
                   Command="{Binding PlayOrPauseCommand}"
                   DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
