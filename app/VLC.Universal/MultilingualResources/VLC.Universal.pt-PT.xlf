@@ -156,7 +156,7 @@
         </trans-unit>
         <trans-unit id="FailStartVLCEngine" translate="yes" xml:space="preserve">
           <source>The app failed to start the VLC engine</source>
-          <target state="translated">A aplicação falhou a iniciação do motor do VLC</target>
+          <target state="translated">A aplicação não conseguiu iniciar o motor do VLC</target>
         </trans-unit>
         <trans-unit id="FeedbackThankYou" translate="yes" xml:space="preserve">
           <source>feedback sent! thank you</source>
@@ -248,7 +248,7 @@
         </trans-unit>
         <trans-unit id="MusicFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search songs that are in your music library. You can add folders to your library here</source>
-          <target state="translated">O VLC irá apenas pesquisar músicas que estão na sua biblioteca de músicas. Pode adicionar pastas à sua biblioteca aqui</target>
+          <target state="translated">VLC irá pesquisar apenas por músicas que estão na sua biblioteca de músicas. Pode adicionar pastas à sua biblioteca aqui</target>
         </trans-unit>
         <trans-unit id="MusicSettings" translate="yes" xml:space="preserve">
           <source>Music Settings</source>
@@ -836,7 +836,7 @@
         </trans-unit>
         <trans-unit id="ReadFromExternalStorage" translate="yes" xml:space="preserve">
           <source>Use external storage as media library.</source>
-          <target state="translated">Utilizar armazenamento externo como biblioteca de média</target>
+          <target state="translated">Utilizar armazenamento externo como mediateca</target>
         </trans-unit>
         <trans-unit id="SelectContentToCopy" translate="yes" xml:space="preserve">
           <source>Copy media to the internal storage.</source>
