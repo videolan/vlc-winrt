@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file build-num="n/a" datatype="xml" original="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW" product-name="n/a" product-version="n/a" source-language="en-US" target-language="he-IL" tool-id="MultilingualAppToolkit">
+    <header>
+      <tool tool-company="Microsoft" tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" />
+    </header>
+    <body>
+      <group datatype="resx" id="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW">
+        <trans-unit id="AboutTheApp" translate="yes" xml:space="preserve">
+          <source>about the app</source>
+          <target state="translated">על אודות היישומון</target>
+        </trans-unit>
+        <trans-unit id="Add" translate="yes" xml:space="preserve">
+          <source>add</source>
+          <target state="translated">הוספה</target>
+        </trans-unit>
+        <trans-unit id="AddFolder" translate="yes" xml:space="preserve">
+          <source>add folder</source>
+          <target state="translated">הוספת תיקייה</target>
+        </trans-unit>
+        <trans-unit id="AddToCollection" translate="yes" xml:space="preserve">
+          <source>add to collection</source>
+          <target state="translated">הוספה לאוסף</target>
+        </trans-unit>
+        <trans-unit id="AddToCurrentPlaylist" translate="yes" xml:space="preserve">
+          <source>add to current playlist</source>
+          <target state="translated">הוספה לרשימת הנגינה הנוכחית</target>
+        </trans-unit>
+        <trans-unit id="AddToPlaylist" translate="yes" xml:space="preserve">
+          <source>add to playlist</source>
+          <target state="translated">הוספה לרשימת נגינה</target>
+        </trans-unit>
+        <trans-unit id="Albums" translate="yes" xml:space="preserve">
+          <source>albums</source>
+          <target state="translated">אלבומים</target>
+        </trans-unit>
+        <trans-unit id="AlbumsFound" translate="yes" xml:space="preserve">
+          <source>albums found : {0}</source>
+          <target state="translated">אלבומים שנמצאו : {0}</target>
+        </trans-unit>
+        <trans-unit id="Animations" translate="yes" xml:space="preserve">
+          <source>animations</source>
+          <target state="translated">הנפשות</target>
+        </trans-unit>
+        <trans-unit id="AppTheme" translate="yes" xml:space="preserve">
+          <source>application theme</source>
+          <target state="translated">ערכת נושא של יישומון</target>
+        </trans-unit>
+        <trans-unit id="Artists" translate="yes" xml:space="preserve">
+          <source>artists</source>
+          <target state="translated">אמנים</target>
+        </trans-unit>
+        <trans-unit id="Audio" translate="yes" xml:space="preserve">
+          <source>audio</source>
+          <target state="translated">שמע</target>
+        </trans-unit>
+        <trans-unit id="AudioDelay" translate="yes" xml:space="preserve">
+          <source>audio delay</source>
+          <target state="translated">השהיית שמע</target>
+        </trans-unit>
+        <trans-unit id="AudioTracks" translate="yes" xml:space="preserve">
+          <source>Audio Tracks</source>
+          <target state="translated">רצועות שמע</target>
+        </trans-unit>
+        <trans-unit id="Back" translate="yes" xml:space="preserve">
+          <source>back</source>
+          <target state="translated">חזרה</target>
+        </trans-unit>
+        <trans-unit id="CameraRoll" translate="yes" xml:space="preserve">
+          <source>camera roll</source>
+          <target state="translated">אלבום המצלמה</target>
+        </trans-unit>
+        <trans-unit id="ChangeAlbumCover" translate="yes" xml:space="preserve">
+          <source>change album cover</source>
+          <target state="translated">החלפת עטיפת אלבום</target>
+        </trans-unit>
+        <trans-unit id="Chapters" translate="yes" xml:space="preserve">
+          <source>Chapters</source>
+          <target state="translated">פרקים</target>
+        </trans-unit>
+        <trans-unit id="CheckCredentials" translate="yes" xml:space="preserve">
+          <source>an error occured, please check your credentials</source>
+          <target state="translated">אירעה שגיאה, נא לבדוק את פרטי הגישה שלך</target>
+        </trans-unit>
+        <trans-unit id="Connect" translate="yes" xml:space="preserve">
+          <source>connect</source>
+          <target state="translated">כניסה</target>
+        </trans-unit>
+        <trans-unit id="ConnectedToLastFM" translate="yes" xml:space="preserve">
+          <source>connected to Last.FM</source>
+          <target state="translated">נכנסת ל־Last.FM</target>
+        </trans-unit>
+        <trans-unit id="Connecting" translate="yes" xml:space="preserve">
+          <source>connecting</source>
+          <target state="translated">מתבצעת כניסה</target>
+        </trans-unit>
+        <trans-unit id="ConnectToLastFM" translate="yes" xml:space="preserve">
+          <source>connect to Last.FM</source>
+          <target state="translated">כניסה ל־Last.FM</target>
+        </trans-unit>
+        <trans-unit id="CrashReport" translate="yes" xml:space="preserve">
+          <source>crash report</source>
+          <target state="translated">דוח קריסה</target>
+        </trans-unit>
+        <trans-unit id="DecreaseSpeed" translate="yes" xml:space="preserve">
+          <source>decrease speed</source>
+          <target state="translated">האטת המהירות</target>
+        </trans-unit>
+        <trans-unit id="DecreaseVolume" translate="yes" xml:space="preserve">
+          <source>decrease volume</source>
+          <target state="translated">הנמכת עצמת השמע</target>
+        </trans-unit>
+        <trans-unit id="DeletePlaylist" translate="yes" xml:space="preserve">
+          <source>delete playlist</source>
+          <target state="translated">מחיקת רשימת נגינה</target>
+        </trans-unit>
+        <trans-unit id="DeleteSelected" translate="yes" xml:space="preserve">
+          <source>delete selected</source>
+          <target state="translated">מחיקת הנבחרים</target>
+        </trans-unit>
+        <trans-unit id="EditMetadata" translate="yes" xml:space="preserve">
+          <source>edit metadata</source>
+          <target state="translated">עריכת נתוני על</target>
+        </trans-unit>
+        <trans-unit id="ElementsNotFound" translate="yes" xml:space="preserve">
+          <source>we did not find elements in there</source>
+          <target state="translated">לא מצאנו שם את הרכיבים</target>
+        </trans-unit>
+        <trans-unit id="EnterURL" translate="yes" xml:space="preserve">
+          <source>enter a url</source>
+          <target state="translated">נא להכניס כתובת</target>
+        </trans-unit>
+        <trans-unit id="Episode" translate="yes" xml:space="preserve">
+          <source>episode</source>
+          <target state="translated">פרק</target>
+        </trans-unit>
+        <trans-unit id="EvenIfBackground" translate="yes" xml:space="preserve">
+          <source>even if the app is in background</source>
+          <target state="translated">אפילו אם היישומון הוא ברקע</target>
+        </trans-unit>
+        <trans-unit id="EvenIfNotBackground" translate="yes" xml:space="preserve">
+          <source>even if the app is not in background</source>
+          <target state="translated">אפילו אם היישומון אינו ברקע</target>
+        </trans-unit>
+        <trans-unit id="FailFilePlayBackground" translate="yes" xml:space="preserve">
+          <source>This file may not play in the background</source>
+          <target state="translated">יתכן שאין אפשרות לנגן קובץ זה ברקע</target>
+        </trans-unit>
+        <trans-unit id="FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
+          <source>VLC failed to navigate to the Video Player page</source>
+          <target state="translated">הניווט של VLC אל עמוד נגן הווידאו נכשל</target>
+        </trans-unit>
+        <trans-unit id="FailOpenVideo" translate="yes" xml:space="preserve">
+          <source>VLC failed to open the video</source>
+          <target state="translated">פתיחת הווידאו ב־VLC נכשלה</target>
+        </trans-unit>
+        <trans-unit id="FailStartVLCEngine" translate="yes" xml:space="preserve">
+          <source>The app failed to start the VLC engine</source>
+          <target state="translated">היישומון נכשל בהפעלת המנגנון של VLC</target>
+        </trans-unit>
+        <trans-unit id="FeedbackThankYou" translate="yes" xml:space="preserve">
+          <source>feedback sent! thank you</source>
+          <target state="translated">המשוב נשלח! תודה רבה</target>
+        </trans-unit>
+        <trans-unit id="FileExplorer" translate="yes" xml:space="preserve">
+          <source>browse</source>
+          <target state="translated">עיון</target>
+        </trans-unit>
+        <trans-unit id="HardwareDecoding" translate="yes" xml:space="preserve">
+          <source>hardware decoding</source>
+          <target state="translated">פענוח חומרה</target>
+        </trans-unit>
+        <trans-unit id="HardwareDecodingDescription" translate="yes" xml:space="preserve">
+          <source>Hardware decoding may not work on your device.</source>
+          <target state="translated">יכול להיות שהמכשיר שלך אינו תומך בפענוח חומרה.</target>
+        </trans-unit>
+        <trans-unit id="HaveToSelectPlaylist" translate="yes" xml:space="preserve">
+          <source>please select a playlist</source>
+          <target state="translated">נא לבחור רשימת נגינה</target>
+        </trans-unit>
+        <trans-unit id="Home" translate="yes" xml:space="preserve">
+          <source>home</source>
+          <target state="translated">בית</target>
+        </trans-unit>
+        <trans-unit id="HomePage" translate="yes" xml:space="preserve">
+          <source>home page</source>
+          <target state="translated">עמוד בית</target>
+        </trans-unit>
+        <trans-unit id="HomePageDescription" translate="yes" xml:space="preserve">
+          <source>VLC will start on the selected page</source>
+          <target state="translated">VLC יתחיל בעמוד הנבחר</target>
+        </trans-unit>
+        <trans-unit id="HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
+          <source>however you may find what you're looking for here</source>
+          <target state="translated">עם זאת, יכול להיות שמבוקשך נמצא ממש כאן</target>
+        </trans-unit>
+        <trans-unit id="HowToFavoriteAlbum1" translate="yes" xml:space="preserve">
+          <source>to favorite an album, just press</source>
+          <target state="translated">כדי להוסיף אלבום למועדפים, עליך פשוט ללחוץ על</target>
+        </trans-unit>
+        <trans-unit id="HowToFavoriteAlbum2" translate="yes" xml:space="preserve">
+          <source>and you'll get an instant access to it</source>
+          <target state="translated">ויתאפשר לך לגשת באופן ישיר אל</target>
+        </trans-unit>
+        <trans-unit id="ImportantSponsors" translate="yes" xml:space="preserve">
+          <source>important sponsors</source>
+          <target state="translated">מממנים חשובים</target>
+        </trans-unit>
+        <trans-unit id="IncreaseSpeed" translate="yes" xml:space="preserve">
+          <source>increase speed</source>
+          <target state="translated">הגברת מהירות</target>
+        </trans-unit>
+        <trans-unit id="IncreaseVolume" translate="yes" xml:space="preserve">
+          <source>increase volume</source>
+          <target state="translated">הגברת עצמת שמע</target>
+        </trans-unit>
+        <trans-unit id="ItsEmpty" translate="yes" xml:space="preserve">
+          <source>it's empty here</source>
+          <target state="translated">ריק כאן</target>
+        </trans-unit>
+        <trans-unit id="KeyboardShortcuts" translate="yes" xml:space="preserve">
+          <source>keyboard shortcuts</source>
+          <target state="translated">קיצורי מקלדת</target>
+        </trans-unit>
+        <trans-unit id="License" translate="yes" xml:space="preserve">
+          <source>license</source>
+          <target state="translated">רישיון</target>
+        </trans-unit>
+        <trans-unit id="Loading" translate="yes" xml:space="preserve">
+          <source>loading</source>
+          <target state="translated">בטעינה</target>
+        </trans-unit>
+        <trans-unit id="LoadingMusic" translate="yes" xml:space="preserve">
+          <source>loading music</source>
+          <target state="translated">מוזיקה נטענת</target>
+        </trans-unit>
+        <trans-unit id="MostPlayedArtists" translate="yes" xml:space="preserve">
+          <source>most played artists</source>
+          <target state="translated">האמנים שהתנגנו הכי הרבה</target>
+        </trans-unit>
+        <trans-unit id="Music" translate="yes" xml:space="preserve">
+          <source>music</source>
+          <target state="translated">מוזיקה</target>
+        </trans-unit>
+        <trans-unit id="MusicFolders" translate="yes" xml:space="preserve">
+          <source>music folders</source>
+          <target state="translated">תיקיות מוזיקה</target>
+        </trans-unit>
+        <trans-unit id="MusicFoldersDescription" translate="yes" xml:space="preserve">
+          <source>VLC will only search songs that are in your music library. You can add folders to your library here</source>
+          <target state="translated">VLC יחפש שירים שנמצאים בספריית המוזיקה שלך. ניתן להוסיף תיקיות לספריה שלך דרך כאן</target>
+        </trans-unit>
+        <trans-unit id="MusicSettings" translate="yes" xml:space="preserve">
+          <source>Music Settings</source>
+          <target state="translated">הגדרות מוזיקה</target>
+        </trans-unit>
+        <trans-unit id="MusicShows" translate="yes" xml:space="preserve">
+          <source>music shows</source>
+          <target state="translated">הופעות מוזיקליות</target>
+        </trans-unit>
+        <trans-unit id="Mute" translate="yes" xml:space="preserve">
+          <source>mute</source>
+          <target state="translated">השתקה</target>
+        </trans-unit>
+        <trans-unit id="MyPlaylists" translate="yes" xml:space="preserve">
+          <source>my playlists</source>
+          <target state="translated">רשימות הנגינה שלי</target>
+        </trans-unit>
+        <trans-unit id="Network" translate="yes" xml:space="preserve">
+          <source>network</source>
+          <target state="translated">רשת</target>
+        </trans-unit>
+        <trans-unit id="NewPlaylist" translate="yes" xml:space="preserve">
+          <source>new playlist</source>
+          <target state="translated">רשימת נגינה חדשה</target>
+        </trans-unit>
+        <trans-unit id="NewVideos" translate="yes" xml:space="preserve">
+          <source>new videos</source>
+          <target state="translated">סרטונים חדשים</target>
+        </trans-unit>
+        <trans-unit id="No" translate="yes" xml:space="preserve">
+          <source>no</source>
+          <target state="translated">אין</target>
+        </trans-unit>
+        <trans-unit id="NoBiographyFound" translate="yes" xml:space="preserve">
+          <source>no bio found for this artist</source>
+          <target state="translated">לא נמצאה ביוגרפיה לאמן הזה</target>
+        </trans-unit>
+        <trans-unit id="NoCameraVideosFound" translate="yes" xml:space="preserve">
+          <source>no camera videos found</source>
+          <target state="translated">לא נמצאו סרטונים מהמצלמה</target>
+        </trans-unit>
+        <trans-unit id="NoFavoriteAlbums" translate="yes" xml:space="preserve">
+          <source>no favorite albums</source>
+          <target state="translated">אין אלבומים מועדפים</target>
+        </trans-unit>
+        <trans-unit id="NoInternetConnection" translate="yes" xml:space="preserve">
+          <source>no internet connection</source>
+          <target state="translated">אין חיבור לאינטרנט</target>
+        </trans-unit>
+        <trans-unit id="NoPlaylists" translate="yes" xml:space="preserve">
+          <source>no playlists</source>
+          <target state="translated">אין רשימות נגינה</target>
+        </trans-unit>
+        <trans-unit id="NoShowsFound" translate="yes" xml:space="preserve">
+          <source>no shows found</source>
+          <target state="translated">לא נמצאו תכניות</target>
+        </trans-unit>
+        <trans-unit id="NothingToSeeHere" translate="yes" xml:space="preserve">
+          <source>there's nothing to see here</source>
+          <target state="translated">אין מה לראות כאן</target>
+        </trans-unit>
+        <trans-unit id="Notifications" translate="yes" xml:space="preserve">
+          <source>notifications</source>
+          <target state="translated">התראות</target>
+        </trans-unit>
+        <trans-unit id="NotificationWhenSongStarts" translate="yes" xml:space="preserve">
+          <source>when the song starts</source>
+          <target state="translated">כאשר השיר מתחיל</target>
+        </trans-unit>
+        <trans-unit id="NoVideosFound" translate="yes" xml:space="preserve">
+          <source>we did not find video</source>
+          <target state="translated">לא מצאנו את הסרטון</target>
+        </trans-unit>
+        <trans-unit id="NowPlaying" translate="yes" xml:space="preserve">
+          <source>now playing</source>
+          <target state="translated">מתנגן כעת</target>
+        </trans-unit>
+        <trans-unit id="OpenFile" translate="yes" xml:space="preserve">
+          <source>open file</source>
+          <target state="translated">פתיחת קובץ</target>
+        </trans-unit>
+        <trans-unit id="OpenStream" translate="yes" xml:space="preserve">
+          <source>open stream</source>
+          <target state="translated">פתיחת תזרים</target>
+        </trans-unit>
+        <trans-unit id="OpenSubtitle" translate="yes" xml:space="preserve">
+          <source>open subtitle</source>
+          <target state="translated">פתיחת כתוביות</target>
+        </trans-unit>
+        <trans-unit id="OrderAscending" translate="yes" xml:space="preserve">
+          <source>ascending</source>
+          <target state="translated">עולה</target>
+        </trans-unit>
+        <trans-unit id="OrderByAlbum" translate="yes" xml:space="preserve">
+          <source>by album</source>
+          <target state="translated">לפי אלבום</target>
+        </trans-unit>
+        <trans-unit id="OrderByArtist" translate="yes" xml:space="preserve">
+          <source>by artist</source>
+          <target state="translated">לפי אמן</target>
+        </trans-unit>
+        <trans-unit id="OrderByDate" translate="yes" xml:space="preserve">
+          <source>by date</source>
+          <target state="translated">לפי תאריך</target>
+        </trans-unit>
+        <trans-unit id="OrderDescending" translate="yes" xml:space="preserve">
+          <source>descending</source>
+          <target state="translated">יורד</target>
+        </trans-unit>
+        <trans-unit id="Password" translate="yes" xml:space="preserve">
+          <source>password</source>
+          <target state="translated">ססמה</target>
+        </trans-unit>
+        <trans-unit id="Pause" translate="yes" xml:space="preserve">
+          <source>pause</source>
+          <target state="translated">השהיה</target>
+        </trans-unit>
+        <trans-unit id="PinAlbum" translate="yes" xml:space="preserve">
+          <source>pin album</source>
+          <target state="translated">נעיצת אלבום</target>
+        </trans-unit>
+        <trans-unit id="PinArtist" translate="yes" xml:space="preserve">
+          <source>pin artist</source>
+          <target state="translated">נעיצת אמן</target>
+        </trans-unit>
+        <trans-unit id="Play" translate="yes" xml:space="preserve">
+          <source>play</source>
+          <target state="translated">נגינה</target>
+        </trans-unit>
+        <trans-unit id="PlayAlbum" translate="yes" xml:space="preserve">
+          <source>play album</source>
+          <target state="translated">נגינת אלבום</target>
+        </trans-unit>
+        <trans-unit id="PlayAll" translate="yes" xml:space="preserve">
+          <source>play all</source>
+          <target state="translated">נגינת הכול</target>
+        </trans-unit>
+        <trans-unit id="Playback" translate="yes" xml:space="preserve">
+          <source>playback</source>
+          <target state="translated">נגינה</target>
+        </trans-unit>
+        <trans-unit id="PlayerSettings" translate="yes" xml:space="preserve">
+          <source>Player Settings</source>
+          <target state="translated">הגדרות נגן</target>
+        </trans-unit>
+        <trans-unit id="PlayFolder" translate="yes" xml:space="preserve">
+          <source>play folder</source>
+          <target state="translated">נגינת תיקייה</target>
+        </trans-unit>
+        <trans-unit id="Playlist" translate="yes" xml:space="preserve">
+          <source>playlist</source>
+          <target state="translated">רשימת נגינה</target>
+        </trans-unit>
+        <trans-unit id="PlaylistAlreadyExists" translate="yes" xml:space="preserve">
+          <source>this playlist already exists</source>
+          <target state="translated">רשימת נגינה זו כבר קיימת</target>
+        </trans-unit>
+        <trans-unit id="PlaylistNamePlaceholder" translate="yes" xml:space="preserve">
+          <source>playlist name</source>
+          <target state="translated">שם רשימת הנגינה</target>
+        </trans-unit>
+        <trans-unit id="Playlists" translate="yes" xml:space="preserve">
+          <source>playlists</source>
+          <target state="translated">רשימות נגינה</target>
+        </trans-unit>
+        <trans-unit id="PlayTrack" translate="yes" xml:space="preserve">
+          <source>play track</source>
+          <target state="translated">נגינת רצועה</target>
+        </trans-unit>
+        <trans-unit id="PlayVideo" translate="yes" xml:space="preserve">
+          <source>play video</source>
+          <target state="translated">נגינת סרטון</target>
+        </trans-unit>
+        <trans-unit id="PrivacyStatement" translate="yes" xml:space="preserve">
+          <source>privacy statement</source>
+          <target state="translated">הצהרת פרטיות</target>
+        </trans-unit>
+        <trans-unit id="Favorites" translate="yes" xml:space="preserve">
+          <source>Favorites</source>
+          <target state="translated">מועדפים</target>
+        </trans-unit>
+        <trans-unit id="RefreshMusicLibrary" translate="yes" xml:space="preserve">
+          <source>refresh music library</source>
+          <target state="translated">רענון תיקיית מוזיקה</target>
+        </trans-unit>
+        <trans-unit id="RefreshVideoLibrary" translate="yes" xml:space="preserve">
+          <source>refresh video library</source>
+          <target state="translated">רענון תיקיית וידאו</target>
+        </trans-unit>
+        <trans-unit id="RemovableStorage" translate="yes" xml:space="preserve">
+          <source>removable storage</source>
+          <target state="translated">מדיה נתיקה</target>
+        </trans-unit>
+        <trans-unit id="RemoveFolder" translate="yes" xml:space="preserve">
+          <source>remove folder</source>
+          <target state="translated">הסרת תיקייה</target>
+        </trans-unit>
+        <trans-unit id="RemoveMusicFolderDescription" translate="yes" xml:space="preserve">
+          <source>If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</source>
+          <target state="translated">אם תיקייה זו אינה רצויה בספריית המוזיקה שלך ניתן להסיר אותה. ההסרה לא תשפיע על כל היישומים, לא רק על VLC.</target>
+        </trans-unit>
+        <trans-unit id="RemoveVideoFolderDescription" translate="yes" xml:space="preserve">
+          <source>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</source>
+          <target state="translated">אם תיקייה זו אינה רצויה בספריית הווידאו שלך ניתן להסיר אותה. ההסרה לא תשפיע על כל היישומים, לא רק על VLC.</target>
+        </trans-unit>
+        <trans-unit id="Reset" translate="yes" xml:space="preserve">
+          <source>reset</source>
+          <target state="translated">איפוס</target>
+        </trans-unit>
+        <trans-unit id="ResetMusicDatabase" translate="yes" xml:space="preserve">
+          <source>reset music database</source>
+          <target state="translated">איפוס מסד נתוני מוזיקה</target>
+        </trans-unit>
+        <trans-unit id="ResetSpeed" translate="yes" xml:space="preserve">
+          <source>reset speed</source>
+          <target state="translated">איפוס מהירות</target>
+        </trans-unit>
+        <trans-unit id="RichAnimationsDescription" translate="yes" xml:space="preserve">
+          <source>Use rich animations in the slideshows</source>
+          <target state="translated">שימוש בהנפשות עשירות במצגות</target>
+        </trans-unit>
+        <trans-unit id="Search" translate="yes" xml:space="preserve">
+          <source>search</source>
+          <target state="translated">חיפוש</target>
+        </trans-unit>
+        <trans-unit id="Season" translate="yes" xml:space="preserve">
+          <source>season</source>
+          <target state="translated">עונה</target>
+        </trans-unit>
+        <trans-unit id="Settings" translate="yes" xml:space="preserve">
+          <source>settings</source>
+          <target state="translated">הגדרות</target>
+        </trans-unit>
+        <trans-unit id="ShowPlaylist" translate="yes" xml:space="preserve">
+          <source>show playlist</source>
+          <target state="translated">הצגת רשימת נגינה</target>
+        </trans-unit>
+        <trans-unit id="Shows" translate="yes" xml:space="preserve">
+          <source>shows</source>
+          <target state="translated">תכניות</target>
+        </trans-unit>
+        <trans-unit id="Shuffle" translate="yes" xml:space="preserve">
+          <source>shuffle</source>
+          <target state="translated">ערבוב</target>
+        </trans-unit>
+        <trans-unit id="Songs" translate="yes" xml:space="preserve">
+          <source>songs</source>
+          <target state="translated">שירים</target>
+        </trans-unit>
+        <trans-unit id="SpecialThanks" translate="yes" xml:space="preserve">
+          <source>special thanks</source>
+          <target state="translated">תודות מיוחדות</target>
+        </trans-unit>
+        <trans-unit id="Speed" translate="yes" xml:space="preserve">
+          <source>speed</source>
+          <target state="translated">מהירות</target>
+        </trans-unit>
+        <trans-unit id="Stop" translate="yes" xml:space="preserve">
+          <source>stop</source>
+          <target state="translated">עצירה</target>
+        </trans-unit>
+        <trans-unit id="SubtitleDelay" translate="yes" xml:space="preserve">
+          <source>subtitle delay</source>
+          <target state="translated">השהיית כתוביות</target>
+        </trans-unit>
+        <trans-unit id="Subtitles" translate="yes" xml:space="preserve">
+          <source>Subtitles</source>
+          <target state="translated">כתוביות</target>
+        </trans-unit>
+        <trans-unit id="SubtitlesEncoding" translate="yes" xml:space="preserve">
+          <source>subtitles encoding</source>
+          <target state="translated">קידוד כתוביות</target>
+        </trans-unit>
+        <trans-unit id="Theme" translate="yes" xml:space="preserve">
+          <source>theme</source>
+          <target state="translated">ערכת עיצוב</target>
+        </trans-unit>
+        <trans-unit id="TileRemoved" translate="yes" xml:space="preserve">
+          <source>tile removed</source>
+          <target state="translated">הוסרה משבצת</target>
+        </trans-unit>
+        <trans-unit id="TopVideos" translate="yes" xml:space="preserve">
+          <source>top videos</source>
+          <target state="translated">סרטונים מובילים</target>
+        </trans-unit>
+        <trans-unit id="TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
+          <source>track added to the playlist</source>
+          <target state="translated">נוספה רצועה לרשימת הנגינה</target>
+        </trans-unit>
+        <trans-unit id="TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
+          <source>this track is already in that playlist</source>
+          <target state="translated">רצועה זו כבר קיימת ברשימת נגינה זו</target>
+        </trans-unit>
+        <trans-unit id="Tracks" translate="yes" xml:space="preserve">
+          <source>tracks</source>
+          <target state="translated">רצועות</target>
+        </trans-unit>
+        <trans-unit id="UnknownAlbum" translate="yes" xml:space="preserve">
+          <source>Unknown album</source>
+          <target state="translated">אלבום לא ידוע</target>
+        </trans-unit>
+        <trans-unit id="UnknownArtist" translate="yes" xml:space="preserve">
+          <source>Unknown artist</source>
+          <target state="translated">אמן לא ידוע</target>
+        </trans-unit>
+        <trans-unit id="UnknownShow" translate="yes" xml:space="preserve">
+          <source>Unknown show</source>
+          <target state="translated">תכנית לא ידועה</target>
+        </trans-unit>
+        <trans-unit id="UnknownTrack" translate="yes" xml:space="preserve">
+          <source>Unknown track</source>
+          <target state="translated">רצועה לא ידועה</target>
+        </trans-unit>
+        <trans-unit id="UserInterface" translate="yes" xml:space="preserve">
+          <source>User Interface</source>
+          <target state="translated">מנשק משתמש</target>
+        </trans-unit>
+        <trans-unit id="Username" translate="yes" xml:space="preserve">
+          <source>username</source>
+          <target state="translated">שם משתמש</target>
+        </trans-unit>
+        <trans-unit id="Video" translate="yes" xml:space="preserve">
+          <source>video</source>
+          <target state="translated">סרטון</target>
+        </trans-unit>
+        <trans-unit id="VideoFolders" translate="yes" xml:space="preserve">
+          <source>video folders</source>
+          <target state="translated">תיקיות וידאו</target>
+        </trans-unit>
+        <trans-unit id="VideoFoldersDescription" translate="yes" xml:space="preserve">
+          <source>VLC will only search videos that are in your video library. You can add folders to your library here</source>
+          <target state="translated">היישומון VLC יחפש אך ורק סרטונים בתיקיית הווידאו שלך. ניתן להוסיף תיקיות לספרייה שלך דרך כאן</target>
+        </trans-unit>
+        <trans-unit id="VideoPlayback" translate="yes" xml:space="preserve">
+          <source>video playback</source>
+          <target state="translated">נגינת וידאו</target>
+        </trans-unit>
+        <trans-unit id="VideoPlaybackInBackground" translate="yes" xml:space="preserve">
+          <source>play video in background</source>
+          <target state="translated">נגינת וידאו ברקע</target>
+        </trans-unit>
+        <trans-unit id="Videos" translate="yes" xml:space="preserve">
+          <source>videos</source>
+          <target state="translated">סרטונים</target>
+        </trans-unit>
+        <trans-unit id="VideoSettings" translate="yes" xml:space="preserve">
+          <source>Video Settings</source>
+          <target state="translated">הגדרות וידאו</target>
+        </trans-unit>
+        <trans-unit id="ViewAlbum" translate="yes" xml:space="preserve">
+          <source>view album</source>
+          <target state="translated">הצגת אלבום</target>
+        </trans-unit>
+        <trans-unit id="ViewArtist" translate="yes" xml:space="preserve">
+          <source>view artist</source>
+          <target state="translated">הצגת אמן</target>
+        </trans-unit>
+        <trans-unit id="Volume" translate="yes" xml:space="preserve">
+          <source>volume</source>
+          <target state="translated">עצמת שמע</target>
+        </trans-unit>
+        <trans-unit id="WeNeedYourHelp" translate="yes" xml:space="preserve">
+          <source>we need your help</source>
+          <target state="translated">אנו זקוקים לעזרתך</target>
+        </trans-unit>
+        <trans-unit id="Yes" translate="yes" xml:space="preserve">
+          <source>yes</source>
+          <target state="translated">כ</target>
+        </trans-unit>
+        <trans-unit id="YourMusic" translate="yes" xml:space="preserve">
+          <source>your music</source>
+          <target state="translated">המוזיקה שלך</target>
+        </trans-unit>
+        <trans-unit id="AccentColor" translate="yes" xml:space="preserve">
+          <source>accent color</source>
+          <target state="translated">צבע הדגשה</target>
+        </trans-unit>
+        <trans-unit id="BackgroundColor" translate="yes" xml:space="preserve">
+          <source>background color</source>
+          <target state="translated">צבע הרקע</target>
+        </trans-unit>
+        <trans-unit id="Dark" translate="yes" xml:space="preserve">
+          <source>dark</source>
+          <target state="translated">כהה</target>
+        </trans-unit>
+        <trans-unit id="Light" translate="yes" xml:space="preserve">
+          <source>light</source>
+          <target state="translated">בהיר</target>
+        </trans-unit>
+        <trans-unit id="TitleBar" translate="yes" xml:space="preserve">
+          <source>title bar</source>
+          <target state="translated">סרגל כותרת</target>
+        </trans-unit>
+        <trans-unit id="NeedRestart" translate="yes" xml:space="preserve">
+          <source>You need to restart the app to apply changes</source>
+          <target state="translated">עליך להפעיל את היישומון מחדש כדי להחיל את השינויים</target>
+        </trans-unit>
+        <trans-unit id="Zoom" translate="yes" xml:space="preserve">
+          <source>zoom</source>
+          <target state="translated">תקריב</target>
+        </trans-unit>
+        <trans-unit id="AreYouSure" translate="yes" xml:space="preserve">
+          <source>are you sure?</source>
+          <target state="translated">להמשיך?</target>
+        </trans-unit>
+        <trans-unit id="MediaCantBeRead" translate="yes" xml:space="preserve">
+          <source>the media can't be read</source>
+          <target state="translated">לא ניתן לקרוא את המדיה</target>
+        </trans-unit>
+        <trans-unit id="Sorry" translate="yes" xml:space="preserve">
+          <source>we're sorry</source>
+          <target state="translated">אנו מתנצלים</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_BEST_FIT" translate="yes" xml:space="preserve">
+          <source>best fit</source>
+          <target state="translated">ההתאמה המיטבית</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_FIT_HORIZONTAL" translate="yes" xml:space="preserve">
+          <source>horizontal cropping</source>
+          <target state="translated">חיתוך אופקי</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_FIT_VERTICAL" translate="yes" xml:space="preserve">
+          <source>vertical cropping</source>
+          <target state="translated">חיתוך אנכי</target>
+        </trans-unit>
+        <trans-unit id="YourPlaylistWontBeAccessible" translate="yes" xml:space="preserve">
+          <source>your playlist won't be accessible</source>
+          <target state="translated">רשימת הנגינה שלך לא תהיה נגישה</target>
+        </trans-unit>
+        <trans-unit id="NoArtistShowsFound" translate="yes" xml:space="preserve">
+          <source>we didn't find shows for this artist</source>
+          <target state="translated">לא מצאנו תכניות עבור האמן הזה</target>
+        </trans-unit>
+        <trans-unit id="NoResults" translate="yes" xml:space="preserve">
+          <source>no results</source>
+          <target state="translated">אין תוצאות</target>
+        </trans-unit>
+        <trans-unit id="ForceLandscape" translate="yes" xml:space="preserve">
+          <source>Force landscape</source>
+          <target state="translated">אילוץ מצב לאורך</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_STRETCH" translate="yes" xml:space="preserve">
+          <source>stretch</source>
+          <target state="translated">מתיחה</target>
+        </trans-unit>
+        <trans-unit id="SimilarArtists" translate="yes" xml:space="preserve">
+          <source>Similar artists</source>
+          <target state="translated">אמנים דומים</target>
+        </trans-unit>
+        <trans-unit id="EnglishLanguage" translate="yes" xml:space="preserve">
+          <source>English</source>
+          <target state="translated">אנגלי</target>
+        </trans-unit>
+        <trans-unit id="FrenchLanguage" translate="yes" xml:space="preserve">
+          <source>French</source>
+          <target state="translated">צרפתית</target>
+        </trans-unit>
+        <trans-unit id="JapaneseLanguage" translate="yes" xml:space="preserve">
+          <source>Japanese</source>
+          <target state="translated">יפנית</target>
+        </trans-unit>
+        <trans-unit id="GermanLanguage" translate="yes" xml:space="preserve">
+          <source>German</source>
+          <target state="translated">גרמנית</target>
+        </trans-unit>
+        <trans-unit id="PolishLanguage" translate="yes" xml:space="preserve">
+          <source>Polish</source>
+          <target state="translated">פולנית</target>
+        </trans-unit>
+        <trans-unit id="SlovakLanguage" translate="yes" xml:space="preserve">
+          <source>Slovak</source>
+          <target state="translated">סלובקית</target>
+        </trans-unit>
+        <trans-unit id="DanishLanguage" translate="yes" xml:space="preserve">
+          <source>Danish</source>
+          <target state="translated">דנית</target>
+        </trans-unit>
+        <trans-unit id="SpanishLanguage" translate="yes" xml:space="preserve">
+          <source>Spanish</source>
+          <target state="translated">ספרדית</target>
+        </trans-unit>
+        <trans-unit id="HungarianLanguage" translate="yes" xml:space="preserve">
+          <source>Hungarian</source>
+          <target state="translated">הונגרית</target>
+        </trans-unit>
+        <trans-unit id="ItalianLanguage" translate="yes" xml:space="preserve">
+          <source>Italian</source>
+          <target state="translated">איטלקית</target>
+        </trans-unit>
+        <trans-unit id="KoreanLanguage" translate="yes" xml:space="preserve">
+          <source>Korean</source>
+          <target state="translated">קוריאנית</target>
+        </trans-unit>
+        <trans-unit id="MalayLanguage" translate="yes" xml:space="preserve">
+          <source>Malay</source>
+          <target state="translated">מלאית</target>
+        </trans-unit>
+        <trans-unit id="NorwegianLanguage" translate="yes" xml:space="preserve">
+          <source>Norwegian</source>
+          <target state="translated">נורווגית</target>
+        </trans-unit>
+        <trans-unit id="DutchLanguage" translate="yes" xml:space="preserve">
+          <source>Dutch</source>
+          <target state="translated">הולנגית</target>
+        </trans-unit>
+        <trans-unit id="RussianLanguage" translate="yes" xml:space="preserve">
+          <source>Russian</source>
+          <target state="translated">רוסית</target>
+        </trans-unit>
+        <trans-unit id="SwedishLanguage" translate="yes" xml:space="preserve">
+          <source>Swedish</source>
+          <target state="translated">שוודית</target>
+        </trans-unit>
+        <trans-unit id="TurkishLanguage" translate="yes" xml:space="preserve">
+          <source>Turkish</source>
+          <target state="translated">טורקית</target>
+        </trans-unit>
+        <trans-unit id="UkrainianLanguage" translate="yes" xml:space="preserve">
+          <source>Ukrainian</source>
+          <target state="translated">אוקראינית</target>
+        </trans-unit>
+        <trans-unit id="ChineseLanguage" translate="yes" xml:space="preserve">
+          <source>Chinese</source>
+          <target state="translated">סינית</target>
+        </trans-unit>
+        <trans-unit id="PortugueseLanguage" translate="yes" xml:space="preserve">
+          <source>Portuguese</source>
+          <target state="translated">פורטוגלית</target>
+        </trans-unit>
+        <trans-unit id="CzechLanguage" translate="yes" xml:space="preserve">
+          <source>Czech</source>
+          <target state="translated">צ׳כית</target>
+        </trans-unit>
+        <trans-unit id="IcelandicLanguage" translate="yes" xml:space="preserve">
+          <source>Icelandic</source>
+          <target state="translated">איסלנדית</target>
+        </trans-unit>
+        <trans-unit id="Languages" translate="yes" xml:space="preserve">
+          <source>Languages</source>
+          <target state="translated">שפות</target>
+        </trans-unit>
+        <trans-unit id="SelectLanguageDescription" translate="yes" xml:space="preserve">
+          <source>VLC will be displayed in</source>
+          <target state="translated">היישומון VLC יוצג בשפה</target>
+        </trans-unit>
+        <trans-unit id="ApplyAndRestart" translate="yes" xml:space="preserve">
+          <source>Apply And Restart</source>
+          <target state="translated">החלה והפעלה מחדש</target>
+        </trans-unit>
+        <trans-unit id="RefreshLanguage" translate="yes" xml:space="preserve">
+          <source>Refresh Language</source>
+          <target state="translated">רענון שפה</target>
+        </trans-unit>
+        <trans-unit id="Local" translate="yes" xml:space="preserve">
+          <source>local</source>
+          <target state="translated">מקומ</target>
+        </trans-unit>
+        <trans-unit id="WEBINTF_DOWNLOADFILES" translate="yes" xml:space="preserve">
+          <source>Download Files</source>
+          <target state="translated">הורדת קבצים</target>
+        </trans-unit>
+        <trans-unit id="WEBINTF_DOWNLOADFILES_LONG" translate="yes" xml:space="preserve">
+          <source>Just click the file you want to download from your Xbox.</source>
+          <target state="translated">עליך פשוט ללחוץ על הקובץ שברצונך להוריד מה־Xbox שלך.</target>
+        </trans-unit>
+        <trans-unit id="WEBINTF_DROPFILES" translate="yes" xml:space="preserve">
+          <source>Drop Files</source>
+          <target state="translated">השלכת קבצים</target>
+        </trans-unit>
+        <trans-unit id="WEBINTF_DROPFILES_LONG" translate="yes" xml:space="preserve">
+          <source>Drop files in the window to add them to your Xbox.<it id="1" pos="open">&lt;br&gt;</it>Or click on the "+" button to use the file picker dialog.</source>
+          <target state="translated">ניתן לגרור קבצים לתוך החלון כדי להוסיף אותם ל־Xbox שלך.<it id="1" pos="open">&lt;br&gt;</it>או ללחוץ על הכפתור „+” כדי להשתמש בחלונית בחירת הקבצים.</target>
+        </trans-unit>
+        <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
+          <source>Sharing via WiFi</source>
+          <target state="translated">שיתוף דרך רשת אלחוטית</target>
+        </trans-unit>
+        <trans-unit id="CopyToLocalStorage" translate="yes" xml:space="preserve">
+          <source>copy to local storage</source>
+          <target state="translated">העתקה לאחסון מקומי</target>
+        </trans-unit>
+        <trans-unit id="ExternalStorageDeviceDetected" translate="yes" xml:space="preserve">
+          <source>VLC has detected an external storage device.</source>
+          <target state="translated">היישומון VLC זיהה התקן אחסון חיצוני.</target>
+        </trans-unit>
+        <trans-unit id="ReadFromExternalStorage" translate="yes" xml:space="preserve">
+          <source>Use external storage as media library.</source>
+          <target state="translated">להשתמש באחסון חיצוני כתיקיית מדיה.</target>
+        </trans-unit>
+        <trans-unit id="SelectContentToCopy" translate="yes" xml:space="preserve">
+          <source>Copy media to the internal storage.</source>
+          <target state="translated">העתקת מדיה לאחסון פנימי.</target>
+        </trans-unit>
+        <trans-unit id="WhatToDo" translate="yes" xml:space="preserve">
+          <source>What would you like to do?</source>
+          <target state="translated">מה ברצונך לעשות?</target>
+        </trans-unit>
+        <trans-unit id="AskMe" translate="yes" xml:space="preserve">
+          <source>Ask me</source>
+          <target state="translated">לשאול אותי</target>
+        </trans-unit>
+        <trans-unit id="ExternalStorage" translate="yes" xml:space="preserve">
+          <source>external storage</source>
+          <target state="translated">אחסון חיצוני</target>
+        </trans-unit>
+        <trans-unit id="WhatToDoWhenExternalStorage" translate="yes" xml:space="preserve">
+          <source>What should VLC do when an external storage device has been detected?</source>
+          <target state="translated">מה אמור לעשות היישומון VLC כאשר מזוהה התקן אחסון חיצוני?</target>
+        </trans-unit>
+        <trans-unit id="Cancel" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="translated">ביטול</target>
+        </trans-unit>
+        <trans-unit id="DoNothing" translate="yes" xml:space="preserve">
+          <source>Do nothing</source>
+          <target state="translated">לא לעשות כלום</target>
+        </trans-unit>
+        <trans-unit id="Ok" translate="yes" xml:space="preserve">
+          <source>Ok</source>
+          <target state="translated">אישור</target>
+        </trans-unit>
+        <trans-unit id="Ignore" translate="yes" xml:space="preserve">
+          <source>Ignore</source>
+          <target state="translated">התעלמות</target>
+        </trans-unit>
+        <trans-unit id="Remember" translate="yes" xml:space="preserve">
+          <source>Remember</source>
+          <target state="translated">לזכור</target>
+        </trans-unit>
+        <trans-unit id="AddMediaHelp" translate="yes" xml:space="preserve">
+          <source>Please insert an external storage device</source>
+          <target state="translated">נא לחבר התקן אחסון חיצוני</target>
+        </trans-unit>
+        <trans-unit id="AddMediaHelpWithIP" translate="yes" xml:space="preserve">
+          <source>Please insert an external storage device, or go to http://{0}:8080 to upload some media</source>
+          <target state="translated">נא לחבר התקן אחסון חיצוני או לגשת אל http://{0}:8080 כדי להעלות מדיה</target>
+        </trans-unit>
+        <trans-unit id="CopyHelpDesktop" translate="yes" xml:space="preserve">
+          <source>Right-click on a file or a folder to copy it to the local storage.</source>
+          <target state="translated">יש ללחוץ לחיצה ימנית על קובץ או על תיקייה כדי להעתיק אותם לאחסון המקומי.</target>
+        </trans-unit>
+        <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
+          <source>Press "Y" on a file or a folder to copy it to the local storage.</source>
+          <target state="translated">יש ללחוץ „Y” על קובץ או על תיקייה כדי להעתיק אותם לאחסון המקומי.</target>
+        </trans-unit>
+        <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
+          <source>No subtitle tracks</source>
+          <target state="translated">אין רצועות כתוביות</target>
+        </trans-unit>
+        <trans-unit id="ClearKeystore" translate="yes" xml:space="preserve">
+          <source>Clear saved credentials</source>
+          <target state="translated">מחיקת פרטי גישה שנשמרו</target>
+        </trans-unit>
+        <trans-unit id="Credentials" translate="yes" xml:space="preserve">
+          <source>Credentials</source>
+          <target state="translated">פרטי גישה</target>
+        </trans-unit>
+        <trans-unit id="CopyHelpPhone" translate="yes" xml:space="preserve">
+          <source>Long press on a file or a folder to copy it to the local storage.</source>
+          <target state="translated">יש ללחוץ לחיצה ארוכה על קובץ או על תיקייה כדי להעתיק אותם לאחסון המקומי.</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_FIT_SCREEN" translate="yes" xml:space="preserve">
+          <source>fit screen</source>
+          <target state="translated">התאמה למסך</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_FILL" translate="yes" xml:space="preserve">
+          <source>fill</source>
+          <target state="translated">מילוי</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_16_9" translate="yes" xml:space="preserve">
+          <source>16:9</source>
+          <target state="translated">16:9</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_4_3" translate="yes" xml:space="preserve">
+          <source>4:3</source>
+          <target state="translated">4:3</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_2_35_1" translate="yes" xml:space="preserve">
+          <source>2.35:1</source>
+          <target state="translated">2.35:1</target>
+        </trans-unit>
+        <trans-unit id="SURFACE_ORIGINAL" translate="yes" xml:space="preserve">
+          <source>original</source>
+          <target state="translated">מקורי</target>
+        </trans-unit>
+        <trans-unit id="CompactOverlayPiP" translate="yes" xml:space="preserve">
+          <source>use windows 10 pip</source>
+          <target state="translated">שימוש בחלון בתוך חלון של windows 10</target>
+        </trans-unit>
+        <trans-unit id="TvUnsafeArea" translate="yes" xml:space="preserve">
+          <source>TV unsafe area</source>
+          <target state="translated">אזור לא בטוח בטלוויזיה</target>
+        </trans-unit>
+        <trans-unit id="AddMarginExplanation" translate="yes" xml:space="preserve">
+          <source>Some TVs will not display the app correctly. To add some margin, turn this on</source>
+          <target state="translated">חלק מהטלוויזיות עשויות שלא להציג את היישומון כראוי. כדי להוסיף מסגרת, יש להפעיל אפשרות זו</target>
+        </trans-unit>
+        <trans-unit id="ExtraMargin" translate="yes" xml:space="preserve">
+          <source>Extra margin</source>
+          <target state="translated">עיבוי מסגרת</target>
+        </trans-unit>
+        <trans-unit id="NoExtraMargin" translate="yes" xml:space="preserve">
+          <source>No extra margin</source>
+          <target state="translated">ללא עיבוי מסגרת</target>
+        </trans-unit>
+        <trans-unit id="Restart" translate="yes" xml:space="preserve">
+          <source>restart</source>
+          <target state="translated">הפעלה מחדש</target>
+        </trans-unit>
+        <trans-unit id="Disconnect" translate="yes" xml:space="preserve">
+          <source>disconnect</source>
+          <target state="translated">ניתוק</target>
+        </trans-unit>
+        <trans-unit id="XboxUpload" translate="yes" xml:space="preserve">
+          <source>Xbox upload</source>
+          <target state="translated">העלאה ל־Xbox</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
