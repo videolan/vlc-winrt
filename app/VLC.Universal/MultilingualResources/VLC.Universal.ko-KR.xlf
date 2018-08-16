@@ -908,7 +908,7 @@
         </trans-unit>
         <trans-unit id="CopyHelpPhone" translate="yes" xml:space="preserve">
           <source>Long press on a file or a folder to copy it to the local storage.</source>
-          <target state="translated"> 파일이나 폴더에서 길게 눌러서 로컬 저장소에 복사합니다.</target>
+          <target state="translated">파일이나 폴더에서 길게 눌러서 로컬 저장소에 복사합니다.</target>
         </trans-unit>
         <trans-unit id="SURFACE_FIT_SCREEN" translate="yes" xml:space="preserve">
           <source>fit screen</source>
