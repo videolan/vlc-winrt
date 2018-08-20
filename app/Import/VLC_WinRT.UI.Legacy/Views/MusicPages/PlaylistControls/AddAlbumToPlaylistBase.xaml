@@ -89,9 +89,11 @@
             </Grid.ColumnDefinitions>
             <userControls:FocusTextBox x:Name="playlistName"
                                        PlaceholderText="{Binding Source={StaticResource Strings}, Path=PlaylistNamePlaceholder}" />
-            <Button Grid.Column="1"
-                    Content="{Binding Source={StaticResource Strings}, Path=Add}"
-                    Click="NewPlaylistButton_Click" />
+            <AppBarButton 
+                Grid.Column="1"
+                Style="{StaticResource AppBarButtonStyleHorizontal}"
+                Content="{Binding Source={StaticResource Strings}, Path=Add}"
+                Click="NewPlaylistButton_Click" />
         </Grid>
         <TextBlock Grid.Row="6"
                    Grid.Column="1"
@@ -113,22 +115,14 @@
               Grid.Column="1"
               Margin="{StaticResource FrameMarginTop}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition MaxWidth="3*" 
-                                  Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
+            <AppBarButton 
                     Click="AddToPlaylistButton_Click" 
+                    Label="{Binding Source={StaticResource Strings}, Path=AddToPlaylist}"
                     Background="{ThemeResource MainColor}"
-                    HorizontalAlignment="Stretch"/>
-            <Button Grid.Column="1"
-                    Margin="{StaticResource FrameMarginLeft}"
-                    Width="168"
-                    Content="{Binding Source={StaticResource Strings}, Path=AddToCurrentPlaylist}"
-                    Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.AddToPlayingPlaylist}"
-                    CommandParameter="{Binding CurrentAlbum}"
-                    Visibility="{Binding Source={StaticResource Locator}, Path=PlaybackService.IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    HorizontalAlignment="Stretch" />
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource AppBarButtonStyleHorizontal}"/>
         </Grid>
     </Grid>
 </Page>
