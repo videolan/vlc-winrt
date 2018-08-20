@@ -914,8 +914,8 @@
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Thumb">
                                             <Ellipse Fill="White"
-                                                     Height="11"
-                                                     Width="11" />
+                                                     Height="18"
+                                                     Width="18" />
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
