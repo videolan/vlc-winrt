@@ -85,7 +85,8 @@
                            Foreground="{ThemeResource BasicForeground}"
                            Style="{StaticResource SubtitleTextBlockStyle}"
                            FontWeight="SemiLight" />
-                <Button Grid.Row="5"
+                <AppBarButton Grid.Row="5"
+                        Style="{StaticResource AppBarButtonStyleHorizontal}"
                         Content="{Binding Source={StaticResource Strings}, Path=Reset}"
                         HorizontalAlignment="Right"
                         Command="{Binding ChangePlaybackSpeedRateCommand}"
@@ -136,14 +137,17 @@
                 <StackPanel Grid.Row="9"
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
-                    <Button Content="{Binding Source={StaticResource Strings}, Path=Reset}"
+                    <AppBarButton Content="{Binding Source={StaticResource Strings}, Path=Reset}"
+                            Style="{StaticResource AppBarButtonStyleHorizontal}"
                             Command="{Binding ChangeAudioDelayCommand}"
                             CommandParameter="reset" />
-                    <Button Content="-"
+                    <AppBarButton Content="-"
+                            Style="{StaticResource AppBarButtonStyleHorizontal}"
                             Margin="12,0,0,0"
                             Command="{Binding ChangeAudioDelayCommand}"
                             CommandParameter="slower" />
-                    <Button Content="+"
+                    <AppBarButton Content="+"
+                            Style="{StaticResource AppBarButtonStyleHorizontal}"
                             Margin="12,0,0,0"
                             Command="{Binding ChangeAudioDelayCommand}"
                             CommandParameter="faster" />
@@ -185,14 +189,17 @@
                 <StackPanel Grid.Row="13"
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
-                    <Button Content="{Binding Source={StaticResource Strings}, Path=Reset}"
+                    <AppBarButton Content="{Binding Source={StaticResource Strings}, Path=Reset}"
+                            Style="{StaticResource AppBarButtonStyleHorizontal}"
                             Command="{Binding ChangeSpuDelayCommand}"
                             CommandParameter="reset" />
-                    <Button Content="-"
+                    <AppBarButton Content="-"
+                            Style="{StaticResource AppBarButtonStyleHorizontal}"
                             Margin="12,0,0,0"
                             Command="{Binding ChangeSpuDelayCommand}"
                             CommandParameter="slower" />
-                    <Button Content="+"
+                    <AppBarButton Content="+"
+                            Style="{StaticResource AppBarButtonStyleHorizontal}"
                             Margin="12,0,0,0"
                             Command="{Binding ChangeSpuDelayCommand}"
                             CommandParameter="faster" />
