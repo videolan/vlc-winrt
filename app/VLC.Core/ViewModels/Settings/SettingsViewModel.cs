@@ -683,7 +683,9 @@ namespace VLC.ViewModels.Settings
                 case Languages.Icelandic:
                     currentCulture = "is-IS";
                     break;
-
+                case Languages.Hebrew:
+                    currentCulture = "he-IL";
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(language), language, null);
             }

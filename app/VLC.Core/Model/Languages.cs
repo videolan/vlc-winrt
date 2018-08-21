@@ -23,6 +23,7 @@
         Chinese,
         Portuguese,
         Czech,
-        Icelandic
+        Icelandic,
+        Hebrew
     }
 }
