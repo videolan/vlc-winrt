@@ -786,6 +786,10 @@
           <source>Icelandic</source>
           <target state="translated">Islandština</target>
         </trans-unit>
+        <trans-unit id="HebrewLanguage" translate="yes" xml:space="preserve">
+          <source>Hebrew</source>
+          <target state="translated">Hebrejština</target>
+        </trans-unit>
         <trans-unit id="Languages" translate="yes" xml:space="preserve">
           <source>Languages</source>
           <target state="translated">Jazyky</target>
