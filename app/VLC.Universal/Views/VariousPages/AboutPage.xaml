@@ -41,7 +41,8 @@
                             <Run Text="The sources to this application can be retrieved at http://code.videolan.org/videolan/vlc-winrt" />
                             <LineBreak />
                             <Run Text="If you want to manually deploy the package by yourself, without having to pay for a Dev License, follow the steps in this link:" />
-                            <Hyperlink NavigateUri="https://msdn.microsoft.com/en-us/library/windows/apps/dn614128.aspx">Msdn library</Hyperlink>
+                            <Hyperlink Foreground="DarkOrange" 
+                                       NavigateUri="https://msdn.microsoft.com/en-us/library/windows/apps/dn614128.aspx">Msdn library</Hyperlink>
                             <LineBreak />
                             <LineBreak />
                             <Run Text="Libraries"
