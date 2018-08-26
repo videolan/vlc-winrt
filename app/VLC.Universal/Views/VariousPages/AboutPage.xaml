@@ -14,7 +14,7 @@
                       FontFamily="{StaticResource VLCFont}"
                       FontSize="19"
                       Margin="{StaticResource FrameMarginLeft}"
-                      Foreground="{StaticResource MainColor}" />
+                      Foreground="{ThemeResource MainColor}" />
         </Pivot.LeftHeader>
         <PivotItem Header="VLC for Windows (Universal)">
             <Grid>
@@ -41,7 +41,7 @@
                             <Run Text="The sources to this application can be retrieved at http://code.videolan.org/videolan/vlc-winrt" />
                             <LineBreak />
                             <Run Text="If you want to manually deploy the package by yourself, without having to pay for a Dev License, follow the steps in this link:" />
-                            <Hyperlink Foreground="AccentColor" 
+                            <Hyperlink Foreground="{ThemeResource MainColor}" 
                                        NavigateUri="https://msdn.microsoft.com/en-us/library/windows/apps/dn614128.aspx">Msdn library</Hyperlink>
                             <LineBreak />
                             <LineBreak />
@@ -51,133 +51,133 @@
                             <Run Text="Some VLC plugins use external libraries that make extensive use of the following persons' or companies' code:" />
                             <LineBreak />
                             <Run Text="FFmpeg/Libav - Copyright ; 2000-2010 the FFmpeg developers -" /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/lgpl-2.1.txt">LGPL v2.1 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="FLAC - Copyright (c) 2001-2012 Josh Coalson et al. - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/gpl-2.0.txt">GPL v2 or later</Hyperlink>
                             <Run Text=", codec libs" /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="#xiph">Xiph.org BSD license</Hyperlink>
                             <LineBreak />
                             <Run Text="Freetype2 - Copyright (c) 2006-2011 by David Turner, Robert Wilhelm, and Werner Lemberg. - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/gpl-2.0.txt">GPL v2 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="Fribidi - Copyright (c) Behdad Esfahbod - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/lgpl-2.1.txt">LGPL v2.1 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="GnuTLS - Copyright (c) 2000-2012 Free Software Foundation - " />
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/gpl-3.0.txt">GPL v3 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="GOOM! - Copyright (c) 2000-2004 Jean-Christophe Hoelt - " />
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/lgpl-2.1.txt">LGPL v2.1 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="GSM - Copyright (c) 1992-1994 Jutta Degener &amp; Carsten Bormann - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="#gsm">GSM permissive license</Hyperlink>
                             <LineBreak />
                             <Run Text="liba52 - Copyright (c) Aaron Holtzman, Michel Lespinasse, et al. - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/gpl-2.0.txt">GPL v2 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="libass - Copyright (c) Evgeniy Stepanov, Grigori Goronzy, et al. - " />
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://opensource.org/licenses/ISC">ISC license</Hyperlink>
                             <LineBreak />
                             <Run Text="libdca - Copyright (c) Gildas Bazin, Sam Hocevar, et al. - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/gpl-2.0.txt">GPL v2 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="libdvbpsi - Copyright (c) 2001-2010 VideoLAN - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/lgpl-2.1.txt">LGPL v2.1 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="libebml - Copyright (c) 2002-2010 Steve Lhomme - " />
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/gpl-2.0.txt">GPL v2 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="libgcrypt - Copyright (c) 2000-2012 Free Software Foundation. - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/lgpl-2.1.txt">LGPL v2.1 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="libgpg-error - Copyright (c) 2003 g10 Code GmbH - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/lgpl-2.1.txt">LGPL v2.1 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="libiconv - Copyright (c) 1999-2001 Free Software Foundation - " />
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/lgpl-2.1.txt">LGPL v2.1 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="libmad - Copyright (c) 2000-2004 Underbit Technologies, Inc. - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/gpl-2.0.txt">GPL v2 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="libmatroska - Copyright (c) 2002-2003 Steve Lhomme - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/gpl-2.0.txt">GPL v2 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="libmodplug - Olivier Lapicque, Konstanty - " />
                             <Italic>Public domain</Italic>
                             <LineBreak />
                             <Run Text="libmpeg2 - Copyright (c) 1999-2012 Sam Hocevar, Aaron Holtzman, Michel Lespinasse, Christophe Massiot, et al. - " />
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/gpl-2.0.txt">GPL v2 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="libogg - Copyright (c) 2002 Xiph.org Foundation - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="#xiph">Xiph.org BSD license</Hyperlink>
                             <LineBreak />
                             <Run Text="libpng - Copyright (c) 2004,2006-2012 Glenn Randers-Pehrson, et al. - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.libpng.org/pub/png/src/libpng-LICENSE.txt">libpng license</Hyperlink>
                             <LineBreak />
                             <Run Text="libpostproc - Copyright (c) 2001-2003 Michael Niedermayer - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/gpl-2.0.txt">GPL v2 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="libtheora - Copyright (c) Xiph.org - " />
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="#xiph">Xiph.org BSD license</Hyperlink>
                             <LineBreak />
                             <Run Text="libxml2 - Copyright (c) 1998-2003 Daniel Veillard - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.opensource.org/licenses/mit-license.php">MIT license</Hyperlink>
                             <LineBreak />
                             <Run Text="live555 - Copyright (c) 1996-2012 Live Networks, Inc - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/lgpl-2.1.txt">LGPL v2.1 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="Lua - Copyright (c) 1994-2008 Lua.org - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.opensource.org/licenses/mit-license.php">MIT license</Hyperlink>
                             <LineBreak />
                             <Run Text="Openjpeg - Copyright (c) 2002-2012, Communications and Remote Sensing Laboratory, UCL, Belgium - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://opensource.org/licenses/ISC">ISC license</Hyperlink>
                             <LineBreak />
                             <Run Text="ORC - Copyright (c) 2002-2009 David A. Schleef - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://opensource.org/licenses/ISC">ISC license</Hyperlink>
                             <LineBreak />
                             <Run Text="Schroedinger - Copyright (c) David Schleef, W.J. van der Laan - " />
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.opensource.org/licenses/mit-license.php">MIT license</Hyperlink>
                             <LineBreak />
                             <Run Text="Speex, Speexdsp - Copyright (c) 1992-2008 Xiph.org Foundation, Jean-Marc Valin, Analog Devices Inc, Commonwealth Scientific and Industrial Research Organisation, David Rowe, Jutta Degener, Carsten Bormann - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.opensource.org/licenses/BSD-3-Clause">3-clause BSD license</Hyperlink>
                             <LineBreak />
                             <Run Text="Taglib - Copyright (c) 2002-2008 Scott Wheeler, et al. - " />
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://www.gnu.org/licenses/lgpl-2.1.txt">LGPL v2.1 or later</Hyperlink>
                             <LineBreak />
                             <Run Text="Zlib - Copyright (c) 1995-2012 Jean-loup Gailly and Mark Adler - " /> 
-                            <Hyperlink Foreground="AccentColor"
+                            <Hyperlink Foreground="{ThemeResource MainColor}"
                                        NavigateUri="http://zlib.net/zlib_license.html">zlib license</Hyperlink>
                             <LineBreak />
                         </TextBlock>
