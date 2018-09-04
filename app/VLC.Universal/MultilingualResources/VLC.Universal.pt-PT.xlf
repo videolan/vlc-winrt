@@ -8,7 +8,7 @@
       <group datatype="resx" id="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW">
         <trans-unit id="AboutTheApp" translate="yes" xml:space="preserve">
           <source>about the app</source>
-          <target state="translated">acerca da aplicação</target>
+          <target state="translated">sobre a aplicação</target>
         </trans-unit>
         <trans-unit id="Add" translate="yes" xml:space="preserve">
           <source>add</source>
@@ -252,7 +252,7 @@
         </trans-unit>
         <trans-unit id="MusicSettings" translate="yes" xml:space="preserve">
           <source>Music Settings</source>
-          <target state="translated">Definições de música</target>
+          <target state="translated">Definições de Música</target>
         </trans-unit>
         <trans-unit id="MusicShows" translate="yes" xml:space="preserve">
           <source>music shows</source>
@@ -460,7 +460,7 @@
         </trans-unit>
         <trans-unit id="ResetMusicDatabase" translate="yes" xml:space="preserve">
           <source>reset music database</source>
-          <target state="translated">restaurar base de dados de música</target>
+          <target state="translated">reiniciar a base de dados de música</target>
         </trans-unit>
         <trans-unit id="ResetSpeed" translate="yes" xml:space="preserve">
           <source>reset speed</source>
@@ -596,7 +596,7 @@
         </trans-unit>
         <trans-unit id="VideoSettings" translate="yes" xml:space="preserve">
           <source>Video Settings</source>
-          <target state="translated">Definições de vídeo</target>
+          <target state="translated">Definições de Vídeo</target>
         </trans-unit>
         <trans-unit id="ViewAlbum" translate="yes" xml:space="preserve">
           <source>view album</source>
@@ -785,6 +785,10 @@
         <trans-unit id="IcelandicLanguage" translate="yes" xml:space="preserve">
           <source>Icelandic</source>
           <target state="translated">Islandês</target>
+        </trans-unit>
+        <trans-unit id="HebrewLanguage" translate="yes" xml:space="preserve">
+          <source>Hebrew</source>
+          <target state="translated">Hebraico</target>
         </trans-unit>
         <trans-unit id="Languages" translate="yes" xml:space="preserve">
           <source>Languages</source>
