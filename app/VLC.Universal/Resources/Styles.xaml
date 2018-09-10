@@ -87,11 +87,11 @@
     <Style x:Key="BasicTextStyle"
            TargetType="TextBlock">
         <Setter Property="Foreground"
-                Value="{StaticResource ApplicationForegroundThemeBrush}" />
+                Value="{ThemeResource ApplicationForegroundThemeBrush}" />
         <Setter Property="FontSize"
-                Value="{StaticResource ControlContentThemeFontSize}" />
+                Value="{ThemeResource ControlContentThemeFontSize}" />
         <Setter Property="FontFamily"
-                Value="{StaticResource ContentControlThemeFontFamily}" />
+                Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="TextTrimming"
                 Value="WordEllipsis" />
         <Setter Property="TextWrapping"
@@ -384,7 +384,7 @@
         <Setter Property="Background"
                 Value="Transparent" />
         <Setter Property="BorderBrush"
-                Value="{StaticResource ProgressBarBorderThemeBrush}" />
+                Value="{ThemeResource ProgressBarBorderThemeBrush}" />
         <Setter Property="Maximum"
                 Value="100" />
         <Setter Property="MinHeight"

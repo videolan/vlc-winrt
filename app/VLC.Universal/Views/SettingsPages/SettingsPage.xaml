@@ -16,7 +16,7 @@
                       FontFamily="{StaticResource VLCFont}"
                       FontSize="19"
                       Margin="{StaticResource FrameMarginLeft}"
-                      Foreground="{StaticResource MainColor}" />
+                      Foreground="{ThemeResource MainColor}" />
         </Pivot.LeftHeader>
         <PivotItem Header="{Binding Source={StaticResource Strings}, Path=UserInterface}">
                 <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
