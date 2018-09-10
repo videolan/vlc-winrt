@@ -36,10 +36,10 @@
                   FontSize="21"
                   VerticalAlignment="Center"
                   Margin="0,0,6,0"
-                  Foreground="{ThemeResource ApplicationPageBackgroundThemeColor}" />
+                  Foreground="{ThemeResource ApplicationForegroundThemeBrush}" />
         <TextBlock x:Name="Title"
                    VerticalAlignment="Center"
                    FontWeight="Light"
-                   Foreground="{ThemeResource ApplicationPageBackgroundThemeColor}"/>
+                   Foreground="{ThemeResource ApplicationForegroundThemeBrush}"/>
     </StackPanel>
 </UserControl>
