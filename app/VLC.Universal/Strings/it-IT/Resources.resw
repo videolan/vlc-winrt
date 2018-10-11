@@ -597,6 +597,9 @@
   <data name="IcelandicLanguage" xml:space="preserve">
     <value>Islandese</value>
   </data>
+  <data name="HebrewLanguage" xml:space="preserve">
+    <value>Ebreo</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Lingue</value>
   </data>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -13,7 +13,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTheApp" xml:space="preserve">
-    <value>acerca da aplicação</value>
+    <value>sobre a aplicação</value>
   </data>
   <data name="Add" xml:space="preserve">
     <value>adicionar</value>
@@ -52,13 +52,13 @@
     <value>atraso de áudio</value>
   </data>
   <data name="AudioTracks" xml:space="preserve">
-    <value>Faixas de Áudio</value>
+    <value>Faixas de áudio</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>voltar</value>
   </data>
   <data name="CameraRoll" xml:space="preserve">
-    <value>rolo da câmara</value>
+    <value>rolo de máquina fotográfica</value>
   </data>
   <data name="ChangeAlbumCover" xml:space="preserve">
     <value>alterar capa do álbum</value>
@@ -124,7 +124,7 @@
     <value>O VLC não conseguiu abrir o vídeo</value>
   </data>
   <data name="FailStartVLCEngine" xml:space="preserve">
-    <value>A aplicação falhou a iniciação do motor do VLC</value>
+    <value>A aplicação não conseguiu iniciar o motor do VLC</value>
   </data>
   <data name="FeedbackThankYou" xml:space="preserve">
     <value>comentário enviado! obrigado(a)</value>
@@ -142,7 +142,7 @@
     <value>por favor selecione uma lista de reprodução</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>início</value>
+    <value>home</value>
   </data>
   <data name="HomePage" xml:space="preserve">
     <value>página inicial</value>
@@ -174,9 +174,6 @@
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>atalhos de teclado</value>
   </data>
-  <data name="Local" xml:space="preserve">
-    <value>local</value>
-  </data>
   <data name="License" xml:space="preserve">
     <value>licença</value>
   </data>
@@ -196,10 +193,10 @@
     <value>pastas de música</value>
   </data>
   <data name="MusicFoldersDescription" xml:space="preserve">
-    <value>O VLC irá apenas pesquisar músicas que estão na sua biblioteca de músicas. Pode adicionar pastas à sua biblioteca aqui</value>
+    <value>VLC irá pesquisar apenas por músicas que estão na sua biblioteca de músicas. Pode adicionar pastas à sua biblioteca aqui</value>
   </data>
   <data name="MusicSettings" xml:space="preserve">
-    <value>Definições de música</value>
+    <value>Definições de Música</value>
   </data>
   <data name="MusicShows" xml:space="preserve">
     <value>Shows de música</value>
@@ -355,7 +352,7 @@
     <value>restaurar</value>
   </data>
   <data name="ResetMusicDatabase" xml:space="preserve">
-    <value>restaurar base de dados de música</value>
+    <value>reiniciar a base de dados de música</value>
   </data>
   <data name="ResetSpeed" xml:space="preserve">
     <value>repor velocidade</value>
@@ -394,13 +391,13 @@
     <value>parar</value>
   </data>
   <data name="SubtitleDelay" xml:space="preserve">
-    <value>atraso na legenda</value>
+    <value>atraso da legenda</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
     <value>Legendas</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
-    <value>Codificação das legendas</value>
+    <value>codificação de legendas</value>
   </data>
   <data name="Theme" xml:space="preserve">
     <value>tema</value>
@@ -439,7 +436,7 @@
     <value>nome de utilizador</value>
   </data>
   <data name="Video" xml:space="preserve">
-    <value>vídeo</value>
+    <value>video</value>
   </data>
   <data name="VideoFolders" xml:space="preserve">
     <value>pastas de vídeo</value>
@@ -516,24 +513,6 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>corte vertical</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>ajustar ao ecrã</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>preencher</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>original</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>a sua lista de reprodução não será acessível</value>
   </data>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Artistas semelhantes</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Aplicar e Reiniciar</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Inglês</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Japonês</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Eslovaco</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Alemão</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Polaco</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Eslovaco</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>Dinamarquês</value>
@@ -621,29 +597,38 @@
   <data name="IcelandicLanguage" xml:space="preserve">
     <value>Islandês</value>
   </data>
+  <data name="HebrewLanguage" xml:space="preserve">
+    <value>Hebraico</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Idiomas</value>
-  </data>
-  <data name="RefreshLanguage" xml:space="preserve">
-    <value>Atualizar Idioma</value>
   </data>
   <data name="SelectLanguageDescription" xml:space="preserve">
     <value>VLC será apresentado em</value>
   </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Aplicar e Reiniciar</value>
+  </data>
+  <data name="RefreshLanguage" xml:space="preserve">
+    <value>Atualizar Idioma</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>local</value>
+  </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
-    <value>Descarregar Ficheiros</value>
+    <value>Transferir Ficheiros</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
-    <value>Clique no ficheiro que quer descarregar da sua Xbox.</value>
+    <value>Basta clicar no ficheiro que deseja transferir da sua Xbox.</value>
   </data>
   <data name="WEBINTF_DROPFILES" xml:space="preserve">
-    <value>Soltar os ficheiros</value>
+    <value>Solte os ficheiros</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Solte os ficheiros na janela para adicioná-los à sua Xbox. &lt;br&gt;Ou clique no botão "+" para usar o selecionador de ficheiros.</value>
+    <value>Solte os ficheiros na janela para adicioná-los à sua Xbox.&lt;br&gt;Ou clique no botão "+" para usar o selecionador de ficheiros.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
-    <value>Partilhar via WiFi</value>
+    <value>Partilha por Wi-Fi</value>
   </data>
   <data name="CopyToLocalStorage" xml:space="preserve">
     <value>copiar para armazenamento local</value>
@@ -652,7 +637,7 @@
     <value>VLC detetou um dispositivo de armazenamento externo</value>
   </data>
   <data name="ReadFromExternalStorage" xml:space="preserve">
-    <value>Utilizar armazenamento externo como biblioteca de média</value>
+    <value>Utilizar armazenamento externo como mediateca</value>
   </data>
   <data name="SelectContentToCopy" xml:space="preserve">
     <value>Copiar média para o armazenamento interno</value>
@@ -676,7 +661,7 @@
     <value>Não fazer nada</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="Ignore" xml:space="preserve">
     <value>Ignorar</value>
@@ -688,7 +673,7 @@
     <value>Por favor insira um dispositivo de armazenamento externo</value>
   </data>
   <data name="AddMediaHelpWithIP" xml:space="preserve">
-    <value>Por favor insira um dispositivo de armazenamento externo ou vá a http://{0}:8080 para enviar média</value>
+    <value>Por favor, insira um dispositivo de armazenamento externo, ou vá para http://{0}:8080 para enviar alguns ficheiros</value>
   </data>
   <data name="CopyHelpDesktop" xml:space="preserve">
     <value>Clique com o botão direito do rato num ficheiro ou pasta para copiá-lo para o armazenamento local</value>
@@ -707,6 +692,24 @@
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Pressione de forma longa um ficheiro ou pasta para movê-lo para o armazenamento local.</value>
+  </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>ajustar ao ecrã</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>preencher</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>original</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>utilizar pip do windows 10</value>
@@ -728,5 +731,8 @@
   </data>
   <data name="Disconnect" xml:space="preserve">
     <value>desconectar</value>
+  </data>
+  <data name="XboxUpload" xml:space="preserve">
+    <value>Envio para X-Box</value>
   </data>
 </root>

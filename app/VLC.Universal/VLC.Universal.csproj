@@ -1663,6 +1663,7 @@
     <XliffResource Include="MultilingualResources\VLC.Universal.nb-NO.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.nl-NL.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.pl-PL.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.pt-PT.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.ru-RU.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.sk-SK.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.sv-SE.xlf" />
