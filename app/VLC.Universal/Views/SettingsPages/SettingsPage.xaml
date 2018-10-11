@@ -72,27 +72,23 @@
 
                         <winControls:WrapPanel Margin="{StaticResource FrameMarginTop}"
                                                Orientation="Horizontal">
-                        <ComboBox ItemsSource="{Binding LanguageCollection}"
-                                  SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
-                                  Style="{StaticResource VLCLightComboBox}"
-                                  Width="160"
-                                  Margin="{StaticResource FrameMarginRight}">
-                            <ComboBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical"/>
-                                </ItemsPanelTemplate>
-                            </ComboBox.ItemsPanel>
-                            <ComboBox.ItemTemplate>
+                            <ComboBox Name="LanguageCombobox"
+                                      ItemsSource="{Binding LanguageCollection}"
+                                      SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+                                      Style="{StaticResource VLCLightComboBox}"
+                                      Width="160"
+                                      Margin="{StaticResource FrameMarginRight}">
+                                <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Converter={StaticResource LanguageStringifyConverter}}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                             <Button x:Name="RefreshLanguage"
-                                    x:Uid="RefreshLanguage"
-                                    Click="ForceRefreshLanguage"
-                                    Style="{StaticResource TextBlockButtonStyle}"
-                                    Content="{Binding Source={StaticResource Strings}, Path=RefreshLanguage}" />
+                                        x:Uid="RefreshLanguage"
+                                        Click="ForceRefreshLanguage"
+                                        Style="{StaticResource TextBlockButtonStyle}"
+                                        Content="{Binding Source={StaticResource Strings}, Path=RefreshLanguage}" />
                         </winControls:WrapPanel>
 
                         <toolkitControls:HeaderedTextBlock Margin="{StaticResource FrameMarginTop}"

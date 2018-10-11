@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.Storage;
 using Windows.Foundation.Metadata;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml.Markup;
 
 namespace VLC.UI.Views.SettingsPages
 {
@@ -74,6 +75,22 @@ namespace VLC.UI.Views.SettingsPages
             }
 #endif
             AppThemeSwitch.Focus(FocusState.Programmatic);
+
+            // workaround for combobox bug
+            // without this xaml on xbox, the combobox does not scroll properly (too many items?).
+            // with this xaml on desktop, the first item cannot be selected by mouse/touch (only keyboard)
+            if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Xbox)
+            {
+                LanguageCombobox.ItemsPanel = GetItemsPanelTemplate();
+            }
+        }
+
+        private ItemsPanelTemplate GetItemsPanelTemplate()
+        {
+            string xaml = @"<ItemsPanelTemplate   xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'>
+                                <StackPanel />
+                            </ItemsPanelTemplate>";
+            return XamlReader.Load(xaml) as ItemsPanelTemplate;
         }
 
         void FocusTextBox_LostFocus(object sender, RoutedEventArgs e)
