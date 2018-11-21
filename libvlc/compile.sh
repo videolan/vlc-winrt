@@ -165,7 +165,8 @@ cd $CONTRIB_FOLDER
     --disable-mfx \
     --disable-x264 \
     --disable-x265 \
-    --disable-srt
+    --disable-srt \
+    --disable-aom
 
 echo "EXTRA_CFLAGS=${EXTRA_CPPFLAGS}" >> config.mak
 echo "EXTRA_LDFLAGS=${EXTRA_LDFLAGS}" >> config.mak
