@@ -61,12 +61,6 @@ case "$2" in
         ;;
 esac
 
-if ${COMPILER} --version | grep -q gcc; then
-HAS_GCC=1
-else
-HAS_CLANG=1
-fi
-
 # 1/ libvlc, libvlccore and its plugins
 TESTED_HASH=45df8a6415
 if [ ! -d "vlc" ]; then
@@ -99,6 +93,26 @@ then
 MAKEFLAGS=-j`nproc`
 fi
 
+TARGET_TUPLE=${1}-w64-mingw32
+case "${1}" in
+    *)
+        COMPILER=${TARGET_TUPLE}-gcc
+        COMPILERXX=${TARGET_TUPLE}-g++
+        if ${COMPILER} --version | grep -q gcc ; then
+            HAS_GCC=1
+        else
+            HAS_CLANG=1
+        fi
+        if [ "${HAS_GCC}" = "1" ]; then
+            ${COMPILER} -dumpspecs | sed -e "s/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat $LIBLOLE32 -lruntimeobject -lsynchronization/" -e "s/-lmsvcrt/$RUNTIME_EXTRA -l$RUNTIME/" -e "s/-lkernel32/$LIBKERNEL32/" > ../newspecfile
+            NEWSPECFILE="`pwd`/../newspecfile"
+            COMPILER="${COMPILER} -specs=$NEWSPECFILE"
+            COMPILERXX="${COMPILERXX} -specs=$NEWSPECFILE"
+        fi
+        BUILD_ARCH=`gcc -dumpmachine`
+        ;;
+esac
+
 # Build tools with the native compiler
 echo "Compiling missing tools..."
 cd extras/tools
@@ -112,25 +126,8 @@ fi
 export PATH=`pwd`/build/bin:$PATH
 cd ../../
 
-TARGET_TUPLE=${1}-w64-mingw32
-
-case "${1}" in
-    *)
-        COMPILER=${TARGET_TUPLE}-gcc
-        COMPILERXX=${TARGET_TUPLE}-g++
-        if [ -z "${HAS_GCC}" = 1 ]; then
-            ${COMPILER} -dumpspecs | sed -e "s/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat $LIBLOLE32 -lruntimeobject -lsynchronization/" -e "s/-lmsvcrt/$RUNTIME_EXTRA -l$RUNTIME/" -e "s/-lkernel32/$LIBKERNEL32/" > ../newspecfile
-            NEWSPECFILE="`pwd`/../newspecfile"
-            COMPILER="${COMPILER} -specs=$NEWSPECFILE"
-            COMPILERXX="${COMPILERXX} -specs=$NEWSPECFILE"
-        fi
-        BUILD_ARCH=`gcc -dumpmachine`
-        ;;
-esac
-
-
 EXTRA_CPPFLAGS="-D_WIN32_WINNT=$WINVER -DWINVER=$WINVER -DWINSTORECOMPAT -D_UNICODE -DUNICODE -DWINAPI_FAMILY=WINAPI_FAMILY_APP"
-if [ -z "${HAS_GCC}" = 1 ]; then
+if [ "${HAS_GCC}" = 1 ]; then
     EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat -lruntimeobject"
 else
     # Clang doesn't support spec files, but will skip the builtin -lmsvcrt and -lkernel32 etc if it detects -lmsvcr* or -lucrt*, and
