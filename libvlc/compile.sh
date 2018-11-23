@@ -103,6 +103,12 @@ fi
 echo "Compiling missing tools..."
 cd extras/tools
 ./bootstrap && make $MAKEFLAGS
+if [ "$HAS_CLANG" = "1" ] ; then
+    # We need a patched version of libtool & cmake, regardless of which
+    # version is installed on the system.
+    # cmake can go away when we switch to 3.13.0
+    make $MAKEFLAGS .cmake .libtool
+fi
 export PATH=`pwd`/build/bin:$PATH
 cd ../../
 
