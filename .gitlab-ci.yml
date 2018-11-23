@@ -1,0 +1,37 @@
+stages:
+    - build
+
+.build-base:
+    image: registry.videolan.org:5000/vlc-debian-llvm-mingw:20181122173821
+    tags:
+        - uwp
+        - llvm
+    stage: build
+    script:
+        - cd libvlc && ./compile.sh ${ARCH} win10
+    artifacts:
+        paths:
+            - libvlc/vlc/winrt-${ARCH}-ucrt/vlc-*.7z
+        expire_in: 2 weeks
+    only:
+        - schedules
+
+build-i686:
+    extends: .build-base
+    variables:
+        ARCH: i686
+
+build-x86_64:
+    extends: .build-base
+    variables:
+        ARCH: x86_64
+
+build-aarch64:
+    extends: .build-base
+    variables:
+        ARCH: aarch64
+
+build-armv7:
+    extends: .build-base
+    variables:
+        ARCH: armv7
