@@ -1,4 +1,4 @@
-From 3c389c8cc82b43ddb549078132568c42dedf8b24 Mon Sep 17 00:00:00 2001
+From 1deb44bb6be1214a6b71667a7b92dd7629ee4073 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Tue, 27 Mar 2018 18:57:41 +0200
 Subject: [PATCH 13/38] rand: use bcrypt instead of CryptographicBufferStatics
@@ -12,10 +12,10 @@ The old API is deprecated.
  2 files changed, 15 insertions(+), 40 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index 206690b468..ac2c86147a 100644
+index a6ff64595e..c3fab3a304 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -1124,7 +1124,10 @@ AH_BOTTOM([
+@@ -1138,7 +1138,10 @@ AH_BOTTOM([
    dnl Win32 requires linking to ssp for stack-protection
    AS_IF([test "${SYS}" = "mingw32"], [
        LDFLAGS="${LDFLAGS} -lssp"
@@ -102,5 +102,5 @@ index 1aeb656a8a..723a32b26e 100644
      /* acquire default encryption context */
      if( CryptAcquireContext(
 -- 
-2.17.0.windows.1
+2.19.1
 

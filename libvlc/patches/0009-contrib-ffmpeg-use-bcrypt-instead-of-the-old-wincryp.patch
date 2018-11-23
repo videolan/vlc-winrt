@@ -1,4 +1,4 @@
-From 90abb43062cdca5a968c7bcc1208079c958c090f Mon Sep 17 00:00:00 2001
+From 26a2dc3b5b81b0d9fa494f9ec94c64567fcb2c0f Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:46:11 +0200
 Subject: [PATCH 09/38] contrib: ffmpeg: use bcrypt instead of the old wincrypt
@@ -89,5 +89,5 @@ index 92c400d21b..9513d63aaf 100644
  
  .ffmpeg: ffmpeg
 -- 
-2.17.0.windows.1
+2.19.1
 

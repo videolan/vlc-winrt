@@ -1,27 +1,28 @@
-From 204439a7ec0392e4cf559c198a839b308c249516 Mon Sep 17 00:00:00 2001
+From a42147ec973921e8c597747bb4db3ccfbc62f650 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:00:53 +0200
 Subject: [PATCH 17/38] contrib: shout: respect the availability of strings.h
  everywhere
 
 ---
- contrib/src/shout/rules.mak           |  1 +
+ contrib/src/shout/rules.mak           |  2 ++
  contrib/src/shout/shout-strings.patch | 36 +++++++++++++++++++++++++++
- 2 files changed, 37 insertions(+)
+ 2 files changed, 38 insertions(+)
  create mode 100644 contrib/src/shout/shout-strings.patch
 
 diff --git a/contrib/src/shout/rules.mak b/contrib/src/shout/rules.mak
-index 500420cbe2..ac34c59a29 100644
+index fedff47b56..c4a1c15fab 100644
 --- a/contrib/src/shout/rules.mak
 +++ b/contrib/src/shout/rules.mak
-@@ -23,6 +23,7 @@ libshout: libshout-$(SHOUT_VERSION).tar.gz .sum-shout
- 	$(APPLY) $(SRC)/shout/bsd.patch
+@@ -24,6 +24,8 @@ libshout: libshout-$(SHOUT_VERSION).tar.gz .sum-shout
  	$(APPLY) $(SRC)/shout/libshout-arpa.patch
  	$(APPLY) $(SRC)/shout/fix-xiph_openssl.patch
+ 	$(APPLY) $(SRC)/shout/no-examples.patch
 +	$(APPLY) $(SRC)/shout/shout-strings.patch
- 	$(call pkg_static,"shout.pc.in")
++	$(call pkg_static,"shout.pc.in")
  	$(UPDATE_AUTOCONFIG)
  	$(MOVE)
+ 
 diff --git a/contrib/src/shout/shout-strings.patch b/contrib/src/shout/shout-strings.patch
 new file mode 100644
 index 0000000000..438a364899
@@ -65,5 +66,5 @@ index 0000000000..438a364899
 + 
 + #include <shout/shout.h>
 -- 
-2.17.0.windows.1
+2.19.1
 

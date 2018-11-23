@@ -1,4 +1,4 @@
-From ede6e153a32002057341cbe24bbf9c78f5c41a99 Mon Sep 17 00:00:00 2001
+From 6058a06875053c9f4512c48abd62dda5e2db7b0b Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 5 Apr 2018 09:49:44 +0200
 Subject: [PATCH 28/38] chromecast: try to encode with QSV if possible
@@ -9,10 +9,10 @@ It will be handled by the GPU so use less resource.
  1 file changed, 40 insertions(+)
 
 diff --git a/modules/stream_out/chromecast/cast.cpp b/modules/stream_out/chromecast/cast.cpp
-index b330b70297..ec6218ae6b 100644
+index 53227c258b..2210d1d46c 100644
 --- a/modules/stream_out/chromecast/cast.cpp
 +++ b/modules/stream_out/chromecast/cast.cpp
-@@ -916,6 +916,45 @@ static std::string GetVencVPXOption( sout_stream_t * /* p_stream */,
+@@ -914,6 +914,45 @@ static std::string GetVencVPXOption( sout_stream_t * /* p_stream */,
      return "venc=vpx{quality-mode=1}";
  }
  
@@ -58,7 +58,7 @@ index b330b70297..ec6218ae6b 100644
  static std::string GetVencX264Option( sout_stream_t * /* p_stream */,
                                        const video_format_t *p_vid,
                                        int i_quality )
-@@ -962,6 +1001,7 @@ static struct
+@@ -960,6 +999,7 @@ static struct
      vlc_fourcc_t fcc;
      std::string (*get_opt)( sout_stream_t *, const video_format_t *, int);
  } venc_opt_list[] = {
@@ -67,5 +67,5 @@ index b330b70297..ec6218ae6b 100644
      { .fcc = VLC_CODEC_VP8,  .get_opt = GetVencVPXOption },
      { .fcc = VLC_CODEC_H264, .get_opt = NULL },
 -- 
-2.17.0.windows.1
+2.19.1
 

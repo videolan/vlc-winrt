@@ -1,4 +1,4 @@
-From bc029f5cdab65417fdebbd01b2e04b17e7663085 Mon Sep 17 00:00:00 2001
+From 924a83e43dd7e80eb6fc8259b473e7121856843d Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 31 Aug 2017 18:02:31 +0200
 Subject: [PATCH 27/38] qsv: CUMULATIVE PATCH to encode from CPU planes
@@ -10,10 +10,10 @@ Subject: [PATCH 27/38] qsv: CUMULATIVE PATCH to encode from CPU planes
  2 files changed, 294 insertions(+), 163 deletions(-)
 
 diff --git a/modules/codec/Makefile.am b/modules/codec/Makefile.am
-index 10132a92f3..c42f40e5cd 100644
+index 9bbc5f2877..2d2dbe2b64 100644
 --- a/modules/codec/Makefile.am
 +++ b/modules/codec/Makefile.am
-@@ -595,7 +595,7 @@ libcrystalhd_plugin_la_LIBADD = $(LIBS_crystalhd)
+@@ -598,7 +598,7 @@ libcrystalhd_plugin_la_LIBADD = $(LIBS_crystalhd)
  EXTRA_LTLIBRARIES += libcrystalhd_plugin.la
  codec_LTLIBRARIES += $(LTLIBcrystalhd)
  
@@ -738,5 +738,5 @@ index 93752e792e..0f865dd4ab 100644
      return block;
  }
 -- 
-2.17.0.windows.1
+2.19.1
 

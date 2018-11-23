@@ -1,4 +1,4 @@
-From ca9038e919a02830a05f393367adbc6dab9abc7a Mon Sep 17 00:00:00 2001
+From f018d49626458eeaf6b438b822aa48f9d1b2ffe2 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 2 Aug 2016 18:54:28 +0200
 Subject: [PATCH 05/38] config: cmdline: Use msg_* instead of fprintf
@@ -46,5 +46,5 @@ index 535306cc1c..02a88b46d3 100644
          }
      }
 -- 
-2.17.0.windows.1
+2.19.1
 

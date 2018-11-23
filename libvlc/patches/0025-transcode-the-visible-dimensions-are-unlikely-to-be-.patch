@@ -1,4 +1,4 @@
-From 4e2ae46e2434c131fdd1dd06ca4749f8fd64a5c2 Mon Sep 17 00:00:00 2001
+From 4080a898c2d19cb587dec0d001153dca23bedfb1 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 14 Dec 2017 14:20:25 +0100
 Subject: [PATCH 25/38] transcode: the visible dimensions are unlikely to be 0
@@ -8,7 +8,7 @@ Subject: [PATCH 25/38] transcode: the visible dimensions are unlikely to be 0
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/modules/stream_out/transcode/video.c b/modules/stream_out/transcode/video.c
-index 74734ee656..13df03c855 100644
+index 7849e379b2..c0a0b26275 100644
 --- a/modules/stream_out/transcode/video.c
 +++ b/modules/stream_out/transcode/video.c
 @@ -439,9 +439,9 @@ static void transcode_video_size_init( sout_stream_t *p_stream,
@@ -24,5 +24,5 @@ index 74734ee656..13df03c855 100644
  
  
 -- 
-2.17.0.windows.1
+2.19.1
 

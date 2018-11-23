@@ -1,4 +1,4 @@
-From cbdb93b4fccac472e5cb7cb7854c0e08f078561d Mon Sep 17 00:00:00 2001
+From 5c443e28373d1921ad66d0d017eb637e4eb14230 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 13:09:59 +0200
 Subject: [PATCH 16/38] sap: use the same declaration signature as the
@@ -22,5 +22,5 @@ index ee5312eb7d..2b5b0e13a2 100644
  static sap_address_t *AddressCreate (vlc_object_t *obj, const char *group)
  {
 -- 
-2.17.0.windows.1
+2.19.1
 

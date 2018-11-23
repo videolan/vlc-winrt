@@ -1,4 +1,4 @@
-From 8a663623d792e23ff8cb417cb88cb900b1f438ab Mon Sep 17 00:00:00 2001
+From 9e6afceace5934fcd54cdf216975e86f9ac8d386 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:46:50 +0200
 Subject: [PATCH 21/38] contrib: ffmpeg: don't use libvpx at all in libavcodec
@@ -35,5 +35,5 @@ index 667648409f..ea288c7284 100644
  FFMPEGCONF += --disable-encoders --disable-muxers
  endif
 -- 
-2.17.0.windows.1
+2.19.1
 

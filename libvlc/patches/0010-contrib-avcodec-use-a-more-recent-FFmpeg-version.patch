@@ -1,4 +1,4 @@
-From 90e933c30abda8d5da1c4533e95955933fd6d862 Mon Sep 17 00:00:00 2001
+From dcfb759a124ca9c06e847895bc516b832045e481 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Tue, 19 Dec 2017 12:39:06 +0100
 Subject: [PATCH 10/38] contrib:avcodec: use a more recent FFmpeg version
@@ -22,5 +22,5 @@ index 9513d63aaf..667648409f 100644
  FFMPEG_GITURL := http://git.videolan.org/git/ffmpeg.git
  FFMPEG_LAVC_MIN := 57.37.100
 -- 
-2.17.0.windows.1
+2.19.1
 

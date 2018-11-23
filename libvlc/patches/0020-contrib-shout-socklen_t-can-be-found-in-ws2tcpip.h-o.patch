@@ -1,4 +1,4 @@
-From 6f33ae0f5a4385278955fe7c28b19bf1c9fc8f52 Mon Sep 17 00:00:00 2001
+From 4e13ca7990fc3e8a02cc161758d8bfa79ec03cdf Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:13:55 +0200
 Subject: [PATCH 20/38] contrib: shout: socklen_t can be found in ws2tcpip.h on
@@ -12,10 +12,10 @@ and make sure it's found on Windows Store builds as well
  create mode 100644 contrib/src/shout/shout-win32-socklen.patch
 
 diff --git a/contrib/src/shout/rules.mak b/contrib/src/shout/rules.mak
-index afd75f1d74..90cd2b565d 100644
+index 4d6df0e11d..830ce1f98e 100644
 --- a/contrib/src/shout/rules.mak
 +++ b/contrib/src/shout/rules.mak
-@@ -26,6 +26,7 @@ libshout: libshout-$(SHOUT_VERSION).tar.gz .sum-shout
+@@ -27,6 +27,7 @@ libshout: libshout-$(SHOUT_VERSION).tar.gz .sum-shout
  	$(APPLY) $(SRC)/shout/shout-strings.patch
  	$(APPLY) $(SRC)/shout/shout-win32.patch
  	$(APPLY) $(SRC)/shout/shout-timeval.patch
@@ -42,5 +42,5 @@ index 0000000000..57821bff90
 + 
 + #include "sock.h"
 -- 
-2.17.0.windows.1
+2.19.1
 
