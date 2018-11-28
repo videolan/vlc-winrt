@@ -2,7 +2,7 @@ stages:
     - build
 
 .build-base:
-    image: registry.videolan.org:5000/vlc-debian-llvm-mingw:20181122173821
+    image: registry.videolan.org:5000/vlc-debian-llvm-mingw:20181128171234
     tags:
         - uwp
         - llvm
