@@ -1,7 +1,7 @@
-From 26e661304b769b1d193c208ae129dc9773e73d22 Mon Sep 17 00:00:00 2001
+From 0765254beae3a1dcb8d1f8649254ab0a4d213260 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Wed, 18 Apr 2018 14:19:56 +0200
-Subject: [PATCH 37/38] direct3d11: get the feature level from the external
+Subject: [PATCH 36/37] direct3d11: get the feature level from the external
  D3D11 device on winstore builds
 
 ---

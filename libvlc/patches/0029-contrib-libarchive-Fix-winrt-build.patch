@@ -1,7 +1,7 @@
-From ac96166b98b88e85f8e2ab3e420ea62449c433fd Mon Sep 17 00:00:00 2001
+From 2632d5b9b8c5d3a2d76d1d1ed6b9a4fb174a250a Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Mon, 9 Apr 2018 09:59:27 +0200
-Subject: [PATCH 30/38] contrib: libarchive: Fix winrt build
+Subject: [PATCH 29/37] contrib: libarchive: Fix winrt build
 
 don't force compilation for Windows XP
 don't call DebugBreak() (in debug builds)

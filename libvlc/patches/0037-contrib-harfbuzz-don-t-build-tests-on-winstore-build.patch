@@ -1,7 +1,7 @@
-From 6f41c26a95160f3acfcbfb09473ab16a99e0331d Mon Sep 17 00:00:00 2001
+From ceac882cc49f95b087fed6dfb78e59cdad9a7a01 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 24 May 2018 15:17:02 +0200
-Subject: [PATCH 38/38] contrib: harfbuzz: don't build tests on winstore builds
+Subject: [PATCH 37/37] contrib: harfbuzz: don't build tests on winstore builds
 
 it tries to link with .lib files
 ---

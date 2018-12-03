@@ -1,7 +1,7 @@
-From 483653fd7f5a02a4d4d155ac60b6de709dcb3b03 Mon Sep 17 00:00:00 2001
+From 8a13e6c99f0ac573bc3a787cc17b12c3471dffe4 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 5 Apr 2018 13:29:40 +0200
-Subject: [PATCH 22/38] contrib: gcrypt: use bcrypt rather than wincrypt
+Subject: [PATCH 21/37] contrib: gcrypt: use bcrypt rather than wincrypt
 
 ---
  contrib/src/gcrypt/winrt.patch | 177 +++++++++++++++++++++++----------

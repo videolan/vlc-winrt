@@ -1,7 +1,7 @@
-From 815b7cc2faaeae8cc69f984ebcc8d80ec0a8c8c7 Mon Sep 17 00:00:00 2001
+From f91da9229b0d6d2c5548a4183e1852377f8c587d Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:00:53 +0200
-Subject: [PATCH 17/38] contrib: shout: respect the availability of strings.h
+Subject: [PATCH 17/37] contrib: shout: respect the availability of strings.h
  everywhere
 
 ---
@@ -11,7 +11,7 @@ Subject: [PATCH 17/38] contrib: shout: respect the availability of strings.h
  create mode 100644 contrib/src/shout/shout-strings.patch
 
 diff --git a/contrib/src/shout/rules.mak b/contrib/src/shout/rules.mak
-index 07f577dce1..c4a1c15fab 100644
+index e48b0b37c1..4cfd227e9f 100644
 --- a/contrib/src/shout/rules.mak
 +++ b/contrib/src/shout/rules.mak
 @@ -24,6 +24,7 @@ libshout: libshout-$(SHOUT_VERSION).tar.gz .sum-shout
@@ -19,9 +19,9 @@ index 07f577dce1..c4a1c15fab 100644
  	$(APPLY) $(SRC)/shout/fix-xiph_openssl.patch
  	$(APPLY) $(SRC)/shout/no-examples.patch
 +	$(APPLY) $(SRC)/shout/shout-strings.patch
+ 	$(APPLY) $(SRC)/shout/no-force-libwsock.patch
  	$(call pkg_static,"shout.pc.in")
  	$(UPDATE_AUTOCONFIG)
- 	$(MOVE)
 diff --git a/contrib/src/shout/shout-strings.patch b/contrib/src/shout/shout-strings.patch
 new file mode 100644
 index 0000000000..438a364899

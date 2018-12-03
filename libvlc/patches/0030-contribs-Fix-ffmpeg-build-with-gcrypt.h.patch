@@ -1,7 +1,7 @@
-From f62f3869dc970f3d79728a21f875c406b44c7c0c Mon Sep 17 00:00:00 2001
+From fd9f573a9ef5a1c9c051120929fc8b6a74f35176 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Mon, 9 Apr 2018 13:04:02 +0200
-Subject: [PATCH 31/38] contribs: Fix ffmpeg build with gcrypt.h
+Subject: [PATCH 30/37] contribs: Fix ffmpeg build with gcrypt.h
 
 ---
  contrib/src/ffmpeg/ffmpeg-win32-bcrypt.patch | 12 ++++++++++++

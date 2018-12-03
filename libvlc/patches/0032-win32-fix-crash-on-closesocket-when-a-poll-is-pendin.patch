@@ -1,7 +1,7 @@
-From e21ec7974be559f6cb929c12a26837541a35450a Mon Sep 17 00:00:00 2001
+From 68b56836dcc3bf4a9fb2399b6eb4a442b3e0c3f0 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Mon, 9 Apr 2018 18:46:34 +0200
-Subject: [PATCH 33/38] win32: fix crash on closesocket() when a poll() is
+Subject: [PATCH 32/37] win32: fix crash on closesocket() when a poll() is
  pending
 
 Only for winstore builds for now
