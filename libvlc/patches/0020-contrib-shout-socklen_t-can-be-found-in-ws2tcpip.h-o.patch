@@ -1,4 +1,4 @@
-From 4e13ca7990fc3e8a02cc161758d8bfa79ec03cdf Mon Sep 17 00:00:00 2001
+From 00dad89925c60a57165b0894c12064566e2a81a8 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:13:55 +0200
 Subject: [PATCH 20/38] contrib: shout: socklen_t can be found in ws2tcpip.h on
@@ -42,5 +42,5 @@ index 0000000000..57821bff90
 + 
 + #include "sock.h"
 -- 
-2.19.1
+2.19.2
 

@@ -1,4 +1,4 @@
-From ccc41eef35ee56fc69c014b6908dca8b2ce6bd78 Mon Sep 17 00:00:00 2001
+From 114373bf4c2534f12b276836f437fd678c356b40 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Wed, 25 Jan 2017 10:49:37 +0100
 Subject: [PATCH 08/38] core: avcodec requires 32-bytes memory alignment in
@@ -29,5 +29,5 @@ index 9a08255e16..c07cdbca56 100644
      {
          p_pic->i_planes = 0;
 -- 
-2.19.1
+2.19.2
 

@@ -1,4 +1,4 @@
-From 77a50e469e3deaa3a2688331f5ad3fb8a45dd8ee Mon Sep 17 00:00:00 2001
+From 92a621ebcf3c1b2514b609c5a0b696d7291d52d0 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:06:53 +0200
 Subject: [PATCH 19/38] contrib: shout: timeval is defined in winsock2.h on
@@ -39,5 +39,5 @@ index 0000000000..6d05058446
 + #ifdef TIME_WITH_SYS_TIME
 + #  include <sys/time.h>
 -- 
-2.19.1
+2.19.2
 

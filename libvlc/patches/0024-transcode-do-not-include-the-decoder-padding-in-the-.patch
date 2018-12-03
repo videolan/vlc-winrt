@@ -1,4 +1,4 @@
-From 4f956ba28a5c0ddc0d47647f87b5d275d487b5c0 Mon Sep 17 00:00:00 2001
+From 2fa9dbf9a2e322e86887368483eb84968c546df2 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Wed, 4 Apr 2018 12:10:17 +0200
 Subject: [PATCH 24/38] transcode: do not include the decoder padding in the
@@ -26,5 +26,5 @@ index b6fabead48..7849e379b2 100644
      }
      else
 -- 
-2.19.1
+2.19.2
 

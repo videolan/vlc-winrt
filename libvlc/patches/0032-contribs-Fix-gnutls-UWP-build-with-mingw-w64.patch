@@ -1,4 +1,4 @@
-From d43f311d6d1e45aa2650ae5c1e79125474dd6823 Mon Sep 17 00:00:00 2001
+From 9977bcac6d6f6713fecc8e4ec502d345c863991c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Mon, 9 Apr 2018 13:25:00 +0200
 Subject: [PATCH 32/38] contribs: Fix gnutls UWP build with mingw-w64
@@ -36,5 +36,5 @@ index d59863d000..68e4b3c609 100644
 + 
 + #include <winapifamily.h>
 -- 
-2.19.1
+2.19.2
 

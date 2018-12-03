@@ -1,4 +1,4 @@
-From 02558b57d16eb1730342c92c2be79787fa4b7970 Mon Sep 17 00:00:00 2001
+From eec294e7548861243bc2b081ce4cc6a740faf26c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Apr 2018 15:14:25 +0200
 Subject: [PATCH 34/38] contrib: ffmpeg: Don't check for wincrypt anymore
@@ -43,10 +43,10 @@ index 0000000000..081c64d703
 + check_cpp_condition windows.h "_WIN32_WINNT >= 0x0600" && check_lib bcrypt "windows.h bcrypt.h" BCryptGenRandom  -lbcrypt
 + 
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index ea288c7284..c61b0d6969 100644
+index b19a43ad59..c939b4f244 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
-@@ -240,6 +240,8 @@ ifdef USE_LIBAV
+@@ -245,6 +245,8 @@ ifdef USE_LIBAV
  	$(APPLY) $(SRC)/ffmpeg/libav_gsm.patch
  endif
  	$(APPLY) $(SRC)/ffmpeg/ffmpeg-win32-bcrypt.patch
@@ -56,5 +56,5 @@ index ea288c7284..c61b0d6969 100644
  
  .ffmpeg: ffmpeg
 -- 
-2.19.1
+2.19.2
 

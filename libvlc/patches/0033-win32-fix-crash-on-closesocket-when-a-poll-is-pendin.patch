@@ -1,4 +1,4 @@
-From 635130b149aaa8e4233ee3d6122c208b479b467d Mon Sep 17 00:00:00 2001
+From e21ec7974be559f6cb929c12a26837541a35450a Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Mon, 9 Apr 2018 18:46:34 +0200
 Subject: [PATCH 33/38] win32: fix crash on closesocket() when a poll() is
@@ -30,5 +30,5 @@ index 8d56cc859a..bb1ad12985 100644
  }
  
 -- 
-2.19.1
+2.19.2
 

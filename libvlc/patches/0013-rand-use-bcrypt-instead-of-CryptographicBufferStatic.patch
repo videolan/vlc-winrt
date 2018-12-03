@@ -1,4 +1,4 @@
-From 1deb44bb6be1214a6b71667a7b92dd7629ee4073 Mon Sep 17 00:00:00 2001
+From 4562573ce650d9dc76a7f62eac9749eff2b0b6c4 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Tue, 27 Mar 2018 18:57:41 +0200
 Subject: [PATCH 13/38] rand: use bcrypt instead of CryptographicBufferStatics
@@ -102,5 +102,5 @@ index 1aeb656a8a..723a32b26e 100644
      /* acquire default encryption context */
      if( CryptAcquireContext(
 -- 
-2.19.1
+2.19.2
 

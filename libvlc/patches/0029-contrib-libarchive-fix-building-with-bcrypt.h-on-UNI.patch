@@ -1,4 +1,4 @@
-From 6ff33bedd7a31b74f5aed97bfdda9552a79e5835 Mon Sep 17 00:00:00 2001
+From 69e691dda343954170de692ce98dc64e41ce351e Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Sun, 8 Apr 2018 15:29:38 +0200
 Subject: [PATCH 29/38] contrib: libarchive: fix building with bcrypt.h on UNIX
@@ -41,5 +41,5 @@ index befacd4279..91515920f1 100644
  	$(APPLY) $(SRC)/libarchive/no-windows-files.patch
  	$(APPLY) $(SRC)/libarchive/libarchive-win32-bcrypt.patch
 -- 
-2.19.1
+2.19.2
 

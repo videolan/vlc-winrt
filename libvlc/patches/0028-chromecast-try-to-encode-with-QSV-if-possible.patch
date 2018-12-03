@@ -1,4 +1,4 @@
-From 6058a06875053c9f4512c48abd62dda5e2db7b0b Mon Sep 17 00:00:00 2001
+From 98bf7149be8f43bf97bdbc5bd4a22863ab3a3b06 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 5 Apr 2018 09:49:44 +0200
 Subject: [PATCH 28/38] chromecast: try to encode with QSV if possible
@@ -67,5 +67,5 @@ index 53227c258b..2210d1d46c 100644
      { .fcc = VLC_CODEC_VP8,  .get_opt = GetVencVPXOption },
      { .fcc = VLC_CODEC_H264, .get_opt = NULL },
 -- 
-2.19.1
+2.19.2
 

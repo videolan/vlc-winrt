@@ -1,4 +1,4 @@
-From e52a2a08384c525627b67e4bfefe5ff16c15de14 Mon Sep 17 00:00:00 2001
+From 26e661304b769b1d193c208ae129dc9773e73d22 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Wed, 18 Apr 2018 14:19:56 +0200
 Subject: [PATCH 37/38] direct3d11: get the feature level from the external
@@ -9,10 +9,10 @@ Subject: [PATCH 37/38] direct3d11: get the feature level from the external
  1 file changed, 1 insertion(+)
 
 diff --git a/modules/video_output/win32/direct3d11.c b/modules/video_output/win32/direct3d11.c
-index 4b29daab41..3f401ed1a4 100644
+index 32d06caa00..d1026fd17c 100644
 --- a/modules/video_output/win32/direct3d11.c
 +++ b/modules/video_output/win32/direct3d11.c
-@@ -210,6 +210,7 @@ static int OpenCoreW(vout_display_t *vd)
+@@ -212,6 +212,7 @@ static int OpenCoreW(vout_display_t *vd)
      sys->dxgiswapChain = dxgiswapChain;
      sys->d3d_dev.d3ddevice     = d3ddevice;
      sys->d3d_dev.d3dcontext    = d3dcontext;
@@ -21,5 +21,5 @@ index 4b29daab41..3f401ed1a4 100644
      ID3D11Device_AddRef       (sys->d3d_dev.d3ddevice);
      ID3D11DeviceContext_AddRef(sys->d3d_dev.d3dcontext);
 -- 
-2.19.1
+2.19.2
 
