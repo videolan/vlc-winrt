@@ -1,7 +1,7 @@
-From 5c913e68e59bfebfdb00f4d7ab97a9b28603849f Mon Sep 17 00:00:00 2001
+From e12882272bda334ba77be242dd721835253cab4b Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Mon, 9 Apr 2018 13:25:00 +0200
-Subject: [PATCH 31/37] contribs: Fix gnutls UWP build with mingw-w64
+Subject: [PATCH 25/30] contribs: Fix gnutls UWP build with mingw-w64
 
 ---
  contrib/src/gnutls/winstore.patch | 20 ++++++++++++++++++++

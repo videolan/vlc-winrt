@@ -1,7 +1,7 @@
-From 11a27f5d36073f1f7dbaafb83ab66bbb6e330afd Mon Sep 17 00:00:00 2001
+From e52c265e8fb34198cf94f796a712354ce3f1bf62 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:46:11 +0200
-Subject: [PATCH 09/37] contrib: ffmpeg: use bcrypt instead of the old wincrypt
+Subject: [PATCH 06/30] contrib: ffmpeg: use bcrypt instead of the old wincrypt
  API
 
 When targeting Windows Vista and above
@@ -77,10 +77,10 @@ index 0000000000..456557716d
 +     if (CryptAcquireContext(&provider, NULL, NULL, PROV_RSA_FULL,
 +                             CRYPT_VERIFYCONTEXT | CRYPT_SILENT)) {
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index 432996d27a..d21254a2ff 100644
+index 0980142a16..0f4d19cc66 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
-@@ -246,6 +246,7 @@ endif
+@@ -244,6 +244,7 @@ endif
  ifdef USE_LIBAV
  	$(APPLY) $(SRC)/ffmpeg/libav_gsm.patch
  endif

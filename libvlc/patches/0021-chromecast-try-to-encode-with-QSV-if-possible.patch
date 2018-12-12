@@ -1,7 +1,7 @@
-From 7ec4482a22e6011c989dfac17e4406c5a83106ba Mon Sep 17 00:00:00 2001
+From 5e672b221673f79330fc87b529ec442c1762f392 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 5 Apr 2018 09:49:44 +0200
-Subject: [PATCH 27/37] chromecast: try to encode with QSV if possible
+Subject: [PATCH 21/30] chromecast: try to encode with QSV if possible
 
 It will be handled by the GPU so use less resource.
 ---

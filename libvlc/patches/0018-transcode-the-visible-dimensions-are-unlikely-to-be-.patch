@@ -1,7 +1,7 @@
-From 9d2a4387b9976a29f59d26552ec5919fb9134d9a Mon Sep 17 00:00:00 2001
+From 6699aefc010c00e1c342d5ad46edcb9f1313f1ad Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 14 Dec 2017 14:20:25 +0100
-Subject: [PATCH 24/37] transcode: the visible dimensions are unlikely to be 0
+Subject: [PATCH 18/30] transcode: the visible dimensions are unlikely to be 0
 
 ---
  modules/stream_out/transcode/video.c | 4 ++--
