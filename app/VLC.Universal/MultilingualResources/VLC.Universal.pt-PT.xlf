@@ -192,7 +192,7 @@
         </trans-unit>
         <trans-unit id="HoweverYouMayFindWhatYouWantHere" translate="yes" xml:space="preserve">
           <source>however you may find what you're looking for here</source>
-          <target state="translated">contudo você pode encontrar o que procura aqui</target>
+          <target state="translated">contudo pode encontrar o que procura aqui</target>
         </trans-unit>
         <trans-unit id="HowToFavoriteAlbum1" translate="yes" xml:space="preserve">
           <source>to favorite an album, just press</source>
@@ -256,7 +256,7 @@
         </trans-unit>
         <trans-unit id="MusicShows" translate="yes" xml:space="preserve">
           <source>music shows</source>
-          <target state="translated">Shows de música</target>
+          <target state="translated">Programas de música</target>
         </trans-unit>
         <trans-unit id="Mute" translate="yes" xml:space="preserve">
           <source>mute</source>
@@ -288,7 +288,7 @@
         </trans-unit>
         <trans-unit id="NoCameraVideosFound" translate="yes" xml:space="preserve">
           <source>no camera videos found</source>
-          <target state="translated">não foram encontrados vídeos de câmera</target>
+          <target state="translated">não foram encontrados vídeos de câmara</target>
         </trans-unit>
         <trans-unit id="NoFavoriteAlbums" translate="yes" xml:space="preserve">
           <source>no favorite albums</source>
@@ -572,7 +572,7 @@
         </trans-unit>
         <trans-unit id="Video" translate="yes" xml:space="preserve">
           <source>video</source>
-          <target state="translated">video</target>
+          <target state="translated">vídeo</target>
         </trans-unit>
         <trans-unit id="VideoFolders" translate="yes" xml:space="preserve">
           <source>video folders</source>
@@ -948,7 +948,7 @@
         </trans-unit>
         <trans-unit id="AddMarginExplanation" translate="yes" xml:space="preserve">
           <source>Some TVs will not display the app correctly. To add some margin, turn this on</source>
-          <target state="translated">Algumas TVs não mostrarão a app correctamente. Para adicionar alguma margem, active isto</target>
+          <target state="translated">Algumas TVs não mostrarão a app corretamente. Para adicionar alguma margem, ative isto</target>
         </trans-unit>
         <trans-unit id="ExtraMargin" translate="yes" xml:space="preserve">
           <source>Extra margin</source>
