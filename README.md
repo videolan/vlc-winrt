@@ -34,17 +34,7 @@ It's currently written in C# and uses [libvlcpp](https://code.videolan.org/video
 
 First, get the code
 ```cmd
-git clone https://code.videolan.org/videolan/vlc-winrt
-```
-
-Enter the repository directory
-```cmd 
-cd vlc-winrt
-```
-
-Then, initialize `libvlcpp` 
-```cmd 
-git submodule update --init
+git clone --recursive https://code.videolan.org/videolan/vlc-winrt
 ```
 
 After this, you need to get a recent nightly build of vlc-winrt: [x86](http://nightlies.videolan.org/build/winrt-i686) or [x64](http://nightlies.videolan.org/build/winrt-x86_64)
