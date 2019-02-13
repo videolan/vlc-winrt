@@ -6,6 +6,8 @@ namespace VLC.Commands.MediaPlayback
 {
     public class ChangeSpuDelayCommand : AlwaysExecutableCommand
     {
+        private int limit = 3000;
+        private int step = 50;
         public override void Execute(object parameter)
         {
             if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.NotPlaying)
@@ -15,15 +17,17 @@ namespace VLC.Commands.MediaPlayback
             switch (request)
             {
                 case "faster":
-                    if (Locator.MediaPlaybackViewModel.SpuDelay < 3000)
+                    Locator.MediaPlaybackViewModel.SpuDelay += step;
+                    if (Locator.MediaPlaybackViewModel.SpuDelay > limit)
                     {
-                        Locator.MediaPlaybackViewModel.SpuDelay += 50;
+                        Locator.MediaPlaybackViewModel.SpuDelay = limit;
                     }
                     break;
                 case "slower":
-                    if (Locator.MediaPlaybackViewModel.SpuDelay > -3000)
+                    Locator.MediaPlaybackViewModel.SpuDelay -= step;
+                    if (Locator.MediaPlaybackViewModel.SpuDelay < -limit)
                     {
-                        Locator.MediaPlaybackViewModel.SpuDelay -= 50;
+                        Locator.MediaPlaybackViewModel.SpuDelay = -limit;
                     }
                     break;
                 case "reset":
