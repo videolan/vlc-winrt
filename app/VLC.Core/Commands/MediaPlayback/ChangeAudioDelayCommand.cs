@@ -6,6 +6,8 @@ namespace VLC.Commands.MediaPlayback
 {
     public class ChangeAudioDelayCommand : AlwaysExecutableCommand
     {
+        private int limit = 3000;
+        private int step = 50;
         public override void Execute(object parameter)
         {
             if (Locator.MediaPlaybackViewModel.PlaybackService.PlayingType == PlayingType.NotPlaying)
@@ -15,15 +17,17 @@ namespace VLC.Commands.MediaPlayback
             switch (request)
             {
                 case "faster":
-                    if (Locator.MediaPlaybackViewModel.AudioDelay < 3000)
+                    Locator.MediaPlaybackViewModel.AudioDelay += step;
+                    if (Locator.MediaPlaybackViewModel.AudioDelay > limit)
                     {
-                        Locator.MediaPlaybackViewModel.AudioDelay += 50;
+                        Locator.MediaPlaybackViewModel.AudioDelay = limit;
                     }
                     break;
                 case "slower":
-                    if (Locator.MediaPlaybackViewModel.AudioDelay > -3000)
+                    Locator.MediaPlaybackViewModel.AudioDelay -= step;
+                    if (Locator.MediaPlaybackViewModel.AudioDelay < -limit)
                     {
-                        Locator.MediaPlaybackViewModel.AudioDelay -= 50;
+                        Locator.MediaPlaybackViewModel.AudioDelay = -limit;
                     }
                     break;
                 case "reset":
