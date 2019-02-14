@@ -382,13 +382,15 @@ namespace VLC.Services.RunTime
 
         public long AudioDelay
         {
-            get { return _mediaPlayer.audioDelay(); }
-            set { _mediaPlayer.setAudioDelay(value); }
+            // LibVLC works with microseconds, so we should multiply the values by 1000.
+            get { return _mediaPlayer.audioDelay() / 1000; }
+            set { _mediaPlayer.setAudioDelay(value * 1000); }
         }
 
         public long SpuDelay
         {
-            get { return _mediaPlayer.spuDelay(); }
+            // LibVLC works with microseconds, so we should multiply the values by 1000.
+            get { return _mediaPlayer.spuDelay() / 1000; }
             set { _mediaPlayer.setSpuDelay(value * 1000); }
         }
 
