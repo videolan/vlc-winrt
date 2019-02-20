@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Windows.Graphics.Display;
+﻿using Windows.Graphics.Display;
+using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.System.Display;
 
 namespace VLC.Helpers
@@ -10,26 +7,13 @@ namespace VLC.Helpers
     public static class DeviceHelper
     {
         private static readonly DisplayRequest _displayAlwaysOnRequest = new DisplayRequest();
+        static EasClientDeviceInformation _deviceInfo = new EasClientDeviceInformation();
 
         public static DeviceTypeEnum GetDeviceType()
         {
-            return DeviceTypeEnum.Tablet;
-
-            //switch (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily)
-            //{
-            //    case "Windows.Desktop":
-            //        return DeviceTypeEnum.Tablet;
-            //    case "Windows.Mobile":
-            //        return DeviceTypeEnum.Phone;
-            //    case "Windows.Universal":
-            //        return DeviceTypeEnum.IoT;
-            //    case "Windows.Team":
-            //        return DeviceTypeEnum.SurfaceHub;
-            //    case "Windows.Xbox":
-            //        return DeviceTypeEnum.Xbox;
-            //    default:
-            //        return DeviceTypeEnum.Other;
-            //}
+            if(_deviceInfo.OperatingSystem.Equals("WindowsPhone"))
+                return DeviceTypeEnum.Phone;
+            else return DeviceTypeEnum.Tablet;
         }
 
         public static bool IsMediaCenterModeCompliant => false;

@@ -8,11 +8,8 @@ using Windows.UI.Core;
 using VLC.Helpers;
 using VLC.Model;
 using Windows.Storage.Search;
-using VLC.Commands.VLCFileExplorer;
 using VLC.Model.FileExplorer;
 using VLC.Utils;
-using Windows.UI.Xaml;
-using libVLCX;
 
 namespace VLC.ViewModels.Others.VlcExplorer
 {
@@ -36,10 +33,21 @@ namespace VLC.ViewModels.Others.VlcExplorer
                     IsFolderEmpty = false;
                     IsLoadingFiles = true;
                 });
+
+               
                 IReadOnlyList<IStorageItem> items = null;
-                var queryOptions = new QueryOptions(CommonFileQuery.DefaultQuery, VLCFileExtensions.Supported);
-                var fileQuery = (BackStack.Last().StorageItem as StorageFolder).CreateItemQueryWithOptions(queryOptions);
-                items = await fileQuery.GetItemsAsync();
+                var currentFolder = (BackStack.Last().StorageItem as StorageFolder);
+                if (DeviceHelper.GetDeviceType() == DeviceTypeEnum.Phone)
+                {
+                    items = await currentFolder.GetItemsAsync();
+                }
+                else
+                {
+                    var queryOptions = new QueryOptions(CommonFileQuery.DefaultQuery, VLCFileExtensions.Supported);
+                    var fileQuery = currentFolder.CreateItemQueryWithOptions(queryOptions);
+                    items = await fileQuery.GetItemsAsync();
+                }
+              
                 var vlcItems = new ObservableCollection<IVLCStorageItem>();
                 foreach (var storageItem in items)
                 {
