@@ -7,8 +7,8 @@ namespace VLC.Services.RunTime
 {
     public class GamepadService
     {
-        private const string GamepadAdded = "Gamedpad Added";
-        private const string GamepadRemoved = "Gamedpad Removed";
+        private const string GamepadAdded = "Gamepad Added";
+        private const string GamepadRemoved = "Gamepad Removed";
         // Workaround to prevent event firing on app start which makes the notification annoying and unnecessary.
         private bool _appStartEvent;
 
