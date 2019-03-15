@@ -1,7 +1,7 @@
-From aea156501b97cafe723c0b53ddaad2faff77f713 Mon Sep 17 00:00:00 2001
+From 9a18354eeac967d24759e2f0136a826c30af435e Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Apr 2018 17:14:15 +0200
-Subject: [PATCH 29/30] contrib: mpg123: Simplify unicode checks
+Subject: [PATCH 28/28] contrib: mpg123: Simplify unicode checks
 
 ---
  contrib/src/mpg123/winstore.patch | 46 +++++++++++++++++++++++++++++++
@@ -62,5 +62,5 @@ index 416faeaba9..3171e1c5fc 100644
 +     fi
 +   else
 -- 
-2.19.2
+2.20.1
 

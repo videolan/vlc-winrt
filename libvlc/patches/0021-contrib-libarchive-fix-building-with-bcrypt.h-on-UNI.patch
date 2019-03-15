@@ -1,7 +1,7 @@
-From 6ef6b1e4289d29d8b3584182f1c94e40320a8598 Mon Sep 17 00:00:00 2001
+From 65a920677b6bd6f93e3c41d10aac371fd004897c Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Sun, 8 Apr 2018 15:29:38 +0200
-Subject: [PATCH 22/30] contrib: libarchive: fix building with bcrypt.h on UNIX
+Subject: [PATCH 21/28] contrib: libarchive: fix building with bcrypt.h on UNIX
  systems
 
 mingw64 provides the header in lowercase
@@ -41,5 +41,5 @@ index befacd4279..91515920f1 100644
  	$(APPLY) $(SRC)/libarchive/no-windows-files.patch
  	$(APPLY) $(SRC)/libarchive/libarchive-win32-bcrypt.patch
 -- 
-2.19.2
+2.20.1
 

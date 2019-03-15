@@ -1,7 +1,7 @@
-From 2f486f6457962920d215424365f7cd8d52c75039 Mon Sep 17 00:00:00 2001
+From c99a4971ba56773980ea8c953db71555d3ca171e Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Wed, 4 Apr 2018 12:10:17 +0200
-Subject: [PATCH 17/30] transcode: do not include the decoder padding in the
+Subject: [PATCH 16/28] transcode: do not include the decoder padding in the
  output SAR
 
 ---
@@ -26,5 +26,5 @@ index b6fabead48..7849e379b2 100644
      }
      else
 -- 
-2.19.2
+2.20.1
 

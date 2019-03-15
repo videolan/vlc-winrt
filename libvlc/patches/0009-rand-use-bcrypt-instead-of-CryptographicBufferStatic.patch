@@ -1,7 +1,7 @@
-From 88252da2b950cdcdc4f532f9086e9524a3066fb0 Mon Sep 17 00:00:00 2001
+From e50b151d6e1e86361489afaf6b5b8554672150a6 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Tue, 27 Mar 2018 18:57:41 +0200
-Subject: [PATCH 10/30] rand: use bcrypt instead of CryptographicBufferStatics
+Subject: [PATCH 09/28] rand: use bcrypt instead of CryptographicBufferStatics
  for Winstore builds
 
 It's available to winstore apps and on desktop since Vista.
@@ -12,7 +12,7 @@ The old API is deprecated.
  2 files changed, 15 insertions(+), 40 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index a6ff64595e..c3fab3a304 100644
+index 49b1166742..198496cf5e 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -1138,7 +1138,10 @@ AH_BOTTOM([
@@ -102,5 +102,5 @@ index 1aeb656a8a..723a32b26e 100644
      /* acquire default encryption context */
      if( CryptAcquireContext(
 -- 
-2.19.2
+2.20.1
 

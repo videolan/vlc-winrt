@@ -1,7 +1,7 @@
-From f49b1674f8d63760dfbec581be628e79ee89e9b1 Mon Sep 17 00:00:00 2001
+From 2c7607156700ee961b9dbbda57ba723419bb6d4b Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Tue, 19 Dec 2017 12:39:06 +0100
-Subject: [PATCH 07/30] contrib:avcodec: use a more recent FFmpeg version
+Subject: [PATCH 06/28] contrib:avcodec: use a more recent FFmpeg version
 
 So that it doesn't use bogus atomics based code
 ---
@@ -9,7 +9,7 @@ So that it doesn't use bogus atomics based code
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index 0f4d19cc66..68746815b5 100644
+index ea8eba7b22..2c0f4267a9 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
 @@ -5,7 +5,7 @@
@@ -22,5 +22,5 @@ index 0f4d19cc66..68746815b5 100644
  FFMPEG_GITURL := http://git.videolan.org/git/ffmpeg.git
  FFMPEG_LAVC_MIN := 57.37.100
 -- 
-2.19.2
+2.20.1
 

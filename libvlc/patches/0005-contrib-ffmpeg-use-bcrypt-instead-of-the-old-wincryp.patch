@@ -1,7 +1,7 @@
-From e52c265e8fb34198cf94f796a712354ce3f1bf62 Mon Sep 17 00:00:00 2001
+From 9b98d9f56eefaa0185ef3ebfb93abf7bccd78270 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:46:11 +0200
-Subject: [PATCH 06/30] contrib: ffmpeg: use bcrypt instead of the old wincrypt
+Subject: [PATCH 05/28] contrib: ffmpeg: use bcrypt instead of the old wincrypt
  API
 
 When targeting Windows Vista and above
@@ -77,7 +77,7 @@ index 0000000000..456557716d
 +     if (CryptAcquireContext(&provider, NULL, NULL, PROV_RSA_FULL,
 +                             CRYPT_VERIFYCONTEXT | CRYPT_SILENT)) {
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index 0980142a16..0f4d19cc66 100644
+index 74ea2a5be6..ea8eba7b22 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
 @@ -244,6 +244,7 @@ endif
@@ -89,5 +89,5 @@ index 0980142a16..0f4d19cc66 100644
  
  .ffmpeg: ffmpeg
 -- 
-2.19.2
+2.20.1
 
