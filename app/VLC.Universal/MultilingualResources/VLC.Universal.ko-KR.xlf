@@ -404,7 +404,7 @@
         </trans-unit>
         <trans-unit id="PlaylistAlreadyExists" translate="yes" xml:space="preserve">
           <source>this playlist already exists</source>
-          <target state="translated">이 아티스트는 이미 있습니다</target>
+          <target state="translated">이 아티스트는 이미 존재합니다</target>
         </trans-unit>
         <trans-unit id="PlaylistNamePlaceholder" translate="yes" xml:space="preserve">
           <source>playlist name</source>
@@ -576,7 +576,7 @@
         </trans-unit>
         <trans-unit id="VideoFolders" translate="yes" xml:space="preserve">
           <source>video folders</source>
-          <target state="translated">비디오 ㅍ더</target>
+          <target state="translated">비디오 폴더</target>
         </trans-unit>
         <trans-unit id="VideoFoldersDescription" translate="yes" xml:space="preserve">
           <source>VLC will only search videos that are in your video library. You can add folders to your library here</source>
@@ -948,7 +948,7 @@
         </trans-unit>
         <trans-unit id="AddMarginExplanation" translate="yes" xml:space="preserve">
           <source>Some TVs will not display the app correctly. To add some margin, turn this on</source>
-          <target state="translated">일부 TV는 앱을 제대로 표시하지 못합니다. 여백을 약간 추가하려면, 이걸 켜세요</target>
+          <target state="translated">일부 TV는 앱을 정상적으로 표시하지 못합니다. 이 기능으로 약간의 여백을 추가할 수 있습니다.</target>
         </trans-unit>
         <trans-unit id="ExtraMargin" translate="yes" xml:space="preserve">
           <source>Extra margin</source>
