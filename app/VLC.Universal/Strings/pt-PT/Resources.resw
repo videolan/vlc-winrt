@@ -151,7 +151,7 @@
     <value>O VLC irá iniciar na página selecionada</value>
   </data>
   <data name="HoweverYouMayFindWhatYouWantHere" xml:space="preserve">
-    <value>contudo você pode encontrar o que procura aqui</value>
+    <value>contudo pode encontrar o que procura aqui</value>
   </data>
   <data name="HowToFavoriteAlbum1" xml:space="preserve">
     <value>para favoritar um álbum, apenas pressione</value>
@@ -199,7 +199,7 @@
     <value>Definições de Música</value>
   </data>
   <data name="MusicShows" xml:space="preserve">
-    <value>Shows de música</value>
+    <value>Programas de música</value>
   </data>
   <data name="Mute" xml:space="preserve">
     <value>silenciar</value>
@@ -223,7 +223,7 @@
     <value>nenhuma biografia encontrada para este artista</value>
   </data>
   <data name="NoCameraVideosFound" xml:space="preserve">
-    <value>não foram encontrados vídeos de câmera</value>
+    <value>não foram encontrados vídeos de câmara</value>
   </data>
   <data name="NoFavoriteAlbums" xml:space="preserve">
     <value>sem álbuns favoritos</value>
@@ -436,7 +436,7 @@
     <value>nome de utilizador</value>
   </data>
   <data name="Video" xml:space="preserve">
-    <value>video</value>
+    <value>vídeo</value>
   </data>
   <data name="VideoFolders" xml:space="preserve">
     <value>pastas de vídeo</value>
@@ -718,7 +718,7 @@
     <value>àrea não segura para TV</value>
   </data>
   <data name="AddMarginExplanation" xml:space="preserve">
-    <value>Algumas TVs não mostrarão a app correctamente. Para adicionar alguma margem, active isto</value>
+    <value>Algumas TVs não mostrarão a app corretamente. Para adicionar alguma margem, ative isto</value>
   </data>
   <data name="ExtraMargin" xml:space="preserve">
     <value>Margem extra</value>
