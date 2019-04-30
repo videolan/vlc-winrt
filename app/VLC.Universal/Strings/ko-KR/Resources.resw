@@ -310,7 +310,7 @@
     <value>재생목록</value>
   </data>
   <data name="PlaylistAlreadyExists" xml:space="preserve">
-    <value>이 아티스트는 이미 있습니다</value>
+    <value>이 아티스트는 이미 존재합니다</value>
   </data>
   <data name="PlaylistNamePlaceholder" xml:space="preserve">
     <value>재생목록 이름</value>
@@ -439,7 +439,7 @@
     <value>비디오</value>
   </data>
   <data name="VideoFolders" xml:space="preserve">
-    <value>비디오 ㅍ더</value>
+    <value>비디오 폴더</value>
   </data>
   <data name="VideoFoldersDescription" xml:space="preserve">
     <value>VLC는 비디오 라이브러리에 있는 비디오만 검색합니다. 여기 라이브러리에 폴더를 추가할 수 있습니다</value>
@@ -718,7 +718,7 @@
     <value>TV 영상에 불안전한 영역</value>
   </data>
   <data name="AddMarginExplanation" xml:space="preserve">
-    <value>일부 TV는 앱을 제대로 표시하지 못합니다. 여백을 약간 추가하려면, 이걸 켜세요</value>
+    <value>일부 TV는 앱을 정상적으로 표시하지 못합니다. 이 기능으로 약간의 여백을 추가할 수 있습니다.</value>
   </data>
   <data name="ExtraMargin" xml:space="preserve">
     <value>추가 여백</value>
