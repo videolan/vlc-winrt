@@ -1280,7 +1280,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="SQLite.UWP.2015, Version=3.27.1">
+    <SDKReference Include="SQLite.UWP.2015, Version=3.28.0">
       <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
     <SDKReference Include="WindowsDesktop, Version=10.0.16299.0">
