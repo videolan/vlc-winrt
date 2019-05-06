@@ -1,110 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -118,514 +13,514 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTheApp" xml:space="preserve">
-    <value>about the app</value>
+    <value>despre aplicație</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>add</value>
+    <value>adăugați</value>
   </data>
   <data name="AddFolder" xml:space="preserve">
-    <value>add folder</value>
+    <value>adăugați director</value>
   </data>
   <data name="AddToCollection" xml:space="preserve">
-    <value>add to collection</value>
+    <value>adăugați la colecție</value>
   </data>
   <data name="AddToCurrentPlaylist" xml:space="preserve">
-    <value>add to current playlist</value>
+    <value>adăugați la lista curentă de redare</value>
   </data>
   <data name="AddToPlaylist" xml:space="preserve">
-    <value>add to playlist</value>
+    <value>adăugați la lista de redare</value>
   </data>
   <data name="Albums" xml:space="preserve">
-    <value>albums</value>
+    <value>albume</value>
   </data>
   <data name="AlbumsFound" xml:space="preserve">
-    <value>albums found : {0}</value>
+    <value>albume găsite : {0}</value>
   </data>
   <data name="Animations" xml:space="preserve">
-    <value>animations</value>
+    <value>animații</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>application theme</value>
+    <value>tema aplicației</value>
   </data>
   <data name="Artists" xml:space="preserve">
-    <value>artists</value>
+    <value>artiști</value>
   </data>
   <data name="Audio" xml:space="preserve">
     <value>audio</value>
   </data>
   <data name="AudioDelay" xml:space="preserve">
-    <value>audio delay</value>
+    <value>întârziere audio</value>
   </data>
   <data name="AudioTracks" xml:space="preserve">
-    <value>Audio Tracks</value>
+    <value>Piese audio</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>back</value>
+    <value>înapoi</value>
   </data>
   <data name="CameraRoll" xml:space="preserve">
-    <value>camera roll</value>
+    <value>Fotografii</value>
   </data>
   <data name="ChangeAlbumCover" xml:space="preserve">
-    <value>change album cover</value>
+    <value>modificați coperta albumului</value>
   </data>
   <data name="Chapters" xml:space="preserve">
-    <value>Chapters</value>
+    <value>Capitole</value>
   </data>
   <data name="CheckCredentials" xml:space="preserve">
-    <value>an error occured, please check your credentials</value>
+    <value>a apărut o eroare, vă rugăm verificați-vă acreditările</value>
   </data>
   <data name="Connect" xml:space="preserve">
-    <value>connect</value>
+    <value>conectare</value>
   </data>
   <data name="ConnectedToLastFM" xml:space="preserve">
-    <value>connected to Last.FM</value>
+    <value>conectat la Last.FM</value>
   </data>
   <data name="Connecting" xml:space="preserve">
-    <value>connecting</value>
+    <value>se conectează</value>
   </data>
   <data name="ConnectToLastFM" xml:space="preserve">
-    <value>connect to Last.FM</value>
+    <value>se conectează la Last.FM</value>
   </data>
   <data name="CrashReport" xml:space="preserve">
-    <value>crash report</value>
+    <value>raport de accident</value>
   </data>
   <data name="DecreaseSpeed" xml:space="preserve">
-    <value>decrease speed</value>
+    <value>descrește viteza</value>
   </data>
   <data name="DecreaseVolume" xml:space="preserve">
-    <value>decrease volume</value>
+    <value>descrește volumul</value>
   </data>
   <data name="DeletePlaylist" xml:space="preserve">
-    <value>delete playlist</value>
+    <value>ștergeți lista de redare</value>
   </data>
   <data name="DeleteSelected" xml:space="preserve">
-    <value>delete selected</value>
+    <value>ștergeți elementele selectate</value>
   </data>
   <data name="EditMetadata" xml:space="preserve">
-    <value>edit metadata</value>
+    <value>editați metadata</value>
   </data>
   <data name="ElementsNotFound" xml:space="preserve">
-    <value>we did not find elements in there</value>
+    <value>nu am găsit elemente acolo</value>
   </data>
   <data name="EnterURL" xml:space="preserve">
-    <value>enter a url</value>
+    <value>introduceți o adresă URL</value>
   </data>
   <data name="Episode" xml:space="preserve">
-    <value>episode</value>
+    <value>episod</value>
   </data>
   <data name="EvenIfBackground" xml:space="preserve">
-    <value>even if the app is in background</value>
+    <value>chiar dacă aplicația rulează în fundal</value>
   </data>
   <data name="EvenIfNotBackground" xml:space="preserve">
-    <value>even if the app is not in background</value>
+    <value>chiar dacă aplicația nu rulează în fundal</value>
   </data>
   <data name="FailFilePlayBackground" xml:space="preserve">
-    <value>This file may not play in the background</value>
+    <value>Este posibil ca acest fișier să nu poată fi redat  în fundal</value>
   </data>
   <data name="FailNavigateVideoPlayerPage" xml:space="preserve">
-    <value>VLC failed to navigate to the Video Player page</value>
+    <value>VLC nu a reușit să navigheze la pagina Video Player</value>
   </data>
   <data name="FailOpenVideo" xml:space="preserve">
-    <value>VLC failed to open the video</value>
+    <value>VLC nu a reușit să deschidă videoclipul</value>
   </data>
   <data name="FailStartVLCEngine" xml:space="preserve">
-    <value>The app failed to start the VLC engine</value>
+    <value>Aplicația nu a reușit să pornească motorul VLC</value>
   </data>
   <data name="FeedbackThankYou" xml:space="preserve">
-    <value>feedback sent! thank you</value>
+    <value>feedback trimis! mulțumim</value>
   </data>
   <data name="FileExplorer" xml:space="preserve">
-    <value>browse</value>
+    <value>navigare</value>
   </data>
   <data name="HardwareDecoding" xml:space="preserve">
-    <value>hardware decoding</value>
+    <value>decodificare hardware</value>
   </data>
   <data name="HardwareDecodingDescription" xml:space="preserve">
-    <value>Hardware decoding may not work on your device.</value>
+    <value>Este posibil ca decodarea hardware să nu funcționeze pe dispozitiv.</value>
   </data>
   <data name="HaveToSelectPlaylist" xml:space="preserve">
-    <value>please select a playlist</value>
+    <value>vă rugăm selectați o listă de redare</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>home</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-    <value>home page</value>
+    <value>pagina home</value>
   </data>
   <data name="HomePageDescription" xml:space="preserve">
-    <value>VLC will start on the selected page</value>
+    <value>VLC va porni pe pagina selectată</value>
   </data>
   <data name="HoweverYouMayFindWhatYouWantHere" xml:space="preserve">
-    <value>however you may find what you're looking for here</value>
+    <value>cu toate acestea, puteți găsi aici ceea ce căutați </value>
   </data>
   <data name="HowToFavoriteAlbum1" xml:space="preserve">
-    <value>to favorite an album, just press</value>
+    <value>pentru a adăuga un album la lista de favorite, apăsați</value>
   </data>
   <data name="HowToFavoriteAlbum2" xml:space="preserve">
-    <value>and you'll get an instant access to it</value>
+    <value>și veți avea acces imediat la el</value>
   </data>
   <data name="ImportantSponsors" xml:space="preserve">
-    <value>important sponsors</value>
+    <value>sponsori importanți</value>
   </data>
   <data name="IncreaseSpeed" xml:space="preserve">
-    <value>increase speed</value>
+    <value>mărește viteza</value>
   </data>
   <data name="IncreaseVolume" xml:space="preserve">
-    <value>increase volume</value>
+    <value>crește volumul</value>
   </data>
   <data name="ItsEmpty" xml:space="preserve">
-    <value>it's empty here</value>
+    <value>nu este nimic aici</value>
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
-    <value>keyboard shortcuts</value>
+    <value>comenzi rapide de la tastatură</value>
   </data>
   <data name="Local" xml:space="preserve">
     <value>local</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>license</value>
+    <value>licență</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>loading</value>
+    <value>încărcare</value>
   </data>
   <data name="LoadingMusic" xml:space="preserve">
-    <value>loading music</value>
+    <value>încărcare audio</value>
   </data>
   <data name="MostPlayedArtists" xml:space="preserve">
-    <value>most played artists</value>
+    <value>cei mai mulți artiști ascultați</value>
   </data>
   <data name="Music" xml:space="preserve">
-    <value>music</value>
+    <value>muzică</value>
   </data>
   <data name="MusicFolders" xml:space="preserve">
-    <value>music folders</value>
+    <value>dosare de muzică</value>
   </data>
   <data name="MusicFoldersDescription" xml:space="preserve">
-    <value>VLC will only search songs that are in your music library. You can add folders to your library here</value>
+    <value>VLC va căuta doar melodii care se află în biblioteca muzicală. Puteți adăuga foldere în biblioteca dvs. aici</value>
   </data>
   <data name="MusicSettings" xml:space="preserve">
-    <value>Music Settings</value>
+    <value>Setări audio</value>
   </data>
   <data name="MusicShows" xml:space="preserve">
-    <value>music shows</value>
+    <value>spectacole muzicale</value>
   </data>
   <data name="Mute" xml:space="preserve">
-    <value>mute</value>
+    <value>mut</value>
   </data>
   <data name="MyPlaylists" xml:space="preserve">
-    <value>my playlists</value>
+    <value>listele mele de redare</value>
   </data>
   <data name="Network" xml:space="preserve">
-    <value>network</value>
+    <value>rețea</value>
   </data>
   <data name="NewPlaylist" xml:space="preserve">
-    <value>new playlist</value>
+    <value>listă nouă de redare</value>
   </data>
   <data name="NewVideos" xml:space="preserve">
-    <value>new videos</value>
+    <value>videoclipuri noi</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>no</value>
+    <value>nu</value>
   </data>
   <data name="NoBiographyFound" xml:space="preserve">
-    <value>no bio found for this artist</value>
+    <value>nu am găsit nicio biografie pentru acest artist</value>
   </data>
   <data name="NoCameraVideosFound" xml:space="preserve">
-    <value>no camera videos found</value>
+    <value>nu am găsit camere video</value>
   </data>
   <data name="NoFavoriteAlbums" xml:space="preserve">
-    <value>no favorite albums</value>
+    <value>niciun album favorit</value>
   </data>
   <data name="NoInternetConnection" xml:space="preserve">
-    <value>no internet connection</value>
+    <value>nicio conexiune la internet</value>
   </data>
   <data name="NoPlaylists" xml:space="preserve">
-    <value>no playlists</value>
+    <value>nicio listă de redare</value>
   </data>
   <data name="NoShowsFound" xml:space="preserve">
-    <value>no shows found</value>
+    <value>nu a fost găsit niciun spectacol</value>
   </data>
   <data name="NothingToSeeHere" xml:space="preserve">
-    <value>there's nothing to see here</value>
+    <value>nu este nimic de văzut aici</value>
   </data>
   <data name="Notifications" xml:space="preserve">
-    <value>notifications</value>
+    <value>notificări</value>
   </data>
   <data name="NotificationWhenSongStarts" xml:space="preserve">
-    <value>when the song starts</value>
+    <value>când începe melodia</value>
   </data>
   <data name="NoVideosFound" xml:space="preserve">
-    <value>we did not find video</value>
+    <value>nu am găsit fișiere video</value>
   </data>
   <data name="NowPlaying" xml:space="preserve">
-    <value>now playing</value>
+    <value>redare în prezent</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>open file</value>
+    <value>deschide fișier</value>
   </data>
   <data name="OpenStream" xml:space="preserve">
-    <value>open stream</value>
+    <value>deschideți un flux de rețea</value>
   </data>
   <data name="OpenSubtitle" xml:space="preserve">
-    <value>open subtitle</value>
+    <value>deschide subtitrare</value>
   </data>
   <data name="OrderAscending" xml:space="preserve">
-    <value>ascending</value>
+    <value>în ordine crescătoare</value>
   </data>
   <data name="OrderByAlbum" xml:space="preserve">
-    <value>by album</value>
+    <value>după album</value>
   </data>
   <data name="OrderByArtist" xml:space="preserve">
-    <value>by artist</value>
+    <value>după artist</value>
   </data>
   <data name="OrderByDate" xml:space="preserve">
-    <value>by date</value>
+    <value>după dată</value>
   </data>
   <data name="OrderDescending" xml:space="preserve">
-    <value>descending</value>
+    <value>în ordine descrescătoare</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>password</value>
+    <value>parolă</value>
   </data>
   <data name="Pause" xml:space="preserve">
-    <value>pause</value>
+    <value>pauză</value>
   </data>
   <data name="PinAlbum" xml:space="preserve">
-    <value>pin album</value>
+    <value>fixare album</value>
   </data>
   <data name="PinArtist" xml:space="preserve">
-    <value>pin artist</value>
+    <value>fixare artist</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>play</value>
+    <value>redare</value>
   </data>
   <data name="PlayAlbum" xml:space="preserve">
-    <value>play album</value>
+    <value>redare album</value>
   </data>
   <data name="PlayAll" xml:space="preserve">
-    <value>play all</value>
+    <value>redare toate</value>
   </data>
   <data name="Playback" xml:space="preserve">
-    <value>playback</value>
+    <value>redare</value>
   </data>
   <data name="PlayerSettings" xml:space="preserve">
-    <value>Player Settings</value>
+    <value>Setări de redare</value>
   </data>
   <data name="PlayFolder" xml:space="preserve">
-    <value>play folder</value>
+    <value>redare dosar</value>
   </data>
   <data name="Playlist" xml:space="preserve">
-    <value>playlist</value>
+    <value>listă de redare</value>
   </data>
   <data name="PlaylistAlreadyExists" xml:space="preserve">
-    <value>this playlist already exists</value>
+    <value>această listă de redare există deja</value>
   </data>
   <data name="PlaylistNamePlaceholder" xml:space="preserve">
-    <value>playlist name</value>
+    <value>nume listă de redare</value>
   </data>
   <data name="Playlists" xml:space="preserve">
-    <value>playlists</value>
+    <value>liste de redare</value>
   </data>
   <data name="PlayTrack" xml:space="preserve">
-    <value>play track</value>
+    <value>redare pistă</value>
   </data>
   <data name="PlayVideo" xml:space="preserve">
-    <value>play video</value>
+    <value>redare video</value>
   </data>
   <data name="PrivacyStatement" xml:space="preserve">
-    <value>privacy statement</value>
+    <value>declarație de confidențialitate</value>
   </data>
   <data name="Favorites" xml:space="preserve">
-    <value>Favorites</value>
+    <value>Favorite</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">
-    <value>refresh music library</value>
+    <value>actualizați biblioteca muzicală</value>
   </data>
   <data name="RefreshVideoLibrary" xml:space="preserve">
-    <value>refresh video library</value>
+    <value>actualizați biblioteca video</value>
   </data>
   <data name="RemovableStorage" xml:space="preserve">
-    <value>removable storage</value>
+    <value>stocare amovibilă</value>
   </data>
   <data name="RemoveFolder" xml:space="preserve">
-    <value>remove folder</value>
+    <value>ștergere dosar</value>
   </data>
   <data name="RemoveMusicFolderDescription" xml:space="preserve">
-    <value>If you don't want this folder in your Music library, you can remove it. It will affect all apps, not only VLC</value>
+    <value>Dacă nu doriți acest director în biblioteca dvs. muzicală, îl puteți elimina. Această acțiune va afecta toate aplicațiile, nu numai VLC</value>
   </data>
   <data name="RemoveVideoFolderDescription" xml:space="preserve">
-    <value>If you don't want this folder in your Video library, you can remove it. It will affect all apps, not only VLC</value>
+    <value>Dacă nu doriți acest director în biblioteca dvs. video, îl puteți elimina. Această acțiune va afecta toate aplicațiile, nu numai VLC</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>reset</value>
+    <value>restabilire</value>
   </data>
   <data name="ResetMusicDatabase" xml:space="preserve">
-    <value>reset music database</value>
+    <value>resetare baza de date cu fișiere audio</value>
   </data>
   <data name="ResetSpeed" xml:space="preserve">
-    <value>reset speed</value>
+    <value>restabilire viteză</value>
   </data>
   <data name="RichAnimationsDescription" xml:space="preserve">
-    <value>Use rich animations in the slideshows</value>
+    <value>Folosire animații bogate în prezentări</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>search</value>
+    <value>căutare</value>
   </data>
   <data name="Season" xml:space="preserve">
-    <value>season</value>
+    <value>sezon</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>settings</value>
+    <value>setări</value>
   </data>
   <data name="ShowPlaylist" xml:space="preserve">
-    <value>show playlist</value>
+    <value>afișare listă de redare</value>
   </data>
   <data name="Shows" xml:space="preserve">
-    <value>shows</value>
+    <value>spectacole muzicale</value>
   </data>
   <data name="Shuffle" xml:space="preserve">
-    <value>shuffle</value>
+    <value>amestecare</value>
   </data>
   <data name="Songs" xml:space="preserve">
-    <value>songs</value>
+    <value>cântece</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>special thanks</value>
+    <value>mulțumiri speciale</value>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value>speed</value>
+    <value>viteză</value>
   </data>
   <data name="Stop" xml:space="preserve">
     <value>stop</value>
   </data>
   <data name="SubtitleDelay" xml:space="preserve">
-    <value>subtitle delay</value>
+    <value>întârziere subtitrare</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
-    <value>Subtitles</value>
+    <value>Subtitrări</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
-    <value>subtitles encoding</value>
+    <value>codarea subtitrărilor</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>theme</value>
+    <value>temă</value>
   </data>
   <data name="TileRemoved" xml:space="preserve">
-    <value>tile removed</value>
+    <value>șablon șters</value>
   </data>
   <data name="TopVideos" xml:space="preserve">
-    <value>top videos</value>
+    <value>cele mai populare videoclipuri</value>
   </data>
   <data name="TrackAddedToYourPlaylist" xml:space="preserve">
-    <value>track added to the playlist</value>
+    <value>piesă adăugată în lista de redare</value>
   </data>
   <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
-    <value>this track is already in that playlist</value>
+    <value>piesa de află deja în lista de redare</value>
   </data>
   <data name="Tracks" xml:space="preserve">
-    <value>tracks</value>
+    <value>Piese</value>
   </data>
   <data name="UnknownAlbum" xml:space="preserve">
-    <value>Unknown album</value>
+    <value>Album necunoscut</value>
   </data>
   <data name="UnknownArtist" xml:space="preserve">
-    <value>Unknown artist</value>
+    <value>Artist necunoscut</value>
   </data>
   <data name="UnknownShow" xml:space="preserve">
-    <value>Unknown show</value>
+    <value>Spectacol necunoscut</value>
   </data>
   <data name="UnknownTrack" xml:space="preserve">
-    <value>Unknown track</value>
+    <value>Piesă necunoscută</value>
   </data>
   <data name="UserInterface" xml:space="preserve">
-    <value>User Interface</value>
+    <value>Interfața cu utilizatorul</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>username</value>
+    <value>nume utilizator</value>
   </data>
   <data name="Video" xml:space="preserve">
     <value>video</value>
   </data>
   <data name="VideoFolders" xml:space="preserve">
-    <value>video folders</value>
+    <value>foldere video</value>
   </data>
   <data name="VideoFoldersDescription" xml:space="preserve">
-    <value>VLC will only search videos that are in your video library. You can add folders to your library here</value>
+    <value>VLC va căuta numai videoclipuri care se află în biblioteca dvs. video. Puteți adăuga foldere în biblioteca dvs. aici</value>
   </data>
   <data name="VideoPlayback" xml:space="preserve">
-    <value>video playback</value>
+    <value>redare video</value>
   </data>
   <data name="VideoPlaybackInBackground" xml:space="preserve">
-    <value>play video in background</value>
+    <value>redare video în fundal</value>
   </data>
   <data name="Videos" xml:space="preserve">
-    <value>videos</value>
+    <value>fișiere video</value>
   </data>
   <data name="VideoSettings" xml:space="preserve">
-    <value>Video Settings</value>
+    <value>Setări video</value>
   </data>
   <data name="ViewAlbum" xml:space="preserve">
-    <value>view album</value>
+    <value>vizualizați albumul</value>
   </data>
   <data name="ViewArtist" xml:space="preserve">
-    <value>view artist</value>
+    <value>vizualizați artistul</value>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>volume</value>
+    <value>volum</value>
   </data>
   <data name="WeNeedYourHelp" xml:space="preserve">
-    <value>we need your help</value>
+    <value>avem nevoie de ajutorul dvs.</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>yes</value>
+    <value>da</value>
   </data>
   <data name="YourMusic" xml:space="preserve">
-    <value>your music</value>
+    <value>muzica dvs.</value>
   </data>
   <data name="AccentColor" xml:space="preserve">
-    <value>accent color</value>
+    <value>tonalitate culoare</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>background color</value>
+    <value>culoare de fundal</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>dark</value>
+    <value>întunecat</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>light</value>
+    <value>lumină</value>
   </data>
   <data name="TitleBar" xml:space="preserve">
-    <value>title bar</value>
+    <value>bara de titlu</value>
   </data>
   <data name="NeedRestart" xml:space="preserve">
-    <value>You need to restart the app to apply changes</value>
+    <value>Trebuie să reporniți aplicația pentru a aplica modificările</value>
   </data>
   <data name="Zoom" xml:space="preserve">
-    <value>zoom</value>
+    <value>redimensionare</value>
   </data>
   <data name="AreYouSure" xml:space="preserve">
-    <value>are you sure?</value>
+    <value>sunteți sigur?</value>
   </data>
   <data name="MediaCantBeRead" xml:space="preserve">
-    <value>the media can't be read</value>
+    <value>fișierul media nu poate fi citit</value>
   </data>
   <data name="Sorry" xml:space="preserve">
-    <value>we're sorry</value>
+    <value>ne pare rău</value>
   </data>
   <data name="SURFACE_BEST_FIT" xml:space="preserve">
-    <value>best fit</value>
+    <value>cel mai potrivit</value>
   </data>
   <data name="SURFACE_FIT_HORIZONTAL" xml:space="preserve">
-    <value>horizontal cropping</value>
+    <value>decupare pe orizontală</value>
   </data>
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
-    <value>vertical cropping</value>
+    <value>decupare pe verticală</value>
   </data>
   <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>fit screen</value>
+    <value>potrivire ecran</value>
   </data>
   <data name="SURFACE_FILL" xml:space="preserve">
-    <value>fill</value>
+    <value>complet</value>
   </data>
   <data name="SURFACE_16_9" xml:space="preserve">
     <value>16:9</value>
@@ -640,210 +535,204 @@
     <value>original</value>
   </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
-    <value>your playlist won't be accessible</value>
+    <value>lista dvs. de redare nu va fi accesibilă</value>
   </data>
   <data name="NoArtistShowsFound" xml:space="preserve">
-    <value>we didn't find shows for this artist</value>
+    <value>nu am găsit spectacole pentru acest artist</value>
   </data>
   <data name="NoResults" xml:space="preserve">
-    <value>no results</value>
+    <value>niciun rezultat</value>
   </data>
   <data name="ForceLandscape" xml:space="preserve">
-    <value>Force landscape</value>
+    <value>Forțează afișarea pe lat</value>
   </data>
   <data name="SURFACE_STRETCH" xml:space="preserve">
-    <value>stretch</value>
+    <value>întindere</value>
   </data>
   <data name="SimilarArtists" xml:space="preserve">
-    <value>Similar artists</value>
+    <value>Artiști similari</value>
   </data>
   <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Apply And Restart</value>
+    <value>Aplică și repornește</value>
   </data>
   <data name="EnglishLanguage" xml:space="preserve">
-    <value>English</value>
+    <value>Engleză</value>
   </data>
   <data name="FrenchLanguage" xml:space="preserve">
-    <value>French</value>
+    <value>Franceză</value>
   </data>
   <data name="JapaneseLanguage" xml:space="preserve">
-    <value>Japanese</value>
+    <value>Japoneză</value>
   </data>
   <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slovak</value>
+    <value>Slovacă</value>
   </data>
   <data name="GermanLanguage" xml:space="preserve">
-    <value>German</value>
+    <value>Germană</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
-    <value>Polish</value>
+    <value>Poloneză</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
-    <value>Danish</value>
+    <value>Daneză</value>
   </data>
   <data name="SpanishLanguage" xml:space="preserve">
-    <value>Spanish</value>
+    <value>Spaniolă</value>
   </data>
   <data name="HungarianLanguage" xml:space="preserve">
-    <value>Hungarian</value>
+    <value>Maghiară</value>
   </data>
   <data name="ItalianLanguage" xml:space="preserve">
-    <value>Italian</value>
+    <value>Italiană</value>
   </data>
   <data name="KoreanLanguage" xml:space="preserve">
-    <value>Korean</value>
+    <value>Coreeană</value>
   </data>
   <data name="MalayLanguage" xml:space="preserve">
-    <value>Malay</value>
+    <value>Malaeziană</value>
   </data>
   <data name="NorwegianLanguage" xml:space="preserve">
-    <value>Norwegian</value>
+    <value>Norvegiană</value>
   </data>
   <data name="DutchLanguage" xml:space="preserve">
-    <value>Dutch</value>
+    <value>Olandeză</value>
   </data>
   <data name="RussianLanguage" xml:space="preserve">
-    <value>Russian</value>
+    <value>Rusă</value>
   </data>
   <data name="SwedishLanguage" xml:space="preserve">
-    <value>Swedish</value>
+    <value>Suedeză</value>
   </data>
   <data name="TurkishLanguage" xml:space="preserve">
-    <value>Turkish</value>
+    <value>Turcă</value>
   </data>
   <data name="UkrainianLanguage" xml:space="preserve">
-    <value>Ukrainian</value>
+    <value>Ucraineană</value>
   </data>
   <data name="ChineseLanguage" xml:space="preserve">
-    <value>Chinese</value>
+    <value>Chineză</value>
   </data>
   <data name="PortugueseLanguage" xml:space="preserve">
-    <value>Portuguese</value>
+    <value>Portugheză</value>
   </data>
   <data name="CzechLanguage" xml:space="preserve">
-    <value>Czech</value>
+    <value>Cehă</value>
   </data>
   <data name="IcelandicLanguage" xml:space="preserve">
-    <value>Icelandic</value>
+    <value>Islandeză</value>
   </data>
   <data name="HebrewLanguage" xml:space="preserve">
-    <value>Hebrew</value>
-  </data>
-  <data name="RomanianLanguage" xml:space="preserve">
-    <value>Romanian</value>
-  </data>
-  <data name="BrazilianLanguage" xml:space="preserve">
-    <value>Brazilian</value>
+    <value>Ebraică</value>
   </data>
   <data name="Languages" xml:space="preserve">
-    <value>Languages</value>
+    <value>Limbi</value>
   </data>
   <data name="RefreshLanguage" xml:space="preserve">
-    <value>Refresh Language</value>
+    <value>Actualizați limba</value>
   </data>
   <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC will be displayed in</value>
+    <value>VLC va fi afișat în</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
-    <value>Download Files</value>
+    <value>Descărcare fișiere</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
-    <value>Just click the file you want to download from your Xbox.</value>
+    <value>Faceți clic pe fișierul pe care doriți să îl descărcați de pe Xbox.</value>
   </data>
   <data name="WEBINTF_DROPFILES" xml:space="preserve">
-    <value>Drop Files</value>
+    <value>Trageți fișierele</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Drop files in the window to add them to your Xbox.&lt;br&gt;Or click on the "+" button to use the file picker dialog.</value>
+    <value>Trageți fișierele în fereastră pentru a le adăuga la Xbox.&lt;br&gt;Sau click pe butonul "+" pentru a folosi fereastra de dialog de selectare a fișierelor..</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
-    <value>Sharing via WiFi</value>
+    <value>Partajare prin WiFi</value>
   </data>
   <data name="CopyToLocalStorage" xml:space="preserve">
-    <value>copy to local storage</value>
+    <value>copiere în spațiul de stocare local</value>
   </data>
   <data name="ExternalStorageDeviceDetected" xml:space="preserve">
-    <value>VLC has detected an external storage device.</value>
+    <value>VLC a detectat un dispozitiv de stocare extern.</value>
   </data>
   <data name="ReadFromExternalStorage" xml:space="preserve">
-    <value>Use external storage as media library.</value>
+    <value>Utilizați spațiul de stocare extern ca bibliotecă media.</value>
   </data>
   <data name="SelectContentToCopy" xml:space="preserve">
-    <value>Copy media to the internal storage.</value>
+    <value>Copiați fișierele pe suportul intern de stocare.</value>
   </data>
   <data name="WhatToDo" xml:space="preserve">
-    <value>What would you like to do?</value>
+    <value>Ce ați dori să faceți?</value>
   </data>
   <data name="AskMe" xml:space="preserve">
-    <value>Ask me</value>
+    <value>Întreabă-mă</value>
   </data>
   <data name="ExternalStorage" xml:space="preserve">
-    <value>external storage</value>
+    <value>stocare externă</value>
   </data>
   <data name="WhatToDoWhenExternalStorage" xml:space="preserve">
-    <value>What should VLC do when an external storage device has been detected?</value>
+    <value>Ce ar trebui să facă VLC când detectează un dispozitiv de stocare extern?</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anulare</value>
   </data>
   <data name="DoNothing" xml:space="preserve">
-    <value>Do nothing</value>
+    <value>Nimic</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
   <data name="Ignore" xml:space="preserve">
-    <value>Ignore</value>
+    <value>Ignorare</value>
   </data>
   <data name="Remember" xml:space="preserve">
-    <value>Remember</value>
+    <value>Ține minte</value>
   </data>
   <data name="AddMediaHelp" xml:space="preserve">
-    <value>Please insert an external storage device</value>
+    <value>Vă rugăm să introduceți un dispozitiv de stocare extern</value>
   </data>
   <data name="AddMediaHelpWithIP" xml:space="preserve">
-    <value>Please insert an external storage device, or go to http://{0}:8080 to upload some media</value>
+    <value>Vă rugăm să introduceți un dispozitiv de stocare extern sau să accesați http: // {0}: 8080 pentru a încărca unele materiale media</value>
   </data>
   <data name="CopyHelpDesktop" xml:space="preserve">
-    <value>Right-click on a file or a folder to copy it to the local storage.</value>
+    <value>Faceți clic dreapta pe un fișier sau pe un dosar pentru a-l copia în spațiul de stocare local.</value>
   </data>
   <data name="CopyHelpMediaCenter" xml:space="preserve">
-    <value>Press "Y" on a file or a folder to copy it to the local storage.</value>
+    <value>Apăsați "Y" pe un fișier sau pe un dosar pentru a-l copia în spațiul de stocare local.</value>
   </data>
   <data name="NoSubtitles" xml:space="preserve">
-    <value>No subtitle tracks</value>
+    <value>Nicio pistă de subtitrare</value>
   </data>
   <data name="ClearKeystore" xml:space="preserve">
-    <value>Clear saved credentials</value>
+    <value>Ștergeți acreditările salvate</value>
   </data>
   <data name="Credentials" xml:space="preserve">
-    <value>Credentials</value>
+    <value>Acreditări</value>
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
-    <value>Long press on a file or a folder to copy it to the local storage.</value>
+    <value>Apăsați lung un fișier sau un dosar pentru a-l copia în spațiul de stocare local.</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
-    <value>use windows 10 pip</value>
+    <value>utilizați windows 10 pip</value>
   </data>
   <data name="TvUnsafeArea" xml:space="preserve">
-    <value>TV unsafe area</value>
+    <value>zonă TV nesigură</value>
   </data>
   <data name="AddMarginExplanation" xml:space="preserve">
-    <value>Some TVs will not display the app correctly. To add some margin, turn this on</value>
+    <value>Unele televizoare nu vor afișa corect aplicația. Pentru a adăuga margini, activați această opțiune</value>
   </data>
   <data name="ExtraMargin" xml:space="preserve">
-    <value>Extra margin</value>
+    <value>Margini suplimentare</value>
   </data>
   <data name="NoExtraMargin" xml:space="preserve">
-    <value>No extra margin</value>
+    <value>Fără margini suplimentare</value>
   </data>
   <data name="Restart" xml:space="preserve">
-    <value>restart</value>
+    <value>repornire</value>
   </data>
   <data name="Disconnect" xml:space="preserve">
-    <value>disconnect</value>
+    <value>deconectare</value>
   </data>
   <data name="XboxUpload" xml:space="preserve">
-    <value>Xbox upload</value>
+    <value>încărcare Xbox</value>
   </data>
 </root>

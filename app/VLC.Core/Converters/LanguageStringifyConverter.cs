@@ -58,6 +58,10 @@ namespace VLC.Converters
                     return Strings.IcelandicLanguage;
                 case Languages.Hebrew:
                     return Strings.HebrewLanguage;
+                case Languages.Romanian:
+                    return Strings.RomanianLanguage;
+                case Languages.Brazilian:
+                    return Strings.BrazilianLanguage;
                 default:
                     throw new NotImplementedException();
             }

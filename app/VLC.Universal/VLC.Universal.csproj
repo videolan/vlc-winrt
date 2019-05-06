@@ -358,6 +358,7 @@
     <PRIResource Include="Strings\en-US\Resources.resw" />
     <PRIResource Include="Strings\is-IS\Resources.resw" />
     <PRIResource Include="Strings\he-IL\Resources.resw" />
+    <PRIResource Include="Strings\ro-RO\Resources.resw" />
     <None Include="VLC_WinRT.Universal_TemporaryKey.pfx" />
     <PRIResource Include="Strings\cs-CZ\Resources.resw" />
     <PRIResource Include="Strings\pt-PT\Resources.resw" />
@@ -1669,6 +1670,7 @@
     <XliffResource Include="MultilingualResources\VLC.Universal.pl-PL.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.pt-BR.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.pt-PT.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.ro-RO.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.ru-RU.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.sk-SK.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.sv-SE.xlf" />

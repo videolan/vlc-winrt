@@ -24,6 +24,8 @@
         Portuguese,
         Czech,
         Icelandic,
-        Hebrew
+        Hebrew,
+        Romanian,
+        Brazilian
     }
 }
