@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
   <file build-num="n/a" datatype="xml" original="VLC.UNIVERSAL/STRINGS/EN-US/RESOURCES.RESW" product-name="n/a" product-version="n/a" source-language="en-US" target-language="hu-HU" tool-id="MultilingualAppToolkit">
     <header>
@@ -644,7 +644,7 @@
         </trans-unit>
         <trans-unit id="NeedRestart" translate="yes" xml:space="preserve">
           <source>You need to restart the app to apply changes</source>
-          <target state="translated">Újra kell indítani az appot a változtatások alkalmazásához</target>
+          <target state="translated">Újra kell indítani az alkalmazást a változtatások érvénybe lépéséhez</target>
         </trans-unit>
         <trans-unit id="Zoom" translate="yes" xml:space="preserve">
           <source>zoom</source>
@@ -790,6 +790,18 @@
           <source>Hebrew</source>
           <target state="translated">héber</target>
         </trans-unit>
+		<trans-unit id="RomanianLanguage" translate="yes" xml:space="preserve">
+          <source>Romanian</source>
+          <target state="translated">román</target>
+		</trans-unit>
+        <trans-unit id="BrazilianLanguage" translate="yes" xml:space="preserve">
+          <source>Brazilian</source>
+          <target state="translated">brazil</target>
+		</trans-unit>
+		<trans-unit id="ArabicLanguage" translate="yes" xml:space="preserve">
+          <source>Arabic</source>
+          <target state="translated">arab</target>
+		</trans-unit>
         <trans-unit id="Languages" translate="yes" xml:space="preserve">
           <source>Languages</source>
           <target state="translated">Nyelvek</target>
@@ -969,14 +981,6 @@
         <trans-unit id="XboxUpload" translate="yes" xml:space="preserve">
           <source>Xbox upload</source>
           <target state="translated">Feltöltés Xboxra</target>
-        </trans-unit>
-        <trans-unit id="RomanianLanguage" translate="yes" xml:space="preserve">
-          <source>Romanian</source>
-          <target state="new">Romanian</target>
-        </trans-unit>
-        <trans-unit id="BrazilianLanguage" translate="yes" xml:space="preserve">
-          <source>Brazilian</source>
-          <target state="new">Brazilian</target>
         </trans-unit>
       </group>
     </body>
