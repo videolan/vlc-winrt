@@ -60,7 +60,7 @@
         </trans-unit>
         <trans-unit id="AudioTracks" translate="yes" xml:space="preserve">
           <source>Audio Tracks</source>
-          <target state="translated">Ses İzleri</target>
+          <target state="translated">Ses Kayıtları</target>
         </trans-unit>
         <trans-unit id="Back" translate="yes" xml:space="preserve">
           <source>back</source>
@@ -336,7 +336,7 @@
         </trans-unit>
         <trans-unit id="OpenSubtitle" translate="yes" xml:space="preserve">
           <source>open subtitle</source>
-          <target state="translated">altyazı aç</target>
+          <target state="translated">alt yazı aç</target>
         </trans-unit>
         <trans-unit id="OrderAscending" translate="yes" xml:space="preserve">
           <source>ascending</source>
@@ -512,15 +512,15 @@
         </trans-unit>
         <trans-unit id="SubtitleDelay" translate="yes" xml:space="preserve">
           <source>subtitle delay</source>
-          <target state="translated">altyazı gecikmesi</target>
+          <target state="translated">alt yazı gecikmesi</target>
         </trans-unit>
         <trans-unit id="Subtitles" translate="yes" xml:space="preserve">
           <source>Subtitles</source>
-          <target state="translated">Altyazılar</target>
+          <target state="translated">Alt yazılar</target>
         </trans-unit>
         <trans-unit id="SubtitlesEncoding" translate="yes" xml:space="preserve">
           <source>subtitles encoding</source>
-          <target state="translated">altyazı kodlaması</target>
+          <target state="translated">alt yazı kodlaması</target>
         </trans-unit>
         <trans-unit id="Theme" translate="yes" xml:space="preserve">
           <source>theme</source>
@@ -912,7 +912,7 @@
         </trans-unit>
         <trans-unit id="NoSubtitles" translate="yes" xml:space="preserve">
           <source>No subtitle tracks</source>
-          <target state="translated">Altyazı kaydı bulunamadı</target>
+          <target state="translated">Alt yazı kaydı bulunamadı</target>
         </trans-unit>
         <trans-unit id="ClearKeystore" translate="yes" xml:space="preserve">
           <source>Clear saved credentials</source>
