@@ -26,6 +26,7 @@
         Icelandic,
         Hebrew,
         Romanian,
-        Brazilian
+        Brazilian,
+        Arabic
     }
 }

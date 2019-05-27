@@ -337,6 +337,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <PRIResource Include="Strings\ar-SA\Resources.resw" />
     <PRIResource Include="Strings\zh-CN\Resources.resw" />
     <PRIResource Include="Strings\da-DK\Resources.resw" />
     <PRIResource Include="Strings\de-DE\Resources.resw" />
@@ -1654,6 +1655,7 @@
     <Folder Include="Views\MainPages\MainVideoControls\VideoPanesControls\" />
   </ItemGroup>
   <ItemGroup>
+    <XliffResource Include="MultilingualResources\VLC.Universal.ar-SA.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.fr-FR.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.he-IL.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.is-IS.xlf" />

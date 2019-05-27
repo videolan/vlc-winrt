@@ -600,6 +600,15 @@
   <data name="HebrewLanguage" xml:space="preserve">
     <value>Hebräisch</value>
   </data>
+  <data name="RomanianLanguage" xml:space="preserve">
+    <value>Rumänisch</value>
+  </data>
+  <data name="BrazilianLanguage" xml:space="preserve">
+    <value>Brasilianisches Portugiesisch</value>
+  </data>
+  <data name="ArabicLanguage" xml:space="preserve">
+    <value>Arabisch</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Sprachen</value>
   </data>

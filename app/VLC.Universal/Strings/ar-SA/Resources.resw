@@ -13,700 +13,700 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTheApp" xml:space="preserve">
-    <value>az app névjegye</value>
+    <value>عن التطبيق</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>hozzáadás</value>
+    <value>أضف</value>
   </data>
   <data name="AddFolder" xml:space="preserve">
-    <value>mappa hozzáadása</value>
+    <value>أضِف مجلد</value>
   </data>
   <data name="AddToCollection" xml:space="preserve">
-    <value>gyűjteményhez adás</value>
+    <value>أضِف إلى التجميع</value>
   </data>
   <data name="AddToCurrentPlaylist" xml:space="preserve">
-    <value>hozzáadás a jelenlegi lejátszólistához</value>
+    <value>أضِف إلى قائمة التشغيل الحالية</value>
   </data>
   <data name="AddToPlaylist" xml:space="preserve">
-    <value>lejátszólistához adás</value>
+    <value>أضف إلى قائمة التشغيل</value>
   </data>
   <data name="Albums" xml:space="preserve">
-    <value>albumok</value>
+    <value>الألبومات</value>
   </data>
   <data name="AlbumsFound" xml:space="preserve">
-    <value>talált albumok: {0}</value>
+    <value>الألبومات التي تم العثور عليها : {0}</value>
   </data>
   <data name="Animations" xml:space="preserve">
-    <value>animációk</value>
+    <value>سرعة تحريك جوم</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>alkalmazástéma</value>
+    <value>سمة التطبيق</value>
   </data>
   <data name="Artists" xml:space="preserve">
-    <value>előadó</value>
+    <value>الفنانون</value>
   </data>
   <data name="Audio" xml:space="preserve">
-    <value>hang</value>
+    <value>صوت</value>
   </data>
   <data name="AudioDelay" xml:space="preserve">
-    <value>hang késleltetése</value>
+    <value>تأخير الصوت</value>
   </data>
   <data name="AudioTracks" xml:space="preserve">
-    <value>Hangsávok</value>
+    <value>المقاطع الصوتية</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>vissza</value>
+    <value>الرجوع</value>
   </data>
   <data name="CameraRoll" xml:space="preserve">
-    <value>filmtekercs</value>
+    <value>لفة كاميرا</value>
   </data>
   <data name="ChangeAlbumCover" xml:space="preserve">
-    <value>albumborító módosítása</value>
+    <value>تغيير غلاف الألبوم</value>
   </data>
   <data name="Chapters" xml:space="preserve">
-    <value>Fejezetek</value>
+    <value>الفصول</value>
   </data>
   <data name="CheckCredentials" xml:space="preserve">
-    <value>hiba történt, ellenőrizze a hitelesítési adatokat</value>
+    <value>حدث خطأ ، يرجى التحقق من بيانات الاعتماد الخاصة بك</value>
   </data>
   <data name="Connect" xml:space="preserve">
-    <value>kapcsolat</value>
+    <value>اتصال</value>
   </data>
   <data name="ConnectedToLastFM" xml:space="preserve">
-    <value>kapcsolódva a Last.FM-hez</value>
+    <value>متصل بِ‍ Last.FM</value>
   </data>
   <data name="Connecting" xml:space="preserve">
-    <value>kapcsolódás</value>
+    <value>جارى الربط</value>
   </data>
   <data name="ConnectToLastFM" xml:space="preserve">
-    <value>kapcsolódás a Last.FM-hez</value>
+    <value>اتصل بِ‍ Last.FM</value>
   </data>
   <data name="CrashReport" xml:space="preserve">
-    <value>összeomlás-jelentés</value>
+    <value>تقرير الاعطال</value>
   </data>
   <data name="DecreaseSpeed" xml:space="preserve">
-    <value>sebesség csökkentése</value>
+    <value>تقليل السرعة</value>
   </data>
   <data name="DecreaseVolume" xml:space="preserve">
-    <value>hangerő csökkentése</value>
+    <value>خفض الصوت</value>
   </data>
   <data name="DeletePlaylist" xml:space="preserve">
-    <value>lejátszólista törlése</value>
+    <value>حذف قائمة التشغيل</value>
   </data>
   <data name="DeleteSelected" xml:space="preserve">
-    <value>kiválasztott törlése</value>
+    <value>حذف المحدد</value>
   </data>
   <data name="EditMetadata" xml:space="preserve">
-    <value>metaadatok szerkesztése</value>
+    <value>تعديل بيانات التعريف</value>
   </data>
   <data name="ElementsNotFound" xml:space="preserve">
-    <value>nem találhatóak elemek itt</value>
+    <value>لم نجد عناصر هناك</value>
   </data>
   <data name="EnterURL" xml:space="preserve">
-    <value>adjon meg egy URL-t</value>
+    <value>ادخل عنوان الموقع</value>
   </data>
   <data name="Episode" xml:space="preserve">
-    <value>epizód</value>
+    <value>حلقة</value>
   </data>
   <data name="EvenIfBackground" xml:space="preserve">
-    <value>még akkor is, ha az app a háttérben van</value>
+    <value>حتى لو كان التطبيق بالخلفية</value>
   </data>
   <data name="EvenIfNotBackground" xml:space="preserve">
-    <value>még akkor is, ha az app nem a háttérben van</value>
+    <value>حتى لو لم يكن التطبيق بالخلفية</value>
   </data>
   <data name="FailFilePlayBackground" xml:space="preserve">
-    <value>Ez a fájl lehet hogy nem játszható le a háttérben</value>
+    <value>قد لا يتم تشغيل هذا الملف في الخلفية</value>
   </data>
   <data name="FailNavigateVideoPlayerPage" xml:space="preserve">
-    <value>A VLC nem tudott a Videólejátszó oldalra navigálni</value>
+    <value>فشل VLC في الانتقال إلى صفحة مشغّل الڤديوهات</value>
   </data>
   <data name="FailOpenVideo" xml:space="preserve">
-    <value>A VLC nem tudta megnyitni a videót</value>
+    <value>فشل VLC في فتح الڤديو</value>
   </data>
   <data name="FailStartVLCEngine" xml:space="preserve">
-    <value>Az app nem tudta elindítani a VLC motort</value>
+    <value>فشل التطبيق في بدء تشغيل محرك VLC</value>
   </data>
   <data name="FeedbackThankYou" xml:space="preserve">
-    <value>visszajelzés elküldve! köszönjük</value>
+    <value>شكراً لك, تم ارسال التقييم!</value>
   </data>
   <data name="FileExplorer" xml:space="preserve">
-    <value>böngészés</value>
+    <value>تصفح</value>
   </data>
   <data name="HardwareDecoding" xml:space="preserve">
-    <value>hardveres dekódolás</value>
+    <value>فك الترميز الهاردوير</value>
   </data>
   <data name="HardwareDecodingDescription" xml:space="preserve">
-    <value>A hardveres dekódolás lehet hogy nem működik az eszközén.</value>
+    <value>قد لا يعمل الترميز بالعتاد على جهازك.</value>
   </data>
   <data name="HaveToSelectPlaylist" xml:space="preserve">
-    <value>válasszon lejátszólistát</value>
+    <value>يرجى اختيار قائمة التشغيل</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>kezdőlap</value>
+    <value>الرّئيسية</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-    <value>kezdőlap</value>
+    <value>الصفحة الرئيسية</value>
   </data>
   <data name="HomePageDescription" xml:space="preserve">
-    <value>A VLC a kiválasztott oldallal fog indulni</value>
+    <value>سيبدأ VLC عند الصفحة المحدد</value>
   </data>
   <data name="HoweverYouMayFindWhatYouWantHere" xml:space="preserve">
-    <value>viszont itt megtalálhatja amit keres</value>
+    <value>لكن يمكنك الحصول على ما تريده هنا</value>
   </data>
   <data name="HowToFavoriteAlbum1" xml:space="preserve">
-    <value>az album kedvencként beállításához csak nyomja meg</value>
+    <value>لألبومك المفضل فقط اضغط</value>
   </data>
   <data name="HowToFavoriteAlbum2" xml:space="preserve">
-    <value>és azonnal hozzá fog férni</value>
+    <value>وستتمكن من الوصول الفوري إليه</value>
   </data>
   <data name="ImportantSponsors" xml:space="preserve">
-    <value>fontos támogatók</value>
+    <value>راعي مهم</value>
   </data>
   <data name="IncreaseSpeed" xml:space="preserve">
-    <value>sebesség növelése</value>
+    <value>زيادة السرعة</value>
   </data>
   <data name="IncreaseVolume" xml:space="preserve">
-    <value>hangerő növelése</value>
+    <value>رفع الصوت</value>
   </data>
   <data name="ItsEmpty" xml:space="preserve">
-    <value>ez üres</value>
+    <value>انها فارغة هنا</value>
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
-    <value>gyorsbillentyűk</value>
+    <value>اختصارات لوحة المفاتيح</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>licenc</value>
+    <value>الترخيص</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>betöltés</value>
+    <value>تحميل</value>
   </data>
   <data name="LoadingMusic" xml:space="preserve">
-    <value>zene betöltése</value>
+    <value>يحمّل الموسيقى</value>
   </data>
   <data name="MostPlayedArtists" xml:space="preserve">
-    <value>legtöbbet játszott előadó</value>
+    <value>الفانون الأكثر تشغيلا</value>
   </data>
   <data name="Music" xml:space="preserve">
-    <value>zene</value>
+    <value>موسيقى</value>
   </data>
   <data name="MusicFolders" xml:space="preserve">
-    <value>zenemappák</value>
+    <value>مجلدات الموسيقى</value>
   </data>
   <data name="MusicFoldersDescription" xml:space="preserve">
-    <value>A VLC csak a zenetárban lévő számokat fogja keresni. Mappákat itt adhat hozzá a zenetárhoz:</value>
+    <value>سيبحث VLC عن الموسيقى التي في مكتبتك الموسيقية فقط. يمكنك إضافة مجلدات إلى مكتبتك هنا</value>
   </data>
   <data name="MusicSettings" xml:space="preserve">
-    <value>Zenebeállítások</value>
+    <value>إعدادات الموسيقى</value>
   </data>
   <data name="MusicShows" xml:space="preserve">
-    <value>zenei műsorok</value>
+    <value>عروض الموسيقى</value>
   </data>
   <data name="Mute" xml:space="preserve">
-    <value>némítás</value>
+    <value>كتم</value>
   </data>
   <data name="MyPlaylists" xml:space="preserve">
-    <value>lejátszólistáim</value>
+    <value>قوائمي التشغيل</value>
   </data>
   <data name="Network" xml:space="preserve">
-    <value>hálózat</value>
+    <value>شبكة</value>
   </data>
   <data name="NewPlaylist" xml:space="preserve">
-    <value>új lejátszólista</value>
+    <value>قائمة تشغيل جديدة</value>
   </data>
   <data name="NewVideos" xml:space="preserve">
-    <value>új videók</value>
+    <value>فيديوهات جديدة </value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>nem</value>
+    <value>لا</value>
   </data>
   <data name="NoBiographyFound" xml:space="preserve">
-    <value>nem található életrajz ehhez az előadóhoz</value>
+    <value>لا وجود لسيرة الذاتية لهذا المؤدي </value>
   </data>
   <data name="NoCameraVideosFound" xml:space="preserve">
-    <value>nem találhatóak felvett videók</value>
+    <value>لا وجود لملفات الفيديو  في الكاميرا</value>
   </data>
   <data name="NoFavoriteAlbums" xml:space="preserve">
-    <value>nincsenek kedvenc albumok</value>
+    <value>لا ألبومات مفضلة</value>
   </data>
   <data name="NoInternetConnection" xml:space="preserve">
-    <value>nincs internetkapcsolat</value>
+    <value>لا اتصال بالأنترنت</value>
   </data>
   <data name="NoPlaylists" xml:space="preserve">
-    <value>nincsenek lejátszólisták</value>
+    <value>لا قوائم تشغيل</value>
   </data>
   <data name="NoShowsFound" xml:space="preserve">
-    <value>nincsenek sorozatok</value>
+    <value>لم يُعثر على عروض</value>
   </data>
   <data name="NothingToSeeHere" xml:space="preserve">
-    <value>nincs itt semmi látnivaló</value>
+    <value>لا شيء هنا</value>
   </data>
   <data name="Notifications" xml:space="preserve">
-    <value>értesítések</value>
+    <value>اﻹشعارات</value>
   </data>
   <data name="NotificationWhenSongStarts" xml:space="preserve">
-    <value>amikor a szám elkezdődik</value>
+    <value>عند بدء الأغنية</value>
   </data>
   <data name="NoVideosFound" xml:space="preserve">
-    <value>nem találtunk videót</value>
+    <value>لم يعثر على ڤديو</value>
   </data>
   <data name="NowPlaying" xml:space="preserve">
-    <value>most játszott</value>
+    <value>يشتغل الآن</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>fájl megnyitása</value>
+    <value>فتح ملف</value>
   </data>
   <data name="OpenStream" xml:space="preserve">
-    <value>adatfolyam megnyitása</value>
+    <value>فتح التدفق</value>
   </data>
   <data name="OpenSubtitle" xml:space="preserve">
-    <value>felirat megnyitása</value>
+    <value>فتح ترجمة نصية</value>
   </data>
   <data name="OrderAscending" xml:space="preserve">
-    <value>növekvő</value>
+    <value>تصاعديا</value>
   </data>
   <data name="OrderByAlbum" xml:space="preserve">
-    <value>album szerint</value>
+    <value>بالألبوم</value>
   </data>
   <data name="OrderByArtist" xml:space="preserve">
-    <value>előadó szerint</value>
+    <value>بالفنان</value>
   </data>
   <data name="OrderByDate" xml:space="preserve">
-    <value>dátum szerint</value>
+    <value>بالتاريخ</value>
   </data>
   <data name="OrderDescending" xml:space="preserve">
-    <value>csökkenő</value>
+    <value>تنزلي</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>jelszó</value>
+    <value>كلمة السر</value>
   </data>
   <data name="Pause" xml:space="preserve">
-    <value>szünet</value>
+    <value>إيقاف مؤقت</value>
   </data>
   <data name="PinAlbum" xml:space="preserve">
-    <value>album rögzítése</value>
+    <value>دبس الألبوم</value>
   </data>
   <data name="PinArtist" xml:space="preserve">
-    <value>előadó rögzítése</value>
+    <value>دبس الفنان</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>lejátszás</value>
+    <value>شغل</value>
   </data>
   <data name="PlayAlbum" xml:space="preserve">
-    <value>album lejátszása</value>
+    <value>شغّل الألبوم</value>
   </data>
   <data name="PlayAll" xml:space="preserve">
-    <value>összes lejátszása</value>
+    <value>تشغيل الكل</value>
   </data>
   <data name="Playback" xml:space="preserve">
-    <value>lejátszás</value>
+    <value>تشغيل</value>
   </data>
   <data name="PlayerSettings" xml:space="preserve">
-    <value>Lejátszóbeállítások</value>
+    <value>إعدادات المشغل</value>
   </data>
   <data name="PlayFolder" xml:space="preserve">
-    <value>mappa lejátszása</value>
+    <value>شغل المجلد</value>
   </data>
   <data name="Playlist" xml:space="preserve">
-    <value>lejátszólista</value>
+    <value>قائمة التشغيل</value>
   </data>
   <data name="PlaylistAlreadyExists" xml:space="preserve">
-    <value>ez a lejátszólista már létezik</value>
+    <value>قائمة التشغيل هذه موجودة بالفعل</value>
   </data>
   <data name="PlaylistNamePlaceholder" xml:space="preserve">
-    <value>lejátszólista neve</value>
+    <value>إسم قائمة التشغيل</value>
   </data>
   <data name="Playlists" xml:space="preserve">
-    <value>lejátszólisták</value>
+    <value>قوائم التشغيل</value>
   </data>
   <data name="PlayTrack" xml:space="preserve">
-    <value>szám lejátszása</value>
+    <value>شغل المقطوع</value>
   </data>
   <data name="PlayVideo" xml:space="preserve">
-    <value>videó lejátszása</value>
+    <value>شغل الڤديو</value>
   </data>
   <data name="PrivacyStatement" xml:space="preserve">
-    <value>adatvédelmi nyilatkozat</value>
+    <value>بيان الخصوصية</value>
   </data>
   <data name="Favorites" xml:space="preserve">
-    <value>Kedvencek</value>
+    <value>المفضلة</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">
-    <value>zenetár frissítése</value>
+    <value>تحديث مكتبة الموسيقى</value>
   </data>
   <data name="RefreshVideoLibrary" xml:space="preserve">
-    <value>videótár frissítése</value>
+    <value>تحديث مكتبة الڤديو</value>
   </data>
   <data name="RemovableStorage" xml:space="preserve">
-    <value>cserélhető tároló</value>
+    <value>الأجهزة القابلة للإزالة</value>
   </data>
   <data name="RemoveFolder" xml:space="preserve">
-    <value>mappa eltávolítása</value>
+    <value>حذف المجلد</value>
   </data>
   <data name="RemoveMusicFolderDescription" xml:space="preserve">
-    <value>Ha nem akarja hogy ez a mappa a zenetárban legyen, akkor eltávolíthatja. Ez az összes appot érinteni fogja, nem csak a VLC-t</value>
+    <value>إن لم ترد أن يكون هذا المجلد في مكتبك الموسيقية يمكنك إزالته. سيؤثر ذلك على كل التطبيقات وليس VLC فحسب.</value>
   </data>
   <data name="RemoveVideoFolderDescription" xml:space="preserve">
-    <value>Ha nem akarja hogy ez a mappa a videótárban legyen, akkor eltávolíthatja. Ez az összes appot érinteni fogja, nem csak a VLC-t</value>
+    <value>إن لم ترد أن يكون هذا المجلد في مكتبة الڤديوهات يمكنك إزالته. سيؤثر ذلك على كل التطبيقات وليس VLC فحسب.</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>visszaállítás</value>
+    <value>أعد الضبط</value>
   </data>
   <data name="ResetMusicDatabase" xml:space="preserve">
-    <value>zeneadatbázis visszaállítása</value>
+    <value>صفر قاعدة بيانات الموسيقى</value>
   </data>
   <data name="ResetSpeed" xml:space="preserve">
-    <value>sebesség visszaállítása</value>
+    <value>صفر السرع</value>
   </data>
   <data name="RichAnimationsDescription" xml:space="preserve">
-    <value>Gazdag animációk használata a diavetítéseknél</value>
+    <value>إستدم في عرض الشرائح مجمل رسوم متحركة</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>keresés</value>
+    <value>بحث</value>
   </data>
   <data name="Season" xml:space="preserve">
-    <value>évad</value>
+    <value>الموسم</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>beállítások</value>
+    <value>الإعدادات</value>
   </data>
   <data name="ShowPlaylist" xml:space="preserve">
-    <value>lejátszólista megjelenítése</value>
+    <value>عرض قائمة التشغيل</value>
   </data>
   <data name="Shows" xml:space="preserve">
-    <value>sorozatok</value>
+    <value>العروض</value>
   </data>
   <data name="Shuffle" xml:space="preserve">
-    <value>véletlen sorrend</value>
+    <value>عشوائي</value>
   </data>
   <data name="Songs" xml:space="preserve">
-    <value>számok</value>
+    <value>مقطوعات</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>külön köszönet</value>
+    <value>شكر خاص</value>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value>sebesség</value>
+    <value>السرعة</value>
   </data>
   <data name="Stop" xml:space="preserve">
-    <value>leállítás</value>
+    <value>أيقاف</value>
   </data>
   <data name="SubtitleDelay" xml:space="preserve">
-    <value>felirat késleltetése</value>
+    <value>تأخيرالترجمة</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
-    <value>Feliratok</value>
+    <value>التّرجمات</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
-    <value>feliratkódolás</value>
+    <value>ترميز الترجمة</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>téma</value>
+    <value>سمة</value>
   </data>
   <data name="TileRemoved" xml:space="preserve">
-    <value>csempe eltávolítása</value>
+    <value>ازيلت الوحة</value>
   </data>
   <data name="TopVideos" xml:space="preserve">
-    <value>legjobb videók</value>
+    <value>أول الفيديوهات</value>
   </data>
   <data name="TrackAddedToYourPlaylist" xml:space="preserve">
-    <value>sáv hozzáadva a lejátszólistához</value>
+    <value>أُضيفت المقطوعة إلى قائمة التشغيل</value>
   </data>
   <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
-    <value>ez a sáv már szerepel a lejátszólistában</value>
+    <value>المقطوعة في قائمة التشغيل بالفعل</value>
   </data>
   <data name="Tracks" xml:space="preserve">
-    <value>szám</value>
+    <value>مقطوعات</value>
   </data>
   <data name="UnknownAlbum" xml:space="preserve">
-    <value>Ismeretlen album</value>
+    <value>ألبوم مجهول</value>
   </data>
   <data name="UnknownArtist" xml:space="preserve">
-    <value>Ismeretlen előadó</value>
+    <value>مؤدّ غير معروف</value>
   </data>
   <data name="UnknownShow" xml:space="preserve">
-    <value>Ismeretlen műsor</value>
+    <value>عرض غير معروف</value>
   </data>
   <data name="UnknownTrack" xml:space="preserve">
-    <value>Ismeretlen sáv</value>
+    <value>مقطع غير معروف</value>
   </data>
   <data name="UserInterface" xml:space="preserve">
-    <value>Felhasználói felület</value>
+    <value>الواجهة</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>felhasználónév</value>
+    <value>إسم المستخدم</value>
   </data>
   <data name="Video" xml:space="preserve">
-    <value>videó</value>
+    <value>فيديو</value>
   </data>
   <data name="VideoFolders" xml:space="preserve">
-    <value>videómappák</value>
+    <value>مجلدات الفيديوهات</value>
   </data>
   <data name="VideoFoldersDescription" xml:space="preserve">
-    <value>A VLC csak a videótárban lévő számokat fogja keresni. Mappákat itt adhat hozzá a videótárhoz:</value>
+    <value>VLC يبحث فقط في الفيديوهات الموجودات في مكتبة الفيديو. يمكنك إضافة المجلدات إلى المكتبة هنا: </value>
   </data>
   <data name="VideoPlayback" xml:space="preserve">
-    <value>videólejátszás</value>
+    <value>مواصلة تشغيل الفيديو</value>
   </data>
   <data name="VideoPlaybackInBackground" xml:space="preserve">
-    <value>videó lejátszása a háttérben</value>
+    <value>شغّل الڤديو بالخلفية</value>
   </data>
   <data name="Videos" xml:space="preserve">
-    <value>videók</value>
+    <value>الفيديوهات</value>
   </data>
   <data name="VideoSettings" xml:space="preserve">
-    <value>Videobeállítások</value>
+    <value>اعدادات الفيديو</value>
   </data>
   <data name="ViewAlbum" xml:space="preserve">
-    <value>album megtekintése</value>
+    <value>عرض الألبوم</value>
   </data>
   <data name="ViewArtist" xml:space="preserve">
-    <value>előadó megtekintése</value>
+    <value>عرض الفنان</value>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>hangerő</value>
+    <value>مستوى الصوت</value>
   </data>
   <data name="WeNeedYourHelp" xml:space="preserve">
-    <value>szükségünk van a segítségére</value>
+    <value>نحن نحتاج مساعدتك</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>igen</value>
+    <value>نعم</value>
   </data>
   <data name="YourMusic" xml:space="preserve">
-    <value>az Ön zenéi</value>
+    <value>موسيقاك</value>
   </data>
   <data name="AccentColor" xml:space="preserve">
-    <value>kiegészítő szín</value>
+    <value>لون تمييزي</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>háttérszín</value>
+    <value>لون الخلفية</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>sötét</value>
+    <value>داكن</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>világos</value>
+    <value>فاتح</value>
   </data>
   <data name="TitleBar" xml:space="preserve">
-    <value>címsáv</value>
+    <value>شريط العناوين</value>
   </data>
   <data name="NeedRestart" xml:space="preserve">
-    <value>Újra kell indítani az alkalmazást a változtatások érvénybe lépéséhez</value>
+    <value>عليك إعادة تشغيل التطبيق لتطبيق التغييرات</value>
   </data>
   <data name="Zoom" xml:space="preserve">
-    <value>nagyítás</value>
+    <value>تكبير/تصغير </value>
   </data>
   <data name="AreYouSure" xml:space="preserve">
-    <value>biztos benne?</value>
+    <value>هل أنت متأكد؟</value>
   </data>
   <data name="MediaCantBeRead" xml:space="preserve">
-    <value>a média nem olvasható</value>
+    <value>تعذرت قراءة الوسيط</value>
   </data>
   <data name="Sorry" xml:space="preserve">
-    <value>sajnáljuk</value>
+    <value>نأسف</value>
   </data>
   <data name="SURFACE_BEST_FIT" xml:space="preserve">
-    <value>legjobban illeszkedő</value>
+    <value>أفضل ملاءمة</value>
   </data>
   <data name="SURFACE_FIT_HORIZONTAL" xml:space="preserve">
-    <value>vízszintes levágás</value>
+    <value>اقتصاص افقي</value>
   </data>
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
-    <value>függőleges levágás</value>
+    <value>اقتصاص عامودي</value>
   </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
-    <value>a lejátszólista nem lesz elérhető</value>
+    <value> لا يمكن الوصول إلى قائمة التشغيل الخاصة بك</value>
   </data>
   <data name="NoArtistShowsFound" xml:space="preserve">
-    <value>nem található műsor ehhez az előadóhoz</value>
+    <value>لم نجد عروضًا لهذا الفنان</value>
   </data>
   <data name="NoResults" xml:space="preserve">
-    <value>nincs eredmény</value>
+    <value>لا نتائج</value>
   </data>
   <data name="ForceLandscape" xml:space="preserve">
-    <value>Fekvő mód kényszerítése</value>
+    <value>فرض عرضي</value>
   </data>
   <data name="SURFACE_STRETCH" xml:space="preserve">
-    <value>nyújtás</value>
+    <value>توسيع</value>
   </data>
   <data name="SimilarArtists" xml:space="preserve">
-    <value>Hasonló előadók</value>
+    <value>فنانين مماثلين</value>
   </data>
   <data name="EnglishLanguage" xml:space="preserve">
-    <value>angol</value>
+    <value>الإنجليزية</value>
   </data>
   <data name="FrenchLanguage" xml:space="preserve">
-    <value>francia</value>
+    <value>الفرنسية</value>
   </data>
   <data name="JapaneseLanguage" xml:space="preserve">
-    <value>japán</value>
+    <value>اليابانية</value>
   </data>
   <data name="GermanLanguage" xml:space="preserve">
-    <value>német</value>
+    <value>الأَلْمانِيَّة</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
-    <value>lengyel</value>
+    <value>البولندية</value>
   </data>
   <data name="SlovakLanguage" xml:space="preserve">
-    <value>szlovák</value>
+    <value>السلوفاكية</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
-    <value>dán</value>
+    <value>الدانمركية</value>
   </data>
   <data name="SpanishLanguage" xml:space="preserve">
-    <value>spanyol</value>
+    <value>الاسبانية</value>
   </data>
   <data name="HungarianLanguage" xml:space="preserve">
-    <value>magyar</value>
+    <value>الهنغارية </value>
   </data>
   <data name="ItalianLanguage" xml:space="preserve">
-    <value>olasz</value>
+    <value>الإيطالية</value>
   </data>
   <data name="KoreanLanguage" xml:space="preserve">
-    <value>koreai</value>
+    <value> الكورية</value>
   </data>
   <data name="MalayLanguage" xml:space="preserve">
-    <value>maláj</value>
+    <value>لغة ملايو </value>
   </data>
   <data name="NorwegianLanguage" xml:space="preserve">
-    <value>norvég</value>
+    <value>النرويجية</value>
   </data>
   <data name="DutchLanguage" xml:space="preserve">
-    <value>holland</value>
+    <value>الهولندية</value>
   </data>
   <data name="RussianLanguage" xml:space="preserve">
-    <value>orosz</value>
+    <value>الروسية</value>
   </data>
   <data name="SwedishLanguage" xml:space="preserve">
-    <value>svéd</value>
+    <value>السويدية</value>
   </data>
   <data name="TurkishLanguage" xml:space="preserve">
-    <value>török</value>
+    <value>التركية</value>
   </data>
   <data name="UkrainianLanguage" xml:space="preserve">
-    <value>ukrán</value>
+    <value>الأوكرانية</value>
   </data>
   <data name="ChineseLanguage" xml:space="preserve">
-    <value>kínai</value>
+    <value>الصينية</value>
   </data>
   <data name="PortugueseLanguage" xml:space="preserve">
-    <value>portugál</value>
+    <value>البرتغالية</value>
   </data>
   <data name="CzechLanguage" xml:space="preserve">
-    <value>cseh</value>
+    <value>التشيكية</value>
   </data>
   <data name="IcelandicLanguage" xml:space="preserve">
-    <value>izlandi</value>
+    <value>الأيسلاندية</value>
   </data>
   <data name="HebrewLanguage" xml:space="preserve">
-    <value>héber</value>
+    <value>العبرية</value>
   </data>
   <data name="RomanianLanguage" xml:space="preserve">
-    <value>román</value>
+    <value>الرومانية</value>
   </data>
   <data name="BrazilianLanguage" xml:space="preserve">
-    <value>brazil</value>
+    <value>البرازيلية</value>
   </data>
   <data name="ArabicLanguage" xml:space="preserve">
-    <value>arab</value>
+    <value>العربية</value>
   </data>
   <data name="Languages" xml:space="preserve">
-    <value>Nyelvek</value>
+    <value>اللغات</value>
   </data>
   <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>A VLC ezen a nyelven lesz megjelenítve:</value>
+    <value>سيُعرض VLC بِ‍</value>
   </data>
   <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Alkalmaz és újraindítás</value>
+    <value>طبّق وأعِد التشغيل</value>
   </data>
   <data name="RefreshLanguage" xml:space="preserve">
-    <value>Nyelv frissítése</value>
+    <value>تحديث اللغات</value>
   </data>
   <data name="Local" xml:space="preserve">
-    <value>helyi</value>
+    <value>محلي</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
-    <value>Fájlok letöltése</value>
+    <value>تنزيل الملفات</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
-    <value>Csak kattintson arra a fájlra, amelyet le akar tölteni az Xboxáról.</value>
+    <value>انقر الملف الذي تريد تنزيله من Xbox لديك فحسب.</value>
   </data>
   <data name="WEBINTF_DROPFILES" xml:space="preserve">
-    <value>Húzza ide a fájlokat</value>
+    <value>أسقِط الملفات</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Húzzon fájlokat az ablakba az Xboxára másoláshoz.&lt;br&gt;Vagy kattintson a „+” gombra a fájlválasztó párbeszédablak használatához.</value>
+    <value>أسقِط الملفات في النافذة لإضافتها إلى Xbox لديك.&lt;br&gt; أو انقر زر "+" لاستخدام حواري منتقي الملفات.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
-    <value>Megosztás Wi-Fin keresztül</value>
+    <value>المشاركة عبر WiFi</value>
   </data>
   <data name="CopyToLocalStorage" xml:space="preserve">
-    <value>másolás helyi tárolóra</value>
+    <value>انسخ الوسائط إلى التخزين الداخلي.</value>
   </data>
   <data name="ExternalStorageDeviceDetected" xml:space="preserve">
-    <value>A VLC külső tárolót észlelt</value>
+    <value>اكتشف VLC جهاز تخزين خارجي.</value>
   </data>
   <data name="ReadFromExternalStorage" xml:space="preserve">
-    <value>Külső tároló használata médiatárként.</value>
+    <value>استخدم التخزين الخارجي كمكتبة وسائط.</value>
   </data>
   <data name="SelectContentToCopy" xml:space="preserve">
-    <value>Média átmásolása a belső tárolóra.</value>
+    <value>انسخ الوسائط إلى التخزين الداخلي.</value>
   </data>
   <data name="WhatToDo" xml:space="preserve">
-    <value>Mit szeretne tenni?</value>
+    <value>ما الذي تريد فعله؟</value>
   </data>
   <data name="AskMe" xml:space="preserve">
-    <value>Kérdezzen</value>
+    <value>اسأل‎</value>
   </data>
   <data name="ExternalStorage" xml:space="preserve">
-    <value>külső tároló</value>
+    <value>تخزين خارجي</value>
   </data>
   <data name="WhatToDoWhenExternalStorage" xml:space="preserve">
-    <value>Mit tegyen a VLC, ha külső tárolót észlel?</value>
+    <value>ما الذي على VLC فعله عند اكتشاف جهاز تخزين خارجي</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Mégsem</value>
+    <value>الغاء</value>
   </data>
   <data name="DoNothing" xml:space="preserve">
-    <value>Ne tegyen semmit</value>
+    <value>لا شيء</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>Ok</value>
+    <value>حسنا</value>
   </data>
   <data name="Ignore" xml:space="preserve">
-    <value>Mellőzés</value>
+    <value>تجاهل</value>
   </data>
   <data name="Remember" xml:space="preserve">
-    <value>Megjegyzés</value>
+    <value>تذكر</value>
   </data>
   <data name="AddMediaHelp" xml:space="preserve">
-    <value>Helyezzen be egy külső tárolóeszközt</value>
+    <value>رجاءً أدخِل جهاز تخزين خارجي</value>
   </data>
   <data name="AddMediaHelpWithIP" xml:space="preserve">
-    <value>Helyezzen be egy külső tárolóeszközt, vagy menjen ide: http://{0}:8080, és töltsön fel néhány médiát</value>
+    <value>رجاءً أدخِل جهاز تخزين خارجي، أو انتقل إلى http://{0}:8080 لرفع بعض الوسائ</value>
   </data>
   <data name="CopyHelpDesktop" xml:space="preserve">
-    <value>Jobb kattintás a fájlon vagy mappán a helyi tárolóra másoláshoz.</value>
+    <value>انقر باليمين على الملف أو المجلد لنسخه إلى التخزين المحلي.</value>
   </data>
   <data name="CopyHelpMediaCenter" xml:space="preserve">
-    <value>Nyomjon „Y”-t egy fájlon vagy mappán hogy a helyi tárolóra másolja.</value>
+    <value>اضغط ”Y“ على ملف أو مجلد لنسخه إلى التخزين الداخلي.</value>
   </data>
   <data name="NoSubtitles" xml:space="preserve">
-    <value>Nincsenek feliratsávok</value>
+    <value>لا مسارات ترجم</value>
   </data>
   <data name="ClearKeystore" xml:space="preserve">
-    <value>Mentett hitelesítési adatok törlése</value>
+    <value>امسح بيانات الشخصية السرية</value>
   </data>
   <data name="Credentials" xml:space="preserve">
-    <value>Hitelesítési adatok</value>
+    <value>بيانات الاعتماد</value>
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
-    <value>Nyomja meg hosszan a fájl vagy mappát a helyi tárolóra másoláshoz.</value>
+    <value>اضغط مطول على المجلد أو الملف لنسخه إلى التخزين الداخلي</value>
   </data>
   <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>képernyőhöz igazítás</value>
+    <value>املأ الشاشة</value>
   </data>
   <data name="SURFACE_FILL" xml:space="preserve">
-    <value>kitöltés</value>
+    <value>املأ</value>
   </data>
   <data name="SURFACE_16_9" xml:space="preserve">
     <value>16:9</value>
@@ -715,33 +715,33 @@
     <value>4:3</value>
   </data>
   <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
+    <value>2:35:1</value>
   </data>
   <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>eredeti</value>
+    <value>أصلي</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
-    <value>windows 10 pip használata</value>
+    <value>إستخدم ويندوز 10</value>
   </data>
   <data name="TvUnsafeArea" xml:space="preserve">
-    <value>TV nem biztonságos területe</value>
+    <value>منطقة غير آمنة لجهاز التلفاز</value>
   </data>
   <data name="AddMarginExplanation" xml:space="preserve">
-    <value>Néhány TV nem megfelelően jeleníti meg az alkalmazást. Margó hozzáadásához kapcsolja ezt be.</value>
+    <value>بعض أجهزة التلفاز لا تظهر هذا التطبيق بصورة صحيحة. فعل هذا الخيار لزيادة الهامش</value>
   </data>
   <data name="ExtraMargin" xml:space="preserve">
-    <value>További margó</value>
+    <value>زيادة هامش</value>
   </data>
   <data name="NoExtraMargin" xml:space="preserve">
-    <value>Nincs további margó</value>
+    <value>لا زيادة في الهامش</value>
   </data>
   <data name="Restart" xml:space="preserve">
-    <value>újraindítás</value>
+    <value>إعادة التشغيل</value>
   </data>
   <data name="Disconnect" xml:space="preserve">
-    <value>kapcsolat bontása</value>
+    <value>قطع الاتصال</value>
   </data>
   <data name="XboxUpload" xml:space="preserve">
-    <value>Feltöltés Xboxra</value>
+    <value>تحميل Xbox</value>
   </data>
 </root>

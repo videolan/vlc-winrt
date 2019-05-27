@@ -514,7 +514,7 @@
     <value>vertikal beskärning</value>
   </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
-    <value>din spellista kommer inte att vara tillgänglig</value>
+    <value>din spellista kommer inte vara tillgänglig</value>
   </data>
   <data name="NoArtistShowsFound" xml:space="preserve">
     <value>vi hittade inga program för denna artist</value>
@@ -599,6 +599,15 @@
   </data>
   <data name="HebrewLanguage" xml:space="preserve">
     <value>hebreiska</value>
+  </data>
+  <data name="RomanianLanguage" xml:space="preserve">
+    <value>rumänska</value>
+  </data>
+  <data name="BrazilianLanguage" xml:space="preserve">
+    <value>brasilianska</value>
+  </data>
+  <data name="ArabicLanguage" xml:space="preserve">
+    <value>arabiska</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Språk</value>

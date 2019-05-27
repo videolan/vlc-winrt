@@ -52,7 +52,7 @@
     <value>ses gecikmesi</value>
   </data>
   <data name="AudioTracks" xml:space="preserve">
-    <value>Ses İzleri</value>
+    <value>Ses Kayıtları</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>geri</value>
@@ -259,7 +259,7 @@
     <value>akış aç</value>
   </data>
   <data name="OpenSubtitle" xml:space="preserve">
-    <value>altyazı aç</value>
+    <value>alt yazı aç</value>
   </data>
   <data name="OrderAscending" xml:space="preserve">
     <value>artan</value>
@@ -391,13 +391,13 @@
     <value>durdur</value>
   </data>
   <data name="SubtitleDelay" xml:space="preserve">
-    <value>altyazı gecikmesi</value>
+    <value>alt yazı gecikmesi</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
-    <value>Altyazılar</value>
+    <value>Alt yazılar</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
-    <value>altyazı kodlaması</value>
+    <value>alt yazı kodlaması</value>
   </data>
   <data name="Theme" xml:space="preserve">
     <value>tema</value>
@@ -600,6 +600,15 @@
   <data name="HebrewLanguage" xml:space="preserve">
     <value>İbranice</value>
   </data>
+  <data name="RomanianLanguage" xml:space="preserve">
+    <value>Rumence</value>
+  </data>
+  <data name="BrazilianLanguage" xml:space="preserve">
+    <value>Brezilyaca</value>
+  </data>
+  <data name="ArabicLanguage" xml:space="preserve">
+    <value>Arapça</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Diller</value>
   </data>
@@ -682,7 +691,7 @@
     <value>Yerel depolamaya kopyalamak için bir dosya ya da klasör üzerinde "Y" harfine basın.</value>
   </data>
   <data name="NoSubtitles" xml:space="preserve">
-    <value>Altyazı kaydı bulunamadı</value>
+    <value>Alt yazı kaydı bulunamadı</value>
   </data>
   <data name="ClearKeystore" xml:space="preserve">
     <value>Kaydedilmiş kimlik doğrulama bilgilerini sil</value>

@@ -692,6 +692,9 @@ namespace VLC.ViewModels.Settings
                 case Languages.Brazilian:
                     currentCulture = "pt-BR";
                     break;
+                case Languages.Arabic:
+                    currentCulture = "ar-SA";
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(language), language, null);
             }

@@ -735,6 +735,9 @@
   <data name="BrazilianLanguage" xml:space="preserve">
     <value>Brazilian</value>
   </data>
+  <data name="ArabicLanguage" xml:space="preserve">
+    <value>Arabic</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Languages</value>
   </data>
