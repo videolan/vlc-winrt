@@ -1,3 +1,13 @@
+Changes between 3.2.0 and 3.1.0
+-------------------------------
+- Fix autoloading subtitle bug
+- i10n: lots of update
+- Improve links for dark mode
+- Fix UI bug in player settings
+- Fix an incorrect change of slider values in subtitle delay section.
+- Fixed spelling of "Gamepad Added/Removed".
+- Add UI support for RightToLeft languages
+
 Changes between 3.0.3 and 3.1.0
 -------------------------------
 Release: June 27th 2018
