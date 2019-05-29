@@ -50,8 +50,9 @@ namespace VLC.UI.Views.MainPages
             NavigationFrame.AllowDrop = true;
             NavigationFrame.DragOver += NavigationFrame_DragOver;
             NavigationFrame.Drop += NavigationFrame_Drop;
-
             SwapChainPanel.Tapped += SwapChainPanel_Tapped;
+
+            FlowDirection = System.Globalization.CultureInfo.CurrentCulture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
