@@ -1,3 +1,7 @@
+Changes between 3.2.1 and 3.2.0
+-------------------------------
+- Fix internationalization issue caused by the new appbundle deployment package
+
 Changes between 3.2.0 and 3.1.0
 -------------------------------
 - Fix autoloading subtitle bug
