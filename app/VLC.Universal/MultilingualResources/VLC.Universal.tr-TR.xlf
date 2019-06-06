@@ -136,15 +136,15 @@
         </trans-unit>
         <trans-unit id="EvenIfBackground" translate="yes" xml:space="preserve">
           <source>even if the app is in background</source>
-          <target state="translated">uygulama art alanda iken</target>
+          <target state="translated">uygulama arka planda iken</target>
         </trans-unit>
         <trans-unit id="EvenIfNotBackground" translate="yes" xml:space="preserve">
           <source>even if the app is not in background</source>
-          <target state="translated">uygulama art alanda değilken</target>
+          <target state="translated">uygulama arka planda değilken</target>
         </trans-unit>
         <trans-unit id="FailFilePlayBackground" translate="yes" xml:space="preserve">
           <source>This file may not play in the background</source>
-          <target state="translated">Bu dosya art alanda oynatılamaz</target>
+          <target state="translated">Bu dosya arka planda oynatılamaz</target>
         </trans-unit>
         <trans-unit id="FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
           <source>VLC failed to navigate to the Video Player page</source>
@@ -588,7 +588,7 @@
         </trans-unit>
         <trans-unit id="VideoPlaybackInBackground" translate="yes" xml:space="preserve">
           <source>play video in background</source>
-          <target state="translated">görüntü art alanda oynatılsın</target>
+          <target state="translated">görüntü arka planda oynatılsın</target>
         </trans-unit>
         <trans-unit id="Videos" translate="yes" xml:space="preserve">
           <source>videos</source>
@@ -628,7 +628,7 @@
         </trans-unit>
         <trans-unit id="BackgroundColor" translate="yes" xml:space="preserve">
           <source>background color</source>
-          <target state="translated">art alan rengi</target>
+          <target state="translated">arka plan rengi</target>
         </trans-unit>
         <trans-unit id="Dark" translate="yes" xml:space="preserve">
           <source>dark</source>
