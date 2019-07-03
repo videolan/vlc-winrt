@@ -148,7 +148,7 @@
         </trans-unit>
         <trans-unit id="FailNavigateVideoPlayerPage" translate="yes" xml:space="preserve">
           <source>VLC failed to navigate to the Video Player page</source>
-          <target state="translated">VLC n'a pas pu accéder à la page Video Player</target>
+          <target state="translated">VLC n'a pas pu accéder à la page du lecteur vidéo</target>
         </trans-unit>
         <trans-unit id="FailOpenVideo" translate="yes" xml:space="preserve">
           <source>VLC failed to open the video</source>
@@ -156,7 +156,7 @@
         </trans-unit>
         <trans-unit id="FailStartVLCEngine" translate="yes" xml:space="preserve">
           <source>The app failed to start the VLC engine</source>
-          <target state="translated">L'app n'a pas pu démarrer le moteur VLC</target>
+          <target state="translated">L'application n'a pas pu démarrer le moteur VLC</target>
         </trans-unit>
         <trans-unit id="FeedbackThankYou" translate="yes" xml:space="preserve">
           <source>feedback sent! thank you</source>
@@ -840,7 +840,7 @@
         </trans-unit>
         <trans-unit id="WEBINTF_TITLE" translate="yes" xml:space="preserve">
           <source>Sharing via WiFi</source>
-          <target state="translated">Partage réseau</target>
+          <target state="translated">Partage via Wi-Fi</target>
         </trans-unit>
         <trans-unit id="CopyToLocalStorage" translate="yes" xml:space="preserve">
           <source>copy to local storage</source>
@@ -900,11 +900,11 @@
         </trans-unit>
         <trans-unit id="AddMediaHelpWithIP" translate="yes" xml:space="preserve">
           <source>Please insert an external storage device, or go to http://{0}:8080 to upload some media</source>
-          <target state="translated">Veuillez insérer un disque de stockage externe, ou allez sur http://{0}:8080 pour télécharger des media vers votre Xbox</target>
+          <target state="translated">Veuillez insérer un disque de stockage externe, ou aller sur http://{0}:8080 pour téléverser des médias</target>
         </trans-unit>
         <trans-unit id="CopyHelpDesktop" translate="yes" xml:space="preserve">
           <source>Right-click on a file or a folder to copy it to the local storage.</source>
-          <target state="translated">Cliquez droit sur un fichier ou un dossier pour le copier vers le stockage interne</target>
+          <target state="translated">Clic-droit sur un fichier ou un dossier pour le copier vers le stockage interne</target>
         </trans-unit>
         <trans-unit id="CopyHelpMediaCenter" translate="yes" xml:space="preserve">
           <source>Press "Y" on a file or a folder to copy it to the local storage.</source>
@@ -980,7 +980,7 @@
         </trans-unit>
         <trans-unit id="XboxUpload" translate="yes" xml:space="preserve">
           <source>Xbox upload</source>
-          <target state="translated">Téléchargement Xbox</target>
+          <target state="translated">Téléversement Xbox</target>
         </trans-unit>
       </group>
     </body>
