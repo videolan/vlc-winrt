@@ -118,13 +118,13 @@
     <value>Ce fichier ne peut pas être joué en arrière-plan</value>
   </data>
   <data name="FailNavigateVideoPlayerPage" xml:space="preserve">
-    <value>VLC n'a pas pu accéder à la page Video Player</value>
+    <value>VLC n'a pas pu accéder à la page du lecteur vidéo</value>
   </data>
   <data name="FailOpenVideo" xml:space="preserve">
     <value>VLC n'a pas pu ouvrir la vidéo</value>
   </data>
   <data name="FailStartVLCEngine" xml:space="preserve">
-    <value>L'app n'a pas pu démarrer le moteur VLC</value>
+    <value>L'application n'a pas pu démarrer le moteur VLC</value>
   </data>
   <data name="FeedbackThankYou" xml:space="preserve">
     <value>Vos commentaires ont été envoyés ! Merci.</value>
@@ -637,7 +637,7 @@
     <value>Déposez des fichiers ici pour les ajouter au stockage interne de votre Xbox.&lt;br&gt;ou cliquez sur le bouton "+" pour choisir un fichier.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
-    <value>Partage réseau</value>
+    <value>Partage via Wi-Fi</value>
   </data>
   <data name="CopyToLocalStorage" xml:space="preserve">
     <value>Copier vers le stockage interne</value>
@@ -682,10 +682,10 @@
     <value>Veuillez insérer un périphérique de stockage amovible</value>
   </data>
   <data name="AddMediaHelpWithIP" xml:space="preserve">
-    <value>Veuillez insérer un disque de stockage externe, ou allez sur http://{0}:8080 pour télécharger des media vers votre Xbox</value>
+    <value>Veuillez insérer un disque de stockage externe, ou aller sur http://{0}:8080 pour téléverser des médias</value>
   </data>
   <data name="CopyHelpDesktop" xml:space="preserve">
-    <value>Cliquez droit sur un fichier ou un dossier pour le copier vers le stockage interne</value>
+    <value>Clic-droit sur un fichier ou un dossier pour le copier vers le stockage interne</value>
   </data>
   <data name="CopyHelpMediaCenter" xml:space="preserve">
     <value>Appuyez sur Y sur un fichier ou un dossier pour le copier vers le stockage interne</value>
@@ -742,6 +742,6 @@
     <value>Déconnecter</value>
   </data>
   <data name="XboxUpload" xml:space="preserve">
-    <value>Téléchargement Xbox</value>
+    <value>Téléversement Xbox</value>
   </data>
 </root>

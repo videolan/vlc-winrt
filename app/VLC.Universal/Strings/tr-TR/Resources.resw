@@ -109,13 +109,13 @@
     <value>bölüm</value>
   </data>
   <data name="EvenIfBackground" xml:space="preserve">
-    <value>uygulama art alanda iken</value>
+    <value>uygulama arka planda iken</value>
   </data>
   <data name="EvenIfNotBackground" xml:space="preserve">
-    <value>uygulama art alanda değilken</value>
+    <value>uygulama arka planda değilken</value>
   </data>
   <data name="FailFilePlayBackground" xml:space="preserve">
-    <value>Bu dosya art alanda oynatılamaz</value>
+    <value>Bu dosya arka planda oynatılamaz</value>
   </data>
   <data name="FailNavigateVideoPlayerPage" xml:space="preserve">
     <value>VLC görüntü oynatıcı sayfasına geçemedi</value>
@@ -448,7 +448,7 @@
     <value>görüntü oynatma</value>
   </data>
   <data name="VideoPlaybackInBackground" xml:space="preserve">
-    <value>görüntü art alanda oynatılsın</value>
+    <value>görüntü arka planda oynatılsın</value>
   </data>
   <data name="Videos" xml:space="preserve">
     <value>görüntüler</value>
@@ -478,7 +478,7 @@
     <value>aksan rengi</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>art alan rengi</value>
+    <value>arka plan rengi</value>
   </data>
   <data name="Dark" xml:space="preserve">
     <value>koyu</value>

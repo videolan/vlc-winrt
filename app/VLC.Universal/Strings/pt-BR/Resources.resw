@@ -193,7 +193,7 @@
     <value>pastas de músicas</value>
   </data>
   <data name="MusicFoldersDescription" xml:space="preserve">
-    <value>O VLC somente procurará músicas que estão na sua biblioteca de músicas. Adicione pastas à sua biblioteca aqui:</value>
+    <value>O VLC somente pesquisará músicas que estão na sua biblioteca de músicas. Adicione pastas à sua biblioteca aqui:</value>
   </data>
   <data name="MusicSettings" xml:space="preserve">
     <value>Configurações de Músicas</value>
@@ -361,7 +361,7 @@
     <value>Usar animações ricas em apresentações</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>procurar</value>
+    <value>pesquisar</value>
   </data>
   <data name="Season" xml:space="preserve">
     <value>temporada</value>
