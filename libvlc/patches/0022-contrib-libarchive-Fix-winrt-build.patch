@@ -1,19 +1,77 @@
-From f954560b46a373f67ecc3d4af44a85ad9022c03f Mon Sep 17 00:00:00 2001
+From db191f62e5fa1fba3e0fb9a5dfc3cbeb78f60f54 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Mon, 9 Apr 2018 09:59:27 +0200
-Subject: [PATCH 22/28] contrib: libarchive: Fix winrt build
+Subject: [PATCH] contrib: libarchive: Fix winrt build
 
 don't force compilation for Windows XP
 don't call DebugBreak() (in debug builds)
 ---
- contrib/src/libarchive/winrt.patch | 42 ++++++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+ contrib/src/libarchive/winrt.patch | 72 +++++++++++++++++++-----------
+ 1 file changed, 47 insertions(+), 25 deletions(-)
 
 diff --git a/contrib/src/libarchive/winrt.patch b/contrib/src/libarchive/winrt.patch
-index 50258dfe91..6dbc3c86d2 100644
+index 50258dfe91..34681b180d 100644
 --- a/contrib/src/libarchive/winrt.patch
 +++ b/contrib/src/libarchive/winrt.patch
-@@ -323,3 +323,45 @@
+@@ -224,9 +224,9 @@
+  static unsigned
+  my_atoi(const char *p)
+  {
+---- libarchive/libarchive/archive_windows.h	2017-01-29 06:06:27.000000000 +0100
+-+++ libarchive_new/libarchive/archive_windows.h	2017-06-26 16:32:56.238016686 +0200
+-@@ -106,16 +106,20 @@
++--- libarchive/libarchive/archive_windows.h.orig	2020-03-03 17:52:27.728220144 +0100
+++++ libarchive/libarchive/archive_windows.h	2020-03-03 17:54:20.456219714 +0100
++@@ -106,9 +106,11 @@
+  #define	lseek		__la_lseek
+  #define __LA_LSEEK_NEEDED
+  #endif
+@@ -238,16 +238,7 @@
+  #if !defined(__BORLANDC__) && !defined(__WATCOMC__)
+  #define setmode		_setmode
+  #endif
+- #ifdef stat
+- #undef stat
+- #endif
+-+#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+- #define	stat(path,stref)		__la_stat(path,stref)
+-+#endif
+- #if !defined(__WATCOMC__)
+- #if !defined(__BORLANDC__)
+- #define	strdup		_strdup
+-@@ -125,8 +129,10 @@
++@@ -122,8 +124,10 @@
+  #define	umask		_umask
+  #endif
+  #endif
+@@ -258,25 +249,14 @@
+  
+  #if !defined(__WATCOMC__)
+  
+-@@ -266,7 +272,6 @@
+-     #define	F_OK    0       /*  Test for existence of file  */
+- #endif
+- 
+--
+- /* Replacement POSIX function */
+- extern int	 __la_fstat(int fd, struct stat *st);
+- extern int	 __la_lstat(const char *path, struct stat *st);
+-@@ -279,8 +284,13 @@
++@@ -276,8 +280,10 @@
+  extern pid_t	 __la_waitpid(HANDLE child, int *status, int option);
+  extern ssize_t	 __la_write(int fd, const void *buf, size_t nbytes);
+  
+ +#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+-+
+  #define _stat64i32(path, st)	__la_stat(path, st)
+  #define _stat64(path, st)	__la_stat(path, st)
+-+
+ +#endif
+-+
+  /* for status returned by la_waitpid */
+  #define WIFEXITED(sts)		((sts & 0x100) == 0)
+  #define WEXITSTATUS(sts)	(sts & 0x0FF)
+@@ -323,3 +303,45 @@
  +    return ARCHIVE_FATAL;
  +#endif
   }
