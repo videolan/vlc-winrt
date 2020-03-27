@@ -186,8 +186,7 @@ echo "CXX=${COMPILERXX}" >> config.mak
 echo "MAKEFLAGS=${MAKEFLAGS}" >> config.mak
 export PKG_CONFIG_LIBDIR="`pwd`/../${TARGET_TUPLE}/lib/pkgconfig"
 
-USE_FFMPEG=1 \
-make
+USE_FFMPEG=1 make || USE_FFMPEG=1 make -j1
 
 BUILD_FOLDER=winrt-$1-$RUNTIME
 cd ../.. && mkdir -p ${BUILD_FOLDER} && cd ${BUILD_FOLDER}
