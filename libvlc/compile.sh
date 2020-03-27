@@ -123,7 +123,7 @@ if [ "$HAS_CLANG" = "1" ] ; then
     # cmake can go away when we switch to 3.13.0
     make $MAKEFLAGS .cmake .libtool
 fi
-export PATH=`pwd`/build/bin:$PATH
+export PATH=`pwd`/build/bin:"$PATH"
 cd ../../
 
 EXTRA_CPPFLAGS="-D_WIN32_WINNT=$WINVER -DWINVER=$WINVER -DWINSTORECOMPAT -D_UNICODE -DUNICODE -DWINAPI_FAMILY=WINAPI_FAMILY_APP"
