@@ -183,10 +183,11 @@ echo "EXTRA_LDFLAGS=${EXTRA_LDFLAGS}" >> config.mak
 echo "HAVE_WINSTORE := 1" >> config.mak
 echo "CC=${COMPILER}" >> config.mak
 echo "CXX=${COMPILERXX}" >> config.mak
+echo "MAKEFLAGS=${MAKEFLAGS}" >> config.mak
 export PKG_CONFIG_LIBDIR="`pwd`/../${TARGET_TUPLE}/lib/pkgconfig"
 
 USE_FFMPEG=1 \
-make $MAKEFLAGS
+make
 
 BUILD_FOLDER=winrt-$1-$RUNTIME
 cd ../.. && mkdir -p ${BUILD_FOLDER} && cd ${BUILD_FOLDER}
