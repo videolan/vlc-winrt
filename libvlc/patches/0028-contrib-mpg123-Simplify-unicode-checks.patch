@@ -1,4 +1,4 @@
-From 9a18354eeac967d24759e2f0136a826c30af435e Mon Sep 17 00:00:00 2001
+From b29fc4a911a926d8da2f9e4b062cad4d68344c50 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Apr 2018 17:14:15 +0200
 Subject: [PATCH 28/28] contrib: mpg123: Simplify unicode checks
@@ -62,5 +62,5 @@ index 416faeaba9..3171e1c5fc 100644
 +     fi
 +   else
 -- 
-2.20.1
+2.26.0.windows.1
 

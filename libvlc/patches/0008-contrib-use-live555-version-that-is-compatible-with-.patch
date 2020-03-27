@@ -1,4 +1,4 @@
-From 38c58e92956d30b088cedd04f30d771adb59d344 Mon Sep 17 00:00:00 2001
+From 9b27d3dd2e6b3ceb10e3f86afc6504ca389b28c6 Mon Sep 17 00:00:00 2001
 From: Carola Nitz <nitz.carola@googlemail.com>
 Date: Fri, 29 Sep 2017 14:49:02 +0200
 Subject: [PATCH 08/28] contrib: use live555 version that is compatible with
@@ -46,5 +46,5 @@ index bb1d5655c7..41fc1c6179 100644
  		echo "PREFIX = $(PREFIX)" >> $$subdir/Makefile.head && \
  		echo "LIBDIR = $(PREFIX)/lib" >> $$subdir/Makefile.head ; done
 -- 
-2.20.1
+2.26.0.windows.1
 

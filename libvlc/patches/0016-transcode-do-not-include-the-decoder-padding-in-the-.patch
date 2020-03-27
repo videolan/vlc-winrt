@@ -1,4 +1,4 @@
-From c99a4971ba56773980ea8c953db71555d3ca171e Mon Sep 17 00:00:00 2001
+From 769ff768b83375082efbfcd7d39c84e8ed9910e1 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Wed, 4 Apr 2018 12:10:17 +0200
 Subject: [PATCH 16/28] transcode: do not include the decoder padding in the
@@ -9,10 +9,10 @@ Subject: [PATCH 16/28] transcode: do not include the decoder padding in the
  1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/modules/stream_out/transcode/video.c b/modules/stream_out/transcode/video.c
-index b6fabead48..7849e379b2 100644
+index 9070babb2d..fe5dc91a1b 100644
 --- a/modules/stream_out/transcode/video.c
 +++ b/modules/stream_out/transcode/video.c
-@@ -572,8 +572,10 @@ static void transcode_video_sar_init( sout_stream_t *p_stream,
+@@ -575,8 +575,10 @@ static void transcode_video_sar_init( sout_stream_t *p_stream,
      {
          vlc_ureduce( &id->p_encoder->fmt_out.video.i_sar_num,
                       &id->p_encoder->fmt_out.video.i_sar_den,
@@ -26,5 +26,5 @@ index b6fabead48..7849e379b2 100644
      }
      else
 -- 
-2.20.1
+2.26.0.windows.1
 

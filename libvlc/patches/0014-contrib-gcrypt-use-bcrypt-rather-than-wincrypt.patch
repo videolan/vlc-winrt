@@ -1,4 +1,4 @@
-From 9634a7409dbb1c372c48a46f22b9f4d5245ce8d1 Mon Sep 17 00:00:00 2001
+From 5954a98c01771f4026fd51bbf8937da3d1705009 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 5 Apr 2018 13:29:40 +0200
 Subject: [PATCH 14/28] contrib: gcrypt: use bcrypt rather than wincrypt
@@ -316,5 +316,5 @@ index fdceb26fea..6c02a407ce 100644
         addedFixedItems = 1;
       }
 -- 
-2.20.1
+2.26.0.windows.1
 

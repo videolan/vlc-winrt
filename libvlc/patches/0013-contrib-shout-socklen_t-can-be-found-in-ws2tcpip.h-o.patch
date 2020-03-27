@@ -1,4 +1,4 @@
-From 4926a3e12c40f29d0af2d98ecc60d524cdf72913 Mon Sep 17 00:00:00 2001
+From 00a297567e4b3ef43583c051df418a50a64bb25c Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:13:55 +0200
 Subject: [PATCH 13/28] contrib: shout: socklen_t can be found in ws2tcpip.h on
@@ -12,17 +12,17 @@ and make sure it's found on Windows Store builds as well
  create mode 100644 contrib/src/shout/shout-win32-socklen.patch
 
 diff --git a/contrib/src/shout/rules.mak b/contrib/src/shout/rules.mak
-index 3a6ff9eeb9..d843970671 100644
+index 91120665d7..cbb31738c1 100644
 --- a/contrib/src/shout/rules.mak
 +++ b/contrib/src/shout/rules.mak
-@@ -26,6 +26,7 @@ libshout: libshout-$(SHOUT_VERSION).tar.gz .sum-shout
- 	$(APPLY) $(SRC)/shout/no-examples.patch
+@@ -27,6 +27,7 @@ libshout: libshout-$(SHOUT_VERSION).tar.gz .sum-shout
+ 	$(APPLY) $(SRC)/shout/no-force-libwsock.patch
  	$(APPLY) $(SRC)/shout/shout-strings.patch
  	$(APPLY) $(SRC)/shout/shout-timeval.patch
 +	$(APPLY) $(SRC)/shout/shout-win32-socklen.patch
- 	$(APPLY) $(SRC)/shout/no-force-libwsock.patch
  	$(call pkg_static,"shout.pc.in")
  	$(UPDATE_AUTOCONFIG)
+ 	$(MOVE)
 diff --git a/contrib/src/shout/shout-win32-socklen.patch b/contrib/src/shout/shout-win32-socklen.patch
 new file mode 100644
 index 0000000000..57821bff90
@@ -42,5 +42,5 @@ index 0000000000..57821bff90
 + 
 + #include "sock.h"
 -- 
-2.20.1
+2.26.0.windows.1
 

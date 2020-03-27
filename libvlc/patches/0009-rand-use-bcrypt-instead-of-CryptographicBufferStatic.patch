@@ -1,4 +1,4 @@
-From e50b151d6e1e86361489afaf6b5b8554672150a6 Mon Sep 17 00:00:00 2001
+From 7c60eaba13f91cde81c2d28f7999826ff5308016 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Tue, 27 Mar 2018 18:57:41 +0200
 Subject: [PATCH 09/28] rand: use bcrypt instead of CryptographicBufferStatics
@@ -12,7 +12,7 @@ The old API is deprecated.
  2 files changed, 15 insertions(+), 40 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index 49b1166742..198496cf5e 100644
+index 7b192eccd5..a14694f7b8 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -1138,7 +1138,10 @@ AH_BOTTOM([
@@ -102,5 +102,5 @@ index 1aeb656a8a..723a32b26e 100644
      /* acquire default encryption context */
      if( CryptAcquireContext(
 -- 
-2.20.1
+2.26.0.windows.1
 

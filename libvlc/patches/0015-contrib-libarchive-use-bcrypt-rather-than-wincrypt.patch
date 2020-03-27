@@ -1,32 +1,45 @@
-From f2c6d7f571293ff26f91de1abf325c4afc7309cb Mon Sep 17 00:00:00 2001
+From f26cdd39675b5c427159e72054b4d54d83b3483a Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 5 Apr 2018 14:49:26 +0200
 Subject: [PATCH 15/28] contrib: libarchive: use bcrypt rather than wincrypt
 
 ---
- .../libarchive/libarchive-win32-bcrypt.patch  | 62 +++++++++++++++++++
- contrib/src/libarchive/rules.mak              |  1 +
- 2 files changed, 63 insertions(+)
+ .../libarchive/libarchive-win32-bcrypt.patch  | 145 ++++++++++++++++++
+ contrib/src/libarchive/rules.mak              |   1 +
+ 2 files changed, 146 insertions(+)
  create mode 100644 contrib/src/libarchive/libarchive-win32-bcrypt.patch
 
 diff --git a/contrib/src/libarchive/libarchive-win32-bcrypt.patch b/contrib/src/libarchive/libarchive-win32-bcrypt.patch
 new file mode 100644
-index 0000000000..b280f0f193
+index 0000000000..4fb37a7073
 --- /dev/null
 +++ b/contrib/src/libarchive/libarchive-win32-bcrypt.patch
-@@ -0,0 +1,62 @@
-+--- libarchive/configure.ac	2018-02-19 16:38:08.695232800 +0100
-++++ libarchive/configure.ac.bcrypt	2018-04-05 14:54:08.593166900 +0200
-+@@ -296,7 +296,7 @@ AC_CHECK_HEADERS([sys/time.h sys/utime.h
+@@ -0,0 +1,145 @@
++From adea9385d6e57cdc11e073bdcf214012c261f5f6 Mon Sep 17 00:00:00 2001
++From: Steve Lhomme <robux4@ycbcr.xyz>
++Date: Fri, 27 Mar 2020 11:40:51 +0100
++Subject: [PATCH 3/4] use bcrypt rather than wincrypt
++
++---
++ configure.ac                |  4 ++--
++ libarchive/archive_random.c | 26 ++++++++++----------------
++ libarchive/archive_util.c   | 20 ++++++++++----------
++ 3 files changed, 22 insertions(+), 28 deletions(-)
++
++diff --git a/configure.ac b/configure.ac
++index c517b17c..7312c4d5 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -295,7 +295,7 @@ AC_CHECK_HEADERS([sys/time.h sys/utime.h sys/utsname.h sys/vfs.h sys/xattr.h])
 + AC_CHECK_HEADERS([time.h unistd.h utime.h wchar.h wctype.h])
 + AC_CHECK_HEADERS([windows.h])
 + # check windows.h first; the other headers require it.
 +-AC_CHECK_HEADERS([wincrypt.h winioctl.h],[],[],
-++AC_CHECK_HEADERS([bcrypt.h winioctl.h],[LIBS="-lbcrypt $LIBS"],[],
+++AC_CHECK_HEADERS([bcrypt.h winioctl.h],[],[],
 + [[#ifdef HAVE_WINDOWS_H
 + # include <windows.h>
 + #endif
-+@@ -1049,7 +1049,7 @@ AC_DEFUN([CRYPTO_CHECK_WIN], [
++@@ -1066,7 +1066,7 @@ AC_DEFUN([CRYPTO_CHECK_WIN], [
 +     AC_LINK_IFELSE([AC_LANG_SOURCE([
 + #define ARCHIVE_$1_COMPILE_TEST
 + #include <windows.h>
@@ -35,9 +48,11 @@ index 0000000000..b280f0f193
 + 
 + int
 + main(int argc, char **argv)
-+--- libarchive/libarchive/archive_random.c	2017-05-08 02:38:09.000000000 +0200
-++++ libarchive/libarchive/archive_random.c.bcrypt	2018-04-05 14:54:08.601166200 +0200
-+@@ -58,8 +58,8 @@ static void arc4random_buf(void *, size_
++diff --git a/libarchive/archive_random.c b/libarchive/archive_random.c
++index 65ea6915..c39d9f54 100644
++--- a/libarchive/archive_random.c
+++++ b/libarchive/archive_random.c
++@@ -58,8 +58,8 @@ static void arc4random_buf(void *, size_t);
 + #include "archive.h"
 + #include "archive_random_private.h"
 + 
@@ -48,7 +63,7 @@ index 0000000000..b280f0f193
 + #endif
 + 
 + #ifndef O_CLOEXEC
-+@@ -74,20 +74,14 @@ static void arc4random_buf(void *, size_
++@@ -74,20 +74,14 @@ static void arc4random_buf(void *, size_t);
 + int
 + archive_random(void *buf, size_t nbytes)
 + {
@@ -77,8 +92,76 @@ index 0000000000..b280f0f193
 + 			return ARCHIVE_OK;
 + 	}
 + 	/* TODO: Does this case really happen? */
++diff --git a/libarchive/archive_util.c b/libarchive/archive_util.c
++index 3399c0b5..38e4a839 100644
++--- a/libarchive/archive_util.c
+++++ b/libarchive/archive_util.c
++@@ -42,8 +42,8 @@ __FBSDID("$FreeBSD: head/lib/libarchive/archive_util.c 201098 2009-12-28 02:58:1
++ #ifdef HAVE_STRING_H
++ #include <string.h>
++ #endif
++-#if defined(HAVE_WINCRYPT_H) && !defined(__CYGWIN__)
++-#include <wincrypt.h>
+++#if defined(HAVE_BCRYPT_H) && !defined(__CYGWIN__)
+++#include <bcrypt.h>
++ #endif
++ #ifdef HAVE_ZLIB_H
++ #include <zlib.h>
++@@ -233,14 +233,14 @@ __archive_mktemp(const char *tmpdir)
++ 		L'm', L'n', L'o', L'p', L'q', L'r', L's', L't',
++ 		L'u', L'v', L'w', L'x', L'y', L'z'
++ 	};
++-	HCRYPTPROV hProv;
+++	BCRYPT_ALG_HANDLE algo_handle;
++ 	struct archive_wstring temp_name;
++ 	wchar_t *ws;
++ 	DWORD attr;
++ 	wchar_t *xp, *ep;
++ 	int fd;
++ 
++-	hProv = (HCRYPTPROV)NULL;
+++	algo_handle = NULL;
++ 	fd = -1;
++ 	ws = NULL;
++ 	archive_string_init(&temp_name);
++@@ -302,8 +302,8 @@ __archive_mktemp(const char *tmpdir)
++ 	ep = temp_name.s + archive_strlen(&temp_name);
++ 	xp = ep - wcslen(suffix);
++ 
++-	if (!CryptAcquireContext(&hProv, NULL, NULL, PROV_RSA_FULL,
++-		CRYPT_VERIFYCONTEXT)) {
+++	if (!BCRYPT_SUCCESS(BCryptOpenAlgorithmProvider(&algo_handle, BCRYPT_RNG_ALGORITHM,
+++	                                           MS_PRIMITIVE_PROVIDER, 0))) {
++ 		la_dosmaperr(GetLastError());
++ 		goto exit_tmpfile;
++ 	}
++@@ -314,8 +314,8 @@ __archive_mktemp(const char *tmpdir)
++ 
++ 		/* Generate a random file name through CryptGenRandom(). */
++ 		p = xp;
++-		if (!CryptGenRandom(hProv, (DWORD)(ep - p)*sizeof(wchar_t),
++-		    (BYTE*)p)) {
+++		if (!BCRYPT_SUCCESS(BCryptGenRandom(algo_handle, p,
+++		                                   (DWORD)(ep - p)*sizeof(wchar_t), 0))) {
++ 			la_dosmaperr(GetLastError());
++ 			goto exit_tmpfile;
++ 		}
++@@ -355,8 +355,8 @@ __archive_mktemp(const char *tmpdir)
++ 			break;/* success! */
++ 	}
++ exit_tmpfile:
++-	if (hProv != (HCRYPTPROV)NULL)
++-		CryptReleaseContext(hProv, 0);
+++	if (algo_handle != (HCRYPTPROV)NULL)
+++		BCryptCloseAlgorithmProvider(algo_handle, 0);
++ 	free(ws);
++ 	archive_wstring_free(&temp_name);
++ 	return (fd);
++-- 
++2.26.0.windows.1
++
 diff --git a/contrib/src/libarchive/rules.mak b/contrib/src/libarchive/rules.mak
-index aced4db253..befacd4279 100644
+index 92f58d8e0e..7c2aa6e9be 100644
 --- a/contrib/src/libarchive/rules.mak
 +++ b/contrib/src/libarchive/rules.mak
 @@ -22,6 +22,7 @@ ifdef HAVE_ANDROID
@@ -90,5 +173,5 @@ index aced4db253..befacd4279 100644
  endif
  	$(APPLY) $(SRC)/libarchive/fix-types.patch
 -- 
-2.20.1
+2.26.0.windows.1
 

@@ -1,4 +1,4 @@
-From 9b98d9f56eefaa0185ef3ebfb93abf7bccd78270 Mon Sep 17 00:00:00 2001
+From 39243888b299b3294ffe4a1465f80dc0e2868c01 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:46:11 +0200
 Subject: [PATCH 05/28] contrib: ffmpeg: use bcrypt instead of the old wincrypt
@@ -77,10 +77,10 @@ index 0000000000..456557716d
 +     if (CryptAcquireContext(&provider, NULL, NULL, PROV_RSA_FULL,
 +                             CRYPT_VERIFYCONTEXT | CRYPT_SILENT)) {
 diff --git a/contrib/src/ffmpeg/rules.mak b/contrib/src/ffmpeg/rules.mak
-index 74ea2a5be6..ea8eba7b22 100644
+index 82fcc9955f..ff732c893d 100644
 --- a/contrib/src/ffmpeg/rules.mak
 +++ b/contrib/src/ffmpeg/rules.mak
-@@ -244,6 +244,7 @@ endif
+@@ -249,6 +249,7 @@ endif
  ifdef USE_LIBAV
  	$(APPLY) $(SRC)/ffmpeg/libav_gsm.patch
  endif
@@ -89,5 +89,5 @@ index 74ea2a5be6..ea8eba7b22 100644
  
  .ffmpeg: ffmpeg
 -- 
-2.20.1
+2.26.0.windows.1
 

@@ -1,4 +1,4 @@
-From a8f40a0ae2c06e29fa54271f03056e79cc1d1c51 Mon Sep 17 00:00:00 2001
+From 6cde4a519081763999327e926cbaf2c03ddb3cee Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 4 Sep 2017 13:59:25 +0200
 Subject: [PATCH 18/28] codec: add a set of functions to use a plain FIFO
@@ -141,5 +141,5 @@ index 0000000000..49a99b454f
 +
 +#endif /* VLC_FIFO_HELPER_H */
 -- 
-2.20.1
+2.26.0.windows.1
 

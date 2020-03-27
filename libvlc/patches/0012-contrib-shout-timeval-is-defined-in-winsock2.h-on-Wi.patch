@@ -1,4 +1,4 @@
-From 4e604f5289e361c3fc8208157afc14bb2231dc50 Mon Sep 17 00:00:00 2001
+From b36befb27427a6b787a637ddd83852f46ee73d87 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:06:53 +0200
 Subject: [PATCH 12/28] contrib: shout: timeval is defined in winsock2.h on
@@ -11,17 +11,17 @@ Subject: [PATCH 12/28] contrib: shout: timeval is defined in winsock2.h on
  create mode 100644 contrib/src/shout/shout-timeval.patch
 
 diff --git a/contrib/src/shout/rules.mak b/contrib/src/shout/rules.mak
-index 4cfd227e9f..3a6ff9eeb9 100644
+index 4adebb2381..91120665d7 100644
 --- a/contrib/src/shout/rules.mak
 +++ b/contrib/src/shout/rules.mak
-@@ -25,6 +25,7 @@ libshout: libshout-$(SHOUT_VERSION).tar.gz .sum-shout
- 	$(APPLY) $(SRC)/shout/fix-xiph_openssl.patch
+@@ -26,6 +26,7 @@ libshout: libshout-$(SHOUT_VERSION).tar.gz .sum-shout
  	$(APPLY) $(SRC)/shout/no-examples.patch
+ 	$(APPLY) $(SRC)/shout/no-force-libwsock.patch
  	$(APPLY) $(SRC)/shout/shout-strings.patch
 +	$(APPLY) $(SRC)/shout/shout-timeval.patch
- 	$(APPLY) $(SRC)/shout/no-force-libwsock.patch
  	$(call pkg_static,"shout.pc.in")
  	$(UPDATE_AUTOCONFIG)
+ 	$(MOVE)
 diff --git a/contrib/src/shout/shout-timeval.patch b/contrib/src/shout/shout-timeval.patch
 new file mode 100644
 index 0000000000..6d05058446
@@ -39,5 +39,5 @@ index 0000000000..6d05058446
 + #ifdef TIME_WITH_SYS_TIME
 + #  include <sys/time.h>
 -- 
-2.20.1
+2.26.0.windows.1
 

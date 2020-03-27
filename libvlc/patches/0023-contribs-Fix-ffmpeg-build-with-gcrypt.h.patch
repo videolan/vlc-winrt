@@ -1,4 +1,4 @@
-From a48ea0af978822859cc5eda9d0601bcb12d13de9 Mon Sep 17 00:00:00 2001
+From b083d0437ce588506df4298ce59640b863048af5 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Mon, 9 Apr 2018 13:04:02 +0200
 Subject: [PATCH 23/28] contribs: Fix ffmpeg build with gcrypt.h
@@ -28,5 +28,5 @@ index 456557716d..ff5ad0f9a4 100644
 + #elif HAVE_WINCRYPT
 + #include <windows.h>
 -- 
-2.20.1
+2.26.0.windows.1
 

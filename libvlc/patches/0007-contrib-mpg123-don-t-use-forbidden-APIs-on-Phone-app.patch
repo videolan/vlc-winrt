@@ -1,4 +1,4 @@
-From 931a0d25b041aad919e3eefb2b12a2d95a9d3e45 Mon Sep 17 00:00:00 2001
+From bb47c116178ae32b3f6a3906a2b5a1c121671706 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Tue, 20 Feb 2018 11:24:43 +0100
 Subject: [PATCH 07/28] contrib:mpg123: don't use forbidden APIs on Phone apps
@@ -39,5 +39,5 @@ index e8f14f6abb..ef0db03a88 100644
  	$(MOVE)
  
 -- 
-2.20.1
+2.26.0.windows.1
 
