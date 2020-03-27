@@ -116,14 +116,17 @@ esac
 # Build tools with the native compiler
 echo "Compiling missing tools..."
 cd extras/tools
-./bootstrap && make $MAKEFLAGS
-if [ "$HAS_CLANG" = "1" ] ; then
+
+export PATH="$PWD/build/bin":"$PATH"
+# Force patched meson as newer versions don't add -lpthread properly in libplacebo.pc
+FORCED_TOOLS=".meson"
+if [ "${HAS_CLANG}" = "1" ] ; then
     # We need a patched version of libtool & cmake, regardless of which
     # version is installed on the system.
     # cmake can go away when we switch to 3.13.0
-    make $MAKEFLAGS .cmake .libtool
+    FORCED_TOOLS="$FORCED_TOOLS .cmake .libtool"
 fi
-export PATH=`pwd`/build/bin:"$PATH"
+NEEDED="$FORCED_TOOLS" ./bootstrap && make $MAKEFLAGS
 cd ../../
 
 EXTRA_CPPFLAGS="-D_WIN32_WINNT=$WINVER -DWINVER=$WINVER -DWINSTORECOMPAT -D_UNICODE -DUNICODE -DWINAPI_FAMILY=WINAPI_FAMILY_APP"
