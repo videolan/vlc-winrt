@@ -1,7 +1,7 @@
-From 6151e1d985cc21227d1ec393215bf58cabc855ad Mon Sep 17 00:00:00 2001
+From 6c6e732bd63e4c9774887e6cf6e8e0daa5405539 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 23 May 2016 09:18:17 +0200
-Subject: [PATCH 10/28] contrib: gnutls: fix Winstore forbidden API calls
+Subject: [PATCH 10/30] contrib: gnutls: fix Winstore forbidden API calls
 
 ---
  contrib/src/gnutls/rules.mak      |   3 +

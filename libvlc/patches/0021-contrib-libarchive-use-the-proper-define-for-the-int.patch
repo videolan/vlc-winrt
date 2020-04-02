@@ -1,21 +1,21 @@
-From 36779be322801c8bb4d0559244bbac682ca23e79 Mon Sep 17 00:00:00 2001
+From ab912b9c57c9d77a61381a9f93b97b6f4ebd4373 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Fri, 27 Mar 2020 16:33:33 +0100
-Subject: [PATCH 21/28] contrib: libarchive: use the proper define for the
+Subject: [PATCH 21/30] contrib: libarchive: use the proper define for the
  internal mode_t
 
 ---
- ...try-use-the-proper-define-for-mode_t.patch | 43 +++++++++++++++++++
- contrib/src/libarchive/rules.mak              |  1 +
- 2 files changed, 44 insertions(+)
- create mode 100644 contrib/src/libarchive/0002-archive_entry-use-the-proper-define-for-mode_t.patch
+ contrib/src/libarchive/fix-types.patch | 24 +++++++++++++++++++-----
+ 1 file changed, 19 insertions(+), 5 deletions(-)
 
-diff --git a/contrib/src/libarchive/0002-archive_entry-use-the-proper-define-for-mode_t.patch b/contrib/src/libarchive/0002-archive_entry-use-the-proper-define-for-mode_t.patch
-new file mode 100644
-index 0000000000..14c3216e13
---- /dev/null
-+++ b/contrib/src/libarchive/0002-archive_entry-use-the-proper-define-for-mode_t.patch
-@@ -0,0 +1,43 @@
+diff --git a/contrib/src/libarchive/fix-types.patch b/contrib/src/libarchive/fix-types.patch
+index 3285058337..14c3216e13 100644
+--- a/contrib/src/libarchive/fix-types.patch
++++ b/contrib/src/libarchive/fix-types.patch
+@@ -1,6 +1,17 @@
+---- libarchive/libarchive/archive_entry.c	2017-07-18 15:27:58.259298500 +0200
+-+++ libarchive/libarchive/archive_entry.c.types	2017-07-18 15:21:43.800236200 +0200
+-@@ -348,7 +348,7 @@ archive_entry_devminor(struct archive_en
 +From 93a8b303904e40261ac58fbd95eb338d6b9cb1df Mon Sep 17 00:00:00 2001
 +From: Steve Lhomme <robux4@ycbcr.xyz>
 +Date: Fri, 27 Mar 2020 16:26:07 +0100
@@ -30,47 +30,34 @@ index 0000000000..14c3216e13
 +--- a/libarchive/archive_entry.c
 ++++ b/libarchive/archive_entry.c
 +@@ -353,7 +353,7 @@ archive_entry_devminor(struct archive_entry *entry)
-+ 		return minor(entry->ae_stat.aest_dev);
-+ }
-+ 
-+-mode_t
-++__LA_MODE_T
-+ archive_entry_filetype(struct archive_entry *entry)
-+ {
-+ 	return (AE_IFMT & entry->acl.mode);
+  		return minor(entry->ae_stat.aest_dev);
+  }
+  
+@@ -9,7 +20,7 @@
+  archive_entry_filetype(struct archive_entry *entry)
+  {
+  	return (AE_IFMT & entry->acl.mode);
+-@@ -520,7 +520,7 @@ archive_entry_ino64(struct archive_entry
 +@@ -525,7 +525,7 @@ archive_entry_ino64(struct archive_entry *entry)
-+ 	return (entry->ae_stat.aest_ino);
-+ }
-+ 
-+-mode_t
-++__LA_MODE_T
-+ archive_entry_mode(struct archive_entry *entry)
-+ {
-+ 	return (entry->acl.mode);
+  	return (entry->ae_stat.aest_ino);
+  }
+  
+@@ -18,7 +29,7 @@
+  archive_entry_mode(struct archive_entry *entry)
+  {
+  	return (entry->acl.mode);
+-@@ -593,7 +593,7 @@ _archive_entry_pathname_l(struct archive
 +@@ -598,7 +598,7 @@ _archive_entry_pathname_l(struct archive_entry *entry,
-+ 	return (archive_mstring_get_mbs_l(&entry->ae_pathname, p, len, sc));
-+ }
-+ 
-+-mode_t
-++__LA_MODE_T
-+ archive_entry_perm(struct archive_entry *entry)
-+ {
-+ 	return (~AE_IFMT & entry->acl.mode);
+  	return (archive_mstring_get_mbs_l(&entry->ae_pathname, p, len, sc));
+  }
+  
+@@ -27,3 +38,6 @@
+  archive_entry_perm(struct archive_entry *entry)
+  {
+  	return (~AE_IFMT & entry->acl.mode);
 +-- 
 +2.26.0.windows.1
 +
-diff --git a/contrib/src/libarchive/rules.mak b/contrib/src/libarchive/rules.mak
-index 7c2aa6e9be..664c8b59b6 100644
---- a/contrib/src/libarchive/rules.mak
-+++ b/contrib/src/libarchive/rules.mak
-@@ -17,6 +17,7 @@ $(TARBALLS)/libarchive-$(LIBARCHIVE_VERSION).tar.gz:
- libarchive: libarchive-$(LIBARCHIVE_VERSION).tar.gz .sum-libarchive
- 	$(UNPACK)
- 	$(APPLY) $(SRC)/libarchive/0001-Fix-build-failure-without-STATVFS.patch
-+	$(APPLY) $(SRC)/libarchive/0002-archive_entry-use-the-proper-define-for-mode_t.patch
- ifdef HAVE_ANDROID
- 	$(APPLY) $(SRC)/libarchive/android.patch
- endif
 -- 
 2.26.0.windows.1
 

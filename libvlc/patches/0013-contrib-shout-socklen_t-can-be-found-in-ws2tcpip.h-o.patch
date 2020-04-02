@@ -1,7 +1,7 @@
-From 00a297567e4b3ef43583c051df418a50a64bb25c Mon Sep 17 00:00:00 2001
+From f5fa91d807b80e9563148a1569745152f7ad12d3 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 29 Mar 2018 15:13:55 +0200
-Subject: [PATCH 13/28] contrib: shout: socklen_t can be found in ws2tcpip.h on
+Subject: [PATCH 13/30] contrib: shout: socklen_t can be found in ws2tcpip.h on
  Windows
 
 and make sure it's found on Windows Store builds as well

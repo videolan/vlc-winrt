@@ -1,7 +1,7 @@
-From 7191293f56c0c5e7b5606edcd164f30f2a8c07fa Mon Sep 17 00:00:00 2001
+From a683985662118839f71580287b595e0638d1eabd Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Apr 2018 15:14:25 +0200
-Subject: [PATCH 26/28] contrib: ffmpeg: Don't check for wincrypt anymore
+Subject: [PATCH 26/30] contrib: ffmpeg: Don't check for wincrypt anymore
 
 ---
  .../src/ffmpeg/ffmpeg-winrt-wincrypt.patch    | 27 +++++++++++++++++++
