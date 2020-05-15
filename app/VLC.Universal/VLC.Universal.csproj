@@ -509,6 +509,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\audio_filter\libsamplerate_plugin.dll">
       <Link>plugins\audio_filter\libsamplerate_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\audio_filter\libscaletempo_pitch_plugin.dll">
+      <Link>plugins\audio_filter\libscaletempo_pitch_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\audio_filter\libscaletempo_plugin.dll">
       <Link>plugins\audio_filter\libscaletempo_plugin.dll</Link>
     </Content>
@@ -563,8 +566,14 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libaes3_plugin.dll">
       <Link>plugins\codec\libaes3_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libaom_plugin.dll">
+      <Link>plugins\codec\libaom_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libaraw_plugin.dll">
       <Link>plugins\codec\libaraw_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libaribsub_plugin.dll">
+      <Link>plugins\codec\libaribsub_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libavcodec_plugin.dll">
       <Link>plugins\codec\libavcodec_plugin.dll</Link>
@@ -581,6 +590,9 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libd3d11va_plugin.dll">
       <Link>plugins\codec\libd3d11va_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libdav1d_plugin.dll">
+      <Link>plugins\codec\libdav1d_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libdca_plugin.dll">
       <Link>plugins\codec\libdca_plugin.dll</Link>
     </Content>
@@ -589,6 +601,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libdvbsub_plugin.dll">
       <Link>plugins\codec\libdvbsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libedummy_plugin.dll">
+      <Link>plugins\codec\libedummy_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libflac_plugin.dll">
       <Link>plugins\codec\libflac_plugin.dll</Link>
@@ -631,6 +646,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\librawvideo_plugin.dll">
       <Link>plugins\codec\librawvideo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\librtpvideo_plugin.dll">
+      <Link>plugins\codec\librtpvideo_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libscte18_plugin.dll">
       <Link>plugins\codec\libscte18_plugin.dll</Link>
@@ -679,6 +697,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libvpx_plugin.dll">
       <Link>plugins\codec\libvpx_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libwebvtt_plugin.dll">
+      <Link>plugins\codec\libwebvtt_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libzvbi_plugin.dll" Condition="$(Platform) != 'ARM'">
       <Link>plugins\codec\libzvbi_plugin.dll</Link>
@@ -910,6 +931,9 @@
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\packetizer\libpacketizer_a52_plugin.dll">
       <Link>plugins\packetizer\libpacketizer_a52_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\packetizer\libpacketizer_av1_plugin.dll">
+      <Link>plugins\packetizer\libpacketizer_av1_plugin.dll</Link>
     </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\packetizer\libpacketizer_copy_plugin.dll">
       <Link>plugins\packetizer\libpacketizer_copy_plugin.dll</Link>
