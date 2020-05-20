@@ -1,0 +1,72 @@
+From 2b3b370d19b4918a0af304054266091348edc5d1 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Wed, 25 Mar 2020 13:39:17 +0100
+Subject: [PATCH 35/36] tools: update CMake to 3.17.0
+
+It includes the patch from Hugo to fix the PKG_CONFIG_PATH usage.
+
+(cherry picked from commit 9f33c286ccfec41ccc494c862311c19b9a905c2f)
+---
+ extras/tools/SHA512SUMS   | 2 +-
+ extras/tools/bootstrap    | 2 +-
+ extras/tools/packages.mak | 4 ++--
+ extras/tools/tools.mak    | 2 +-
+ 4 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/extras/tools/SHA512SUMS b/extras/tools/SHA512SUMS
+index 7fd6d37e1c..f5799daad4 100644
+--- a/extras/tools/SHA512SUMS
++++ b/extras/tools/SHA512SUMS
+@@ -1,7 +1,7 @@
+ 3954a6ad3f522c135f327ba0d376eb16ae42103849c8cc5cd6c8c6e87b8c5433c95a0f2d4dfa3e6c2705ee0b8996e5b27d0b2248f64a05fc8c902116cc45a7b2  apache-ant-1.9.7.tar.bz2
+ e34c7818bcde14d2cb13cdd293ed17d70740d4d1fd7c67a07b415491ef85d42f450d4fe5f8f80cc330bf75c40a62774c51a4336e06e8da07a4cbc49922d975ee  autoconf-2.69.tar.gz
+ 6f201f96431f5e3d3081c4d71c884ae1f4f45b9c5c7a1306c9f3f3d4bd5ee5f6fae47b55d35241b3cae84be555cc0ab84c034acdcd5d9a071f6f0ecdee2dec73  automake-1.15.tar.gz
+-693520e53fa21e81f5f15e6f8979e5264e3bf7e194e4c19b884a44767b3b6d6535dee674f355440e7dcac480372882152c0523ac3c2f1c12d51b43540bcffa59  cmake-3.13.1.tar.gz
++f09440681e0c414f5ca669f3aeba6666d09e0642f30a2e12c3199e7fb3da95a7dd17994fc54475c49638c37f0502ea0a2d8da0f9098805f11088ba7b299bf72a  cmake-3.17.0.tar.gz
+ 9953413376c6b33e9e49d1f4f5b2d50075e0b1defb17b3c233d186d21416e6b607df11f6030588eeec3b025e1075c9c37a3db3c872fc22329d1dc0d0c6e2d9d0  gas-preprocessor-72887b9.tar.gz
+ 0e54af7bbec376f943f2b8e4f13631fe5627b099a37a5f0252e12bade76473b0a36a673529d594778064cd8632abdc43d8a20883d66d6b27738861afbb7e211d  libtool-2.4.2.tar.gz
+ 29254dd4267a093e8d9da3a26df8b02564044cdb4506be539ec1aff4e5d406477bcf32f5e813c840f3aec77293bfe2cdde18f6a21724a7e0bfff646ec88b74ae  m4-1.4.18.tar.gz
+diff --git a/extras/tools/bootstrap b/extras/tools/bootstrap
+index c2e0f82551..b476207ff8 100755
+--- a/extras/tools/bootstrap
++++ b/extras/tools/bootstrap
+@@ -94,7 +94,7 @@ check automake 1.15
+ check m4 1.4.16
+ check libtool 2.4
+ check pkg-config
+-check cmake 3.8.2
++check cmake 3.17.0
+ check yasm
+ check_tar
+ check ragel
+diff --git a/extras/tools/packages.mak b/extras/tools/packages.mak
+index 64f9326d56..0e058475c4 100644
+--- a/extras/tools/packages.mak
++++ b/extras/tools/packages.mak
+@@ -9,8 +9,8 @@ YASM_URL=http://www.tortall.net/projects/yasm/releases/yasm-$(YASM_VERSION).tar.
+ NASM_VERSION=2.14
+ NASM_URL=http://www.nasm.us/pub/nasm/releasebuilds/$(NASM_VERSION)/nasm-$(NASM_VERSION).tar.gz
+ 
+-CMAKE_VERSION=3.13.1
+-CMAKE_URL=http://www.cmake.org/files/v3.13/cmake-$(CMAKE_VERSION).tar.gz
++CMAKE_VERSION=3.17.0
++CMAKE_URL=http://www.cmake.org/files/v3.17/cmake-$(CMAKE_VERSION).tar.gz
+ 
+ LIBTOOL_VERSION=2.4.2
+ LIBTOOL_URL=$(GNU)/libtool/libtool-$(LIBTOOL_VERSION).tar.gz
+diff --git a/extras/tools/tools.mak b/extras/tools/tools.mak
+index 1d058f521b..f75da9b601 100644
+--- a/extras/tools/tools.mak
++++ b/extras/tools/tools.mak
+@@ -87,7 +87,7 @@ cmake: cmake-$(CMAKE_VERSION).tar.gz
+ 	$(MOVE)
+ 
+ .cmake: cmake
+-	(cd $<; ./configure --prefix=$(PREFIX) $(CMAKEFLAGS) && $(MAKE) && $(MAKE) install)
++	(cd $<; ./configure --prefix=$(PREFIX) $(CMAKEFLAGS) --no-qt-gui -- -DCMAKE_USE_OPENSSL:BOOL=OFF -DBUILD_TESTING:BOOL=OFF && $(MAKE) && $(MAKE) install)
+ 	touch $@
+ 
+ CLEAN_FILE += .cmake
+-- 
+2.26.0.windows.1
+

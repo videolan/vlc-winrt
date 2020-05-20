@@ -1,7 +1,7 @@
-From c212639ac5492bf1d4b1bbcb1c4d9808f51b5e3c Mon Sep 17 00:00:00 2001
+From 9ffcb346f13a5369adab887a87ca6df945b0dc36 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Mon, 9 Apr 2018 09:59:27 +0200
-Subject: [PATCH 22/30] contrib: libarchive: Fix winrt build
+Subject: [PATCH 22/36] contrib: libarchive: Fix winrt build
 
 don't force compilation for Windows XP
 don't call DebugBreak() (in debug builds)
@@ -10,7 +10,7 @@ don't call DebugBreak() (in debug builds)
  1 file changed, 238 insertions(+), 155 deletions(-)
 
 diff --git a/contrib/src/libarchive/winrt.patch b/contrib/src/libarchive/winrt.patch
-index 50258dfe91..ca30be82bf 100644
+index 50258dfe91..e67a3de894 100644
 --- a/contrib/src/libarchive/winrt.patch
 +++ b/contrib/src/libarchive/winrt.patch
 @@ -1,68 +1,64 @@
@@ -435,7 +435,7 @@ index 50258dfe91..ca30be82bf 100644
 + }
 ++#else
 ++int
-++__archive_mktemp(const char *tmpdir)
+++__archive_mktempx(const char *tmpdir, wchar_t *template)
 ++{
 ++    return -1;
 ++}
