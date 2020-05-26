@@ -16,7 +16,7 @@ index 622097464a..635f90a47f 100644
  PKGS_FOUND += mfx
  endif
  ifdef HAVE_WIN32
-+ifneq ($(filter arm aarch64, $(ARCH)),)
++ifeq ($(filter arm aarch64, $(ARCH)),)
  PKGS += mfx
  endif
 +endif
