@@ -175,7 +175,6 @@ cd $CONTRIB_FOLDER
     --enable-postproc \
     --enable-vpx \
     --enable-libdsm \
-    --disable-mfx \
     --disable-x264 \
     --disable-x265 \
     --disable-srt \
