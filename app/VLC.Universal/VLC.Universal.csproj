@@ -566,9 +566,6 @@
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libaes3_plugin.dll">
       <Link>plugins\codec\libaes3_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libaom_plugin.dll">
-      <Link>plugins\codec\libaom_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\libvlc\Universal\vlc-$(TargetedSDKArchitecture)\$(Configuration)\plugins\codec\libaraw_plugin.dll">
       <Link>plugins\codec\libaraw_plugin.dll</Link>
     </Content>
