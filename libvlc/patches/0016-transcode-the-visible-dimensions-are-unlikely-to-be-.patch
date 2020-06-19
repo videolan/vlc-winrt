@@ -1,0 +1,28 @@
+From fd768acfa555ac1dd4940b6d315997ab7d34ad11 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@videolabs.io>
+Date: Thu, 14 Dec 2017 14:20:25 +0100
+Subject: [PATCH 16/37] transcode: the visible dimensions are unlikely to be 0
+
+---
+ modules/stream_out/transcode/video.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/modules/stream_out/transcode/video.c b/modules/stream_out/transcode/video.c
+index fe5dc91a1b..9dfd7b4853 100644
+--- a/modules/stream_out/transcode/video.c
++++ b/modules/stream_out/transcode/video.c
+@@ -442,9 +442,9 @@ static void transcode_video_size_init( sout_stream_t *p_stream,
+     int i_src_visible_width = p_vid_out->i_visible_width;
+     int i_src_visible_height = p_vid_out->i_visible_height;
+ 
+-    if (i_src_visible_width == 0)
++    if (unlikely(i_src_visible_width == 0))
+         i_src_visible_width = p_vid_out->i_width;
+-    if (i_src_visible_height == 0)
++    if (unlikely(i_src_visible_height == 0))
+         i_src_visible_height = p_vid_out->i_height;
+ 
+ 
+-- 
+2.26.0.windows.1
+

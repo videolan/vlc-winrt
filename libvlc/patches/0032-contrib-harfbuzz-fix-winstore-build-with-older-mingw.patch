@@ -1,0 +1,46 @@
+From 9265fcb4b7911eb85e1d7cd770cd709e6686740f Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Wed, 20 May 2020 12:38:07 +0200
+Subject: [PATCH 32/37] contrib: harfbuzz: fix winstore build with older mingw
+ toolchains
+
+---
+ contrib/src/harfbuzz/harfbuzz-oldmingw.patch | 12 ++++++++++++
+ contrib/src/harfbuzz/rules.mak               |  2 ++
+ 2 files changed, 14 insertions(+)
+ create mode 100644 contrib/src/harfbuzz/harfbuzz-oldmingw.patch
+
+diff --git a/contrib/src/harfbuzz/harfbuzz-oldmingw.patch b/contrib/src/harfbuzz/harfbuzz-oldmingw.patch
+new file mode 100644
+index 0000000000..df86f754a9
+--- /dev/null
++++ b/contrib/src/harfbuzz/harfbuzz-oldmingw.patch
+@@ -0,0 +1,12 @@
++--- harfbuzz/src/hb-blob.cc.oldmingw	2020-05-20 12:33:12.576009300 +0200
+++++ harfbuzz/src/hb-blob.cc	2020-05-20 12:33:26.944184500 +0200
++@@ -50,6 +50,9 @@
++ #include <stdio.h>
++ #include <stdlib.h>
++ 
+++#if !WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+++extern "C" WINBASEAPI WINBOOL WINAPI GetFileSizeEx (HANDLE hFile, PLARGE_INTEGER lpFileSize);
+++#endif
++ 
++ /**
++  * SECTION: hb-blob
+diff --git a/contrib/src/harfbuzz/rules.mak b/contrib/src/harfbuzz/rules.mak
+index d4e9ad7651..1bcb7773a1 100644
+--- a/contrib/src/harfbuzz/rules.mak
++++ b/contrib/src/harfbuzz/rules.mak
+@@ -17,6 +17,8 @@ harfbuzz: harfbuzz-$(HARFBUZZ_VERSION).tar.xz .sum-harfbuzz
+ 	$(APPLY) $(SRC)/harfbuzz/0001-fix-OSAtomic-calls-for-AArch64.patch
+ 	$(APPLY) $(SRC)/harfbuzz/0002-Update-the-bundled-ax_pthread.m4.patch
+ 	$(APPLY) $(SRC)/harfbuzz/0003-Fix-winstore-app-detection-with-mingw64.patch
++	# in older mingw (60d5baaa7d1ec067b400910535655eefd4ba560b) GetFileSizeEx was not allowed in winstore builds
++	$(APPLY) $(SRC)/harfbuzz/harfbuzz-oldmingw.patch
+ 	$(MOVE)
+ 
+ DEPS_harfbuzz = freetype2 $(DEPS_freetype2)
+-- 
+2.26.0.windows.1
+

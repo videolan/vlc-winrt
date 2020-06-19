@@ -1,0 +1,62 @@
+From 97f5c4caef345e2f91d7db69e8b120cb60f74938 Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Thu, 14 May 2020 10:01:26 +0200
+Subject: [PATCH 36/37] contrib: mfx: detect winstore builds with a regular
+ mingw32 toolchain
+
+Forcing the WINAPI_FAMILY should be enough to trigger the winstore mode.
+---
+ contrib/src/mfx/mfx-detect-uwp.patch | 23 +++++++++++++++++++++++
+ contrib/src/mfx/rules.mak            |  2 ++
+ 2 files changed, 25 insertions(+)
+ create mode 100644 contrib/src/mfx/mfx-detect-uwp.patch
+
+diff --git a/contrib/src/mfx/mfx-detect-uwp.patch b/contrib/src/mfx/mfx-detect-uwp.patch
+new file mode 100644
+index 0000000000..0817993bfe
+--- /dev/null
++++ b/contrib/src/mfx/mfx-detect-uwp.patch
+@@ -0,0 +1,23 @@
++--- mfx/configure.ac.winapifamily	2020-05-14 09:59:09.687298300 +0200
+++++ mfx/configure.ac	2020-05-14 09:59:36.091781200 +0200
++@@ -35,6 +35,20 @@ AS_CASE([${host_os}],
++         AM_CONDITIONAL([WINDOWS_STORE], [true])
++         DLLIB="$(DLLIB) -ldxgi"
++     ],
+++    [mingw32], [
+++        AC_PREPROC_IFELSE([AC_LANG_PROGRAM(
+++          [[#include <winapifamily.h>
+++           #if WINAPI_FAMILY_PARTITION (WINAPI_PARTITION_DESKTOP)
+++           # error Win32 Desktop build
+++           #endif
+++          ]],[[;]])
+++        ],[
+++            AM_CONDITIONAL([WINDOWS_STORE], [true])
+++            DLLIB="$(DLLIB) -ldxgi"
+++        ],[
+++            AM_CONDITIONAL([WINDOWS_STORE], [false])
+++        ])
+++    ],
++     [
++         AM_CONDITIONAL([WINDOWS_STORE], [false])
++     ]
+diff --git a/contrib/src/mfx/rules.mak b/contrib/src/mfx/rules.mak
+index 510383e786..622097464a 100644
+--- a/contrib/src/mfx/rules.mak
++++ b/contrib/src/mfx/rules.mak
+@@ -28,10 +28,12 @@ $(TARBALLS)/mfx-$(MFX_GITHASH).tar.xz:
+ mfx: mfx-$(MFX_GITHASH).tar.xz .sum-mfx
+ 	$(UNPACK)
+ 	$(APPLY) $(SRC)/mfx/mfx-cpp11-fix.patch
++	$(APPLY) $(SRC)/mfx/mfx-detect-uwp.patch
+ 	cd $(UNPACK_DIR) && autoreconf -ivf
+ 	$(MOVE)
+ 
+ .mfx: mfx
++	$(RECONF)
+ 	cd $< && $(HOSTVARS) CFLAGS="$(MFX_CFLAGS)" CXXFLAGS="$(MFX_CXXFLAGS)" ./configure $(HOSTCONF)
+ 	cd $< && $(MAKE) install
+ 	touch $@
+-- 
+2.26.0.windows.1
+

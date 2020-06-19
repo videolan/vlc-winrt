@@ -1,0 +1,46 @@
+From 4e79e713d4bc0365d49fa4a3beb4c4bf8e0322cc Mon Sep 17 00:00:00 2001
+From: Steve Lhomme <robux4@ycbcr.xyz>
+Date: Thu, 29 Mar 2018 15:13:55 +0200
+Subject: [PATCH 12/37] contrib: shout: socklen_t can be found in ws2tcpip.h on
+ Windows
+
+and make sure it's found on Windows Store builds as well
+---
+ contrib/src/shout/rules.mak                 |  1 +
+ contrib/src/shout/shout-win32-socklen.patch | 12 ++++++++++++
+ 2 files changed, 13 insertions(+)
+ create mode 100644 contrib/src/shout/shout-win32-socklen.patch
+
+diff --git a/contrib/src/shout/rules.mak b/contrib/src/shout/rules.mak
+index 91120665d7..cbb31738c1 100644
+--- a/contrib/src/shout/rules.mak
++++ b/contrib/src/shout/rules.mak
+@@ -27,6 +27,7 @@ libshout: libshout-$(SHOUT_VERSION).tar.gz .sum-shout
+ 	$(APPLY) $(SRC)/shout/no-force-libwsock.patch
+ 	$(APPLY) $(SRC)/shout/shout-strings.patch
+ 	$(APPLY) $(SRC)/shout/shout-timeval.patch
++	$(APPLY) $(SRC)/shout/shout-win32-socklen.patch
+ 	$(call pkg_static,"shout.pc.in")
+ 	$(UPDATE_AUTOCONFIG)
+ 	$(MOVE)
+diff --git a/contrib/src/shout/shout-win32-socklen.patch b/contrib/src/shout/shout-win32-socklen.patch
+new file mode 100644
+index 0000000000..57821bff90
+--- /dev/null
++++ b/contrib/src/shout/shout-win32-socklen.patch
+@@ -0,0 +1,12 @@
++--- libshout/src/common/net/sock.c.socklen	2018-03-29 15:11:28.885555300 +0200
+++++ libshout/src/common/net/sock.c	2018-03-29 11:13:03.178552900 +0200
++@@ -57,6 +57,9 @@
++ #include <netdb.h>
++ #else
++ #include <winsock2.h>
+++#undef WINAPI_FAMILY
+++#define WINAPI_FAMILY WINAPI_FAMILY_DESKTOP_APP
+++#include <ws2tcpip.h>
++ #endif
++ 
++ #include "sock.h"
+-- 
+2.26.0.windows.1
+
