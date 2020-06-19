@@ -1,7 +1,7 @@
-From a9c3de71899ffee02dbc6b2b33d865d22a073432 Mon Sep 17 00:00:00 2001
+From 325e2444214d840a5f511a616f95edc3e494fba3 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 2 Apr 2020 15:37:54 +0200
-Subject: [PATCH 28/37] libarchive: don't force the Windows version to target
+Subject: [PATCH 25/26] libarchive: don't force the Windows version to target
 
 We may want to build for Win10/UWP via the command-line.
 ---

@@ -1,7 +1,7 @@
-From 9265fcb4b7911eb85e1d7cd770cd709e6686740f Mon Sep 17 00:00:00 2001
+From 3d082285a52351abc5fe315a4f8edeb3a80ef74d Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Wed, 20 May 2020 12:38:07 +0200
-Subject: [PATCH 32/37] contrib: harfbuzz: fix winstore build with older mingw
+Subject: [PATCH 26/26] contrib: harfbuzz: fix winstore build with older mingw
  toolchains
 
 ---
@@ -12,7 +12,7 @@ Subject: [PATCH 32/37] contrib: harfbuzz: fix winstore build with older mingw
 
 diff --git a/contrib/src/harfbuzz/harfbuzz-oldmingw.patch b/contrib/src/harfbuzz/harfbuzz-oldmingw.patch
 new file mode 100644
-index 0000000000..df86f754a9
+index 0000000000..e31db5fe68
 --- /dev/null
 +++ b/contrib/src/harfbuzz/harfbuzz-oldmingw.patch
 @@ -0,0 +1,12 @@

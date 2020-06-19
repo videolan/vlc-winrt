@@ -1,7 +1,7 @@
-From e014628cea2a2d0a660d7125cb0df113b198db50 Mon Sep 17 00:00:00 2001
+From 0ba268c8f1f13c8809e327ba5a5d9ffa8e2e42c6 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Thu, 2 Apr 2020 14:58:53 +0200
-Subject: [PATCH 27/37] contrib: libarchive: fix winrt patches
+Subject: [PATCH 24/26] contrib: libarchive: fix winrt patches
 
 ---
  contrib/src/libarchive/no-windows-files.patch | 11 -----------

@@ -1,7 +1,7 @@
-From 9cd91578ee4471cdcaa99830fcb046b50e4b6cd0 Mon Sep 17 00:00:00 2001
+From 819e97910ac52a738e538cc841a59506db5637dc Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Hugo=20Beauz=C3=A9e-Luyssen?= <hugo@beauzee.fr>
 Date: Tue, 10 Apr 2018 15:58:44 +0200
-Subject: [PATCH 26/37] contrib: gnutls: Use winstorecompat overload when
+Subject: [PATCH 23/26] contrib: gnutls: Use winstorecompat overload when
  available
 
 ---

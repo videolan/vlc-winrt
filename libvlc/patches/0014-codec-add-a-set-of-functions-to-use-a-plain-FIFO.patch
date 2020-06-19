@@ -1,7 +1,7 @@
-From e11bbec82b105386d4dea9e7937f0dd77652126f Mon Sep 17 00:00:00 2001
+From d0cf0a79d67685eb69dffd2a98685d9f0341c3ec Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Mon, 4 Sep 2017 13:59:25 +0200
-Subject: [PATCH 17/37] codec: add a set of functions to use a plain FIFO
+Subject: [PATCH 14/26] codec: add a set of functions to use a plain FIFO
 
 It's similar to the block FIFO but with no locking.
 ---

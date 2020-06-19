@@ -1,7 +1,7 @@
-From 5ef3ca08d49ebca49e37166d00378b70d39db941 Mon Sep 17 00:00:00 2001
+From e0da2caa5b125012e2d6bb120bcc879288de9a10 Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@videolabs.io>
 Date: Thu, 31 Aug 2017 18:02:31 +0200
-Subject: [PATCH 18/37] qsv: CUMULATIVE PATCH to encode from CPU planes
+Subject: [PATCH 15/26] qsv: CUMULATIVE PATCH to encode from CPU planes
  properly
 
 ---

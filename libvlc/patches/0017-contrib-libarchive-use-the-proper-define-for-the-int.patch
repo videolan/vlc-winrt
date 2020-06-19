@@ -1,7 +1,7 @@
-From 6e975999959a1fad00457ea7a612f5f3c31d0284 Mon Sep 17 00:00:00 2001
+From b670cb1b32303d9e133bb8c16d9cdf5cb74438cd Mon Sep 17 00:00:00 2001
 From: Steve Lhomme <robux4@ycbcr.xyz>
 Date: Fri, 27 Mar 2020 16:33:33 +0100
-Subject: [PATCH 20/37] contrib: libarchive: use the proper define for the
+Subject: [PATCH 17/26] contrib: libarchive: use the proper define for the
  internal mode_t
 
 ---
