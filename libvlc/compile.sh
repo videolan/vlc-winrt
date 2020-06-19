@@ -119,12 +119,12 @@ cd extras/tools
 
 export PATH="$PWD/build/bin":"$PATH"
 # Force patched meson as newer versions don't add -lpthread properly in libplacebo.pc
-FORCED_TOOLS=".meson"
+FORCED_TOOLS="meson"
 if [ "${HAS_CLANG}" = "1" ] ; then
     # We need a patched version of libtool & cmake, regardless of which
     # version is installed on the system.
     # cmake can go away when we switch to 3.13.0
-    FORCED_TOOLS="$FORCED_TOOLS .cmake .libtool"
+    FORCED_TOOLS="$FORCED_TOOLS libtool"
 fi
 NEEDED="$FORCED_TOOLS" ./bootstrap && make $MAKEFLAGS
 cd ../../
