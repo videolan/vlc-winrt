@@ -2,7 +2,7 @@ stages:
     - build
 
 .build-base:
-    image: registry.videolan.org/vlc-debian-llvm-mingw:20181128171234
+    image: registry.videolan.org/vlc-debian-llvm-uwp:20200603145315
     tags:
         - docker
         - amd64
