@@ -6,7 +6,7 @@ usage()
 {
     echo "Usage: compile <arch> <TargetOS>"
     echo "archs: i686,x86_64,armv7,aarch64"
-    echo "os: win81,win10"
+    echo "os: win10"
 }
 
 using()
@@ -49,10 +49,13 @@ case "$2" in
         LIBLOLE32=
         ;;
     win81)
-        WINVER=0x602
-        RUNTIME=msvcr120_app
-        LIBKERNEL32=-lkernel32
-        LIBLOLE32=-lole32
+        echo "win81 not supported anymore"
+        usage
+        exit 1
+        #~ WINVER=0x602
+        #~ RUNTIME=msvcr120_app
+        #~ LIBKERNEL32=-lkernel32
+        #~ LIBLOLE32=-lole32
         ;;
     *)
         echo "Unknown OS: $2"
