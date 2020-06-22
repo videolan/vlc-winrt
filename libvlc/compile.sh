@@ -223,7 +223,7 @@ cp -r _win32/lib/vlc/plugins tmp/
 
 find tmp -name "*.la" -exec rm -v {} \;
 find tmp -name "*.a" -exec rm -v {} \;
-blacklist="
+blocklist="
 wingdi
 waveout
 dshow
@@ -248,7 +248,7 @@ crystalhd
 smb
 "
 regexp=
-for i in ${blacklist}
+for i in ${blocklist}
 do
     if [ -z "${regexp}" ]
     then
