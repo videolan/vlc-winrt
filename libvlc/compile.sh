@@ -67,6 +67,8 @@ if [ ! -d "vlc" ]; then
     echo "VLC source not found, cloning"
     git clone http://git.videolan.org/git/vlc/vlc-3.0.git vlc
     cd vlc
+    git config --global user.email "cone@example.com"
+    git config --local user.name "Cony Cone"
     git am -3 ../patches/*.patch
     if [ $? -ne 0 ]; then
         git am --abort
