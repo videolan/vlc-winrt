@@ -790,6 +790,18 @@
           <source>Hebrew</source>
           <target state="translated">Hebrejština</target>
         </trans-unit>
+        <trans-unit id="RomanianLanguage" translate="yes" xml:space="preserve">
+          <source>Romanian</source>
+          <target state="translated">Rumunština</target>
+        </trans-unit>
+        <trans-unit id="BrazilianLanguage" translate="yes" xml:space="preserve">
+          <source>Brazilian</source>
+          <target state="translated">Brazilština</target>
+        </trans-unit>
+        <trans-unit id="ArabicLanguage" translate="yes" xml:space="preserve">
+          <source>Arabic</source>
+          <target state="translated">Arabština</target>
+        </trans-unit>
         <trans-unit id="Languages" translate="yes" xml:space="preserve">
           <source>Languages</source>
           <target state="translated">Jazyky</target>
