@@ -250,7 +250,7 @@
     <value>Nous n'avons trouvé aucune vidéo</value>
   </data>
   <data name="NowPlaying" xml:space="preserve">
-    <value>Lecture en cours</value>
+    <value>lecture en cours</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Ouvrir un fichier</value>
@@ -625,7 +625,7 @@
     <value>Bibliothèques locales</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
-    <value>Téléchargement de fichiers</value>
+    <value>Télécharger des fichiers</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES_LONG" xml:space="preserve">
     <value>Sélectionnez simplement le fichier que vous voulez télécharger depuis votre Xbox.</value>

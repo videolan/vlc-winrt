@@ -174,9 +174,6 @@
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>comenzi rapide de la tastatură</value>
   </data>
-  <data name="Local" xml:space="preserve">
-    <value>local</value>
-  </data>
   <data name="License" xml:space="preserve">
     <value>licență</value>
   </data>
@@ -516,24 +513,6 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>decupare pe verticală</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>potrivire ecran</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>complet</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>original</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>lista dvs. de redare nu va fi accesibilă</value>
   </data>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Artiști similari</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Aplică și repornește</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Engleză</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Japoneză</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slovacă</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Germană</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Poloneză</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Slovacă</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>Daneză</value>
@@ -624,14 +600,29 @@
   <data name="HebrewLanguage" xml:space="preserve">
     <value>Ebraică</value>
   </data>
+  <data name="RomanianLanguage" xml:space="preserve">
+    <value>Română</value>
+  </data>
+  <data name="BrazilianLanguage" xml:space="preserve">
+    <value>Braziliană</value>
+  </data>
+  <data name="ArabicLanguage" xml:space="preserve">
+    <value>Arabă</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Limbi</value>
+  </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC va fi afișat în</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Aplică și repornește</value>
   </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Actualizați limba</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC va fi afișat în</value>
+  <data name="Local" xml:space="preserve">
+    <value>local</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>Descărcare fișiere</value>
@@ -710,6 +701,24 @@
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Apăsați lung un fișier sau un dosar pentru a-l copia în spațiul de stocare local.</value>
+  </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>potrivire ecran</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>complet</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>original</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>utilizați windows 10 pip</value>
