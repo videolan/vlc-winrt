@@ -1676,6 +1676,7 @@
   </ItemGroup>
   <ItemGroup>
     <XliffResource Include="MultilingualResources\VLC.Universal.ar-SA.xlf" />
+    <XliffResource Include="MultilingualResources\VLC.Universal.cs-CZ.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.fr-FR.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.he-IL.xlf" />
     <XliffResource Include="MultilingualResources\VLC.Universal.is-IS.xlf" />

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -64,7 +64,7 @@
     <value>změnit obal alba</value>
   </data>
   <data name="Chapters" xml:space="preserve">
-    <value>Chapters</value>
+    <value>Kapitoly</value>
   </data>
   <data name="CheckCredentials" xml:space="preserve">
     <value>nastala chyba, zkontrolujte prosím přihlašovací údaje</value>
@@ -173,9 +173,6 @@
   </data>
   <data name="KeyboardShortcuts" xml:space="preserve">
     <value>klávesové zkratky</value>
-  </data>
-  <data name="Local" xml:space="preserve">
-    <value>místní</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>licence</value>
@@ -331,7 +328,7 @@
     <value>prohlášení o ochraně soukromí</value>
   </data>
   <data name="Favorites" xml:space="preserve">
-    <value>Favorites</value>
+    <value>Oblíbené</value>
   </data>
   <data name="RefreshMusicLibrary" xml:space="preserve">
     <value>obnovit hudební knihovnu</value>
@@ -391,13 +388,13 @@
     <value>rychlost</value>
   </data>
   <data name="Stop" xml:space="preserve">
-    <value> zastavit</value>
+    <value>zastavit</value>
   </data>
   <data name="SubtitleDelay" xml:space="preserve">
     <value>zpoždění titulků</value>
   </data>
   <data name="Subtitles" xml:space="preserve">
-    <value>Subtitles</value>
+    <value>Titulky</value>
   </data>
   <data name="SubtitlesEncoding" xml:space="preserve">
     <value>kódování titulků</value>
@@ -516,24 +513,6 @@
   <data name="SURFACE_FIT_VERTICAL" xml:space="preserve">
     <value>svislé oříznutí</value>
   </data>
-  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
-    <value>přizpůsobit obrazovce</value>
-  </data>
-  <data name="SURFACE_FILL" xml:space="preserve">
-    <value>vyplnit</value>
-  </data>
-  <data name="SURFACE_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="SURFACE_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="SURFACE_2_35_1" xml:space="preserve">
-    <value>2.35:1</value>
-  </data>
-  <data name="SURFACE_ORIGINAL" xml:space="preserve">
-    <value>původní</value>
-  </data>
   <data name="YourPlaylistWontBeAccessible" xml:space="preserve">
     <value>váš seznam skladeb nebude dostupný</value>
   </data>
@@ -552,9 +531,6 @@
   <data name="SimilarArtists" xml:space="preserve">
     <value>Podobní umělci</value>
   </data>
-  <data name="ApplyAndRestart" xml:space="preserve">
-    <value>Použít a restartovat</value>
-  </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>Angličtina</value>
   </data>
@@ -564,14 +540,14 @@
   <data name="JapaneseLanguage" xml:space="preserve">
     <value>Japonština</value>
   </data>
-  <data name="SlovakLanguage" xml:space="preserve">
-    <value>Slovenština</value>
-  </data>
   <data name="GermanLanguage" xml:space="preserve">
     <value>Němečina</value>
   </data>
   <data name="PolishLanguage" xml:space="preserve">
     <value>Polština</value>
+  </data>
+  <data name="SlovakLanguage" xml:space="preserve">
+    <value>Slovenština</value>
   </data>
   <data name="DanishLanguage" xml:space="preserve">
     <value>Dánština</value>
@@ -621,14 +597,32 @@
   <data name="IcelandicLanguage" xml:space="preserve">
     <value>Islandština</value>
   </data>
+  <data name="HebrewLanguage" xml:space="preserve">
+    <value>Hebrejština</value>
+  </data>
+  <data name="RomanianLanguage" xml:space="preserve">
+    <value>Rumunština</value>
+  </data>
+  <data name="BrazilianLanguage" xml:space="preserve">
+    <value>Brazilština</value>
+  </data>
+  <data name="ArabicLanguage" xml:space="preserve">
+    <value>Arabština</value>
+  </data>
   <data name="Languages" xml:space="preserve">
-    <value>Languages</value>
+    <value>Jazyky</value>
+  </data>
+  <data name="SelectLanguageDescription" xml:space="preserve">
+    <value>VLC se zobrazí v</value>
+  </data>
+  <data name="ApplyAndRestart" xml:space="preserve">
+    <value>Použít a restartovat</value>
   </data>
   <data name="RefreshLanguage" xml:space="preserve">
     <value>Obnovit jazyk</value>
   </data>
-  <data name="SelectLanguageDescription" xml:space="preserve">
-    <value>VLC se zobrazí v</value>
+  <data name="Local" xml:space="preserve">
+    <value>místní</value>
   </data>
   <data name="WEBINTF_DOWNLOADFILES" xml:space="preserve">
     <value>Stáhnout soubory</value>
@@ -640,7 +634,7 @@
     <value>Pustit soubory</value>
   </data>
   <data name="WEBINTF_DROPFILES_LONG" xml:space="preserve">
-    <value>Do okna přetáhněte soubory a přidejte je do svého Xboxu&lt;it id="1" pos="open"&gt;&amp;lt;br&amp;gt;&lt;/it&gt;Nebo klikněte na tlačítko &amp;quot;+&amp;quot; chcete-li použít dialog pro výběr souborů.</value>
+    <value>Do okna přetáhněte soubory a přidejte je do svého Xboxu&lt;br&gt;Nebo klikněte na tlačítko "+" chcete-li použít dialog pro výběr souborů.</value>
   </data>
   <data name="WEBINTF_TITLE" xml:space="preserve">
     <value>Sdílení prostřednictvím WiFi</value>
@@ -670,7 +664,7 @@
     <value>Co by mělo VLC udělat při zjištění externího úložiště?</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Zrušit</value>
   </data>
   <data name="DoNothing" xml:space="preserve">
     <value>Nedělat nic</value>
@@ -679,10 +673,10 @@
     <value>Ok</value>
   </data>
   <data name="Ignore" xml:space="preserve">
-    <value>Ignore</value>
+    <value>Ignorovat</value>
   </data>
   <data name="Remember" xml:space="preserve">
-    <value>Remember</value>
+    <value>Zapamatovat</value>
   </data>
   <data name="AddMediaHelp" xml:space="preserve">
     <value>Vložte prosím externí úložiště</value>
@@ -703,10 +697,28 @@
     <value>Vymazat uložené identifikační údaje</value>
   </data>
   <data name="Credentials" xml:space="preserve">
-    <value>Credentials</value>
+    <value>Identifikační údaje</value>
   </data>
   <data name="CopyHelpPhone" xml:space="preserve">
     <value>Dlouhým stisknutím na soubor nebo složku jej zkopírujte na místní úložiště.</value>
+  </data>
+  <data name="SURFACE_FIT_SCREEN" xml:space="preserve">
+    <value>přizpůsobit obrazovce</value>
+  </data>
+  <data name="SURFACE_FILL" xml:space="preserve">
+    <value>vyplnit</value>
+  </data>
+  <data name="SURFACE_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="SURFACE_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="SURFACE_2_35_1" xml:space="preserve">
+    <value>2.35:1</value>
+  </data>
+  <data name="SURFACE_ORIGINAL" xml:space="preserve">
+    <value>původní</value>
   </data>
   <data name="CompactOverlayPiP" xml:space="preserve">
     <value>použit windows 10 pip</value>
@@ -728,5 +740,8 @@
   </data>
   <data name="Disconnect" xml:space="preserve">
     <value>odpojit</value>
+  </data>
+  <data name="XboxUpload" xml:space="preserve">
+    <value>Upload xbox</value>
   </data>
 </root>
