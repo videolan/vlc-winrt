@@ -40,7 +40,7 @@ seek F, 20 + 70, 1;
 my $flags = get_le(2);
 seek F, -2, 1;
 
-$flags |= 0x1000; # App Container
+$flags |= 0x1400;  # App Container and NO SEH
 
 printf F "%c%c", $flags & 0xff,($flags >> 8) & 0xff;
 
