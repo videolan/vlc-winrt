@@ -7,6 +7,8 @@ _You can find the official repository [here](https://code.videolan.org/videolan/
 It's currently written in C# and uses [libvlcpp](https://code.videolan.org/videolan/libvlcpp) (C++) and 
 [libvlcppcx](https://code.videolan.org/videolan/vlc-winrt/tree/master/modules/libvlcppcx) (C++/CX) for interop with managed code.
 
+#### ⚠️ ⚠️ ⚠️ Status update: The VLC for WinRT app is retired (deprecated), there is no more development being done on it. We advice you to use the classic VLC app instead. For UWP support in your LibVLC apps, have a look at [libvlcsharp](https://code.videolan.org/videolan/LibVLCSharp).
+
 - [Requirements](#requirements)
 - [Building](#building)
     - [VLC-WinRT](#vlc-winrt)
